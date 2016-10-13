@@ -3,9 +3,51 @@
 
 int timer_set_square(unsigned long timer, unsigned long freq) {
 
+	unsigned char st;
+	unsigned long sel;
 
+	timer_get_conf(timer, &st);  // Gets timer configuration
 
-	return 1;
+	st = 0x0F & st; //Get the last four significant bits
+
+	unsigned long div = TIMER_FREQ/freq; // getting div from clock/div relation
+	unsigned long div_shift = div >> 8; // shift 8
+
+	if (timer == 0){
+		sel = (TIMER_SEL0 | TIMER_LSB_MSB | st); // select TIMER_0 with LSB followed by MSB activated
+
+		sys_outb(TIMER_CTRL, st); // send information to register control
+
+		sys_outb(TIMER_0, div); //send first information to TIMER_0
+
+		sys_outb(TIMER_0, div_shift); //send second information to TIMER_0
+
+		return 0;
+	}
+	else if (timer == 1){
+		sel = (TIMER_SEL1 | TIMER_LSB_MSB | st);
+
+		sys_outb(TIMER_CTRL, st);
+
+		sys_outb(TIMER_1, div);
+
+		sys_outb(TIMER_1, div_shift);
+
+		return 0;
+	}
+	else if (timer == 2){
+		sel = (TIMER_SEL2 | TIMER_LSB_MSB | st);
+
+		sys_outb(TIMER_CTRL, st);
+
+		sys_outb(TIMER_2, div);
+
+		sys_outb(TIMER_2, div_shift);
+
+		return 0;
+	}
+
+	return -1;
 }
 
 int timer_subscribe_int(void ) {
