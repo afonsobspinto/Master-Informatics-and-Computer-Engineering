@@ -1,3 +1,6 @@
+#include <"test3.c">
+
+
 int kbd_test_scan(unsigned short ass) {
 	/* To be completed */
 }
