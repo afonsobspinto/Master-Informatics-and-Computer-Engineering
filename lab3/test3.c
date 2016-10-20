@@ -2,7 +2,11 @@
 
 
 int kbd_test_scan(unsigned short ass) {
-	/* To be completed */
+	if (ass == 0)
+		// Call AsSsSsSsembly
+	else{
+		printf ("Makecode: &x \n");
+		printf ("Breakcode: &x \n");
 }
 int kbd_test_leds(unsigned short n, unsigned short *leds) {
     /* To be completed */
