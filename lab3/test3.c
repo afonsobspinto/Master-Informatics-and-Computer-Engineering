@@ -1,13 +1,17 @@
-#include <"test3.c">
-
+#include "keyword.h"
 
 int kbd_test_scan(unsigned short ass) {
+
+	int irqset = keyword_subscribe_int);
+
 	if (ass == 0)
-		// Call AsSsSsSsembly
 	else{
 		printf ("Makecode: &x \n");
-		printf ("Breakcode: &x \n");
+		printf ("Breakcode: &x \n");´
+	}
+	keyword_unsubscribe_int();
 }
+
 int kbd_test_leds(unsigned short n, unsigned short *leds) {
     /* To be completed */
 }
