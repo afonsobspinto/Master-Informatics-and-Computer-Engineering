@@ -1,7 +1,7 @@
 #ifndef __keyboard_H
 #define __keyboard_H
 
-#include "i8042.h"
+#include "I8042.h"
 
 
 /**
@@ -18,6 +18,7 @@ int keyboard_subscribe_int(void );
  */
 int keyboard_unsubscribe_int();
 
+int kbd_scan_handler(unsigned long);
 
 #endif /* __keyboard_H */
 

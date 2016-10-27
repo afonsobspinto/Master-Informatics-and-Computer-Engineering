@@ -1,5 +1,4 @@
-#include "timer.h"
-#include "i8042.h"
+#include "I8042.h"
 #include <limits.h>
 #include <string.h>
 #include <errno.h>
@@ -18,6 +17,7 @@ int main(int argc, char **argv)
 		print_usage(argv);
 		return 0;
 	}
+
 	else return proc_args(argc, argv);
 }
 
@@ -33,6 +33,7 @@ static void print_usage(char **argv)
 static int proc_args(int argc, char **argv)
 {
 	unsigned long temp;
+	unsigned short *temp_array;
 
 	if (strncmp(argv[1], "scan", strlen("scan")) == 0) {
 		if (argc != 3) { //argc = numero de argumentos (existem sempre 2 default -> nome da função e outra cena que nao me lembro);
@@ -57,13 +58,13 @@ static int proc_args(int argc, char **argv)
 			return 1;
 
 		temp_array = malloc(temp*sizeof(unsigned short)); // allocate memory; temp = n em unsigned long;
-
-		for (unsigned int i=0; i < temp; i++){
-			value = parse_ulong(argv[i+3], 10) // Reads Array elements
-			if(value == ULONG_MAX)
+		unsigned int i;
+		for (i=0; i < temp; i++){
+			temp = parse_ulong(argv[i+3], 10); // Reads Array elements
+			if(temp == ULONG_MAX)
 				return 1;
 			else
-				temp_array.at(i)=value;
+				temp_array[i]=temp;
 		}
 
 		return kbd_test_leds(temp, temp_array);
