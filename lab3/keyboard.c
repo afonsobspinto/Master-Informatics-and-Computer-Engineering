@@ -3,7 +3,7 @@
 #include "keyboard.h"
 
 int hook_id_kb = 0;
-int counter_kb = 0;
+
 
 int keyboard_subscribe_int(void ) {
 
@@ -43,26 +43,26 @@ int kbd_scan_handler(unsigned long byte1){
 	return 0;
 }
 
-int kbd_write(unsigned long byte)
-{
-	unsigned long status;
-	int i = -1;
-	while (++i < KB_RETRY)
-	{
-		do
-		{
-			if (sys_inb(KBC_STATUS_REG, &status)!=OK)
-				return 1;
-
-			if ((status & KBC1) == 0){
-				if (sys_outb(KBD_TOGGLE_LEDS, byte)
-					return 1;
-				return 0;
-			}
-
-			tickdelay(micros_to_ticks(DELAY_US));
-		}
-		while (!(status & KBC6));
-	}
-	return 1;
-}
+//int kbd_write(unsigned long byte)
+//{
+//	unsigned long status;
+//	int i = -1;
+//	while (++i < KB_RETRY)
+//	{
+//		do
+//		{
+//			if (sys_inb(KBC_STATUS_REG, &status)!=OK)
+//				return 1;
+//
+//			if ((status & KBC1) == 0){
+//				if (sys_outb(KBD_TOGGLE_LEDS, byte)
+//					return 1;
+//				return 0;
+//			}
+//
+//			tickdelay(micros_to_ticks(DELAY_US));
+//		}
+//		while (!(status & KBC6));
+//	}
+//	return 1;
+//}

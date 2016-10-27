@@ -46,4 +46,7 @@ int kbd_test_leds(unsigned short n, unsigned short *leds);
  */
 int kbd_test_timed_scan(unsigned short n);
 
+void kb_int_handler();
+
+
 #endif /* __TEST3_H */
