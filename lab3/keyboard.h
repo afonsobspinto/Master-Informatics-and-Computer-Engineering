@@ -1,6 +1,8 @@
 #ifndef __keyboard_H
 #define __keyboard_H
 
+#include "i8042.h"
+
 
 /**
  * @brief Subscribes and enables keyboard interrupts
@@ -16,4 +18,6 @@ int keyboard_subscribe_int(void );
  */
 int keyboard_unsubscribe_int();
 
+
 #endif /* __keyboard_H */
+

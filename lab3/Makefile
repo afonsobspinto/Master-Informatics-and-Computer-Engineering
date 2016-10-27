@@ -1,4 +1,4 @@
-# Makefile for lab2
+# Makefile for lab3
 
 COMPILER_TYPE= gnu
 

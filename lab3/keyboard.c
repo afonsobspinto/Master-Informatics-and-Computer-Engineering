@@ -1,6 +1,5 @@
 #include <minix/syslib.h>
 #include <minix/drivers.h>
-#include "i8254.h"
 
 int hook_id = 0;
 int counter = 0;
