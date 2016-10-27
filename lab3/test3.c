@@ -48,9 +48,37 @@ int kbd_test_scan(unsigned short ass) {
 	return 0;
 }
 
-int kbd_test_leds(unsigned short n, unsigned short *leds) {
-    /* To be completed */
+int kbd_test_leds(unsigned short *leds){
+	int r, ipc_status;
+	message msg;
+
+	unsigned int i = 0;
+	while (i < n)
+	{
+		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0)
+		{
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status))
+		{
+			if (_ENDPOINT_P(msg.m_source) == HARDWARE)
+			{
+				if (msg.NOTIFY_ARG & timer_subscribe_int())
+				{
+					kbd_leds_handler(*(leds + i));
+					++i;
+				}
+			}
+		}
+	}
+
+	timer_unsubscribe_int();
+
+	return 0;
 }
+
 int kbd_test_timed_scan(unsigned short n) {
-    /* To be completed */
+
+
 }

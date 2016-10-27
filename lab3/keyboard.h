@@ -20,5 +20,7 @@ int keyboard_unsubscribe_int();
 
 int kbd_scan_handler(unsigned long);
 
+int kbd_leds_handler(unsigned short)
+
 #endif /* __keyboard_H */
 
