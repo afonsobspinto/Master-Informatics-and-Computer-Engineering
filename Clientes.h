@@ -5,6 +5,7 @@
 
 class Cliente{
 	std::string nome;
+	int pontos;
 public:
 	Cliente(std::string nome);
 	std::string getNome() const;

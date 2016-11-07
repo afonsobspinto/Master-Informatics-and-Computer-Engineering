@@ -9,11 +9,12 @@ class Imovel{
 	std::string localidade;
 	std::vector <Data> reservas;
 public:
-	Imovel(std::string localidade);
+	Imovel(std::string localidade, std::vector <Data> indisponiveis = {}) ;
 };
 
 class Hotel: public Imovel{
 	int quartos;
+	bool cama_extra;
 public:
 	Hotel(int quartos);
 
