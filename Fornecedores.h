@@ -11,9 +11,10 @@ class Fornecedor{
 	std::string morada;
 	std::vector<Imovel *> ofertas;
 public:
-	Fornecedor(std::string nome, int nif, std::string morada);
+	Fornecedor(std::string nome, int nif, std::string morada, std::vector<Imovel *> ofertas ={});
 	std::string getNome() const;
 	std::string getMorada() const;
+	bool adicionaOferta(Imovel * novo);
 };
 
 #endif /* FORNECEDORES_H_ */

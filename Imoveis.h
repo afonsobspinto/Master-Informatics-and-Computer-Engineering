@@ -8,15 +8,18 @@
 class Imovel{
 	std::string localidade;
 	std::vector <Data> reservas;
+	std::string tipo;
 public:
-	Imovel(std::string localidade, std::vector <Data> indisponiveis = {}) ;
+	Imovel(std::string localidade, std::vector <Data> indisponiveis = {});
+	void setTipo(std::string tipo);
+	std::string getTipo() const;
 };
 
 class Hotel: public Imovel{
-	int quartos;
+	int cama;
 	bool cama_extra;
 public:
-	Hotel(int quartos);
+	Hotel(std::string localidade, std::vector <Data> indisponiveis = {},int cama=1, bool cama_extra=false);
 
 };
 
@@ -24,25 +27,25 @@ class Apartamento: public Imovel{
 	bool suite;
 	bool cozinha;
 	bool sala_de_estar;
-	int quartos;
+	int cama;
 public:
-	Apartamento(int quartos = 1);
-
+	Apartamento(std::string localidade, std::vector <Data> indisponiveis = {}, int cama = 1,
+			bool suite=false, bool cozinha=false, bool sala_de_estar = false);
 };
 
 class Flat: public Imovel{
 public:
-	Flat();
+	Flat(std::string localidade, std::vector <Data> indisponiveis = {});
 };
 
 class SharedHouse: public Imovel{
 public:
-	SharedHouse();
+	SharedHouse(std::string localidade, std::vector <Data> indisponiveis = {});
 };
 
 class BB: public Imovel{
 public:
-	BB();
+	BB(std::string localidade, std::vector <Data> indisponiveis = {});
 };
 
 #endif /* IMOVEIS_H_ */
