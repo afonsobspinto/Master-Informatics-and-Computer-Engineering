@@ -6,9 +6,11 @@
 class Cliente{
 	std::string nome;
 	int pontos;
+	static unsigned int counter;
 public:
 	Cliente(std::string nome);
 	std::string getNome() const;
+	static unsigned int getTotalClientes() const;
 };
 
 
