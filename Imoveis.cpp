@@ -4,14 +4,14 @@
 using namespace std;
 
 
-Imovel::Imovel(string localidade, vector<Data> indisponiveis) {
+Imovel::Imovel(string localidade, vector<Reserva> indisponiveis) {
 	this->localidade = localidade;
 	this->reservas = indisponiveis;
 
 	cout << "Construtor Imovel Chamado Com Sucesso!" << endl;
 }
 
-Hotel::Hotel(std::string localidade, std::vector<Data> indisponiveis,
+Hotel::Hotel(std::string localidade, std::vector<Reserva> indisponiveis,
 		int cama, bool cama_extra):Imovel(localidade, indisponiveis) {
 	this->cama=cama;
 	this->cama_extra=cama_extra;
@@ -21,7 +21,7 @@ Hotel::Hotel(std::string localidade, std::vector<Data> indisponiveis,
 }
 
 Apartamento::Apartamento(std::string localidade,
-		std::vector<Data> indisponiveis, int cama, bool suite, bool cozinha, bool sala_de_estar):Imovel(localidade, indisponiveis) {
+		std::vector<Reserva> indisponiveis, int cama, bool suite, bool cozinha, bool sala_de_estar):Imovel(localidade, indisponiveis) {
 	this->cama = cama;
 	this->suite = suite;
 	this->cozinha = cozinha;
@@ -31,20 +31,20 @@ Apartamento::Apartamento(std::string localidade,
 	cout << "Construtor Apartamento Chamado Com Sucesso!" << endl;
 }
 
-Flat::Flat(std::string localidade, std::vector<Data> indisponiveis):Imovel(localidade, indisponiveis) {
+
+Flat::Flat(std::string localidade, std::vector<Reserva> indisponiveis):Imovel(localidade, indisponiveis) {
 	setTipo("Flat");
 	cout << "Construtor Flat Chamado Com Sucesso!" << endl;
 }
 
-SharedHouse::SharedHouse(std::string localidade,
-		std::vector<Data> indisponiveis):Imovel(localidade, indisponiveis) {
-	setTipo("SharedHouse");
-	cout << "Construtor SharedHouse Chamado Com Sucesso!" << endl;
-}
-
-BB::BB(std::string localidade, std::vector<Data> indisponiveis):Imovel(localidade, indisponiveis) {
+BB::BB(std::string localidade, std::vector<Reserva> indisponiveis):Imovel(localidade, indisponiveis) {
 	setTipo("BB");
 	cout << "Construtor BB Chamado Com Sucesso!" << endl;
+}
+
+Shared::Shared(std::string localidade, std::vector<Reserva> indisponiveis):Imovel(localidade, indisponiveis) {
+	setTipo("Shared");
+	cout << "Construtor Shared Chamado Com Sucesso!" << endl;
 }
 
 void Imovel::setTipo(std::string tipo) {

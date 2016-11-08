@@ -10,11 +10,12 @@ class Fornecedor{
 	int nif;
 	std::string morada;
 	std::vector<Imovel *> ofertas;
+	bool caro; //Ver Issues
 public:
 	Fornecedor(std::string nome, int nif, std::string morada, std::vector<Imovel *> ofertas ={});
 	std::string getNome() const;
 	std::string getMorada() const;
-	bool adicionaOferta(Imovel * novo);
+	bool adicionaOferta(Imovel * novo); //É só adicionar. As condições já devem vir direitas do Broker.
 };
 
 #endif /* FORNECEDORES_H_ */

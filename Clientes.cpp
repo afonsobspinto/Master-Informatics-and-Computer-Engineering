@@ -12,6 +12,6 @@ std::string Cliente::getNome() const {
 	return nome;
 }
 
-unsigned int Cliente::getTotalClientes() const {
+unsigned int Cliente::getTotalClientes(){
 	return counter;
 }

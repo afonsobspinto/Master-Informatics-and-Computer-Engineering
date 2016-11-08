@@ -4,13 +4,15 @@
 #include <string>
 #include <vector>
 #include "Data.h"
+#include "Reservas.h"
 
 class Imovel{
 	std::string localidade;
-	std::vector <Data> reservas;
+	std::vector <Reserva> reservas;
 	std::string tipo;
+	int owner; // Ver Issues
 public:
-	Imovel(std::string localidade, std::vector <Data> indisponiveis = {});
+	Imovel(std::string localidade, std::vector <Reserva> indisponiveis = {});
 	void setTipo(std::string tipo);
 	std::string getTipo() const;
 };
@@ -19,7 +21,7 @@ class Hotel: public Imovel{
 	int cama;
 	bool cama_extra;
 public:
-	Hotel(std::string localidade, std::vector <Data> indisponiveis = {},int cama=1, bool cama_extra=false);
+	Hotel(std::string localidade, std::vector <Reserva> indisponiveis = {},int cama=1, bool cama_extra=false);
 
 };
 
@@ -29,23 +31,24 @@ class Apartamento: public Imovel{
 	bool sala_de_estar;
 	int cama;
 public:
-	Apartamento(std::string localidade, std::vector <Data> indisponiveis = {}, int cama = 1,
+	Apartamento(std::string localidade, std::vector <Reserva> indisponiveis = {}, int cama = 1,
 			bool suite=false, bool cozinha=false, bool sala_de_estar = false);
 };
 
 class Flat: public Imovel{
 public:
-	Flat(std::string localidade, std::vector <Data> indisponiveis = {});
-};
-
-class SharedHouse: public Imovel{
-public:
-	SharedHouse(std::string localidade, std::vector <Data> indisponiveis = {});
+	Flat(std::string localidade, std::vector <Reserva> indisponiveis = {});
 };
 
 class BB: public Imovel{
 public:
-	BB(std::string localidade, std::vector <Data> indisponiveis = {});
+	BB(std::string localidade, std::vector <Reserva> indisponiveis = {});
 };
+
+class Shared: public Imovel{
+public:
+	Shared(std::string localidade, std::vector <Reserva> indisponiveis = {});
+};
+
 
 #endif /* IMOVEIS_H_ */

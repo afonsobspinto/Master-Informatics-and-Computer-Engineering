@@ -6,11 +6,11 @@
 class Cliente{
 	std::string nome;
 	int pontos;
-	static unsigned int counter;
+	static unsigned int counter; //Chei ó Tomás, Static só para ti.
 public:
 	Cliente(std::string nome);
 	std::string getNome() const;
-	static unsigned int getTotalClientes() const;
+	static unsigned int getTotalClientes();
 };
 
 
