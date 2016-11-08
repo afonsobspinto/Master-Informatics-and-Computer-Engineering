@@ -9,12 +9,14 @@
 #include <iostream>
 
 #include "Broker.h"
+#include "Interacao.h"
 
 
 using namespace std;
 
 int main() {
 	//Broker ThePlaceInTheSun("ThePlaceInTheSun");
+	criaCliente();
 
 	return 0;
 }
