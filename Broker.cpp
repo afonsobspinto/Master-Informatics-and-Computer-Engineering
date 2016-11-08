@@ -21,21 +21,25 @@ float Broker::getReceita() const {
 }
 
 bool Broker::adicionaClientes() {
-	Cliente C = criaCliente();
+/*	Cliente C = criaCliente();
 
 	clientes.push_back(C);
+	atualizaMontra(); */
 }
 
 bool Broker::adicionaFornecedor() {
-	Fornecedor F = criaFornecedor();
+/*	Fornecedor F = criaFornecedor();
 
 	fornecedores.push_back(F);
+	atualizaMontra();*/
 }
 
 bool Broker::adicionaImovel() {
-	Imovel *I = criaImovel();
+/*	Imovel *I = criaImovel();
 
 	montra.push_back(I);
+	atualizaMontra();
+	*/
 }
 
 bool Broker::atualizaMontra() {
@@ -45,6 +49,11 @@ bool Broker::efectuaReserva() {
 }
 
 void Broker::taxa() {
+	int size = montra.size();
+
+	for (unsigned int i; i < size; i++){
+		receita += montra.at(i)->getTaxa();
+	}
 }
 
 std::vector<Imovel*> Broker::Pesquisa() {
