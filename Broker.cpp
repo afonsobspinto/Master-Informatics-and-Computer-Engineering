@@ -1,4 +1,5 @@
 #include "Broker.h"
+#include "Menus.h"
 
 Broker::Broker(std::string nome) {
 	this->nome = nome;
@@ -20,24 +21,31 @@ float Broker::getReceita() const {
 }
 
 bool Broker::adicionaClientes() {
+	Cliente C = criaCliente();
 
+	clientes.push_back(C);
 }
 
 bool Broker::adicionaFornecedor() {
+	Fornecedor F = criaFornecedor();
+
+	fornecedores.push_back(F);
 }
 
-bool Broker::adicionaImovel(Fornecedor F) {
+bool Broker::adicionaImovel() {
+	Imovel *I = criaImovel();
+
+	montra.push_back(I);
 }
 
 bool Broker::atualizaMontra() {
 }
 
-bool Broker::efectuaReserva(Imovel* I, Cliente C) {
+bool Broker::efectuaReserva() {
 }
 
 void Broker::taxa() {
 }
 
-std::vector<Imovel*> Broker::Pesquisa(std::string localidade, Data inicio,
-		Data fim) {
+std::vector<Imovel*> Broker::Pesquisa() {
 }

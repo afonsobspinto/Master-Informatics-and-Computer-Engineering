@@ -22,11 +22,11 @@ public:
 	float getReceita()const;
 	bool adicionaClientes(); //Verifica se o cliente existe, se nao adiciona-o
 	bool adicionaFornecedor(); //Verifica se o fornecedor existe, se nao adiciona-o
-	bool adicionaImovel(Fornecedor F); //Verifica se o imovel ja existe (Ver Todos Os Fornecedores)
+	bool adicionaImovel(); //Verifica se o imovel ja existe (Ver Todos Os Fornecedores)
 	bool atualizaMontra(); // Correr todos os fornecedores, todas as ofertas deles e colocar na montra.
-	bool efectuaReserva(Imovel * I, Cliente C); //Ve se é possivel efetuar a reserva (já nao está ocupado) Se for cria reserva e dá pontos ao Cliente C. Ver Issue
+	bool efectuaReserva(); //Ve se é possivel efetuar a reserva (já nao está ocupado) Se for cria reserva e dá pontos ao Cliente C. Ver Issue
 	void taxa(); //Recebe a taxa dos fornecedores e coloca na receita. Not sure se só se aplica quando se aluga um imovel ou se basta ele estar na montra para ter de pagar;
-	std::vector<Imovel*>Pesquisa(std::string localidade, Data inicio, Data fim); //Para   realizar   uma   reserva,   o   utilizador   deverá   antes   poder   fazer   uma   consulta   das   ofertas   em   uma   determinada
+	std::vector<Imovel*>Pesquisa(); //Para   realizar   uma   reserva,   o   utilizador   deverá   antes   poder   fazer   uma   consulta   das   ofertas   em   uma   determinada
 																				//localidade   (cidade),   para   as   datas   pretendidas; <- É isto! Feature Extra: Permitir utilizar apenas 1 dos parametros (ou até 0 -> mostra montra toda);
 };
 
