@@ -1,19 +1,21 @@
 #include "Broker.h"
 #include "Menus.h"
 
+using namespace std;
+
 Broker::Broker(std::string nome) {
 	this->nome = nome;
 }
 
-std::vector<Cliente> Broker::getClientes() const {
+vector<Cliente> Broker::getClientes() const {
 	return clientes;
 }
 
-std::vector<Imovel*> Broker::getMontra() const {
+vector<Imovel*> Broker::getMontra() const {
 	return montra;
 }
 
-std::vector<Fornecedor> Broker::getFornecedores() const {
+vector<Fornecedor> Broker::getFornecedores() const {
 	return fornecedores;
 }
 
@@ -56,5 +58,5 @@ void Broker::taxa() {
 	}
 }
 
-std::vector<Imovel*> Broker::Pesquisa() {
+vector<Imovel*> Broker::Pesquisa() {
 }

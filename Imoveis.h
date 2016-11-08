@@ -15,7 +15,7 @@ class Imovel{ // Ponderar classe abstrata
 	float taxa;
 
 public:
-	Imovel(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {});
+	Imovel(std::string localidade, int owner, float preco, float taxa, std::vector <Reserva> indisponiveis = {});
 	void setTipo(std::string tipo);
 	std::string getTipo() const;
 	float getTaxa() const;
