@@ -20,6 +20,7 @@ float Broker::getReceita() const {
 }
 
 bool Broker::adicionaClientes() {
+
 }
 
 bool Broker::adicionaFornecedor() {
