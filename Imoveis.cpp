@@ -13,11 +13,13 @@ Imovel::Imovel(string localidade, int owner, float preco, vector<Reserva> indisp
 	cout << "Construtor Imovel Chamado Com Sucesso!" << endl;
 }
 
+
 Hotel::Hotel(std::string localidade, int owner, float preco, std::vector<Reserva> indisponiveis,
 		int cama, bool cama_extra):Imovel(localidade, owner, preco, indisponiveis) {
 	this->cama=cama;
 	this->cama_extra=cama_extra;
 	setTipo("Hotel");
+	taxa = 10;
 
 	cout << "Construtor Hotel Chamado Com Sucesso!" << endl;
 }
@@ -29,6 +31,7 @@ Apartamento::Apartamento(std::string localidade, int owner, float preco,
 	this->cozinha = cozinha;
 	this->sala_de_estar=sala_de_estar;
 	setTipo("Apartamento");
+	taxa = 8;
 
 	cout << "Construtor Apartamento Chamado Com Sucesso!" << endl;
 }
@@ -37,16 +40,19 @@ Apartamento::Apartamento(std::string localidade, int owner, float preco,
 Flat::Flat(std::string localidade, int owner, float preco, std::vector<Reserva> indisponiveis):Imovel(localidade, owner, preco, indisponiveis) {
 	setTipo("Flat");
 	cout << "Construtor Flat Chamado Com Sucesso!" << endl;
+	taxa = 5;
 }
 
 BB::BB(std::string localidade, int owner, float preco, std::vector<Reserva> indisponiveis):Imovel(localidade, owner, preco, indisponiveis) {
 	setTipo("BB");
 	cout << "Construtor BB Chamado Com Sucesso!" << endl;
+	taxa = 3;
 }
 
 Shared::Shared(std::string localidade, int owner, float preco, std::vector<Reserva> indisponiveis):Imovel(localidade, owner, preco, indisponiveis) {
 	setTipo("Shared");
 	cout << "Construtor Shared Chamado Com Sucesso!" << endl;
+	taxa = 1;
 }
 
 void Imovel::setTipo(std::string tipo) {
@@ -55,4 +61,8 @@ void Imovel::setTipo(std::string tipo) {
 
 std::string Imovel::getTipo() const {
 	return tipo;
+}
+
+float Imovel::getTaxa() const {         // Precos ainda random
+	return taxa;
 }

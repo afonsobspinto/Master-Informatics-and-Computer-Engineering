@@ -10,7 +10,6 @@ class Fornecedor{
 	int nif;
 	std::string morada;
 	std::vector<Imovel *> ofertas;
-	bool caro; //Ver Issues
 public:
 	Fornecedor(std::string nome, int nif, std::string morada, std::vector<Imovel *> ofertas ={});
 	std::string getNome() const;
