@@ -1,10 +1,4 @@
-/*
- * Reservas.cpp
- *
- *  Created on: 09/11/2016
- *      Author: Tomás
- */
+#include "Reservas.h"
 
-
-
-
+/*Reserva::Reserva(Data inicio, Data final) {
+}*/
