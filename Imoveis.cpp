@@ -3,6 +3,8 @@
 
 using namespace std;
 
+unsigned int Imovel::counter = 0;
+
 
 Imovel::Imovel(string localidade, int owner, unsigned int id, float preco, float taxa, vector<Reserva> indisponiveis) {
 	this->localidade = localidade;
