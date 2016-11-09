@@ -5,7 +5,6 @@
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
-static long parse_long(char *str, int base);
 static void print_usage(char *argv[]);
 
 int main(int argc, char **argv) {
@@ -30,7 +29,7 @@ static void print_usage(char *argv[]) {
 
 static int proc_args(int argc, char *argv[]) {
 
-	unsigned long packet, time;
+	unsigned long cnt, idle_time;
 	long length;
 
 	if (strncmp(argv[1], "test_packet", strlen("test_packet")) == 0) {
@@ -40,12 +39,12 @@ static int proc_args(int argc, char *argv[]) {
 			return 1;
 		}
 
-		if( (packet = parse_ulong(argv[2], 10)) == ULONG_MAX )
+		if( (cnt = parse_ulong(argv[2], 10)) == ULONG_MAX )
 			return 1;
 
-		printf("mouse:: test_packet(%lu)\n", packet);
+		printf("mouse:: test_packet(%lu)\n", cnt);
 
-		return test_packet(packet);
+		return test_packet(cnt);
 	}
 
 	else if (strncmp(argv[1], "test_async", strlen("test_async")) == 0) {
@@ -55,12 +54,12 @@ static int proc_args(int argc, char *argv[]) {
 			return 1;
 		}
 
-		if( (time = parse_ulong(argv[2], 10)) == ULONG_MAX )
+		if( (idle_time = parse_ulong(argv[2], 10)) == ULONG_MAX )
 			return 1;
 
-		printf("mouse:: test_async(%lu)\n", time);
+		printf("mouse:: test_async(%lu)\n", idle_time);
 
-		return test_async(time);
+		return test_async(idle_time);
 	}
 
 	else if (strncmp(argv[1], "test_config", strlen("test_config")) == 0) {
@@ -82,7 +81,7 @@ static int proc_args(int argc, char *argv[]) {
 			return 1;
 		}
 
-		if( (length = parse_long(argv[2], 10)) == LONG_MAX )
+		if( (length = parse_ulong(argv[2], 10)) == LONG_MAX )
 			return 1;
 
 		printf("mouse:: test_gesture(%ld)\n", length);

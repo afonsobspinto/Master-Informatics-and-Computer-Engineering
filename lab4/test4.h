@@ -1,6 +1,8 @@
 #ifndef __TEST4_H
 #define __TEST4_H
 
+#include "I8042.h"
+
 /** @defgroup test4 test4
  * @{
  *
@@ -59,5 +61,8 @@ int test_config(void);
 
 
 int test_gesture(short length);
+
+
+void print_packet(unsigned char packet[]);
 
 #endif /* __TEST_4.H */
