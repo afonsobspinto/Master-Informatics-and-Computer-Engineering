@@ -1,5 +1,5 @@
 #include "Broker.h"
-#include "Menus.h"
+#include "Interacao.h"
 
 using namespace std;
 
@@ -23,10 +23,9 @@ float Broker::getReceita() const {
 }
 
 bool Broker::adicionaClientes() {
-/*	Cliente C = criaCliente();
+	Cliente C = criaCliente();
 
 	clientes.push_back(C);
-	atualizaMontra(); */
 }
 
 bool Broker::adicionaFornecedor() {

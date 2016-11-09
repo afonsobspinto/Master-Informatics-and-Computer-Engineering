@@ -5,25 +5,16 @@
 
 using namespace std;
 
+
+
 Cliente criaCliente(){
-	string nome;
-	bool erro = false;
-
-	do{
-		cout << "Nome: ";
-		getline(cin, nome);
-		erro = false;
-
-		try{
-			if(is_number(nome))
-				throw NomeIncorreto(nome);
-		}
-		catch (NomeIncorreto &e) {
-			cout << "Apanhou excecao. Nome Invalido: " << e.getNome() << endl;
-			erro = true;
-		}
-	}while(erro);
-
+	string nome = leNome();
 	Cliente C (nome);
 	return C;
+}
+
+Fornecedor criaFornecedor() {
+	string nome = leNome();
+	string morada = leNome(); // Tem as mesmas restrições
+
 }
