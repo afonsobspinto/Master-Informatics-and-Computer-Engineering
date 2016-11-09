@@ -23,7 +23,12 @@ string Fornecedor::getMorada() const {
 	return morada;
 }
 
+vector<Imovel*> Fornecedor::getOfertas() const {
+	return ofertas;
+}
+
 bool Fornecedor::adicionaOferta(Imovel* novo) {
 	ofertas.push_back(novo);
 	return true;
 }
+

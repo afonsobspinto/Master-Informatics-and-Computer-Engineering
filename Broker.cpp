@@ -45,6 +45,20 @@ bool Broker::adicionaImovel() {
 }
 
 bool Broker::atualizaMontra() {
+	int size = fornecedores.size();
+	vector<Imovel *> m;
+
+	for (unsigned int i=0; i<size; i++){
+		int fsize = fornecedores.at(i).getOfertas().size();
+		for (unsigned int j=0; j<fsize; j++){
+			m.push_back(fornecedores.at(i).getOfertas().at(j));
+		}
+	}
+	if (montra == m)
+		return false;
+	else
+		montra = m;
+	return true;
 }
 
 bool Broker::efectuaReserva() {
@@ -53,7 +67,7 @@ bool Broker::efectuaReserva() {
 void Broker::taxa() {
 	int size = montra.size();
 
-	for (unsigned int i; i < size; i++){
+	for (unsigned int i=0; i < size; i++){
 		receita += montra.at(i)->getTaxa();
 	}
 }
