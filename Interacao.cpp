@@ -1,18 +1,29 @@
 #include "Interacao.h"
+#include "utils.h"
 #include <iostream>
+
 
 using namespace std;
 
-void criaCliente(){
+Cliente criaCliente(){
 	string nome;
-	cout << "Nome: ";
-	try{
-	cin >> nome;
-	// Ver como atirar throw se nome incorreto
-	}
-	catch (NomeIncorreto &e) {
-			cout << "Apanhou excecao. Nome Invalido: " << e.getNome() << endl;
-		}
+	bool erro = false;
 
-	cout << "Boa " << nome << endl;
+	do{
+		cout << "Nome: ";
+		getline(cin, nome);
+		erro = false;
+
+		try{
+			if(is_number(nome))
+				throw NomeIncorreto(nome);
+		}
+		catch (NomeIncorreto &e) {
+			cout << "Apanhou excecao. Nome Invalido: " << e.getNome() << endl;
+			erro = true;
+		}
+	}while(erro);
+
+	Cliente C (nome);
+	return C;
 }
