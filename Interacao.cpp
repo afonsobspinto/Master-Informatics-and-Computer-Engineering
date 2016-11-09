@@ -14,7 +14,8 @@ Cliente criaCliente(){
 }
 
 Fornecedor criaFornecedor() {
-	string nome = leNome();
+	/*string nome = leNome();
 	string morada = leNome(); // Tem as mesmas restrições
+	*/
 
 }
