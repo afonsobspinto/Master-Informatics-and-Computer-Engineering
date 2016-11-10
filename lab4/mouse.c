@@ -1,6 +1,8 @@
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 #include "mouse.h"
+#include "i8042.h"
+
 
 int mouse_hook_id;
 
@@ -23,19 +25,27 @@ int mouse_unsubscribe_int() {
 	return -1;
 }
 
-int read_mouse_byte(unsigned char packet[], unsigned short int byteCounter)
+int get_mouse_packet(unsigned char *packet[])
 {
-	long unsigned int byte;
+	printf ("X2\n");
+	unsigned char byte;
+	unsigned short int byteCounter = 0;
 
 	if(sys_inb(OUT_BUF, &byte) != 0){
 		printf("Error reading from OUT_BUF\n");
 		return 0;
 	}
-	if(BIT(3) & byte == 1){
-		packet[byteCounter] = byte;
-		return 1;
+
+	printf ("Byte: %x\n", byte);
+	while (byteCounter < 3){
+		if(BIT(3) & byte == 1){
+				packet[byteCounter] = byte;
+				byteCounter++;
+				printf ("ByteCounter: %x\n", byteCounter);
+			}
 	}
 
-	return 0;
+	if(byteCounter==0)
+		return 0;
+	return 1;
 }
-

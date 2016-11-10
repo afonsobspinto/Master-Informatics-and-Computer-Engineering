@@ -1,7 +1,7 @@
 #ifndef __TEST4_H
 #define __TEST4_H
 
-#include "I8042.h"
+
 
 /** @defgroup test4 test4
  * @{
@@ -63,6 +63,19 @@ int test_config(void);
 int test_gesture(short length);
 
 
+
+
+/**
+ * @brief Prints Packet Information
+ *
+ *  Displays packet information in a human-friendly way
+ *
+ */
 void print_packet(unsigned char packet[]);
+
+
+
+
+
 
 #endif /* __TEST_4.H */

@@ -5,7 +5,7 @@ COMPILER_TYPE= gnu
 CC= gcc
 
 PROG= lab4
-SRCS= lab4.c mouse.c test4.c
+SRCS= lab4.c mouse.c test4.c timer.c
 
 CCFLAGS= -Wall
 
