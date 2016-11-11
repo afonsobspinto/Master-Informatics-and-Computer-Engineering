@@ -1,131 +1,275 @@
-#include <minix/syslib.h>
-#include <minix/drivers.h>
 #include "test4.h"
+#include "mouse_cmds.h"
 #include "timer.h"
-#include "mouse.h"
-#include "i8042.h"
-#include "i8254.h"
 
-void print_packet(unsigned char packet[])
-{
-	printf("B1=0x%X\t", packet[0]);
-	printf("B2=0x%X\t", packet[1]);
-	printf("B3=0x%X\t", packet[2]);
-	printf("LB=%d\t", (BIT(0) & packet[0]));
-	printf("MB=%d\t", (BIT(2) & packet[0]));
-	printf("RB=%d\t", (BIT(1) & packet[0]));
-	printf("XOV=%d\t", (BIT(6) & packet[0]));
-	printf("YOV=%d\t", (BIT(7) & packet[0]));
-	printf("X=%d\t", packet[1]);
-	printf("Y=%d", packet[2]);
-	printf("\n");
-}
 
 int test_packet(unsigned short cnt){
 
+	unsigned hook_id = MOUSE_IRQ;
+
+	mouse_subscribe_int(&hook_id);
+	mouse_set_stream_mode();
+	mouse_enable_stream_mode();
+
 	int r, ipc_status;
 	message msg;
 	unsigned char packet[3];
-	unsigned char reply;
-	unsigned short int byteCounter = 0;
 
-	int irq_set_mouse=mouse_subscribe_int();
-
-	while( 1 ) {
-		printf("X1\n");
-		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+	while(cnt > 0)
+	{
+		// Message requested
+		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
 			printf("driver_receive failed with: %d", r);
 			continue;
 		}
-		printf("X2\n");
-		if (is_ipc_notify(ipc_status)) {
-			switch (_ENDPOINT_P(msg.m_source)) {
+		if (is_ipc_notify(ipc_status)) { // Notification received
+			switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
+			{
 			case HARDWARE:
-				if(msg.NOTIFY_ARG & irq_set_mouse) {
-					printf("CNT: %u\n", cnt);
-					if (cnt==0){
-						printf("X4\n");
-						mouse_unsubscribe_int();
-						return 0;
-					}
-					if(get_mouse_packet(&packet))
-						print_packet(packet);
-					else
-						continue;
+				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)) {
+					if (test_packet_int_handler(&cnt))
+						return 1;
 				}
 			default:
-				printf ("X6.5\n");
-				break;
+				break; // no other notifications expected: do nothing
 			}
-			printf ("X7\n");
-		}
-		else {
-			printf ("X8\n");
 		}
 	}
 
-	mouse_unsubscribe_int();
+	mouse_disable_stream_mode();
+	mouse_unsubscribe_int(hook_id);
 
-	return 1;
+	return 0;
 }
 
-int test_async(unsigned short idle_time) {
+int test_packet_int_handler(unsigned short* cnt)
+{
+	if(mouse_int_handler())
+		return 1;
+
+	mouse_struct info;
+
+	if(mouse_get_packet(&info))
+	{
+		--*cnt;
+		display_packet(info);
+	}
+	return 0;
+}
+
+int test_async(unsigned short *idle_time) {
+
+
+	unsigned hook_id = MOUSE_IRQ;
+	unsigned char timer_hook_bit = timer_subscribe_int();
+
+
+	mouse_subscribe_int(&hook_id);
+	mouse_set_stream_mode();
+	mouse_enable_stream_mode();
 
 	int r, ipc_status;
 	message msg;
 	unsigned char packet[3];
-	unsigned char reply;
-	unsigned short int timerCounter = 0;
-	unsigned short int byteCounter = 0;
 
-	int irq_set_mouse=mouse_subscribe_int();
-	int irq_set_timer=timer_subscribe_int();
+	unsigned timer_counter = 0;
 
-
-
-	while( timerCounter < idle_time * TIMER_DEFAULT_FREQ ) {
-		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+	while(timer_counter < 60 * (*idle_time))
+	{
+		// Message requested
+		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
 			printf("driver_receive failed with: %d", r);
 			continue;
 		}
-		if (is_ipc_notify(ipc_status)) {
-			switch (_ENDPOINT_P(msg.m_source)) {
+		if (is_ipc_notify(ipc_status)) { // Notification received
+			switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
+			{
 			case HARDWARE:
-				if(msg.NOTIFY_ARG & irq_set_mouse) {
-					timerCounter = 0;
-					if(get_mouse_packet(&packet))
-						print_packet(packet);
-					else
-						continue;
-					}
-				if(msg.NOTIFY_ARG & irq_set_timer) {
-					timer_int_handler(&timerCounter);
-					printf("TimerCounter: %u\n", timerCounter);
+				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)) {
+					timer_counter = 0;
+					if (test_async_mouse_int_handler())
+						return 1;
 				}
-			default:
-				printf ("X6.5\n");
+				else if (msg.NOTIFY_ARG & BIT(timer_hook_bit)) {
+					++timer_counter;
+				}
 				break;
+			default:
+				break; // no other notifications expected: do nothing
 			}
-			printf ("X7\n");
-		}
-		else {
-			printf ("X8\n");
 		}
 	}
 
-	mouse_unsubscribe_int();
+	mouse_disable_stream_mode();
+	mouse_unsubscribe_int(hook_id);
 	timer_unsubscribe_int();
 
-	printf("Time Limit: %u seconds have passed\n", idle_time);
-	return 1;
+	printf("Timeout.\n");
 
+	return 0;
 }
 
+int test_async_mouse_int_handler()
+{
+	if(mouse_int_handler())
+		return 1;
+
+	mouse_struct info;
+
+	if(mouse_get_packet(&info))
+		display_packet(info);
+	return 0;
+}
 
 int test_config(void) {
-	/* To be completed ... */
+	unsigned hook_id = MOUSE_IRQ;
+
+	mouse_subscribe_int(&hook_id);
+	mouse_disable_stream_mode();
+
+	mouse_status status;
+	if (mouse_get_status(&status))
+		return 1;
+
+	display_config(&status);
+
+	return 0;
 }
 
-int test_gesture(short length) {
-	/* To be completed ... */
+int test_gesture(unsigned short length) {
+
+	unsigned hook_id = MOUSE_IRQ;
+
+		mouse_subscribe_int(&hook_id);
+		mouse_set_stream_mode();
+		mouse_enable_stream_mode();
+
+		int r, ipc_status;
+		message msg;
+		unsigned char packet[3];
+
+		while(abs(length) > 0)
+		{
+			// Message requested
+			if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+				printf("driver_receive failed with: %d", r);
+				continue;
+			}
+			if (is_ipc_notify(ipc_status)) { // Notification received
+				switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
+				{
+				case HARDWARE:
+					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)) {
+						if (test_gesture_int_handler(&length))
+							return 1;
+					}
+				default:
+					break; // no other notifications expected: do nothing
+				}
+			}
+		}
+
+		mouse_disable_stream_mode();
+		mouse_unsubscribe_int(hook_id);
+
+		printf("Positive slope w/ Right Button Pressed");
+		return 0;
+}
+
+int test_gesture_int_handler(unsigned short *length)
+{
+	printf("length: %d \n", *length);
+	if(mouse_int_handler())
+			return 1;
+
+		mouse_struct info;
+
+
+		if(mouse_get_packet(&info))
+		{
+
+			if(info.right){
+				if(length > 0 && info.y_delta > 0 && info.x_delta >0){
+					*length-=info.y_delta;
+					printf("length: %d \n", *length);
+				}
+
+				else if( length < 0 && info.y_delta < 0 && info.x_delta < 0){
+					*length+=info.y_delta;
+					printf("length: %d \n", *length);
+				}
+			}
+			display_packet(info);
+		}
+		return 0;
+
+}
+
+void display_packet(mouse_struct info)
+{
+	printf("B1=0x%X\t", info.bytes[0]);
+
+	printf("B2=0x%X\t", info.bytes[1]);
+
+	printf("B3=0x%X\t", info.bytes[2]);
+
+	printf("LB=%d\t", info.left);
+
+	printf("MB=%d\t", info.middle);
+
+	printf("RB=%d\t", info.right);
+
+	printf("XOV=%d\t", info.x_ovfl);
+
+	printf("YOV=%d\t", info.y_ovfl);
+
+	printf("X=%d\t", info.x_delta);
+
+	printf("Y=%d", info.y_delta);
+
+	printf("\n");
+	return;
+}
+
+void display_config(mouse_status *status)
+{
+	printf("Mouse configuration : \n");
+
+	printf("Byte 1: 0x%02X\n", status->bytes[0]);
+	printf("Byte 2: 0x%02X\n", status->bytes[1]);
+	printf("Byte 3: 0x%02X\n", status->bytes[2]);
+
+	if(status->remote_mode)
+		printf("Remote (Polled) Mode.\n");
+	else
+		printf("Stream Mode \n");
+
+	if(status->enable)
+		printf("Data Reporting Enable \n");
+	else
+		printf("Data Reporting Disable \n");
+
+	if(status->scaling)
+		printf("Scaling 2:1 \n");
+	else
+		printf("Scaling 1:1 \n");
+
+	if(status->left)
+		printf("Left Button Pressed.\n");
+	else
+		printf("Left Button Released.\n");
+
+	if(status->middle)
+		printf("Middle Button Pressed.\n");
+	else
+		printf("Middle Button Released.\n");
+
+	if(status->right)
+		printf("Right Button Pressed.\n");
+	else
+		printf("Right Button Released.\n");
+
+	printf("Resolution: %d \n", status->resolution);
+	printf("Sample Rate: %d \n", status->sample_rate);
+
 }

@@ -1,24 +1,51 @@
-#ifndef __MOUSE_H
-#define __MOUSE_H
+#include "kbc.h"
+#include "i8042.h"
+#include <minix/drivers.h>
+
+typedef struct
+{
+	unsigned char bytes[3];
+	int x_ovfl;
+	int y_ovfl;
+	int left;
+	int middle;
+	int right;
+	int x_delta;
+	int y_delta;
+} mouse_struct;
+
+typedef struct
+{
+	unsigned char bytes[3];
+	int remote_mode;
+	int enable;
+	int scaling;
+	int left;
+	int middle;
+	int right;
+	unsigned char resolution;
+	unsigned char sample_rate;
+} mouse_status;
 
 
+int mouse_subscribe_int(unsigned *hook_id);
 
-/**
- * @brief Subscribes and enables mouse interrupt
- *
- * @return Returns bit order in interrupt mask; negative value on failure
- */
-int mouse_subscribe_int(void);
+int mouse_unsubscribe_int(unsigned hook_id);
 
-/**
- * @brief Unsubscribes mouse interrupts
- *
- * @return Return 0 upon success and non-zero otherwise
- */
+int mouse_write(unsigned char cmd);
 
-int mouse_unsubscribe_int();
+int mouse_read(unsigned char* read);
 
-int get_mouse_packet(unsigned char *packet[]);
+int mouse_set_stream_mode();
 
+int mouse_enable_stream_mode();
 
-#endif /* __MOUSE_H */
+int mouse_disable_stream_mode();
+
+int mouse_get_packet(mouse_struct *info);
+
+int mouse_get_status(mouse_status *status);
+
+int mouse_int_handler();
+
+int mouse_sync();

@@ -59,7 +59,7 @@ static int proc_args(int argc, char *argv[]) {
 
 		printf("mouse:: test_async(%lu)\n", idle_time);
 
-		return test_async(idle_time);
+		return test_async(&idle_time);
 	}
 
 	else if (strncmp(argv[1], "test_config", strlen("test_config")) == 0) {
