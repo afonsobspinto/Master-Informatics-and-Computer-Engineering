@@ -11,6 +11,7 @@ int test_packet(unsigned short cnt){
 	mouse_set_stream_mode();
 	mouse_enable_stream_mode();
 
+
 	int r, ipc_status;
 	message msg;
 	unsigned char packet[3];
@@ -178,7 +179,7 @@ int test_gesture(unsigned short length) {
 
 int test_gesture_int_handler(unsigned short *length)
 {
-	printf("length: %d \n", *length);
+	//printf("length: %d \n", *length);
 	if(mouse_int_handler())
 			return 1;
 
@@ -191,12 +192,12 @@ int test_gesture_int_handler(unsigned short *length)
 			if(info.right){
 				if(length > 0 && info.y_delta > 0 && info.x_delta >0){
 					*length-=info.y_delta;
-					printf("length: %d \n", *length);
+				//	printf("length: %d \n", *length);
 				}
 
 				else if( length < 0 && info.y_delta < 0 && info.x_delta < 0){
 					*length+=info.y_delta;
-					printf("length: %d \n", *length);
+				//	printf("length: %d \n", *length);
 				}
 			}
 			display_packet(info);

@@ -59,7 +59,7 @@ int test_config(void);
  * @return Return 0 upon success and non-zero otherwise
  */
 
-int test_gesture(short length);
+int test_gesture(unsigned short length);
 
 
 void display_packet(mouse_struct info);
