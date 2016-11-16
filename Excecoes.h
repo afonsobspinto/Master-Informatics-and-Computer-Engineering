@@ -14,6 +14,11 @@ public:
 	std::string getNome() { return nome; }
 };
 
+class PasswordNaoCoincide{
+public:
+	PasswordNaoCoincide(){
+	}
+};
 
 
 

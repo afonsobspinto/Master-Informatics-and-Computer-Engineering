@@ -9,7 +9,8 @@ using namespace std;
 
 Cliente criaCliente(){
 	string nome = leNome();
-	Cliente C (nome);
+	string password = lePassword();
+	Registado C (nome, password);
 	return C;
 }
 

@@ -7,6 +7,8 @@
 
 #include <string>
 
+std::string lePassword();
+
 std::string leNome();
 
 bool is_number(const std::string& s);

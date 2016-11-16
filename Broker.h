@@ -21,6 +21,7 @@ public:
 	std::vector<Fornecedor>getFornecedores()const;
 	float getReceita()const;
 	bool adicionaClientes(); //Verifica se o cliente existe, se nao adiciona-o
+	bool validaLogin(std::string nome, std::string password);
 	bool adicionaFornecedor(); //Verifica se o fornecedor existe, se nao adiciona-o
 	bool adicionaImovel(); //Verifica se o imovel ja existe (Ver Todos Os Fornecedores)
 	bool atualizaMontra(); // Correr todos os fornecedores, todas as ofertas deles e colocar na montra.

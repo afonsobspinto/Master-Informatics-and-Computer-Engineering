@@ -6,12 +6,21 @@
 class Cliente{
 	std::string nome;
 	int pontos;
-	static unsigned int counter; //Chei ó Tomás, Static só para ti.
+	int valor;
+	static unsigned int counter;
 public:
 	Cliente(std::string nome);
 	std::string getNome() const;
 	static unsigned int getTotalClientes();
 };
+
+class Registado: public Cliente{
+	std::string password;
+public:
+	Registado(std::string nome, std::string password);
+	bool validaLogin(std::string nome, std::string password);
+};
+
 
 
 #endif /* CLIENTES_H_ */
