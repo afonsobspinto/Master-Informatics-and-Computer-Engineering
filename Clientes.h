@@ -12,6 +12,7 @@ public:
 	Cliente(std::string nome);
 	std::string getNome() const;
 	static unsigned int getTotalClientes();
+
 };
 
 class Registado: public Cliente{

@@ -12,6 +12,8 @@ std::string lePassword();
 std::string leNome();
 
 bool is_number(const std::string& s);
+bool is_leap(unsigned int ano);
+bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano);
 
 
 #endif /* UTILS_H_ */
