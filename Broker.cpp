@@ -71,5 +71,9 @@ void Broker::taxa() {
 	}
 }
 
+bool Broker::cancelaReserva(Data& atual) {
+
+}
+
 vector<Imovel*> Broker::Pesquisa() {
 }

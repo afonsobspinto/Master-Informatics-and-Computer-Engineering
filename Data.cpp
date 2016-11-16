@@ -63,7 +63,7 @@ Data Data::operator - (int n) {   // Corrigir para n > 999999...
 			m = m-1;
 		}
 		d --;
-		cout << d << "/" << m << "/" << a << endl;
+		//cout << d << "/" << m << "/" << a << endl;
 	}
 	Data D (d,m,a);
 	return D;
