@@ -5,6 +5,8 @@
 
 void *test_init(unsigned short mode, unsigned short delay) {
 
+	char *video_mem;
+
 	int r, ipc_status;
 	message msg;
 	unsigned char timer_hook_bit = timer_subscribe_int();
