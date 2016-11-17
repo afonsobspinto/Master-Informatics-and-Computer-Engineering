@@ -1,3 +1,5 @@
+#define VBE_SET_VBE_MODE							0x2
+#define VBE_SET_LINEAR_FRAME_BUFFER					14
 #ifndef _MACROS_H
 #define _MACROS_H
 
@@ -18,15 +20,6 @@
 
 #define VBE_VIDEO_MODE_FUNCTION						0x00
 
+
+#define BIT(n)										(0x01<<(n))
 #endif
-
-
-// Video Graphics Commands
-#define VBE_INTERRUPT_VIDEO_CARD					0x10
-#define VBE_INTERRUPT_PC_CONFIGURATION				0x11
-#define VBE_INTERRUPT_MEM_CONFIGURATION				0x12
-#define VBE_INTERRUPT_KBD							0x16
-#define VBE_FUNCTION								0x4F
-#define VBE_VIDEO_MODE_FUNCTION						0x00
-#define VBE_SET_VBE_MODE							0x2
-#define VBE_SET_LINEAR_FRAME_BUFFER					14

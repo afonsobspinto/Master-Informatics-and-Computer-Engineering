@@ -5,6 +5,7 @@
 #include <sys/types.h>
 
 #include "vbe.h"
+#include "macros.h"
 
 /* Constants for VBE 0x105 mode */
 
@@ -31,29 +32,53 @@ static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 
 void *vg_init(unsigned short mode){
 
-	int r;
-	struct mem_range mr;
-	unsigned int vram_base;  /* VRAM's physical addresss */
-	unsigned int vram_size;  /* VRAM's size, but you can use
-	                            the frame-buffer size, instead */
-	void *video_mem;         /* frame-buffer VM address */
+	struct reg86u reg86;
 
-	/* Allow memory mapping */
+	reg86.u.b.intno = VBE_INTERRUPT_VIDEO_CARD;
+	reg86.u.b.ah = VBE_FUNCTION;
+	reg86.u.b.al = VBE_SET_VBE_MODE;
+	reg86.u.w.bx = mode | BIT(VBE_SET_LINEAR_FRAME_BUFFER);
 
-	mr.mr_base = (phys_bytes) vram_base;
-	mr.mr_limit = mr.mr_base + vram_size;
+	vbe_mode_info_t vbe_mode_info;
 
-	if( OK != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)))
-	   panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+	if (sys_int86(&reg86) == OK)
+	{
+		if (reg86.u.w.ax == VBE_FUNCTION | VBE_VIDEO_MODE_FUNCTION)
+		{
+			if(vbe_get_mode_info(mode, &vbe_mode_info))
+				return NULL;
+			else
+			{
 
-	/* Map memory */
+				int r;
+				struct mem_range mr;
+				unsigned int vram_base =  vbe_mode_info.PhysBasePtr;  /* VRAM's physical addresss */
+				unsigned int vram_size = vbe_mode_info.XResolution * vbe_mode_info.YResolution * vbe_mode_info.BitsPerPixel;  /* VRAM's size, but you can use
+                            the frame-buffer size, instead */
+				void *video_mem;         /* frame-buffer VM address */
 
-	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+				/* Allow memory mapping */
 
-	if(video_mem == MAP_FAILED)
-	   panic("couldn't map video memory");
+				mr.mr_base = (phys_bytes) vram_base;
+				mr.mr_limit = mr.mr_base + vram_size;
 
-	return video_mem;
+				if( OK != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)))
+					panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+
+				/* Map memory */
+
+				video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+
+				if(video_mem == MAP_FAILED)
+					panic("couldn't map video memory");
+				else{
+					return video_mem;
+				}
+			}
+		}
+	}
+
+	return NULL;
 }
 
 
