@@ -7,7 +7,12 @@ void *test_init(unsigned short mode, unsigned short delay) {
 
 	char *video_mem;
 
-	int r, ipc_status;
+	if (lm_init())
+		return NULL;
+
+	video_mem = vg_init(mode);
+
+	(int r, ipc_status;
 	message msg;
 	unsigned char timer_hook_bit = timer_subscribe_int();
 	unsigned timer_counter = 0;
@@ -34,7 +39,7 @@ void *test_init(unsigned short mode, unsigned short delay) {
 
 	timer_unsubscribe_int();
 
-	return 0;
+	return video_mem;
 }
 
 

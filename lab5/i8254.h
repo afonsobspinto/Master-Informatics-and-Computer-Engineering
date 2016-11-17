@@ -8,6 +8,7 @@
  */
 
 #define TIMER_FREQ  		1193182    /**< @brief clock frequency for timer in PC and AT */
+#define TIMER_DEFAULT_FREQ  60
 
 #define BIT(n) 				(0x01<<(n))
 
