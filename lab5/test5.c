@@ -1,18 +1,28 @@
 #include "test5.h"
+#include "vbe.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
 
 void *test_init(unsigned short mode, unsigned short delay) {
 
-	char *video_mem;
-
 	if (lm_init())
 		return NULL;
 
+	char *video_mem;
 	video_mem = vg_init(mode);
 
-	(int r, ipc_status;
+	vbe_mode_info_t vbe_mode_info;
+
+	if(vbe_get_mod_info(mode, &vbe_mode_info))
+		return NULL;
+
+	unsigned char timer_hook_bit;
+
+	if(timer_hook_bit = timer_subscribe_int())<0)
+		return NULL;
+
+	int r, ipc_status;
 	message msg;
 	unsigned char timer_hook_bit = timer_subscribe_int();
 	unsigned timer_counter = 0;
@@ -37,7 +47,10 @@ void *test_init(unsigned short mode, unsigned short delay) {
 		}
 	}
 
-	timer_unsubscribe_int();
+	if (timer_unsubscribe_int()<0)
+		return NULL;
+	if (vg_exit())
+		return NULL;
 
 	return video_mem;
 }
