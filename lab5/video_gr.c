@@ -28,6 +28,35 @@ static unsigned h_res;		/* Horizontal screen resolution in pixels */
 static unsigned v_res;		/* Vertical screen resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 
+
+void *vg_init(unsigned short mode){
+
+	int r;
+	struct mem_range mr;
+	unsigned int vram_base;  /* VRAM's physical addresss */
+	unsigned int vram_size;  /* VRAM's size, but you can use
+	                            the frame-buffer size, instead */
+	void *video_mem;         /* frame-buffer VM address */
+
+	/* Allow memory mapping */
+
+	mr.mr_base = (phys_bytes) vram_base;
+	mr.mr_limit = mr.mr_base + vram_size;
+
+	if( OK != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)))
+	   panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+
+	/* Map memory */
+
+	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+
+	if(video_mem == MAP_FAILED)
+	   panic("couldn't map video memory");
+
+	return video_mem;
+}
+
+
 int vg_exit() {
   struct reg86u reg86;
 

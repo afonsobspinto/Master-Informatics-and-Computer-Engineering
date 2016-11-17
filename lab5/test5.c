@@ -1,4 +1,5 @@
 #include "test5.h"
+#include "video_gr.h"
 #include "vbe.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
@@ -6,25 +7,26 @@
 
 void *test_init(unsigned short mode, unsigned short delay) {
 
+
 	if (lm_init())
 		return NULL;
 
 	char *video_mem;
-	video_mem = vg_init(mode);
+	video_mem=vg_init(mode);
 
 	vbe_mode_info_t vbe_mode_info;
 
-	if(vbe_get_mod_info(mode, &vbe_mode_info))
+	if(vbe_get_mode_info(mode, &vbe_mode_info))
 		return NULL;
 
 	unsigned char timer_hook_bit;
 
-	if(timer_hook_bit = timer_subscribe_int())<0)
+	if((timer_hook_bit = timer_subscribe_int())<0)
 		return NULL;
 
 	int r, ipc_status;
 	message msg;
-	unsigned char timer_hook_bit = timer_subscribe_int();
+
 	unsigned timer_counter = 0;
 
 	while(timer_counter < delay * TIMER_DEFAULT_FREQ)
@@ -47,9 +49,9 @@ void *test_init(unsigned short mode, unsigned short delay) {
 		}
 	}
 
-	if (timer_unsubscribe_int()<0)
+	if(timer_unsubscribe_int()<0)
 		return NULL;
-	if (vg_exit())
+	if(vg_exit())
 		return NULL;
 
 	return video_mem;
@@ -85,5 +87,4 @@ int test_move(unsigned short xi, unsigned short yi, char *xpm[],
 int test_controller() {
 	
 	/* To be completed */
-	
 }
