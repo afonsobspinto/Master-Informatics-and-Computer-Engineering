@@ -6,11 +6,14 @@
 class Cliente{
 	std::string nome;
 	int pontos;
-	int valor;
+	float valor;
 	static unsigned int counter;
 public:
 	Cliente(std::string nome);
+	Cliente(std::string nome, int pontos, float valor);
 	std::string getNome() const;
+	int getPontos() const;
+	float getValor() const;
 	static unsigned int getTotalClientes();
 
 };
@@ -19,6 +22,7 @@ class Registado: public Cliente{
 	std::string password;
 public:
 	Registado(std::string nome, std::string password);
+	Registado(std::string nome, int pontos, float valor, std::string password);
 	std::string getPassword() const;
 };
 

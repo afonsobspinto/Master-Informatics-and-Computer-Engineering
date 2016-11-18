@@ -10,13 +10,13 @@
 
 class Broker{
 	std::string nome;
-	std::vector<Cliente>clientes;
+	std::vector<Registado>clientes;
 	std::vector<Imovel*>montra;
 	std::vector<Fornecedor>fornecedores;
 	float receita;
 public:
 	Broker(std::string nome);
-	std::vector<Cliente>getClientes()const;
+	std::vector<Registado>getClientes()const;
 	std::vector<Imovel*>getMontra()const;
 	std::vector<Fornecedor>getFornecedores()const;
 	float getReceita()const;

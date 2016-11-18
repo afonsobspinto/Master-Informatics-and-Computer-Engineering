@@ -6,6 +6,10 @@
 // Ou Funçoes Auxiliares.
 
 #include <string>
+#include <vector>
+#include "Clientes.h"
+
+std::vector<Registado>leFicheiroClientes();
 
 std::string lePassword();
 

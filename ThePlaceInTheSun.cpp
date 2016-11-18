@@ -17,7 +17,7 @@ using namespace std;
 
 int main() {
     Broker ThePlaceInTheSun("ThePlaceInTheSun");
-	criaCliente();
+	//scriaCliente();
 //	Data x(15,3,2016);
 //	Data y;
 //	cout << (15+16)%30 << endl;

@@ -1,17 +1,19 @@
 #include "Broker.h"
 #include "Menus.h"
 #include "Interacao.h"
+#include "utils.h"
 #include <iostream>
 
 using namespace std;
 
 Broker::Broker(std::string nome) {
 	this->nome = nome;
+	clientes = leFicheiroClientes();
 
 	// LER FICHEIRO ONDE GUARDAR OS DADOS
 }
 
-vector<Cliente> Broker::getClientes() const {
+vector<Registado> Broker::getClientes() const {
 	return clientes;
 }
 

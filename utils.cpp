@@ -1,8 +1,11 @@
 #include "Excecoes.h"
 #include "utils.h"
 #include "linux.h"
+#include "defs.h"
 #include <sstream>
 #include <iostream>
+#include <fstream>
+#include <istream>
 
 using namespace std;
 
@@ -114,4 +117,37 @@ bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
 				return true;
 			else
 				return false;
+}
+
+std::vector<Registado> leFicheiroClientes() {
+	vector<Registado>clientes;
+	string linha;
+	ifstream ficheiro(ficheiroClientes);
+	unsigned int size;
+
+	getline(ficheiro, linha);
+	size = stoi(linha);
+
+	string nome;
+	int pontos;
+	float valor;
+	string password;
+	string pontos_str;
+	string valor_str;
+
+
+	while (getline(ficheiro, nome, ';') &&
+	       getline(ficheiro, pontos_str, ';') &&
+	       getline(ficheiro, valor_str) &&
+		   getline(ficheiro, password)){
+
+		pontos = stoi(pontos_str);
+		valor = stof(valor_str);
+
+		Registado C(nome, pontos, valor, password);
+
+		clientes.push_back(C);
+	}
+
+	return clientes;
 }
