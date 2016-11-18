@@ -20,6 +20,15 @@ public:
 	}
 };
 
+class UtilizadorJaExistente{
+private:
+	std::string nome;
+public:
+	UtilizadorJaExistente(std::string nome){
+		this->nome = nome;
+	}
+	std::string getNome() { return nome; }
+};
 
 
 #endif /* EXCECOES_H_ */

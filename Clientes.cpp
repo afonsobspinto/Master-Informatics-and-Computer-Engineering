@@ -7,7 +7,6 @@ Cliente::Cliente(std::string nome) {
 	pontos = 0;
 	valor = 0;
 	counter ++;
-
 }
 
 std::string Cliente::getNome() const {
@@ -20,4 +19,8 @@ unsigned int Cliente::getTotalClientes(){
 
 Registado::Registado(std::string nome, std::string password):Cliente(nome) {
 	this->password = password;
+}
+
+std::string Registado::getPassword() const {
+	return password;
 }

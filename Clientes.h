@@ -19,7 +19,7 @@ class Registado: public Cliente{
 	std::string password;
 public:
 	Registado(std::string nome, std::string password);
-	bool validaLogin(std::string nome, std::string password);
+	std::string getPassword() const;
 };
 
 

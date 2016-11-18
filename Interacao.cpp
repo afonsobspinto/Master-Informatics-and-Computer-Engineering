@@ -7,10 +7,9 @@ using namespace std;
 
 
 
-Cliente criaCliente(){
+Registado criaCliente(){
 	string nome = leNome(); //Retorna "" em caso de erro;
 	string password = lePassword(); //Retorna "" em caso de erro;
-
 	Registado C (nome, password);
 	return C;
 }

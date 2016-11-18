@@ -1,10 +1,14 @@
 #include "Broker.h"
 #include "Menus.h"
+#include "Interacao.h"
+#include <iostream>
 
 using namespace std;
 
 Broker::Broker(std::string nome) {
 	this->nome = nome;
+
+	// LER FICHEIRO ONDE GUARDAR OS DADOS
 }
 
 vector<Cliente> Broker::getClientes() const {
@@ -22,10 +26,27 @@ vector<Fornecedor> Broker::getFornecedores() const {
 float Broker::getReceita() const {
 }
 
-bool Broker::adicionaClientes() {
-/*	Cliente C = criaCliente();
+bool Broker::adicionaCliente() {
+	unsigned int size = getClientes().size();
+	Registado C = criaCliente();
 
-	clientes.push_back(C); */
+	if(C.getNome()=="" || C.getPassword()=="")
+		return false;
+
+	for (unsigned int i = 0; i < size; i++){
+		try{
+			if(C.getNome() == getClientes().at(i).getNome()){
+					throw UtilizadorJaExistente(C.getNome());
+				}
+			}
+			catch (UtilizadorJaExistente &e) {
+				cout << "Apanhou excecao." << e.getNome() << " já foi utilizado. \n";
+				return false;
+			}
+	}
+
+	clientes.push_back(C);
+	return true;
 }
 
 bool Broker::adicionaFornecedor() {
