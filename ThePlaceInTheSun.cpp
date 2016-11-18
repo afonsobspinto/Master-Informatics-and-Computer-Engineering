@@ -11,12 +11,16 @@
 #include "Broker.h"
 #include "Interacao.h"
 #include "Data.h"
+#include "utils.h"
 
 
 using namespace std;
 
 int main() {
+
     Broker ThePlaceInTheSun("ThePlaceInTheSun");
+
+
 	//scriaCliente();
 //	Data x(15,3,2016);
 //	Data y;

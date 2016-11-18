@@ -18,9 +18,13 @@ class Imovel{ // Ponderar classe abstrata
 public:
 	Imovel(std::string localidade, int owner, float preco, float taxa, std::vector <Reserva> indisponiveis = {});
 	void setTipo(std::string tipo);
+	std::string getLocalidade() const;
 	std::string getTipo() const;
-	unsigned int getID() const;
+	int getOwner() const;
+	float getPreco() const;
 	float getTaxa() const;
+
+
 };
 
 class Hotel: public Imovel{

@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "linux.h"
 #include "defs.h"
+#include "Reservas.h"
 #include <sstream>
 #include <iostream>
 #include <fstream>
@@ -119,7 +120,24 @@ bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
 				return false;
 }
 
+Data string2data(string data){
+	unsigned int dia;
+	unsigned int mes;
+	unsigned int ano;
+
+	dia = stoi(data.substr(0,2));
+	mes = stoi(data.substr(3,2));
+	ano = stoi(data.substr(6,4));
+
+	cout << dia << "/" << mes << "/" << ano << endl;
+
+	Data D(dia, mes, ano);
+
+	return D;
+}
+
 std::vector<Fornecedor> leFicheiroFornecedores() {
+
 	vector<Fornecedor>fornecedores;
 	string linha;
 	ifstream ficheiro(ficheiroFornecedores);
@@ -127,6 +145,9 @@ std::vector<Fornecedor> leFicheiroFornecedores() {
 
 	getline(ficheiro, linha);
 	size = stoi(linha);
+
+
+	cout << size << endl;
 
 	string nome;
 	int nif;
@@ -145,6 +166,12 @@ std::vector<Fornecedor> leFicheiroFornecedores() {
 
 	string reservas;
 
+	Data dataInicio;
+	Data dataFim;
+
+	string dataInicio_str;
+	string dataFim_str;
+
 
 	for (unsigned int i=0; i < size; i++){
 
@@ -154,47 +181,138 @@ std::vector<Fornecedor> leFicheiroFornecedores() {
 
 		nif = stoi(nif_str);
 		owner = nif;
+		morada = morada.substr(1, morada.length());
+
+		cout << nome << endl;
+		cout << nif << endl;
+		cout << morada << endl;
 
 		unsigned int ofertas;
 
-		getline(ficheiro, linha);
+		getline(ficheiro, linha, ';');
 		ofertas = stoi(linha);
 
+
+		cout << ofertas << endl;
+
+		vector <Imovel*> imoveis;
 		for (unsigned int j=0; j < ofertas; j++){
 
-			vector <Imovel*> imoveis;
 
 			getline(ficheiro, localidade, ';');
 			getline(ficheiro, tipo, ';');
 			getline(ficheiro, preco_str, ';');
 			getline(ficheiro, taxa_str, ';');
 
-			unsigned int reservas;
-
-			getline(ficheiro, linha);
-			reservas = stoi(linha);
-
-			for (unsigned int k=0; k < reservas; k++){
-				vector <Reserva> reservas;
+			localidade = localidade.substr(1,localidade.length());
+			tipo = tipo.substr(1,tipo.length());
+			preco = stof(preco_str);
+			taxa = stof(taxa_str);
 
 
+
+			cout << localidade << endl;
+			cout << tipo << endl;
+			cout << preco << endl;
+			cout << taxa << endl;
+
+			unsigned int reservas_size;
+
+			getline(ficheiro, linha, ';');
+			reservas_size = stoi(linha);
+
+			cout << reservas_size << endl;
+
+			vector <Reserva> reservas;
+			for (unsigned int k=0; k < reservas_size; k++){
+
+				getline(ficheiro, dataInicio_str, ';');
+				getline(ficheiro, dataFim_str, ';');
+
+				dataInicio = string2data(dataInicio_str.substr(1, dataInicio_str.length()));
+				dataFim = string2data(dataFim_str.substr(1, dataFim_str.length()));
+
+				Reserva R(dataInicio, dataFim);
+				reservas.push_back(R);
+			}
+
+			if(tipo == "Apartamento "){
+				bool suite;
+				bool cozinha;
+				bool sala_de_estar;
+				int cama;
+
+				string suite_str;
+				string cozinha_str;
+				string sala_de_estar_str;
+				string cama_str;
+
+				getline(ficheiro, suite_str, ';');
+				getline(ficheiro, cozinha_str, ';');
+				getline(ficheiro, sala_de_estar_str, ';');
+				getline(ficheiro, cama_str);
+
+
+				suite = stoi(suite_str);
+				cozinha = stoi(cozinha_str);
+				sala_de_estar = stoi(sala_de_estar_str);
+				cama = stoi(cama_str);
+
+				cout << suite << endl;
+				cout << cozinha << endl;
+				cout << sala_de_estar << endl;
+				cout << cama << endl;
+
+				Imovel *I = new Apartamento(localidade, owner, preco, reservas, cama, suite, cozinha, sala_de_estar);
+				imoveis.push_back(I);
+
+			}
+
+			else if (tipo == "Hotel "){
+				int cama;
+				bool cama_extra;
+
+				string cama_str;
+				string cama_extra_str;
+
+				getline(ficheiro, cama_str, ';');
+				getline(ficheiro, cama_extra_str);
+
+				cama = stoi(cama_str);
+				cama_extra = stoi(cama_extra_str);
+
+				cout << cama_str << endl;
+				cout << cama_extra_str << endl;
+
+				Imovel *I = new Hotel(localidade, owner, preco, reservas, cama, cama_extra);
+				imoveis.push_back(I);
+
+			}
+			else if(tipo=="Flat "){
+				Imovel *I = new Flat(localidade, owner, preco, reservas);
+				imoveis.push_back(I);
+			}
+
+			else if(tipo=="BB "){
+				Imovel *I = new BB(localidade, owner, preco, reservas);
+				imoveis.push_back(I);
+			}
+
+			else if(tipo=="Shared "){
+				Imovel *I = new Shared(localidade, owner, preco, reservas);
+				imoveis.push_back(I);
+			}
+
+			else{
+				cout << "erro na leitura" << endl; //Criar uma exceçao
 			}
 
 		}
 
 
+		Fornecedor F(nome, nif, morada, imoveis);
 
-		cout << nome << endl;
-		cout << nif << endl;
-		cout << morada << endl;
-		cout << localidade << endl;
-		cout << owner << endl;
-		cout << preco << endl;
-		cout << taxa << endl;
-
-//		Registado C(nome, pontos, valor, password);
-//
-//		clientes.push_back(C);
+		fornecedores.push_back(F);
 	}
 
 	return fornecedores;

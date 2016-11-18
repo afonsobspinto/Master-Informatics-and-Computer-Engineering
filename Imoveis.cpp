@@ -66,4 +66,14 @@ float Imovel::getTaxa() const {         // Precos ainda random
 	return taxa;
 }
 
+std::string Imovel::getLocalidade() const {
+	return localidade;
+}
 
+int Imovel::getOwner() const {
+	return owner;
+}
+
+float Imovel::getPreco() const {
+	return preco;
+}

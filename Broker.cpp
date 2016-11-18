@@ -8,9 +8,9 @@ using namespace std;
 
 Broker::Broker(std::string nome) {
 	this->nome = nome;
-	clientes = leFicheiroClientes();
+	//clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
-	atualizaMontra();
+	//atualizaMontra();
 }
 
 vector<Registado> Broker::getClientes() const {

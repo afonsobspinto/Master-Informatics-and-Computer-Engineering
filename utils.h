@@ -9,13 +9,16 @@
 #include <vector>
 #include "Clientes.h"
 #include "Imoveis.h"
+#include "Data.h"
+#include "Fornecedores.h"
 
 std::vector<Registado>leFicheiroClientes();
 std::vector<Fornecedor>leFicheiroFornecedores();
 
 std::string lePassword();
-
 std::string leNome();
+
+Data string2data(std::string data);
 
 bool is_number(const std::string& s);
 bool is_leap(unsigned int ano);
