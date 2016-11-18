@@ -8,8 +8,9 @@ using namespace std;
 
 
 Cliente criaCliente(){
-	string nome = leNome();
-	string password = lePassword();
+	string nome = leNome(); //Retorna "" em caso de erro;
+	string password = lePassword(); //Retorna "" em caso de erro;
+
 	Registado C (nome, password);
 	return C;
 }

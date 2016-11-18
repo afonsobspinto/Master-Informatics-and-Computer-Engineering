@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Data.h"
 #include "utils.h"
-#include <windows.h>
 
 using namespace std;
 
@@ -54,8 +53,8 @@ Data Data::operator - (int n) {   // Corrigir para n > 999999...
 		dias_mes[2] = 29;
 	}
 	for (unsigned int i=0; i < n; i++){
-		if (d == 1){ // É o primeiro dia do mês?
-			if (m == 1){ // É o primeiro mês do ano?
+		if (d == 1){ // ï¿½ o primeiro dia do mï¿½s?
+			if (m == 1){ // ï¿½ o primeiro mï¿½s do ano?
 				m = 13;
 				a -= 1;
 			}

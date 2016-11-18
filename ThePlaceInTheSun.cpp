@@ -16,14 +16,14 @@
 using namespace std;
 
 int main() {
-    //Broker ThePlaceInTheSun("ThePlaceInTheSun");
-	//criaCliente();
-	Data x(15,3,2016);
-	Data y;
-	cout << (15+16)%30 << endl;
-
-	y = x - 30;
-	cout << y.getDia() << "/" << y.getMes() << "/" << y.getAno() << endl;
+    Broker ThePlaceInTheSun("ThePlaceInTheSun");
+	criaCliente();
+//	Data x(15,3,2016);
+//	Data y;
+//	cout << (15+16)%30 << endl;
+//
+//	y = x - 30;
+//	cout << y.getDia() << "/" << y.getMes() << "/" << y.getAno() << endl;
 
 	return 0;
 }
