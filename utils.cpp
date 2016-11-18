@@ -119,6 +119,88 @@ bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
 				return false;
 }
 
+std::vector<Fornecedor> leFicheiroFornecedores() {
+	vector<Fornecedor>fornecedores;
+	string linha;
+	ifstream ficheiro(ficheiroFornecedores);
+	unsigned int size;
+
+	getline(ficheiro, linha);
+	size = stoi(linha);
+
+	string nome;
+	int nif;
+	string morada;
+
+	string nif_str;
+
+	string localidade;
+	int owner;
+	float preco;
+	float taxa;
+	string tipo;
+
+	string preco_str;
+	string taxa_str;
+
+	string reservas;
+
+
+	for (unsigned int i=0; i < size; i++){
+
+		getline(ficheiro, nome, ';');
+		getline(ficheiro, nif_str, ';');
+		getline(ficheiro, morada, ';');
+
+		nif = stoi(nif_str);
+		owner = nif;
+
+		unsigned int ofertas;
+
+		getline(ficheiro, linha);
+		ofertas = stoi(linha);
+
+		for (unsigned int j=0; j < ofertas; j++){
+
+			vector <Imovel*> imoveis;
+
+			getline(ficheiro, localidade, ';');
+			getline(ficheiro, tipo, ';');
+			getline(ficheiro, preco_str, ';');
+			getline(ficheiro, taxa_str, ';');
+
+			unsigned int reservas;
+
+			getline(ficheiro, linha);
+			reservas = stoi(linha);
+
+			for (unsigned int k=0; k < reservas; k++){
+				vector <Reserva> reservas;
+
+
+			}
+
+		}
+
+
+
+		cout << nome << endl;
+		cout << nif << endl;
+		cout << morada << endl;
+		cout << localidade << endl;
+		cout << owner << endl;
+		cout << preco << endl;
+		cout << taxa << endl;
+
+//		Registado C(nome, pontos, valor, password);
+//
+//		clientes.push_back(C);
+	}
+
+	return fornecedores;
+}
+
+
 std::vector<Registado> leFicheiroClientes() {
 	vector<Registado>clientes;
 	string linha;

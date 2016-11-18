@@ -9,7 +9,6 @@
 #define DEFS_H_
 
 #define ficheiroClientes 		"clientes.txt"
-#define ficheiroMontra			"montra.txt"
 #define ficheiroFornecedores	"fornecedores.txt"
 
 

@@ -8,8 +8,10 @@
 #include <string>
 #include <vector>
 #include "Clientes.h"
+#include "Imoveis.h"
 
 std::vector<Registado>leFicheiroClientes();
+std::vector<Fornecedor>leFicheiroFornecedores();
 
 std::string lePassword();
 
