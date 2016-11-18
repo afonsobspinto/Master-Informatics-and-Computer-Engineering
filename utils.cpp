@@ -136,13 +136,21 @@ std::vector<Registado> leFicheiroClientes() {
 	string valor_str;
 
 
-	while (getline(ficheiro, nome, ';') &&
-	       getline(ficheiro, pontos_str, ';') &&
-	       getline(ficheiro, valor_str) &&
-		   getline(ficheiro, password)){
+	for (unsigned int i=0; i < size; i++){
+
+		getline(ficheiro, nome, ';');
+		getline(ficheiro, pontos_str, ';');
+		getline(ficheiro, valor_str, ';');
+		getline(ficheiro, password);
 
 		pontos = stoi(pontos_str);
 		valor = stof(valor_str);
+		password = password.substr(1,password.length());
+
+		cout << nome << endl;
+		cout << pontos << endl;
+		cout << valor << endl;
+		cout << password << endl;
 
 		Registado C(nome, pontos, valor, password);
 
