@@ -4,6 +4,11 @@
 
 #include <vector>
 
+template <class T> void swap ( T& a, T& b )
+{
+  T c(a); a=b; b=c;
+}
+
 template<class T>
 
 class QuickSort
@@ -67,8 +72,8 @@ int QuickSort<T>::Particao(std::vector<T> *sortArray, int indexInicial, int inde
 	{
 		for (int i = indexInicial; i <= k - 1; i++)
 		{
-			// Procura um valor menor que o atual
-			if (!((*sortArray).at(i) > (*sortArray).at(k)))
+			// Procura um valor maior que o atual
+			if (!((*sortArray).at(i) < (*sortArray).at(k)))
 			{
 				l++;
 				Swap(l, i);
@@ -81,10 +86,14 @@ int QuickSort<T>::Particao(std::vector<T> *sortArray, int indexInicial, int inde
 	return l + 1;
 }
 
+
 template<class T>
 void QuickSort<T>::Swap(int l, int k)
 {
+
 	swap((*sortingArray).at(l), (*sortingArray).at(k));
 }
+
+
 
 #endif /* QUICKSORT_H_ */

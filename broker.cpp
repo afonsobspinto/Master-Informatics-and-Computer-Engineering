@@ -110,24 +110,10 @@ bool Broker::cancelaReserva(Data& atual) {
 
 }
 
-vector<Imovel*> Broker::Pesquisa() {
-}
-
-
 
 bool Broker::validaLogin(std::string nome, std::string password) {
 }
 
-void Broker::mostraMontra() {
-	unsigned int size = montra.size();
-
-	for (unsigned int i=0; i < size; i++){
-		cout << "Tipo: " << montra.at(i)->getTipo() << endl;
-		cout << "Localidade: " << montra.at(i)->getLocalidade() << endl;
-		cout << "Preço: " << montra.at(i)->getPreco() << endl;
-		cout << endl;
-	}
-}
 
 std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 
@@ -197,7 +183,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 			getline(ficheiro, preco_str, ';');
 			getline(ficheiro, taxa_str, ';');
 
-			localidade = localidade.substr(1,localidade.length());
+			localidade = localidade.substr(1,localidade.length()-2);
 			tipo = tipo.substr(1,tipo.length());
 			preco = stof(preco_str);
 			taxa = stof(taxa_str);
@@ -368,4 +354,43 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	return clientes;
 }
 
+void Broker::mostraMontra() {
+	unsigned int size = montra.size();
 
+	for (unsigned int i=0; i < size; i++){
+		cout << "Tipo: " << montra.at(i)->getTipo() << endl;
+		cout << "Localidade: " << montra.at(i)->getLocalidade() << endl;
+		cout << "Preço: " << montra.at(i)->getPreco() << endl;
+		cout << endl;
+	}
+}
+
+void Broker::mostraMontra(std::string localidade) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i < size; i++){
+		if(vec.at(i)->getLocalidade()==localidade){
+			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+			cout << endl;
+		}
+	}
+}
+
+void Broker::mostraMontra(std::string localidade, Data inicio, Data fim) {
+}
+
+void Broker::mostraMontra(float preco) {
+}
+
+void Broker::mostraMontra(float preco, Data inicio, Data fim) {
+}
+
+void Broker::mostraMontra(std::string localidade, float preco, Data inicio,
+		Data fim) {
+}

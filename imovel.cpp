@@ -77,3 +77,7 @@ int Imovel::getOwner() const {
 float Imovel::getPreco() const {
 	return preco;
 }
+
+bool Imovel::operator <(const Imovel& rhs) const {
+	return this->getPreco()<rhs.getPreco();
+}

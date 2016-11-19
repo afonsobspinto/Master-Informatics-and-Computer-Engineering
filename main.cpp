@@ -51,7 +51,7 @@ int main() {
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
 		cout << endl << endl << endl << endl;
-		Existente.mostraMontra();
+		Existente.mostraMontra("localidade");
 	}
 	else{
 		cout << "Gerando base de dados..." << endl;
