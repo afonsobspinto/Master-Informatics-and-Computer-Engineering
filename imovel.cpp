@@ -78,7 +78,7 @@ float Imovel::getPreco() const {
 	return preco;
 }
 
-std::vector<Reserva*> Imovel::getReservas() const {
+std::vector<Reserva> Imovel::getReservas() const {
 	return reservas;
 }
 

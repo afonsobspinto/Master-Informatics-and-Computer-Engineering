@@ -12,6 +12,18 @@ Broker::Broker(std::string nome) {
 	ficheiroClientes = nome + "_clientes.txt";
 	ficheiroFornecedores = nome + "_fornecedores.txt";
 	receita = 0;
+
+	ofstream ficheiro(nome+".txt");
+
+	ficheiro << nome << endl;
+	ficheiro << ficheiroClientes << endl;
+	ficheiro << ficheiroFornecedores << endl;
+	ficheiro << receita << endl;
+
+	ficheiro.close();
+	guardaClientes();
+	guardaFornecedores();
+
 }
 
 Broker::Broker(std::string nome, std::string ficheiroClientes,
@@ -21,8 +33,8 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	this->ficheiroClientes = ficheiroClientes;
 	this->ficheiroFornecedores = ficheiroFornecedores;
 	clientes = leFicheiroClientes();
-	fornecedores = leFicheiroFornecedores();
-	atualizaMontra();
+	//fornecedores = leFicheiroFornecedores();
+	//atualizaMontra();
 }
 
 vector<Registado> Broker::getClientes() const {
@@ -61,6 +73,7 @@ bool Broker::adicionaCliente() {
 	}
 
 	clientes.push_back(C);
+	guardaClientes();
 	return true;
 }
 
@@ -68,14 +81,16 @@ bool Broker::adicionaFornecedor() {
 /*	Fornecedor F = criaFornecedor();
 
 	fornecedores.push_back(F);
-	atualizaMontra();*/
+	atualizaMontra();
+	guardaFornecedores();*/
 }
 
 bool Broker::adicionaImovel() {
 /*	Imovel *I = criaImovel();
 
 	montra.push_back(I);
-	atualizaMontra();
+	atualizaMontra()
+	guardaFornecedores();
 	*/
 }
 
@@ -308,6 +323,8 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	ifstream ficheiro(ficheiroClientes);
 	unsigned int size;
 
+	cout << endl << "A ler ficheiro clientes" << endl << endl;
+
 	getline(ficheiro, linha);
 
 	cout << linha << endl;
@@ -329,12 +346,6 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		getline(ficheiro, valor_str, ';');
 		getline(ficheiro, password);
 
-		cout << nome << endl;
-		cout << pontos_str << endl;
-		cout << valor_str << endl;
-		cout << password << endl;
-
-
 		pontos = stoi(pontos_str);
 		valor = stof(valor_str);
 		password = password.substr(1,password.length());
@@ -352,6 +363,25 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	ficheiro.close();
 
 	return clientes;
+}
+
+void Broker::guardaClientes() {
+
+	ofstream ficheiro(ficheiroClientes, ios::trunc);
+
+	ficheiro << clientes.size() << endl;
+
+	for (size_t i = 0; i < clientes.size(); i++)
+	{
+		ficheiro << clientes.at(i).getNome()<< " ; " << clientes.at(i).getPontos() << " ; " << clientes.at(i).getValor() << " ; " << clientes.at(i).getPassword() << endl;
+	}
+
+	ficheiro.flush();
+
+	cout << "Clientes Guardados com Sucesso! " << endl ;
+}
+
+void Broker::guardaFornecedores() {
 }
 
 void Broker::mostraMontra() {
@@ -390,7 +420,18 @@ void Broker::mostraMontra(std::string localidade, Data inicio, Data fim) {
 	vec = ordenaMontra(vec, false);
 
 	for (unsigned int i=0; i< size; i++){
-
+		if (vec.at(i)->getLocalidade()==localidade){
+			unsigned int rsize = vec.at(i)->getReservas().size();
+			for (unsigned int j=0; j<rsize; j++){
+				Data di = vec.at(i)->getReservas().at(j).getInicio();
+				Data df = vec.at(i)->getReservas().at(j).getFinal();
+				if (dias_sobrepostos(di,df,inicio,fim)){
+					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+					cout << endl;
+				}
+			}
 		}
 	}
 }
@@ -413,8 +454,49 @@ void Broker::mostraMontra(float preco) {
 }
 
 void Broker::mostraMontra(float preco, Data inicio, Data fim) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i< size; i++){
+		if (vec.at(i)->getPreco()<=preco){
+			unsigned int rsize = vec.at(i)->getReservas().size();
+			for (unsigned int j=0; j<rsize; j++){
+				Data di = vec.at(i)->getReservas().at(j).getInicio();
+				Data df = vec.at(i)->getReservas().at(j).getFinal();
+				if (dias_sobrepostos(di,df,inicio,fim)){
+					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+					cout << endl;
+				}
+			}
+		}
+	}
 }
 
-void Broker::mostraMontra(std::string localidade, float preco, Data inicio,
-		Data fim) {
+void Broker::mostraMontra(std::string localidade, float preco, Data inicio, Data fim) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i< size; i++){
+		if (vec.at(i)->getPreco()<=preco && vec.at(i)->getLocalidade()==localidade){
+			unsigned int rsize = vec.at(i)->getReservas().size();
+			for (unsigned int j=0; j<rsize; j++){
+				Data di = vec.at(i)->getReservas().at(j).getInicio();
+				Data df = vec.at(i)->getReservas().at(j).getFinal();
+				if (dias_sobrepostos(di,df,inicio,fim)){
+					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+					cout << endl;
+				}
+			}
+		}
+	}
 }

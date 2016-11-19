@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,7 +21,7 @@ int main() {
 	cout << "Bem-Vindo" << endl << endl;
 
 	cout << "Broker: ";
-	cin >> nome;
+	getline(cin, nome);
 
 	filename = nome + ".txt";
 
@@ -51,14 +50,14 @@ int main() {
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
 		cout << endl << endl << endl << endl;
-		Existente.mostraMontra("localidade");
+		//Existente.mostraMontra("localidade");
 	}
 	else{
 		cout << "Gerando base de dados..." << endl;
 		Broker Novo(nome);
 
 		Novo.adicionaCliente();
-		//Novo.guardaClientes();
+		Novo.adicionaCliente();
 	}
 
 

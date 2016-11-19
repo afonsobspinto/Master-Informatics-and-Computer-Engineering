@@ -43,10 +43,12 @@ public:
 	void mostraMontra();
 	void mostraMontra(std::string localidade);
 	void mostraMontra(std::string localidade, Data inicio, Data fim);
-	void mostraMontra(float preco);
-	void mostraMontra(float preco, Data inicio, Data fim);
-	void mostraMontra(std::string localidade, float preco, Data inicio, Data fim);
+	void mostraMontra(float precoMax);
+	void mostraMontra(float precoMax, Data inicio, Data fim);
+	void mostraMontra(std::string localidade, float precoMax, Data inicio, Data fim);
 
+	void guardaClientes();
+	void guardaFornecedores();
 
 };
 
