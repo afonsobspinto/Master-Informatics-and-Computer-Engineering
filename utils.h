@@ -12,8 +12,6 @@
 #include "Data.h"
 #include "Fornecedores.h"
 
-std::vector<Registado>leFicheiroClientes();
-std::vector<Fornecedor>leFicheiroFornecedores();
 
 std::string lePassword();
 std::string leNome();
