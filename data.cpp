@@ -50,7 +50,7 @@ Data Data::operator - (int n) {   // Corrigir para n > 999999...
 	unsigned int m = mes;
 	unsigned int a = ano;
 	int dias_mes[13] = {0, 31, 28, 31, 30, 31, 30 , 31, 31 , 30, 31, 30, 31};
-	if(is_leap(a)){
+	if(ano_bissexto(a)){
 		dias_mes[2] = 29;
 	}
 	for (unsigned int i=0; i < n; i++){

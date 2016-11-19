@@ -100,7 +100,7 @@ bool is_number(const string& s)
 	return !(iss >> num).fail();
 }
 
-bool is_leap(unsigned int ano)
+bool ano_bissexto(unsigned int ano)
 {
 	if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0))
 		return true;
@@ -108,7 +108,7 @@ bool is_leap(unsigned int ano)
 	return false;
 }
 
-bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
+bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
 {
 	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)
 		if (dia > 0 && dia <= 31)
@@ -121,7 +121,7 @@ bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
 		else
 			return false;
 	else // mes == 2
-		if (is_leap(ano))
+		if (ano_bissexto(ano))
 			if (dia > 0 && dia <= 29)
 				return true;
 			else
@@ -131,6 +131,14 @@ bool is_valid_day(unsigned int dia, unsigned int mes, unsigned int ano)
 				return true;
 			else
 				return false;
+}
+
+
+bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
+	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
+		return true;
+	else
+		return false;
 }
 
 Data string2data(string data){
