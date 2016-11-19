@@ -31,6 +31,10 @@ float Cliente::getValor() const {
 	return valor;
 }
 
+void Cliente::setPontos() {
+	pontos += 10;
+}
+
 Registado::Registado(std::string nome, std::string password):Cliente(nome) {
 	this->password = password;
 }
@@ -43,4 +47,3 @@ Registado::Registado(std::string nome, int pontos, float valor,
 std::string Registado::getPassword() const {
 	return password;
 }
-
