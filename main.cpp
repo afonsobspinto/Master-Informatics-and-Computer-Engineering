@@ -53,12 +53,17 @@ int main() {
 
 		cout << endl << endl << endl << endl;
 
-		Data d1 = Data (1,4,2013);
-		Data d2 = Data (3,4,2013);
+		Cliente C = Cliente("Sansa", 20, 100);
+		vector<Reserva> r;
+		r.push_back(Reserva(Data(21,10,2016),Data(25,10,2016)));
+		Imovel I = Imovel("localidade", 12, 12, 14, r);
+		Data d1 = Data (15,10,2016);
+		Data d2 = Data (23,10,2016);
+		Existente.efectuaReserva(C, I, d1, d2);
 
-		cout << "Montra 1" << endl;
-		Existente.mostraMontra("localidade3");
-
+//		cout << "Montra 1" << endl;
+//		Existente.mostraMontra("localidade3");
+//
 //		cout << endl << endl << endl << endl;
 //		cout << "Montra 2" << endl;
 //

@@ -15,6 +15,7 @@ public:
 	int getPontos() const;
 	float getValor() const;
 	static unsigned int getTotalClientes();
+	void setPontos();
 
 };
 
