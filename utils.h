@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include "quicksort.h"
 
 #include "cliente.h"
 #include "data.h"
@@ -23,6 +24,8 @@ bool is_number(const std::string& s);
 bool ano_bissexto(unsigned int ano);
 bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano);
 bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4);
+
+std::vector<Imovel*> ordenaMontra(std::vector<Imovel*> &montra, bool HighestFirst = false);
 
 
 #endif /* UTILS_H_ */

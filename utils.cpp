@@ -157,3 +157,8 @@ Data string2data(string data){
 	return D;
 }
 
+vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
+	QuickSort <Imovel*> QS(&montra, 0, montra.size() - 1, LowestFirst);
+	return montra;
+
+}

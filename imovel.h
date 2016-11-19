@@ -24,8 +24,7 @@ public:
 	int getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
-
-
+	bool operator< (Imovel const &rhs) const;
 };
 
 class Hotel: public Imovel{
