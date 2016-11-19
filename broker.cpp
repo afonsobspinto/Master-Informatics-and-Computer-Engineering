@@ -131,17 +131,17 @@ bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 
 	unsigned int size = I.getReservas().size();
 
-	cout << "A sua reserva está a ser efetuada" << endl;
+	cout << "A sua reserva estï¿½ a ser efetuada" << endl;
 
 	for (unsigned int i=0; i< size; i++){
 		Data di = I.getReservas().at(i).getInicio();
 		Data df = I.getReservas().at(i).getFinal();
 		if (dias_sobrepostos(di,df,D1,D2)==0){
-			cout << "O imóvel já está reservado nessas datas. Lamentamos" << endl;
+			cout << "O imï¿½vel jï¿½ estï¿½ reservado nessas datas. Lamentamos" << endl;
 			return false;
 		}
 	}
-	C.setPontos();
+	C.setPontos(10);
 	cout << "Reserva efetuada com sucesso" << endl;
 	return true;
 }
