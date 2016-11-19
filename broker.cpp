@@ -122,17 +122,11 @@ void Broker::mostraMontra() {
 	unsigned int size = montra.size();
 
 	for (unsigned int i=0; i < size; i++){
-		cout << montra.at(i) << endl;
+		cout << "Tipo: " << montra.at(i)->getTipo() << endl;
+		cout << "Localidade: " << montra.at(i)->getLocalidade() << endl;
+		cout << "Preço: " << montra.at(i)->getPreco() << endl;
+		cout << endl;
 	}
-}
-
-ostream& operator<<(ostream& out, const Imovel*  imovel){
-
-	out << "Tipo: " << imovel->getTipo() << endl;
-	out << "Localidade: " << imovel->getLocalidade() << endl;
-	out << "Preço: " << imovel->getPreco() << endl;
-
-	return out;
 }
 
 std::vector<Fornecedor> Broker::leFicheiroFornecedores() {

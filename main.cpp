@@ -7,6 +7,7 @@
 #include "data.h"
 #include "interacao.h"
 #include "utils.h"
+#include "imovel.h"
 
 
 using namespace std;

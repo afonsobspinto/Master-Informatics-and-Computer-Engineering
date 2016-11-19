@@ -43,8 +43,6 @@ public:
 	std::vector<Imovel*>Pesquisa(); //Para   realizar   uma   reserva,   o   utilizador   deverá   antes   poder   fazer   uma   consulta   das   ofertas   em   uma   determinada localidade   (cidade),   para   as   datas   pretendidas; <- É isto! Feature Extra: Permitir utilizar apenas 1 dos parametros (ou até 0 -> mostra montra toda);
 
 	void mostraMontra();
-
-	friend std::ostream& operator<<(std::ostream& out, const Imovel* imovel);
 };
 
 
