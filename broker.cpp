@@ -110,7 +110,21 @@ bool Broker::atualizaMontra() {
 	// Adicionar return false em caso de erro
 }
 
-bool Broker::efectuaReserva() {
+bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
+/*
+	unsigned int size = I.getReservas().size();
+	unsigned int c = 0;
+
+	for (unsigned int i=0; i< size; i++){
+		Data di = I.getReservas().at(i).getInicio();
+		Data df = I.getReservas().at(i).getFinal();
+		if (dias_sobrepostos(di,df,D1,D2)==0){
+			return false;
+		}
+		else{
+			return true;
+			C.getPontos()++;
+	}*/
 }
 
 void Broker::taxa() {
