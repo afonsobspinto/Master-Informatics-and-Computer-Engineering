@@ -1,10 +1,3 @@
-//============================================================================
-// Name        : ThePlaceInTheSun.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
 
 #include <iostream>
 #include <fstream>
@@ -26,7 +19,7 @@ int main() {
 
 	cout << "Bem-Vindo" << endl << endl;
 
-	cout << "Login: ";
+	cout << "Broker: ";
 	cin >> nome;
 
 	filename = nome + ".txt";
