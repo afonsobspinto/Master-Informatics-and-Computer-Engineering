@@ -85,8 +85,11 @@ int main() {
 		cout << "Gerando base de dados..." << endl;
 		Broker Novo(nome);
 
-		Novo.adicionaCliente();
-		Novo.adicionaCliente();
+		if(Novo.adicionaFornecedor())
+			cout << "OK" << endl;
+		if(Novo.adicionaFornecedor())
+			cout << "OK" << endl;
+		//Novo.adicionaCliente();
 	}
 
 	return 0;

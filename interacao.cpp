@@ -8,15 +8,23 @@ using namespace std;
 
 
 Registado criaCliente(){
-	string nome = leNome(); //Retorna "" em caso de erro;
-	string password = lePassword(); //Retorna "" em caso de erro;
+	string nome = leNome();
+	if(nome == "")
+		return Registado("","");
+	string password = lePassword();
 	Registado C (nome, password);
 	return C;
 }
 
 Fornecedor criaFornecedor() {
 	string nome = leNome();
-	string morada = leNome(); // Tem as mesmas restrições
+	if(nome == "")
+		return Fornecedor("",0,"");
+	unsigned int nif = leNif();
+	if(nif == 0)
+		return Fornecedor("",0,"");
+	string morada = leMorada();
+	Fornecedor F (nome, nif, morada);
 
-
+	return F;
 }

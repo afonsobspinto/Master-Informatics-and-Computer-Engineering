@@ -92,6 +92,24 @@ string leNome(){
 	return nome;
 }
 
+string leMorada(){
+	string morada;
+
+	cout << "Morada: ";
+	getline(cin, morada);
+
+	try{
+		if(is_number(morada))
+			throw NomeIncorreto(morada);
+	}
+	catch (NomeIncorreto &e) {
+		cout << "Apanhou excecao. Nome Invalido: " << e.getNome() << endl;
+		return "";
+	}
+
+	return morada;
+}
+
 bool is_number(const string& s)
 {
 	double num;
@@ -187,13 +205,14 @@ vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
 
 unsigned int leNif() {
 
+	string nif_str;
 	unsigned int nif;
 
 	cout << "Nif: ";
-	cin >> nif;
+	getline(cin, nif_str);
 
 	try{
-		if(cin.fail())
+		if(!is_number(nif_str))
 			throw NifInvalido();
 	}
 	catch (NifInvalido &e) {
@@ -201,6 +220,7 @@ unsigned int leNif() {
 		return 0;
 	}
 
+	nif = stoi(nif_str);
 	double num_digitos = floor(log10(nif)) + 1;
 
 	try{

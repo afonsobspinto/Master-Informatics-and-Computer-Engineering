@@ -41,5 +41,15 @@ public:
 	std::string getNome() { return nome; }
 };
 
+class FornecedorJaExistente{
+private:
+	int nif;
+public:
+	FornecedorJaExistente(int nif){
+		this->nif = nif;
+	}
+	int getNif() { return nif; }
+};
+
 
 #endif /* EXCECOES_H_ */

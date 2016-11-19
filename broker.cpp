@@ -80,6 +80,23 @@ bool Broker::adicionaCliente() {
 bool Broker::adicionaFornecedor() {
 	Fornecedor F = criaFornecedor();
 
+	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "")
+		return false;
+
+	unsigned int size = getFornecedores().size();
+
+	for (unsigned int i = 0; i < size; i++){
+		try{
+					if(F.getNif() == getFornecedores().at(i).getNif()){
+							throw FornecedorJaExistente(F.getNif());
+						}
+					}
+					catch (FornecedorJaExistente &e) {
+						cout << "Apanhou excecao." << e.getNif() << " já foi utilizado. \n";
+						return false;
+					}
+	}
+
 	fornecedores.push_back(F);
 	atualizaMontra();
 	guardaFornecedores();

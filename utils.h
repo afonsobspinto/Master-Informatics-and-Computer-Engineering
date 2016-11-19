@@ -18,6 +18,7 @@
 std::string lePassword();
 std::string leNome();
 unsigned int leNif();
+std::string leMorada();
 
 Data string2data(std::string data);
 std::string data2string(Data data);
