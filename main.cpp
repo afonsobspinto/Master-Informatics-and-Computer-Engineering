@@ -15,14 +15,14 @@ using namespace std;
 
 int main() {
 
-	string nome = "OlaMundo";
+	string nome;
 	string filename;
 	fstream f;
 
 	cout << "Bem-Vindo" << endl << endl;
 
-//	cout << "Broker: ";
-//	cin >> nome;
+	cout << "Broker: ";
+	getline(cin, nome);
 
 	filename = nome + ".txt";
 
@@ -51,11 +51,15 @@ int main() {
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
 		cout << endl << endl << endl << endl;
-		Existente.mostraMontra("localidade");
+		//Existente.mostraMontra("localidade");
 	}
 	else{
 		cout << "Gerando base de dados..." << endl;
 		Broker Novo(nome);
+
+		Novo.adicionaCliente();
+		Novo.adicionaCliente();
+		Novo.guardaClientes();
 	}
 
 
