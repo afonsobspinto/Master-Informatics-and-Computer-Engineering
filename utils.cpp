@@ -3,10 +3,21 @@
 #include <iostream>
 #include <fstream>
 #include <istream>
-#include "conio.h"
-#include "windows.h"
+//#include "conio.h"
+//#include "windows.h"
 #include "excecao.h"
 #include "reserva.h"
+
+#ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
+
+    #include "linux.h"
+
+#elif defined(_WIN32) || defined(WIN32)     /* _Win32 is usually defined by compilers targeting 32 or   64 bit Windows systems */
+
+    #include <windows.h>
+    #include <conio.h>
+
+#endif
 
 using namespace std;
 

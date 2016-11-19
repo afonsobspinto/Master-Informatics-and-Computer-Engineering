@@ -3,9 +3,9 @@
 #include <fstream>
 #include <string>
 
-#include "Broker.h"
-#include "Interacao.h"
-#include "Data.h"
+#include "broker.h"
+#include "data.h"
+#include "interacao.h"
 #include "utils.h"
 
 
