@@ -78,6 +78,10 @@ float Imovel::getPreco() const {
 	return preco;
 }
 
+std::vector<Reserva*> Imovel::getReservas() const {
+	return reservas;
+}
+
 bool Imovel::operator <(const Imovel& rhs) const {
 	return this->getPreco()<rhs.getPreco();
 }

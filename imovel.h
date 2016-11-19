@@ -24,6 +24,7 @@ public:
 	int getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
+	std::vector<Reserva*>getReservas() const;
 	bool operator< (Imovel const &rhs) const;
 };
 
