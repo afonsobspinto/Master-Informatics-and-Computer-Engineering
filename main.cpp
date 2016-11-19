@@ -11,16 +11,17 @@
 
 using namespace std;
 
+
 int main() {
 
-	string nome;
+	string nome = "OlaMundo";
 	string filename;
 	fstream f;
 
 	cout << "Bem-Vindo" << endl << endl;
 
-	cout << "Broker: ";
-	cin >> nome;
+//	cout << "Broker: ";
+//	cin >> nome;
 
 	filename = nome + ".txt";
 
@@ -42,15 +43,21 @@ int main() {
 		cout << nome << endl;
 		cout << ficheiroClientes << endl;
 		cout << ficheiroFornecedores << endl;
-		cout << receita_str << endl;
+		cout << stof(receita_str) << endl;
+
+		f.close();
 
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
+		cout << endl << endl << endl << endl;
+		Existente.mostraMontra();
 	}
 	else{
 		cout << "Gerando base de dados..." << endl;
 		Broker Novo(nome);
 	}
+
+
 
 	return 0;
 

@@ -17,6 +17,8 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 		std::string ficheiroFornecedores, float receita) {
 	this->nome = nome;
 	this->receita = receita;
+	this->ficheiroClientes = ficheiroClientes;
+	this->ficheiroFornecedores = ficheiroFornecedores;
 	clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
 	atualizaMontra();
@@ -115,11 +117,19 @@ vector<Imovel*> Broker::Pesquisa() {
 bool Broker::validaLogin(std::string nome, std::string password) {
 }
 
-ostream& operator<<(ostream& out, const Imovel  *imovel){
+void Broker::mostraMontra() {
+	unsigned int size = montra.size();
 
-	cout << "Tipo: " << imovel->getTipo() << endl;
-	cout << "Localidade: " << imovel->getLocalidade() << endl;
-	cout << "Preço: " << imovel->getPreco() << endl;
+	for (unsigned int i=0; i < size; i++){
+		cout << montra.at(i) << endl;
+	}
+}
+
+ostream& operator<<(ostream& out, const Imovel*  imovel){
+
+	out << "Tipo: " << imovel->getTipo() << endl;
+	out << "Localidade: " << imovel->getLocalidade() << endl;
+	out << "Preço: " << imovel->getPreco() << endl;
 
 	return out;
 }
@@ -305,17 +315,22 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 		fornecedores.push_back(F);
 	}
 
+	ficheiro.close();
 	return fornecedores;
 }
 
 
 std::vector<Registado> Broker::leFicheiroClientes() {
+
 	vector<Registado>clientes;
 	string linha;
 	ifstream ficheiro(ficheiroClientes);
 	unsigned int size;
 
 	getline(ficheiro, linha);
+
+	cout << linha << endl;
+
 	size = stoi(linha);
 
 	string nome;
@@ -333,6 +348,12 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		getline(ficheiro, valor_str, ';');
 		getline(ficheiro, password);
 
+		cout << nome << endl;
+		cout << pontos_str << endl;
+		cout << valor_str << endl;
+		cout << password << endl;
+
+
 		pontos = stoi(pontos_str);
 		valor = stof(valor_str);
 		password = password.substr(1,password.length());
@@ -347,6 +368,9 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		clientes.push_back(C);
 	}
 
+	ficheiro.close();
+
 	return clientes;
 }
+
 
