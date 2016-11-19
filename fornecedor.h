@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "Imoveis.h"
+
+#include "imovel.h"
 
 class Fornecedor{
 	std::string nome;

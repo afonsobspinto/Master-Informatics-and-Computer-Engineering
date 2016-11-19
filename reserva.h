@@ -3,7 +3,7 @@
 #ifndef RESERVAS_H_
 #define RESERVAS_H_
 
-#include "Data.h"
+#include "data.h"
 
 class Reserva{
 	Data inicio;

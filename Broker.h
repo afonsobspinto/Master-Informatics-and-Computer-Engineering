@@ -5,10 +5,11 @@
 #include <vector>
 #include <iostream>
 #include <ostream>
-#include "Clientes.h"
-#include "Imoveis.h"
-#include "Fornecedores.h"
-#include "Data.h"
+
+#include "cliente.h"
+#include "data.h"
+#include "fornecedor.h"
+#include "imovel.h"
 
 class Broker{
 	std::string nome;

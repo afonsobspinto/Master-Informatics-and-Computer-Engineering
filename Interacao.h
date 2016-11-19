@@ -2,9 +2,9 @@
 #ifndef INTERACAO_H_
 #define INTERACAO_H_
 
-#include "Excecoes.h"
-#include "Clientes.h"
-#include "Fornecedores.h"
+#include "cliente.h"
+#include "excecao.h"
+#include "fornecedor.h"
 
 
 //Aqui ocorrerá toda a interação com o user;

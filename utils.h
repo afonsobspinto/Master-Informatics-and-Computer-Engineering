@@ -7,10 +7,11 @@
 
 #include <string>
 #include <vector>
-#include "Clientes.h"
-#include "Imoveis.h"
-#include "Data.h"
-#include "Fornecedores.h"
+
+#include "cliente.h"
+#include "data.h"
+#include "fornecedor.h"
+#include "imovel.h"
 
 
 std::string lePassword();

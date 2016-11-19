@@ -1,7 +1,8 @@
 #include <fstream>
-#include "Broker.h"
-#include "Menus.h"
-#include "Interacao.h"
+
+#include "broker.h"
+#include "interacao.h"
+#include "menu.h"
 #include "utils.h"
 
 using namespace std;

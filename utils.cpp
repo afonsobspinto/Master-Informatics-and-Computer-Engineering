@@ -1,11 +1,12 @@
-#include "Excecoes.h"
 #include "utils.h"
-#include "linux.h"
-#include "Reservas.h"
 #include <sstream>
 #include <iostream>
 #include <fstream>
 #include <istream>
+#include "conio.h"
+#include "windows.h"
+#include "excecao.h"
+#include "reserva.h"
 
 using namespace std;
 

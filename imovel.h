@@ -3,8 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "Data.h"
-#include "Reservas.h"
+
+#include "data.h"
+#include "reserva.h"
 
 class Imovel{ // Ponderar classe abstrata
 	std::string localidade;

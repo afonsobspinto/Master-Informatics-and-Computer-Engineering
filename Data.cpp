@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Data.h"
+
+#include "data.h"
 #include "utils.h"
 
 using namespace std;
