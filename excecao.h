@@ -4,6 +4,17 @@
 
 #include <string>
 
+class NifInvalido {
+private:
+	int nif;
+public:
+	NifInvalido(){};
+	NifInvalido(int nif){
+		this->nif = nif;
+	}
+	int getNif() { return nif; }
+};
+
 class NomeIncorreto {
 private:
 	std::string nome;

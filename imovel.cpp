@@ -70,7 +70,7 @@ std::string Imovel::getLocalidade() const {
 	return localidade;
 }
 
-int Imovel::getOwner() const {
+unsigned int Imovel::getOwner() const {
 	return owner;
 }
 

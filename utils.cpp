@@ -4,8 +4,6 @@
 #include <fstream>
 #include <istream>
 #include <math.h>
-//#include "conio.h"
-//#include "windows.h"
 #include "excecao.h"
 #include "reserva.h"
 
@@ -185,4 +183,34 @@ vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
 	QuickSort <Imovel*> QS(&montra, 0, montra.size() - 1, LowestFirst);
 	return montra;
 
+}
+
+unsigned int leNif() {
+
+	unsigned int nif;
+
+	cout << "Nif: ";
+	cin >> nif;
+
+	try{
+		if(cin.fail())
+			throw NifInvalido();
+	}
+	catch (NifInvalido &e) {
+		cout << "Apanhou excecao. Nif Invalido" << endl;
+		return 0;
+	}
+
+	double num_digitos = floor(log10(nif)) + 1;
+
+	try{
+		if(num_digitos != 9)
+			throw NifInvalido(nif);
+	}
+	catch (NifInvalido &e) {
+		cout << "Apanhou excecao."<< e.getNif() << " não tem 9 digitos." << endl;
+		return 0;
+	}
+
+	return nif;
 }

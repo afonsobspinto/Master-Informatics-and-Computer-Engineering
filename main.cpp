@@ -89,8 +89,6 @@ int main() {
 		Novo.adicionaCliente();
 	}
 
-
-
 	return 0;
 
 }

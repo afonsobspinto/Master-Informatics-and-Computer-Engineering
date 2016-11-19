@@ -32,7 +32,7 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	this->receita = receita;
 	this->ficheiroClientes = ficheiroClientes;
 	this->ficheiroFornecedores = ficheiroFornecedores;
-	//clientes = leFicheiroClientes();
+	clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
 	atualizaMontra();
 }
@@ -78,11 +78,11 @@ bool Broker::adicionaCliente() {
 }
 
 bool Broker::adicionaFornecedor() {
-/*	Fornecedor F = criaFornecedor();
+	Fornecedor F = criaFornecedor();
 
 	fornecedores.push_back(F);
 	atualizaMontra();
-	guardaFornecedores();*/
+	guardaFornecedores();
 }
 
 bool Broker::adicionaImovel() {

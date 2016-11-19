@@ -10,7 +10,7 @@
 class Imovel{
 	std::string localidade;
 	std::string tipo;
-	int owner;
+	unsigned int owner;
 	float preco;
 	float taxa;
 	std::vector <Reserva> reservas;
@@ -21,7 +21,7 @@ public:
 	void setTipo(std::string tipo);
 	std::string getLocalidade() const;
 	std::string getTipo() const;
-	int getOwner() const;
+	unsigned int  getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
 	virtual bool getSuite() const;
