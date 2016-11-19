@@ -32,9 +32,9 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	this->receita = receita;
 	this->ficheiroClientes = ficheiroClientes;
 	this->ficheiroFornecedores = ficheiroFornecedores;
-	clientes = leFicheiroClientes();
-	//fornecedores = leFicheiroFornecedores();
-	//atualizaMontra();
+	//clientes = leFicheiroClientes();
+	fornecedores = leFicheiroFornecedores();
+	atualizaMontra();
 }
 
 vector<Registado> Broker::getClientes() const {
@@ -141,7 +141,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 	size = stoi(linha);
 
 
-	cout << size << endl;
+	cout << size << "<-size" << endl;
 
 	string nome;
 	int nif;
@@ -173,13 +173,14 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 		getline(ficheiro, nif_str, ';');
 		getline(ficheiro, morada, ';');
 
+		nome = nome.substr(0, nome.length()-1);
 		nif = stoi(nif_str);
 		owner = nif;
-		morada = morada.substr(1, morada.length());
+		morada = morada.substr(1, morada.length()-2);
 
-		cout << nome << endl;
-		cout << nif << endl;
-		cout << morada << endl;
+		cout << nome <<"<-nome" << endl;
+		cout << nif <<"<-nif" << endl;
+		cout << morada <<"<-morada" << endl;
 
 		unsigned int ofertas;
 
@@ -187,7 +188,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 		ofertas = stoi(linha);
 
 
-		cout << ofertas << endl;
+		cout << ofertas <<"<-size_ofertas" << endl;
 
 		vector <Imovel*> imoveis;
 		for (unsigned int j=0; j < ofertas; j++){
@@ -199,25 +200,40 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 			getline(ficheiro, taxa_str, ';');
 
 			localidade = localidade.substr(1,localidade.length()-2);
-			tipo = tipo.substr(1,tipo.length());
+			tipo = tipo.substr(1,tipo.length()-2);
 			preco = stof(preco_str);
 			taxa = stof(taxa_str);
 
 
 
-			cout << localidade << endl;
-			cout << tipo << endl;
-			cout << preco << endl;
-			cout << taxa << endl;
+			cout << localidade <<"<-localidade" << endl;
+			cout << tipo <<"<-tipo" << endl;
+			cout << preco <<"<-preco" << endl;
+			cout << taxa <<"<-taxa" << endl;
 
 			unsigned int reservas_size;
 
 			getline(ficheiro, linha, ';');
 			reservas_size = stoi(linha);
 
-			cout << reservas_size << endl;
+			cout << reservas_size <<"<-reservas_size" << endl;
 
 			vector <Reserva> reservas;
+
+			bool suite;
+			bool cozinha;
+			bool sala_de_estar;
+			int cama;
+
+			string suite_str;
+			string cozinha_str;
+			string sala_de_estar_str;
+			string cama_str;
+
+			bool cama_extra;
+
+			string cama_extra_str;
+
 			for (unsigned int k=0; k < reservas_size; k++){
 
 				getline(ficheiro, dataInicio_str, ';');
@@ -229,71 +245,61 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 				Reserva R(dataInicio, dataFim);
 				reservas.push_back(R);
 
+				if(tipo == "Apartamento"){
 
-			if(tipo == "Apartamento "){
-				bool suite;
-				bool cozinha;
-				bool sala_de_estar;
-				int cama;
+					getline(ficheiro, suite_str, ';');
+					getline(ficheiro, cozinha_str, ';');
+					getline(ficheiro, sala_de_estar_str, ';');
+					getline(ficheiro, cama_str, ';');
 
-				string suite_str;
-				string cozinha_str;
-				string sala_de_estar_str;
-				string cama_str;
+					suite = stoi(suite_str);
+					cozinha = stoi(cozinha_str);
+					sala_de_estar = stoi(sala_de_estar_str);
+					cama = stoi(cama_str);
 
-				getline(ficheiro, suite_str, ';');
-				getline(ficheiro, cozinha_str, ';');
-				getline(ficheiro, sala_de_estar_str, ';');
-				getline(ficheiro, cama_str, ';');
+					cout << suite << endl;
+					cout << cozinha << endl;
+					cout << sala_de_estar << endl;
+					cout << cama << endl;
+
+				}
+
+				else if (tipo == "Hotel"){
 
 
-				suite = stoi(suite_str);
-				cozinha = stoi(cozinha_str);
-				sala_de_estar = stoi(sala_de_estar_str);
-				cama = stoi(cama_str);
+					getline(ficheiro, cama_str, ';');
+					getline(ficheiro, cama_extra_str, ';');
 
-				cout << suite << endl;
-				cout << cozinha << endl;
-				cout << sala_de_estar << endl;
-				cout << cama << endl;
 
+					cama = stoi(cama_str.substr(1,cama_str.length()));
+					cama_extra = stoi(cama_extra_str.substr(1,cama_extra_str.length()));
+
+					cout << cama << endl;
+					cout << cama_extra << endl;
+
+				}
+			}
+			if(tipo == "Apartamento"){
 				Imovel *I = new Apartamento(localidade, owner, preco, reservas, cama, suite, cozinha, sala_de_estar);
 				imoveis.push_back(I);
-
 			}
 
-			else if (tipo == "Hotel "){
-				int cama;
-				bool cama_extra;
-
-				string cama_str;
-				string cama_extra_str;
-
-				getline(ficheiro, cama_str, ';');
-				getline(ficheiro, cama_extra_str, ';');
-
-
-				cama = stoi(cama_str.substr(1,cama_str.length()));
-				cama_extra = stoi(cama_extra_str.substr(1,cama_extra_str.length()));
-
-				cout << cama << endl;
-				cout << cama_extra << endl;
-
+			else if (tipo == "Hotel"){
 				Imovel *I = new Hotel(localidade, owner, preco, reservas, cama, cama_extra);
 				imoveis.push_back(I);
-
 			}
-			else if(tipo=="Flat "){
+
+			else if(tipo=="Flat"){
 				Imovel *I = new Flat(localidade, owner, preco, reservas);
 				imoveis.push_back(I);
 			}
 
-			else if(tipo=="BB "){
+			else if(tipo=="BB"){
 				Imovel *I = new BB(localidade, owner, preco, reservas);
 				imoveis.push_back(I);
 			}
 
-			else if(tipo=="Shared "){
+			else if(tipo=="Shared"){
 				Imovel *I = new Shared(localidade, owner, preco, reservas);
 				imoveis.push_back(I);
 			}
@@ -301,8 +307,6 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 			else{
 				cout << "erro na leitura" << endl; //Criar uma exceçao
 			}
-			}
-
 		}
 
 
@@ -382,6 +386,23 @@ void Broker::guardaClientes() {
 }
 
 void Broker::guardaFornecedores() {
+
+	ofstream ficheiro(ficheiroFornecedores, ios::trunc);
+
+	ficheiro << fornecedores.size() << endl;
+//
+//	for (unsigned int  i = 0; i < fornecedores.size(); i++)
+//	{
+//		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getMorada()<< " ; "
+//		 << fornecedores.at(i).getOfertas().size();
+//		for (unsigned int j = 0; j < fornecedores.at(i).getOfertas().size(); j++){
+//			fornecedores.at(i).getOfertas().at(j)->getLocalidade()
+//		}
+//	}
+//
+	ficheiro.flush();
+
+	cout << "Fornecedores Guardados com Sucesso! " << endl ;
 }
 
 void Broker::mostraMontra() {

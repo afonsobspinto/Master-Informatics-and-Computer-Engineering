@@ -27,6 +27,10 @@ vector<Imovel*> Fornecedor::getOfertas() const {
 	return ofertas;
 }
 
+int Fornecedor::getNif() const {
+	return nif;
+}
+
 bool Fornecedor::adicionaOferta(Imovel* novo) {
 	ofertas.push_back(novo);
 	return true;

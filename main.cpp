@@ -14,14 +14,14 @@ using namespace std;
 
 int main() {
 
-	string nome;
+	string nome="OlaMundo";
 	string filename;
 	fstream f;
 
 	cout << "Bem-Vindo" << endl << endl;
 
-	cout << "Broker: ";
-	getline(cin, nome);
+//	cout << "Broker: ";
+//	getline(cin, nome);
 
 	filename = nome + ".txt";
 
@@ -45,12 +45,41 @@ int main() {
 		cout << ficheiroFornecedores << endl;
 		cout << stof(receita_str) << endl;
 
+		cout << endl << endl;
+
 		f.close();
 
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
 		cout << endl << endl << endl << endl;
-		//Existente.mostraMontra("localidade");
+
+		Data d1 = Data (1,4,2013);
+		Data d2 = Data (3,4,2013);
+
+		cout << "Montra 1" << endl;
+		Existente.mostraMontra("localidade3");
+
+//		cout << endl << endl << endl << endl;
+//		cout << "Montra 2" << endl;
+//
+//		Existente.mostraMontra("localidade", d1, d2);
+//
+//		cout << endl << endl << endl << endl;
+//		cout << "Montra 3" << endl;
+//
+//		Existente.mostraMontra(100);
+//
+//		cout << endl << endl << endl << endl;
+//		cout << "Montra 4" << endl;
+//
+//		Existente.mostraMontra(100, d1, d2);
+//
+//		cout << endl << endl << endl << endl;
+//		cout << "Montra 5" << endl;
+//
+//		Existente.mostraMontra("localidade", 100, d1, d2);
+
+
 	}
 	else{
 		cout << "Gerando base de dados..." << endl;
