@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <istream>
+#include <math.h>
 //#include "conio.h"
 //#include "windows.h"
 #include "excecao.h"
@@ -155,6 +156,29 @@ Data string2data(string data){
 	Data D(dia, mes, ano);
 
 	return D;
+}
+
+string data2string(Data data){
+	string data_str;
+
+	data_str = to_string_special(data.getDia()) + '/' +
+			to_string_special(data.getMes()) + '/' +
+			to_string(data.getAno());
+
+	return data_str;
+}
+
+string to_string_special(unsigned int num)
+{
+	double num_digitos = floor(log10(num)) + 1;
+	string num_str = to_string(num);
+
+	if (num_digitos == 1.0)
+	{
+		num_str = "0" + num_str;
+	}
+
+	return num_str;
 }
 
 vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){

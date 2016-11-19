@@ -14,14 +14,14 @@ using namespace std;
 
 int main() {
 
-	string nome="OlaMundo";
+	string nome;
 	string filename;
 	fstream f;
 
 	cout << "Bem-Vindo" << endl << endl;
 
-//	cout << "Broker: ";
-//	getline(cin, nome);
+	cout << "Broker: ";
+	getline(cin, nome);
 
 	filename = nome + ".txt";
 

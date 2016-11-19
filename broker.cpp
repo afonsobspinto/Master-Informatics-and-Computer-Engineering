@@ -390,16 +390,32 @@ void Broker::guardaFornecedores() {
 	ofstream ficheiro(ficheiroFornecedores, ios::trunc);
 
 	ficheiro << fornecedores.size() << endl;
-//
-//	for (unsigned int  i = 0; i < fornecedores.size(); i++)
-//	{
-//		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getMorada()<< " ; "
-//		 << fornecedores.at(i).getOfertas().size();
-//		for (unsigned int j = 0; j < fornecedores.at(i).getOfertas().size(); j++){
-//			fornecedores.at(i).getOfertas().at(j)->getLocalidade()
-//		}
-//	}
-//
+
+	for (unsigned int  i = 0; i < fornecedores.size(); i++)
+	{
+		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getMorada()<< " ; " <<
+				fornecedores.at(i).getOfertas().size() << " ; ";
+		for (unsigned int j = 0; j < fornecedores.at(i).getOfertas().size(); j++){
+			ficheiro << fornecedores.at(i).getOfertas().at(j)->getLocalidade() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTipo() << " ; " << fornecedores.at(i).getOfertas().at(j)->getPreco() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTaxa() << " ; " <<
+					fornecedores.at(i).getOfertas().at(j)->getReservas().size() << " ; ";
+			for (unsigned int k = 0; k < fornecedores.at(i).getOfertas().at(j)->getReservas().size(); k++){
+				ficheiro << data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getInicio()) << " ; " <<
+						data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getInicio()) << " ; ";
+
+				if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Apartamento"){
+					ficheiro << fornecedores.at(i).getOfertas().at(j)->getSuite() << " ; " <<
+							fornecedores.at(i).getOfertas().at(j)->getCozinha() << " ; " <<
+							fornecedores.at(i).getOfertas().at(j)->getSala_de_estar() << " ; " <<
+							fornecedores.at(i).getOfertas().at(j)->getCama() << " ; " << " ; ";
+				}
+				else if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Hotel"){
+					ficheiro << fornecedores.at(i).getOfertas().at(j)->getCama() << " ; " <<
+							fornecedores.at(i).getOfertas().at(j)->getCama_extra() << " ; ";
+				}
+			}
+		}
+	}
+
 	ficheiro.flush();
 
 	cout << "Fornecedores Guardados com Sucesso! " << endl ;

@@ -19,6 +19,8 @@ std::string lePassword();
 std::string leNome();
 
 Data string2data(std::string data);
+std::string data2string(Data data);
+std::string to_string_special(unsigned int num);
 
 bool is_number(const std::string& s);
 bool ano_bissexto(unsigned int ano);

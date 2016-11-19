@@ -7,7 +7,7 @@
 #include "data.h"
 #include "reserva.h"
 
-class Imovel{ // Ponderar classe abstrata
+class Imovel{
 	std::string localidade;
 	std::string tipo;
 	int owner;
@@ -24,6 +24,12 @@ public:
 	int getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
+	virtual bool getSuite() const;
+	virtual bool getCozinha() const;
+	virtual bool getSala_de_estar() const;
+	virtual int getCama() const;
+	virtual bool getCama_extra() const;
+
 	std::vector<Reserva>getReservas() const;
 	bool operator< (Imovel const &rhs) const;
 };
@@ -33,7 +39,8 @@ class Hotel: public Imovel{
 	bool cama_extra;
 public:
 	Hotel(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {},int cama=1, bool cama_extra=false);
-
+	int getCama() const;
+	bool getCama_extra() const;
 };
 
 class Apartamento: public Imovel{
@@ -44,11 +51,16 @@ class Apartamento: public Imovel{
 public:
 	Apartamento(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {}, int cama = 1,
 			bool suite=false, bool cozinha=false, bool sala_de_estar = false);
+	bool getSuite() const;
+	bool getCozinha() const;
+	bool getSala_de_estar() const;
+	int getCama() const;
 };
 
 class Flat: public Imovel{
 public:
 	Flat(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {});
+
 };
 
 class BB: public Imovel{

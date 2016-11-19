@@ -85,3 +85,47 @@ std::vector<Reserva> Imovel::getReservas() const {
 bool Imovel::operator <(const Imovel& rhs) const {
 	return this->getPreco()<rhs.getPreco();
 }
+
+int Hotel::getCama() const {
+	return cama;
+}
+
+bool Hotel::getCama_extra() const {
+	return cama_extra;
+}
+
+bool Apartamento::getSuite() const {
+	return suite;
+}
+
+bool Apartamento::getCozinha() const {
+	return cozinha;
+}
+
+bool Apartamento::getSala_de_estar() const {
+	return sala_de_estar;
+}
+
+int Apartamento::getCama() const {
+	return cama;
+}
+
+bool Imovel::getSuite() const {
+	return false;
+}
+
+bool Imovel::getCozinha() const {
+	return false;
+}
+
+bool Imovel::getSala_de_estar() const {
+	return false;
+}
+
+int Imovel::getCama() const {
+	return 0;
+}
+
+bool Imovel::getCama_extra() const {
+	return false;
+}
