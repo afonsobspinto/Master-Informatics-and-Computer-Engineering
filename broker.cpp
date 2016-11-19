@@ -21,6 +21,9 @@ Broker::Broker(std::string nome) {
 	ficheiro << receita << endl;
 
 	ficheiro.close();
+	guardaClientes();
+	guardaFornecedores();
+
 }
 
 Broker::Broker(std::string nome, std::string ficheiroClientes,
@@ -70,6 +73,7 @@ bool Broker::adicionaCliente() {
 	}
 
 	clientes.push_back(C);
+	guardaClientes();
 	return true;
 }
 
@@ -77,14 +81,16 @@ bool Broker::adicionaFornecedor() {
 /*	Fornecedor F = criaFornecedor();
 
 	fornecedores.push_back(F);
-	atualizaMontra();*/
+	atualizaMontra();
+	guardaFornecedores();*/
 }
 
 bool Broker::adicionaImovel() {
 /*	Imovel *I = criaImovel();
 
 	montra.push_back(I);
-	atualizaMontra();
+	atualizaMontra()
+	guardaFornecedores();
 	*/
 }
 

@@ -59,7 +59,6 @@ int main() {
 
 		Novo.adicionaCliente();
 		Novo.adicionaCliente();
-		Novo.guardaClientes();
 	}
 
 
