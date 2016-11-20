@@ -488,14 +488,6 @@ void Broker::guardaClientes() {
 	cout << "Clientes Guardados com Sucesso! " << endl ;
 }
 
-
-<<<<<<< HEAD
-=======
-Fornecedor Broker::getUserF() const {
-	return UserF;
-}
-
->>>>>>> 67195fe85a585146b80326e41519056bbb211a56
 void Broker::guardaFornecedores() {
 	cout << endl << "Guardando Ficheiro Fornecedores" << endl << endl;
 
