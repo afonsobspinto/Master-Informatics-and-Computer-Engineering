@@ -45,12 +45,12 @@ public:
 	bool adicionaFornecedor(); //Verifica se o fornecedor existe, se nao adiciona-o
 	bool adicionaImovel(Fornecedor *F); //Verifica se o imovel ja existe (Ver Todos Os Fornecedores)
 	bool atualizaMontra(); // Correr todos os fornecedores, todas as ofertas deles e colocar na montra.
-	bool efectuaReserva(Cliente C, Imovel I, Data D1, Data D2); //Ve se é possivel efetuar a reserva (já nao está ocupado) Se for cria reserva e dá pontos ao Cliente C. Ver Issue
-	bool cancelaReserva(Cliente C, Imovel I, Reserva R, Data & atual); // Se a data atual for menor que limite100 ent�o recebe 100% do valor pago, se for menor que o limite50 recebe 50% do valor, se n�o, n�o recebe nada
+	bool efectuaReserva(Cliente* C, Imovel* I); //Ve se é possivel efetuar a reserva (já nao está ocupado) Se for cria reserva e dá pontos ao Cliente C. Ver Issue
+	bool cancelaReserva(Cliente* C, Imovel* I, Reserva R, Data & atual); // Se a data atual for menor que limite100 ent�o recebe 100% do valor pago, se for menor que o limite50 recebe 50% do valor, se n�o, n�o recebe nada
 	void taxa(); //Recebe a taxa dos fornecedores e coloca na receita, sempre que se aluga efetivamente.
 	void classificacao();
 
-	Imovel* mostraMontra(bool localidade = false, bool preco = false, bool datas = false);
+	bool mostraMontra(bool localidade = false, bool preco = false, bool datas = false);
 	Imovel* mostraMontraAux();
 	Imovel* mostraMontraAux(std::string localidade);
 	Imovel* mostraMontraAux(std::string localidade, Data inicio, Data fim);
@@ -59,6 +59,8 @@ public:
 	Imovel* mostraMontraAux(std::string localidade, float precoMax);
 	Imovel* mostraMontraAux(std::string localidade, float precoMax, Data inicio, Data fim);
 	Imovel* mostraMontraAux(Data inicio, Data fim);
+
+	bool mostraReservas();
 
 	void guardaClientes();
 	void guardaFornecedores();
@@ -74,6 +76,7 @@ public:
 	bool menuOpcoesCliente();
 	bool menuEfectuaReserva();
 	bool menuCancelaReserva();
+
 
 	bool menuFornecedorInicial();
 	bool menuOpcoesFornecedor();

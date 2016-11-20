@@ -35,6 +35,7 @@ public:
 	void addReservas(Reserva & R);
 	void tirarReserva(Reserva & R);
 	bool operator< (Imovel const &rhs) const;
+
 };
 
 class Hotel: public Imovel{

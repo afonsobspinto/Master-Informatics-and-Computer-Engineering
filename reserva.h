@@ -11,12 +11,14 @@ class Reserva{
 	Data limite50; //15 dias antes
 	Data final;
 	float preco;
+
 public:
 	Reserva(Data inicio, Data final, float preco_por_noite); // para além da atribuição normal calculará o Preço somehow e os atributos limite
 	Data getInicio() const;
 	Data getFinal() const;
 	Data getLimite100() const;
 	Data getLimite50() const;
+	float getPreco() const;
 };
 
 

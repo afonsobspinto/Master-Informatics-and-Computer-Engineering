@@ -43,7 +43,8 @@ bool Broker::menuClienteInicial() {
 		cout << endl;
 		cout << "   " << "1 - Registado" << endl;
 		cout << "   " << "2 - Convidado" << endl;
-		cout << "   " << "3 - Voltar" << endl << endl;
+		cout << "   " << "3 - Registar" << endl;
+		cout << "   " << "4 - Voltar" << endl << endl;
 		cout << "   " << "Qual a sua opcao: ";
 		opcao = leUnsignedShortInt(1, 3);
 
@@ -51,13 +52,15 @@ bool Broker::menuClienteInicial() {
 		case 1:
 			if(this->validaLoginCliente())
 				menuOpcoesCliente();
-			else
-				cout << "Login Incorreto" << endl; //Vai precisar de um wait
+
 			break;
 		case 2:
 			menuOpcoesCliente();
 			break;
-		case 3:
+		case 2:
+			adicionaCliente()();
+			break;
+		case 4:
 			return true;
 		default:
 			return false;
@@ -85,7 +88,7 @@ bool Broker::menuOpcoesCliente() {
 				break;
 			break;
 		case 2:
-			if(menuCancelaReserva())
+			if(mostraReservas())
 				break;
 			break;
 		case 3:
@@ -116,23 +119,23 @@ bool Broker::menuEfectuaReserva() {
 			switch (opcao){
 			case 1:
 				mostraMontra(false, false, false);
-					break;
+					return true;
 				break;
 			case 2:
-				if(mostraMontra(false, true, false)->getTipo()!="")
-					break;
+				if(mostraMontra(false, true, false))
+					return true;
 				break;
 			case 3:
-				if(mostraMontra(true, false, false)->getTipo()!="")
-					break;
+				if(mostraMontra(true, false, false))
+					return true;
 				break;
 			case 4:
-				if(mostraMontra(false, false, true)->getTipo()!="")
-					break;
+				if(mostraMontra(false, false, true))
+					return true;
 				break;
 			case 5:
-				if(mostraMontra(true, true, true)->getTipo()!="")
-					break;
+				if(mostraMontra(true, true, true))
+					return true;
 				break;
 			case 6:
 				return true;
@@ -142,8 +145,6 @@ bool Broker::menuEfectuaReserva() {
 		}
 }
 
-bool Broker::menuCancelaReserva() {
-}
 
 
 bool Broker::menuFornecedorInicial() {

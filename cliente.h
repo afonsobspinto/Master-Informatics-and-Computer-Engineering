@@ -1,7 +1,9 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
+#include "reserva.h"
 #include <string>
+#include <vector>
 
 class Cliente{
 	std::string nome;
@@ -15,6 +17,8 @@ public:
 	float getValor() const;
 	static unsigned int getTotalClientes();
 	virtual void setPontos(int pontos);
+	virtual void addReserva(Reserva R);
+	std::vector<Reserva>*getReservas();
 	void addValor(int preco);
 	void subValor(int preco);
 
@@ -23,12 +27,15 @@ public:
 class Registado: public Cliente{
 	std::string password;
 	int pontos;
+	std::vector<Reserva> reservas;
 public:
 	Registado(std::string nome, std::string password);
 	Registado(std::string nome, int pontos, float valor, std::string password);
 	std::string getPassword() const;
 	int getPontos() const;
+	std::vector<Reserva>*getReservas();
 	virtual void setPontos(int pontos);
+	virtual void addReserva(Reserva R);
 	bool operator < (Registado & rhs);
 };
 

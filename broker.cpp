@@ -4,6 +4,7 @@
 #include "broker.h"
 #include "interacao.h"
 #include "utils.h"
+#include "reserva.h"
 
 
 using namespace std;
@@ -150,28 +151,36 @@ bool Broker::atualizaMontra() {
 	// Adicionar return false em caso de erro
 }
 
-bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
+bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 
-	unsigned int size = I.getReservas().size();
-	float preco = I.getPreco() * (D2 - D1);
+	cout << "Por Favor indique as datas de inicio e fim da reserva" << endl;
+	Data D1 = leData("inicial");
+	Data D2 = leData("final");
+	swapDatas(&D1,&D2);
+
+	unsigned int size = I->getReservas().size();
+	float preco = I->getPreco() * (D2 - D1);
 
 	cout << "A sua reserva est� a ser efetuada" << endl;
 
 	for (unsigned int i=0; i< size; i++){
-		Data di = I.getReservas().at(i).getInicio();
-		Data df = I.getReservas().at(i).getFinal();
+		Data di = I->getReservas().at(i).getInicio();
+		Data df = I->getReservas().at(i).getFinal();
 		if (dias_sobrepostos(di,df,D1,D2)==0){
 			cout << "O im�vel j� est� reservado nessas datas. Lamentamos" << endl;
 			return false;
 		}
 	}
-	C.setPontos(10);
-	C.addValor(preco);
-	Reserva R = Reserva(D1,D2, I.getPreco());
-	I.addReservas(R);
-	cout << "Reserva efetuada com sucesso" << endl;
-	return true;
 
+	C->setPontos(10);
+	C->addValor(preco);
+	Reserva R = Reserva(D1,D2, I->getPreco());
+	C->addReserva(R);
+	I->addReservas(R);
+
+	cout << "Reserva efetuada com sucesso" << endl;
+
+	return true;
 }
 
 void Broker::taxa() {
@@ -195,23 +204,23 @@ void Broker::classificacao() {
 	}
 }
 
-bool Broker::cancelaReserva(Cliente C, Imovel I, Reserva R, Data& atual) {
-    // Corrigir preco por noite
-	Data L100 = R.getLimite100();
-	Data L50 = R.getLimite50();
-	if (atual < L100){
-		C.subValor(I.getPreco());
-		cout << "Receber� 100% do valor inicial" << endl;
-	}
-	else if (atual < L50){
-		C.subValor(I.getPreco()*0.5);
-		cout << "Receber� 50% do valor inicial" << endl;
-	}
-	else
-		cout << "Reserva cancelada em menos de 15 dias, portanto n�o ir� receber reembolso" << endl;
-
-	I.tirarReserva(R);
-	cout << "Reserva cancelada com sucesso" << endl;
+bool Broker::cancelaReserva(Cliente *C, Imovel *I, Reserva R, Data& atual) {
+//    // Corrigir preco por noite
+//	Data L100 = R.getLimite100();
+//	Data L50 = R.getLimite50();
+//	if (atual < L100){
+//		C.subValor(I.getPreco());
+//		cout << "Receber� 100% do valor inicial" << endl;
+//	}
+//	else if (atual < L50){
+//		C.subValor(I.getPreco()*0.5);
+//		cout << "Receber� 50% do valor inicial" << endl;
+//	}
+//	else
+//		cout << "Reserva cancelada em menos de 15 dias, portanto n�o ir� receber reembolso" << endl;
+//
+//	I.tirarReserva(R);
+//	cout << "Reserva cancelada com sucesso" << endl;
 }
 
 
@@ -536,7 +545,6 @@ void Broker::guardaFornecedores() {
 					ofertas.at(j)->getReservas().size() << " ; ";
 			for (unsigned int k = 0; k < ofertas.at(j)->getReservas().size(); k++){
 				vector<Reserva> reservas = fornecedores.at(i).getOfertas().at(j)->getReservas();
-
 				ficheiro << data2string(reservas.at(k).getInicio()) << " ; " <<
 						data2string(reservas.at(k).getFinal()) << " ; ";
 
@@ -561,18 +569,19 @@ void Broker::guardaFornecedores() {
 }
 
 
-Imovel* Broker::mostraMontra(bool localidade, bool preco, bool datas) {
+bool Broker::mostraMontra(bool localidade, bool preco, bool datas) {
 
 	string local;
 	float precoMax;
 	Data D1;
 	Data D2;
+	Imovel* imovel;
 
 	if(!localidade && !preco && !datas)
-		return mostraMontraAux();
+		imovel = mostraMontraAux();
 	else if(localidade && !preco && !datas){
 		 local = leString("Localidade: ");
-		 return mostraMontraAux(local);
+		 imovel = mostraMontraAux(local);
 	}
 	else if(!localidade && preco && !datas){
 		precoMax = lePreco();
@@ -581,15 +590,17 @@ Imovel* Broker::mostraMontra(bool localidade, bool preco, bool datas) {
 	else if(!localidade && !preco && datas){
 		D1 = leData("inicial");
 		D2 = leData("final");
-		return mostraMontraAux(D1, D2);
+		imovel = mostraMontraAux(D1, D2);
 	}
 	else if(localidade && preco && datas){
 		 local = leString("Localidade: ");
 		 precoMax = lePreco();
 		 Data D1 = leData("inicial");
 		 Data D2 = leData("final");
-		 return mostraMontraAux(local, preco, D1, D2);
+		 imovel = mostraMontraAux(local, preco, D1, D2);
 		}
+
+	return efectuaReserva(UserC, imovel);
 
 }
 
@@ -878,9 +889,44 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 	return vec.at(mapa.at(imovel));
 }
 
+bool Broker::mostraReservas() {
+
+	vector<Reserva> *reservas = UserC->getReservas();
+	unsigned int size = reservas->size();
+
+	unsigned int opcao;
+
+	unsigned int id = 1;
+
+	Data dataAtual = leData("atual: ");
+
+	for (unsigned int i = 0; i < size; i++){
+		cout << "Reserva: " << id << endl << endl;
+		cout << "Data Inicio: "<< data2string(reservas->at(i).getInicio()) << endl;
+		cout << "Data Final: " << data2string(reservas->at(i).getFinal()) << endl;
+		cout << "Preço: " << reservas->at(i).getPreco() << endl;
+	}
+
+	opcao = leUnsignedShortInt(1, id+1);
+
+	if(opcao==0)
+		return false;
+
+	if(reservas->at(opcao).getLimite100() < dataAtual)
+		UserC->addValor(-reservas->at(opcao).getPreco());
+	else if(reservas->at(opcao).getLimite50() < dataAtual)
+		UserC->addValor(-reservas->at(opcao).getPreco()/2);
+
+	reservas->erase(reservas->begin()+opcao);
+	return true;
+
+}
+
+
 Cliente* Broker::getUserC() {
 	return UserC;
 }
+
 
 
 Fornecedor* Broker::getUserF() {
