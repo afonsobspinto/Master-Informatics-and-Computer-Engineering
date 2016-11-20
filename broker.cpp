@@ -130,6 +130,7 @@ bool Broker::atualizaMontra() {
 bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 
 	unsigned int size = I.getReservas().size();
+	float preco = I.getPreco(); // Corrigir por noites
 
 	cout << "A sua reserva estï¿½ a ser efetuada" << endl;
 
@@ -142,6 +143,9 @@ bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 		}
 	}
 	C.setPontos(10);
+	C.addValor(preco);
+	Reserva R = Reserva(D1,D2);
+	I.addReservas(R);
 	cout << "Reserva efetuada com sucesso" << endl;
 	return true;
 }
@@ -154,8 +158,23 @@ void Broker::taxa() {
 	}
 }
 
-bool Broker::cancelaReserva(Data& atual) {
+bool Broker::cancelaReserva(Cliente C, Imovel I, Reserva R, Data& atual) {
+    // Corrigir preco por noite
+	Data L100 = R.getLimite100();
+	Data L50 = R.getLimite50();
+	if (atual < L100){
+		C.subValor(I.getPreco());
+		cout << "Receberá 100% do valor inicial" << endl;
+	}
+	else if (atual < L50){
+		C.subValor(I.getPreco()*0.5);
+		cout << "Receberá 50% do valor inicial" << endl;
+	}
+	else
+		cout << "Reserva cancelada em menos de 15 dias, portanto não irá receber reembolso" << endl;
 
+	I.tirarReserva(R);
+	cout << "Reserva cancelada com sucesso" << endl;
 }
 
 

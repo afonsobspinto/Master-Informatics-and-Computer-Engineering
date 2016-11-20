@@ -82,6 +82,24 @@ std::vector<Reserva> Imovel::getReservas() const {
 	return reservas;
 }
 
+void Imovel::addReservas(Reserva & R) {
+	reservas.push_back(R);
+}
+
+void Imovel::tirarReserva(Reserva& R) {
+	unsigned int size = reservas.size();
+	Data Ri = R.getInicio();
+	Data Rf = R.getFinal();
+
+	for (unsigned int i=0; i<size; i++){
+		Data Di = reservas.at(i).getInicio();
+		Data Df = reservas.at(i).getFinal();
+		if ((Ri == Di) && (Rf == Df)){
+			reservas.erase(reservas.begin()+i);
+		}
+	}
+}
+
 bool Imovel::operator <(const Imovel& rhs) const {
 	return this->getPreco()<rhs.getPreco();
 }

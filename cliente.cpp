@@ -47,3 +47,11 @@ Registado::Registado(std::string nome, int pontos, float valor,
 std::string Registado::getPassword() const {
 	return password;
 }
+
+void Cliente::addValor(int preco) {
+	valor += preco;
+}
+
+void Cliente::subValor(int preco) {
+	valor -= preco;
+}
