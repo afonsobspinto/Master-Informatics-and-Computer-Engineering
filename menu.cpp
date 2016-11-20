@@ -52,7 +52,6 @@ bool Broker::menuClienteInicial() {
 		case 1:
 			if(this->validaLoginCliente())
 				menuOpcoesCliente();
-
 			break;
 		case 2:
 			menuOpcoesCliente();
