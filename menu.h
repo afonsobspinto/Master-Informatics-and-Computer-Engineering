@@ -1,10 +1,24 @@
 
-#ifndef MENUS_H_
-#define MENUS_H_
+#ifndef MENU_H_
+#define MENU_H_
 
+#include <vector>
+#include <iostream>
+#include <ostream>
+#include <string>
 
-//Aqui serão feitos Menus fixes, preferencialmente onde ocorrerá toda a interação com o user;
-// As excepções serão muito importantes aquando dessa interação
+#include "broker.h"
 
+void opcoesIniciais();
+
+void opcoesGestaoClientes();
+
+void opcoesGestaoFornecedores();
+
+void opcoesClientes();
+
+void opcoesFornecedores();
+
+void verMontra();
 
 #endif /* MENUS_H_ */

@@ -7,7 +7,7 @@
 #include "interacao.h"
 #include "utils.h"
 #include "imovel.h"
-
+#include "menu.h"
 
 using namespace std;
 
@@ -49,6 +49,8 @@ int main() {
 		cout << endl << endl;
 
 		f.close();
+
+		opcoesIniciais();
 
 //    	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
