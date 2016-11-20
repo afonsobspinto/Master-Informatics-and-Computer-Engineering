@@ -79,6 +79,9 @@ bool Broker::menuFornecedorInicial() {
 		case 1:
 			if(this->validaLoginFornecedor())
 				menuOpcoesFornecedor();
+			else
+				cout << "Login Incorreto" << endl; //Vai precisar de um wait
+
 			break;
 		case 2:
 			if(this->adicionaFornecedor())
@@ -108,9 +111,9 @@ bool Broker::menuOpcoesFornecedor() {
 			switch (opcao){
 			case 1:
 				if(this->adicionaImovel(UserF))
-					break;
+					cout << "Imovel Adicionado" << endl; //Vai precisar de um wait
 				break;
-			case 3:
+			case 2:
 				return true;
 			default:
 				return false;
