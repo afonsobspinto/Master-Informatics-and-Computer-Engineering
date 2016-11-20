@@ -11,11 +11,10 @@
 #include "data.h"
 #include "fornecedor.h"
 #include "imovel.h"
+#include "utilizador.h"
 
 
 class Broker{
-	Cliente *UserC;
-	Fornecedor *UserF;
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -40,7 +39,7 @@ public:
 
 	bool adicionaCliente(); //Verifica se o cliente existe, se nao adiciona-o
 	bool validaLoginCliente(std::string nome, std::string password);
-	bool validaLoginFornecedor(int nif, std::string password);
+	bool validaLoginFornecedor();
 	bool adicionaFornecedor(); //Verifica se o fornecedor existe, se nao adiciona-o
 	bool adicionaImovel(Fornecedor *F); //Verifica se o imovel ja existe (Ver Todos Os Fornecedores)
 	bool atualizaMontra(); // Correr todos os fornecedores, todas as ofertas deles e colocar na montra.
@@ -59,6 +58,13 @@ public:
 
 	void guardaClientes();
 	void guardaFornecedores();
+
+	////MENUS///
+
+	bool opcoesIniciais();
+	bool menuClienteInicial();
+	bool menuFornecedorInicial();
+	bool menuOpcoesFornecedor();
 
 };
 

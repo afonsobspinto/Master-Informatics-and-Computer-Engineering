@@ -39,5 +39,7 @@ bool swapDatas (Data *dataInicio, Data *dataFim);
 
 std::vector<Imovel*> ordenaMontra(std::vector<Imovel*> &montra, bool HighestFirst = false);
 
+void ClearScreen();
+
 
 #endif /* UTILS_H_ */

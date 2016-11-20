@@ -160,7 +160,6 @@ std::string leTipo() {
 		return "Voltar";
 		break;
 	}
-
 }
 
 float lePreco() {
@@ -562,4 +561,16 @@ vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
 
 }
 
+void ClearScreen() {
 
+#ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
+
+	system("clear");
+
+#elif defined(_WIN32) || defined(WIN32)     /* _Win32 is usually defined by compilers targeting 32 or   64 bit Windows systems */
+
+	system("cls");
+
+#endif
+
+}

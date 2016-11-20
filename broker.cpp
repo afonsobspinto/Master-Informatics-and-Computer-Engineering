@@ -2,7 +2,6 @@
 
 #include "broker.h"
 #include "interacao.h"
-#include "menu.h"
 #include "utils.h"
 
 using namespace std;
@@ -212,12 +211,19 @@ bool Broker::validaLoginCliente(std::string nome, std::string password) {
 	return false;
 }
 
-bool Broker::validaLoginFornecedor(int nif, std::string password) {
+bool Broker::validaLoginFornecedor() {
+
+	int nif = leNif();
+	std::string password = lePassword();
+
 	unsigned int size = fornecedores.size();
 	for (unsigned int i = 0 ; i < size; i++){
 		if(fornecedores.at(i).getNif() == nif)
-			if(fornecedores.at(i).getPassword()==password)
+			if(fornecedores.at(i).getPassword()==password){
+
+				Utilizador U(&fornecedores.at(i));
 				return true;
+			}
 	}
 	return false;
 }
@@ -686,4 +692,7 @@ void Broker::mostraMontra(Data inicio, Data fim) {
 			}
 		}
 	}
+}
+
+bool Broker::menuOpcoesFornecedor() {
 }
