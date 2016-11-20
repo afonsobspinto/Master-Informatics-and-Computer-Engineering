@@ -106,7 +106,7 @@ bool Broker::adicionaFornecedor() {
 	}
 
 	fornecedores.push_back(F);
-	adicionaImovel(&F);
+	adicionaImovel(&fornecedores.back());
 	atualizaMontra();
 	guardaFornecedores();
 
@@ -488,13 +488,7 @@ void Broker::guardaClientes() {
 	cout << "Clientes Guardados com Sucesso! " << endl ;
 }
 
-Cliente Broker::getUserC() const {
-	return UserC;
-}
 
-Fornecedor Broker::getUserF() const {
-	return UserF;
-}
 void Broker::guardaFornecedores() {
 	cout << endl << "Guardando Ficheiro Fornecedores" << endl << endl;
 
@@ -507,21 +501,25 @@ void Broker::guardaFornecedores() {
 		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getPassword() << " ; "<< fornecedores.at(i).getMorada()<< " ; " <<
 				fornecedores.at(i).getOfertas().size() << " ; ";
 		for (unsigned int j = 0; j < fornecedores.at(i).getOfertas().size(); j++){
-			ficheiro << fornecedores.at(i).getOfertas().at(j)->getLocalidade() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTipo() << " ; " << fornecedores.at(i).getOfertas().at(j)->getPreco() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTaxa() << " ; " <<
-					fornecedores.at(i).getOfertas().at(j)->getReservas().size() << " ; ";
-			for (unsigned int k = 0; k < fornecedores.at(i).getOfertas().at(j)->getReservas().size(); k++){
-				ficheiro << data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getInicio()) << " ; " <<
-						data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getFinal()) << " ; ";
+			vector<Imovel *> ofertas = fornecedores.at(i).getOfertas();
 
-				if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Apartamento"){
-					ficheiro << fornecedores.at(i).getOfertas().at(j)->getSuite() << " ; " <<
-							fornecedores.at(i).getOfertas().at(j)->getCozinha() << " ; " <<
-							fornecedores.at(i).getOfertas().at(j)->getSala_de_estar() << " ; " <<
-							fornecedores.at(i).getOfertas().at(j)->getQuartos() << " ; " ;
+			ficheiro << ofertas.at(j)->getLocalidade() << " ; " << ofertas.at(j)->getTipo() << " ; " << ofertas.at(j)->getPreco() << " ; " << ofertas.at(j)->getTaxa() << " ; " <<
+					ofertas.at(j)->getReservas().size() << " ; ";
+			for (unsigned int k = 0; k < ofertas.at(j)->getReservas().size(); k++){
+				vector<Reserva> reservas = fornecedores.at(i).getOfertas().at(j)->getReservas();
+
+				ficheiro << data2string(reservas.at(k).getInicio()) << " ; " <<
+						data2string(reservas.at(k).getFinal()) << " ; ";
+
+				if(ofertas.at(j)->getTipo() == "Apartamento"){
+					ficheiro << ofertas.at(j)->getSuite() << " ; " <<
+							ofertas.at(j)->getCozinha() << " ; " <<
+							ofertas.at(j)->getSala_de_estar() << " ; " <<
+							ofertas.at(j)->getQuartos() << " ; " ;
 				}
-				else if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Hotel"){
-					ficheiro << fornecedores.at(i).getOfertas().at(j)->getCama() << " ; " <<
-							fornecedores.at(i).getOfertas().at(j)->getCama_extra() << " ; ";
+				else if(ofertas.at(j)->getTipo() == "Hotel"){
+					ficheiro << ofertas.at(j)->getCama() << " ; " <<
+							ofertas.at(j)->getCama_extra() << " ; ";
 				}
 			}
 		}
@@ -645,6 +643,29 @@ void Broker::mostraMontra(std::string localidade, float preco, Data inicio, Data
 					cout << "Preço: " << vec.at(i)->getPreco() << endl;
 					cout << endl;
 				}
+			}
+		}
+	}
+}
+
+
+void Broker::mostraMontra(Data inicio, Data fim) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i< size; i++){
+		unsigned int rsize = vec.at(i)->getReservas().size();
+		for (unsigned int j=0; j<rsize; j++){
+			Data di = vec.at(i)->getReservas().at(j).getInicio();
+			Data df = vec.at(i)->getReservas().at(j).getFinal();
+			if (dias_sobrepostos(di,df,inicio,fim)){
+				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+				cout << "Preço: " << vec.at(i)->getPreco() << endl;
+				cout << endl;
 			}
 		}
 	}

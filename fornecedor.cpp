@@ -49,3 +49,7 @@ bool Fornecedor::adicionaOferta(Imovel* novo) {
 std::string Fornecedor::getPassword() const {
 	return password;
 }
+
+int Fornecedor::setNif(int num) {
+	nif = num;
+}

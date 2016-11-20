@@ -50,7 +50,7 @@ int main() {
 
 		f.close();
 
-		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
+    	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
 		Existente.adicionaFornecedor();
 
