@@ -14,8 +14,8 @@
 
 
 class Broker{
-	Cliente UserC;
-	Fornecedor UserF;
+	Cliente *UserC;
+	Fornecedor *UserF;
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -36,8 +36,7 @@ public:
 	std::vector<Imovel*>getMontra()const;
 	std::vector<Fornecedor>getFornecedores()const;
 	float getReceita()const;
-	Cliente getUserC()const;
-	Fornecedor getUserF()const;
+
 
 	bool adicionaCliente(); //Verifica se o cliente existe, se nao adiciona-o
 	bool validaLoginCliente(std::string nome, std::string password);

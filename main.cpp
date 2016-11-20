@@ -50,16 +50,19 @@ int main() {
 
 		f.close();
 
+/*<<<<<<< HEAD
 		opcoesIniciais();
 
 //    	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
+=======
+		Broker Existente(nome);
+>>>>>>> 9bfbc4ff27a9d51b206920180d867d8c87afe78b
 
-//		Existente.adicionaFornecedor();
+		Existente.adicionaCliente();
+		Existente.adicionaFornecedor();
 
-//		cout << endl << endl;
-
-//		Existente.mostraMontra();
-
+		Existente.mostraMontra();
+*/
 
 	}
 	else{
