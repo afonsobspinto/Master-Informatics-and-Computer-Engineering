@@ -22,8 +22,6 @@ Imovel* criaImovel(){
 	if(preco < 0)
 		return 0;
 	reservas = leReservas();
-
-
 }
 
 Registado criaCliente(){

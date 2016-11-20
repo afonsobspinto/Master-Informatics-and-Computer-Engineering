@@ -14,7 +14,7 @@
 #include "fornecedor.h"
 #include "imovel.h"
 
-
+std::string getpass(const char *prompt, bool show_asterisk=true);
 std::string lePassword();
 std::string leString(std::string msg);
 unsigned int leNif();
@@ -29,8 +29,11 @@ std::string to_string_special(unsigned int num);
 
 bool is_number(const std::string& s);
 bool ano_bissexto(unsigned int ano);
+bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano);
 bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano);
+int countLeapYears(Data d);
 bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4);
+void swapDatas (Data *dataInicio, Data *dataFim);
 
 std::vector<Imovel*> ordenaMontra(std::vector<Imovel*> &montra, bool HighestFirst = false);
 

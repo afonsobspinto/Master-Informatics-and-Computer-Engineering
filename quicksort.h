@@ -4,11 +4,6 @@
 
 #include <vector>
 
-template <class T> void swap ( T& a, T& b )
-{
-  T c(a); a=b; b=c;
-}
-
 template<class T>
 
 class QuickSort
@@ -91,7 +86,7 @@ template<class T>
 void QuickSort<T>::Swap(int l, int k)
 {
 
-	swap((*sortingArray).at(l), (*sortingArray).at(k));
+	std::swap((*sortingArray).at(l), (*sortingArray).at(k));
 }
 
 

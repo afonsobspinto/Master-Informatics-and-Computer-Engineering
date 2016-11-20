@@ -4,6 +4,17 @@
 
 #include <string>
 
+
+class dataInvalida {
+private:
+	std::string data;
+public:
+	dataInvalida(std::string data){
+		this->data = data;
+	}
+	std::string getData() { return data; }
+};
+
 class PrecoInvalido {
 private:
 	int preco;

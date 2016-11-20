@@ -14,6 +14,14 @@ using namespace std;
 
 int main() {
 
+	string d = "42/04/2015";
+
+	Data D = string2data(d);
+
+	cout << D.getDia() << "/" << D.getMes() << "/" << D.getAno() << endl;
+
+	return 0;
+
 	string nome;
 	string filename;
 	fstream f;

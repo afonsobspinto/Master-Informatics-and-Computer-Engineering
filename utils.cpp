@@ -4,8 +4,10 @@
 #include <fstream>
 #include <istream>
 #include <math.h>
+#include <limits>
 #include "excecao.h"
 #include "reserva.h"
+#include "quicksort.h"
 
 #ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
 
@@ -21,38 +23,7 @@
 using namespace std;
 
 
-
-string getpass(const char *prompt, bool show_asterisk=true)
-{
-  const char BACKSPACE=127;
-  const char RETURN=10;
-
-  string password;
-  unsigned char ch=0;
-
-  cout <<prompt;
-
-  while((ch=getch())!=RETURN)
-    {
-       if(ch==BACKSPACE)
-         {
-            if(password.length()!=0)
-              {
-                 if(show_asterisk)
-                 cout <<"\b \b";
-                 password.resize(password.length()-1);
-              }
-         }
-       else
-         {
-             password+=ch;
-             if(show_asterisk)
-                 cout <<'*';
-         }
-    }
-  cout <<endl;
-  return password;
-}
+/////////////////////////// LEITURAS ///////////////////////
 
 string lePassword(){
 
@@ -92,98 +63,6 @@ string leString(string msg){
 	return nome;
 }
 
-bool is_number(const string& s)
-{
-	long double num;
-	istringstream iss(s);
-	return !(iss >> num).fail();
-}
-
-bool ano_bissexto(unsigned int ano)
-{
-	if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0))
-		return true;
-
-	return false;
-}
-
-bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
-{
-	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)
-		if (dia > 0 && dia <= 31)
-			return true;
-		else
-			return false;
-	else if (mes != 2)
-		if (dia > 0 && dia <= 30)
-			return true;
-		else
-			return false;
-	else // mes == 2
-		if (ano_bissexto(ano))
-			if (dia > 0 && dia <= 29)
-				return true;
-			else
-				return false;
-		else
-			if (dia > 0 && dia <= 28)
-				return true;
-			else
-				return false;
-}
-
-
-bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
-	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
-		return true;
-	else
-		return false;
-}
-
-Data string2data(string data){
-	unsigned int dia;
-	unsigned int mes;
-	unsigned int ano;
-
-	dia = stoi(data.substr(0,2));
-	mes = stoi(data.substr(3,2));
-	ano = stoi(data.substr(6,4));
-
-	cout << dia << "/" << mes << "/" << ano << endl;
-
-	Data D(dia, mes, ano);
-
-	return D;
-}
-
-string data2string(Data data){
-	string data_str;
-
-	data_str = to_string_special(data.getDia()) + '/' +
-			to_string_special(data.getMes()) + '/' +
-			to_string(data.getAno());
-
-	return data_str;
-}
-
-string to_string_special(unsigned int num)
-{
-	double num_digitos = floor(log10(num)) + 1;
-	string num_str = to_string(num);
-
-	if (num_digitos == 1.0)
-	{
-		num_str = "0" + num_str;
-	}
-
-	return num_str;
-}
-
-vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
-	QuickSort <Imovel*> QS(&montra, 0, montra.size() - 1, LowestFirst);
-	return montra;
-
-}
 
 unsigned int leNif() {
 
@@ -228,8 +107,8 @@ unsigned short int leUnsignedShortInt(unsigned short int min, unsigned short int
 			throw OpcaoInvalida();
 	}
 	catch (OpcaoInvalida &e) {
-		cout << "Apanhou excecao. Opcao Invalido" << endl;
-		return max;
+		cout << "Apanhou excecao. Introduziu um valor invalido" << endl;
+		return 0;
 	}
 
 	opcao = stoi(opcao_str);
@@ -295,7 +174,7 @@ float lePreco() {
 			throw PrecoInvalido();
 	}
 	catch (PrecoInvalido &e) {
-		cout << "Apanhou excecao. Preço Invalido" << endl;
+		cout << "Apanhou excecao. Preço invalido" << endl;
 		return -1;
 	}
 
@@ -306,7 +185,7 @@ float lePreco() {
 			throw PrecoInvalido(preco);
 	}
 	catch (PrecoInvalido &e) {
-		cout << "Apanhou excecao. "<< e.getPreco() << " não é um Preço Válido." << endl;
+		cout << "Apanhou excecao. "<< e.getPreco() << " não é um preço válido." << endl;
 		return 0;
 	}
 
@@ -316,7 +195,199 @@ float lePreco() {
 
 std::vector<Reserva> leReservas() {
 	vector <Reserva> reservas;
-
+	string data;
+	unsigned int n;
 	cout << "Quantas Datas estão Ocupadas? ";
+	n=leUnsignedShortInt(0,numeric_limits<unsigned int>::max());
+
+	while(n>0){
+		cout << "Data Inicial (dd/mm/aaaa)l: ";
+		getline(cin, data);
+		n--;
+	}
+
+
+}
+
+/////////////////////////// LEITURAS AUXILIARES ///////////////////////
+
+string getpass(const char *prompt, bool show_asterisk)
+{
+  const char BACKSPACE=127;
+  const char RETURN=10;
+
+  string password;
+  unsigned char ch=0;
+
+  cout <<prompt;
+
+  while((ch=getch())!=RETURN)
+    {
+       if(ch==BACKSPACE)
+         {
+            if(password.length()!=0)
+              {
+                 if(show_asterisk)
+                 cout <<"\b \b";
+                 password.resize(password.length()-1);
+              }
+         }
+       else
+         {
+             password+=ch;
+             if(show_asterisk)
+                 cout <<'*';
+         }
+    }
+  cout <<endl;
+  return password;
+}
+
+
+bool is_number(const string& s)
+{
+	long double num;
+	istringstream iss(s);
+	return !(iss >> num).fail();
+}
+
+/////////////////////////// DATA AUXILIARES ///////////////////////
+
+bool ano_bissexto(unsigned int ano)
+{
+	if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0))
+		return true;
+
+	return false;
+}
+
+bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano){
+	if(ano > 1990){
+		if(mes>0 && mes<13){
+			if(dia_valido(dia,mes,ano))
+				return true;
+		}
+	}
+	return false;
+}
+
+bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
+{
+	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)
+		if (dia > 0 && dia <= 31)
+			return true;
+		else
+			return false;
+	else if (mes != 2)
+		if (dia > 0 && dia <= 30)
+			return true;
+		else
+			return false;
+	else // mes == 2
+		if (ano_bissexto(ano))
+			if (dia > 0 && dia <= 29)
+				return true;
+			else
+				return false;
+		else
+			if (dia > 0 && dia <= 28)
+				return true;
+			else
+				return false;
+}
+
+bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
+	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
+		return true;
+	else
+		return false;
+}
+
+Data string2data(string data){
+	unsigned int dia;
+	unsigned int mes;
+	unsigned int ano;
+
+	try{
+		dia = stoi(data.substr(0,2));
+	}
+	catch (...){
+		cout << "Apanhou excecao. Data não convertivel." << endl;
+		return Data(0,0,0);
+	}
+	try{
+		mes = stoi(data.substr(3,2));
+	}
+	catch (...){
+		cout << "Apanhou excecao. Data não convertivel." << endl;
+		return Data(0,0,0);
+	}
+
+	try{
+		ano = stoi(data.substr(6,4));
+	}
+	catch (...){
+		cout << "Apanhou excecao. Data não convertivel." << endl;
+		return Data(0,0,0);
+	}
+
+	try{
+		if(!data_valida(dia,mes,ano) )
+			throw dataInvalida(data);
+	}
+	catch (dataInvalida &e) {
+		cout << "Apanhou excecao. "<< e.getData() << " não é uma data válida." << endl;
+		return Data(0,0,0);
+	}
+
+	cout << dia << "/" << mes << "/" << ano << endl;
+
+	Data D(dia, mes, ano);
+
+	return D;
+}
+
+string data2string(Data data){
+	string data_str;
+
+	data_str = to_string_special(data.getDia()) + '/' +
+			to_string_special(data.getMes()) + '/' +
+			to_string(data.getAno());
+
+	return data_str;
+}
+
+string to_string_special(unsigned int num)
+{
+	double num_digitos = floor(log10(num)) + 1;
+	string num_str = to_string(num);
+
+	if (num_digitos == 1.0)
+	{
+		num_str = "0" + num_str;
+	}
+
+	return num_str;
+}
+
+void swapDatas(Data* dataInicio, Data* dataFim) {
+	if (*dataFim < *dataInicio)
+		swap(*dataInicio, *dataFim);
+}
+
+int countLeapYears(Data d)
+{
+    int years = d.getAno();
+
+    if (d.getMes() <= 2)
+        years--;
+
+    return years / 4 - years / 100 + years / 400;
+}
+
+
+vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
+	QuickSort <Imovel*> QS(&montra, 0, montra.size() - 1, LowestFirst);
+	return montra;
 
 }
