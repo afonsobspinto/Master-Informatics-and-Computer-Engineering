@@ -38,7 +38,6 @@ string lePassword(){
 
 	string password;
 	string password_repeated;
-
 	password = getpass("Password: ", true);
 	password_repeated = getpass("Confirme Password: ", true);
 	try{
@@ -101,7 +100,6 @@ unsigned int leNif() {
 		cout << "Apanhou excecao. "<< e.getNif() << " não tem 9 digitos." << endl;
 		return 0;
 	}
-
 	return nif;
 }
 
@@ -411,7 +409,6 @@ string getpass(const char *prompt, bool show_asterisk)
   unsigned char ch=0;
 
   cout <<prompt;
-
   while((ch=getch())!=RETURN)
     {
        if(ch==BACKSPACE)

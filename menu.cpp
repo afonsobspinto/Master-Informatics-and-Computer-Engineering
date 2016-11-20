@@ -43,7 +43,8 @@ bool Broker::menuClienteInicial() {
 		cout << endl;
 		cout << "   " << "1 - Registado" << endl;
 		cout << "   " << "2 - Convidado" << endl;
-		cout << "   " << "3 - Voltar" << endl << endl;
+		cout << "   " << "3 - Registar" << endl;
+		cout << "   " << "4 - Voltar" << endl << endl;
 		cout << "   " << "Qual a sua opcao: ";
 		opcao = leUnsignedShortInt(1, 3);
 
@@ -58,6 +59,10 @@ bool Broker::menuClienteInicial() {
 			menuOpcoesCliente();
 			break;
 		case 3:
+			if(this->adicionaCliente())
+				menuOpcoesCliente();
+			break;
+		case 4:
 			return true;
 		default:
 			return false;
@@ -100,49 +105,72 @@ bool Broker::menuOpcoesCliente() {
 bool Broker::menuEfectuaReserva() {
 	int opcao;
 
-		while(1){
-			ClearScreen();
-			cout << "Menu Efetua Reserva: " << endl;
-			cout << endl;
-			cout << "   " << "1 - Ver Montra " << endl;
-			cout << "   " << "2 - Ver Montra Preco Max" << endl;
-			cout << "   " << "3 - Ver Montra Localidade " << endl;
-			cout << "   " << "4 - Ver Montra Entre Datas" << endl;
-			cout << "   " << "5 - Ver Montra Todos Filtros" << endl;
-			cout << "   " << "6 - Voltar" << endl << endl;
-			cout << "   " << "Qual a sua opcao: ";
-			opcao = leUnsignedShortInt(1, 6);
+	while(1){
+		ClearScreen();
+		cout << "Menu Efetua Reserva: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Ver Montra " << endl;
+		cout << "   " << "2 - Ver Montra Preco Max" << endl;
+		cout << "   " << "3 - Ver Montra Localidade " << endl;
+		cout << "   " << "4 - Ver Montra Entre Datas" << endl;
+		cout << "   " << "5 - Ver Montra Todos Filtros" << endl;
+		cout << "   " << "6 - Voltar" << endl << endl;
+		cout << "   " << "Qual a sua opcao: ";
+		opcao = leUnsignedShortInt(1, 6);
 
-			switch (opcao){
-			case 1:
-				mostraMontra(false, false, false);
-					break;
+		switch (opcao){
+		case 1:
+			mostraMontra(false, false, false);
+			break;
+			break;
+		case 2:
+			if(mostraMontra(false, true, false)->getTipo()!="")
 				break;
-			case 2:
-				if(mostraMontra(false, true, false)->getTipo()!="")
-					break;
+			break;
+		case 3:
+			if(mostraMontra(true, false, false)->getTipo()!="")
 				break;
-			case 3:
-				if(mostraMontra(true, false, false)->getTipo()!="")
-					break;
+			break;
+		case 4:
+			if(mostraMontra(false, false, true)->getTipo()!="")
 				break;
-			case 4:
-				if(mostraMontra(false, false, true)->getTipo()!="")
-					break;
+			break;
+		case 5:
+			if(mostraMontra(true, true, true)->getTipo()!="")
 				break;
-			case 5:
-				if(mostraMontra(true, true, true)->getTipo()!="")
-					break;
-				break;
-			case 6:
-				return true;
-			default:
-				return false;
-			}
+			break;
+		case 6:
+			return true;
+		default:
+			return false;
 		}
+	}
 }
 
 bool Broker::menuCancelaReserva() {
+	int opcao;
+
+	while(1){
+		ClearScreen();
+		cout << "Menu Cancela Reserva: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Ver todas as Reservas efectuadas" << endl;
+		cout << "   " << "2 - Voltar" << endl;
+		cout << "   " << "Qual a sua opcao: ";
+		opcao = leUnsignedShortInt(1, 2);
+
+		switch (opcao){
+		case 1:
+			//verReservas();
+			//cancelaReserva();
+			break;
+		case 2:
+			return true;
+			break;
+		default:
+			return false;
+		}
+	}
 }
 
 
