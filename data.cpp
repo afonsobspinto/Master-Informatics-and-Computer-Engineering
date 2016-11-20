@@ -45,7 +45,7 @@ bool Data::operator <(Data& rhs) {
 	return false;
 }
 
-Data Data::operator - (int n) {   // Corrigir para n > 999999...
+Data Data::operator - (int n) {
 	unsigned int d = dia;
 	unsigned int m = mes;
 	unsigned int a = ano;

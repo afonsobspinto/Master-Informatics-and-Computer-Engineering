@@ -16,6 +16,8 @@ public:
 	float getValor() const;
 	static unsigned int getTotalClientes();
 	void setPontos(int pontos);
+	void addValor(int preco);
+	void subValor(int preco);
 
 };
 
