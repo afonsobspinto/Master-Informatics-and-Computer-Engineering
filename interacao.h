@@ -12,6 +12,7 @@
 
 Registado criaCliente();
 Fornecedor criaFornecedor();
+Imovel* criaImovel();
 
 
 

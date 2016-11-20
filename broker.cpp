@@ -103,12 +103,12 @@ bool Broker::adicionaFornecedor() {
 }
 
 bool Broker::adicionaImovel() {
-/*	Imovel *I = criaImovel();
+	Imovel *I = criaImovel();
 
 	montra.push_back(I);
-	atualizaMontra()
+	atualizaMontra();
 	guardaFornecedores();
-	*/
+
 }
 
 bool Broker::atualizaMontra() {

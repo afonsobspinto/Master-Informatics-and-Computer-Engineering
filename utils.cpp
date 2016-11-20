@@ -74,10 +74,10 @@ string lePassword(){
     return password;
 }
 
-string leNome(){
+string leString(string msg){
 	string nome;
 
-	cout << "Nome: ";
+	cout << msg;
 	getline(cin, nome);
 
 	try{
@@ -92,27 +92,9 @@ string leNome(){
 	return nome;
 }
 
-string leMorada(){
-	string morada;
-
-	cout << "Morada: ";
-	getline(cin, morada);
-
-	try{
-		if(is_number(morada))
-			throw NomeIncorreto(morada);
-	}
-	catch (NomeIncorreto &e) {
-		cout << "Apanhou excecao. Nome Invalido: " << e.getNome() << endl;
-		return "";
-	}
-
-	return morada;
-}
-
 bool is_number(const string& s)
 {
-	double num;
+	long double num;
 	istringstream iss(s);
 	return !(iss >> num).fail();
 }
@@ -228,9 +210,113 @@ unsigned int leNif() {
 			throw NifInvalido(nif);
 	}
 	catch (NifInvalido &e) {
-		cout << "Apanhou excecao."<< e.getNif() << " não tem 9 digitos." << endl;
+		cout << "Apanhou excecao. "<< e.getNif() << " não tem 9 digitos." << endl;
 		return 0;
 	}
 
 	return nif;
+}
+
+unsigned short int leUnsignedShortInt(unsigned short int min, unsigned short int  max){
+	string opcao_str;
+	unsigned int opcao;
+
+	getline(cin, opcao_str);
+
+	try{
+		if(!is_number(opcao_str))
+			throw OpcaoInvalida();
+	}
+	catch (OpcaoInvalida &e) {
+		cout << "Apanhou excecao. Opcao Invalido" << endl;
+		return max;
+	}
+
+	opcao = stoi(opcao_str);
+
+	try{
+		if(opcao < min || opcao > max)
+			throw OpcaoInvalida(opcao);
+	}
+	catch (OpcaoInvalida &e) {
+		cout << "Apanhou excecao. "<< e.getOpcao() << " não se encontra entre as opções." << endl;
+		return 0;
+	}
+
+	return opcao;
+
+}
+
+std::string leTipo() {
+	int opcao;
+
+	cout << "Tipo de alojamento: " << endl;
+	cout << endl;
+	cout << "   " << "1 - Apartamento" << endl;
+	cout << "   " << "2 - Quarto Hotel" << endl;
+	cout << "   " << "3 - Flat" << endl;
+	cout << "   " << "4 - Bed­-n-­Breakfast;" << endl;
+	cout << "   " << "5 - Shared­House" << endl;
+	cout << "   " << "6 - Voltar" << endl << endl;
+	cout << "   " << "Qual a sua opcao: ";
+	opcao = leUnsignedShortInt(1, 6);
+
+	switch (opcao){
+	case 1:
+		return "Apartamento";
+		break;
+	case 2:
+		return "Hotel";
+		break;
+	case 3:
+		return "Flat";
+		break;
+	case 4:
+		return "BB";
+		break;
+	case 5:
+		return "Shared";
+		break;
+	default:
+		return "Voltar";
+		break;
+	}
+
+}
+
+float lePreco() {
+	string preco_str;
+	float preco;
+
+	getline(cin, preco_str);
+
+	try{
+		if(!is_number(preco_str))
+			throw PrecoInvalido();
+	}
+	catch (PrecoInvalido &e) {
+		cout << "Apanhou excecao. Preço Invalido" << endl;
+		return -1;
+	}
+
+	preco = stof(preco_str);
+
+	try{
+		if(preco < 0)
+			throw PrecoInvalido(preco);
+	}
+	catch (PrecoInvalido &e) {
+		cout << "Apanhou excecao. "<< e.getPreco() << " não é um Preço Válido." << endl;
+		return 0;
+	}
+
+	return preco;
+
+}
+
+std::vector<Reserva> leReservas() {
+	vector <Reserva> reservas;
+
+	cout << "Quantas Datas estão Ocupadas? ";
+
 }

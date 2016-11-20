@@ -1,5 +1,5 @@
-#ifndef CLIENTES_H_
-#define CLIENTES_H_
+#ifndef CLIENTE_H_
+#define CLIENTE_H_
 
 #include <string>
 
@@ -29,4 +29,4 @@ public:
 
 
 
-#endif /* CLIENTES_H_ */
+#endif /* CLIENTE_H_ */

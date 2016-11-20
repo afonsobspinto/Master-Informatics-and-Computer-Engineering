@@ -69,3 +69,8 @@ Data Data::operator - (int n) {   // Corrigir para n > 999999...
 	return D;
 }
 
+Data Data::operator -(Data& rhs) {
+}
+
+void Data::swap(Data* dataInicio, Data* dataFim) {
+}

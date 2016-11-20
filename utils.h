@@ -16,9 +16,12 @@
 
 
 std::string lePassword();
-std::string leNome();
+std::string leString(std::string msg);
 unsigned int leNif();
-std::string leMorada();
+std::string leTipo();
+unsigned short int leUnsignedShortInt(unsigned short int min, unsigned short int  max);
+float lePreco();
+std::vector<Reserva>leReservas();
 
 Data string2data(std::string data);
 std::string data2string(Data data);

@@ -6,9 +6,28 @@
 using namespace std;
 
 
+Imovel* criaImovel(){
+	string localidade;
+	string tipo;
+	float preco;
+	vector<Reserva>reservas;
+
+	localidade = leString("Localidade: ");
+	if(localidade == "")
+			return 0;
+	tipo = leTipo();
+	if(tipo == "Voltar")
+		return 0;
+	preco = lePreco();
+	if(preco < 0)
+		return 0;
+	reservas = leReservas();
+
+
+}
 
 Registado criaCliente(){
-	string nome = leNome();
+	string nome = leString("Nome: ");
 	if(nome == "")
 		return Registado("","");
 	string password = lePassword();
@@ -17,13 +36,13 @@ Registado criaCliente(){
 }
 
 Fornecedor criaFornecedor() {
-	string nome = leNome();
+	string nome = leString("Nome: ");
 	if(nome == "")
 		return Fornecedor("",0,"");
 	unsigned int nif = leNif();
 	if(nif == 0)
 		return Fornecedor("",0,"");
-	string morada = leMorada();
+	string morada = leString("Morada: ");
 	Fornecedor F (nome, nif, morada);
 
 	return F;

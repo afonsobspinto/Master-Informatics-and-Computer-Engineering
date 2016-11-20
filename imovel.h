@@ -1,5 +1,5 @@
-#ifndef IMOVEIS_H_
-#define IMOVEIS_H_
+#ifndef IMOVEL_H_
+#define IMOVEL_H_
 
 #include <string>
 #include <vector>
@@ -74,4 +74,4 @@ public:
 };
 
 
-#endif /* IMOVEIS_H_ */
+#endif /* IMOVEL_H_ */

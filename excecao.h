@@ -1,8 +1,30 @@
 
-#ifndef EXCECOES_H_
-#define EXCECOES_H_
+#ifndef EXCECAO_H_
+#define EXCECAO_H_
 
 #include <string>
+
+class PrecoInvalido {
+private:
+	int preco;
+public:
+	PrecoInvalido(){};
+	PrecoInvalido(int preco){
+		this->preco = preco;
+	}
+	int getPreco() { return preco; }
+};
+
+class OpcaoInvalida {
+private:
+	int opcao;
+public:
+	OpcaoInvalida(){};
+	OpcaoInvalida(int opcao){
+		this->opcao = opcao;
+	}
+	int getOpcao() { return opcao; }
+};
 
 class NifInvalido {
 private:
@@ -52,4 +74,4 @@ public:
 };
 
 
-#endif /* EXCECOES_H_ */
+#endif /* EXCECAO_H_ */
