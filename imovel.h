@@ -28,6 +28,7 @@ public:
 	virtual bool getCozinha() const;
 	virtual bool getSala_de_estar() const;
 	virtual int getCama() const;
+	virtual int getQuartos() const;
 	virtual bool getCama_extra() const;
 
 	std::vector<Reserva>getReservas() const;

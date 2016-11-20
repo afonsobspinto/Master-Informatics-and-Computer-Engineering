@@ -100,6 +100,10 @@ void Imovel::tirarReserva(Reserva& R) {
 	}
 }
 
+int Imovel::getQuartos() const {
+	return 1;
+}
+
 bool Imovel::operator <(const Imovel& rhs) const {
 	return this->getPreco()<rhs.getPreco();
 }

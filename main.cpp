@@ -52,9 +52,14 @@ int main() {
 
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
-		Existente.adicionaImovel(&Existente.getFornecedores().at(0));
+		Existente.adicionaFornecedor();
 
-		//cout << Existente.getFornecedores().at(0).getOfertas().at(0)->getTipo() << endl;
+		cout << endl << Existente.getMontra().size();
+
+		cout << endl << endl;
+
+		Existente.mostraMontra();
+
 
 	}
 	else{

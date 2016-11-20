@@ -86,28 +86,47 @@ bool Broker::adicionaFornecedor() {
 
 	cout << "Adicionando Fornecedor" << endl;
 
-	Fornecedor F = criaFornecedor();
+	Data D1(20,10,2016);
+	Data D2(21, 10, 2016);
+	Data D3(16, 10, 2016);
+	Data D4(19,10,2016);
 
-	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == "")
-		return false;
+	Reserva R1(D1,D2, 100);
+	Reserva R2(D3, D4, 100);
 
-	unsigned int size = getFornecedores().size();
+	vector <Reserva> reservas = {R1, R2};
 
-	for (unsigned int i = 0; i < size; i++){
-		try{
-					if(F.getNif() == getFornecedores().at(i).getNif()){
-							throw FornecedorJaExistente(F.getNif());
-						}
-					}
-					catch (FornecedorJaExistente &e) {
-						cout << "Apanhou excecao." << e.getNif() << " já foi utilizado. \n";
-						return false;
-					}
-	}
+	Imovel *I1 = new Apartamento("l1", 1, 100, reservas);
+	Imovel *I2 = new Hotel("l1", 1, 100, reservas);
+	Imovel *I3 = new BB("l1", 1, 100, reservas);
+	vector < Imovel* > ofertas = {I1, I2, I3};
+
+	Fornecedor F("F3", 1, "pass", "morada2", ofertas);
+
+//	Fornecedor F = criaFornecedor();
+//
+//	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == "")
+//		return false;
+//
+//	unsigned int size = getFornecedores().size();
+//
+//	for (unsigned int i = 0; i < size; i++){
+//		try{
+//					if(F.getNif() == getFornecedores().at(i).getNif()){
+//							throw FornecedorJaExistente(F.getNif());
+//						}
+//					}
+//					catch (FornecedorJaExistente &e) {
+//						cout << "Apanhou excecao." << e.getNif() << " já foi utilizado. \n";
+//						return false;
+//					}
+//	}
 
 	fornecedores.push_back(F);
 	atualizaMontra();
 	guardaFornecedores();
+
+	return true;
 }
 
 bool Broker::adicionaImovel(Fornecedor *F) {
@@ -499,13 +518,13 @@ void Broker::guardaFornecedores() {
 					fornecedores.at(i).getOfertas().at(j)->getReservas().size() << " ; ";
 			for (unsigned int k = 0; k < fornecedores.at(i).getOfertas().at(j)->getReservas().size(); k++){
 				ficheiro << data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getInicio()) << " ; " <<
-						data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getInicio()) << " ; ";
+						data2string(fornecedores.at(i).getOfertas().at(j)->getReservas().at(k).getFinal()) << " ; ";
 
 				if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Apartamento"){
 					ficheiro << fornecedores.at(i).getOfertas().at(j)->getSuite() << " ; " <<
 							fornecedores.at(i).getOfertas().at(j)->getCozinha() << " ; " <<
 							fornecedores.at(i).getOfertas().at(j)->getSala_de_estar() << " ; " <<
-							fornecedores.at(i).getOfertas().at(j)->getCama() << " ; " << " ; ";
+							fornecedores.at(i).getOfertas().at(j)->getQuartos() << " ; " ;
 				}
 				else if(fornecedores.at(i).getOfertas().at(j)->getTipo() == "Hotel"){
 					ficheiro << fornecedores.at(i).getOfertas().at(j)->getCama() << " ; " <<
@@ -513,6 +532,7 @@ void Broker::guardaFornecedores() {
 				}
 			}
 		}
+		ficheiro << endl;
 	}
 
 	ficheiro.flush();
