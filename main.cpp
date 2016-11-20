@@ -54,8 +54,6 @@ int main() {
 
 		Existente.adicionaFornecedor();
 
-		cout << endl << Existente.getMontra().size();
-
 		cout << endl << endl;
 
 		Existente.mostraMontra();

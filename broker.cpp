@@ -86,43 +86,27 @@ bool Broker::adicionaFornecedor() {
 
 	cout << "Adicionando Fornecedor" << endl;
 
-	Data D1(20,10,2016);
-	Data D2(21, 10, 2016);
-	Data D3(16, 10, 2016);
-	Data D4(19,10,2016);
+	Fornecedor F = criaFornecedor();
 
-	Reserva R1(D1,D2, 100);
-	Reserva R2(D3, D4, 100);
+	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == "")
+		return false;
 
-	vector <Reserva> reservas = {R1, R2};
+	unsigned int size = getFornecedores().size();
 
-	Imovel *I1 = new Apartamento("l1", 1, 100, reservas);
-	Imovel *I2 = new Hotel("l1", 1, 100, reservas);
-	Imovel *I3 = new BB("l1", 1, 100, reservas);
-	vector < Imovel* > ofertas = {I1, I2, I3};
-
-	Fornecedor F("F3", 1, "pass", "morada2", ofertas);
-
-//	Fornecedor F = criaFornecedor();
-//
-//	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == "")
-//		return false;
-//
-//	unsigned int size = getFornecedores().size();
-//
-//	for (unsigned int i = 0; i < size; i++){
-//		try{
-//					if(F.getNif() == getFornecedores().at(i).getNif()){
-//							throw FornecedorJaExistente(F.getNif());
-//						}
-//					}
-//					catch (FornecedorJaExistente &e) {
-//						cout << "Apanhou excecao." << e.getNif() << " já foi utilizado. \n";
-//						return false;
-//					}
-//	}
+	for (unsigned int i = 0; i < size; i++){
+		try{
+					if(F.getNif() == getFornecedores().at(i).getNif()){
+							throw FornecedorJaExistente(F.getNif());
+						}
+					}
+					catch (FornecedorJaExistente &e) {
+						cout << "Apanhou excecao." << e.getNif() << " já foi utilizado. \n";
+						return false;
+					}
+	}
 
 	fornecedores.push_back(F);
+	adicionaImovel(&F);
 	atualizaMontra();
 	guardaFornecedores();
 
@@ -136,7 +120,9 @@ bool Broker::adicionaImovel(Fornecedor *F) {
 	if(I->getOwner()==0)
 		return false;
 	F->adicionaOferta(I);
-	atualizaMontra();
+
+	cout << "Fornecedores Size: " << getFornecedores().size() << endl;
+	cout << "Montra Size: " << getMontra().size() << endl;
 	guardaFornecedores();
 }
 
@@ -144,13 +130,20 @@ bool Broker::atualizaMontra() {
 	unsigned int size = fornecedores.size();
 	vector<Imovel *> m;
 
+	cout << "Vou atualizar a Montra! " << endl;
+	cout << montra.size() << endl;
+
 	for (unsigned int i=0; i<size; i++){
 		unsigned int fsize = fornecedores.at(i).getOfertas().size();
+		cout << "Estou no elemento " << i << " e o tamano das ofertas é " << fsize << endl;
 		for (unsigned int j=0; j<fsize; j++){
 			m.push_back(fornecedores.at(i).getOfertas().at(j));
 		}
 	}
 		montra = m;
+
+		cout << "Atualizei Montra! " << endl;
+		cout << montra.size() << endl;
 	return true;
 
 	// Adicionar return false em caso de erro
