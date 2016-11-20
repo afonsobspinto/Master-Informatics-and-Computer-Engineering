@@ -53,6 +53,7 @@ public:
 	void mostraMontra(std::string localidade, Data inicio, Data fim);
 	void mostraMontra(float precoMax);
 	void mostraMontra(float precoMax, Data inicio, Data fim);
+	void mostraMontra(std::string localidade, float precoMax);
 	void mostraMontra(std::string localidade, float precoMax, Data inicio, Data fim);
 	void mostraMontra(Data inicio, Data fim);
 

@@ -623,6 +623,24 @@ void Broker::mostraMontra(float preco, Data inicio, Data fim) {
 	}
 }
 
+
+void Broker::mostraMontra(std::string localidade, float precoMax) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i< size; i++){
+		if (vec.at(i)->getPreco()<=precoMax && vec.at(i)->getLocalidade()==localidade){
+			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+			cout << endl;
+		}
+	}
+}
+
 void Broker::mostraMontra(std::string localidade, float preco, Data inicio, Data fim) {
 	unsigned int size = montra.size();
 
