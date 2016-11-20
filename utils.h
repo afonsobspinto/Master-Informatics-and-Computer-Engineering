@@ -39,6 +39,7 @@ bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4);
 bool swapDatas (Data *dataInicio, Data *dataFim);
 
 std::vector<Imovel*> ordenaMontra(std::vector<Imovel*> &montra, bool HighestFirst = false);
+std::vector<Registado> ordenaClientes(std::vector<Registado> &clientes, bool HighestFirst = false);
 
 void ClearScreen();
 

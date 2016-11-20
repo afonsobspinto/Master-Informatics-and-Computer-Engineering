@@ -586,6 +586,11 @@ vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
 
 }
 
+vector<Registado> ordenaClientes(std::vector<Registado>& clientes,bool LowestFirst) {
+	QuickSort <Registado> QS(&clientes, 0, clientes.size() - 1, LowestFirst);
+	return clientes;
+}
+
 void ClearScreen() {
 
 #ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
@@ -599,3 +604,4 @@ void ClearScreen() {
 #endif
 
 }
+
