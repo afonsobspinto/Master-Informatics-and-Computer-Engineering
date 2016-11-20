@@ -193,21 +193,187 @@ float lePreco() {
 
 }
 
-std::vector<Reserva> leReservas() {
+std::vector<Reserva> leReservas(float preco) {
 	vector <Reserva> reservas;
+	int opcao;
 	string data;
-	unsigned int n;
-	cout << "Quantas Datas estão Ocupadas? ";
-	n=leUnsignedShortInt(0,numeric_limits<unsigned int>::max());
+	Data D1;
+	Data D2;
+	unsigned int counter = 0;
 
-	while(n>0){
-		cout << "Data Inicial (dd/mm/aaaa)l: ";
-		getline(cin, data);
-		n--;
+	while(1){
+
+		unsigned int diff;
+
+		cout << "Adicionar Datas Ocupadas? " << endl;
+		cout << endl;
+		cout << "   " << "1 - Sim" << endl;
+		cout << "   " << "2 - Não" << endl;
+
+		opcao = leUnsignedShortInt(1, 2);
+
+		if(opcao == 2)
+			break;
+		else if(opcao == 0){
+			cout << "Leitura Interrompida" << endl;
+			break;
+		}
+
+		else{
+			cout << "Data Inicial (dd/mm/aaaa): ";
+
+			getline(cin, data, ' ');
+
+			D1 = string2data(data);
+
+			if(D1.getDia()==0){
+				cout << "Leitura Interrompida" << endl;
+				break;
+			}
+
+			cout << endl;
+
+			cout << "Data Final (dd/mm/aaaa): ";
+			getline(cin, data, ' ');
+
+			D2 = string2data(data);
+
+			if(D2.getDia()==0){
+				cout << "Leitura Interrompida" << endl;
+				break;
+			}
+
+			cout << endl;
+			if(swapDatas(&D1,&D2))
+				cout << "Detetamos que colocou uma Data Inicial mais recente que a Data Final." << endl <<
+				"Não se preocupe. Já corrigimos o erro por si." <<  endl;
+
+			Reserva R(D1, D2, preco);
+			reservas.push_back(R);
+
+			diff = D1 - D2;
+			if(diff == 0)
+				counter +=1;
+			else
+				counter += diff;
+		}
+	}
+	cout << counter << " datas adicionadas. "<< endl;
+	return reservas;
+}
+
+bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
+		int* quartos) {
+
+	int opcao;
+
+	cout << "O Apartamento Tem Suite? " << endl;
+	cout << endl;
+	cout << "   " << "1 - Sim" << endl;
+	cout << "   " << "2 - Não" << endl;
+
+	opcao = leUnsignedShortInt(1, 2);
+
+	switch(opcao){
+	case 0:
+		return false;
+	case 1:
+		*suite = true;
+		break;
+	default:
+		*suite = false;
 	}
 
+	cout << "O Apartamento Tem Cozinha? " << endl;
+	cout << endl;
+	cout << "   " << "1 - Sim" << endl;
+	cout << "   " << "2 - Não" << endl;
 
+	opcao = leUnsignedShortInt(1, 2);
+
+	switch(opcao){
+	case 0:
+		return false;
+	case 1:
+		*cozinha = true;
+		break;
+	default:
+		*cozinha = false;
+	}
+
+	cout << "O Apartamento Tem Sala de Estar? " << endl;
+	cout << endl;
+	cout << "   " << "1 - Sim" << endl;
+	cout << "   " << "2 - Não" << endl;
+
+	opcao = leUnsignedShortInt(1, 2);
+
+	switch(opcao){
+	case 0:
+		return false;
+	case 1:
+		*sala_de_estar = true;
+		break;
+	default:
+		*sala_de_estar = false;
+	}
+
+	cout << "Quantos quartos tem o apartamento?" << endl;
+	cout << endl;
+
+
+	opcao = leUnsignedShortInt(1, numeric_limits<unsigned int>::max());
+
+	switch(opcao){
+	case 0:
+		return false;
+	default:
+		*quartos = opcao;
+	}
+
+	return true;
 }
+
+bool leExtrasHotel(int* cama, bool* cama_extra) {
+
+	int opcao;
+
+	cout << "Tipo de Quarto de Hotel? " << endl;
+	cout << endl;
+	cout << "   " << "1 - Quarto Simples" << endl;
+	cout << "   " << "2 - Quarto Duplo" << endl;
+	cout << "   " << "3 - Quarto Duplo com Cama Adicional" << endl;
+	cout << "   " << "4 - Quarto Triplo" << endl;
+
+	opcao = leUnsignedShortInt(1, 4);
+
+	switch(opcao){
+	case 0:
+		return false;
+	case 1:
+		*cama = 1;
+		*cama_extra = false;
+		break;
+	case 2:
+		*cama = 2;
+		*cama_extra = false;
+		break;
+	case 3:
+		*cama = 2;
+		*cama_extra = true;
+		break;
+	case 4:
+		*cama = 3;
+		*cama_extra = false;
+		break;
+	default:
+		*cama = 1;
+		*cama_extra = false;
+		break;
+	}
+	return true;
+}
+
 
 /////////////////////////// LEITURAS AUXILIARES ///////////////////////
 
@@ -340,7 +506,7 @@ Data string2data(string data){
 		return Data(0,0,0);
 	}
 
-	cout << dia << "/" << mes << "/" << ano << endl;
+	//cout << dia << "/" << mes << "/" << ano << endl;
 
 	Data D(dia, mes, ano);
 
@@ -370,9 +536,12 @@ string to_string_special(unsigned int num)
 	return num_str;
 }
 
-void swapDatas(Data* dataInicio, Data* dataFim) {
-	if (*dataFim < *dataInicio)
+bool swapDatas(Data* dataInicio, Data* dataFim) {
+	if (*dataFim < *dataInicio){
 		swap(*dataInicio, *dataFim);
+		return true;
+	}
+		return false;
 }
 
 int countLeapYears(Data d)
@@ -391,3 +560,5 @@ vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
 	return montra;
 
 }
+
+

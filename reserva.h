@@ -12,7 +12,7 @@ class Reserva{
 	Data final;
 	float preco;
 public:
-	Reserva(Data inicio, Data final); // para além da atribuição normal calculará o Preço somehow e os atributos limite
+	Reserva(Data inicio, Data final, float preco_por_noite); // para além da atribuição normal calculará o Preço somehow e os atributos limite
 	Data getInicio() const;
 	Data getFinal() const;
 	Data getLimite100() const;

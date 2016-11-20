@@ -28,8 +28,8 @@ Hotel::Hotel(std::string localidade, int owner, float preco, std::vector<Reserva
 }
 
 Apartamento::Apartamento(std::string localidade, int owner, float preco,
-		std::vector<Reserva> indisponiveis, int cama, bool suite, bool cozinha, bool sala_de_estar):Imovel(localidade, owner, preco, 8, indisponiveis) {
-	this->cama = cama;
+		std::vector<Reserva> indisponiveis, int quartos, bool suite, bool cozinha, bool sala_de_estar):Imovel(localidade, owner, preco, 8, indisponiveis) {
+	this->quartos = quartos;
 	this->suite = suite;
 	this->cozinha = cozinha;
 	this->sala_de_estar=sala_de_estar;
@@ -124,8 +124,8 @@ bool Apartamento::getSala_de_estar() const {
 	return sala_de_estar;
 }
 
-int Apartamento::getCama() const {
-	return cama;
+int Apartamento::getQuartos() const {
+	return quartos;
 }
 
 bool Imovel::getSuite() const {

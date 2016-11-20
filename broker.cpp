@@ -12,6 +12,8 @@ Broker::Broker(std::string nome) {
 	ficheiroClientes = nome + "_clientes.txt";
 	ficheiroFornecedores = nome + "_fornecedores.txt";
 	receita = 0;
+	//UserC = Cliente("MudarIsto");
+	//UserF = Fornecedor("MudarIsto", 123456789, "Madeira");
 
 	ofstream ficheiro(nome+".txt");
 
@@ -35,6 +37,8 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
 	atualizaMontra();
+	//UserC = Cliente("MudarIsto");
+	//UserF = Fornecedor("MudarIsto", 123456789, "Madeira");
 }
 
 vector<Registado> Broker::getClientes() const {
@@ -104,7 +108,6 @@ bool Broker::adicionaFornecedor() {
 
 bool Broker::adicionaImovel() {
 	Imovel *I = criaImovel();
-
 	montra.push_back(I);
 	atualizaMontra();
 	guardaFornecedores();
@@ -130,7 +133,7 @@ bool Broker::atualizaMontra() {
 bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 
 	unsigned int size = I.getReservas().size();
-	float preco = I.getPreco(); // Corrigir por noites
+	float preco = I.getPreco() * (D2 - D1); // Corrigir por noites @Tomas <- Corrigido @Afonso
 
 	cout << "A sua reserva estï¿½ a ser efetuada" << endl;
 
@@ -144,10 +147,11 @@ bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 	}
 	C.setPontos(10);
 	C.addValor(preco);
-	Reserva R = Reserva(D1,D2);
+	Reserva R = Reserva(D1,D2, I.getPreco());
 	I.addReservas(R);
 	cout << "Reserva efetuada com sucesso" << endl;
 	return true;
+
 }
 
 void Broker::taxa() {
@@ -164,14 +168,14 @@ bool Broker::cancelaReserva(Cliente C, Imovel I, Reserva R, Data& atual) {
 	Data L50 = R.getLimite50();
 	if (atual < L100){
 		C.subValor(I.getPreco());
-		cout << "Receberá 100% do valor inicial" << endl;
+		cout << "Receberï¿½ 100% do valor inicial" << endl;
 	}
 	else if (atual < L50){
 		C.subValor(I.getPreco()*0.5);
-		cout << "Receberá 50% do valor inicial" << endl;
+		cout << "Receberï¿½ 50% do valor inicial" << endl;
 	}
 	else
-		cout << "Reserva cancelada em menos de 15 dias, portanto não irá receber reembolso" << endl;
+		cout << "Reserva cancelada em menos de 15 dias, portanto nï¿½o irï¿½ receber reembolso" << endl;
 
 	I.tirarReserva(R);
 	cout << "Reserva cancelada com sucesso" << endl;
@@ -294,7 +298,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 				dataInicio = string2data(dataInicio_str.substr(1, dataInicio_str.length()));
 				dataFim = string2data(dataFim_str.substr(1, dataFim_str.length()));
 
-				Reserva R(dataInicio, dataFim);
+				Reserva R(dataInicio, dataFim, preco);
 				reservas.push_back(R);
 
 				if(tipo == "Apartamento"){
@@ -437,6 +441,13 @@ void Broker::guardaClientes() {
 	cout << "Clientes Guardados com Sucesso! " << endl ;
 }
 
+//Cliente Broker::getUserC() const {
+//	return UserC;
+//}
+//
+//Fornecedor Broker::getUserF() const {
+//	return UserF;
+//}
 void Broker::guardaFornecedores() {
 
 	ofstream ficheiro(ficheiroFornecedores, ios::trunc);

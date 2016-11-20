@@ -49,14 +49,14 @@ class Apartamento: public Imovel{
 	bool suite;
 	bool cozinha;
 	bool sala_de_estar;
-	int cama;
+	int quartos;
 public:
-	Apartamento(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {}, int cama = 1,
+	Apartamento(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {}, int quartos = 1,
 			bool suite=false, bool cozinha=false, bool sala_de_estar = false);
 	bool getSuite() const;
 	bool getCozinha() const;
 	bool getSala_de_estar() const;
-	int getCama() const;
+	int getQuartos() const;
 };
 
 class Flat: public Imovel{

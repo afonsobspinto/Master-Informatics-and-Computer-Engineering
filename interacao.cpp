@@ -21,7 +21,23 @@ Imovel* criaImovel(){
 	preco = lePreco();
 	if(preco < 0)
 		return 0;
-	reservas = leReservas();
+	reservas = leReservas(preco);
+	if(tipo == "Apartamento"){
+		bool suite;
+		bool cozinha;
+		bool sala_de_estar;
+		int cama;
+		if(!leExtrasApartamento(&suite, &cozinha, &sala_de_estar, &cama))
+			return 0;
+
+	}
+	if(tipo=="Hotel"){
+		int cama;
+		bool cama_extra;
+		if(!leExtrasHotel(&cama, &cama_extra))
+			return 0;
+	}
+
 }
 
 Registado criaCliente(){
