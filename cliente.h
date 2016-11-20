@@ -9,6 +9,7 @@ class Cliente{
 	float valor;
 	static unsigned int counter;
 public:
+	Cliente(){};
 	Cliente(std::string nome);
 	Cliente(std::string nome, int pontos, float valor);
 	std::string getNome() const;

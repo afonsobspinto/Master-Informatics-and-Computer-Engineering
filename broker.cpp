@@ -12,8 +12,6 @@ Broker::Broker(std::string nome) {
 	ficheiroClientes = nome + "_clientes.txt";
 	ficheiroFornecedores = nome + "_fornecedores.txt";
 	receita = 0;
-	//UserC = Cliente("MudarIsto");
-	//UserF = Fornecedor("MudarIsto", 123456789, "Madeira");
 
 	ofstream ficheiro(nome+".txt");
 
@@ -58,6 +56,9 @@ float Broker::getReceita() const {
 }
 
 bool Broker::adicionaCliente() {
+
+	cout << "Adicionando Cliente" << endl;
+
 	unsigned int size = getClientes().size();
 	Registado C = criaCliente();
 
@@ -82,9 +83,12 @@ bool Broker::adicionaCliente() {
 }
 
 bool Broker::adicionaFornecedor() {
+
+	cout << "Adicionando Fornecedor" << endl;
+
 	Fornecedor F = criaFornecedor();
 
-	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "")
+	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == "")
 		return false;
 
 	unsigned int size = getFornecedores().size();
@@ -106,20 +110,23 @@ bool Broker::adicionaFornecedor() {
 	guardaFornecedores();
 }
 
-bool Broker::adicionaImovel() {
-	Imovel *I = criaImovel();
-	montra.push_back(I);
+bool Broker::adicionaImovel(Fornecedor *F) {
+
+	cout << "Adicionando Imovel" << endl;
+	Imovel *I = criaImovel(F->getNif());
+	if(I->getOwner()==0)
+		return false;
+	F->adicionaOferta(I);
 	atualizaMontra();
 	guardaFornecedores();
-
 }
 
 bool Broker::atualizaMontra() {
-	int size = fornecedores.size();
+	unsigned int size = fornecedores.size();
 	vector<Imovel *> m;
 
 	for (unsigned int i=0; i<size; i++){
-		int fsize = fornecedores.at(i).getOfertas().size();
+		unsigned int fsize = fornecedores.at(i).getOfertas().size();
 		for (unsigned int j=0; j<fsize; j++){
 			m.push_back(fornecedores.at(i).getOfertas().at(j));
 		}
@@ -155,7 +162,7 @@ bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 }
 
 void Broker::taxa() {
-	int size = montra.size();
+	unsigned int size = montra.size();
 
 	for (unsigned int i=0; i < size; i++){
 		receita += montra.at(i)->getTaxa();
@@ -182,9 +189,26 @@ bool Broker::cancelaReserva(Cliente C, Imovel I, Reserva R, Data& atual) {
 }
 
 
-bool Broker::validaLogin(std::string nome, std::string password) {
+bool Broker::validaLoginCliente(std::string nome, std::string password) {
+	unsigned int size = clientes.size();
+
+	for (unsigned int i = 0; i < size; i++){
+		if(clientes.at(i).getNome()==nome)
+			if(clientes.at(i).getPassword()==password)
+				return true;
+	}
+	return false;
 }
 
+bool Broker::validaLoginFornecedor(int nif, std::string password) {
+	unsigned int size = fornecedores.size();
+	for (unsigned int i = 0 ; i < size; i++){
+		if(fornecedores.at(i).getNif() == nif)
+			if(fornecedores.at(i).getPassword()==password)
+				return true;
+	}
+	return false;
+}
 
 std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 
@@ -197,10 +221,13 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 	size = stoi(linha);
 
 
+	cout << "Lendo Ficheiro Fornecedores" << endl;
+
 	cout << size << "<-size" << endl;
 
 	string nome;
 	int nif;
+	string password;
 	string morada;
 
 	string nif_str;
@@ -227,14 +254,17 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 
 		getline(ficheiro, nome, ';');
 		getline(ficheiro, nif_str, ';');
+		getline(ficheiro, password, ';');
 		getline(ficheiro, morada, ';');
 
 		nome = nome.substr(0, nome.length()-1);
 		nif = stoi(nif_str);
+		password = password.substr(1,password.length()-2);
 		owner = nif;
 		morada = morada.substr(1, morada.length()-2);
 
 		cout << nome <<"<-nome" << endl;
+		cout << password << "<-passowrd"<<endl;
 		cout << nif <<"<-nif" << endl;
 		cout << morada <<"<-morada" << endl;
 
@@ -366,12 +396,14 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 		}
 
 
-		Fornecedor F(nome, nif, morada, imoveis);
+		Fornecedor F(nome, nif, password, morada, imoveis);
 
 		fornecedores.push_back(F);
 	}
 
 	ficheiro.close();
+
+	cout << "Ficheiro Fornecedores Lido Com Sucesso" << endl;
 	return fornecedores;
 }
 
@@ -383,11 +415,11 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	ifstream ficheiro(ficheiroClientes);
 	unsigned int size;
 
-	cout << endl << "A ler ficheiro clientes" << endl << endl;
+	cout << endl << "Lendo Ficheiro Clientes" << endl << endl;
 
 	getline(ficheiro, linha);
 
-	cout << linha << endl;
+	cout << linha << "<-size" << endl;
 
 	size = stoi(linha);
 
@@ -410,10 +442,10 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		valor = stof(valor_str);
 		password = password.substr(1,password.length());
 
-		cout << nome << endl;
-		cout << pontos << endl;
-		cout << valor << endl;
-		cout << password << endl;
+		cout << nome<< "<-nome" << endl;
+		cout << pontos<< "<-pontos" << endl;
+		cout << valor<< "<-valor" << endl;
+		cout << password<< "<-Password" << endl;
 
 		Registado C(nome, pontos, valor, password);
 
@@ -422,10 +454,13 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 
 	ficheiro.close();
 
+	cout << "Ficheiro Clientes Lido Com Sucesso" << endl;
 	return clientes;
 }
 
 void Broker::guardaClientes() {
+
+	cout << endl << "Guardando Ficheiro Clientes" << endl << endl;
 
 	ofstream ficheiro(ficheiroClientes, ios::trunc);
 
@@ -441,14 +476,15 @@ void Broker::guardaClientes() {
 	cout << "Clientes Guardados com Sucesso! " << endl ;
 }
 
-//Cliente Broker::getUserC() const {
-//	return UserC;
-//}
-//
-//Fornecedor Broker::getUserF() const {
-//	return UserF;
-//}
+Cliente Broker::getUserC() const {
+	return UserC;
+}
+
+Fornecedor Broker::getUserF() const {
+	return UserF;
+}
 void Broker::guardaFornecedores() {
+	cout << endl << "Guardando Ficheiro Fornecedores" << endl << endl;
 
 	ofstream ficheiro(ficheiroFornecedores, ios::trunc);
 
@@ -456,7 +492,7 @@ void Broker::guardaFornecedores() {
 
 	for (unsigned int  i = 0; i < fornecedores.size(); i++)
 	{
-		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getMorada()<< " ; " <<
+		ficheiro << fornecedores.at(i).getNome()<< " ; " << fornecedores.at(i).getNif() << " ; " << fornecedores.at(i).getPassword() << " ; "<< fornecedores.at(i).getMorada()<< " ; " <<
 				fornecedores.at(i).getOfertas().size() << " ; ";
 		for (unsigned int j = 0; j < fornecedores.at(i).getOfertas().size(); j++){
 			ficheiro << fornecedores.at(i).getOfertas().at(j)->getLocalidade() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTipo() << " ; " << fornecedores.at(i).getOfertas().at(j)->getPreco() << " ; " << fornecedores.at(i).getOfertas().at(j)->getTaxa() << " ; " <<

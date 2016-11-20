@@ -14,13 +14,6 @@ using namespace std;
 
 int main() {
 
-	string d = "42/04/2015";
-
-	Data D = string2data(d);
-
-	cout << D.getDia() << "/" << D.getMes() << "/" << D.getAno() << endl;
-
-	return 0;
 
 	string nome;
 	string filename;
@@ -36,7 +29,7 @@ int main() {
 	f.open(filename);
 
 	if(f.is_open()){
-		cout << "Carregando base de dados..." << endl;
+		cout << endl << "Carregando base de dados..." << endl << endl;
 
 		string ficheiroClientes;
 		string ficheiroFornecedores;
@@ -59,50 +52,15 @@ int main() {
 
 		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
-		cout << endl << endl << endl << endl;
+		Existente.adicionaImovel(&Existente.getFornecedores().at(0));
 
-//		Cliente C = Cliente("Sansa", 20, 100);
-//		vector<Reserva> r;
-//		//r.push_back(Reserva(Data(21,10,2016),Data(25,10,2016)));
-//		Imovel I = Imovel("localidade", 12, 12, 14, r);
-//		Data d1 = Data (15,10,2016);
-//		Data d2 = Data (23,10,2016);
-//		Existente.efectuaReserva(C, I, d1, d2);
-
-//		cout << "Montra 1" << endl;
-//		Existente.mostraMontra("localidade3");
-//
-//		cout << endl << endl << endl << endl;
-//		cout << "Montra 2" << endl;
-//
-//		Existente.mostraMontra("localidade", d1, d2);
-//
-//		cout << endl << endl << endl << endl;
-//		cout << "Montra 3" << endl;
-//
-//		Existente.mostraMontra(100);
-//
-//		cout << endl << endl << endl << endl;
-//		cout << "Montra 4" << endl;
-//
-//		Existente.mostraMontra(100, d1, d2);
-//
-//		cout << endl << endl << endl << endl;
-//		cout << "Montra 5" << endl;
-//
-//		Existente.mostraMontra("localidade", 100, d1, d2);
-
+		//cout << Existente.getFornecedores().at(0).getOfertas().at(0)->getTipo() << endl;
 
 	}
 	else{
-		cout << "Gerando base de dados..." << endl;
+		cout << endl << "Gerando base de dados..." << endl << endl;
 		Broker Novo(nome);
 
-		if(Novo.adicionaFornecedor())
-			cout << "OK" << endl;
-		if(Novo.adicionaFornecedor())
-			cout << "OK" << endl;
-		//Novo.adicionaCliente();
 	}
 
 	return 0;

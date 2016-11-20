@@ -12,7 +12,7 @@
 
 Registado criaCliente();
 Fornecedor criaFornecedor();
-Imovel* criaImovel();
+Imovel* criaImovel(int owner);
 
 
 

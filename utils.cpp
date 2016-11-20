@@ -167,6 +167,7 @@ float lePreco() {
 	string preco_str;
 	float preco;
 
+	cout << "Preco: ";
 	getline(cin, preco_str);
 
 	try{

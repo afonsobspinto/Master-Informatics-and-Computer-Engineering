@@ -3,12 +3,13 @@
 
 using namespace std;
 
-Fornecedor::Fornecedor(string nome, int nif, string morada,
+Fornecedor::Fornecedor(string nome, int nif,string password, string morada,
 		vector<Imovel*> ofertas) {
 	unsigned int size=ofertas.size();
 
 	this->nome = nome;
 	this->nif = nif;
+	this->password = password;
 	this->morada = morada;
 	this->ofertas = ofertas;
 
@@ -36,3 +37,6 @@ bool Fornecedor::adicionaOferta(Imovel* novo) {
 	return true;
 }
 
+std::string Fornecedor::getPassword() const {
+	return password;
+}
