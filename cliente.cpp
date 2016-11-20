@@ -4,14 +4,12 @@ unsigned int Cliente::counter = 0;
 
 Cliente::Cliente(std::string nome) {
 	this->nome = nome;
-	pontos = 0;
 	valor = 0;
 	counter ++;
 }
 
 Cliente::Cliente(std::string nome, int pontos, float valor) {
 	this->nome = nome;
-	this->pontos = pontos;
 	this->valor = valor;
 }
 
@@ -23,25 +21,18 @@ unsigned int Cliente::getTotalClientes(){
 	return counter;
 }
 
-int Cliente::getPontos() const {
-	return pontos;
-}
-
 float Cliente::getValor() const {
 	return valor;
 }
 
-void Cliente::setPontos(int pontos) {
-	this->pontos += pontos;
-}
-
 Registado::Registado(std::string nome, std::string password):Cliente(nome) {
 	this->password = password;
+	pontos = 0;
 }
 
-Registado::Registado(std::string nome, int pontos, float valor,
-		std::string password):Cliente(nome,pontos,valor) {
+Registado::Registado(std::string nome, int pontos, float valor, std::string password):Cliente(nome,pontos,valor) {
 	this->password = password;
+	this->pontos = pontos;
 }
 
 std::string Registado::getPassword() const {
@@ -52,6 +43,24 @@ void Cliente::addValor(int preco) {
 	valor += preco;
 }
 
+void Cliente::setPontos(int pontos) {
+}
+
 void Cliente::subValor(int preco) {
 	valor -= preco;
+}
+
+int Registado::getPontos() const {
+	return pontos;
+}
+
+void Registado::setPontos(int pontos) {
+	this->pontos += pontos;
+}
+
+bool Registado::operator <(Registado& rhs) {
+	if (this->pontos < rhs.getPontos())
+		return true;
+	else
+		return false;
 }

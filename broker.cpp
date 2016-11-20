@@ -151,7 +151,7 @@ bool Broker::atualizaMontra() {
 bool Broker::efectuaReserva(Cliente C, Imovel I, Data D1, Data D2) {
 
 	unsigned int size = I.getReservas().size();
-	float preco = I.getPreco() * (D2 - D1); // Corrigir por noites @Tomas <- Corrigido @Afonso
+	float preco = I.getPreco() * (D2 - D1);
 
 	cout << "A sua reserva estï¿½ a ser efetuada" << endl;
 
@@ -177,6 +177,19 @@ void Broker::taxa() {
 
 	for (unsigned int i=0; i < size; i++){
 		receita += montra.at(i)->getTaxa();
+	}
+}
+
+void Broker::classificacao() {
+	unsigned int size = clientes.size();
+
+	vector <Registado> vec = clientes;
+
+	vec = ordenaClientes(vec, false);
+
+	for (unsigned int i=0; i < size; i++){
+		cout << i+1 << "º Posicao: " << vec.at(i).getNome() << endl;
+		cout << endl;
 	}
 }
 
@@ -698,6 +711,7 @@ void Broker::mostraMontra(Data inicio, Data fim) {
 Cliente* Broker::getUserC() {
 	return UserC;
 }
+
 
 Fornecedor* Broker::getUserF() {
 	return UserF;
