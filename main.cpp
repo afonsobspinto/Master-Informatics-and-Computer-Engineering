@@ -50,13 +50,13 @@ int main() {
 
 		f.close();
 
-		Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
+//    	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
 
-		Existente.adicionaFornecedor();
+//		Existente.adicionaFornecedor();
 
-		cout << endl << endl;
+//		cout << endl << endl;
 
-		Existente.mostraMontra();
+//		Existente.mostraMontra();
 
 
 	}

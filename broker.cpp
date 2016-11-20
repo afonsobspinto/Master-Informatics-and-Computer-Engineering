@@ -495,6 +495,7 @@ Cliente Broker::getUserC() const {
 Fornecedor Broker::getUserF() const {
 	return UserF;
 }
+
 void Broker::guardaFornecedores() {
 	cout << endl << "Guardando Ficheiro Fornecedores" << endl << endl;
 
@@ -645,6 +646,29 @@ void Broker::mostraMontra(std::string localidade, float preco, Data inicio, Data
 					cout << "Preço: " << vec.at(i)->getPreco() << endl;
 					cout << endl;
 				}
+			}
+		}
+	}
+}
+
+
+void Broker::mostraMontra(Data inicio, Data fim) {
+	unsigned int size = montra.size();
+
+	vector <Imovel*> vec = montra;
+
+	vec = ordenaMontra(vec, false);
+
+	for (unsigned int i=0; i< size; i++){
+		unsigned int rsize = vec.at(i)->getReservas().size();
+		for (unsigned int j=0; j<rsize; j++){
+			Data di = vec.at(i)->getReservas().at(j).getInicio();
+			Data df = vec.at(i)->getReservas().at(j).getFinal();
+			if (dias_sobrepostos(di,df,inicio,fim)){
+				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+				cout << "Preço: " << vec.at(i)->getPreco() << endl;
+				cout << endl;
 			}
 		}
 	}
