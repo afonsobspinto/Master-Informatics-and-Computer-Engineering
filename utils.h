@@ -24,6 +24,7 @@ float lePreco();
 std::vector<Reserva>leReservas(float preco);
 bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar, int *camas);
 bool leExtrasHotel(int* cama, bool* cama_extra);
+Data leData(std::string msg);
 
 Data string2data(std::string data);
 std::string data2string(Data data);

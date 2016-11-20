@@ -49,10 +49,13 @@ bool Broker::menuClienteInicial() {
 
 		switch (opcao){
 		case 1:
-
+			if(this->validaLoginCliente())
+				menuOpcoesCliente();
+			else
+				cout << "Login Incorreto" << endl; //Vai precisar de um wait
 			break;
 		case 2:
-
+			menuOpcoesCliente();
 			break;
 		case 3:
 			return true;
@@ -61,6 +64,87 @@ bool Broker::menuClienteInicial() {
 		}
 	}
 }
+
+
+bool Broker::menuOpcoesCliente() {
+	int opcao;
+
+	while(1){
+		ClearScreen();
+		cout << "Menu Cliente: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Efetuar Reserva" << endl;
+		cout << "   " << "2 - Cancelar Reserva" << endl;
+		cout << "   " << "3 - Voltar" << endl << endl;
+		cout << "   " << "Qual a sua opcao: ";
+		opcao = leUnsignedShortInt(1, 3);
+
+		switch (opcao){
+		case 1:
+			if(menuEfectuaReserva())
+				break;
+			break;
+		case 2:
+			if(menuCancelaReserva())
+				break;
+			break;
+		case 3:
+			return true;
+		default:
+			return false;
+		}
+	}
+}
+
+
+bool Broker::menuEfectuaReserva() {
+	int opcao;
+
+		while(1){
+			ClearScreen();
+			cout << "Menu Efetua Reserva: " << endl;
+			cout << endl;
+			cout << "   " << "1 - Ver Montra " << endl;
+			cout << "   " << "2 - Ver Montra Preco Max" << endl;
+			cout << "   " << "3 - Ver Montra Localidade " << endl;
+			cout << "   " << "4 - Ver Montra Entre Datas" << endl;
+			cout << "   " << "5 - Ver Montra Todos Filtros" << endl;
+			cout << "   " << "6 - Voltar" << endl << endl;
+			cout << "   " << "Qual a sua opcao: ";
+			opcao = leUnsignedShortInt(1, 6);
+
+			switch (opcao){
+			case 1:
+				mostraMontra(false, false, false);
+					break;
+				break;
+			case 2:
+				if(mostraMontra(false, true, false)->getTipo()!="")
+					break;
+				break;
+			case 3:
+				if(mostraMontra(true, false, false)->getTipo()!="")
+					break;
+				break;
+			case 4:
+				if(mostraMontra(false, false, true)->getTipo()!="")
+					break;
+				break;
+			case 5:
+				if(mostraMontra(true, true, true)->getTipo()!="")
+					break;
+				break;
+			case 6:
+				return true;
+			default:
+				return false;
+			}
+		}
+}
+
+bool Broker::menuCancelaReserva() {
+}
+
 
 bool Broker::menuFornecedorInicial() {
 	int opcao;
@@ -94,6 +178,7 @@ bool Broker::menuFornecedorInicial() {
 		}
 	}
 }
+
 
 bool Broker::menuOpcoesFornecedor() {
 

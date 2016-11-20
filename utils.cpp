@@ -384,6 +384,22 @@ bool leExtrasHotel(int* cama, bool* cama_extra) {
 }
 
 
+Data leData(string msg){
+	string data;
+	Data D1;
+	cout << "Data " << msg << "(dd/mm/aaaa): ";
+
+	getline(cin, data, ' ');
+
+	D1 = string2data(data);
+
+	if(D1.getDia()==0){
+		cout << "Leitura Interrompida" << endl;
+		return Data(0,0,0);
+	}
+	return D1;
+}
+
 /////////////////////////// LEITURAS AUXILIARES ///////////////////////
 
 string getpass(const char *prompt, bool show_asterisk)
