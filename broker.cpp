@@ -213,6 +213,7 @@ bool Broker::validaLoginCliente(std::string nome, std::string password) {
 
 bool Broker::validaLoginFornecedor() {
 
+	ClearScreen();
 	int nif = leNif();
 	std::string password = lePassword();
 
@@ -221,7 +222,7 @@ bool Broker::validaLoginFornecedor() {
 		if(fornecedores.at(i).getNif() == nif)
 			if(fornecedores.at(i).getPassword()==password){
 
-				Utilizador U(&fornecedores.at(i));
+				UserF = (&fornecedores.at(i));
 				return true;
 			}
 	}
@@ -694,5 +695,10 @@ void Broker::mostraMontra(Data inicio, Data fim) {
 	}
 }
 
-bool Broker::menuOpcoesFornecedor() {
+Cliente* Broker::getUserC() {
+	return UserC;
+}
+
+Fornecedor* Broker::getUserF() {
+	return UserF;
 }

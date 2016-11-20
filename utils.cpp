@@ -1,3 +1,12 @@
+/*
+ * utils.cpp
+ *
+ *  Created on: 20/11/2016
+ *      Author: afonso
+ */
+
+
+
 #include "utils.h"
 #include <sstream>
 #include <iostream>
@@ -69,7 +78,7 @@ unsigned int leNif() {
 	string nif_str;
 	unsigned int nif;
 
-	cout << "Nif: ";
+	cout << "NIF: ";
 	getline(cin, nif_str);
 
 	try{

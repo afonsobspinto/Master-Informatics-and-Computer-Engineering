@@ -78,11 +78,11 @@ bool Broker::menuFornecedorInicial() {
 		switch (opcao){
 		case 1:
 			if(this->validaLoginFornecedor())
-
+				menuOpcoesFornecedor();
 			break;
 		case 2:
 			if(this->adicionaFornecedor())
-
+				menuOpcoesFornecedor();
 			break;
 		case 3:
 			return true;
@@ -92,3 +92,28 @@ bool Broker::menuFornecedorInicial() {
 	}
 }
 
+bool Broker::menuOpcoesFornecedor() {
+
+	int opcao;
+
+		while(1){
+			ClearScreen();
+			cout << "Menu Fornecedor: " << endl;
+			cout << endl;
+			cout << "   " << "1 - Adicionar Imovel" << endl;
+			cout << "   " << "2 - Voltar" << endl << endl;
+			cout << "   " << "Qual a sua opcao: ";
+			opcao = leUnsignedShortInt(1, 2);
+
+			switch (opcao){
+			case 1:
+				if(this->adicionaImovel(UserF))
+					break;
+				break;
+			case 3:
+				return true;
+			default:
+				return false;
+			}
+		}
+}

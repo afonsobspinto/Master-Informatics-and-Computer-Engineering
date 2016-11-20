@@ -11,10 +11,12 @@
 #include "data.h"
 #include "fornecedor.h"
 #include "imovel.h"
-#include "utilizador.h"
 
 
 class Broker{
+
+	Cliente *UserC;
+	Fornecedor *UserF;
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -58,6 +60,9 @@ public:
 
 	void guardaClientes();
 	void guardaFornecedores();
+
+	Cliente *getUserC();
+	Fornecedor *getUserF();
 
 	////MENUS///
 
