@@ -50,13 +50,17 @@ int main() {
 
 		f.close();
 
+<<<<<<< HEAD
     	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
+=======
+//    	Broker Existente(nome, ficheiroClientes, ficheiroFornecedores, stof(receita_str));
+>>>>>>> 67195fe85a585146b80326e41519056bbb211a56
 
-		Existente.adicionaFornecedor();
+//		Existente.adicionaFornecedor();
 
-		cout << endl << endl;
+//		cout << endl << endl;
 
-		Existente.mostraMontra();
+//		Existente.mostraMontra();
 
 
 	}
