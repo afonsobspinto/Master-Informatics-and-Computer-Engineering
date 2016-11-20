@@ -190,7 +190,7 @@ void Broker::classificacao() {
 	vec = ordenaClientes(vec, false);
 
 	for (unsigned int i=0; i < size; i++){
-		cout << i+1 << "� Posicao: " << vec.at(i).getNome() << endl;
+		cout << i+1 << "� Posicao: " << vec.at(i).getNome() << endl;
 		cout << endl;
 	}
 }
@@ -608,7 +608,7 @@ Imovel* Broker::mostraMontraAux() {
 		id++;
 	}
 
-	cout << "Digite o número do Imovel que pretende reservar." << endl
+	cout << "Digite o número do Imovel que pretende reservar." << endl <<
 			"(Se quiser sair digite " << id+1 << "): ";
 
 	imovel = leUnsignedShortInt(1, id+1);
@@ -643,62 +643,57 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 		}
 	}
 
-	cout << "Digite o número do Imovel que pretende reservar." << endl
+	cout << "Digite o número do Imovel que pretende reservar." << endl <<
 			"(Se quiser sair digite " << id+1 << "): ";
 	imovel = leUnsignedShortInt(1, id+1);
+
 	if(imovel == 0){
 			Imovel* I = new Imovel("", 0, 0, 0);
 			return I;
 		}
 
-
-	for (unsigned int k = 0; k < size; k++)
-	{
-		if (montra.at(k) == vec.at(mapa.at(id)))
-	}
-
-	return montra.at(mapa.at(id));
+	return vec.at(mapa.at(imovel));
 }
 
-Imovel* Broker::mostraMontraAux(std::string localidade, Data inicio, Data fim) {
-	unsigned int size = montra.size();
-
-	map <unsigned int, unsigned int> mapa;
-	unsigned int id = 1;
-	unsigned int imovel;
-
-	vector <Imovel*> vec = montra;
-
-	vec = ordenaMontra(vec, false);
-
-	for (unsigned int i=0; i< size; i++){
-		if (vec.at(i)->getLocalidade()==localidade){
-			unsigned int rsize = vec.at(i)->getReservas().size();
-			for (unsigned int j=0; j<rsize; j++){
-				Data di = vec.at(i)->getReservas().at(j).getInicio();
-				Data df = vec.at(i)->getReservas().at(j).getFinal();
-				if (dias_sobrepostos(di,df,inicio,fim)){
-					cout << "Imovel: " << id << endl << endl;
-					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
-					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-					cout << "Preço: " << vec.at(i)->getPreco() << endl;
-					cout << endl;
-					mapa.insert(pair<unsigned int, unsigned int>(id,i));
-					id++;
-				}
-			}
-		}
-	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
-			"(Se quiser sair digite " << id+1 << "): ";
-	imovel = leUnsignedShortInt(1, id+1);
-	if(imovel == 0){
-			Imovel* I = new Imovel("", 0, 0, 0);
-			return I;
-		}
-
-	return montra.at(mapa.at(id));
-}
+//Imovel* Broker::mostraMontraAux(std::string localidade, Data inicio, Data fim) {
+//	unsigned int size = montra.size();
+//
+//	map <unsigned int, unsigned int> mapa;
+//	unsigned int id = 1;
+//	unsigned int imovel;
+//
+//	vector <Imovel*> vec = montra;
+//
+//	vec = ordenaMontra(vec, false);
+//
+//	for (unsigned int i=0; i< size; i++){
+//		if (vec.at(i)->getLocalidade()==localidade){
+//			unsigned int rsize = vec.at(i)->getReservas().size();
+//			for (unsigned int j=0; j<rsize; j++){
+//				Data di = vec.at(i)->getReservas().at(j).getInicio();
+//				Data df = vec.at(i)->getReservas().at(j).getFinal();
+//				if (dias_sobrepostos(di,df,inicio,fim)){
+//					cout << "Imovel: " << id << endl << endl;
+//					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+//					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+//					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+//					cout << endl;
+//					mapa.insert(pair<unsigned int, unsigned int>(id,i));
+//					id++;
+//				}
+//			}
+//		}
+//	}
+//	cout << "Digite o número do Imovel que pretende reservar." << endl <<
+//			"(Se quiser sair digite " << id+1 << "): ";
+//	imovel = leUnsignedShortInt(1, id+1);
+//	if(imovel == 0){
+//			Imovel* I = new Imovel("", 0, 0, 0);
+//			return I;
+//		}
+//
+//	return montra.at(mapa.at(id));
+//}
 
 Imovel* Broker::mostraMontraAux(float preco) {
 	unsigned int size = montra.size();
@@ -718,10 +713,11 @@ Imovel* Broker::mostraMontraAux(float preco) {
 			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
 			cout << "Preço: " << vec.at(i)->getPreco() << endl;
 			cout << endl;
+			mapa.insert(pair<unsigned int, unsigned int>(id,i));
 			id++;
 		}
 	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
+	cout << "Digite o número do Imovel que pretende reservar." << endl <<
 			"(Se quiser sair digite " << id+1 << "): ";
 	imovel = leUnsignedShortInt(1, id+1);
 	if(imovel == 0){
@@ -729,80 +725,81 @@ Imovel* Broker::mostraMontraAux(float preco) {
 			return I;
 		}
 
-	return montra.at(mapa.at(id));
+	return vec.at(mapa.at(imovel));
 }
 
-Imovel* Broker::mostraMontraAux(float preco, Data inicio, Data fim) {
-	unsigned int size = montra.size();
+//Imovel* Broker::mostraMontraAux(float preco, Data inicio, Data fim) {
+//	unsigned int size = montra.size();
+//
+//	map <unsigned int, unsigned int> mapa;
+//	unsigned int id = 1;
+//	unsigned int imovel;
+//
+//	vector <Imovel*> vec = montra;
+//
+//	vec = ordenaMontra(vec, false);
+//
+//	for (unsigned int i=0; i< size; i++){
+//		if (vec.at(i)->getPreco()<=preco){
+//			unsigned int rsize = vec.at(i)->getReservas().size();
+//			for (unsigned int j=0; j<rsize; j++){
+//				Data di = vec.at(i)->getReservas().at(j).getInicio();
+//				Data df = vec.at(i)->getReservas().at(j).getFinal();
+//				if (dias_sobrepostos(di,df,inicio,fim)){
+//					cout << "Imovel: " << id << endl << endl;
+//					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+//					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+//					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+//					cout << endl;
+//					id++;
+//				}
+//			}
+//		}
+//	}
+//	cout << "Digite o número do Imovel que pretende reservar." << endl <<
+//			"(Se quiser sair digite " << id+1 << "): ";
+//	imovel = leUnsignedShortInt(1, id+1);
+//	if(imovel == 0){
+//			Imovel* I = new Imovel("", 0, 0, 0);
+//			return I;
+//		}
+//
+//	return montra.at(mapa.at(id));
+//}
 
-	map <unsigned int, unsigned int> mapa;
-	unsigned int id = 1;
-	unsigned int imovel;
-
-	vector <Imovel*> vec = montra;
-
-	vec = ordenaMontra(vec, false);
-
-	for (unsigned int i=0; i< size; i++){
-		if (vec.at(i)->getPreco()<=preco){
-			unsigned int rsize = vec.at(i)->getReservas().size();
-			for (unsigned int j=0; j<rsize; j++){
-				Data di = vec.at(i)->getReservas().at(j).getInicio();
-				Data df = vec.at(i)->getReservas().at(j).getFinal();
-				if (dias_sobrepostos(di,df,inicio,fim)){
-					cout << "Imovel: " << id << endl << endl;
-					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
-					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-					cout << "Preço: " << vec.at(i)->getPreco() << endl;
-					cout << endl;
-					id++;
-				}
-			}
-		}
-	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
-			"(Se quiser sair digite " << id+1 << "): ";
-	imovel = leUnsignedShortInt(1, id+1);
-	if(imovel == 0){
-			Imovel* I = new Imovel("", 0, 0, 0);
-			return I;
-		}
-
-	return montra.at(mapa.at(id));
-}
-
-
-Imovel* Broker::mostraMontraAux(std::string localidade, float precoMax) {
-	unsigned int size = montra.size();
-
-	map <unsigned int, unsigned int> mapa;
-	unsigned int id = 1;
-	unsigned int imovel;
-
-	vector <Imovel*> vec = montra;
-
-	vec = ordenaMontra(vec, false);
-
-	for (unsigned int i=0; i< size; i++){
-		if (vec.at(i)->getPreco()<=precoMax && vec.at(i)->getLocalidade()==localidade){
-			cout << "Imovel: " << id << endl << endl;
-			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
-			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-			cout << "Preço: " << vec.at(i)->getPreco() << endl;
-			cout << endl;
-			id++;
-		}
-	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
-			"(Se quiser sair digite " << id+1 << "): ";
-	imovel = leUnsignedShortInt(1, id+1);
-	if(imovel == 0){
-			Imovel* I = new Imovel("", 0, 0, 0);
-			return I;
-		}
-
-	return montra.at(mapa.at(id));
-}
+//
+//Imovel* Broker::mostraMontraAux(std::string localidade, float precoMax) {
+//	unsigned int size = montra.size();
+//
+//	map <unsigned int, unsigned int> mapa;
+//	unsigned int id = 1;
+//	unsigned int imovel;
+//
+//	vector <Imovel*> vec = montra;
+//
+//	vec = ordenaMontra(vec, false);
+//
+//	for (unsigned int i=0; i< size; i++){
+//		if (vec.at(i)->getPreco()<=precoMax && vec.at(i)->getLocalidade()==localidade){
+//			cout << "Imovel: " << id << endl << endl;
+//			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+//			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+//			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+//			cout << endl;
+//			mapa.insert(pair<unsigned int, unsigned int>(id,i));
+//			id++;
+//		}
+//	}
+//	cout << "Digite o número do Imovel que pretende reservar." << endl <<
+//			"(Se quiser sair digite " << id+1 << "): ";
+//	imovel = leUnsignedShortInt(1, id+1);
+//	if(imovel == 0){
+//			Imovel* I = new Imovel("", 0, 0, 0);
+//			return I;
+//		}
+//
+//	return vec.at(mapa.at(id));
+//}
 
 Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio, Data fim) {
 	unsigned int size = montra.size();
@@ -826,12 +823,13 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
 					cout << "Preço: " << vec.at(i)->getPreco() << endl;
+					mapa.insert(pair<unsigned int, unsigned int>(id,i));
 					cout << endl;
 				}
 			}
 		}
 	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
+	cout << "Digite o número do Imovel que pretende reservar." << endl <<
 			"(Se quiser sair digite " << id+1 << "): ";
 	imovel = leUnsignedShortInt(1, id+1);
 	if(imovel == 0){
@@ -839,7 +837,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 			return I;
 		}
 
-	return montra.at(mapa.at(id));
+	return vec.at(mapa.at(imovel));
 }
 
 
@@ -864,11 +862,12 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
 				cout << "Preço: " << vec.at(i)->getPreco() << endl;
+				mapa.insert(pair<unsigned int, unsigned int>(id,i));
 				cout << endl;
 			}
 		}
 	}
-	cout << "Digite o número do Imovel que pretende reservar." << endl
+	cout << "Digite o número do Imovel que pretende reservar." << endl <<
 			"(Se quiser sair digite " << id+1 << "): ";
 	imovel = leUnsignedShortInt(1, id+1);
 	if(imovel == 0){
@@ -876,7 +875,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 			return I;
 		}
 
-	return montra.at(mapa.at(id));
+	return vec.at(mapa.at(imovel));
 }
 
 Cliente* Broker::getUserC() {
