@@ -108,3 +108,15 @@ void *vg_init(unsigned short mode)
 	free(vmode_info_p);
 	return video_mem;
 }
+
+unsigned getHorResolution(){
+	return h_res;
+}
+
+unsigned getVerResolution(){
+	return v_res;
+}
+
+char *getGraphicsBuffer(){
+	return video_mem;
+}

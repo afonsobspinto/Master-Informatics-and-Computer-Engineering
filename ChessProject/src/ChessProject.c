@@ -1,9 +1,12 @@
 #include "ChessProject.h"
 #include "utilities.h"
 #include "macros.h"
+#include "bitmap.h"
+
 
 #include <stdio.h>
 
+static Bitmap *Background;
 
 int main(int argc, char **argv) {
 
@@ -23,12 +26,15 @@ int main(int argc, char **argv) {
 	chessproject_exit();
 
 	return 0;
-
 }
 
 int chessproject_start(){
 
 	vg_init(GRAF_1024x768);
+
+	Background = loadBitmap("/home/lcom/svn/ChessProject/res/images/background.bmp");
+	drawBitmap(Background,0,0,ALIGN_LEFT);
+
 
 	sleep(2);
 

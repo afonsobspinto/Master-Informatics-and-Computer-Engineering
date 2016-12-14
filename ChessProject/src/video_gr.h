@@ -28,7 +28,26 @@ void *vg_init(unsigned short mode);
  */
 int vg_exit(void);
 
- /** @} end of video_gr */
+/**
+ * @brief Returns the horizontal resolution of the current video mode
+ *
+ *@return  horizontal resolution of the current video mode
+ */
+unsigned getHorResolution();
+/**
+ * @brief Returns the vertical resolution of the current video mode
+ *
+ *@return  Vertical resolution of the current video mode
+ */
+unsigned getVerResolution();
+
+/**
+ * @brief Returns a pointer to the buffer
+ *
+ *@return Pointer to the buffer
+ */
+char *getGraphicsBuffer();
+
 
 
 
