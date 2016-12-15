@@ -9,4 +9,5 @@ ChessProject.o:	ChessProject.c
 ChessProject.o:	ChessProject.h
 ChessProject.o:	bitmap.h
 ChessProject.o:	macros.h
+ChessProject.o:	timer.h
 ChessProject.o:	utilities.h

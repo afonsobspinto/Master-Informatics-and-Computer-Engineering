@@ -2,6 +2,7 @@
 #include "utilities.h"
 #include "macros.h"
 #include "bitmap.h"
+#include "timer.h"
 
 
 #include <stdio.h>
@@ -30,6 +31,9 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
+	time_management(0);
+
+	sleep(2);
 	vg_init(GRAF_1024x768);
 
 	Background = loadBitmap("/home/lcom/svn/ChessProject/res/images/background.bmp");
