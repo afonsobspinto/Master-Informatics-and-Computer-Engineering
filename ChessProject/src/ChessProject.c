@@ -8,6 +8,8 @@
 #include <stdio.h>
 
 static Bitmap *Background;
+static counterPlayer1 = 30;
+static counterPlayer2 = 30;
 
 int main(int argc, char **argv) {
 
@@ -31,9 +33,9 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
-	time_management(0);
+	time_management(&counterPlayer1);
 
-	sleep(2);
+	sleep(4);
 	vg_init(GRAF_1024x768);
 
 	Background = loadBitmap("/home/lcom/svn/ChessProject/res/images/background.bmp");

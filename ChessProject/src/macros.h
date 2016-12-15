@@ -7,7 +7,7 @@
 #define KBC_CMD_REG 					0x64
 
 #define BREAK_CODE 						BIT(7)
-#define ESC_break 						0x81
+#define KEY_SPACE 						0x0039
 #define SET_RESET_CMD 					0xED
 
 // KBC Commands

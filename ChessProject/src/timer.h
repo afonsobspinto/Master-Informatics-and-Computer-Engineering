@@ -22,5 +22,10 @@ int timer_subscribe_int(unsigned int* hook_id);
  */
 int timer_unsubscribe_int(unsigned int hook_id);
 
+int time_management(unsigned int *counter);
+
+int kbd_subscribe_int(unsigned* kbd_hook);
+
+int kbd_unsubscribe_int(unsigned kbd_hook);
 
 #endif /* __TIMER_H */
