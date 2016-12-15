@@ -32,10 +32,12 @@ int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_ptr) {
 			return 1;
 		}
 
-		vbe_mode_info_t *temp;
+//		vbe_mode_info_t *temp;
+//
+//		temp = buf.virtual;
+//		*vmi_ptr = *temp;
 
-		temp = buf.virtual;
-		*vmi_ptr = *temp;
+		memcpy(vmi_ptr,buf.virtual,sizeof(vbe_mode_info_t));
 
 		lm_free(&buf);
 

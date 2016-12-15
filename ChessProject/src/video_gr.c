@@ -11,7 +11,6 @@
 #include "timer.h"
 #include "i8254.h"
 
-
 /* Constants for VBE 0x105 mode */
 
 /* The physical address may vary from VM to VM.
@@ -30,6 +29,7 @@
 #define BITS_PER_PIXEL	8
 
 static char *video_mem;		/* Process address to which VRAM is mapped */
+static char *buffer;
 
 static unsigned h_res;		/* Horizontal screen resolution in pixels */
 static unsigned v_res;		/* Vertical screen resolution in pixels */
@@ -54,11 +54,25 @@ void *vg_init(unsigned short mode)
 {
 
 	struct reg86u registos;
+	vbe_mode_info_t vmode_info_p;
+	struct mem_range mr;
 
-	registos.u.b.intno = VIDEOCARD;
+	if(vbe_get_mode_info(mode, &vmode_info_p) != 0)
+	{
+		printf("\vbe_get_mode_info() failed \n");
+		return 0;
+	}
+
+
+	v_res = vmode_info_p.YResolution;
+	h_res = vmode_info_p.XResolution;
+
+	bits_per_pixel = vmode_info_p.BitsPerPixel;
+
 	registos.u.b.ah = VBE_FUNCT;
 	registos.u.b.al = SET_VBE_MODE;
 	registos.u.w.bx = 1<<14|mode;
+	registos.u.b.intno = VIDEOCARD;
 
 	if( sys_int86(&registos) != OK )
 	{
@@ -66,25 +80,17 @@ void *vg_init(unsigned short mode)
 		return 0;
 	}
 
+	//vmode_info_p = malloc(sizeof(vbe_mode_info_t));
 
-	vbe_mode_info_t *vmode_info_p;
-
-	vmode_info_p = malloc(sizeof(vbe_mode_info_t));
-
-	if(vbe_get_mode_info(mode, vmode_info_p) != 0)
-	{
-		printf("\vbe_get_mode_info() failed \n");
-		return 0;
-	}
 
 	int r;
-	struct mem_range mr;
+
 	unsigned int vram_base;  /* VRAM's physical addresss */
 	unsigned int vram_size;  /* VRAM's size, but you can use
 	                            the frame-buffer size, instead */
 
-	vram_base = (vmode_info_p->PhysBasePtr);
-	vram_size = (vmode_info_p->XResolution * vmode_info_p->YResolution * vmode_info_p->BitsPerPixel);
+	vram_base = (vmode_info_p.PhysBasePtr);
+	vram_size = (h_res * v_res * bits_per_pixel/8);
 	/* Allow memory mapping */
 
 	mr.mr_base = (phys_bytes)vram_base;
@@ -96,16 +102,16 @@ void *vg_init(unsigned short mode)
 	/* Map memory */
 
 	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+	buffer = (char*) malloc(h_res * v_res *(bits_per_pixel)/8);
 
 	if(video_mem == MAP_FAILED)
 		panic("couldn't map video memory");
 
 
-	v_res = vmode_info_p->YResolution;
-	h_res = vmode_info_p->XResolution;
-	bits_per_pixel = vmode_info_p->BitsPerPixel;
+	//free(vmode_info_p);
 
-	free(vmode_info_p);
+	printf("V1 %x\n", *video_mem);
+
 	return video_mem;
 }
 
@@ -117,6 +123,11 @@ unsigned getVerResolution(){
 	return v_res;
 }
 
-char *getGraphicsBuffer(){
-	return video_mem;
+call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment){
+	drawBitmap(buffer,bmp,x,y,alignment);
+}
+
+void copy_buffer(unsigned int size){
+	memcpy(video_mem,buffer,size);
+
 }

@@ -74,13 +74,15 @@ Bitmap* loadBitmap(const char* filename) {
     return bmp;
 }
 
-void drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment) {
+void drawBitmap(char* buffer, Bitmap* bmp, int x, int y, Alignment alignment) {
     if (bmp == NULL)
         return;
 
     int width = bmp->bitmapInfoHeader.width;
     int drawWidth = width;
     int height = bmp->bitmapInfoHeader.height;
+
+
 
     if (alignment == ALIGN_CENTER)
         x -= width / 2;
@@ -108,18 +110,21 @@ void drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment) {
 
     int i;
     for (i = 0; i < height; i++) {
+
         int pos = y + height - 1 - i;
 
         if (pos < 0 || pos >= getVerResolution())
             continue;
 
-        bufferStartPos = *getGraphicsBuffer();
+        bufferStartPos = buffer;
         bufferStartPos += x * 2 + pos * getHorResolution() * 2;
 
         imgStartPos = bmp->bitmapData + xCorrection * 2 + i * width * 2;
 
         memcpy(bufferStartPos, imgStartPos, drawWidth * 2);
     }
+
+    copy_buffer(getHorResolution()*getVerResolution()*2);
 }
 
 void deleteBitmap(Bitmap* bmp) {

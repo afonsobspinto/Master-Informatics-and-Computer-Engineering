@@ -33,16 +33,37 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
+	vg_init(RESOLUTION);
+
+	GAME_STATE game_state = MENU;
+
+
+	while(1){
+		if(game_state == MENU){
+			game_state = main_menu();
+			break; // retirar;
+		}
+		else if(game_state == MULTIPLAYER_LOCAL)
+			printf("Multiplayer_local: ");
+		else if(game_state == MULTIPLAYER_SERIAL)
+			printf("Multiplayer_serial: ");
+		else
+			return 0;
+	}
+
 	time_management(&counterPlayer1);
 
 	sleep(4);
-	vg_init(GRAF_1024x768);
-
-	Background = loadBitmap("/home/lcom/svn/ChessProject/res/images/background.bmp");
-	drawBitmap(Background,0,0,ALIGN_LEFT);
 
 
-	sleep(2);
+	Background = loadBitmap("/home/lcom/ChessProject/res/background.bmp");
+	if(Background == NULL){
+		printf("NULL\n");
+	}
+	call_drawBitmap(Background,512,0,ALIGN_CENTER);
+
+
+	sleep(4);
 
 	return 0;
 }

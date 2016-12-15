@@ -35,6 +35,7 @@
 #define MEMCONFIG 			0x12
 #define KEYBOARD 			0x16
 
+#define VBE_AX				0x4F02
 #define VBE_FUNCT 			0x4F
 #define VBE_INFO 			0x00
 #define VBE_MODE_INFO 		0x01
@@ -42,7 +43,7 @@
 
 #define LINEAR_FRAME_BUF 			BIT(14)
 
-#define GRAF_1024x768 0x105
+#define RESOLUTION 					0x117
 
 
 #endif

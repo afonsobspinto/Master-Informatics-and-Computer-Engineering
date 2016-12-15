@@ -31,8 +31,8 @@ int time_management(unsigned int *counter){
 	if(kbd_subscribe_int(&kbd_hook)<0)
 		return 1;
 
-//	if(timer_subscribe_int(timer_hook)<0)
-//		return 1;
+	if(timer_subscribe_int(timer_hook)<0)
+		return 1;
 
 	int r, ipc_status;
 	message msg;
@@ -60,10 +60,10 @@ int time_management(unsigned int *counter){
 					if(key == KEY_SPACE)
 						break;
 				}
-				//else if (msg.NOTIFY_ARG & BIT(timer_hook)) {
+				else if (msg.NOTIFY_ARG & BIT(timer_hook)) {
 					*counter-=1;
 					printf("%d", *counter);
-				//	}
+					}
 
 			default:
 				break; // no other notifications expected: do nothing

@@ -1,6 +1,7 @@
 #ifndef __VIDEO_GR_H
 #define __VIDEO_GR_H
 
+#include "bitmap.h"
 /** @defgroup video_gr video_gr
  * @{
  *
@@ -48,7 +49,8 @@ unsigned getVerResolution();
  */
 char *getGraphicsBuffer();
 
+void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment);
 
-
+void copy_buffer(unsigned int size);
 
 #endif /* __VIDEO_GR_H */
