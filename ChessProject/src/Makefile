@@ -4,7 +4,7 @@ CC = gcc
 
 PROG = ChessProject
 SRCS = ChessProject.c
-SRCS += vbe.c video_gr.c utilities.c timer.c bitmap.c mouse.c menu.c
+SRCS += vbe.c video_gr.c utilities.c timer.c bitmap.c mouse.c menu.c kbd.c
 
 CCFLAGS= -Wall -O3
 
