@@ -56,8 +56,8 @@ bool Broker::menuClienteInicial() {
 		case 2:
 			menuOpcoesCliente();
 			break;
-		case 2:
-			adicionaCliente()();
+		case 3:
+			adicionaCliente();
 			break;
 		case 4:
 			return true;
