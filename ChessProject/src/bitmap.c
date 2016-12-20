@@ -3,6 +3,19 @@
 #include "video_gr.h"
 #include "utilities.h"
 
+
+//Bitmaps
+static Bitmap *background;
+static Bitmap *cursor;
+static Bitmap *logo;
+static Bitmap *local1;
+static Bitmap *serial1;
+static Bitmap *exit1;
+static Bitmap *local2;
+static Bitmap *serial2;
+static Bitmap *exit2;
+
+
 Bitmap* loadBitmap(const char* filename) {
     // allocating necessary size
     Bitmap* bmp = (Bitmap*) malloc(sizeof(Bitmap));
@@ -133,4 +146,57 @@ void deleteBitmap(Bitmap* bmp) {
 
     free(bmp->bitmapData);
     free(bmp);
+}
+
+
+
+int loadBitmaps(){
+
+	background = loadBitmap("/home/lcom/ChessProject/res/background.bmp");
+	if(background == NULL){
+		return 1;
+	}
+
+	//	cursor = loadBitmap("/home/lcom/ChessProject/res/cursor.bmp");
+	//	if(background == NULL){
+	//		return 1;
+	//	}
+
+	logo = loadBitmap("/home/lcom/ChessProject/res/logo.bmp");
+	if(background == NULL){
+		return 1;
+	}
+
+	local1 = loadBitmap("/home/lcom/ChessProject/res/local1.bmp");
+	if(background == NULL){
+		return 1;
+	}
+
+	serial1 = loadBitmap("/home/lcom/ChessProject/res/serial1.bmp");
+	if(background == NULL){
+		return 1;
+	}
+
+	exit1 = loadBitmap("/home/lcom/ChessProject/res/exit1.bmp");
+	if(background == NULL){
+		return 1;
+	}
+
+
+	return 0;
+}
+
+
+void drawMenu(unsigned local, unsigned serial, unsigned exit){
+
+	call_drawBitmap(logo,512,10,ALIGN_CENTER);
+	if(local==1)
+		call_drawBitmap(local1, 512, 150, ALIGN_CENTER);
+	if(serial==1)
+		call_drawBitmap(serial1, 512, 200, ALIGN_CENTER);
+	if(exit==1)
+		call_drawBitmap(exit1, 512, 245, ALIGN_CENTER);
+
+
+	// Adicionar else com outra a imagem colorida;
 }

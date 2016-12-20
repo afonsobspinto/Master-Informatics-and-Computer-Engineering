@@ -61,4 +61,8 @@ void drawBitmap(char* buffer, Bitmap* bitmap, int x, int y, Alignment alignment)
  */
 void deleteBitmap(Bitmap* bmp);
 
+int loadBitmaps();
+
+void drawMenu(unsigned local, unsigned serial, unsigned exit);
+
 /**@}*/

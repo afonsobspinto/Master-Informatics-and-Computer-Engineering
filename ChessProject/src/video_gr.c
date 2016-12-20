@@ -129,5 +129,44 @@ call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment){
 
 void copy_buffer(unsigned int size){
 	memcpy(video_mem,buffer,size);
+}
 
+int draw_pixel(unsigned short x, unsigned short y, unsigned long color)
+{
+	if(x < h_res && y < v_res){
+		char *vptr;
+		vptr = video_mem;
+		vptr += (y * h_res + x);
+		if((*vptr) != color){
+			*vptr = color;
+		}
+		return 0;
+	}
+	return 1;
+}
+
+void fill_screen(unsigned long color)
+{
+	int i, j;
+
+	for(i = 0; i < v_res; i++)
+	{
+		for(j = 0; j < h_res; j++)
+			draw_pixel(j, i, color);
+	}
+}
+
+void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color){
+
+	int i, j;
+
+		for(i = 0; i < v_res; i++)
+		{
+			if(i>=x1 && i <= x2){
+				for(j = 0; j < h_res; j++){
+							if(j >= y1 && j <= y2)
+								draw_pixel(j, i, color);
+						}
+			}
+		}
 }

@@ -13,14 +13,14 @@
  *
  * @return Returns bit order in interrupt mask; negative value on failure
  */
-int timer_subscribe_int(unsigned int* hook_id);
+int timer_subscribe_int(void );
 
 /**
  * @brief Unsubscribes Timer 0 interrupts
  *
  * @return Return 0 upon success and non-zero otherwise
  */
-int timer_unsubscribe_int(unsigned int hook_id);
+int timer_unsubscribe_int();
 
 int time_management(unsigned int *counter);
 

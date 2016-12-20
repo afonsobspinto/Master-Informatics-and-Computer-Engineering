@@ -53,4 +53,10 @@ void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment);
 
 void copy_buffer(unsigned int size);
 
+void fill_screen(unsigned long color);
+
+int draw_pixel(unsigned short x, unsigned short y, unsigned long color);
+
+void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color);
+
 #endif /* __VIDEO_GR_H */
