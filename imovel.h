@@ -3,9 +3,12 @@
 
 #include <string>
 #include <vector>
+#include <queue>
 
 #include "data.h"
 #include "reserva.h"
+
+typedef std::priority_queue<Imovel> descontos;
 
 class Imovel{
 	std::string localidade;
@@ -15,6 +18,7 @@ class Imovel{
 	float taxa;
 	std::vector <Reserva> reservas;
 	static unsigned int counter;
+	Data ultima; // Data da ultima vez que foi reservado
 
 public:
 	Imovel(std::string localidade, int owner, float preco, float taxa, std::vector <Reserva> indisponiveis = {});
@@ -24,6 +28,7 @@ public:
 	unsigned int  getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
+	Data getUltima() const;
 	virtual bool getSuite() const;
 	virtual bool getCozinha() const;
 	virtual bool getSala_de_estar() const;
@@ -76,6 +81,5 @@ class Shared: public Imovel{
 public:
 	Shared(std::string localidade, int owner, float preco, std::vector <Reserva> indisponiveis = {});
 };
-
 
 #endif /* IMOVEL_H_ */

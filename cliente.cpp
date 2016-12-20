@@ -25,6 +25,9 @@ float Cliente::getValor() const {
 	return valor;
 }
 
+Data Cliente::getUltima() const{
+	return ultima;
+}
 Registado::Registado(std::string nome, std::string password):Cliente(nome) {
 	this->password = password;
 	pontos = 0;

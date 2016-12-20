@@ -40,6 +40,7 @@ public:
 
 
 	bool adicionaCliente(); //Verifica se o cliente existe, se nao adiciona-o
+	bool atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	bool validaLoginCliente();
 	bool validaLoginFornecedor();
 	bool adicionaFornecedor(); //Verifica se o fornecedor existe, se nao adiciona-o

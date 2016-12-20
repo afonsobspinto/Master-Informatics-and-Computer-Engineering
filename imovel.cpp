@@ -104,6 +104,10 @@ int Imovel::getQuartos() const {
 	return 1;
 }
 
+Data Imovel::getUltima() const {
+	return ultima;
+}
+
 bool Imovel::operator <(const Imovel& rhs) const {
 	return this->getPreco()<rhs.getPreco();
 }
@@ -151,3 +155,4 @@ int Imovel::getCama() const {
 bool Imovel::getCama_extra() const {
 	return false;
 }
+
