@@ -73,11 +73,13 @@ game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/string.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
+game.o:	bitmap.h
 game.o:	game.c
 game.o:	i8254.h
 game.o:	kbd.h
 game.o:	macros.h
 game.o:	timer.h
+game.o:	utilities.h
 
 kbd.o:	/usr/include/errno.h
 kbd.o:	/usr/include/limits.h
@@ -240,6 +242,7 @@ timer.o:	kbd.h
 timer.o:	macros.h
 timer.o:	timer.c
 timer.o:	timer.h
+timer.o:	utilities.h
 
 utilities.o:	/usr/include/minix/dir.h
 utilities.o:	/usr/include/minix/types.h

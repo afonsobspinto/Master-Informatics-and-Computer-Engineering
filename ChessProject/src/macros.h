@@ -43,7 +43,7 @@
 
 #define LINEAR_FRAME_BUF 			BIT(14)
 
-#define MODE 					0x117
+#define MODE 					0x114
 
 
 #endif

@@ -53,3 +53,4 @@ timer.o:	kbd.h
 timer.o:	macros.h
 timer.o:	timer.c
 timer.o:	timer.h
+timer.o:	utilities.h

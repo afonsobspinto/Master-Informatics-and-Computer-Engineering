@@ -7,8 +7,6 @@
 #include "bitmap.h"
 
 
-
-
 int main(int argc, char **argv) {
 
 	/* Initialize service */
@@ -39,17 +37,18 @@ int chessproject_start(){
 	if(loadBitmaps() == 1)
 		return 1;
 
-
-
 	GAME_STATE game_state = MENU;
 
 	while(1){
 		if(game_state == MENU){
 			game_state = main_menu();
-			break; // retirar;
 		}
-		else if(game_state == MULTIPLAYER_LOCAL)
+		else if(game_state == MULTIPLAYER_LOCAL){
 			printf("Multiplayer_local: ");
+			game_state = game_management();
+			break;
+		}
+
 		else if(game_state == MULTIPLAYER_SERIAL)
 			printf("Multiplayer_serial: ");
 		else
@@ -82,6 +81,11 @@ int chessproject_exit(){
 GAME_STATE main_menu(){
 
 	drawMenu(1,1,1);
+	//if(rato sobre espaço 1)
+		//drawMenu(2,1,1);
+		//if(rato click)
+			//return MULTIPLAYER_LOCAL;
+
 	sleep(5);
 
 	return MULTIPLAYER_LOCAL;

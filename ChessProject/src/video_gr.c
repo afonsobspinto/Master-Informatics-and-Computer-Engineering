@@ -110,8 +110,6 @@ void *vg_init(unsigned short mode)
 
 	//free(vmode_info_p);
 
-	printf("V1 %x\n", *video_mem);
-
 	return video_mem;
 }
 
@@ -133,40 +131,39 @@ void copy_buffer(unsigned int size){
 
 int draw_pixel(unsigned short x, unsigned short y, unsigned long color)
 {
-	if(x < h_res && y < v_res){
-		char *vptr;
-		vptr = video_mem;
-		vptr += (y * h_res + x);
-		if((*vptr) != color){
-			*vptr = color;
-		}
-		return 0;
+	char *tmp = video_mem;
+	if(x < 0 || x >= h_res || y < 0 || y >= v_res){
+		return 1;
 	}
-	return 1;
+
+	tmp += (x + y*h_res)*bits_per_pixel/8;
+	*tmp=color;
+
+	return 0;
+
+
 }
 
 void fill_screen(unsigned long color)
 {
-	int i, j;
-
-	for(i = 0; i < v_res; i++)
+	char *pixel;
+	for (pixel = video_mem; pixel < video_mem + h_res * v_res * bits_per_pixel / 8; ++pixel)
 	{
-		for(j = 0; j < h_res; j++)
-			draw_pixel(j, i, color);
+		*pixel = color;
 	}
+
+	return 0;
 }
 
 void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color){
 
 	int i, j;
 
-		for(i = 0; i < v_res; i++)
+		for(i = y1; i <= y2; i++)
 		{
-			if(i>=x1 && i <= x2){
-				for(j = 0; j < h_res; j++){
-							if(j >= y1 && j <= y2)
-								draw_pixel(j, i, color);
-						}
+			for(j = x1; j <= x2; j++){
+					draw_pixel(j, i, color);
 			}
 		}
 }
+

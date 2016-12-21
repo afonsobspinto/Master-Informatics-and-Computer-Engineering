@@ -2,6 +2,7 @@
 #include "i8254.h"
 #include "macros.h"
 #include "kbd.h"
+#include "utilities.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
