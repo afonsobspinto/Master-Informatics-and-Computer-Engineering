@@ -1,4 +1,6 @@
 #include "cliente.h"
+#include "reserva.h"
+
 
 unsigned int Cliente::counter = 0;
 

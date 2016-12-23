@@ -1,5 +1,5 @@
 #include "reserva.h"
-
+#include "cliente.h"
 
 Reserva::Reserva(Data inicio, Data final, float preco_por_noite) {
 	this->inicio = inicio;

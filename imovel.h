@@ -8,7 +8,7 @@
 #include "data.h"
 #include "reserva.h"
 
-typedef std::priority_queue<Imovel> descontos;
+//typedef std::priority_queue<Imovel> descontos;
 
 class Imovel{
 	std::string localidade;

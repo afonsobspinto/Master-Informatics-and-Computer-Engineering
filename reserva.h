@@ -4,6 +4,9 @@
 #define RESERVAS_H_
 
 #include "data.h"
+#include "cliente.h"
+
+
 
 class Reserva{
 	Data inicio;
@@ -11,6 +14,7 @@ class Reserva{
 	Data limite50; //15 dias antes
 	Data final;
 	float preco;
+	Cliente c;
 
 public:
 	Reserva(Data inicio, Data final, float preco_por_noite); // para além da atribuição normal calculará o Preço somehow e os atributos limite
