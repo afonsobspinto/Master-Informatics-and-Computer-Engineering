@@ -51,16 +51,6 @@ void Cliente::addValor(int preco) {
 void Cliente::setPontos(int pontos) {
 }
 
-void Cliente::addReserva(Reserva R) {
-}
-
-std::vector<Reserva>* Cliente::getReservas() {
-}
-
-void Cliente::subValor(int preco) {
-	valor -= preco;
-}
-
 int Registado::getPontos() const {
 	return pontos;
 }
@@ -69,13 +59,6 @@ void Registado::setPontos(int pontos) {
 	this->pontos += pontos;
 }
 
-void Registado::addReserva(Reserva R) {
-	reservas.push_back(R);
-}
-
-std::vector<Reserva>* Registado::getReservas() {
-	return &reservas;
-}
 
 bool Registado::operator <(Registado& rhs) {
 	if (this->pontos < rhs.getPontos())

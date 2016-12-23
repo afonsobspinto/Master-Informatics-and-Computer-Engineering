@@ -14,42 +14,40 @@
 #include <istream>
 #include <math.h>
 #include <limits>
+#include <algorithm>
+#include <random>
 #include "excecao.h"
 #include "reserva.h"
 #include "quicksort.h"
+#include <time.h>
+#include <stdio.h>
 
-#ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
 
-    #include "linux.h"
-
-#elif defined(_WIN32) || defined(WIN32)     /* _Win32 is usually defined by compilers targeting 32 or   64 bit Windows systems */
-
-    #include <windows.h>
-    #include <conio.h>
-
-#endif
 
 using namespace std;
 
 
+
+
 /////////////////////////// LEITURAS ///////////////////////
 
-string lePassword(){
+string lePassword(bool confirmacao){
 
 	string password;
 	string password_repeated;
 	password = getpass("Password: ", true);
-	password_repeated = getpass("Confirme Password: ", true);
-	try{
-		if(password != password_repeated){
-			throw PasswordNaoCoincide();
+	if(confirmacao){
+		password_repeated = getpass("Confirme Password: ", true);
+		try{
+			if(password != password_repeated){
+				throw PasswordNaoCoincide();
+			}
+		}
+		catch (PasswordNaoCoincide &e) {
+			cout << "Apanhou excecao. Passwords Não Coincidem. \n";
+			return "";
 		}
 	}
-	catch (PasswordNaoCoincide &e) {
-		cout << "Apanhou excecao. Passwords Não Coincidem. \n";
-		return "";
-	}
-
     return password;
 }
 
@@ -89,17 +87,17 @@ unsigned int leNif() {
 		return 0;
 	}
 
-	nif = stoi(nif_str);
-	double num_digitos = floor(log10(nif)) + 1;
 
 	try{
-		if(num_digitos != 9)
-			throw NifInvalido(nif);
+		if(nif_str.length() != 9)
+			throw NifInvalido(nif_str);
 	}
 	catch (NifInvalido &e) {
 		cout << "Apanhou excecao. "<< e.getNif() << " não tem 9 digitos." << endl;
 		return 0;
 	}
+
+	nif = stoi(nif_str);
 	return nif;
 }
 
@@ -169,11 +167,11 @@ std::string leTipo() {
 	}
 }
 
-float lePreco() {
+float lePreco(string msg) {
 	string preco_str;
 	float preco;
 
-	cout << "Preco: ";
+	cout << "Preco"<<msg<<": ";
 	getline(cin, preco_str);
 
 	try{
@@ -182,6 +180,7 @@ float lePreco() {
 	}
 	catch (PrecoInvalido &e) {
 		cout << "Apanhou excecao. Preço invalido" << endl;
+		getch();
 		return -1;
 	}
 
@@ -193,6 +192,7 @@ float lePreco() {
 	}
 	catch (PrecoInvalido &e) {
 		cout << "Apanhou excecao. "<< e.getPreco() << " não é um preço válido." << endl;
+		getch();
 		return 0;
 	}
 
@@ -212,6 +212,7 @@ std::vector<Reserva> leReservas(float preco) {
 
 		unsigned int diff;
 
+		ClearScreen();
 		cout << "Adicionar Datas Ocupadas? " << endl;
 		cout << endl;
 		cout << "   " << "1 - Sim" << endl;
@@ -223,39 +224,49 @@ std::vector<Reserva> leReservas(float preco) {
 			break;
 		else if(opcao == 0){
 			cout << "Leitura Interrompida" << endl;
+			getch();
 			break;
 		}
 
 		else{
+			ClearScreen();
+
 			cout << "Data Inicial (dd/mm/aaaa): ";
 
-			getline(cin, data, ' ');
+			getline(cin, data);
 
 			D1 = string2data(data);
 
 			if(D1.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
+				getch();
 				break;
 			}
 
 			cout << endl;
 
+			ClearScreen();
 			cout << "Data Final (dd/mm/aaaa): ";
-			getline(cin, data, ' ');
+			getline(cin, data);
+
 
 			D2 = string2data(data);
 
 			if(D2.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
+				getch();
 				break;
 			}
 
 			cout << endl;
-			if(swapDatas(&D1,&D2))
+			if(swapDatas(&D1,&D2)){
 				cout << "Detetamos que colocou uma Data Inicial mais recente que a Data Final." << endl <<
 				"Não se preocupe. Já corrigimos o erro por si." <<  endl;
+				getch();
+			}
 
 			Reserva R(D1, D2, preco);
+
 			reservas.push_back(R);
 
 			diff = D1 - D2;
@@ -265,7 +276,7 @@ std::vector<Reserva> leReservas(float preco) {
 				counter += diff;
 		}
 	}
-	cout << counter << " datas adicionadas. "<< endl;
+
 	return reservas;
 }
 
@@ -274,6 +285,7 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 
 	int opcao;
 
+	ClearScreen();
 	cout << "O Apartamento Tem Suite? " << endl;
 	cout << endl;
 	cout << "   " << "1 - Sim" << endl;
@@ -291,6 +303,7 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 		*suite = false;
 	}
 
+	ClearScreen();
 	cout << "O Apartamento Tem Cozinha? " << endl;
 	cout << endl;
 	cout << "   " << "1 - Sim" << endl;
@@ -308,6 +321,7 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 		*cozinha = false;
 	}
 
+	ClearScreen();
 	cout << "O Apartamento Tem Sala de Estar? " << endl;
 	cout << endl;
 	cout << "   " << "1 - Sim" << endl;
@@ -325,6 +339,7 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 		*sala_de_estar = false;
 	}
 
+	ClearScreen();
 	cout << "Quantos quartos tem o apartamento?" << endl;
 	cout << endl;
 
@@ -345,6 +360,7 @@ bool leExtrasHotel(int* cama, bool* cama_extra) {
 
 	int opcao;
 
+	ClearScreen();
 	cout << "Tipo de Quarto de Hotel? " << endl;
 	cout << endl;
 	cout << "   " << "1 - Quarto Simples" << endl;
@@ -387,12 +403,13 @@ Data leData(string msg){
 	Data D1;
 	cout << "Data " << msg << "(dd/mm/aaaa): ";
 
-	getline(cin, data, ' ');
+	getline(cin, data);
 
 	D1 = string2data(data);
 
 	if(D1.getDia()==0){
 		cout << "Leitura Interrompida" << endl;
+		getch();
 		return Data(0,0,0);
 	}
 	return D1;
@@ -484,12 +501,19 @@ bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
 				return false;
 }
 
-bool dias_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
+bool dias_nao_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
 	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
 		return true;
 	else
 		return false;
 }
+//
+//bool dias_nao_sobrepostos2(Data d1, Data d2, Data d3, Data d4) {
+//	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
+//		return true;
+//	else
+//		return false;
+//}
 
 Data string2data(string data){
 	unsigned int dia;
@@ -501,6 +525,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
+		getch();
 		return Data(0,0,0);
 	}
 	try{
@@ -508,6 +533,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
+		getch();
 		return Data(0,0,0);
 	}
 
@@ -516,6 +542,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
+		getch();
 		return Data(0,0,0);
 	}
 
@@ -525,6 +552,7 @@ Data string2data(string data){
 	}
 	catch (dataInvalida &e) {
 		cout << "Apanhou excecao. "<< e.getData() << " não é uma data válida." << endl;
+		getch();
 		return Data(0,0,0);
 	}
 
@@ -577,9 +605,9 @@ int countLeapYears(Data d)
 }
 
 
-vector<Imovel*> ordenaMontra(vector<Imovel*> &montra, bool LowestFirst){
-	QuickSort <Imovel*> QS(&montra, 0, montra.size() - 1, LowestFirst);
-	return montra;
+bool ordenaMontra(Imovel* lhs, Imovel* rhs){
+
+	return (lhs->getPreco()) < (rhs->getPreco());
 
 }
 
@@ -602,3 +630,29 @@ void ClearScreen() {
 
 }
 
+const string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%d/%m/%Y", &tstruct);
+
+    return buf;
+}
+
+string random_string( size_t length )
+{
+	srand(time(NULL));
+    auto randchar = []() -> char
+    {
+        const char charset[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+        const size_t max_index = (sizeof(charset) - 1);
+        return charset[ rand() % max_index ];
+    };
+    string str(length,0);
+    generate_n( str.begin(), length, randchar );
+    return str;
+}

@@ -20,7 +20,7 @@ public:
 	int getNif() const;
 	std::vector<Imovel *> getOfertas() const;
 	std::string getPassword() const;
-	bool adicionaOferta(Imovel * novo); //É só adicionar. As condições já devem vir direitas do Broker.
+	bool adicionaOferta(Imovel * novo);
 };
 
 #endif /* FORNECEDORES_H_ */

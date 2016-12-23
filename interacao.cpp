@@ -14,15 +14,19 @@ Imovel* criaImovel(int owner){
 
 	Imovel *Erro = new Imovel("",0,0,0);
 
+	ClearScreen();
 	localidade = leString("Localidade: ");
 	if(localidade == "")
 			return Erro;
+	ClearScreen();
 	tipo = leTipo();
 	if(tipo == "Voltar")
 		return Erro;
-	preco = lePreco();
+	ClearScreen();
+	preco = lePreco("");
 	if(preco < 0)
 		return Erro;
+	ClearScreen();
 	reservas = leReservas(preco);
 	if(tipo == "Apartamento"){
 		bool suite;
@@ -31,7 +35,6 @@ Imovel* criaImovel(int owner){
 		int quartos;
 		if(!leExtrasApartamento(&suite, &cozinha, &sala_de_estar, &quartos))
 			return Erro;
-
 		Imovel *I = new Apartamento(localidade, owner,preco,reservas,quartos,suite, cozinha, sala_de_estar);
 		return I;
 	}
@@ -66,7 +69,7 @@ Registado criaCliente(){
 	string nome = leString("Nome: ");
 	if(nome == "")
 		return Registado("","");
-	string password = lePassword();
+	string password = lePassword(true);
 	Registado C (nome, password);
 	return C;
 }
@@ -78,7 +81,7 @@ Fornecedor criaFornecedor() {
 	unsigned int nif = leNif();
 	if(nif == 0)
 		return Fornecedor("",0,"","");
-	string password = lePassword();
+	string password = lePassword(true);
 	if(password == "")
 		return Fornecedor("",0,"","");
 	string morada = leString("Morada: ");

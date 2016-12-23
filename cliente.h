@@ -25,25 +25,20 @@ public:
 	Data getUltima() const;
 	static unsigned int getTotalClientes();
 	virtual void setPontos(int pontos);
-	virtual void addReserva(Reserva R);
-	std::vector<Reserva>*getReservas();
 	void addValor(int preco);
-	void subValor(int preco);
+
 
 };
 
 class Registado: public Cliente{
 	std::string password;
 	int pontos;
-	std::vector<Reserva> reservas;
 public:
 	Registado(std::string nome, std::string password);
 	Registado(std::string nome, int pontos, float valor, std::string password);
 	std::string getPassword() const;
 	int getPontos() const;
-	std::vector<Reserva>*getReservas();
 	virtual void setPontos(int pontos);
-	virtual void addReserva(Reserva R);
 	bool operator < (Registado & rhs);
 };
 

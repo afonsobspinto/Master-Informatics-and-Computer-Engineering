@@ -39,13 +39,13 @@ public:
 
 class NifInvalido {
 private:
-	int nif;
+	std::string nif;
 public:
 	NifInvalido(){};
-	NifInvalido(int nif){
+	NifInvalido(std::string nif){
 		this->nif = nif;
 	}
-	int getNif() { return nif; }
+	std::string getNif() { return nif; }
 };
 
 class NomeIncorreto {

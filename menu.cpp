@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "utils.h"
 #include "broker.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ bool Broker::opcoesIniciais() {
 		case 3:
 			return true;
 		default:
-			return false;
+			continue;
 		}
 	}
 }
@@ -77,9 +77,10 @@ bool Broker::menuOpcoesCliente() {
 		cout << endl;
 		cout << "   " << "1 - Efetuar Reserva" << endl;
 		cout << "   " << "2 - Cancelar Reserva" << endl;
-		cout << "   " << "3 - Voltar" << endl << endl;
+		cout << "   " << "3 - Ver Classificacao" << endl;
+		cout << "   " << "4 - Voltar" << endl << endl;
 		cout << "   " << "Qual a sua opcao: ";
-		opcao = leUnsignedShortInt(1, 3);
+		opcao = leUnsignedShortInt(1, 4);
 
 		switch (opcao){
 		case 1:
@@ -87,10 +88,13 @@ bool Broker::menuOpcoesCliente() {
 				break;
 			break;
 		case 2:
-			if(mostraReservas())
+			if(cancelaReserva())
 				break;
 			break;
 		case 3:
+			classificacao();
+			break;
+		case 4:
 			return true;
 		default:
 			return false;
@@ -163,8 +167,6 @@ bool Broker::menuFornecedorInicial() {
 		case 1:
 			if(this->validaLoginFornecedor())
 				menuOpcoesFornecedor();
-			else
-				cout << "Login Incorreto" << endl; //Vai precisar de um wait
 
 			break;
 		case 2:
@@ -189,16 +191,21 @@ bool Broker::menuOpcoesFornecedor() {
 			cout << "Menu Fornecedor: " << endl;
 			cout << endl;
 			cout << "   " << "1 - Adicionar Imovel" << endl;
-			cout << "   " << "2 - Voltar" << endl << endl;
+			cout << "   " << "2 - Ver Minhas Ofertas" << endl;
+			cout << "   " << "3 - Voltar" << endl << endl;
 			cout << "   " << "Qual a sua opcao: ";
-			opcao = leUnsignedShortInt(1, 2);
+			opcao = leUnsignedShortInt(1, 3);
 
 			switch (opcao){
 			case 1:
 				if(this->adicionaImovel(UserF))
-					cout << "Imovel Adicionado" << endl; //Vai precisar de um wait
+					break;
 				break;
 			case 2:
+				if(verOfertas())
+					break;
+				break;
+			case 3:
 				return true;
 			default:
 				return false;

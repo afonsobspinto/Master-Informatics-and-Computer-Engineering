@@ -5,30 +5,31 @@
  *      Author: afonso
  */
 
-#ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
+#ifndef LINUX_H_
+#define LINUX_H_
 
-	#ifndef LINUX_H_
-	#define LINUX_H_
-	#include <termios.h>
-	#include <unistd.h>
-	#include <stdio.h>
+#ifdef __unix__
 
-	/* reads from keypress, doesn't echo */
-	int getch() {
-		int ch;
-		struct termios t_old, t_new;
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 
-		tcgetattr(STDIN_FILENO, &t_old);
-		t_new = t_old;
-		t_new.c_lflag &= ~(ICANON | ECHO);
-		tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
+/* reads from keypress, doesn't echo */
+inline int getch() {
+    int ch;
+    struct termios t_old, t_new;
 
-		ch = getchar();
+    tcgetattr(STDIN_FILENO, &t_old);
+    t_new = t_old;
+    t_new.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
 
-		tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
-		return ch;
-	}
+    ch = getchar();
 
-	#endif /* LINUX_H_ */
+    tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
+    return ch;
+}
 
 #endif
+
+#endif /* LINUX_H_ */

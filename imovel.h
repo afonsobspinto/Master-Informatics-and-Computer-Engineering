@@ -36,7 +36,7 @@ public:
 	virtual int getQuartos() const;
 	virtual bool getCama_extra() const;
 
-	std::vector<Reserva>getReservas() const;
+	std::vector<Reserva>*getReservas();
 	void addReservas(Reserva & R);
 	void tirarReserva(Reserva & R);
 	bool operator< (Imovel const &rhs) const;
