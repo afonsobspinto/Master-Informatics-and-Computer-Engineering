@@ -5,6 +5,7 @@
 #include "game.h"
 #include <stdio.h>
 #include "bitmap.h"
+#include "chess.h"
 
 
 int main(int argc, char **argv) {
@@ -29,6 +30,28 @@ int main(int argc, char **argv) {
 }
 
 int chessproject_start(){
+
+
+	Piece a;
+
+	fillBoard();
+
+	a = getMatrixAt(0,0);
+
+	printf("%d", a.state);
+//
+//
+//	a=getMatrix();
+//
+////a[x][y] = a+x*My+y
+//	printf("%d\n",a->state);
+//
+//	printf("%d\n",(a+0*8+8)->state);
+
+
+	sleep(5);
+
+	return 0;
 
 	vg_init(MODE);
 

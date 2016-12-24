@@ -121,7 +121,7 @@ unsigned getVerResolution(){
 	return v_res;
 }
 
-call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment){
+void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment){
 	drawBitmap(buffer,bmp,x,y,alignment);
 }
 
@@ -151,8 +151,6 @@ void fill_screen(unsigned long color)
 	{
 		*pixel = color;
 	}
-
-	return 0;
 }
 
 void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color){

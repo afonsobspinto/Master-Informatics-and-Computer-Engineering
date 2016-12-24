@@ -4,11 +4,8 @@
 #define singleBit(byte) (0x01 & byte)
 #define swap(type, i, j) {type t = i; i=j; j=t;}
 
-struct Position
-{
-	int x;
-	int y;
-};
+#define ROWS 8
+#define COLS 8
 
 typedef enum {
 	MENU,

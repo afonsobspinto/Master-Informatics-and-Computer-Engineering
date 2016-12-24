@@ -1,4 +1,6 @@
 #pragma once
+#include "utilities.h"
+#include "chess.h"
 
 /** @defgroup Bitmap Bitmap
  * @{

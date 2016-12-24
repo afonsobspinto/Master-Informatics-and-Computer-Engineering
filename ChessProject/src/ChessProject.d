@@ -8,6 +8,7 @@ ChessProject.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
 ChessProject.o:	ChessProject.c
 ChessProject.o:	ChessProject.h
 ChessProject.o:	bitmap.h
+ChessProject.o:	chess.h
 ChessProject.o:	game.h
 ChessProject.o:	macros.h
 ChessProject.o:	timer.h

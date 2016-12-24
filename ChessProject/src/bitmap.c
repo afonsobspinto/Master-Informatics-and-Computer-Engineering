@@ -2,13 +2,27 @@
 #include "stdio.h"
 #include "video_gr.h"
 #include "utilities.h"
+#include "chess.h"
 
 
 //Bitmaps
 static Bitmap *board;
+
+static Bitmap *wKing;
+static Bitmap *wQueen;
+static Bitmap *wRook;
+static Bitmap *wBishop;
+static Bitmap *wKnight;
+static Bitmap *wPawn;
+static Bitmap *bKing;
+static Bitmap *bQueen;
+static Bitmap *bRook;
+static Bitmap *bBishop;
+static Bitmap *bKnight;
+static Bitmap *bPawn;
+
 static Bitmap *player1;
 static Bitmap *player2;
-static Bitmap *cursor;
 static Bitmap *logo;
 static Bitmap *local1;
 static Bitmap *serial1;
@@ -17,6 +31,7 @@ static Bitmap *local2;
 static Bitmap *serial2;
 static Bitmap *exit2;
 
+static Bitmap *cursor;
 
 Bitmap* loadBitmap(const char* filename) {
     // allocating necessary size
@@ -159,6 +174,66 @@ int loadBitmaps(){
 		return 1;
 	}
 
+	wKing = loadBitmap("/home/lcom/ChessProject/res/wKing.bmp");
+	if(wKing == NULL){
+		return 1;
+	}
+
+	wQueen = loadBitmap("/home/lcom/ChessProject/res/wQueen.bmp");
+	if(wQueen == NULL){
+		return 1;
+	}
+
+	wRook = loadBitmap("/home/lcom/ChessProject/res/wRook.bmp");
+	if(wRook == NULL){
+		return 1;
+	}
+
+	wBishop = loadBitmap("/home/lcom/ChessProject/res/wBishop.bmp");
+	if(wBishop == NULL){
+		return 1;
+	}
+
+	wKnight = loadBitmap("/home/lcom/ChessProject/res/wKnight.bmp");
+	if(wKnight == NULL){
+		return 1;
+	}
+
+	wPawn = loadBitmap("/home/lcom/ChessProject/res/wPawn.bmp");
+	if(wPawn == NULL){
+		return 1;
+	}
+
+	bKing = loadBitmap("/home/lcom/ChessProject/res/bKing.bmp");
+	if(bKing == NULL){
+		return 1;
+	}
+
+	bQueen = loadBitmap("/home/lcom/ChessProject/res/bQueen.bmp");
+	if(bQueen == NULL){
+		return 1;
+	}
+
+	bRook = loadBitmap("/home/lcom/ChessProject/res/bRook.bmp");
+	if(bRook == NULL){
+		return 1;
+	}
+
+	bBishop = loadBitmap("/home/lcom/ChessProject/res/bBishop.bmp");
+	if(bBishop == NULL){
+		return 1;
+	}
+
+	bKnight = loadBitmap("/home/lcom/ChessProject/res/bKnight.bmp");
+	if(bKnight == NULL){
+		return 1;
+	}
+
+	bPawn = loadBitmap("/home/lcom/ChessProject/res/bPawn.bmp");
+	if(bPawn == NULL){
+		return 1;
+	}
+
 	//	cursor = loadBitmap("/home/lcom/ChessProject/res/cursor.bmp");
 	//	if(board == NULL){
 	//		return 1;
@@ -236,5 +311,8 @@ void drawBoard(){
 	call_drawBitmap(logo,20,10,ALIGN_LEFT);
 	call_drawBitmap(player1, 10, 230, ALIGN_LEFT);
 	call_drawBitmap(player2, 10, 430, ALIGN_LEFT);
+
+	call_drawBitmap(wRook, 212, 540, ALIGN_LEFT);
+	call_drawBitmap(wRook, 742, 540, ALIGN_LEFT);
 
 }
