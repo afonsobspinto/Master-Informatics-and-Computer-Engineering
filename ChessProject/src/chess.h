@@ -20,6 +20,9 @@ typedef struct
 	int xpos;
 	int ypos;
 
+	//background (b, w)
+	char bg;
+
 }Piece;
 
 static Piece matrix[8][8];

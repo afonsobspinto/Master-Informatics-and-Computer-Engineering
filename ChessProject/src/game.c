@@ -8,14 +8,16 @@
 #include <minix/drivers.h>
 
 
-#define gameTime  5;
+#define gameTime  1;
 
 static counterPlayer1 = 60*gameTime;
 static counterPlayer2 = 60*gameTime;
 
 int game_management(){
 
+	fillBoard();
 	drawBoard();
+
 
 	GAME_STATE game_state = WHITE2PLAY;
 
@@ -40,6 +42,7 @@ int game_management(){
 	int x1 = 5;
 	int width = 190;
 	int heigth = 30;
+	int width_temp;
 
 	int xPlayer1 = x1+width;
 	int xPlayer2 = xPlayer1;
@@ -49,9 +52,9 @@ int game_management(){
 
 	//while(gameON);
 
-	if(game_state == WHITE2PLAY){
+	if(game_state == BLACK2PLAY){
 
-		float ratio =  (float)width/(float)counterPlayer1; //This might not been working
+		int totalsegundos =  counterPlayer1;
 
 		while((counterPlayer1 > 0) && (key != KEY_SPACE))
 		{
@@ -72,10 +75,13 @@ int game_management(){
 					if (msg.NOTIFY_ARG & timer_hook) {
 						counterPlayer1_tics-=1;
 						if(counterPlayer1_tics%60==0){
+
+
+
+							width_temp = counterPlayer1 * width / totalsegundos;
 							draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, 0);
-							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, 26);
+							draw_rectangle(x1, x1+width_temp, yPlayer1, yPlayer1+heigth, 26);
 							draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,26);
-							xPlayer1 -= ratio;
 							counterPlayer1-=1;
 						}
 
@@ -87,9 +93,9 @@ int game_management(){
 			}
 		}
 	}
-	else if(game_state == BLACK2PLAY){
+	else if(game_state == WHITE2PLAY){
 
-		float ratio =  (float)width/(float)counterPlayer2; //This might not been working
+		int totalsegundos =  counterPlayer2;
 		xPlayer2=x1 + width;
 
 		while((counterPlayer2 > 0) && (key != KEY_SPACE))
@@ -111,10 +117,10 @@ int game_management(){
 					if (msg.NOTIFY_ARG & timer_hook) {
 						counterPlayer2_tics-=1;
 						if(counterPlayer2_tics%60==0){
+							width_temp = counterPlayer2 * width / totalsegundos;
 							draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, 0);
-							draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth, 26);
+							draw_rectangle(x1, x1+width_temp, yPlayer2, yPlayer2+heigth, 26);
 							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, 26);
-							xPlayer2 -= ratio;
 							counterPlayer2-=1;
 						}
 					}

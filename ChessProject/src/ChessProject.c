@@ -32,26 +32,7 @@ int main(int argc, char **argv) {
 int chessproject_start(){
 
 
-	Piece a;
 
-	fillBoard();
-
-	a = getMatrixAt(0,0);
-
-	printf("%d", a.state);
-//
-//
-//	a=getMatrix();
-//
-////a[x][y] = a+x*My+y
-//	printf("%d\n",a->state);
-//
-//	printf("%d\n",(a+0*8+8)->state);
-
-
-	sleep(5);
-
-	return 0;
 
 	vg_init(MODE);
 
@@ -78,21 +59,6 @@ int chessproject_start(){
 			return 0;
 	}
 
-
-
-//	draw_timer(30, 14);
-
-// sleep(5);
-
-
-
-	//game_management();
-
-//	call_drawBitmap(Background,512,0,ALIGN_CENTER);
-//
-//
-//	sleep(4);
-
 	return 0;
 }
 
@@ -103,13 +69,13 @@ int chessproject_exit(){
 
 GAME_STATE main_menu(){
 
-	drawMenu(1,1,1);
-	//if(rato sobre espaço 1)
-		//drawMenu(2,1,1);
-		//if(rato click)
-			//return MULTIPLAYER_LOCAL;
-
-	sleep(5);
+//	drawMenu(1,1,1);
+//	//if(rato sobre espaço 1)
+//		//drawMenu(2,1,1);
+//		//if(rato click)
+//			//return MULTIPLAYER_LOCAL;
+//
+//	sleep(5);
 
 	return MULTIPLAYER_LOCAL;
 }

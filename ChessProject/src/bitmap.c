@@ -8,18 +8,41 @@
 //Bitmaps
 static Bitmap *board;
 
-static Bitmap *wKing;
-static Bitmap *wQueen;
-static Bitmap *wRook;
-static Bitmap *wBishop;
-static Bitmap *wKnight;
-static Bitmap *wPawn;
-static Bitmap *bKing;
-static Bitmap *bQueen;
-static Bitmap *bRook;
-static Bitmap *bBishop;
-static Bitmap *bKnight;
-static Bitmap *bPawn;
+static Bitmap *wKingw;
+static Bitmap *wKingb;
+
+static Bitmap *wQueenw;
+static Bitmap *wQueenb;
+
+static Bitmap *wRookb;
+static Bitmap *wRookw;
+
+static Bitmap *wBishopw;
+static Bitmap *wBishopb;
+
+static Bitmap *wKnightb;
+static Bitmap *wKnightw;
+
+static Bitmap *wPawnb;
+static Bitmap *wPawnw;
+
+static Bitmap *bKingb;
+static Bitmap *bKingw;
+
+static Bitmap *bQueenb;
+static Bitmap *bQueenw;
+
+static Bitmap *bRookb;
+static Bitmap *bRookw;
+
+static Bitmap *bBishopw;
+static Bitmap *bBishopb;
+
+static Bitmap *bKnightb;
+static Bitmap *bKnightw;
+
+static Bitmap *bPawnb;
+static Bitmap *bPawnw;
 
 static Bitmap *player1;
 static Bitmap *player2;
@@ -174,63 +197,124 @@ int loadBitmaps(){
 		return 1;
 	}
 
-	wKing = loadBitmap("/home/lcom/ChessProject/res/wKing.bmp");
-	if(wKing == NULL){
+	wKingb = loadBitmap("/home/lcom/ChessProject/res/wKingb.bmp");
+	if(wKingb == NULL){
 		return 1;
 	}
 
-	wQueen = loadBitmap("/home/lcom/ChessProject/res/wQueen.bmp");
-	if(wQueen == NULL){
+	wKingw = loadBitmap("/home/lcom/ChessProject/res/wKingw.bmp");
+	if(wKingw == NULL){
 		return 1;
 	}
 
-	wRook = loadBitmap("/home/lcom/ChessProject/res/wRook.bmp");
-	if(wRook == NULL){
+	wQueenw = loadBitmap("/home/lcom/ChessProject/res/wQueenw.bmp");
+	if(wQueenw == NULL){
 		return 1;
 	}
 
-	wBishop = loadBitmap("/home/lcom/ChessProject/res/wBishop.bmp");
-	if(wBishop == NULL){
+	wQueenb = loadBitmap("/home/lcom/ChessProject/res/wQueenb.bmp");
+	if(wQueenb == NULL){
 		return 1;
 	}
 
-	wKnight = loadBitmap("/home/lcom/ChessProject/res/wKnight.bmp");
-	if(wKnight == NULL){
+	wRookb = loadBitmap("/home/lcom/ChessProject/res/wRookb.bmp");
+	if(wRookb == NULL){
 		return 1;
 	}
 
-	wPawn = loadBitmap("/home/lcom/ChessProject/res/wPawn.bmp");
-	if(wPawn == NULL){
+	wRookw = loadBitmap("/home/lcom/ChessProject/res/wRookw.bmp");
+	if(wRookw == NULL){
 		return 1;
 	}
 
-	bKing = loadBitmap("/home/lcom/ChessProject/res/bKing.bmp");
-	if(bKing == NULL){
+	wBishopb = loadBitmap("/home/lcom/ChessProject/res/wBishopb.bmp");
+	if(wBishopb == NULL){
 		return 1;
 	}
 
-	bQueen = loadBitmap("/home/lcom/ChessProject/res/bQueen.bmp");
-	if(bQueen == NULL){
+	wBishopw = loadBitmap("/home/lcom/ChessProject/res/wBishopw.bmp");
+	if(wBishopw == NULL){
 		return 1;
 	}
 
-	bRook = loadBitmap("/home/lcom/ChessProject/res/bRook.bmp");
-	if(bRook == NULL){
+	wKnightb = loadBitmap("/home/lcom/ChessProject/res/wKnightb.bmp");
+	if(wKnightb == NULL){
 		return 1;
 	}
 
-	bBishop = loadBitmap("/home/lcom/ChessProject/res/bBishop.bmp");
-	if(bBishop == NULL){
+	wKnightw = loadBitmap("/home/lcom/ChessProject/res/wKnightw.bmp");
+	if(wKnightw == NULL){
 		return 1;
 	}
 
-	bKnight = loadBitmap("/home/lcom/ChessProject/res/bKnight.bmp");
-	if(bKnight == NULL){
+	wPawnb = loadBitmap("/home/lcom/ChessProject/res/wPawnb.bmp");
+	if(wPawnb == NULL){
 		return 1;
 	}
 
-	bPawn = loadBitmap("/home/lcom/ChessProject/res/bPawn.bmp");
-	if(bPawn == NULL){
+	wPawnw = loadBitmap("/home/lcom/ChessProject/res/wPawnw.bmp");
+	if(wPawnw == NULL){
+		return 1;
+	}
+
+	bKingb = loadBitmap("/home/lcom/ChessProject/res/bKingb.bmp");
+	if(bKingb == NULL){
+		return 1;
+	}
+
+	bKingw = loadBitmap("/home/lcom/ChessProject/res/bKingw.bmp");
+	if(bKingw == NULL){
+		return 1;
+	}
+
+	bQueenw = loadBitmap("/home/lcom/ChessProject/res/bQueenw.bmp");
+	if(bQueenw == NULL){
+		return 1;
+	}
+
+	bQueenb = loadBitmap("/home/lcom/ChessProject/res/bQueenb.bmp");
+	if(bQueenb == NULL){
+		return 1;
+	}
+
+
+	bKnightb = loadBitmap("/home/lcom/ChessProject/res/bKnightb.bmp");
+	if(bKnightb == NULL){
+		return 1;
+	}
+
+	bKnightw = loadBitmap("/home/lcom/ChessProject/res/bKnightw.bmp");
+	if(bKnightw == NULL){
+		return 1;
+	}
+
+	bRookw = loadBitmap("/home/lcom/ChessProject/res/bRookw.bmp");
+	if(bRookw == NULL){
+		return 1;
+	}
+
+	bRookb = loadBitmap("/home/lcom/ChessProject/res/bRookb.bmp");
+	if(bRookb == NULL){
+		return 1;
+	}
+
+	bBishopb = loadBitmap("/home/lcom/ChessProject/res/bBishopb.bmp");
+	if(bBishopb == NULL){
+		return 1;
+	}
+
+	bBishopw = loadBitmap("/home/lcom/ChessProject/res/bBishopw.bmp");
+	if(bBishopw == NULL){
+		return 1;
+	}
+
+	bPawnb = loadBitmap("/home/lcom/ChessProject/res/bPawnb.bmp");
+	if(bPawnb == NULL){
+		return 1;
+	}
+
+	bPawnw = loadBitmap("/home/lcom/ChessProject/res/bPawnw.bmp");
+	if(bPawnw == NULL){
 		return 1;
 	}
 
@@ -312,7 +396,122 @@ void drawBoard(){
 	call_drawBitmap(player1, 10, 230, ALIGN_LEFT);
 	call_drawBitmap(player2, 10, 430, ALIGN_LEFT);
 
-	call_drawBitmap(wRook, 212, 540, ALIGN_LEFT);
-	call_drawBitmap(wRook, 742, 540, ALIGN_LEFT);
 
+
+	unsigned int i = 0;
+	for(; i < ROWS ; i++){
+		unsigned int u = 0;
+		for (; u < COLS ; u++){
+			Piece P = getMatrixAt(i,u);
+			if(P.name == 'R'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wRookb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wRookw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bRookb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bRookw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+			else if(P.name == 'N'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wKnightb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wKnightw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bKnightb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bKnightw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+			else if(P.name == 'B'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wBishopb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wBishopw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bBishopb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bBishopw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+			else if(P.name == 'K'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wKingb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wKingw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bKingb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bKingw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+
+			else if(P.name == 'Q'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wQueenb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wQueenw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bQueenb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bQueenw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+			else if(P.name == 'p'){
+				if(P.color == 'w'){
+					if(P.bg == 'b'){
+						call_drawBitmap(wPawnb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(wPawnw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+				else{
+					if(P.bg == 'b'){
+						call_drawBitmap(bPawnb, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+					else{
+						call_drawBitmap(bPawnw, P.xpos, P.ypos, ALIGN_LEFT);
+					}
+				}
+			}
+		}
+	}
 }
