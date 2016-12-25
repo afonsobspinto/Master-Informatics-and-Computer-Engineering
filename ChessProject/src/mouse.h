@@ -15,6 +15,9 @@ typedef struct {
 	int current_click;
 	int previous_click;
 
+	int color;
+	int size;
+
 } Mouse;
 
 Mouse* newMouse();

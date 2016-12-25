@@ -53,11 +53,13 @@ void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment);
 
 void copy2VideoMem();
 
+void copy2VideoMem3();
+
 void copy2Mbuffer();
 
 void fill_screen(unsigned long color);
 
-void draw_pixel(unsigned short x, unsigned short y, unsigned long color);
+void draw_pixel(unsigned short x, unsigned short y, unsigned long color, int buff);
 
 void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color);
 

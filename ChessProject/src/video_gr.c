@@ -132,20 +132,42 @@ void copy2VideoMem(){
 	memcpy(video_mem,buffer,h_res * v_res * bits_per_pixel / 8);
 }
 
+void copy2VideoMem3(){
+	memcpy(video_mem,mbuffer,h_res * v_res * bits_per_pixel / 8);
+}
+
 void copy2Mbuffer(){
 
 	memcpy(mbuffer,buffer,h_res * v_res * bits_per_pixel / 8);
 }
 
-void draw_pixel(unsigned short x, unsigned short y, unsigned long color)
+void draw_pixel(unsigned short x, unsigned short y, unsigned long color, int buff)
 {
-    char *tmp = video_mem;
+    char *tmp;
+
+    if(buff == THIRD_BUFFER){
+    	tmp = mbuffer;
+    	printf("Estou a escrever no mBuffer \n");
+    }
+
+    else if(buff == SECOND_BUFFER){
+    	tmp = buffer;
+    	printf("Estou a escrever no Buffer \n");
+    }
+
+    else{
+    	printf("Estou a escrever no VideoMem \n");
+    	tmp = video_mem;
+    }
+
 
     if(x > 0 && x < h_res && y > 0 && y < v_res){
 
         tmp += (x + y*h_res)*bits_per_pixel/8;
 
-        *tmp=color;
+        *tmp=(0xFF & color);
+        tmp++;
+        *tmp=(0xFF & (color >> 8));
     }
 
 
@@ -167,7 +189,7 @@ void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, uns
 		for(i = y1; i <= y2; i++)
 		{
 			for(j = x1; j <= x2; j++){
-					draw_pixel(j, i, color);
+					draw_pixel(j, i, color, 2);
 			}
 		}
 }

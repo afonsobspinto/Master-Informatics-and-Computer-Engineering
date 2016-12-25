@@ -7,6 +7,18 @@
 #define ROWS 8
 #define COLS 8
 
+#define YELLOW 				65024
+#define RED					38914
+#define BLUE				255
+#define WHITE				16777215
+#define BLACK				0
+
+#define VIDEO_MEM 	  				1
+#define SECOND_BUFFER 				2
+#define THIRD_BUFFER  				3
+
+
+
 typedef enum {
 	MENU,
 	MULTIPLAYER_LOCAL,

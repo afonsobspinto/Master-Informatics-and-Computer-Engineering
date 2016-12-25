@@ -50,7 +50,7 @@ int game_management(){
 	int yPlayer2 = 450;
 
 
-	//while(gameON);
+	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 
 	if(game_state == BLACK2PLAY){
 
@@ -76,10 +76,11 @@ int game_management(){
 						counterPlayer1_tics-=1;
 						if(counterPlayer1_tics%60==0){
 							width_temp = counterPlayer1 * width / totalsegundos;
-							draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, 0);
-							draw_rectangle(x1, x1+width_temp, yPlayer1, yPlayer1+heigth, 26);
-							draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,26);
+							draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, BLACK);
+							draw_rectangle(x1, x1+width_temp, yPlayer1, yPlayer1+heigth, BLUE);
+							draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
 							counterPlayer1-=1;
+							drawMouse();
 						}
 
 					}
@@ -115,10 +116,11 @@ int game_management(){
 						counterPlayer2_tics-=1;
 						if(counterPlayer2_tics%60==0){
 							width_temp = counterPlayer2 * width / totalsegundos;
-							draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, 0);
-							draw_rectangle(x1, x1+width_temp, yPlayer2, yPlayer2+heigth, 26);
-							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, 26);
+							draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, BLACK);
+							draw_rectangle(x1, x1+width_temp, yPlayer2, yPlayer2+heigth, BLUE);
+							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
 							counterPlayer2-=1;
+							drawMouse();
 						}
 					}
 					break;
@@ -128,6 +130,7 @@ int game_management(){
 			}
 		}
 	}
+//	}
 
 	if(kbd_unsubscribe_int(kbd_hook) != 0)
 		return 1;

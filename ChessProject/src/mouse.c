@@ -20,6 +20,8 @@ Mouse* newMouse(){
 	Mouse* m = (Mouse*) malloc (sizeof(Mouse));
 	m->x = 400;
 	m->y = 300;
+	m->size = 40;
+	m->color = WHITE;
 
 	return m;
 }
@@ -27,23 +29,23 @@ Mouse* newMouse(){
 
 void drawMouse(){
 
-	unsigned int color = 30;
-	unsigned int size = 40;
-
 	copy2Mbuffer();
+	printf("Copiei o buffer para o mBuffer \n");
 
 	int i, j;
 
-	unsigned short half_size = size/2;
+	unsigned short half_size = mouse->size/2;
 
 	for( i = mouse->x - half_size/2; i < mouse->x + half_size/2; i ++){
-		draw_pixel(i,mouse->y,color);
+		draw_pixel(i,mouse->y,mouse->color,3);
 	}
 
 	for(j = mouse->y - half_size/2; j < mouse->y + half_size/2; j++){
-		draw_pixel(mouse->x,j,color);
+		draw_pixel(mouse->x,j,mouse->color,3);
 	}
 
+	copy2VideoMem3();
+	printf("Copiei o mbuffer para o videomem \n");
 }
 
 void deleteMouse(){
