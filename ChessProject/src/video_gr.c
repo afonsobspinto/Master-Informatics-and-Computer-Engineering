@@ -31,6 +31,7 @@
 static char *video_mem;		/* Process address to which VRAM is mapped */
 static char *buffer;
 
+
 static unsigned h_res;		/* Horizontal screen resolution in pixels */
 static unsigned v_res;		/* Vertical screen resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
@@ -129,18 +130,17 @@ void copy_buffer(unsigned int size){
 	memcpy(video_mem,buffer,size);
 }
 
-int draw_pixel(unsigned short x, unsigned short y, unsigned long color)
+void draw_pixel(unsigned short x, unsigned short y, unsigned long color)
 {
-	char *tmp = video_mem;
-	if(x < 0 || x >= h_res || y < 0 || y >= v_res){
-		return 1;
-	}
+    char *tmp = video_mem;
 
-	tmp += (x + y*h_res)*bits_per_pixel/8;
-	*tmp=color;
+    if(x > 0 && x < h_res && y > 0 && y < v_res){
 
-	return 0;
+        tmp += (x + y*h_res)*bits_per_pixel/8;
 
+        *tmp=color;
+
+    }
 
 }
 

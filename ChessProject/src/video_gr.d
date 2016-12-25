@@ -51,9 +51,11 @@ video_gr.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 video_gr.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 video_gr.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
 video_gr.o:	bitmap.h
+video_gr.o:	chess.h
 video_gr.o:	i8254.h
 video_gr.o:	macros.h
 video_gr.o:	timer.h
+video_gr.o:	utilities.h
 video_gr.o:	vbe.h
 video_gr.o:	video_gr.c
 video_gr.o:	video_gr.h

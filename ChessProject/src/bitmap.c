@@ -46,15 +46,19 @@ static Bitmap *bPawnw;
 
 static Bitmap *player1;
 static Bitmap *player2;
+
 static Bitmap *logo;
+
 static Bitmap *local1;
-static Bitmap *serial1;
-static Bitmap *exit1;
 static Bitmap *local2;
+
+static Bitmap *serial1;
 static Bitmap *serial2;
+
+static Bitmap *exit1;
 static Bitmap *exit2;
 
-static Bitmap *cursor;
+
 
 Bitmap* loadBitmap(const char* filename) {
     // allocating necessary size
@@ -317,11 +321,6 @@ int loadBitmaps(){
 	if(bPawnw == NULL){
 		return 1;
 	}
-
-	//	cursor = loadBitmap("/home/lcom/ChessProject/res/cursor.bmp");
-	//	if(board == NULL){
-	//		return 1;
-	//	}
 
 	logo = loadBitmap("/home/lcom/ChessProject/res/logo.bmp");
 	if(logo == NULL){

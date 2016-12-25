@@ -5,24 +5,16 @@ typedef struct {
     int x, y;
     int xSign, ySign;
     int deltaX, deltaY;
-    double speedMultiplier;
 
-    int byteBeingRead;
     unsigned long packet[3];
 
-    int leftButtonDown;
-    int middleButtonDown;
-    int rightButtonDown;
+    int leftButton;
+    int middleButton;
+    int rightButton;
 
-    int leftButtonReleased;
-    int rightButtonReleased;
-    int middleButtonReleased;
+	int current_click;
+	int previous_click;
 
-    int size;
-    int color1, color2;
-
-    int hasBeenUpdated;
-    int draw;
 } Mouse;
 
 Mouse* getMouse();

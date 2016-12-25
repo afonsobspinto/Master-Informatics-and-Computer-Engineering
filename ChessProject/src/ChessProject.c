@@ -31,10 +31,11 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
-
-
-
 	vg_init(MODE);
+
+	drawMouse();
+
+	sleep(5);
 
 	// Initialize Bitmaps
 
