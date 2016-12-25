@@ -1,11 +1,12 @@
+#include <stdio.h>
 #include "ChessProject.h"
 #include "utilities.h"
 #include "macros.h"
 #include "timer.h"
 #include "game.h"
-#include <stdio.h>
 #include "bitmap.h"
 #include "chess.h"
+#include "mouse.h"
 
 
 int main(int argc, char **argv) {
@@ -33,6 +34,9 @@ int chessproject_start(){
 
 	vg_init(MODE);
 
+	// Initialize Mouse
+
+	getMouse();
 	drawMouse();
 
 	sleep(5);
@@ -41,6 +45,8 @@ int chessproject_start(){
 
 	if(loadBitmaps() == 1)
 		return 1;
+
+	// Inicial State
 
 	GAME_STATE game_state = MENU;
 
@@ -64,6 +70,8 @@ int chessproject_start(){
 }
 
 int chessproject_exit(){
+	deleteMouse();
+	//deleteBitmaps();
 	vg_exit();
 	return 0;
 }

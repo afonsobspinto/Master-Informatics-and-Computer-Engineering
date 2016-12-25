@@ -56,11 +56,11 @@ void fillBoard(){
 		for (; u < COLS; u++){
 
 			if(bg == 1){
-				Piece noPiece = {'K', 'w', 0, width, heigth, 'b'};
+				Piece noPiece = {'n', 'n', 0, width, heigth, 'n'};
 				matrix[i][u] = noPiece;
 			}
 			else{
-				Piece noPiece = {'Q', 'w', 0, width, heigth, 'w'};
+				Piece noPiece = {'n', 'n', 0, width, heigth, 'n'};
 				matrix[i][u] = noPiece;
 			}
 			width += 75;

@@ -51,7 +51,9 @@ char *getGraphicsBuffer();
 
 void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment);
 
-void copy_buffer(unsigned int size);
+void copy2VideoMem();
+
+void copy2Mbuffer();
 
 void fill_screen(unsigned long color);
 

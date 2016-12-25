@@ -181,7 +181,7 @@ void drawBitmap(char* buffer, Bitmap* bmp, int x, int y, Alignment alignment) {
         memcpy(bufferStartPos, imgStartPos, drawWidth * 2);
     }
 
-    copy_buffer(getHorResolution()*getVerResolution()*2);
+    copy2VideoMem();
 }
 
 void deleteBitmap(Bitmap* bmp) {

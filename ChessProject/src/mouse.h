@@ -17,6 +17,7 @@ typedef struct {
 
 } Mouse;
 
+Mouse* newMouse();
 Mouse* getMouse();
 void updateMouse();
 void drawMouse();

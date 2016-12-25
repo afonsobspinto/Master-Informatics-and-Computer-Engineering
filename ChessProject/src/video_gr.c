@@ -30,6 +30,7 @@
 
 static char *video_mem;		/* Process address to which VRAM is mapped */
 static char *buffer;
+static char *mbuffer;
 
 
 static unsigned h_res;		/* Horizontal screen resolution in pixels */
@@ -104,6 +105,7 @@ void *vg_init(unsigned short mode)
 
 	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
 	buffer = (char*) malloc(h_res * v_res *(bits_per_pixel)/8);
+	mbuffer = (char*) malloc(h_res * v_res *(bits_per_pixel)/8);
 
 	if(video_mem == MAP_FAILED)
 		panic("couldn't map video memory");
@@ -126,8 +128,13 @@ void call_drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment){
 	drawBitmap(buffer,bmp,x,y,alignment);
 }
 
-void copy_buffer(unsigned int size){
-	memcpy(video_mem,buffer,size);
+void copy2VideoMem(){
+	memcpy(video_mem,buffer,h_res * v_res * bits_per_pixel / 8);
+}
+
+void copy2Mbuffer(){
+
+	memcpy(mbuffer,buffer,h_res * v_res * bits_per_pixel / 8);
 }
 
 void draw_pixel(unsigned short x, unsigned short y, unsigned long color)
@@ -139,8 +146,8 @@ void draw_pixel(unsigned short x, unsigned short y, unsigned long color)
         tmp += (x + y*h_res)*bits_per_pixel/8;
 
         *tmp=color;
-
     }
+
 
 }
 

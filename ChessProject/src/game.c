@@ -4,6 +4,7 @@
 #include "kbd.h"
 #include "utilities.h"
 #include "bitmap.h"
+#include "mouse.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
@@ -17,7 +18,6 @@ int game_management(){
 
 	fillBoard();
 	drawBoard();
-
 
 	GAME_STATE game_state = WHITE2PLAY;
 
@@ -75,9 +75,6 @@ int game_management(){
 					if (msg.NOTIFY_ARG & timer_hook) {
 						counterPlayer1_tics-=1;
 						if(counterPlayer1_tics%60==0){
-
-
-
 							width_temp = counterPlayer1 * width / totalsegundos;
 							draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, 0);
 							draw_rectangle(x1, x1+width_temp, yPlayer1, yPlayer1+heigth, 26);
@@ -140,72 +137,3 @@ int game_management(){
 	return 0;
 
 }
-
-
-//	int draw_timer(unsigned int counter, unsigned int color){
-//
-//		int timer_hook= timer_subscribe_int();
-//
-//		if(timer_subscribe_int()<0)
-//			return 1;
-//
-//		int r, ipc_status;
-//
-//		message msg;
-//
-//
-//		int counterPlayer1_tics = counterPlayer1*60;
-//
-//
-//
-//		while((counterPlayer1 > 0))
-//
-//		{
-//			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
-//
-//				printf("Driver_receive failed\n");
-//
-//				continue;
-//
-//			}
-//
-//			if (is_ipc_notify(ipc_status)) // Notification received
-//
-//			{
-//
-//				switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
-//
-//				{
-//
-//				case HARDWARE:
-//
-//					if (msg.NOTIFY_ARG & timer_hook) {
-//
-//						counterPlayer1_tics-=1;
-//
-//						if(counterPlayer1_tics%60==0){
-//							counterPlayer1-=1;
-//							fill_screen(0);
-//							draw_rectangle(x1, x2, y1, y2, color);
-//							y1 += 1;
-//						}
-//
-//						printf("tempo: %d \n", counterPlayer1);
-//					}
-//
-//					break;
-//				default:
-//
-//					break; // no other notifications expected: do nothing
-//
-//				}
-//
-//			}
-//
-//		}
-//
-//		timer_unsubscribe_int();
-//
-//		return 0;
-//
-//	}

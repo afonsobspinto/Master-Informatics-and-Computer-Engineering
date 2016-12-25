@@ -1,36 +1,27 @@
 #include "mouse.h"
 #include "mouse_cmds.h"
+#include "video_gr.h"
 
 static int mouse_hook_id;
 
 Mouse* mouse = NULL;
 
-Mouse* newMouse();
-
 Mouse* getMouse(){
 	if(!mouse){
-		enableMouse();
+		//enableMouse();
 		mouse = newMouse();
 	}
 
 	return mouse;
 }
 
-int enableMouse(){
- return 0;
-}
-
 Mouse* newMouse(){
 
+	Mouse* m = (Mouse*) malloc (sizeof(Mouse));
+	m->x = 400;
+	m->y = 300;
 
-	Mouse* mouse = (Mouse*) malloc (sizeof(Mouse));
-	mouse->x = 400;
-	mouse->y = 300;
-
-	printf("%d\n", mouse->x);
-	printf("%d\n", mouse->y);
-
-	return mouse;
+	return m;
 }
 
 
@@ -39,9 +30,9 @@ void drawMouse(){
 	unsigned int color = 30;
 	unsigned int size = 40;
 
-	int i, j;
+	copy2Mbuffer();
 
-	mouse = getMouse();
+	int i, j;
 
 	unsigned short half_size = size/2;
 
@@ -57,6 +48,10 @@ void drawMouse(){
 
 void deleteMouse(){
 	free(getMouse());
+}
+
+void updateMouse(){
+
 }
 
 int mouseInside(int x1, int y1, int x2, int y2){
