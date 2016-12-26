@@ -4,7 +4,9 @@
 
 int game_management();
 
-int draw_timer(unsigned int counter, unsigned int color);
+int test_packet(unsigned short cnt);
+
+int test_packet_int_handler(unsigned short* cnt);
 
 
 #endif /* __TIMER_H */

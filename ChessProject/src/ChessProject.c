@@ -32,6 +32,12 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
+
+	test_packet(10);
+
+	return 0;
+
+
 	vg_init(MODE);
 
 

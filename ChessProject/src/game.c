@@ -34,11 +34,15 @@ int game_management(){
 	unsigned mouse_hook_id = MOUSE_HOOK_BIT;
 
 	if (mouse_subscribe_int(&mouse_hook_id) == -1)
-	{
 		return 1;
-	}
 
+	if (mouse_set_stream_mode())
+		return 1;
 
+	if (mouse_enable_stream_mode())
+		return 1;
+
+	printf("Oi \n");
 	int r, ipc_status;
 
 	unsigned long key = 0;
@@ -91,8 +95,13 @@ int game_management(){
 							counterPlayer1-=1;
 							drawMouse();
 						}
-
 					}
+
+//					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
+//						printf("RATO VIVO! \n");
+//					}
+
+
 					break;
 				default:
 					break; // no other notifications expected: do nothing
@@ -146,9 +155,70 @@ int game_management(){
 
 	timer_unsubscribe_int();
 
+	mouse_disable_stream_mode();
+
 	mouse_unsubscribe_int(mouse_hook_id);
 
 
 	return 0;
 
 }
+
+int test_packet(unsigned short cnt){
+
+	unsigned hook_id = MOUSE_IRQ;
+
+	mouse_subscribe_int(&hook_id);
+	mouse_set_stream_mode();
+	mouse_enable_stream_mode();
+
+
+	printf("%d \n", cnt);
+
+	int r, ipc_status;
+	message msg;
+	unsigned char packet[3];
+
+	while(cnt > 0)
+	{
+		printf("Oi2");
+		// Message requested
+		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) { // Notification received
+			switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
+			{
+			case HARDWARE:
+				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)) {
+					if (test_packet_int_handler(&cnt))
+						return 1;
+				}
+			default:
+				break; // no other notifications expected: do nothing
+			}
+		}
+	}
+
+	mouse_disable_stream_mode();
+	mouse_unsubscribe_int(hook_id);
+
+	return 0;
+}
+
+
+int test_packet_int_handler(unsigned short* cnt)
+{
+	if(mouse_int_handler())
+		return 1;
+
+
+	if(mouse_get_packet())
+	{
+		--*cnt;
+		display_packet();
+	}
+	return 0;
+}
+
