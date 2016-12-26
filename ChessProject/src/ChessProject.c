@@ -34,12 +34,10 @@ int chessproject_start(){
 
 	vg_init(MODE);
 
+
 	// Initialize Mouse
 
 	getMouse();
-	drawMouse();
-
-	sleep(5);
 
 	// Initialize Bitmaps
 

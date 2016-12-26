@@ -5,6 +5,7 @@
 #include "utilities.h"
 #include "bitmap.h"
 #include "mouse.h"
+#include "mouse_cmds.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
@@ -23,12 +24,20 @@ int game_management(){
 
 	int kbc_hook = KBC_IRQ;
 
-	if(kbd_subscribe_int(&kbc_hook)<0)
+	if(kbc_subscribe_int(&kbc_hook)<0)
 		return 1;
 
 	int timer_hook= timer_subscribe_int();
 	if(timer_subscribe_int()<0)
 		return 1;
+
+	unsigned mouse_hook_id = MOUSE_HOOK_BIT;
+
+	if (mouse_subscribe_int(&mouse_hook_id) == -1)
+	{
+		return 1;
+	}
+
 
 	int r, ipc_status;
 
@@ -132,10 +141,13 @@ int game_management(){
 	}
 //	}
 
-	if(kbd_unsubscribe_int(kbc_hook) != 0)
+	if(kbc_unsubscribe_int(kbc_hook) != 0)
 		return 1;
 
 	timer_unsubscribe_int();
+
+	mouse_unsubscribe_int(mouse_hook_id);
+
 
 	return 0;
 

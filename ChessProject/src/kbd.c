@@ -8,19 +8,13 @@
 #include <stdio.h>
 #include <minix/sysutil.h>
 
-int kbd_subscribe_int(unsigned* kbd_hook)
+int kbc_subscribe_int(unsigned* kbc_hook)
 {
-	if (sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, kbd_hook) < 0)
+	if (sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, kbc_hook) < 0)
 		return -1;
 	return KBC_IRQ;
 }
 
-int kbd_unsubscribe_int(unsigned kbd_hook)
-{
-	if (sys_irqrmpolicy(&kbd_hook) < 0)
-		return -1;
-	return 0;
-}
 int kbc_read_status(unsigned long* status)
 {
 	return sys_inb(KBC_STAT_REG, status);
