@@ -48,14 +48,14 @@ void Cliente::addValor(int preco) {
 	valor += preco;
 }
 
-bool Cliente::operator <(Cliente& rhs) {
+bool Cliente::operator <(const Cliente& rhs) {
 	if (this->getNome() < rhs.getNome())
 		return true;
 	else
 		return false;
 }
 
-bool Cliente::operator ==(Cliente& rhs) {
+bool Cliente::operator ==(const  Cliente& rhs) {
 	if (this->getNome() == rhs.getNome())
 		return true;
 	else

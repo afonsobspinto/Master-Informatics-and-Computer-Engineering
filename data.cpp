@@ -24,7 +24,7 @@ unsigned int Data::getAno() const {
 	return ano;
 }
 
-bool Data::operator ==(Data& rhs) {
+bool Data::operator ==(const Data& rhs) {
 	if(this->ano == rhs.ano)
 		if(this->mes == rhs.dia)
 			if(this->dia==rhs.dia)
@@ -32,7 +32,7 @@ bool Data::operator ==(Data& rhs) {
 	return false;
 }
 
-bool Data::operator <(Data& rhs) {
+bool Data::operator <(const Data& rhs) {
 	if (this->ano<rhs.ano)
 		return true;
 	if(this->ano>rhs.ano)

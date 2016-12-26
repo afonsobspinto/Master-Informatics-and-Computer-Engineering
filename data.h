@@ -14,8 +14,8 @@ public:
   unsigned int getDia ()const;
   unsigned int getMes ()const;
   unsigned int getAno ()const;
-  bool operator == (Data & rhs);
-  bool operator < (Data & rhs);
+  bool operator == (const Data & rhs);
+  bool operator < (const Data & rhs);
   Data operator - (int n);
   friend long int operator - (Data &lhs, Data & rhs);
   };
