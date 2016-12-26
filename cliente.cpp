@@ -48,6 +48,20 @@ void Cliente::addValor(int preco) {
 	valor += preco;
 }
 
+bool Cliente::operator <(Cliente& rhs) {
+	if (this->getNome() < rhs.getNome())
+		return true;
+	else
+		return false;
+}
+
+bool Cliente::operator ==(Cliente& rhs) {
+	if (this->getNome() == rhs.getNome())
+		return true;
+	else
+		return false;
+}
+
 void Cliente::setPontos(int pontos) {
 }
 

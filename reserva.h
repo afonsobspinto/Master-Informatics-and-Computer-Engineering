@@ -7,14 +7,14 @@
 
 #include <string>
 #include "cliente.h"
-
+#include "data.h"
 
 class Reserva{
 	Data inicio;
 	Data final;
 	float preco;
 
-	Cliente c;
+	Cliente c; // Juntar c aos parametros da Reserva
 	Data limite100;
 	Data limite50;
 	std::string id;
@@ -22,12 +22,15 @@ class Reserva{
 public:
 	Reserva(Data inicio, Data final, float preco_por_noite);
 	Reserva(Data inicio, Data final, float preco_por_noite, std::string id);
+	Cliente getCliente() const;
 	Data getInicio() const;
 	Data getFinal() const;
 	Data getLimite100() const;
 	Data getLimite50() const;
 	float getPreco() const;
 	std::string getID() const;
+
+	bool operator < (const Reserva & rhs) const;
 };
 
 

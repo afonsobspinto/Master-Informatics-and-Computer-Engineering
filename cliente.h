@@ -26,7 +26,8 @@ public:
 	static unsigned int getTotalClientes();
 	virtual void setPontos(int pontos);
 	void addValor(int preco);
-
+	bool operator < (Cliente & rhs);
+    bool operator == (Cliente & rhs);
 
 };
 

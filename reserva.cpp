@@ -1,7 +1,4 @@
 #include "reserva.h"
-
-#include "cliente.h"
-
 #include "utils.h"
 #include <iostream>
 
@@ -26,9 +23,9 @@ Reserva::Reserva(Data inicio, Data final, float preco_por_noite, std::string id)
 	this->id = id;
 }
 
-
-
-
+Cliente Reserva::getCliente() const {
+    return c;
+}
 
 Data Reserva::getInicio() const {
 	return inicio;
@@ -52,4 +49,10 @@ float Reserva::getPreco() const {
 
 std::string Reserva::getID() const {
 	return id;
+}
+
+bool Reserva::operator <(const Reserva& rhs) const {
+	if (this->getCliente() == rhs.getCliente())
+		return this->getFinal() < rhs.getFinal();
+	return this->getCliente() < rhs.getCliente();
 }

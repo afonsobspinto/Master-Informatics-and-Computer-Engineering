@@ -5,6 +5,7 @@
 #include "BinaryTree.h"
 #include "BST.h"
 #include "reserva.h"
+#include "cliente.h"
 
 class Fatura{
 	BST<Reserva> historico;
