@@ -10,6 +10,13 @@
 #define KEY_SPACE 						0x0039
 #define SET_RESET_CMD 					0xED
 
+// KBC registers
+#define KBC_STAT_REG					0x64
+#define KBC_CTRL_REG					0x64
+#define KBC_IN_BUF						0x60
+#define KBC_OUT_BUF						0x60
+
+
 // KBC Commands
 #define KBC_READ_COMMAND_BYTE		    0x20
 #define KBC_WRITE_COMMAND_BYTE	        0x60
@@ -22,6 +29,16 @@
 #define KBC_OUT_BUF					 	0x60
 #define KBC_IN_BUF 						0x60
 #define KBC_CMD_REG 					0x64
+
+// KBC Status Register
+#define KBC_PARITY_BIT	                7
+#define KBC_TIMEOUT_BIT		            6
+#define KBC_AUX_BIT				        5
+#define KBC_INH_BIT						4
+#define KBC_A2_BIT						3
+#define KBC_SYS_BIT					    2
+#define KBC_IBF_BIT					    1
+#define KBC_OBF_BIT						0
 
 #define TWO_BYTE_SCAN 					0xE0
 

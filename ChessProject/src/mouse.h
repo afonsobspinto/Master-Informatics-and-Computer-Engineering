@@ -33,4 +33,13 @@ int subscribeMouse();
 int unsubscribeMouse();
 
 
+int mouse_write(unsigned char cmd);
+int mouse_read(unsigned char* read);
+int mouse_set_stream_mode();
+int mouse_enable_stream_mode();
+int mouse_disable_stream_mode();
+int mouse_get_packet();
+int mouse_int_handler();
+int mouse_sync();
+
 

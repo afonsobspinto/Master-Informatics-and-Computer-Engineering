@@ -2,8 +2,11 @@
 #include "mouse_cmds.h"
 #include "macros.h"
 #include "video_gr.h"
+#include "kbd.h"
 
 static int mouse_hook_id;
+static unsigned char packet[3];
+static unsigned char byteCounter = 0;
 
 Mouse* mouse = NULL;
 
@@ -69,5 +72,175 @@ int unsubscribeMouse(){
 		return 0;
 	return 1;
 }
+
+
+
+int mouse_get_packet()
+{
+
+	if (mouse_sync() && byteCounter == 0)
+	{
+		//Byte 1
+		mouse->packet[0] = packet[0];
+
+		//Byte 2
+		mouse->packet[1] = packet[1];
+
+		//Byte 3
+		mouse->packet[2] = packet[2];
+
+		// X Overflow
+		mouse->xOvf = (packet[0] & BIT(MOUSE_X_OVFL));
+
+		// Y Overflow
+		mouse->yOvf = (packet[0] & BIT(MOUSE_Y_OVFL));
+
+		// Left Button
+		mouse->leftButton = (packet[0] & BIT(MOUSE_L_B));
+
+		// Middle Button
+		mouse->middleButton = (packet[0] & BIT(MOUSE_M_B));
+
+		// Right Button
+		mouse->rightButton = (packet[0] & BIT(MOUSE_R_B));
+
+
+		if (mouse->xOvf)
+				{
+					if (packet[0] & BIT(MOUSE_X_SIGN))
+						mouse->deltaX = (1 << 8) - 1;
+					else
+						mouse->deltaX = (-1 << 8) + 1;
+				}
+				else{
+					if(packet[0]&BIT(MOUSE_X_SIGN))
+						mouse->deltaX = ((-1<<8)|packet[1]);
+					else
+						mouse->deltaX = packet[1];
+				}
+
+				if (mouse->yOvf)
+				{
+					if (packet[0] & BIT(MOUSE_Y_SIGN))
+						mouse->deltaY = (1 << 8) - 1;
+					else
+						mouse->deltaY = (-1 << 8) + 1;
+				}
+				else{
+					if(packet[0]& BIT(MOUSE_Y_SIGN))
+						mouse->deltaY = ((-1<<8)|packet[2]);
+					else
+						mouse->deltaY = packet[2];
+				}
+				return 1;
+			}
+	return 0;
+}
+
+int mouse_sync()
+{
+	if ((packet[0]) & BIT(3))
+		return 1;
+
+	unsigned int i, j;
+
+	for (i = 1; i < 3; ++i)
+	{
+		if ((packet[i]) & BIT(3))
+		{
+			for (j = 0; j < 3; ++j)
+			{
+				packet[j] = packet[(i + j) % 3];
+				byteCounter -= i;
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
+
+int mouse_write(unsigned char cmd)
+{
+	unsigned char read;
+
+	while(1)
+	{
+		if (kbc_write_to_mouse())
+			return 1;
+		if (kbc_send_data(cmd))
+			return 1;
+		if (kbc_read(&read))
+			return 1;
+		if (read == MOUSE_ACK)
+			return 0;
+	}
+}
+
+int mouse_read(unsigned char* read)
+{
+	size_t i, j;
+	unsigned long status;
+	while(1)
+	{
+		if (kbc_read_status(&status))
+			return 1;
+		if (sys_inb(KBC_OUT_BUF, (unsigned long *)read) != OK)
+			return 1;
+		if (status & BIT(KBC_AUX_BIT))
+			break;
+	}
+	return 0;
+}
+
+int mouse_int_handler()
+{
+	unsigned char read;
+
+	if (kbc_read(&read))
+		return 1;
+
+	packet[byteCounter] = read;
+	byteCounter = (byteCounter + 1) % 3;
+
+	return 0;
+}
+
+int mouse_set_stream_mode()
+{
+	if(mouse_write(MOUSE_SET_STREAM_MODE))
+		return 1;
+
+	return 0;
+}
+
+int mouse_enable_stream_mode()
+{
+	if(mouse_write(MOUSE_ENABLE_DATA_PACKETS))
+		return 1;
+
+	packet[0]=0;
+	packet[1]=0;
+	packet[2]=0;
+	byteCounter = 0;
+
+	return 0;
+}
+
+int mouse_disable_stream_mode()
+{
+	if(mouse_write(MOUSE_DISABLE_DATA_PACKETS))
+		return 1;
+
+	packet[0]=0;
+	packet[1]=0;
+	packet[2]=0;
+	byteCounter = 0;
+
+	return 0;
+}
+
+
+
 
 
