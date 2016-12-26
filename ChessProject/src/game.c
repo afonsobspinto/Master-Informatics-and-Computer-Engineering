@@ -21,9 +21,9 @@ int game_management(){
 
 	GAME_STATE game_state = WHITE2PLAY;
 
-	int kbd_hook = KBD_IRQ;
+	int kbc_hook = KBC_IRQ;
 
-	if(kbd_subscribe_int(&kbd_hook)<0)
+	if(kbd_subscribe_int(&kbc_hook)<0)
 		return 1;
 
 	int timer_hook= timer_subscribe_int();
@@ -67,9 +67,9 @@ int game_management(){
 				switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
 				{
 				case HARDWARE:
-					if (msg.NOTIFY_ARG & BIT(KBD_IRQ))
+					if (msg.NOTIFY_ARG & BIT(KBC_IRQ))
 					{
-						if(sys_inb(KBD_OUT_BUF, &key)!= OK)
+						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
 							return 1;
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
@@ -107,9 +107,9 @@ int game_management(){
 				switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
 				{
 				case HARDWARE:
-					if (msg.NOTIFY_ARG & BIT(KBD_IRQ))
+					if (msg.NOTIFY_ARG & BIT(KBC_IRQ))
 					{
-						if(sys_inb(KBD_OUT_BUF, &key)!= OK)
+						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
 							return 1;
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
@@ -132,7 +132,7 @@ int game_management(){
 	}
 //	}
 
-	if(kbd_unsubscribe_int(kbd_hook) != 0)
+	if(kbd_unsubscribe_int(kbc_hook) != 0)
 		return 1;
 
 	timer_unsubscribe_int();

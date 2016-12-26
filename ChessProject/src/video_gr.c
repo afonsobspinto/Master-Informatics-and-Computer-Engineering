@@ -147,16 +147,13 @@ void draw_pixel(unsigned short x, unsigned short y, unsigned long color, int buf
 
     if(buff == THIRD_BUFFER){
     	tmp = mbuffer;
-    	printf("Estou a escrever no mBuffer \n");
     }
 
     else if(buff == SECOND_BUFFER){
     	tmp = buffer;
-    	printf("Estou a escrever no Buffer \n");
     }
 
     else{
-    	printf("Estou a escrever no VideoMem \n");
     	tmp = video_mem;
     }
 

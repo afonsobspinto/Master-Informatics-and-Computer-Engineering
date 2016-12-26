@@ -1,5 +1,6 @@
 #include "mouse.h"
 #include "mouse_cmds.h"
+#include "macros.h"
 #include "video_gr.h"
 
 static int mouse_hook_id;
@@ -7,10 +8,8 @@ static int mouse_hook_id;
 Mouse* mouse = NULL;
 
 Mouse* getMouse(){
-	if(!mouse){
-		//enableMouse();
+	if(!mouse)
 		mouse = newMouse();
-	}
 
 	return mouse;
 }
@@ -22,6 +21,9 @@ Mouse* newMouse(){
 	m->y = 300;
 	m->size = 40;
 	m->color = WHITE;
+	m->packet[0]=0;
+	m->packet[1]=0;
+	m->packet[2]=0;
 
 	return m;
 }
@@ -30,7 +32,6 @@ Mouse* newMouse(){
 void drawMouse(){
 
 	copy2Mbuffer();
-	printf("Copiei o buffer para o mBuffer \n");
 
 	int i, j;
 
@@ -45,16 +46,12 @@ void drawMouse(){
 	}
 
 	copy2VideoMem3();
-	printf("Copiei o mbuffer para o videomem \n");
 }
 
 void deleteMouse(){
 	free(getMouse());
 }
 
-void updateMouse(){
-
-}
 
 int mouseInside(int x1, int y1, int x2, int y2){
 	return x1<= getMouse()->x && getMouse()->x <=x2
@@ -62,15 +59,9 @@ int mouseInside(int x1, int y1, int x2, int y2){
 }
 
 int subscribeMouse(){
-//	if (sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, mouse_hook_id) == OK)
-//		{
-//			getMouse()->packet[0]=0;
-//			getMouse()->packet[1]=0;
-//			getMouse()->packet[2]=0;
-//		//	getMouse()->byteBeingRead=0;
-//			return mouse_hook_id;
-//		}
-//		return -1;
+	if (sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, mouse_hook_id) == OK)
+			return mouse_hook_id;
+		return -1;
 }
 
 int unsubscribeMouse(){
@@ -78,3 +69,5 @@ int unsubscribeMouse(){
 		return 0;
 	return 1;
 }
+
+

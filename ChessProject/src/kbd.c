@@ -10,9 +10,9 @@
 
 int kbd_subscribe_int(unsigned* kbd_hook)
 {
-	if (sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, kbd_hook) < 0)
+	if (sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, kbd_hook) < 0)
 		return -1;
-	return KBD_IRQ;
+	return KBC_IRQ;
 }
 
 int kbd_unsubscribe_int(unsigned kbd_hook)

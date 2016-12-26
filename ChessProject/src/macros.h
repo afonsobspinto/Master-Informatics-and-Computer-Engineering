@@ -1,9 +1,9 @@
 #ifndef _MACROS_KBD
 #define _MACROS_KBD
 
-#define KBD_IRQ				         	1
-#define KBD_OUT_BUF					 	0x60
-#define KBD_IN_BUF 						0x60
+#define KBC_IRQ				         	1
+#define KBC_OUT_BUF					 	0x60
+#define KBC_IN_BUF 						0x60
 #define KBC_CMD_REG 					0x64
 
 #define BREAK_CODE 						BIT(7)
@@ -18,6 +18,10 @@
 #define KBC_DIS_KBD_ITF		           	0xAD
 #define KBC_EN_KBD_ITF		            0xAE
 #define KBC_WRITE_BYTE_TO_MOUSE			0xD4
+#define KBC_IRQ				         	1
+#define KBC_OUT_BUF					 	0x60
+#define KBC_IN_BUF 						0x60
+#define KBC_CMD_REG 					0x64
 
 #define TWO_BYTE_SCAN 					0xE0
 

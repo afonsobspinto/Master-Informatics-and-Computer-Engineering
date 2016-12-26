@@ -15,6 +15,7 @@
 #define MOUSE_SET_RESOLUTION			0xE8
 #define MOUSE_SET_SCALING_2_1			0xE7
 #define MOUSE_SET_SCALING_1_1			0xE6
+#define STAT_REG						0x64
 
 // Mouse responses
 #define MOUSE_ACK						0xFA
