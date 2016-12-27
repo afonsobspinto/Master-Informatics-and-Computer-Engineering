@@ -32,8 +32,6 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
-	printf("Oi");
-
 	vg_init(MODE);
 
 	// Initialize Mouse

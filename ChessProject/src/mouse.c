@@ -48,6 +48,23 @@ void drawMouse(){
 	copy2VideoMem3();
 }
 
+void updateMouse(){
+
+	mouse_struct info;
+
+	if(mouse_get_packet(&info)) {
+			int new_x = mouse->x + info.x_delta;
+			int new_y = mouse->y - info.y_delta;
+
+
+			mouse->x = new_x;
+			mouse->y = new_y;
+
+		}
+
+
+}
+
 void deleteMouse(){
 	free(getMouse());
 }

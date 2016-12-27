@@ -27,6 +27,7 @@ Mouse* newMouse();
 Mouse* getMouse();
 
 void drawMouse();
+void updateMouse();
 void deleteMouse();
 
 int mouseInside(int x1, int y1, int x2, int y2);

@@ -126,19 +126,19 @@ int game_management(){
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
 						counterPlayer2_tics-=1;
+						drawMouse();
 						if(counterPlayer2_tics%60==0){
 							width_temp = counterPlayer2 * width / totalsegundos;
 							draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, BLACK);
 							draw_rectangle(x1, x1+width_temp, yPlayer2, yPlayer2+heigth, BLUE);
 							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
 							counterPlayer2-=1;
-							drawMouse();
 						}
 					}
 
 					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
 						mouse_int_handler();
-						printf("Hi Mouse! \n");
+						updateMouse();
 					}
 
 					break;
@@ -157,6 +157,8 @@ int game_management(){
 
 	mouse_disable_stream_mode();
 	mouse_unsubscribe_int(hook_id);
+	unsigned char st;
+	kbc_read(&st);
 
 	return 0;
 
@@ -198,6 +200,10 @@ int test_packet(unsigned short cnt){
 
 	mouse_disable_stream_mode();
 	mouse_unsubscribe_int(hook_id);
+
+
+	unsigned char st;
+	kbc_read(&st);
 
 	return 0;
 }
