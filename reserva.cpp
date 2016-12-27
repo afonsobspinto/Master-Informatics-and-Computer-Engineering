@@ -3,6 +3,16 @@
 #include <iostream>
 
 
+Reserva::Reserva(Data inicio, Data final, float preco_por_noite) {
+	this->inicio = inicio;
+	this->final = final;
+	limite50 = inicio - 15;
+	limite100 = inicio - 30;
+	preco = preco_por_noite * (final - inicio);
+	id = random_string(16);
+
+}
+
 Reserva::Reserva(Cliente c, Data inicio, Data final, float preco_por_noite) {
 	this->c = c;
 	this->inicio = inicio;

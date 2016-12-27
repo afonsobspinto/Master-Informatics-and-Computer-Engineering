@@ -265,7 +265,7 @@ std::vector<Reserva> leReservas(float preco) {
 				getch();
 			}
 
-			Reserva R(*UserC, D1, D2, preco);
+			Reserva R(D1, D2, preco);
 
 			reservas.push_back(R);
 
@@ -421,10 +421,8 @@ string getpass(const char *prompt, bool show_asterisk)
 {
   const char BACKSPACE=127;
   const char RETURN=10;
-
   string password;
   unsigned char ch=0;
-
   cout <<prompt;
   while((ch=getch())!=RETURN)
     {
