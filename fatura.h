@@ -10,6 +10,7 @@
 class Fatura{
 	BST<Reserva> historico;
 public:
+	Fatura() : historico(Reserva()){};
 	BST<Reserva> getHistorico() const;
 	void adicionaReserva(Reserva r); // Adiciona a reserva r ao historico de reservas
 };

@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 BST<Reserva> Fatura::getHistorico() const {
 	return historico;
 }

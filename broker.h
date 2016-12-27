@@ -11,12 +11,14 @@
 #include "data.h"
 #include "fornecedor.h"
 #include "imovel.h"
+#include "fatura.h"
 
 
 class Broker{
 
 	Cliente *UserC;
 	Fornecedor *UserF;
+	Fatura *Fat;
 
 	std::string nome;
 	std::string ficheiroClientes;

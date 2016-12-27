@@ -4,13 +4,25 @@
 
 
 #include "broker.h"
+#include "fatura.h"
 
 
 using namespace std;
 
 
 int main() {
-
+	Cliente C("clie");
+	Fornecedor F("forn", 123456789, "pass", "morada", {});
+	Hotel I("imo",1,12,{});
+	Data d1(27,12,2016);
+	Data d2(29,12,2016);
+	Reserva R(C,d1,d2,2);
+	cout << "5" << endl;
+	Fatura Fat = Fatura();
+	cout << "6" << endl;
+	Fat.adicionaReserva(R);
+	cout << "7" << endl;
+/*
 	string nome;
 	string filename;
 	fstream f;
@@ -51,5 +63,5 @@ int main() {
 	}
 
 	return 1;
-
+*/
 }

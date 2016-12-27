@@ -258,10 +258,11 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	guardaFornecedores();
 	guardaBase();
 	atualizaMontra();
+	UserC->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
+	Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico
 
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
-	UserC->ultima == D2;
 	cout << "Codigo de Cancelamento: " << R.getID();
 	getch();
 	return true;
