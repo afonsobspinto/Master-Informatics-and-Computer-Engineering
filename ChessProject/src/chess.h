@@ -7,7 +7,7 @@
 
 typedef struct
 {
-	//Name of the piece (R, N, B, K , Q, p)
+	//Name of the piece (R, N, B, K , Q, p, n)
 	char name;
 
 	//Color of the piece (b, w)
@@ -40,5 +40,6 @@ int isCheck();
 int clearBoard();
 
 Piece getMatrixAt(int x, int y);
+
 
 #endif /* __CHESS */

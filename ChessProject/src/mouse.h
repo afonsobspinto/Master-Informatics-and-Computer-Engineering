@@ -30,26 +30,18 @@ void drawMouse();
 void updateMouse();
 void deleteMouse();
 
+int isPieceSelected ();
 int mouseInside(int x1, int y1, int x2, int y2);
 
 void display_packet(mouse_struct info);
 
 int mouse_subscribe_int(unsigned *hook_id);
-
 int mouse_unsubscribe_int(unsigned hook_id);
-
 int mouse_write(unsigned char cmd);
-
 int mouse_read(unsigned char* read);
-
 int mouse_set_stream_mode();
-
 int mouse_enable_stream_mode();
-
 int mouse_disable_stream_mode();
-
 int mouse_get_packet(mouse_struct *info);
-
 int mouse_int_handler();
-
 int mouse_sync();

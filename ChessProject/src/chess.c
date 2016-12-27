@@ -116,3 +116,5 @@ Piece getMatrixAt(int x, int y){
 			y>=0 && y < COLS)
 		return matrix[x][y];
 }
+
+

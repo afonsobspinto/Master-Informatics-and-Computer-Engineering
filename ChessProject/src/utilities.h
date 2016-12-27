@@ -7,6 +7,10 @@
 #define ROWS 8
 #define COLS 8
 
+#define CORRECTION 25
+
+#define SQUARE_SIZE	37.5
+
 #define YELLOW 				65024
 #define RED					38914
 #define BLUE				255

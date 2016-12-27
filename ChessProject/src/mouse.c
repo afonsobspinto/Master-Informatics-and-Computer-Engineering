@@ -3,7 +3,8 @@
 #include "macros.h"
 #include "video_gr.h"
 #include "kbd.h"
-
+#include "chess.h"
+#include "utilities.h"
 
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
@@ -20,8 +21,8 @@ Mouse* getMouse(){
 Mouse* newMouse(){
 
 	Mouse* m = (Mouse*) malloc (sizeof(Mouse));
-	m->x = 400;
-	m->y = 300;
+	m->x = 0;
+	m->y = 0;
 	m->size = 40;
 	m->color = WHITE;
 
@@ -57,11 +58,19 @@ void updateMouse(){
 		int new_y = mouse->y - info.y_delta;
 
 
-		if (new_x > 0 && new_x < getHorResolution() &&
+		if(new_x > 0 && new_x < getHorResolution() &&
 				new_y > 0 && new_y < getVerResolution()){
 			mouse->x = new_x;
 			mouse->y = new_y;
 		}
+
+		if(info.left){
+			printf("Click\n");
+			if(isPieceSelected()==1){
+			}
+
+		}
+
 
 	}
 
@@ -73,9 +82,40 @@ void deleteMouse(){
 }
 
 
+int isPieceSelected (){
+
+	unsigned int i = 0;
+	for(; i < ROWS ; i++){
+		unsigned int u = 0;
+		for (; u < COLS ; u++){
+			Piece P = getMatrixAt(i,u);
+
+
+			if(P.state == 1){
+
+				int xpos = P.xpos;
+				int ypos = P.ypos;
+
+
+
+				if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
+					printf("Peça: %c \n ", P.name);
+					printf("Cor: %c \n ", P.color);
+
+					return 1;
+				}
+
+			}
+
+		}
+	}
+
+	return 0;
+}
+
 int mouseInside(int x1, int y1, int x2, int y2){
-	return x1<= getMouse()->x && getMouse()->x <=x2
-			&& y1<= getMouse()->y && getMouse()->y <= y2;
+	return x1<= getMouse()->x - CORRECTION && getMouse()->x - CORRECTION <=x2
+			&& y1<= getMouse()->y - CORRECTION && getMouse()->y - CORRECTION <= y2;
 }
 
 int mouse_subscribe_int(unsigned* mouse_hook_id)
