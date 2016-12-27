@@ -21,6 +21,8 @@
 #include "data.h"
 #include "fornecedor.h"
 #include "imovel.h"
+#include "broker.h"
+#include "reserva.h"
 
 
 std::string random_string(size_t length);

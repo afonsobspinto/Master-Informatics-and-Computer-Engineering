@@ -3,7 +3,8 @@
 #include <iostream>
 
 
-Reserva::Reserva(Data inicio, Data final, float preco_por_noite) {
+Reserva::Reserva(Cliente c, Data inicio, Data final, float preco_por_noite) {
+	this->c = c;
 	this->inicio = inicio;
 	this->final = final;
 	limite50 = inicio - 15;
@@ -14,7 +15,8 @@ Reserva::Reserva(Data inicio, Data final, float preco_por_noite) {
 }
 
 
-Reserva::Reserva(Data inicio, Data final, float preco_por_noite, std::string id) {
+Reserva::Reserva(Cliente c, Data inicio, Data final, float preco_por_noite, std::string id) {
+	this->c = c;
 	this->inicio = inicio;
 	this->final = final;
 	limite50 = final - 15;

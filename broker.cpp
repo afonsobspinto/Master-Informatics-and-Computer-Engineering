@@ -250,7 +250,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	C->setPontos(ceil(0.1*preco));
 	C->addValor(preco);
 
-	Reserva R = Reserva(D1,D2, I->getPreco());
+	Reserva R = Reserva(*UserC, D1,D2, I->getPreco());
 	I->addReservas(R);
 
 	receita += I->getTaxa()*R.getPreco();
@@ -261,6 +261,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
+	UserC->ultima == D2;
 	cout << "Codigo de Cancelamento: " << R.getID();
 	getch();
 	return true;
@@ -508,7 +509,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 //				cout << dataInicio_str +"1" << endl;
 //				cout << dataFim_str +"1" << endl;
 
-				Reserva R(dataInicio, dataFim, preco, id);
+				Reserva R(*UserC, dataInicio, dataFim, preco, id);
 				reservas.push_back(R);
 
 				if(tipo == "Apartamento"){

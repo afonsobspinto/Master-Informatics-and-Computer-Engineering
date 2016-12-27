@@ -15,8 +15,8 @@ class Cliente{
 	std::string nome;
 	float valor;
 	static unsigned int counter;
-	Data ultima; // Data em que o cliente realizou a ultima reserva
 public:
+	Data ultima; // Data em que o cliente realizou a ultima reserva
 	Cliente(){};
 	Cliente(std::string nome);
 	Cliente(std::string nome, int pontos, float valor);

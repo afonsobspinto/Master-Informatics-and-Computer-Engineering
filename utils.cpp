@@ -265,7 +265,7 @@ std::vector<Reserva> leReservas(float preco) {
 				getch();
 			}
 
-			Reserva R(D1, D2, preco);
+			Reserva R(*UserC, D1, D2, preco);
 
 			reservas.push_back(R);
 
