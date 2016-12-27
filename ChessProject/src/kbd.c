@@ -48,7 +48,7 @@ int kbc_read(unsigned char* st)
 	if (sys_inb(KBC_OUT_BUF, (long unsigned int *) st) != OK)
 		return 1;
 
-	tickdelay(micros_to_ticks(DELAY_US));
+	//tickdelay(micros_to_ticks(DELAY_US));
 
 	return 0;
 }

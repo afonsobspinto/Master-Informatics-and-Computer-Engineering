@@ -53,14 +53,17 @@ void updateMouse(){
 	mouse_struct info;
 
 	if(mouse_get_packet(&info)) {
-			int new_x = mouse->x + info.x_delta;
-			int new_y = mouse->y - info.y_delta;
+		int new_x = mouse->x + info.x_delta;
+		int new_y = mouse->y - info.y_delta;
 
 
+		if (new_x > 0 && new_x < getHorResolution() &&
+				new_y > 0 && new_y < getVerResolution()){
 			mouse->x = new_x;
 			mouse->y = new_y;
-
 		}
+
+	}
 
 
 }
