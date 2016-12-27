@@ -1194,3 +1194,13 @@ bool Broker::verOfertas() const {
 Fornecedor* Broker::getUserF() {
 	return UserF;
 }
+
+bool Broker::seInativo(Cliente c) {
+	Data atual = string2data(currentDateTime());
+
+	if (!(atual - 30 < c.getUltima()))
+		inativos.insert(c);
+}
+
+bool Broker::atualizaInativos() {
+}

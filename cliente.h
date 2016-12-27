@@ -1,14 +1,9 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
-class Reserva;
-
 #include "data.h"
 #include <string>
 #include <vector>
-#include <tr1/unordered_set>
-
-typedef std::tr1::unordered_set<unsigned> inativos;
 
 
 class Cliente{
