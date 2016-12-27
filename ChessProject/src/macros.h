@@ -1,10 +1,7 @@
 #ifndef _MACROS_KBD
 #define _MACROS_KBD
 
-#define KBC_IRQ				         	1
-#define KBC_OUT_BUF					 	0x60
-#define KBC_IN_BUF 						0x60
-#define KBC_CMD_REG 					0x64
+
 
 #define BREAK_CODE 						BIT(7)
 #define KEY_SPACE 						0x0039
@@ -18,6 +15,7 @@
 
 
 // KBC Commands
+#define KBC_IRQ				         	1
 #define KBC_READ_COMMAND_BYTE		    0x20
 #define KBC_WRITE_COMMAND_BYTE	        0x60
 #define KBC_CHECK_KBC				    0xAA

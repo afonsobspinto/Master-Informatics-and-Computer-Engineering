@@ -32,14 +32,9 @@ int main(int argc, char **argv) {
 
 int chessproject_start(){
 
-
-	test_packet(10);
-
-	return 0;
-
+	printf("Oi");
 
 	vg_init(MODE);
-
 
 	// Initialize Mouse
 

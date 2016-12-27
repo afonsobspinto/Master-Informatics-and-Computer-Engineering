@@ -1,25 +1,27 @@
 
 #include <minix/drivers.h>
 
-typedef struct {
-    int x, y;
-    int xSign, ySign;
-    int xOvf, yOvf;
-    int deltaX, deltaY;
+typedef struct{
+	unsigned char bytes[3];
+	int y_ovf;
+	int x_ovf;
+	int y_sign;
+	int x_sign;
+	int middle;
+	int right;
+	int left;
+	short x_delta;
+	short y_delta;
+} mouse_struct;
 
-    unsigned long packet[3];
-
-    int leftButton;
-    int middleButton;
-    int rightButton;
-
+typedef struct  {
+	int x;
+	int y;
 	int current_click;
 	int previous_click;
-
-	int color;
 	int size;
-
-} Mouse;
+	int color;
+}Mouse;
 
 Mouse* newMouse();
 Mouse* getMouse();
@@ -29,14 +31,24 @@ void deleteMouse();
 
 int mouseInside(int x1, int y1, int x2, int y2);
 
-int mouse_subscribe_int(unsigned* hook_id);
-int mouse_unsubscribe_int(unsigned hook_id);
-int mouse_set_stream_mode();
-int mouse_write( unsigned char cmd);
-int mouse_enable_stream_mode();
-int mouse_disable_stream_mode();
-int mouse_int_handler();
-int mouse_get_packet();
-int mouse_sync();
+void display_packet(mouse_struct info);
 
-void display_packet();
+int mouse_subscribe_int(unsigned *hook_id);
+
+int mouse_unsubscribe_int(unsigned hook_id);
+
+int mouse_write(unsigned char cmd);
+
+int mouse_read(unsigned char* read);
+
+int mouse_set_stream_mode();
+
+int mouse_enable_stream_mode();
+
+int mouse_disable_stream_mode();
+
+int mouse_get_packet(mouse_struct *info);
+
+int mouse_int_handler();
+
+int mouse_sync();

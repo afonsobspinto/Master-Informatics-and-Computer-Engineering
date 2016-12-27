@@ -51,5 +51,6 @@
 
 
 #define MOUSE_IRQ						12		// Mouse IRQ Line
+#define MOUSE_HOOK_NOTIFICATION 		12
 
 #endif

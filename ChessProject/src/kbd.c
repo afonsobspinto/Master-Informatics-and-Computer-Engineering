@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <minix/sysutil.h>
 
+#define DELAY_US 20000
+
 int kbc_subscribe_int(unsigned* kbc_hook)
 {
 	if (sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, kbc_hook) < 0)
@@ -45,6 +47,8 @@ int kbc_read(unsigned char* st)
 {
 	if (sys_inb(KBC_OUT_BUF, (long unsigned int *) st) != OK)
 		return 1;
+
+	tickdelay(micros_to_ticks(DELAY_US));
 
 	return 0;
 }
