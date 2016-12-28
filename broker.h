@@ -47,7 +47,8 @@ public:
 	float getReceita()const;
 
 
-	bool seInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
+	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
+	bool seInativo(const Cliente & c); // Ve se o cliente c e inativo
 	bool atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	bool adicionaCliente();
 	bool validaLoginCliente();

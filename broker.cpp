@@ -259,6 +259,8 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	guardaBase();
 	atualizaMontra();
 	UserC->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
+
+
 	Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico
 
 	cout << endl;
@@ -1208,12 +1210,19 @@ Fornecedor* Broker::getUserF() {
 	return UserF;
 }
 
-bool Broker::seInativo(const Cliente & c) {
+bool Broker::addInativo(const Cliente & c) {
 	Data atual = string2data(currentDateTime());
 
 	if (!(atual - 30 < c.getUltima()))
-		//inativos.insert(c); // Da erro estranho, nao consigo resolver?
+		inativos.insert(c); // Da erro estranho, nao consigo resolver
 		return true;
+	return false;
+}
+
+bool Broker::seInativo(const Cliente & c) {
+	if (inativos.count(c))
+		return true;
+	return false;
 }
 
 bool Broker::atualizaInativos() {

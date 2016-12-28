@@ -233,7 +233,8 @@ bool Broker::menuOutros() {
 
 		switch (opcao){
 		case 1:
-			// verHistorico();
+			if (verHistorico())
+				break;
 			break;
 		case 2:
 			// Fila de prioridade
