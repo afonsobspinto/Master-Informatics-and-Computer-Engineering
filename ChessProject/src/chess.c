@@ -1,10 +1,10 @@
 #include "chess.h"
 #include "utilities.h"
 
-static int wkingMove = 0;
+static int wKingMove = 0;
 static int wRook1Move = 0;
 static int wRook2Move = 0;
-static int bkingMove = 0;
+static int bKingMove = 0;
 static int bRook1Move = 0;
 static int bRook2Move = 0;
 
@@ -155,10 +155,22 @@ int makeMove(Piece p1, Piece p2){
 
 		//Castling Info
 		if(p1.name == 'K' && p1.color == 'w')
-			wkingMove++;
+			wKingMove++;
 
 		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
 			wRook1Move++;
+
+		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
+			wRook2Move++;
+
+		if(p1.name == 'K' && p1.color == 'b')
+			bKingMove++;
+
+		if(p1.name == 'R' && p1.color == 'w' && p1.i == 7 && p1.j == 7)
+			bRook1Move++;
+
+		if(p1.name == 'R' && p1.color == 'w' && p1.i == 7 && p1.j == 0)
+			bRook2Move++;
 
 
 		// Check-Mate
@@ -171,8 +183,7 @@ int makeMove(Piece p1, Piece p2){
 	}
 
 	//King-Side Castling White
-	if (valid == 2){
-		printf("SIGA! \n");
+	if (valid == WHITE_SHORT_CASTLING){
 		Piece NewPiece1;
 		Piece NewPiece2;
 
@@ -209,31 +220,65 @@ int makeMove(Piece p1, Piece p2){
 		return 1;
 	}
 
+	if (valid == WHITE_LONG_CASTLING){
+		Piece NewPiece1;
+		Piece NewPiece2;
+
+		NewPiece1.name = 'K';
+		NewPiece1.color = 'w';
+		NewPiece1.state = 1;
+		NewPiece1.i = 0;
+		NewPiece1.j = 2;
+		NewPiece1.xpos = 360;
+		NewPiece1.ypos = 535;
+		NewPiece1.bg = 'b';
+
+
+
+		NewPiece2.name = 'R';
+		NewPiece2.color = 'w';
+		NewPiece2.state = 1;
+		NewPiece2.i = 0;
+		NewPiece2.j = 3;
+		NewPiece2.xpos = 435;
+		NewPiece2.ypos = 535;
+		NewPiece2.bg = 'w';
+
+		matrix[NewPiece1.i][NewPiece1.j]=NewPiece1;
+		matrix[NewPiece2.i][NewPiece2.j]=NewPiece2;
+
+		Piece noPiece1 = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+		Piece noPiece2 = {'n', 'n', 0,p2.i,p2.j, p2.xpos, p2.ypos, p2.bg};
+		matrix[p1.i][p1.j]= noPiece1;
+		matrix[p2.i][p2.j]= noPiece2;
+
+		drawBoard();
+
+		return 1;
+	}
+
 	return 0;
 
 }
 
 int isValidMove(Piece p1, Piece p2){
 
-	printf("Is Valid Move? \n");
 	//Castling
 	if(p1.name == 'K' && p2.name =='R'){
-		printf("Será Castling? \n");
-		if(p1.color == 'w' && p2.color == 'w'){
-			printf("Dos Brancos? \n");
-			if(wkingMove == 0){
-				printf("O Rei Parece que Pode \n");
-				if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
-					printf("A Torre Tambem \n");
-					if(matrix[0][6].state == 0 && matrix[0][5].state == 0){
-						printf("Caminho Livre? \n");
-						return 2;
-					}
-
-				}
-
+		//White
+		if(p1.color == 'w' && p2.color == 'w' && wKingMove==0){
+			//Short
+			if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
+				if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
+					return WHITE_SHORT_CASTLING;
 			}
-
+			//Long
+			if(p2.i==0 && p2.j == 0 && wRook2Move == 0){
+				if(matrix[0][1].state == 0 &&
+						matrix[0][2].state == 0 &&
+						matrix[0][3].state == 0)
+					return WHITE_LONG_CASTLING;
+			}
 		}
 	}
 

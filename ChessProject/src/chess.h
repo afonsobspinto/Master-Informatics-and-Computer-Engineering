@@ -5,6 +5,9 @@
 #include "utilities.h"
 
 
+#define WHITE_SHORT_CASTLING 2
+#define WHITE_LONG_CASTLING 3
+
 typedef struct
 {
 	//Name of the piece (R, N, B, K , Q, p, n)
