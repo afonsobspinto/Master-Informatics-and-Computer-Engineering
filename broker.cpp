@@ -99,7 +99,7 @@ bool Broker::adicionaCliente() {
 
 	if(C.getNome()=="" || C.getPassword()==""){
 		cout << "Registo Falhou. Pressione enter para continuar." << endl;
-		getch();
+		_getch();
 		return false;
 	}
 
@@ -113,7 +113,7 @@ bool Broker::adicionaCliente() {
 			catch (UtilizadorJaExistente &e) {
 				cout << "Excecao:" << e.getNome() << " já foi utilizado. \n";
 				cout << "Pressione enter para continuar." << endl;
-				getch();
+				_getch();
 				return false;
 			}
 	}
@@ -123,7 +123,7 @@ bool Broker::adicionaCliente() {
 	guardaClientes();
 
 	cout << "Pressione enter para continuar." << endl;
-	getch();
+	_getch();
 
 	return true;
 }
@@ -141,7 +141,7 @@ bool Broker::adicionaFornecedor() {
 
 	if (F.getNome() == "" || F.getNif()==0 || F.getMorada() == "" || F.getPassword() == ""){
 		cout << "Registo Falhou. Pressione enter para continuar." << endl;
-		getch();
+		_getch();
 		return false;
 	}
 
@@ -155,7 +155,7 @@ bool Broker::adicionaFornecedor() {
 					}
 					catch (FornecedorJaExistente &e) {
 						cout << "Excecao:" << e.getNif() << " já foi utilizado. \n";
-						getch();
+						_getch();
 						return false;
 					}
 	}
@@ -168,8 +168,8 @@ bool Broker::adicionaFornecedor() {
 	guardaFornecedores();
 
 	cout << "Pressione enter para continuar." << endl;
-	getch();
-
+	_getch();
+	
 	return true;
 }
 
@@ -242,7 +242,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 		Data df = I->getReservas()->at(i).getFinal();
 		if (!dias_nao_sobrepostos(di,df,D1,D2)){
 			cout << "O imóvel já está ocupado nessas datas. Lamentamos." << endl;
-			getch();
+			_getch();
 			return false;
 		}
 	}
@@ -266,7 +266,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
 	cout << "Codigo de Cancelamento: " << R.getID();
-	getch();
+	_getch();
 	return true;
 }
 
@@ -309,7 +309,7 @@ bool Broker::cancelaReserva() {
 
 					cout << " Reserva Cancelada!" << endl
 							<< "Reembolso de "<< reembolso << endl;
-					getch();
+					_getch();
 					guardaFornecedores();
 					guardaClientes();
 					guardaBase();
@@ -320,7 +320,7 @@ bool Broker::cancelaReserva() {
 	}
 
 	cout << " Reserva Não Cancelada!" << endl;
-	getch();
+	_getch();
 	return false;
 }
 
@@ -340,7 +340,7 @@ bool Broker::validaLoginCliente() {
 
 	if(nome==""){
 		cout << "Login Falhou. Pressione enter para continuar." << endl;
-		getch();
+		_getch();
 		return false;
 	}
 	string password = lePassword(false);
@@ -350,14 +350,14 @@ bool Broker::validaLoginCliente() {
 			if(clientes.at(i).getPassword()==password){
 				UserC = (&clientes.at(i));
 				cout << "Pressione enter para continuar." << endl;
-				getch();
+				_getch();
 				return true;
 			}
 		}
 	}
 
 	cout << "Login Falhou. Pressione enter para continuar." << endl;
-	getch();
+	_getch();
 	return false;
 }
 
@@ -372,7 +372,7 @@ bool Broker::validaLoginFornecedor() {
 	int nif = leNif();
 	if(nif==0){
 		cout << "Login Falhou. Pressione enter para continuar." << endl;
-		getch();
+		_getch();
 		return false;
 	}
 
@@ -384,14 +384,14 @@ bool Broker::validaLoginFornecedor() {
 
 			if(fornecedores.at(i).getPassword()==password){
 				cout << "Pressione enter para continuar." << endl;
-				getch();
+				_getch();
 				UserF = (&fornecedores.at(i));
 				return true;
 			}
 	}}
 
 	cout << "Login Falhou. Pressione enter para continuar." << endl;
-	getch();
+	_getch();
 	return false;
 }
 
@@ -723,7 +723,7 @@ void Broker::classificacao() {
 				<< vec.at(i).getPontos() << " Pontos" << endl;
 		cout << endl;
 	}
-	getch();
+	_getch();
 }
 
 /*
@@ -736,7 +736,7 @@ bool Broker::mostraMontra(bool localidade, bool preco, bool datas) {
 	float precoMax;
 	Data D1;
 	Data D2;
-	Imovel* imovel;
+	Imovel* imovel = nullptr;
 
 	ClearScreen();
 
@@ -780,7 +780,7 @@ bool Broker::mostraMontra(bool localidade, bool preco, bool datas) {
 		}
 
 	ClearScreen();
-
+	
 	if(imovel->getOwner()==0)
 		return false;
 	return efectuaReserva(UserC, imovel);
@@ -807,7 +807,7 @@ Imovel* Broker::mostraMontraAux() {
 
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
-		getch();
+		_getch();
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -854,7 +854,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
-		getch();
+		_getch();
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -941,7 +941,7 @@ Imovel* Broker::mostraMontraAux(float preco) {
 
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
-		getch();
+		_getch();
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1072,7 +1072,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
-		getch();
+		_getch();
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1131,7 +1131,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
-		getch();
+		_getch();
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1184,7 +1184,7 @@ bool Broker::verOfertas() const {
 
 	cout << endl;
 	cout << "Pressione enter para continuar." << endl;
-	getch();
+	_getch();
 
 	return true;
 }
@@ -1234,6 +1234,7 @@ bool Broker::atualizaInativos() {
 	for(unsigned int i=0; i<csize;i++){
 		addInativo(clientes.at(i));
 	}
+	return true;
 
 
 }

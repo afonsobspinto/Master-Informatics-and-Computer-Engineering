@@ -9,14 +9,16 @@
 
 using namespace std;
 
-
 int main() {
-	/*Cliente C("clie");
+/*	Broker Existente("broker");
+	Registado C("clie", "passe");
 	Fornecedor F("forn", 123456789, "pass", "morada", {});
 	Hotel I("imo",1,12,{});
 	Data d1(27,10,2016);
 	Data d2(29,10,2016);
-	Reserva R(C,d1,d2,2);*/
+	Existente.getFornecedores().push_back(F);
+	Existente.getClientes().push_back(C);
+	Existente.efectuaReserva(C,I);*/
 
 	string nome;
 	string filename;

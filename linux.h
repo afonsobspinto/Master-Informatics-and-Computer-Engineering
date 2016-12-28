@@ -24,7 +24,7 @@ inline int getch() {
     t_new.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
 
-    ch = getchar();
+    ch = _getch();
 
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;

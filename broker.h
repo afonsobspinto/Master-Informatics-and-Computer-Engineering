@@ -12,13 +12,13 @@
 #include "fornecedor.h"
 #include "imovel.h"
 #include "fatura.h"
-#include <tr1/unordered_set>
+#include <unordered_set>
 
 struct clienteHash {
 
 	int operator() (const Cliente & c1) const
 		{
-			//
+			return true;
 		}
 
 	bool operator()(const Cliente & c1, const Cliente & c2) const {
@@ -32,7 +32,7 @@ class Broker{
 	Fornecedor *UserF;
 	Fatura *Fat;
 
-	typedef std::tr1::unordered_set<Cliente, clienteHash, clienteHash> tabH;
+	typedef std::unordered_set<Cliente, clienteHash, clienteHash> tabH;
 
 	tabH inativos;
 

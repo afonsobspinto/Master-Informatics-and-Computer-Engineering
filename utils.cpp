@@ -5,7 +5,7 @@
  *      Author: afonso
  */
 
-
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 
 #include "utils.h"
 #include <sstream>
@@ -26,7 +26,7 @@
 
 using namespace std;
 
-
+#define MAX 2147483647
 
 
 /////////////////////////// LEITURAS ///////////////////////
@@ -180,7 +180,7 @@ float lePreco(string msg) {
 	}
 	catch (PrecoInvalido &e) {
 		cout << "Apanhou excecao. Preço invalido" << endl;
-		getch();
+		_getch();
 		return -1;
 	}
 
@@ -192,7 +192,7 @@ float lePreco(string msg) {
 	}
 	catch (PrecoInvalido &e) {
 		cout << "Apanhou excecao. "<< e.getPreco() << " não é um preço válido." << endl;
-		getch();
+		_getch();
 		return 0;
 	}
 
@@ -224,7 +224,7 @@ std::vector<Reserva> leReservas(float preco) {
 			break;
 		else if(opcao == 0){
 			cout << "Leitura Interrompida" << endl;
-			getch();
+			_getch();
 			break;
 		}
 
@@ -239,7 +239,7 @@ std::vector<Reserva> leReservas(float preco) {
 
 			if(D1.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
-				getch();
+				_getch();
 				break;
 			}
 
@@ -254,7 +254,7 @@ std::vector<Reserva> leReservas(float preco) {
 
 			if(D2.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
-				getch();
+				_getch();
 				break;
 			}
 
@@ -262,7 +262,7 @@ std::vector<Reserva> leReservas(float preco) {
 			if(swapDatas(&D1,&D2)){
 				cout << "Detetamos que colocou uma Data Inicial mais recente que a Data Final." << endl <<
 				"Não se preocupe. Já corrigimos o erro por si." <<  endl;
-				getch();
+				_getch();
 			}
 
 			Reserva R(D1, D2, preco);
@@ -344,7 +344,7 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 	cout << endl;
 
 
-	opcao = leUnsignedShortInt(1, numeric_limits<unsigned int>::max());
+	opcao = leUnsignedShortInt(1, MAX);
 
 	switch(opcao){
 	case 0:
@@ -409,7 +409,7 @@ Data leData(string msg){
 
 	if(D1.getDia()==0){
 		cout << "Leitura Interrompida" << endl;
-		getch();
+		_getch();
 		return Data(0,0,0);
 	}
 	return D1;
@@ -424,7 +424,7 @@ string getpass(const char *prompt, bool show_asterisk)
   string password;
   unsigned char ch=0;
   cout <<prompt;
-  while((ch=getch())!=RETURN)
+  while((ch=getchar())!=RETURN)
     {
        if(ch==BACKSPACE)
          {
@@ -523,7 +523,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
-		getch();
+		_getch();
 		return Data(0,0,0);
 	}
 	try{
@@ -531,7 +531,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
-		getch();
+		_getch();
 		return Data(0,0,0);
 	}
 
@@ -540,7 +540,7 @@ Data string2data(string data){
 	}
 	catch (...){
 		cout << "Apanhou excecao. Data não convertivel." << endl;
-		getch();
+		_getch();
 		return Data(0,0,0);
 	}
 
@@ -550,7 +550,7 @@ Data string2data(string data){
 	}
 	catch (dataInvalida &e) {
 		cout << "Apanhou excecao. "<< e.getData() << " não é uma data válida." << endl;
-		getch();
+		_getch();
 		return Data(0,0,0);
 	}
 
