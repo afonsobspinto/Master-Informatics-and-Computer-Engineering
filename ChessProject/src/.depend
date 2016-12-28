@@ -124,9 +124,11 @@ game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/string.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 game.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
+game.o:	ChessProject.h
 game.o:	bitmap.h
 game.o:	chess.h
 game.o:	game.c
+game.o:	game.h
 game.o:	i8254.h
 game.o:	kbd.h
 game.o:	macros.h
@@ -238,8 +240,10 @@ mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/string.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
+mouse.o:	ChessProject.h
 mouse.o:	bitmap.h
 mouse.o:	chess.h
+mouse.o:	game.h
 mouse.o:	kbd.h
 mouse.o:	macros.h
 mouse.o:	mouse.c

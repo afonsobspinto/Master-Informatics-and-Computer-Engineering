@@ -48,8 +48,10 @@ mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/string.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 mouse.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
+mouse.o:	ChessProject.h
 mouse.o:	bitmap.h
 mouse.o:	chess.h
+mouse.o:	game.h
 mouse.o:	kbd.h
 mouse.o:	macros.h
 mouse.o:	mouse.c

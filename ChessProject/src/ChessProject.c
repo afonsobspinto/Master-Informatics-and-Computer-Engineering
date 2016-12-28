@@ -9,6 +9,8 @@
 #include "mouse.h"
 
 
+static MENU_STATE menu_state;
+
 int main(int argc, char **argv) {
 
 	/* Initialize service */
@@ -45,19 +47,18 @@ int chessproject_start(){
 
 	// Inicial State
 
-	GAME_STATE game_state = MENU;
+	menu_state = MENU;
 
 	while(1){
-		if(game_state == MENU){
-			game_state = menu_management();
+		if(menu_state == MENU){
+			menu_state = menu_management();
 		}
-		else if(game_state == MULTIPLAYER_LOCAL){
-			printf("Multiplayer_local: ");
-			game_state = game_management();
+		else if(menu_state == MULTIPLAYER_LOCAL){
+			menu_state = game_management();
 			break;
 		}
 
-		else if(game_state == MULTIPLAYER_SERIAL)
+		else if(menu_state == MULTIPLAYER_SERIAL)
 			printf("Multiplayer_serial: ");
 		else
 			return 0;
@@ -73,4 +74,7 @@ int chessproject_exit(){
 	return 0;
 }
 
+MENU_STATE getMenuState(){
+	return menu_state;
+}
 

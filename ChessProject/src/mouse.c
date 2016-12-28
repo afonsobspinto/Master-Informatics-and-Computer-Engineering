@@ -5,6 +5,8 @@
 #include "kbd.h"
 #include "chess.h"
 #include "utilities.h"
+#include "ChessProject.h"
+#include "game.h"
 
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
@@ -57,14 +59,12 @@ void drawMouse(){
 int updateMouse(){
 
 	mouse_struct info;
-	GAME_STATE gameState = getGameState();
+	MENU_STATE menuState = getMenuState();
 
-	if(gameState == MENU){
+	if(menuState == MENU){
 		printf("Menu");
 	}
-	else if (gameState == WHITE2PLAY)
-		printf("White2Play");
-	else if (gameState == MULTIPLAYER_LOCAL)
+	else if (menuState == MULTIPLAYER_LOCAL)
 		printf("Multi");
 
 
@@ -79,14 +79,14 @@ int updateMouse(){
 			mouse->y = new_y;
 		}
 
-		if (gameState == MENU){
+		if (menuState == MENU){
 
 			if(info.left){
 				printf("Position: %d, %d \n", mouse->x, mouse->y);
 			}
 		}
 
-		if (gameState == WHITE2PLAY || gameState == BLACK2PLAY )
+		if (menuState == MULTIPLAYER_LOCAL)
 			if(info.left){
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1)

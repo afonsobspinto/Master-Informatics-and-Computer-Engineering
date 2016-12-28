@@ -1,7 +1,14 @@
 #ifndef _CHESSPROJECT_H
 #define _CHESSPROJECT_H
 
-#include "utilities.h"
+
+typedef enum {
+	MENU,
+	MULTIPLAYER_LOCAL,
+	MULTIPLAYER_SERIAL,
+	PAUSE_MENU,
+	END
+} MENU_STATE;
 
 /**
  * @brief Start the program
@@ -17,6 +24,9 @@ int chessproject_start();
  * @return Return 0 upon success, non-zero otherwise
  */
 int chessproject_exit();
+
+
+MENU_STATE getMenuState();
 
 
 #endif

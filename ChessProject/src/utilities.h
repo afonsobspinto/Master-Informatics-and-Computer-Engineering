@@ -22,17 +22,9 @@
 
 
 
-typedef enum {
-	MENU,
-	MULTIPLAYER_LOCAL,
-	MULTIPLAYER_SERIAL,
-	WHITE2PLAY,
-	BLACK2PLAY,
-	WHITEWINS,
-	BLACKWINS,
-	PAUSE_MENU,
-	END
-} GAME_STATE;
+
+
+
 
 
 int fileExists(const char* filename);

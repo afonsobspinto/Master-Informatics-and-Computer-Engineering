@@ -6,20 +6,25 @@
 #include "bitmap.h"
 #include "mouse.h"
 #include "mouse_cmds.h"
+#include "game.h"
+#include "ChessProject.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
 
 #define gameTime  3;
 
-static counterPlayer1 = 60*gameTime;
-static counterPlayer2 = 60*gameTime;
-static game_state = WHITE2PLAY;
+static int counterPlayer1 = 60*gameTime;
+static int counterPlayer2 = 60*gameTime;
+
+static GAME_STATE game_state;
 
 int game_management(){
 
 	fillBoard();
 	drawBoard();
+
+	game_state = WHITE2PLAY;
 
 	int kbc_hook = KBC_IRQ;
 

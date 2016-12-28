@@ -1,7 +1,14 @@
 #ifndef __GAME_H
 #define __GAME_H
 
-#include "utilities.h"
+typedef enum {
+
+	WHITE2PLAY,
+	BLACK2PLAY,
+	WHITEWINS,
+	BLACKWINS
+
+} GAME_STATE;
 
 int game_management();
 
