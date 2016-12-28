@@ -29,6 +29,7 @@ typedef struct  {
 	Piece next_piece;
 	int size;
 	int color;
+	int menu_flag;
 	MOUSE_STATE state;
 }Mouse;
 

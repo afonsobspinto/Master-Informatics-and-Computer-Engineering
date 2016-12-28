@@ -11,6 +11,7 @@
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
 
+
 Mouse* mouse = NULL;
 
 Mouse* getMouse(){
@@ -30,6 +31,7 @@ Mouse* newMouse(){
 	m->color = WHITE;
 
 	m->state = NO_PIECE;
+	m->menu_flag = 0;
 
 
 
@@ -77,25 +79,29 @@ int updateMouse(){
 
 			if(mouseInside(XFONT-WIDTHLOCAL/2, YLOCAL-FONT_HEIGTH/2, XFONT+WIDTHLOCAL/2, YLOCAL+FONT_HEIGTH/2)){
 				drawMenu(2,1,1);
+				mouse->menu_flag = 1;
 				if(info.left)
 					return 1;
-
 			}
 
 			else if(mouseInside(XFONT-WIDTHSERIAL/2, YSERIAL-FONT_HEIGTH/2, XFONT+WIDTHSERIAL/2, YSERIAL+FONT_HEIGTH/2)){
 				drawMenu(1,2,1);
+				mouse->menu_flag = 1;
 				if(info.left)
 					return 2;
 			}
 
 			else if(mouseInside(XFONT-WIDTHEXIT/2, YEXIT-FONT_HEIGTH/2, XFONT+WIDTHEXIT/2, YEXIT+FONT_HEIGTH/2)){
 				drawMenu(1,1,2);
+				mouse->menu_flag = 1;
 				if(info.left)
 					return 3;
 			}
 
-			else
+			else if (mouse->menu_flag == 1){
+				mouse->menu_flag = 0;
 				drawMenu(1,1,1);
+			}
 		}
 
 		if (menuState == MULTIPLAYER_LOCAL)

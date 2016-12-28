@@ -12,7 +12,7 @@
 #include <minix/drivers.h>
 
 
-#define gameTime  1;
+#define gameTime  0.5;
 
 static int counterPlayer1 = 60*gameTime;
 static int counterPlayer2 = 60*gameTime;
@@ -65,7 +65,7 @@ int game_management(){
 
 	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 
-		while((counterPlayer1 > 0) && (key != KEY_SPACE))
+		while((counterPlayer1 > 0) && ((counterPlayer2 > 0) ) && (key != KEY_SPACE))
 		{
 			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
 				printf("Driver_receive failed\n");
@@ -204,9 +204,7 @@ MENU_STATE menu_management(){
 			{
 			case HARDWARE:
 				if (msg.NOTIFY_ARG & timer_hook) {
-					if(game_state == WHITE2PLAY){
-						drawMouse();
-					}
+					drawMouse();
 				}
 
 				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
