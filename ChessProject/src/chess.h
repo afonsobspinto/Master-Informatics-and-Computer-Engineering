@@ -16,6 +16,10 @@ typedef struct
     //1 = alive, 0 = dead
 	int state;
 
+	//matrixposition
+	int i;
+	int j;
+
 	//position
 	int xpos;
 	int ypos;
