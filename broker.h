@@ -14,6 +14,17 @@
 #include "fatura.h"
 #include <tr1/unordered_set>
 
+struct clienteHash {
+
+	int operator() (const Cliente & c1) const
+		{
+			//
+		}
+
+	bool operator()(const Cliente & c1, const Cliente & c2) const {
+		return c1.getNome() == c2.getNome();
+	}
+};
 
 class Broker{
 
@@ -21,7 +32,7 @@ class Broker{
 	Fornecedor *UserF;
 	Fatura *Fat;
 
-	typedef std::tr1::unordered_set<Cliente> tabH;
+	typedef std::tr1::unordered_set<Cliente, clienteHash, clienteHash> tabH;
 
 	tabH inativos;
 
@@ -48,7 +59,7 @@ public:
 
 
 	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
-	bool seInativo(const Cliente & c); // Ve se o cliente c e inativo
+	bool seInativo(const Cliente & c); // Ve se o cliente c está nos inativos
 	bool atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	bool adicionaCliente();
 	bool validaLoginCliente();

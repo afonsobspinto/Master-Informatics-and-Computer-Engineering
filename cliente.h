@@ -23,7 +23,6 @@ public:
 	void addValor(int preco);
 	bool operator < (const Cliente & rhs);
     bool operator == (const Cliente & rhs);
-
 };
 
 class Registado: public Cliente{

@@ -80,4 +80,3 @@ bool Registado::operator <(Registado& rhs) {
 	else
 		return false;
 }
-

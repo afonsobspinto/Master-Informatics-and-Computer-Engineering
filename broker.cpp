@@ -259,8 +259,8 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	guardaBase();
 	atualizaMontra();
 	UserC->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
-
-
+	if(seInativo(*C))    // Se for inativo remove o cliente C dos inativos
+		inativos.erase(*C);
 	Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico
 
 	cout << endl;
@@ -1213,9 +1213,13 @@ Fornecedor* Broker::getUserF() {
 bool Broker::addInativo(const Cliente & c) {
 	Data atual = string2data(currentDateTime());
 
-	if (!(atual - 30 < c.getUltima()))
-		inativos.insert(c); // Da erro estranho, nao consigo resolver
+	if (seInativo(c))
 		return true;
+
+	if (!(atual - 30 < c.getUltima())){
+		inativos.insert(c);
+		return true;
+	}
 	return false;
 }
 
@@ -1226,4 +1230,10 @@ bool Broker::seInativo(const Cliente & c) {
 }
 
 bool Broker::atualizaInativos() {
+	unsigned int csize = getClientes().size();
+	for(unsigned int i=0; i<csize;i++){
+		addInativo(clientes.at(i));
+	}
+
+
 }
