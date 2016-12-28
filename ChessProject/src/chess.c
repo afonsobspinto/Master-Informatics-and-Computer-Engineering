@@ -118,3 +118,6 @@ Piece getMatrixAt(int x, int y){
 }
 
 
+int makeMove(Piece pi, Piece pf){
+	printf("Vou fazer aquele Move \n");
+}

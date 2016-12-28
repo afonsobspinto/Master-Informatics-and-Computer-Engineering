@@ -21,10 +21,15 @@ Mouse* getMouse(){
 Mouse* newMouse(){
 
 	Mouse* m = (Mouse*) malloc (sizeof(Mouse));
+
 	m->x = 0;
 	m->y = 0;
 	m->size = 40;
 	m->color = WHITE;
+
+	m->state = NO_PIECE;
+
+
 
 	return m;
 }
@@ -66,7 +71,17 @@ void updateMouse(){
 
 		if(info.left){
 			printf("Click\n");
-			if(isPieceSelected()==1){
+			if(mouse->state == NO_PIECE){
+				if(isPieceSelected(1)==1)
+					mouse->state = PIECE_1_SELECTED;
+			}
+			else{
+				if(isPieceSelected(0)==1){
+					mouse->state == NO_PIECE;
+					makeMove(mouse->piece, mouse->next_piece);
+				}
+
+
 			}
 
 		}
@@ -82,7 +97,7 @@ void deleteMouse(){
 }
 
 
-int isPieceSelected (){
+int isPieceSelected (int flag){
 
 	unsigned int i = 0;
 	for(; i < ROWS ; i++){
@@ -90,23 +105,35 @@ int isPieceSelected (){
 		for (; u < COLS ; u++){
 			Piece P = getMatrixAt(i,u);
 
+			int xpos = P.xpos;
+			int ypos = P.ypos;
 
-			if(P.state == 1){
+			if(flag == 1){
+				if(P.state == 1){
+					if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
+						printf("Peça1 Selecionada: \n");
+						printf("Peça: %c \n ", P.name);
+						printf("Cor: %c \n ", P.color);
 
-				int xpos = P.xpos;
-				int ypos = P.ypos;
+						mouse->piece = P;
 
+						return 1;
+					}
 
-
+				}
+			}
+			else
+			{
 				if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
+					printf("Peça2 Selecionada: \n");
 					printf("Peça: %c \n ", P.name);
 					printf("Cor: %c \n ", P.color);
 
+					mouse->next_piece = P;
+
 					return 1;
 				}
-
 			}
-
 		}
 	}
 

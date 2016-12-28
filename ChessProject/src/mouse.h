@@ -1,5 +1,6 @@
 
 #include <minix/drivers.h>
+#include "chess.h"
 
 typedef struct{
 	unsigned char bytes[3];
@@ -14,14 +15,22 @@ typedef struct{
 	short y_delta;
 } mouse_struct;
 
+typedef enum {
+	PIECE_1_SELECTED,
+	NO_PIECE
+} MOUSE_STATE;
+
+
 typedef struct  {
 	int x;
 	int y;
-	int current_click;
-	int previous_click;
+	Piece piece;
+	Piece next_piece;
 	int size;
 	int color;
+	MOUSE_STATE state;
 }Mouse;
+
 
 Mouse* newMouse();
 Mouse* getMouse();
@@ -30,7 +39,7 @@ void drawMouse();
 void updateMouse();
 void deleteMouse();
 
-int isPieceSelected ();
+int isPieceSelected (int flag);
 int mouseInside(int x1, int y1, int x2, int y2);
 
 void display_packet(mouse_struct info);

@@ -31,11 +31,10 @@ void fillBoard();
 
 void updateBoard();
 
+int makeMove(Piece pi, Piece pf);
+
 //int isValidMove(Piece piece, Position pi, Position pf);
 
-int isCheckMate();
-
-int isCheck();
 
 int clearBoard();
 
