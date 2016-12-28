@@ -1187,6 +1187,19 @@ bool Broker::verOfertas() const {
 	return true;
 }
 
+bool Broker::verHistorico() const {
+
+	ClearScreen();
+
+	BSTItrPost<Reserva> it(Fat->getHistorico());
+	     while (!it.isAtEnd())
+	     {
+	           cout << it.retrieve().getID() << endl << it.retrieve().getID() << endl;
+	           it.advance();
+	     }
+
+	return true;
+}
 /*
  * Getter UtilizadorFornecedor
  */
@@ -1195,11 +1208,12 @@ Fornecedor* Broker::getUserF() {
 	return UserF;
 }
 
-bool Broker::seInativo(Cliente c) {
+bool Broker::seInativo(const Cliente & c) {
 	Data atual = string2data(currentDateTime());
 
 	if (!(atual - 30 < c.getUltima()))
-		inativos.insert(c);
+		//inativos.insert(c); // Da erro estranho, nao consigo resolver?
+		return true;
 }
 
 bool Broker::atualizaInativos() {

@@ -15,9 +15,10 @@ bool Broker::opcoesIniciais() {
 		cout << endl;
 		cout << "   " << "1 - Cliente" << endl;
 		cout << "   " << "2 - Fornecedor" << endl;
-		cout << "   " << "3 - Sair" << endl << endl;
+		cout << "   " << "3 - Outros" << endl;
+		cout << "   " << "4 - Sair" << endl << endl;
 		cout << "   " << "Qual a sua opcao: ";
-		opcao = leUnsignedShortInt(1, 3);
+		opcao = leUnsignedShortInt(1, 4);
 
 		switch (opcao){
 		case 1:
@@ -27,6 +28,9 @@ bool Broker::opcoesIniciais() {
 			menuFornecedorInicial();
 			break;
 		case 3:
+			menuOutros();
+			break;
+		case 4:
 			return true;
 		default:
 			continue;
@@ -211,4 +215,36 @@ bool Broker::menuOpcoesFornecedor() {
 				return false;
 			}
 		}
+}
+
+bool Broker::menuOutros() {
+	int opcao;
+
+	while(1){
+		ClearScreen();
+		cout << "Menu Outros: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Histórico das Reservas" << endl;
+		cout << "   " << "2 - Descontos" << endl;
+		cout << "   " << "3 - Clientes Inativos" << endl;
+		cout << "   " << "4 - Sair" << endl << endl;
+		cout << "   " << "Qual a sua opcao: ";
+		opcao = leUnsignedShortInt(1, 4);
+
+		switch (opcao){
+		case 1:
+			// verHistorico();
+			break;
+		case 2:
+			// Fila de prioridade
+			break;
+		case 3:
+			// Inativos
+			break;
+		case 4:
+			return true;
+		default:
+			continue;
+		}
+	}
 }

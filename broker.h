@@ -24,6 +24,7 @@ class Broker{
 	typedef std::tr1::unordered_set<Cliente> tabH;
 
 	tabH inativos;
+
 	std::string nome;
 	std::string ficheiroClientes;
 	std::string ficheiroFornecedores;
@@ -46,7 +47,7 @@ public:
 	float getReceita()const;
 
 
-	bool seInativo(Cliente c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
+	bool seInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
 	bool atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	bool adicionaCliente();
 	bool validaLoginCliente();
@@ -63,6 +64,7 @@ public:
 
 
 	bool verOfertas() const;
+	bool verHistorico() const; // Mostra o historico das reservas
 
 	bool mostraMontra(bool localidade = false, bool preco = false, bool datas = false);
 	Imovel* mostraMontraAux();
@@ -94,6 +96,8 @@ public:
 
 	bool menuFornecedorInicial();
 	bool menuOpcoesFornecedor();
+
+	bool menuOutros();
 
 };
 
