@@ -65,6 +65,8 @@ void deleteBitmap(Bitmap* bmp);
 
 int loadBitmaps();
 
+void deleteBitmaps();
+
 void drawMenu(unsigned local, unsigned serial, unsigned exit);
 
 void drawBoard();

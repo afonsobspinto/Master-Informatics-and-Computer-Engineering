@@ -69,7 +69,7 @@ int chessproject_start(){
 
 int chessproject_exit(){
 	deleteMouse();
-	//deleteBitmaps();
+	deleteBitmaps();
 	vg_exit();
 	return 0;
 }

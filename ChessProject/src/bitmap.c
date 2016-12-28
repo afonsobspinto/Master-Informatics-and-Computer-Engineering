@@ -192,7 +192,43 @@ void deleteBitmap(Bitmap* bmp) {
     free(bmp);
 }
 
+void deleteBitmaps(){
 
+	deleteBitmap(board);
+	deleteBitmap(wKingw);
+	deleteBitmap(wKingb);
+	deleteBitmap(wQueenw);
+	deleteBitmap(wQueenb);
+	deleteBitmap(wRookb);
+	deleteBitmap(wRookw);
+	deleteBitmap(wBishopw);
+	deleteBitmap(wBishopb);
+	deleteBitmap(wKnightb);
+	deleteBitmap(wKnightw);
+	deleteBitmap(wPawnb);
+	deleteBitmap(wPawnw);
+	deleteBitmap(bKingw);
+	deleteBitmap(bKingb);
+	deleteBitmap(bQueenw);
+	deleteBitmap(bQueenb);
+	deleteBitmap(bRookb);
+	deleteBitmap(bRookw);
+	deleteBitmap(bBishopw);
+	deleteBitmap(bBishopb);
+	deleteBitmap(bKnightb);
+	deleteBitmap(bKnightw);
+	deleteBitmap(bPawnb);
+	deleteBitmap(bPawnw);
+	deleteBitmap(player1);
+	deleteBitmap(player2);
+	deleteBitmap(logo);
+	deleteBitmap(local1);
+	deleteBitmap(local2);
+	deleteBitmap(serial1);
+	deleteBitmap(serial2);
+	deleteBitmap(exit1);
+	deleteBitmap(exit2);
+}
 
 int loadBitmaps(){
 
