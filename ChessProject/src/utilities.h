@@ -8,7 +8,6 @@
 #define COLS 8
 
 #define CORRECTION 25
-
 #define SQUARE_SIZE	37.5
 
 #define YELLOW 				65024

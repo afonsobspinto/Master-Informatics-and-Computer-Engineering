@@ -57,6 +57,16 @@ void drawMouse(){
 int updateMouse(){
 
 	mouse_struct info;
+	GAME_STATE gameState = getGameState();
+
+	if(gameState == MENU){
+		printf("Menu");
+	}
+	else if (gameState == WHITE2PLAY)
+		printf("White2Play");
+	else if (gameState == MULTIPLAYER_LOCAL)
+		printf("Multi");
+
 
 	if(mouse_get_packet(&info)) {
 		int new_x = mouse->x + info.x_delta;
@@ -69,26 +79,32 @@ int updateMouse(){
 			mouse->y = new_y;
 		}
 
-		if(info.left){
-			if(mouse->state == NO_PIECE){
-				if(isPieceSelected(1)==1)
-					mouse->state = PIECE_1_SELECTED;
+		if (gameState == MENU){
+
+			if(info.left){
+				printf("Position: %d, %d \n", mouse->x, mouse->y);
 			}
-			else{
-				if(isPieceSelected(0)==1){
-					if(makeMove(mouse->piece, mouse->next_piece)==1){
-						mouse->state = NO_PIECE;
-						return 1;
-					}
-					mouse->state = NO_PIECE;
-				}
-
-
-			}
-
 		}
 
+		if (gameState == WHITE2PLAY || gameState == BLACK2PLAY )
+			if(info.left){
+				if(mouse->state == NO_PIECE){
+					if(isPieceSelected(1)==1)
+						mouse->state = PIECE_1_SELECTED;
+				}
+				else{
+					if(isPieceSelected(0)==1){
+						if(makeMove(mouse->piece, mouse->next_piece)==1){
+							mouse->state = NO_PIECE;
+							return 1;
+						}
+						mouse->state = NO_PIECE;
+					}
 
+
+				}
+
+			}
 	}
 
 	return 0;
@@ -336,29 +352,3 @@ int mouse_disable_stream_mode()
 	return 0;
 }
 
-
-void display_packet(mouse_struct info)
-{
-	printf("B1=0x%X\t", info.bytes[0]);
-
-	printf("B2=0x%X\t", info.bytes[1]);
-
-	printf("B3=0x%X\t", info.bytes[2]);
-
-	printf("LB=%d\t", info.left);
-
-	printf("MB=%d\t", info.middle);
-
-	printf("RB=%d\t", info.right);
-
-	printf("XOV=%d\t", info.x_ovf);
-
-	printf("YOV=%d\t", info.y_ovf);
-
-	printf("X=%d\t", info.x_delta);
-
-	printf("Y=%d", info.y_delta);
-
-	printf("\n");
-	return;
-}

@@ -60,8 +60,6 @@ int game_management(){
 
 	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 
-
-
 		while((counterPlayer1 > 0) && (key != KEY_SPACE))
 		{
 			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
@@ -144,7 +142,16 @@ GAME_STATE getGameState(){
 	return game_state;
 }
 
-int test_packet(unsigned short cnt){
+
+GAME_STATE menu_management(){
+
+
+	drawMenu(1,1,1);
+
+	int timer_hook= timer_subscribe_int();
+	if(timer_subscribe_int()<0)
+		return 1;
+
 
 	unsigned hook_id = MOUSE_IRQ;
 
@@ -155,53 +162,41 @@ int test_packet(unsigned short cnt){
 
 	int r, ipc_status;
 	message msg;
-	unsigned char packet[3];
+
+	int cnt = 10 * 60;
+
 
 	while(cnt > 0)
 	{
-		// Message requested
-		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
-			printf("driver_receive failed with: %d", r);
+		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+			printf("Driver_receive failed\n");
 			continue;
 		}
-		if (is_ipc_notify(ipc_status)) { // Notification received
+		if (is_ipc_notify(ipc_status)) // Notification received
+		{
 			switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
 			{
 			case HARDWARE:
-				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)) {
-					if (test_packet_int_handler(&cnt))
-						return 1;
+				if (msg.NOTIFY_ARG & timer_hook) {
+					if(game_state == WHITE2PLAY){
+						cnt-=1;
+						drawMouse();
+					}
 				}
+
+				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
+					mouse_int_handler();
+					updateMouse();
+
+				}
+
+				break;
 			default:
 				break; // no other notifications expected: do nothing
 			}
 		}
 	}
 
-	mouse_disable_stream_mode();
-	mouse_unsubscribe_int(hook_id);
 
-
-	unsigned char st;
-	kbc_read(&st);
-
-	return 0;
+	return MULTIPLAYER_LOCAL;
 }
-
-int test_packet_int_handler(unsigned short* cnt)
-{
-	if(mouse_int_handler())
-		return 1;
-
-	mouse_struct info;
-
-	if(mouse_get_packet(&info))
-	{
-		--*cnt;
-		display_packet(info);
-	}
-	return 0;
-}
-
-
-

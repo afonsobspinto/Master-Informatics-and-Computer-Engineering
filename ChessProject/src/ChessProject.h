@@ -18,7 +18,5 @@ int chessproject_start();
  */
 int chessproject_exit();
 
-GAME_STATE main_menu();
-
 
 #endif

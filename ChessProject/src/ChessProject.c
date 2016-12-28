@@ -49,7 +49,7 @@ int chessproject_start(){
 
 	while(1){
 		if(game_state == MENU){
-			game_state = main_menu();
+			game_state = menu_management();
 		}
 		else if(game_state == MULTIPLAYER_LOCAL){
 			printf("Multiplayer_local: ");
@@ -73,15 +73,4 @@ int chessproject_exit(){
 	return 0;
 }
 
-GAME_STATE main_menu(){
 
-//	drawMenu(1,1,1);
-//	//if(rato sobre espaço 1)
-//		//drawMenu(2,1,1);
-//		//if(rato click)
-//			//return MULTIPLAYER_LOCAL;
-//
-//	sleep(5);
-
-	return MULTIPLAYER_LOCAL;
-}

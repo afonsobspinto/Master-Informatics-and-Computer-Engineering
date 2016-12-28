@@ -2,6 +2,7 @@
 #include <minix/drivers.h>
 #include "chess.h"
 
+
 typedef struct{
 	unsigned char bytes[3];
 	int y_ovf;
@@ -42,7 +43,6 @@ void deleteMouse();
 int isPieceSelected (int flag);
 int mouseInside(int x1, int y1, int x2, int y2);
 
-void display_packet(mouse_struct info);
 
 int mouse_subscribe_int(unsigned *hook_id);
 int mouse_unsubscribe_int(unsigned hook_id);

@@ -342,20 +342,20 @@ int loadBitmaps(){
 		return 1;
 	}
 
-//	local2 = loadBitmap("/home/lcom/ChessProject/res/local2.bmp");
-//	if(local2 == NULL){
-//		return 1;
-//	}
-//
-//	serial2 = loadBitmap("/home/lcom/ChessProject/res/serial2.bmp");
-//	if(serial2 == NULL){
-//		return 1;
-//	}
-//
-//	exit2 = loadBitmap("/home/lcom/ChessProject/res/exit2.bmp");
-//	if(exit2 == NULL){
-//		return 1;
-//	}
+	local2 = loadBitmap("/home/lcom/ChessProject/res/local2.bmp");
+	if(local2 == NULL){
+		return 1;
+	}
+
+	serial2 = loadBitmap("/home/lcom/ChessProject/res/serial2.bmp");
+	if(serial2 == NULL){
+		return 1;
+	}
+
+	exit2 = loadBitmap("/home/lcom/ChessProject/res/exit2.bmp");
+	if(exit2 == NULL){
+		return 1;
+	}
 
 	player1 = loadBitmap("/home/lcom/ChessProject/res/player1.bmp");
 	if(player1 == NULL){
@@ -376,14 +376,18 @@ void drawMenu(unsigned local, unsigned serial, unsigned exit){
 
 	call_drawBitmap(logo,400,10,ALIGN_CENTER);
 	if(local==1)
-		call_drawBitmap(local1, 400, 150, ALIGN_CENTER);
+		call_drawBitmap(local1, 400, 200, ALIGN_CENTER);
 	if(serial==1)
-		call_drawBitmap(serial1, 400, 200, ALIGN_CENTER);
+		call_drawBitmap(serial1, 400, 380, ALIGN_CENTER);
 	if(exit==1)
-		call_drawBitmap(exit1, 400, 245, ALIGN_CENTER);
+		call_drawBitmap(exit1, 400, 560, ALIGN_CENTER);
+	if(local==2)
+		call_drawBitmap(local2, 400, 200, ALIGN_CENTER);
+	if(serial==2)
+		call_drawBitmap(serial2, 400, 380, ALIGN_CENTER);
+	if(exit==2)
+		call_drawBitmap(exit2, 400, 560, ALIGN_CENTER);
 
-
-	// Adicionar else com outra a imagem colorida;
 }
 
 
