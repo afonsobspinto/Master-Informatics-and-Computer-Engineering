@@ -20,7 +20,6 @@
 #define YSERIAL			380
 #define YEXIT 			560
 
-
 #define YELLOW 				65024
 #define RED					38914
 #define BLUE				255
@@ -30,12 +29,6 @@
 #define VIDEO_MEM 	  				1
 #define SECOND_BUFFER 				2
 #define THIRD_BUFFER  				3
-
-
-
-
-
-
 
 
 int fileExists(const char* filename);

@@ -5,6 +5,7 @@
 
 #define BREAK_CODE 						BIT(7)
 #define KEY_SPACE 						0x0039
+#define KEY_BKSP						0x000E
 #define SET_RESET_CMD 					0xED
 
 // KBC registers

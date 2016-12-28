@@ -80,6 +80,15 @@ int game_management(){
 					{
 						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
 							return 1;
+						else if(key == KEY_BKSP){
+							if(unmakeMove()==1){
+								if (game_state == BLACK2PLAY)
+									game_state = WHITE2PLAY;
+								else if (game_state == WHITE2PLAY)
+									game_state = BLACK2PLAY;
+							}
+
+						}
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
 						if(game_state == WHITE2PLAY){

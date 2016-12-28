@@ -30,6 +30,7 @@ typedef struct  {
 	int size;
 	int color;
 	int menu_flag;
+	int unmake_flag;
 	MOUSE_STATE state;
 }Mouse;
 

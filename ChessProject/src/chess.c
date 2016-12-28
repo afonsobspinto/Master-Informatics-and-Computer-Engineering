@@ -1,5 +1,6 @@
 #include "chess.h"
 #include "utilities.h"
+#include "mouse.h"
 
 static int wKingMove = 0;
 static int wRook1Move = 0;
@@ -125,6 +126,23 @@ Piece getMatrixAt(int x, int y){
 		return matrix[x][y];
 }
 
+
+int unmakeMove(){
+
+
+	Mouse* m = getMouse();
+
+	if(m->unmake_flag ==1){
+		matrix[m->piece.i][m->piece.j]=m->piece;
+		matrix[m->next_piece.i][m->next_piece.j]=m->next_piece;
+		m->unmake_flag = 0;
+		drawBoard();
+		return 1;
+	}
+
+
+	return 0;
+}
 
 int makeMove(Piece p1, Piece p2){
 

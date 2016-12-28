@@ -29,11 +29,9 @@ Mouse* newMouse(){
 	m->y = 0;
 	m->size = 40;
 	m->color = WHITE;
-
 	m->state = NO_PIECE;
 	m->menu_flag = 0;
-
-
+	m->unmake_flag =0;
 
 	return m;
 }
@@ -114,6 +112,7 @@ int updateMouse(){
 					if(isPieceSelected(0)==1){
 						if(makeMove(mouse->piece, mouse->next_piece)==1){
 							mouse->state = NO_PIECE;
+							mouse->unmake_flag = 1;
 							return 1;
 						}
 						mouse->state = NO_PIECE;
