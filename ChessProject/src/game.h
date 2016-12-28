@@ -4,6 +4,8 @@
 
 int game_management();
 
+GAME_STATE getGameState();
+
 int test_packet(unsigned short cnt);
 
 int test_packet_int_handler(unsigned short* cnt);

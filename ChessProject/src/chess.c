@@ -57,14 +57,14 @@ void fillBoard(){
 	Piece wpawn7w ={'p', 'w', 1, 1, 6, 660, 465, 'w'};
 	Piece wpawn8b ={'p', 'w', 1, 1, 7, 735, 465, 'b'};
 
-	Piece bpawn1b ={'p', 'b', 1, 6, 0, 210, 95, 'b'};
-	Piece bpawn2w ={'p', 'b', 1, 6, 1, 285, 95, 'w'};
-	Piece bpawn3b ={'p', 'b', 1, 6, 2, 360, 95, 'b'};
-	Piece bpawn4w ={'p', 'b', 1, 6, 3, 435, 95, 'w'};
-	Piece bpawn5b ={'p', 'b', 1, 6, 4, 510, 95, 'b'};
-	Piece bpawn6w ={'p', 'b', 1, 6, 5, 585, 95, 'w'};
-	Piece bpawn7b ={'p', 'b', 1, 6, 5, 660, 95, 'b'};
-	Piece bpawn8w ={'p', 'b', 1, 6, 6, 735, 95, 'w'};
+	Piece bpawn1b ={'p', 'b', 1, 6, 0, 210, 90, 'b'};
+	Piece bpawn2w ={'p', 'b', 1, 6, 1, 285, 90, 'w'};
+	Piece bpawn3b ={'p', 'b', 1, 6, 2, 360, 90, 'b'};
+	Piece bpawn4w ={'p', 'b', 1, 6, 3, 435, 90, 'w'};
+	Piece bpawn5b ={'p', 'b', 1, 6, 4, 510, 90, 'b'};
+	Piece bpawn6w ={'p', 'b', 1, 6, 5, 585, 90, 'w'};
+	Piece bpawn7b ={'p', 'b', 1, 6, 6, 660, 90, 'b'};
+	Piece bpawn8w ={'p', 'b', 1, 6, 7, 735, 90, 'w'};
 
 	matrix[1][0] = wpawn1w;
 	matrix[1][1] = wpawn2b;
@@ -97,11 +97,11 @@ void fillBoard(){
 		for (; u < COLS; u++){
 
 			if(bg == 1){
-				Piece noPiece = {'n', 'n', 0,i,u, width, heigth, 'n'};
+				Piece noPiece = {'n', 'n', 0,i,u, width, heigth, 'b'};
 				matrix[i][u] = noPiece;
 			}
 			else{
-				Piece noPiece = {'n', 'n', 0,i,u, width, heigth, 'n'};
+				Piece noPiece = {'n', 'n', 0,i,u, width, heigth, 'w'};
 				matrix[i][u] = noPiece;
 			}
 			width += 75;
@@ -139,7 +139,7 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[NewPiece.i][NewPiece.j]=NewPiece;
 
-		Piece noPiece = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, 'n'};
+		Piece noPiece = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
 
 		matrix[p1.i][p1.j]= noPiece;
 
@@ -165,6 +165,7 @@ int makeMove(Piece p1, Piece p2){
 }
 
 int isValidMove(Piece p1, Piece p2){
+
 
 	if(p1.color != p2.color)
 		return 1;

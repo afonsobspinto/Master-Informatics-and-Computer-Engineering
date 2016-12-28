@@ -80,7 +80,7 @@ int updateMouse(){
 						mouse->state = NO_PIECE;
 						return 1;
 					}
-
+					mouse->state = NO_PIECE;
 				}
 
 
@@ -111,14 +111,29 @@ int isPieceSelected (int flag){
 			int xpos = P.xpos;
 			int ypos = P.ypos;
 
+			GAME_STATE gameState = getGameState();
+
 			if(flag == 1){
 				if(P.state == 1){
-					if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
-						mouse->piece = P;
 
-						return 1;
+					if(gameState == WHITE2PLAY){
+						if(P.color == 'w'){
+							if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
+								mouse->piece = P;
+
+								return 1;
+							}
+						}
 					}
+					else if(gameState == BLACK2PLAY){
+						if(P.color == 'b'){
+							if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
+								mouse->piece = P;
 
+								return 1;
+							}
+						}
+					}
 				}
 			}
 			else

@@ -10,17 +10,16 @@
 #include <minix/drivers.h>
 
 
-#define gameTime  1;
+#define gameTime  3;
 
 static counterPlayer1 = 60*gameTime;
 static counterPlayer2 = 60*gameTime;
+static game_state = WHITE2PLAY;
 
 int game_management(){
 
 	fillBoard();
 	drawBoard();
-
-	GAME_STATE game_state = WHITE2PLAY;
 
 	int kbc_hook = KBC_IRQ;
 
@@ -139,6 +138,10 @@ int game_management(){
 
 	return 0;
 
+}
+
+GAME_STATE getGameState(){
+	return game_state;
 }
 
 int test_packet(unsigned short cnt){
