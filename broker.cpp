@@ -233,7 +233,6 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	if(D2.getDia()==0)
 			return false;
 	swapDatas(&D1,&D2);
-
 	unsigned int size = I->getReservas()->size();
 	float preco = I->getPreco() * (D2 - D1);
 
@@ -246,22 +245,21 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 			return false;
 		}
 	}
-
 	C->setPontos(ceil(0.1*preco));
 	C->addValor(preco);
-
-	Reserva R = Reserva(*UserC, D1,D2, I->getPreco());
+	Reserva R = Reserva(*C, D1,D2, I->getPreco());
 	I->addReservas(R);
-
 	receita += I->getTaxa()*R.getPreco();
 	guardaClientes();
 	guardaFornecedores();
 	guardaBase();
 	atualizaMontra();
-	UserC->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
-	if(seInativo(*C))    // Se for inativo remove o cliente C dos inativos
+	if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
 		inativos.erase(*C);
-	Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico
+	C->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
+	cout << "3" << endl;
+	//Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico, esta a dar erro porque??
+	cout << "12" << endl;
 
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
@@ -1192,8 +1190,9 @@ bool Broker::verOfertas() const {
 bool Broker::verHistorico() const {
 
 	ClearScreen();
-
-	BSTItrPost<Reserva> it(Fat->getHistorico());
+	cout << "2" << endl;
+	BSTItrPost<Reserva> it(Fat->getHistorico()); // Erro aqui 
+	cout << "3" << endl;
 	     while (!it.isAtEnd())
 	     {
 	           cout << it.retrieve().getID() << endl << it.retrieve().getID() << endl;
@@ -1229,12 +1228,9 @@ bool Broker::seInativo(const Cliente & c) {
 	return false;
 }
 
-bool Broker::atualizaInativos() {
+void Broker::atualizaInativos() {
 	unsigned int csize = getClientes().size();
 	for(unsigned int i=0; i<csize;i++){
 		addInativo(clientes.at(i));
 	}
-	return true;
-
-
 }

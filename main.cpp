@@ -10,15 +10,15 @@
 using namespace std;
 
 int main() {
-/*	Broker Existente("broker");
-	Registado C("clie", "passe");
+	/*Broker Existente("broker");
+	Cliente C("cliente");
 	Fornecedor F("forn", 123456789, "pass", "morada", {});
-	Hotel I("imo",1,12,{});
+	Hotel I("imovel",1,12,{});
 	Data d1(27,10,2016);
 	Data d2(29,10,2016);
 	Existente.getFornecedores().push_back(F);
-	Existente.getClientes().push_back(C);
-	Existente.efectuaReserva(C,I);*/
+	cout << "1" << endl;
+	Existente.efectuaReserva(&C,&I);*/
 
 	string nome;
 	string filename;

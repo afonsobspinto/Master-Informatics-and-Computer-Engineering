@@ -240,7 +240,7 @@ bool Broker::menuOutros() {
 			// Fila de prioridade
 			break;
 		case 3:
-			// Inativos
+			atualizaInativos();
 			break;
 		case 4:
 			return true;
