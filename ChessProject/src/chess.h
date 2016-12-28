@@ -7,6 +7,8 @@
 
 #define WHITE_SHORT_CASTLING 2
 #define WHITE_LONG_CASTLING 3
+#define BLACK_SHORT_CASTLING 4
+#define BLACK_LONG_CASTLING 5
 
 typedef struct
 {

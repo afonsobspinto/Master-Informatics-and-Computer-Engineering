@@ -166,11 +166,13 @@ int makeMove(Piece p1, Piece p2){
 		if(p1.name == 'K' && p1.color == 'b')
 			bKingMove++;
 
-		if(p1.name == 'R' && p1.color == 'w' && p1.i == 7 && p1.j == 7)
+		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
 			bRook1Move++;
 
-		if(p1.name == 'R' && p1.color == 'w' && p1.i == 7 && p1.j == 0)
+		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 			bRook2Move++;
+
+
 
 
 		// Check-Mate
@@ -257,6 +259,77 @@ int makeMove(Piece p1, Piece p2){
 		return 1;
 	}
 
+	if (valid == BLACK_SHORT_CASTLING){
+			Piece NewPiece1;
+			Piece NewPiece2;
+
+			NewPiece1.name = 'K';
+			NewPiece1.color = 'b';
+			NewPiece1.state = 1;
+			NewPiece1.i = 7;
+			NewPiece1.j = 6;
+			NewPiece1.xpos = 660;
+			NewPiece1.ypos = 15;
+			NewPiece1.bg = 'w';
+
+
+			NewPiece2.name = 'R';
+			NewPiece2.color = 'b';
+			NewPiece2.state = 1;
+			NewPiece2.i = 7;
+			NewPiece2.j = 5;
+			NewPiece2.xpos = 585;
+			NewPiece2.ypos = 15;
+			NewPiece2.bg = 'b';
+
+			matrix[NewPiece1.i][NewPiece1.j]=NewPiece1;
+			matrix[NewPiece2.i][NewPiece2.j]=NewPiece2;
+
+			Piece noPiece1 = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+			Piece noPiece2 = {'n', 'n', 0,p2.i,p2.j, p2.xpos, p2.ypos, p2.bg};
+			matrix[p1.i][p1.j]= noPiece1;
+			matrix[p2.i][p2.j]= noPiece2;
+
+			drawBoard();
+
+			return 1;
+		}
+
+	if (valid == BLACK_LONG_CASTLING){
+			Piece NewPiece1;
+			Piece NewPiece2;
+
+			NewPiece1.name = 'K';
+			NewPiece1.color = 'b';
+			NewPiece1.state = 1;
+			NewPiece1.i = 7;
+			NewPiece1.j = 2;
+			NewPiece1.xpos = 360;
+			NewPiece1.ypos = 15;
+			NewPiece1.bg = 'w';
+
+			NewPiece2.name = 'R';
+			NewPiece2.color = 'b';
+			NewPiece2.state = 1;
+			NewPiece2.i = 7;
+			NewPiece2.j = 3;
+			NewPiece2.xpos = 435;
+			NewPiece2.ypos = 15;
+			NewPiece2.bg = 'b';
+
+			matrix[NewPiece1.i][NewPiece1.j]=NewPiece1;
+			matrix[NewPiece2.i][NewPiece2.j]=NewPiece2;
+
+			Piece noPiece1 = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+			Piece noPiece2 = {'n', 'n', 0,p2.i,p2.j, p2.xpos, p2.ypos, p2.bg};
+			matrix[p1.i][p1.j]= noPiece1;
+			matrix[p2.i][p2.j]= noPiece2;
+
+			drawBoard();
+
+			return 1;
+		}
+
 	return 0;
 
 }
@@ -278,6 +351,21 @@ int isValidMove(Piece p1, Piece p2){
 						matrix[0][2].state == 0 &&
 						matrix[0][3].state == 0)
 					return WHITE_LONG_CASTLING;
+			}
+		}
+		else if(p1.color == 'b' && p2.color == 'b' && bKingMove == 0){
+			//Short
+			if(p2.i == 7 && p2.j == 7 && bRook1Move == 0){
+				if(matrix[7][6].state == 0 && matrix[7][5].state == 0)
+					return BLACK_SHORT_CASTLING;
+			}
+
+			//Long
+			if(p2.i==7 && p2.j == 0 && bRook2Move == 0){
+				if(matrix[7][1].state == 0 &&
+						matrix[7][2].state == 0 &&
+						matrix[7][3].state == 0)
+					return BLACK_LONG_CASTLING;
 			}
 		}
 	}
