@@ -46,6 +46,8 @@ int game_management(){
 	int counterPlayer1_tics = counterPlayer1*60;
 	int counterPlayer2_tics = counterPlayer2*60;
 
+	int totalsegundos =  counterPlayer1;
+
 	int x1 = 5;
 	int width = 190;
 	int heigth = 30;
@@ -59,9 +61,7 @@ int game_management(){
 
 	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 
-	if(game_state == BLACK2PLAY){
 
-		int totalsegundos =  counterPlayer1;
 
 		while((counterPlayer1 > 0) && (key != KEY_SPACE))
 		{
@@ -80,65 +80,43 @@ int game_management(){
 							return 1;
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
-						counterPlayer1_tics-=1;
-						if(counterPlayer1_tics%60==0){
-							width_temp = counterPlayer1 * width / totalsegundos;
-							draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, BLACK);
-							draw_rectangle(x1, x1+width_temp, yPlayer1, yPlayer1+heigth, BLUE);
-							draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
-							counterPlayer1-=1;
+						if(game_state == WHITE2PLAY){
+							counterPlayer1_tics-=1;
 							drawMouse();
+							if(counterPlayer1_tics%60==0){
+								width_temp = counterPlayer1 * width / totalsegundos;
+								xPlayer1 = x1 +width_temp;
+								draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, BLACK);
+								draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
+								draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
+								counterPlayer1-=1;
+							}
+						}
+						else if(game_state == BLACK2PLAY){
+							counterPlayer2_tics-=1;
+							drawMouse();
+							if(counterPlayer2_tics%60==0){
+								width_temp = counterPlayer2 * width / totalsegundos;
+								xPlayer2 = x1 +width_temp;
+								draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, BLACK);
+								draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth, BLUE);
+								draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
+								counterPlayer2-=1;
+
+							}
+
 						}
 					}
 
 					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
 						mouse_int_handler();
-					}
-
-
-					break;
-				default:
-					break; // no other notifications expected: do nothing
-				}
-			}
-		}
-	}
-	else if(game_state == WHITE2PLAY){
-
-		int totalsegundos =  counterPlayer2;
-		xPlayer2=x1 + width;
-
-		while((counterPlayer2 > 0) && (key != KEY_SPACE))
-		{
-			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
-				printf("Driver_receive failed\n");
-				continue;
-			}
-			if (is_ipc_notify(ipc_status)) // Notification received
-			{
-				switch (_ENDPOINT_P(msg.m_source)) // Notification interrupted
-				{
-				case HARDWARE:
-					if (msg.NOTIFY_ARG & BIT(KBC_IRQ))
-					{
-						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
-							return 1;
-					}
-					if (msg.NOTIFY_ARG & timer_hook) {
-						counterPlayer2_tics-=1;
-						drawMouse();
-						if(counterPlayer2_tics%60==0){
-							width_temp = counterPlayer2 * width / totalsegundos;
-							draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, BLACK);
-							draw_rectangle(x1, x1+width_temp, yPlayer2, yPlayer2+heigth, BLUE);
-							draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
-							counterPlayer2-=1;
+						if(updateMouse()==1){
+							if (game_state == BLACK2PLAY)
+								game_state = WHITE2PLAY;
+							else if (game_state == WHITE2PLAY)
+								game_state = BLACK2PLAY;
 						}
-					}
 
-					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
-						mouse_int_handler();
-						updateMouse();
 					}
 
 					break;
@@ -147,7 +125,6 @@ int game_management(){
 				}
 			}
 		}
-	}
 //	}
 
 	if(kbc_unsubscribe_int(kbc_hook) != 0)

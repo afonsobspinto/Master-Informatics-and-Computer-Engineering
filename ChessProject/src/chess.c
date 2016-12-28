@@ -151,6 +151,9 @@ int makeMove(Piece p1, Piece p2){
 
 
 
+		// Check-Mate
+
+		// return 2
 
 		drawBoard();
 

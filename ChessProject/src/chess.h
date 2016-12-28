@@ -39,7 +39,6 @@ int makeMove(Piece pi, Piece pf);
 
 int isValidMove(Piece p1, Piece p2);
 
-
 Piece getMatrixAt(int x, int y);
 
 

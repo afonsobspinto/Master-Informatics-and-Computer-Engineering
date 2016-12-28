@@ -54,7 +54,7 @@ void drawMouse(){
 	copy2VideoMem3();
 }
 
-void updateMouse(){
+int updateMouse(){
 
 	mouse_struct info;
 
@@ -76,8 +76,11 @@ void updateMouse(){
 			}
 			else{
 				if(isPieceSelected(0)==1){
-					if(makeMove(mouse->piece, mouse->next_piece)==1)
+					if(makeMove(mouse->piece, mouse->next_piece)==1){
 						mouse->state = NO_PIECE;
+						return 1;
+					}
+
 				}
 
 
@@ -88,6 +91,7 @@ void updateMouse(){
 
 	}
 
+	return 0;
 
 }
 

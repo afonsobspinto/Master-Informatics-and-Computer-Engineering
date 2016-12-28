@@ -36,7 +36,7 @@ Mouse* newMouse();
 Mouse* getMouse();
 
 void drawMouse();
-void updateMouse();
+int updateMouse();
 void deleteMouse();
 
 int isPieceSelected (int flag);
