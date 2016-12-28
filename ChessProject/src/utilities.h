@@ -10,6 +10,17 @@
 #define CORRECTION 25
 #define SQUARE_SIZE	37.5
 
+#define LOGO			10
+#define WIDTHLOCAL		300
+#define WIDTHSERIAL 	320
+#define WIDTHEXIT 		75
+#define FONT_HEIGTH		45
+#define	XFONT 			400
+#define YLOCAL			200
+#define YSERIAL			380
+#define YEXIT 			560
+
+
 #define YELLOW 				65024
 #define RED					38914
 #define BLUE				255

@@ -1,6 +1,8 @@
 #ifndef __GAME_H
 #define __GAME_H
 
+#include "ChessProject.h"
+
 typedef enum {
 
 	WHITE2PLAY,
@@ -12,7 +14,7 @@ typedef enum {
 
 int game_management();
 
-GAME_STATE menu_management();
+MENU_STATE menu_management();
 
 GAME_STATE getGameState();
 

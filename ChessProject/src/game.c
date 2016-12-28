@@ -12,7 +12,7 @@
 #include <minix/drivers.h>
 
 
-#define gameTime  3;
+#define gameTime  1;
 
 static int counterPlayer1 = 60*gameTime;
 static int counterPlayer2 = 60*gameTime;
@@ -89,8 +89,14 @@ int game_management(){
 								width_temp = counterPlayer1 * width / totalsegundos;
 								xPlayer1 = x1 +width_temp;
 								draw_rectangle(x1, x1 + width, yPlayer1, yPlayer1+heigth, BLACK);
-								draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
-								draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
+								if(counterPlayer1 > totalsegundos/4)
+									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
+								else
+									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, RED);
+								if(counterPlayer2 > totalsegundos/4)
+									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
+								else
+									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,RED);
 								counterPlayer1-=1;
 							}
 						}
@@ -101,8 +107,14 @@ int game_management(){
 								width_temp = counterPlayer2 * width / totalsegundos;
 								xPlayer2 = x1 +width_temp;
 								draw_rectangle(x1, x1 + width, yPlayer2, yPlayer2+heigth, BLACK);
-								draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth, BLUE);
-								draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
+								if(counterPlayer2 > totalsegundos/4)
+									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth, BLUE);
+								else
+									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth, RED);
+								if(counterPlayer1 > totalsegundos/4)
+									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
+								else
+									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, RED);
 								counterPlayer2-=1;
 
 							}
@@ -148,7 +160,7 @@ GAME_STATE getGameState(){
 }
 
 
-GAME_STATE menu_management(){
+MENU_STATE menu_management(){
 
 
 	drawMenu(1,1,1);
@@ -164,14 +176,23 @@ GAME_STATE menu_management(){
 	mouse_set_stream_mode();
 	mouse_enable_stream_mode();
 
+	int widthLocal = 300;
+	int widthSerial = 320;
+	int widthExit = 75;
+	int heigth = 45;
+	int x = 400;
+	int yLocal = 200;
+	int ySerial = 380;
+	int yExit = 560;
+
 
 	int r, ipc_status;
 	message msg;
 
-	int cnt = 10 * 60;
+	int click;
 
 
-	while(cnt > 0)
+	while(1)
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
 			printf("Driver_receive failed\n");
@@ -184,15 +205,21 @@ GAME_STATE menu_management(){
 			case HARDWARE:
 				if (msg.NOTIFY_ARG & timer_hook) {
 					if(game_state == WHITE2PLAY){
-						cnt-=1;
 						drawMouse();
 					}
 				}
 
 				if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
 					mouse_int_handler();
-					updateMouse();
-
+					click = updateMouse();
+					switch (click){
+					case 1:
+						return MULTIPLAYER_LOCAL;
+					case 2:
+						return MULTIPLAYER_SERIAL;
+					case 3:
+						return END;
+					}
 				}
 
 				break;
@@ -202,6 +229,5 @@ GAME_STATE menu_management(){
 		}
 	}
 
-
-	return MULTIPLAYER_LOCAL;
+	return END;
 }

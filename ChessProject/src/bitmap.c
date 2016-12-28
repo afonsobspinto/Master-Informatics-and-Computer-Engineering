@@ -374,19 +374,19 @@ int loadBitmaps(){
 
 void drawMenu(unsigned local, unsigned serial, unsigned exit){
 
-	call_drawBitmap(logo,400,10,ALIGN_CENTER);
+	call_drawBitmap(logo,XFONT,LOGO,ALIGN_CENTER);
 	if(local==1)
-		call_drawBitmap(local1, 400, 200, ALIGN_CENTER);
+		call_drawBitmap(local1, XFONT, YLOCAL, ALIGN_CENTER);
 	if(serial==1)
-		call_drawBitmap(serial1, 400, 380, ALIGN_CENTER);
+		call_drawBitmap(serial1, XFONT, YSERIAL, ALIGN_CENTER);
 	if(exit==1)
-		call_drawBitmap(exit1, 400, 560, ALIGN_CENTER);
+		call_drawBitmap(exit1, XFONT, YEXIT, ALIGN_CENTER);
 	if(local==2)
-		call_drawBitmap(local2, 400, 200, ALIGN_CENTER);
+		call_drawBitmap(local2, XFONT, YLOCAL, ALIGN_CENTER);
 	if(serial==2)
-		call_drawBitmap(serial2, 400, 380, ALIGN_CENTER);
+		call_drawBitmap(serial2, XFONT, YSERIAL, ALIGN_CENTER);
 	if(exit==2)
-		call_drawBitmap(exit2, 400, 560, ALIGN_CENTER);
+		call_drawBitmap(exit2, XFONT, YEXIT, ALIGN_CENTER);
 
 }
 

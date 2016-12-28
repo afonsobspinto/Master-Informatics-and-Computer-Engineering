@@ -61,12 +61,6 @@ int updateMouse(){
 	mouse_struct info;
 	MENU_STATE menuState = getMenuState();
 
-	if(menuState == MENU){
-		printf("Menu");
-	}
-	else if (menuState == MULTIPLAYER_LOCAL)
-		printf("Multi");
-
 
 	if(mouse_get_packet(&info)) {
 		int new_x = mouse->x + info.x_delta;
@@ -81,9 +75,27 @@ int updateMouse(){
 
 		if (menuState == MENU){
 
-			if(info.left){
-				printf("Position: %d, %d \n", mouse->x, mouse->y);
+			if(mouseInside(XFONT-WIDTHLOCAL/2, YLOCAL-FONT_HEIGTH/2, XFONT+WIDTHLOCAL/2, YLOCAL+FONT_HEIGTH/2)){
+				drawMenu(2,1,1);
+				if(info.left)
+					return 1;
+
 			}
+
+			else if(mouseInside(XFONT-WIDTHSERIAL/2, YSERIAL-FONT_HEIGTH/2, XFONT+WIDTHSERIAL/2, YSERIAL+FONT_HEIGTH/2)){
+				drawMenu(1,2,1);
+				if(info.left)
+					return 2;
+			}
+
+			else if(mouseInside(XFONT-WIDTHEXIT/2, YEXIT-FONT_HEIGTH/2, XFONT+WIDTHEXIT/2, YEXIT+FONT_HEIGTH/2)){
+				drawMenu(1,1,2);
+				if(info.left)
+					return 3;
+			}
+
+			else
+				drawMenu(1,1,1);
 		}
 
 		if (menuState == MULTIPLAYER_LOCAL)
