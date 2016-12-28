@@ -70,21 +70,14 @@ void updateMouse(){
 		}
 
 		if(info.left){
-			printf("Click\n");
-
-			printf("Mouse_State: ");
-			if(mouse->state == NO_PIECE)
-				printf(" No Piece \n");
-			else
-				printf(" Piece 1 Selected \n");
 			if(mouse->state == NO_PIECE){
 				if(isPieceSelected(1)==1)
 					mouse->state = PIECE_1_SELECTED;
 			}
 			else{
 				if(isPieceSelected(0)==1){
-					makeMove(mouse->piece, mouse->next_piece);
-					mouse->state = NO_PIECE;
+					if(makeMove(mouse->piece, mouse->next_piece)==1)
+						mouse->state = NO_PIECE;
 				}
 
 
@@ -117,11 +110,6 @@ int isPieceSelected (int flag){
 			if(flag == 1){
 				if(P.state == 1){
 					if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
-						printf("Peça1 Selecionada: \n");
-						printf("Peça: %c \n ", P.name);
-						printf("Cor: %c \n ", P.color);
-						printf("Posicao na Matrix: %d, %d \n", P.i, P.j);
-
 						mouse->piece = P;
 
 						return 1;
@@ -132,11 +120,6 @@ int isPieceSelected (int flag){
 			else
 			{
 				if(mouseInside(xpos-SQUARE_SIZE, ypos-SQUARE_SIZE, xpos+SQUARE_SIZE, ypos+SQUARE_SIZE)){
-					printf("Peça2 Selecionada: \n");
-					printf("Peça: %c \n ", P.name);
-					printf("Cor: %c \n ", P.color);
-					printf("Posicao na Matrix: %d, %d \n", P.i, P.j);
-
 					mouse->next_piece = P;
 
 					return 1;

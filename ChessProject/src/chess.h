@@ -37,10 +37,8 @@ void updateBoard();
 
 int makeMove(Piece pi, Piece pf);
 
-//int isValidMove(Piece piece, Position pi, Position pf);
+int isValidMove(Piece p1, Piece p2);
 
-
-int clearBoard();
 
 Piece getMatrixAt(int x, int y);
 
