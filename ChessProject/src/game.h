@@ -27,6 +27,8 @@ void decrement(int *counter);
 
 void increment(int *counter);
 
+void reset();
+
 
 
 

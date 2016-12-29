@@ -183,9 +183,31 @@ MENU_STATE game_management(){
 	kbc_read(&st);
 
 
-	fill_buffer(BLACK);
+	reset();
 
 	return MENU;
+
+}
+
+void reset(){
+
+
+	fill_buffer(BLACK);
+	counterPlayer1 = 60*gameTime;
+	counterPlayer2 = 60*gameTime;
+
+	Mouse* m = getMouse();
+	Piece NoPiece;
+	NoPiece.state = 0;
+
+	m->state = NO_PIECE;
+	m->menu_flag = 0;
+	m->unmake_flag =0;
+	m->piece = NoPiece;
+	m->next_piece = NoPiece;
+
+	reset_castling();
+
 
 }
 

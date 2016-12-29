@@ -126,6 +126,14 @@ Piece getMatrixAt(int x, int y){
 		return matrix[x][y];
 }
 
+void reset_castling(){
+	wKingMove = 0;
+	wRook1Move = 0;
+	wRook2Move = 0;
+	bKingMove = 0;
+	bRook1Move = 0;
+	bRook2Move = 0;
+}
 
 int unmakeMove(){
 

@@ -236,179 +236,215 @@ void deleteBitmaps(){
 
 int loadBitmaps(){
 
+	printf("0\n");
 	board = loadBitmap("/home/lcom/ChessProject/res/board.bmp");
 	if(board == NULL){
+		printf("35\n");
 		return 1;
 	}
 
 	wKingb = loadBitmap("/home/lcom/ChessProject/res/wKingb.bmp");
 	if(wKingb == NULL){
+		printf("34\n");
 		return 1;
 	}
 
 	wKingw = loadBitmap("/home/lcom/ChessProject/res/wKingw.bmp");
 	if(wKingw == NULL){
+		printf("33\n");
 		return 1;
 	}
 
 	wQueenw = loadBitmap("/home/lcom/ChessProject/res/wQueenw.bmp");
 	if(wQueenw == NULL){
+		printf("32\n");
 		return 1;
 	}
 
 	wQueenb = loadBitmap("/home/lcom/ChessProject/res/wQueenb.bmp");
 	if(wQueenb == NULL){
+		printf("31\n");
 		return 1;
 	}
 
 	wRookb = loadBitmap("/home/lcom/ChessProject/res/wRookb.bmp");
 	if(wRookb == NULL){
+		printf("30\n");
 		return 1;
 	}
 
 	wRookw = loadBitmap("/home/lcom/ChessProject/res/wRookw.bmp");
 	if(wRookw == NULL){
+		printf("29\n");
 		return 1;
 	}
 
 	wBishopb = loadBitmap("/home/lcom/ChessProject/res/wBishopb.bmp");
 	if(wBishopb == NULL){
+		printf("28\n");
 		return 1;
 	}
 
 	wBishopw = loadBitmap("/home/lcom/ChessProject/res/wBishopw.bmp");
 	if(wBishopw == NULL){
+		printf("27\n");
 		return 1;
 	}
 
 	wKnightb = loadBitmap("/home/lcom/ChessProject/res/wKnightb.bmp");
 	if(wKnightb == NULL){
+		printf("26\n");
 		return 1;
 	}
 
 	wKnightw = loadBitmap("/home/lcom/ChessProject/res/wKnightw.bmp");
 	if(wKnightw == NULL){
+		printf("25\n");
 		return 1;
 	}
 
 	wPawnb = loadBitmap("/home/lcom/ChessProject/res/wPawnb.bmp");
 	if(wPawnb == NULL){
+		printf("24\n");
 		return 1;
 	}
 
 	wPawnw = loadBitmap("/home/lcom/ChessProject/res/wPawnw.bmp");
 	if(wPawnw == NULL){
+		printf("23\n");
 		return 1;
 	}
 
 	bKingb = loadBitmap("/home/lcom/ChessProject/res/bKingb.bmp");
 	if(bKingb == NULL){
+		printf("22\n");
 		return 1;
 	}
 
 	bKingw = loadBitmap("/home/lcom/ChessProject/res/bKingw.bmp");
 	if(bKingw == NULL){
+		printf("21\n");
 		return 1;
 	}
 
 	bQueenw = loadBitmap("/home/lcom/ChessProject/res/bQueenw.bmp");
 	if(bQueenw == NULL){
+		printf("20\n");
 		return 1;
 	}
 
 	bQueenb = loadBitmap("/home/lcom/ChessProject/res/bQueenb.bmp");
 	if(bQueenb == NULL){
+		printf("19\n");
 		return 1;
 	}
 
 
 	bKnightb = loadBitmap("/home/lcom/ChessProject/res/bKnightb.bmp");
 	if(bKnightb == NULL){
+		printf("18\n");
 		return 1;
 	}
 
 	bKnightw = loadBitmap("/home/lcom/ChessProject/res/bKnightw.bmp");
 	if(bKnightw == NULL){
+		printf("17\n");
 		return 1;
 	}
 
 	bRookw = loadBitmap("/home/lcom/ChessProject/res/bRookw.bmp");
 	if(bRookw == NULL){
+		printf("16\n");
 		return 1;
 	}
 
 	bRookb = loadBitmap("/home/lcom/ChessProject/res/bRookb.bmp");
 	if(bRookb == NULL){
+		printf("15\n");
 		return 1;
 	}
 
 	bBishopb = loadBitmap("/home/lcom/ChessProject/res/bBishopb.bmp");
 	if(bBishopb == NULL){
+		printf("14\n");
 		return 1;
 	}
 
 	bBishopw = loadBitmap("/home/lcom/ChessProject/res/bBishopw.bmp");
 	if(bBishopw == NULL){
+		printf("13\n");
 		return 1;
 	}
 
 	bPawnb = loadBitmap("/home/lcom/ChessProject/res/bPawnb.bmp");
 	if(bPawnb == NULL){
+		printf("12\n");
 		return 1;
 	}
 
 	bPawnw = loadBitmap("/home/lcom/ChessProject/res/bPawnw.bmp");
 	if(bPawnw == NULL){
+		printf("11\n");
 		return 1;
 	}
 
 	logo = loadBitmap("/home/lcom/ChessProject/res/logo.bmp");
 	if(logo == NULL){
+		printf("10\n");
 		return 1;
 	}
 
 	paused = loadBitmap("/home/lcom/ChessProject/res/paused.bmp");
 	if(paused == NULL){
+		printf("9\n");
 		return 1;
 	}
 
 	local1 = loadBitmap("/home/lcom/ChessProject/res/local1.bmp");
 	if(local1 == NULL){
+		printf("8\n");
 		return 1;
 	}
 
 	serial1 = loadBitmap("/home/lcom/ChessProject/res/serial1.bmp");
 	if(serial1 == NULL){
+		printf("7\n");
 		return 1;
 	}
 
 	exit1 = loadBitmap("/home/lcom/ChessProject/res/exit1.bmp");
 	if(exit1 == NULL){
+		printf("6\n");
 		return 1;
 	}
 
 	local2 = loadBitmap("/home/lcom/ChessProject/res/local2.bmp");
 	if(local2 == NULL){
+		printf("5\n");
 		return 1;
 	}
 
 	serial2 = loadBitmap("/home/lcom/ChessProject/res/serial2.bmp");
 	if(serial2 == NULL){
+		printf("4\n");
 		return 1;
 	}
 
 	exit2 = loadBitmap("/home/lcom/ChessProject/res/exit2.bmp");
 	if(exit2 == NULL){
+		printf("3\n");
 		return 1;
 	}
 
 	player1 = loadBitmap("/home/lcom/ChessProject/res/player1.bmp");
 	if(player1 == NULL){
+		printf("2\n");
 		return 1;
 	}
 
 	player2 = loadBitmap("/home/lcom/ChessProject/res/player2.bmp");
 	if(player2 == NULL){
+		printf("1\n");
 		return 1;
 	}
 
