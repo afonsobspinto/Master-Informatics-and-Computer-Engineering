@@ -257,10 +257,9 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
 		inativos.erase(*C);
 	C->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
-	cout << "3" << endl;
+	cout << "1st" << endl;
 	//Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico, esta a dar erro porque??
-	cout << "12" << endl;
-
+	cout << "2nd" << endl;
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
 	cout << "Codigo de Cancelamento: " << R.getID();
@@ -510,7 +509,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 //				cout << dataInicio_str +"1" << endl;
 //				cout << dataFim_str +"1" << endl;
 
-				Reserva R(*UserC, dataInicio, dataFim, preco, id);
+				Reserva R(dataInicio, dataFim, preco, id);
 				reservas.push_back(R);
 
 				if(tipo == "Apartamento"){
@@ -1191,15 +1190,34 @@ bool Broker::verHistorico() const {
 
 	ClearScreen();
 	cout << "2" << endl;
-	BSTItrPost<Reserva> it(Fat->getHistorico()); // Erro aqui 
+	BSTItrPost<Reserva> it = Fat->getHistorico(); // Erro aqui 
 	cout << "3" << endl;
-	     while (!it.isAtEnd())
-	     {
-	           cout << it.retrieve().getID() << endl << it.retrieve().getID() << endl;
-	           it.advance();
-	     }
+	while (!it.isAtEnd())
+	{
+		cout << it.retrieve().getID() << endl << it.retrieve().getID() << endl;
+	    it.advance();
+	}
+	cout << "4" << endl;
+
+	cout << endl;
+	cout << "Pressione enter para continuar." << endl;
+	_getch();
 
 	return true;
+}
+
+void Broker::verInativos() const {
+	
+	ClearScreen();
+	unsigned int counter = 0;
+	cout << "Publicidade enviada aos seguintes clientes inativos:" << endl;
+	for (tabH::const_iterator it = inativos.begin(); it != inativos.end(); it++) {
+		cout << counter + 1 << ": " << (*it).getNome() << endl; 
+		cout << endl;
+		counter++;
+	}
+	_getch;
+
 }
 /*
  * Getter UtilizadorFornecedor
@@ -1233,4 +1251,6 @@ void Broker::atualizaInativos() {
 	for(unsigned int i=0; i<csize;i++){
 		addInativo(clientes.at(i));
 	}
+
 }
+

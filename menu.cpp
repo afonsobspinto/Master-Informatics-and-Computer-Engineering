@@ -235,12 +235,14 @@ bool Broker::menuOutros() {
 		case 1:
 			if (verHistorico())
 				break;
+			cout << "LAST" << endl;
 			break;
 		case 2:
 			// Fila de prioridade
 			break;
 		case 3:
 			atualizaInativos();
+		    verInativos(); 
 			break;
 		case 4:
 			return true;

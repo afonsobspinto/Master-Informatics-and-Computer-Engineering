@@ -640,7 +640,7 @@ const string currentDateTime() {
 
 string random_string( size_t length )
 {
-	srand(time(NULL));
+	srand(time(nullptr));
     auto randchar = []() -> char
     {
         const char charset[] =

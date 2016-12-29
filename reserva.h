@@ -22,6 +22,7 @@ class Reserva{
 public:
 	Reserva(){};
 	Reserva(Data inicio, Data final, float preco_por_noite);
+	Reserva(Data inicio, Data final, float preco_por_noite, std::string id);
 	Reserva(Cliente c, Data inicio, Data final, float preco_por_noite);
 	Reserva(Cliente c, Data inicio, Data final, float preco_por_noite, std::string id);
 	Cliente getCliente() const;

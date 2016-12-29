@@ -13,6 +13,15 @@ Reserva::Reserva(Data inicio, Data final, float preco_por_noite) {
 
 }
 
+Reserva::Reserva(Data inicio, Data final, float preco_por_noite, std::string id) {
+	this->inicio = inicio;
+	this->final = final;
+	limite50 = final - 15;
+	limite100 = final - 30;
+	preco = preco_por_noite * (final - inicio);
+	this->id = id;
+}
+
 Reserva::Reserva(Cliente c, Data inicio, Data final, float preco_por_noite) {
 	this->c = c;
 	this->inicio = inicio;

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <queue>
 
 #include "cliente.h"
 #include "data.h"
@@ -26,15 +27,28 @@ struct clienteHash {
 	}
 };
 
+class CompImov
+{
+public:
+	bool operator() (Imovel i1, Imovel i2)
+	{
+		if (i1.getUltima() < i2.getUltima())
+			return true;
+	}
+};
+
+
 class Broker{
 
 	Cliente *UserC;
 	Fornecedor *UserF;
-	Fatura *Fat;
+	Fatura *Fat = {};
 
 	typedef std::unordered_set<Cliente, clienteHash, clienteHash> tabH;
+//	typedef std::priority_queue<Imovel, CompImov> HEAP_IMOV;
 
-	tabH inativos;
+	tabH inativos; // Clientes Inativos
+//	HEAP_IMOV imoveis; // Imoveis Inativos
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -57,10 +71,6 @@ public:
 	std::vector<Fornecedor>getFornecedores()const;
 	float getReceita()const;
 
-
-	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
-	bool seInativo(const Cliente & c); // Ve se o cliente c está nos inativos
-	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	bool adicionaCliente();
 	bool validaLoginCliente();
 	bool validaLoginFornecedor();
@@ -75,6 +85,11 @@ public:
 	 */
 
 
+	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
+	bool seInativo(const Cliente & c); // Ve se o cliente c está nos inativos
+	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
+	void verInativos() const; // Mostra os clientes Inativos para efeitos de envio de publicidade
+	void verImoveisInativos() const; // Mostra os imoveis inativos para efetuar descontos
 	bool verOfertas() const;
 	bool verHistorico() const; // Mostra o historico das reservas
 
