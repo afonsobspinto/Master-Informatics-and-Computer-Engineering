@@ -1,0 +1,39 @@
+service ChessProject {
+    system
+        DEVIO
+        IRQCTL
+        UMAP
+        INT86
+        PRIVCTL
+        READBIOS
+        IOPENABLE
+        ;
+    ipc
+        SYSTEM
+        rs
+        vm
+        pm
+        vfs
+        ;
+    io
+        40:4      # Timer
+        60        # KBC
+        64        # KBC
+        70:2      # RTC
+        2f8:8     # COM2
+        3f8:8     # COM1
+        ;               
+    irq
+        0         # TIMER 0 IRQ
+        1         # KBD IRQ
+        3         # COM2 IRQ
+        4         # COM1 IRQ
+        8         # RTC
+        12        # AUX/MOUSE IRQ
+        ;       
+    uid
+        0
+        ;
+};
+
+
