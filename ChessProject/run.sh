@@ -1,0 +1,1 @@
+service run `pwd`/ChessProject
