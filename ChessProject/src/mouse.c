@@ -59,7 +59,8 @@ void drawMouse(){
 int updateMouse(){
 
 	mouse_struct info;
-	MENU_STATE menuState = getMenuState();
+	MENU_STATE* menuState = getMenuState();
+	GAME_STATE gameState = getGameState();
 
 
 	if(mouse_get_packet(&info)) {
@@ -73,7 +74,7 @@ int updateMouse(){
 			mouse->y = new_y;
 		}
 
-		if (menuState == MENU){
+		if (*menuState == MENU){
 
 			if(mouseInside(XFONT-WIDTHLOCAL/2, YLOCAL-FONT_HEIGTH/2, XFONT+WIDTHLOCAL/2, YLOCAL+FONT_HEIGTH/2)){
 				drawMenu(2,1,1);
@@ -102,7 +103,7 @@ int updateMouse(){
 			}
 		}
 
-		if (menuState == MULTIPLAYER_LOCAL)
+		if (*menuState == MULTIPLAYER_LOCAL && gameState != PAUSED)
 			if(info.left){
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1)

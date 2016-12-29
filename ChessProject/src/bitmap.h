@@ -71,4 +71,6 @@ void drawMenu(unsigned local, unsigned serial, unsigned exit);
 
 void drawBoard();
 
+void drawPaused();
+
 /**@}*/

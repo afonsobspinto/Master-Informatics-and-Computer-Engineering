@@ -133,6 +133,26 @@ int unmakeMove(){
 	Mouse* m = getMouse();
 
 	if(m->unmake_flag ==1){
+
+		// Verify Castling flags
+		if(m->piece.name == 'K' && m->piece.color == 'w')
+			decrement(&wKingMove);
+
+		if(m->piece.name == 'R' && m->piece.color == 'w' && m->piece.i == 0 && m->piece.j == 7)
+			decrement(&wRook1Move);
+
+		if(m->piece.name == 'R' && m->piece.color == 'w' && m->piece.i == 0 && m->piece.j == 0)
+			decrement(&wRook2Move);
+
+		if(m->piece.name == 'K' && m->piece.color == 'b')
+			decrement(&bKingMove);
+
+		if(m->piece.name == 'R' && m->piece.color == 'b' && m->piece.i == 7 && m->piece.j == 7)
+			decrement(&bRook1Move);
+
+		if(m->piece.name == 'R' && m->piece.color == 'b' && m->piece.i == 7 && m->piece.j == 0)
+			decrement(&bRook2Move);
+
 		matrix[m->piece.i][m->piece.j]=m->piece;
 		matrix[m->next_piece.i][m->next_piece.j]=m->next_piece;
 		m->unmake_flag = 0;
@@ -173,22 +193,22 @@ int makeMove(Piece p1, Piece p2){
 
 		//Castling Info
 		if(p1.name == 'K' && p1.color == 'w')
-			wKingMove++;
+			increment(&wKingMove);
 
 		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
-			wRook1Move++;
+			increment(&wRook1Move);
 
 		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
-			wRook2Move++;
+			increment(&wRook2Move);
 
 		if(p1.name == 'K' && p1.color == 'b')
-			bKingMove++;
+			increment(&bKingMove);
 
 		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
-			bRook1Move++;
+			increment(&bRook1Move);
 
 		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
-			bRook2Move++;
+			increment(&bRook2Move);
 
 
 

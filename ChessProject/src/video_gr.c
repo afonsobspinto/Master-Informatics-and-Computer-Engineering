@@ -179,6 +179,15 @@ void fill_screen(unsigned long color)
 	}
 }
 
+void fill_buffer(unsigned long color){
+	char *pixel;
+	for (pixel = buffer; pixel < buffer + h_res * v_res * bits_per_pixel / 8; ++pixel)
+	{
+		*pixel = color;
+	}
+}
+
+
 void draw_rectangle(unsigned short x1, unsigned short x2, unsigned short y1, unsigned short y2, unsigned long color){
 
 	int i, j;

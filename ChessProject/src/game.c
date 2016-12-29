@@ -12,19 +12,25 @@
 #include <minix/drivers.h>
 
 
-#define gameTime  0.5;
+#define KEY_SPACE 						0x0039
+#define KEY_BKSP						0x000E
+#define KEY_ESC							0x0001
+#define gameTime  						3
+
 
 static int counterPlayer1 = 60*gameTime;
 static int counterPlayer2 = 60*gameTime;
 
 static GAME_STATE game_state;
 
-int game_management(){
+MENU_STATE game_management(){
 
 	fillBoard();
 	drawBoard();
 
 	game_state = WHITE2PLAY;
+	GAME_STATE old_game_state;
+	MENU_STATE menu_state;
 
 	int kbc_hook = KBC_IRQ;
 
@@ -65,7 +71,7 @@ int game_management(){
 
 	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 
-		while((counterPlayer1 > 0) && ((counterPlayer2 > 0) ) && (key != KEY_SPACE))
+		while((counterPlayer1 > 0) && (counterPlayer2 > 0) && (key != KEY_ESC))
 		{
 			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
 				printf("Driver_receive failed\n");
@@ -80,19 +86,34 @@ int game_management(){
 					{
 						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
 							return 1;
-						else if(key == KEY_BKSP){
-							if(unmakeMove()==1){
-								if (game_state == BLACK2PLAY)
-									game_state = WHITE2PLAY;
-								else if (game_state == WHITE2PLAY)
-									game_state = BLACK2PLAY;
+
+						if (key == KEY_ESC){
+							game_state = END;
+						}
+
+						if(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
+							if(key == KEY_BKSP){
+								if(unmakeMove()==1)
+									turnGameState();
+							}
+							else if (key == KEY_SPACE){
+								old_game_state = game_state;
+								game_state = PAUSED;
+								drawPaused();
+							}
+						}
+						else if(game_state == PAUSED){
+							if(key == KEY_SPACE){
+								game_state = old_game_state;
+								fill_buffer(BLACK);
+								drawBoard();
 							}
 
 						}
 					}
 					if (msg.NOTIFY_ARG & timer_hook) {
 						if(game_state == WHITE2PLAY){
-							counterPlayer1_tics-=1;
+							decrement(&counterPlayer1_tics);
 							drawMouse();
 							if(counterPlayer1_tics%60==0){
 								width_temp = counterPlayer1 * width / totalsegundos;
@@ -106,11 +127,11 @@ int game_management(){
 									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,BLUE);
 								else
 									draw_rectangle(x1, xPlayer2, yPlayer2, yPlayer2+heigth,RED);
-								counterPlayer1-=1;
+								decrement(&counterPlayer1);
 							}
 						}
 						else if(game_state == BLACK2PLAY){
-							counterPlayer2_tics-=1;
+							decrement(&counterPlayer2_tics);
 							drawMouse();
 							if(counterPlayer2_tics%60==0){
 								width_temp = counterPlayer2 * width / totalsegundos;
@@ -124,21 +145,19 @@ int game_management(){
 									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, BLUE);
 								else
 									draw_rectangle(x1, xPlayer1, yPlayer1, yPlayer1+heigth, RED);
-								counterPlayer2-=1;
+								decrement(&counterPlayer2);
 
 							}
 
 						}
+						else
+							continue;
 					}
 
 					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
 						mouse_int_handler();
-						if(updateMouse()==1){
-							if (game_state == BLACK2PLAY)
-								game_state = WHITE2PLAY;
-							else if (game_state == WHITE2PLAY)
-								game_state = BLACK2PLAY;
-						}
+						if(updateMouse()==1)
+							turnGameState();
 
 					}
 
@@ -160,12 +179,50 @@ int game_management(){
 	unsigned char st;
 	kbc_read(&st);
 
-	return 0;
+	return menu_state;
 
 }
 
+void increment(int *counter){
+	asm ("movl %1, %%eax; incl %%eax; movl %%eax,%0;"
+			:"=r"(*counter)
+			 :"r"(*counter)
+			  :"%eax"
+	);
+}
+
+void decrement(int *counter){
+
+	asm ("movl %1, %%eax; decl %%eax; movl %%eax,%0;"
+			:"=r"(*counter)
+			 :"r"(*counter)
+			  :"%eax"
+	);
+}
+
+void turnGameState(){
+	if(game_state == BLACK2PLAY)
+		asm ("movl %1, %%eax; movl %%eax,%0;"
+				:"=r"(game_state)
+				 :"r"(WHITE2PLAY)
+				  :"%eax"
+		);
+	else if(game_state == WHITE2PLAY)
+		asm ("movl %1, %%eax; movl %%eax,%0;"
+				:"=r"(game_state)
+				 :"r"(BLACK2PLAY)
+				  :"%eax"
+		);
+}
+
 GAME_STATE getGameState(){
-	return game_state;
+	GAME_STATE out;
+	asm ("movl %1, %%eax; movl %%eax,%0;"
+			:"=r"(out)
+			 :"r"(game_state)
+			  :"%eax"
+	);
+	return out;
 }
 
 

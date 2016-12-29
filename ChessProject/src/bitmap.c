@@ -48,6 +48,7 @@ static Bitmap *player1;
 static Bitmap *player2;
 
 static Bitmap *logo;
+static Bitmap *paused;
 
 static Bitmap *local1;
 static Bitmap *local2;
@@ -57,6 +58,8 @@ static Bitmap *serial2;
 
 static Bitmap *exit1;
 static Bitmap *exit2;
+
+
 
 
 
@@ -222,6 +225,7 @@ void deleteBitmaps(){
 	deleteBitmap(player1);
 	deleteBitmap(player2);
 	deleteBitmap(logo);
+	deleteBitmap(paused);
 	deleteBitmap(local1);
 	deleteBitmap(local2);
 	deleteBitmap(serial1);
@@ -363,6 +367,11 @@ int loadBitmaps(){
 		return 1;
 	}
 
+	paused = loadBitmap("/home/lcom/ChessProject/res/paused.bmp");
+	if(paused == NULL){
+		return 1;
+	}
+
 	local1 = loadBitmap("/home/lcom/ChessProject/res/local1.bmp");
 	if(local1 == NULL){
 		return 1;
@@ -429,7 +438,8 @@ void drawMenu(unsigned local, unsigned serial, unsigned exit){
 
 void drawBoard(){
 
-	fill_screen(0);
+	fill_screen(BLACK);
+
 	call_drawBitmap(board,800,0,ALIGN_RIGHT);
 	call_drawBitmap(logo,20,10,ALIGN_LEFT);
 	call_drawBitmap(player1, 10, 230, ALIGN_LEFT);
@@ -553,4 +563,10 @@ void drawBoard(){
 			}
 		}
 	}
+}
+
+
+void drawPaused(){
+	fill_screen(BLACK);
+	call_drawBitmap(paused, 0,0, ALIGN_LEFT);
 }

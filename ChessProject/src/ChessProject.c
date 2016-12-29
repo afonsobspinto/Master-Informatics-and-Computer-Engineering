@@ -74,7 +74,13 @@ int chessproject_exit(){
 	return 0;
 }
 
-MENU_STATE getMenuState(){
-	return menu_state;
-}
 
+MENU_STATE *getMenuState(){
+	MENU_STATE *out;
+	asm ("movl %1, %%eax; movl %%eax,%0;"
+			:"=r"(out)
+			 :"r"(&menu_state)
+			  :"%eax"
+	);
+	return out;
+}

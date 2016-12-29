@@ -6,7 +6,6 @@ typedef enum {
 	MENU,
 	MULTIPLAYER_LOCAL,
 	MULTIPLAYER_SERIAL,
-	PAUSE_MENU,
 	END
 } MENU_STATE;
 
@@ -26,7 +25,7 @@ int chessproject_start();
 int chessproject_exit();
 
 
-MENU_STATE getMenuState();
+MENU_STATE* getMenuState();
 
 
 #endif

@@ -7,17 +7,23 @@ typedef enum {
 
 	WHITE2PLAY,
 	BLACK2PLAY,
+	PAUSED,
 	WHITEWINS,
 	BLACKWINS
 
 } GAME_STATE;
 
-int game_management();
+MENU_STATE game_management();
 
 MENU_STATE menu_management();
 
 GAME_STATE getGameState();
 
+void turnGameState();
+
+void decrement(int *counter);
+
+void increment(int *counter);
 
 
 #endif /* __GAME_H */
