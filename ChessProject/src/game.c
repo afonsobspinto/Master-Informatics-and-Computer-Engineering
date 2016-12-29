@@ -16,7 +16,7 @@
 #define KEY_BKSP						0x000E
 #define KEY_ESC							0x0001
 #define KEY_ENTER						0x001C
-#define gameTime  						3
+#define gameTime  						0.5
 
 
 static int counterPlayer1 = 60*gameTime;
@@ -185,9 +185,15 @@ MENU_STATE game_management(){
 	kbc_read(&st);
 
 
+	if(counterPlayer2 == 0)
+		game_state = WHITEWINS;
+	else if(counterPlayer1 == 0)
+		game_state = BLACKWINS;
 
-	drawWinner();
-	waitForEnter();
+	if(game_state == BLACKWINS || game_state == WHITEWINS){
+		drawWinner();
+		waitForEnter();
+	}
 
 	reset();
 

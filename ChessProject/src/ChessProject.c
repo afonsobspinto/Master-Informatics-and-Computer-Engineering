@@ -27,6 +27,8 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
+
+
 	chessproject_exit();
 
 	return 0;
