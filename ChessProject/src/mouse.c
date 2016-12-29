@@ -74,6 +74,7 @@ int updateMouse(){
 			mouse->y = new_y;
 		}
 
+		// MENU
 		if (*menuState == MENU){
 
 			if(mouseInside(XFONT-WIDTHLOCAL/2, YLOCAL-FONT_HEIGTH/2, XFONT+WIDTHLOCAL/2, YLOCAL+FONT_HEIGTH/2)){
@@ -103,6 +104,8 @@ int updateMouse(){
 			}
 		}
 
+
+		// MULTIPLAYER LOCAL
 		if (*menuState == MULTIPLAYER_LOCAL && gameState != PAUSED)
 			if(info.left){
 				if(mouse->state == NO_PIECE){
@@ -111,11 +114,18 @@ int updateMouse(){
 				}
 				else{
 					if(isPieceSelected(0)==1){
+						//Normal Move
 						if(makeMove(mouse->piece, mouse->next_piece)==1){
 							mouse->state = NO_PIECE;
 							mouse->unmake_flag = 1;
 							return 1;
 						}
+						//Check-Mate
+						if(makeMove(mouse->piece, mouse->next_piece)==2){
+
+							return 2;
+						}
+
 						mouse->state = NO_PIECE;
 					}
 

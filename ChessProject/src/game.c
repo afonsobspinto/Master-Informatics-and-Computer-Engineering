@@ -30,20 +30,20 @@ MENU_STATE game_management(){
 
 	game_state = WHITE2PLAY;
 	GAME_STATE old_game_state;
-	MENU_STATE menu_state;
 
 	int kbc_hook = KBC_IRQ;
 
 	if(kbc_subscribe_int(&kbc_hook)<0)
-		return 1;
+		return END;
 
 	int timer_hook= timer_subscribe_int();
-	if(timer_subscribe_int()<0)
-		return 1;
+	if(timer_hook<0)
+		return END;
 
 	unsigned hook_id = MOUSE_IRQ;
 
-	mouse_subscribe_int(&hook_id);
+	if (mouse_subscribe_int(&hook_id)==-1)
+		return END;
 	mouse_set_stream_mode();
 	mouse_enable_stream_mode();
 
@@ -68,10 +68,10 @@ MENU_STATE game_management(){
 	int yPlayer1 = 250;
 	int yPlayer2 = 450;
 
+	int click;
 
-	//while(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
-
-		while((counterPlayer1 > 0) && (counterPlayer2 > 0) && (key != KEY_ESC))
+		while((counterPlayer1 > 0) && (counterPlayer2 > 0) && (key != KEY_ESC)
+				&& (game_state != BLACKWINS) && (game_state != WHITEWINS))
 		{
 			if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
 				printf("Driver_receive failed\n");
@@ -86,10 +86,6 @@ MENU_STATE game_management(){
 					{
 						if(sys_inb(KBC_OUT_BUF, &key)!= OK)
 							return 1;
-
-						if (key == KEY_ESC){
-							game_state = END;
-						}
 
 						if(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 							if(key == KEY_BKSP){
@@ -156,9 +152,12 @@ MENU_STATE game_management(){
 
 					if (msg.NOTIFY_ARG & BIT(MOUSE_IRQ)){
 						mouse_int_handler();
-						if(updateMouse()==1)
+						click = updateMouse();
+						if(click==1)
 							turnGameState();
-
+						else if(click==2){
+							winnerState();
+						}
 					}
 
 					break;
@@ -167,19 +166,26 @@ MENU_STATE game_management(){
 				}
 			}
 		}
-//	}
 
 	if(kbc_unsubscribe_int(kbc_hook) != 0)
-		return 1;
+		return END;
 
-	timer_unsubscribe_int();
+	if(timer_unsubscribe_int()==-1)
+		return END;
 
 	mouse_disable_stream_mode();
-	mouse_unsubscribe_int(hook_id);
+
+	if(mouse_unsubscribe_int(hook_id)==-1)
+		return END;
+
+
 	unsigned char st;
 	kbc_read(&st);
 
-	return menu_state;
+
+	fill_buffer(BLACK);
+
+	return MENU;
 
 }
 
@@ -198,6 +204,21 @@ void decrement(int *counter){
 			 :"r"(*counter)
 			  :"%eax"
 	);
+}
+
+void winnerState(){
+	if(game_state == BLACK2PLAY)
+		asm ("movl %1, %%eax; movl %%eax,%0;"
+				:"=r"(game_state)
+				 :"r"(BLACKWINS)
+				  :"%eax"
+		);
+	else if(game_state == WHITE2PLAY)
+		asm ("movl %1, %%eax; movl %%eax,%0;"
+				:"=r"(game_state)
+				 :"r"(WHITEWINS)
+				  :"%eax"
+		);
 }
 
 void turnGameState(){
@@ -232,13 +253,14 @@ MENU_STATE menu_management(){
 	drawMenu(1,1,1);
 
 	int timer_hook= timer_subscribe_int();
-	if(timer_subscribe_int()<0)
-		return 1;
-
+	if(timer_hook<0)
+		return END;
 
 	unsigned hook_id = MOUSE_IRQ;
 
-	mouse_subscribe_int(&hook_id);
+	if (mouse_subscribe_int(&hook_id)==-1)
+		return END;
+
 	mouse_set_stream_mode();
 	mouse_enable_stream_mode();
 

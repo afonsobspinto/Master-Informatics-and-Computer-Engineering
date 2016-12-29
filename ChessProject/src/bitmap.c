@@ -419,6 +419,8 @@ int loadBitmaps(){
 
 void drawMenu(unsigned local, unsigned serial, unsigned exit){
 
+	fill_screen(BLACK);
+
 	call_drawBitmap(logo,XFONT,LOGO,ALIGN_CENTER);
 	if(local==1)
 		call_drawBitmap(local1, XFONT, YLOCAL, ALIGN_CENTER);

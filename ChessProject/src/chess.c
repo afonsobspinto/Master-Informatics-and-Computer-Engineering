@@ -22,8 +22,8 @@ void fillBoard(){
 	matrix[7][0] = brookw;
 
 	Piece wknightb ={'N','w',1,0,6,660,535, 'b'};
-	Piece wknightw ={'N','w',1,0,1,285,535, 'w'};
-	Piece bknightb ={'N','b',1,7,1,285,15, 'b'};
+	Piece wknightw ={'N','w',1,0,1,280,535, 'w'};
+	Piece bknightb ={'N','b',1,7,1,280,15, 'b'};
 	Piece bknightw ={'N','b',1,7,6,660,15, 'w'};
 
 	matrix[0][6] = wknightb;
@@ -210,19 +210,14 @@ int makeMove(Piece p1, Piece p2){
 		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 			increment(&bRook2Move);
 
-
-
-
 		// Check-Mate
-
-		// return 2
 
 		drawBoard();
 
 		return 1;
 	}
 
-	//King-Side Castling White
+	// Castling White
 	if (valid == WHITE_SHORT_CASTLING){
 		Piece NewPiece1;
 		Piece NewPiece2;

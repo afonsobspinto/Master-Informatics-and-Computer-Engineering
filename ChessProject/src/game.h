@@ -21,9 +21,13 @@ GAME_STATE getGameState();
 
 void turnGameState();
 
+void winnerState();
+
 void decrement(int *counter);
 
 void increment(int *counter);
+
+
 
 
 #endif /* __GAME_H */

@@ -46,6 +46,8 @@ int unmakeMove();
 
 int isValidMove(Piece p1, Piece p2);
 
+int isCheckMate(Piece p1, Piece p2);
+
 Piece getMatrixAt(int x, int y);
 
 

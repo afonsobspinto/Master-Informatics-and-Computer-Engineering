@@ -55,7 +55,6 @@ int chessproject_start(){
 		}
 		else if(menu_state == MULTIPLAYER_LOCAL){
 			menu_state = game_management();
-			break;
 		}
 
 		else if(menu_state == MULTIPLAYER_SERIAL)
