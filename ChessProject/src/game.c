@@ -112,7 +112,10 @@ MENU_STATE game_management(){
 				}
 				if (msg.NOTIFY_ARG & timer_hook) {
 					rtc_get_time(&time);
-					drawTime(&time);
+					if(game_state != PAUSED)
+						drawTime(&time);
+
+
 					if(game_state == WHITE2PLAY){
 						decrement(&counterPlayer1_tics);
 						drawMouse();

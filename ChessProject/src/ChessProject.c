@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <minix/syslib.h>
+#include <minix/com.h>
+#include <minix/drivers.h>
 #include "ChessProject.h"
 #include "utilities.h"
 #include "macros.h"
@@ -15,6 +18,7 @@ int main(int argc, char **argv) {
 
 	/* Initialize service */
 	sef_startup();
+	sys_enable_iop(SELF);
 
 	/* Enable IO-sensitive operations for ourselves */
 

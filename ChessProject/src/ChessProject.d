@@ -55,5 +55,6 @@ ChessProject.o:	chess.h
 ChessProject.o:	game.h
 ChessProject.o:	macros.h
 ChessProject.o:	mouse.h
+ChessProject.o:	rtc.h
 ChessProject.o:	timer.h
 ChessProject.o:	utilities.h
