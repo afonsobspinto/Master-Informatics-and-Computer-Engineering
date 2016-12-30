@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 /* reads from keypress, doesn't echo */
-inline int getch() {
+inline int _getch() {
     int ch;
     struct termios t_old, t_new;
 
@@ -24,7 +24,7 @@ inline int getch() {
     t_new.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
 
-    ch = _getch();
+    ch = getchar();
 
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;

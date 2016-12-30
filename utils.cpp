@@ -421,10 +421,12 @@ string getpass(const char *prompt, bool show_asterisk)
 {
   const char BACKSPACE=127;
   const char RETURN=10;
+
   string password;
   unsigned char ch=0;
+
   cout <<prompt;
-  while((ch=getchar())!=RETURN)
+  while((ch=_getch())!=RETURN)
     {
        if(ch==BACKSPACE)
          {

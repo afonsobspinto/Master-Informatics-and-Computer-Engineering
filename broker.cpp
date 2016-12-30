@@ -258,7 +258,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 		inativos.erase(*C);
 	C->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
 	cout << "1st" << endl;
-	//Fat->adicionaReserva(R); // Adiciona a Reserva ao histórico, esta a dar erro porque??
+	//Fat->adicionaReserva(R); // Adiciona a Reserva ao histï¿½rico, esta a dar erro porque??
 	cout << "2nd" << endl;
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
@@ -1216,7 +1216,7 @@ void Broker::verInativos() const {
 		cout << endl;
 		counter++;
 	}
-	_getch;
+	_getch();
 
 }
 /*
@@ -1233,7 +1233,7 @@ bool Broker::addInativo(const Cliente & c) {
 	if (seInativo(c))
 		return true;
 
-	if (!(atual - 30 < c.getUltima())){
+	if (atual - 30 < c.getUltima()){
 		inativos.insert(c);
 		return true;
 	}
