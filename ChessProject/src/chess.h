@@ -10,6 +10,7 @@
 #define BLACK_SHORT_CASTLING 4
 #define BLACK_LONG_CASTLING 5
 #define MATE 6
+#define PROMOTION 7
 
 typedef struct
 {

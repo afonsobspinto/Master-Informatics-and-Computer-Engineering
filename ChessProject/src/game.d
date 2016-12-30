@@ -58,5 +58,6 @@ game.o:	kbd.h
 game.o:	macros.h
 game.o:	mouse.h
 game.o:	mouse_cmds.h
+game.o:	rtc.h
 game.o:	timer.h
 game.o:	utilities.h

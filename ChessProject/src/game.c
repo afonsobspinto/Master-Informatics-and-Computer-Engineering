@@ -8,6 +8,7 @@
 #include "mouse_cmds.h"
 #include "game.h"
 #include "ChessProject.h"
+#include "rtc.h"
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 
@@ -16,7 +17,7 @@
 #define KEY_BKSP						0x000E
 #define KEY_ESC							0x0001
 #define KEY_ENTER						0x001C
-#define gameTime  						0.5
+#define gameTime  						3
 
 
 static int counterPlayer1 = 60*gameTime;
@@ -31,6 +32,7 @@ MENU_STATE game_management(){
 
 	game_state = WHITE2PLAY;
 	GAME_STATE old_game_state;
+	time_info_t time;
 
 	int kbc_hook = KBC_IRQ;
 
@@ -109,6 +111,8 @@ MENU_STATE game_management(){
 					}
 				}
 				if (msg.NOTIFY_ARG & timer_hook) {
+					rtc_get_time(&time);
+					drawTime(&time);
 					if(game_state == WHITE2PLAY){
 						decrement(&counterPlayer1_tics);
 						drawMouse();
@@ -145,7 +149,6 @@ MENU_STATE game_management(){
 							decrement(&counterPlayer2);
 
 						}
-
 					}
 					else
 						continue;
@@ -312,7 +315,9 @@ MENU_STATE menu_management(){
 	message msg;
 
 	int click;
+	int counter = 0;
 
+	date_info_t date;
 
 	while(1)
 	{
@@ -326,6 +331,11 @@ MENU_STATE menu_management(){
 			{
 			case HARDWARE:
 				if (msg.NOTIFY_ARG & timer_hook) {
+					if (counter % 60 == 0){
+						rtc_get_date(&date);
+						drawDate(&date);
+					}
+					counter++;
 					drawMouse();
 				}
 

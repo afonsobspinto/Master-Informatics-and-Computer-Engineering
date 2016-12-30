@@ -197,7 +197,6 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p1.j]= noPiece;
 
-		// Promote Pawn
 
 		//Castling Info
 		if(p1.name == 'K' && p1.color == 'w')
@@ -375,6 +374,28 @@ int makeMove(Piece p1, Piece p2){
 		return 2;
 	}
 
+	else if (valid == PROMOTION){
+		Piece NewPiece;
+
+		NewPiece.name = 'Q';
+		NewPiece.color = p1.color;
+		NewPiece.state = p1.state;
+		NewPiece.i = p2.i;
+		NewPiece.j = p2.j;
+		NewPiece.xpos = p2.xpos;
+		NewPiece.ypos = p2.ypos;
+		NewPiece.bg = p2.bg;
+
+		matrix[NewPiece.i][NewPiece.j]=NewPiece;
+
+		Piece noPiece = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+
+		matrix[p1.i][p1.j]= noPiece;
+
+		drawBoard();
+		return 1;
+	}
+
 	return 0;
 
 }
@@ -386,7 +407,7 @@ int isValidMove(Piece p1, Piece p2){
 		return MATE;
 
 	//Castling
-	else if(p1.name == 'K' && p2.name =='R'){
+	if(p1.name == 'K' && p2.name =='R'){
 		//White
 		if(p1.color == 'w' && p2.color == 'w' && wKingMove==0){
 			//Short
@@ -420,9 +441,22 @@ int isValidMove(Piece p1, Piece p2){
 	}
 
 
+	//Promotion
+		else if(p1.name == 'p'){
+			if(p1.color == 'w'){
+				if(p2.i == 7)
+					return PROMOTION;
+			}
+			else if(p1.color == 'b'){
+				if(p2.i == 0)
+					return PROMOTION;
+			}
+		}
+
 	//Normal
-	else if(p1.color != p2.color)
-		return 1;
+	if(p1.color != p2.color){
+		return	1;
+	}
 
 	return 0;
 

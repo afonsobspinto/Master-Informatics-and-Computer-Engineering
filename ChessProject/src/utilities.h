@@ -19,7 +19,17 @@
 #define YSERIAL                     380
 #define YEXIT                       560
 
+#define TIMEX						10
+#define TIMEY						150
 
+#define DAYX						800
+#define DAYY						10
+
+#define DATEX						625
+#define DATEY						55
+
+#define LETTER						18
+#define GAP							21
 
 #define YELLOW                              65024
 #define RED                                 38914

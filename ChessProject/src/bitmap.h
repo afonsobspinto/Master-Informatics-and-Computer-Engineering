@@ -1,6 +1,7 @@
 #pragma once
 #include "utilities.h"
 #include "chess.h"
+#include "rtc.h"
 
 /** @defgroup Bitmap Bitmap
  * @{
@@ -74,5 +75,10 @@ void drawBoard();
 void drawPaused();
 
 void drawWinner();
+
+void drawTime(time_info_t *time);
+
+void drawDate(date_info_t *date);
+
 
 /**@}*/

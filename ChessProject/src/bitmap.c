@@ -63,6 +63,27 @@ static Bitmap *exit2;
 static Bitmap *player1wins;
 static Bitmap *player2wins;
 
+static Bitmap *zero;
+static Bitmap *one;
+static Bitmap *two;
+static Bitmap *three;
+static Bitmap *four;
+static Bitmap *five;
+static Bitmap *six;
+static Bitmap *seven;
+static Bitmap *eigth;
+static Bitmap *nine;
+
+static Bitmap *colon;
+static Bitmap *bar;
+
+static Bitmap *sunday;
+static Bitmap *monday;
+static Bitmap *tuesday;
+static Bitmap *wednesday;
+static Bitmap *thursday;
+static Bitmap *friday;
+static Bitmap *saturday;
 
 
 
@@ -237,6 +258,26 @@ void deleteBitmaps(){
 	deleteBitmap(exit2);
 	deleteBitmap(player1wins);
 	deleteBitmap(player2wins);
+	deleteBitmap(zero);
+	deleteBitmap(one);
+	deleteBitmap(two);
+	deleteBitmap(three);
+	deleteBitmap(four);
+	deleteBitmap(five);
+	deleteBitmap(six);
+	deleteBitmap(seven);
+	deleteBitmap(eigth);
+	deleteBitmap(nine);
+	deleteBitmap(colon);
+	deleteBitmap(bar);
+	deleteBitmap(sunday);
+	deleteBitmap(monday);
+	deleteBitmap(tuesday);
+	deleteBitmap(wednesday);
+	deleteBitmap(thursday);
+	deleteBitmap(friday);
+	deleteBitmap(saturday);
+
 }
 
 int loadBitmaps(){
@@ -465,6 +506,88 @@ int loadBitmaps(){
 		return 1;
 	}
 
+	zero = loadBitmap("/home/lcom/ChessProject/res/zero.bmp");
+	if(zero == NULL){
+		return 1;
+	}
+	one = loadBitmap("/home/lcom/ChessProject/res/one.bmp");
+	if(one == NULL){
+		return 1;
+	}
+	two = loadBitmap("/home/lcom/ChessProject/res/two.bmp");
+	if(two == NULL){
+		return 1;
+	}
+	three = loadBitmap("/home/lcom/ChessProject/res/three.bmp");
+	if(three == NULL){
+		return 1;
+	}
+	four = loadBitmap("/home/lcom/ChessProject/res/four.bmp");
+	if(four == NULL){
+		return 1;
+	}
+	five = loadBitmap("/home/lcom/ChessProject/res/five.bmp");
+	if(five == NULL){
+		return 1;
+	}
+	six = loadBitmap("/home/lcom/ChessProject/res/six.bmp");
+	if(six == NULL){
+		return 1;
+	}
+	seven = loadBitmap("/home/lcom/ChessProject/res/seven.bmp");
+	if(seven == NULL){
+		return 1;
+	}
+
+	eigth = loadBitmap("/home/lcom/ChessProject/res/eigth.bmp");
+	if(eigth == NULL){
+		return 1;
+	}
+	nine = loadBitmap("/home/lcom/ChessProject/res/nine.bmp");
+	if(nine == NULL){
+		return 1;
+	}
+
+	colon = loadBitmap("/home/lcom/ChessProject/res/colon.bmp");
+	if(colon == NULL){
+		return 1;
+	}
+
+	bar = loadBitmap("/home/lcom/ChessProject/res/bar.bmp");
+	if(bar == NULL){
+		return 1;
+	}
+
+	sunday = loadBitmap("/home/lcom/ChessProject/res/sunday.bmp");
+	if(sunday == NULL){
+		return 1;
+	}
+	monday = loadBitmap("/home/lcom/ChessProject/res/monday.bmp");
+	if(monday == NULL){
+		return 1;
+	}
+	tuesday = loadBitmap("/home/lcom/ChessProject/res/tuesday.bmp");
+	if(tuesday == NULL){
+		return 1;
+	}
+	wednesday = loadBitmap("/home/lcom/ChessProject/res/wednesday.bmp");
+	if(wednesday == NULL){
+		return 1;
+	}
+	thursday = loadBitmap("/home/lcom/ChessProject/res/thursday.bmp");
+	if(thursday == NULL){
+		return 1;
+	}
+	friday = loadBitmap("/home/lcom/ChessProject/res/friday.bmp");
+	if(friday == NULL){
+		return 1;
+	}
+	saturday = loadBitmap("/home/lcom/ChessProject/res/saturday.bmp");
+	if(saturday == NULL){
+		return 1;
+	}
+
+
 	return 0;
 }
 
@@ -632,4 +755,97 @@ void drawWinner(){
 		call_drawBitmap(player2wins, 0, 0, ALIGN_LEFT);
 	else if (gameState == WHITEWINS)
 		call_drawBitmap(player1wins, 0, 0, ALIGN_LEFT);
+}
+
+void drawTime(time_info_t *time) {
+	char timestr[9];
+	sprintf(timestr, "%02d:%02d:%02d", time->hours, time->minutes, time->seconds);
+
+	int i = 0;
+		while (timestr[i] != '\0') {
+			if (timestr[i] == '0')
+				call_drawBitmap(zero, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '1')
+				call_drawBitmap(one, TIMEX+i*GAP+2, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '2')
+				call_drawBitmap(two, TIMEX+i*GAP+2, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '3')
+				call_drawBitmap(three, TIMEX+i*GAP+2, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '4')
+				call_drawBitmap(four, TIMEX+i*GAP+2, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '5')
+				call_drawBitmap(five, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '6')
+				call_drawBitmap(six, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '7')
+				call_drawBitmap(seven, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '8')
+				call_drawBitmap(eigth, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == '9')
+				call_drawBitmap(nine, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			else if (timestr[i] == ':')
+				call_drawBitmap(colon, TIMEX+i*GAP, TIMEY, ALIGN_LEFT);
+			i++;
+		}
+
+}
+
+void drawDate(date_info_t *date) {
+
+	static char dateStr[9];
+	int i = 0;
+
+	switch (date->week_day) {
+	case SUNDAY:
+		call_drawBitmap(sunday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case MONDAY:
+		call_drawBitmap(monday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case TUESDAY:
+		call_drawBitmap(tuesday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case WEDNESDAY:
+		call_drawBitmap(wednesday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case THURSDAY:
+		call_drawBitmap(thursday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case FRIDAY:
+		call_drawBitmap(friday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	case SATURDAY:
+		call_drawBitmap(saturday, DAYX, DAYY, ALIGN_RIGHT);
+		break;
+	}
+
+	sprintf(dateStr, "%02d/%02d/%02d", date->month_day, date->month, date->year);
+
+	while (dateStr[i] != '\0') {
+		if (dateStr[i] == '0')
+			call_drawBitmap(zero, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '1')
+			call_drawBitmap(one, DATEX+i*GAP+2, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '2')
+			call_drawBitmap(two, DATEX+i*GAP+2, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '3')
+			call_drawBitmap(three, DATEX+i*GAP+2, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '4')
+			call_drawBitmap(four, DATEX+i*GAP+2, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '5')
+			call_drawBitmap(five, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '6')
+			call_drawBitmap(six, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '7')
+			call_drawBitmap(seven, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '8')
+			call_drawBitmap(eigth, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '9')
+			call_drawBitmap(nine, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		else if (dateStr[i] == '/')
+			call_drawBitmap(bar, DATEX+i*GAP, DATEY, ALIGN_LEFT);
+		i++;
+	}
+
+	puts(dateStr);
 }
