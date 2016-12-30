@@ -57,5 +57,6 @@ mouse.o:	macros.h
 mouse.o:	mouse.c
 mouse.o:	mouse.h
 mouse.o:	mouse_cmds.h
+mouse.o:	rtc.h
 mouse.o:	utilities.h
 mouse.o:	video_gr.h

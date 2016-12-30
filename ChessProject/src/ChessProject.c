@@ -62,9 +62,8 @@ int chessproject_start(){
 		else if(menu_state == MULTIPLAYER_LOCAL){
 			menu_state = game_management();
 		}
-
-		else if(menu_state == MULTIPLAYER_SERIAL)
-			printf("Multiplayer_serial: ");
+//		else if(menu_state == MULTIPLAYER_SERIAL)
+//			printf("Multiplayer_serial: ");
 		else
 			return 0;
 	}

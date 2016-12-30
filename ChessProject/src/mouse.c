@@ -84,12 +84,12 @@ int updateMouse(){
 					return 1;
 			}
 
-			else if(mouseInside(XFONT-WIDTHSERIAL/2, YSERIAL-FONT_HEIGTH/2, XFONT+WIDTHSERIAL/2, YSERIAL+FONT_HEIGTH/2)){
-				drawMenu(1,2,1);
-				mouse->menu_flag = 1;
-				if(info.left)
-					return 2;
-			}
+//			else if(mouseInside(XFONT-WIDTHSERIAL/2, YSERIAL-FONT_HEIGTH/2, XFONT+WIDTHSERIAL/2, YSERIAL+FONT_HEIGTH/2)){
+//				drawMenu(1,2,1);
+//				mouse->menu_flag = 1;
+//				if(info.left)
+//					return 2;
+//			}
 
 			else if(mouseInside(XFONT-WIDTHEXIT/2, YEXIT-FONT_HEIGTH/2, XFONT+WIDTHEXIT/2, YEXIT+FONT_HEIGTH/2)){
 				drawMenu(1,1,2);
