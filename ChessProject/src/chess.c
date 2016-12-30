@@ -402,47 +402,128 @@ int makeMove(Piece p1, Piece p2){
 
 int isValidMove(Piece p1, Piece p2){
 
-	// Mate
-	if(p2.name == 'K' && p1.color != p2.color)
-		return MATE;
+	char peca = p1.name;
 
-	//Castling
-	if(p1.name == 'K' && p2.name =='R'){
-		//White
-		if(p1.color == 'w' && p2.color == 'w' && wKingMove==0){
-			//Short
-			if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
-				if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
-					return WHITE_SHORT_CASTLING;
+	switch(peca){
+	case 'K':
+	{
+		//Castling
+		if(p2.name =='R'){
+			//White
+			if(p1.color == 'w' && p2.color == 'w' && wKingMove==0){
+				//Short
+				if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
+					if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
+						return WHITE_SHORT_CASTLING;
+				}
+				//Long
+				if(p2.i==0 && p2.j == 0 && wRook2Move == 0){
+					if(matrix[0][1].state == 0 &&
+							matrix[0][2].state == 0 &&
+							matrix[0][3].state == 0)
+						return WHITE_LONG_CASTLING;
+				}
 			}
-			//Long
-			if(p2.i==0 && p2.j == 0 && wRook2Move == 0){
-				if(matrix[0][1].state == 0 &&
-						matrix[0][2].state == 0 &&
-						matrix[0][3].state == 0)
-					return WHITE_LONG_CASTLING;
+			else if(p1.color == 'b' && p2.color == 'b' && bKingMove == 0){
+				//Short
+				if(p2.i == 7 && p2.j == 7 && bRook1Move == 0){
+					if(matrix[7][6].state == 0 && matrix[7][5].state == 0)
+						return BLACK_SHORT_CASTLING;
+				}
+
+				//Long
+				if(p2.i==7 && p2.j == 0 && bRook2Move == 0){
+					if(matrix[7][1].state == 0 &&
+							matrix[7][2].state == 0 &&
+							matrix[7][3].state == 0)
+						return BLACK_LONG_CASTLING;
+				}
 			}
 		}
-		else if(p1.color == 'b' && p2.color == 'b' && bKingMove == 0){
-			//Short
-			if(p2.i == 7 && p2.j == 7 && bRook1Move == 0){
-				if(matrix[7][6].state == 0 && matrix[7][5].state == 0)
-					return BLACK_SHORT_CASTLING;
-			}
+		if(    (((p1.i == p2.i+1) && (p1.j == p2.j+1)) ||
+				((p1.i == p2.i+1) && (p1.j == p2.j-1)) ||
+				((p1.i == p2.i+1) && (p1.j == p2.j)) ||
+				((p1.i == p2.i-1) && (p1.j == p2.j+1)) ||
+				((p1.i == p2.i-1) && (p1.j == p2.j-1)) ||
+				((p1.i == p2.i-1) && (p1.j == p2.j)) ||
+				((p1.i == p2.i) && (p1.j == p2.j+1)) ||
+				((p1.i == p2.i) && (p1.j == p2.j-1))) && (p1.color != p2.color))
+			return 1;
+		else
+			return 0;
+	}
 
-			//Long
-			if(p2.i==7 && p2.j == 0 && bRook2Move == 0){
-				if(matrix[7][1].state == 0 &&
-						matrix[7][2].state == 0 &&
-						matrix[7][3].state == 0)
-					return BLACK_LONG_CASTLING;
-			}
-		}
+	case 'Q':
+		break;
+	case 'B':
+		break;
+	case 'N':
+		break;
+	case 'R':
+	{
+//		unsigned int counter = 0;
+//		unsigned int aux;
+//		unsigned int k;
+//		if ((p1.i == p2.i || p1.j == p2.j) && p1.color != p2.color){
+//			// Same Line
+//			if (p1.i == p2.i){
+//				// p1 is left of p2
+//				if (p1.j < p2.j){
+//					aux = p2.j - p1.j;
+//					for(k = 1; k<aux; k++){
+//						if (matrix[i][i+k].state==0)
+//							counter++;
+//					}
+//					if (counter = aux-1)
+//						return 1;
+//				}
+//				//p1 is right of p2
+//				if (p1.j < p2.j){
+//					aux = p2.j - p1.j;
+//					for(k = 1; k<aux; k++){
+//						if (matrix[i][i-k].state==0)
+//							counter++;
+//					}
+//					if (counter = aux-1)
+//						return 1;
+//				}
+//			}
+//			// Same Column
+//			if (p1.j == p2.j){
+//				// p1 is below of p2
+//				if (p1.i < p2.i){
+//					aux = p2.i - p1.i;
+//					for(k = 1; k<aux; k++){
+//						if (matrix[j+k][j].state==0)
+//							counter++;
+//					}
+//					if (counter = aux-1)
+//						return 1;
+//				}
+//				//p1 is above of p2
+//				if (p1.j < p2.j){
+//					aux = p2.i - p1.i;
+//					for(k = 1; k<aux; k++){
+//						if (matrix[j-k][j].state==0)
+//							counter++;
+//					}
+//					if (counter = aux-1)
+//						return 1;
+//				}
+//			}
+//		}
+//		break;
+//	}
+
+	case 'p':
+		if ((p1.i == p2.i-1) && p1.color != p2.color)
+			break;
 	}
 
 
+
 	//Promotion
-		else if(p1.name == 'p'){
+	/*else if(p1.name == 'p'){
 			if(p1.color == 'w'){
 				if(p2.i == 7)
 					return PROMOTION;
@@ -454,6 +535,10 @@ int isValidMove(Piece p1, Piece p2){
 		}
 
 	//Normal
+	if(p1.color != p2.color){
+		return	1;
+	}*/
+
 	if(p1.color != p2.color){
 		return	1;
 	}
