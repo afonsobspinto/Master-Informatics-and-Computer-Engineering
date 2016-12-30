@@ -513,7 +513,7 @@ int isValidMove(Piece p1, Piece p2){
 //			}
 //		}
 //		break;
-//	}
+	}
 
 	case 'p':
 		if ((p1.i == p2.i-1) && p1.color != p2.color)
