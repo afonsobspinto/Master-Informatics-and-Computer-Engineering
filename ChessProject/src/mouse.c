@@ -109,8 +109,11 @@ int updateMouse(){
 		if (*menuState == MULTIPLAYER_LOCAL && gameState != PAUSED)
 			if(info.left){
 				if(mouse->state == NO_PIECE){
-					if(isPieceSelected(1)==1)
+					if(isPieceSelected(1)==1){
 						mouse->state = PIECE_1_SELECTED;
+						mouse->unmake_flag = 0;
+					}
+
 				}
 				else{
 					if(isPieceSelected(0)==1){
