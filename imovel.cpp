@@ -12,12 +12,13 @@ Imovel::Imovel(string localidade, int owner, float preco, float taxa, vector<Res
 	this->preco = preco;
 	this->reservas = indisponiveis;
 	this->taxa = taxa;
+	this->setUltima();
 	counter++;
 }
 
 
 Hotel::Hotel(std::string localidade, int owner, float preco, std::vector<Reserva> indisponiveis,
-		int cama, bool cama_extra):Imovel(localidade, owner, preco, 0.2,  indisponiveis) {
+		int cama, bool cama_extra):Imovel(localidade, owner, preco, 0.2, indisponiveis) {
 	this->cama=cama;
 	this->cama_extra=cama_extra;
 	setTipo("Hotel");
@@ -26,13 +27,11 @@ Hotel::Hotel(std::string localidade, int owner, float preco, std::vector<Reserva
 
 Apartamento::Apartamento(std::string localidade, int owner, float preco,
 		std::vector<Reserva> indisponiveis, int quartos, bool suite, bool cozinha, bool sala_de_estar):Imovel(localidade, owner, preco, 0.18, indisponiveis) {
-	cout << "Entrei no Construtor "<< endl;
 	this->quartos = quartos;
 	this->suite = suite;
 	this->cozinha = cozinha;
 	this->sala_de_estar=sala_de_estar;
 	setTipo("Apartamento");
-	cout << "Construtor Chamado Com Sucesso!" << endl;
 }
 
 
@@ -150,3 +149,19 @@ bool Imovel::getCama_extra() const {
 	return false;
 }
 
+void Imovel::setUltima() {
+	unsigned int size = this->getReservas()->size();
+
+	if(size == 0){
+		Data D = Data(00,00,0000);
+		ultima = D;
+		return;
+	}
+
+
+	ultima = this->getReservas()->at(0).getFinal();
+	for(unsigned int i = 0; i < size; i++){
+		if(!(this->getReservas()->at(i).getFinal()<ultima))
+			ultima = this->getReservas()->at(i).getFinal();
+	}
+}

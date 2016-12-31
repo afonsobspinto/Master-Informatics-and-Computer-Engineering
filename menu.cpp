@@ -61,7 +61,8 @@ bool Broker::menuClienteInicial() {
 			menuOpcoesCliente(1);
 			break;
 		case 3:
-			adicionaCliente();
+			if(adicionaCliente())
+				menuOpcoesCliente(0);
 			break;
 		case 4:
 			return true;
@@ -270,7 +271,7 @@ bool Broker::menuOutros() {
 		cout << "   " << "1 - Hist�rico das Reservas" << endl;
 		cout << "   " << "2 - Descontos" << endl;
 		cout << "   " << "3 - Clientes Inativos" << endl;
-		cout << "   " << "4 - Sair" << endl << endl;
+		cout << "   " << "4 - Voltar" << endl << endl;
 		cout << "   " << "Qual a sua opcao: ";
 		opcao = leUnsignedShortInt(1, 4);
 
@@ -281,7 +282,7 @@ bool Broker::menuOutros() {
 			cout << "LAST" << endl;
 			break;
 		case 2:
-			// Fila de prioridade
+			verImoveisInativos();
 			break;
 		case 3:
 			atualizaInativos();

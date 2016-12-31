@@ -32,11 +32,7 @@ int Fornecedor::getNif() const {
 
 bool Fornecedor::adicionaOferta(Imovel* novo) {
 
-	cout << this->getOfertas().size() << endl;
-
 	ofertas.push_back(novo);
-
-	cout << this->getOfertas().size() << endl;
 
 	return true;
 }

@@ -27,13 +27,9 @@ struct clienteHash {
 	}
 };
 
-class CompImov
-{
-public:
-	bool operator() (Imovel i1, Imovel i2)
-	{
-		if (i1.getUltima() < i2.getUltima())
-			return true;
+struct CompImovel{
+	bool operator()(Imovel* const i1, Imovel* const i2){
+		return i2->getUltima() < i1->getUltima();
 	}
 };
 
@@ -45,10 +41,10 @@ class Broker{
 	Fatura *Fat = {};
 
 	typedef std::unordered_set<Cliente, clienteHash, clienteHash> tabH;
-//	typedef std::priority_queue<Imovel, CompImov> HEAP_IMOV;
+
 
 	tabH inativos; // Clientes Inativos
-//	HEAP_IMOV imoveis; // Imoveis Inativos
+	std::priority_queue<Imovel, vector <Imovel *>, CompImovel> imoveis; // Imoveis Inativos
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -81,6 +77,7 @@ public:
 	bool atualizaMontra();
 	bool efectuaReserva(Cliente* C, Imovel* I);
 	bool cancelaReserva();
+
 	/*
 	 * Ordena Clientes Por Valor
 	 *
@@ -91,7 +88,10 @@ public:
 	bool seInativo(const Cliente & c); // Ve se o cliente c est� nos inativos
 	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	void verInativos() const; // Mostra os clientes Inativos para efeitos de envio de publicidade
+
+	void atualizaPrioridade();
 	void verImoveisInativos() const; // Mostra os imoveis inativos para efetuar descontos
+
 	bool verOfertas() const;
 	bool verHistorico() const; // Mostra o historico das reservas
 

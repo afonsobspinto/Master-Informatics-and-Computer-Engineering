@@ -47,6 +47,7 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
 	atualizaMontra();
+	atualizaPrioridade();
 }
 
 /*
@@ -184,9 +185,10 @@ bool Broker::adicionaImovel(Fornecedor *F) {
 	if(I->getOwner()==0)
 		return false;
 	F->adicionaOferta(I);
-
 	atualizaMontra();
 	guardaFornecedores();
+	I->setUltima();
+	atualizaPrioridade();
 
 	return true;
 }
@@ -248,18 +250,33 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	Reserva R = Reserva(*C, D1,D2, I->getPreco());
 	I->addReservas(R);
 	receita += I->getTaxa()*R.getPreco();
-	guardaClientes();
-	guardaFornecedores();
-	guardaBase();
-	atualizaMontra();
+
+
 	if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
 		inativos.erase(*C);
-	C->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
+
+
+	if (C->getUltima().getDia()==0)
+		C->ultima = D2;
+	else if (C->getUltima()< D2)
+		C->ultima = D2;
+
+		I->setUltima();
+
+
+
 	//Fat->adicionaReserva(R); // Adiciona a Reserva ao hist�rico, esta a dar erro porque??
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
 	cout << "Codigo de Cancelamento: " << R.getID();
 	_getch();
+
+
+	guardaClientes();
+	guardaFornecedores();
+	guardaBase();
+	atualizaMontra();
+	atualizaPrioridade();
 	return true;
 }
 
@@ -300,6 +317,7 @@ bool Broker::cancelaReserva() {
 					}
 					UserC->setPontos(-ceil(0.1*reservas->at(k).getPreco()));
 					reservas->erase(reservas->begin()+k);
+					fornecedores.at(i).getOfertasRef()->at(j)->setUltima();
 
 					cout << "Reserva Cancelada!" << endl
 							<< "Reembolso de "<< reembolso << endl;
@@ -307,6 +325,7 @@ bool Broker::cancelaReserva() {
 					guardaFornecedores();
 					guardaClientes();
 					guardaBase();
+					atualizaPrioridade();
 					return true;
 				}
 			}
@@ -502,9 +521,9 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 				dataInicio = string2data(dataInicio_str.substr(1, dataInicio_str.length()-1));
 				dataFim = string2data(dataFim_str.substr(1, dataFim_str.length()-1));
 
-//				cout << id +"<-ID" << endl;
-//				cout << dataInicio_str +"1" << endl;
-//				cout << dataFim_str +"1" << endl;
+				//				cout << id +"<-ID" << endl;
+				//				cout << dataInicio_str +"1" << endl;
+				//				cout << dataFim_str +"1" << endl;
 
 				Reserva R(dataInicio, dataFim, preco, id);
 				reservas.push_back(R);
@@ -521,10 +540,10 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 					sala_de_estar = stoi(sala_de_estar_str);
 					cama = stoi(cama_str);
 
-//					cout << suite << endl;
-//					cout << cozinha << endl;
-//					cout << sala_de_estar << endl;
-//					cout << cama << endl;
+					//					cout << suite << endl;
+					//					cout << cozinha << endl;
+					//					cout << sala_de_estar << endl;
+					//					cout << cama << endl;
 
 				}
 
@@ -538,8 +557,8 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 					cama = stoi(cama_str.substr(1,cama_str.length()));
 					cama_extra = stoi(cama_extra_str.substr(1,cama_extra_str.length()));
 
-//					cout << cama << endl;
-//					cout << cama_extra << endl;
+					//					cout << cama << endl;
+					//					cout << cama_extra << endl;
 
 				}
 			}
@@ -737,7 +756,7 @@ bool Broker::removeImovel() {
 
 	imovel = leUnsignedShortInt(1, size+1);
 
-	if(imovel == 0){
+	if(imovel == 0 || imovel == size+1){
 		cout << "Eliminação Cancelada" << endl;
 	}
 	else{
@@ -747,22 +766,21 @@ bool Broker::removeImovel() {
 				"Pretende continuar?" << endl <<
 				"1. Sim                         2. Não" << endl;
 		option = leUnsignedShortInt(1,2);
-	}
-	if(option == 0 || option == 2)
-		cout << "Eliminação Cancelada." << endl;
-	else{
-		delete(UserF->getOfertasRef()->at(imovel-1));
-		UserF->getOfertasRef()->erase(UserF->getOfertasRef()->begin()+imovel-1);
-		cout << "Eliminação Concluida." << endl;
-		atualizaMontra();
-		guardaFornecedores();
-		operacao = true;
+
+		if(option == 0 || option == 2)
+			cout << "Eliminação Cancelada." << endl;
+		else{
+			delete(UserF->getOfertasRef()->at(imovel-1));
+			UserF->getOfertasRef()->erase(UserF->getOfertasRef()->begin()+imovel-1);
+			cout << "Eliminação Concluida." << endl;
+			atualizaMontra();
+			guardaFornecedores();
+			operacao = true;
+		}
 	}
 
 	cout << "Pressione enter para continuar." << endl;
 	_getch();
-
-
 	return operacao;
 
 }
@@ -786,6 +804,44 @@ void Broker::removeCliente() {
 	cout << "Pressione enter para continuar." << endl;
 	_getch();
 
+}
+
+void Broker::atualizaPrioridade() {
+	while(!imoveis.empty()){
+		imoveis.pop();
+	}
+	unsigned int size = montra.size();
+
+	for(unsigned int i = 0; i < size; i ++){
+		imoveis.push(montra.at(i));
+	}
+
+}
+
+void Broker::verImoveisInativos() const {
+
+	ClearScreen();
+	priority_queue<Imovel, vector <Imovel *>, CompImovel> temp = imoveis;
+	int id = 1;
+
+	while(!temp.empty()){
+
+		cout << "Imovel: " << id << endl;
+		cout << "Tipo: " << temp.top()->getTipo() << endl;
+		cout << "Localidade: " << temp.top()->getLocalidade() << endl;
+		cout << "Preço: " << temp.top()->getPreco() << endl;
+
+		if(temp.top()->getUltima().getAno()!=0)
+			cout << "Ultima Reserva: " << data2string(temp.top()->getUltima()) << endl;
+		else
+			cout << "Ultima Reserva: " << endl;
+
+		cout << endl;
+		id++;
+		temp.pop();
+	}
+
+	_getch();
 }
 
 void Broker::classificacao() {
@@ -884,7 +940,7 @@ Imovel* Broker::mostraMontraAux() {
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
 		_getch();
-		Imovel* I = new Imovel("", 0, 0, 0);
+		Imovel* I = new Imovel("",0,0,0);
 		return I;
 	}
 
@@ -893,6 +949,7 @@ Imovel* Broker::mostraMontraAux() {
 
 	imovel = leUnsignedShortInt(1, id);
 	if(imovel == 0 || imovel == id){
+
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -931,6 +988,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
 		_getch();
+
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -940,6 +998,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 	imovel = leUnsignedShortInt(1, id);
 
 	if(imovel == 0 || imovel == id){
+
 			Imovel* I = new Imovel("", 0, 0, 0);
 			return I;
 		}
@@ -1018,6 +1077,7 @@ Imovel* Broker::mostraMontraAux(float preco) {
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
 		_getch();
+
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1026,6 +1086,7 @@ Imovel* Broker::mostraMontraAux(float preco) {
 
 	imovel = leUnsignedShortInt(1, id);
 	if(imovel == 0 || imovel == id){
+
 			Imovel* I = new Imovel("", 0, 0, 0);
 			return I;
 		}
@@ -1153,6 +1214,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
 		_getch();
+
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1161,6 +1223,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 			"(Se quiser sair digite " << id << "): ";
 	imovel = leUnsignedShortInt(1, id);
 	if(imovel == 0 || imovel == id){
+
 			Imovel* I = new Imovel("", 0, 0, 0);
 			return I;
 		}
@@ -1214,6 +1277,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 	if(id==1){
 		cout << "Nenhum Imovel Encontrado" << endl;
 		_getch();
+
 		Imovel* I = new Imovel("", 0, 0, 0);
 		return I;
 	}
@@ -1222,6 +1286,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 			"(Se quiser sair digite " << id << "): ";
 	imovel = leUnsignedShortInt(1, id);
 	if(imovel == 0 || imovel == id){
+
 			Imovel* I = new Imovel("", 0, 0, 0);
 			return I;
 		}

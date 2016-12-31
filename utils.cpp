@@ -225,7 +225,7 @@ std::vector<Reserva> leReservas(float preco) {
 		else if(opcao == 0){
 			cout << "Leitura Interrompida" << endl;
 			_getch();
-			break;
+			return reservas;
 		}
 
 		else{
@@ -240,7 +240,7 @@ std::vector<Reserva> leReservas(float preco) {
 			if(D1.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
 				_getch();
-				break;
+				return reservas;
 			}
 
 			cout << endl;
@@ -255,7 +255,7 @@ std::vector<Reserva> leReservas(float preco) {
 			if(D2.getDia()==0){
 				cout << "Leitura Interrompida" << endl;
 				_getch();
-				break;
+				return reservas;
 			}
 
 			cout << endl;
@@ -410,7 +410,7 @@ Data leData(string msg){
 	if(D1.getDia()==0){
 		cout << "Leitura Interrompida" << endl;
 		_getch();
-		return Data(0,0,0);
+		return Data(00,00,0000);
 	}
 	return D1;
 }
@@ -467,6 +467,7 @@ bool ano_bissexto(unsigned int ano)
 }
 
 bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano){
+
 	if(ano > 1990){
 		if(mes>0 && mes<13){
 			if(dia_valido(dia,mes,ano))

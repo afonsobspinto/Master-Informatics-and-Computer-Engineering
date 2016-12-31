@@ -35,7 +35,7 @@ Imovel* criaImovel(int owner){
 		int quartos;
 		if(!leExtrasApartamento(&suite, &cozinha, &sala_de_estar, &quartos))
 			return Erro;
-		Imovel *I = new Apartamento(localidade, owner,preco,reservas,quartos,suite, cozinha, sala_de_estar);
+		Imovel *I = new Apartamento(localidade, owner,preco, reservas,quartos,suite, cozinha, sala_de_estar);
 		return I;
 	}
 	else if(tipo=="Hotel"){
