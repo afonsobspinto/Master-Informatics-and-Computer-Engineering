@@ -1,4 +1,0 @@
-3
-AEDA ; 123456789 ; Fixe ; FEUP ; 1 ; Porto ; Hotel ; 500 ; 0.2 ; 1 ; A7H803WDi9apZLtE ; 20/11/2016 ; 21/11/2016 ; 3 ; 0 ; 
-Eclipse ; 123123123 ; VisualStudio ; Programacao ; 1 ; WWW ; Shared ; 10 ; 1 ; 2 ; ehlNCQABXF6g3dVg ; 21/11/2016 ; 24/11/2016 ; gCUc8kRpkij4csTQ ; 26/11/2016 ; 27/11/2016 ; 
-Linux ; 987654321 ; Windows ; System ; 1 ; OS ; Apartamento ; 100 ; 0.18 ; 1 ; 3IQE0k9m7bLnojxT ; 23/11/2016 ; 31/12/2016 ; 1 ; 1 ; 1 ; 2 ; 

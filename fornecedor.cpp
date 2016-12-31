@@ -45,3 +45,6 @@ std::string Fornecedor::getPassword() const {
 	return password;
 }
 
+std::vector<Imovel*>* Fornecedor::getOfertasRef() {
+	return &ofertas;
+}

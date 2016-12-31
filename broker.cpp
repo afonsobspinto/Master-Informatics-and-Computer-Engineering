@@ -1,9 +1,7 @@
 #include <fstream>
 #include <map>
 #include <algorithm>
-#include <math.h>>
-
-
+#include <math.h>
 #include "broker.h"
 #include "interacao.h"
 #include "utils.h"
@@ -257,9 +255,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
 		inativos.erase(*C);
 	C->ultima == D2; // A ultima data em que o Cliente C reservou fica registada
-	cout << "1st" << endl;
 	//Fat->adicionaReserva(R); // Adiciona a Reserva ao hist�rico, esta a dar erro porque??
-	cout << "2nd" << endl;
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
 	cout << "Codigo de Cancelamento: " << R.getID();
@@ -292,19 +288,20 @@ bool Broker::cancelaReserva() {
 			for (unsigned int k=0; k < reservas->size(); k++){
 				if(reservas->at(k).getID()==codigo){
 					if(!(reservas->at(k).getLimite100() < atual)){
-						receita -= reservas->at(k).getPreco();
-						UserC->addValor(-reservas->at(k).getPreco());
 						reembolso =reservas->at(k).getPreco();
+						receita -= reembolso;
+						UserC->addValor(-reembolso);
 					}
 					else if(!(reservas->at(k).getLimite50() < atual)){
-						receita -= reservas->at(k).getPreco()/2;
-						UserC->addValor(-reservas->at(k).getPreco()/2);
-						reembolso =reservas->at(k).getPreco()/2;
+						reembolso = reservas->at(k).getPreco()/2;
+						receita -= reembolso;
+						UserC->addValor(-reembolso);
+
 					}
 					UserC->setPontos(-ceil(0.1*reservas->at(k).getPreco()));
 					reservas->erase(reservas->begin()+k);
 
-					cout << " Reserva Cancelada!" << endl
+					cout << "Reserva Cancelada!" << endl
 							<< "Reembolso de "<< reembolso << endl;
 					_getch();
 					guardaFornecedores();
@@ -316,7 +313,7 @@ bool Broker::cancelaReserva() {
 		}
 	}
 
-	cout << " Reserva Não Cancelada!" << endl;
+	cout << "Reserva Não Cancelada!" << endl;
 	_getch();
 	return false;
 }
@@ -709,6 +706,88 @@ void Broker::guardaBase() {
 		ficheiro.close();
 }
 
+bool Broker::removeImovel() {
+
+	ClearScreen();
+	unsigned int size = UserF->getOfertas().size();
+	unsigned int imovel;
+	unsigned int option;
+	bool operacao = false;
+
+
+	for (unsigned int i = 0; i < size; i++){
+		cout << "Imovel: " << i+1 << endl;
+		cout << "Tipo: " << UserF->getOfertas().at(i)->getTipo() << endl;
+		cout << "Localidade: " << UserF->getOfertas().at(i)->getLocalidade() << endl;
+		cout << "Preço: " << UserF->getOfertas().at(i)->getPreco() << endl;
+
+		vector <Reserva> *reservas = UserF->getOfertas().at(i)->getReservas();
+		cout << "Reservas: ";
+		for (unsigned int j = 0; j < reservas->size(); j++ ){
+			cout << data2string(reservas->at(j).getInicio()) << " - " <<
+					data2string(reservas->at(j).getFinal());
+			if(!(j==reservas->size()-1))
+				cout << " , ";
+		}
+		cout << endl << endl;
+	}
+
+	cout << "Digite o número do Imovel que pretende remover." << endl <<
+			"(Se quiser sair digite " << size+1 << "): ";
+
+	imovel = leUnsignedShortInt(1, size+1);
+
+	if(imovel == 0){
+		cout << "Eliminação Cancelada" << endl;
+	}
+	else{
+		ClearScreen();
+		cout << "ATENÇÃO! Está prestes a eliminar um imovel." << endl <<
+				"Não nos responsabilizamos pelo reembolso das reservas já existentes." << endl <<
+				"Pretende continuar?" << endl <<
+				"1. Sim                         2. Não" << endl;
+		option = leUnsignedShortInt(1,2);
+	}
+	if(option == 0 || option == 2)
+		cout << "Eliminação Cancelada." << endl;
+	else{
+		delete(UserF->getOfertasRef()->at(imovel-1));
+		UserF->getOfertasRef()->erase(UserF->getOfertasRef()->begin()+imovel-1);
+		cout << "Eliminação Concluida." << endl;
+		atualizaMontra();
+		guardaFornecedores();
+		operacao = true;
+	}
+
+	cout << "Pressione enter para continuar." << endl;
+	_getch();
+
+
+	return operacao;
+
+}
+
+void Broker::removeCliente() {
+	unsigned int size = clientes.size();
+
+	ClearScreen();
+	vector<Registado>::iterator it;
+
+	for(it = clientes.begin(); it != clientes.end(); it++){
+		if(it->getNome() == UserC->getNome()){
+			clientes.erase(it);
+			break;
+		}
+	}
+
+
+	cout << "Obrigado por ter feito parte da nossa família." << endl << endl;
+	guardaClientes();
+	cout << "Pressione enter para continuar." << endl;
+	_getch();
+
+}
+
 void Broker::classificacao() {
 
 	ClearScreen();
@@ -1037,6 +1116,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	unsigned int imovel;
 	bool disponivel;
 
+
 	vector <Imovel*> vec = montra;
 
 	sort(vec.begin(), vec.end(), ordenaMontra);
@@ -1044,24 +1124,27 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	cout << endl;
 
 	for (unsigned int i=0; i< size; i++){
+		disponivel = true;
 		if (vec.at(i)->getPreco()<=preco && vec.at(i)->getLocalidade()==localidade){
 			unsigned int rsize = vec.at(i)->getReservas()->size();
 			disponivel = true;
 			for (unsigned int j=0; j<rsize; j++){
 				Data di = vec.at(i)->getReservas()->at(j).getInicio();
 				Data df = vec.at(i)->getReservas()->at(j).getFinal();
-				if (dias_nao_sobrepostos(di,df,inicio,fim) && disponivel){
-					cout << "Imovel: " << id << endl;
-					cout << "Tipo: " << vec.at(i)->getTipo() << endl;
-					cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-					cout << "Preço: " << vec.at(i)->getPreco() << endl;
-					mapa.insert(pair<unsigned int, unsigned int>(id,i));
-					cout << endl;
-					id++;
+				disponivel = true;
+				if (!dias_nao_sobrepostos(di,df,inicio,fim)){
+					disponivel = false;
 					break;
 				}
-				else
-					disponivel = false;
+			}
+			if(disponivel){
+				cout << "Imovel: " << id << endl;
+				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+				cout << "Preço: " << vec.at(i)->getPreco() << endl;
+				mapa.insert(pair<unsigned int, unsigned int>(id,i));
+				cout << endl;
+				id++;
 			}
 		}
 	}
@@ -1105,24 +1188,26 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 	cout << endl;
 
 	for (unsigned int i=0; i< size; i++){
-		unsigned int rsize = vec.at(i)->getReservas()->size();
 		disponivel = true;
+		unsigned int rsize = vec.at(i)->getReservas()->size();
 		for (unsigned int j=0; j<rsize; j++){
 			Data di = vec.at(i)->getReservas()->at(j).getInicio();
 			Data df = vec.at(i)->getReservas()->at(j).getFinal();
-			if (dias_nao_sobrepostos(di,df,inicio,fim) && disponivel){
-				cout << "Imovel: " << id << endl;
-				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
-				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-				cout << "Preço: " << vec.at(i)->getPreco() << endl;
-				mapa.insert(pair<unsigned int, unsigned int>(id,i));
-				cout << endl;
-				id++;
+			disponivel = true;
+			if (!dias_nao_sobrepostos(di,df,inicio,fim)){
+				disponivel = false;
 				break;
 			}
-			else
-				disponivel = false;
+		}
 
+		if(disponivel){
+			cout << "Imovel: " << id << endl;
+			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
+			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
+			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+			mapa.insert(pair<unsigned int, unsigned int>(id,i));
+			cout << endl;
+			id++;
 		}
 	}
 

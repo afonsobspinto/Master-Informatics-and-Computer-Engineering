@@ -72,10 +72,12 @@ public:
 	float getReceita()const;
 
 	bool adicionaCliente();
+	void removeCliente();
 	bool validaLoginCliente();
 	bool validaLoginFornecedor();
 	bool adicionaFornecedor();
 	bool adicionaImovel(Fornecedor *F);
+	bool removeImovel();
 	bool atualizaMontra();
 	bool efectuaReserva(Cliente* C, Imovel* I);
 	bool cancelaReserva();
@@ -86,7 +88,7 @@ public:
 
 
 	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
-	bool seInativo(const Cliente & c); // Ve se o cliente c está nos inativos
+	bool seInativo(const Cliente & c); // Ve se o cliente c estï¿½ nos inativos
 	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	void verInativos() const; // Mostra os clientes Inativos para efeitos de envio de publicidade
 	void verImoveisInativos() const; // Mostra os imoveis inativos para efetuar descontos
@@ -111,12 +113,13 @@ public:
 	Cliente *getUserC();
 	Fornecedor *getUserF();
 
+
 	////MENUS///
 
 	bool opcoesIniciais();
 
 	bool menuClienteInicial();
-	bool menuOpcoesCliente();
+	bool menuOpcoesCliente(int convidado);
 	bool menuEfectuaReserva();
 
 	void classificacao();

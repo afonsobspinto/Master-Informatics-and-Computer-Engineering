@@ -5,6 +5,8 @@
 
 #include "broker.h"
 #include "fatura.h"
+#include "utils.h"
+#include "data.h"
 
 
 using namespace std;
@@ -19,6 +21,7 @@ int main() {
 	Existente.getFornecedores().push_back(F);
 	cout << "1" << endl;
 	Existente.efectuaReserva(&C,&I);*/
+
 
 	string nome;
 	string filename;

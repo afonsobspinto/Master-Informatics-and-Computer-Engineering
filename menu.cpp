@@ -55,10 +55,10 @@ bool Broker::menuClienteInicial() {
 		switch (opcao){
 		case 1:
 			if(this->validaLoginCliente())
-				menuOpcoesCliente();
+				menuOpcoesCliente(0);
 			break;
 		case 2:
-			menuOpcoesCliente();
+			menuOpcoesCliente(1);
 			break;
 		case 3:
 			adicionaCliente();
@@ -72,38 +72,76 @@ bool Broker::menuClienteInicial() {
 }
 
 
-bool Broker::menuOpcoesCliente() {
+bool Broker::menuOpcoesCliente(int convidado) {
 	int opcao;
 
-	while(1){
-		ClearScreen();
-		cout << "Menu Cliente: " << endl;
-		cout << endl;
-		cout << "   " << "1 - Efetuar Reserva" << endl;
-		cout << "   " << "2 - Cancelar Reserva" << endl;
-		cout << "   " << "3 - Ver Classificacao" << endl;
-		cout << "   " << "4 - Voltar" << endl << endl;
-		cout << "   " << "Qual a sua opcao: ";
-		opcao = leUnsignedShortInt(1, 4);
+	if(convidado){
+		while(1){
+			ClearScreen();
+			cout << "Menu Cliente: " << endl;
+			cout << endl;
+			cout << "   " << "1 - Efetuar Reserva" << endl;
+			cout << "   " << "2 - Cancelar Reserva" << endl;
+			cout << "   " << "3 - Ver Classificacao" << endl;
+			cout << "   " << "4 - Voltar" << endl << endl;
+			cout << "   " << "Qual a sua opcao: ";
+			opcao = leUnsignedShortInt(1, 4);
 
-		switch (opcao){
-		case 1:
-			if(menuEfectuaReserva())
+			switch (opcao){
+			case 1:
+				if(menuEfectuaReserva())
+					break;
 				break;
-			break;
-		case 2:
-			if(cancelaReserva())
+			case 2:
+				if(cancelaReserva())
+					break;
 				break;
-			break;
-		case 3:
-			classificacao();
-			break;
-		case 4:
-			return true;
-		default:
-			return false;
+			case 3:
+				classificacao();
+				break;
+			case 4:
+				return true;
+			default:
+				return false;
+			}
 		}
 	}
+	else {
+		while(1){
+			ClearScreen();
+			cout << "Menu Cliente: " << endl;
+			cout << endl;
+			cout << "   " << "1 - Efetuar Reserva" << endl;
+			cout << "   " << "2 - Cancelar Reserva" << endl;
+			cout << "   " << "3 - Ver Classificacao" << endl;
+			cout << "   " << "4 - Eliminar Conta" << endl;
+			cout << "   " << "5 - Voltar" << endl << endl;
+			cout << "   " << "Qual a sua opcao: ";
+			opcao = leUnsignedShortInt(1, 4);
+
+			switch (opcao){
+			case 1:
+				if(menuEfectuaReserva())
+					break;
+				break;
+			case 2:
+				if(cancelaReserva())
+					break;
+				break;
+			case 3:
+				classificacao();
+				break;
+			case 4:
+				removeCliente();
+				return true;
+			case 5:
+				return true;
+			default:
+				return false;
+			}
+		}
+	}
+
 }
 
 
@@ -195,10 +233,11 @@ bool Broker::menuOpcoesFornecedor() {
 			cout << "Menu Fornecedor: " << endl;
 			cout << endl;
 			cout << "   " << "1 - Adicionar Imovel" << endl;
-			cout << "   " << "2 - Ver Minhas Ofertas" << endl;
-			cout << "   " << "3 - Voltar" << endl << endl;
+			cout << "   " << "2 - Removel Imovel" << endl;
+			cout << "   " << "3 - Ver Minhas Ofertas" << endl;
+			cout << "   " << "4 - Voltar" << endl << endl;
 			cout << "   " << "Qual a sua opcao: ";
-			opcao = leUnsignedShortInt(1, 3);
+			opcao = leUnsignedShortInt(1, 4);
 
 			switch (opcao){
 			case 1:
@@ -206,10 +245,14 @@ bool Broker::menuOpcoesFornecedor() {
 					break;
 				break;
 			case 2:
-				if(verOfertas())
+				if(this->removeImovel())
 					break;
 				break;
 			case 3:
+				if(verOfertas())
+					break;
+				break;
+			case 4:
 				return true;
 			default:
 				return false;
@@ -224,7 +267,7 @@ bool Broker::menuOutros() {
 		ClearScreen();
 		cout << "Menu Outros: " << endl;
 		cout << endl;
-		cout << "   " << "1 - Histórico das Reservas" << endl;
+		cout << "   " << "1 - Histï¿½rico das Reservas" << endl;
 		cout << "   " << "2 - Descontos" << endl;
 		cout << "   " << "3 - Clientes Inativos" << endl;
 		cout << "   " << "4 - Sair" << endl << endl;

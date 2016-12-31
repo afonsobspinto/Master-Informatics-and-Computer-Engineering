@@ -19,6 +19,7 @@ public:
 	std::string getMorada() const;
 	int getNif() const;
 	std::vector<Imovel *> getOfertas() const;
+	std::vector<Imovel *> *getOfertasRef();
 	std::string getPassword() const;
 	bool adicionaOferta(Imovel * novo);
 };
