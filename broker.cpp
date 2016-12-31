@@ -181,13 +181,19 @@ bool Broker::adicionaFornecedor() {
 bool Broker::adicionaImovel(Fornecedor *F) {
 
 	ClearScreen();
+
 	Imovel *I = criaImovel(F->getNif());
 	if(I->getOwner()==0)
 		return false;
+
 	F->adicionaOferta(I);
+
 	atualizaMontra();
+
 	guardaFornecedores();
+
 	I->setUltima();
+
 	atualizaPrioridade();
 
 	return true;
@@ -235,7 +241,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	swapDatas(&D1,&D2);
 
 	unsigned int size = I->getReservas()->size();
-	float preco = I->getPreco() * (D2 - D1);
+	float preco = I->getPreco()*(1-I->getDesconto()) * (D2 - D1);
 
 	for (unsigned int i=0; i< size; i++){
 		Data di = I->getReservas()->at(i).getInicio();
@@ -259,7 +265,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 			C->ultima = D2;
 	}
 
-	Reserva R = Reserva(*C, D1,D2, I->getPreco());
+	Reserva R = Reserva(*C, D1,D2, I->getPreco()*(1-I->getDesconto()));
 	I->addReservas(R);
 	receita += I->getTaxa()*R.getPreco();
 	I->setUltima();
@@ -738,7 +744,7 @@ bool Broker::removeImovel() {
 		cout << "Imovel: " << i+1 << endl;
 		cout << "Tipo: " << UserF->getOfertas().at(i)->getTipo() << endl;
 		cout << "Localidade: " << UserF->getOfertas().at(i)->getLocalidade() << endl;
-		cout << "Preço: " << UserF->getOfertas().at(i)->getPreco() << endl;
+		cout << "Preço: " << UserF->getOfertas().at(i)->getPreco()*(1-UserF->getOfertas().at(i)->getDesconto()) << endl;
 
 		vector <Reserva> *reservas = UserF->getOfertas().at(i)->getReservas();
 		cout << "Reservas: ";
@@ -807,15 +813,33 @@ void Broker::removeCliente() {
 }
 
 void Broker::atualizaPrioridade() {
+
+	unsigned int size = montra.size();
+	unsigned int j = 1;
+
+	Data atual = string2data(currentDateTime());
+	float desconto = 0.5;
+	int tolerancia = 30;
+
+
 	while(!imoveis.empty()){
 		imoveis.pop();
 	}
-	unsigned int size = montra.size();
 
 	for(unsigned int i = 0; i < size; i ++){
-		imoveis.push(montra.at(i));
+		if(montra.at(i)->getUltima()<atual-tolerancia)
+			imoveis.push(montra.at(i));
 	}
 
+
+	priority_queue<Imovel, vector <Imovel *>, CompImovel> temp = imoveis;
+
+
+	while(!temp.empty()){
+		temp.top()->setDesconto((float)desconto/j);
+		j++;
+		temp.pop();
+	}
 }
 
 void Broker::verImoveisInativos() const {
@@ -824,12 +848,17 @@ void Broker::verImoveisInativos() const {
 	priority_queue<Imovel, vector <Imovel *>, CompImovel> temp = imoveis;
 	int id = 1;
 
+	if(!temp.empty())
+		cout << "Veja as nossas melhores promoções: " << endl << endl;
+
 	while(!temp.empty()){
 
 		cout << "Imovel: " << id << endl;
 		cout << "Tipo: " << temp.top()->getTipo() << endl;
 		cout << "Localidade: " << temp.top()->getLocalidade() << endl;
-		cout << "Preço: " << temp.top()->getPreco() << endl;
+		cout << "Preço antigo: " << temp.top()->getPreco() << endl;
+		cout << "Novo Preço: " << temp.top()->getPreco() * (1-temp.top()->getDesconto()) << endl;
+		cout << "Desconto: " << temp.top()->getDesconto() * 100 << "%"<< endl;
 
 		if(temp.top()->getUltima().getAno()!=0)
 			cout << "Ultima Reserva: " << data2string(temp.top()->getUltima()) << endl;
@@ -840,7 +869,10 @@ void Broker::verImoveisInativos() const {
 		id++;
 		temp.pop();
 	}
-
+	if(!temp.empty()){
+		cout << "Não perca tempo! Vá ao Menu Cliente aproveitar estas pechinchas. " << endl;
+		cout << "Pressione enter para continuar." << endl;
+	}
 	_getch();
 }
 
@@ -932,7 +964,7 @@ Imovel* Broker::mostraMontraAux() {
 		cout << "Imovel: " << id << endl;
 		cout << "Tipo: " << montra.at(i)->getTipo() << endl;
 		cout << "Localidade: " << montra.at(i)->getLocalidade() << endl;
-		cout << "Preço: " << montra.at(i)->getPreco() << endl;
+		cout << "Preço: " << montra.at(i)->getPreco() * (1-montra.at(i)->getDesconto()) << endl;
 		cout << endl;
 		id++;
 	}
@@ -978,7 +1010,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 			cout << "Imovel: " << id << endl;
 			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+			cout << "Preço: " << vec.at(i)->getPreco()*(1-vec.at(i)->getDesconto()) << endl;
 			cout << endl;
 			mapa.insert(pair<unsigned int, unsigned int>(id,i));
 			id++;
@@ -1063,7 +1095,7 @@ Imovel* Broker::mostraMontraAux(float preco) {
 	cout << endl;
 	for (unsigned int i=0; i< size; i++){
 
-		if (vec.at(i)->getPreco() <= preco){
+		if (vec.at(i)->getPreco()*(1-vec.at(i)->getDesconto()) <= preco){
 			cout << "Imovel: " << id << endl;
 			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
@@ -1186,7 +1218,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 
 	for (unsigned int i=0; i< size; i++){
 		disponivel = true;
-		if (vec.at(i)->getPreco()<=preco && vec.at(i)->getLocalidade()==localidade){
+		if (vec.at(i)->getPreco()*(1-vec.at(i)->getDesconto())<=preco && vec.at(i)->getLocalidade()==localidade){
 			unsigned int rsize = vec.at(i)->getReservas()->size();
 			disponivel = true;
 			for (unsigned int j=0; j<rsize; j++){
@@ -1202,7 +1234,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 				cout << "Imovel: " << id << endl;
 				cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 				cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-				cout << "Preço: " << vec.at(i)->getPreco() << endl;
+				cout << "Preço: " << vec.at(i)->getPreco()*(1-vec.at(i)->getDesconto()) << endl;
 				mapa.insert(pair<unsigned int, unsigned int>(id,i));
 				cout << endl;
 				id++;
@@ -1267,7 +1299,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 			cout << "Imovel: " << id << endl;
 			cout << "Tipo: " << vec.at(i)->getTipo() << endl;
 			cout << "Localidade: " << vec.at(i)->getLocalidade() << endl;
-			cout << "Preço: " << vec.at(i)->getPreco() << endl;
+			cout << "Preço: " << vec.at(i)->getPreco()*(1-vec.at(i)->getDesconto()) << endl;
 			mapa.insert(pair<unsigned int, unsigned int>(id,i));
 			cout << endl;
 			id++;
@@ -1316,7 +1348,7 @@ bool Broker::verOfertas() const {
 		cout << "Imovel: " << i+1 << endl;
 		cout << "Tipo: " << UserF->getOfertas().at(i)->getTipo() << endl;
 		cout << "Localidade: " << UserF->getOfertas().at(i)->getLocalidade() << endl;
-		cout << "Preço: " << UserF->getOfertas().at(i)->getPreco() << endl;
+		cout << "Preço: " << UserF->getOfertas().at(i)->getPreco() * (1 - UserF->getOfertas().at(i)->getDesconto())<< endl;
 
 		vector <Reserva> *reservas = UserF->getOfertas().at(i)->getReservas();
 		cout << "Reservas: ";

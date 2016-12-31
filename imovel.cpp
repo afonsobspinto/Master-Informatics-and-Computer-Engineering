@@ -12,6 +12,7 @@ Imovel::Imovel(string localidade, int owner, float preco, float taxa, vector<Res
 	this->preco = preco;
 	this->reservas = indisponiveis;
 	this->taxa = taxa;
+	this->desconto = 0;
 	this->setUltima();
 	counter++;
 }
@@ -99,6 +100,18 @@ int Imovel::getQuartos() const {
 
 Data Imovel::getUltima() const {
 	return ultima;
+}
+
+void Imovel::setPreco(float preco) {
+	this->preco = preco;
+}
+
+void Imovel::setDesconto(float desconto) {
+	this->desconto = desconto;
+}
+
+float Imovel::getDesconto() const {
+	return desconto;
 }
 
 bool Imovel::operator <(const Imovel& rhs) const {

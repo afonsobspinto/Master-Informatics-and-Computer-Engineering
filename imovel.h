@@ -13,6 +13,7 @@ class Imovel{
 	unsigned int owner;
 	float preco;
 	float taxa;
+	float desconto;
 	Data ultima; // Data da ultima vez que foi reservado
 	std::vector <Reserva> reservas;
 	static unsigned int counter;
@@ -26,8 +27,12 @@ public:
 	unsigned int  getOwner() const;
 	float getPreco() const;
 	float getTaxa() const;
+	float getDesconto() const;
 	Data getUltima() const;
 	void setUltima ();
+	void setPreco(float preco);
+	void setDesconto(float desconto);
+
 	virtual bool getSuite() const;
 	virtual bool getCozinha() const;
 	virtual bool getSala_de_estar() const;
