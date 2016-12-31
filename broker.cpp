@@ -233,6 +233,7 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	if(D2.getDia()==0)
 			return false;
 	swapDatas(&D1,&D2);
+
 	unsigned int size = I->getReservas()->size();
 	float preco = I->getPreco() * (D2 - D1);
 
@@ -245,24 +246,23 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 			return false;
 		}
 	}
-	C->setPontos(ceil(0.1*preco));
-	C->addValor(preco);
+	if(C->getNome()!="Guest"){
+		C->setPontos(ceil(0.1*preco));
+		C->addValor(preco);
+
+		if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
+			inativos.erase(*C);
+
+		if (C->getUltima().getDia()==0)
+			C->ultima = D2;
+		else if (C->getUltima()< D2)
+			C->ultima = D2;
+	}
+
 	Reserva R = Reserva(*C, D1,D2, I->getPreco());
 	I->addReservas(R);
 	receita += I->getTaxa()*R.getPreco();
-
-
-	if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
-		inativos.erase(*C);
-
-
-	if (C->getUltima().getDia()==0)
-		C->ultima = D2;
-	else if (C->getUltima()< D2)
-		C->ultima = D2;
-
-		I->setUltima();
-
+	I->setUltima();
 
 
 	//Fat->adicionaReserva(R); // Adiciona a Reserva ao hist�rico, esta a dar erro porque??

@@ -41,6 +41,9 @@ bool Broker::opcoesIniciais() {
 bool Broker::menuClienteInicial() {
 	int opcao;
 
+	Cliente C("Guest");
+	UserC = &C;
+
 	while(1){
 		ClearScreen();
 		cout << "Menu Cliente: " << endl;
