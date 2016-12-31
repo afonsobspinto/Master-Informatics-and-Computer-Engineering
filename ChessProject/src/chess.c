@@ -454,9 +454,89 @@ int isValidMove(Piece p1, Piece p2){
 	}
 
 	case 'Q':
-		break;
+	{
+
+	}
 	case 'B':
-		break;
+	{
+		unsigned int counter = 0;
+		unsigned int aux;
+		unsigned int k;
+		if (p1.color != p2.color){
+			// Upper Left Diagonal
+			if ((p1.i < p2.i) && (p1.j > p2.j)){
+				aux = p1.j - p2.j;
+				if (((p2.i - p1.i) == 1) && ((p1.j - p2.j) == 1)){
+					return 1;
+				}
+				for (k = 1; k<aux; k++){
+					if (matrix[p1.i+k][p1.j-k].state == 0)
+						counter++;
+					else
+						return 0;
+				}
+				if (counter = aux-1)
+					return 1;
+				else
+					return 0;
+			}
+			// Upper Right Diagonal
+			if ((p1.i < p2.i) && (p2.j > p1.j)){
+				aux = p2.j - p1.j;
+				if (((p2.i - p1.i) == 1) && ((p2.j - p1.j) == 1)){
+					return 1;
+				}
+				for (k = 1; k<aux; k++){
+					if (matrix[p1.i+k][p1.j+k].state == 0)
+						counter++;
+					else
+						return 0;
+				}
+				if (counter = aux-1)
+					return 1;
+				else
+					return 0;
+			}
+			// Lower Left Diagonal
+			if ((p2.i < p1.i) && (p1.j > p2.j)){
+				aux = p1.j - p2.j;
+				if (((p1.i - p2.i) == 1) && ((p1.j - p2.j) == 1)){
+					return 1;
+				}
+				for (k = 1; k<aux; k++){
+					if (matrix[p1.i-k][p1.j-k].state == 0)
+						counter++;
+					else
+						return 0;
+				}
+				if (counter = aux-1)
+					return 1;
+				else
+					return 0;
+			}
+			// Lower Right Diagonal
+			if ((p2.i < p1.i) && (p2.j > p1.j)){
+				aux = p2.j - p1.j;
+				if (((p1.i - p2.i) == 1) && ((p2.j - p1.j) == 1)){
+					return 1;
+				}
+				for (k = 1; k<aux; k++){
+					if (matrix[p1.i-k][p1.j+k].state == 0)
+						counter++;
+					else
+						return 0;
+				}
+				if (counter = aux-1)
+					return 1;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+		else
+			return 0;
+	}
 	case 'N':
 	{
 		if ((((p1.i == p2.i-2) && (p1.j == p2.j-1)) ||
@@ -620,4 +700,12 @@ int isValidMove(Piece p1, Piece p2){
 	}
 	return 0;
 
+}
+
+
+int isPar(int x){
+	if(x%2==0)
+		return 1;
+	else
+		return 0;
 }
