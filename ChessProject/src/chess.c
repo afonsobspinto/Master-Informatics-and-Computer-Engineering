@@ -11,8 +11,10 @@ static int wRook2Move = 0;
 static int bKingMove = 0;
 static int bRook1Move = 0;
 static int bRook2Move = 0;
+
 static int wEnPassant = -1;
 static int bEnPassant = -1;
+
 
 
 void fillBoard(){
@@ -190,6 +192,34 @@ int unmakeMove(Piece p1, Piece p2, int pseudo){
 			matrix[7][3]= noPiece3;
 		}
 	}
+	else if(*moveState == ENPASSANT){
+
+
+		if(p1.color=='w'){
+			if(p1.bg == 'w'){
+				Piece piece = {'p', 'b', 1,p1.i,p2.j, p2.xpos, p1.ypos, 'b'};
+				matrix[piece.i][piece.j]=piece;
+			}
+			else{
+				Piece piece = {'p', 'b', 1,p1.i,p2.j, p2.xpos, p1.ypos, 'w'};
+				matrix[piece.i][piece.j]=piece;
+			}
+
+
+		}
+
+		else if(p1.color=='b'){
+
+			if(p1.bg == 'w'){
+				Piece piece = {'p', 'w', 1,p1.i,p2.j, p2.xpos, p1.ypos, 'b'};
+				matrix[piece.i][piece.j]=piece;
+			}
+			else{
+				Piece piece = {'p', 'w', 1,p1.i,p2.j, p2.xpos, p1.ypos, 'w'};
+				matrix[piece.i][piece.j]=piece;
+			}
+		}
+	}
 
 	matrix[p1.i][p1.j]=p1;
 	matrix[p2.i][p2.j]=p2;
@@ -276,8 +306,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 		else if(p1.name == 'p' && p1.color == 'b' && p1.i ==6 && p2.i ==4 && p2.j == p1.j)
 			bEnPassant = p1.j;
-
-
 
 		res = 1;
 	}
