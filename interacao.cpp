@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/*
+/**
  * Cria um Imovel com o dono owner
  */
 
@@ -68,7 +68,7 @@ Imovel* criaImovel(int owner){
 		return Erro;
 }
 
-/*
+/**
  * Cria um Cliente Registado
  */
 
@@ -85,7 +85,7 @@ Registado criaCliente(){
 	return C;
 }
 
-/*
+/**
  * Cria um Fornecedor
  */
 

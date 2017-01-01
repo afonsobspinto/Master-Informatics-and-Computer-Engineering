@@ -6,7 +6,7 @@
 
 using namespace std;
 
-/*
+/**
  * Construtor de uma Data
  */
 
@@ -16,7 +16,7 @@ Data::Data(unsigned int dia, unsigned int mes, unsigned int ano) {
 	this->ano=ano;
 }
 
-/*
+/**
  * Retorna o dia da Data
  */
 
@@ -24,7 +24,7 @@ unsigned int Data::getDia() const {
 	return dia;
 }
 
-/*
+/**
  * Retorna o mes da Data
  */
 
@@ -32,7 +32,7 @@ unsigned int Data::getMes() const {
 	return mes;
 }
 
-/*
+/**
  * Retorna o ano da Data
  */
 
@@ -40,7 +40,7 @@ unsigned int Data::getAno() const {
 	return ano;
 }
 
-/*
+/**
  * Verifica se as datas sao iguais
  */
 
@@ -52,7 +52,7 @@ bool Data::operator ==(const Data& rhs) {
 	return false;
 }
 
-/*
+/**
  * Verifica qual a Data mais recente
  */
 
@@ -70,7 +70,7 @@ bool Data::operator <(const Data& rhs) {
 	return false;
 }
 
-/*
+/**
  * Diminui dias a uma data
  */
 
@@ -97,7 +97,7 @@ Data Data::operator - (int n) {
 	return D;
 }
 
-/*
+/**
  * Faz a diferença entre duas Datas
  */
 

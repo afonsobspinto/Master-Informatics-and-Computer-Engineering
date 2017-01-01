@@ -14,7 +14,7 @@ class Reserva{
 	Data final;
 	float preco;
 
-	Cliente c; // Juntar c aos parametros da Reserva
+	Cliente c;
 	Data limite100;
 	Data limite50;
 	std::string id;
