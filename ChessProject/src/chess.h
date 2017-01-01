@@ -11,6 +11,8 @@
 #define BLACK_LONG_CASTLING 5
 #define MATE 6
 #define PROMOTION 7
+#define W_EN_PASSANT 8
+#define B_EN_PASSANT 9
 
 typedef struct
 {
@@ -44,7 +46,7 @@ void updateBoard();
 
 int makeMove(Piece pi, Piece pf);
 
-void reset_castling();
+void reset_flags();
 
 int unmakeMove();
 

@@ -224,7 +224,7 @@ void reset(){
 	m->piece = NoPiece;
 	m->next_piece = NoPiece;
 
-	reset_castling();
+	reset_flags();
 
 
 }

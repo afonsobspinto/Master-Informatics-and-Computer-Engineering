@@ -2,12 +2,17 @@
 #include "utilities.h"
 #include "mouse.h"
 
+//GameFlags
+
 static int wKingMove = 0;
 static int wRook1Move = 0;
 static int wRook2Move = 0;
 static int bKingMove = 0;
 static int bRook1Move = 0;
 static int bRook2Move = 0;
+static int wEnPassant = -1;
+static int bEnPassant = -1;
+
 
 void fillBoard(){
 
@@ -126,13 +131,15 @@ Piece getMatrixAt(int x, int y){
 		return matrix[x][y];
 }
 
-void reset_castling(){
+void reset_flags(){
 	wKingMove = 0;
 	wRook1Move = 0;
 	wRook2Move = 0;
 	bKingMove = 0;
 	bRook1Move = 0;
 	bRook2Move = 0;
+	wEnPassant = -1;
+	bEnPassant = -1;
 }
 
 int unmakeMove(){
@@ -198,26 +205,33 @@ int makeMove(Piece p1, Piece p2){
 		matrix[p1.i][p1.j]= noPiece;
 
 
-		//Castling Info
+		//Updating Flags
+		wEnPassant = -1;
+		bEnPassant = -1;
+
 		if(p1.name == 'K' && p1.color == 'w')
 			increment(&wKingMove);
 
-		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
+		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
 			increment(&wRook1Move);
 
-		if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
+		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
 			increment(&wRook2Move);
 
-		if(p1.name == 'K' && p1.color == 'b')
+		else if(p1.name == 'K' && p1.color == 'b')
 			increment(&bKingMove);
 
-		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
+		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
 			increment(&bRook1Move);
 
-		if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
+		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 			increment(&bRook2Move);
 
+		else if(p1.name == 'p' && p1.color == 'w' && p1.i ==1 && p2.i ==3 && p2.j == p1.j)
+			wEnPassant = p1.j;
 
+		else if(p1.name == 'p' && p1.color == 'b' && p1.i ==6 && p2.i ==4 && p2.j == p1.j)
+			bEnPassant = p1.j;
 
 		drawBoard();
 
@@ -391,6 +405,58 @@ int makeMove(Piece p1, Piece p2){
 		Piece noPiece = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
 
 		matrix[p1.i][p1.j]= noPiece;
+
+		drawBoard();
+		return 1;
+	}
+
+	else if (valid == W_EN_PASSANT){
+		Piece NewPiece;
+
+		NewPiece.name = 'p';
+		NewPiece.color = p1.color;
+		NewPiece.state = p1.state;
+		NewPiece.i = p2.i;
+		NewPiece.j = p2.j;
+		NewPiece.xpos = p2.xpos;
+		NewPiece.ypos = p2.ypos;
+		NewPiece.bg = p2.bg;
+
+		matrix[NewPiece.i][NewPiece.j]=NewPiece;
+
+		Piece noPiece1 = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+
+		matrix[p1.i][p1.j]= noPiece1;
+
+		Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, p2.bg};
+
+		matrix[p1.i][p2.j]= noPiece2;
+
+		drawBoard();
+		return 1;
+	}
+
+	else if (valid == B_EN_PASSANT){
+		Piece NewPiece;
+
+		NewPiece.name = 'p';
+		NewPiece.color = p1.color;
+		NewPiece.state = p1.state;
+		NewPiece.i = p2.i;
+		NewPiece.j = p2.j;
+		NewPiece.xpos = p2.xpos;
+		NewPiece.ypos = p2.ypos;
+		NewPiece.bg = p2.bg;
+
+		matrix[NewPiece.i][NewPiece.j]=NewPiece;
+
+		Piece noPiece1 = {'n', 'n', 0,p1.i,p1.j, p1.xpos, p1.ypos, p1.bg};
+
+		matrix[p1.i][p1.j]= noPiece1;
+
+		Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, p2.bg};
+
+		matrix[p1.i][p2.j]= noPiece2;
 
 		drawBoard();
 		return 1;
@@ -794,6 +860,10 @@ int isValidMove(Piece p1, Piece p2){
 	{
 		//White
 		if (p1.color == 'w'){
+			// En Passant
+			if ((p1.i == 4) && (p2.i == 5) && (p2.name == 'n') && (bEnPassant == p2.j) && (p1.j == p2.j+1 || p1.j == p2.j-1))
+				return W_EN_PASSANT;
+
 			// 1st line
 			if (p1.i == 1){
 				if ((((p1.i == p2.i-1) && (p1.j == p2.j) && p2.name=='n') || // Andar 1 casa para a frente
@@ -819,6 +889,9 @@ int isValidMove(Piece p1, Piece p2){
 		}
 		//Black
 		else if (p1.color == 'b'){
+			// En Passant
+			if ((p1.i == 3) && (p2.i == 2) && (p2.name == 'n') && (wEnPassant == p2.j) && (p1.j == p2.j+1 || p1.j == p2.j-1))
+				return B_EN_PASSANT;
 			// 1st line
 			if(p1.i == 6){
 				if ((((p1.i == p2.i+1) && (p1.j == p2.j) && p2.name=='n') || // Andar 1 casa para a frente
