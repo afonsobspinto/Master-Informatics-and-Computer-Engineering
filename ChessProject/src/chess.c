@@ -145,7 +145,7 @@ void reset_flags(){
 	bEnPassant = -1;
 }
 
-int unmakeMove(Piece p1, Piece p2, int pseudo){
+int unmakeMove(Piece p1, Piece p2){
 
 
 	MOVE_STATE *moveState = getMoveState();
@@ -244,14 +244,13 @@ int unmakeMove(Piece p1, Piece p2, int pseudo){
 	else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 		decrement(&bRook2Move);
 
-	if(pseudo == 0)
-		drawBoard();
+	drawBoard();
 
 	return 1;
 
 }
 
-int makeMove(Piece p1, Piece p2, int pseudo){
+int makeMove(Piece p1, Piece p2){
 
 	int valid = isValidMove(p1,p2);
 	int res = 0;
@@ -529,8 +528,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		res = B_EN_PASSANT;
 	}
 
-	if(pseudo == 0)
-		drawBoard();
+	drawBoard();
 
 	return res ;
 }
@@ -1001,34 +999,34 @@ int isValidMove(Piece p1, Piece p2){
 
 int isCheck(char color){
 
-	Piece King;
-	Piece p;
-	unsigned int i;
-	unsigned int j;
-
-	for(i=0; i < ROWS; i++){
-		for(j=0; j < COLS; j++){
-
-			p = getMatrixAt(i,j);
-			if(p.name == 'K' && p.color==color){
-				King = p;
-			}
-		}
-	}
-
-	for (i=0; i < ROWS; i++){
-		for(j=0; j < COLS; j++){
-			p = getMatrixAt(i,j);
-			if(p.color!=color){
-				if(isValidMove(p,King)){
-					printf("Está em Check \n");
-					return 1;
-				}
-			}
-		}
-	}
-
-	printf("Não está em Check \n");
+//	Piece King;
+//	Piece p;
+//	unsigned int i;
+//	unsigned int j;
+//
+//	for(i=0; i < ROWS; i++){
+//		for(j=0; j < COLS; j++){
+//
+//			p = getMatrixAt(i,j);
+//			if(p.name == 'K' && p.color==color){
+//				King = p;
+//			}
+//		}
+//	}
+//
+//	for (i=0; i < ROWS; i++){
+//		for(j=0; j < COLS; j++){
+//			p = getMatrixAt(i,j);
+//			if(p.color!=color){
+//				if(isValidMove(p,King)){
+//					printf("Está em Check \n");
+//					return 1;
+//				}
+//			}
+//		}
+//	}
+//
+//	printf("Não está em Check \n");
 
 	return 0;
 

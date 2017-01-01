@@ -846,6 +846,4 @@ void drawDate(date_info_t *date) {
 			call_drawBitmap(bar, DATEX+i*GAP, DATEY, ALIGN_LEFT);
 		i++;
 	}
-
-	puts(dateStr);
 }

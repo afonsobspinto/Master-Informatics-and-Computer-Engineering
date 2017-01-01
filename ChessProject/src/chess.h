@@ -44,11 +44,11 @@ void fillBoard();
 
 void updateBoard();
 
-int makeMove(Piece pi, Piece pf, int pseudo);
+int makeMove(Piece pi, Piece pf);
 
 void reset_flags();
 
-int unmakeMove(Piece p1, Piece p2, int pseudo);
+int unmakeMove();
 
 int isValidMove(Piece p1, Piece p2);
 

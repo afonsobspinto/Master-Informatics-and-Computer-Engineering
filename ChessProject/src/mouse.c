@@ -119,7 +119,7 @@ int updateMouse(){
 				else{
 					if(isPieceSelected(0)==1){
 
-						int move = makeMove(mouse->piece, mouse->next_piece, 0);
+						int move = makeMove(mouse->piece, mouse->next_piece);
 						//Normal Move
 						if(move == 1 || move == PROMOTION ){
 							mouse->state = NO_PIECE;
