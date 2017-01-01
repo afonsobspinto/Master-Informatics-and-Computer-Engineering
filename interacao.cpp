@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/*
+ * Cria um Imovel com o dono owner
+ */
 
 Imovel* criaImovel(int owner){
 	string localidade;
@@ -65,6 +68,10 @@ Imovel* criaImovel(int owner){
 		return Erro;
 }
 
+/*
+ * Cria um Cliente Registado
+ */
+
 Registado criaCliente(){
 	string nome = leString("Nome: ");
 	if(nome == "")
@@ -77,6 +84,10 @@ Registado criaCliente(){
 	Registado C (nome, password, morada);
 	return C;
 }
+
+/*
+ * Cria um Fornecedor
+ */
 
 Fornecedor criaFornecedor() {
 	string nome = leString("Nome: ");

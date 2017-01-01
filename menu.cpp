@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/*
+ * Mostra o Menu Inicial
+ */
 
 bool Broker::opcoesIniciais() {
 	int opcao;
@@ -37,6 +40,10 @@ bool Broker::opcoesIniciais() {
 		}
 	}
 }
+
+/*
+ * Mostra o Menu Inicial dos Clientes
+ */
 
 bool Broker::menuClienteInicial() {
 	int opcao;
@@ -75,6 +82,9 @@ bool Broker::menuClienteInicial() {
 	}
 }
 
+/*
+ * Mostra as Opcoes do Cliente
+ */
 
 bool Broker::menuOpcoesCliente(int convidado) {
 	int opcao;
@@ -150,6 +160,9 @@ bool Broker::menuOpcoesCliente(int convidado) {
 
 }
 
+/*
+ * Mostra as Opcoes para efetuar Reserva
+ */
 
 bool Broker::menuEfectuaReserva() {
 	int opcao;
@@ -196,7 +209,9 @@ bool Broker::menuEfectuaReserva() {
 		}
 }
 
-
+/*
+ * Mostra o Menu Inicial dos Fornecedores
+ */
 
 bool Broker::menuFornecedorInicial() {
 	int opcao;
@@ -229,6 +244,9 @@ bool Broker::menuFornecedorInicial() {
 	}
 }
 
+/*
+ * Mostra as opcoes dos Fornecedores
+ */
 
 bool Broker::menuOpcoesFornecedor() {
 
@@ -265,6 +283,10 @@ bool Broker::menuOpcoesFornecedor() {
 			}
 		}
 }
+
+/*
+ * Mostra as Opcoes do Broker
+ */
 
 bool Broker::menuOutros() {
 	int opcao;

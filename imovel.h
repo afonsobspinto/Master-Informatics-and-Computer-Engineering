@@ -14,7 +14,7 @@ class Imovel{
 	float preco;
 	float taxa;
 	float desconto;
-	Data ultima; // Data da ultima vez que foi reservado
+	Data ultima;
 	std::vector <Reserva> reservas;
 	static unsigned int counter;
 

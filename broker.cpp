@@ -734,6 +734,10 @@ void Broker::guardaFornecedores() {
 	ficheiro.flush();
 }
 
+/*
+ * Guarda os ficheiros Clientes e Fornecedores e a receita que o Broker teve
+ */
+
 void Broker::guardaBase() {
 	ofstream ficheiro(nome+".txt");
 
@@ -744,6 +748,10 @@ void Broker::guardaBase() {
 
 		ficheiro.close();
 }
+
+/*
+ * Remove um Imovel
+ */
 
 bool Broker::removeImovel() {
 
@@ -805,6 +813,10 @@ bool Broker::removeImovel() {
 
 }
 
+/*
+ * Remove um Cliente
+ */
+
 void Broker::removeCliente() {
 	unsigned int size = clientes.size();
 
@@ -826,6 +838,10 @@ void Broker::removeCliente() {
 	_getch();
 
 }
+
+/*
+ * Atualiza os imoveis inativos, ordenados pelo tempo que nao sao alugados
+ */
 
 void Broker::atualizaPrioridade() {
 
@@ -856,6 +872,10 @@ void Broker::atualizaPrioridade() {
 		temp.pop();
 	}
 }
+
+/*
+ * Mostra no ecra os Imoveis Inativos
+ */
 
 void Broker::verImoveisInativos() const {
 
@@ -893,13 +913,25 @@ void Broker::verImoveisInativos() const {
 	_getch();
 }
 
+/*
+ * Retorna o historico
+ */
+
 BST<Reserva> Broker::getHistorico() const {
 	return historico;
 }
 
+/*
+ * Adiciona a reserva no historico
+ */
+
 bool Broker::adicionaReserva(const Reserva& reserva) {
 	historico.insert(reserva);
 }
+
+/*
+ * Mostra no ecra a classificaçao dos clientes (pontos)
+ */
 
 void Broker::classificacao() {
 
@@ -1288,10 +1320,18 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	return vec.at(mapa.at(imovel));
 }
 
+/*
+ * Remove a Reserva do historico
+ */
+
 bool Broker::removeReserva(const Reserva& reserva) {
 	historico.remove(reserva);
 	return true;
 }
+
+/*
+ * Atualiza as reservas
+ */
 
 bool Broker::atualizaArvore() {
 	unsigned int size = montra.size();
@@ -1304,6 +1344,10 @@ bool Broker::atualizaArvore() {
 	}
 	return true;
 }
+
+/*
+ * Atualiza a morada dos Clientes Inativos
+ */
 
 bool Broker::atualizaInformacao() {
 
@@ -1432,6 +1476,10 @@ bool Broker::verOfertas() const {
 	return true;
 }
 
+/*
+ * Mostra o historico das reservas
+ */
+
 void Broker::verHistorico() const {
 
 	ClearScreen();
@@ -1460,6 +1508,10 @@ void Broker::verHistorico() const {
 
 	return;
 }
+
+/*
+ * Mostra os clientes inativos
+ */
 
 void Broker::verInativos() {
 
@@ -1497,6 +1549,10 @@ Fornecedor* Broker::getUserF() {
 	return UserF;
 }
 
+/*
+ * Adiciona o cliente aos inativos
+ */
+
 void Broker::adicionaInativo(Cliente *c) {
 	cout << "Adiciona Inativo" << endl;
 
@@ -1505,11 +1561,19 @@ void Broker::adicionaInativo(Cliente *c) {
 	inativos.insert(cptr1);
 }
 
+/*
+ * Retorna true se o cliente for inativo
+ */
+
 bool Broker::seInativo(const ClientePtr & cptr) {
 	if (inativos.count(cptr))
 		return true;
 	return false;
 }
+
+/*
+ * Atualiza os clientes inativos
+ */
 
 void Broker::atualizaInativos() {
 

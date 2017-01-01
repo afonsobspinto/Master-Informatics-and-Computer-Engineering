@@ -31,6 +31,10 @@ using namespace std;
 
 /////////////////////////// LEITURAS ///////////////////////
 
+/*
+ * Le a password
+ */
+
 string lePassword(bool confirmacao){
 
 	string password;
@@ -51,6 +55,10 @@ string lePassword(bool confirmacao){
     return password;
 }
 
+/*
+ * Le um Nome
+ */
+
 string leString(string msg){
 	string nome;
 
@@ -69,6 +77,9 @@ string leString(string msg){
 	return nome;
 }
 
+/*
+ * Le um Nif
+ */
 
 unsigned int leNif() {
 
@@ -101,6 +112,10 @@ unsigned int leNif() {
 	return nif;
 }
 
+/*
+ * Le um valor
+ */
+
 unsigned short int leUnsignedShortInt(unsigned short int min, unsigned short int  max){
 	string opcao_str;
 	unsigned int opcao;
@@ -130,6 +145,10 @@ unsigned short int leUnsignedShortInt(unsigned short int min, unsigned short int
 	return opcao;
 
 }
+
+/*
+ * Le um tipo de Imovel
+ */
 
 std::string leTipo() {
 	int opcao;
@@ -167,6 +186,10 @@ std::string leTipo() {
 	}
 }
 
+/*
+ * Le um preco
+ */
+
 float lePreco(string msg) {
 	string preco_str;
 	float preco;
@@ -199,6 +222,10 @@ float lePreco(string msg) {
 	return preco;
 
 }
+
+/*
+ * Le o preco de uma reserva
+ */
 
 std::vector<Reserva> leReservas(float preco) {
 	vector <Reserva> reservas;
@@ -280,6 +307,10 @@ std::vector<Reserva> leReservas(float preco) {
 	return reservas;
 }
 
+/*
+ * Le os extras de um apartamento
+ */
+
 bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 		int* quartos) {
 
@@ -356,6 +387,10 @@ bool leExtrasApartamento(bool* suite, bool* cozinha, bool* sala_de_estar,
 	return true;
 }
 
+/*
+ * Le os extras de um Hotel
+ */
+
 bool leExtrasHotel(int* cama, bool* cama_extra) {
 
 	int opcao;
@@ -397,6 +432,9 @@ bool leExtrasHotel(int* cama, bool* cama_extra) {
 	return true;
 }
 
+/*
+ * Le uma Data
+ */
 
 Data leData(string msg){
 	string data;
@@ -416,6 +454,10 @@ Data leData(string msg){
 }
 
 /////////////////////////// LEITURAS AUXILIARES ///////////////////////
+
+/*
+ * Retorna a password
+ */
 
 string getpass(const char *prompt, bool show_asterisk)
 {
@@ -448,6 +490,9 @@ string getpass(const char *prompt, bool show_asterisk)
   return password;
 }
 
+/*
+ * Verifica se a string e um numero
+ */
 
 bool is_number(const string& s)
 {
@@ -458,6 +503,10 @@ bool is_number(const string& s)
 
 /////////////////////////// DATA AUXILIARES ///////////////////////
 
+/*
+ * Verifica se e ano bissexto
+ */
+
 bool ano_bissexto(unsigned int ano)
 {
 	if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0))
@@ -465,6 +514,10 @@ bool ano_bissexto(unsigned int ano)
 
 	return false;
 }
+
+/*
+ * Verifica se a data e valida
+ */
 
 bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano){
 
@@ -476,6 +529,10 @@ bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano){
 	}
 	return false;
 }
+
+/*
+ * Verifica se o dia e valido
+ */
 
 bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
 {
@@ -502,6 +559,10 @@ bool dia_valido(unsigned int dia, unsigned int mes, unsigned int ano)
 				return false;
 }
 
+/*
+ * Verifica se os dias nao sao sobrepostos
+ */
+
 bool dias_nao_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
 	if(((d3 < d1) && (d4 < d1)) || ((d2 < d3) && (d2 < d4)))
 		return true;
@@ -515,6 +576,10 @@ bool dias_nao_sobrepostos(Data d1, Data d2, Data d3, Data d4) {
 //	else
 //		return false;
 //}
+
+/*
+ * Converte uma string para Data
+ */
 
 Data string2data(string data){
 	unsigned int dia;
@@ -564,6 +629,10 @@ Data string2data(string data){
 	return D;
 }
 
+/*
+ * Converte uma data para string
+ */
+
 string data2string(Data data){
 	string data_str;
 
@@ -573,6 +642,10 @@ string data2string(Data data){
 
 	return data_str;
 }
+
+/*
+ * Se inteiro for apenas um algarismo, coloca um 0 antes
+ */
 
 string to_string_special(unsigned int num)
 {
@@ -587,6 +660,10 @@ string to_string_special(unsigned int num)
 	return num_str;
 }
 
+/*
+ * Troca as datas
+ */
+
 bool swapDatas(Data* dataInicio, Data* dataFim) {
 	if (*dataFim < *dataInicio){
 		swap(*dataInicio, *dataFim);
@@ -594,6 +671,10 @@ bool swapDatas(Data* dataInicio, Data* dataFim) {
 	}
 		return false;
 }
+
+/*
+ * Conta o numero de anos bissextos que ja tiveram
+ */
 
 int countLeapYears(Data d)
 {
@@ -605,6 +686,9 @@ int countLeapYears(Data d)
     return years / 4 - years / 100 + years / 400;
 }
 
+/*
+ * Ordena a montra por preco
+ */
 
 bool ordenaMontra(Imovel* lhs, Imovel* rhs){
 
@@ -612,10 +696,18 @@ bool ordenaMontra(Imovel* lhs, Imovel* rhs){
 
 }
 
+/*
+ * Ordena os Clientes
+ */
+
 vector<Registado> ordenaClientes(std::vector<Registado>& clientes,bool LowestFirst) {
 	QuickSort <Registado> QS(&clientes, 0, clientes.size() - 1, LowestFirst);
 	return clientes;
 }
+
+/*
+ * Limpa o ecra
+ */
 
 void ClearScreen() {
 

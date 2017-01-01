@@ -10,7 +10,7 @@ class Cliente{
 	std::string nome;
 	float valor;
 	static unsigned int counter;
-	Data ultima; // Data em que o cliente realizou a ultima reserva
+	Data ultima;
 	bool atualizou;
 public:
 	Cliente(){};
