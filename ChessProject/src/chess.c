@@ -147,44 +147,78 @@ int unmakeMove(Piece p1, Piece p2, int pseudo){
 
 
 	MOVE_STATE *moveState = getMoveState();
-	int res = 0;
-
-	if(*moveState==NORMALMOVE){
-		matrix[p1.i][p1.j]=p1;
-		matrix[p2.i][p2.j]=p2;
-		*moveState = NOMOVE;
-
-		// Update Castling flags
-		if(p1.name == 'K' && p1.color == 'w')
-			decrement(&wKingMove);
-
-		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
-			decrement(&wRook1Move);
-
-		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
-			decrement(&wRook2Move);
-
-		else if(p1.name == 'K' && p1.color == 'b')
-			decrement(&bKingMove);
-
-		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
-			decrement(&bRook1Move);
-
-		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
-			decrement(&bRook2Move);
 
 
-		res = 1;
+	if(*moveState == NOMOVE)
+		return 0;
+
+	if(*moveState==CASTLING){
+
+		//Unmaking Move
+
+		if(p1.name == 'K' && p1.color == 'w' && p2.bg=='w'){ //White Short Castling
+
+			Piece noPiece1 = {'n', 'n', 0,0,5, 585, 535, 'w'};
+			Piece noPiece2 = {'n', 'n', 0,0,6, 660, 535, 'b'};
+			matrix[0][5]= noPiece1;
+			matrix[0][6]= noPiece2;
+		}
+		else if(p1.name == 'K' && p1.color == 'w' && p2.bg=='b'){ //White Long Castling
+
+			Piece noPiece1 = {'n', 'n', 0,0,1, 280, 535, 'w'};
+			Piece noPiece2 = {'n', 'n', 0,0,2, 360, 535, 'b'};
+			Piece noPiece3 = {'n', 'n', 0,0,3, 435, 535, 'w'};
+			matrix[0][1]= noPiece1;
+			matrix[0][2]= noPiece2;
+			matrix[0][3]= noPiece3;
+		}
+		else if(p1.name == 'K' && p1.color == 'b' && p2.bg=='b'){ //Black Short Castling
+
+			Piece noPiece1 = {'n', 'n', 0,7,5, 585, 15, 'b'};
+			Piece noPiece2 = {'n', 'n', 0,7,6, 660, 15, 'w'};
+			matrix[7][5]= noPiece1;
+			matrix[7][6]= noPiece2;
+		}
+
+		else if(p1.name == 'K' && p1.color == 'b' && p2.bg=='w'){ //Black Long Castling
+
+			Piece noPiece1 = {'n', 'n', 0,7,1, 280, 15, 'b'};
+			Piece noPiece2 = {'n', 'n', 0,7,2, 360, 15, 'w'};
+			Piece noPiece3 = {'n', 'n', 0,7,3, 435, 15, 'b'};
+			matrix[7][1]= noPiece1;
+			matrix[7][2]= noPiece2;
+			matrix[7][3]= noPiece3;
+		}
 	}
-	//	else if(*moveState==CASTLING){
-	//
-	//
-	//	}
+
+	matrix[p1.i][p1.j]=p1;
+	matrix[p2.i][p2.j]=p2;
+	*moveState = NOMOVE;
+
+	// Update Castling flags
+	if(p1.name == 'K' && p1.color == 'w')
+		decrement(&wKingMove);
+
+	else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
+		decrement(&wRook1Move);
+
+	else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
+		decrement(&wRook2Move);
+
+	else if(p1.name == 'K' && p1.color == 'b')
+		decrement(&bKingMove);
+
+	else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
+		decrement(&bRook1Move);
+
+	else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
+		decrement(&bRook2Move);
 
 	if(pseudo == 0)
 		drawBoard();
 
-	return res;
+	return 1;
+
 }
 
 int makeMove(Piece p1, Piece p2, int pseudo){
@@ -252,6 +286,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	else if (valid == WHITE_SHORT_CASTLING){
 		Piece NewPiece1;
 		Piece NewPiece2;
+		increment(&wKingMove);
 
 		NewPiece1.name = 'K';
 		NewPiece1.color = 'w';
@@ -287,6 +322,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	else if (valid == WHITE_LONG_CASTLING){
 		Piece NewPiece1;
 		Piece NewPiece2;
+		increment(&wKingMove);
 
 		NewPiece1.name = 'K';
 		NewPiece1.color = 'w';
@@ -323,6 +359,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	else if (valid == BLACK_SHORT_CASTLING){
 			Piece NewPiece1;
 			Piece NewPiece2;
+			increment(&bKingMove);
 
 			NewPiece1.name = 'K';
 			NewPiece1.color = 'b';
@@ -358,6 +395,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	else if (valid == BLACK_LONG_CASTLING){
 			Piece NewPiece1;
 			Piece NewPiece2;
+			increment(&bKingMove);
 
 			NewPiece1.name = 'K';
 			NewPiece1.color = 'b';
