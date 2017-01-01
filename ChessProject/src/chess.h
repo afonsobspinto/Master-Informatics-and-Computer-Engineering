@@ -44,7 +44,7 @@ void fillBoard();
 
 void updateBoard();
 
-int makeMove(Piece pi, Piece pf);
+int makeMove(Piece pi, Piece pf, int pseudo);
 
 void reset_flags();
 
@@ -53,6 +53,8 @@ int unmakeMove();
 int isValidMove(Piece p1, Piece p2);
 
 int isCheckMate(Piece p1, Piece p2);
+
+int isCheck(char color);
 
 int isPar(int x);
 

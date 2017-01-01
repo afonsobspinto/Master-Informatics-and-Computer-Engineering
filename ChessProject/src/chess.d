@@ -48,9 +48,11 @@ chess.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/string.h
 chess.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 chess.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 chess.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
+chess.o:	ChessProject.h
 chess.o:	bitmap.h
 chess.o:	chess.c
 chess.o:	chess.h
+chess.o:	game.h
 chess.o:	mouse.h
 chess.o:	rtc.h
 chess.o:	utilities.h

@@ -17,13 +17,14 @@
 #define KEY_BKSP						0x000E
 #define KEY_ESC							0x0001
 #define KEY_ENTER						0x001C
-#define gameTime  						3
+#define gameTime  						60
 
 
 static int counterPlayer1 = 60*gameTime;
 static int counterPlayer2 = 60*gameTime;
 
 static GAME_STATE game_state;
+static MOVE_STATE move_state;
 
 MENU_STATE game_management(){
 
@@ -31,7 +32,11 @@ MENU_STATE game_management(){
 	drawBoard();
 
 	game_state = WHITE2PLAY;
+	move_state = NOMOVE;
+
 	GAME_STATE old_game_state;
+	MOVE_STATE old_move_state;
+	MOVE_STATE move_state;
 	time_info_t time;
 
 	int kbc_hook = KBC_IRQ;
@@ -220,10 +225,11 @@ void reset(){
 
 	m->state = NO_PIECE;
 	m->menu_flag = 0;
-	m->unmake_flag =0;
 	m->piece = NoPiece;
 	m->next_piece = NoPiece;
 
+
+	move_state = NOMOVE;
 	reset_flags();
 
 
@@ -281,6 +287,16 @@ GAME_STATE getGameState(){
 	asm ("movl %1, %%eax; movl %%eax,%0;"
 			:"=r"(out)
 			 :"r"(game_state)
+			  :"%eax"
+	);
+	return out;
+}
+
+MOVE_STATE *getMoveState(){
+	MOVE_STATE *out;
+	asm ("movl %1, %%eax; movl %%eax,%0;"
+			:"=r"(out)
+			 :"r"(&move_state)
 			  :"%eax"
 	);
 	return out;

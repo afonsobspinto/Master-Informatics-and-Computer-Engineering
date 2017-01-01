@@ -31,7 +31,6 @@ Mouse* newMouse(){
 	m->color = WHITE;
 	m->state = NO_PIECE;
 	m->menu_flag = 0;
-	m->unmake_flag =0;
 
 	return m;
 }
@@ -61,6 +60,7 @@ int updateMouse(){
 	mouse_struct info;
 	MENU_STATE* menuState = getMenuState();
 	GAME_STATE gameState = getGameState();
+	MOVE_STATE *moveState = getMoveState();
 
 
 	if(mouse_get_packet(&info)) {
@@ -111,20 +111,20 @@ int updateMouse(){
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1){
 						mouse->state = PIECE_1_SELECTED;
-						mouse->unmake_flag = 0;
+						*moveState=NOMOVE;
 					}
 
 				}
 				else{
 					if(isPieceSelected(0)==1){
 						//Normal Move
-						if(makeMove(mouse->piece, mouse->next_piece)==1){
+						if(makeMove(mouse->piece, mouse->next_piece, 0)==1){
 							mouse->state = NO_PIECE;
-							mouse->unmake_flag = 1;
+							*moveState = NORMALMOVE;
 							return 1;
 						}
 						//Check-Mate
-						if(makeMove(mouse->piece, mouse->next_piece)==2)
+						if(makeMove(mouse->piece, mouse->next_piece, 0)==2)
 							return 2;
 
 						mouse->state = NO_PIECE;

@@ -13,11 +13,20 @@ typedef enum {
 
 } GAME_STATE;
 
+typedef enum {
+	NOMOVE,
+	NORMALMOVE,
+	ENPASSANT,
+	CASTLING
+} MOVE_STATE;
+
 MENU_STATE game_management();
 
 MENU_STATE menu_management();
 
 GAME_STATE getGameState();
+
+MOVE_STATE *getMoveState();
 
 void turnGameState();
 

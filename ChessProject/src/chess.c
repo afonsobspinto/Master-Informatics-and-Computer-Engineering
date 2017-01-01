@@ -1,6 +1,7 @@
 #include "chess.h"
 #include "utilities.h"
 #include "mouse.h"
+#include "game.h"
 
 //GameFlags
 
@@ -146,8 +147,9 @@ int unmakeMove(){
 
 
 	Mouse* m = getMouse();
+	MOVE_STATE *moveState = getMoveState();
 
-	if(m->unmake_flag==1){
+	if(*moveState==NORMALMOVE){
 
 		// Verify Castling flags
 		if(m->piece.name == 'K' && m->piece.color == 'w')
@@ -170,7 +172,7 @@ int unmakeMove(){
 
 		matrix[m->piece.i][m->piece.j]=m->piece;
 		matrix[m->next_piece.i][m->next_piece.j]=m->next_piece;
-		m->unmake_flag = 0;
+		*moveState = NOMOVE;
 		drawBoard();
 		return 1;
 	}
@@ -179,9 +181,11 @@ int unmakeMove(){
 	return 0;
 }
 
-int makeMove(Piece p1, Piece p2){
+int makeMove(Piece p1, Piece p2, int pseudo){
 
 	int valid = isValidMove(p1,p2);
+	int res = 0;
+
 
 	if(valid==1){
 
@@ -233,9 +237,9 @@ int makeMove(Piece p1, Piece p2){
 		else if(p1.name == 'p' && p1.color == 'b' && p1.i ==6 && p2.i ==4 && p2.j == p1.j)
 			bEnPassant = p1.j;
 
-		drawBoard();
 
-		return 1;
+
+		res = 1;
 	}
 
 	// Castling White
@@ -271,9 +275,7 @@ int makeMove(Piece p1, Piece p2){
 		matrix[p1.i][p1.j]= noPiece1;
 		matrix[p2.i][p2.j]= noPiece2;
 
-		drawBoard();
-
-		return 1;
+		res = 1;
 	}
 
 	else if (valid == WHITE_LONG_CASTLING){
@@ -308,9 +310,8 @@ int makeMove(Piece p1, Piece p2){
 		matrix[p1.i][p1.j]= noPiece1;
 		matrix[p2.i][p2.j]= noPiece2;
 
-		drawBoard();
 
-		return 1;
+		res = 1;
 	}
 
 	else if (valid == BLACK_SHORT_CASTLING){
@@ -344,9 +345,8 @@ int makeMove(Piece p1, Piece p2){
 			matrix[p1.i][p1.j]= noPiece1;
 			matrix[p2.i][p2.j]= noPiece2;
 
-			drawBoard();
 
-			return 1;
+			res = 1;
 		}
 
 	else if (valid == BLACK_LONG_CASTLING){
@@ -379,9 +379,7 @@ int makeMove(Piece p1, Piece p2){
 			matrix[p1.i][p1.j]= noPiece1;
 			matrix[p2.i][p2.j]= noPiece2;
 
-			drawBoard();
-
-			return 1;
+			res = 1;
 		}
 
 	else if (valid == MATE){
@@ -406,8 +404,7 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p1.j]= noPiece;
 
-		drawBoard();
-		return 1;
+		res = 1;
 	}
 
 	else if (valid == W_EN_PASSANT){
@@ -432,8 +429,7 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p2.j]= noPiece2;
 
-		drawBoard();
-		return 1;
+		res = 1;
 	}
 
 	else if (valid == B_EN_PASSANT){
@@ -458,12 +454,13 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p2.j]= noPiece2;
 
-		drawBoard();
-		return 1;
+		res = 1;
 	}
 
-	return 0;
+	if(pseudo == 0)
+		drawBoard();
 
+	return res ;
 }
 
 int isValidMove(Piece p1, Piece p2){
@@ -929,6 +926,41 @@ int isValidMove(Piece p1, Piece p2){
 
 }
 
+
+int isCheck(char color){
+
+	Piece King;
+	Piece p;
+	unsigned int i;
+	unsigned int j;
+
+	for(i=0; i < ROWS; i++){
+		for(j=0; j < COLS; j++){
+
+			p = getMatrixAt(i,j);
+			if(p.name == 'K' && p.color==color){
+				King = p;
+			}
+		}
+	}
+
+	for (i=0; i < ROWS; i++){
+		for(j=0; j < COLS; j++){
+			p = getMatrixAt(i,j);
+			if(p.color!=color){
+				if(isValidMove(p,King)){
+					printf("Está em Check \n");
+					return 1;
+				}
+			}
+		}
+	}
+
+	printf("Não está em Check \n");
+
+	return 0;
+
+}
 
 int isPar(int x){
 	if(x%2==0)
