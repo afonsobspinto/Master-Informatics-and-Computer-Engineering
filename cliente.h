@@ -11,6 +11,7 @@ class Cliente{
 	float valor;
 	static unsigned int counter;
 	Data ultima; // Data em que o cliente realizou a ultima reserva
+	bool atualizou;
 public:
 	Cliente(){};
 	Cliente(std::string nome);
@@ -18,6 +19,11 @@ public:
 	std::string getNome() const;
 	float getValor() const;
 	Data getUltima() const;
+	bool getAtualizou()const;
+	void setAtualizou(bool status);
+	void setUltima(Data ultima);
+	virtual void setMorada(std::string morada);
+	virtual std::string getMorada() const;
 	static unsigned int getTotalClientes();
 	virtual void setPontos(int pontos);
 	void addValor(int preco);
@@ -26,17 +32,23 @@ public:
 };
 
 class Registado: public Cliente{
+	std::string morada;
 	std::string password;
 	int pontos;
 public:
-	Registado(std::string nome, std::string password);
-	Registado(std::string nome, int pontos, float valor, std::string password);
-	Registado(std::string nome, int pontos, float valor, Data ultima);
+	Registado(std::string nome, std::string password, std::string morada);
+	Registado(std::string nome, int pontos, float valor, std::string password, std::string morada);
 	std::string getPassword() const;
 	int getPontos() const;
+	virtual std::string getMorada() const;
+	virtual void setMorada(std::string morada);
 	virtual void setPontos(int pontos);
 	bool operator < (Registado & rhs);
 };
 
+
+struct ClientePtr{
+	Cliente *cliente;
+};
 
 #endif /* CLIENTE_H_ */

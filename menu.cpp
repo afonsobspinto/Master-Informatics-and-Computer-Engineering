@@ -112,6 +112,8 @@ bool Broker::menuOpcoesCliente(int convidado) {
 	}
 	else {
 		while(1){
+			if(!atualizaInformacao())
+				return false;
 			ClearScreen();
 			cout << "Menu Cliente: " << endl;
 			cout << endl;
@@ -286,7 +288,6 @@ bool Broker::menuOutros() {
 			verImoveisInativos();
 			break;
 		case 3:
-			atualizaInativos();
 		    verInativos(); 
 			break;
 		case 4:

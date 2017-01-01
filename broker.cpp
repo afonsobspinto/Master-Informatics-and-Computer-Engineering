@@ -50,6 +50,7 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	atualizaMontra();
 	atualizaPrioridade();
 	atualizaArvore();
+	atualizaInativos();
 }
 
 /*
@@ -122,7 +123,6 @@ bool Broker::adicionaCliente() {
 	clientes.push_back(C);
 	UserC = &clientes.back();
 	guardaClientes();
-
 	cout << "Pressione enter para continuar." << endl;
 	_getch();
 
@@ -150,15 +150,15 @@ bool Broker::adicionaFornecedor() {
 
 	for (unsigned int i = 0; i < size; i++){
 		try{
-					if(F.getNif() == getFornecedores().at(i).getNif()){
-							throw FornecedorJaExistente(F.getNif());
-						}
-					}
-					catch (FornecedorJaExistente &e) {
-						cout << "Excecao:" << e.getNif() << " já foi utilizado. \n";
-						_getch();
-						return false;
-					}
+			if(F.getNif() == getFornecedores().at(i).getNif()){
+				throw FornecedorJaExistente(F.getNif());
+			}
+		}
+		catch (FornecedorJaExistente &e) {
+			cout << "Excecao:" << e.getNif() << " já foi utilizado. \n";
+			_getch();
+			return false;
+		}
 	}
 
 
@@ -232,6 +232,7 @@ bool Broker::atualizaMontra() {
 
 bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 
+	Data atual = string2data(currentDateTime());
 	cout << "Por Favor indique as datas de inicio e fim da reserva." << endl << endl;
 	Data D1 = leData("inicial");
 	if(D1.getDia()==0)
@@ -257,14 +258,14 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	if(C->getNome()!="Guest"){
 		C->setPontos(ceil(0.1*preco));
 		C->addValor(preco);
+		C->setUltima(atual);
 
-		if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
-			inativos.erase(*C);
+		ClientePtr Cptr;
+		Cptr.cliente = C;
 
-//		if (C->getUltima().getDia()==0)
-//			C->ultima = D2;
-//		else if (C->getUltima()< D2)
-//			C->ultima = D2;
+		if (seInativo(Cptr))    // Se for inativo remove o cliente C dos inativos
+			inativos.erase(Cptr);
+
 	}
 
 	Reserva R = Reserva(*C, D1,D2, I->getPreco()*(1-I->getDesconto()));
@@ -274,7 +275,6 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	I->setUltima();
 
 
-	//Fat->adicionaReserva(R); // Adiciona a Reserva ao hist�rico, esta a dar erro porque??
 	cout << endl;
 	cout << "Reserva efetuada com sucesso" << endl;
 	cout << "Codigo de Cancelamento: " << R.getID();
@@ -355,11 +355,10 @@ bool Broker::cancelaReserva() {
 bool Broker::validaLoginCliente() {
 	unsigned int size = clientes.size();
 
-
 	ClearScreen();
 
-
 	string nome = leString("Nome: ");
+
 
 	if(nome==""){
 		cout << "Login Falhou. Pressione enter para continuar." << endl;
@@ -637,6 +636,7 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	int pontos;
 	float valor;
 	string password;
+	string morada;
 	string pontos_str;
 	string valor_str;
 
@@ -646,14 +646,16 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		getline(ficheiro, nome, ';');
 		getline(ficheiro, pontos_str, ';');
 		getline(ficheiro, valor_str, ';');
-		getline(ficheiro, password);
+		getline(ficheiro, password, ';');
+		getline(ficheiro, morada, ';');
 
 		nome = nome.substr(0,nome.length()-1);
 		pontos = stoi(pontos_str);
 		valor = stof(valor_str);
-		password = password.substr(1,password.length());
+		password = password.substr(1,password.length()-2);
+		morada = morada.substr(1,morada.length()-1);
 
-		Registado C(nome, pontos, valor, password);
+		Registado C(nome, pontos, valor, password, morada);
 
 		clientes.push_back(C);
 	}
@@ -676,7 +678,8 @@ void Broker::guardaClientes() {
 
 	for (size_t i = 0; i < clientes.size(); i++)
 	{
-		ficheiro << clientes.at(i).getNome()<< " ; " << clientes.at(i).getPontos() << " ; " << clientes.at(i).getValor() << " ; " << clientes.at(i).getPassword() << endl;
+		ficheiro << clientes.at(i).getNome()<< " ; " << clientes.at(i).getPontos() << " ; " << clientes.at(i).getValor() << " ; " << clientes.at(i).getPassword() << " ; " << clientes.at(i).getMorada() << " ; "
+				<< data2string(clientes.at(i).getUltima()) << " ; ";
 	}
 
 	ficheiro.flush();
@@ -818,6 +821,7 @@ void Broker::removeCliente() {
 
 	cout << "Obrigado por ter feito parte da nossa família." << endl << endl;
 	guardaClientes();
+	atualizaInativos();
 	cout << "Pressione enter para continuar." << endl;
 	_getch();
 
@@ -843,7 +847,7 @@ void Broker::atualizaPrioridade() {
 	}
 
 
-	priority_queue<Imovel, vector <Imovel *>, CompImovel> temp = imoveis;
+	pQueue temp = imoveis;
 
 
 	while(!temp.empty()){
@@ -856,7 +860,7 @@ void Broker::atualizaPrioridade() {
 void Broker::verImoveisInativos() const {
 
 	ClearScreen();
-	priority_queue<Imovel, vector <Imovel *>, CompImovel> temp = imoveis;
+	pQueue temp = imoveis;
 	int id = 1;
 
 	if(!temp.empty())
@@ -1301,6 +1305,29 @@ bool Broker::atualizaArvore() {
 	return true;
 }
 
+bool Broker::atualizaInformacao() {
+
+	ClearScreen();
+	ClientePtr Cptr;
+	Cptr.cliente=UserC;
+	if(seInativo(Cptr) && !UserC->getAtualizou()){
+		string morada;
+		cout << "Devido a um longo periodo de atividade, temos necessidade de atualizar os seus dados." << endl;
+		morada = leString("Morada: ");
+		if(morada == "")
+			return false;
+
+		UserC->setMorada(morada);
+		UserC->setAtualizou(true);
+		guardaClientes();
+		cout << "Pressione enter para continuar." << endl;
+		_getch();
+		return true;
+	}
+
+	return true;
+}
+
 /*
  * Mostra Montra Auxiliar
  */
@@ -1434,17 +1461,32 @@ void Broker::verHistorico() const {
 	return;
 }
 
-void Broker::verInativos() const {
-	
+void Broker::verInativos() {
+
+	atualizaInativos(); //apagar
 	ClearScreen();
-	unsigned int counter = 0;
-	cout << "Publicidade enviada aos seguintes clientes inativos:" << endl;
-	for (tabH::const_iterator it = inativos.begin(); it != inativos.end(); it++) {
-		cout << counter + 1 << ": " << (*it).getNome() << endl; 
-		cout << endl;
-		counter++;
+
+	if(inativos.empty())
+		cout << "Não existem Clientes Inativos" << endl;
+	else
+		cout << "Clientes Inativos: " << endl << endl;
+
+	tabH::const_iterator it;
+
+	for(it = inativos.begin(); it!= inativos.end(); it++){
+		cout << "Cliente: " << it->cliente->getNome() << endl <<
+				"Morada: " << it->cliente->getMorada() << endl;
+		if(it->cliente->getUltima().getDia()==0)
+			cout << "Ultima Reserva: " << endl;
+		else
+			cout << "Ultima Reserva: " << data2string(it->cliente->getUltima()) << endl;
 	}
+
+	cout << endl;
+	cout << "Pressione enter para continuar." << endl;
 	_getch();
+
+	return;
 
 }
 /*
@@ -1455,30 +1497,36 @@ Fornecedor* Broker::getUserF() {
 	return UserF;
 }
 
-bool Broker::addInativo(const Cliente & c) {
-	Data atual = string2data(currentDateTime());
+void Broker::adicionaInativo(Cliente *c) {
+	cout << "Adiciona Inativo" << endl;
 
-	if (seInativo(c))
-		return true;
-
-	if (atual - 30 < c.getUltima()){
-		inativos.insert(c);
-		return true;
-	}
-	return false;
+	ClientePtr cptr1;
+	cptr1.cliente = c;
+	inativos.insert(cptr1);
 }
 
-bool Broker::seInativo(const Cliente & c) {
-	if (inativos.count(c))
+bool Broker::seInativo(const ClientePtr & cptr) {
+	if (inativos.count(cptr))
 		return true;
 	return false;
 }
 
 void Broker::atualizaInativos() {
-	unsigned int csize = getClientes().size();
-	for(unsigned int i=0; i<csize;i++){
-		addInativo(clientes.at(i));
-	}
 
+	unsigned int size = this->getClientes().size();
+	int tolerancia = 30;
+	Data atual = string2data(currentDateTime());
+
+
+	for (unsigned int i = 0; i < size; i++){
+
+		cout << "Cliente: " << clientes.at(i).getNome() << endl;
+		cout << "Ultima: " << data2string(clientes.at(i).getUltima()) << endl;
+		cout << "Atual: " << data2string(atual) << endl;
+		if(clientes.at(i).getUltima()< atual - tolerancia){
+			adicionaInativo(&clientes.at(i));
+		}
+
+	}
 }
 

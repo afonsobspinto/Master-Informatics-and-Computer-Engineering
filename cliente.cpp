@@ -8,11 +8,13 @@ Cliente::Cliente(std::string nome) {
 	this->nome = nome;
 	valor = 0;
 	counter ++;
+	setUltima(Data(0,0,0));
 }
 
 Cliente::Cliente(std::string nome, int pontos, float valor) {
 	this->nome = nome;
 	this->valor = valor;
+	setUltima(Data(0,0,0));
 }
 
 std::string Cliente::getNome() const {
@@ -30,14 +32,16 @@ float Cliente::getValor() const {
 Data Cliente::getUltima() const{
 	return ultima;
 }
-Registado::Registado(std::string nome, std::string password):Cliente(nome) {
+Registado::Registado(std::string nome, std::string password, std::string morada):Cliente(nome) {
 	this->password = password;
 	pontos = 0;
+	this->morada = morada;
 }
 
-Registado::Registado(std::string nome, int pontos, float valor, std::string password):Cliente(nome,pontos,valor) {
+Registado::Registado(std::string nome, int pontos, float valor, std::string password, std::string morada):Cliente(nome,pontos,valor) {
 	this->password = password;
 	this->pontos = pontos;
+	this->morada = morada;
 }
 
 std::string Registado::getPassword() const {
@@ -53,6 +57,14 @@ bool Cliente::operator <(const Cliente& rhs) {
 		return true;
 	else
 		return false;
+}
+
+bool Cliente::getAtualizou() const {
+	return atualizou;
+}
+
+void Cliente::setAtualizou(bool status) {
+	atualizou=status;
 }
 
 bool Cliente::operator ==(const  Cliente& rhs) {
@@ -79,4 +91,22 @@ bool Registado::operator <(Registado& rhs) {
 		return true;
 	else
 		return false;
+}
+
+void Cliente::setUltima(Data ultima) {
+	this->ultima = ultima;
+}
+
+std::string Registado::getMorada() const {
+	return morada;
+}
+
+std::string Cliente::getMorada() const {
+}
+
+void Cliente::setMorada(std::string morada) {
+}
+
+void Registado::setMorada(std::string morada) {
+	this->morada = morada;
 }

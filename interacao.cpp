@@ -68,9 +68,13 @@ Imovel* criaImovel(int owner){
 Registado criaCliente(){
 	string nome = leString("Nome: ");
 	if(nome == "")
-		return Registado("","");
+		return Registado("","","");
+	string morada = leString("Morada: ");
+	if(morada == "")
+		return Registado("","","");
+
 	string password = lePassword(true);
-	Registado C (nome, password);
+	Registado C (nome, password, morada);
 	return C;
 }
 

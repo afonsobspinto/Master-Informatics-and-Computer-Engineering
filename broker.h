@@ -18,13 +18,18 @@
 
 struct clienteHash {
 
-	int operator() (const Cliente & c1) const
-		{
-			return true;
-		}
+	int operator() (const ClientePtr & c1) const
+	{
+		unsigned sum = 0;
 
-	bool operator()(const Cliente & c1, const Cliente & c2) const {
-		return c1.getNome() == c2.getNome();
+		for(auto i=0; i<c1.cliente->getNome().size(); i++)
+			sum+=(int)c1.cliente->getNome()[i];
+
+		return sum%127;
+	}
+
+	bool operator()(const ClientePtr & c1, const ClientePtr & c2) const {
+		return c1.cliente->getNome() == c2.cliente->getNome();
 	}
 };
 
@@ -40,12 +45,8 @@ class Broker{
 	Cliente *UserC;
 	Fornecedor *UserF;
 
-	typedef std::unordered_set<Cliente, clienteHash, clienteHash> tabH;
-
-
-	tabH inativos; // Clientes Inativos
-
-
+	typedef std::unordered_set<ClientePtr, clienteHash, clienteHash> tabH;
+	typedef std::priority_queue<Imovel, vector <Imovel *>, CompImovel> pQueue;
 
 	std::string nome;
 	std::string ficheiroClientes;
@@ -54,11 +55,9 @@ class Broker{
 	std::vector<Imovel*>montra;
 	std::vector<Fornecedor>fornecedores;
 	BST<Reserva> historico;
-	std::priority_queue<Imovel, vector <Imovel *>, CompImovel> imoveis;
-
+	pQueue imoveis;
+	tabH inativos;
 	float receita;
-
-
 	std::vector<Registado>leFicheiroClientes();
 	std::vector<Fornecedor> leFicheiroFornecedores();
 
@@ -79,16 +78,18 @@ public:
 	Cliente *getUserC();
 	Fornecedor *getUserF();
 
+
 	//CLIENTES//
 
 	bool adicionaCliente();
 	void removeCliente();
 	bool validaLoginCliente();
 
-	bool addInativo(const Cliente & c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
-	bool seInativo(const Cliente & c); // Ve se o cliente c est� nos inativos
+	void adicionaInativo(Cliente *c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
+	bool seInativo(const ClientePtr & cptr); // Ve se o cliente c est� nos inativos
 	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
-	void verInativos() const; // Mostra os clientes Inativos para efeitos de envio de publicidade
+	void verInativos(); // Mostra os clientes Inativos para efeitos de envio de publicidade
+	bool atualizaInformacao();
 
 	//FORNECEDORES//
 
@@ -97,10 +98,11 @@ public:
 	bool adicionaImovel(Fornecedor *F);
 	bool removeImovel();
 	bool atualizaMontra();
-
 	void atualizaPrioridade();
 
+
 	//RESERVAS//
+
 	bool efectuaReserva(Cliente* C, Imovel* I);
 	bool cancelaReserva();
 	bool adicionaReserva(const Reserva &reserva);
@@ -113,8 +115,8 @@ public:
 	void guardaFornecedores();
 	void guardaBase();
 
-	////MENUS///
 
+	////MENUS///
 	bool opcoesIniciais();
 	bool menuClienteInicial();
 	bool menuOpcoesCliente(int convidado);
@@ -123,7 +125,9 @@ public:
 	bool menuOpcoesFornecedor();
 	bool menuOutros();
 
+
 	///LISTAGENS///
+
 	void classificacao();
 	void verImoveisInativos() const;
 	bool verOfertas() const;
