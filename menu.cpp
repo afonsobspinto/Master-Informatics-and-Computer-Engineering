@@ -271,7 +271,7 @@ bool Broker::menuOutros() {
 		ClearScreen();
 		cout << "Menu Outros: " << endl;
 		cout << endl;
-		cout << "   " << "1 - Hist�rico das Reservas" << endl;
+		cout << "   " << "1 - Historico de Reservas" << endl;
 		cout << "   " << "2 - Descontos" << endl;
 		cout << "   " << "3 - Clientes Inativos" << endl;
 		cout << "   " << "4 - Voltar" << endl << endl;
@@ -280,9 +280,7 @@ bool Broker::menuOutros() {
 
 		switch (opcao){
 		case 1:
-			if (verHistorico())
-				break;
-			cout << "LAST" << endl;
+			verHistorico();
 			break;
 		case 2:
 			verImoveisInativos();

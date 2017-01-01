@@ -33,6 +33,7 @@ public:
 	float getPreco() const;
 	std::string getID() const;
 
+	bool operator == (const Reserva & rhs) const;
 	bool operator < (const Reserva & rhs) const;
 };
 

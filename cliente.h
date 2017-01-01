@@ -10,8 +10,8 @@ class Cliente{
 	std::string nome;
 	float valor;
 	static unsigned int counter;
-public:
 	Data ultima; // Data em que o cliente realizou a ultima reserva
+public:
 	Cliente(){};
 	Cliente(std::string nome);
 	Cliente(std::string nome, int pontos, float valor);
@@ -31,6 +31,7 @@ class Registado: public Cliente{
 public:
 	Registado(std::string nome, std::string password);
 	Registado(std::string nome, int pontos, float valor, std::string password);
+	Registado(std::string nome, int pontos, float valor, Data ultima);
 	std::string getPassword() const;
 	int getPontos() const;
 	virtual void setPontos(int pontos);

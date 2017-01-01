@@ -5,7 +5,6 @@
 #include "broker.h"
 #include "interacao.h"
 #include "utils.h"
-#include "reserva.h"
 
 using namespace std;
 
@@ -13,11 +12,12 @@ using namespace std;
  * Construtor Broker
  */
 
-Broker::Broker(std::string nome) {
+Broker::Broker(std::string nome):historico(Reserva()) {
 	this->nome = nome;
 	ficheiroClientes = nome + "_clientes.txt";
 	ficheiroFornecedores = nome + "_fornecedores.txt";
 	receita = 0;
+	historico.makeEmpty();
 
 	ofstream ficheiro(nome+".txt");
 
@@ -39,15 +39,17 @@ Broker::Broker(std::string nome) {
 
 
 Broker::Broker(std::string nome, std::string ficheiroClientes,
-		std::string ficheiroFornecedores, float receita) {
+		std::string ficheiroFornecedores, float receita): historico(Reserva()) {
 	this->nome = nome;
 	this->receita = receita;
 	this->ficheiroClientes = ficheiroClientes;
 	this->ficheiroFornecedores = ficheiroFornecedores;
+	historico.makeEmpty();
 	clientes = leFicheiroClientes();
 	fornecedores = leFicheiroFornecedores();
 	atualizaMontra();
 	atualizaPrioridade();
+	atualizaArvore();
 }
 
 /*
@@ -259,14 +261,15 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 		if (seInativo(*C))    // Se for inativo remove o cliente C dos inativos
 			inativos.erase(*C);
 
-		if (C->getUltima().getDia()==0)
-			C->ultima = D2;
-		else if (C->getUltima()< D2)
-			C->ultima = D2;
+//		if (C->getUltima().getDia()==0)
+//			C->ultima = D2;
+//		else if (C->getUltima()< D2)
+//			C->ultima = D2;
 	}
 
 	Reserva R = Reserva(*C, D1,D2, I->getPreco()*(1-I->getDesconto()));
 	I->addReservas(R);
+	adicionaReserva(R);
 	receita += I->getTaxa()*R.getPreco();
 	I->setUltima();
 
@@ -322,6 +325,7 @@ bool Broker::cancelaReserva() {
 
 					}
 					UserC->setPontos(-ceil(0.1*reservas->at(k).getPreco()));
+					removeReserva(reservas->at(k));
 					reservas->erase(reservas->begin()+k);
 					fornecedores.at(i).getOfertasRef()->at(j)->setUltima();
 
@@ -502,6 +506,10 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 			vector <Reserva> reservas;
 
 			string id;
+			string nome_cliente;
+			float preco_reserva;
+
+			string preco_reserva_str;
 
 			bool suite;
 			bool cozinha;
@@ -522,16 +530,18 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 				getline(ficheiro, id, ';');
 				getline(ficheiro, dataInicio_str, ';');
 				getline(ficheiro, dataFim_str, ';');
+				getline(ficheiro, nome_cliente, ';');
+				getline(ficheiro, preco_reserva_str, ';');
 
 				id = id.substr(1, id.length()-2);
 				dataInicio = string2data(dataInicio_str.substr(1, dataInicio_str.length()-1));
 				dataFim = string2data(dataFim_str.substr(1, dataFim_str.length()-1));
+				nome_cliente = nome_cliente.substr(1, nome_cliente.length()-2);
+				preco_reserva = stof(preco_reserva_str);
 
-				//				cout << id +"<-ID" << endl;
-				//				cout << dataInicio_str +"1" << endl;
-				//				cout << dataFim_str +"1" << endl;
+				Cliente c(nome_cliente);
 
-				Reserva R(dataInicio, dataFim, preco, id);
+				Reserva R(c, dataInicio, dataFim, preco_reserva, id);
 				reservas.push_back(R);
 
 				if(tipo == "Apartamento"){
@@ -700,7 +710,8 @@ void Broker::guardaFornecedores() {
 				vector<Reserva> *reservas = fornecedores.at(i).getOfertas().at(j)->getReservas();
 
 				ficheiro << reservas->at(k).getID() << " ; " << data2string(reservas->at(k).getInicio()) << " ; " <<
-						data2string(reservas->at(k).getFinal()) << " ; ";
+						data2string(reservas->at(k).getFinal()) << " ; " << reservas->at(k).getCliente().getNome() << " ; " <<
+						reservas->at(k).getPreco() << " ; ";
 
 				if(ofertas.at(j)->getTipo() == "Apartamento"){
 					ficheiro << ofertas.at(j)->getSuite() << " ; " <<
@@ -850,6 +861,8 @@ void Broker::verImoveisInativos() const {
 
 	if(!temp.empty())
 		cout << "Veja as nossas melhores promoções: " << endl << endl;
+	else
+		cout << "Não temos promoções de momento" << endl << endl;
 
 	while(!temp.empty()){
 
@@ -874,6 +887,14 @@ void Broker::verImoveisInativos() const {
 		cout << "Pressione enter para continuar." << endl;
 	}
 	_getch();
+}
+
+BST<Reserva> Broker::getHistorico() const {
+	return historico;
+}
+
+bool Broker::adicionaReserva(const Reserva& reserva) {
+	historico.insert(reserva);
 }
 
 void Broker::classificacao() {
@@ -1263,6 +1284,22 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	return vec.at(mapa.at(imovel));
 }
 
+bool Broker::removeReserva(const Reserva& reserva) {
+	historico.remove(reserva);
+	return true;
+}
+
+bool Broker::atualizaArvore() {
+	unsigned int size = montra.size();
+	for(unsigned int i = 0; i < size; i++){
+		vector <Reserva> *reservas = montra.at(i)->getReservas();
+		unsigned int sizer = reservas->size();
+		for (unsigned int u = 0; u < sizer; u++){
+			adicionaReserva(reservas->at(u));
+		}
+	}
+	return true;
+}
 
 /*
  * Mostra Montra Auxiliar
@@ -1368,24 +1405,33 @@ bool Broker::verOfertas() const {
 	return true;
 }
 
-bool Broker::verHistorico() const {
+void Broker::verHistorico() const {
 
 	ClearScreen();
-	cout << "2" << endl;
-	BSTItrPost<Reserva> it = Fat->getHistorico(); // Erro aqui 
-	cout << "3" << endl;
-	while (!it.isAtEnd())
-	{
-		cout << it.retrieve().getID() << endl << it.retrieve().getID() << endl;
-	    it.advance();
+
+
+	if(historico.isEmpty())
+		cout << "Ainda não foram efectuadas quaisquer reservas." << endl;
+
+	BSTItrIn<Reserva> it(historico);
+
+
+
+	while(!it.isAtEnd()){
+		cout << "Reserva de: " << it.retrieve().getCliente().getNome() << endl <<
+				"Duração: " << data2string(it.retrieve().getInicio()) << " - " << data2string(it.retrieve().getFinal()) << endl <<
+				"Valor Dispendido: " << it.retrieve().getPreco() << endl <<
+				"Código de Cancelamento: " << it.retrieve().getID() << endl << endl;
+
+
+		it.advance();
 	}
-	cout << "4" << endl;
 
 	cout << endl;
 	cout << "Pressione enter para continuar." << endl;
 	_getch();
 
-	return true;
+	return;
 }
 
 void Broker::verInativos() const {

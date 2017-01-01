@@ -4,7 +4,6 @@
 
 
 #include "broker.h"
-#include "fatura.h"
 #include "utils.h"
 #include "data.h"
 
