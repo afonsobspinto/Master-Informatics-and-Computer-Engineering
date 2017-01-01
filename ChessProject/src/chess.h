@@ -54,7 +54,7 @@ int isValidMove(Piece p1, Piece p2);
 
 int isCheckMate(Piece p1, Piece p2);
 
-int isCheck(char color);
+int isCheck(Piece p1, Piece p2);
 
 int isPar(int x);
 

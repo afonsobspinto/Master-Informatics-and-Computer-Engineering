@@ -112,12 +112,14 @@ int updateMouse(){
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1){
 						mouse->state = PIECE_1_SELECTED;
+						printf("Peça 1 Selecionada \n");
 						*moveState=NOMOVE;
 					}
 
 				}
 				else{
 					if(isPieceSelected(0)==1){
+						printf("Peça 2 Selecionada \n");
 
 						int move = makeMove(mouse->piece, mouse->next_piece);
 						//Normal Move
@@ -127,7 +129,7 @@ int updateMouse(){
 							return 1;
 						}
 						//CASTLING
-						if(move == WHITE_SHORT_CASTLING ||
+						else if(move == WHITE_SHORT_CASTLING ||
 								move == WHITE_LONG_CASTLING ||
 								move == BLACK_SHORT_CASTLING ||
 								move == BLACK_LONG_CASTLING){
@@ -135,14 +137,16 @@ int updateMouse(){
 							*moveState = CASTLING;
 							return 1;
 						}
-						if(move == W_EN_PASSANT ||
+						else if(move == W_EN_PASSANT ||
 								move == B_EN_PASSANT){
 							mouse->state = NO_PIECE;
 							*moveState = ENPASSANT;
 							return 1;}
 
-
 						mouse->state = NO_PIECE;
+
+						printf("O Movimento nao foi feito");
+
 					}
 
 
