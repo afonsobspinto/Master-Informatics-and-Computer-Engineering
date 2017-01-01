@@ -143,42 +143,48 @@ void reset_flags(){
 	bEnPassant = -1;
 }
 
-int unmakeMove(){
+int unmakeMove(Piece p1, Piece p2, int pseudo){
 
 
-	Mouse* m = getMouse();
 	MOVE_STATE *moveState = getMoveState();
+	int res = 0;
 
 	if(*moveState==NORMALMOVE){
+		matrix[p1.i][p1.j]=p1;
+		matrix[p2.i][p2.j]=p2;
+		*moveState = NOMOVE;
 
-		// Verify Castling flags
-		if(m->piece.name == 'K' && m->piece.color == 'w')
+		// Update Castling flags
+		if(p1.name == 'K' && p1.color == 'w')
 			decrement(&wKingMove);
 
-		if(m->piece.name == 'R' && m->piece.color == 'w' && m->piece.i == 0 && m->piece.j == 7)
+		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 7)
 			decrement(&wRook1Move);
 
-		if(m->piece.name == 'R' && m->piece.color == 'w' && m->piece.i == 0 && m->piece.j == 0)
+		else if(p1.name == 'R' && p1.color == 'w' && p1.i == 0 && p1.j == 0)
 			decrement(&wRook2Move);
 
-		if(m->piece.name == 'K' && m->piece.color == 'b')
+		else if(p1.name == 'K' && p1.color == 'b')
 			decrement(&bKingMove);
 
-		if(m->piece.name == 'R' && m->piece.color == 'b' && m->piece.i == 7 && m->piece.j == 7)
+		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 7)
 			decrement(&bRook1Move);
 
-		if(m->piece.name == 'R' && m->piece.color == 'b' && m->piece.i == 7 && m->piece.j == 0)
+		else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 			decrement(&bRook2Move);
 
-		matrix[m->piece.i][m->piece.j]=m->piece;
-		matrix[m->next_piece.i][m->next_piece.j]=m->next_piece;
-		*moveState = NOMOVE;
-		drawBoard();
-		return 1;
+
+		res = 1;
 	}
+	//	else if(*moveState==CASTLING){
+	//
+	//
+	//	}
 
+	if(pseudo == 0)
+		drawBoard();
 
-	return 0;
+	return res;
 }
 
 int makeMove(Piece p1, Piece p2, int pseudo){
@@ -275,7 +281,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p1.i][p1.j]= noPiece1;
 		matrix[p2.i][p2.j]= noPiece2;
 
-		res = 1;
+		res = WHITE_SHORT_CASTLING;
 	}
 
 	else if (valid == WHITE_LONG_CASTLING){
@@ -311,7 +317,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p2.i][p2.j]= noPiece2;
 
 
-		res = 1;
+		res = WHITE_LONG_CASTLING;
 	}
 
 	else if (valid == BLACK_SHORT_CASTLING){
@@ -346,7 +352,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			matrix[p2.i][p2.j]= noPiece2;
 
 
-			res = 1;
+			res = BLACK_SHORT_CASTLING;
 		}
 
 	else if (valid == BLACK_LONG_CASTLING){
@@ -379,11 +385,11 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			matrix[p1.i][p1.j]= noPiece1;
 			matrix[p2.i][p2.j]= noPiece2;
 
-			res = 1;
+			res = BLACK_LONG_CASTLING;
 		}
 
 	else if (valid == MATE){
-		return 2;
+		return MATE;
 	}
 
 	else if (valid == PROMOTION){
@@ -404,7 +410,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 		matrix[p1.i][p1.j]= noPiece;
 
-		res = 1;
+		res = PROMOTION;
 	}
 
 	else if (valid == W_EN_PASSANT){
@@ -429,7 +435,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 		matrix[p1.i][p2.j]= noPiece2;
 
-		res = 1;
+		res = W_EN_PASSANT;
 	}
 
 	else if (valid == B_EN_PASSANT){
@@ -454,7 +460,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 		matrix[p1.i][p2.j]= noPiece2;
 
-		res = 1;
+		res = B_EN_PASSANT;
 	}
 
 	if(pseudo == 0)

@@ -17,7 +17,7 @@
 #define KEY_BKSP						0x000E
 #define KEY_ESC							0x0001
 #define KEY_ENTER						0x001C
-#define gameTime  						60
+#define gameTime  						3
 
 
 static int counterPlayer1 = 60*gameTime;
@@ -34,6 +34,7 @@ MENU_STATE game_management(){
 	game_state = WHITE2PLAY;
 	move_state = NOMOVE;
 
+	Mouse* mouse = getMouse();
 	GAME_STATE old_game_state;
 	MOVE_STATE old_move_state;
 	MOVE_STATE move_state;
@@ -97,7 +98,7 @@ MENU_STATE game_management(){
 
 					if(game_state == BLACK2PLAY || game_state == WHITE2PLAY){
 						if(key == KEY_BKSP){
-							if(unmakeMove()==1)
+							if(unmakeMove(mouse->piece, mouse->next_piece, 0)==1)
 								turnGameState();
 						}
 						else if (key == KEY_SPACE){

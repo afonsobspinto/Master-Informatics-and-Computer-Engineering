@@ -8,6 +8,7 @@
 #include "ChessProject.h"
 #include "game.h"
 
+
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
 
@@ -117,15 +118,29 @@ int updateMouse(){
 				}
 				else{
 					if(isPieceSelected(0)==1){
+
+						int move = makeMove(mouse->piece, mouse->next_piece, 0);
 						//Normal Move
-						if(makeMove(mouse->piece, mouse->next_piece, 0)==1){
+						if(move == 1 || move == PROMOTION ){
 							mouse->state = NO_PIECE;
 							*moveState = NORMALMOVE;
 							return 1;
 						}
-						//Check-Mate
-						if(makeMove(mouse->piece, mouse->next_piece, 0)==2)
-							return 2;
+						//CASTLING
+						if(move == WHITE_SHORT_CASTLING ||
+								move == WHITE_LONG_CASTLING ||
+								move == BLACK_SHORT_CASTLING ||
+								move == BLACK_LONG_CASTLING){
+							mouse->state = NO_PIECE;
+							*moveState = CASTLING;
+							return 1;
+						}
+						if(move == W_EN_PASSANT ||
+								move == B_EN_PASSANT){
+							mouse->state = NO_PIECE;
+							*moveState = ENPASSANT;
+							return 1;}
+
 
 						mouse->state = NO_PIECE;
 					}

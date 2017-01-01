@@ -48,7 +48,7 @@ int makeMove(Piece pi, Piece pf, int pseudo);
 
 void reset_flags();
 
-int unmakeMove();
+int unmakeMove(Piece p1, Piece p2, int pseudo);
 
 int isValidMove(Piece p1, Piece p2);
 
