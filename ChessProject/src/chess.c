@@ -254,7 +254,7 @@ int unmakeMove(Piece p1, Piece p2, int force){
 
 int makeMove(Piece p1, Piece p2, int pseudo){
 
-	int valid = isValidMove(p1,p2);
+	int valid = isValidMove(p1,p2, 0);
 	int res = 0;
 
 	if(valid == 0)
@@ -564,10 +564,15 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	return res ;
 }
 
-int isValidMove(Piece p1, Piece p2){
+int isValidMove(Piece p1, Piece p2, int checking){
 
 
 	char peca = p1.name;
+	if(checking == 1){
+		if(peca == 'K')
+			return 0;
+	}
+
 
 	switch(peca){
 	case 'K':
@@ -575,7 +580,7 @@ int isValidMove(Piece p1, Piece p2){
 		//Castling
 		if(p2.name =='R'){
 			//White
-			if(p1.color == 'w' && p2.color == 'w' && wKingMove==0){
+			if(p1.color == 'w' && p2.color == 'w' && wKingMove==0 && isCheck('w')==0){
 				//Short
 				if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
 					if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
@@ -589,7 +594,7 @@ int isValidMove(Piece p1, Piece p2){
 						return WHITE_LONG_CASTLING;
 				}
 			}
-			else if(p1.color == 'b' && p2.color == 'b' && bKingMove == 0){
+			else if(p1.color == 'b' && p2.color == 'b' && bKingMove == 0 && isCheck('b')==0){
 				//Short
 				if(p2.i == 7 && p2.j == 7 && bRook1Move == 0){
 					if(matrix[7][6].state == 0 && matrix[7][5].state == 0)
@@ -1051,7 +1056,6 @@ int isMate(unsigned char color){
 						if(makeMove(p1,p2,1)!=0){
 							if(isCheck(color)==0){
 								unmakeMove(p1,p2,1);
-								printf("Não é M8 porque %c dos %c que está em [%d][%d] pode ir para [%d][%d] \n", p1.name, p1.color, p1.i, p1.j, p2.i, p2.j);
 								return 0;
 							}
 							unmakeMove(p1,p2,1);
@@ -1094,7 +1098,7 @@ int isCheck(unsigned char color){
 		for(l=0; l < COLS; l++){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
-				if(isValidMove(p,King)){
+				if(isValidMove(p,King,1)){
 					return 1;
 				}
 			}

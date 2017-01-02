@@ -51,7 +51,7 @@ void reset_flags();
 
 int unmakeMove(Piece p1, Piece p2, int force);
 
-int isValidMove(Piece p1, Piece p2);
+int isValidMove(Piece p1, Piece p2, int checking);
 
 int isMate(unsigned char color);
 
