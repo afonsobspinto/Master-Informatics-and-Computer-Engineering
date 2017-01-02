@@ -143,8 +143,12 @@ int updateMouse(){
 						}
 
 						else if(move == CHECKMATE){
-							return 2;
+							return CHECKMATE;
 						}
+
+						else if(move == STALEMATE)
+							return STALEMATE;
+
 
 						mouse->state = NO_PIECE;
 

@@ -62,6 +62,7 @@ static Bitmap *exit2;
 
 static Bitmap *player1wins;
 static Bitmap *player2wins;
+static Bitmap *draw;
 
 static Bitmap *zero;
 static Bitmap *one;
@@ -258,6 +259,7 @@ void deleteBitmaps(){
 	deleteBitmap(exit2);
 	deleteBitmap(player1wins);
 	deleteBitmap(player2wins);
+	deleteBitmap(draw);
 	deleteBitmap(zero);
 	deleteBitmap(one);
 	deleteBitmap(two);
@@ -502,6 +504,12 @@ int loadBitmaps(){
 
 	player2wins = loadBitmap("/home/lcom/ChessProject/res/player2wins.bmp");
 	if(player2wins == NULL){
+		printf("-2\n");
+		return 1;
+	}
+
+	draw = loadBitmap("/home/lcom/ChessProject/res/draw.bmp");
+	if(draw == NULL){
 		printf("-2\n");
 		return 1;
 	}
@@ -755,6 +763,8 @@ void drawWinner(){
 		call_drawBitmap(player2wins, 0, 0, ALIGN_LEFT);
 	else if (gameState == WHITEWINS)
 		call_drawBitmap(player1wins, 0, 0, ALIGN_LEFT);
+	else if(gameState == DRAW)
+		call_drawBitmap(draw, 0, 0, ALIGN_LEFT);
 }
 
 void drawTime(time_info_t *time) {

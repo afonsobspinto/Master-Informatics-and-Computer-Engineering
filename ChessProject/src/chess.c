@@ -542,9 +542,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		res = B_EN_PASSANT;
 	}
 
-
-
-	printf("Conteudo em [4][7] %c, %c, %c\n", matrix[4][7].name, matrix[4][7].color, matrix[4][7].bg);
 	if(pseudo != 1){
 		unsigned char color;
 		if(p1.color=='w')
@@ -559,11 +556,8 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 		else if(isMate(color)==1 && isCheck(color)==1)
 			res = CHECKMATE;
-		else if(isMate(color)==1 && isCheck(color)==0){
-
-			printf("StaleMate \n");
+		else if(isMate(color)==1 && isCheck(color)==0)
 			res = STALEMATE;
-		}
 		drawBoard();
 	}
 

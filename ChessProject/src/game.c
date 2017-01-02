@@ -80,7 +80,7 @@ MENU_STATE game_management(){
 	int click;
 
 	while((counterPlayer1 > 0) && (counterPlayer2 > 0) && (key != KEY_ESC)
-			&& (game_state != BLACKWINS) && (game_state != WHITEWINS))
+			&& (game_state != BLACKWINS) && (game_state != WHITEWINS) && (game_state != DRAW))
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
 			printf("Driver_receive failed\n");
@@ -168,9 +168,11 @@ MENU_STATE game_management(){
 					click = updateMouse();
 					if(click==1)
 						turnGameState();
-					else if(click==2){
+					else if(click==CHECKMATE){
 						winnerState();
 					}
+					else if(click==STALEMATE)
+						game_state = DRAW;
 				}
 
 				break;
@@ -202,7 +204,7 @@ MENU_STATE game_management(){
 	else if(counterPlayer1 == 0)
 		game_state = BLACKWINS;
 
-	if(game_state == BLACKWINS || game_state == WHITEWINS){
+	if(game_state == BLACKWINS || game_state == WHITEWINS || game_state == DRAW){
 		drawWinner();
 		waitForEnter();
 	}
