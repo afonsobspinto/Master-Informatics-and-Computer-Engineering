@@ -145,13 +145,14 @@ void reset_flags(){
 	bEnPassant = -1;
 }
 
-int unmakeMove(Piece p1, Piece p2){
+int unmakeMove(Piece p1, Piece p2, int force){
 
 
 	MOVE_STATE *moveState = getMoveState();
 
 
-	if(*moveState == NOMOVE)
+
+	if(*moveState == NOMOVE && force != 1)
 		return 0;
 
 	if(*moveState==CASTLING){
@@ -540,12 +541,12 @@ int makeMove(Piece p1, Piece p2){
 	}
 
 
-	if(isCheck(p1,p2)){
-		printf("Estou em Check! Vou desfazer o Movimento \n");
-		unmakeMove(p1,p2);
-		res = 0;
-	}
-	else
+//	if(isCheck(p1,p2)){
+//		printf("Estou em Check! Vou desfazer o Movimento \n");
+//		unmakeMove(p1,p2,1);
+//		res = 0;
+//	}
+//	else
 		drawBoard();
 
 	return res ;
@@ -554,6 +555,7 @@ int makeMove(Piece p1, Piece p2){
 int isValidMove(Piece p1, Piece p2){
 
 	printf("Vou verificar se o Movimento é valido \n");
+	printf("Peça %c-%c \n", p1.name, p1.color);
 
 	char peca = p1.name;
 
@@ -1044,7 +1046,7 @@ int isCheck(Piece p1, Piece p2){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
 				if(isValidMove(p,King)){
-					printf("Está em Check \n");
+					printf("Está em Check porque %c dos %c que esta num square %c o está a atacar\n", p.name, p.color, p.bg);
 					return 1;
 				}
 			}
