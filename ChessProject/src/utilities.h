@@ -8,6 +8,12 @@
 
 #define CORRECTION 					25
 #define SQUARE_SIZE       			37.5
+#define BUTTON_SIZE					15
+
+#define DRAWX						35
+#define QUITX						145
+#define BUTTONSYW					305
+#define BUTTONSYB					505
 
 #define LOGO                        10
 #define WIDTHLOCAL                	300

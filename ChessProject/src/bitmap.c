@@ -640,6 +640,7 @@ void drawBoard(){
 
 
 
+
 	unsigned int i = 0;
 	for(; i < ROWS ; i++){
 		unsigned int u = 0;

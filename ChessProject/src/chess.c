@@ -1040,8 +1040,6 @@ int isMate(unsigned char color){
 	unsigned int k;
 	unsigned int l;
 
-	printf("Checking for M8 \n");
-
 
 	Piece p1;
 	Piece p2;

@@ -173,6 +173,11 @@ MENU_STATE game_management(){
 					}
 					else if(click==STALEMATE)
 						game_state = DRAW;
+					else if (click == QUIT){
+						turnGameState();
+						winnerState();
+					}
+
 				}
 
 				break;
@@ -234,6 +239,7 @@ void reset(){
 
 	move_state = NOMOVE;
 	reset_flags();
+	reset_draw();
 
 
 }

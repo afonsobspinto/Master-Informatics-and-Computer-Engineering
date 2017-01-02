@@ -12,6 +12,9 @@
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
 
+static unsigned int whiteDraw = 0;
+static unsigned int blackDraw = 0;
+
 
 Mouse* mouse = NULL;
 
@@ -109,6 +112,24 @@ int updateMouse(){
 		// MULTIPLAYER LOCAL
 		if (*menuState == MULTIPLAYER_LOCAL && gameState != PAUSED)
 			if(info.left){
+
+				int button = isButtonSelected();
+				if(button==1){
+					if(blackDraw==1)
+						return DRAW_;
+					else
+						whiteDraw = 1;
+				}
+				else if(button == 3){
+					if(whiteDraw == 1)
+						return DRAW_;
+					else
+						blackDraw = 1;
+				}
+				else if(button == 2 || button == 4)
+					return QUIT;
+
+
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1){
 						mouse->state = PIECE_1_SELECTED;
@@ -169,6 +190,38 @@ void deleteMouse(){
 }
 
 
+void reset_draw(){
+	whiteDraw = 0;
+	blackDraw = 0;
+}
+
+int isButtonSelected (){
+
+	GAME_STATE gameState = getGameState();
+
+	if(gameState == WHITE2PLAY){
+		if(mouseInside(-10, 265, 25, 290))
+			return 1;
+
+		else if(mouseInside(100, 265, 135, 300))
+			return 2;
+
+		else
+			return 0;
+	}
+
+	if(gameState == BLACK2PLAY){
+			if(mouseInside(-10, 470, 25, 490 ))
+				return 3;
+
+			else if(mouseInside(100, 470, 135, 490))
+				return 4;
+
+			else
+				return 0;
+	}
+}
+
 int isPieceSelected (int flag){
 
 	unsigned int i = 0;
@@ -220,6 +273,14 @@ int isPieceSelected (int flag){
 }
 
 int mouseInside(int x1, int y1, int x2, int y2){
+//	printf("\n\n");
+//	printf("x1: %d \n", x1);
+//	printf("x: %d \n", getMouse()->x- CORRECTION);
+//	printf("x2: %d \n", x2);
+//	printf("y1: %d \n", y1);
+//	printf("y: %d \n", getMouse()->y - CORRECTION);
+//	printf("y2: %d \n", y2);
+
 	return x1<= getMouse()->x - CORRECTION && getMouse()->x - CORRECTION <=x2
 			&& y1<= getMouse()->y - CORRECTION && getMouse()->y - CORRECTION <= y2;
 }

@@ -10,6 +10,8 @@
 #define BLACK_SHORT_CASTLING 4
 #define BLACK_LONG_CASTLING 5
 #define CHECKMATE 6
+#define QUIT 11
+#define DRAW_ 10
 #define STALEMATE 10
 #define PROMOTION 7
 #define W_EN_PASSANT 8

@@ -42,7 +42,10 @@ int updateMouse();
 void deleteMouse();
 
 int isPieceSelected (int flag);
+int isButtonSelected();
 int mouseInside(int x1, int y1, int x2, int y2);
+
+void reset_draw();
 
 
 int mouse_subscribe_int(unsigned *hook_id);
