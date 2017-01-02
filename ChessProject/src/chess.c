@@ -151,6 +151,14 @@ int unmakeMove(Piece p1, Piece p2, int force){
 	MOVE_STATE *moveState = getMoveState();
 	DRAW_STATE *drawState = getDrawState();
 
+	if(force==1){
+			if(p1.name == 'K'){
+				if(*moveState == CASTLING)
+					printf("Castling \n");
+				else
+					printf("Not Castling \n");
+			}
+		}
 
 
 	if(*moveState == NOMOVE && force != 1)
@@ -249,6 +257,7 @@ int unmakeMove(Piece p1, Piece p2, int force){
 	if(force !=1)
 		drawBoard(*drawState);
 
+	*moveState = NORMALMOVE;
 	return 1;
 
 }
@@ -262,6 +271,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		return 0;
 
 	DRAW_STATE* drawState = getDrawState();
+	MOVE_STATE *moveState = getMoveState();
 
 
 	if(valid==1){
@@ -315,6 +325,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			bEnPassant = p1.j;
 
 		res = 1;
+		*moveState = NORMALMOVE;
 	}
 
 	// Castling White
@@ -352,6 +363,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p2.i][p2.j]= noPiece2;
 
 		res = WHITE_SHORT_CASTLING;
+		*moveState = CASTLING;
 	}
 
 	else if (valid == WHITE_LONG_CASTLING){
@@ -389,6 +401,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 		res = WHITE_LONG_CASTLING;
+		*moveState = CASTLING;
 	}
 
 	else if (valid == BLACK_SHORT_CASTLING){
@@ -425,6 +438,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 			res = BLACK_SHORT_CASTLING;
+			*moveState = CASTLING;
 		}
 
 	else if (valid == BLACK_LONG_CASTLING){
@@ -459,6 +473,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			matrix[p2.i][p2.j]= noPiece2;
 
 			res = BLACK_LONG_CASTLING;
+			*moveState = CASTLING;
 		}
 
 	else if (valid == PROMOTION){
@@ -480,6 +495,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p1.i][p1.j]= noPiece;
 
 		res = PROMOTION;
+		*moveState = NORMALMOVE;
 	}
 
 	else if (valid == W_EN_PASSANT){
@@ -511,6 +527,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		}
 
 		res = W_EN_PASSANT;
+		*moveState = ENPASSANT;
 	}
 
 	else if (valid == B_EN_PASSANT){
@@ -543,6 +560,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 		res = B_EN_PASSANT;
+		*moveState = ENPASSANT;
 	}
 
 	if(pseudo != 1){

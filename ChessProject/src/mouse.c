@@ -12,6 +12,8 @@
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
 
+static unsigned int whiteDraw = 0;
+static unsigned int blackDraw = 0;
 
 
 Mouse* mouse = NULL;
