@@ -151,15 +151,6 @@ int unmakeMove(Piece p1, Piece p2, int force){
 	MOVE_STATE *moveState = getMoveState();
 	DRAW_STATE *drawState = getDrawState();
 
-	if(force==1){
-			if(p1.name == 'K'){
-				if(*moveState == CASTLING)
-					printf("Castling \n");
-				else
-					printf("Not Castling \n");
-			}
-		}
-
 
 	if(*moveState == NOMOVE && force != 1)
 		return 0;
@@ -264,7 +255,14 @@ int unmakeMove(Piece p1, Piece p2, int force){
 
 int makeMove(Piece p1, Piece p2, int pseudo){
 
-	int valid = isValidMove(p1,p2, 0);
+
+
+	int valid;
+	if(pseudo == 1)
+		valid = isValidMove(p1,p2, 1);
+	else
+		valid = isValidMove(p1,p2,0);
+
 	int res = 0;
 
 	if(valid == 0)
@@ -590,11 +588,6 @@ int isValidMove(Piece p1, Piece p2, int checking){
 
 
 	char peca = p1.name;
-	if(checking == 1){
-		if(peca == 'K')
-			return 0;
-	}
-
 
 	switch(peca){
 	case 'K':
@@ -603,10 +596,15 @@ int isValidMove(Piece p1, Piece p2, int checking){
 		if(p2.name =='R'){
 			//White
 			if(p1.color == 'w' && p2.color == 'w' && wKingMove==0 && isCheck('w')==0){
+				Piece temp = getMatrixAt(0,5);
 				//Short
 				if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
-					if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
-						return WHITE_SHORT_CASTLING;
+					if(isCheck(p1.color)==0){
+						if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
+							return WHITE_SHORT_CASTLING;
+					}
+
+					return 0;
 				}
 				//Long
 				if(p2.i==0 && p2.j == 0 && wRook2Move == 0){
@@ -821,8 +819,10 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1)
+				if (counter = aux-1){
 					return 1;
+
+				}
 				else
 					return 0;
 			}
@@ -838,8 +838,10 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1)
+				if (counter = aux-1){
 					return 1;
+				}
+
 				else
 					return 0;
 			}
@@ -855,8 +857,11 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1)
+				if (counter = aux-1){
+
 					return 1;
+				}
+
 				else
 					return 0;
 			}
@@ -872,8 +877,10 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1)
+				if (counter = aux-1){
 					return 1;
+				}
+
 				else
 					return 0;
 			}
@@ -1087,7 +1094,6 @@ int isMate(unsigned char color){
 	}
 
 
-	printf("M8 M8 M8 \n");
 	return 1;
 }
 
@@ -1118,7 +1124,7 @@ int isCheck(unsigned char color){
 		for(l=0; l < COLS; l++){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
-				if(isValidMove(p,King,1)){
+				if(isValidMove(p,King,1)==1){
 					return 1;
 				}
 			}
