@@ -112,16 +112,14 @@ int updateMouse(){
 				if(mouse->state == NO_PIECE){
 					if(isPieceSelected(1)==1){
 						mouse->state = PIECE_1_SELECTED;
-						printf("Peça 1 Selecionada \n");
 						*moveState=NOMOVE;
 					}
 
 				}
 				else{
 					if(isPieceSelected(0)==1){
-						printf("Peça 2 Selecionada \n");
 
-						int move = makeMove(mouse->piece, mouse->next_piece);
+						int move = makeMove(mouse->piece, mouse->next_piece, 0);
 						//Normal Move
 						if(move == 1 || move == PROMOTION ){
 							mouse->state = NO_PIECE;
@@ -141,11 +139,14 @@ int updateMouse(){
 								move == B_EN_PASSANT){
 							mouse->state = NO_PIECE;
 							*moveState = ENPASSANT;
-							return 1;}
+							return 1;
+						}
+
+						else if(move == MATE){
+							return 2;
+						}
 
 						mouse->state = NO_PIECE;
-
-						printf("O Movimento nao foi feito");
 
 					}
 

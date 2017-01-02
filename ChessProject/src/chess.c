@@ -245,27 +245,20 @@ int unmakeMove(Piece p1, Piece p2, int force){
 	else if(p1.name == 'R' && p1.color == 'b' && p1.i == 7 && p1.j == 0)
 		decrement(&bRook2Move);
 
-	drawBoard();
+	if(force !=1)
+		drawBoard();
 
 	return 1;
 
 }
 
-int makeMove(Piece p1, Piece p2){
-
-
-	printf("Vou fazer o Movimento \n");
+int makeMove(Piece p1, Piece p2, int pseudo){
 
 	int valid = isValidMove(p1,p2);
 	int res = 0;
 
-	if(valid == 0){
-		printf("Nao é Valido! Vou sair \n");
+	if(valid == 0)
 		return 0;
-	}
-
-	else
-		printf("É válido\n");
 
 
 	if(valid==1){
@@ -465,10 +458,6 @@ int makeMove(Piece p1, Piece p2){
 			res = BLACK_LONG_CASTLING;
 		}
 
-	else if (valid == MATE){
-		return MATE;
-	}
-
 	else if (valid == PROMOTION){
 		Piece NewPiece;
 
@@ -518,9 +507,6 @@ int makeMove(Piece p1, Piece p2){
 			matrix[p1.i][p2.j]= noPiece2;
 		}
 
-
-
-
 		res = W_EN_PASSANT;
 	}
 
@@ -553,26 +539,32 @@ int makeMove(Piece p1, Piece p2){
 		}
 
 
-
-
 		res = B_EN_PASSANT;
 	}
 
 
-	if(isCheck(p1.color)){
-		printf("Estou em Check! Vou desfazer o Movimento \n");
-		unmakeMove(p1,p2,1);
-		res = 0;
-	}
-	else
+	if(pseudo != 1){
+		unsigned char color;
+		if(p1.color=='w')
+			color = 'b';
+		else
+			color = 'w';
+
+		if(isCheck(p1.color)){
+			unmakeMove(p1,p2,1);
+			res = 0;
+		}
+		else if(isCheckMate(color))
+			res = MATE;
+
 		drawBoard();
+	}
 
 	return res ;
 }
 
 int isValidMove(Piece p1, Piece p2){
 
-	printf("Vou verificar se o Movimento é valido \n");
 
 	char peca = p1.name;
 
@@ -1036,14 +1028,36 @@ int isValidMove(Piece p1, Piece p2){
 }
 
 
-int isCheckMate(Piece p1, Piece p2){
+int isCheckMate(unsigned char color){
 	unsigned int i;
 	unsigned int j;
+	unsigned int k;
+	unsigned int l;
+
+	Piece p1;
+	Piece p2;
+
 	for(i=0; i < ROWS; i++){
 		for (j=0; j < COLS; j++){
-
+			p1 = getMatrixAt(i,j);
+			if(p1.color == color){
+				for(k=0; k<ROWS; k++){
+					for(l=0;l<COLS;l++){
+						p2=getMatrixAt(k,l);
+						if(makeMove(p1,p2,1)!=0){
+							if(isCheck(color)==0){
+								unmakeMove(p1,p2,1);
+								return 0;
+							}
+							unmakeMove(p1,p2,1);
+						}
+					}
+				}
+			}
 		}
 	}
+
+	return 1;
 }
 
 int isCheck(unsigned char color){
@@ -1072,14 +1086,11 @@ int isCheck(unsigned char color){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
 				if(isValidMove(p,King)){
-					printf("Está em Check porque %c dos %c que esta na posicao [%d][%d] num square %c o está a atacar\n", p.name, p.color, p.i, p.j, p.bg);
 					return 1;
 				}
 			}
 		}
 	}
-
-	printf("Não está em Check \n");
 
 	return 0;
 
