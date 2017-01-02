@@ -47,6 +47,7 @@ static Bitmap *bPawnw;
 
 static Bitmap *player1;
 static Bitmap *player2;
+static Bitmap *buttons;
 
 static Bitmap *logo;
 static Bitmap *paused;
@@ -249,6 +250,7 @@ void deleteBitmaps(){
 	deleteBitmap(bPawnw);
 	deleteBitmap(player1);
 	deleteBitmap(player2);
+	deleteBitmap(buttons);
 	deleteBitmap(logo);
 	deleteBitmap(paused);
 	deleteBitmap(local1);
@@ -484,6 +486,10 @@ int loadBitmaps(){
 		return 1;
 	}
 
+	buttons = loadBitmap("/home/lcom/ChessProject/res/buttons.bmp");
+	if(buttons==NULL)
+		return 1;
+
 	player1 = loadBitmap("/home/lcom/ChessProject/res/player1.bmp");
 	if(player1 == NULL){
 		printf("2\n");
@@ -628,7 +634,9 @@ void drawBoard(){
 	call_drawBitmap(board,800,0,ALIGN_RIGHT);
 	call_drawBitmap(logo,20,10,ALIGN_LEFT);
 	call_drawBitmap(player1, 10, 230, ALIGN_LEFT);
+	call_drawBitmap(buttons, 10, 290, ALIGN_LEFT);
 	call_drawBitmap(player2, 10, 430, ALIGN_LEFT);
+	call_drawBitmap(buttons, 10, 490, ALIGN_LEFT);
 
 
 
