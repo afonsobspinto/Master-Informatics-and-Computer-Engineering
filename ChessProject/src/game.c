@@ -25,16 +25,14 @@ static int counterPlayer2 = 60*gameTime;
 
 static GAME_STATE game_state;
 static MOVE_STATE move_state;
-static DRAW_STATE draw_state;
 
 MENU_STATE game_management(){
 
 	fillBoard();
-	drawBoard(0);
+	drawBoard();
 
 	game_state = WHITE2PLAY;
 	move_state = NOMOVE;
-	draw_state = 0;
 
 	Mouse* mouse = getMouse();
 	GAME_STATE old_game_state;
@@ -85,6 +83,7 @@ MENU_STATE game_management(){
 			&& (game_state != BLACKWINS) && (game_state != WHITEWINS) && (game_state != DRAW))
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+			printf("Driver_receive failed\n");
 			continue;
 		}
 		if (is_ipc_notify(ipc_status)) // Notification received
@@ -112,7 +111,7 @@ MENU_STATE game_management(){
 						if(key == KEY_SPACE){
 							game_state = old_game_state;
 							fill_buffer(BLACK);
-							drawBoard(draw_state);
+							drawBoard();
 						}
 
 					}
@@ -174,11 +173,6 @@ MENU_STATE game_management(){
 					}
 					else if(click==STALEMATE)
 						game_state = DRAW;
-					else if (click == QUIT){
-						turnGameState();
-						winnerState();
-					}
-
 				}
 
 				break;
@@ -239,7 +233,6 @@ void reset(){
 
 
 	move_state = NOMOVE;
-	draw_state = 0;
 	reset_flags();
 
 
@@ -312,16 +305,6 @@ MOVE_STATE *getMoveState(){
 	return out;
 }
 
-DRAW_STATE *getDrawState(){
-	DRAW_STATE *out;
-	asm ("movl %1, %%eax; movl %%eax,%0;"
-			:"=r"(out)
-			 :"r"(&draw_state)
-			  :"%eax"
-	);
-	return out;
-}
-
 
 MENU_STATE menu_management(){
 
@@ -361,6 +344,7 @@ MENU_STATE menu_management(){
 	while(1)
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+			printf("Driver_receive failed\n");
 			continue;
 		}
 		if (is_ipc_notify(ipc_status)) // Notification received
@@ -420,6 +404,7 @@ int waitForEnter(){
             /* Get a request message. */
 
             if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+                    printf("driver_receive failed with: %d", r);
                     continue;
 
             }

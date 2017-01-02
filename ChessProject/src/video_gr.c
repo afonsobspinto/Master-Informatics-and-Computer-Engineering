@@ -46,6 +46,7 @@ int vg_exit() {
   registos.u.b.al = 0x03;    /* 80x25 text mode*/
 
   if( sys_int86(&registos) != OK ) {
+      printf("\tvg_exit(): sys_int86() failed \n");
       return 1;
   } else
       return 0;
@@ -60,6 +61,7 @@ void *vg_init(unsigned short mode)
 
 	if(vbe_get_mode_info(mode, &vmode_info_p) != 0)
 	{
+		printf("\vbe_get_mode_info() failed \n");
 		return 0;
 	}
 
@@ -76,6 +78,7 @@ void *vg_init(unsigned short mode)
 
 	if( sys_int86(&registos) != OK )
 	{
+		printf("sys_int86() failed \n");
 		return 0;
 	}
 
@@ -96,6 +99,7 @@ void *vg_init(unsigned short mode)
 	mr.mr_limit = mr.mr_base + vram_size;
 
 	if( OK != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)))
+	   panic("sys_privctl (ADD_MEM) failed: %d\n", r);
 
 	/* Map memory */
 
