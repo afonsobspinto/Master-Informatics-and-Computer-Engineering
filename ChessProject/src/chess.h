@@ -9,7 +9,8 @@
 #define WHITE_LONG_CASTLING 3
 #define BLACK_SHORT_CASTLING 4
 #define BLACK_LONG_CASTLING 5
-#define MATE 6
+#define CHECKMATE 6
+#define STALEMATE 10
 #define PROMOTION 7
 #define W_EN_PASSANT 8
 #define B_EN_PASSANT 9
@@ -52,7 +53,7 @@ int unmakeMove(Piece p1, Piece p2, int force);
 
 int isValidMove(Piece p1, Piece p2);
 
-int isCheckMate(unsigned char color);
+int isMate(unsigned char color);
 
 int isCheck(unsigned char color);
 

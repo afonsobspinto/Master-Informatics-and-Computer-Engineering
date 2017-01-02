@@ -543,6 +543,8 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 	}
 
 
+
+	printf("Conteudo em [4][7] %c, %c, %c\n", matrix[4][7].name, matrix[4][7].color, matrix[4][7].bg);
 	if(pseudo != 1){
 		unsigned char color;
 		if(p1.color=='w')
@@ -554,9 +556,14 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			unmakeMove(p1,p2,1);
 			res = 0;
 		}
-		else if(isCheckMate(color))
-			res = MATE;
 
+		else if(isMate(color)==1 && isCheck(color)==1)
+			res = CHECKMATE;
+		else if(isMate(color)==1 && isCheck(color)==0){
+
+			printf("StaleMate \n");
+			res = STALEMATE;
+		}
 		drawBoard();
 	}
 
@@ -965,7 +972,7 @@ int isValidMove(Piece p1, Piece p2){
 			// 1st line
 			if (p1.i == 1){
 				if ((((p1.i == p2.i-1) && (p1.j == p2.j) && p2.name=='n') || // Andar 1 casa para a frente
-						((p1.i == p2.i-2) && (p1.j == p2.j) && p2.name=='n') || // Andar 2 casas para a frente
+						((p1.i == p2.i-2) && (p1.j == p2.j) && p2.name=='n' && matrix[p2.i-1][p2.j].name =='n') || // Andar 2 casas para a frente
 						((p1.i == p2.i-1) && (p1.j == p2.j-1) && (p2.color == 'b')) || // Matar Diagonal direita
 						((p1.i == p2.i-1) && (p1.j == p2.j+1) && (p2.color == 'b'))) && // Matar Diagonal esquerda
 						(p1.color != p2.color))
@@ -993,7 +1000,7 @@ int isValidMove(Piece p1, Piece p2){
 			// 1st line
 			if(p1.i == 6){
 				if ((((p1.i == p2.i+1) && (p1.j == p2.j) && p2.name=='n') || // Andar 1 casa para a frente
-						((p1.i == p2.i+2) && (p1.j == p2.j) && p2.name=='n') || // Andar 2 casas para a frente
+						((p1.i == p2.i+2) && (p1.j == p2.j) && p2.name=='n' && matrix[p2.i+1][p2.j].name =='n') || // Andar 2 casas para a frente
 						((p1.i == p2.i+1) && (p1.j == p2.j-1) && (p2.color == 'w')) || // Matar Diagonal direita
 						((p1.i == p2.i+1) && (p1.j == p2.j+1) && (p2.color == 'w'))) && // Matar Diagonal esquerda
 						(p1.color != p2.color))
@@ -1028,11 +1035,14 @@ int isValidMove(Piece p1, Piece p2){
 }
 
 
-int isCheckMate(unsigned char color){
+int isMate(unsigned char color){
 	unsigned int i;
 	unsigned int j;
 	unsigned int k;
 	unsigned int l;
+
+	printf("Checking for M8 \n");
+
 
 	Piece p1;
 	Piece p2;
@@ -1047,6 +1057,7 @@ int isCheckMate(unsigned char color){
 						if(makeMove(p1,p2,1)!=0){
 							if(isCheck(color)==0){
 								unmakeMove(p1,p2,1);
+								printf("Não é M8 porque %c dos %c que está em [%d][%d] pode ir para [%d][%d] \n", p1.name, p1.color, p1.i, p1.j, p2.i, p2.j);
 								return 0;
 							}
 							unmakeMove(p1,p2,1);
@@ -1057,10 +1068,14 @@ int isCheckMate(unsigned char color){
 		}
 	}
 
+
+	printf("M8 M8 M8 \n");
 	return 1;
 }
 
+
 int isCheck(unsigned char color){
+
 
 	Piece King;
 	Piece p;

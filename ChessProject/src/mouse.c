@@ -142,7 +142,7 @@ int updateMouse(){
 							return 1;
 						}
 
-						else if(move == MATE){
+						else if(move == CHECKMATE){
 							return 2;
 						}
 
