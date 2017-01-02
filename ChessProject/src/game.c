@@ -25,14 +25,16 @@ static int counterPlayer2 = 60*gameTime;
 
 static GAME_STATE game_state;
 static MOVE_STATE move_state;
+static DRAW_STATE draw_state;
 
 MENU_STATE game_management(){
 
 	fillBoard();
-	drawBoard();
+	drawBoard(0);
 
 	game_state = WHITE2PLAY;
 	move_state = NOMOVE;
+	draw_state = 0;
 
 	Mouse* mouse = getMouse();
 	GAME_STATE old_game_state;
@@ -111,7 +113,7 @@ MENU_STATE game_management(){
 						if(key == KEY_SPACE){
 							game_state = old_game_state;
 							fill_buffer(BLACK);
-							drawBoard();
+							drawBoard(draw_state);
 						}
 
 					}
@@ -238,8 +240,8 @@ void reset(){
 
 
 	move_state = NOMOVE;
+	draw_state = 0;
 	reset_flags();
-	reset_draw();
 
 
 }
@@ -306,6 +308,16 @@ MOVE_STATE *getMoveState(){
 	asm ("movl %1, %%eax; movl %%eax,%0;"
 			:"=r"(out)
 			 :"r"(&move_state)
+			  :"%eax"
+	);
+	return out;
+}
+
+DRAW_STATE *getDrawState(){
+	DRAW_STATE *out;
+	asm ("movl %1, %%eax; movl %%eax,%0;"
+			:"=r"(out)
+			 :"r"(&draw_state)
 			  :"%eax"
 	);
 	return out;

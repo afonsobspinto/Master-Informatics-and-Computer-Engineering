@@ -21,6 +21,12 @@ typedef enum {
 	CASTLING
 } MOVE_STATE;
 
+typedef enum {
+	NONEDRAW,
+	WHITEDRAW,
+	BLACKDRAW
+}DRAW_STATE;
+
 MENU_STATE game_management();
 
 MENU_STATE menu_management();
@@ -28,6 +34,8 @@ MENU_STATE menu_management();
 GAME_STATE getGameState();
 
 MOVE_STATE *getMoveState();
+
+DRAW_STATE *getDrawState();
 
 void turnGameState();
 

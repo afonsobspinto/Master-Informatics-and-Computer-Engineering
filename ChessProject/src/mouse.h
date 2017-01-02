@@ -34,6 +34,8 @@ typedef struct  {
 }Mouse;
 
 
+
+
 Mouse* newMouse();
 Mouse* getMouse();
 

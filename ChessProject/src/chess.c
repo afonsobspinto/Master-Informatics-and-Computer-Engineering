@@ -149,6 +149,7 @@ int unmakeMove(Piece p1, Piece p2, int force){
 
 
 	MOVE_STATE *moveState = getMoveState();
+	DRAW_STATE *drawState = getDrawState();
 
 
 
@@ -246,7 +247,7 @@ int unmakeMove(Piece p1, Piece p2, int force){
 		decrement(&bRook2Move);
 
 	if(force !=1)
-		drawBoard();
+		drawBoard(*drawState);
 
 	return 1;
 
@@ -259,6 +260,8 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 	if(valid == 0)
 		return 0;
+
+	DRAW_STATE* drawState = getDrawState();
 
 
 	if(valid==1){
@@ -558,7 +561,8 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			res = CHECKMATE;
 		else if(isMate(color)==1 && isCheck(color)==0)
 			res = STALEMATE;
-		drawBoard();
+
+		drawBoard(*drawState);
 	}
 
 	return res ;

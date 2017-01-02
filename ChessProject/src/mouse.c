@@ -12,8 +12,6 @@
 static unsigned char packet[3];
 static unsigned char byteCounter = 0;
 
-static unsigned int whiteDraw = 0;
-static unsigned int blackDraw = 0;
 
 
 Mouse* mouse = NULL;
@@ -65,6 +63,7 @@ int updateMouse(){
 	MENU_STATE* menuState = getMenuState();
 	GAME_STATE gameState = getGameState();
 	MOVE_STATE *moveState = getMoveState();
+	DRAW_STATE *drawState = getDrawState();
 
 
 	if(mouse_get_packet(&info)) {
@@ -114,17 +113,31 @@ int updateMouse(){
 			if(info.left){
 
 				int button = isButtonSelected();
+
 				if(button==1){
-					if(blackDraw==1)
+					if(*drawState == 2)
 						return DRAW_;
-					else
-						whiteDraw = 1;
+					else if (*drawState == 0){
+						*drawState = 1;
+						drawBoard(*drawState);
+					}
+					else if (*drawState == 1){
+						*drawState = 0;
+						drawBoard(*drawState);
+					}
 				}
 				else if(button == 3){
-					if(whiteDraw == 1)
+					if(*drawState == 1)
 						return DRAW_;
-					else
-						blackDraw = 1;
+					else if (*drawState == 0){
+						*drawState = 2;
+						drawBoard(*drawState);
+					}
+					else if (*drawState == 2){
+						*drawState = 0;
+						drawBoard(*drawState);
+					}
+
 				}
 				else if(button == 2 || button == 4)
 					return QUIT;
@@ -189,11 +202,6 @@ void deleteMouse(){
 	free(getMouse());
 }
 
-
-void reset_draw(){
-	whiteDraw = 0;
-	blackDraw = 0;
-}
 
 int isButtonSelected (){
 

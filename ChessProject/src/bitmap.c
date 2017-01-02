@@ -48,6 +48,7 @@ static Bitmap *bPawnw;
 static Bitmap *player1;
 static Bitmap *player2;
 static Bitmap *buttons;
+static Bitmap *buttonsgreen;
 
 static Bitmap *logo;
 static Bitmap *paused;
@@ -251,6 +252,7 @@ void deleteBitmaps(){
 	deleteBitmap(player1);
 	deleteBitmap(player2);
 	deleteBitmap(buttons);
+	deleteBitmap(buttonsgreen);
 	deleteBitmap(logo);
 	deleteBitmap(paused);
 	deleteBitmap(local1);
@@ -490,6 +492,11 @@ int loadBitmaps(){
 	if(buttons==NULL)
 		return 1;
 
+	buttonsgreen = loadBitmap("/home/lcom/ChessProject/res/buttonsgreen.bmp");
+	if(buttonsgreen==NULL)
+		return 1;
+
+
 	player1 = loadBitmap("/home/lcom/ChessProject/res/player1.bmp");
 	if(player1 == NULL){
 		printf("2\n");
@@ -627,16 +634,27 @@ void drawMenu(unsigned local, unsigned serial, unsigned exit){
 }
 
 
-void drawBoard(){
+void drawBoard(int draw){
 
 	fill_screen(BLACK);
 
 	call_drawBitmap(board,800,0,ALIGN_RIGHT);
 	call_drawBitmap(logo,20,10,ALIGN_LEFT);
 	call_drawBitmap(player1, 10, 230, ALIGN_LEFT);
-	call_drawBitmap(buttons, 10, 290, ALIGN_LEFT);
 	call_drawBitmap(player2, 10, 430, ALIGN_LEFT);
-	call_drawBitmap(buttons, 10, 490, ALIGN_LEFT);
+
+	if(draw==0){
+		call_drawBitmap(buttons, 10, 290, ALIGN_LEFT);
+		call_drawBitmap(buttons, 10, 490, ALIGN_LEFT);
+	}
+	else if( draw==1){
+		call_drawBitmap(buttonsgreen, 10, 290, ALIGN_LEFT);
+		call_drawBitmap(buttons, 10, 490, ALIGN_LEFT);
+	}
+	else if( draw == 2){
+		call_drawBitmap(buttons, 10, 290, ALIGN_LEFT);
+		call_drawBitmap(buttonsgreen, 10, 490, ALIGN_LEFT);
+	}
 
 
 
