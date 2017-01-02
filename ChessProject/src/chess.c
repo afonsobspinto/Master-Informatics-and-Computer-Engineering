@@ -508,9 +508,18 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p1.j]= noPiece1;
 
-		Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, p2.bg};
+		if(p1.bg == 'w'){
+			Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, 'b'};
+			matrix[p1.i][p2.j]= noPiece2;
+		}
 
-		matrix[p1.i][p2.j]= noPiece2;
+		else{
+			Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, 'w'};
+			matrix[p1.i][p2.j]= noPiece2;
+		}
+
+
+
 
 		res = W_EN_PASSANT;
 	}
@@ -533,15 +542,24 @@ int makeMove(Piece p1, Piece p2){
 
 		matrix[p1.i][p1.j]= noPiece1;
 
-		Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, p2.bg};
+		if(p1.bg=='w'){
+			Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, 'b'};
+			matrix[p1.i][p2.j]= noPiece2;
+		}
 
-		matrix[p1.i][p2.j]= noPiece2;
+		else{
+			Piece noPiece2 = {'n', 'n', 0, p1.i ,p2.j, p2.xpos, p1.ypos, 'w'};
+			matrix[p1.i][p2.j]= noPiece2;
+		}
+
+
+
 
 		res = B_EN_PASSANT;
 	}
 
 
-	if(isCheck(p1,p2)){
+	if(isCheck(p1.color)){
 		printf("Estou em Check! Vou desfazer o Movimento \n");
 		unmakeMove(p1,p2,1);
 		res = 0;
@@ -1019,21 +1037,20 @@ int isValidMove(Piece p1, Piece p2){
 
 
 int isCheckMate(Piece p1, Piece p2){
-//	unsigned int i;
-//	unsigned int j;
-//	for(i=0; i < ROWS; i++){
-//		for (j=0; j < COLS; j++){
-//
-//		}
-//	}
+	unsigned int i;
+	unsigned int j;
+	for(i=0; i < ROWS; i++){
+		for (j=0; j < COLS; j++){
+
+		}
+	}
 }
 
-int isCheck(Piece p1, Piece p2){
+int isCheck(unsigned char color){
 
 	Piece King;
 	Piece p;
 
-	unsigned char color = p1.color;
 
 	unsigned int i;
 	unsigned int j;
