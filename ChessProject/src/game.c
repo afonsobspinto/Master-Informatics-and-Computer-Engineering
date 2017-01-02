@@ -85,7 +85,6 @@ MENU_STATE game_management(){
 			&& (game_state != BLACKWINS) && (game_state != WHITEWINS) && (game_state != DRAW))
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
-			printf("Driver_receive failed\n");
 			continue;
 		}
 		if (is_ipc_notify(ipc_status)) // Notification received
@@ -362,7 +361,6 @@ MENU_STATE menu_management(){
 	while(1)
 	{
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
-			printf("Driver_receive failed\n");
 			continue;
 		}
 		if (is_ipc_notify(ipc_status)) // Notification received
@@ -422,7 +420,6 @@ int waitForEnter(){
             /* Get a request message. */
 
             if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
-                    printf("driver_receive failed with: %d", r);
                     continue;
 
             }

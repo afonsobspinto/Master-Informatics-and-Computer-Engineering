@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
 	if (chessproject_start())
 	{
 		chessproject_exit();
-		printf("ChessProject: An error occurred and the program was stopped.\n");
 		return 1;
 	}
 
@@ -63,7 +62,7 @@ int chessproject_start(){
 			menu_state = game_management();
 		}
 //		else if(menu_state == MULTIPLAYER_SERIAL)
-//			printf("Multiplayer_serial: ");
+
 		else
 			return 0;
 	}

@@ -28,7 +28,6 @@ int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_ptr) {
 
 		if( sys_int86(&registos) != OK )
 		{
-			printf("\tvbe_get_mode_info(): sys_int86() failed \n");
 			return 1;
 		}
 
@@ -81,7 +80,6 @@ int16_t *vbe_get_controler_info(vbe_info_t *vbe_ptr)
 
 	}
 	else{
-		printf("get_vbe_info: sys_int86() failed \n");
 		return 0;
 	}
 }

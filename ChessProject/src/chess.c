@@ -149,8 +149,6 @@ int unmakeMove(Piece p1, Piece p2, int force){
 
 
 	MOVE_STATE *moveState = getMoveState();
-	DRAW_STATE *drawState = getDrawState();
-
 
 	if(*moveState == NOMOVE && force != 1)
 		return 0;
@@ -246,30 +244,19 @@ int unmakeMove(Piece p1, Piece p2, int force){
 		decrement(&bRook2Move);
 
 	if(force !=1)
-		drawBoard(*drawState);
+		drawBoard();
 
-	*moveState = NORMALMOVE;
 	return 1;
 
 }
 
 int makeMove(Piece p1, Piece p2, int pseudo){
 
-
-
-	int valid;
-	if(pseudo == 1)
-		valid = isValidMove(p1,p2, 1);
-	else
-		valid = isValidMove(p1,p2,0);
-
+	int valid = isValidMove(p1,p2, 0);
 	int res = 0;
 
 	if(valid == 0)
 		return 0;
-
-	DRAW_STATE* drawState = getDrawState();
-	MOVE_STATE *moveState = getMoveState();
 
 
 	if(valid==1){
@@ -323,7 +310,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			bEnPassant = p1.j;
 
 		res = 1;
-		*moveState = NORMALMOVE;
 	}
 
 	// Castling White
@@ -361,7 +347,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p2.i][p2.j]= noPiece2;
 
 		res = WHITE_SHORT_CASTLING;
-		*moveState = CASTLING;
 	}
 
 	else if (valid == WHITE_LONG_CASTLING){
@@ -399,7 +384,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 		res = WHITE_LONG_CASTLING;
-		*moveState = CASTLING;
 	}
 
 	else if (valid == BLACK_SHORT_CASTLING){
@@ -436,7 +420,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 			res = BLACK_SHORT_CASTLING;
-			*moveState = CASTLING;
 		}
 
 	else if (valid == BLACK_LONG_CASTLING){
@@ -471,7 +454,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			matrix[p2.i][p2.j]= noPiece2;
 
 			res = BLACK_LONG_CASTLING;
-			*moveState = CASTLING;
 		}
 
 	else if (valid == PROMOTION){
@@ -493,7 +475,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		matrix[p1.i][p1.j]= noPiece;
 
 		res = PROMOTION;
-		*moveState = NORMALMOVE;
 	}
 
 	else if (valid == W_EN_PASSANT){
@@ -525,7 +506,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 		}
 
 		res = W_EN_PASSANT;
-		*moveState = ENPASSANT;
 	}
 
 	else if (valid == B_EN_PASSANT){
@@ -558,7 +538,6 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 
 
 		res = B_EN_PASSANT;
-		*moveState = ENPASSANT;
 	}
 
 	if(pseudo != 1){
@@ -577,8 +556,7 @@ int makeMove(Piece p1, Piece p2, int pseudo){
 			res = CHECKMATE;
 		else if(isMate(color)==1 && isCheck(color)==0)
 			res = STALEMATE;
-
-		drawBoard(*drawState);
+		drawBoard();
 	}
 
 	return res ;
@@ -588,6 +566,11 @@ int isValidMove(Piece p1, Piece p2, int checking){
 
 
 	char peca = p1.name;
+	if(checking == 1){
+		if(peca == 'K')
+			return 0;
+	}
+
 
 	switch(peca){
 	case 'K':
@@ -596,15 +579,10 @@ int isValidMove(Piece p1, Piece p2, int checking){
 		if(p2.name =='R'){
 			//White
 			if(p1.color == 'w' && p2.color == 'w' && wKingMove==0 && isCheck('w')==0){
-				Piece temp = getMatrixAt(0,5);
 				//Short
 				if(p2.i == 0 && p2.j == 7 && wRook1Move == 0){
-					if(isCheck(p1.color)==0){
-						if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
-							return WHITE_SHORT_CASTLING;
-					}
-
-					return 0;
+					if(matrix[0][6].state == 0 && matrix[0][5].state == 0)
+						return WHITE_SHORT_CASTLING;
 				}
 				//Long
 				if(p2.i==0 && p2.j == 0 && wRook2Move == 0){
@@ -819,10 +797,8 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1){
+				if (counter = aux-1)
 					return 1;
-
-				}
 				else
 					return 0;
 			}
@@ -838,10 +814,8 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1){
+				if (counter = aux-1)
 					return 1;
-				}
-
 				else
 					return 0;
 			}
@@ -857,11 +831,8 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1){
-
+				if (counter = aux-1)
 					return 1;
-				}
-
 				else
 					return 0;
 			}
@@ -877,10 +848,8 @@ int isValidMove(Piece p1, Piece p2, int checking){
 					else
 						return 0;
 				}
-				if (counter = aux-1){
+				if (counter = aux-1)
 					return 1;
-				}
-
 				else
 					return 0;
 			}
@@ -1069,7 +1038,6 @@ int isMate(unsigned char color){
 	unsigned int k;
 	unsigned int l;
 
-
 	Piece p1;
 	Piece p2;
 
@@ -1092,7 +1060,6 @@ int isMate(unsigned char color){
 			}
 		}
 	}
-
 
 	return 1;
 }
@@ -1124,7 +1091,7 @@ int isCheck(unsigned char color){
 		for(l=0; l < COLS; l++){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
-				if(isValidMove(p,King,1)==1){
+				if(isValidMove(p,King,1)){
 					return 1;
 				}
 			}

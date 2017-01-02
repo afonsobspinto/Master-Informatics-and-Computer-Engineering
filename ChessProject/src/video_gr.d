@@ -54,6 +54,7 @@ video_gr.o:	bitmap.h
 video_gr.o:	chess.h
 video_gr.o:	i8254.h
 video_gr.o:	macros.h
+video_gr.o:	rtc.h
 video_gr.o:	timer.h
 video_gr.o:	utilities.h
 video_gr.o:	vbe.h
