@@ -541,12 +541,12 @@ int makeMove(Piece p1, Piece p2){
 	}
 
 
-//	if(isCheck(p1,p2)){
-//		printf("Estou em Check! Vou desfazer o Movimento \n");
-//		unmakeMove(p1,p2,1);
-//		res = 0;
-//	}
-//	else
+	if(isCheck(p1,p2)){
+		printf("Estou em Check! Vou desfazer o Movimento \n");
+		unmakeMove(p1,p2,1);
+		res = 0;
+	}
+	else
 		drawBoard();
 
 	return res ;
@@ -555,7 +555,6 @@ int makeMove(Piece p1, Piece p2){
 int isValidMove(Piece p1, Piece p2){
 
 	printf("Vou verificar se o Movimento é valido \n");
-	printf("Peça %c-%c \n", p1.name, p1.color);
 
 	char peca = p1.name;
 
@@ -692,7 +691,7 @@ int isValidMove(Piece p1, Piece p2){
 			}
 			else{
 				// Upper Left Diagonal
-				if ((p1.i < p2.i) && (p1.j > p2.j)){
+				if ((p1.i < p2.i) && (p1.j > p2.j) && ((p1.i + p1.j) == (p2.i + p2.j))){
 					aux = p1.j - p2.j;
 					if (((p2.i - p1.i) == 1) && ((p1.j - p2.j) == 1)){
 						return 1;
@@ -709,7 +708,7 @@ int isValidMove(Piece p1, Piece p2){
 						return 0;
 				}
 				// Upper Right Diagonal
-				if ((p1.i < p2.i) && (p2.j > p1.j)){
+				if ((p1.i < p2.i) && (p2.j > p1.j) && ((p1.j - p1.i) == (p2.j - p2.i))){
 					aux = p2.j - p1.j;
 					if (((p2.i - p1.i) == 1) && ((p2.j - p1.j) == 1)){
 						return 1;
@@ -726,7 +725,7 @@ int isValidMove(Piece p1, Piece p2){
 						return 0;
 				}
 				// Lower Left Diagonal
-				if ((p2.i < p1.i) && (p1.j > p2.j)){
+				if ((p2.i < p1.i) && (p1.j > p2.j) && ((p1.j - p1.i) == (p2.j - p2.i))){
 					aux = p1.j - p2.j;
 					if (((p1.i - p2.i) == 1) && ((p1.j - p2.j) == 1)){
 						return 1;
@@ -743,7 +742,7 @@ int isValidMove(Piece p1, Piece p2){
 						return 0;
 				}
 				// Lower Right Diagonal
-				if ((p2.i < p1.i) && (p2.j > p1.j)){
+				if ((p2.i < p1.i) && (p2.j > p1.j) && ((p1.i + p1.j) == (p2.i + p2.j))){
 					aux = p2.j - p1.j;
 					if (((p1.i - p2.i) == 1) && ((p2.j - p1.j) == 1)){
 						return 1;
@@ -773,7 +772,7 @@ int isValidMove(Piece p1, Piece p2){
 		unsigned int k;
 		if (p1.color != p2.color){
 			// Upper Left Diagonal
-			if ((p1.i < p2.i) && (p1.j > p2.j)){
+			if ((p1.i < p2.i) && (p1.j > p2.j) && ((p1.i + p1.j) == (p2.i + p2.j))){
 				aux = p1.j - p2.j;
 				if (((p2.i - p1.i) == 1) && ((p1.j - p2.j) == 1)){
 					return 1;
@@ -790,7 +789,7 @@ int isValidMove(Piece p1, Piece p2){
 					return 0;
 			}
 			// Upper Right Diagonal
-			if ((p1.i < p2.i) && (p2.j > p1.j)){
+			if ((p1.i < p2.i) && (p2.j > p1.j) && ((p1.j - p1.i) == (p2.j - p2.i))){
 				aux = p2.j - p1.j;
 				if (((p2.i - p1.i) == 1) && ((p2.j - p1.j) == 1)){
 					return 1;
@@ -807,7 +806,7 @@ int isValidMove(Piece p1, Piece p2){
 					return 0;
 			}
 			// Lower Left Diagonal
-			if ((p2.i < p1.i) && (p1.j > p2.j)){
+			if ((p2.i < p1.i) && (p1.j > p2.j) && ((p1.j - p1.i) == (p2.j - p2.i))){
 				aux = p1.j - p2.j;
 				if (((p1.i - p2.i) == 1) && ((p1.j - p2.j) == 1)){
 					return 1;
@@ -824,13 +823,13 @@ int isValidMove(Piece p1, Piece p2){
 					return 0;
 			}
 			// Lower Right Diagonal
-			if ((p2.i < p1.i) && (p2.j > p1.j)){
+			if ((p2.i < p1.i) && (p2.j > p1.j) && ((p1.i + p1.j) == (p2.i + p2.j))){
 				aux = p2.j - p1.j;
 				if (((p1.i - p2.i) == 1) && ((p2.j - p1.j) == 1)){
 					return 1;
 				}
 				for (k = 1; k<aux; k++){
-					if (matrix[p1.i-k][p1.j+k].state == 0)
+					if ((matrix[p1.i-k][p1.j+k].state == 0))
 						counter++;
 					else
 						return 0;
@@ -964,15 +963,15 @@ int isValidMove(Piece p1, Piece p2){
 				else
 					return 0;
 			}
-		    else if ((((p1.i == p2.i-1) && (p1.j == p2.j) && p2.name=='n') || // Frente
+			else if ((((p1.i == p2.i-1) && (p1.j == p2.j) && p2.name=='n') || // Frente
 					((p1.i == p2.i-1) && (p1.j == p2.j-1) && (p2.color == 'b')) || // Matar Diagonal direita
 					((p1.i == p2.i-1) && (p1.j == p2.j+1) && (p2.color == 'b'))) && // Matar Diagonal esquerda
 					(p1.color != p2.color)){
-		    	if(p2.i == 7)
-		    		return PROMOTION;
-		    	else
-		    		return 1;
-		    }
+				if(p2.i == 7)
+					return PROMOTION;
+				else
+					return 1;
+			}
 			else
 				return 0;
 		}
@@ -992,15 +991,15 @@ int isValidMove(Piece p1, Piece p2){
 				else
 					return 0;
 			}
-		    else if ((((p1.i == p2.i+1) && (p1.j == p2.j) && p2.name=='n') || // Frente
+			else if ((((p1.i == p2.i+1) && (p1.j == p2.j) && p2.name=='n') || // Frente
 					((p1.i == p2.i+1) && (p1.j == p2.j-1) && (p2.color == 'w')) || // Matar Diagonal direita
 					((p1.i == p2.i+1) && (p1.j == p2.j+1) && (p2.color == 'w'))) && // Matar Diagonal esquerda
 					(p1.color != p2.color)){
-		    	if(p2.i == 0)
-		    		return PROMOTION;
-		    	else
-		    		return 1;
-		    }
+				if(p2.i == 0)
+					return PROMOTION;
+				else
+					return 1;
+			}
 			else
 				return 0;
 		}
@@ -1018,6 +1017,16 @@ int isValidMove(Piece p1, Piece p2){
 
 }
 
+
+int isCheckMate(Piece p1, Piece p2){
+//	unsigned int i;
+//	unsigned int j;
+//	for(i=0; i < ROWS; i++){
+//		for (j=0; j < COLS; j++){
+//
+//		}
+//	}
+}
 
 int isCheck(Piece p1, Piece p2){
 
@@ -1046,7 +1055,7 @@ int isCheck(Piece p1, Piece p2){
 			p = getMatrixAt(k,l);
 			if(p.color!=color && p.color!='n'){
 				if(isValidMove(p,King)){
-					printf("Está em Check porque %c dos %c que esta num square %c o está a atacar\n", p.name, p.color, p.bg);
+					printf("Está em Check porque %c dos %c que esta na posicao [%d][%d] num square %c o está a atacar\n", p.name, p.color, p.i, p.j, p.bg);
 					return 1;
 				}
 			}
