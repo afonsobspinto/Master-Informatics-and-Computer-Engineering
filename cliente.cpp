@@ -1,5 +1,6 @@
 #include "cliente.h"
 #include "reserva.h"
+#include "utils.h"
 
 
 unsigned int Cliente::counter = 0;
@@ -30,18 +31,26 @@ float Cliente::getValor() const {
 }
 
 Data Cliente::getUltima() const{
+
+}
+
+
+Data Registado::getUltima() const{
 	return ultima;
 }
+
 Registado::Registado(std::string nome, std::string password, std::string morada):Cliente(nome) {
 	this->password = password;
 	pontos = 0;
 	this->morada = morada;
+	this->ultima = string2data("00/00/0000");
 }
 
-Registado::Registado(std::string nome, int pontos, float valor, std::string password, std::string morada):Cliente(nome,pontos,valor) {
+Registado::Registado(std::string nome, int pontos, float valor, std::string password, std::string morada, Data ultima):Cliente(nome,pontos,valor) {
 	this->password = password;
 	this->pontos = pontos;
 	this->morada = morada;
+	this->ultima = ultima;
 }
 
 std::string Registado::getPassword() const {
@@ -94,6 +103,10 @@ bool Registado::operator <(Registado& rhs) {
 }
 
 void Cliente::setUltima(Data ultima) {
+
+}
+
+void Registado::setUltima(Data ultima) {
 	this->ultima = ultima;
 }
 

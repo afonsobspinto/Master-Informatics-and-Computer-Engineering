@@ -470,9 +470,6 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 		owner = nif;
 		morada = morada.substr(1, morada.length()-2);
 
-		cout << nome +"1" << endl;
-		cout << password +"1" << endl;
-		cout << morada +"1" << endl;
 
 		unsigned int ofertas;
 
@@ -536,7 +533,9 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 				dataInicio = string2data(dataInicio_str.substr(1, dataInicio_str.length()-1));
 				dataFim = string2data(dataFim_str.substr(1, dataFim_str.length()-1));
 				nome_cliente = nome_cliente.substr(1, nome_cliente.length()-2);
-				preco_reserva = stof(preco_reserva_str);
+
+
+				preco_reserva = stof(preco_reserva_str) / (dataFim - dataInicio);
 
 				Cliente c(nome_cliente);
 
@@ -637,8 +636,11 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	float valor;
 	string password;
 	string morada;
+	Data ultima;
+
 	string pontos_str;
 	string valor_str;
+	string ultima_str;
 
 
 	for (unsigned int i=0; i < size; i++){
@@ -648,14 +650,16 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 		getline(ficheiro, valor_str, ';');
 		getline(ficheiro, password, ';');
 		getline(ficheiro, morada, ';');
+		getline(ficheiro, ultima_str, ';');
 
 		nome = nome.substr(0,nome.length()-1);
 		pontos = stoi(pontos_str);
 		valor = stof(valor_str);
 		password = password.substr(1,password.length()-2);
 		morada = morada.substr(1,morada.length()-1);
+		ultima = string2data(ultima_str.substr(1, ultima_str.length()-1));
 
-		Registado C(nome, pontos, valor, password, morada);
+		Registado C(nome, pontos, valor, password, morada, ultima);
 
 		clientes.push_back(C);
 	}
@@ -678,8 +682,8 @@ void Broker::guardaClientes() {
 
 	for (size_t i = 0; i < clientes.size(); i++)
 	{
-		ficheiro << clientes.at(i).getNome()<< " ; " << clientes.at(i).getPontos() << " ; " << clientes.at(i).getValor() << " ; " << clientes.at(i).getPassword() << " ; " << clientes.at(i).getMorada() << " ; "
-				<< data2string(clientes.at(i).getUltima()) << " ; ";
+		ficheiro << clientes.at(i).getNome()<< " ; " << clientes.at(i).getPontos() << " ; " << clientes.at(i).getValor() << " ; " << clientes.at(i).getPassword() << " ; "
+				<< clientes.at(i).getMorada() << " ; " << data2string(clientes.at(i).getUltima()) << " ;";
 	}
 
 	ficheiro.flush();
@@ -1463,7 +1467,6 @@ void Broker::verHistorico() const {
 
 void Broker::verInativos() {
 
-	atualizaInativos(); //apagar
 	ClearScreen();
 
 	if(inativos.empty())
@@ -1474,12 +1477,15 @@ void Broker::verInativos() {
 	tabH::const_iterator it;
 
 	for(it = inativos.begin(); it!= inativos.end(); it++){
+
 		cout << "Cliente: " << it->cliente->getNome() << endl <<
 				"Morada: " << it->cliente->getMorada() << endl;
 		if(it->cliente->getUltima().getDia()==0)
 			cout << "Ultima Reserva: " << endl;
 		else
 			cout << "Ultima Reserva: " << data2string(it->cliente->getUltima()) << endl;
+
+		cout << endl;
 	}
 
 	cout << endl;
@@ -1519,10 +1525,6 @@ void Broker::atualizaInativos() {
 
 
 	for (unsigned int i = 0; i < size; i++){
-
-		cout << "Cliente: " << clientes.at(i).getNome() << endl;
-		cout << "Ultima: " << data2string(clientes.at(i).getUltima()) << endl;
-		cout << "Atual: " << data2string(atual) << endl;
 		if(clientes.at(i).getUltima()< atual - tolerancia){
 			adicionaInativo(&clientes.at(i));
 		}

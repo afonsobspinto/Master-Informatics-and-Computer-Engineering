@@ -468,6 +468,9 @@ bool ano_bissexto(unsigned int ano)
 
 bool data_valida(unsigned int dia, unsigned int mes, unsigned int ano){
 
+	if(dia == 0 && mes == 0 && ano ==0)
+		return true;
+
 	if(ano > 1990){
 		if(mes>0 && mes<13){
 			if(dia_valido(dia,mes,ano))
@@ -566,6 +569,9 @@ Data string2data(string data){
 
 string data2string(Data data){
 	string data_str;
+
+	if(data.getAno() == 0 && data.getDia() == 0 && data.getMes() == 0)
+		return "00/00/0000";
 
 	data_str = to_string_special(data.getDia()) + '/' +
 			to_string_special(data.getMes()) + '/' +

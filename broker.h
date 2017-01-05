@@ -90,6 +90,7 @@ public:
 	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
 	void verInativos(); // Mostra os clientes Inativos para efeitos de envio de publicidade
 	bool atualizaInformacao();
+	bool atualizaUltima();
 
 	//FORNECEDORES//
 
