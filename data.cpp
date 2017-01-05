@@ -6,23 +6,43 @@
 
 using namespace std;
 
+/**
+ * Construtor de uma Data
+ */
+
 Data::Data(unsigned int dia, unsigned int mes, unsigned int ano) {
 	this->dia=dia;
 	this->mes=mes;
 	this->ano=ano;
 }
 
+/**
+ * Retorna o dia da Data
+ */
+
 unsigned int Data::getDia() const {
 	return dia;
 }
+
+/**
+ * Retorna o mes da Data
+ */
 
 unsigned int Data::getMes() const {
 	return mes;
 }
 
+/**
+ * Retorna o ano da Data
+ */
+
 unsigned int Data::getAno() const {
 	return ano;
 }
+
+/**
+ * Verifica se as datas sao iguais
+ */
 
 bool Data::operator ==(const Data& rhs) {
 	if(this->ano == rhs.ano)
@@ -31,6 +51,10 @@ bool Data::operator ==(const Data& rhs) {
 				return true;
 	return false;
 }
+
+/**
+ * Verifica qual a Data mais recente
+ */
 
 bool Data::operator <(const Data& rhs) {
 	if (this->ano<rhs.ano)
@@ -46,18 +70,21 @@ bool Data::operator <(const Data& rhs) {
 	return false;
 }
 
+/**
+ * Diminui dias a uma data
+ */
+
 Data Data::operator - (int n) {
 	unsigned int d = dia;
 	unsigned int m = mes;
 	unsigned int a = ano;
 	int dias_mes[13] ={0,31, 28, 31, 30, 31, 30 , 31, 31 , 30, 31, 30, 31};
-	// memcpy(dias_mes, diasMes,13*sizeof(int));
 	if(ano_bissexto(a)){
 		dias_mes[2] = 29;
 	}
 	for (unsigned int i=0; i < n; i++){
-		if (d == 1){ // ï¿½ o primeiro dia do mï¿½s?
-			if (m == 1){ // ï¿½ o primeiro mï¿½s do ano?
+		if (d == 1){
+			if (m == 1){
 				m = 13;
 				a -= 1;
 			}
@@ -65,11 +92,14 @@ Data Data::operator - (int n) {
 			m = m-1;
 		}
 		d --;
-		//cout << d << "/" << m << "/" << a << endl;
 	}
 	Data D (d,m,a);
 	return D;
 }
+
+/**
+ * Faz a diferença entre duas Datas
+ */
 
 long int operator - (Data &lhs, Data & rhs) {
 

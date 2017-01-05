@@ -85,10 +85,10 @@ public:
 	void removeCliente();
 	bool validaLoginCliente();
 
-	void adicionaInativo(Cliente *c); //Insere o cliente nos inativos se a sua ultima data foi ha mais de 30 dias
-	bool seInativo(const ClientePtr & cptr); // Ve se o cliente c est� nos inativos
-	void atualizaInativos(); //Atualiza as moradas dos clientes inativos
-	void verInativos(); // Mostra os clientes Inativos para efeitos de envio de publicidade
+	void adicionaInativo(Cliente *c);
+	bool seInativo(const ClientePtr & cptr);
+	void atualizaInativos();
+	void verInativos();
 	bool atualizaInformacao();
 	bool atualizaUltima();
 

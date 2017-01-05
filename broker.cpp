@@ -8,7 +8,7 @@
 
 using namespace std;
 
-/*
+/**
  * Construtor Broker
  */
 
@@ -33,7 +33,7 @@ Broker::Broker(std::string nome):historico(Reserva()) {
 
 }
 
-/*
+/**
  * Construtor Broker
  */
 
@@ -53,7 +53,7 @@ Broker::Broker(std::string nome, std::string ficheiroClientes,
 	atualizaInativos();
 }
 
-/*
+/**
  * Getter Clientes
  */
 
@@ -61,7 +61,7 @@ vector<Registado> Broker::getClientes() const {
 	return clientes;
 }
 
-/*
+/**
  * Getter Montra
  */
 
@@ -70,7 +70,7 @@ vector<Imovel*> Broker::getMontra() const {
 	return montra;
 }
 
-/*
+/**
  * Getter Fornecedores
  */
 
@@ -79,7 +79,7 @@ vector<Fornecedor> Broker::getFornecedores() const {
 	return fornecedores;
 }
 
-/*
+/**
  * Getter Receita
  */
 
@@ -88,7 +88,7 @@ float Broker::getReceita() const {
 	return receita;
 }
 
-/*
+/**
  * Regista um novo Cliente
  */
 
@@ -129,7 +129,7 @@ bool Broker::adicionaCliente() {
 	return true;
 }
 
-/*
+/**
  * Regista um novo Fornecedor
  */
 
@@ -174,7 +174,7 @@ bool Broker::adicionaFornecedor() {
 	return true;
 }
 
-/*
+/**
  * Regista um novo Imovel
  * @Param Fornecedor
  */
@@ -201,7 +201,7 @@ bool Broker::adicionaImovel(Fornecedor *F) {
 	return true;
 }
 
-/*
+/**
  * Percorre Fornecedores Para atualizar Montra
  *
  */
@@ -225,7 +225,7 @@ bool Broker::atualizaMontra() {
 	return true;
 }
 
-/*
+/**
  * Concretiza Reserva
  * @Param Cliente, Imovel
  */
@@ -289,9 +289,8 @@ bool Broker::efectuaReserva(Cliente *C, Imovel *I) {
 	return true;
 }
 
-/*
+/**
  * Cancela Reserva
- *
  */
 
 bool Broker::cancelaReserva() {
@@ -347,7 +346,7 @@ bool Broker::cancelaReserva() {
 	return false;
 }
 
-/*
+/**
  * Valida Login Cliente
  *
  */
@@ -383,7 +382,7 @@ bool Broker::validaLoginCliente() {
 	return false;
 }
 
-/*
+/**
  * Valida Login Fornecedor
  *
  */
@@ -417,7 +416,7 @@ bool Broker::validaLoginFornecedor() {
 	return false;
 }
 
-/*
+/**
  * Le Ficheiro Fornecedores
  *
  */
@@ -614,7 +613,7 @@ std::vector<Fornecedor> Broker::leFicheiroFornecedores() {
 	return fornecedores;
 }
 
-/*
+/**
  * Le Ficheiro Clientes
  *
  */
@@ -669,7 +668,7 @@ std::vector<Registado> Broker::leFicheiroClientes() {
 	return clientes;
 }
 
-/*
+/**
  * Guarda Clientes em ficheiro
  */
 
@@ -690,7 +689,7 @@ void Broker::guardaClientes() {
 
 }
 
-/*
+/**
  * Guarda Fornecedores em Ficheiro
  */
 
@@ -738,6 +737,10 @@ void Broker::guardaFornecedores() {
 	ficheiro.flush();
 }
 
+/**
+ * Guarda os ficheiros Clientes e Fornecedores e a receita que o Broker teve
+ */
+
 void Broker::guardaBase() {
 	ofstream ficheiro(nome+".txt");
 
@@ -748,6 +751,10 @@ void Broker::guardaBase() {
 
 		ficheiro.close();
 }
+
+/**
+ * Remove um Imovel
+ */
 
 bool Broker::removeImovel() {
 
@@ -809,6 +816,10 @@ bool Broker::removeImovel() {
 
 }
 
+/**
+ * Remove um Cliente
+ */
+
 void Broker::removeCliente() {
 	unsigned int size = clientes.size();
 
@@ -830,6 +841,10 @@ void Broker::removeCliente() {
 	_getch();
 
 }
+
+/**
+ * Atualiza os imoveis inativos, ordenados pelo tempo que nao sao alugados
+ */
 
 void Broker::atualizaPrioridade() {
 
@@ -860,6 +875,10 @@ void Broker::atualizaPrioridade() {
 		temp.pop();
 	}
 }
+
+/**
+ * Mostra no ecra os Imoveis Inativos
+ */
 
 void Broker::verImoveisInativos() const {
 
@@ -897,13 +916,25 @@ void Broker::verImoveisInativos() const {
 	_getch();
 }
 
+/**
+ * Retorna o historico
+ */
+
 BST<Reserva> Broker::getHistorico() const {
 	return historico;
 }
 
+/**
+ * Adiciona a reserva no historico
+ */
+
 bool Broker::adicionaReserva(const Reserva& reserva) {
 	historico.insert(reserva);
 }
+
+/**
+ * Mostra no ecra a classificaçao dos clientes (pontos)
+ */
 
 void Broker::classificacao() {
 
@@ -919,7 +950,7 @@ void Broker::classificacao() {
 	_getch();
 }
 
-/*
+/**
  * Mostra Montra
  */
 
@@ -980,7 +1011,7 @@ bool Broker::mostraMontra(bool localidade, bool preco, bool datas) {
 
 }
 
-/*
+/**
  * Mostra Montra Auxiliar
  */
 
@@ -1019,7 +1050,7 @@ Imovel* Broker::mostraMontraAux() {
 
 }
 
-/*
+/**
  * Mostra Montra Auxiliar
  */
 
@@ -1106,7 +1137,7 @@ Imovel* Broker::mostraMontraAux(std::string localidade) {
 //	return montra.at(mapa.at(id));
 //}
 
-/*
+/**
  * Mostra Montra Auxiliar
  */
 
@@ -1226,7 +1257,7 @@ Imovel* Broker::mostraMontraAux(float preco) {
 //	return vec.at(mapa.at(id));
 //}
 
-/*
+/**
  * Mostra Montra Auxiliar
  */
 
@@ -1292,10 +1323,18 @@ Imovel* Broker::mostraMontraAux(std::string localidade, float preco, Data inicio
 	return vec.at(mapa.at(imovel));
 }
 
+/**
+ * Remove a Reserva do historico
+ */
+
 bool Broker::removeReserva(const Reserva& reserva) {
 	historico.remove(reserva);
 	return true;
 }
+
+/**
+ * Atualiza as reservas
+ */
 
 bool Broker::atualizaArvore() {
 	unsigned int size = montra.size();
@@ -1308,6 +1347,10 @@ bool Broker::atualizaArvore() {
 	}
 	return true;
 }
+
+/**
+ * Atualiza a morada dos Clientes Inativos
+ */
 
 bool Broker::atualizaInformacao() {
 
@@ -1332,7 +1375,7 @@ bool Broker::atualizaInformacao() {
 	return true;
 }
 
-/*
+/**
  * Mostra Montra Auxiliar
  */
 
@@ -1394,7 +1437,7 @@ Imovel* Broker::mostraMontraAux(Data inicio, Data fim) {
 	return vec.at(mapa.at(imovel));
 }
 
-/*
+/**
  * Getter UtilizadorCliente
  */
 
@@ -1402,7 +1445,7 @@ Cliente* Broker::getUserC() {
 	return UserC;
 }
 
-/*
+/**
  * Ve Ofertas Utilizador Fornecedor
  */
 
@@ -1436,6 +1479,10 @@ bool Broker::verOfertas() const {
 	return true;
 }
 
+/**
+ * Mostra o historico das reservas
+ */
+
 void Broker::verHistorico() const {
 
 	ClearScreen();
@@ -1464,6 +1511,10 @@ void Broker::verHistorico() const {
 
 	return;
 }
+
+/**
+ * Mostra os clientes inativos
+ */
 
 void Broker::verInativos() {
 
@@ -1495,13 +1546,17 @@ void Broker::verInativos() {
 	return;
 
 }
-/*
+/**
  * Getter UtilizadorFornecedor
  */
 
 Fornecedor* Broker::getUserF() {
 	return UserF;
 }
+
+/**
+ * Adiciona o cliente aos inativos
+ */
 
 void Broker::adicionaInativo(Cliente *c) {
 	cout << "Adiciona Inativo" << endl;
@@ -1511,11 +1566,19 @@ void Broker::adicionaInativo(Cliente *c) {
 	inativos.insert(cptr1);
 }
 
+/**
+ * Retorna true se o cliente for inativo
+ */
+
 bool Broker::seInativo(const ClientePtr & cptr) {
 	if (inativos.count(cptr))
 		return true;
 	return false;
 }
+
+/**
+ * Atualiza os clientes inativos
+ */
 
 void Broker::atualizaInativos() {
 
