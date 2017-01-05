@@ -335,6 +335,7 @@ bool Broker::cancelaReserva() {
 					guardaClientes();
 					guardaBase();
 					atualizaPrioridade();
+					atualizaArvore();
 					return true;
 				}
 			}
@@ -805,6 +806,7 @@ bool Broker::removeImovel() {
 			UserF->getOfertasRef()->erase(UserF->getOfertasRef()->begin()+imovel-1);
 			cout << "Eliminação Concluida." << endl;
 			atualizaMontra();
+			atualizaPrioridade();
 			guardaFornecedores();
 			operacao = true;
 		}
@@ -933,7 +935,7 @@ bool Broker::adicionaReserva(const Reserva& reserva) {
 }
 
 /**
- * Mostra no ecra a classifica�ao dos clientes (pontos)
+ * Mostra no ecra a classifica�ao dos clientes (pontos)
  */
 
 void Broker::classificacao() {
@@ -1564,6 +1566,21 @@ void Broker::adicionaInativo(Cliente *c) {
 	ClientePtr cptr1;
 	cptr1.cliente = c;
 	inativos.insert(cptr1);
+}
+
+bool Broker::removeInativo(Cliente *c){
+
+	ClientePtr cptr1;
+	cptr1.cliente = c;
+
+	tabH::const_iterator it = inativos.find(cptr1);
+
+	if(it != inativos.end()){
+		inativos.erase(it);
+		return true;
+	}
+	else
+		return false;
 }
 
 /**

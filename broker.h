@@ -86,11 +86,13 @@ public:
 	bool validaLoginCliente();
 
 	void adicionaInativo(Cliente *c);
+	bool removeInativo(Cliente *c);
 	bool seInativo(const ClientePtr & cptr);
 	void atualizaInativos();
 	void verInativos();
 	bool atualizaInformacao();
 	bool atualizaUltima();
+
 
 	//FORNECEDORES//
 
