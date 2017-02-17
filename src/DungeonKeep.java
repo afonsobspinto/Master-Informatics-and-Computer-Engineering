@@ -7,6 +7,6 @@ public class DungeonKeep {
 		Board x = new Board();
 		x.showBoard();
 		x.play();
-		//System.out.println(x.play());
+		System.out.println(x.play());
 	}
 }
