@@ -1,4 +1,3 @@
-
 public class Board {
 	char [][] board = {
 			{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
