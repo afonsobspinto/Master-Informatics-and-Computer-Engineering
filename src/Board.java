@@ -121,6 +121,4 @@ public class Board {
 		updateBoard();
 		return valid;
 	}
-	
-	
 }
