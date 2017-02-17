@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class Board {
+	
+	public class Hero{
+		public int xPos;
+		public int yPos;
+	}
+	
+	Hero hero = new Hero();
+	
 	char [][] board = {
 			{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
 			{'X','H', ' ', ' ','I',' ','X',' ','G','X'},
@@ -40,5 +48,28 @@ public class Board {
 		default:
 			return -1;
 		}
+	}
+	
+	public void getHeroPos(){
+		for(int i =0; i < 10; i++){
+			for(int j = 0; j < 10; j++){
+				if(board[i][j]=='H'){
+					hero.xPos = i;
+					hero.yPos = j;
+					break;
+				}
+			}
+		}
+	}
+	
+	public void play(){
+		int move = interaction(); //Le Movimento
+		
+		switch(move){
+		case 0:
+			break;
+		}
+		
+		
 	}
 }
