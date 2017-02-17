@@ -79,7 +79,115 @@ public class Board {
 		
 		
 		switch(move){
-			
+		case 0:
+			if(hero.xPos-1 < 0){ // Out of Board
+				valid = -1; // Move not Valid
+				break;
+			}
+		
+			if(board[hero.xPos-1][hero.yPos] == 'X'){ //Wall 
+				hero.old_char = 'X';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos-1][hero.yPos] == 'I'){
+				hero.old_char = 'I';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos-1][hero.yPos] == 'k'){ //Lever
+				hero.old_xPos = hero.xPos;
+				hero.xPos -= 1;
+				hero.old_char='k';
+				applyLever();
+				valid = 0;
+				break;
+			}
+			if(board[hero.xPos-2][hero.yPos]=='G'){ // Guard
+				valid = 1;  // Game Over
+				break;
+				
+			}
+			if(board[hero.xPos-1][hero.yPos]==' '){ //Empty Cell
+				hero.old_xPos = hero.xPos;
+				hero.xPos -= 1;
+				hero.old_char = ' ';
+				valid = 0;
+				break;
+			}		
+		case 1:
+			if(hero.yPos < 0){ // Out of Board
+				valid = -1; // Move not Valid
+				break;
+			}
+		
+			if(board[hero.xPos][hero.yPos-1] == 'X'){ //Wall 
+				hero.old_char = 'X';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos][hero.yPos-1] == 'I'){
+				hero.old_char = 'I';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos][hero.yPos-1] == 'k'){ //Lever
+				hero.old_yPos = hero.yPos;
+				hero.yPos -= 1;
+				hero.old_char='k';
+				applyLever();
+				valid = 0;
+				break;
+			}
+			if(board[hero.xPos][hero.yPos-2]=='G'){ // Guard
+				valid = 1;  // Game Over
+				break;
+				
+			}
+			if(board[hero.xPos][hero.yPos-1]==' '){ //Empty Cell
+				hero.old_yPos = hero.yPos;
+				hero.yPos -= 1;
+				hero.old_char = ' ';
+				valid = 0;
+				break;
+			}		
+		case 2:
+			if(hero.yPos+1 > 9){ // Out of Board
+				valid = -1; // Move not Valid
+				break;
+			}
+		
+			if(board[hero.xPos][hero.yPos+1] == 'X'){ //Wall 
+				hero.old_char = 'X';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos][hero.yPos+1] == 'I'){
+				hero.old_char = 'I';
+				valid = 0;
+				break; 
+			}
+			if(board[hero.xPos][hero.yPos+1] == 'k'){ //Lever
+				hero.old_yPos = hero.yPos;
+				hero.yPos += 1;
+				hero.old_char='k';
+				applyLever();
+				valid = 0;
+				break;
+			}
+			if(board[hero.xPos][hero.yPos+2]=='G'){ // Guard
+				valid = 1;  // Game Over
+				break;
+				
+			}
+			if(board[hero.xPos][hero.yPos+2]==' '){ //Empty Cell
+				hero.old_yPos = hero.yPos;
+				hero.yPos += 1;
+				hero.old_char = ' ';
+				valid = 0;
+				break;
+			}		
+		
 		case 3:
 			if(hero.xPos+1 > 9){ // Out of Board
 				valid = -1; // Move not Valid
