@@ -6,5 +6,4 @@ public class DungeonKeep {
 		new Board().showBoard();
 		System.out.println("Hello Word");
 	}
-
 }
