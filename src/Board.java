@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Board {
 	char [][] board = {
 			{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
@@ -21,5 +23,22 @@ public class Board {
 			System.out.println();
 		}
 	}
-
+	
+	public int interaction(){
+		Scanner keyboard = new Scanner(System.in);
+		char key = keyboard.next().charAt(0);
+		
+		switch (key){
+		case 'w':
+			return 0;
+		case 'a':
+			return 1;
+		case 'd':
+			return 2;
+		case 's':
+			return 3;
+		default:
+			return -1;
+		}
+	}
 }
