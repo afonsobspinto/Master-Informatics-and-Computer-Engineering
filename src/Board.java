@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class Board {
 
 	private char [][] board;
@@ -33,20 +32,8 @@ public class Board {
 			break;
 		}
 	}
-
-
-	public void showBoard(){
-		for(int i =0; i < 10; i++){
-			for(int j = 0; j < 10; j++){
-				System.out.print(board[i][j]);
-				System.out.print(" ");
-			}
-			System.out.println();
-		}
-	}
-
 	
-	public int interaction(){
+	public static int  interaction(){
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
 
@@ -63,7 +50,16 @@ public class Board {
 			return -1;
 		}
 	}
-	
+
+	public void showBoard(){
+		for(int i =0; i < 10; i++){
+			for(int j = 0; j < 10; j++){
+				System.out.print(board[i][j]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+	}
 	
 	public void applyLever(){
 		for(int i =0; i < 10; i++){
@@ -75,11 +71,25 @@ public class Board {
 		}
 	}
 
-	public void updateBoard(){
+	public boolean isGuardnearby(){
 		
-		board[hero.getOld_xPos()][hero.getOld_yPos()] = hero.getOld_char();
-		board[hero.getxPos()][hero.getyPos()] = 'H';
-		showBoard();
+		int xPos = hero.getxPos();
+		int yPos = hero.getyPos();
+		
+		if(board[xPos+1][yPos]=='G')
+			return true;
+		
+		if(board[xPos-1][yPos]=='G')
+			return true;
+		
+		if(board[xPos][yPos+1]=='G')
+			return true;
+		
+		if(board[xPos][yPos-1]=='G')
+			return true;
+		
+		return false;
+		
 	}
 	
 	public int validateMove(int moveX, int moveY){
@@ -87,42 +97,32 @@ public class Board {
 		int valid;
 		
 		char nextPos = board[hero.getxPos()+moveX][hero.getyPos()+moveY];
-		char guardPos = board[hero.getxPos()+moveX*2][hero.getyPos()+moveY*2];
+		int x = hero.getxPos();
+		int y = hero.getyPos();
 		
-		if(nextPos == 'X'){ //Wall
-			hero.setOld_char('X');
-			valid = 0;
-		}
-		else if(nextPos == 'I'){
-			hero.setOld_char('I');
+		if(nextPos == 'X' || nextPos == 'I'){ //Wall or Door
 			valid = 0;
 		}
 		else if(nextPos == 'k'){ //Lever
-			hero.setOld_xPos(hero.getxPos());
-			hero.setOld_yPos(hero.getyPos());
 			
+			board[x][y]=hero.getOld_char();
+			hero.setOld_char('k');
 			hero.setxPos(hero.getxPos()+moveX);
 			hero.setyPos(hero.getyPos()+moveY);
-			
-			hero.setOld_char('k');
+			board[hero.getxPos()][hero.getyPos()] = 'H';
 			
 			applyLever();
 			
 			valid = 0;
 		}
-		else if(guardPos=='G'){ // Guard
-			valid = 1;  // Game Over
 
-		}
 		else{ //Empty Cell
 			
-			hero.setOld_xPos(hero.getxPos());
-			hero.setOld_yPos(hero.getyPos());
-			
+			board[x][y]=hero.getOld_char();
+			hero.setOld_char(' ');
 			hero.setxPos(hero.getxPos()+moveX);
 			hero.setyPos(hero.getyPos()+moveY);
-			
-			hero.setOld_char(' ');
+			board[hero.getxPos()][hero.getyPos()] = 'H';
 			
 			valid = 0;
 		}
@@ -149,8 +149,12 @@ public class Board {
 			break;
 		}
 
-		if(valid!=-1 && valid!=1)
-			updateBoard();
+		if(isGuardnearby()){
+			return 1;
+		}
+		
+		if(valid!=-1)
+			showBoard();
 		
 		return valid;
 	}
