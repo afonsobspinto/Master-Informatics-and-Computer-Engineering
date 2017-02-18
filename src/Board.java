@@ -5,6 +5,8 @@ public class Board {
 
 	private char [][] board;
 	
+	Hero hero = new Hero(-1,-1);
+	
 	public Board(int level) {
 		
 		switch (level) {
@@ -22,23 +24,15 @@ public class Board {
 					{'X', 'X', 'X', 'X','X','X','X','X','X','X'}
 			};
 			
+			hero.setxPos(1);
+			hero.setyPos(1);
+			
 			break;
 
 		default:
 			break;
 		}
 	}
-
-	public class Hero{
-		public int xPos = 1;
-		public int yPos = 1;
-		public int old_xPos = 1;
-		public int old_yPos = 1;
-		public char old_char = ' ';
-	}
-
-	Hero hero = new Hero();
-
 
 
 	public void showBoard(){
@@ -51,6 +45,7 @@ public class Board {
 		}
 	}
 
+	
 	public int interaction(){
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
@@ -68,7 +63,8 @@ public class Board {
 			return -1;
 		}
 	}
-
+	
+	
 	public void applyLever(){
 		for(int i =0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
@@ -80,166 +76,82 @@ public class Board {
 	}
 
 	public void updateBoard(){
-		board[hero.old_xPos][hero.old_yPos] = hero.old_char;
-		board[hero.xPos][hero.yPos] = 'H';
+		
+		board[hero.getOld_xPos()][hero.getOld_yPos()] = hero.getOld_char();
+		board[hero.getxPos()][hero.getyPos()] = 'H';
 		showBoard();
+	}
+	
+	public int validateMove(int moveX, int moveY){
+		
+		int valid;
+		
+		char nextPos = board[hero.getxPos()+moveX][hero.getyPos()+moveY];
+		char guardPos = board[hero.getxPos()+moveX*2][hero.getyPos()+moveY*2];
+		
+		if(nextPos == 'X'){ //Wall
+			hero.setOld_char('X');
+			valid = 0;
+		}
+		else if(nextPos == 'I'){
+			hero.setOld_char('I');
+			valid = 0;
+		}
+		else if(nextPos == 'k'){ //Lever
+			hero.setOld_xPos(hero.getxPos());
+			hero.setOld_yPos(hero.getyPos());
+			
+			hero.setxPos(hero.getxPos()+moveX);
+			hero.setyPos(hero.getyPos()+moveY);
+			
+			hero.setOld_char('k');
+			
+			applyLever();
+			
+			valid = 0;
+		}
+		else if(guardPos=='G'){ // Guard
+			valid = 1;  // Game Over
+
+		}
+		else{ //Empty Cell
+			
+			hero.setOld_xPos(hero.getxPos());
+			hero.setOld_yPos(hero.getyPos());
+			
+			hero.setxPos(hero.getxPos()+moveX);
+			hero.setyPos(hero.getyPos()+moveY);
+			
+			hero.setOld_char(' ');
+			
+			valid = 0;
+		}
+		
+		return valid;
 	}
 
 	public int play(){
 		int valid = -1;
 		int move = interaction(); //Read Move
 
-
-
 		switch(move){
-		case 0:
-			if(hero.xPos-1 < 0){ // Out of Board
-				valid = -1; // Move not Valid
-				break;
-			}
-
-			if(board[hero.xPos-1][hero.yPos] == 'X'){ //Wall
-				hero.old_char = 'X';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos-1][hero.yPos] == 'I'){
-				hero.old_char = 'I';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos-1][hero.yPos] == 'k'){ //Lever
-				hero.old_xPos = hero.xPos;
-				hero.xPos -= 1;
-				hero.old_char='k';
-				applyLever();
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos-2][hero.yPos]=='G'){ // Guard
-				valid = 1;  // Game Over
-				break;
-
-			}
-			if(board[hero.xPos-1][hero.yPos]==' '){ //Empty Cell
-				hero.old_xPos = hero.xPos;
-				hero.xPos -= 1;
-				hero.old_char = ' ';
-				valid = 0;
-				break;
-			}
-		case 1:
-			if(hero.yPos < 0){ // Out of Board
-				valid = -1; // Move not Valid
-				break;
-			}
-
-			if(board[hero.xPos][hero.yPos-1] == 'X'){ //Wall
-				hero.old_char = 'X';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos-1] == 'I'){
-				hero.old_char = 'I';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos-1] == 'k'){ //Lever
-				hero.old_yPos = hero.yPos;
-				hero.yPos -= 1;
-				hero.old_char='k';
-				applyLever();
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos-2]=='G'){ // Guard
-				valid = 1;  // Game Over
-				break;
-
-			}
-			if(board[hero.xPos][hero.yPos-1]==' '){ //Empty Cell
-				hero.old_yPos = hero.yPos;
-				hero.yPos -= 1;
-				hero.old_char = ' ';
-				valid = 0;
-				break;
-			}
-		case 2:
-			if(hero.yPos+1 > 9){ // Out of Board
-				valid = -1; // Move not Valid
-				break;
-			}
-
-			if(board[hero.xPos][hero.yPos+1] == 'X'){ //Wall
-				hero.old_char = 'X';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos+1] == 'I'){
-				hero.old_char = 'I';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos+1] == 'k'){ //Lever
-				hero.old_yPos = hero.yPos;
-				hero.yPos += 1;
-				hero.old_char='k';
-				applyLever();
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos][hero.yPos+2]=='G'){ // Guard
-				valid = 1;  // Game Over
-				break;
-
-			}
-			if(board[hero.xPos][hero.yPos+2]==' '){ //Empty Cell
-				hero.old_yPos = hero.yPos;
-				hero.yPos += 1;
-				hero.old_char = ' ';
-				valid = 0;
-				break;
-			}
-
-		case 3:
-			if(hero.xPos+1 > 9){ // Out of Board
-				valid = -1; // Move not Valid
-				break;
-			}
-
-			if(board[hero.xPos+1][hero.yPos] == 'X'){ //Wall
-				hero.old_char = 'X';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos+1][hero.yPos] == 'I'){
-				hero.old_char = 'I';
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos+1][hero.yPos] == 'k'){ //Lever
-				hero.old_xPos = hero.xPos;
-				hero.xPos += 1;
-				hero.old_char='k';
-				applyLever();
-				valid = 0;
-				break;
-			}
-			if(board[hero.xPos+2][hero.yPos]=='G'){ // Guard
-				valid = 1;  // Game Over
-				break;
-
-			}
-			if(board[hero.xPos+1][hero.yPos]==' '){ //Empty Cell
-				hero.old_xPos = hero.xPos;
-				hero.xPos += 1;
-				hero.old_char = ' ';
-				valid = 0;
-				break;
-			}
+		case 0: //UP
+			valid = validateMove(-1,0);
+			break;
+		case 1: //LEFT
+			valid = validateMove(0,-1);
+			break;
+		case 2: //RIGTH
+			valid = validateMove(0,1);
+			break;
+		case 3: //Down
+			valid = validateMove(1,0);
+			break;
 		}
 
-		updateBoard();
+		if(valid!=-1 && valid!=1)
+			updateBoard();
+		
 		return valid;
 	}
 }
