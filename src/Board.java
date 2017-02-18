@@ -103,6 +103,11 @@ public class Board {
 		if(nextPos == 'X' || nextPos == 'I'){ //Wall or Door
 			valid = 0;
 		}
+		
+		else if(nextPos == 'S'){ //Open Door
+			valid = 1;
+		}
+		
 		else if(nextPos == 'k'){ //Lever
 			
 			board[x][y]=hero.getOld_char();
@@ -131,7 +136,7 @@ public class Board {
 	}
 
 	public int play(){
-		int valid = -1;
+		int valid = -2;
 		int move = interaction(); //Read Move
 
 		switch(move){
@@ -150,10 +155,10 @@ public class Board {
 		}
 
 		if(isGuardnearby()){
-			return 1;
+			valid = -1;
 		}
 		
-		if(valid!=-1)
+		if(valid!=-2)
 			showBoard();
 		
 		return valid;
