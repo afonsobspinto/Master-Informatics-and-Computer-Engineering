@@ -2,7 +2,33 @@ import java.util.Scanner;
 
 
 public class Board {
+
+	private char [][] board;
 	
+	public Board(int level) {
+		
+		switch (level) {
+		case 1:
+			this.board = new char[][]{
+					{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
+					{'X','H', ' ', ' ','I',' ','X',' ','G','X'},
+					{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
+					{'X',' ', 'I', ' ','I',' ','X',' ',' ','X'},
+					{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
+					{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
+					{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
+					{'X','X', 'X', ' ','X','X','X','X',' ','X'},
+					{'X',' ', 'I', ' ','I',' ','X','k',' ','X'},
+					{'X', 'X', 'X', 'X','X','X','X','X','X','X'}
+			};
+			
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	public class Hero{
 		public int xPos = 1;
 		public int yPos = 1;
@@ -10,24 +36,11 @@ public class Board {
 		public int old_yPos = 1;
 		public char old_char = ' ';
 	}
-	
+
 	Hero hero = new Hero();
 
 
-	
-	char [][] board = {
-			{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
-			{'X','H', ' ', ' ','I',' ','X',' ','G','X'},
-			{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-			{'X',' ', 'I', ' ','I',' ','X',' ',' ','X'},
-			{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-			{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-			{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-			{'X','X', 'X', ' ','X','X','X','X',' ','X'},
-			{'X',' ', 'I', ' ','I',' ','X','k',' ','X'},
-			{'X', 'X', 'X', 'X','X','X','X','X','X','X'}	
-	};
-	
+
 	public void showBoard(){
 		for(int i =0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
@@ -37,11 +50,11 @@ public class Board {
 			System.out.println();
 		}
 	}
-	
+
 	public int interaction(){
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
-		
+
 		switch (key){
 		case 'w':
 			return 0;
@@ -65,35 +78,35 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public void updateBoard(){
 		board[hero.old_xPos][hero.old_yPos] = hero.old_char;
 		board[hero.xPos][hero.yPos] = 'H';
 		showBoard();
 	}
-	
+
 	public int play(){
 		int valid = -1;
 		int move = interaction(); //Read Move
-		
-		
-		
+
+
+
 		switch(move){
 		case 0:
 			if(hero.xPos-1 < 0){ // Out of Board
 				valid = -1; // Move not Valid
 				break;
 			}
-		
-			if(board[hero.xPos-1][hero.yPos] == 'X'){ //Wall 
+
+			if(board[hero.xPos-1][hero.yPos] == 'X'){ //Wall
 				hero.old_char = 'X';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos-1][hero.yPos] == 'I'){
 				hero.old_char = 'I';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos-1][hero.yPos] == 'k'){ //Lever
 				hero.old_xPos = hero.xPos;
@@ -106,7 +119,7 @@ public class Board {
 			if(board[hero.xPos-2][hero.yPos]=='G'){ // Guard
 				valid = 1;  // Game Over
 				break;
-				
+
 			}
 			if(board[hero.xPos-1][hero.yPos]==' '){ //Empty Cell
 				hero.old_xPos = hero.xPos;
@@ -114,22 +127,22 @@ public class Board {
 				hero.old_char = ' ';
 				valid = 0;
 				break;
-			}		
+			}
 		case 1:
 			if(hero.yPos < 0){ // Out of Board
 				valid = -1; // Move not Valid
 				break;
 			}
-		
-			if(board[hero.xPos][hero.yPos-1] == 'X'){ //Wall 
+
+			if(board[hero.xPos][hero.yPos-1] == 'X'){ //Wall
 				hero.old_char = 'X';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos][hero.yPos-1] == 'I'){
 				hero.old_char = 'I';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos][hero.yPos-1] == 'k'){ //Lever
 				hero.old_yPos = hero.yPos;
@@ -142,7 +155,7 @@ public class Board {
 			if(board[hero.xPos][hero.yPos-2]=='G'){ // Guard
 				valid = 1;  // Game Over
 				break;
-				
+
 			}
 			if(board[hero.xPos][hero.yPos-1]==' '){ //Empty Cell
 				hero.old_yPos = hero.yPos;
@@ -150,22 +163,22 @@ public class Board {
 				hero.old_char = ' ';
 				valid = 0;
 				break;
-			}		
+			}
 		case 2:
 			if(hero.yPos+1 > 9){ // Out of Board
 				valid = -1; // Move not Valid
 				break;
 			}
-		
-			if(board[hero.xPos][hero.yPos+1] == 'X'){ //Wall 
+
+			if(board[hero.xPos][hero.yPos+1] == 'X'){ //Wall
 				hero.old_char = 'X';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos][hero.yPos+1] == 'I'){
 				hero.old_char = 'I';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos][hero.yPos+1] == 'k'){ //Lever
 				hero.old_yPos = hero.yPos;
@@ -178,7 +191,7 @@ public class Board {
 			if(board[hero.xPos][hero.yPos+2]=='G'){ // Guard
 				valid = 1;  // Game Over
 				break;
-				
+
 			}
 			if(board[hero.xPos][hero.yPos+2]==' '){ //Empty Cell
 				hero.old_yPos = hero.yPos;
@@ -186,23 +199,23 @@ public class Board {
 				hero.old_char = ' ';
 				valid = 0;
 				break;
-			}		
-		
+			}
+
 		case 3:
 			if(hero.xPos+1 > 9){ // Out of Board
 				valid = -1; // Move not Valid
 				break;
 			}
-		
-			if(board[hero.xPos+1][hero.yPos] == 'X'){ //Wall 
+
+			if(board[hero.xPos+1][hero.yPos] == 'X'){ //Wall
 				hero.old_char = 'X';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos+1][hero.yPos] == 'I'){
 				hero.old_char = 'I';
 				valid = 0;
-				break; 
+				break;
 			}
 			if(board[hero.xPos+1][hero.yPos] == 'k'){ //Lever
 				hero.old_xPos = hero.xPos;
@@ -215,7 +228,7 @@ public class Board {
 			if(board[hero.xPos+2][hero.yPos]=='G'){ // Guard
 				valid = 1;  // Game Over
 				break;
-				
+
 			}
 			if(board[hero.xPos+1][hero.yPos]==' '){ //Empty Cell
 				hero.old_xPos = hero.xPos;
@@ -223,9 +236,9 @@ public class Board {
 				hero.old_char = ' ';
 				valid = 0;
 				break;
-			}		
+			}
 		}
-		
+
 		updateBoard();
 		return valid;
 	}
