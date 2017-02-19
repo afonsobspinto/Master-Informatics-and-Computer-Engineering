@@ -17,7 +17,7 @@ public abstract class Character {
 	}
 
 	
-	public abstract void move(Board board, int direction);
+	public abstract Action move(Board board, Direction direction);
 	
 	public char getUnder_char() {
 		return under_char;

@@ -9,8 +9,6 @@ public class Main {
 		
 		Game g = new Game(1, gameConfig);
 		
-		System.out.println(g.interection());
-		
 	}
 
 }

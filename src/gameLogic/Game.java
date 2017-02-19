@@ -23,26 +23,60 @@ public class Game {
 		this.board.setBoardAt(hero.position, hero.symbol);
 		this.board.setBoardAt(guard.position, guard.symbol);
 		this.board.setBoardAt(crazyOgre.position, crazyOgre.symbol);
-
+		
 		this.board.showBoard();
+		
+		updateGame(level);
 
 	}
 	
-	public enum Key{
-		DOWN(0), UP(1), RIGHT(2), LEFT(3), INVALID(4);
+	
+	public void applyLever(){
+		for(int i =0; i < gameConfig.getrows(); i++){
+			for(int j = 0; j < gameConfig.getcolumns(); j++){
+				if(this.board.getBoardAt(i, j)=='I'){
+					this.board.setBoardAt(i,j, 'S');
+				}
+			}
+}
+	}
+	
+	public void updateGame(int level){
+
+		boolean gameOn = true;
 		
-		private final int value;
-		
-		private Key(int value){
-			this.value = value;
-		}
-		
-		public int getValue(){
-			return value;
+		while(gameOn){
+			
+			Direction move = interection();
+			Action action = hero.move(this.board, move);
+			
+			switch (action) {
+			case NOACTION:
+				break;
+			case GUARD:
+				System.out.println("Defeat");
+				gameOn = false;
+				break;
+			case OPENDOOR:
+				System.out.println("Victory");
+				gameOn= false;
+				break;
+			case LEVER:
+				applyLever();
+			case MOVE:
+				break;
+
+			default:
+				break;
+			}
+			
+			this.board.showBoard();
 		}
 	}
 	
-	public int interection(){
+
+	
+	public Direction interection(){
 		final char downKey = this.gameConfig.getDownKey();
 		final char upKey = this.gameConfig.getUpKey();
 		final char rigthKey = this.gameConfig.getRightKey();
@@ -52,20 +86,19 @@ public class Game {
 		char key = keyboard.next().charAt(0);
 		
 		if (key == downKey) {
-			keyboard.close();
-			return Key.DOWN.getValue();
+			return Direction.DOWN;
+			
 		} else if (key == upKey) {
-			keyboard.close();
-			return Key.UP.getValue();
+			return Direction.UP;
+			
 		} else if (key == rigthKey) {
-			keyboard.close();
-			return Key.RIGHT.getValue();
+			return Direction.RIGHT;
+			
 		} else if (key == leftKey) {
-			keyboard.close();
-			return Key.LEFT.getValue();
+			return Direction.LEFT;
+			
 		} else {
-			keyboard.close();
-			return Key.INVALID.getValue();
+			return Direction.INVALID;
 		}
 		
 		

@@ -24,8 +24,9 @@ public class CrazyOgre extends Character {
 		this.position = position;
 	}
 
-	public void move(Board board, int direction){
-		
+	public Action move(Board board, Direction direction){
+		return Action.NOACTION;
+
 	}
 	
 }
