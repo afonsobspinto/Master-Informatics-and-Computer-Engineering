@@ -1,6 +1,6 @@
 package gameLogic;
 
-public class Character {
+public abstract class Character {
 	protected char symbol;
 	protected Coord position;
 	protected Coord oldPosition;
@@ -16,6 +16,9 @@ public class Character {
 		this.under_char = ' ';
 	}
 
+	
+	public abstract void move(Board board, int direction);
+	
 	public char getUnder_char() {
 		return under_char;
 	}

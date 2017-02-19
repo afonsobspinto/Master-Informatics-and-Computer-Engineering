@@ -23,5 +23,9 @@ public class Guard extends Character{
 		this.symbol = 'G';
 		this.position = position;
 	}
+	
+	public void move(Board board, int direction){
+		
+	}
 
 }

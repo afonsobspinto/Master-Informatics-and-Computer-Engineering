@@ -1,6 +1,5 @@
 package gameLogic;
 
-import java.nio.channels.ShutdownChannelGroupException;
 
 public class Board {
 	
