@@ -99,7 +99,7 @@ public class Hero extends Character{
 				
 				System.out.println("Problem Here:");
 				board.showBoard();
-				
+				System.out.println("Last one:");
 				
 				if(nextPos == 'k'){//Lever
 					res = Action.LEVER;
