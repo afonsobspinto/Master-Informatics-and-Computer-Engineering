@@ -7,7 +7,11 @@ public class Main {
 		
 		GameConfig gameConfig = new GameConfig();
 		
-		Game g = new Game(1, gameConfig);
+		int levels = 2;
+		Game g;
+		
+		for(int i = 1; i <= levels; i++)
+			g = new Game(i, gameConfig);
 		
 	}
 

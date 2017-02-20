@@ -16,6 +16,11 @@ public class Hero extends Character{
 			this.position = startingPos;
 			break;
 
+		case 2:
+			startingPos = new Coord(1,1);
+			this.position = startingPos;
+			break;
+			
 		default:
 			break;
 		}
@@ -67,6 +72,9 @@ public class Hero extends Character{
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
 			}
+			else if(nextPos == 'G'){ //Guard
+				res = Action.GUARD;
+			}
 			else{
 				board.setBoardAt(x,y, this.under_char);
 				if(nextPos == 'k'){
@@ -93,6 +101,9 @@ public class Hero extends Character{
 			}
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
+			}
+			else if(nextPos == 'G'){ //Guard
+				res = Action.GUARD;
 			}
 			else{ 
 				

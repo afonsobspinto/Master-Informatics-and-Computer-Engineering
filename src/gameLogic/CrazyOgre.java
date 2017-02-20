@@ -13,6 +13,12 @@ public class CrazyOgre extends Character {
 			startingPos = new Coord(0,0); 
 			this.position = startingPos;
 			break;
+			
+		case 2:
+			this.symbol = 'X'; // Ogres doesn't appear on 2nd level
+			startingPos = new Coord(0,0); 
+			this.position = startingPos;
+			break;
 
 		default:
 			break;

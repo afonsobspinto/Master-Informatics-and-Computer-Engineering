@@ -48,17 +48,25 @@ public class Game {
 		while(gameOn){
 			
 			Direction move = interection();
+			guard.move(board);
 			Action action = hero.move(this.board, move);
+			
+			
+			
 			
 			switch (action) {
 			case NOACTION:
 				break;
 			case GUARD:
+				System.out.println("\n\n\n\n");
 				System.out.println("Defeat");
+				System.out.println("\n\n\n\n");
 				gameOn = false;
 				break;
 			case OPENDOOR:
+				System.out.println("\n\n\n\n");
 				System.out.println("Victory");
+				System.out.println("\n\n\n\n");
 				gameOn= false;
 				break;
 			case LEVER:
@@ -70,7 +78,8 @@ public class Game {
 				break;
 			}
 			
-			this.board.showBoard();
+			if(gameOn)
+				this.board.showBoard();
 		}
 	}
 	
