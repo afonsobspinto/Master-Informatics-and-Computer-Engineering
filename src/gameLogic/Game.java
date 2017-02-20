@@ -75,6 +75,8 @@ public class Game {
 				applyLever();
 			case MOVE:
 				break;
+			case KEY:
+				break;
 
 			default:
 				break;

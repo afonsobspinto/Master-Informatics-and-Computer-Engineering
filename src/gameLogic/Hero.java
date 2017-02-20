@@ -1,12 +1,14 @@
 package gameLogic;
 
 public class Hero extends Character{
-	
+	boolean isKey;
+	boolean isLever;
+	boolean gotKey;
 
-	
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
+		this.gotKey = false;
 		
 		Coord startingPos;
 		
@@ -14,16 +16,22 @@ public class Hero extends Character{
 		case 1:
 			startingPos = new Coord(1,1);
 			this.position = startingPos;
+			this.isKey = false;
+			this.isLever = true;
 			break;
 
 		case 2:
 			startingPos = new Coord(1,1);
 			this.position = startingPos;
+			this.isKey = false;
+			this.isLever = true;
 			break;
 			
 		case 3:
 			startingPos = new Coord(7,1);
 			this.position = startingPos;
+			this.isKey = true;
+			this.isLever = false;
 			break;
 			
 			
@@ -72,8 +80,9 @@ public class Hero extends Character{
 			char nextPos = board.getBoardAt(x+move, y);
 
 
-			if(nextPos == 'X' || nextPos == 'I'){ //Wall or Door
-				res = Action.NOACTION;
+			if(nextPos == 'I' && this.gotKey){ //Wall or Door
+				board.setBoardAt(x,y+move, 'S');
+				res = Action.KEY;
 			}
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
@@ -83,9 +92,14 @@ public class Hero extends Character{
 			}
 			else{
 				board.setBoardAt(x,y, this.under_char);
-				if(nextPos == 'k'){
+				if(nextPos == 'k' && this.isLever){
 					res = Action.LEVER;
 					this.under_char = 'k';
+				}
+				else if (nextPos == 'k' && this.isKey){
+					res = Action.KEY;
+					this.under_char = ' ';
+					this.gotKey = true;
 				}
 				else if (nextPos == ' '){
 					res = Action.NOACTION;
@@ -102,8 +116,9 @@ public class Hero extends Character{
 		else if(direction == Direction.RIGHT || direction == Direction.LEFT){
 			char nextPos = board.getBoardAt(x, y+move);
 			
-			if(nextPos == 'X' || nextPos == 'I'){ //Wall or Door
-				res = Action.NOACTION;
+			if(nextPos == 'I' && this.gotKey){ //Wall or Door
+				board.setBoardAt(x,y+move, 'S');
+				res = Action.KEY;
 			}
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
@@ -115,9 +130,14 @@ public class Hero extends Character{
 				
 				board.setBoardAt(x,y, this.under_char);
 				
-				if(nextPos == 'k'){//Lever
+				if(nextPos == 'k' && this.isLever){//Lever
 					res = Action.LEVER;
 					this.under_char = 'k';
+				}
+				else if (nextPos == 'k' && this.isKey){
+					res = Action.KEY;
+					this.under_char = ' ';
+					this.gotKey = true;
 				}
 				else if (nextPos ==' '){ //Empty
 					res = Action.MOVE;
