@@ -6,6 +6,7 @@ public class Hero extends Character{
 	
 	public Hero(int level){
 		this.symbol = 'H';
+		this.under_char = ' ';
 		
 		Coord startingPos;
 		
@@ -24,6 +25,7 @@ public class Hero extends Character{
 	public Hero(Coord position){
 		this.symbol = 'H';
 		this.position = position;
+		this.under_char = ' ';
 	}
 	
 	public boolean isGuardnearby(Board board){
@@ -92,14 +94,8 @@ public class Hero extends Character{
 				res =  Action.OPENDOOR;
 			}
 			else{ 
-				System.out.println("Last Correct Board: ");
-				board.showBoard();
 				
 				board.setBoardAt(x,y, this.under_char);
-				
-				System.out.println("Problem Here:");
-				board.showBoard();
-				System.out.println("Last one:");
 				
 				if(nextPos == 'k'){//Lever
 					res = Action.LEVER;
