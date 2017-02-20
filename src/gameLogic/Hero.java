@@ -34,6 +34,13 @@ public class Hero extends Character{
 			this.isLever = false;
 			break;
 			
+		case 4:
+			startingPos = new Coord(7,1);
+			this.position = startingPos;
+			this.isKey = true;
+			this.isLever = false;
+			break;
+			
 			
 		default:
 			break;

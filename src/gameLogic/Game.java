@@ -24,6 +24,8 @@ public class Game {
 		this.board.setBoardAt(hero.position, hero.symbol);
 		this.board.setBoardAt(guard.position, guard.symbol);
 		this.board.setBoardAt(crazyOgre.position, crazyOgre.symbol);
+		if(crazyOgre.isArmed)
+			this.board.setBoardAt(crazyOgre.weaponLocation, crazyOgre.weapon);
 		
 		this.board.showBoard();
 		

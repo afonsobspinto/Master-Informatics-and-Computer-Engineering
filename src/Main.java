@@ -11,7 +11,7 @@ public class Main {
 		Game g;
 		
 		for(int i = 1; i <= levels; i++)
-			g = new Game(3, gameConfig);
+			g = new Game(4, gameConfig);
 		
 	}
 }
