@@ -95,7 +95,7 @@ public class CrazyOgre extends Character {
 							this.symbol = '$';
 							this.under_char = 'k';
 						}
-						else if(nextPos == ' '){
+						else if(nextPos == ' ' || nextPos == '*'){
 							valid = true;
 							this.symbol = 'O';
 							this.under_char = ' ';
@@ -119,7 +119,7 @@ public class CrazyOgre extends Character {
 							this.symbol = '$';
 							this.under_char = 'k';
 						}
-						else if(nextPos == ' '){
+						else if(nextPos == ' ' || nextPos == '*'){
 							valid = true;
 							this.symbol = 'O';
 							this.under_char = ' ';
@@ -143,7 +143,9 @@ public class CrazyOgre extends Character {
 	
 	public void weaponLogic(Board board){
 		
-		board.setBoardAt(this.weaponLocation, this.under_weapon);
+		if(!(weaponLocation.getX() == position.getX() &&
+				weaponLocation.getY() == position.getY()))
+			board.setBoardAt(this.weaponLocation, this.under_weapon);
 
 		int x = this.position.getX();
 		int y = this.position.getY();
