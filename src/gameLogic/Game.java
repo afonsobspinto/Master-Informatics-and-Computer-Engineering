@@ -2,6 +2,7 @@
 package gameLogic;
 
 import java.util.Scanner;
+import console.Interaction;
 
 public class Game {
 
@@ -47,7 +48,8 @@ public class Game {
 		
 		while(gameOn){
 			
-			Direction move = interection();
+			Interaction interaction = new Interaction(gameConfig);
+			Direction move = interaction.getDirection();
 			guard.move(board);
 			Action action = hero.move(this.board, move);
 			
@@ -81,36 +83,6 @@ public class Game {
 			if(gameOn)
 				this.board.showBoard();
 		}
-	}
-	
-
-	
-	public Direction interection(){
-		final char downKey = this.gameConfig.getDownKey();
-		final char upKey = this.gameConfig.getUpKey();
-		final char rigthKey = this.gameConfig.getRightKey();
-		final char leftKey = this.gameConfig.getLeftKey();
-		
-		Scanner keyboard = new Scanner(System.in);
-		char key = keyboard.next().charAt(0);
-		
-		if (key == downKey) {
-			return Direction.DOWN;
-			
-		} else if (key == upKey) {
-			return Direction.UP;
-			
-		} else if (key == rigthKey) {
-			return Direction.RIGHT;
-			
-		} else if (key == leftKey) {
-			return Direction.LEFT;
-			
-		} else {
-			return Direction.INVALID;
-		}
-		
-		
 	}
 }
 
