@@ -21,6 +21,12 @@ public class Hero extends Character{
 			this.position = startingPos;
 			break;
 			
+		case 3:
+			startingPos = new Coord(7,1);
+			this.position = startingPos;
+			break;
+			
+			
 		default:
 			break;
 		}

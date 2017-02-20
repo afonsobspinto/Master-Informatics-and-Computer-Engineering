@@ -37,6 +37,14 @@ public class Guard extends Character{
 			this.route = Arrays.copyOf(temp, temp.length);
 			
 			break;
+			
+		case 3:
+			this.symbol = 'X'; // Guards doesn't appear on 1st level
+			startingPos = new Coord(0,0); 
+			this.position = startingPos;
+			this.route = new Coord[1];
+			this.route[0]=startingPos;
+			this.index = 0;
 		
 		default:
 			break;

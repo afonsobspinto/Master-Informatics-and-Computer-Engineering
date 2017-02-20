@@ -19,6 +19,10 @@ public class CrazyOgre extends Character {
 			startingPos = new Coord(0,0); 
 			this.position = startingPos;
 			break;
+		case 3:
+			startingPos = new Coord(1,4); 
+			this.position = startingPos;
+			break;
 
 		default:
 			break;
