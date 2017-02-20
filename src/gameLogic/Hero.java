@@ -80,7 +80,10 @@ public class Hero extends Character{
 			char nextPos = board.getBoardAt(x+move, y);
 
 
-			if(nextPos == 'I' && this.gotKey){ //Wall or Door
+			if(nextPos == 'X'){
+				res = Action.NOACTION;
+			}
+			else if(nextPos == 'I' && this.gotKey){ //Wall or Door
 				board.setBoardAt(x,y+move, 'S');
 				res = Action.KEY;
 			}
@@ -100,6 +103,7 @@ public class Hero extends Character{
 					res = Action.KEY;
 					this.under_char = ' ';
 					this.gotKey = true;
+					this.symbol = 'K';
 				}
 				else if (nextPos == ' '){
 					res = Action.NOACTION;
@@ -116,7 +120,10 @@ public class Hero extends Character{
 		else if(direction == Direction.RIGHT || direction == Direction.LEFT){
 			char nextPos = board.getBoardAt(x, y+move);
 			
-			if(nextPos == 'I' && this.gotKey){ //Wall or Door
+			if(nextPos == 'X'){
+				res = Action.NOACTION;
+			}
+			else if(nextPos == 'I' && this.gotKey){ //Wall or Door
 				board.setBoardAt(x,y+move, 'S');
 				res = Action.KEY;
 			}
@@ -138,6 +145,7 @@ public class Hero extends Character{
 					res = Action.KEY;
 					this.under_char = ' ';
 					this.gotKey = true;
+					this.symbol = 'K';
 				}
 				else if (nextPos ==' '){ //Empty
 					res = Action.MOVE;

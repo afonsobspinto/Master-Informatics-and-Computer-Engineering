@@ -51,6 +51,7 @@ public class Game {
 			Interaction interaction = new Interaction(gameConfig);
 			Direction move = interaction.getDirection();
 			guard.move(board);
+			crazyOgre.move(board);
 			Action action = hero.move(this.board, move);
 			
 			
