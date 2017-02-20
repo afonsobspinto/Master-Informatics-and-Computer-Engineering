@@ -4,6 +4,7 @@ public class CrazyOgre extends Character {
 	
 	public CrazyOgre(int level){
 		this.symbol = 'O';
+		this.under_char = ' ';
 		
 		Coord startingPos;
 		switch (level) {
@@ -22,6 +23,7 @@ public class CrazyOgre extends Character {
 	public CrazyOgre(Coord position){
 		this.symbol = 'O';
 		this.position = position;
+		this.under_char = ' ';
 	}
 
 	public Action move(Board board, Direction direction){

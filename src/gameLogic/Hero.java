@@ -81,6 +81,7 @@ public class Hero extends Character{
 				Coord pos = new Coord(x+move, y);
 				
 				board.setBoardAt(pos, this.symbol);
+				this.position = pos;
 			}
 
 		}
@@ -109,6 +110,7 @@ public class Hero extends Character{
 				Coord pos = new Coord(x, y+move);
 
 				board.setBoardAt(pos, this.symbol);
+				this.position = pos;
 			}
 		}
 		

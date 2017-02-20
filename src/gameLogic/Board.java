@@ -39,17 +39,17 @@ public class Board {
 		int x = pos.getX();
 		int y = pos.getY();
 		
-		if(x < this.rows && x >0 && y < this.columns && y > 0 )
+		if(x < this.rows && x >= 0 && y < this.columns && y >= 0 )
 			board[x][y] = value;
 	}
 	
 	public void setBoardAt(int x, int y, char value){		
-		if(x < this.rows && x >0 && y < this.columns && y > 0 )
+		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
 			board[x][y] = value;
 	}
 	
 	public char getBoardAt(int x, int y){
-		if(x < this.rows && x >0 && y < this.columns && y > 0 )
+		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
 			return board[x][y];
 		
 		return '0';

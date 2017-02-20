@@ -4,7 +4,7 @@ public class Guard extends Character{
 	
 	public Guard(int level){
 		this.symbol = 'G';
-		
+		this.under_char = ' ';
 		Coord startingPos;
 		
 		switch (level) {
@@ -22,6 +22,7 @@ public class Guard extends Character{
 	public Guard(Coord position){
 		this.symbol = 'G';
 		this.position = position;
+		this.under_char = ' ';
 	}
 	
 	public Action move(Board board, Direction direction){
