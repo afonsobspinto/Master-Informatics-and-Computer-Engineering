@@ -59,7 +59,7 @@ public class Game {
 			if(hero.isSymbolnearby(board, 'G')){
 				action = Action.GUARD;
 			}
-			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$')){
+			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$') || hero.isSymbolnearby(board, '*')){
 				action = Action.CRAZYOGRE;
 			}
 			

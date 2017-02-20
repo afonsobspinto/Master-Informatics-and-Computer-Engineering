@@ -107,7 +107,7 @@ public class Hero extends Character{
 			else if(nextPos == 'G'){ //Guard
 				res = Action.GUARD;
 			}
-			else if(nextPos == 'O' || nextPos == '$'){
+			else if(nextPos == 'O' || nextPos == '$' || nextPos == '*'){
 				res = Action.CRAZYOGRE;
 			}
 			else{
@@ -156,7 +156,7 @@ public class Hero extends Character{
 				res = Action.GUARD;
 			}
 			
-			else if(nextPos == 'O' || nextPos == '$'){
+			else if(nextPos == 'O' || nextPos == '$' || nextPos == '*'){
 				res = Action.CRAZYOGRE;
 			}
 			else{ 
