@@ -11,6 +11,7 @@ public class Game {
 	private Guard guard;
 	private CrazyOgre crazyOgre;
 	private GameConfig gameConfig;
+	boolean won;
 
 	public Game(int level, GameConfig gameConfig){
 
@@ -73,6 +74,7 @@ public class Game {
 				System.out.println("\n\n\n\n");
 				System.out.println("Defeat");
 				System.out.println("\n\n\n\n");
+				this.won = false;
 				gameOn = false;
 				break;
 			case CRAZYOGRE:
@@ -80,13 +82,14 @@ public class Game {
 				System.out.println("\n\n\n\n");
 				System.out.println("Defeat");
 				System.out.println("\n\n\n\n");
+				this.won = false;
 				gameOn = false;
-				
 				break;
 			case OPENDOOR:
 				System.out.println("\n\n\n\n");
 				System.out.println("Victory");
 				System.out.println("\n\n\n\n");
+				this.won= true;
 				gameOn= false;
 				break;
 			case LEVER:
@@ -103,6 +106,11 @@ public class Game {
 			if(gameOn)
 				this.board.showBoard();
 		}
+	}
+
+
+	public boolean isWon() {
+		return won;
 	}
 }
 

@@ -1,17 +1,20 @@
 import gameLogic.*;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
 		System.out.println("Hello World");
-		
+
 		GameConfig gameConfig = new GameConfig();
-		
+
 		int levels = 4;
+		int i = 1;
 		Game g;
-		
-		for(int i = 1; i <= levels; i++)
-			g = new Game(4, gameConfig);
-		
+
+		while(i <= levels){
+			g = new Game(i, gameConfig);
+			if(g.isWon())
+				i++;
+		}
 	}
 }
