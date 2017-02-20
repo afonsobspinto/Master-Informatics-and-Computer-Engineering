@@ -47,23 +47,25 @@ public class Hero extends Character{
 		this.under_char = ' ';
 	}
 	
-	public boolean isGuardnearby(Board board){
+	public boolean isSymbolnearby(Board board, char symbol){
 
 		int xPos = this.position.getX();
 		int yPos = this.position.getY();
 
-		if(board.getBoardAt(xPos+1, yPos)=='G')
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
 			return true;
 
-		if(board.getBoardAt(xPos-1, yPos)=='G')
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
 			return true;
 
-		if(board.getBoardAt(xPos, yPos+1)=='G')
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
 			return true;
 
-		if(board.getBoardAt(xPos, yPos-1)=='G')
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
 			return true;
 
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
 		return false;
 	}
 
@@ -83,15 +85,23 @@ public class Hero extends Character{
 			if(nextPos == 'X'){
 				res = Action.NOACTION;
 			}
-			else if(nextPos == 'I' && this.gotKey){ //Wall or Door
-				board.setBoardAt(x,y+move, 'S');
-				res = Action.KEY;
+			else if(nextPos == 'I'){
+				if(this.gotKey){
+					board.setBoardAt(x,y+move, 'S');
+					res = Action.KEY;
+				}
+				else
+					res = Action.NOACTION;
+	
 			}
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
 			}
 			else if(nextPos == 'G'){ //Guard
 				res = Action.GUARD;
+			}
+			else if(nextPos == 'O' || nextPos == '$'){
+				res = Action.CRAZYOGRE;
 			}
 			else{
 				board.setBoardAt(x,y, this.under_char);
@@ -123,15 +133,24 @@ public class Hero extends Character{
 			if(nextPos == 'X'){
 				res = Action.NOACTION;
 			}
-			else if(nextPos == 'I' && this.gotKey){ //Wall or Door
-				board.setBoardAt(x,y+move, 'S');
-				res = Action.KEY;
+			else if(nextPos == 'I'){
+				if(this.gotKey){
+					board.setBoardAt(x,y+move, 'S');
+					res = Action.KEY;
+				}
+				else
+					res = Action.NOACTION;
 			}
+			
 			else if(nextPos == 'S'){ //Open Door
 				res =  Action.OPENDOOR;
 			}
 			else if(nextPos == 'G'){ //Guard
 				res = Action.GUARD;
+			}
+			
+			else if(nextPos == 'O' || nextPos == '$'){
+				res = Action.CRAZYOGRE;
 			}
 			else{ 
 				
@@ -159,10 +178,7 @@ public class Hero extends Character{
 			}
 		}
 		
-		if(isGuardnearby(board)){
-			res = Action.GUARD;
-		}
-		
+
 		return res;
 	}
 	

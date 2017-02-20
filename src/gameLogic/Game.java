@@ -54,6 +54,12 @@ public class Game {
 			crazyOgre.move(board);
 			Action action = hero.move(this.board, move);
 			
+			if(hero.isSymbolnearby(board, 'G')){
+				action = Action.GUARD;
+			}
+			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$')){
+				action = Action.CRAZYOGRE;
+			}
 			
 			
 			
@@ -61,10 +67,19 @@ public class Game {
 			case NOACTION:
 				break;
 			case GUARD:
+				this.board.showBoard();
 				System.out.println("\n\n\n\n");
 				System.out.println("Defeat");
 				System.out.println("\n\n\n\n");
 				gameOn = false;
+				break;
+			case CRAZYOGRE:
+				this.board.showBoard();
+				System.out.println("\n\n\n\n");
+				System.out.println("Defeat");
+				System.out.println("\n\n\n\n");
+				gameOn = false;
+				
 				break;
 			case OPENDOOR:
 				System.out.println("\n\n\n\n");
