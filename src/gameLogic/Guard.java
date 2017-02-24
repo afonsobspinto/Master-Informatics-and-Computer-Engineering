@@ -3,7 +3,7 @@ package gameLogic;
 import java.util.Arrays;
 
 public class Guard extends Character{
-	
+	private GuardBehaviour behaviour;
 	private Coord[] route;
 	private int index;
 	
