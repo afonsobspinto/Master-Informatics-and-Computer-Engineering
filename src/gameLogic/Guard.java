@@ -2,10 +2,11 @@ package gameLogic;
 
 import java.util.Arrays;
 
-public class Guard extends Character{
-	private GuardBehaviour behaviour;
-	private Coord[] route;
-	private int index;
+public  class Guard  extends Character{
+	protected Coord[] route;
+	protected int index;
+	
+	public Guard(){};
 	
 	public Guard(int level){
 		this.symbol = 'G';
@@ -28,9 +29,9 @@ public class Guard extends Character{
 			
 			Coord[] temp = { 
 					new Coord(1,8), new Coord(1,7),new Coord(2,7), new Coord(3,7), new Coord(4,7), 
-					new Coord(5,7), new Coord(5,6), new Coord(5,4),new Coord(5,3), new Coord(5,2), 
-					new Coord(5,1), new Coord(6,1), new Coord(6,2), new Coord(6,3),new Coord(6,4), 
-					new Coord(6,5), new Coord(6,6), new Coord(6,7), new Coord(6,8),
+					new Coord(5,7), new Coord(5,6),  new Coord(5,5), new Coord(5,4), new Coord(5,3), 
+					new Coord(5,2), new Coord(5,1), new Coord(6,1), new Coord(6,2), new Coord(6,3),
+					new Coord(6,4), new Coord(6,5), new Coord(6,6), new Coord(6,7), new Coord(6,8),
 					new Coord(5,8), new Coord(4,8),new Coord(3,8), new Coord(2,8)
 					};
 			
@@ -70,7 +71,6 @@ public class Guard extends Character{
 	}
 	
 	public Action move(Board board){
-		
 		board.setBoardAt(this.position, ' ');
 		this.position = route[index];
 		board.setBoardAt(this.position, this.symbol);
