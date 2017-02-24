@@ -6,6 +6,7 @@ public abstract class Character {
 	protected Coord oldPosition;
 	protected char under_char;
 	
+	
 	public Character(){
 		
 	};
