@@ -9,7 +9,7 @@ public class Game {
 
 		GameConfig gameConfig = new GameConfig();
 
-		int levels = 4;
+		int levels = 5;
 		int i = 1;
 		GameLogic g;
 

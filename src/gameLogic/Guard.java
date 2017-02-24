@@ -52,7 +52,6 @@ public class Guard extends Character{
 			this.route = new Coord[1];
 			this.route[0]=startingPos;
 			this.index = 0;
-		
 		default:
 			break;
 		}
