@@ -7,7 +7,10 @@ public class Hero extends Character{
 	boolean gotKey;
 
 	public Hero(int level){
-		this.symbol = 'H';
+		if (level == 5)
+			this.symbol = 'A';
+		else
+			this.symbol = 'H';
 		this.under_char = ' ';
 		this.gotKey = false;
 		
@@ -214,7 +217,7 @@ public class Hero extends Character{
 	}
 	
 	public void weaponLogic(Board board){
-		this.symbol = 'A';
+		
 	}
 	
 }

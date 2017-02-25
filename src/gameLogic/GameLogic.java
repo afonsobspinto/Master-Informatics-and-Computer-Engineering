@@ -132,13 +132,13 @@ public class GameLogic {
 		case 5:
 			int ogreNumber = 3;
 			pos = new Coord (0,0); // local variable pos may not have been initialized
-			for (int i=0; i<crazyOgres.size(); i++){
+			for (int i=0; i<ogreNumber; i++){
 				if(i==0)
-					pos = new Coord (1,4);
+					pos = new Coord (2,5);
 				else if(i==1)
 					pos = new Coord (7,7);
 				else if(i==2)
-					pos = new Coord (4,4);
+					pos = new Coord (1,2);
 				ogre = new CrazyOgre(pos); // Weapon Location
 				temp.add(ogre); 
 			}
