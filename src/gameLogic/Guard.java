@@ -1,18 +1,33 @@
 package gameLogic;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
-public  class Guard  extends Character{
-	private Coord[] route;
-	private int index;
-	private GuardBehaviour behaviour;
+public abstract class Guard  extends Character{
+	protected Coord[] route;
+	protected int index;
+	protected boolean isMovingForward;
 	
-	public Guard(){};
+	public Guard(){
+		this.symbol = 'G';
+		this.under_char = ' ';
+		this.index = 0;
+		this.isMovingForward = true;
+	};
+
+	public Guard(Coord position){
+		this.symbol = 'G';
+		this.under_char = ' ';
+		this.index = 0;
+		this.position = position;
+		this.isMovingForward = true;
+	}
 	
 	public Guard(int level){
 		this.symbol = 'G';
 		this.under_char = ' ';
-		this.index = 1;
+		this.index = 0;
+		this.isMovingForward = true;
 		Coord startingPos;
 		
 		switch (level) {
@@ -21,7 +36,6 @@ public  class Guard  extends Character{
 			this.position = startingPos;
 			this.route = new Coord[1];
 			this.route[0]=startingPos;
-			this.index = 0;
 			
 			break;
 		case 2:
@@ -41,14 +55,14 @@ public  class Guard  extends Character{
 			break;
 			
 		case 3:
-			this.symbol = 'X'; // Guards doesn't appear on 1st level
+			this.symbol = 'X'; // Guards doesn't appear on 3rd level
 			startingPos = new Coord(0,0); 
 			this.position = startingPos;
 			this.route = new Coord[1];
 			this.route[0]=startingPos;
 			this.index = 0;
 		case 4:
-			this.symbol = 'X'; // Guards doesn't appear on 1st level
+			this.symbol = 'X'; // Guards doesn't appear on 4th level
 			startingPos = new Coord(0,0); 
 			this.position = startingPos;
 			this.route = new Coord[1];
@@ -61,26 +75,25 @@ public  class Guard  extends Character{
 		
 	}
 	
-	public Guard(Coord position){
-		this.symbol = 'G';
-		this.position = position;
-		this.under_char = ' ';
-	}
-	
 	public Action move(Board board, Direction direction){
 		return Action.NOACTION;
 	}
 	
-	public Action move(Board board){
-		board.setBoardAt(this.position, ' ');
-		this.position = route[index];
-		board.setBoardAt(this.position, this.symbol);
+	public abstract Action move(Board board);
 	
-		
-		if(++index == route.length)
-			index = 0;
-		
-		return Action.GUARD;
-	}
+	protected boolean randomDecision(){
 
+		int randomNum = ThreadLocalRandom.current().nextInt(0, 2 + 1);
+		
+		switch (randomNum) {
+		case 0:
+			return true;
+		case 1:
+			return true;
+		case 2:
+			return false;
+		default:
+			return false;
+		}
+	}
 }

@@ -2,6 +2,8 @@
 package gameLogic;
 
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
 import console.Interaction;
 
 public class GameLogic {
@@ -22,7 +24,7 @@ public class GameLogic {
 
 		this.board = new Board(level);
 		this.hero = new Hero(level);
-		this.guard = new Guard(level);
+		randomGuard(level);
 		this.crazyOgre= new CrazyOgre(level);
 
 		this.board.setBoardAt(hero.position, hero.symbol);
@@ -54,13 +56,14 @@ public class GameLogic {
 		crazyOgre.move(board);
 		Action action = hero.move(this.board, move);
 
-		if(hero.isSymbolnearby(board, 'G')){
-			action = Action.GUARD;
+		if(action != Action.OPENDOOR){
+			if(hero.isSymbolnearby(board, 'G')){
+				action = Action.GUARD;
+			}
+			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$') || hero.isSymbolnearby(board, '*')){
+				action = Action.CRAZYOGRE;
+			}
 		}
-		if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$') || hero.isSymbolnearby(board, '*')){
-			action = Action.CRAZYOGRE;
-		}
-
 
 		switch (action) {
 		case NOACTION:
@@ -100,6 +103,25 @@ public class GameLogic {
 	
 	public void showBoard(){
 		board.showBoard();
+	}
+	
+	public void randomGuard(int level){
+		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+
+		switch (randomNum) {
+		case 0:
+			this.guard = new Rookie(level);
+			break;
+		case 1:
+			this.guard = new Drunken(level);
+			break;
+		case 2:
+			this.guard = new Suspicious(level);
+			break;
+		default:
+			this.guard = new Rookie(level);	
+		}
+		
 	}
 }
 
