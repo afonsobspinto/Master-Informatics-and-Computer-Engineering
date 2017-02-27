@@ -1,7 +1,6 @@
 
 package gameLogic;
 
-
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
