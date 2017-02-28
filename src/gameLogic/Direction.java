@@ -14,4 +14,3 @@ public enum Direction{
 		return value;
 	}
 }
-

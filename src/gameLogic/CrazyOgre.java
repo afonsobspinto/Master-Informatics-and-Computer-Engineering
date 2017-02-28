@@ -4,29 +4,63 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CrazyOgre extends Character {
 	
+	boolean isAlive;
 	boolean isArmed;
 	char weapon;
 	char under_weapon;
 	Coord weaponLocation;
 	
 	
-	public Coord getWeaponLocation() {
-		return weaponLocation;
-	}
-
-	public boolean isArmed() {
-		return isArmed;
-	}
-
-	public char getWeapon() {
-		return weapon;
-	}
-
-	public CrazyOgre(Coord position){
+	public CrazyOgre(int level){
 		this.symbol = 'O';
 		this.under_char = ' ';
 		this.weapon = '*';
 		this.under_weapon = ' ';
+		
+		Coord startingPos;
+		switch (level) {
+		case 1:
+			this.symbol = 'X'; // Ogres doesn't appear on 1st level
+			startingPos = new Coord(0,0); 
+			this.position = startingPos;
+			this.isAlive = false;
+			this.isArmed = false;
+			break;
+			
+		case 2:
+			this.symbol = 'X'; // Ogres doesn't appear on 2nd level
+			startingPos = new Coord(0,0); 
+			this.position = startingPos;
+			this.isAlive = false;
+			this.isArmed = false;
+			break;
+			
+		case 3:
+			startingPos = new Coord(1,4); 
+			this.position = startingPos;
+			this.isAlive = true;
+			this.isArmed = false;
+			break;
+			
+		case 4:
+			startingPos = new Coord(1,4); 
+			this.position = startingPos;
+			this.isAlive = true;
+			this.isArmed = true;
+			this.weaponLocation = new Coord(2,4);
+			break;
+			
+
+		default:
+			break;
+		}
+		
+	}
+	
+	public CrazyOgre(Coord position){
+		this.symbol = 'O';
+		this.position = position;
+		this.under_char = ' ';
 	}
 
 	public Action move(Board board, Direction direction){
@@ -35,7 +69,8 @@ public class CrazyOgre extends Character {
 	}
 	
 	public Action move(Board board){
-
+		
+		if(isAlive){
 			board.setBoardAt(this.position, this.under_char);
 
 			int x = this.position.getX();
@@ -101,7 +136,7 @@ public class CrazyOgre extends Character {
 			
 			if(isArmed)
 				weaponLogic(board);
-		
+		}
 		
 		return Action.CRAZYOGRE;
 	}
