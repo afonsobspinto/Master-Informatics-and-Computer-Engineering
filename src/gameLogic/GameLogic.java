@@ -3,6 +3,7 @@ package gameLogic;
 
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
 
 import console.Interaction;
 
@@ -11,7 +12,7 @@ public class GameLogic {
 	private Board board;
 	private Hero hero;
 	private Guard guard;
-	private CrazyOgre crazyOgre;
+	private ArrayList<CrazyOgre> crazyOgres;
 	private GameConfig gameConfig;
 	boolean won;
 	boolean gameOn;
@@ -25,13 +26,12 @@ public class GameLogic {
 		this.board = new Board(level);
 		this.hero = new Hero(level);
 		randomGuard(level);
-		this.crazyOgre= new CrazyOgre(level);
+		
+		fillCrazyOgres(level);
 
 		this.board.setBoardAt(hero.position, hero.symbol);
 		this.board.setBoardAt(guard.position, guard.symbol);
-		this.board.setBoardAt(crazyOgre.position, crazyOgre.symbol);
-		if(crazyOgre.isArmed)
-			this.board.setBoardAt(crazyOgre.weaponLocation, crazyOgre.weapon);
+		setOgresOnBoard();
 		
 		this.board.showBoard();
 		
@@ -53,7 +53,8 @@ public class GameLogic {
 	public void updateGame(int level, Direction move){
 
 		guard.move(board);
-		crazyOgre.move(board);
+		moveOgres();
+		
 		Action action = hero.move(this.board, move);
 
 		if(action != Action.OPENDOOR){
@@ -123,4 +124,42 @@ public class GameLogic {
 		}
 		
 	}
+	
+	public void fillCrazyOgres(int level){
+		CrazyOgre crazyOgre;
+		
+		this.crazyOgres = new ArrayList<CrazyOgre>();
+		switch (level) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			crazyOgre = new CrazyOgre(new Coord(1,4), false, this.board);
+			this.crazyOgres.add(crazyOgre);
+			break;
+		case 4:
+			crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board);
+			this.crazyOgres.add(crazyOgre);
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	public void setOgresOnBoard(){
+		for (int i = 0; i < crazyOgres.size(); i++){
+			this.board.setBoardAt(crazyOgres.get(i).position, crazyOgres.get(i).symbol);
+			if(crazyOgres.get(i).isArmed)
+				this.board.setBoardAt(crazyOgres.get(i).weaponLocation, crazyOgres.get(i).weapon);
+		}
+	}
+	
+	public void moveOgres(){
+		for (int i = 0; i<crazyOgres.size(); i++){
+			crazyOgres.get(i).move(board);
+}
+	}
+	
 }

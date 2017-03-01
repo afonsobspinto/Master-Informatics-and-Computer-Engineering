@@ -4,13 +4,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CrazyOgre extends Character {
 	
-	boolean isAlive;
 	boolean isArmed;
 	char weapon;
 	char under_weapon;
 	Coord weaponLocation;
 	
-	
+/*	
 	public CrazyOgre(int level){
 		this.symbol = 'O';
 		this.under_char = ' ';
@@ -56,92 +55,97 @@ public class CrazyOgre extends Character {
 		}
 		
 	}
+	*/
 	
-	public CrazyOgre(Coord position){
+	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;
 		this.under_char = ' ';
+		this.isArmed = armed;
+		this.weapon = '*';
+		this.weaponLocation = new Coord(-1,-1); //Inicializing to non valid value
+		
+		if(armed)
+			setValidWeaponLocation(board);
 	}
-
+	
 	public Action move(Board board, Direction direction){
 		return Action.NOACTION;
 
 	}
 	
 	public Action move(Board board){
-		
-		if(isAlive){
-			board.setBoardAt(this.position, this.under_char);
 
-			int x = this.position.getX();
-			int y = this.position.getY();
+		board.setBoardAt(this.position, this.under_char);
 
-			boolean valid = false;
+		int x = this.position.getX();
+		int y = this.position.getY();
 
-			while(!valid){
-				Direction direction = randomDirection();
+		boolean valid = false;
 
-				int move = direction.getValue();
+		while(!valid){
+			Direction direction = randomDirection();
 
-				if(direction == Direction.DOWN || direction == Direction.UP){
-					char nextPos = board.getBoardAt(x+move, y);
+			int move = direction.getValue();
 
-					if(nextPos == 'X' || nextPos == 'I')
-						valid = false;
+			if(direction == Direction.DOWN || direction == Direction.UP){
+				char nextPos = board.getBoardAt(x+move, y);
 
-					else{
-						if(nextPos == 'k' || nextPos == '$'){
-							valid = true;
-							this.symbol = '$';
-							this.under_char = 'k';
-						}
-						else if(nextPos == ' ' || nextPos == '*'){
-							valid = true;
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
+				if(nextPos == 'X' || nextPos == 'I')
+					valid = false;
 
-						Coord pos = new Coord(x+move, y);
-
-						board.setBoardAt(pos, this.symbol);
-						this.position = pos;
+				else{
+					if(nextPos == 'k' || nextPos == '$'){
+						valid = true;
+						this.symbol = '$';
+						this.under_char = 'k';
 					}
-				}
-
-				else if(direction == Direction.RIGHT || direction == Direction.LEFT){
-					char nextPos = board.getBoardAt(x, y+move);
-
-					if(nextPos == 'X' || nextPos == 'I')
-						valid = false;
-					else{
-						if(nextPos == 'k' || nextPos == '$'){
-							valid = true;
-							this.symbol = '$';
-							this.under_char = 'k';
-						}
-						else if(nextPos == ' ' || nextPos == '*'){
-							valid = true;
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
-
-						Coord pos = new Coord(x, y+move);
-
-						board.setBoardAt(pos, this.symbol);
-						this.position = pos;
+					else if(nextPos == ' ' || nextPos == '*'){
+						valid = true;
+						this.symbol = 'O';
+						this.under_char = ' ';
 					}
-				}
 
+					Coord pos = new Coord(x+move, y);
+
+					board.setBoardAt(pos, this.symbol);
+					this.position = pos;
+				}
 			}
-			
+
+			else if(direction == Direction.RIGHT || direction == Direction.LEFT){
+				char nextPos = board.getBoardAt(x, y+move);
+
+				if(nextPos == 'X' || nextPos == 'I')
+					valid = false;
+				else{
+					if(nextPos == 'k' || nextPos == '$'){
+						valid = true;
+						this.symbol = '$';
+						this.under_char = 'k';
+					}
+					else if(nextPos == ' ' || nextPos == '*'){
+						valid = true;
+						this.symbol = 'O';
+						this.under_char = ' ';
+					}
+
+					Coord pos = new Coord(x, y+move);
+
+					board.setBoardAt(pos, this.symbol);
+					this.position = pos;
+				}
+			}
+
+
 			if(isArmed)
-				weaponLogic(board);
+				setValidWeaponLocation(board);
 		}
-		
+
 		return Action.CRAZYOGRE;
 	}
 	
-	public void weaponLogic(Board board){
+	public void setValidWeaponLocation(Board board){
 		
 		if(!(weaponLocation.getX() == position.getX() &&
 				weaponLocation.getY() == position.getY()))
