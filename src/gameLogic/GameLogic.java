@@ -157,7 +157,6 @@ public class GameLogic {
 	}
 	
 	private void setOgresOnBoard(){
-		System.out.println(crazyOgres.size());
 		
 		for (int i = 0; i < crazyOgres.size(); i++){
 			this.board.setBoardAt(crazyOgres.get(i).position, crazyOgres.get(i).symbol);

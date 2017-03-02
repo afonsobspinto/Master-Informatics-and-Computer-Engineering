@@ -8,63 +8,14 @@ public class CrazyOgre extends Character {
 	char weapon;
 	char under_weapon;
 	Coord weaponLocation;
-	
-/*	
-	public CrazyOgre(int level){
-		this.symbol = 'O';
-		this.under_char = ' ';
-		this.weapon = '*';
-		this.under_weapon = ' ';
 		
-		Coord startingPos;
-		switch (level) {
-		case 1:
-			this.symbol = 'X'; // Ogres doesn't appear on 1st level
-			startingPos = new Coord(0,0); 
-			this.position = startingPos;
-			this.isAlive = false;
-			this.isArmed = false;
-			break;
-			
-		case 2:
-			this.symbol = 'X'; // Ogres doesn't appear on 2nd level
-			startingPos = new Coord(0,0); 
-			this.position = startingPos;
-			this.isAlive = false;
-			this.isArmed = false;
-			break;
-			
-		case 3:
-			startingPos = new Coord(1,4); 
-			this.position = startingPos;
-			this.isAlive = true;
-			this.isArmed = false;
-			break;
-			
-		case 4:
-			startingPos = new Coord(1,4); 
-			this.position = startingPos;
-			this.isAlive = true;
-			this.isArmed = true;
-			this.weaponLocation = new Coord(2,4);
-			break;
-			
-
-		default:
-			break;
-		}
-		
-	}
-	*/
-	
 	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;
 		this.under_char = ' ';
 		this.isArmed = armed;
 		this.weapon = '*';
-		this.weaponLocation = new Coord(-1,-1); //Inicializing to non valid value
-		
+
 		if(armed)
 			setValidWeaponLocation(board);
 	}
@@ -147,9 +98,11 @@ public class CrazyOgre extends Character {
 	
 	public void setValidWeaponLocation(Board board){
 		
-		if(!(weaponLocation.getX() == position.getX() &&
-				weaponLocation.getY() == position.getY()))
-			board.setBoardAt(this.weaponLocation, this.under_weapon);
+		
+		if(weaponLocation != null)
+			if(!(weaponLocation.getX() == position.getX()
+					&& weaponLocation.getY() == position.getY()))
+				board.setBoardAt(this.weaponLocation, this.under_weapon);
 
 		int x = this.position.getX();
 		int y = this.position.getY();
