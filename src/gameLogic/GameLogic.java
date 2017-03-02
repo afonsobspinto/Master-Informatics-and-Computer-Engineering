@@ -30,7 +30,10 @@ public class GameLogic {
 		fillCrazyOgres(level);
 
 		this.board.setBoardAt(hero.position, hero.symbol);
-		this.board.setBoardAt(guard.position, guard.symbol);
+		
+		if(guard.position != null)
+			this.board.setBoardAt(guard.position, guard.symbol);
+		
 		setOgresOnBoard();
 		
 		this.board.showBoard();
@@ -52,7 +55,9 @@ public class GameLogic {
 
 	public void updateGame(int level, Direction move){
 
-		guard.move(board);
+		if(guard.position != null)
+			guard.move(board);
+		
 		moveOgres();
 		
 		Action action = hero.move(this.board, move);
