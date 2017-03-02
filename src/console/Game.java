@@ -9,8 +9,8 @@ public class Game {
 
 		GameConfig gameConfig = new GameConfig();
 
-		int levels = 4;
-		int i = 1;
+		int levels = 5;
+		int i = 5;
 		GameLogic g;
 
 		while(i <= levels){

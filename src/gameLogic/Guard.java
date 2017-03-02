@@ -69,6 +69,14 @@ public abstract class Guard  extends Character{
 			this.route[0]=startingPos;
 			this.index = 0;
 		
+		case 5:
+			this.symbol = 'X'; // Guards doesn't appear on 4th level
+			startingPos = new Coord(0,0); 
+			this.position = startingPos;
+			this.route = new Coord[1];
+			this.route[0]=startingPos;
+			this.index = 0;
+			
 		default:
 			break;
 		}

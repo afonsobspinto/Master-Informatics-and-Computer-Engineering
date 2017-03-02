@@ -1,11 +1,11 @@
 
 package gameLogic;
 
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.HashSet;
 
-import console.Interaction;
 
 public class GameLogic {
 
@@ -39,7 +39,7 @@ public class GameLogic {
 	}
 	
 	
-	public void applyLever(){
+	private void applyLever(){
 		for(int i =0; i < gameConfig.getrows(); i++){
 			for(int j = 0; j < gameConfig.getcolumns(); j++){
 				if(this.board.getBoardAt(i, j)=='I'){
@@ -106,7 +106,7 @@ public class GameLogic {
 		board.showBoard();
 	}
 	
-	public void randomGuard(int level){
+	private void randomGuard(int level){
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 
 		switch (randomNum) {
@@ -125,7 +125,7 @@ public class GameLogic {
 		
 	}
 	
-	public void fillCrazyOgres(int level){
+	private void fillCrazyOgres(int level){
 		CrazyOgre crazyOgre;
 		
 		this.crazyOgres = new ArrayList<CrazyOgre>();
@@ -142,24 +142,71 @@ public class GameLogic {
 			crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board);
 			this.crazyOgres.add(crazyOgre);
 			break;
+		case 5:
+			randomOgres();
+			break;
 
 		default:
 			break;
 		}
 	}
 	
-	public void setOgresOnBoard(){
+	private void setOgresOnBoard(){
+		System.out.println(crazyOgres.size());
+		
 		for (int i = 0; i < crazyOgres.size(); i++){
 			this.board.setBoardAt(crazyOgres.get(i).position, crazyOgres.get(i).symbol);
-			if(crazyOgres.get(i).isArmed)
+			if(crazyOgres.get(i).isArmed){
 				this.board.setBoardAt(crazyOgres.get(i).weaponLocation, crazyOgres.get(i).weapon);
+			}
+				
 		}
 	}
 	
-	public void moveOgres(){
+	private void moveOgres(){
 		for (int i = 0; i<crazyOgres.size(); i++){
 			crazyOgres.get(i).move(board);
-}
+		}
 	}
+	
+	private void randomOgres(){
+		
+		int ogresNum = ThreadLocalRandom.current().nextInt(2, 3 + 1);
+		
+		Random random = new Random();
+		Coord pos = new Coord(-1,-1);
+		HashSet<Coord> temp = new HashSet<Coord>();
+		
+		for(int i = 0; i < ogresNum; i++){
+
+			pos = randomPos();
+			
+			if(!validPos(pos) || temp.contains(pos))
+				i--;
+			else{
+				System.out.println();
+				temp.add(pos);
+				this.crazyOgres.add(new CrazyOgre(pos, random.nextBoolean(), this.board));
+			}
+		}
+		
+	}
+	
+	private boolean validPos(Coord position){
+		if(this.board.getBoardAt(position.getX(), position.getY()) == ' ') // falta adicionar nao poderem ser casas ao lado do heroi
+			return true; 
+		return false;
+	}
+
+	private Coord randomPos(){
+		int x, y;
+		
+		x = ThreadLocalRandom.current().nextInt(0, this.board.getRows() + 1);
+		y = ThreadLocalRandom.current().nextInt(0, this.board.getColumns() + 1);
+		
+		return new Coord(x,y);
+		
+	}
+	
 	
 }
