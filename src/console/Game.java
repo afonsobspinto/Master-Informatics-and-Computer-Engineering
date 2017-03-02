@@ -16,6 +16,7 @@ public class Game {
 		while(i <= levels){
 			g = new GameLogic(i, gameConfig);
 			
+			
 			while(g.isGameOn()){
 				Interaction interaction = new Interaction(gameConfig);
 				Direction move = interaction.getDirection();
