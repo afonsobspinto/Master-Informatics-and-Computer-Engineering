@@ -7,6 +7,14 @@ public class Board {
 	private int rows;
 	private int columns;
 	
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
 	public Board(int level) {
 
 		switch (level) {
@@ -62,6 +70,23 @@ public class Board {
 				{'X', 'X', 'X','X','X','X','X','X','X'}
 			};
 		case 4:
+			this.board = new char[][]{
+				{'X', 'X', 'X','X','X','X','X','X','X'},
+				{'I',' ', ' ',' ',' ',' ',' ','k','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
+				{'X', 'X', 'X','X','X','X','X','X','X'}
+			};
+			
+			this.rows = 9;
+			this.columns = 9;
+			
+			break;
+		case 5:
 			this.board = new char[][]{
 				{'X', 'X', 'X','X','X','X','X','X','X'},
 				{'I',' ', ' ',' ',' ',' ',' ','k','X'},

@@ -1,16 +1,12 @@
 package gameLogic;
 
 public class Hero extends Character{
-	boolean isArmed;
 	boolean isKey;
 	boolean isLever;
 	boolean gotKey;
 
 	public Hero(int level){
-		if (level == 5)
-			this.symbol = 'A';
-		else
-			this.symbol = 'H';
+		this.symbol = 'H';
 		this.under_char = ' ';
 		this.gotKey = false;
 		
@@ -22,7 +18,6 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = false;
 			this.isLever = true;
-			this.isArmed = false;
 			break;
 
 		case 2:
@@ -30,7 +25,6 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = false;
 			this.isLever = true;
-			this.isArmed = false;
 			break;
 			
 		case 3:
@@ -38,7 +32,6 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = true;
 			this.isLever = false;
-			this.isArmed = false;
 			break;
 			
 		case 4:
@@ -46,17 +39,15 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = true;
 			this.isLever = false;
-			this.isArmed = false;
 			break;
 			
 		case 5:
+			this.symbol = 'A';
 			startingPos = new Coord(7,1);
 			this.position = startingPos;
 			this.isKey = true;
 			this.isLever = false;
-			this.isArmed = true;
 			break;
-			
 			
 		default:
 			break;
@@ -123,13 +114,7 @@ public class Hero extends Character{
 			else if(nextPos == 'G'){ //Guard
 				res = Action.GUARD;
 			}
-			else if(nextPos == 'O' || nextPos == '$'){
-				if(isArmed)
-					weaponLogic(board);
-				else
-					res = Action.CRAZYOGRE;
-			}
-			else if(nextPos == '*'){
+			else if(nextPos == 'O' || nextPos == '$' || nextPos == '*'){
 				res = Action.CRAZYOGRE;
 			}
 			else{
@@ -178,13 +163,7 @@ public class Hero extends Character{
 				res = Action.GUARD;
 			}
 			
-			else if(nextPos == 'O' || nextPos == '$'){
-				if(isArmed)
-					weaponLogic(board);
-				else
-					res = Action.CRAZYOGRE;
-			}
-			else if(nextPos == '*'){
+			else if(nextPos == 'O' || nextPos == '$' || nextPos == '*'){
 				res = Action.CRAZYOGRE;
 			}
 			else{ 
@@ -213,11 +192,8 @@ public class Hero extends Character{
 			}
 		}
 		
+
 		return res;
-	}
-	
-	public void weaponLogic(Board board){
-		
 	}
 	
 }
