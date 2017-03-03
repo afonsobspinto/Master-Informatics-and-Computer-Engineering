@@ -200,7 +200,7 @@ public class GameLogic {
 	}
 	
 	private boolean validPos(Coord position){
-		if(this.board.getBoardAt(position.getX(), position.getY()) == ' ') // falta adicionar nao poderem ser casas ao lado do heroi
+		if(this.board.getBoardAt(position.getX(), position.getY()) == ' ')
 			return true; 
 		return false;
 	}
