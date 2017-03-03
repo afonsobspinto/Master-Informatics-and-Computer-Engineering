@@ -3,7 +3,6 @@ package gameLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.HashSet;
 
 
@@ -16,6 +15,11 @@ public class GameLogic {
 	private GameConfig gameConfig;
 	boolean won;
 	boolean gameOn;
+
+	public Hero getHero() {
+		return hero;
+	}
+
 
 	public GameLogic(int level, GameConfig gameConfig){
 
@@ -177,7 +181,6 @@ public class GameLogic {
 		
 		int ogresNum = ThreadLocalRandom.current().nextInt(2, 3 + 1);
 		
-		Random random = new Random();
 		Coord pos = new Coord(-1,-1);
 		HashSet<Coord> temp = new HashSet<Coord>();
 		
@@ -190,7 +193,7 @@ public class GameLogic {
 			else{
 				System.out.println();
 				temp.add(pos);
-				this.crazyOgres.add(new CrazyOgre(pos, random.nextBoolean(), this.board));
+				this.crazyOgres.add(new CrazyOgre(pos, true, this.board));
 			}
 		}
 		
