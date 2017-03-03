@@ -16,6 +16,11 @@ public class GameLogic {
 	boolean won;
 	boolean gameOn;
 
+	public Hero getHero() {
+		return hero;
+	}
+
+
 	public GameLogic(int level, GameConfig gameConfig){
 
 		this.gameConfig = gameConfig;
