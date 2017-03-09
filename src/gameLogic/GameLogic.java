@@ -45,7 +45,7 @@ public class GameLogic {
 
 	}
 	
-	
+
 	private void applyLever(){
 		for(int i =0; i < gameConfig.getrows(); i++){
 			for(int j = 0; j < gameConfig.getcolumns(); j++){
@@ -139,6 +139,8 @@ public class GameLogic {
 		
 		this.crazyOgres = new ArrayList<CrazyOgre>();
 		switch (level) {
+		case 0:
+			break;
 		case 1:
 			break;
 		case 2:
@@ -160,6 +162,11 @@ public class GameLogic {
 		}
 	}
 	
+	public Board getBoard() {
+		return board;
+	}
+
+
 	private void setOgresOnBoard(){
 		
 		for (int i = 0; i < crazyOgres.size(); i++){

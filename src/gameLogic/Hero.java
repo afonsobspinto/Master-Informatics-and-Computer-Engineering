@@ -13,6 +13,12 @@ public class Hero extends Character{
 		Coord startingPos;
 		
 		switch (level) {
+		case 0:
+			startingPos = new Coord(1,1);
+			this.position = startingPos;
+			this.isKey = false;
+			this.isLever = true;
+			break;
 		case 1:
 			startingPos = new Coord(1,1);
 			this.position = startingPos;
