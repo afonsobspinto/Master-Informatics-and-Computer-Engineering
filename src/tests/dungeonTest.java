@@ -10,6 +10,8 @@ import gameLogic.GameLogic;
 
 public class dungeonTest {
 
+	// Task #1
+	
 	@Test
 	public void testMoveHeroIntoToFreeCell(){
 		
@@ -62,6 +64,56 @@ public class dungeonTest {
 		g.updateGame(0,Direction.DOWN);
 		g.updateGame(0,Direction.DOWN);
 		g.updateGame(0,Direction.LEFT);
+		assertTrue(g.isWon());
+	}
+	
+	// Task #2
+	
+	@Test
+	public void testHeroIsCapturedByOgre(){
+		GameConfig game = new GameConfig(5,5);
+		GameLogic g = new GameLogic(-1, game);
+		g.updateGame(-1,Direction.RIGHT);
+		assertFalse(g.isWon());
+		
+	}
+	
+	@Test
+	public void testMoveHeroIntoLeverCellOgre(){
+		GameConfig game = new GameConfig(5,5);
+		GameLogic g = new GameLogic(-1, game);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.DOWN);
+		assertEquals('K', g.getBoard().getBoardAt(3,1));
+	}
+	
+	@Test
+	public void testMoveHeroIntoClosedDoorOgre(){
+		GameConfig game = new GameConfig(5,5);
+		GameLogic g = new GameLogic(-1, game);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.LEFT);
+		assertEquals(new Coord(2,1), g.getHero().getPosition());
+	}
+	
+	@Test
+	public void testMoveHeroIntoOpenDoorOgre(){
+		GameConfig game = new GameConfig(5,5);
+		GameLogic g = new GameLogic(-1, game);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.LEFT);
+		assertEquals('S', g.getBoard().getBoardAt(3,0));
+	}
+	
+	@Test
+	public void testHeroEndsGame(){
+		GameConfig game = new GameConfig(5,5);
+		GameLogic g = new GameLogic(-1, game);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.DOWN);
+		g.updateGame(-1,Direction.LEFT);
+		g.updateGame(-1,Direction.LEFT);
 		assertTrue(g.isWon());
 	}
 }

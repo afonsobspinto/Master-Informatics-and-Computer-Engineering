@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CrazyOgre extends Character {
 	
+	boolean isStunned = false;
 	boolean isArmed;
 	char weapon;
 	char under_weapon;
@@ -20,6 +21,10 @@ public class CrazyOgre extends Character {
 			setValidWeaponLocation(board);
 	}
 	
+	public void setStunned(boolean isStunned) {
+		this.isStunned = isStunned;
+	}
+
 	public Action move(Board board, Direction direction){
 		return Action.NOACTION;
 
@@ -34,6 +39,11 @@ public class CrazyOgre extends Character {
 
 		boolean valid = false;
 
+		if(isStunned){
+			valid = true;
+			return Action.NOACTION;
+		}
+		
 		while(!valid){
 			Direction direction = randomDirection();
 

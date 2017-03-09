@@ -139,6 +139,11 @@ public class GameLogic {
 		
 		this.crazyOgres = new ArrayList<CrazyOgre>();
 		switch (level) {
+		case -1:
+			crazyOgre = new CrazyOgre(new Coord(1,3), false, this.board);
+			crazyOgre.setStunned(true);
+			this.crazyOgres.add(crazyOgre);
+			break;
 		case 0:
 			break;
 		case 1:
