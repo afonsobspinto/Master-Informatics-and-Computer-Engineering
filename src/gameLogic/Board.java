@@ -18,6 +18,20 @@ public class Board {
 	public Board(int level) {
 
 		switch (level) {
+		case -2:
+			
+			this.board = new char[][]{
+				{'X','X', 'X', 'X','X','X'},
+				{'X','H', ' ', ' ','O','X'},
+				{'I',' ', ' ', ' ',' ','X'},
+				{'I','k', ' ', ' ',' ','X'},
+				{'X','X', 'X', 'X','X','X'}
+			};
+
+			this.rows = 5;
+			this.columns = 6;
+
+			break;
 		case -1:
 
 			this.board = new char[][]{

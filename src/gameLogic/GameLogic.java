@@ -139,6 +139,10 @@ public class GameLogic {
 		
 		this.crazyOgres = new ArrayList<CrazyOgre>();
 		switch (level) {
+		case -2:
+			crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board);
+			this.crazyOgres.add(crazyOgre);
+			break;
 		case -1:
 			crazyOgre = new CrazyOgre(new Coord(1,3), false, this.board);
 			crazyOgre.setStunned(true);
@@ -185,7 +189,7 @@ public class GameLogic {
 	
 	private void moveOgres(){
 		for (int i = 0; i<crazyOgres.size(); i++){
-			crazyOgres.get(i).move(board);
+			crazyOgres.get(i).move(board, crazyOgres);
 		}
 	}
 	

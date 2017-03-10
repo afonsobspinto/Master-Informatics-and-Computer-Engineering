@@ -9,7 +9,7 @@ import gameLogic.GameConfig;
 import gameLogic.GameLogic;
 
 public class dungeonTest {
-
+/*
 	// Task #1
 	
 	@Test
@@ -115,6 +115,40 @@ public class dungeonTest {
 		g.updateGame(-1,Direction.LEFT);
 		g.updateGame(-1,Direction.LEFT);
 		assertTrue(g.isWon());
+	}
+	*/
+	// Task #3
+	
+	@Test (timeout =1000)
+	public void testSomeRandomBehaviour(){
+		GameConfig game = new GameConfig(6,5);
+		GameLogic g = new GameLogic(-2, game);
+		g.showBoard();
+		g.updateGame(-2,Direction.DOWN);
+		boolean outcome1 = false, outcome2 = false; 
+		while (!outcome1 && !outcome2){
+			if ('O' == g.getBoard().getBoardAt(1, 3)){
+				if('*' == g.getBoard().getBoardAt(1, 2) || '*' == g.getBoard().getBoardAt(1, 4) || '*' == g.getBoard().getBoardAt(2, 3))
+					outcome1 = true;
+				else
+					break;
+				System.out.println("1\n");
+			}
+			else if ('O' == g.getBoard().getBoardAt(2,4)){
+				if('*' == g.getBoard().getBoardAt(3, 4) || '*' == g.getBoard().getBoardAt(1, 4) || '*' == g.getBoard().getBoardAt(2, 3))
+					outcome1 = true;
+				else
+					break;
+				System.out.println("2\n");
+			}
+			else{
+				System.out.println("Fail");
+				break;
+			}
+			
+		}
+		g.showBoard();
+		assertTrue(outcome1 || outcome2);
 	}
 }
 
