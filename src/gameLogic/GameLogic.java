@@ -59,12 +59,13 @@ public class GameLogic {
 
 	public void updateGame(int level, Direction move){
 
+		Action action = hero.move(this.board, move);
+		
 		if(guard.position != null)
 			guard.move(board);
 		
 		moveOgres();
 		
-		Action action = hero.move(this.board, move);
 
 		if(action != Action.OPENDOOR){
 			if(hero.isSymbolnearby(board, 'G')){
