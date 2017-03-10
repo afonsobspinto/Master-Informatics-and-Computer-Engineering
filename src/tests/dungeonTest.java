@@ -9,7 +9,7 @@ import gameLogic.GameConfig;
 import gameLogic.GameLogic;
 
 public class dungeonTest {
-/*
+
 	// Task #1
 	
 	@Test
@@ -116,7 +116,7 @@ public class dungeonTest {
 		g.updateGame(-1,Direction.LEFT);
 		assertTrue(g.isWon());
 	}
-	*/
+	
 	// Task #3
 	
 	@Test (timeout =1000)
