@@ -5,11 +5,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CrazyOgre extends Character {
 	
+	private static int counter = 0;
+	
 	boolean isStunned;
 	boolean isArmed;
 	char weapon;
 	char under_weapon;
 	Coord weaponLocation;
+	int objectId;
 	
 		
 	public CrazyOgre(Coord position, boolean armed, Board board){
@@ -19,6 +22,7 @@ public class CrazyOgre extends Character {
 		this.isArmed = armed;
 		this.weapon = '*';
 		this.isStunned = false;
+		this.objectId = counter++;
 		
 		board.setBoardAt(this.position, this.symbol);
 
@@ -31,10 +35,6 @@ public class CrazyOgre extends Character {
 
 	}
 	
-	public void setStunned(boolean isStunned) {
-		this.isStunned = isStunned;
-	}
-
 	public Action move(Board board, ArrayList <CrazyOgre> ogres){
 		
 		if (!isStunned){
@@ -315,10 +315,19 @@ public class CrazyOgre extends Character {
 	
 	private void cleanOldPos(ArrayList<CrazyOgre> ogres, Board board, boolean weapon){
 
+		System.out.println("\n\n");
 
 		if(weapon){
 			
 			for(int i = 0 ; i < ogres.size(); i++){
+				
+				System.out.println("Comparando com Ogre" + i +" ");
+				
+				System.out.println("Posicao de ogre( " + i + ") :" + ogres.get(i).position);
+				System.out.println("Posicao de Arma de ogre( " + i + ") :" + ogres.get(i).weaponLocation);
+				System.out.println("Posicao de Arma de this:"+ this.weaponLocation);
+				
+				
 				if(ogres.get(i).equals(this)){
 
 					board.setBoardAt(this.weaponLocation, this.under_weapon);
@@ -327,8 +336,12 @@ public class CrazyOgre extends Character {
 					return;
 				}
 
-				if(ogres.get(i).position.equals(this.weaponLocation) || ogres.get(i).weaponLocation.equals(this.weaponLocation))
+				if(ogres.get(i).position.equals(this.weaponLocation) || ogres.get(i).weaponLocation.equals(this.weaponLocation)){
+					System.out.println("São iguais");
 					return;
+				}
+				
+				System.out.println("Não são iguais");
 			}
 
 		}
@@ -355,11 +368,7 @@ public class CrazyOgre extends Character {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (isArmed ? 1231 : 1237);
-		result = prime * result + (isStunned ? 1231 : 1237);
-		result = prime * result + under_weapon;
-		result = prime * result + weapon;
-		result = prime * result + ((weaponLocation == null) ? 0 : weaponLocation.hashCode());
+		result = prime * result + objectId;
 		return result;
 	}
 
@@ -372,20 +381,13 @@ public class CrazyOgre extends Character {
 		if (getClass() != obj.getClass())
 			return false;
 		CrazyOgre other = (CrazyOgre) obj;
-		if (isArmed != other.isArmed)
-			return false;
-		if (isStunned != other.isStunned)
-			return false;
-		if (under_weapon != other.under_weapon)
-			return false;
-		if (weapon != other.weapon)
-			return false;
-		if (weaponLocation == null) {
-			if (other.weaponLocation != null)
-				return false;
-		} else if (!weaponLocation.equals(other.weaponLocation))
+		if (objectId != other.objectId)
 			return false;
 		return true;
+	}
+
+	public void setStunned(boolean isStunned) {
+		this.isStunned = isStunned;
 	}
 	
 	
