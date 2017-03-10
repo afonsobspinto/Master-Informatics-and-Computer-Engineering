@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import gameLogic.GameConfig;
+import gameLogic.GameLogic;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -54,13 +58,12 @@ public class WindowBuilder {
 		Game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Game.getContentPane().setLayout(null);
 		
-		JLabel lblHowManyOgres = new JLabel("How many Ogres?");
-		lblHowManyOgres.setBounds(24, 21, 92, 14);
+		JLabel lblHowManyOgres = new JLabel("How many Ogres? (1 / 2 / 3)");
+		lblHowManyOgres.setBounds(24, 21, 147, 14);
 		Game.getContentPane().add(lblHowManyOgres);
 		
 		txtInsertNumber = new JTextField();
-		txtInsertNumber.setBounds(126, 18, 31, 20);
-		txtInsertNumber.setText("3");
+		txtInsertNumber.setBounds(181, 18, 31, 20);
 		Game.getContentPane().add(txtInsertNumber);
 		txtInsertNumber.setColumns(10);
 		
@@ -72,13 +75,18 @@ public class WindowBuilder {
 		comboBox.setBounds(136, 54, 76, 20);
 		comboBox.setEditable(true);
 		comboBox.setMaximumRowCount(3);
-		comboBox.setToolTipText("Drunken\r\nRookie\r\nSuspicius\r\n");
-		comboBox.setSelectedIndex(3);
+		comboBox.setToolTipText(" ");
+		comboBox.setSelectedIndex(1);
+		comboBox.addItem("Rookie");
+		comboBox.addItem("Drunken");
+		comboBox.addItem("Suspicius");
 		Game.getContentPane().add(comboBox);
 		
 		JButton btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GameConfig game = new GameConfig();
+				GameLogic g = new GameLogic(1, game);
 			}
 		});
 		btnNewGame.setBounds(313, 34, 89, 23);
