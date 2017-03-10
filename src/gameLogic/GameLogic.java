@@ -68,11 +68,21 @@ public class GameLogic {
 		
 
 		if(action != Action.OPENDOOR){
-			if(hero.isSymbolnearby(board, 'G')){
+			if(hero.isSymbolNearby(board, 'G')){
 				action = Action.GUARD;
 			}
-			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$') || hero.isSymbolnearby(board, '*')){
-				action = Action.CRAZYOGRE;
+			if(!hero.isArmed){
+				if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
+					action = Action.CRAZYOGRE;
+				}
+			}
+			else{
+				if(hero.isSymbolNearby(board, '*')){
+					action = Action.CRAZYOGRE;
+				}
+				else if(hero.isOgreNearby(board, crazyOgres)){
+					action = Action.STUNNED;
+				}
 			}
 		}
 
@@ -96,6 +106,8 @@ public class GameLogic {
 		case MOVE:
 			break;
 		case KEY:
+			break;
+		case STUNNED:
 			break;
 
 		default:
@@ -231,6 +243,7 @@ public class GameLogic {
 		return new Coord(x,y);
 		
 	}
+	
 	
 	
 }

@@ -13,8 +13,10 @@ public class CrazyOgre extends Character {
 	char under_weapon;
 	Coord weaponLocation;
 	int objectId;
+	int stunnedRounds;
 	
-		
+	
+	
 	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;
@@ -22,6 +24,7 @@ public class CrazyOgre extends Character {
 		this.isArmed = armed;
 		this.weapon = '*';
 		this.isStunned = false;
+		this.stunnedRounds = 0;
 		this.objectId = counter++;
 		
 		board.setBoardAt(this.position, this.symbol);
@@ -86,7 +89,6 @@ public class CrazyOgre extends Character {
 							if(!weaponLocation.equals(position)){
 								cleanOldPos(ogres, board, true);
 							}
-							board.showBoard();
 							setValidWeaponLocation(board);
 							
 						}
@@ -133,7 +135,6 @@ public class CrazyOgre extends Character {
 							if(!weaponLocation.equals(position)){
 								cleanOldPos(ogres, board, true);
 							}
-							board.showBoard();
 							setValidWeaponLocation(board);
 						}
 					}
@@ -142,6 +143,11 @@ public class CrazyOgre extends Character {
 		}
 		
 		else{
+			
+			System.out.println("Estou Stunned nao me vou mexer");
+			
+			if(stunnedRounds-- == 0)
+				isStunned = false;
 			
 			if(isArmed){
 				cleanOldPos(ogres, board, true);
@@ -200,7 +206,6 @@ public class CrazyOgre extends Character {
 					this.weaponLocation = nextPos;
 
 					board.setBoardAt(this.weaponLocation, this.weapon);
-					board.showBoard();
 					
 				}
 				
@@ -238,7 +243,6 @@ public class CrazyOgre extends Character {
 					this.weaponLocation = nextPos;
 
 					board.setBoardAt(this.weaponLocation, this.weapon);
-					board.showBoard();
 					
 				}
 				
@@ -327,6 +331,12 @@ public class CrazyOgre extends Character {
 
 	public void setStunned(boolean isStunned) {
 		this.isStunned = isStunned;
+	}
+
+	public void setStunnedRounds(int stunnedRounds) {
+		this.stunnedRounds = stunnedRounds;
+		if(stunnedRounds!= 0)
+			this.isStunned = true;
 	}
 	
 	
