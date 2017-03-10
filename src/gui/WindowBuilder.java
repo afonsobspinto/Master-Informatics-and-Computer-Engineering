@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JPanel;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WindowBuilder {
 
@@ -73,6 +77,10 @@ public class WindowBuilder {
 		Game.getContentPane().add(comboBox);
 		
 		JButton btnNewGame = new JButton("New Game");
+		btnNewGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewGame.setBounds(313, 34, 89, 23);
 		Game.getContentPane().add(btnNewGame);
 		
@@ -101,11 +109,18 @@ public class WindowBuilder {
 		Game.getContentPane().add(btnLeft);
 		
 		JTextArea txtrGameStatus = new JTextArea();
+		txtrGameStatus.setBackground(SystemColor.menu);
 		txtrGameStatus.setBounds(24, 238, 231, 22);
 		txtrGameStatus.setForeground(Color.BLACK);
 		txtrGameStatus.setEditable(false);
 		txtrGameStatus.setFont(new Font("Courier New", Font.PLAIN, 13));
 		txtrGameStatus.setText("You can start a new game.");
 		Game.getContentPane().add(txtrGameStatus);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setForeground(Color.BLACK);
+		panel.setBounds(24, 88, 224, 136);
+		Game.getContentPane().add(panel);
 	}
 }
