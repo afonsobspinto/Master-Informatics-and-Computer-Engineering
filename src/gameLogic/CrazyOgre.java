@@ -224,7 +224,7 @@ public class CrazyOgre extends Character {
 					valid = false;
 				
 							
-				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G') {
+				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G') {
 					valid = false;
 					}
 				
