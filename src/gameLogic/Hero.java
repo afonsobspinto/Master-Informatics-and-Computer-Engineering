@@ -107,23 +107,28 @@ public class Hero extends Character{
 	}
 	
 	public boolean isOgreNearby(Board board, ArrayList<CrazyOgre> ogres ){
-		int xPos = this.position.getX();
-		int yPos = this.position.getY();
+		int HeroxPos = this.position.getX();
+		int HeroyPos = this.position.getY();
 		
 		boolean res = false;
 		
 		for(int i = 0; i < ogres.size(); i++){
-			int ogreXpos = ogres.get(i).getPosition().getX();
-			int ogreYpos = ogres.get(i).getPosition().getX();
 			
-			if(ogreXpos == xPos+1 && ogreYpos == yPos ||
-					ogreXpos == xPos-1 && ogreYpos == yPos ||
-					ogreXpos == xPos && ogreYpos == yPos + 1 ||
-					ogreXpos == xPos && ogreYpos == yPos -1){
+			System.out.println("Ogre " + i + ": ");
+			int ogreXpos = ogres.get(i).getPosition().getX();
+			int ogreYpos = ogres.get(i).getPosition().getY();
+			
+			
+			if(((ogreXpos == HeroxPos+1) && (ogreYpos == HeroyPos)) ||
+					((ogreXpos == HeroxPos-1) && (ogreYpos == HeroyPos)) ||
+					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos+1)) ||
+					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos-1))){
 				ogres.get(i).setStunnedRounds(2);
 				res = true;
-				System.out.println("Ogre Nearby. Stunned Mode setted");
+				System.out.println("Stunned Mode setted");
 			}
+			
+			System.out.println("\n");
 		}
 		
 		return res;

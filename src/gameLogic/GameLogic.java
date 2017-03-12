@@ -29,11 +29,13 @@ public class GameLogic {
 
 		this.board = new Board(level);
 		this.hero = new Hero(level);
-		randomGuard(level);
 		
+		this.board.setBoardAt(hero.position, hero.symbol);
+		
+		randomGuard(level);
 		fillCrazyOgres(level);
 
-		this.board.setBoardAt(hero.position, hero.symbol);
+
 		
 		if(guard.position != null)
 			this.board.setBoardAt(guard.position, guard.symbol);
@@ -229,6 +231,8 @@ public class GameLogic {
 	}
 	
 	private boolean validPos(Coord position){
+		if(isSymbolNearby(position, this.hero.symbol))
+			return false;
 		if(this.board.getBoardAt(position.getX(), position.getY()) == ' ')
 			return true; 
 		return false;
@@ -244,6 +248,26 @@ public class GameLogic {
 		
 	}
 	
-	
+	public boolean isSymbolNearby(Coord position, char symbol){
+
+		int xPos = position.getX();
+		int yPos = position.getY();
+
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
+		return false;
+	}
 	
 }

@@ -145,9 +145,13 @@ public class CrazyOgre extends Character {
 		else{
 			
 			System.out.println("Estou Stunned nao me vou mexer");
+			board.setBoardAt(this.position, this.symbol);
 			
-			if(stunnedRounds-- == 0)
+			if(--stunnedRounds == 0){
 				isStunned = false;
+				this.symbol = 'O';
+				
+			}
 			
 			if(isArmed){
 				cleanOldPos(ogres, board, true);
@@ -335,8 +339,10 @@ public class CrazyOgre extends Character {
 
 	public void setStunnedRounds(int stunnedRounds) {
 		this.stunnedRounds = stunnedRounds;
-		if(stunnedRounds!= 0)
+		if(stunnedRounds!= 0){
 			this.isStunned = true;
+			this.symbol = '8';
+		}
 	}
 	
 	
