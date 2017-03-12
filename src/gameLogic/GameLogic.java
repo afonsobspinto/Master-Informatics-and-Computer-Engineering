@@ -210,7 +210,7 @@ public class GameLogic {
 	
 	private void randomOgres(){
 		
-		int ogresNum = ThreadLocalRandom.current().nextInt(2, 3 + 1);
+		int ogresNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 		
 		Coord pos = new Coord(-1,-1);
 		HashSet<Coord> temp = new HashSet<Coord>();

@@ -113,8 +113,6 @@ public class Hero extends Character{
 		boolean res = false;
 		
 		for(int i = 0; i < ogres.size(); i++){
-			
-			System.out.println("Ogre " + i + ": ");
 			int ogreXpos = ogres.get(i).getPosition().getX();
 			int ogreYpos = ogres.get(i).getPosition().getY();
 			
@@ -125,7 +123,6 @@ public class Hero extends Character{
 					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos-1))){
 				ogres.get(i).setStunnedRounds(2);
 				res = true;
-				System.out.println("Stunned Mode setted");
 			}
 			
 			System.out.println("\n");
