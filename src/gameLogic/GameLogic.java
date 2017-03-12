@@ -31,23 +31,26 @@ public class GameLogic {
 		this.gameOn = true;
 		this.won = false;
 
-		this.board = new Board(level.getLevel());
-		this.hero = new Hero(level.getLevel());
+		this.board = level.getBoard();
+		this.hero = level.getHero();
 		
 		this.board.setBoardAt(hero.position, hero.symbol);
 		
-		if(level.getLevel() < 1)
-			randomGuard(level.getLevel());
+
 		
-		else if(level.isHaveGuard())
-			chooseGuard(level.getLevel());
-		
-		fillCrazyOgres(level.getLevel());
-		
-		if(guard != null)
+		if(level.isHaveGuard()){
+			if(level.getLevel() < 1)
+				randomGuard(level.getLevel());
+			else
+				chooseGuard(level.getLevel());
 			this.board.setBoardAt(guard.position, guard.symbol);
+		}
 		
-		setOgresOnBoard();
+		if(level.isHaveOgre()){
+			fillCrazyOgres(level.getLevel());
+			setOgresOnBoard();
+			}
+		
 		
 		this.board.showBoard();
 		
@@ -66,14 +69,14 @@ public class GameLogic {
 	}
 	
 
-	public void updateGame(int level, Direction move){
+	public void updateGame(Direction move){
 
 		Action action = hero.move(this.board, move);
 		
 		if(guard != null)
 			guard.move(board);
-		
-		moveOgres();
+		if(crazyOgres != null)
+			moveOgres();
 		
 
 		if(action != Action.OPENDOOR){
@@ -200,12 +203,6 @@ public class GameLogic {
 			crazyOgre = new CrazyOgre(new Coord(1,3), false, this.board);
 			crazyOgre.setStunned(true);
 			this.crazyOgres.add(crazyOgre);
-			break;
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
 			break;
 		case 3:
 			crazyOgre = new CrazyOgre(new Coord(1,4), false, this.board);
