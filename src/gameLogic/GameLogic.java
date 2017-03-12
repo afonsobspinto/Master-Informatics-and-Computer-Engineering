@@ -7,6 +7,7 @@ import console.Interaction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.lang.Character;
 
 
 public class GameLogic {
@@ -143,9 +144,10 @@ public class GameLogic {
 		System.out.println("1 - Drunken");
 		System.out.println("2 - Suspicious");
 		
+		
+		
 		Interaction readGuard = new Interaction();
 		char keyPressed = readGuard.getKeyPressed();
-
 		
 		switch (keyPressed) {
 		case '0':
@@ -214,7 +216,7 @@ public class GameLogic {
 			this.crazyOgres.add(crazyOgre);
 			break;
 		case 5:
-			randomOgres();
+			chooseOgresNum();
 			break;
 
 		default:
@@ -244,9 +246,31 @@ public class GameLogic {
 		}
 	}
 	
-	private void randomOgres(){
+	private void chooseOgresNum(){
+		System.out.println("Choose Number of Ogres (1-3): ");
 		
-		int ogresNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+		
+		
+		Interaction readNumber = new Interaction();
+		int ogresNum = Character.getNumericValue(readNumber.getKeyPressed());
+		
+		if(ogresNum < 1 || ogresNum > 3){
+			System.out.println("Invalid Input. Random number of ogres selected");
+			randomOgres(0);
+		}
+		else{
+			System.out.println(ogresNum + " ogres selected");
+			randomOgres(ogresNum);
+		}
+		
+
+	}
+	
+	private void randomOgres(int ogresNum){
+		
+		
+		if(ogresNum == 0)
+			ogresNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 		
 		Coord pos = new Coord(-1,-1);
 		HashSet<Coord> temp = new HashSet<Coord>();
