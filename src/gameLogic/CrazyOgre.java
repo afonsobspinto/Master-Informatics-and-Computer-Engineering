@@ -62,7 +62,7 @@ public class CrazyOgre extends Character {
 					Coord nextPos = new Coord(x+move, y);
 
 					
-					if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*'){ // Nao pode ir para cima da arma dos outros ,,,, Ciclo para verificar se � a sua?
+					if(nextPosChar == 'X' || nextPosChar == 'I' || (nextPosChar == '*' && !isOnlyMyWeapon(ogres))){
 						valid = false;
 					}
 					
@@ -370,6 +370,15 @@ public class CrazyOgre extends Character {
 		if(board.getBoardAt(xPos, yPos) == symbol)
 			return true;
 		return false;
+	}
+	
+	private boolean isOnlyMyWeapon(ArrayList<CrazyOgre> ogres){
+		for (int i = 0; i < ogres.size(); i++){
+			if(this.weaponLocation.equals(ogres.get(i).weaponLocation))
+				return false;
+		}
+		
+		return true;
 	}
 	
 	
