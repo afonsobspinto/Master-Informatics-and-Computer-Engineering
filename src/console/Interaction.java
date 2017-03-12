@@ -8,6 +8,13 @@ import gameLogic.GameConfig;
 public class Interaction {
 	
 	private Direction direction;
+	private char keyPressed;
+	
+	public Interaction(){
+		Scanner keyboard = new Scanner(System.in);
+		char key = keyboard.next().charAt(0);
+		this.keyPressed = key;
+	}
 	
 	public  Interaction(GameConfig gameConfig){
 		final char downKey = gameConfig.getDownKey();
@@ -39,4 +46,9 @@ public class Interaction {
 		return direction;
 	}
 
+	public char getKeyPressed() {
+		return keyPressed;
+	}
+
+	
 }

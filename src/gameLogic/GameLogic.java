@@ -2,6 +2,9 @@
 package gameLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
+
+import console.Interaction;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -21,23 +24,26 @@ public class GameLogic {
 	}
 
 
-	public GameLogic(int level, GameConfig gameConfig){
+	public GameLogic(Level level, GameConfig gameConfig){
 
 		this.gameConfig = gameConfig;
 		this.gameOn = true;
 		this.won = false;
 
-		this.board = new Board(level);
-		this.hero = new Hero(level);
+		this.board = new Board(level.getLevel());
+		this.hero = new Hero(level.getLevel());
 		
 		this.board.setBoardAt(hero.position, hero.symbol);
 		
-		randomGuard(level);
-		fillCrazyOgres(level);
-
-
+		if(level.getLevel() < 1)
+			randomGuard(level.getLevel());
 		
-		if(guard.position != null)
+		else if(level.isHaveGuard())
+			chooseGuard(level.getLevel());
+		
+		fillCrazyOgres(level.getLevel());
+		
+		if(guard != null)
 			this.board.setBoardAt(guard.position, guard.symbol);
 		
 		setOgresOnBoard();
@@ -63,7 +69,7 @@ public class GameLogic {
 
 		Action action = hero.move(this.board, move);
 		
-		if(guard.position != null)
+		if(guard != null)
 			guard.move(board);
 		
 		moveOgres();
@@ -128,6 +134,36 @@ public class GameLogic {
 	
 	public void showBoard(){
 		board.showBoard();
+	}
+	
+	private void chooseGuard(int level){
+		
+		System.out.println("Choose Guard: ");
+		System.out.println("0 - Rookie");
+		System.out.println("1 - Drunken");
+		System.out.println("2 - Suspicious");
+		
+		Interaction readGuard = new Interaction();
+		char keyPressed = readGuard.getKeyPressed();
+
+		
+		switch (keyPressed) {
+		case '0':
+			this.guard = new Rookie(level);
+			System.out.println("Rookie Selected");
+			break;
+		case '1':
+			this.guard = new Drunken(level);
+			System.out.println("Drunken Selected");
+			break;
+		case '2':
+			this.guard = new Suspicious(level);
+			System.out.println("Suspicious Selected");
+			break;
+		default:
+			this.guard = new Rookie(level);
+			System.out.println("Invalid Input. Rookie Selected");
+		}
 	}
 	
 	private void randomGuard(int level){
