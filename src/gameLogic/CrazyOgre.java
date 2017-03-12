@@ -228,6 +228,7 @@ public class CrazyOgre extends Character {
 					valid = false;
 					}
 				
+				
 				else{
 					
 					valid = true;
