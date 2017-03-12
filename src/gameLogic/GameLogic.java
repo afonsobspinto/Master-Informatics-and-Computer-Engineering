@@ -222,7 +222,6 @@ public class GameLogic {
 			if(!validPos(pos) || temp.contains(pos))
 				i--;
 			else{
-				System.out.println();
 				temp.add(pos);
 				this.crazyOgres.add(new CrazyOgre(pos, true, this.board));
 			}

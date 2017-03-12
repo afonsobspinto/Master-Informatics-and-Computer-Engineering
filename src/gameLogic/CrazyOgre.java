@@ -30,7 +30,7 @@ public class CrazyOgre extends Character {
 		board.setBoardAt(this.position, this.symbol);
 
 		if(armed)
-			setValidWeaponLocation(board);
+			setValidWeaponLocation(board, true);
 	}
 	
 	public Action move(Board board, Direction direction){
@@ -89,7 +89,7 @@ public class CrazyOgre extends Character {
 							if(!weaponLocation.equals(position)){
 								cleanOldPos(ogres, board, true);
 							}
-							setValidWeaponLocation(board);
+							setValidWeaponLocation(board, false);
 							
 						}
 					}
@@ -135,7 +135,7 @@ public class CrazyOgre extends Character {
 							if(!weaponLocation.equals(position)){
 								cleanOldPos(ogres, board, true);
 							}
-							setValidWeaponLocation(board);
+							setValidWeaponLocation(board, false);
 						}
 					}
 				}
@@ -144,7 +144,6 @@ public class CrazyOgre extends Character {
 		
 		else{
 			
-			System.out.println("Estou Stunned nao me vou mexer");
 			board.setBoardAt(this.position, this.symbol);
 			
 			if(--stunnedRounds == 0){
@@ -155,7 +154,7 @@ public class CrazyOgre extends Character {
 			
 			if(isArmed){
 				cleanOldPos(ogres, board, true);
-				setValidWeaponLocation(board);
+				setValidWeaponLocation(board,false);
 			}
 			
 		}
@@ -164,7 +163,7 @@ public class CrazyOgre extends Character {
 		return Action.MOVE;
 	}
 	
-	public void setValidWeaponLocation(Board board){
+	public void setValidWeaponLocation(Board board, boolean first){
 
 		
 		
@@ -184,6 +183,8 @@ public class CrazyOgre extends Character {
 				char nextPosChar = board.getBoardAt(x+move, y);
 				Coord nextPos = new Coord(x+move, y);
 				
+				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
+					valid = false;
 				
 				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G'){
 					valid = false;
@@ -218,6 +219,10 @@ public class CrazyOgre extends Character {
 			else if(direction == Direction.RIGHT || direction == Direction.LEFT){				
 				char nextPosChar = board.getBoardAt(x, y+move);
 				Coord nextPos = new Coord(x, y+move);
+				
+				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
+					valid = false;
+				
 							
 				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G') {
 					valid = false;
@@ -343,6 +348,28 @@ public class CrazyOgre extends Character {
 			this.isStunned = true;
 			this.symbol = '8';
 		}
+	}
+	
+	private boolean isSymbolNearby(Board board, Coord position,  char symbol){
+
+		int xPos = position.getX();
+		int yPos = position.getY();
+
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
+		return false;
 	}
 	
 	
