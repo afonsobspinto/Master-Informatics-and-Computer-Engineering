@@ -77,7 +77,7 @@ public class Coord {
 	 *            the new x coordinate
 	 */
 	
-	public void setX(int x) {
+	private void setX(int x) {
 		this.x = x;
 	}
 
@@ -98,7 +98,7 @@ public class Coord {
 	 *            the new Y coordinate
 	 */
 	
-	public void setY(int y) {
+	private void setY(int y) {
 		this.y = y;
 	}
 	

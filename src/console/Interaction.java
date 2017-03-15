@@ -7,7 +7,7 @@ import gameLogic.GameConfig;
 
 public class Interaction {
 	
-	private Direction direction;
+	public Direction direction;
 	
 	public  Interaction(GameConfig gameConfig){
 		final char downKey = gameConfig.getDownKey();
