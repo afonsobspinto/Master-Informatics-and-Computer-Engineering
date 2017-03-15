@@ -53,91 +53,57 @@ public class CrazyOgre extends Character {
 
 				int move = direction.getValue();
 				
+				char nextPosChar = ' ';
+				Coord nextPos = new Coord(1,1);
+				
 				if(direction == Direction.DOWN || direction == Direction.UP){
 	
-					char nextPosChar = board.getBoardAt(x+move, y);
-					Coord nextPos = new Coord(x+move, y);
+					nextPosChar = board.getBoardAt(x+move, y);
+					nextPos = new Coord(x+move, y);
 
-					
-					if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*'){ // Nao pode ir para cima da arma dos outros ,,,, Ciclo para verificar se � a sua?
-						valid = false;
-					}
-					
-					else{
-						
-						valid = true;
-						
-						if(nextPosChar == 'k' || nextPosChar == '$'){
-							this.symbol = '$';
-							this.under_char = 'k';
-						}
-						
-						else if(nextPosChar == 'O'  || nextPosChar == ' '){
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
-						
-						this.position = nextPos;
-						
-						board.setBoardAt(this.position, this.symbol);
-						
-						
-						if(isArmed){
-							if(!weaponLocation.equals(position)){
-								cleanOldPos(ogres, board, true);
-							}
-							board.showBoard();
-							setValidWeaponLocation(board);
-							
-						}
-					}
 				}
 				
 				else if(direction == Direction.RIGHT || direction == Direction.LEFT){
 					
 					
-					char nextPosChar = board.getBoardAt(x, y+move);
-					Coord nextPos = new Coord(x, y+move);
+					nextPosChar = board.getBoardAt(x, y+move);
+					nextPos = new Coord(x, y+move);
 
+				}
+				
+				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*'){ // Nao pode ir para cima da arma dos outros ,,,, Ciclo para verificar se � a sua?
+					valid = false;
+				}
+				
+				else{
 					
-					if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*' ){
-
-						valid = false;
+					valid = true;
+					
+					if(nextPosChar == 'k' || nextPosChar == '$'){
+						this.symbol = '$';
+						this.under_char = 'k';
 					}
-						
 					
-					else{
-						
-						valid = true;
-
-						
-						if(nextPosChar == 'k' || nextPosChar == '$' ){	
-							this.symbol = '$';
-							this.under_char = 'k';
+					else if(nextPosChar == 'O'  || nextPosChar == ' '){
+						this.symbol = 'O';
+						this.under_char = ' ';
+					}
+					
+					this.position = nextPos;
+					
+					board.setBoardAt(this.position, this.symbol);
+					
+					
+					if(isArmed){
+						if(!weaponLocation.equals(position)){
+							cleanOldPos(ogres, board, true);
 						}
+						board.showBoard();
+						setValidWeaponLocation(board);
 						
-						else if(nextPosChar == 'O' || nextPosChar == ' '){
-							valid = true;
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
-						
-						this.position = nextPos;
-
-						
-						board.setBoardAt(this.position, this.symbol);
-						
-						if(isArmed){
-							
-							
-							if(!weaponLocation.equals(position)){
-								cleanOldPos(ogres, board, true);
-							}
-							board.showBoard();
-							setValidWeaponLocation(board);
-						}
 					}
 				}
+				
 			}
 		}
 		
@@ -154,7 +120,7 @@ public class CrazyOgre extends Character {
 		return Action.MOVE;
 	}
 	
-	public void setValidWeaponLocation(Board board){
+	private void setValidWeaponLocation(Board board){
 
 		
 		
@@ -168,86 +134,55 @@ public class CrazyOgre extends Character {
 			Direction direction = randomDirection();
 
 			int move = direction.getValue();
+			
+			char nextPosChar = ' ';
+			Coord nextPos = new Coord(1,1);
+
 			if(direction == Direction.DOWN || direction == Direction.UP){
 
-				
-				char nextPosChar = board.getBoardAt(x+move, y);
-				Coord nextPos = new Coord(x+move, y);
-				
-				
-				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G'){
-					valid = false;
-				}
-				
-				else{
-					valid = true;
-					
-					if(nextPosChar == 'k' || nextPosChar == '$'){
-						this.weapon = '$';
-						this.under_weapon = 'k';
-					}
-					
-					else if(nextPosChar == ' '){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					else if(nextPosChar == '*'){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					this.weaponLocation = nextPos;
+				nextPosChar = board.getBoardAt(x+move, y);
+				nextPos = new Coord(x+move, y);
 
-					board.setBoardAt(this.weaponLocation, this.weapon);
-					board.showBoard();
-					
-				}
-				
 			}
-			
-			else if(direction == Direction.RIGHT || direction == Direction.LEFT){				
-				char nextPosChar = board.getBoardAt(x, y+move);
-				Coord nextPos = new Coord(x, y+move);
-							
-				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G') {
-					valid = false;
-					}
-				
-				else{
-					
-					valid = true;
-					
-					if(nextPosChar == 'k' || nextPosChar == '$'){
-						this.weapon = '$';
-						this.under_weapon = 'k';
-						
-						
-					}
-					
-					else if(nextPosChar == ' '){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					else if(nextPosChar == '*'){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					this.weaponLocation = nextPos;
 
-					board.setBoardAt(this.weaponLocation, this.weapon);
-					board.showBoard();
-					
+			else if(direction == Direction.RIGHT || direction == Direction.LEFT){				
+				nextPosChar = board.getBoardAt(x, y+move);
+				nextPos = new Coord(x, y+move);
+			}
+
+			if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G'){
+				valid = false;
+			}
+
+			else{
+				valid = true;
+
+				if(nextPosChar == 'k' || nextPosChar == '$'){
+					this.weapon = '$';
+					this.under_weapon = 'k';
 				}
-				
+
+				else if(nextPosChar == ' '){
+					this.weapon = '*';
+					this.under_weapon = ' ';
+				}
+
+				else if(nextPosChar == '*'){
+					this.weapon = '*';
+					this.under_weapon = ' ';
+				}
+
+				this.weaponLocation = nextPos;
+
+				board.setBoardAt(this.weaponLocation, this.weapon);
+				board.showBoard();
+
 			}
 		}
-		
+
 	}
 	
-	public Direction randomDirection(){
+	private Direction randomDirection(){
 
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 		

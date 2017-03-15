@@ -19,23 +19,23 @@ public abstract class Character {
 	
 	public abstract Action move(Board board, Direction direction);
 	
-	public char getUnder_char() {
+	private char getUnder_char() {
 		return under_char;
 	}
 
-	public void setUnder_char(char under_char) {
+	private void setUnder_char(char under_char) {
 		this.under_char = under_char;
 	}
 
-	public char getSymbol() {
+	private char getSymbol() {
 		return symbol;
 	}
 
-	public Coord getOldPosition() {
+	private Coord getOldPosition() {
 		return oldPosition;
 	}
 
-	public void setSymbol(char symbol) {
+	private void setSymbol(char symbol) {
 		this.symbol = symbol;
 	}
 
@@ -43,7 +43,7 @@ public abstract class Character {
 		return position;
 	}
 
-	public void setPosition(Coord position) {
+	private void setPosition(Coord position) {
 		this.oldPosition = this.position;
 		this.position = position;
 	}

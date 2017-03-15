@@ -9,7 +9,7 @@ public enum Action {
 		this.value = value;
 	}
 
-	public int getValue(){
+	private int getValue(){
 		return value;
 	}
 
