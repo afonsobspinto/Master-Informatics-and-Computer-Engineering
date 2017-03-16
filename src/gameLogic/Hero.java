@@ -116,7 +116,6 @@ public class Hero extends Character{
 			int ogreXpos = ogres.get(i).getPosition().getX();
 			int ogreYpos = ogres.get(i).getPosition().getY();
 
-
 			if(((ogreXpos == HeroxPos+1) && (ogreYpos == HeroyPos)) ||
 					((ogreXpos == HeroxPos-1) && (ogreYpos == HeroyPos)) ||
 					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos+1)) ||
