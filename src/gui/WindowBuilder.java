@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import gameLogic.GameConfig;
 import gameLogic.GameLogic;
+import gameLogic.Level;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class WindowBuilder {
 
 	private JFrame Game;
 	private JTextField txtInsertNumber;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -86,7 +88,8 @@ public class WindowBuilder {
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GameConfig game = new GameConfig();
-				GameLogic g = new GameLogic(1, game);
+				Level l1 = new Level(1);
+				GameLogic g = new GameLogic(l1, game);
 			}
 		});
 		btnNewGame.setBounds(313, 34, 89, 23);
@@ -125,10 +128,9 @@ public class WindowBuilder {
 		txtrGameStatus.setText("You can start a new game.");
 		Game.getContentPane().add(txtrGameStatus);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setForeground(Color.BLACK);
-		panel.setBounds(24, 88, 224, 136);
-		Game.getContentPane().add(panel);
+		textField = new JTextField();
+		textField.setBounds(24, 89, 231, 138);
+		Game.getContentPane().add(textField);
+		textField.setColumns(10);
 	}
 }
