@@ -2,8 +2,12 @@
 package gameLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
+
+import console.Interaction;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.lang.Character;
 
 
 public class GameLogic {
@@ -21,24 +25,32 @@ public class GameLogic {
 	}
 
 
-	public GameLogic(int level, GameConfig gameConfig){
+	public GameLogic(Level level, GameConfig gameConfig){
 
 		this.gameConfig = gameConfig;
 		this.gameOn = true;
 		this.won = false;
 
-		this.board = new Board(level);
-		this.hero = new Hero(level);
-		randomGuard(level);
+		this.board = level.getBoard();
+		this.hero = level.getHero();
 		
-		fillCrazyOgres(level);
-
 		this.board.setBoardAt(hero.position, hero.symbol);
 		
-		if(guard.position != null)
-			this.board.setBoardAt(guard.position, guard.symbol);
+
 		
-		setOgresOnBoard();
+		if(level.isHaveGuard()){
+			if(level.getLevel() < 1)
+				randomGuard(level.getLevel());
+			else
+				chooseGuard(level.getLevel());
+			this.board.setBoardAt(guard.position, guard.symbol);
+		}
+		
+		if(level.isHaveOgre()){
+			fillCrazyOgres(level.getLevel());
+			setOgresOnBoard();
+			}
+		
 		
 		this.board.showBoard();
 		
@@ -57,21 +69,32 @@ public class GameLogic {
 	}
 	
 
-	public void updateGame(int level, Direction move){
+	public void updateGame(Direction move){
 
-		if(guard.position != null)
-			guard.move(board);
-		
-		moveOgres();
-		
 		Action action = hero.move(this.board, move);
+		
+		if(guard != null)
+			guard.move(board);
+		if(crazyOgres != null)
+			moveOgres();
+		
 
 		if(action != Action.OPENDOOR){
-			if(hero.isSymbolnearby(board, 'G')){
+			if(hero.isSymbolNearby(board, 'G')){
 				action = Action.GUARD;
 			}
-			if(hero.isSymbolnearby(board, 'O') || hero.isSymbolnearby(board, '$') || hero.isSymbolnearby(board, '*')){
-				action = Action.CRAZYOGRE;
+			if(!hero.isArmed){
+				if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
+					action = Action.CRAZYOGRE;
+				}
+			}
+			else{
+				if(hero.isSymbolNearby(board, '*')){
+					action = Action.CRAZYOGRE;
+				}
+				else if(hero.isOgreNearby(board, crazyOgres)){
+					action = Action.STUNNED;
+				}
 			}
 		}
 
@@ -96,6 +119,8 @@ public class GameLogic {
 			break;
 		case KEY:
 			break;
+		case STUNNED:
+			break;
 
 		default:
 			break;
@@ -113,6 +138,37 @@ public class GameLogic {
 	
 	public void showBoard(){
 		board.showBoard();
+	}
+	
+	private void chooseGuard(int level){
+		
+		System.out.println("Choose Guard: ");
+		System.out.println("0 - Rookie");
+		System.out.println("1 - Drunken");
+		System.out.println("2 - Suspicious");
+		
+		
+		
+		Interaction readGuard = new Interaction();
+		char keyPressed = readGuard.getKeyPressed();
+		
+		switch (keyPressed) {
+		case '0':
+			this.guard = new Rookie(level);
+			System.out.println("Rookie Selected");
+			break;
+		case '1':
+			this.guard = new Drunken(level);
+			System.out.println("Drunken Selected");
+			break;
+		case '2':
+			this.guard = new Suspicious(level);
+			System.out.println("Suspicious Selected");
+			break;
+		default:
+			this.guard = new Rookie(level);
+			System.out.println("Invalid Input. Rookie Selected");
+		}
 	}
 	
 	private void randomGuard(int level){
@@ -148,12 +204,6 @@ public class GameLogic {
 			crazyOgre.setStunned(true);
 			this.crazyOgres.add(crazyOgre);
 			break;
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
 		case 3:
 			crazyOgre = new CrazyOgre(new Coord(1,4), false, this.board);
 			this.crazyOgres.add(crazyOgre);
@@ -163,7 +213,7 @@ public class GameLogic {
 			this.crazyOgres.add(crazyOgre);
 			break;
 		case 5:
-			randomOgres();
+			chooseOgresNum();
 			break;
 
 		default:
@@ -193,9 +243,31 @@ public class GameLogic {
 		}
 	}
 	
-	private void randomOgres(){
+	private void chooseOgresNum(){
+		System.out.println("Choose Number of Ogres (1-3): ");
 		
-		int ogresNum = ThreadLocalRandom.current().nextInt(2, 3 + 1);
+		
+		
+		Interaction readNumber = new Interaction();
+		int ogresNum = Character.getNumericValue(readNumber.getKeyPressed());
+		
+		if(ogresNum < 1 || ogresNum > 3){
+			System.out.println("Invalid Input. Random number of ogres selected");
+			randomOgres(0);
+		}
+		else{
+			System.out.println(ogresNum + " ogres selected");
+			randomOgres(ogresNum);
+		}
+		
+
+	}
+	
+	private void randomOgres(int ogresNum){
+		
+		
+		if(ogresNum == 0)
+			ogresNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 		
 		Coord pos = new Coord(-1,-1);
 		HashSet<Coord> temp = new HashSet<Coord>();
@@ -207,7 +279,6 @@ public class GameLogic {
 			if(!validPos(pos) || temp.contains(pos))
 				i--;
 			else{
-				System.out.println();
 				temp.add(pos);
 				this.crazyOgres.add(new CrazyOgre(pos, true, this.board));
 			}
@@ -216,6 +287,8 @@ public class GameLogic {
 	}
 	
 	private boolean validPos(Coord position){
+		if(isSymbolNearby(position, this.hero.symbol))
+			return false;
 		if(this.board.getBoardAt(position.getX(), position.getY()) == ' ')
 			return true; 
 		return false;
@@ -231,5 +304,26 @@ public class GameLogic {
 		
 	}
 	
+	public boolean isSymbolNearby(Coord position, char symbol){
+
+		int xPos = position.getX();
+		int yPos = position.getY();
+
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
+		return false;
+	}
 	
 }

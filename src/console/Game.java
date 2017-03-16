@@ -9,18 +9,16 @@ public class Game {
 
 		GameConfig gameConfig = new GameConfig();
 
-		int levels = 5;
 		int i = 1;
 		GameLogic g;
 
-		while(i <= levels){
-			g = new GameLogic(i, gameConfig);
-			
+		while(i <= 5){
+			g = new GameLogic(new Level(i), gameConfig);
 			
 			while(g.isGameOn()){
 				Interaction interaction = new Interaction(gameConfig);
 				Direction move = interaction.getDirection();
-				g.updateGame(i,move);
+				g.updateGame(move);
 				g.showBoard();
 				
 				if(!g.isGameOn() && g.isWon()){
