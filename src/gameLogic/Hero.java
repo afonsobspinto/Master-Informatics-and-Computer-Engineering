@@ -105,17 +105,18 @@ public class Hero extends Character{
 			return true;
 		return false;
 	}
-
+	
 	public boolean isOgreNearby(Board board, ArrayList<CrazyOgre> ogres ){
 		int HeroxPos = this.position.getX();
 		int HeroyPos = this.position.getY();
-
+		
 		boolean res = false;
-
+		
 		for(int i = 0; i < ogres.size(); i++){
 			int ogreXpos = ogres.get(i).getPosition().getX();
 			int ogreYpos = ogres.get(i).getPosition().getY();
-
+			
+			
 			if(((ogreXpos == HeroxPos+1) && (ogreYpos == HeroyPos)) ||
 					((ogreXpos == HeroxPos-1) && (ogreYpos == HeroyPos)) ||
 					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos+1)) ||
@@ -123,54 +124,51 @@ public class Hero extends Character{
 				ogres.get(i).setStunnedRounds(2);
 				res = true;
 			}
-
+			
 			System.out.println("\n");
 		}
-
+		
 		return res;
 	}
 
 	public Action move(Board board, Direction direction){
-
+		
 		int x = this.position.getX();
 		int y = this.position.getY();
-
+		
 		Action res = Action.NOACTION;
 		int move = direction.getValue();
-
-		char nextPos = ' ';
-		Coord pos = new Coord (1,1);
+		char nextPos;
+		boolean vertical = false;
 
 		if(direction == Direction.DOWN || direction == Direction.UP){
-
+			vertical = true;
 			nextPos = board.getBoardAt(x+move, y);
 		}
-		else if(direction == Direction.RIGHT || direction == Direction.LEFT){
-
+		else
 			nextPos = board.getBoardAt(x, y+move);
-		}
+
 
 		if(nextPos == 'X'){
 			res = Action.NOACTION;
 		}
+		
 		else if(nextPos == 'I'){
 			if(this.gotKey){
-				if(direction == Direction.DOWN || direction == Direction.UP)
-					board.setBoardAt(x, y+move, 'S');
-				else if (direction == Direction.RIGHT || direction == Direction.LEFT)
-					board.setBoardAt(x+move, y, 'S');
+				board.setBoardAt(x,y+move, 'S');
 				res = Action.KEY;
 			}
 			else
 				res = Action.NOACTION;
-		}
 
+		}
 		else if(nextPos == 'S'){ //Open Door
 			res =  Action.OPENDOOR;
 		}
 		else if(nextPos == 'G'){ //Guard
 			res = Action.GUARD;
 		}
+
 		else if((!isArmed && (nextPos == 'O' || nextPos == '$' || nextPos == '*')) || (isArmed && nextPos == '*')){
 			res = Action.CRAZYOGRE;
 		}
@@ -178,6 +176,7 @@ public class Hero extends Character{
 		else if(isArmed && (nextPos == 'O' || nextPos == '$' )){
 			res = Action.STUNNED;
 		}
+
 		else{
 			board.setBoardAt(x,y, this.under_char);
 			if(nextPos == 'k' && this.isLever){
@@ -195,17 +194,17 @@ public class Hero extends Character{
 				this.under_char = ' ';
 			}
 
-			if(direction == Direction.DOWN || direction == Direction.UP){
+			Coord pos;
+			if(vertical)
 				pos = new Coord(x+move, y);
-			}
-			else if(direction == Direction.RIGHT || direction == Direction.LEFT){
+			else
 				pos = new Coord(x, y+move);
-			}
 
 			board.setBoardAt(pos, this.symbol);
 			this.position = pos;
 		}
+
 		return res;
 	}
-
+	
 }
