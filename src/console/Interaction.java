@@ -50,5 +50,4 @@ public class Interaction {
 		return keyPressed;
 	}
 
-	
 }
