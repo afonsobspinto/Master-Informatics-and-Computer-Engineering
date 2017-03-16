@@ -31,10 +31,6 @@ public abstract class Guard  extends Character{
 		Coord startingPos;
 		
 		switch (level) {
-		case -2:
-			break;
-		case -1:
-			break;
 		case 0:
 			startingPos = new Coord(1,3);
 			this.position = startingPos;
@@ -63,15 +59,6 @@ public abstract class Guard  extends Character{
 			
 			this.route = Arrays.copyOf(temp, temp.length);
 			
-			break;
-			
-		case 3:
-			break;
-			
-		case 4:
-			break;
-		
-		case 5:
 			break;
 			
 		default:

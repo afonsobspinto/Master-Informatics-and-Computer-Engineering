@@ -101,6 +101,12 @@ public class Coord {
 	private void setY(int y) {
 		this.y = y;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Coord [x=" + x + ", y=" + y + "]";
+	}
 	
 	
 	

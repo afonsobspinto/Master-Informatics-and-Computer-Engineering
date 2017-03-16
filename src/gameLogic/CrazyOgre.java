@@ -13,8 +13,10 @@ public class CrazyOgre extends Character {
 	char under_weapon;
 	Coord weaponLocation;
 	int objectId;
+	int stunnedRounds;
 	
-		
+	
+	
 	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;
@@ -22,12 +24,13 @@ public class CrazyOgre extends Character {
 		this.isArmed = armed;
 		this.weapon = '*';
 		this.isStunned = false;
+		this.stunnedRounds = 0;
 		this.objectId = counter++;
 		
 		board.setBoardAt(this.position, this.symbol);
 
 		if(armed)
-			setValidWeaponLocation(board);
+			setValidWeaponLocation(board, true);
 	}
 	
 	public Action move(Board board, Direction direction){
@@ -53,65 +56,105 @@ public class CrazyOgre extends Character {
 
 				int move = direction.getValue();
 				
-				char nextPosChar = ' ';
-				Coord nextPos = new Coord(1,1);
-				
 				if(direction == Direction.DOWN || direction == Direction.UP){
 	
-					nextPosChar = board.getBoardAt(x+move, y);
-					nextPos = new Coord(x+move, y);
+					char nextPosChar = board.getBoardAt(x+move, y);
+					Coord nextPos = new Coord(x+move, y);
 
+					
+					if(nextPosChar == 'X' || nextPosChar == 'I' || (nextPosChar == '*' && !isOnlyMyWeapon(ogres))){
+						valid = false;
+					}
+					
+					else{
+						
+						valid = true;
+						
+						if(nextPosChar == 'k' || nextPosChar == '$'){
+							this.symbol = '$';
+							this.under_char = 'k';
+						}
+						
+						else if(nextPosChar == 'O'  || nextPosChar == ' '){
+							this.symbol = 'O';
+							this.under_char = ' ';
+						}
+						
+						this.position = nextPos;
+						
+						board.setBoardAt(this.position, this.symbol);
+						
+						
+						if(isArmed){
+							if(!weaponLocation.equals(position)){
+								cleanOldPos(ogres, board, true);
+							}
+							setValidWeaponLocation(board, false);
+							
+						}
+					}
 				}
 				
 				else if(direction == Direction.RIGHT || direction == Direction.LEFT){
 					
 					
-					nextPosChar = board.getBoardAt(x, y+move);
-					nextPos = new Coord(x, y+move);
+					char nextPosChar = board.getBoardAt(x, y+move);
+					Coord nextPos = new Coord(x, y+move);
 
-				}
-				
-				if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*'){ // Nao pode ir para cima da arma dos outros ,,,, Ciclo para verificar se � a sua?
-					valid = false;
-				}
-				
-				else{
 					
-					valid = true;
-					
-					if(nextPosChar == 'k' || nextPosChar == '$'){
-						this.symbol = '$';
-						this.under_char = 'k';
+					if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*' ){
+
+						valid = false;
 					}
-					
-					else if(nextPosChar == 'O'  || nextPosChar == ' '){
-						this.symbol = 'O';
-						this.under_char = ' ';
-					}
-					
-					this.position = nextPos;
-					
-					board.setBoardAt(this.position, this.symbol);
-					
-					
-					if(isArmed){
-						if(!weaponLocation.equals(position)){
-							cleanOldPos(ogres, board, true);
-						}
-						board.showBoard();
-						setValidWeaponLocation(board);
 						
+					
+					else{
+						
+						valid = true;
+
+						
+						if(nextPosChar == 'k' || nextPosChar == '$' ){	
+							this.symbol = '$';
+							this.under_char = 'k';
+						}
+						
+						else if(nextPosChar == 'O' || nextPosChar == ' '){
+							valid = true;
+							this.symbol = 'O';
+							this.under_char = ' ';
+						}
+						
+						this.position = nextPos;
+
+						
+						board.setBoardAt(this.position, this.symbol);
+						
+						if(isArmed){
+							
+							
+							if(!weaponLocation.equals(position)){
+								cleanOldPos(ogres, board, true);
+							}
+							setValidWeaponLocation(board, false);
+						}
 					}
 				}
-				
 			}
 		}
 		
 		else{
 			
+			board.setBoardAt(this.position, this.symbol);
+			
+			if(--stunnedRounds == 0){
+				isStunned = false;
+				this.symbol = 'O';
+				
+			}
+			
 			if(isArmed){
 				cleanOldPos(ogres, board, true);
-				setValidWeaponLocation(board);
+				setValidWeaponLocation(board,false);
 			}
 			
 		}
@@ -120,7 +163,7 @@ public class CrazyOgre extends Character {
 		return Action.MOVE;
 	}
 	
-	private void setValidWeaponLocation(Board board){
+	public void setValidWeaponLocation(Board board, boolean first){
 
 		
 		
@@ -134,55 +177,90 @@ public class CrazyOgre extends Character {
 			Direction direction = randomDirection();
 
 			int move = direction.getValue();
-			
-			char nextPosChar = ' ';
-			Coord nextPos = new Coord(1,1);
-
 			if(direction == Direction.DOWN || direction == Direction.UP){
 
-				nextPosChar = board.getBoardAt(x+move, y);
-				nextPos = new Coord(x+move, y);
+				
+				char nextPosChar = board.getBoardAt(x+move, y);
+				Coord nextPos = new Coord(x+move, y);
+				
+				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
+					valid = false;
+				
+				else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G'){
+					valid = false;
+				}
+				
+				else{
+					valid = true;
+					
+					if(nextPosChar == 'k' || nextPosChar == '$'){
+						this.weapon = '$';
+						this.under_weapon = 'k';
+					}
+					
+					else if(nextPosChar == ' '){
+						this.weapon = '*';
+						this.under_weapon = ' ';
+					}
+					
+					else if(nextPosChar == '*'){
+						this.weapon = '*';
+						this.under_weapon = ' ';
+					}
+					
+					this.weaponLocation = nextPos;
 
+					board.setBoardAt(this.weaponLocation, this.weapon);
+					
+				}
+				
 			}
-
+			
 			else if(direction == Direction.RIGHT || direction == Direction.LEFT){				
-				nextPosChar = board.getBoardAt(x, y+move);
-				nextPos = new Coord(x, y+move);
-			}
+				char nextPosChar = board.getBoardAt(x, y+move);
+				Coord nextPos = new Coord(x, y+move);
+				
+				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
+					valid = false;
+				
+				else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G') {
+					valid = false;
+					}
+				
+				
+				else{
+					
+					valid = true;
+					
+					if(nextPosChar == 'k' || nextPosChar == '$'){
+						this.weapon = '$';
+						this.under_weapon = 'k';
+						
+						
+					}
+					
+					else if(nextPosChar == ' '){
+						this.weapon = '*';
+						this.under_weapon = ' ';
+					}
+					
+					else if(nextPosChar == '*'){
+						this.weapon = '*';
+						this.under_weapon = ' ';
+					}
+					
+					this.weaponLocation = nextPos;
 
-			if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'A' || nextPosChar == 'H' || nextPosChar == 'G'){
-				valid = false;
-			}
-
-			else{
-				valid = true;
-
-				if(nextPosChar == 'k' || nextPosChar == '$'){
-					this.weapon = '$';
-					this.under_weapon = 'k';
+					board.setBoardAt(this.weaponLocation, this.weapon);
+					
 				}
-
-				else if(nextPosChar == ' '){
-					this.weapon = '*';
-					this.under_weapon = ' ';
-				}
-
-				else if(nextPosChar == '*'){
-					this.weapon = '*';
-					this.under_weapon = ' ';
-				}
-
-				this.weaponLocation = nextPos;
-
-				board.setBoardAt(this.weaponLocation, this.weapon);
-				board.showBoard();
-
+				
 			}
 		}
-
+		
 	}
 	
-	private Direction randomDirection(){
+	public Direction randomDirection(){
 
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 		
@@ -262,6 +340,45 @@ public class CrazyOgre extends Character {
 
 	public void setStunned(boolean isStunned) {
 		this.isStunned = isStunned;
+	}
+
+	public void setStunnedRounds(int stunnedRounds) {
+		this.stunnedRounds = stunnedRounds;
+		if(stunnedRounds!= 0){
+			this.isStunned = true;
+			this.symbol = '8';
+		}
+	}
+	
+	private boolean isSymbolNearby(Board board, Coord position,  char symbol){
+
+		int xPos = position.getX();
+		int yPos = position.getY();
+
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
+		return false;
+	}
+	
+	private boolean isOnlyMyWeapon(ArrayList<CrazyOgre> ogres){
+		for (int i = 0; i < ogres.size(); i++){
+			if(this.weaponLocation.equals(ogres.get(i).weaponLocation))
+				return false;
+		}
+		
+		return true;
 	}
 	
 	

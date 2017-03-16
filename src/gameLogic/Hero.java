@@ -1,14 +1,18 @@
 package gameLogic;
 
+import java.util.ArrayList;
+
 public class Hero extends Character{
 	boolean isKey;
 	boolean isLever;
 	boolean gotKey;
+	boolean isArmed;
 
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
 		this.gotKey = false;
+		this.isArmed = false;
 		
 		Coord startingPos;
 		
@@ -65,6 +69,7 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = true;
 			this.isLever = false;
+			this.isArmed = true;
 			break;
 			
 		default:
@@ -79,7 +84,7 @@ public class Hero extends Character{
 		this.under_char = ' ';
 	}
 	
-	public boolean isSymbolnearby(Board board, char symbol){
+	public boolean isSymbolNearby(Board board, char symbol){
 
 		int xPos = this.position.getX();
 		int yPos = this.position.getY();
@@ -99,6 +104,31 @@ public class Hero extends Character{
 		if(board.getBoardAt(xPos, yPos) == symbol)
 			return true;
 		return false;
+	}
+	
+	public boolean isOgreNearby(Board board, ArrayList<CrazyOgre> ogres ){
+		int HeroxPos = this.position.getX();
+		int HeroyPos = this.position.getY();
+		
+		boolean res = false;
+		
+		for(int i = 0; i < ogres.size(); i++){
+			int ogreXpos = ogres.get(i).getPosition().getX();
+			int ogreYpos = ogres.get(i).getPosition().getY();
+			
+			
+			if(((ogreXpos == HeroxPos+1) && (ogreYpos == HeroyPos)) ||
+					((ogreXpos == HeroxPos-1) && (ogreYpos == HeroyPos)) ||
+					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos+1)) ||
+					((ogreXpos == HeroxPos) && (ogreYpos == HeroyPos-1))){
+				ogres.get(i).setStunnedRounds(2);
+				res = true;
+			}
+			
+			System.out.println("\n");
+		}
+		
+		return res;
 	}
 
 	public Action move(Board board, Direction direction){
@@ -132,9 +162,15 @@ public class Hero extends Character{
 			else if(nextPos == 'G'){ //Guard
 				res = Action.GUARD;
 			}
-			else if(nextPos == 'O' || nextPos == '$' || nextPos == '*'){
+			
+			else if((!isArmed && (nextPos == 'O' || nextPos == '$' || nextPos == '*')) || (isArmed && nextPos == '*')){
 				res = Action.CRAZYOGRE;
 			}
+			
+			else if(isArmed && (nextPos == 'O' || nextPos == '$' )){
+				res = Action.STUNNED;
+			}
+			
 			else{
 				board.setBoardAt(x,y, this.under_char);
 				if(nextPos == 'k' && this.isLever){
