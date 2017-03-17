@@ -24,7 +24,6 @@ public class WindowBuilder {
 
 	private JFrame Game;
 	private JTextField txtInsertNumber;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -95,11 +94,7 @@ public class WindowBuilder {
 		Game.getContentPane().add(btnNewGame);
 		
 		JButton btnExitGame = new JButton("Exit Game");
-		btnExitGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnExitGame.setBounds(313, 219, 107, 23);
+		btnExitGame.setBounds(313, 219, 89, 23);
 		Game.getContentPane().add(btnExitGame);
 		
 		JButton btnUp = new JButton("Up");
@@ -131,9 +126,8 @@ public class WindowBuilder {
 		txtrGameStatus.setText("You can start a new game.");
 		Game.getContentPane().add(txtrGameStatus);
 		
-		textField = new JTextField();
-		textField.setBounds(24, 89, 231, 138);
-		Game.getContentPane().add(textField);
-		textField.setColumns(10);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(24, 87, 231, 148);
+		Game.getContentPane().add(textArea);
 	}
 }
