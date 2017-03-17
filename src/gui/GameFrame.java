@@ -35,22 +35,22 @@ public class GameFrame extends JFrame {
 	public GameFrame(){
 		this.setTitle("Dungeon Keep");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		
 		gamePanel = new GamePanel();
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
 		
-		getContentPane().setLayout(new BorderLayout(0,0));
+		this.getContentPane().setLayout(new BorderLayout(0,0));
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) screenSize.getWidth();
-		int height = (int) screenSize.getHeight();
-		
-		this.setBounds((width-xResolution)/2, (height-yResolution)/2, xResolution, yResolution);
+
+		this.setBounds((screenSize.width-xResolution)/2, (screenSize.height-yResolution)/2, xResolution, yResolution);
 		setUpButtons();
-		getContentPane().add(gamePanel);
 		
-		setVisible(true);
+		this.getContentPane().add(gamePanel);
+		
+		this.setVisible(true);
 		
 	}
 	
@@ -64,6 +64,7 @@ public class GameFrame extends JFrame {
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				options.setVisible(true);
 			}
 		}
 		);
