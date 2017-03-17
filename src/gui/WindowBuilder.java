@@ -96,7 +96,11 @@ public class WindowBuilder {
 		Game.getContentPane().add(btnNewGame);
 		
 		JButton btnExitGame = new JButton("Exit Game");
-		btnExitGame.setBounds(313, 219, 89, 23);
+		btnExitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnExitGame.setBounds(313, 219, 107, 23);
 		Game.getContentPane().add(btnExitGame);
 		
 		JButton btnUp = new JButton("Up");
