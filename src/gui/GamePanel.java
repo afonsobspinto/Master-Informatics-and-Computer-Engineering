@@ -12,6 +12,6 @@ public class GamePanel {
 	}
 	
 	public void start(){
-		gameLogic = new GameLogic(new Level(5), gameConf);
+		//gameLogic = new GameLogic(new Level(5), gameConf);
 	}
 }

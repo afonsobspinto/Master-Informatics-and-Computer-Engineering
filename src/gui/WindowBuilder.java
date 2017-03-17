@@ -25,7 +25,9 @@ public class WindowBuilder {
 	private JFrame gameFrame;
 	private GamePanel gamePanel;
 	private JTextField txtInsertNumber;
-	private JTextField textField;
+	
+	private String numOgres;
+	private String guard = "Rookie";
 
 	
 
@@ -52,21 +54,21 @@ public class WindowBuilder {
 	private void setUpLabels() {
 
 		
-		JLabel lblHowManyOgres = new JLabel("How many Ogres? (1 / 2 / 3)");
+		JLabel lblHowManyOgres = new JLabel("How many Ogres?");
 		lblHowManyOgres.setBounds(24, 21, 147, 14);
 		gameFrame.getContentPane().add(lblHowManyOgres);
 		
 		txtInsertNumber = new JTextField();
-		txtInsertNumber.setBounds(181, 18, 31, 20);
+		txtInsertNumber.setBounds(168, 19, 31, 20);
 		gameFrame.getContentPane().add(txtInsertNumber);
 		txtInsertNumber.setColumns(10);
 		
 		JLabel lblGuardPersonality = new JLabel("Guard Personality?");
-		lblGuardPersonality.setBounds(24, 57, 92, 14);
+		lblGuardPersonality.setBounds(24, 57, 147, 14);
 		gameFrame.getContentPane().add(lblGuardPersonality);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(136, 54, 76, 20);
+		comboBox.setBounds(168, 54, 87, 20);
 		comboBox.setEditable(true);
 		comboBox.setMaximumRowCount(3);
 		comboBox.setToolTipText(" ");
@@ -74,6 +76,12 @@ public class WindowBuilder {
 		comboBox.addItem("Drunken");
 		comboBox.addItem("Suspicius");
 		gameFrame.getContentPane().add(comboBox);
+
+		comboBox.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    guard =(String) comboBox.getSelectedItem();
+		    }
+		});
 		
 		
 		JTextArea txtrGameStatus = new JTextArea();
@@ -84,50 +92,49 @@ public class WindowBuilder {
 		txtrGameStatus.setFont(new Font("Courier New", Font.PLAIN, 13));
 		txtrGameStatus.setText("You can start a new game.");
 		gameFrame.getContentPane().add(txtrGameStatus);
-		
-		textField = new JTextField();
-		textField.setBounds(24, 89, 231, 138);
-		gameFrame.getContentPane().add(textField);
-		textField.setColumns(10);
 	}
 	
 	private void setUpButtons() {
-		JButton btnNewGame = new JButton("New gameFrame");
+		JButton btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gamePanel.start();
 			}
 		});
-		btnNewGame.setBounds(313, 34, 89, 23);
+		btnNewGame.setBounds(292, 35, 123, 23);
 		gameFrame.getContentPane().add(btnNewGame);
 		
-		JButton btnExitGame = new JButton("Exit gameFrame");
+		JButton btnExitGame = new JButton("Exit");
 		btnExitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gameFrame.dispose();
 			}
 		});
-		btnExitGame.setBounds(313, 219, 107, 23);
+		btnExitGame.setBounds(303, 219, 102, 23);
 		gameFrame.getContentPane().add(btnExitGame);
 		
 		JButton btnUp = new JButton("Up");
-		btnUp.setBounds(325, 88, 59, 23);
+		btnUp.setBounds(313, 89, 81, 23);
 		btnUp.setEnabled(false);
 		gameFrame.getContentPane().add(btnUp);
 		
 		JButton btnRight = new JButton("Right");
-		btnRight.setBounds(361, 122, 59, 23);
+		btnRight.setBounds(361, 122, 75, 23);
 		btnRight.setEnabled(false);
 		gameFrame.getContentPane().add(btnRight);
 		
 		JButton btnDown = new JButton("Down");
-		btnDown.setBounds(325, 156, 59, 23);
+		btnDown.setBounds(313, 157, 81, 23);
 		btnDown.setEnabled(false);
 		gameFrame.getContentPane().add(btnDown);
 		
 		JButton btnLeft = new JButton("Left");
-		btnLeft.setBounds(292, 121, 59, 23);
+		btnLeft.setBounds(267, 121, 82, 23);
 		btnLeft.setEnabled(false);
 		gameFrame.getContentPane().add(btnLeft);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(249, 89, -234, 137);
+		gameFrame.getContentPane().add(textArea);
 	}
-
 }

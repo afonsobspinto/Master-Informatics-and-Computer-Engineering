@@ -19,7 +19,6 @@ public class GameLogic {
 	private GameConfig gameConfig;
 	boolean won;
 	boolean gameOn;
-	Level level;
 
 	public Hero getHero() {
 		return hero;
@@ -31,7 +30,6 @@ public class GameLogic {
 		this.gameConfig = gameConfig;
 		this.gameOn = true;
 		this.won = false;
-		this.level = level;
 
 		this.board = level.getBoard();
 		this.hero = level.getHero();
@@ -49,7 +47,7 @@ public class GameLogic {
 		}
 		
 		if(level.isHaveOgre()){
-			fillCrazyOgres(level.getLevel());
+			fillCrazyOgres(level.getLevel(), 0);
 			setOgresOnBoard();
 			}
 		
@@ -59,6 +57,29 @@ public class GameLogic {
 
 	}
 	
+	public GameLogic(Level level, GameConfig gameConfig, Guard guard, int ogresNum){
+
+		this.gameConfig = gameConfig;
+		this.gameOn = true;
+		this.won = false;
+
+		this.board = level.getBoard();
+		this.hero = level.getHero();
+		
+		this.board.setBoardAt(hero.position, hero.symbol);
+		
+		this.guard = guard;
+		this.board.setBoardAt(guard.position, guard.symbol);
+		
+		if(level.isHaveOgre()){
+			fillCrazyOgres(level.getLevel(), ogresNum);
+			setOgresOnBoard();
+			}
+		
+		this.board.showBoard();
+		
+
+	}
 
 	private void applyLever(){
 		for(int i =0; i < gameConfig.getrows(); i++){
@@ -192,7 +213,7 @@ public class GameLogic {
 		
 	}
 	
-	private void fillCrazyOgres(int level){
+	private void fillCrazyOgres(int level, int ogresNum){
 		CrazyOgre crazyOgre;
 		
 		this.crazyOgres = new ArrayList<CrazyOgre>();
@@ -215,7 +236,7 @@ public class GameLogic {
 			this.crazyOgres.add(crazyOgre);
 			break;
 		case 5:
-			chooseOgresNum();
+			randomOgres(ogresNum);
 			break;
 
 		default:
