@@ -10,6 +10,10 @@ import gameLogic.GameConfig;
 import gameLogic.GameLogic;
 import gameLogic.Level;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -24,7 +28,6 @@ public class WindowBuilder {
 
 	private JFrame Game;
 	private JTextField txtInsertNumber;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -95,7 +98,11 @@ public class WindowBuilder {
 		Game.getContentPane().add(btnNewGame);
 		
 		JButton btnExitGame = new JButton("Exit Game");
-		btnExitGame.setBounds(313, 219, 89, 23);
+		btnExitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnExitGame.setBounds(313, 219, 107, 23);
 		Game.getContentPane().add(btnExitGame);
 		
 		JButton btnUp = new JButton("Up");
@@ -127,9 +134,13 @@ public class WindowBuilder {
 		txtrGameStatus.setText("You can start a new game.");
 		Game.getContentPane().add(txtrGameStatus);
 		
-		textField = new JTextField();
-		textField.setBounds(24, 89, 231, 138);
-		Game.getContentPane().add(textField);
-		textField.setColumns(10);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(24, 87, 231, 147);
+		Game.getContentPane().add(textArea);
+		
+		PrintStream out = new PrintStream( new TextAreaOutputStream( textArea) );
+		System.setOut(out);
+		System.setErr(out);
+		System.out.println("Hello Word");
 	}
 }
