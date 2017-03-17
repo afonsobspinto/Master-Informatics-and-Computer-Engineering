@@ -3,11 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import gameLogic.Coord;
-import gameLogic.Direction;
-import gameLogic.GameConfig;
-import gameLogic.GameLogic;
-import gameLogic.Level;;
+import gameLogic.*;
 
 public class dungeonTest {
 
@@ -170,6 +166,101 @@ public class dungeonTest {
 		g.showBoard();
 		assertTrue(outcome1 || outcome2);
 	}
+
+	// Task #4
+	/*
+	@Test
+	public void testLevel1(){
+		Level l1 = new Level(1);
+		GameConfig game = new GameConfig();
+		GameLogic g = new GameLogic(l1, game);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.UP);
+		g.showBoard();
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.LEFT);
+		assertEquals(new Coord(8,7), g.getHero().getPosition());
+		g.showBoard();
+	}
+	*/
+	@Test
+	public void testRookie(){
+		Level l2 = new Level(2);
+		GameConfig game = new GameConfig();
+		Guard guard = new Rookie(2);
+		GameLogic g = new GameLogic(l2, game, guard, 1);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.UP);
+		g.showBoard();
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.DOWN);
+		g.updateGame(Direction.LEFT);
+		assertEquals(new Coord(8,7), g.getHero().getPosition());
+		g.showBoard();
+	}
 	
+	@Test
+	public void testDrunken(){
+		Level l2 = new Level(2);
+		GameConfig game = new GameConfig();
+		Guard guard = new Drunken(2);
+		GameLogic g = new GameLogic(l2, game, guard, 1);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.showBoard();
+		boolean outcome = false;
+		if ('G' == g.getBoard().getBoardAt(1,8) || 'g' == g.getBoard().getBoardAt(1,8))
+			outcome = true;
+		else if('G' == g.getBoard().getBoardAt(1,7) || 'g' == g.getBoard().getBoardAt(1,7))
+			outcome = true;
+		else if('G' == g.getBoard().getBoardAt(2,7) || 'g' == g.getBoard().getBoardAt(2,7))
+			outcome = true;
+		assertTrue(outcome);
+		g.showBoard();
+	}
+	
+	@Test
+	public void testSuspicious(){
+		Level l2 = new Level(2);
+		GameConfig game = new GameConfig();
+		Guard guard = new Suspicious(2);
+		GameLogic g = new GameLogic(l2, game, guard, 1);
+		g.updateGame(Direction.RIGHT);
+		g.updateGame(Direction.RIGHT);
+		g.showBoard();
+		boolean outcome = false;
+		if ('G' == g.getBoard().getBoardAt(1,8) || 'G' == g.getBoard().getBoardAt(2,7))
+			outcome = true;
+		assertTrue(outcome);
+		g.showBoard();
+	}
 }
+
 
