@@ -1,8 +1,9 @@
 package gui;
 
+
 import java.awt.EventQueue;
 
-public class GameGui {
+public class GameLauncher {
 
 	/**
 	 * Launch the application.
@@ -11,12 +12,11 @@ public class GameGui {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WindowBuilder window = new WindowBuilder();
+					GameFrame window = new GameFrame();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
+}
 }
