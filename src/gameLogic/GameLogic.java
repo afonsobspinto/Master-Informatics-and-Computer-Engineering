@@ -19,6 +19,7 @@ public class GameLogic {
 	private GameConfig gameConfig;
 	boolean won;
 	boolean gameOn;
+	Level level;
 
 	public Hero getHero() {
 		return hero;
@@ -30,6 +31,7 @@ public class GameLogic {
 		this.gameConfig = gameConfig;
 		this.gameOn = true;
 		this.won = false;
+		this.level = level;
 
 		this.board = level.getBoard();
 		this.hero = level.getHero();
