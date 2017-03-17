@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -26,26 +27,22 @@ public class GameFrame extends JFrame {
 	private JButton btnNewGame;
 	private JButton btnLoadGame;
 	private JButton btnExitGame;
-	private GamePanel gamePanel;
 	
+	private JDialog options;
+	private GamePanel gamePanel;
 	private GameConfig gameConfig;
 	
 	public GameFrame(){
 		this.setTitle("Dungeon Keep");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) screenSize.getWidth();
-		int height = (int) screenSize.getHeight();
-		
-		this.setBounds((width-xResolution)/2, (height-yResolution)/2, xResolution, yResolution);
-
-		this.setLayout(new BorderLayout());
-		this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("res/background.png"))));
-		//this.getContentPane().setBackground(Color.YELLOW);  //Whatever color
+		gamePanel = new GamePanel();
+		gameConfig = new GameConfig();
+		options = new OptionsDialog(this, gamePanel, gameConfig);
 		
 		setUpButtons();
-		setVisible(true);
+		getContentPane().setLayout(new BorderLayout(0,0));
+		getContentPane().add(gamePanel);
 		
 	}
 	
@@ -95,5 +92,14 @@ public class GameFrame extends JFrame {
 		btnLoadGame.setBounds((this.getWidth()-xButtonRes)/2, (this.getHeight()-yButtonRes)/2, xButtonRes, yButtonRes);
 		this.getContentPane().add(btnLoadGame);
 		
+	}
+	
+	public void start(){
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) screenSize.getWidth();
+		int height = (int) screenSize.getHeight();
+	
+		this.setBounds((width-xResolution)/2, (height-yResolution)/2, xResolution, yResolution);
+		setVisible(true);
 	}
 }
