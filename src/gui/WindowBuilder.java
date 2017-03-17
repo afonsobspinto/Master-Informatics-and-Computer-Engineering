@@ -78,7 +78,6 @@ public class WindowBuilder {
 		comboBox.setEditable(true);
 		comboBox.setMaximumRowCount(3);
 		comboBox.setToolTipText(" ");
-		comboBox.setSelectedIndex(1);
 		comboBox.addItem("Rookie");
 		comboBox.addItem("Drunken");
 		comboBox.addItem("Suspicius");
