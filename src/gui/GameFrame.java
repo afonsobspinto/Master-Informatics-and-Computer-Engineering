@@ -40,9 +40,17 @@ public class GameFrame extends JFrame {
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
 		
-		setUpButtons();
 		getContentPane().setLayout(new BorderLayout(0,0));
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) screenSize.getWidth();
+		int height = (int) screenSize.getHeight();
+		
+		this.setBounds((width-xResolution)/2, (height-yResolution)/2, xResolution, yResolution);
+		setUpButtons();
 		getContentPane().add(gamePanel);
+		
+		setVisible(true);
 		
 	}
 	
@@ -94,12 +102,4 @@ public class GameFrame extends JFrame {
 		
 	}
 	
-	public void start(){
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) screenSize.getWidth();
-		int height = (int) screenSize.getHeight();
-	
-		this.setBounds((width-xResolution)/2, (height-yResolution)/2, xResolution, yResolution);
-		setVisible(true);
-	}
 }

@@ -13,11 +13,11 @@ public class GameLauncher {
 			public void run() {
 				try {
 					GameFrame window = new GameFrame();
-					window.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
-}
+		}
+				);
+	}
 }
