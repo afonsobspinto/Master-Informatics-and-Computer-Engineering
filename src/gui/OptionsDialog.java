@@ -3,12 +3,16 @@ package gui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
 import gameLogic.GameConfig;
 
@@ -18,15 +22,19 @@ public class OptionsDialog extends JDialog {
 	private GamePanel gamePanel;
 	
 	private JComboBox <String> guardSelector;
+	private JTextField txtNumberOfOgres;
 	
 	public OptionsDialog(GameFrame gameFrame, GamePanel gamePanel, GameConfig gameConfig){
 		this.gameConfig = gameConfig;
+		this.gamePanel = gamePanel;
 		setTitle("Options");
 		
-		getContentPane().setLayout(new GridLayout(7, 1));
+		getContentPane().setLayout(new GridLayout(5, 1));
 		
 		// Setting up dialog content
 		SetUpGuardSettingsSection();
+		SetUpOgresSettingsSection();
+		SetUpButtonsSection();
 		
 		pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -35,7 +43,7 @@ public class OptionsDialog extends JDialog {
 	}
 	
 	public void SetUpGuardSettingsSection() {
-		JLabel lblGuardPersonality = new JLabel("Guard Personality");
+		JLabel lblGuardPersonality = new JLabel("Guard Settings");
 		lblGuardPersonality.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblGuardPersonality);
 		
@@ -55,4 +63,55 @@ public class OptionsDialog extends JDialog {
 		
 	}
 	
+	public void SetUpOgresSettingsSection() {
+		JLabel lblOgresNumber = new JLabel("Ogres Settings");
+		lblOgresNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(lblOgresNumber);
+		
+		JPanel numberOfOgres = new JPanel();
+		getContentPane().add(numberOfOgres);
+		
+		JLabel lblGuards = new JLabel("Number Of Ogres");
+		lblGuards.setHorizontalAlignment(SwingConstants.LEFT);
+		numberOfOgres.add(lblGuards);
+		
+		txtNumberOfOgres = new JTextField();
+		txtNumberOfOgres.setColumns(2);
+		numberOfOgres.add(txtNumberOfOgres);
+	}
+	
+	public void SetUpButtonsSection(){
+		JPanel buttons = new JPanel();
+		getContentPane().add(buttons);
+		
+		/*
+		 * Start Button
+		 */
+		
+		JButton btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int guardIndex = guardSelector.getSelectedIndex();
+				int numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); //Verificar se não está vazio (e se válido)
+
+				System.out.println("Guarda selecionado: " + guardIndex);
+				System.out.println("Numero de Ogres: " + numOfOgres);
+
+				setVisible(false);
+			}
+		});
+		
+		buttons.add(btnStart);
+		
+		/*
+		 * Cancel Button
+		 */
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
+		buttons.add(btnCancel);
+	}
 }
