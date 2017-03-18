@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import gameLogic.Direction;
 import gameLogic.GameConfig;
 import gameLogic.GameLogic;
 import gameLogic.Level;
@@ -35,11 +39,14 @@ public class GamePanel extends JPanel {
 	private Image leverActivated;
 	
 	private GameLogic game;
+	private GameConfig gameConfig;
 	
 	private int charactersWidth;
 	private int charactersHeight;
 	
 	public GamePanel() {
+		addKeyListener(new MyKeyAdapter());
+		setFocusable(true);
 		loadImages();
 	}
 	
@@ -178,6 +185,7 @@ public class GamePanel extends JPanel {
 	
 	public void startNewGame(GameConfig gameConfig) {
 		this.game = new GameLogic(new Level(1), gameConfig);
+		this.gameConfig = gameConfig;
 		showBackground = false;
 		charactersHeight = this.getHeight() / gameConfig.getrows();
 		charactersWidth = this.getWidth() / gameConfig.getcolumns();
@@ -195,8 +203,51 @@ public class GamePanel extends JPanel {
 		this.showBackground = showBackground;
 	}
 	
-	
-	
-	
-	
+	private class MyKeyAdapter extends KeyAdapter {
+		public void keyPressed(KeyEvent e) {
+			if (showBackground)
+				return;
+
+			char key = e.getKeyChar();
+			
+			final char downKey = gameConfig.getDownKey();
+			final char upKey = gameConfig.getUpKey();
+			final char rigthKey = gameConfig.getRightKey();
+			final char leftKey = gameConfig.getLeftKey();
+			
+			Direction direction;
+
+			if (key == downKey) {
+				direction = Direction.DOWN;
+				
+			} else if (key == upKey) {
+				direction = Direction.UP;
+				
+			} else if (key == rigthKey) {
+				direction = Direction.RIGHT;
+				
+			} else if (key == leftKey) {
+				direction = Direction.LEFT;
+
+			} else {
+				direction = Direction.INVALID;
+			}
+
+			game.updateGame(direction);
+
+			if(!game.isGameOn() && game.isWon()){
+				String msg = "You win!";
+				JOptionPane.showMessageDialog(getRootPane(), msg);
+			}
+			else if(!game.isGameOn() && !game.isWon()){
+				String msg = "Game Over!";
+				JOptionPane.showMessageDialog(getRootPane(), msg);
+			}
+
+			repaint();
+		}
+	}
+
+
+
 }
