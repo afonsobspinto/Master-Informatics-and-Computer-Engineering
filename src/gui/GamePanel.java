@@ -20,7 +20,20 @@ public class GamePanel extends JPanel {
 	
 	private Image background;
 	private Image wall;
+	private Image door;
+	private Image openDoor;
 	private Image hero;
+	private Image heroWithWeapon;
+	private Image heroWithKey;
+	private Image guard;
+	private Image guardSleeping;
+	private Image ogre;
+	private Image ogreSleeping;
+	private Image club;
+	private Image key;
+	private Image lever;
+	private Image leverActivated;
+	
 	private GameLogic game;
 	
 	private int charactersWidth;
@@ -38,6 +51,45 @@ public class GamePanel extends JPanel {
 		
 		temp = new ImageIcon(this.getClass().getResource("res/wall.png"));
 		wall = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/door.png"));
+		door = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/openDoor.png"));
+		openDoor = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/hero.png"));
+		hero = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/heroWithWeapon.png"));
+		heroWithWeapon = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/heroWithKey.png"));
+		heroWithKey = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/guard.png"));
+		guard = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/guardSleeping.png"));
+		guardSleeping = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/ogre.png"));
+		ogre = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/ogreSleeping.png"));
+		ogreSleeping = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/club.png"));
+		club = temp.getImage();
+
+		temp = new ImageIcon(this.getClass().getResource("res/key.png"));
+		key = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/lever1.png"));
+		lever = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/lever2.png"));
+		leverActivated = temp.getImage();
 
 	}
 	
@@ -52,6 +104,8 @@ public class GamePanel extends JPanel {
 				background.getWidth(null), background.getHeight(null), null);
 		}
 		else{
+			g.setColor(Color.LIGHT_GRAY);
+			g.fillRect(0, 0, getWidth(), getHeight());
 			drawGame(g2d);
 		}
 			
@@ -66,24 +120,61 @@ public class GamePanel extends JPanel {
 			for(int j = 0; j < game.getBoard().getColumns(); j++){
 				
 				if(game.getBoard().getBoardAt(i, j) == 'X')
-					drawWall(g2d, i,j);	
+					drawCharacter(wall, g2d, i,j);	
 				
+				else if(game.getBoard().getBoardAt(i, j) == 'I')
+					drawCharacter(door, g2d, i,j);	
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'H')
+					drawCharacter(hero, g2d, i,j);	
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'S')
+					drawCharacter(openDoor, g2d, i,j);	
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'A')
+					drawCharacter(heroWithWeapon, g2d, i,j);
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'K')
+					drawCharacter(heroWithKey, g2d, i,j);
+				
+				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
+					drawCharacter(lever, g2d, i,j); //Adicionar LeverIsActivated
+					
+				else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
+					drawCharacter(key, g2d, i,j);
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'G')
+					drawCharacter(guard, g2d, i,j);
+				
+				else if(game.getBoard().getBoardAt(i, j) == 'g')
+					drawCharacter(guardSleeping, g2d, i,j);
+				
+				
+				//Funcao à Parte Correr Vetor de Ogres
+				else if(game.getBoard().getBoardAt(i, j) == 'O' || game.getBoard().getBoardAt(i, j) == '$')
+					drawCharacter(ogre, g2d, i,j);
+				
+				else if(game.getBoard().getBoardAt(i, j) == '*' || game.getBoard().getBoardAt(i, j) == '$')
+					drawCharacter(club, g2d, i,j);
+				
+				else if(game.getBoard().getBoardAt(i, j) == '8')
+					drawCharacter(ogreSleeping, g2d, i,j);
 			}
 		}
-		
 	}
 	
-	public void drawWall(Graphics g2d, int i, int j){
+	public void drawCharacter(Image img, Graphics g2d, int i, int j){ //Adicionar Orientação - Check Last Move 
 		int distX = j * charactersWidth;
 		int distY = i * charactersHeight;
 		
 		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0;
 		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
 
-		g2d.drawImage(wall, distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
-				0, wall.getWidth(null), wall.getHeight(null), null);
+		g2d.drawImage(img, distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
+				0, img.getWidth(null), img.getHeight(null), null);
 		
 	}
+	
 	
 	public void startNewGame(GameConfig gameConfig) {
 		this.game = new GameLogic(new Level(1), gameConfig);
