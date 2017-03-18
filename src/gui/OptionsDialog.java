@@ -18,6 +18,10 @@ import gameLogic.GameConfig;
 
 public class OptionsDialog extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private GameConfig gameConfig;
 	private GamePanel gamePanel;
 	
@@ -94,9 +98,8 @@ public class OptionsDialog extends JDialog {
 				int guardIndex = guardSelector.getSelectedIndex();
 				int numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); //Verificar se não está vazio (e se válido)
 
-				System.out.println("Guarda selecionado: " + guardIndex);
-				System.out.println("Numero de Ogres: " + numOfOgres);
-
+				gamePanel.startNewGame(gameConfig, guardIndex, numOfOgres);
+				
 				setVisible(false);
 			}
 		});
@@ -110,6 +113,7 @@ public class OptionsDialog extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
+				
 			}
 		});
 		buttons.add(btnCancel);

@@ -57,7 +57,7 @@ public class GameLogic {
 
 	}
 	
-	public GameLogic(Level level, GameConfig gameConfig, Guard guard, int ogresNum){
+	public GameLogic(Level level, GameConfig gameConfig, int guardIndex, int ogresNum){
 
 		this.gameConfig = gameConfig;
 		this.gameOn = true;
@@ -68,7 +68,21 @@ public class GameLogic {
 		
 		this.board.setBoardAt(hero.position, hero.symbol);
 		
-		this.guard = guard;
+		switch (guardIndex) {
+		case 0:
+			this.guard = new Rookie(level.getLevel());
+			break;
+		case 1:
+			this.guard = new Drunken(level.getLevel());
+			break;
+		case 2:
+			this.guard = new Suspicious(level.getLevel());
+			break;
+
+		default:
+			this.guard = new Rookie(level.getLevel());
+			break;
+		}
 		this.board.setBoardAt(guard.position, guard.symbol);
 		
 		if(level.isHaveOgre()){

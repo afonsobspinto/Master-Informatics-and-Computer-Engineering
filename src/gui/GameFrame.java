@@ -18,6 +18,10 @@ import gameLogic.GameConfig;
 
 public class GameFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final int xResolution = 800;
 	private final int yResolution = 600;
 	private final int xButtonRes = 125;
