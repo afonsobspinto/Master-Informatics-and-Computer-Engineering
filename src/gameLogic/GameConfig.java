@@ -12,6 +12,8 @@ public class GameConfig {
 	private char leftKey;
 	private char rightKey;
 	private char upKey;
+	private int guardIndex;
+	private int numOfOgres;
 	
 	
 	/**
@@ -26,6 +28,8 @@ public class GameConfig {
 		leftKey = 'a';
 		rightKey = 'd';
 		upKey = 'w';
+		guardIndex = 0;
+		numOfOgres = 0;
 	}
 
 	/**
@@ -45,6 +49,8 @@ public class GameConfig {
 		leftKey = 'a';
 		rightKey = 'd';
 		upKey = 'w';
+		guardIndex = 0;
+		numOfOgres = 0;
 	}
 
 	
@@ -73,6 +79,8 @@ public class GameConfig {
 		this.leftKey = leftKey;
 		this.rightKey = rightKey;
 		this.upKey = upKey;
+		guardIndex = 0;
+		numOfOgres = 0;
 	}
 
 	/**
@@ -110,6 +118,23 @@ public class GameConfig {
 	public char getUpKey() {
 		return upKey;
 	}
+
+	public int getGuardIndex() {
+		return guardIndex;
+	}
+
+	public void setGuardIndex(int guardIndex) {
+		this.guardIndex = guardIndex;
+	}
+
+	public int getNumOfOgres() {
+		return numOfOgres;
+	}
+
+	public void setNumOfOgres(int numOfOgres) {
+		this.numOfOgres = numOfOgres;
+	}
+	
 	
 	
 

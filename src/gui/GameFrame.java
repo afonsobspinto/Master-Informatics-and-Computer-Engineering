@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,6 +46,7 @@ public class GameFrame extends JFrame {
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
 		
+		
 		this.getContentPane().setLayout(new BorderLayout(0,0));
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -58,7 +60,7 @@ public class GameFrame extends JFrame {
 		
 	}
 	
-	public void setUpButtons(){
+	private void setUpButtons(){
 		
 
 		/*

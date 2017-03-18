@@ -24,6 +24,7 @@ public class OptionsDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private GameConfig gameConfig;
 	private GamePanel gamePanel;
+	private GameFrame gameFrame;
 	
 	private JComboBox <String> guardSelector;
 	private JTextField txtNumberOfOgres;
@@ -31,7 +32,9 @@ public class OptionsDialog extends JDialog {
 	public OptionsDialog(GameFrame gameFrame, GamePanel gamePanel, GameConfig gameConfig){
 		this.gameConfig = gameConfig;
 		this.gamePanel = gamePanel;
+		this.gameFrame = gameFrame;
 		setTitle("Options");
+		this.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		
 		getContentPane().setLayout(new GridLayout(5, 1));
 		
@@ -97,8 +100,15 @@ public class OptionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int guardIndex = guardSelector.getSelectedIndex();
 				int numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); //Verificar se não está vazio (e se válido)
-
-				gamePanel.startNewGame(gameConfig, guardIndex, numOfOgres);
+				
+				gameConfig.setNumOfOgres(numOfOgres);
+				gameConfig.setGuardIndex(guardIndex);
+				
+				gameFrame.getContentPane().removeAll();
+				gameFrame.getContentPane().validate();
+				gameFrame.getContentPane().add(gamePanel);
+				
+				gamePanel.startNewGame(gameConfig);
 				
 				setVisible(false);
 			}

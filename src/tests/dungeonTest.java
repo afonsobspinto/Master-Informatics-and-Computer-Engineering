@@ -173,7 +173,9 @@ public class dungeonTest {
 	public void testLevel1(){
 		Level l1 = new Level(1);
 		GameConfig game = new GameConfig();
-		GameLogic g = new GameLogic(l1, game, 0, 1);
+		game.setGuardIndex(0);
+		game.setNumOfOgres(1);
+		GameLogic g = new GameLogic(l1, game);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.DOWN);
@@ -201,7 +203,9 @@ public class dungeonTest {
 	public void testRookie(){
 		Level l2 = new Level(2);
 		GameConfig game = new GameConfig();
-		GameLogic g = new GameLogic(l2, game, 0, 1);
+		game.setGuardIndex(0);
+		game.setNumOfOgres(1);
+		GameLogic g = new GameLogic(l2, game);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.DOWN);
@@ -227,7 +231,9 @@ public class dungeonTest {
 	public void testDrunken(){
 		Level l2 = new Level(2);
 		GameConfig game = new GameConfig();
-		GameLogic g = new GameLogic(l2, game, 1, 1);
+		game.setGuardIndex(1);
+		game.setNumOfOgres(1);
+		GameLogic g = new GameLogic(l2, game);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		boolean outcome = false;
@@ -244,7 +250,9 @@ public class dungeonTest {
 	public void testSuspicious(){
 		Level l2 = new Level(2);
 		GameConfig game = new GameConfig();
-		GameLogic g = new GameLogic(l2, game, 2, 1);
+		game.setGuardIndex(2);
+		game.setNumOfOgres(1);
+		GameLogic g = new GameLogic(l2, game);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		boolean outcome = false;
