@@ -14,16 +14,17 @@ import gameLogic.Level;
 
 public class GamePanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private boolean showBackground = true;
 	
 	private Image background;
+	private Image wall;
 	private Image hero;
 	private GameLogic game;
+	
+	private int charactersWidth;
+	private int charactersHeight;
 	
 	public GamePanel() {
 		loadImages();
@@ -34,6 +35,9 @@ public class GamePanel extends JPanel {
 		ImageIcon temp;
 		temp = new ImageIcon(this.getClass().getResource("res/background.png"));
 		background = temp.getImage();
+		
+		temp = new ImageIcon(this.getClass().getResource("res/wall.png"));
+		wall = temp.getImage();
 
 	}
 	
@@ -57,14 +61,35 @@ public class GamePanel extends JPanel {
 	
 	
 	public void drawGame(Graphics g2d){
-		g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), 0, 0, 
-				background.getWidth(null), background.getHeight(null), null);
+
+		for(int i = 0; i < game.getBoard().getRows(); i++){
+			for(int j = 0; j < game.getBoard().getColumns(); j++){
+				
+				if(game.getBoard().getBoardAt(i, j) == 'X')
+					drawWall(g2d, i,j);	
+				
+			}
+		}
+		
+	}
+	
+	public void drawWall(Graphics g2d, int i, int j){
+		int distX = j * charactersWidth;
+		int distY = i * charactersHeight;
+		
+		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0;
+		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
+
+		g2d.drawImage(wall, distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
+				0, wall.getWidth(null), wall.getHeight(null), null);
 		
 	}
 	
 	public void startNewGame(GameConfig gameConfig) {
 		this.game = new GameLogic(new Level(1), gameConfig);
 		showBackground = false;
+		charactersHeight = this.getHeight() / gameConfig.getrows();
+		charactersWidth = this.getWidth() / gameConfig.getcolumns();
 		repaint();
 		requestFocus();
 	}
