@@ -83,6 +83,7 @@ public class GameLogic {
 			this.guard = new Rookie(level.getLevel());
 			break;
 		}
+		
 		this.board.setBoardAt(guard.position, guard.symbol);
 		
 		if(level.isHaveOgre()){
