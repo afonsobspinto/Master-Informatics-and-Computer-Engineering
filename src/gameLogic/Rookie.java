@@ -23,6 +23,7 @@ public class Rookie extends Guard {
 		
 		board.setBoardAt(this.position, ' ');
 		this.position = route[index];
+		this.orientation = route_dir[index];
 		board.setBoardAt(this.position, this.symbol);
 		
 		return Action.GUARD;

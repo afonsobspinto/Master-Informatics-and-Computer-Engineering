@@ -25,8 +25,10 @@ public class GameLogic {
 		return hero;
 	}
 
-	
-	
+	public Guard getGuard() {
+		return guard;
+	}
+
 	public ArrayList<CrazyOgre> getCrazyOgres() {
 		return crazyOgres;
 	}

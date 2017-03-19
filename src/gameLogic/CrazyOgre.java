@@ -3,6 +3,8 @@ package gameLogic;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import jdk.nashorn.internal.runtime.CodeStore.DirectoryCodeStore;
+
 public class CrazyOgre extends Character {
 	
 	private static int counter = 0;
@@ -14,7 +16,8 @@ public class CrazyOgre extends Character {
 	Coord weaponLocation;
 	int objectId;
 	int stunnedRounds;
-	
+	Direction orientation;
+	Direction weaponOrientation;
 	
 	
 	public Coord getWeaponLocation() {
@@ -38,6 +41,8 @@ public class CrazyOgre extends Character {
 		this.isStunned = false;
 		this.stunnedRounds = 0;
 		this.objectId = counter++;
+		this.orientation = Direction.RIGHT;
+		this.weaponOrientation = Direction.RIGHT;
 		
 		board.setBoardAt(this.position, this.symbol);
 
@@ -68,87 +73,42 @@ public class CrazyOgre extends Character {
 
 				int move = direction.getValue();
 
+				char nextPosChar;
+				Coord nextPos;
+
 				if(direction == Direction.DOWN || direction == Direction.UP){
-
-					char nextPosChar = board.getBoardAt(x+move, y);
-					Coord nextPos = new Coord(x+move, y);
-
-
-					if(nextPosChar == 'X' || nextPosChar == 'I' || (nextPosChar == '*' && !isOnlyMyWeapon(ogres))){
-						valid = false;
-					}
-
-					else{
-
-						valid = true;
-
-						if(nextPosChar == 'k' || nextPosChar == '$'){
-							this.symbol = '$';
-							this.under_char = 'k';
-						}
-
-						else if(nextPosChar == 'O'  || nextPosChar == ' '){
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
-
-						this.position = nextPos;
-
-						board.setBoardAt(this.position, this.symbol);
-
-
-						if(isArmed){
-							if(!weaponLocation.equals(position)){
-								cleanOldPos(ogres, board, true);
-							}
-							setValidWeaponLocation(board, false);
-
-						}
-					}
+					nextPosChar = board.getBoardAt(x+move, y);
+					nextPos = new Coord(x+move, y);
+				}
+				else{
+					nextPosChar = board.getBoardAt(x, y+move);
+					nextPos = new Coord(x, y+move);
 				}
 
-				else if(direction == Direction.RIGHT || direction == Direction.LEFT){
 
+				if(nextPosChar == 'X' || nextPosChar == 'I' || (nextPosChar == '*' && !isOnlyMyWeapon(ogres))){
+					valid = false;
+				}
 
-					char nextPosChar = board.getBoardAt(x, y+move);
-					Coord nextPos = new Coord(x, y+move);
-
-
-					if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == '*' ){
-
-						valid = false;
+				else{
+					valid = true;
+					if(nextPosChar == 'k' || nextPosChar == '$'){
+						this.symbol = '$';
+						this.under_char = 'k';
 					}
-
-
-					else{
-
-						valid = true;
-
-
-						if(nextPosChar == 'k' || nextPosChar == '$' ){	
-							this.symbol = '$';
-							this.under_char = 'k';
+					else if(nextPosChar == 'O'  || nextPosChar == ' '){
+						this.symbol = 'O';
+						this.under_char = ' ';
+					}
+					this.orientation = direction;
+					this.position = nextPos;
+					board.setBoardAt(this.position, this.symbol);
+					if(isArmed){
+						if(!weaponLocation.equals(position)){
+							cleanOldPos(ogres, board, true);
 						}
+						setValidWeaponLocation(board, false);
 
-						else if(nextPosChar == 'O' || nextPosChar == ' '){
-							valid = true;
-							this.symbol = 'O';
-							this.under_char = ' ';
-						}
-
-						this.position = nextPos;
-
-
-						board.setBoardAt(this.position, this.symbol);
-
-						if(isArmed){
-
-
-							if(!weaponLocation.equals(position)){
-								cleanOldPos(ogres, board, true);
-							}
-							setValidWeaponLocation(board, false);
-						}
 					}
 				}
 			}
@@ -171,7 +131,6 @@ public class CrazyOgre extends Character {
 
 		}
 
-
 		return Action.MOVE;
 	}
 
@@ -189,87 +148,50 @@ public class CrazyOgre extends Character {
 			Direction direction = randomDirection();
 
 			int move = direction.getValue();
+			char nextPosChar;
+			Coord nextPos;
+
 			if(direction == Direction.DOWN || direction == Direction.UP){
-
-
-				char nextPosChar = board.getBoardAt(x+move, y);
-				Coord nextPos = new Coord(x+move, y);
-
-				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
-					valid = false;
-
-				else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G'){
-					valid = false;
-				}
-
-				else{
-					valid = true;
-
-					if(nextPosChar == 'k' || nextPosChar == '$'){
-						this.weapon = '$';
-						this.under_weapon = 'k';
-					}
-
-					else if(nextPosChar == ' '){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					else if(nextPosChar == '*'){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					this.weaponLocation = nextPos;
-
-					board.setBoardAt(this.weaponLocation, this.weapon);
-					
-				}
-				
+				nextPosChar = board.getBoardAt(x+move, y);
+				nextPos = new Coord(x+move, y);
 			}
-			
-			else if(direction == Direction.RIGHT || direction == Direction.LEFT){				
-				char nextPosChar = board.getBoardAt(x, y+move);
-				Coord nextPos = new Coord(x, y+move);
-				
-				if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
-					valid = false;
-				
-				else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G') {
-					valid = false;
-					}
-				
-				
-				else{
-					
-					valid = true;
-					
-					if(nextPosChar == 'k' || nextPosChar == '$'){
-						this.weapon = '$';
-						this.under_weapon = 'k';
-						
-						
-					}
-					
-					else if(nextPosChar == ' '){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					else if(nextPosChar == '*'){
-						this.weapon = '*';
-						this.under_weapon = ' ';
-					}
-					
-					this.weaponLocation = nextPos;
+			else{
+				nextPosChar = board.getBoardAt(x, y+move);
+				nextPos = new Coord(x, y+move);
+			}
 
-					board.setBoardAt(this.weaponLocation, this.weapon);
-					
+			if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H')))
+				valid = false;
+
+			else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G'){
+				valid = false;
+			}
+
+			else{
+				valid = true;
+
+				if(nextPosChar == 'k' || nextPosChar == '$'){
+					this.weapon = '$';
+					this.under_weapon = 'k';
 				}
-				
+
+				else if(nextPosChar == ' '){
+					this.weapon = '*';
+					this.under_weapon = ' ';
+				}
+
+				else if(nextPosChar == '*'){
+					this.weapon = '*';
+					this.under_weapon = ' ';
+				}
+
+				this.weaponLocation = nextPos;
+				this.weaponOrientation = direction;
+
+				board.setBoardAt(this.weaponLocation, this.weapon);
+
 			}
 		}
-		
 	}
 	
 	public Direction randomDirection(){
@@ -391,6 +313,14 @@ public class CrazyOgre extends Character {
 		}
 		
 		return true;
+	}
+
+	public Direction getOrientation() {
+		return orientation;
+	}
+
+	public Direction getWeaponOrientation() {
+		return weaponOrientation;
 	}
 	
 	

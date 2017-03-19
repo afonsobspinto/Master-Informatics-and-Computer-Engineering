@@ -5,14 +5,19 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Guard  extends Character{
 	protected Coord[] route;
+	protected Direction[] route_dir;
 	protected int index;
 	protected boolean isMovingForward;
+	protected Direction orientation;
+	protected boolean isSleeping;
 	
 	public Guard(){
 		this.symbol = 'G';
 		this.under_char = ' ';
 		this.index = 0;
 		this.isMovingForward = true;
+		this.isSleeping = false;
+		this.orientation = Direction.LEFT;
 	};
 
 	public Guard(Coord position){
@@ -21,6 +26,8 @@ public abstract class Guard  extends Character{
 		this.index = 0;
 		this.position = position;
 		this.isMovingForward = true;
+		this.isSleeping = false;
+		this.orientation = Direction.LEFT;
 	}
 	
 	public Guard(int level){
@@ -28,6 +35,7 @@ public abstract class Guard  extends Character{
 		this.under_char = ' ';
 		this.index = 0;
 		this.isMovingForward = true;
+		this.isSleeping = false;
 		Coord startingPos;
 		
 		switch (level) {
@@ -36,6 +44,9 @@ public abstract class Guard  extends Character{
 			this.position = startingPos;
 			this.route = new Coord[1];
 			this.route[0]=startingPos;
+			this.route_dir = new Direction[1];
+			this.route_dir[0]=Direction.LEFT;
+			this.orientation = route_dir[0];
 			
 			break;
 		case 1:
@@ -43,6 +54,9 @@ public abstract class Guard  extends Character{
 			this.position = startingPos;
 			this.route = new Coord[1];
 			this.route[0]=startingPos;
+			this.route_dir = new Direction[1];
+			this.route_dir[0]=Direction.LEFT;
+			this.orientation = route_dir[0];
 			
 			break;
 		case 2:
@@ -57,7 +71,17 @@ public abstract class Guard  extends Character{
 					new Coord(5,8), new Coord(4,8),new Coord(3,8), new Coord(2,8)
 					};
 			
+			Direction[] temp_dir = {
+					Direction.LEFT, Direction.LEFT, Direction.DOWN, Direction.DOWN, Direction.DOWN, 
+					Direction.DOWN, Direction.LEFT, Direction.LEFT, Direction.LEFT,Direction.LEFT,
+					Direction.LEFT, Direction.LEFT, Direction.DOWN, Direction.RIGHT, Direction.RIGHT,
+					Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, 
+					Direction.UP, Direction.UP, Direction.UP, Direction.UP
+					};
+			
 			this.route = Arrays.copyOf(temp, temp.length);
+			this.route_dir = Arrays.copyOf(temp_dir, temp_dir.length);
+			this.orientation = route_dir[0];
 			
 			break;
 			
@@ -88,4 +112,15 @@ public abstract class Guard  extends Character{
 			return false;
 		}
 	}
+
+	public Direction getOrientation() {
+		return orientation;
+	}
+
+	public boolean isSleeping() {
+		return isSleeping;
+	}
+	
+	
+	
 }

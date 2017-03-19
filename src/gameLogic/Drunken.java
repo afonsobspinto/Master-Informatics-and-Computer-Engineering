@@ -3,7 +3,7 @@ package gameLogic;
 
 public class Drunken extends Guard {
 	
-	private boolean isSleeping;
+	
 	private boolean wakeUp;
 	
 	public Drunken(){
@@ -55,6 +55,7 @@ public class Drunken extends Guard {
 			
 			board.setBoardAt(this.position, ' ');
 			this.position = route[index];
+			this.orientation = route_dir[index];
 			board.setBoardAt(this.position, this.symbol);
 			
 			this.isSleeping = randomDecision();
