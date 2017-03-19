@@ -7,12 +7,14 @@ public class Hero extends Character{
 	boolean isLever;
 	boolean gotKey;
 	boolean isArmed;
+	Direction orientation;
 
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
 		this.gotKey = false;
 		this.isArmed = false;
+		this.orientation = Direction.RIGHT;
 		
 		Coord startingPos;
 		
@@ -40,6 +42,7 @@ public class Hero extends Character{
 			this.position = startingPos;
 			this.isKey = false;
 			this.isLever = true;
+			
 			break;
 
 		case 2:
@@ -78,6 +81,14 @@ public class Hero extends Character{
 		
 	}
 	
+	public boolean isGotKey() {
+		return gotKey;
+	}
+
+	public boolean isArmed() {
+		return isArmed;
+	}
+
 	public Hero(Coord position){
 		this.symbol = 'H';
 		this.position = position;
@@ -135,6 +146,8 @@ public class Hero extends Character{
 		
 		int x = this.position.getX();
 		int y = this.position.getY();
+		
+		this.orientation = direction;
 		
 		Action res = Action.NOACTION;
 		int move = direction.getValue();
@@ -206,5 +219,10 @@ public class Hero extends Character{
 
 		return res;
 	}
+
+	public Direction getOrientation() {
+		return orientation;
+	}
+	
 	
 }

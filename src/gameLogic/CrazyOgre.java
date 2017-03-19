@@ -17,6 +17,18 @@ public class CrazyOgre extends Character {
 	
 	
 	
+	public Coord getWeaponLocation() {
+		return weaponLocation;
+	}
+
+	public boolean isArmed() {
+		return isArmed;
+	}
+
+	public boolean isStunned() {
+		return isStunned;
+	}
+
 	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;

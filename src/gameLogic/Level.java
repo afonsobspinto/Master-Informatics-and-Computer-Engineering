@@ -26,7 +26,7 @@ public class Level {
 			level_config(1, true, true, false);
 			break;
 		case 2:
-			level_config(2, true, false, false);
+			level_config(2, true, true, false);
 			break;
 		case 3:
 			level_config(3, false, false, true);

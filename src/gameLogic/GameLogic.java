@@ -26,6 +26,13 @@ public class GameLogic {
 	}
 
 	
+	
+	public ArrayList<CrazyOgre> getCrazyOgres() {
+		return crazyOgres;
+	}
+
+
+
 	public GameLogic(Level level, GameConfig gameConfig){
 
 		this.gameConfig = gameConfig;
@@ -65,9 +72,6 @@ public class GameLogic {
 			fillCrazyOgres(level.getLevel(), gameConfig.getNumOfOgres());
 			setOgresOnBoard();
 			}
-		
-		this.board.showBoard();
-		
 
 	}
 

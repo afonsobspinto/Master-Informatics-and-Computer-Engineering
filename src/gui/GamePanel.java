@@ -6,14 +6,22 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
+import gameLogic.CrazyOgre;
 import gameLogic.Direction;
 import gameLogic.GameConfig;
 import gameLogic.GameLogic;
+import gameLogic.Hero;
 import gameLogic.Level;
 
 public class GamePanel extends JPanel {
@@ -125,6 +133,10 @@ public class GamePanel extends JPanel {
 	
 	public void drawGame(Graphics g2d){
 
+		drawHero(g2d);
+		drawOgres(g2d);
+		
+		
 		for(int i = 0; i < game.getBoard().getRows(); i++){
 			for(int j = 0; j < game.getBoard().getColumns(); j++){
 				
@@ -134,17 +146,10 @@ public class GamePanel extends JPanel {
 				else if(game.getBoard().getBoardAt(i, j) == 'I')
 					drawCharacter(door, g2d, i,j);	
 				
-				else if(game.getBoard().getBoardAt(i, j) == 'H')
-					drawCharacter(hero, g2d, i,j);	
+
 				
 				else if(game.getBoard().getBoardAt(i, j) == 'S')
 					drawCharacter(openDoor, g2d, i,j);	
-				
-				else if(game.getBoard().getBoardAt(i, j) == 'A')
-					drawCharacter(heroWithWeapon, g2d, i,j);
-				
-				else if(game.getBoard().getBoardAt(i, j) == 'K')
-					drawCharacter(heroWithKey, g2d, i,j);
 				
 				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
 					drawCharacter(lever, g2d, i,j); //Adicionar LeverIsActivated
@@ -157,22 +162,11 @@ public class GamePanel extends JPanel {
 				
 				else if(game.getBoard().getBoardAt(i, j) == 'g')
 					drawCharacter(guardSleeping, g2d, i,j);
-				
-				
-				//Funcao à Parte Correr Vetor de Ogres
-				else if(game.getBoard().getBoardAt(i, j) == 'O' || game.getBoard().getBoardAt(i, j) == '$')
-					drawCharacter(ogre, g2d, i,j);
-				
-				else if(game.getBoard().getBoardAt(i, j) == '*' || game.getBoard().getBoardAt(i, j) == '$')
-					drawCharacter(club, g2d, i,j);
-				
-				else if(game.getBoard().getBoardAt(i, j) == '8')
-					drawCharacter(ogreSleeping, g2d, i,j);
 			}
 		}
 	}
 	
-	public void drawCharacter(Image img, Graphics g2d, int i, int j){ //Adicionar Orientação - Check Last Move 
+	private void drawCharacter(Image img, Graphics g2d, int i, int j){ //Adicionar Orientação - Check Last Move 
 		int distX = j * charactersWidth;
 		int distY = i * charactersHeight;
 		
@@ -184,6 +178,75 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	private void drawHero(Graphics g2d){
+		
+		Hero herocp = game.getHero();
+		Direction orientation = herocp.getOrientation();
+		
+		int distX = herocp.getPosition().getY() * charactersWidth;
+		int distY = herocp.getPosition().getX() * charactersHeight;
+		
+		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0;
+		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
+		
+		double locationX = hero.getWidth(null) / 2;
+		double locationY = hero.getHeight(null) / 2;
+		
+		double rotationRequired;
+		
+		switch (orientation) {
+		case RIGHT:
+			rotationRequired = Math.toRadians(0);
+			break;
+		case LEFT:
+			rotationRequired = Math.toRadians(180);
+			break;
+		case UP:
+			rotationRequired = Math.toRadians(270);
+			break;
+		case DOWN:
+			rotationRequired = Math.toRadians(90);
+			break;
+		default:
+			rotationRequired = 0;
+			break;
+		}
+		
+		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+	
+		
+		BufferedImage bimage;
+		
+		if(herocp.isGotKey())
+			bimage = toBufferedImage(heroWithKey);
+		else if(herocp.isArmed())
+			bimage = toBufferedImage(heroWithWeapon);
+		else
+			bimage = toBufferedImage(hero);
+		
+		
+		g2d.drawImage(op.filter(bimage, null), distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
+				0, bimage.getWidth(null), bimage.getHeight(null), null);
+	}
+	
+	private void drawOgres(Graphics g2d){
+		
+		ArrayList<CrazyOgre> temp = game.getCrazyOgres();
+
+		if(temp!=null){
+
+			for(int i = 0; i < temp.size(); i++){
+				CrazyOgre temp_ogre = temp.get(i);
+				if(temp_ogre.isStunned())
+					drawCharacter(ogreSleeping, g2d, temp_ogre.getPosition().getX(),temp_ogre.getPosition().getY());
+				else
+					drawCharacter(ogre, g2d, temp_ogre.getPosition().getX(),temp_ogre.getPosition().getY());
+				if(temp_ogre.isArmed())
+					drawCharacter(club, g2d, temp_ogre.getWeaponLocation().getX(),temp_ogre.getWeaponLocation().getY());
+			}
+		}
+	}
 	
 	public void startNewGame(GameConfig gameConfig, int level) {
 		this.game = new GameLogic(new Level(level), gameConfig);
@@ -258,5 +321,29 @@ public class GamePanel extends JPanel {
 	}
 
 
+	/**
+	 * Converts a given Image into a BufferedImage
+	 *
+	 * @param img The Image to be converted
+	 * @return The converted BufferedImage
+	 */
+	private static BufferedImage toBufferedImage(Image img)
+	{
+	    if (img instanceof BufferedImage)
+	    {
+	        return (BufferedImage) img;
+	    }
+
+	    // Create a buffered image with transparency
+	    BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+	    // Draw the image on to the buffered image
+	    Graphics2D bGr = bimage.createGraphics();
+	    bGr.drawImage(img, 0, 0, null);
+	    bGr.dispose();
+
+	    // Return the buffered image
+	    return bimage;
+	}
 
 }
