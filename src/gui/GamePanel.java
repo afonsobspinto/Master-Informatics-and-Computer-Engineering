@@ -318,13 +318,17 @@ public class GamePanel extends JPanel {
 
 			game.updateGame(direction);
 
+			repaint();
+			
 			if(!game.isGameOn() && game.isWon()){
 				String msg = "You win!";
 				JOptionPane.showMessageDialog(getRootPane(), msg);
 				if(++level<=numberOfLevels)
 					startNewGame(gameConfig, level);
-				else
+				else{
 					showBackground = true;
+					repaint();
+				}
 					
 			}
 			else if(!game.isGameOn() && !game.isWon()){
@@ -333,7 +337,7 @@ public class GamePanel extends JPanel {
 				startNewGame(gameConfig, level);
 			}
 
-			repaint();
+			
 		}
 	}
 
