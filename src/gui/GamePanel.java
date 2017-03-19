@@ -178,6 +178,7 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	
 	private void drawHero(Graphics g2d){
 		
 		Hero herocp = game.getHero();
