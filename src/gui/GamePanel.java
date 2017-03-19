@@ -140,7 +140,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	
-	private void drawCharacter(Image img, Graphics g2d, int i, int j){ //Adicionar Orientação - Check Last Move 
+	private void drawCharacter(Image img, Graphics g2d, int i, int j){ 
 		int distX = j * charactersWidth;
 		int distY = i * charactersHeight;
 		
@@ -254,9 +254,10 @@ public class GamePanel extends JPanel {
 				else if(game.getBoard().getBoardAt(i, j) == 'S')
 					drawCharacter(openDoor, g2d, i,j);	
 				
+				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever() && game.isTriggeredLever())
+					drawCharacter(leverActivated, g2d, i,j); 
 				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
-					drawCharacter(lever, g2d, i,j); //Adicionar LeverIsActivated
-					
+					drawCharacter(lever, g2d, i,j); 
 				else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
 					drawCharacter(key, g2d, i,j);
 			}

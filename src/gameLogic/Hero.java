@@ -7,6 +7,7 @@ public class Hero extends Character{
 	boolean isLever;
 	boolean gotKey;
 	boolean isArmed;
+	boolean triggeredLever;
 	Direction orientation;
 
 	public Hero(int level){

@@ -17,8 +17,9 @@ public class GameLogic {
 	private Guard guard;
 	private ArrayList<CrazyOgre> crazyOgres;
 	private GameConfig gameConfig;
-	boolean won;
-	boolean gameOn;
+	private boolean won;
+	private boolean gameOn;
+	private boolean triggeredLever;
 	Level level;
 	
 	public Hero getHero() {
@@ -41,6 +42,7 @@ public class GameLogic {
 		this.gameOn = true;
 		this.won = false;
 		this.level = level;
+		this.triggeredLever = false;
 
 		this.board = level.getBoard();
 		this.hero = level.getHero();
@@ -134,6 +136,8 @@ public class GameLogic {
 			break;
 		case LEVER:
 			applyLever();
+			triggeredLever = true;
+			break;
 		case MOVE:
 			break;
 		case KEY:
@@ -348,6 +352,10 @@ public class GameLogic {
 
 	public Level getLevel() {
 		return level;
+	}
+
+	public boolean isTriggeredLever() {
+		return triggeredLever;
 	}
 	
 	
