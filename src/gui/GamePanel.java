@@ -19,6 +19,7 @@ import gameLogic.Level;
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private static final int numberOfLevels = 5;
 
 	private boolean showBackground = true;
 	
@@ -43,6 +44,7 @@ public class GamePanel extends JPanel {
 	
 	private int charactersWidth;
 	private int charactersHeight;
+	private int level;
 	
 	public GamePanel() {
 		addKeyListener(new MyKeyAdapter());
@@ -183,9 +185,10 @@ public class GamePanel extends JPanel {
 	}
 	
 	
-	public void startNewGame(GameConfig gameConfig) {
-		this.game = new GameLogic(new Level(1), gameConfig);
+	public void startNewGame(GameConfig gameConfig, int level) {
+		this.game = new GameLogic(new Level(level), gameConfig);
 		this.gameConfig = gameConfig;
+		this.level = level;
 		showBackground = false;
 		charactersHeight = this.getHeight() / gameConfig.getrows();
 		charactersWidth = this.getWidth() / gameConfig.getcolumns();
@@ -238,10 +241,16 @@ public class GamePanel extends JPanel {
 			if(!game.isGameOn() && game.isWon()){
 				String msg = "You win!";
 				JOptionPane.showMessageDialog(getRootPane(), msg);
+				if(++level<=numberOfLevels)
+					startNewGame(gameConfig, level);
+				else
+					showBackground = true;
+					
 			}
 			else if(!game.isGameOn() && !game.isWon()){
 				String msg = "Game Over!";
 				JOptionPane.showMessageDialog(getRootPane(), msg);
+				startNewGame(gameConfig, level);
 			}
 
 			repaint();

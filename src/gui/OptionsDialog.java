@@ -108,7 +108,7 @@ public class OptionsDialog extends JDialog {
 				gameFrame.getContentPane().validate();
 				gameFrame.getContentPane().add(gamePanel);
 				
-				gamePanel.startNewGame(gameConfig);
+				gamePanel.startNewGame(gameConfig, 1);
 				
 				setVisible(false);
 			}
