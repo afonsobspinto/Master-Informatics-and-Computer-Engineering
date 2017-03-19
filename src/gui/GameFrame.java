@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import gameLogic.GameConfig;
 
@@ -86,6 +87,11 @@ public class GameFrame extends JFrame {
 		btnExitGame = new JButton("Exit Game");
 		btnExitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String msg = "Are you sure you want to Exit?";
+				int res = JOptionPane.showConfirmDialog(rootPane, msg);
+
+				if (res == JOptionPane.YES_OPTION)
+					System.exit(0);
 			}
 		}
 		);

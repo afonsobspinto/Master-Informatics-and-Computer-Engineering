@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -47,6 +49,9 @@ public class GamePanel extends JPanel {
 	private Image key;
 	private Image lever;
 	private Image leverActivated;
+	
+	private ImageIcon developer1;
+	private ImageIcon developer2;
 	
 	private GameLogic game;
 	private GameConfig gameConfig;
@@ -109,6 +114,7 @@ public class GamePanel extends JPanel {
 		temp = new ImageIcon(this.getClass().getResource("res/lever2.png"));
 		leverActivated = temp.getImage();
 
+
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -126,11 +132,8 @@ public class GamePanel extends JPanel {
 			g.fillRect(0, 0, getWidth(), getHeight());
 			drawGame(g2d);
 		}
-			
-			
 		
 	}
-	
 	
 	public void drawGame(Graphics g2d){
 		drawHero(g2d);
