@@ -121,13 +121,9 @@ public class dungeonTest {
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.DOWN);
-		g.showBoard();
 		g.updateGame(Direction.DOWN);
-		g.showBoard();
 		g.updateGame(Direction.LEFT);
-		g.showBoard();
 		g.updateGame(Direction.LEFT);
-		g.showBoard();
 		assertTrue(g.isWon());
 	}
 	
@@ -139,7 +135,6 @@ public class dungeonTest {
 		Level l_2 = new Level(-2);
 		GameConfig game = new GameConfig(6,5);
 		GameLogic g = new GameLogic(l_2, game);
-		g.showBoard();
 		g.updateGame(Direction.DOWN);
 		boolean outcome1 = false, outcome2 = false; 
 		while (!outcome1 && !outcome2){
@@ -163,7 +158,6 @@ public class dungeonTest {
 			}
 			
 		}
-		g.showBoard();
 		assertTrue(outcome1 || outcome2);
 	}
 
@@ -186,7 +180,6 @@ public class dungeonTest {
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.UP);
-		g.showBoard();
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
@@ -196,7 +189,6 @@ public class dungeonTest {
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.LEFT);
 		assertEquals(new Coord(8,7), g.getHero().getPosition());
-		g.showBoard();
 	}
 	
 	@Test
@@ -268,7 +260,6 @@ public class dungeonTest {
 		GameLogic g = new GameLogic(l3, game);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
-		g.showBoard();
 		assertEquals(new Coord(7,3), g.getHero().getPosition());
 	}
 	
@@ -281,7 +272,6 @@ public class dungeonTest {
 		boolean outcome = false;
 		if ('O' == g.getBoard().getBoardAt(1,3) || 'O' == g.getBoard().getBoardAt(1,5) || 'O' == g.getBoard().getBoardAt(2,4))
 			outcome = true;
-		g.showBoard();
 		assertTrue(outcome);
 	}
 	
@@ -294,7 +284,6 @@ public class dungeonTest {
 		boolean outcome = false;
 		if ('O' == g.getBoard().getBoardAt(1,3) || 'O' == g.getBoard().getBoardAt(1,5) || 'O' == g.getBoard().getBoardAt(2,4))
 			outcome = true;
-		g.showBoard();
 		assertTrue(outcome);
 	}
 	
@@ -308,7 +297,6 @@ public class dungeonTest {
 		if ('*' == g.getBoard().getBoardAt(1,2) || '*' == g.getBoard().getBoardAt(1,4) || '*' == g.getBoard().getBoardAt(1,6)
 				||'*' == g.getBoard().getBoardAt(2,3) || '*' == g.getBoard().getBoardAt(2,5) || '*' == g.getBoard().getBoardAt(3,4))
 			outcome = true;
-		g.showBoard();
 		assertTrue(outcome);
 	}
 }
