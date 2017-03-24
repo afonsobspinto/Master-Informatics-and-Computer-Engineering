@@ -78,11 +78,11 @@ public class OptionsDialog extends JDialog {
 		JPanel numberOfOgres = new JPanel();
 		getContentPane().add(numberOfOgres);
 		
-		JLabel lblGuards = new JLabel("Number Of Ogres");
-		lblGuards.setHorizontalAlignment(SwingConstants.LEFT);
-		numberOfOgres.add(lblGuards);
+		JLabel lblOgres = new JLabel("Number Of Ogres");
+		lblOgres.setHorizontalAlignment(SwingConstants.LEFT);
+		numberOfOgres.add(lblOgres);
 		
-		txtNumberOfOgres = new JTextField();
+		txtNumberOfOgres = new JTextField("3");
 		txtNumberOfOgres.setColumns(2);
 		numberOfOgres.add(txtNumberOfOgres);
 	}
