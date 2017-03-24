@@ -326,6 +326,7 @@ public class CrazyOgre extends Character {
 		return weaponOrientation;
 	}
 
+
 	private void setOgreOrientation() {
 		switch(weaponOrientation){
 		case UP:
