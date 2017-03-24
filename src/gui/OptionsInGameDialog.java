@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 public class OptionsInGameDialog extends JDialog {
 
+
+	private static final long serialVersionUID = 1L;
 	private JDialog saveOptions;
 	
 	public OptionsInGameDialog(JDialog saveOptions){
@@ -55,7 +57,9 @@ public class OptionsInGameDialog extends JDialog {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
 				saveOptions.setVisible(true);
+				setVisible(true);
 				
 			}
 		});
