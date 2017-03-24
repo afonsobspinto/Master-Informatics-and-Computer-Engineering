@@ -317,7 +317,7 @@ public class GamePanel extends JPanel {
 			} else if (key == leftKey) {
 				direction = Direction.LEFT;
 
-			} else if (key == KeyEvent.VK_SPACE){
+			} else if (key == KeyEvent.VK_ESCAPE){
 				gameFrame.setOptionInGameVisible(true);
 				return;
 				
@@ -328,10 +328,7 @@ public class GamePanel extends JPanel {
 			game.updateGame(direction);
 
 			repaint();
-			
-			if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-				gameFrame.setOptionInGameVisible(true);
-			
+
 			
 			if(!game.isGameOn() && game.isWon()){
 				String msg = "You win!";
