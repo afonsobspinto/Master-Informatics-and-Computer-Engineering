@@ -64,6 +64,7 @@ public class SaveDialog extends JDialog {
 		getContentPane().add(saveName);
 		saveName.setColumns(10);
 
+	
 		JButton saveButton = new JButton("Save");
 		getContentPane().add(saveButton);
 		
