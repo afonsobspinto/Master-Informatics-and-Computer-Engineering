@@ -17,10 +17,10 @@ public class Interaction {
 	}
 	
 	public  Interaction(GameConfig gameConfig){
-		final char downKey = gameConfig.getDownKey();
-		final char upKey = gameConfig.getUpKey();
-		final char rigthKey = gameConfig.getRightKey();
-		final char leftKey = gameConfig.getLeftKey();
+		final int downKey = gameConfig.getDownKey();
+		final int upKey = gameConfig.getUpKey();
+		final int rigthKey = gameConfig.getRightKey();
+		final int leftKey = gameConfig.getLeftKey();
 		
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
