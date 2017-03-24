@@ -93,6 +93,8 @@ public class SaveDialog extends JDialog {
 				os.close();
 			
 			} catch (IOException e) {
+				String msg = "You should write a valid Name";
+				JOptionPane.showMessageDialog(rootPane, msg);
 				e.printStackTrace();
 			}
 

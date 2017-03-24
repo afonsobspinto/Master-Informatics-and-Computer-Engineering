@@ -294,17 +294,15 @@ public class GamePanel extends JPanel {
 		public void keyPressed(KeyEvent e) {
 			if (showBackground)
 				return;
-
-
 			
-			char key = e.getKeyChar();
+			int key = e.getKeyCode();
 			
 			
-			final char downKey = gameConfig.getDownKey();
-			final char upKey = gameConfig.getUpKey();
-			final char rigthKey = gameConfig.getRightKey();
-			final char leftKey = gameConfig.getLeftKey();
-			
+			final int downKey = gameConfig.getDownKey();
+			final int upKey = gameConfig.getUpKey();
+			final int rigthKey = gameConfig.getRightKey();
+			final int leftKey = gameConfig.getLeftKey();
+		
 			Direction direction;
 
 			if (key == downKey) {
@@ -319,6 +317,10 @@ public class GamePanel extends JPanel {
 			} else if (key == leftKey) {
 				direction = Direction.LEFT;
 
+			} else if (key == KeyEvent.VK_SPACE){
+				gameFrame.setOptionInGameVisible(true);
+				return;
+				
 			} else {
 				direction = Direction.INVALID;
 			}

@@ -1,5 +1,6 @@
 package gameLogic;
 
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 /**
@@ -10,10 +11,10 @@ import java.io.Serializable;
 public class GameConfig implements Serializable {
 	private int columns;
 	private int rows;
-	private char downKey;
-	private char leftKey;
-	private char rightKey;
-	private char upKey;
+	private int downKey;
+	private int leftKey;
+	private int rightKey;
+	private int upKey;
 	private int guardIndex;
 	private int numOfOgres;
 	
@@ -26,10 +27,10 @@ public class GameConfig implements Serializable {
 	public GameConfig(){
 		columns = 10;
 		rows = 10;
-		downKey = 's';
-		leftKey = 'a';
-		rightKey = 'd';
-		upKey = 'w';
+		downKey = KeyEvent.VK_DOWN;
+		leftKey = KeyEvent.VK_LEFT;
+		rightKey = KeyEvent.VK_RIGHT;
+		upKey = KeyEvent.VK_UP;
 		guardIndex = 0;
 		numOfOgres = 0;
 	}
@@ -47,10 +48,10 @@ public class GameConfig implements Serializable {
 	public GameConfig( int rows ,int columns) {
 		this.columns = columns;
 		this.rows = rows;
-		downKey = 's';
-		leftKey = 'a';
-		rightKey = 'd';
-		upKey = 'w';
+		downKey = KeyEvent.VK_DOWN;
+		leftKey = KeyEvent.VK_LEFT;
+		rightKey = KeyEvent.VK_RIGHT;
+		upKey = KeyEvent.VK_UP;
 		guardIndex = 0;
 		numOfOgres = 0;
 	}
@@ -105,19 +106,19 @@ public class GameConfig implements Serializable {
 		return rows;
 	}
 	
-	public char getDownKey() {
+	public int getDownKey() {
 		return downKey;
 	}
 
-	public char getLeftKey() {
+	public int getLeftKey() {
 		return leftKey;
 	}
 
-	public char getRightKey() {
+	public int getRightKey() {
 		return rightKey;
 	}
 
-	public char getUpKey() {
+	public int getUpKey() {
 		return upKey;
 	}
 
