@@ -35,6 +35,9 @@ public class GameFrame extends JFrame {
 	private JButton btnExitGame;
 	
 	private JDialog options;
+	private JDialog optionInGame;
+	private JDialog saveOptions;
+	
 	private GamePanel gamePanel;
 	private GameConfig gameConfig;
 	
@@ -43,9 +46,11 @@ public class GameFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(this);
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
+		saveOptions = new SaveDialog();
+		optionInGame = new OptionsInGameDialog(saveOptions);
 		
 		
 		this.getContentPane().setLayout(new BorderLayout(0,0));
@@ -114,5 +119,19 @@ public class GameFrame extends JFrame {
 		this.getContentPane().add(btnLoadGame);
 		
 	}
+
+	public void setOptionInGameVisible(boolean arg) {
+		optionInGame.setVisible(arg);
+	}
+
+	public int getxButtonRes() {
+		return xButtonRes;
+	}
+
+	public int getyButtonRes() {
+		return yButtonRes;
+	}
+	
+	
 	
 }

@@ -357,6 +357,10 @@ public class GameLogic {
 	public boolean isTriggeredLever() {
 		return triggeredLever;
 	}
+
+	public void setGameOn(boolean gameOn) {
+		this.gameOn = gameOn;
+	}
 	
 	
 	

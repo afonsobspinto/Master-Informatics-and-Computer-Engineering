@@ -53,6 +53,7 @@ public class GamePanel extends JPanel {
 	private ImageIcon developer1;
 	private ImageIcon developer2;
 	
+	private GameFrame gameFrame;
 	private GameLogic game;
 	private GameConfig gameConfig;
 	
@@ -60,9 +61,11 @@ public class GamePanel extends JPanel {
 	private int charactersHeight;
 	private int level;
 	
-	public GamePanel() {
+	public GamePanel(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
 		addKeyListener(new MyKeyAdapter());
 		setFocusable(true);
+		setDoubleBuffered(true);
 		loadImages();
 	}
 	
@@ -294,7 +297,10 @@ public class GamePanel extends JPanel {
 			if (showBackground)
 				return;
 
+
+			
 			char key = e.getKeyChar();
+			
 			
 			final char downKey = gameConfig.getDownKey();
 			final char upKey = gameConfig.getUpKey();
@@ -322,6 +328,10 @@ public class GamePanel extends JPanel {
 			game.updateGame(direction);
 
 			repaint();
+			
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+				gameFrame.setOptionInGameVisible(true);
+			
 			
 			if(!game.isGameOn() && game.isWon()){
 				String msg = "You win!";
