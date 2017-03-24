@@ -37,6 +37,7 @@ public class GameFrame extends JFrame {
 	private JDialog options;
 	private JDialog optionInGame;
 	private JDialog saveOptions;
+	private JDialog loadOptions;
 	
 	private GamePanel gamePanel;
 	private GameConfig gameConfig;
