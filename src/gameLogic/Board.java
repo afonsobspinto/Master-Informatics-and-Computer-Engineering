@@ -1,8 +1,9 @@
 package gameLogic;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Board {
+public class Board implements Serializable {
 	
 	private char[][] board;
 	private int rows;

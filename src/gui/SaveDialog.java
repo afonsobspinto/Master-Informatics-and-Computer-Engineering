@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
@@ -69,7 +70,6 @@ public class SaveDialog extends JDialog {
 		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Botão ativado");
 				saveGame();
 				setVisible(false);
 			}
@@ -77,8 +77,6 @@ public class SaveDialog extends JDialog {
 	}
 	
 	private void saveGame(){
-
-		System.out.println("Salvamento ativado");
 
 		if (saveName.getText().length() != 0) { 
 
@@ -88,18 +86,17 @@ public class SaveDialog extends JDialog {
 				savesFolder.mkdir();
 			}
 
-			Writer writer = null;
-
+			ObjectOutputStream os = null;
 			try {
-				writer = new BufferedWriter(new OutputStreamWriter(
-						new FileOutputStream(savedGamesFolder+saveName.getText()), "utf-8"));
-				writer.write(gamePanel.getGame().toString());
-			} catch (IOException ex) {
-				//report
-			} finally {
-				try {writer.close();} catch (Exception ex) {/*ignore*/}
+				os = new ObjectOutputStream(new FileOutputStream(savedGamesFolder + saveName.getText()));
+				os.writeObject(gamePanel.getGame());
+				os.close();
+			
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
+			setVisible(false);
 		}
 	}
 }

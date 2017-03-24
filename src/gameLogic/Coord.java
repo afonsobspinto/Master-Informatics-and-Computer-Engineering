@@ -1,5 +1,6 @@
 package gameLogic;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -7,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * 
  */
 
-public class Coord {
+public class Coord implements Serializable {
 
 	
 	private int x;
@@ -102,12 +103,5 @@ public class Coord {
 		this.y = y;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Coord [x=" + x + ", y=" + y + "]";
-	}
-	
-	
 	
 }

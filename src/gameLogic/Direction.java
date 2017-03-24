@@ -1,5 +1,6 @@
 package gameLogic;
 
+import java.io.Serializable;
 
 public enum Direction{
 	DOWN(1), UP(-1), RIGHT(1), LEFT(-1), INVALID(0);

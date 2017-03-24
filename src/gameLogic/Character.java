@@ -1,6 +1,8 @@
 package gameLogic;
 
-public abstract class Character {
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
 	protected char symbol;
 	protected Coord position;
 	protected Coord oldPosition;

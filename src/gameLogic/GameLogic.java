@@ -7,10 +7,11 @@ import console.Interaction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.io.Serializable;
 import java.lang.Character;
 
 
-public class GameLogic {
+public class GameLogic implements Serializable {
 
 	private Board board;
 	private Hero hero;
@@ -362,14 +363,6 @@ public class GameLogic {
 		this.gameOn = gameOn;
 	}
 
-	@Override
-	public String toString() {
-		return "GameLogic [board=" + board + ", hero=" + hero + ", guard=" + guard + ", crazyOgres=" + crazyOgres
-				+ ", gameConfig=" + gameConfig + ", won=" + won + ", gameOn=" + gameOn + ", triggeredLever="
-				+ triggeredLever + ", level=" + level + "]";
-	}
-	
-	
 	
 	
 }

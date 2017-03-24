@@ -1,6 +1,8 @@
 package gameLogic;
 
-public class Level {
+import java.io.Serializable;
+
+public class Level implements Serializable {
 
 	private int level;
 	
@@ -82,12 +84,5 @@ public class Level {
 		return hero;
 	}
 
-	@Override
-	public String toString() {
-		return "Level [level=" + level + ", haveGuard=" + haveGuard + ", haveLever=" + haveLever + ", haveOgre="
-				+ haveOgre + ", board=" + board + ", hero=" + hero + "]";
-	}
-	
-	
 	
 }

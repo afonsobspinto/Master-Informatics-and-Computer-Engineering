@@ -64,10 +64,4 @@ public class Drunken extends Guard {
 		return Action.GUARD;
 	}
 
-	@Override
-	public String toString() {
-		return "Drunken [wakeUp=" + wakeUp + "]";
-	}
-
-	
 }

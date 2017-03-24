@@ -1,11 +1,13 @@
 package gameLogic;
 
+import java.io.Serializable;
+
 /**
  * The game settings.
  * 
  */
 
-public class GameConfig {
+public class GameConfig implements Serializable {
 	private int columns;
 	private int rows;
 	private char downKey;
@@ -135,15 +137,6 @@ public class GameConfig {
 		this.numOfOgres = numOfOgres;
 	}
 
-	@Override
-	public String toString() {
-		return "GameConfig [columns=" + columns + ", rows=" + rows + ", downKey=" + downKey + ", leftKey=" + leftKey
-				+ ", rightKey=" + rightKey + ", upKey=" + upKey + ", guardIndex=" + guardIndex + ", numOfOgres="
-				+ numOfOgres + "]";
-	}
-	
-	
-	
 	
 
 }
