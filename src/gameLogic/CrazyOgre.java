@@ -41,13 +41,15 @@ public class CrazyOgre extends Character {
 		this.isStunned = false;
 		this.stunnedRounds = 0;
 		this.objectId = counter++;
-		this.orientation = Direction.RIGHT;
-		this.weaponOrientation = Direction.RIGHT;
 		
 		board.setBoardAt(this.position, this.symbol);
 
-		if(armed)
+		if(armed){
 			setValidWeaponLocation(board, true);
+			setOgreOrientation();
+		}
+		else
+			this.orientation = Direction.RIGHT;
 	}
 	
 	public Action move(Board board, Direction direction){
@@ -100,7 +102,6 @@ public class CrazyOgre extends Character {
 						this.symbol = 'O';
 						this.under_char = ' ';
 					}
-					this.orientation = direction;
 					this.position = nextPos;
 					board.setBoardAt(this.position, this.symbol);
 					if(isArmed){
@@ -108,8 +109,10 @@ public class CrazyOgre extends Character {
 							cleanOldPos(ogres, board, true);
 						}
 						setValidWeaponLocation(board, false);
-
+						setOgreOrientation();
 					}
+					else
+						this.orientation = direction;
 				}
 			}
 		}
@@ -323,7 +326,25 @@ public class CrazyOgre extends Character {
 		return weaponOrientation;
 	}
 
-	
+	private void setOgreOrientation() {
+		switch(weaponOrientation){
+		case UP:
+			this.orientation = Direction.LEFT;
+			break;
+		case DOWN:
+			this.orientation = Direction.RIGHT;
+			break;
+		case LEFT:
+			this.orientation = Direction.DOWN;
+			break;
+		case RIGHT:
+			this.orientation = Direction.UP;
+			break;
+		default:
+			this.orientation = Direction.RIGHT;
+			break;
+		}
+	}
 	
 	
 }
