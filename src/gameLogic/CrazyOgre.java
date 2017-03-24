@@ -322,6 +322,15 @@ public class CrazyOgre extends Character {
 	public Direction getWeaponOrientation() {
 		return weaponOrientation;
 	}
+
+	@Override
+	public String toString() {
+		return "CrazyOgre [isStunned=" + isStunned + ", isArmed=" + isArmed + ", weapon=" + weapon + ", under_weapon="
+				+ under_weapon + ", weaponLocation=" + weaponLocation + ", objectId=" + objectId + ", stunnedRounds="
+				+ stunnedRounds + ", orientation=" + orientation + ", weaponOrientation=" + weaponOrientation + "]";
+	}
+	
+	
 	
 	
 }

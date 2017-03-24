@@ -134,6 +134,14 @@ public class GameConfig {
 	public void setNumOfOgres(int numOfOgres) {
 		this.numOfOgres = numOfOgres;
 	}
+
+	@Override
+	public String toString() {
+		return "GameConfig [columns=" + columns + ", rows=" + rows + ", downKey=" + downKey + ", leftKey=" + leftKey
+				+ ", rightKey=" + rightKey + ", upKey=" + upKey + ", guardIndex=" + guardIndex + ", numOfOgres="
+				+ numOfOgres + "]";
+	}
+	
 	
 	
 	

@@ -49,7 +49,7 @@ public class GameFrame extends JFrame {
 		gamePanel = new GamePanel(this);
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
-		saveOptions = new SaveDialog();
+		saveOptions = new SaveDialog(gamePanel);
 		optionInGame = new OptionsInGameDialog(saveOptions);
 		
 		

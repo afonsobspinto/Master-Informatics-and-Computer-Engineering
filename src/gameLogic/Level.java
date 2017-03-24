@@ -81,6 +81,12 @@ public class Level {
 	public Hero getHero() {
 		return hero;
 	}
+
+	@Override
+	public String toString() {
+		return "Level [level=" + level + ", haveGuard=" + haveGuard + ", haveLever=" + haveLever + ", haveOgre="
+				+ haveOgre + ", board=" + board + ", hero=" + hero + "]";
+	}
 	
 	
 	

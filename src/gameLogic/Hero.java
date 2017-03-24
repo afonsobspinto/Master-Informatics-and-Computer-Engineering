@@ -224,6 +224,12 @@ public class Hero extends Character{
 	public Direction getOrientation() {
 		return orientation;
 	}
+
+	@Override
+	public String toString() {
+		return "Hero [isKey=" + isKey + ", isLever=" + isLever + ", gotKey=" + gotKey + ", isArmed=" + isArmed
+				+ ", triggeredLever=" + triggeredLever + ", orientation=" + orientation + "]";
+	}
 	
 	
 }

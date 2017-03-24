@@ -8,10 +8,18 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
+import javax.sound.midi.Patch;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -21,11 +29,15 @@ public class SaveDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField saveName;
+	private GamePanel gamePanel;
 
-	/**Saved games folder path */
-	private static final String savedGamesFolder = System.getProperty("user.home") + "/Dungeon Keep/Saved Games/";
+	/** Saved games folder path */
+	private static final String savedGamesFolder = System
+			.getProperty("user.dir") + "/Saved Games/";
 	
-	public SaveDialog() {
+	public SaveDialog(GamePanel gamePanel) {
+		
+		this.gamePanel = gamePanel;
 		
 		setTitle("Save Game");
 		this.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
@@ -57,11 +69,37 @@ public class SaveDialog extends JDialog {
 		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(saveName.getText());
+				System.out.println("Botão ativado");
+				saveGame();
 				setVisible(false);
 			}
 		});
 	}
 	
-	
+	private void saveGame(){
+
+		System.out.println("Salvamento ativado");
+
+		if (saveName.getText().length() != 0) { 
+
+
+			File savesFolder = new File(savedGamesFolder);
+			if (!savesFolder.exists()){
+				savesFolder.mkdir();
+			}
+
+			Writer writer = null;
+
+			try {
+				writer = new BufferedWriter(new OutputStreamWriter(
+						new FileOutputStream(savedGamesFolder+saveName.getText()), "utf-8"));
+				writer.write(gamePanel.getGame().toString());
+			} catch (IOException ex) {
+				//report
+			} finally {
+				try {writer.close();} catch (Exception ex) {/*ignore*/}
+			}
+
+		}
+	}
 }

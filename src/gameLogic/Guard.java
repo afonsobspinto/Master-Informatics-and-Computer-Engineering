@@ -120,6 +120,13 @@ public abstract class Guard  extends Character{
 	public boolean isSleeping() {
 		return isSleeping;
 	}
+
+	@Override
+	public String toString() {
+		return "Guard [route=" + Arrays.toString(route) + ", route_dir=" + Arrays.toString(route_dir) + ", index="
+				+ index + ", isMovingForward=" + isMovingForward + ", orientation=" + orientation + ", isSleeping="
+				+ isSleeping + "]";
+	}
 	
 	
 	

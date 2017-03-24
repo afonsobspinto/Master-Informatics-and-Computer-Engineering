@@ -361,6 +361,13 @@ public class GameLogic {
 	public void setGameOn(boolean gameOn) {
 		this.gameOn = gameOn;
 	}
+
+	@Override
+	public String toString() {
+		return "GameLogic [board=" + board + ", hero=" + hero + ", guard=" + guard + ", crazyOgres=" + crazyOgres
+				+ ", gameConfig=" + gameConfig + ", won=" + won + ", gameOn=" + gameOn + ", triggeredLever="
+				+ triggeredLever + ", level=" + level + "]";
+	}
 	
 	
 	

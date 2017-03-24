@@ -1,5 +1,6 @@
 package gameLogic;
 
+import java.util.Arrays;
 
 public class Board {
 	
@@ -180,4 +181,11 @@ public class Board {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Board [board=" + Arrays.toString(board) + ", rows=" + rows + ", columns=" + columns + "]";
+	}
+
+	
+	
 }

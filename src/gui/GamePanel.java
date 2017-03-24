@@ -17,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import gameLogic.CrazyOgre;
 import gameLogic.Direction;
 import gameLogic.GameConfig;
@@ -380,4 +378,10 @@ public class GamePanel extends JPanel {
 	    return bimage;
 	}
 
+
+	public GameLogic getGame() {
+		return game;
+	}
+
+	
 }

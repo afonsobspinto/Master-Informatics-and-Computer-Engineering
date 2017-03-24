@@ -1,7 +1,5 @@
 package gameLogic;
 
-import java.util.Arrays;
-
 public class Rookie extends Guard {
 	public Rookie(){
 		super();
@@ -29,5 +27,5 @@ public class Rookie extends Guard {
 		return Action.GUARD;
 	}
 	
-
+	
 }
