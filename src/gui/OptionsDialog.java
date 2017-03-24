@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -82,7 +83,7 @@ public class OptionsDialog extends JDialog {
 		lblGuards.setHorizontalAlignment(SwingConstants.LEFT);
 		numberOfOgres.add(lblGuards);
 		
-		txtNumberOfOgres = new JTextField();
+		txtNumberOfOgres = new JTextField("3");
 		txtNumberOfOgres.setColumns(2);
 		numberOfOgres.add(txtNumberOfOgres);
 	}
@@ -99,7 +100,26 @@ public class OptionsDialog extends JDialog {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int guardIndex = guardSelector.getSelectedIndex();
-				int numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); //Verificar se não está vazio (e se válido)
+				int numOfOgres = 1;
+				boolean valid = true;
+
+				try{
+					numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); 
+					if(numOfOgres <= 0 || numOfOgres >= 6){
+						throw new NumberOfOgresOutofBound();
+					}
+				}catch(NumberFormatException e){
+					String msg = "You should set a valid Number of Ogres";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+				}catch(NumberOfOgresOutofBound e){
+					String msg = "Number of Ogres should be greater than 0 and lesser than 6";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+
+				}
+				
+
 				
 				gameConfig.setNumOfOgres(numOfOgres);
 				gameConfig.setGuardIndex(guardIndex);
