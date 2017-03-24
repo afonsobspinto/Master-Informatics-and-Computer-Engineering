@@ -18,7 +18,6 @@ public class GameConfig implements Serializable {
 	private int guardIndex;
 	private int numOfOgres;
 	
-	
 	/**
 	 * Constructs and initializes the default game settings and default keyboard configuration;
 	 * 
