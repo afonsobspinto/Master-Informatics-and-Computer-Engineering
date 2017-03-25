@@ -48,9 +48,6 @@ public class GamePanel extends JPanel {
 	private Image lever;
 	private Image leverActivated;
 	
-	private ImageIcon developer1;
-	private ImageIcon developer2;
-	
 	private GameFrame gameFrame;
 	private GameLogic game;
 	private GameConfig gameConfig;

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import gameLogic.GameConfig;
+import javax.swing.JPanel;
 
 public class GameFrame extends JFrame {
 
