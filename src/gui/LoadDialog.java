@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
@@ -28,7 +29,7 @@ public LoadDialog(GamePanel gamePanel) {
 		
 		setTitle("Load Game");
 		this.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
-		getContentPane().setLayout(new GridLayout(1,1));
+		getContentPane().setLayout(new GridLayout(3,1));
 		
 		// Setting up dialog content
 		SetUpLoadSection();
@@ -43,7 +44,7 @@ public LoadDialog(GamePanel gamePanel) {
 
 private void SetUpLoadSection() {
 	JLabel lblName = new JLabel("Load Game:");
-	getContentPane().add(lblName);
+	getContentPane().add(lblName, BorderLayout.NORTH);
 
 	gamesList = new List();
 	getContentPane().add(gamesList);

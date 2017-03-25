@@ -52,6 +52,7 @@ public class GameFrame extends JFrame {
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
 		saveOptions = new SaveDialog(gamePanel);
+		loadOptions = new LoadDialog(gamePanel);
 		optionInGame = new OptionsInGameDialog(saveOptions);
 		
 		
@@ -111,8 +112,9 @@ public class GameFrame extends JFrame {
 		 */
 		
 		btnLoadGame = new JButton("Load Game");
-		btnExitGame.addActionListener(new ActionListener() {
+		btnLoadGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				loadOptions.setVisible(true);
 			}
 		}
 		);
