@@ -211,34 +211,15 @@ public class GameLogic implements Serializable {
 	 */
 	
 	private void fillCrazyOgres(int level, int ogresNum){
-		CrazyOgre crazyOgre;
-		
-		this.crazyOgres = new ArrayList<CrazyOgre>();
+		CrazyOgre crazyOgre; this.crazyOgres = new ArrayList<CrazyOgre>();
 		switch (level) {
-		case -2:
-			crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board);
-			this.crazyOgres.add(crazyOgre);
-			break;
-		case -1:
-			crazyOgre = new CrazyOgre(new Coord(1,3), false, this.board);
-			crazyOgre.setStunned(true);
-			this.crazyOgres.add(crazyOgre);
-			break;
-		case 3:
-			crazyOgre = new CrazyOgre(new Coord(1,4), false, this.board);
-			this.crazyOgres.add(crazyOgre);
-			break;
-		case 4:
-			crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board);
-			this.crazyOgres.add(crazyOgre);
-			break;
-		case 5:
-			randomOgres(ogresNum);
-			break;
+		case -2: crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board); this.crazyOgres.add(crazyOgre); break;
+		case -1: crazyOgre = new CrazyOgre(new Coord(1,3), false, this.board); crazyOgre.setStunned(true); this.crazyOgres.add(crazyOgre); break;
+		case 3: crazyOgre = new CrazyOgre(new Coord(1,4), false, this.board); this.crazyOgres.add(crazyOgre); break;
+		case 4: crazyOgre = new CrazyOgre(new Coord(1,4), true, this.board); this.crazyOgres.add(crazyOgre); break;
+		case 5: randomOgres(ogresNum); break;
 
-		default:
-			break;
-		}
+		default: break; }
 	}
 	
 	/**

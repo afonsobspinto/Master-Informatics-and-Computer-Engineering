@@ -161,54 +161,32 @@ public class GamePanel extends JPanel {
 	
 	
 	private void drawCharacter(Image img, Graphics g2d, int i, int j){ 
-		int distX = j * charactersWidth;
-		int distY = i * charactersHeight;
+		int distX = j * charactersWidth; int distY = i * charactersHeight;
 		
-		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0;
-		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
+		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0; distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
 
-		g2d.drawImage(img, distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
-				0, img.getWidth(null), img.getHeight(null), null);
-		
-	}
+		g2d.drawImage(img, distX, distY, distX + charactersWidth, distY + charactersHeight, 0, 0, img.getWidth(null), img.getHeight(null), null);}
 	
 	private void drawCharacter(Image img, Graphics g2d, int i, int j, Direction orientation){
 		
-		int distX = j * charactersWidth;
-		int distY = i * charactersHeight;
-		
-		distX += (getWidth() - charactersWidth  * game.getBoard().getColumns()) / 2.0;
-		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
+		int distX = j * charactersWidth; int distY = i * charactersHeight;
+		distX += (getWidth() - charactersWidth  * game.getBoard().getColumns()) / 2.0; distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
 		
 		double rotationRequired;
 
 		switch (orientation) {
-		case RIGHT:
-			rotationRequired = Math.toRadians(0);
-			break;
-		case LEFT:
-			rotationRequired = Math.toRadians(180);
-			break;
-		case UP:
-			rotationRequired = Math.toRadians(270);
-			break;
-		case DOWN:
-			rotationRequired = Math.toRadians(90);
-			break;
-		default:
-			rotationRequired = 0;
-			break;
-		}
+		case RIGHT: rotationRequired = Math.toRadians(0); break;
+		case LEFT: rotationRequired = Math.toRadians(180); break;
+		case UP: rotationRequired = Math.toRadians(270); break;
+		case DOWN: rotationRequired = Math.toRadians(90); break;
+		default: rotationRequired = 0; break; }
 
-		BufferedImage bimage = toBufferedImage(img);
-		double locationX = img.getWidth(null)/2;
-		double locationY = img.getHeight(null)/2;
+		BufferedImage bimage = toBufferedImage(img); double locationX = img.getWidth(null)/2; double locationY = img.getHeight(null)/2;
 		
 		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
 		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-		g2d.drawImage(op.filter(bimage, null), distX, distY, distX + charactersWidth, distY + charactersHeight, 0,
-				0, bimage.getWidth(null), bimage.getHeight(null), null);
+		g2d.drawImage(op.filter(bimage, null), distX, distY, distX + charactersWidth, distY + charactersHeight, 0, 0, bimage.getWidth(null), bimage.getHeight(null), null);
 		
 	}
 	

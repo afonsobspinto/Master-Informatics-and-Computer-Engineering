@@ -41,45 +41,24 @@ public class OptionsInGameDialog extends JDialog {
 		 * Resume Button
 		 */
 		
-		JButton btnResume = new JButton("Resume");
-		btnResume.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-			}
-		});
-		
-		getContentPane().add(btnResume);
-		
+		JButton btnResume = new JButton("Resume"); btnResume.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { setVisible(false); } }); getContentPane().add(btnResume);
 		
 		/*
 		 * Save Button
 		 */
-		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				saveOptions.setVisible(true);
-				setVisible(true);
-				
-			}
-		});
+		JButton btnSave = new JButton("Save"); btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { setVisible(false); saveOptions.setVisible(true); setVisible(true); } });
 		getContentPane().add(btnSave);
-		
 		
 		/*
 		 * Quit Button
 		 */
 		JButton btnQuit = new JButton("Quit");
-		btnQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String msg = "Are you sure you want to Exit?";
-				int res = JOptionPane.showConfirmDialog(rootPane, msg);
+		btnQuit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent arg0) {
+				String msg = "Are you sure you want to Exit?"; int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
-				if (res == JOptionPane.YES_OPTION)
-					System.exit(0);
-				
-			}
-		});
+				if (res == JOptionPane.YES_OPTION) System.exit(0); } });
 		getContentPane().add(btnQuit);
 	}
 	
