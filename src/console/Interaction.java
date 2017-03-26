@@ -10,12 +10,14 @@ public class Interaction {
 	private Direction direction;
 	private char keyPressed;
 	
+	@SuppressWarnings("resource")
 	public Interaction(){
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
 		this.keyPressed = key;
 	}
 	
+	@SuppressWarnings("resource")
 	public  Interaction(GameConfig gameConfig){
 		final int downKey = gameConfig.getDownKey();
 		final int upKey = gameConfig.getUpKey();

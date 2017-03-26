@@ -1,23 +1,22 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dialog.ModalityType;
 
-import javax.swing.ImageIcon;
+
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 
 import gameLogic.GameConfig;
-import javax.swing.JPanel;
+
 
 public class GameFrame extends JFrame {
 
