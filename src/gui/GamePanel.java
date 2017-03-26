@@ -339,14 +339,7 @@ public class GamePanel extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) { if(customMap){
 				if(SwingUtilities.isLeftMouseButton(e)){ if(mouseCell.getY() == game.getBoard().getColumns())
-						switch (mouseCell.getX()) { 
-						case 0: if(!haveHero) charSelected = 'H'; break;
-						case 1: if(!haveGuard && ogres==0) charSelected = 'G'; break; 
-						case 2: if(!haveGuard) charSelected = 'O'; break;
-						case 3: charSelected = 'X'; break;
-						case 4: if(levers==0) charSelected = 'k'; break;
-						case 5: if(keys == 0) charSelected = 'L'; break; 
-						case 6: charSelected = 'I'; break; default: break; 	} }
+						readMouseCell(); }
 				else if(SwingUtilities.isRightMouseButton(e)){ if(mouseCell.equals(game.getHero().getPosition())){
 						game.getHero().setPosition(new Coord(-2, -2)); haveHero = false; }
 					else if(mouseCell.equals(game.getGuard().getPosition())){ game.getGuard().setPosition(new Coord(-2, -2));
@@ -392,6 +385,17 @@ public class GamePanel extends JPanel {
 			updateMouse(e);
 		}
 
+	}
+	
+	private void readMouseCell(){
+		switch (mouseCell.getX()) { 
+		case 0: if(!haveHero) charSelected = 'H'; break;
+		case 1: if(!haveGuard && ogres==0) charSelected = 'G'; break; 
+		case 2: if(!haveGuard) charSelected = 'O'; break;
+		case 3: charSelected = 'X'; break;
+		case 4: if(levers==0) charSelected = 'k'; break;
+		case 5: if(keys == 0) charSelected = 'L'; break; 
+		case 6: charSelected = 'I'; break; default: break; 	}
 	}
 
 	/**
