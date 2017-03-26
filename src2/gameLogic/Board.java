@@ -326,6 +326,7 @@ public class Board implements Serializable {
 		return right || left || up || down;
 	}
 	
+	
 	/**
 	 * 
 	 * Checks if the square in the path is valid.
