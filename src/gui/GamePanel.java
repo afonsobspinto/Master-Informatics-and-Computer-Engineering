@@ -295,12 +295,17 @@ public class GamePanel extends JPanel {
 		
  		int lastColumn = game.getBoard().getColumns();
 		
-		drawCharacter(hero, g2d,0,lastColumn,  Direction.LEFT);
-		drawCharacter(guard, g2d,1,lastColumn,  Direction.LEFT);
-		drawCharacter(ogre, g2d,2,lastColumn,  Direction.LEFT);
+ 		if(!haveHero)
+ 			drawCharacter(hero, g2d,0,lastColumn,  Direction.LEFT);
+ 		if(!haveGuard && ogres==0)
+ 			drawCharacter(guard, g2d,1,lastColumn,  Direction.LEFT);
+ 		if(!haveGuard)
+ 			drawCharacter(ogre, g2d,2,lastColumn,  Direction.LEFT);
 		drawCharacter(wall, g2d,3,lastColumn,  Direction.LEFT);
-		drawCharacter(key, g2d,4,lastColumn,  Direction.LEFT);
-		drawCharacter(lever, g2d,5,lastColumn,  Direction.RIGHT);
+		if(levers==0)
+			drawCharacter(key, g2d,4,lastColumn,  Direction.LEFT);
+		if(keys==0)
+			drawCharacter(lever, g2d,5,lastColumn,  Direction.RIGHT);
 		drawCharacter(door, g2d,6,lastColumn,  Direction.LEFT);
 	}
 	
@@ -408,22 +413,27 @@ public class GamePanel extends JPanel {
 					if(mouseCell.getY() == game.getBoard().getColumns())
 						switch (mouseCell.getX()) {
 						case 0:
-							charSelected = 'H';
+							if(!haveHero)
+								charSelected = 'H';
 							break;
 						case 1:
-							charSelected = 'G';
+							if(!haveGuard && ogres==0)
+								charSelected = 'G';
 							break;
 						case 2:
-							charSelected = 'O';
+							if(!haveGuard)
+								charSelected = 'O';
 							break;
 						case 3:
 							charSelected = 'X';
 							break;
 						case 4:
-							charSelected = 'k';
+							if(levers==0)
+								charSelected = 'k';
 							break;
 						case 5:
-							charSelected = 'L';
+							if(keys == 0)
+								charSelected = 'L';
 							break;
 						case 6:
 							charSelected = 'I';
@@ -441,8 +451,7 @@ public class GamePanel extends JPanel {
 		public void mouseReleased(MouseEvent e) {
 			
 			super.mouseReleased(e);
-			
-			System.out.println(game.getHero().getPosition());
+		
 			
 			if(customMap){
 				if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY()) == ' '){
@@ -455,19 +464,23 @@ public class GamePanel extends JPanel {
 					case 'O':
 						game.getCrazyOgres().add(new CrazyOgre(new Coord(mouseCell.getX(), mouseCell.getY()),false, game.getBoard()));
 						game.getLevel().setHaveOgre(true);
+						ogres++;
 						break;
 					case 'G':
 						game.setGuard(new Rookie(new Coord(mouseCell.getX(), mouseCell.getY())));
 						game.getLevel().setHaveGuard(true);
+						haveGuard = true;
 						break;
-					case 'K':
+					case 'k':
 						game.getLevel().setHaveKey(true);
 						game.getHero().setKey(true);
+						keys++;
 						break;
 					case 'L':
 						game.getLevel().setHaveLever(true);
 						game.getHero().setLever(true);
 						game.getBoard().setBoardAt(new Coord(mouseCell.getX(), mouseCell.getY()), 'k');
+						levers++;
 						break;
 
 					default:
