@@ -244,21 +244,7 @@ public class GamePanel extends JPanel {
 		for(int i = 0; i < game.getBoard().getRows(); i++){
 			for(int j = 0; j < game.getBoard().getColumns(); j++){
 				
-				if(game.getBoard().getBoardAt(i, j) == 'X')
-					drawCharacter(wall, g2d, i,j);	
-				
-				else if(game.getBoard().getBoardAt(i, j) == 'I')
-					drawCharacter(door, g2d, i,j);	
-								
-				else if(game.getBoard().getBoardAt(i, j) == 'S')
-					drawCharacter(openDoor, g2d, i,j);	
-				
-				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever() && game.isTriggeredLever())
-					drawCharacter(leverActivated, g2d, i,j); 
-				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
-					drawCharacter(lever, g2d, i,j); 
-				else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
-					drawCharacter(key, g2d, i,j);
+				readBoard(i,j,g2d);
 			}
 		}
 		
@@ -503,6 +489,24 @@ public class GamePanel extends JPanel {
 
 		}
 		
+	}
+	
+	private void readBoard(int i, int j, Graphics g2d){
+		if(game.getBoard().getBoardAt(i, j) == 'X')
+			drawCharacter(wall, g2d, i,j);	
+		
+		else if(game.getBoard().getBoardAt(i, j) == 'I')
+			drawCharacter(door, g2d, i,j);	
+						
+		else if(game.getBoard().getBoardAt(i, j) == 'S')
+			drawCharacter(openDoor, g2d, i,j);	
+		
+		else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever() && game.isTriggeredLever())
+			drawCharacter(leverActivated, g2d, i,j); 
+		else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
+			drawCharacter(lever, g2d, i,j); 
+		else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
+			drawCharacter(key, g2d, i,j);
 	}
 	
 }
