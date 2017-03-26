@@ -355,7 +355,6 @@ public class GamePanel extends JPanel {
 				if(!wasCustom) startNewGame(gameConfig, level); else{ showCredits = true; repaint(); JOptionPane.getRootFrame().dispose();
 				} } }
 	}
-
 	
 	private class MyMouseAdapter extends MouseAdapter{
 
