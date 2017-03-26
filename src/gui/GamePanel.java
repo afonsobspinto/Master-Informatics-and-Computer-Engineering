@@ -554,70 +554,15 @@ public class GamePanel extends JPanel {
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			super.mouseDragged(e);
-			
-			if(game!=null){
-				int columns = game.getBoard().getColumns();
-				int rows = game.getBoard().getRows();
-
-				if (!customMap)
-					return;
-
-
-				int x = (int) ((e.getX() - (getWidth() - charactersWidth * columns) / 2.0) / charactersWidth);
-
-				int y = (int) ((e.getY() - (getHeight() - charactersHeight * rows) / 2.0) / charactersHeight);
-
-				if(x<0)
-					x=0;
-				else if(x >columns)
-					x = columns;
-
-				if(y<0)
-					y=0;
-				else if (y > rows)
-					y = rows;
-
-				mouseCell.setX(y);
-				mouseCell.setY(x);
-
-			}
+			updateMouse(e);
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			super.mouseMoved(e);
-			
-			if(game!=null){
-				int columns = game.getBoard().getColumns();
-				int rows = game.getBoard().getRows();
-
-				if (!customMap)
-					return;
-
-
-				int x = (int) ((e.getX() - (getWidth() - charactersWidth * columns) / 2.0) / charactersWidth);
-
-				int y = (int) ((e.getY() - (getHeight() - charactersHeight * rows) / 2.0) / charactersHeight);
-
-				if(x<0)
-					x=0;
-				else if(x >columns)
-					x = columns;
-
-				if(y<0)
-					y=0;
-				else if (y > rows)
-					y = rows;
-
-				mouseCell.setX(y);
-				mouseCell.setY(x);
-
-			}
+			updateMouse(e);
 		}
 
-		
-		
-		
 	}
 
 	/**
@@ -692,6 +637,38 @@ public class GamePanel extends JPanel {
 		this.add(btnStart);
 		btnStart.setBounds((this.getWidth()-gameFrame.getxButtonRes()), (int)((this.getHeight()-gameFrame.getyButtonRes())), gameFrame.getxButtonRes(), gameFrame.getyButtonRes());
 
+		
+	}
+	
+	private void updateMouse(MouseEvent e){
+		
+
+		if(game!=null){
+			int columns = game.getBoard().getColumns();
+			int rows = game.getBoard().getRows();
+
+			if (!customMap)
+				return;
+
+
+			int x = (int) ((e.getX() - (getWidth() - charactersWidth * columns) / 2.0) / charactersWidth);
+
+			int y = (int) ((e.getY() - (getHeight() - charactersHeight * rows) / 2.0) / charactersHeight);
+
+			if(x<0)
+				x=0;
+			else if(x >columns)
+				x = columns;
+
+			if(y<0)
+				y=0;
+			else if (y > rows)
+				y = rows;
+
+			mouseCell.setX(y);
+			mouseCell.setY(x);
+
+		}
 		
 	}
 	

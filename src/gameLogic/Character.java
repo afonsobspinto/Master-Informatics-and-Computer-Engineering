@@ -134,6 +134,28 @@ public abstract class Character implements Serializable {
 		this.position = position;
 	}
 	
+	protected boolean isSymbolNearby(Board board, Coord position,  char symbol){
+
+		int xPos = position.getX();
+		int yPos = position.getY();
+
+		if(board.getBoardAt(xPos+1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos-1, yPos)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos+1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos-1)==symbol)
+			return true;
+
+		if(board.getBoardAt(xPos, yPos) == symbol)
+			return true;
+		return false;
+	}
+	
 	
 
 }

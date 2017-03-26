@@ -13,7 +13,7 @@ import java.lang.Character;
 /**
  * Represents the Game Logic.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  *  
  */
 
@@ -164,16 +164,16 @@ public class GameLogic implements Serializable {
 		
 
 		if(action != Action.OPENDOOR){
-			if(hero.isSymbolNearby(board, 'G')){
+			if(hero.isSymbolNearby(board, hero.position, 'G')){
 				action = Action.GUARD;
 			}
 			if(!hero.isArmed){
-				if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
+				if(hero.isSymbolNearby(board, hero.position, 'O') || hero.isSymbolNearby(board, hero.position, '$') || hero.isSymbolNearby(board, hero.position, '*')){
 					action = Action.CRAZYOGRE;
 				}
 			}
 			else{
-				if(hero.isSymbolNearby(board, '*')){
+				if(hero.isSymbolNearby(board, hero.position, '*')){
 					action = Action.CRAZYOGRE;
 				}
 				else if(hero.isOgreNearby(board, crazyOgres)){
