@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -15,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -330,6 +333,7 @@ public class GamePanel extends JPanel {
 		charactersWidth = this.getWidth() / (gameConfig.getcolumns() +1);
 		repaint();
 		requestFocus();
+		
 	}
 
 	public boolean isShowBackground() {
@@ -529,7 +533,7 @@ public class GamePanel extends JPanel {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
-		//	super.mouseMoved(e);
+			super.mouseMoved(e);
 			
 			if(game!=null){
 				int columns = game.getBoard().getColumns();
