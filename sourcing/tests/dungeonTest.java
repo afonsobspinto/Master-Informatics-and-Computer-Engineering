@@ -321,6 +321,7 @@ public class dungeonTest {
 		assertEquals(new Coord(7,2), g.getHero().getPosition());
 	}
 	
+
 }
 
 
