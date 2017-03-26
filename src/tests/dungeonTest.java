@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 
 import gameLogic.*;
@@ -92,8 +93,12 @@ public class dungeonTest {
 		Level l_1 = new Level(-1);
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
+		g.showBoard();
 		g.updateGame(Direction.DOWN);
+		g.showBoard();
 		g.updateGame(Direction.DOWN);
+		g.showBoard();
+		System.out.println(g.getBoard().getBoardAt(3, 1));
 		assertEquals('K', g.getBoard().getBoardAt(3,1));
 	}
 	
@@ -146,17 +151,14 @@ public class dungeonTest {
 					outcome1 = true;
 				else
 					break;
-				System.out.println("1\n");
 			}
 			else if ('O' == g.getBoard().getBoardAt(2,4)){
 				if('*' == g.getBoard().getBoardAt(3, 4) || '*' == g.getBoard().getBoardAt(1, 4) || '*' == g.getBoard().getBoardAt(2, 3))
 					outcome1 = true;
 				else
 					break;
-				System.out.println("2\n");
 			}
 			else{
-				System.out.println("Fail");
 				break;
 			}
 			
@@ -173,6 +175,7 @@ public class dungeonTest {
 		game.setGuardIndex(0);
 		game.setNumOfOgres(1);
 		GameLogic g = new GameLogic(l1, game);
+		
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.DOWN);
@@ -191,6 +194,7 @@ public class dungeonTest {
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.LEFT);
+		
 		assertEquals(new Coord(8,7), g.getHero().getPosition());
 	}
 	
@@ -309,11 +313,9 @@ public class dungeonTest {
 		GameConfig game = new GameConfig();
 		GameLogic g = new GameLogic(l5, game);
 		g.updateGame(Direction.RIGHT);
-		g.showBoard();
 		assertEquals(new Coord(7,2), g.getHero().getPosition());
 	}
 	
 }
-
 
 

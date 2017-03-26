@@ -11,6 +11,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Coord implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int x;
 
 	private int y;
