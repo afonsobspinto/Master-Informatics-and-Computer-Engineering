@@ -333,12 +333,9 @@ public class dungeonTest {
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
 		g.updateGame(Direction.RIGHT);
 		g.updateGame(Direction.RIGHT);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
 		g.updateGame(Direction.DOWN);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.DOWN);
