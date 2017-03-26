@@ -1,7 +1,5 @@
 package gameLogic;
 
-import java.io.Serializable;
-
 /**
  * 
  * A class representing the direction.

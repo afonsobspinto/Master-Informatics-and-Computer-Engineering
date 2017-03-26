@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
-
 import gameLogic.*;
 
 public class dungeonTest {

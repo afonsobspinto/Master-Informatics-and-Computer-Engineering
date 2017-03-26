@@ -3,7 +3,7 @@ package gameLogic;
 /**
  * Represents the Drunken Guard.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  * @see Guard
  * 
  */
@@ -11,6 +11,10 @@ package gameLogic;
 public class Drunken extends Guard {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean wakeUp;
 	
 	/**

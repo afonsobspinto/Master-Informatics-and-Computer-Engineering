@@ -12,7 +12,7 @@ public class GameLauncher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameFrame window = new GameFrame();
+					new GameFrame();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -3,12 +3,11 @@ package gameLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import console.Interaction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.io.Serializable;
-import java.lang.Character;
+
 
 /**
  * Represents the Game Logic.
@@ -179,43 +178,7 @@ public class GameLogic implements Serializable {
 		board.showBoard();
 	}
 	
-	/**
-	 * 
-	 * Function to allow the user to choose the type of guard.
-	 * 
-	 */
-	
-	private void chooseGuard(int level){
-		
-		System.out.println("Choose Guard: ");
-		System.out.println("0 - Rookie");
-		System.out.println("1 - Drunken");
-		System.out.println("2 - Suspicious");
-		
-		
-		
-		Interaction readGuard = new Interaction();
-		char keyPressed = readGuard.getKeyPressed();
-		
-		switch (keyPressed) {
-		case '0':
-			this.guard = new Rookie(level);
-			System.out.println("Rookie Selected");
-			break;
-		case '1':
-			this.guard = new Drunken(level);
-			System.out.println("Drunken Selected");
-			break;
-		case '2':
-			this.guard = new Suspicious(level);
-			System.out.println("Suspicious Selected");
-			break;
-		default:
-			this.guard = new Rookie(level);
-			System.out.println("Invalid Input. Rookie Selected");
-		}
-	}
-	
+
 	/**
 	 * 
 	 * Function that creates a random Guard.
@@ -316,31 +279,6 @@ public class GameLogic implements Serializable {
 		}
 	}
 	
-	/**
-	 * 
-	 * Function to allow the user to choose number of ogres.
-	 * 
-	 */
-	
-	private void chooseOgresNum(){
-		System.out.println("Choose Number of Ogres (1-3): ");
-		
-		
-		
-		Interaction readNumber = new Interaction();
-		int ogresNum = Character.getNumericValue(readNumber.getKeyPressed());
-		
-		if(ogresNum < 1 || ogresNum > 3){
-			System.out.println("Invalid Input. Random number of ogres selected");
-			randomOgres(0);
-		}
-		else{
-			System.out.println(ogresNum + " ogres selected");
-			randomOgres(ogresNum);
-		}
-		
-
-	}
 	
 	/**
 	 * 

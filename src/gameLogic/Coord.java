@@ -1,7 +1,6 @@
 package gameLogic;
 
 import java.io.Serializable;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * A coordinate represents a (x,y) location
