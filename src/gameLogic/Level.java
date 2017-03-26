@@ -39,6 +39,8 @@ public class Level implements Serializable {
 		case 5:
 			level_config(5, false, false, true);
 			break;
+		case 6:
+			level_config(6, false, false, false);
 			
 		default:
 			break;

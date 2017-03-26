@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -17,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.sun.rowset.internal.Row;
+
+import gameLogic.Coord;
 import gameLogic.CrazyOgre;
 import gameLogic.Direction;
 import gameLogic.GameConfig;
@@ -29,8 +34,10 @@ public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static final int numberOfLevels = 5;
+	private static final int customLevel = 6;
 
 	private boolean showBackground = true;
+	private boolean customMap = false;
 	
 	private Image background;
 	private Image wall;
@@ -48,8 +55,6 @@ public class GamePanel extends JPanel {
 	private Image lever;
 	private Image leverActivated;
 	
-	private ImageIcon developer1;
-	private ImageIcon developer2;
 	
 	private GameFrame gameFrame;
 	private GameLogic game;
@@ -59,8 +64,14 @@ public class GamePanel extends JPanel {
 	private int charactersHeight;
 	private int level;
 	
+	private Coord mouseCell;
+	
 	public GamePanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		this.mouseCell = new Coord(0,0);
+		MyMouseAdapter mouseAdapter = new MyMouseAdapter();
+		addMouseListener(mouseAdapter);
+		addMouseMotionListener(mouseAdapter);
 		addKeyListener(new MyKeyAdapter());
 		setFocusable(true);
 		setDoubleBuffered(true);
@@ -141,6 +152,9 @@ public class GamePanel extends JPanel {
 		drawGuard(g2d);
 		drawOgres(g2d);
 		drawMaze(g2d);
+		
+		if(customMap)
+			drawPiecesToChoose(g2d);
 	}
 	
 	
@@ -269,6 +283,19 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	private void drawPiecesToChoose(Graphics g2d){
+		
+ 		int lastColumn = game.getBoard().getColumns();
+		
+		drawCharacter(hero, g2d,0,lastColumn,  Direction.LEFT);
+		drawCharacter(guard, g2d,1,lastColumn,  Direction.LEFT);
+		drawCharacter(ogre, g2d,2,lastColumn,  Direction.LEFT);
+		drawCharacter(wall, g2d,3,lastColumn,  Direction.LEFT);
+		drawCharacter(key, g2d,4,lastColumn,  Direction.LEFT);
+		drawCharacter(lever, g2d,5,lastColumn,  Direction.RIGHT);
+		drawCharacter(door, g2d,6,lastColumn,  Direction.LEFT);
+	}
+	
 	public void startNewGame(GameConfig gameConfig, int level) {
 		this.game = new GameLogic(new Level(level), gameConfig);
 		this.gameConfig = gameConfig;
@@ -280,6 +307,17 @@ public class GamePanel extends JPanel {
 		requestFocus();
 	}
 
+	public void startGameCustomization(GameConfig gameConfig){
+		this.game = new GameLogic(new Level(customLevel), gameConfig);
+		this.gameConfig = gameConfig;
+		this.level = customLevel;
+		customMap = true;
+		showBackground = false;
+		charactersHeight = this.getHeight() / gameConfig.getrows();
+		charactersWidth = this.getWidth() / (gameConfig.getcolumns() +1);
+		repaint();
+		requestFocus();
+	}
 
 	public boolean isShowBackground() {
 		return showBackground;
@@ -351,6 +389,91 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	
+	private class MyMouseAdapter extends MouseAdapter{
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			super.mousePressed(e);
+			
+			if(customMap){
+				if(e.getButton()==MouseEvent.BUTTON1){
+					if(mouseCell.getX() == game.getBoard().getColumns())
+						switch (mouseCell.getY()) {
+						case 0:
+							System.out.println("Hero Selected");
+							break;
+						case 1:
+							System.out.println("Guard Selected");
+							break;
+						case 2:
+							System.out.println("Ogre Selected");
+							break;
+						case 3:
+							System.out.println("Wall Selected");
+							break;
+						case 4:
+							System.out.println("Key Selected");
+							break;
+						case 5:
+							System.out.println("Lever Selected");
+							break;
+						case 6:
+							System.out.println("Door Selected");
+							break;
+
+						default:
+							System.out.println("Here");
+							break;
+						}
+					
+				}
+			}
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			super.mouseReleased(e);
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			// TODO Auto-generated method stub
+			super.mouseMoved(e);
+			
+			if(game!=null){
+				int columns = game.getBoard().getColumns();
+				int rows = game.getBoard().getRows();
+
+				if (!customMap)
+					return;
+
+
+				int x = (int) ((e.getX() - (getWidth() - charactersWidth * columns) / 2.0) / charactersWidth);
+
+				int y = (int) ((e.getY() - (getHeight() - charactersHeight * rows) / 2.0) / charactersHeight);
+
+				if(x<0)
+					x=0;
+				else if(x >columns)
+					x = columns;
+
+				if(y<0)
+					y=0;
+				else if (y > rows)
+					y = rows;
+
+				mouseCell.setX(x);
+				mouseCell.setY(y);
+
+			}
+		}
+
+		
+		
+		
+	}
 
 	/**
 	 * Converts a given Image into a BufferedImage
@@ -392,6 +515,7 @@ public class GamePanel extends JPanel {
 	public GameLogic getGame() {
 		return game;
 	}
+
 
 	
 }

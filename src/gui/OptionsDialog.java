@@ -135,6 +135,49 @@ public class OptionsDialog extends JDialog {
 		});
 		
 		buttons.add(btnStart);
+	
+		
+		/*
+		 * Custom Button
+		 */
+		JButton btnCustom = new JButton("Custom Map");
+		btnCustom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int guardIndex = guardSelector.getSelectedIndex();
+				int numOfOgres = 1;
+				boolean valid = true;
+
+				try{
+					numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); 
+					if(numOfOgres <= 0 || numOfOgres >= 6){
+						throw new NumberOfOgresOutofBound();
+					}
+				}catch(NumberFormatException e){
+					String msg = "You should set a valid Number of Ogres";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+				}catch(NumberOfOgresOutofBound e){
+					String msg = "Number of Ogres should be greater than 0 and lesser than 6";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+
+				}
+				gameConfig.setNumOfOgres(numOfOgres);
+				gameConfig.setGuardIndex(guardIndex);
+
+				gameFrame.getContentPane().removeAll();
+				gameFrame.getContentPane().validate();
+				gameFrame.getContentPane().add(gamePanel);
+				
+				setVisible(false);
+				gamePanel.startGameCustomization(gameConfig);
+				
+			}
+		});
+		buttons.add(btnCustom);
+		
+		
 		
 		/*
 		 * Cancel Button
