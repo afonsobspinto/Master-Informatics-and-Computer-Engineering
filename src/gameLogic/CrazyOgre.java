@@ -159,33 +159,13 @@ public class CrazyOgre extends Character {
 		if(first && (isSymbolNearby(board, nextPos, 'A') || isSymbolNearby(board, nextPos, 'H'))) valid = false;
 		else if(nextPosChar == 'X' || nextPosChar == 'I' || nextPosChar == 'O' || nextPosChar == 'G'){ valid = false; }
 
-		else{
-			valid = true;
+		else{ valid = true; if(nextPosChar == 'k' || nextPosChar == '$'){ this.weapon = '$'; 	this.under_weapon = 'k'; }
 
-			if(nextPosChar == 'k' || nextPosChar == '$'){
-				this.weapon = '$';
-				this.under_weapon = 'k';
-			}
-
-				else if(nextPosChar == ' '){
-					this.weapon = '*';
-					this.under_weapon = ' ';
-				}
-
-				else if(nextPosChar == '*'){
-					this.weapon = '*';
-					this.under_weapon = ' ';
-				}
-
-				this.weaponLocation = nextPos;
-				this.weaponOrientation = direction;
-
-				board.setBoardAt(this.weaponLocation, this.weapon);
-
-			}
-		}
+			else if(nextPosChar == ' '){ this.weapon = '*'; 	this.under_weapon = ' '; }
+			else if(nextPosChar == '*'){ this.weapon = '*'; 	this.under_weapon = ' '; }
+			this.weaponLocation = nextPos; this.weaponOrientation = direction; board.setBoardAt(this.weaponLocation, this.weapon); } }
 	}
-	
+
 	/**
 	 * 
 	 * Moves the Ogre in a Random Direction.
