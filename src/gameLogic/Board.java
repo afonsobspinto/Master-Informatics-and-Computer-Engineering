@@ -49,7 +49,7 @@ public class Board implements Serializable {
 			{x, x, x, x,x},
 			{x,h, empty, o,x},
 			{i,empty, empty, empty,x},
-			{i,i, empty, empty,x},
+			{i,k, empty, empty,x},
 			{x,x, x, x,x}
 		});
 		
@@ -57,7 +57,7 @@ public class Board implements Serializable {
 			{x, x, x, x,x},
 			{x,h, empty, g,x},
 			{i,empty, empty, empty,x},
-			{i,i, empty, empty,x},
+			{i,k, empty, empty,x},
 			{x,x, x, x,x}
 		});
 		
@@ -201,7 +201,7 @@ public class Board implements Serializable {
 		int y = pos.getY();
 
 		if(x < this.rows && x >= 0 && y < this.columns && y >= 0 )
-			board[x][y] = value;
+			board[x][y] = new Character(value);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class Board implements Serializable {
 	
 	public void setBoardAt(int x, int y, char value){		
 		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
-			board[x][y] = value;
+			board[x][y] = new Character(value);
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class Board implements Serializable {
 	
 	public char getBoardAt(int x, int y){
 		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
-			return board[x][y];
+			return board[x][y].charValue();
 
 		return '0';
 	}
@@ -248,7 +248,7 @@ public class Board implements Serializable {
 	public void showBoard(){
 		for(int i =0; i < this.rows; i++){
 			for(int j = 0; j < this.columns; j++){
-				System.out.print(this.board[i][j]);
+				System.out.print(this.board[i][j].charValue());
 				System.out.print(" ");
 			}
 			System.out.println();
