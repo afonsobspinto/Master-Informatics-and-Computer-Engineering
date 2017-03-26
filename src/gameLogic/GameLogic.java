@@ -486,19 +486,9 @@ public class GameLogic implements Serializable {
 		int xPos = position.getX();
 		int yPos = position.getY();
 
-		if(board.getBoardAt(xPos+1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos-1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos+1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos-1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos) == symbol)
+		if(board.getBoardAt(xPos+1, yPos)==symbol || board.getBoardAt(xPos-1, yPos)==symbol ||
+				board.getBoardAt(xPos, yPos+1)==symbol || board.getBoardAt(xPos, yPos-1)==symbol || 
+				board.getBoardAt(xPos, yPos) == symbol)
 			return true;
 		return false;
 	}
