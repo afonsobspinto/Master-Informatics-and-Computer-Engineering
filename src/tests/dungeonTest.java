@@ -3,6 +3,9 @@ package tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
+
 import gameLogic.*;
 
 public class dungeonTest {
@@ -299,6 +302,18 @@ public class dungeonTest {
 			outcome = true;
 		assertTrue(outcome);
 	}
+	
+	@Test
+	public void testOgreLevel5(){
+		Level l5 = new Level(5);
+		GameConfig game = new GameConfig();
+		GameLogic g = new GameLogic(l5, game);
+		g.updateGame(Direction.RIGHT);
+		g.showBoard();
+		assertEquals(new Coord(7,2), g.getHero().getPosition());
+	}
+	
 }
+
 
 

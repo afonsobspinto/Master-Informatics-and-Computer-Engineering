@@ -5,7 +5,11 @@ import java.util.ArrayList;
 /**
  * Represents the Hero.
  * 
+<<<<<<< HEAD
  * @author Afonso Pinto and Tomï¿½s Oliveira
+=======
+ * @author Afonso Pinto and Tomás Oliveira
+>>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
  * @see Character
  * 
  */
