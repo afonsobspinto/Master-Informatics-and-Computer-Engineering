@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Represents the Guard.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  * @see Character
  * 
  */
@@ -65,25 +65,24 @@ public abstract class Guard  extends Character{
 		this.isSleeping = false;
 		Coord startingPos;
 		
+		this.route = new Coord[1];
+		this.route_dir = new Direction[1];
+		this.route_dir[0]=Direction.LEFT;
+		this.orientation = Direction.LEFT;
+		
+		
 		switch (level) {
 		case 0:
 			startingPos = new Coord(1,3);
 			this.position = startingPos;
-			this.route = new Coord[1];
 			this.route[0]=startingPos;
-			this.route_dir = new Direction[1];
-			this.route_dir[0]=Direction.LEFT;
-			this.orientation = Direction.LEFT;
 			
 			break;
 		case 1:
 			startingPos = new Coord(1,8);
 			this.position = startingPos;
-			this.route = new Coord[1];
 			this.route[0]=startingPos;
-			this.route_dir = new Direction[1];
-			this.route_dir[0]=Direction.LEFT;
-			this.orientation = Direction.LEFT;
+
 			
 			break;
 		case 2:
