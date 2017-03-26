@@ -180,7 +180,15 @@ public class Board implements Serializable {
 	
 	public Board(int level) {
 
-		board = BOARDS.get(level);
+		
+		Character[][] temp = BOARDS.get(level);
+
+		board = new Character[temp.length][temp[0].length];
+		
+		for(int i = 0; i < temp.length; i++){
+				System.arraycopy(temp[i], 0, board[i], 0, temp[i].length);
+		}
+		
 		
 		this.showBoard();
 		
