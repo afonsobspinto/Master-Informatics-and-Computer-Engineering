@@ -7,6 +7,11 @@ import jdk.nashorn.internal.runtime.CodeStore.DirectoryCodeStore;
 
 public class CrazyOgre extends Character {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static int counter = 0;
 	
 	boolean isStunned;

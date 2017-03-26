@@ -3,6 +3,10 @@ package gameLogic;
 import java.util.ArrayList;
 
 public class Hero extends Character{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	boolean isKey;
 	boolean isLever;
 	boolean gotKey;
@@ -10,6 +14,15 @@ public class Hero extends Character{
 	boolean triggeredLever;
 	Direction orientation;
 
+	public Hero(){
+		this.symbol = 'H';
+		this.under_char = ' ';
+		this.gotKey = false;
+		this.isArmed = false;
+		this.orientation = Direction.RIGHT;
+		this.position = new Coord(-2,-2);
+	}
+	
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
@@ -233,4 +246,15 @@ public class Hero extends Character{
 		return orientation;
 	}
 
+	public void setKey(boolean isKey) {
+		this.isKey = isKey;
+	}
+
+	public void setLever(boolean isLever) {
+		this.isLever = isLever;
+	}
+
+	
+	
+	
 }

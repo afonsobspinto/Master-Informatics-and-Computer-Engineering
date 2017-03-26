@@ -13,6 +13,10 @@ import java.lang.Character;
 
 public class GameLogic implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Board board;
 	private Hero hero;
 	private Guard guard;
@@ -36,6 +40,17 @@ public class GameLogic implements Serializable {
 	}
 
 
+	public GameLogic(){
+		this.hero = new Hero();
+		this.guard = new Rookie();
+		this.crazyOgres = new ArrayList<CrazyOgre>();
+		this.gameConfig = new GameConfig();
+		this.level = new Level();
+		this.triggeredLever = false;
+		this.won = false;
+		this.gameOn = true;
+		this.board = new Board();
+	}
 
 	public GameLogic(Level level, GameConfig gameConfig){
 
@@ -367,6 +382,11 @@ public class GameLogic implements Serializable {
 		return gameConfig;
 	}
 
+	public void setGuard(Guard guard) {
+		this.guard = guard;
+	}
+
+	
 	
 	
 }
