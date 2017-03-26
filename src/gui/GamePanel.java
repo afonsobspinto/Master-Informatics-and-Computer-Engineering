@@ -378,6 +378,17 @@ public class GamePanel extends JPanel {
 	}
 
 
+	public void loadGame(GameLogic game) {
+		this.game = game;
+		this.gameConfig = game.getGameConfig();
+		this.level = game.getLevel().getLevel();
+		showBackground = false;
+		charactersHeight = this.getHeight() / gameConfig.getrows();
+		charactersWidth = this.getWidth() / gameConfig.getcolumns();
+		repaint();
+		requestFocus();
+	}
+	
 	public GameLogic getGame() {
 		return game;
 	}

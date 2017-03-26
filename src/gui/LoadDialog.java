@@ -7,14 +7,21 @@ import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import gameLogic.GameLogic;
 
 public class LoadDialog extends JDialog {
 	
+	private GameFrame gameFrame;
 	private GamePanel gamePanel;
 	private List gamesList;
 	
@@ -23,8 +30,9 @@ public class LoadDialog extends JDialog {
 	
 	
 	
-public LoadDialog(GamePanel gamePanel) {
+public LoadDialog(GameFrame gameFrame, GamePanel gamePanel) {
 		
+		this.gameFrame = gameFrame;
 		this.gamePanel = gamePanel;
 		
 		setTitle("Load Game");
@@ -48,6 +56,7 @@ private void SetUpLoadSection() {
 
 	gamesList = new List();
 	getContentPane().add(gamesList);
+	readFolder();
 
 	JButton loadButton = new JButton("Load");
 	getContentPane().add(loadButton);
@@ -55,10 +64,53 @@ private void SetUpLoadSection() {
 
 	loadButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("I'm Here");
-			setVisible(false);
+			
+			GameLogic loadedGame = LoadGame();
+
+			if (loadedGame != null){
+				gamePanel.loadGame(loadedGame);
+				gameFrame.getContentPane().removeAll();
+				gameFrame.getContentPane().validate();
+				gameFrame.getContentPane().add(gamePanel);
+				setVisible(false);
+			}
 		}
 	});
 
 }
+
+private GameLogic LoadGame() {
+	if (gamesList.getSelectedItem() == null) {
+		JOptionPane.showMessageDialog(null,
+				"You must select a game to load.");
+		return null;
+	}
+
+	try {
+		FileInputStream fin = new FileInputStream(savedGamesFolder
+				+ gamesList.getSelectedItem());
+		ObjectInputStream ois = new ObjectInputStream(fin);
+		GameLogic game = (GameLogic) ois.readObject();
+		ois.close();
+		return game;
+	} catch (Exception ex) {
+		ex.printStackTrace();
+		JOptionPane.showMessageDialog(null,
+				"An error occured while loading the game.");
+		return null;
+	}
+}
+
+
+
+public void readFolder() {
+	File folder = new File(savedGamesFolder);
+	if (!folder.isDirectory())
+		return;
+
+	gamesList.removeAll();
+	for (File file : folder.listFiles())
+		gamesList.add(file.getName());
+}
+
 }

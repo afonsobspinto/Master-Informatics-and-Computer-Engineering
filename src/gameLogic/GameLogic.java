@@ -363,6 +363,10 @@ public class GameLogic implements Serializable {
 		this.gameOn = gameOn;
 	}
 
+	public GameConfig getGameConfig() {
+		return gameConfig;
+	}
+
 	
 	
 }
