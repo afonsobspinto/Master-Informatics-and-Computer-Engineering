@@ -668,18 +668,23 @@ public class GamePanel extends JPanel {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if(haveHero && (haveGuard || ogres!=0) && (keys != 0 || levers != 0) /* && game.getBoard().isValidBoard(game.getHero().getPosition() )*/){
-					System.out.println("Existe Carago!");
-					remove(btnStart);
-					revalidate();
-					repaint();
-					charactersWidth = getWidth() / gameConfig.getColumns();
-					customMap = false;
+				try{
+					if(haveHero && (haveGuard || ogres!=0) && (keys != 0 || levers != 0)  && game.getBoard().isValidBoard(game.getHero().getPosition() )){
+						remove(btnStart);
+						revalidate();
+						repaint();
+						charactersWidth = getWidth() / gameConfig.getColumns();
+						customMap = false;
+					}
+					else{
+						String msg = "Invalid Map";
+						JOptionPane.showMessageDialog(null, msg);
+					}
 				}
-				else{
-					String msg = "Invalid Map";
-					JOptionPane.showMessageDialog(null, msg);
+				catch (StackOverflowError e) {
+					e.printStackTrace();
 				}
+				
 			}
 		}
 		);

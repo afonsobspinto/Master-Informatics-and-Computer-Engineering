@@ -3,6 +3,8 @@ package gameLogic;
 import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -17,7 +19,18 @@ public class Board implements Serializable {
 	private char[][] board;
 	private int rows;
 	private int columns;
-	private Boolean[][] paths;
+	private boolean[][] visited;
+	private static Map<Integer, Character[][]> BOARDS = new HashMap<Integer, Character[][]>();
+	
+//	static {
+//		BOARDS.put(-2, new Character[][]{
+//				{new Character('X'),'X', 'X', 'X','X','X'},
+//				{'X','H', ' ', ' ','O','X'},
+//				{'I',' ', ' ', ' ',' ','X'},
+//				{'I','k', ' ', ' ',' ','X'},
+//				{'X','X', 'X', 'X','X','X'}
+//			});
+//	}
 	
 	/**
 	 * 
@@ -63,7 +76,7 @@ public class Board implements Serializable {
 		
 		this.rows = rows;
 		this.columns = columns;
-		this.paths = new Boolean[rows][columns];
+		this.visited = new boolean[rows][columns];
 	}
 	
 	/**
@@ -75,6 +88,9 @@ public class Board implements Serializable {
 	
 	public Board(int level) {
 
+		
+
+		
 		switch (level) {
 		case -2:
 			
@@ -290,6 +306,10 @@ public class Board implements Serializable {
 		int j = pos.getY();
 		
 		boolean pathToKey = existAPath(i,j, true); 
+		
+		for (int x = 0; x < visited.length; x++)
+			Arrays.fill(visited[x], false);
+		
 		boolean pathToDoor = existAPath(i, j, false);
 		
 		return pathToKey && pathToDoor;
@@ -297,25 +317,25 @@ public class Board implements Serializable {
 	
 	
 	private boolean existAPath(int i, int j, boolean searchForKey){
+		if (visited[i][j])
+			return false;
+		
+		visited[i][j] = true;
+		
 		if(!validSquare(i,j, searchForKey)){
-			paths[i][j] = false;
 			return false;
 		}
+		
 		if(isAtEnd(i, j, searchForKey)){
-			paths[i][j] = true;
 			return true;
 		}
-		
-		if(paths[i][j]==null){
-			Boolean right = existAPath(i+1, j, searchForKey);
-			Boolean left = existAPath(i-1, j, searchForKey);
-			Boolean up = existAPath(i, j-1, searchForKey);
-			Boolean down = existAPath(i, j+1, searchForKey);
+
+		boolean right = existAPath(i+1, j, searchForKey);
+		boolean left = existAPath(i-1, j, searchForKey);
+		boolean up = existAPath(i, j-1, searchForKey);
+		boolean down = existAPath(i, j+1, searchForKey);
 			
-			paths[i][j]= right|| left || up || down;
-		}
-		return paths[i][j];
-		
+		return right || left || up || down;
 	}
 	
 	private boolean validSquare(int i, int j, boolean searchForKey){
