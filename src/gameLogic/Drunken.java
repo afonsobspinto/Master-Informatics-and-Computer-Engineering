@@ -3,11 +3,7 @@ package gameLogic;
 /**
  * Represents the Drunken Guard.
  * 
-<<<<<<< HEAD
- * @author Afonso Pinto and Tomï¿½s Oliveira
-=======
  * @author Afonso Pinto and Tomás Oliveira
->>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
  * @see Guard
  * 
  */
@@ -31,6 +27,8 @@ public class Drunken extends Guard {
 	/**
 	 * Constructs and initializes a Drunken Guard with position of type Coord.
 	 * 
+	 * @param position
+	 *            the position of the drunken
 	 * @see {@link Coord.java}
 	 */
 	
@@ -43,6 +41,8 @@ public class Drunken extends Guard {
 	/**
 	 * Constructs and initializes a Drunken Guard with level of type int.
 	 * 
+	 * @param level
+	 *           the level of the game
 	 */
 	
 	public Drunken(int level){

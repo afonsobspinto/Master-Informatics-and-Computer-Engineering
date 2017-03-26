@@ -7,11 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Represents the Guard.
  * 
-<<<<<<< HEAD
- * @author Afonso Pinto and Tomï¿½s Oliveira
-=======
- * @author Afonso Pinto and Tomï¿½s Oliveira
->>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
+ * @author Afonso Pinto and Tomás Oliveira
  * @see Character
  * 
  */
@@ -135,14 +131,14 @@ public abstract class Guard  extends Character{
 		return Action.NOACTION;
 	}
 	
+	public abstract Action move(Board board);
+	
 	/**
 	 * Moves the Guard in a certain direction.
 	 * 
 	 * @param board
 	 *            the board of the game
 	 */
-	
-	public abstract Action move(Board board);
 	
 	protected boolean randomDecision(){
 
