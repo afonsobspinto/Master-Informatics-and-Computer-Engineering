@@ -6,6 +6,8 @@ import java.io.Serializable;
 /**
  * The game settings.
  * 
+ * @author Afonso Pinto and Tomás Oliveira
+ *  
  */
 
 public class GameConfig implements Serializable {
@@ -19,7 +21,7 @@ public class GameConfig implements Serializable {
 	private int numOfOgres;
 	
 	/**
-	 * Constructs and initializes the default game settings and default keyboard configuration;
+	 * Constructs and initializes the default game settings and default keyboard configuration.
 	 * 
 	 */
 	
@@ -35,11 +37,10 @@ public class GameConfig implements Serializable {
 	}
 
 	/**
-	 * Constructs and initializes the game settings and default keyboard configuration
+	 * Constructs and initializes the game settings and default keyboard configuration.
 	 * 
 	 * @param rows
-	 *            the number of rows 
-	 *            
+	 *            the number of rows           
 	 * @param columns
 	 *            the number of columns 
 	 */
@@ -57,7 +58,7 @@ public class GameConfig implements Serializable {
 
 	
 	/**
-	 * Constructs and initializes the game settings and default keyboard configuration
+	 * Constructs and initializes the game settings and default keyboard configuration.
 	 * 
 	 * @param rows
 	 *            the number of rows           
@@ -86,9 +87,9 @@ public class GameConfig implements Serializable {
 	}
 
 	/**
-	 * Returns the number of columns 
+	 * Returns the number of columns.
 	 * 
-	 * @return the number of columns 
+	 * @return the number of columns. 
 	 */
 	
 	public int getcolumns() {
@@ -96,47 +97,95 @@ public class GameConfig implements Serializable {
 	}
 
 	/**
-	 * Returns the number of rows 
+	 * Returns the number of rows. 
 	 * 
-	 * @return the number of rows 
+	 * @return the number of rows. 
 	 */
 	
 	public int getrows() {
 		return rows;
 	}
 	
+	/**
+	 * Returns the code of the Down Key. 
+	 * 
+	 * @return the code of the Down Key. 
+	 */
+	
 	public int getDownKey() {
 		return downKey;
 	}
-
+	
+	/**
+	 * Returns the code of the Left Key. 
+	 * 
+	 * @return the code of the Left Key. 
+	 */
+	
 	public int getLeftKey() {
 		return leftKey;
 	}
 
+	/**
+	 * Returns the code of the Right Key. 
+	 * 
+	 * @return the code of the Right Key. 
+	 */
+	
 	public int getRightKey() {
 		return rightKey;
 	}
 
+	/**
+	 * Returns the code of the Up Key. 
+	 * 
+	 * @return the code of the Up Key. 
+	 */
+	
 	public int getUpKey() {
 		return upKey;
 	}
 
+	/**
+	 * Returns the index of the guard. 
+	 * 
+	 * @return the index of the guard. 
+	 */
+	
 	public int getGuardIndex() {
 		return guardIndex;
 	}
 
+	/**
+	 * Sets the index of the guard.
+	 * 
+	 * @param guardIndex
+	 *            the index of the guard
+	 */
+	
 	public void setGuardIndex(int guardIndex) {
 		this.guardIndex = guardIndex;
 	}
 
+	/**
+	 * Returns the number of ogres. 
+	 * 
+	 * @return the number of ogres. 
+	 */
+	
 	public int getNumOfOgres() {
 		return numOfOgres;
 	}
 
+	/**
+	 * Sets the number of ogres.
+	 * 
+	 * @param numOfOgres
+	 *            the number of ogres
+	 */
+	
 	public void setNumOfOgres(int numOfOgres) {
 		this.numOfOgres = numOfOgres;
 	}
-
-	
 
 }

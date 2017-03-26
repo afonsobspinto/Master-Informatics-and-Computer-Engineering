@@ -2,6 +2,14 @@ package gameLogic;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the Hero.
+ * 
+ * @author Afonso Pinto and Tomás Oliveira
+ * @see Character
+ * 
+ */
+
 public class Hero extends Character{
 	boolean isKey;
 	boolean isLever;
@@ -10,6 +18,11 @@ public class Hero extends Character{
 	boolean triggeredLever;
 	Direction orientation;
 
+	/**
+	 * Constructs and initializes a Hero with level of type int.
+	 * 
+	 */
+	
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
@@ -82,19 +95,49 @@ public class Hero extends Character{
 		
 	}
 	
+	/**
+	 * Returns true if the hero has the key.
+	 * 
+	 * @return true if the hero has the key.
+	 */
+	
 	public boolean isGotKey() {
 		return gotKey;
 	}
 
+	/**
+	 * Returns true if the hero is armed.
+	 * 
+	 * @return true if the hero is armed.
+	 */
+	
 	public boolean isArmed() {
 		return isArmed;
 	}
 
+	/**
+	 * Constructs and initializes a Hero with position of type Coord.
+	 * 
+	 * @see {@link Coord}
+	 */
+	
 	public Hero(Coord position){
 		this.symbol = 'H';
 		this.position = position;
 		this.under_char = ' ';
 	}
+	
+	/**
+	 * 
+	 * Returns true if the symbol is nearby of the hero on the board.
+	 * 
+	 * @param board 
+	 *          the board of the game
+	 * @param symbol
+	 *          the symbol of type char
+	 *          
+	 * @return true if the symbol is nearby the hero and false if not.
+	 */
 	
 	public boolean isSymbolNearby(Board board, char symbol){
 
@@ -117,6 +160,18 @@ public class Hero extends Character{
 			return true;
 		return false;
 	}
+	
+	/**
+	 * 
+	 * Returns true if there is a ogre nearby the hero on the board.
+	 * 
+	 * @param board 
+	 *          the board of the game
+	 * @param ogres
+	 *          the list of ogres
+	 *          
+	 * @return true if there is a ogre nearby the hero and false if not.
+	 */
 	
 	public boolean isOgreNearby(Board board, ArrayList<CrazyOgre> ogres ){
 		int HeroxPos = this.position.getX();
@@ -143,6 +198,15 @@ public class Hero extends Character{
 		return res;
 	}
 
+	/**
+	 * Moves the Hero in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param direction
+	 *            the direction in which the hero should move
+	 */
+	
 	public Action move(Board board, Direction direction){
 		
 		int x = this.position.getX();
@@ -221,6 +285,14 @@ public class Hero extends Character{
 		return res;
 	}
 
+	/**
+	 * 
+	 * Returns the orientation of the hero.
+	 * 
+	 * @return the orientation of the hero.
+	 * 
+	 */
+	
 	public Direction getOrientation() {
 		return orientation;
 	}

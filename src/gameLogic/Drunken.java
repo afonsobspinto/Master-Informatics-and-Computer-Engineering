@@ -1,10 +1,22 @@
 package gameLogic;
 
+/**
+ * Represents the Drunken Guard.
+ * 
+ * @author Afonso Pinto and Tomás Oliveira
+ * @see Guard
+ * 
+ */
 
 public class Drunken extends Guard {
 	
 	
 	private boolean wakeUp;
+	
+	/**
+	 * Constructs and initializes a Drunken Guard.
+	 * 
+	 */
 	
 	public Drunken(){
 		super();
@@ -12,17 +24,35 @@ public class Drunken extends Guard {
 		this.wakeUp = false;
 	}
 	
+	/**
+	 * Constructs and initializes a Drunken Guard with position of type Coord.
+	 * 
+	 * @see {@link Coord}
+	 */
+	
 	public Drunken(Coord position){
 		super(position);
 		this.isSleeping = false;
 		this.wakeUp = false;
 	}
 	
+	/**
+	 * Constructs and initializes a Drunken Guard with level of type int.
+	 * 
+	 */
+	
 	public Drunken(int level){
 		super(level);
 		this.isSleeping = false;
 		this.wakeUp = false;
 	}
+	
+	/**
+	 * Moves the Drunken Guard in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 */
 	
 	public Action move(Board board){
 		

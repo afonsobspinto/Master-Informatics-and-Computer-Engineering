@@ -5,6 +5,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import jdk.nashorn.internal.runtime.CodeStore.DirectoryCodeStore;
 
+/**
+ * Represents the Crazy Ogre.
+ * 
+ * @author Afonso Pinto and Tomás Oliveira
+ * @see Character
+ * 
+ */
+
 public class CrazyOgre extends Character {
 	
 	private static int counter = 0;
@@ -19,19 +27,48 @@ public class CrazyOgre extends Character {
 	Direction orientation;
 	Direction weaponOrientation;
 	
+	/**
+	 * Returns the coordinate of the weapon.
+	 * 
+	 * @return the coordinate of the weapon.
+	 */
 	
 	public Coord getWeaponLocation() {
 		return weaponLocation;
 	}
 
+	/**
+	 * Returns true if the ogre is armed.
+	 * 
+	 * @return true if the ogre is armed.
+	 */
+	
 	public boolean isArmed() {
 		return isArmed;
 	}
 
+	/**
+	 * Returns true if the ogre is stunned.
+	 * 
+	 * @return true if the ogre is stunned.
+	 */
+	
 	public boolean isStunned() {
 		return isStunned;
 	}
 
+	/**
+	 * Constructs and initializes a Crazy Ogre with Coordinate position and if he's armed on the board.
+	 * 
+	 * @param position
+	 *            the coordinate of the Crazy Ogre
+	 * @param armed
+	 *            the boolean representing if the Crazy Ogre is armed
+	 * @param board
+	 *            the board where the Crazy Ogre is
+	 * @see {@link Coord}, {@link Board}
+	 */
+	
 	public CrazyOgre(Coord position, boolean armed, Board board){
 		this.symbol = 'O';
 		this.position = position;
@@ -52,10 +89,28 @@ public class CrazyOgre extends Character {
 			this.orientation = Direction.RIGHT;
 	}
 	
+	/**
+	 * Moves the CrazyOgre in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param direction
+	 *            the direction in which the ogre should move
+	 */
+	
 	public Action move(Board board, Direction direction){
 		return Action.NOACTION;
 
 	}
+	
+	/**
+	 * Moves the CrazyOgres of the List in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param ogres
+	 *            the ogres on the ArrayList
+	 */
 	
 	public Action move(Board board, ArrayList <CrazyOgre> ogres){
 
@@ -137,6 +192,15 @@ public class CrazyOgre extends Character {
 		return Action.MOVE;
 	}
 
+	/**
+	 * Sets the a valid location for the weapon of the Ogre.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param first
+	 *            the boolean representing if the CrazyOgre is the first on the ArrayList
+	 */
+	
 	public void setValidWeaponLocation(Board board, boolean first){
 
 
@@ -197,6 +261,12 @@ public class CrazyOgre extends Character {
 		}
 	}
 	
+	/**
+	 * 
+	 * Moves the Ogre in a Random Direction.
+	 * 
+	 */
+	
 	public Direction randomDirection(){
 
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
@@ -215,6 +285,16 @@ public class CrazyOgre extends Character {
 		}
 	}
 
+	/**
+	 * Cleans the old position of the Ogre on the Board.
+	 * 
+	 * @param ogres
+	 *            the ogres on the list
+	 * @param board
+	 *            the board of the game
+	 * @param weapon
+	 *            the boolean representing if it is a weapon
+	 */
 	
 	private void cleanOldPos(ArrayList<CrazyOgre> ogres, Board board, boolean weapon){
 
@@ -275,10 +355,24 @@ public class CrazyOgre extends Character {
 		return true;
 	}
 
+	/**
+	 * Makes the ogre stunned.
+	 * 
+	 * @param isStunned 
+	 *            the boolean representing if the ogre is stunned
+	 */
+	
 	public void setStunned(boolean isStunned) {
 		this.isStunned = isStunned;
 	}
 
+	/**
+	 * Makes the ogre stunned during a certain number of rounds.
+	 * 
+	 * @param stunnedRounds 
+	 *            the number of rounds
+	 */
+	
 	public void setStunnedRounds(int stunnedRounds) {
 		this.stunnedRounds = stunnedRounds;
 		if(stunnedRounds!= 0){
@@ -286,6 +380,20 @@ public class CrazyOgre extends Character {
 			this.symbol = '8';
 		}
 	}
+	
+	/**
+	 * 
+	 * Returns true if the symbol is nearby of the ogre on the board.
+	 * 
+	 * @param board 
+	 *          the board of the game
+	 * @param position 
+	 *          the position of the symbol
+	 * @param symbol
+	 *          the symbol of type char
+	 *          
+	 * @return true if the symbol is nearby the ogre and false if not.
+	 */
 	
 	private boolean isSymbolNearby(Board board, Coord position,  char symbol){
 
@@ -309,6 +417,16 @@ public class CrazyOgre extends Character {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * To know if an ogre's weapon is overlaped with another ogre's weapon
+	 *
+	 * @param ogres
+	 *          the ogres on the list
+	 *          
+	 * @return false if it's overlaped and true if not.
+	 */
+	
 	private boolean isOnlyMyWeapon(ArrayList<CrazyOgre> ogres){
 		for (int i = 0; i < ogres.size(); i++){
 			if(this.weaponLocation.equals(ogres.get(i).weaponLocation))
@@ -318,15 +436,35 @@ public class CrazyOgre extends Character {
 		return true;
 	}
 
+	/**
+	 * 
+	 * Returns the orientation of the ogre.
+	 * 
+	 * @return the orientation of the ogre.
+	 * 
+	 */
+	
 	public Direction getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * 
+	 * Returns the direction of the ogre.
+	 * 
+	 * @return the direction of the ogre.
+	 * 
+	 */
+	
 	public Direction getWeaponOrientation() {
 		return weaponOrientation;
 	}
 
-
+	/**
+	 * Sets the orientation of the ogre.
+	 * 
+	 */
+	
 	private void setOgreOrientation() {
 		switch(weaponOrientation){
 		case UP:
