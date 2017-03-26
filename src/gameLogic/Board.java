@@ -70,7 +70,7 @@ public class Board implements Serializable {
 			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
 			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
 			{x,x, x, empty,x,x,x,x,empty,x},
-			{x,empty, i, empty,i,empty,x,i,empty,x},
+			{x,empty, i, empty,i,empty,x,k,empty,x},
 			{x, x, x, x,x,x,x,x,x,x}
 		});
 		
@@ -83,7 +83,7 @@ public class Board implements Serializable {
 			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
 			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
 			{x,x, x, empty,x,x,x,x,empty,x},
-			{x,empty, i, empty,i,empty,x,i,empty,x},
+			{x,empty, i, empty,i,empty,x,k,empty,x},
 			{x, x, x, x,x,x,x,x,x,x}
 		});
 		
@@ -181,6 +181,9 @@ public class Board implements Serializable {
 	public Board(int level) {
 
 		board = BOARDS.get(level);
+		
+		this.showBoard();
+		
 		this.rows = board.length;
 		this.columns = board[0].length;
 		
