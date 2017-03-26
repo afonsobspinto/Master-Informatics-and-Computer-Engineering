@@ -628,8 +628,10 @@ public class GamePanel extends JPanel {
 					charactersWidth = getWidth() / gameConfig.getColumns();
 					customMap = false;
 				}
+				else{
+					System.out.println("Mapa Invalido!");
+				}
 				
-				System.out.println("Mapa Invalido!");
 				
 			}
 		}

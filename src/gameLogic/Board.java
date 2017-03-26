@@ -17,7 +17,7 @@ public class Board implements Serializable {
 	private char[][] board;
 	private int rows;
 	private int columns;
-	private int[][] paths;
+	private Boolean[][] paths;
 	
 	/**
 	 * 
@@ -63,6 +63,7 @@ public class Board implements Serializable {
 		
 		this.rows = rows;
 		this.columns = columns;
+		this.paths = new Boolean[rows][columns];
 	}
 	
 	/**
@@ -292,16 +293,24 @@ public class Board implements Serializable {
 	
 	
 	private boolean existAPath(int i, int j, boolean searchForKey){
-		if(!validSquare(i,j, searchForKey))
+		if(!validSquare(i,j, searchForKey)){
+			paths[i][j] = false;
 			return false;
-		if(isAtEnd(i, j, searchForKey))
+		}
+		if(isAtEnd(i, j, searchForKey)){
+			paths[i][j] = true;
 			return true;
+		}
 		
-		return existAPath(i+1, j, searchForKey) || existAPath(i-1, j, searchForKey) || existAPath(i, j+1, searchForKey) || existAPath(i, j-1, searchForKey);
+		if(paths[i][j]==null)
+			paths[i][j]=existAPath(i+1, j, searchForKey) || existAPath(i-1, j, searchForKey) || existAPath(i, j+1, searchForKey) || existAPath(i, j-1, searchForKey);
+		
+		return paths[i][j];
+		
 	}
 	
 	private boolean validSquare(int i, int j, boolean searchForKey){
-		if(i > this.rows && i < 0 && j > this.columns && j < 0 )
+		if(i > this.rows || i < 0 || j > this.columns || j < 0 )
 			return false;
 		if(getBoardAt(i, j) == 'X')
 			return false;
