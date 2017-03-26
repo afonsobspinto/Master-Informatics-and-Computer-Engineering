@@ -51,6 +51,7 @@ public abstract class Character implements Serializable {
 	}
 
 	public void setPosition(Coord position) {
+		System.out.println("Fui Chamado");
 		this.oldPosition = this.position;
 		this.position = position;
 	}

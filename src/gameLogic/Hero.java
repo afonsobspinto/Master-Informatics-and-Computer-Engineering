@@ -88,14 +88,7 @@ public class Hero extends Character{
 			this.isLever = false;
 			this.isArmed = true;
 			break;
-		
-		case 6:
-			this.symbol = 'H';
-			startingPos = new Coord(-2,-2);
-			this.position = startingPos;
-			this.isKey = false;
-			this.isArmed = false;
-			this.isLever = false;
+
 			
 		default:
 			break;
@@ -254,7 +247,6 @@ public class Hero extends Character{
 		this.isLever = isLever;
 	}
 
-	
 	
 	
 }

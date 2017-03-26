@@ -68,6 +68,11 @@ public class GamePanel extends JPanel {
 	private Coord mouseCell;
 	private char charSelected = ' ';
 	private boolean haveHero = false;
+	private boolean haveGuard = false;
+	private int levers = 0;
+	private int keys = 0;
+	private int ogres = 0;
+	
 	
 	public GamePanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
@@ -317,7 +322,7 @@ public class GamePanel extends JPanel {
 		customMap = true;
 		showBackground = false;
 		charactersHeight = this.getHeight() / gameConfig.getrows();
-		charactersWidth = this.getWidth() / gameConfig.getcolumns() +1;
+		charactersWidth = this.getWidth() / (gameConfig.getcolumns() +1);
 		repaint();
 		requestFocus();
 	}
@@ -397,39 +402,31 @@ public class GamePanel extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			super.mousePressed(e);
-			
+
 			if(customMap){
 				if(e.getButton()==MouseEvent.BUTTON1){
 					if(mouseCell.getY() == game.getBoard().getColumns())
 						switch (mouseCell.getX()) {
 						case 0:
 							charSelected = 'H';
-							System.out.println("Hero Selected");
 							break;
 						case 1:
 							charSelected = 'G';
-							System.out.println("Guard Selected");
 							break;
 						case 2:
 							charSelected = 'O';
-							System.out.println("Ogre Selected");
 							break;
 						case 3:
 							charSelected = 'X';
-							System.out.println("Wall Selected");
 							break;
 						case 4:
 							charSelected = 'k';
-							System.out.println("Key Selected");
 							break;
 						case 5:
 							charSelected = 'L';
-							System.out.println("Lever Selected");
 							break;
 						case 6:
 							charSelected = 'I';
-							System.out.println("Door Selected");
 							break;
 
 						default:
@@ -442,38 +439,35 @@ public class GamePanel extends JPanel {
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 			super.mouseReleased(e);
+			
+			System.out.println(game.getHero().getPosition());
+			
 			if(customMap){
 				if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY()) == ' '){
 					game.getBoard().setBoardAt(mouseCell, charSelected);
 					switch (charSelected) {
 					case 'H':
-						System.out.println("Hero");
-						game.getHero().setPosition(mouseCell);
+						game.getHero().setPosition(new Coord(mouseCell.getX(), mouseCell.getY()));
 						haveHero = true;
 						break;
 					case 'O':
-						System.out.println("Ogre");
-						game.getCrazyOgres().add(new CrazyOgre(mouseCell,false, game.getBoard()));
+						game.getCrazyOgres().add(new CrazyOgre(new Coord(mouseCell.getX(), mouseCell.getY()),false, game.getBoard()));
 						game.getLevel().setHaveOgre(true);
 						break;
 					case 'G':
-						System.out.println("Guard");
-						game.setGuard(new Rookie(mouseCell));
+						game.setGuard(new Rookie(new Coord(mouseCell.getX(), mouseCell.getY())));
 						game.getLevel().setHaveGuard(true);
 						break;
 					case 'K':
-						System.out.println("Key");
 						game.getLevel().setHaveKey(true);
 						game.getHero().setKey(true);
 						break;
 					case 'L':
-						System.out.println("Lever");
 						game.getLevel().setHaveLever(true);
 						game.getHero().setLever(true);
-						game.getBoard().setBoardAt(mouseCell, 'k');
+						game.getBoard().setBoardAt(new Coord(mouseCell.getX(), mouseCell.getY()), 'k');
 						break;
 
 					default:
@@ -489,7 +483,6 @@ public class GamePanel extends JPanel {
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			// TODO Auto-generated method stub
 			super.mouseDragged(e);
 			
 			if(game!=null){
@@ -523,7 +516,7 @@ public class GamePanel extends JPanel {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
-			super.mouseMoved(e);
+		//	super.mouseMoved(e);
 			
 			if(game!=null){
 				int columns = game.getBoard().getColumns();
