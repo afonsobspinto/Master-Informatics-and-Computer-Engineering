@@ -81,6 +81,9 @@ public class dungeonTest {
 	@Test
 	public void testHeroIsCapturedByOgre(){
 		Level l_1 = new Level(-1);
+		
+		System.out.println("1");
+		System.out.println(l_1.getBoard().getBoardAt(3, 1));
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.RIGHT);
@@ -91,10 +94,13 @@ public class dungeonTest {
 	@Test
 	public void testMoveHeroIntoLeverCellOgre(){
 		Level l_1 = new Level(-1);
+		System.out.println("2");
+		System.out.println(l_1.getBoard().getBoardAt(3, 1));
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.DOWN);
 		g.updateGame(Direction.DOWN);
+		System.out.println(g.getBoard().getBoardAt(3, 1));
 		assertEquals('K', g.getBoard().getBoardAt(3,1));
 	}
 	
@@ -147,14 +153,17 @@ public class dungeonTest {
 					outcome1 = true;
 				else
 					break;
+				System.out.println("1\n");
 			}
 			else if ('O' == g.getBoard().getBoardAt(2,4)){
 				if('*' == g.getBoard().getBoardAt(3, 4) || '*' == g.getBoard().getBoardAt(1, 4) || '*' == g.getBoard().getBoardAt(2, 3))
 					outcome1 = true;
 				else
 					break;
+				System.out.println("2\n");
 			}
 			else{
+				System.out.println("Fail");
 				break;
 			}
 			
@@ -313,5 +322,6 @@ public class dungeonTest {
 	}
 	
 }
+
 
 

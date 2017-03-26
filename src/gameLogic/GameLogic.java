@@ -13,7 +13,7 @@ import java.lang.Character;
 /**
  * Represents the Game Logic.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  *  
  */
 
@@ -155,16 +155,14 @@ public class GameLogic implements Serializable {
 
 	public void updateGame(Direction move){
 
-		Action action = hero.move(this.board, move);
-
-		if(guard != null && level.isHaveGuard()) guard.move(board); if(crazyOgres != null && level.isHaveOgre()) moveOgres();
-		
-		if(action != Action.OPENDOOR){ if(hero.isSymbolNearby(board, 'G')){ action = Action.GUARD; }
-			if(!hero.isArmed){ if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
-					action = Action.CRAZYOGRE;} }
-			else{ if(hero.isSymbolNearby(board, '*')){ action = Action.CRAZYOGRE; }
-				else if(hero.isOgreNearby(board, crazyOgres)){ action = Action.STUNNED; } } }
-		switch (action) {
+		Action action = hero.move(this.board, move); if(guard != null && level.isHaveGuard()) guard.move(board);
+		if(crazyOgres != null && level.isHaveOgre()) moveOgres();
+		if(action != Action.OPENDOOR){ if(hero.isSymbolNearby(board, hero.position, 'G')){ action = Action.GUARD; }
+			if(!hero.isArmed){ if(hero.isSymbolNearby(board, hero.position, 'O') || hero.isSymbolNearby(board, hero.position, '$')
+						|| hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; } }
+			else{ if(hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; }
+				else if(hero.isOgreNearby(board, crazyOgres)){ action = Action.STUNNED; } } 	}
+        switch (action) {
 		case NOACTION: break;
 		case GUARD: this.won = false; gameOn = false; break;
 		case CRAZYOGRE: this.won = false; gameOn = false; break;
@@ -175,7 +173,7 @@ public class GameLogic implements Serializable {
 		case STUNNED: break;
 		default: break; }
 	}
-
+	
 	/**
 	 * Returns true if the user won the game.
 	 * 

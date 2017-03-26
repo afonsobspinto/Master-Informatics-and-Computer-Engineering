@@ -89,7 +89,7 @@ public class Board implements Serializable {
 		
 		BOARDS.put(3, new Character[][]{
 			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{i,empty, empty,empty,empty,empty,empty,k,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
@@ -101,7 +101,7 @@ public class Board implements Serializable {
 		
 		BOARDS.put(4, new Character[][]{
 			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{i,empty, empty,empty,empty,empty,empty,k,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
@@ -113,7 +113,7 @@ public class Board implements Serializable {
 		
 		BOARDS.put(5, new Character[][]{
 			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{i,empty, empty,empty,empty,empty,empty,k,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},
 			{x, empty, empty,empty,empty,empty,empty,empty,x},

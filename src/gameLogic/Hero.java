@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Represents the Hero.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  * @see Character
  * 
  */
@@ -105,39 +105,6 @@ public class Hero extends Character{
 		this.under_char = ' ';
 	}
 	
-	/**
-	 * 
-	 * Returns true if the symbol is nearby of the hero on the board.
-	 * 
-	 * @param board 
-	 *          the board of the game
-	 * @param symbol
-	 *          the symbol of type char
-	 *          
-	 * @return true if the symbol is nearby the hero and false if not.
-	 */
-	
-	public boolean isSymbolNearby(Board board, char symbol){
-
-		int xPos = this.position.getX();
-		int yPos = this.position.getY();
-
-		if(board.getBoardAt(xPos+1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos-1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos+1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos-1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos) == symbol)
-			return true;
-		return false;
-	}
 	
 	/**
 	 * 

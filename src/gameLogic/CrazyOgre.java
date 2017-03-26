@@ -8,7 +8,7 @@ import jdk.nashorn.internal.runtime.CodeStore.DirectoryCodeStore;
 /**
  * Represents the Crazy Ogre.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  * @see Character
  * 
  */
@@ -209,6 +209,9 @@ public class CrazyOgre extends Character {
 			return Direction.INVALID;
 		}
 	}
+	
+	
+	
 
 	/**
 	 * Cleans the old position of the Ogre on the Board.
@@ -306,41 +309,7 @@ public class CrazyOgre extends Character {
 		}
 	}
 	
-	/**
-	 * 
-	 * Returns true if the symbol is nearby of the ogre on the board.
-	 * 
-	 * @param board 
-	 *          the board of the game
-	 * @param position 
-	 *          the position of the symbol
-	 * @param symbol
-	 *          the symbol of type char
-	 *          
-	 * @return true if the symbol is nearby the ogre and false if not.
-	 */
-	
-	private boolean isSymbolNearby(Board board, Coord position,  char symbol){
 
-		int xPos = position.getX();
-		int yPos = position.getY();
-
-		if(board.getBoardAt(xPos+1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos-1, yPos)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos+1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos-1)==symbol)
-			return true;
-
-		if(board.getBoardAt(xPos, yPos) == symbol)
-			return true;
-		return false;
-	}
 	
 	/**
 	 * 
