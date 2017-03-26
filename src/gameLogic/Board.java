@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.Character;
 
 /**
  * 
@@ -16,21 +17,112 @@ import java.util.Map;
 
 public class Board implements Serializable {
 	
-	private char[][] board;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Character[][] board;
 	private int rows;
 	private int columns;
 	private boolean[][] visited;
 	private static Map<Integer, Character[][]> BOARDS = new HashMap<Integer, Character[][]>();
 	
-//	static {
-//		BOARDS.put(-2, new Character[][]{
-//				{new Character('X'),'X', 'X', 'X','X','X'},
-//				{'X','H', ' ', ' ','O','X'},
-//				{'I',' ', ' ', ' ',' ','X'},
-//				{'I','k', ' ', ' ',' ','X'},
-//				{'X','X', 'X', 'X','X','X'}
-//			});
-//	}
+	static {
+		Character x = new Character('X');
+		Character empty = new Character(' ');
+		Character h = new Character('H');
+		Character o = new Character('O');
+		Character g = new Character('G');
+		Character i = new Character('I');
+		Character k = new Character('k');
+		
+		BOARDS.put(-2, new Character[][]{
+				{x,x, x, x,x,x},
+				{x,h, empty, empty,o,x},
+				{i,empty, empty, empty,empty,x},
+				{i,k, empty, empty,empty,x},
+				{x,x,x,x,x,x}
+			});
+		
+		BOARDS.put(-1, new Character[][]{
+			{x, x, x, x,x},
+			{x,h, empty, o,x},
+			{i,empty, empty, empty,x},
+			{i,i, empty, empty,x},
+			{x,x, x, x,x}
+		});
+		
+		BOARDS.put(0, new Character[][]{
+			{x, x, x, x,x},
+			{x,h, empty, g,x},
+			{i,empty, empty, empty,x},
+			{i,i, empty, empty,x},
+			{x,x, x, x,x}
+		});
+		
+		BOARDS.put(1, new Character[][]{
+			{x, x, x, x,x,x,x,x,x,x},
+			{x,empty, empty, empty,i,empty,x,empty,empty,x},
+			{x,x, x, empty,x,x,x,empty,empty,x},
+			{x,empty, i, empty,i,empty,x,empty,empty,x},
+			{x,x, x, empty,x,x,x,empty,empty,x},
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
+			{x,x, x, empty,x,x,x,x,empty,x},
+			{x,empty, i, empty,i,empty,x,i,empty,x},
+			{x, x, x, x,x,x,x,x,x,x}
+		});
+		
+		BOARDS.put(2, new Character[][]{
+			{x, x, x, x,x,x,x,x,x,x},
+			{x,empty, empty, empty,i,empty,x,empty,empty,x},
+			{x,x, x, empty,x,x,x,empty,empty,x},
+			{x,empty, i, empty,i,empty,x,empty,empty,x},
+			{x,x, x, empty,x,x,x,empty,empty,x},
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
+			{x,x, x, empty,x,x,x,x,empty,x},
+			{x,empty, i, empty,i,empty,x,i,empty,x},
+			{x, x, x, x,x,x,x,x,x,x}
+		});
+		
+		BOARDS.put(3, new Character[][]{
+			{x, x, x,x,x,x,x,x,x},
+			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, x, x,x,x,x,x,x,x}
+		});
+		
+		BOARDS.put(4, new Character[][]{
+			{x, x, x,x,x,x,x,x,x},
+			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, x, x,x,x,x,x,x,x}
+		});
+		
+		BOARDS.put(5, new Character[][]{
+			{x, x, x,x,x,x,x,x,x},
+			{i,empty, empty,empty,empty,empty,empty,i,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, x, x,x,x,x,x,x,x}
+		});
+	}
 	
 	/**
 	 * 
@@ -66,11 +158,11 @@ public class Board implements Serializable {
 	 */
 	
 	public Board(int rows, int columns){
-		this.board = new char[rows][columns];
+		this.board = new Character[rows][columns];
 
 		for(int i = 0; i < rows; i++){
 			for (int j = 0; j < columns; j++){
-				board[i][j] = ' ';
+				board[i][j] = new Character(' ');
 			}
 		}
 		
@@ -88,141 +180,10 @@ public class Board implements Serializable {
 	
 	public Board(int level) {
 
+		board = BOARDS.get(level);
+		this.rows = board.length;
+		this.columns = board[0].length;
 		
-
-		
-		switch (level) {
-		case -2:
-			
-			this.board = new char[][]{
-				{'X','X', 'X', 'X','X','X'},
-				{'X','H', ' ', ' ','O','X'},
-				{'I',' ', ' ', ' ',' ','X'},
-				{'I','k', ' ', ' ',' ','X'},
-				{'X','X', 'X', 'X','X','X'}
-			};
-
-			this.rows = 5;
-			this.columns = 6;
-
-			break;
-		case -1:
-
-			this.board = new char[][]{
-				{'X', 'X', 'X', 'X','X'},
-				{'X','H', ' ', 'O','X'},
-				{'I',' ', ' ', ' ','X'},
-				{'I','k', ' ', ' ','X'},
-				{'X','X', 'X', 'X','X'}
-			};
-
-			this.rows = 5;
-			this.columns = 5;
-
-			break;
-		case 0:
-
-			this.board = new char[][]{
-				{'X', 'X', 'X', 'X','X'},
-				{'X','H', ' ', 'G','X'},
-				{'I',' ', ' ', ' ','X'},
-				{'I','k', ' ', ' ','X'},
-				{'X','X', 'X', 'X','X'}
-			};
-
-			this.rows = 5;
-			this.columns = 5;
-
-			break;
-		case 1:
-			
-			this.board = new char[][]{
-				{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
-				{'X',' ', ' ', ' ','I',' ','X',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-				{'X',' ', 'I', ' ','I',' ','X',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-				{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X','X',' ','X'},
-				{'X',' ', 'I', ' ','I',' ','X','k',' ','X'},
-				{'X', 'X', 'X', 'X','X','X','X','X','X','X'}
-			};
-			
-			this.rows = 10;
-			this.columns = 10;
-			
-			break;
-		case 2:
-			this.board = new char[][]{
-				{'X', 'X', 'X', 'X','X','X','X','X','X','X'},
-				{'X',' ', ' ', ' ','I',' ','X',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-				{'X',' ', 'I', ' ','I',' ','X',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X',' ',' ','X'},
-				{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'I',' ', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X','X', 'X', ' ','X','X','X','X',' ','X'},
-				{'X',' ', 'I', ' ','I',' ','X','k',' ','X'},
-				{'X', 'X', 'X', 'X','X','X','X','X','X','X'}
-			};
-			
-			this.rows = 10;
-			this.columns = 10;
-			
-			break;
-
-			
-		case 3:
-			this.board = new char[][]{
-				{'X', 'X', 'X','X','X','X','X','X','X'},
-				{'I',' ', ' ',' ',' ',' ',' ','k','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', 'X', 'X','X','X','X','X','X','X'}
-			};
-		case 4:
-			this.board = new char[][]{
-				{'X', 'X', 'X','X','X','X','X','X','X'},
-				{'I',' ', ' ',' ',' ',' ',' ','k','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', 'X', 'X','X','X','X','X','X','X'}
-			};
-			
-			this.rows = 9;
-			this.columns = 9;
-			
-			break;
-		case 5:
-			this.board = new char[][]{
-				{'X', 'X', 'X','X','X','X','X','X','X'},
-				{'I',' ', ' ',' ',' ',' ',' ','k','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', ' ', ' ',' ',' ',' ',' ',' ','X'},
-				{'X', 'X', 'X','X','X','X','X','X','X'}
-			};
-			
-			this.rows = 9;
-			this.columns = 9;
-			
-			break;
-			
-		default:
-			break;
-		}
 	}
 	
 	/**
@@ -322,13 +283,11 @@ public class Board implements Serializable {
 		
 		visited[i][j] = true;
 		
-		if(!validSquare(i,j, searchForKey)){
+		if(!validSquare(i,j, searchForKey))
 			return false;
-		}
 		
-		if(isAtEnd(i, j, searchForKey)){
+		if(isAtEnd(i, j, searchForKey))
 			return true;
-		}
 
 		boolean right = existAPath(i+1, j, searchForKey);
 		boolean left = existAPath(i-1, j, searchForKey);
@@ -362,7 +321,6 @@ public class Board implements Serializable {
 			else
 				return false;
 		}
-		
 	}
 	
 	
