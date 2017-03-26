@@ -9,6 +9,7 @@ public class Board implements Serializable {
 	private int rows;
 	private int columns;
 	
+	
 	public int getRows() {
 		return rows;
 	}
