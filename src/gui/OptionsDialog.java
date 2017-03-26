@@ -91,61 +91,28 @@ public class OptionsDialog extends JDialog {
 
 	
 	private void SetUpButtonsSection(){
-		JPanel buttons = new JPanel();
-		getContentPane().add(buttons);
+		JPanel buttons = new JPanel(); getContentPane().add(buttons);
 		
 		/*
 		 * Start Button
 		 */
 		
-		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				parseInfo();
-				
-				gamePanel.startNewGame(gameConfig, 1);
-				
-				setVisible(false);
-			}
-		});
-		
+		JButton btnStart = new JButton("Start"); btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { parseInfo(); gamePanel.startNewGame(gameConfig, 1); setVisible(false); }});	
 		buttons.add(btnStart);
 	
-		
 		/*
 		 * Custom Button
 		 */
-		JButton btnCustom = new JButton("Custom Map");
-		btnCustom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				parseInfo();
-				
-				setUpMapSize();
-				
-				setVisible(false);
-				gamePanel.startGameCustomization(gameConfig);
-				
-			}
-		});
-		buttons.add(btnCustom);
-		
-		
+		JButton btnCustom = new JButton("Custom Map"); btnCustom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { parseInfo(); setUpMapSize(); setVisible(false); gamePanel.startGameCustomization(gameConfig);} });
+		buttons.add(btnCustom);	
 		
 		/*
 		 * Cancel Button
 		 */
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				
-			}
-		});
-		buttons.add(btnCancel);
-	}
+		JButton btnCancel = new JButton("Cancel"); btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { setVisible(false); } }); buttons.add(btnCancel); }
 	
 	
 	private void setUpMapSize(){

@@ -30,15 +30,8 @@ public abstract class Guard  extends Character{
 	 */
 	
 	public Guard(){
-		this.symbol = 'G';
-		this.under_char = ' ';
-		this.index = 0;
-		this.isMovingForward = true;
-		this.isSleeping = false;
-		this.orientation = Direction.LEFT;
-		this.route = new Coord[1];
-		this.route_dir = new Direction[]{Direction.LEFT};
-	};
+		this.symbol = 'G'; this.under_char = ' '; this.index = 0; this.isMovingForward = true; this.isSleeping = false;
+		this.orientation = Direction.LEFT; this.route = new Coord[1]; this.route_dir = new Direction[]{Direction.LEFT}; };
 
 	/**
 	 * Constructs and initializes a Guard with position of type Coord.
@@ -58,63 +51,25 @@ public abstract class Guard  extends Character{
 	 */
 	
 	public Guard(int level){
-		this.symbol = 'G';
-		this.under_char = ' ';
-		this.index = 0;
-		this.isMovingForward = true;
-		this.isSleeping = false;
-		Coord startingPos;
-		
-		this.route = new Coord[1];
-		this.route_dir = new Direction[1];
-		this.route_dir[0]=Direction.LEFT;
-		this.orientation = Direction.LEFT;
-		
-		
-		switch (level) {
-		case 0:
-			startingPos = new Coord(1,3);
-			this.position = startingPos;
-			this.route[0]=startingPos;
-			
-			break;
-		case 1:
-			startingPos = new Coord(1,8);
-			this.position = startingPos;
-			this.route[0]=startingPos;
+		this.symbol = 'G'; this.under_char = ' '; this.index = 0; this.isMovingForward = true; this.isSleeping = false; Coord startingPos;
+		this.route = new Coord[1]; this.route_dir = new Direction[1]; 	this.route_dir[0]=Direction.LEFT; this.orientation = Direction.LEFT;
 
+		switch (level) {
+		case 0: startingPos = new Coord(1,3); this.position = startingPos; 	this.route[0]=startingPos; 	break;
+		case 1: startingPos = new Coord(1,8); this.position = startingPos; 	this.route[0]=startingPos; break;
+		case 2: startingPos = new Coord(1,8); this.position = startingPos; Coord[] temp = { 
+					new Coord(1,8), new Coord(1,7),new Coord(2,7), new Coord(3,7), new Coord(4,7),  new Coord(5,7), new Coord(5,6),
+					new Coord(5,5), new Coord(5,4), new Coord(5,3), new Coord(5,2), new Coord(5,1), new Coord(6,1), new Coord(6,2),
+					new Coord(6,3), new Coord(6,4), new Coord(6,5), new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(5,8), 
+					new Coord(4,8),new Coord(3,8), new Coord(2,8) };
+			Direction[] temp_dir = { Direction.LEFT, Direction.LEFT, Direction.DOWN, Direction.DOWN, Direction.DOWN,  Direction.DOWN,
+					Direction.LEFT, Direction.LEFT, Direction.LEFT,Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.DOWN,
+					Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT,
+					Direction.RIGHT,  Direction.UP, Direction.UP, Direction.UP, Direction.UP 	};
 			
-			break;
-		case 2:
-			startingPos = new Coord(1,8);
-			this.position = startingPos;
-			
-			Coord[] temp = { 
-					new Coord(1,8), new Coord(1,7),new Coord(2,7), new Coord(3,7), new Coord(4,7), 
-					new Coord(5,7), new Coord(5,6),  new Coord(5,5), new Coord(5,4), new Coord(5,3), 
-					new Coord(5,2), new Coord(5,1), new Coord(6,1), new Coord(6,2), new Coord(6,3),
-					new Coord(6,4), new Coord(6,5), new Coord(6,6), new Coord(6,7), new Coord(6,8),
-					new Coord(5,8), new Coord(4,8),new Coord(3,8), new Coord(2,8)
-					};
-			
-			Direction[] temp_dir = {
-					Direction.LEFT, Direction.LEFT, Direction.DOWN, Direction.DOWN, Direction.DOWN, 
-					Direction.DOWN, Direction.LEFT, Direction.LEFT, Direction.LEFT,Direction.LEFT,
-					Direction.LEFT, Direction.LEFT, Direction.DOWN, Direction.RIGHT, Direction.RIGHT,
-					Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, 
-					Direction.UP, Direction.UP, Direction.UP, Direction.UP
-					};
-			
-			this.route = Arrays.copyOf(temp, temp.length);
-			this.route_dir = Arrays.copyOf(temp_dir, temp_dir.length);
-			this.orientation = route_dir[0];
-			
-			break;
-			
-		default:
-			break;
-		}
-		
+			this.route = Arrays.copyOf(temp, temp.length); 	this.route_dir = Arrays.copyOf(temp_dir, temp_dir.length);
+			this.orientation = route_dir[0]; break;
+		default: break; }
 	}
 	
 	/**

@@ -47,71 +47,28 @@ public class Hero extends Character{
 		this.gotKey = false;
 		this.isArmed = false;
 		this.orientation = Direction.RIGHT;
-		
 		Coord startingPos;
-		
 		switch (level) {
 		case -2:
-			startingPos = new Coord(1,1);
-			this.position = startingPos;
-			this.isKey = true;
-			this.isLever = false;
-			break;
+			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
 		case -1:
-			startingPos = new Coord(1,1);
-			this.position = startingPos;
-			this.isKey = true;
-			this.isLever = false;
-			break;
+			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
 		case 0:
-			startingPos = new Coord(1,1);
-			this.position = startingPos;
-			this.isKey = false;
-			this.isLever = true;
-			break;
+			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
 		case 1:
-			startingPos = new Coord(1,1);
-			this.position = startingPos;
-			this.isKey = false;
-			this.isLever = true;
-			
-			break;
-
+			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
 		case 2:
-			startingPos = new Coord(1,1);
-			this.position = startingPos;
-			this.isKey = false;
-			this.isLever = true;
-			break;
-			
+			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
 		case 3:
-			startingPos = new Coord(7,1);
-			this.position = startingPos;
-			this.isKey = true;
-			this.isLever = false;
-			break;
-			
+			startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
 		case 4:
-			startingPos = new Coord(7,1);
-			this.position = startingPos;
-			this.isKey = true;
-			this.isLever = false;
-			break;
-			
+			startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
 		case 5:
-			this.symbol = 'A';
-			startingPos = new Coord(7,1);
-			this.position = startingPos;
-			this.isKey = true;
-			this.isLever = false;
-			this.isArmed = true;
-			break;
-
-			
+			this.symbol = 'A'; startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; 
+			this.isArmed = true; break;
 		default:
 			break;
 		}
-		
 	}
 	
 	/**
@@ -197,80 +154,26 @@ public class Hero extends Character{
 	
 	public Action move(Board board, Direction direction){
 		
-		int x = this.position.getX();
-		int y = this.position.getY();
-		
-		this.orientation = direction;
-		
-		Action res = Action.NOACTION;
-		int move = direction.getValue();
-		char nextPos;
-		boolean vertical = false;
+		int x = this.position.getX(); int y = this.position.getY(); this.orientation = direction;		
+		Action res = Action.NOACTION; int move = direction.getValue(); char nextPos; boolean vertical = false;
 
-		if(direction == Direction.DOWN || direction == Direction.UP){
-			vertical = true;
-			nextPos = board.getBoardAt(x+move, y);
-		}
-		else
-			nextPos = board.getBoardAt(x, y+move);
-
-
-		if(nextPos == 'X'){
-			res = Action.NOACTION;
-		}
-		
+		if(direction == Direction.DOWN || direction == Direction.UP){ vertical = true; nextPos = board.getBoardAt(x+move, y);}
+		else nextPos = board.getBoardAt(x, y+move);
+		if(nextPos == 'X') res = Action.NOACTION;
 		else if(nextPos == 'I'){
-			if(this.gotKey){
-				board.setBoardAt(x,y+move, 'S');
-				res = Action.KEY;
-			}
-			else
-				res = Action.NOACTION;
-
-		}
-		else if(nextPos == 'S'){ //Open Door
-			res =  Action.OPENDOOR;
-		}
-		else if(nextPos == 'G'){ //Guard
-			res = Action.GUARD;
-		}
-
-		else if((!isArmed && (nextPos == 'O' || nextPos == '$' || nextPos == '*')) || (isArmed && nextPos == '*')){
-			res = Action.CRAZYOGRE;
-		}
-
-		else if(isArmed && (nextPos == 'O' || nextPos == '$' )){
-			res = Action.STUNNED;
-		}
-
-		else{
-			board.setBoardAt(x,y, this.under_char);
-			if(nextPos == 'k' && this.isLever){
-				res = Action.LEVER;
-				this.under_char = 'k';
-			}
-			else if (nextPos == 'k' && this.isKey){
-				res = Action.KEY;
-				this.under_char = ' ';
-				this.gotKey = true;
-				this.symbol = 'K';
-			}
-			else if (nextPos == ' '){
-				res = Action.NOACTION;
-				this.under_char = ' ';
-			}
-
-			Coord pos;
-			if(vertical)
-				pos = new Coord(x+move, y);
-			else
-				pos = new Coord(x, y+move);
-
-			board.setBoardAt(pos, this.symbol);
-			this.position = pos;
-		}
-
-		return res;
+			if(this.gotKey){ board.setBoardAt(x,y+move, 'S'); res = Action.KEY; }
+			else res = Action.NOACTION; }
+		else if(nextPos == 'S') res =  Action.OPENDOOR; else if(nextPos == 'G') res = Action.GUARD;
+		else if((!isArmed && (nextPos == 'O' || nextPos == '$' || nextPos == '*')) || (isArmed && nextPos == '*')) res = Action.CRAZYOGRE;
+		else if(isArmed && (nextPos == 'O' || nextPos == '$' )) res = Action.STUNNED;
+		else{ board.setBoardAt(x,y, this.under_char);
+			if(nextPos == 'k' && this.isLever){ res = Action.LEVER; this.under_char = 'k'; }
+			else if (nextPos == 'k' && this.isKey){ res = Action.KEY; this.under_char = ' '; this.gotKey = true; this.symbol = 'K'; }
+			else if (nextPos == ' '){ res = Action.NOACTION; this.under_char = ' '; }
+			Coord pos; if(vertical) pos = new Coord(x+move, y);
+			else pos = new Coord(x, y+move);
+			board.setBoardAt(pos, this.symbol); this.position = pos;
+		} return res;
 	}
 
 	/**

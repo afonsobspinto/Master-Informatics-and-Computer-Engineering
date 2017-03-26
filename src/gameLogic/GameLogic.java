@@ -155,64 +155,25 @@ public class GameLogic implements Serializable {
 
 	public void updateGame(Direction move){
 
-		Action action = hero.move(this.board, move);
-		
-		if(guard != null && level.isHaveGuard())
-			guard.move(board);
-		if(crazyOgres != null && level.isHaveOgre())
-			moveOgres();
-		
-
-		if(action != Action.OPENDOOR){
-			if(hero.isSymbolNearby(board, hero.position, 'G')){
-				action = Action.GUARD;
-			}
-			if(!hero.isArmed){
-				if(hero.isSymbolNearby(board, hero.position, 'O') || hero.isSymbolNearby(board, hero.position, '$') || hero.isSymbolNearby(board, hero.position, '*')){
-					action = Action.CRAZYOGRE;
-				}
-			}
-			else{
-				if(hero.isSymbolNearby(board, hero.position, '*')){
-					action = Action.CRAZYOGRE;
-				}
-				else if(hero.isOgreNearby(board, crazyOgres)){
-					action = Action.STUNNED;
-				}
-			}
-		}
-
-		switch (action) {
-		case NOACTION:
-			break;
-		case GUARD:
-			this.won = false;
-			gameOn = false;
-			break;
-		case CRAZYOGRE:
-			this.won = false;
-			gameOn = false;
-			break;
-		case OPENDOOR:
-			this.won= true;
-			gameOn= false;
-			break;
-		case LEVER:
-			applyLever();
-			triggeredLever = true;
-			break;
-		case MOVE:
-			break;
-		case KEY:
-			break;
-		case STUNNED:
-			break;
-
-		default:
-			break;
-		}
+		Action action = hero.move(this.board, move); if(guard != null && level.isHaveGuard()) guard.move(board);
+		if(crazyOgres != null && level.isHaveOgre()) moveOgres();
+		if(action != Action.OPENDOOR){ if(hero.isSymbolNearby(board, hero.position, 'G')){ action = Action.GUARD; }
+			if(!hero.isArmed){ if(hero.isSymbolNearby(board, hero.position, 'O') || hero.isSymbolNearby(board, hero.position, '$')
+						|| hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; } }
+			else{ if(hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; }
+				else if(hero.isOgreNearby(board, crazyOgres)){ action = Action.STUNNED; } } 	}
+        switch (action) {
+		case NOACTION: break;
+		case GUARD: this.won = false; gameOn = false; break;
+		case CRAZYOGRE: this.won = false; gameOn = false; break;
+		case OPENDOOR: this.won= true; gameOn= false; break;
+		case LEVER: applyLever(); triggeredLever = true; break;
+		case MOVE: break;
+		case KEY: break;
+		case STUNNED: break;
+		default: break; }
 	}
-
+	
 	/**
 	 * Returns true if the user won the game.
 	 * 
