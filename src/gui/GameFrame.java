@@ -77,12 +77,7 @@ public class GameFrame extends JFrame {
 		 */
 		
 		btnNewGame = new JButton("New Game");
-		btnNewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				options.setVisible(true);
-			}
-		}
-		);
+		btnNewGame.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent arg0) { options.setVisible(true); } } );
 		
 		btnNewGame.setBounds((this.getWidth()-xButtonRes)/2, (int)(((this.getHeight()-yButtonRes)/2) - this.getHeight()*(1.0/4.0)), xButtonRes, yButtonRes);
 		this.getContentPane().add(btnNewGame);
@@ -92,17 +87,9 @@ public class GameFrame extends JFrame {
 		 * ExitGame
 		 */
 		
-		btnExitGame = new JButton("Exit Game");
-		btnExitGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String msg = "Are you sure you want to Exit?";
-				int res = JOptionPane.showConfirmDialog(rootPane, msg);
-
-				if (res == JOptionPane.YES_OPTION)
-					System.exit(0);
-			}
-		}
-		);
+		btnExitGame = new JButton("Exit Game"); btnExitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { String msg = "Are you sure you want to Exit?";
+				int res = JOptionPane.showConfirmDialog(rootPane, msg); if (res == JOptionPane.YES_OPTION) System.exit(0); } } );
 		
 		btnExitGame.setBounds((this.getWidth()-xButtonRes)/2, (int)(((this.getHeight()-yButtonRes)/2) + this.getHeight()*(1.0/4.0)), xButtonRes, yButtonRes);
 		this.getContentPane().add(btnExitGame);
@@ -111,13 +98,8 @@ public class GameFrame extends JFrame {
 		 * LoadGame
 		 */
 		
-		btnLoadGame = new JButton("Load Game");
-		btnLoadGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				loadOptions.setVisible(true);
-			}
-		}
-		);
+		btnLoadGame = new JButton("Load Game"); btnLoadGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { loadOptions.setVisible(true); } } );
 		
 		btnLoadGame.setBounds((this.getWidth()-xButtonRes)/2, (this.getHeight()-yButtonRes)/2, xButtonRes, yButtonRes);
 		this.getContentPane().add(btnLoadGame);

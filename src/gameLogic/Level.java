@@ -41,36 +41,16 @@ public class Level implements Serializable {
 	
 	public Level(int level){
 		switch (level) {
-		case -2:
-			level_config(-2, false, false, true, true);
-			break;
-		case -1:
-			level_config(-1, false, false, true, true);
-			break;
-		case 0:
-			level_config(0, true, false, true, false);
-			break;
-		case 1:
-			level_config(1, true, true, false, false);
-			break;
-		case 2:
-			level_config(2, true, true, false, false);
-			break;
-		case 3:
-			level_config(3, false, false, true, true);
-			break;
-		case 4:
-			level_config(4, false, false, true, true);
-			break;
-		case 5:
-			level_config(5, false, false, true, true);
-			break;
-		case 6:
-			level_config(6, false, false, false, false);
-			
-		default:
-			break;
-		}
+		case -2: level_config(-2, false, false, true, true); break;
+		case -1: level_config(-1, false, false, true, true); break;
+		case 0: level_config(0, true, false, true, false); break;
+		case 1: level_config(1, true, true, false, false); break;
+		case 2: level_config(2, true, true, false, false); break;
+		case 3: level_config(3, false, false, true, true); break;
+		case 4: level_config(4, false, false, true, true); break;
+		case 5: level_config(5, false, false, true, true); break;
+		case 6: level_config(6, false, false, false, false);	
+		default: break; }
 	}
 	
 	/**

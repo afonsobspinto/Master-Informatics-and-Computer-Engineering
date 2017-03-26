@@ -95,54 +95,37 @@ public class GamePanel extends JPanel {
 	
 	
 	private void loadImages(){
-		ImageIcon temp;
-		temp = new ImageIcon(this.getClass().getResource("res/background.png"));
-		background = temp.getImage();
+		ImageIcon temp; temp = new ImageIcon(this.getClass().getResource("res/background.png")); background = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/wall.png"));
-		wall = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/wall.png")); wall = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/door.png"));
-		door = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/door.png")); door = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/openDoor.png"));
-		openDoor = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/openDoor.png")); openDoor = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/hero.png"));
-		hero = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/hero.png")); hero = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/heroWithWeapon.png"));
-		heroWithWeapon = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/heroWithWeapon.png")); heroWithWeapon = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/heroWithKey.png"));
-		heroWithKey = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/heroWithKey.png")); 	heroWithKey = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/guard.png"));
-		guard = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/guard.png")); guard = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/guardSleeping.png"));
-		guardSleeping = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/guardSleeping.png")); guardSleeping = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/ogre.png"));
-		ogre = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/ogre.png")); ogre = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/ogreSleeping.png"));
-		ogreSleeping = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/ogreSleeping.png")); ogreSleeping = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/club.png"));
-		club = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/club.png")); club = temp.getImage();
 
-		temp = new ImageIcon(this.getClass().getResource("res/key.png"));
-		key = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/key.png")); key = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/lever1.png"));
-		lever = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/lever1.png")); lever = temp.getImage();
 		
-		temp = new ImageIcon(this.getClass().getResource("res/lever2.png"));
-		leverActivated = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/lever2.png")); leverActivated = temp.getImage();
 
-		temp = new ImageIcon(this.getClass().getResource("res/credits.png"));
-		credits = temp.getImage();
+		temp = new ImageIcon(this.getClass().getResource("res/credits.png")); 	credits = temp.getImage();
 
 	}
 	

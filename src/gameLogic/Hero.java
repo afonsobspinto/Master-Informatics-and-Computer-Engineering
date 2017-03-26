@@ -42,32 +42,20 @@ public class Hero extends Character{
 	 */
 	
 	public Hero(int level){
-		this.symbol = 'H';
-		this.under_char = ' ';
-		this.gotKey = false;
-		this.isArmed = false;
-		this.orientation = Direction.RIGHT;
+		this.symbol = 'H'; this.under_char = ' '; this.gotKey = false; this.isArmed = false; this.orientation = Direction.RIGHT;
 		Coord startingPos;
 		switch (level) {
-		case -2:
-			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
-		case -1:
-			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
-		case 0:
-			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
-		case 1:
-			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
-		case 2:
-			startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
-		case 3:
-			startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
-		case 4:
-			startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
+		case -2: startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
+		case -1: startingPos = new Coord(1,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;
+		case 0: startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
+		case 1: startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
+		case 2: startingPos = new Coord(1,1); this.position = startingPos; this.isKey = false; this.isLever = true; break;
+		case 3: startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
+		case 4: 	startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; break;	
 		case 5:
 			this.symbol = 'A'; startingPos = new Coord(7,1); this.position = startingPos; this.isKey = true; this.isLever = false; 
 			this.isArmed = true; break;
-		default:
-			break;
+		default: break;
 		}
 	}
 	

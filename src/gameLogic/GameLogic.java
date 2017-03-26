@@ -90,44 +90,19 @@ public class GameLogic implements Serializable {
 	
 	public GameLogic(Level level, GameConfig gameConfig){
 
-		this.gameConfig = gameConfig;
-		this.gameOn = true;
-		this.won = false;
-		this.level = level;
-		this.triggeredLever = false;
-
-		this.board = level.getBoard();
-		this.hero = level.getHero();
-		
-		this.board.setBoardAt(hero.position, hero.symbol);
+		this.gameConfig = gameConfig; this.gameOn = true; this.won = false; this.level = level; this.triggeredLever = false;
+		this.board = level.getBoard(); this.hero = level.getHero(); this.board.setBoardAt(hero.position, hero.symbol);
 		
 		int guardIndex = gameConfig.getGuardIndex();
 		
-		if(level.isHaveGuard()){
-			
+		if(level.isHaveGuard()){	
 			switch (guardIndex) {
-			case 0:
-				this.guard = new Rookie(level.getLevel());
-				break;
-			case 1:
-				this.guard = new Drunken(level.getLevel());
-				break;
-			case 2:
-				this.guard = new Suspicious(level.getLevel());
-				break;
-
-			default:
-				randomGuard(level.getLevel());
-				break;
-			}
-
-			this.board.setBoardAt(guard.position, guard.symbol);
-
-		}
-		if(level.isHaveOgre()){
-			fillCrazyOgres(level.getLevel(), gameConfig.getNumOfOgres());
-			setOgresOnBoard();
-			}
+			case 0: this.guard = new Rookie(level.getLevel()); break;
+			case 1: this.guard = new Drunken(level.getLevel()); break;
+			case 2: this.guard = new Suspicious(level.getLevel()); break;
+			default: randomGuard(level.getLevel()); break; 	}
+            this.board.setBoardAt(guard.position, guard.symbol); }
+		if(level.isHaveOgre()){ fillCrazyOgres(level.getLevel(), gameConfig.getNumOfOgres()); setOgresOnBoard(); }
 
 	}
 
