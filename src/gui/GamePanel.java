@@ -333,6 +333,7 @@ public class GamePanel extends JPanel {
 		charactersWidth = this.getWidth() / (gameConfig.getColumns() +2);
 		repaint();
 		requestFocus();
+		setUpStartButton();
 		
 	}
 
@@ -532,7 +533,6 @@ public class GamePanel extends JPanel {
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			// TODO Auto-generated method stub
 			super.mouseMoved(e);
 			
 			if(game!=null){
@@ -610,5 +610,24 @@ public class GamePanel extends JPanel {
 	}
 
 
+	private void setUpStartButton(){
+		
+		JButton btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//charactersWidth = getWidth() / gameConfig.getColumns();
+				customMap = false;
+				remove(btnStart);
+				revalidate();
+				repaint();
+			}
+		}
+		);
+		
+		this.add(btnStart);
+		btnStart.setBounds((this.getWidth()-gameFrame.getxButtonRes()), (int)((this.getHeight()-gameFrame.getyButtonRes())), gameFrame.getxButtonRes(), gameFrame.getyButtonRes());
+
+		
+	}
 	
 }
