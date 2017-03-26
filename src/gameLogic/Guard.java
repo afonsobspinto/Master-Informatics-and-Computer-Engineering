@@ -4,13 +4,30 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Represents the Guard.
+ * 
+ * @author Afonso Pinto and Tom�s Oliveira
+ * @see Character
+ * 
+ */
+
 public abstract class Guard  extends Character{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Coord[] route;
 	protected Direction[] route_dir;
 	protected int index;
 	protected boolean isMovingForward;
 	protected Direction orientation;
 	protected boolean isSleeping;
+	
+	/**
+	 * Constructs and initializes a Guard.
+	 * 
+	 */
 	
 	public Guard(){
 		this.symbol = 'G';
@@ -21,6 +38,12 @@ public abstract class Guard  extends Character{
 		this.orientation = Direction.LEFT;
 	};
 
+	/**
+	 * Constructs and initializes a Guard with position of type Coord.
+	 * 
+	 * @see {@link Coord.java}
+	 */
+	
 	public Guard(Coord position){
 		this.symbol = 'G';
 		this.under_char = ' ';
@@ -30,6 +53,11 @@ public abstract class Guard  extends Character{
 		this.isSleeping = false;
 		this.orientation = Direction.LEFT;
 	}
+	
+	/**
+	 * Constructs and initializes a Guard with level of type int.
+	 * 
+	 */
 	
 	public Guard(int level){
 		this.symbol = 'G';
@@ -92,9 +120,25 @@ public abstract class Guard  extends Character{
 		
 	}
 	
+	/**
+	 * Moves the Guard in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param direction
+	 *            the direction in which the guard should move
+	 */
+	
 	public Action move(Board board, Direction direction){
 		return Action.NOACTION;
 	}
+	
+	/**
+	 * Moves the Guard in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 */
 	
 	public abstract Action move(Board board);
 	
@@ -114,10 +158,24 @@ public abstract class Guard  extends Character{
 		}
 	}
 
+	/**
+	 * 
+	 * Returns the orientation of the guard.
+	 * 
+	 * @return the orientation of the guard.
+	 * 
+	 */
+	
 	public Direction getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * Returns true if the guard is sleeping.
+	 * 
+	 * @return true if the guard is sleeping.
+	 */
+	
 	public boolean isSleeping() {
 		return isSleeping;
 	}

@@ -78,7 +78,7 @@ public class Coord implements Serializable {
 	 *            the new x coordinate
 	 */
 	
-	private void setX(int x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
@@ -99,9 +99,16 @@ public class Coord implements Serializable {
 	 *            the new Y coordinate
 	 */
 	
-	private void setY(int y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 
+
+	@Override
+	public String toString() {
+		return "[x=" + x + ", y=" + y + "]";
+	}
+
+	
 	
 }

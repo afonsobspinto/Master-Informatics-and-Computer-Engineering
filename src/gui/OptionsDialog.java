@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
@@ -50,7 +51,7 @@ public class OptionsDialog extends JDialog {
 		this.setLocation((screenSize.width-this.getSize().width)/2, (screenSize.height-this.getSize().height)/2);
 	}
 	
-	public void SetUpGuardSettingsSection() {
+	private void SetUpGuardSettingsSection() {
 		JLabel lblGuardPersonality = new JLabel("Guard Settings");
 		lblGuardPersonality.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblGuardPersonality);
@@ -71,7 +72,7 @@ public class OptionsDialog extends JDialog {
 		
 	}
 	
-	public void SetUpOgresSettingsSection() {
+	private void SetUpOgresSettingsSection() {
 		JLabel lblOgresNumber = new JLabel("Ogres Settings");
 		lblOgresNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblOgresNumber);
@@ -87,8 +88,9 @@ public class OptionsDialog extends JDialog {
 		txtNumberOfOgres.setColumns(2);
 		numberOfOgres.add(txtNumberOfOgres);
 	}
+
 	
-	public void SetUpButtonsSection(){
+	private void SetUpButtonsSection(){
 		JPanel buttons = new JPanel();
 		getContentPane().add(buttons);
 		
@@ -101,7 +103,7 @@ public class OptionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int guardIndex = guardSelector.getSelectedIndex();
 				int numOfOgres = 1;
-				boolean valid = true;
+
 
 				try{
 					numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); 
@@ -119,8 +121,6 @@ public class OptionsDialog extends JDialog {
 
 				}
 				
-
-				
 				gameConfig.setNumOfOgres(numOfOgres);
 				gameConfig.setGuardIndex(guardIndex);
 				
@@ -135,6 +135,50 @@ public class OptionsDialog extends JDialog {
 		});
 		
 		buttons.add(btnStart);
+	
+		
+		/*
+		 * Custom Button
+		 */
+		JButton btnCustom = new JButton("Custom Map");
+		btnCustom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int guardIndex = guardSelector.getSelectedIndex();
+				int numOfOgres = 1;
+
+				try{
+					numOfOgres = Integer.parseInt(txtNumberOfOgres.getText()); 
+					if(numOfOgres <= 0 || numOfOgres >= 6){
+						throw new NumberOfOgresOutofBound();
+					}
+				}catch(NumberFormatException e){
+					String msg = "You should set a valid Number of Ogres";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+				}catch(NumberOfOgresOutofBound e){
+					String msg = "Number of Ogres should be greater than 0 and lesser than 6";
+					JOptionPane.showMessageDialog(rootPane, msg);
+					return;
+
+				}
+				gameConfig.setNumOfOgres(numOfOgres);
+				gameConfig.setGuardIndex(guardIndex);
+
+				gameFrame.getContentPane().removeAll();
+				gameFrame.getContentPane().validate();
+				gameFrame.getContentPane().add(gamePanel);
+				
+				setUpMapSize();
+				
+				setVisible(false);
+				gamePanel.startGameCustomization(gameConfig);
+				
+			}
+		});
+		buttons.add(btnCustom);
+		
+		
 		
 		/*
 		 * Cancel Button
@@ -148,4 +192,51 @@ public class OptionsDialog extends JDialog {
 		});
 		buttons.add(btnCancel);
 	}
+	
+	
+	private void setUpMapSize(){
+		
+		JPanel myPanel = new JPanel();
+		
+		JLabel lblWidth = new JLabel("Width");
+		lblWidth.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JSlider widthSlider = new JSlider();
+		widthSlider.setMaximum(20);
+		widthSlider.setMinimum(5);
+		widthSlider.setValue(10);
+		widthSlider.setMinorTickSpacing(1);
+		widthSlider.setMajorTickSpacing(5);
+		widthSlider.setPaintTicks(true);
+		widthSlider.setPaintLabels(true);
+		widthSlider.setSnapToTicks(true);
+		
+
+		JLabel lblHeight = new JLabel("Height");
+		lblHeight.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JSlider heightSlider = new JSlider();
+		heightSlider.setMaximum(20);
+		heightSlider.setMinimum(5);
+		heightSlider.setValue(10);
+		heightSlider.setMinorTickSpacing(1);
+		heightSlider.setMajorTickSpacing(5);
+		heightSlider.setPaintTicks(true);
+		heightSlider.setPaintLabels(true);
+		heightSlider.setSnapToTicks(true);
+		
+		myPanel.add(lblWidth);
+		myPanel.add(widthSlider);
+		myPanel.add(lblHeight);
+		myPanel.add(heightSlider);
+		
+		
+		JOptionPane.showConfirmDialog(null, myPanel, "Map Dimensions", JOptionPane.DEFAULT_OPTION);
+		
+		gameConfig.setColumns(widthSlider.getValue());
+		gameConfig.setRows(heightSlider.getValue());
+
+		
+	}
+	
 }

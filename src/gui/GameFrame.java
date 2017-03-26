@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import gameLogic.GameConfig;
+import javax.swing.JPanel;
 
 public class GameFrame extends JFrame {
 
@@ -51,7 +52,7 @@ public class GameFrame extends JFrame {
 		gameConfig = new GameConfig();
 		options = new OptionsDialog(this, gamePanel, gameConfig);
 		saveOptions = new SaveDialog(gamePanel);
-		loadOptions = new LoadDialog(gamePanel);
+		loadOptions = new LoadDialog(this, gamePanel);
 		optionInGame = new OptionsInGameDialog(saveOptions);
 		
 		
@@ -134,6 +135,7 @@ public class GameFrame extends JFrame {
 	public int getyButtonRes() {
 		return yButtonRes;
 	}
+	
 	
 	
 	

@@ -2,7 +2,17 @@ package gameLogic;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the Hero.
+ * 
+ * @author Afonso Pinto and Tom�s Oliveira
+ * @see Character
+ * 
+ */
+
 public class Hero extends Character{
+	
+    private static final long serialVersionUID = 1L;
 	boolean isKey;
 	boolean isLever;
 	boolean gotKey;
@@ -10,6 +20,27 @@ public class Hero extends Character{
 	boolean triggeredLever;
 	Direction orientation;
 
+	/**
+	 * Constructs and initializes a Hero.
+	 * 
+	 */
+	
+	public Hero(){
+		this.symbol = 'H';
+		this.under_char = ' ';
+		this.gotKey = false;
+		this.isArmed = false;
+		this.orientation = Direction.RIGHT;
+		this.position = new Coord(-2,-2);
+	}
+	
+	/**
+	 * Constructs and initializes a Hero with level of type int.
+	 * 
+	 * @param level
+	 *           the level of the hero
+	 */
+	
 	public Hero(int level){
 		this.symbol = 'H';
 		this.under_char = ' ';
@@ -75,6 +106,7 @@ public class Hero extends Character{
 			this.isLever = false;
 			this.isArmed = true;
 			break;
+
 			
 		default:
 			break;
@@ -82,19 +114,49 @@ public class Hero extends Character{
 		
 	}
 	
+	/**
+	 * Returns true if the hero has the key.
+	 * 
+	 * @return true if the hero has the key.
+	 */
+	
 	public boolean isGotKey() {
 		return gotKey;
 	}
 
+	/**
+	 * Returns true if the hero is armed.
+	 * 
+	 * @return true if the hero is armed.
+	 */
+	
 	public boolean isArmed() {
 		return isArmed;
 	}
 
+	/**
+	 * Constructs and initializes a Hero with position of type Coord.
+	 * 
+	 * @see {@link Coord.java}
+	 */
+	
 	public Hero(Coord position){
 		this.symbol = 'H';
 		this.position = position;
 		this.under_char = ' ';
 	}
+	
+	/**
+	 * 
+	 * Returns true if the symbol is nearby of the hero on the board.
+	 * 
+	 * @param board 
+	 *          the board of the game
+	 * @param symbol
+	 *          the symbol of type char
+	 *          
+	 * @return true if the symbol is nearby the hero and false if not.
+	 */
 	
 	public boolean isSymbolNearby(Board board, char symbol){
 
@@ -117,6 +179,18 @@ public class Hero extends Character{
 			return true;
 		return false;
 	}
+	
+	/**
+	 * 
+	 * Returns true if there is a ogre nearby the hero on the board.
+	 * 
+	 * @param board 
+	 *          the board of the game
+	 * @param ogres
+	 *          the list of ogres
+	 *          
+	 * @return true if there is a ogre nearby the hero and false if not.
+	 */
 	
 	public boolean isOgreNearby(Board board, ArrayList<CrazyOgre> ogres ){
 		int HeroxPos = this.position.getX();
@@ -143,6 +217,15 @@ public class Hero extends Character{
 		return res;
 	}
 
+	/**
+	 * Moves the Hero in a certain direction.
+	 * 
+	 * @param board
+	 *            the board of the game
+	 * @param direction
+	 *            the direction in which the hero should move
+	 */
+	
 	public Action move(Board board, Direction direction){
 		
 		int x = this.position.getX();
@@ -221,8 +304,44 @@ public class Hero extends Character{
 		return res;
 	}
 
+	/**
+	 * 
+	 * Returns the orientation of the hero.
+	 * 
+	 * @return the orientation of the hero.
+	 * 
+	 */
+	
 	public Direction getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * 
+	 * Sets the key to the hero.
+	 * 
+	 * @param isKey
+	 *            the boolean representing if the hero has a key.
+	 * 
+	 */
+	
+	public void setKey(boolean isKey) {
+		this.isKey = isKey;
+	}
+
+	/**
+	 * 
+	 * Sets the lever to the hero.
+	 * 
+	 * @param isLever
+	 *            the boolean representing if the hero triggered the lever.
+	 * 
+	 */
+	
+	public void setLever(boolean isLever) {
+		this.isLever = isLever;
+	}
+
+	
+	
 }

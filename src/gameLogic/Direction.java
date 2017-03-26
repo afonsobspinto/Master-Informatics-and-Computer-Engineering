@@ -2,6 +2,14 @@ package gameLogic;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * A class representing the direction.
+ * 
+ * @author Afonso Pinto and Tomas Oliveira
+ * 
+ */
+
 public enum Direction{
 	DOWN(1), UP(-1), RIGHT(1), LEFT(-1), INVALID(0);
 
@@ -11,6 +19,14 @@ public enum Direction{
 		this.value = value;
 	}
 
+	/**
+	 * 
+	 * Returns the value of the direction.
+	 * 
+	 * @return the value of the direction.
+	 * 
+	 */
+	
 	public int getValue(){
 		return value;
 	}
