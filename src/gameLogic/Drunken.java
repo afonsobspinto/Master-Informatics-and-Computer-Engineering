@@ -60,41 +60,20 @@ public class Drunken extends Guard {
 	
 	public Action move(Board board){
 		
-		if(this.isSleeping){
-			this.symbol = 'g';
-			this.isSleeping = randomDecision();
+		if(this.isSleeping){ this.symbol = 'g'; this.isSleeping = randomDecision();
 			
-			if(!this.isSleeping)
-				this.wakeUp = true;
+			if(!this.isSleeping) this.wakeUp = true;
 			
-			board.setBoardAt(this.position, this.symbol);
-		}
+			board.setBoardAt(this.position, this.symbol); }
 		
-		else if(wakeUp){
-			this.symbol = 'G';
-			this.wakeUp = false;
-			this.isMovingForward = randomDecision();
-			board.setBoardAt(this.position, this.symbol);
-		}
+		else if(wakeUp){ this.symbol = 'G'; this.wakeUp = false;
+			this.isMovingForward = randomDecision(); board.setBoardAt(this.position, this.symbol); }
 		else{
+			if(this.isMovingForward){ if(++index == route.length) index = 0; }
+			else{ if(--index == -1) index = route.length-1; }
 			
-			if(this.isMovingForward){
-				if(++index == route.length)
-					index = 0;
-			}
-			else{
-				if(--index == -1)
-					index = route.length-1;
-			}
-			
-			board.setBoardAt(this.position, ' ');
-			this.position = route[index];
-			this.orientation = route_dir[index];
-			board.setBoardAt(this.position, this.symbol);
-			
-			this.isSleeping = randomDecision();
-			
-		}
+			board.setBoardAt(this.position, ' '); this.position = route[index]; this.orientation = route_dir[index];
+			board.setBoardAt(this.position, this.symbol); this.isSleeping = randomDecision(); }
 		return Action.GUARD;
 	}
 

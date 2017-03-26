@@ -342,156 +342,42 @@ public class GamePanel extends JPanel {
 	}
 	
 	private class MyKeyAdapter extends KeyAdapter {
-		public void keyPressed(KeyEvent e) {
-			if (showBackground || customMap)
-				return;
-			
-			int key = e.getKeyCode();
-			
-			
-			final int downKey = gameConfig.getDownKey();
-			final int upKey = gameConfig.getUpKey();
-			final int rigthKey = gameConfig.getRightKey();
-			final int leftKey = gameConfig.getLeftKey();
-		
-			Direction direction;
-
-			if (key == downKey) {
-				direction = Direction.DOWN;
-				
-			} else if (key == upKey) {
-				direction = Direction.UP;
-				
-			} else if (key == rigthKey) {
-				direction = Direction.RIGHT;
-				
-			} else if (key == leftKey) {
-				direction = Direction.LEFT;
-
-			} else if (key == KeyEvent.VK_ESCAPE){
-				gameFrame.setOptionInGameVisible(true);
-				return;
-				
-			} else {
-				direction = Direction.INVALID;
-			}
-
-			game.updateGame(direction);
-
-			repaint();
-
-			
-			if(!game.isGameOn() && game.isWon()){
-				String msg = "You win!";
-				JOptionPane.showMessageDialog(getRootPane(), msg);
-				if(++level<=numberOfLevels)
-					startNewGame(gameConfig, level);
-				else{
-					showCredits = true;
-					repaint();
-					JOptionPane.getRootFrame().dispose();
-				}
-					
-			}
-			else if(!game.isGameOn() && !game.isWon()){
-				String msg = "Game Over!";
-				JOptionPane.showMessageDialog(getRootPane(), msg);
-				if(!wasCustom)
-					startNewGame(gameConfig, level);
-				else{
-					showCredits = true;
-					repaint();
-					JOptionPane.getRootFrame().dispose();
-				}
-			}
-
-			
-		}
+		public void keyPressed(KeyEvent e) { if (showBackground || customMap) return;
+	        int key = e.getKeyCode(); final int downKey = gameConfig.getDownKey(); final int upKey = gameConfig.getUpKey();
+			final int rigthKey = gameConfig.getRightKey(); final int leftKey = gameConfig.getLeftKey(); Direction direction;
+			if (key == downKey) { direction = Direction.DOWN; } else if (key == upKey) { direction = Direction.UP;
+			} else if (key == rigthKey) { direction = Direction.RIGHT; } else if (key == leftKey) { direction = Direction.LEFT;
+			} else if (key == KeyEvent.VK_ESCAPE){ gameFrame.setOptionInGameVisible(true); return;				
+			} else { direction = Direction.INVALID; } game.updateGame(direction); repaint();
+	
+			if(!game.isGameOn() && game.isWon()){ String msg = "You win!"; JOptionPane.showMessageDialog(getRootPane(), msg);
+				if(++level<=numberOfLevels) startNewGame(gameConfig, level);
+				else{ showCredits = true; repaint(); JOptionPane.getRootFrame().dispose(); } }
+			else if(!game.isGameOn() && !game.isWon()){ String msg = "Game Over!"; JOptionPane.showMessageDialog(getRootPane(), msg);
+				if(!wasCustom) startNewGame(gameConfig, level); else{ showCredits = true; repaint(); JOptionPane.getRootFrame().dispose();
+				} } }
 	}
 
 	
 	private class MyMouseAdapter extends MouseAdapter{
 
 		@Override
-		public void mousePressed(MouseEvent e) {
-
-			if(customMap){
-				if(SwingUtilities.isLeftMouseButton(e)){
-					if(mouseCell.getY() == game.getBoard().getColumns())
-						switch (mouseCell.getX()) {
-						case 0:
-							if(!haveHero)
-								charSelected = 'H';
-							break;
-						case 1:
-							if(!haveGuard && ogres==0)
-								charSelected = 'G';
-							break;
-						case 2:
-							if(!haveGuard)
-								charSelected = 'O';
-							break;
-						case 3:
-							charSelected = 'X';
-							break;
-						case 4:
-							if(levers==0)
-								charSelected = 'k';
-							break;
-						case 5:
-							if(keys == 0)
-								charSelected = 'L';
-							break;
-						case 6:
-							charSelected = 'I';
-							break;
-
-						default:
-							break;
-						}
-					
-				}
-				else if(SwingUtilities.isRightMouseButton(e)){
-					if(mouseCell.equals(game.getHero().getPosition())){
-						game.getHero().setPosition(new Coord(-2, -2));
-						haveHero = false;
-					}
-					else if(mouseCell.equals(game.getGuard().getPosition())){
-						game.getGuard().setPosition(new Coord(-2, -2));
-						haveGuard = false;
-						game.getLevel().setHaveGuard(false);
-					}
+		public void mousePressed(MouseEvent e) { if(customMap){
+				if(SwingUtilities.isLeftMouseButton(e)){ if(mouseCell.getY() == game.getBoard().getColumns())
+						switch (mouseCell.getX()) { case 0: if(!haveHero) charSelected = 'H'; break;
+						case 1: if(!haveGuard && ogres==0) charSelected = 'G'; break; case 2: if(!haveGuard) charSelected = 'O'; break;
+						case 3: charSelected = 'X'; break; case 4: if(levers==0) charSelected = 'k'; break;
+						case 5: if(keys == 0) charSelected = 'L'; break; case 6: charSelected = 'I'; break; default: break; 	} }
+				else if(SwingUtilities.isRightMouseButton(e)){ if(mouseCell.equals(game.getHero().getPosition())){
+						game.getHero().setPosition(new Coord(-2, -2)); haveHero = false; }
+					else if(mouseCell.equals(game.getGuard().getPosition())){ game.getGuard().setPosition(new Coord(-2, -2));
+						haveGuard = false; game.getLevel().setHaveGuard(false); }
 					else if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY())=='k'){
-						if(keys>0){
-							if(--keys == 0){
-								game.getLevel().setHaveKey(false);
-								game.getHero().setKey(false);
-							}
-						}
-						else{
-							if(--levers == 0){
-								game.getLevel().setHaveLever(false);
-								game.getHero().setLever(false);
-							}
-						}
-					}
-					else{
-						ArrayList<CrazyOgre> temp = game.getCrazyOgres();
-						for(int i = 0; i < temp.size(); i++){
-							if(mouseCell.equals(temp.get(i).getPosition())){
-								temp.remove(i);
-								ogres--;
-								if(temp.size()==0)
-									game.getLevel().setHaveOgre(false);
-							}
-						}
-					}
-					
-					game.getBoard().setBoardAt(mouseCell, ' ');
-					repaint();
-					
-				}
-			}
+						if(keys>0){ if(--keys == 0){ game.getLevel().setHaveKey(false); game.getHero().setKey(false); 	} }
+						else{ if(--levers == 0){ game.getLevel().setHaveLever(false); game.getHero().setLever(false); } } }
+					else{ ArrayList<CrazyOgre> temp = game.getCrazyOgres(); for(int i = 0; i < temp.size(); i++){
+							if(mouseCell.equals(temp.get(i).getPosition())){ temp.remove(i); ogres--; if(temp.size()==0) game.getLevel().setHaveOgre(false); } } }
+					game.getBoard().setBoardAt(mouseCell, ' '); repaint(); } }
 		}
 
 		@Override
@@ -499,43 +385,18 @@ public class GamePanel extends JPanel {
 			
 			super.mouseReleased(e);
 		
-			if(customMap){
-				if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY()) == ' '){
-					game.getBoard().setBoardAt(mouseCell, charSelected);
-					switch (charSelected) {
-					case 'H':
-						game.getHero().setPosition(new Coord(mouseCell.getX(), mouseCell.getY()));
-						haveHero = true;
-						break;
+			if(customMap){ if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY()) == ' '){
+					game.getBoard().setBoardAt(mouseCell, charSelected); switch (charSelected) {
+					case 'H': game.getHero().setPosition(new Coord(mouseCell.getX(), mouseCell.getY())); haveHero = true; break;
 					case 'O':
 						game.getCrazyOgres().add(new CrazyOgre(new Coord(mouseCell.getX(), mouseCell.getY()),false, game.getBoard()));
-						game.getLevel().setHaveOgre(true);
-						ogres++;
-						break;
-					case 'G':
-						game.setGuard(new Rookie(new Coord(mouseCell.getX(), mouseCell.getY())));
-						game.getLevel().setHaveGuard(true);
-						haveGuard = true;
-						break;
-					case 'k':
-						game.getLevel().setHaveKey(true);
-						game.getHero().setKey(true);
-						keys++;
-						break;
-					case 'L':
-						game.getLevel().setHaveLever(true);
-						game.getHero().setLever(true);
-						game.getBoard().setBoardAt(new Coord(mouseCell.getX(), mouseCell.getY()), 'k');
-						levers++;
-						break;
-
-					default:
-						break;
-					}
-					charSelected = ' ';
-					repaint();
-				}
-			}
+						game.getLevel().setHaveOgre(true); ogres++; break;
+					case 'G': game.setGuard(new Rookie(new Coord(mouseCell.getX(), mouseCell.getY()))); game.getLevel().setHaveGuard(true); haveGuard = true; break;
+					case 'k': game.getLevel().setHaveKey(true); game.getHero().setKey(true); keys++; break;
+					case 'L': game.getLevel().setHaveLever(true); game.getHero().setLever(true);
+						game.getBoard().setBoardAt(new Coord(mouseCell.getX(), mouseCell.getY()), 'k'); levers++; break;
+					default: break; }
+					charSelected = ' '; repaint(); } }
 		}
 
 		

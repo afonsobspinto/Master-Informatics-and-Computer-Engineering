@@ -117,45 +117,21 @@ public class OptionsDialog extends JDialog {
 	
 	private void setUpMapSize(){
 		
-		JPanel myPanel = new JPanel();
+		JPanel myPanel = new JPanel(); JLabel lblWidth = new JLabel("Width"); lblWidth.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblWidth = new JLabel("Width");
-		lblWidth.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JSlider widthSlider = new JSlider();
-		widthSlider.setMaximum(15);
-		widthSlider.setMinimum(7);
-		widthSlider.setValue(10);
-		widthSlider.setMinorTickSpacing(1);
-		widthSlider.setMajorTickSpacing(2);
-		widthSlider.setPaintTicks(true);
-		widthSlider.setPaintLabels(true);
-		widthSlider.setSnapToTicks(true);
-		
-
-		JLabel lblHeight = new JLabel("Height");
+		JSlider widthSlider = new JSlider(); widthSlider.setMaximum(15); widthSlider.setMinimum(7); widthSlider.setValue(10);
+		widthSlider.setMinorTickSpacing(1); widthSlider.setMajorTickSpacing(2); widthSlider.setPaintTicks(true);
+		widthSlider.setPaintLabels(true); widthSlider.setSnapToTicks(true); JLabel lblHeight = new JLabel("Height");
 		lblHeight.setHorizontalAlignment(SwingConstants.CENTER);
+		JSlider heightSlider = new JSlider(); heightSlider.setMaximum(15);
+		heightSlider.setMinimum(7); heightSlider.setValue(10); heightSlider.setMinorTickSpacing(1); heightSlider.setMajorTickSpacing(2);
+		heightSlider.setPaintTicks(true); heightSlider.setPaintLabels(true); heightSlider.setSnapToTicks(true);
 		
-		JSlider heightSlider = new JSlider();
-		heightSlider.setMaximum(15);
-		heightSlider.setMinimum(7);
-		heightSlider.setValue(10);
-		heightSlider.setMinorTickSpacing(1);
-		heightSlider.setMajorTickSpacing(2);
-		heightSlider.setPaintTicks(true);
-		heightSlider.setPaintLabels(true);
-		heightSlider.setSnapToTicks(true);
-		
-		myPanel.add(lblWidth);
-		myPanel.add(widthSlider);
-		myPanel.add(lblHeight);
-		myPanel.add(heightSlider);
-		
+		myPanel.add(lblWidth); myPanel.add(widthSlider); myPanel.add(lblHeight); myPanel.add(heightSlider);
 		
 		JOptionPane.showConfirmDialog(null, myPanel, "Map Dimensions", JOptionPane.DEFAULT_OPTION);
 		
-		gameConfig.setColumns(widthSlider.getValue());
-		gameConfig.setRows(heightSlider.getValue());
+		gameConfig.setColumns(widthSlider.getValue()); gameConfig.setRows(heightSlider.getValue());
 
 		
 	}
