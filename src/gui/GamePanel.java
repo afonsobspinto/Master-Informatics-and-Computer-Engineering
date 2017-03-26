@@ -619,11 +619,15 @@ public class GamePanel extends JPanel {
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//charactersWidth = getWidth() / gameConfig.getColumns();
+				charactersWidth = getWidth() / gameConfig.getColumns();
 				customMap = false;
-				remove(btnStart);
-				revalidate();
-				repaint();
+				if(haveHero && (haveGuard || ogres!=0) && (keys != 0 || levers != 0) && game.getBoard().isValidBoard(game.getHero().getPosition())){
+					remove(btnStart);
+					revalidate();
+					repaint();
+				}
+				
+				
 			}
 		}
 		);

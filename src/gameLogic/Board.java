@@ -1,6 +1,7 @@
 package gameLogic;
 
 import java.io.Serializable;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
@@ -16,6 +17,7 @@ public class Board implements Serializable {
 	private char[][] board;
 	private int rows;
 	private int columns;
+	private int[][] paths;
 	
 	/**
 	 * 
@@ -280,6 +282,50 @@ public class Board implements Serializable {
 		return "Board [board=" + Arrays.toString(board) + ", rows=" + rows + ", columns=" + columns + "]";
 	}
 
+	
+	public boolean isValidBoard(Coord pos){
+		int i = pos.getX();
+		int j = pos.getY();
+		
+		return existAPath(i,j, true) && existAPath(i, j, false);
+	}
+	
+	
+	private boolean existAPath(int i, int j, boolean searchForKey){
+		if(!validSquare(i,j, searchForKey))
+			return false;
+		if(isAtEnd(i, j, searchForKey))
+			return true;
+		
+		return existAPath(i+1, j, searchForKey) || existAPath(i-1, j, searchForKey) || existAPath(i, j+1, searchForKey) || existAPath(i, j-1, searchForKey);
+	}
+	
+	private boolean validSquare(int i, int j, boolean searchForKey){
+		if(i > this.rows && i < 0 && j > this.columns && j < 0 )
+			return false;
+		if(getBoardAt(i, j) == 'X')
+			return false;
+		if(getBoardAt(i, j) == 'I' && searchForKey)
+			return false;
+		
+		return true;
+	}
+	
+	private boolean isAtEnd(int i, int j, boolean searchForKey){
+		if(searchForKey){
+			if(getBoardAt(i, j) == 'k')
+				return true;
+			else 
+				return false;
+		}
+		else{
+			if(getBoardAt(i, j) == 'I')
+				return true;
+			else
+				return false;
+		}
+		
+	}
 	
 	
 }
