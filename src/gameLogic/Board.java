@@ -28,99 +28,29 @@ public class Board implements Serializable {
 	private static Map<Integer, Character[][]> BOARDS = new HashMap<Integer, Character[][]>();
 	
 	static {
-		Character x = new Character('X');
-		Character empty = new Character(' ');
-		Character h = new Character('H');
-		Character o = new Character('O');
-		Character g = new Character('G');
-		Character i = new Character('I');
-		Character k = new Character('k');
+		Character x = new Character('X'); Character empty = new Character(' '); Character h = new Character('H');
+		Character o = new Character('O'); Character g = new Character('G'); Character i = new Character('I'); Character k = new Character('k');
 		
-		BOARDS.put(-2, new Character[][]{
-				{x,x, x, x,x,x},
-				{x,h, empty, empty,o,x},
-				{i,empty, empty, empty,empty,x},
-				{i,k, empty, empty,empty,x},
-				{x,x,x,x,x,x}
-			});
+		BOARDS.put(-2, new Character[][]{ {x,x, x, x,x,x}, {x,h, empty, empty,o,x}, {i,empty, empty, empty,empty,x}, {i,k, empty, empty,empty,x}, {x,x,x,x,x,x} });
 		
-		BOARDS.put(-1, new Character[][]{
-			{x, x, x, x,x},
-			{x,h, empty, o,x},
-			{i,empty, empty, empty,x},
-			{i,k, empty, empty,x},
-			{x,x, x, x,x}
-		});
+		BOARDS.put(-1, new Character[][]{ {x, x, x, x,x}, {x,h, empty, o,x}, {i,empty, empty, empty,x}, {i,k, empty, empty,x}, {x,x, x, x,x} });
 		
-		BOARDS.put(0, new Character[][]{
-			{x, x, x, x,x},
-			{x,h, empty, g,x},
-			{i,empty, empty, empty,x},
-			{i,k, empty, empty,x},
-			{x,x, x, x,x}
-		});
+		BOARDS.put(0, new Character[][]{ {x, x, x, x,x}, {x,h, empty, g,x}, {i,empty, empty, empty,x}, {i,k, empty, empty,x}, {x,x, x, x,x} });
 		
-		BOARDS.put(1, new Character[][]{
-			{x, x, x, x,x,x,x,x,x,x},
-			{x,empty, empty, empty,i,empty,x,empty,empty,x},
-			{x,x, x, empty,x,x,x,empty,empty,x},
-			{x,empty, i, empty,i,empty,x,empty,empty,x},
-			{x,x, x, empty,x,x,x,empty,empty,x},
-			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
-			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
-			{x,x, x, empty,x,x,x,x,empty,x},
-			{x,empty, i, empty,i,empty,x,k,empty,x},
-			{x, x, x, x,x,x,x,x,x,x}
-		});
+		BOARDS.put(1, new Character[][]{ {x, x, x, x,x,x,x,x,x,x}, {x,empty, empty, empty,i,empty,x,empty,empty,x}, {x,x, x, empty,x,x,x,empty,empty,x}, {x,empty, i, empty,i,empty,x,empty,empty,x}, {x,x, x, empty,x,x,x,empty,empty,x}, 
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x}, {i,empty, empty, empty,empty,empty,empty,empty,empty,x}, {x,x, x, empty,x,x,x,x,empty,x}, {x,empty, i, empty,i,empty,x,k,empty,x}, {x, x, x, x,x,x,x,x,x,x} });
 		
-		BOARDS.put(2, new Character[][]{
-			{x, x, x, x,x,x,x,x,x,x},
-			{x,empty, empty, empty,i,empty,x,empty,empty,x},
-			{x,x, x, empty,x,x,x,empty,empty,x},
-			{x,empty, i, empty,i,empty,x,empty,empty,x},
-			{x,x, x, empty,x,x,x,empty,empty,x},
-			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
-			{i,empty, empty, empty,empty,empty,empty,empty,empty,x},
-			{x,x, x, empty,x,x,x,x,empty,x},
-			{x,empty, i, empty,i,empty,x,k,empty,x},
-			{x, x, x, x,x,x,x,x,x,x}
-		});
+		BOARDS.put(2, new Character[][]{ {x, x, x, x,x,x,x,x,x,x}, {x,empty, empty, empty,i,empty,x,empty,empty,x}, {x,x, x, empty,x,x,x,empty,empty,x}, {x,empty, i, empty,i,empty,x,empty,empty,x}, {x,x, x, empty,x,x,x,empty,empty,x},
+			{i,empty, empty, empty,empty,empty,empty,empty,empty,x}, {i,empty, empty, empty,empty,empty,empty,empty,empty,x}, {x,x, x, empty,x,x,x,x,empty,x}, {x,empty, i, empty,i,empty,x,k,empty,x}, {x, x, x, x,x,x,x,x,x,x} });
 		
-		BOARDS.put(3, new Character[][]{
-			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,k,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, x, x,x,x,x,x,x,x}
-		});
+		BOARDS.put(3, new Character[][]{ {x, x, x,x,x,x,x,x,x}, {i,empty, empty,empty,empty,empty,empty,k,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, x, x,x,x,x,x,x,x} });
 		
-		BOARDS.put(4, new Character[][]{
-			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,k,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, x, x,x,x,x,x,x,x}
-		});
+		BOARDS.put(4, new Character[][]{ {x, x, x,x,x,x,x,x,x}, {i,empty, empty,empty,empty,empty,empty,k,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, x, x,x,x,x,x,x,x} });
 		
-		BOARDS.put(5, new Character[][]{
-			{x, x, x,x,x,x,x,x,x},
-			{i,empty, empty,empty,empty,empty,empty,k,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, empty, empty,empty,empty,empty,empty,empty,x},
-			{x, x, x,x,x,x,x,x,x}
-		});
+		BOARDS.put(5, new Character[][]{ {x, x, x,x,x,x,x,x,x}, {i,empty, empty,empty,empty,empty,empty,k,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x},
+			{x, empty, empty,empty,empty,empty,empty,empty,x}, 	{x, empty, empty,empty,empty,empty,empty,empty,x}, {x, empty, empty,empty,empty,empty,empty,empty,x}, {x, x, x,x,x,x,x,x,x} });
 	}
 	
 	/**
