@@ -333,7 +333,7 @@ public class CrazyOgre extends Character {
 					return;
 				}
 
-				if(ogres.get(i).position.equals(this.position) || ogres.get(i).weaponLocation.equals(this.position))
+				if(ogres.get(i).position.equals(this.position))
 					return;
 			}
 

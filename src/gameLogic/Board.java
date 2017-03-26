@@ -307,13 +307,13 @@ public class Board implements Serializable {
 	 */
 	
 	private boolean existAPath(int i, int j, boolean searchForKey){
+		if(!validSquare(i,j, searchForKey))
+			return false;
+		
 		if (visited[i][j])
 			return false;
 		
 		visited[i][j] = true;
-		
-		if(!validSquare(i,j, searchForKey))
-			return false;
 		
 		if(isAtEnd(i, j, searchForKey))
 			return true;

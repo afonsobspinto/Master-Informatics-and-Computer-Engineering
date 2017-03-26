@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * The game settings.
  * 
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
  *  
  */
 
@@ -49,45 +49,13 @@ public class GameConfig implements Serializable {
 	 */
 	
 	public GameConfig(int rows ,int columns) {
+		this();
 		this.columns = columns;
 		this.rows = rows;
-		downKey = KeyEvent.VK_DOWN;
-		leftKey = KeyEvent.VK_LEFT;
-		rightKey = KeyEvent.VK_RIGHT;
-		upKey = KeyEvent.VK_UP;
-		guardIndex = 0;
-		numOfOgres = 0;
+
 	}
 
 	
-	/**
-	 * Constructs and initializes the game settings and default keyboard configuration.
-	 * 
-	 * @param rows
-	 *            the number of rows           
-	 * @param columns
-	 *            the number of columns 
-     * @param downKey
-	 *            the keyboard key for down movement            
-	 * @param leftKey
-	 *            the keyboard key for left movement 
-	 * @param rightKey
-	 *            the keyboard key for right movement            
-	 * @param upKey
-	 *            the keyboard key for up movement 
-	 */
-	
-	
-	public GameConfig(int rows, int columns, char downKey, char leftKey, char rightKey, char upKey) {
-		this.columns = columns;
-		this.rows = rows;
-		this.downKey = downKey;
-		this.leftKey = leftKey;
-		this.rightKey = rightKey;
-		this.upKey = upKey;
-		guardIndex = 0;
-		numOfOgres = 0;
-	}
 
 	/**
 	 * Returns the code of the Down Key. 

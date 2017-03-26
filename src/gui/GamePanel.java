@@ -406,6 +406,7 @@ public class GamePanel extends JPanel {
 				else{
 					showCredits = true;
 					repaint();
+					JOptionPane.getRootFrame().dispose();
 				}
 					
 			}
@@ -414,6 +415,11 @@ public class GamePanel extends JPanel {
 				JOptionPane.showMessageDialog(getRootPane(), msg);
 				if(!wasCustom)
 					startNewGame(gameConfig, level);
+				else{
+					showCredits = true;
+					repaint();
+					JOptionPane.getRootFrame().dispose();
+				}
 			}
 
 			
