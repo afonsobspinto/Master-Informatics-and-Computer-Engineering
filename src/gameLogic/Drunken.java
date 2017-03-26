@@ -27,7 +27,7 @@ public class Drunken extends Guard {
 	/**
 	 * Constructs and initializes a Drunken Guard with position of type Coord.
 	 * 
-	 * @see {@link Coord}
+	 * @see {@link Coord.java}
 	 */
 	
 	public Drunken(Coord position){

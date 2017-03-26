@@ -41,7 +41,7 @@ public abstract class Guard  extends Character{
 	/**
 	 * Constructs and initializes a Guard with position of type Coord.
 	 * 
-	 * @see {@link Coord}
+	 * @see {@link Coord.java}
 	 */
 	
 	public Guard(Coord position){

@@ -71,7 +71,7 @@ public class CrazyOgre extends Character {
 	 *            the boolean representing if the Crazy Ogre is armed
 	 * @param board
 	 *            the board where the Crazy Ogre is
-	 * @see {@link Coord}, {@link Board}
+	 * @see {@link Coord.java}, {@link Board.java}
 	 */
 	
 	public CrazyOgre(Coord position, boolean armed, Board board){
