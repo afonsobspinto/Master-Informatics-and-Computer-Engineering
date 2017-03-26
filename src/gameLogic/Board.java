@@ -285,10 +285,14 @@ public class Board implements Serializable {
 
 	
 	public boolean isValidBoard(Coord pos){
+		
 		int i = pos.getX();
 		int j = pos.getY();
 		
-		return existAPath(i,j, true) && existAPath(i, j, false);
+		boolean pathToKey = existAPath(i,j, true); 
+		boolean pathToDoor = existAPath(i, j, false);
+		
+		return pathToKey && pathToDoor;
 	}
 	
 	
@@ -302,9 +306,14 @@ public class Board implements Serializable {
 			return true;
 		}
 		
-		if(paths[i][j]==null)
-			paths[i][j]=existAPath(i+1, j, searchForKey) || existAPath(i-1, j, searchForKey) || existAPath(i, j+1, searchForKey) || existAPath(i, j-1, searchForKey);
-		
+		if(paths[i][j]==null){
+			Boolean right = existAPath(i+1, j, searchForKey);
+			Boolean left = existAPath(i-1, j, searchForKey);
+			Boolean up = existAPath(i, j-1, searchForKey);
+			Boolean down = existAPath(i, j+1, searchForKey);
+			
+			paths[i][j]= right|| left || up || down;
+		}
 		return paths[i][j];
 		
 	}

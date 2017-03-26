@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.sun.rowset.internal.Row;
 
@@ -426,7 +427,7 @@ public class GamePanel extends JPanel {
 		public void mousePressed(MouseEvent e) {
 
 			if(customMap){
-				if(e.getButton()==MouseEvent.BUTTON1){
+				if(SwingUtilities.isLeftMouseButton(e)){
 					if(mouseCell.getY() == game.getBoard().getColumns())
 						switch (mouseCell.getX()) {
 						case 0:
@@ -459,6 +460,46 @@ public class GamePanel extends JPanel {
 						default:
 							break;
 						}
+					
+				}
+				else if(SwingUtilities.isRightMouseButton(e)){
+					if(mouseCell.equals(game.getHero().getPosition())){
+						game.getHero().setPosition(new Coord(-2, -2));
+						haveHero = false;
+					}
+					else if(mouseCell.equals(game.getGuard().getPosition())){
+						game.getGuard().setPosition(new Coord(-2, -2));
+						haveGuard = false;
+						game.getLevel().setHaveGuard(false);
+					}
+					else if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY())=='k'){
+						if(keys>0){
+							if(--keys == 0){
+								game.getLevel().setHaveKey(false);
+								game.getHero().setKey(false);
+							}
+						}
+						else{
+							if(--levers == 0){
+								game.getLevel().setHaveLever(false);
+								game.getHero().setLever(false);
+							}
+						}
+					}
+					else{
+						ArrayList<CrazyOgre> temp = game.getCrazyOgres();
+						for(int i = 0; i < temp.size(); i++){
+							if(mouseCell.equals(temp.get(i).getPosition())){
+								temp.remove(i);
+								ogres--;
+								if(temp.size()==0)
+									game.getLevel().setHaveOgre(false);
+							}
+						}
+					}
+					
+					game.getBoard().setBoardAt(mouseCell, ' ');
+					repaint();
 					
 				}
 			}
@@ -628,7 +669,7 @@ public class GamePanel extends JPanel {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if(haveHero && (haveGuard || ogres!=0) && (keys != 0 || levers != 0) && game.getBoard().isValidBoard(game.getHero().getPosition())){
+				if(haveHero && (haveGuard || ogres!=0) && (keys != 0 || levers != 0) /* && game.getBoard().isValidBoard(game.getHero().getPosition() )*/){
 					System.out.println("Existe Carago!");
 					remove(btnStart);
 					revalidate();
@@ -637,10 +678,9 @@ public class GamePanel extends JPanel {
 					customMap = false;
 				}
 				else{
-					System.out.println("Mapa Invalido!");
+					String msg = "Invalid Map";
+					JOptionPane.showMessageDialog(null, msg);
 				}
-				
-				
 			}
 		}
 		);

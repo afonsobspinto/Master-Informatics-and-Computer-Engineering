@@ -202,11 +202,11 @@ public class OptionsDialog extends JDialog {
 		lblWidth.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider widthSlider = new JSlider();
-		widthSlider.setMaximum(20);
-		widthSlider.setMinimum(5);
+		widthSlider.setMaximum(15);
+		widthSlider.setMinimum(7);
 		widthSlider.setValue(10);
 		widthSlider.setMinorTickSpacing(1);
-		widthSlider.setMajorTickSpacing(5);
+		widthSlider.setMajorTickSpacing(2);
 		widthSlider.setPaintTicks(true);
 		widthSlider.setPaintLabels(true);
 		widthSlider.setSnapToTicks(true);
@@ -216,11 +216,11 @@ public class OptionsDialog extends JDialog {
 		lblHeight.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider heightSlider = new JSlider();
-		heightSlider.setMaximum(20);
-		heightSlider.setMinimum(5);
+		heightSlider.setMaximum(15);
+		heightSlider.setMinimum(7);
 		heightSlider.setValue(10);
 		heightSlider.setMinorTickSpacing(1);
-		heightSlider.setMajorTickSpacing(5);
+		heightSlider.setMajorTickSpacing(2);
 		heightSlider.setPaintTicks(true);
 		heightSlider.setPaintLabels(true);
 		heightSlider.setSnapToTicks(true);
