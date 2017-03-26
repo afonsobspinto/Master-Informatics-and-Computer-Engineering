@@ -76,11 +76,14 @@ public class dungeonTest {
 		assertTrue(g.isWon());
 	}
 	
-	// Task #2
+	 //Task #2
 	
 	@Test
 	public void testHeroIsCapturedByOgre(){
 		Level l_1 = new Level(-1);
+		
+		System.out.println("1");
+		System.out.println(l_1.getBoard().getBoardAt(3, 1));
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.RIGHT);
@@ -91,13 +94,12 @@ public class dungeonTest {
 	@Test
 	public void testMoveHeroIntoLeverCellOgre(){
 		Level l_1 = new Level(-1);
+		System.out.println("2");
+		System.out.println(l_1.getBoard().getBoardAt(3, 1));
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
-		g.showBoard();
 		g.updateGame(Direction.DOWN);
-		g.showBoard();
 		g.updateGame(Direction.DOWN);
-		g.showBoard();
 		System.out.println(g.getBoard().getBoardAt(3, 1));
 		assertEquals('K', g.getBoard().getBoardAt(3,1));
 	}
