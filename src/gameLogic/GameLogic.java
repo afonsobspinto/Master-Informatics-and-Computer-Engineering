@@ -16,7 +16,7 @@ import java.lang.Character;
 <<<<<<< HEAD
  * @author Afonso Pinto and Tomï¿½s Oliveira
 =======
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
 >>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
  *  
  */
@@ -161,9 +161,9 @@ public class GameLogic implements Serializable {
 
 		Action action = hero.move(this.board, move);
 		
-		if(guard != null)
+		if(guard != null && level.isHaveGuard())
 			guard.move(board);
-		if(crazyOgres != null)
+		if(crazyOgres != null && level.isHaveOgre())
 			moveOgres();
 		
 

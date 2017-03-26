@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 <<<<<<< HEAD
  * @author Afonso Pinto and Tomï¿½s Oliveira
 =======
- * @author Afonso Pinto and Tomás Oliveira
+ * @author Afonso Pinto and Tomï¿½s Oliveira
 >>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
  * @see Character
  * 
@@ -40,6 +40,8 @@ public abstract class Guard  extends Character{
 		this.isMovingForward = true;
 		this.isSleeping = false;
 		this.orientation = Direction.LEFT;
+		this.route = new Coord[1];
+		this.route_dir = new Direction[]{Direction.LEFT};
 	};
 
 	/**
@@ -49,13 +51,9 @@ public abstract class Guard  extends Character{
 	 */
 	
 	public Guard(Coord position){
-		this.symbol = 'G';
-		this.under_char = ' ';
-		this.index = 0;
+		this();
 		this.position = position;
-		this.isMovingForward = true;
-		this.isSleeping = false;
-		this.orientation = Direction.LEFT;
+		this.route = new Coord[]{new Coord(this.position.getX(), this.position.getY())};
 	}
 	
 	/**
@@ -79,7 +77,7 @@ public abstract class Guard  extends Character{
 			this.route[0]=startingPos;
 			this.route_dir = new Direction[1];
 			this.route_dir[0]=Direction.LEFT;
-			this.orientation = route_dir[0];
+			this.orientation = Direction.LEFT;
 			
 			break;
 		case 1:
@@ -89,7 +87,7 @@ public abstract class Guard  extends Character{
 			this.route[0]=startingPos;
 			this.route_dir = new Direction[1];
 			this.route_dir[0]=Direction.LEFT;
-			this.orientation = route_dir[0];
+			this.orientation = Direction.LEFT;
 			
 			break;
 		case 2:

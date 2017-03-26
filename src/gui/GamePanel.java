@@ -42,6 +42,7 @@ public class GamePanel extends JPanel {
 
 	private boolean showBackground = true;
 	private boolean customMap = false;
+	private boolean wasCustom = false;
 	
 	private Image background;
 	private Image wall;
@@ -326,8 +327,10 @@ public class GamePanel extends JPanel {
 
 	public void startGameCustomization(GameConfig gameConfig){
 		this.game = new GameLogic(gameConfig);
+		this.gameConfig = gameConfig;
 		this.level = customLevel;
 		customMap = true;
+		wasCustom = true;
 		showBackground = false;
 		charactersHeight = this.getHeight() / gameConfig.getRows();
 		charactersWidth = this.getWidth() / (gameConfig.getColumns() +2);
@@ -400,7 +403,8 @@ public class GamePanel extends JPanel {
 			else if(!game.isGameOn() && !game.isWon()){
 				String msg = "Game Over!";
 				JOptionPane.showMessageDialog(getRootPane(), msg);
-				startNewGame(gameConfig, level);
+				if(!wasCustom)
+					startNewGame(gameConfig, level);
 			}
 
 			
