@@ -41,6 +41,7 @@ public class GamePanel extends JPanel {
 	private static final int customLevel = 6;
 
 	private boolean showBackground = true;
+	private boolean showCredits = false;
 	private boolean customMap = false;
 	private boolean wasCustom = false;
 	
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel {
 	private Image key;
 	private Image lever;
 	private Image leverActivated;
+	private Image credits;
 	
 	
 	private GameFrame gameFrame;
@@ -138,6 +140,8 @@ public class GamePanel extends JPanel {
 		temp = new ImageIcon(this.getClass().getResource("res/lever2.png"));
 		leverActivated = temp.getImage();
 
+		temp = new ImageIcon(this.getClass().getResource("res/credits.png"));
+		credits = temp.getImage();
 
 	}
 	
@@ -150,6 +154,10 @@ public class GamePanel extends JPanel {
 		if(showBackground){
 		g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), 0, 0, 
 				background.getWidth(null), background.getHeight(null), null);
+		}
+		else if (showCredits){
+		g2d.drawImage(credits, 0, 0, this.getWidth(), this.getHeight(), 0, 0, 
+				credits.getWidth(null), background.getHeight(null), null);
 		}
 		else{
 			g.setColor(Color.LIGHT_GRAY);
@@ -395,7 +403,7 @@ public class GamePanel extends JPanel {
 				if(++level<=numberOfLevels)
 					startNewGame(gameConfig, level);
 				else{
-					showBackground = true;
+					showCredits = true;
 					repaint();
 				}
 					
