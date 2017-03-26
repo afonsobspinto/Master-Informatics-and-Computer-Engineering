@@ -3,11 +3,7 @@ package gameLogic;
 /**
  * Represents the Suspicious Guard.
  * 
-<<<<<<< HEAD
- * @author Afonso Pinto and Tomï¿½s Oliveira
-=======
  * @author Afonso Pinto and Tomás Oliveira
->>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
  * @see Guard
  * 
  */
@@ -28,6 +24,8 @@ public class Suspicious extends Guard {
 	/**
 	 * Constructs and initializes a Suspicious Guard with position of type Coord.
 	 * 
+	 * @param position
+	 *            the position of the suspicious
 	 * @see {@link Coord.java}
 	 */
 	
@@ -38,6 +36,8 @@ public class Suspicious extends Guard {
 	/**
 	 * Constructs and initializes a Suspicious Guard with level of type int.
 	 * 
+	 * @param level
+	 *            the level of the game
 	 */
 	
 	public Suspicious(int level){

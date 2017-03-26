@@ -260,6 +260,13 @@ public class Board implements Serializable {
 		return "Board [board=" + Arrays.toString(board) + ", rows=" + rows + ", columns=" + columns + "]";
 	}
 
+	/**
+	 * 
+	 * Checks if the Board is valid.
+	 * 
+	 * @param pos
+	 *          the coordinate 
+	 */
 	
 	public boolean isValidBoard(Coord pos){
 		
@@ -276,6 +283,17 @@ public class Board implements Serializable {
 		return pathToKey && pathToDoor;
 	}
 	
+	/**
+	 * 
+	 * Checks if exists a path between the hero and the door.
+	 * 
+	 * @param i
+	 *          the i coordinate 
+	 * @param j
+	 *          the j coordinate
+	 * @param searchForKey
+	 *          the boolean representing if the hero has a key
+	 */
 	
 	private boolean existAPath(int i, int j, boolean searchForKey){
 		if (visited[i][j])
@@ -297,6 +315,18 @@ public class Board implements Serializable {
 		return right || left || up || down;
 	}
 	
+	/**
+	 * 
+	 * Checks if the square in the path is valid.
+	 * 
+	 * @param i
+	 *          the i coordinate 
+	 * @param j
+	 *          the j coordinate
+	 * @param searchForKey
+	 *          the boolean representing if the hero has a key
+	 */
+	
 	private boolean validSquare(int i, int j, boolean searchForKey){
 		if(i > this.rows || i < 0 || j > this.columns || j < 0 )
 			return false;
@@ -307,6 +337,18 @@ public class Board implements Serializable {
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 * Checks if the path is ending.
+	 * 
+	 * @param i
+	 *          the i coordinate 
+	 * @param j
+	 *          the j coordinate
+	 * @param searchForKey
+	 *          the boolean representing if the hero has a key
+	 */
 	
 	private boolean isAtEnd(int i, int j, boolean searchForKey){
 		if(searchForKey){

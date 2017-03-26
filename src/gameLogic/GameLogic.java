@@ -13,11 +13,7 @@ import java.lang.Character;
 /**
  * Represents the Game Logic.
  * 
-<<<<<<< HEAD
- * @author Afonso Pinto and Tomï¿½s Oliveira
-=======
- * @author Afonso Pinto and Tomï¿½s Oliveira
->>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/LPOO1617_T6G7.git
+ * @author Afonso Pinto and Tomás Oliveira
  *  
  */
 
