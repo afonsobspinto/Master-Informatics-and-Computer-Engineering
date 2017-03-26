@@ -9,6 +9,10 @@ import java.io.Serializable;
  */
 
 public class GameConfig implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int columns;
 	private int rows;
 	private int downKey;
@@ -44,7 +48,7 @@ public class GameConfig implements Serializable {
 	 *            the number of columns 
 	 */
 	
-	public GameConfig( int rows ,int columns) {
+	public GameConfig(int rows ,int columns) {
 		this.columns = columns;
 		this.rows = rows;
 		downKey = KeyEvent.VK_DOWN;
@@ -85,25 +89,8 @@ public class GameConfig implements Serializable {
 		numOfOgres = 0;
 	}
 
-	/**
-	 * Returns the number of columns 
-	 * 
-	 * @return the number of columns 
-	 */
-	
-	public int getcolumns() {
-		return columns;
-	}
 
-	/**
-	 * Returns the number of rows 
-	 * 
-	 * @return the number of rows 
-	 */
-	
-	public int getrows() {
-		return rows;
-	}
+
 	
 	public int getDownKey() {
 		return downKey;
@@ -135,6 +122,22 @@ public class GameConfig implements Serializable {
 
 	public void setNumOfOgres(int numOfOgres) {
 		this.numOfOgres = numOfOgres;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public void setColumns(int columns) {
+		this.columns = columns;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
 	

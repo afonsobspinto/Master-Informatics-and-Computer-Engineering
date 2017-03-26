@@ -1,6 +1,11 @@
 package gameLogic;
 
 public class Rookie extends Guard {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Rookie(){
 		super();
 	}

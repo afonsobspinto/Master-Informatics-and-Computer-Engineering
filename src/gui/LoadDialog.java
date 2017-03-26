@@ -21,6 +21,10 @@ import gameLogic.GameLogic;
 
 public class LoadDialog extends JDialog {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private GameFrame gameFrame;
 	private GamePanel gamePanel;
 	private List gamesList;

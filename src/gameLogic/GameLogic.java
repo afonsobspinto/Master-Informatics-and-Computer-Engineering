@@ -40,16 +40,16 @@ public class GameLogic implements Serializable {
 	}
 
 
-	public GameLogic(){
+	public GameLogic(GameConfig gameConfig){
 		this.hero = new Hero();
 		this.guard = new Rookie();
 		this.crazyOgres = new ArrayList<CrazyOgre>();
-		this.gameConfig = new GameConfig();
+		this.gameConfig = gameConfig;
 		this.level = new Level();
 		this.triggeredLever = false;
 		this.won = false;
 		this.gameOn = true;
-		this.board = new Board();
+		this.board = new Board(gameConfig.getRows(), gameConfig.getColumns());
 	}
 
 	public GameLogic(Level level, GameConfig gameConfig){
@@ -96,8 +96,8 @@ public class GameLogic implements Serializable {
 	}
 
 	private void applyLever(){
-		for(int i =0; i < gameConfig.getrows(); i++){
-			for(int j = 0; j < gameConfig.getcolumns(); j++){
+		for(int i =0; i < gameConfig.getRows(); i++){
+			for(int j = 0; j < gameConfig.getColumns(); j++){
 				if(this.board.getBoardAt(i, j)=='I'){
 					this.board.setBoardAt(i,j, 'S');
 				}

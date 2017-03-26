@@ -2,6 +2,11 @@ package gameLogic;
 
 
 public class Suspicious extends Guard {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Suspicious(){
 		super();
 	}

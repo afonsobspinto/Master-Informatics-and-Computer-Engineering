@@ -205,7 +205,7 @@ public class OptionsDialog extends JDialog {
 		widthSlider.setMaximum(20);
 		widthSlider.setMinimum(5);
 		widthSlider.setValue(10);
-		widthSlider.setMinorTickSpacing(2);
+		widthSlider.setMinorTickSpacing(1);
 		widthSlider.setMajorTickSpacing(5);
 		widthSlider.setPaintTicks(true);
 		widthSlider.setPaintLabels(true);
@@ -219,7 +219,7 @@ public class OptionsDialog extends JDialog {
 		heightSlider.setMaximum(20);
 		heightSlider.setMinimum(5);
 		heightSlider.setValue(10);
-		heightSlider.setMinorTickSpacing(2);
+		heightSlider.setMinorTickSpacing(1);
 		heightSlider.setMajorTickSpacing(5);
 		heightSlider.setPaintTicks(true);
 		heightSlider.setPaintLabels(true);
@@ -231,7 +231,11 @@ public class OptionsDialog extends JDialog {
 		myPanel.add(heightSlider);
 		
 		
-		JOptionPane.showConfirmDialog(null, myPanel, "Map Dimensions", JOptionPane.OK_CANCEL_OPTION);
+		JOptionPane.showConfirmDialog(null, myPanel, "Map Dimensions", JOptionPane.DEFAULT_OPTION);
+		
+		gameConfig.setColumns(widthSlider.getValue());
+		gameConfig.setRows(heightSlider.getValue());
+
 		
 	}
 	

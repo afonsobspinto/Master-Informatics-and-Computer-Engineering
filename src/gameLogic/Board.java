@@ -17,21 +17,17 @@ public class Board implements Serializable {
 		return columns;
 	}
 
-	public Board(){
-		this.board = new char[][]{
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '},
-			{' ', ' ', ' ',' ',' ',' ',' ',' ',' '}
-		};
+	public Board(int rows, int columns){
+		this.board = new char[rows][columns];
+
+		for(int i = 0; i < rows; i++){
+			for (int j = 0; j < columns; j++){
+				board[i][j] = ' ';
+			}
+		}
 		
-		this.rows = 9;
-		this.columns = 9;
+		this.rows = rows;
+		this.columns = columns;
 	}
 	
 	public Board(int level) {

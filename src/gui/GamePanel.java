@@ -186,7 +186,7 @@ public class GamePanel extends JPanel {
 		int distX = j * charactersWidth;
 		int distY = i * charactersHeight;
 		
-		distX += (getWidth() - charactersWidth * game.getBoard().getColumns()) / 2.0;
+		distX += (getWidth() - charactersWidth  * game.getBoard().getColumns()) / 2.0;
 		distY += (getHeight() - charactersHeight * game.getBoard().getRows()) / 2.0;
 		
 		double rotationRequired;
@@ -239,8 +239,9 @@ public class GamePanel extends JPanel {
 
 		Guard guardcp = game.getGuard();
 
-		if(guardcp.getPosition() != null){
-
+		if(guardcp!= null){
+			if(guardcp.getPosition()==null)
+				return;
 			if(guardcp.isSleeping())
 				drawCharacter(guardSleeping, g2d, guardcp.getPosition().getX(), guardcp.getPosition().getY(), guardcp.getOrientation());
 			else
@@ -254,7 +255,7 @@ public class GamePanel extends JPanel {
 		
 		ArrayList<CrazyOgre> temp = game.getCrazyOgres();
 
-		if(!temp.isEmpty()){
+		if(temp!=null){
 
 			for(int i = 0; i < temp.size(); i++){
 				CrazyOgre temp_ogre = temp.get(i);
@@ -304,12 +305,12 @@ public class GamePanel extends JPanel {
  			drawCharacter(guard, g2d,1,lastColumn,  Direction.LEFT);
  		if(!haveGuard)
  			drawCharacter(ogre, g2d,2,lastColumn,  Direction.LEFT);
-		drawCharacter(wall, g2d,3,lastColumn,  Direction.LEFT);
+		drawCharacter(wall, g2d,3,lastColumn);
 		if(levers==0)
-			drawCharacter(key, g2d,4,lastColumn,  Direction.LEFT);
+			drawCharacter(key, g2d,4,lastColumn);
 		if(keys==0)
-			drawCharacter(lever, g2d,5,lastColumn,  Direction.RIGHT);
-		drawCharacter(door, g2d,6,lastColumn,  Direction.LEFT);
+			drawCharacter(lever, g2d,5,lastColumn);
+		drawCharacter(door, g2d,6,lastColumn);
 	}
 	
 	public void startNewGame(GameConfig gameConfig, int level) {
@@ -317,20 +318,19 @@ public class GamePanel extends JPanel {
 		this.gameConfig = gameConfig;
 		this.level = level;
 		showBackground = false;
-		charactersHeight = this.getHeight() / gameConfig.getrows();
-		charactersWidth = this.getWidth() / gameConfig.getcolumns();
+		charactersHeight = this.getHeight() / gameConfig.getRows();
+		charactersWidth = this.getWidth() / gameConfig.getColumns();
 		repaint();
 		requestFocus();
 	}
 
 	public void startGameCustomization(GameConfig gameConfig){
-		this.game = new GameLogic();
-		this.gameConfig = gameConfig;
+		this.game = new GameLogic(gameConfig);
 		this.level = customLevel;
 		customMap = true;
 		showBackground = false;
-		charactersHeight = this.getHeight() / gameConfig.getrows();
-		charactersWidth = this.getWidth() / (gameConfig.getcolumns() +1);
+		charactersHeight = this.getHeight() / gameConfig.getRows();
+		charactersWidth = this.getWidth() / (gameConfig.getColumns() +2);
 		repaint();
 		requestFocus();
 		
@@ -599,8 +599,8 @@ public class GamePanel extends JPanel {
 		this.gameConfig = game.getGameConfig();
 		this.level = game.getLevel().getLevel();
 		showBackground = false;
-		charactersHeight = this.getHeight() / gameConfig.getrows();
-		charactersWidth = this.getWidth() / gameConfig.getcolumns();
+		charactersHeight = this.getHeight() / gameConfig.getRows();
+		charactersWidth = this.getWidth() / gameConfig.getColumns();
 		repaint();
 		requestFocus();
 	}
