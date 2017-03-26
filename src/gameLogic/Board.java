@@ -3,52 +3,32 @@ package gameLogic;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import gui.NumberOfOgresOutofBound;
-
-/**
- * 
- * A class representing the different boards of every level.
- * 
- * @author Afonso Pinto and Tomas Oliveira
- * 
- */
-
 public class Board implements Serializable {
 	
 	private char[][] board;
 	private int rows;
 	private int columns;
 	
-	/**
-	 * 
-	 * Returns the number of rows of the board.
-	 * 
-	 * @return the number of rows of the board.
-	 * 
-	 */
-	
 	public int getRows() {
 		return rows;
 	}
 
-	/**
-	 * 
-	 * Returns the number of columns of the board.
-	 * 
-	 * @return the number of columns of the board.
-	 * 
-	 */
-	
 	public int getColumns() {
 		return columns;
 	}
 
-	/**
-	 * Constructs and initializes a Board.
-	 * 
-	 * @param level
-	 *             the level of the board 
-	 */
+	public Board(int rows, int columns){
+		this.board = new char[rows][columns];
+
+		for(int i = 0; i < rows; i++){
+			for (int j = 0; j < columns; j++){
+				board[i][j] = ' ';
+			}
+		}
+		
+		this.rows = rows;
+		this.columns = columns;
+	}
 	
 	public Board(int level) {
 
@@ -179,70 +159,26 @@ public class Board implements Serializable {
 			this.rows = 9;
 			this.columns = 9;
 			
-			break;	
+			break;
+			
 		default:
 			break;
 		}
 	}
 	
-	/**
-	 * Sets the value of type char in the Board on coordinate pos.
-	 * 
-	 * @param pos 
-	 *            the position of the value
-	 * @param value 
-	 *            the symbol of the value
-	 * @see {@link Coord}
-	 */
-	
 	public void setBoardAt(Coord pos, char value){
 		int x = pos.getX();
 		int y = pos.getY();
 
-		if((x < this.rows && x >= 0) && (y < this.columns && y >= 0 ))
+		if(x < this.rows && x >= 0 && y < this.columns && y >= 0 )
 			board[x][y] = value;
-		else
-			try {
-				throw new PosOutOfBorders();
-			} catch (PosOutOfBorders e) {
-				e.printStackTrace();
-			}
 	}
 
-	/**
-	 * Sets the value of type char in the Board on Coordinate (x,y).
-	 * 
-	 * @param x 
-	 *          the x coordinate
-	 * @param y 
-	 *          the y coordinate
-	 * @param value 
-	 *          the symbol of the value
-	 */
-	
 	public void setBoardAt(int x, int y, char value){		
-		if((x < this.rows && x >=0) && (y < this.columns && y >= 0 ))
+		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
 			board[x][y] = value;
-		else
-			try {
-				throw new PosOutOfBorders();
-			} catch (PosOutOfBorders e) {
-				e.printStackTrace();
-			}
 	}
 
-	/**
-	 * 
-	 * Returns the symbol of type char of Coordinate (x,y) on the Board.
-	 * 
-	 * @param x 
-	 *          the x coordinate
-	 * @param y 
-	 *          the y coordinate
-	 * 
-	 * @return the symbol on the coordinate.
-	 */
-	
 	public char getBoardAt(int x, int y){
 		if(x < this.rows && x >=0 && y < this.columns && y >= 0 )
 			return board[x][y];
@@ -250,12 +186,6 @@ public class Board implements Serializable {
 		return '0';
 	}
 
-	/**
-	 * 
-	 * Shows the Board on the Console.
-	 * 
-	 */
-	
 	public void showBoard(){
 		for(int i =0; i < this.rows; i++){
 			for(int j = 0; j < this.columns; j++){

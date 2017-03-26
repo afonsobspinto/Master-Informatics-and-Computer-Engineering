@@ -13,6 +13,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 public abstract class Guard  extends Character{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Coord[] route;
 	protected Direction[] route_dir;
 	protected int index;

@@ -2,15 +2,12 @@ package gameLogic;
 
 import java.io.Serializable;
 
-/**
- * 
- * A class representing the Character.
- * 
- * @author Afonso Pinto and Tomas Oliveira
- * 
- */
-
 public abstract class Character implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	protected char symbol;
 	protected Coord position;
 	protected Coord oldPosition;
@@ -20,19 +17,44 @@ public abstract class Character implements Serializable {
 		
 	};
 	
+	public Character(char symbol, Coord position) {
+		this.symbol = symbol;
+		this.position = position;
+		this.under_char = ' ';
+	}
+
+	
 	public abstract Action move(Board board, Direction direction);
 	
+	public char getUnder_char() {
+		return under_char;
+	}
 
-	/**
-	 * 
-	 * Returns the position of the Character on the Board.
-	 * 
-	 * @return the position of the Character on the Board.
-	 * 
-	 */
-	
+	public void setUnder_char(char under_char) {
+		this.under_char = under_char;
+	}
+
+	public char getSymbol() {
+		return symbol;
+	}
+
+	public Coord getOldPosition() {
+		return oldPosition;
+	}
+
+	public void setSymbol(char symbol) {
+		this.symbol = symbol;
+	}
+
 	public Coord getPosition() {
 		return position;
-	}	
+	}
+
+	public void setPosition(Coord position) {
+		this.oldPosition = this.position;
+		this.position = position;
+	}
+	
+	
 
 }

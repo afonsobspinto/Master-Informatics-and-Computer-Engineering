@@ -10,15 +10,13 @@ import java.util.HashSet;
 import java.io.Serializable;
 import java.lang.Character;
 
-/**
- * Represents the Game Logic.
- * 
- * @author Afonso Pinto and Tomás Oliveira
- *  
- */
 
 public class GameLogic implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Board board;
 	private Hero hero;
 	private Guard guard;
@@ -29,44 +27,30 @@ public class GameLogic implements Serializable {
 	private boolean triggeredLever;
 	Level level;
 	
-	/**
-	 * Returns the hero of the game.
-	 * 
-	 * @return the hero of the game. 
-	 */
-	
 	public Hero getHero() {
 		return hero;
 	}
 
-	/**
-	 * Returns the guard of the game.
-	 * 
-	 * @return the guard of the game. 
-	 */
-	
 	public Guard getGuard() {
 		return guard;
 	}
 
-	/**
-	 * Returns the list of ogres of the game.
-	 * 
-	 * @return the list of ogres of the game. 
-	 */
-	
 	public ArrayList<CrazyOgre> getCrazyOgres() {
 		return crazyOgres;
 	}
 
-	/**
-	 * Constructs and initializes the game logic configuration.
-	 * 
-	 * @param level
-	 *            the level of the game
-	 * @param gameConfig
-	 *            the game configurations
-	 */
+
+	public GameLogic(GameConfig gameConfig){
+		this.hero = new Hero();
+		this.guard = new Rookie();
+		this.crazyOgres = new ArrayList<CrazyOgre>();
+		this.gameConfig = gameConfig;
+		this.level = new Level();
+		this.triggeredLever = false;
+		this.won = false;
+		this.gameOn = true;
+		this.board = new Board(gameConfig.getRows(), gameConfig.getColumns());
+	}
 
 	public GameLogic(Level level, GameConfig gameConfig){
 
@@ -111,15 +95,9 @@ public class GameLogic implements Serializable {
 
 	}
 
-	/**
-	 * 
-	 * Applies the lever on the game.
-	 * 
-	 */
-	
 	private void applyLever(){
-		for(int i =0; i < gameConfig.getrows(); i++){
-			for(int j = 0; j < gameConfig.getcolumns(); j++){
+		for(int i =0; i < gameConfig.getRows(); i++){
+			for(int j = 0; j < gameConfig.getColumns(); j++){
 				if(this.board.getBoardAt(i, j)=='I'){
 					this.board.setBoardAt(i,j, 'S');
 				}
@@ -127,12 +105,7 @@ public class GameLogic implements Serializable {
 }
 	}
 	
-	/**
-	 * 
-	 * Updates the game when the hero moves.
-	 * 
-	 */
-	
+
 	public void updateGame(Direction move){
 
 		Action action = hero.move(this.board, move);
@@ -192,42 +165,19 @@ public class GameLogic implements Serializable {
 			break;
 		}
 	}
-	
-	/**
-	 * Returns true if the user won the game.
-	 * 
-	 * @return true if the user won the game.
-	 */
+
 
 	public boolean isWon() {
 		return won;
 	}
 	
-	/**
-	 * Returns true if the game is not over.
-	 * 
-	 * @return true if the game is not over.
-	 */
-	
 	public boolean isGameOn() {
 		return gameOn;
 	}
 	
-	/**
-	 * 
-	 * Shows the board of the game on the console.
-	 * 
-	 */
-	
 	public void showBoard(){
 		board.showBoard();
 	}
-	
-	/**
-	 * 
-	 * Function to allow the user to choose the type of guard.
-	 * 
-	 */
 	
 	private void chooseGuard(int level){
 		
@@ -260,12 +210,6 @@ public class GameLogic implements Serializable {
 		}
 	}
 	
-	/**
-	 * 
-	 * Function that creates a random Guard.
-	 * 
-	 */
-	
 	private void randomGuard(int level){
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 
@@ -284,12 +228,6 @@ public class GameLogic implements Serializable {
 		}
 		
 	}
-	
-	/**
-	 * 
-	 * Function to fill the ogres on the game.
-	 * 
-	 */
 	
 	private void fillCrazyOgres(int level, int ogresNum){
 		CrazyOgre crazyOgre;
@@ -322,22 +260,11 @@ public class GameLogic implements Serializable {
 		}
 	}
 	
-	/**
-	 * 
-	 * Returns the board of the game.
-	 * 
-	 * @return the board of the game.
-	 */
-	
 	public Board getBoard() {
 		return board;
 	}
 
-	/**
-	 * Sets the ogres on the board.
-	 * 
-	 */
-	
+
 	private void setOgresOnBoard(){
 		
 		for (int i = 0; i < crazyOgres.size(); i++){
@@ -349,22 +276,11 @@ public class GameLogic implements Serializable {
 		}
 	}
 	
-	/**
-	 * Moves the ogres on the board.
-	 * 
-	 */
-	
 	private void moveOgres(){
 		for (int i = 0; i<crazyOgres.size(); i++){
 			crazyOgres.get(i).move(board, crazyOgres);
 		}
 	}
-	
-	/**
-	 * 
-	 * Function to allow the user to choose number of ogres.
-	 * 
-	 */
 	
 	private void chooseOgresNum(){
 		System.out.println("Choose Number of Ogres (1-3): ");
@@ -385,12 +301,6 @@ public class GameLogic implements Serializable {
 		
 
 	}
-	
-	/**
-	 * 
-	 * Function to create a random number of ogres.
-	 * 
-	 */
 	
 	private void randomOgres(int ogresNum){
 		
@@ -415,16 +325,6 @@ public class GameLogic implements Serializable {
 		
 	}
 	
-	/**
-	 * 
-	 * Returns true if the position is valid.
-	 * 
-	 * @param position
-	 *             the position of the coordinate
-	 *             
-	 * @return true if the position is valid.
-	 */
-	
 	private boolean validPos(Coord position){
 		if(isSymbolNearby(position, this.hero.symbol))
 			return false;
@@ -433,12 +333,6 @@ public class GameLogic implements Serializable {
 		return false;
 	}
 
-	/**
-	 * 
-	 * Creates a random position.
-	 * 
-	 */
-	
 	private Coord randomPos(){
 		int x, y;
 		
@@ -448,18 +342,6 @@ public class GameLogic implements Serializable {
 		return new Coord(x,y);
 		
 	}
-	
-	/**
-	 * 
-	 * Returns true if the symbol is nearby the coordinate position.
-	 * 
-	 * @param position 
-	 *          the position of the coordinate
-	 * @param symbol
-	 *          the symbol of type char
-	 *          
-	 * @return true if the symbol is nearby the coordinate.
-	 */
 	
 	public boolean isSymbolNearby(Coord position, char symbol){
 
@@ -483,35 +365,28 @@ public class GameLogic implements Serializable {
 		return false;
 	}
 
-	/**
-	 * Returns the level of the game.
-	 * 
-	 * @return the level of the game.
-	 */
-	
+
 	public Level getLevel() {
 		return level;
 	}
 
-	/**
-	 * Returns true if the lever is triggered.
-	 * 
-	 * @return true if the lever is triggered.
-	 */
-	
 	public boolean isTriggeredLever() {
 		return triggeredLever;
 	}
 
-	/**
-	 * Sets the game on or off.
-	 * 
-	 * @param gameOn
-	 *          the boolean that represents if the game is on or off
-	 */
-	
 	public void setGameOn(boolean gameOn) {
 		this.gameOn = gameOn;
 	}
 
+	public GameConfig getGameConfig() {
+		return gameConfig;
+	}
+
+	public void setGuard(Guard guard) {
+		this.guard = guard;
+	}
+
+	
+	
+	
 }

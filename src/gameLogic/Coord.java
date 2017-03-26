@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * A coordinate represents a (x,y) location.
- * 
- * @author Afonso Pinto and Tomás Oliveira
+ * A coordinate represents a (x,y) location
  * 
  */
 
@@ -16,9 +14,11 @@ public class Coord implements Serializable {
 	private int x;
 
 	private int y;
+
+
 	
 	/**
-	 * Constructs and initializes a coordinate at (x,y).
+	 * Constructs and initializes a coordinate at (x,y)
 	 * 
 	 * @param x
 	 *            the x coordinate 
@@ -62,9 +62,9 @@ public class Coord implements Serializable {
 
 
 	/**
-	 * Returns the x coordinate.
+	 * Returns the x coordinate
 	 * 
-	 * @return the x coordinate.
+	 * @return the x coordinate
 	 */
 	
 	public int getX() {
@@ -72,14 +72,43 @@ public class Coord implements Serializable {
 	}
 
 	/**
-	 * Returns the y coordinate.
+	 * Sets the x coordinate
 	 * 
-	 * @return the y coordinate.
+	 * @param x
+	 *            the new x coordinate
+	 */
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	/**
+	 * Returns the y coordinate
+	 * 
+	 * @return the y coordinate 
 	 */
 	
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Sets the y coordinate 
+	 * 
+	 * @param y
+	 *            the new Y coordinate
+	 */
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+	@Override
+	public String toString() {
+		return "[x=" + x + ", y=" + y + "]";
+	}
+
+	
 	
 }
