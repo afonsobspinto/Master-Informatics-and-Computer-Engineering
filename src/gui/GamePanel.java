@@ -510,7 +510,6 @@ public class GamePanel extends JPanel {
 			
 			super.mouseReleased(e);
 		
-			
 			if(customMap){
 				if(game.getBoard().getBoardAt(mouseCell.getX(), mouseCell.getY()) == ' '){
 					game.getBoard().setBoardAt(mouseCell, charSelected);
