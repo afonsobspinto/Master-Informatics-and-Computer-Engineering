@@ -156,61 +156,24 @@ public class GameLogic implements Serializable {
 	public void updateGame(Direction move){
 
 		Action action = hero.move(this.board, move);
-		
-		if(guard != null && level.isHaveGuard())
-			guard.move(board);
-		if(crazyOgres != null && level.isHaveOgre())
-			moveOgres();
-		
 
-		if(action != Action.OPENDOOR){
-			if(hero.isSymbolNearby(board, 'G')){
-				action = Action.GUARD;
-			}
-			if(!hero.isArmed){
-				if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
-					action = Action.CRAZYOGRE;
-				}
-			}
-			else{
-				if(hero.isSymbolNearby(board, '*')){
-					action = Action.CRAZYOGRE;
-				}
-				else if(hero.isOgreNearby(board, crazyOgres)){
-					action = Action.STUNNED;
-				}
-			}
-		}
-
+		if(guard != null && level.isHaveGuard()) guard.move(board); if(crazyOgres != null && level.isHaveOgre()) moveOgres();
+		
+		if(action != Action.OPENDOOR){ if(hero.isSymbolNearby(board, 'G')){ action = Action.GUARD; }
+			if(!hero.isArmed){ if(hero.isSymbolNearby(board, 'O') || hero.isSymbolNearby(board, '$') || hero.isSymbolNearby(board, '*')){
+					action = Action.CRAZYOGRE;} }
+			else{ if(hero.isSymbolNearby(board, '*')){ action = Action.CRAZYOGRE; }
+				else if(hero.isOgreNearby(board, crazyOgres)){ action = Action.STUNNED; } } }
 		switch (action) {
-		case NOACTION:
-			break;
-		case GUARD:
-			this.won = false;
-			gameOn = false;
-			break;
-		case CRAZYOGRE:
-			this.won = false;
-			gameOn = false;
-			break;
-		case OPENDOOR:
-			this.won= true;
-			gameOn= false;
-			break;
-		case LEVER:
-			applyLever();
-			triggeredLever = true;
-			break;
-		case MOVE:
-			break;
-		case KEY:
-			break;
-		case STUNNED:
-			break;
-
-		default:
-			break;
-		}
+		case NOACTION: break;
+		case GUARD: this.won = false; gameOn = false; break;
+		case CRAZYOGRE: this.won = false; gameOn = false; break;
+		case OPENDOOR: this.won= true; gameOn= false; break;
+		case LEVER: applyLever(); triggeredLever = true; break;
+		case MOVE: break;
+		case KEY: break;
+		case STUNNED: break;
+		default: break; }
 	}
 
 	/**
