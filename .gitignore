@@ -1,3 +1,6 @@
+#Debug
+.mk
+
 # Compiled Object files
 *.slo
 *.lo
@@ -29,5 +32,10 @@
 *.app
 
 # Other Stuff
+<<<<<<< HEAD
 *.settings.xml
 /Debug/
+=======
+*.settings
+
+>>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/CAL1617_T5GG.git
