@@ -11,6 +11,7 @@
 #include <list>
 #include <limits>
 #include <cmath>
+#include <string>
 using namespace std;
 
 template <class T> class Edge;
@@ -28,13 +29,14 @@ const int NULL = 0;
  * ================================================================================================
  */
 template <class T>
-class Vertex {
+class Vertex { // Nodes
 	T info;
 	vector<Edge<T>  > adj;
 	bool visited;
 	bool processing;
 	int indegree;
 	int dist;
+	//double latDeg, longDeg, latRad, longRad;
 public:
 
 	Vertex(T in);
@@ -122,6 +124,7 @@ template <class T>
 class Edge {
 	Vertex<T> * dest;
 	double weight;
+	string roadName;
 public:
 	Edge(Vertex<T> *d, double w);
 	friend class Graph<T>;
