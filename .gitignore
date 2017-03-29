@@ -33,3 +33,4 @@ Debug
 
 # Other Stuff
 *.settings
+/Debug/
