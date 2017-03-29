@@ -20,7 +20,6 @@ const int NOT_VISITED = 0;
 const int BEING_VISITED = 1;
 const int DONE_VISITED = 2;
 const int INT_INFINITY = std::numeric_limits<int>::max();;
-const int NULL = 0;
 
 /*
  * ================================================================================================
