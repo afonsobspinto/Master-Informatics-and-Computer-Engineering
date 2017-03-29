@@ -30,3 +30,4 @@
 
 # Other Stuff
 *.settings.xml
+/Debug/
