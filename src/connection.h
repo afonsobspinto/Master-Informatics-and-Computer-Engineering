@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifdef linux
+#ifdef __unix__
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <sys/types.h>

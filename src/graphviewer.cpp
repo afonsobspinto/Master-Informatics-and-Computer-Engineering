@@ -27,14 +27,14 @@ void GraphViewer::initialize(int width, int height, bool dynamic, int port_n) {
 	command += " --port ";
 	command += port_string;
 
-#ifdef linux
+#ifdef __unix__
 	if (!(procId = fork())) {
 		system(command.c_str());
 		kill(getppid(), SIGINT);
 		exit(0);
 	}
 	else {
-		usleep(2000000);
+		sleep(2000000);
 		con = new Connection(port_n);
 
 		char buff[200];
