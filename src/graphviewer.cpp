@@ -2,7 +2,7 @@
 #include <string>
 #include<sstream>
 
-#ifdef linux
+#ifdef __unix__
 pid_t GraphViewer::procId = NULL;
 #endif
 short GraphViewer::port = 7772;
