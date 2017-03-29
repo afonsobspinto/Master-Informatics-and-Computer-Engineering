@@ -1,3 +1,6 @@
+#Debug
+.mk
+
 # Compiled Object files
 *.slo
 *.lo
@@ -29,4 +32,5 @@
 *.app
 
 # Other Stuff
-*.settings.xml
+*.settings
+
