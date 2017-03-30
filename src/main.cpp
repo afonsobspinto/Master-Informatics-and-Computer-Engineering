@@ -7,9 +7,17 @@
 //============================================================================
 
 #include <iostream>
+#include "LoadingResources.h"
+
 using namespace std;
 
+
+
 int main() {
-	cout << "!!!Hello World!!!!" << endl; // prints !!!Hello World!!!
+
+	LoadingResources resources = LoadingResources();
+
+	cout << "!!!Hello World!!!" << endl;
+
 	return 0;
 }
