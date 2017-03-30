@@ -16,12 +16,19 @@ class LoadingResources {
 	static const std::string GraphsInfo;
 	std::vector<std::string> graphsFiles;
 
+	unsigned int nnodes=0;
+	unsigned int nroads=0;
+
 public:
 	LoadingResources();
+
+	bool string2bool(const std::string &a);
 
 	void loadMap();
 
 	void loadNodes();
+
+	void loadRoads();
 };
 
 #endif /* LOADINGRESOURCES_H_ */
