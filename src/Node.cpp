@@ -13,8 +13,8 @@
 using namespace std;
 
 Node::Node(long long int id, Coord coord): id(id), coord(coord) {
-	cout << id << endl;
-	cout << coord << endl;
+	//cout << id << endl;
+	//cout << coord << endl;
 }
 
 

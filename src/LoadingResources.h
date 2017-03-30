@@ -16,6 +16,9 @@ class LoadingResources {
 	static const std::string GraphsInfo;
 	std::vector<std::string> graphsFiles;
 
+	unsigned int nnodes=0;
+	unsigned int nroads=0;
+
 public:
 	LoadingResources();
 

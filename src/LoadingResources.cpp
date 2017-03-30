@@ -70,9 +70,13 @@ void LoadingResources::loadNodes() {
 	while(nodesInfo >> id >> sep >>
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
+		nnodes++;
 
 		Node* no = new Node (id, Coord(latitude, longitude));
+
 	}
+
+	cout << "Read "<< nnodes << " nodes.\n";
 
 }
 
@@ -101,8 +105,8 @@ void LoadingResources::loadRoads() {
 
 		is2way=string2bool(is2wayS);
 
-		cout << id << " " << is2way << endl;
-
+		//cout << id << " " << is2way << endl;
+		nroads++;
 	}
-
+	cout << "Read " << nroads << " roads.\n";
 }

@@ -15,6 +15,7 @@ using namespace std;
 
 int main() {
 
+
 	LoadingResources resources = LoadingResources();
 
 	cout << "!!!Hello World!!!" << endl;
