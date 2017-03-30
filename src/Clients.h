@@ -9,16 +9,16 @@
 #define CLIENTS_H_
 
 
-#include "Node.h"
 #include "Purchase.h"
 #include <vector>
+#include "Place.h"
 
 class Client {
 private:
-	Node* location;
+	Place* location;
 	std::vector<Purchase> shopping;
 public:
-	Client(Node* location, std::vector<Purchase> shopping);
+	Client(Place* location, std::vector<Purchase> shopping);
 };
 
 

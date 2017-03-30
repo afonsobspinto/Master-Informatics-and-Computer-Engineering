@@ -6,16 +6,16 @@
  */
 
 #include "LoadingResources.h"
-#include "Node.h"
 #include <fstream>
 #include <iostream>
+#include "Place.h"
 
 using namespace std;
 
 
 const string LoadingResources::GraphsInfo = "graphsInfo.txt";
 
-LoadingResources::LoadingResources() {
+LoadingResources::LoadingResources(Graph<Place>*graph): graph(graph) {
 	ifstream graphsInfo(GraphsInfo);
 
 	if(!graphsInfo.is_open()){
@@ -72,7 +72,7 @@ void LoadingResources::loadNodes() {
 			latitude >> sep >> longitude){
 		nnodes++;
 
-		Node* no = new Node (id, Coord(latitude, longitude));
+		Place* no = new Place (id, Coord(latitude, longitude));
 
 	}
 

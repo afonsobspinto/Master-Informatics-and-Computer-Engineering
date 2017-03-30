@@ -8,14 +8,20 @@
 #ifndef SUPERMARKET_H_
 #define SUPERMARKET_H_
 
-#include "Node.h"
 #include "Truck.h"
 #include <vector>
+#include "Place.h"
 
 class Supermarket{
-	std::vector<Truck> trucks;
-	Node* location;
 
+private:
+	std::vector<Truck> trucks;
+	Place* location;
+
+public:
+	Supermarket(std::vector<Truck> trucks, Place* location);
+	const Place* getLocation() const;
+	const std::vector<Truck>& getTrucks() const;
 };
 
 

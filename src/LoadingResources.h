@@ -10,6 +10,8 @@
 
 #include <string>
 #include <vector>
+#include "Graph.h"
+#include "Place.h"
 
 class LoadingResources {
 
@@ -19,8 +21,10 @@ class LoadingResources {
 	unsigned int nnodes=0;
 	unsigned int nroads=0;
 
+	Graph<Place>* graph;
+
 public:
-	LoadingResources();
+	LoadingResources(Graph<Place>*graph);
 
 	bool string2bool(const std::string &a);
 

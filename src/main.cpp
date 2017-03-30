@@ -7,7 +7,7 @@
 //============================================================================
 
 #include <iostream>
-#include "LoadingResources.h"
+#include "SuperMarketChain.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ using namespace std;
 int main() {
 
 
-	LoadingResources resources = LoadingResources();
+	SuperMarketChain();
 
 	cout << "!!!Hello World!!!" << endl;
 

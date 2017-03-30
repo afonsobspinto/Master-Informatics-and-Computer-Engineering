@@ -12,6 +12,7 @@
 #include <limits>
 #include <cmath>
 #include <string>
+#include <iostream>
 using namespace std;
 
 template <class T> class Edge;
@@ -21,7 +22,7 @@ const int NOT_VISITED = 0;
 const int BEING_VISITED = 1;
 const int DONE_VISITED = 2;
 const int INT_INFINITY = std::numeric_limits<int>::max();;
-const int NULL = 0;
+const int __NULL = 0;
 
 /*
  * ================================================================================================
@@ -154,6 +155,9 @@ class Graph {
 	void getPathTo(Vertex<T> *origin, list<T> &res);
 
 public:
+	Graph();
+	~Graph();
+
 	bool addVertex(const T &in);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	bool removeVertex(const T &in);
@@ -521,6 +525,14 @@ void Graph<T>::unweightedShortestPath(const T &s) {
 			}
 		}
 	}
+}
+
+template<class T>
+Graph<T>::Graph() {
+}
+
+template<class T>
+Graph<T>::~Graph() {
 }
 
 
