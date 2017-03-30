@@ -19,9 +19,13 @@ class LoadingResources {
 public:
 	LoadingResources();
 
+	bool string2bool(const std::string &a);
+
 	void loadMap();
 
 	void loadNodes();
+
+	void loadRoads();
 };
 
 #endif /* LOADINGRESOURCES_H_ */

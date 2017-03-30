@@ -123,7 +123,7 @@ int Vertex<T>::getIndegree() const {
 template <class T>
 class Edge {
 	Vertex<T> * dest;
-	double weight;
+	double weight; // Used as the distance
 	string roadName;
 public:
 	Edge(Vertex<T> *d, double w);
