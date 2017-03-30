@@ -8,7 +8,15 @@
 #ifndef SUPERMARKET_H_
 #define SUPERMARKET_H_
 
+#include "Node.h"
+#include "Truck.h"
+#include <vector>
 
+class Supermarket{
+	std::vector<Truck> trucks;
+	Node* location;
+
+};
 
 
 
