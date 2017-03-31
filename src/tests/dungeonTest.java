@@ -78,7 +78,7 @@ public class dungeonTest {
 	@Test
 	public void testHeroIsCapturedByOgre(){
 		Level l_1 = new Level(-1);
-
+		
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.RIGHT);
@@ -89,6 +89,7 @@ public class dungeonTest {
 	@Test
 	public void testMoveHeroIntoLeverCellOgre(){
 		Level l_1 = new Level(-1);
+
 		GameConfig game = new GameConfig(5,5);
 		GameLogic g = new GameLogic(l_1, game);
 		g.updateGame(Direction.DOWN);
@@ -145,14 +146,17 @@ public class dungeonTest {
 					outcome1 = true;
 				else
 					break;
+
 			}
 			else if ('O' == g.getBoard().getBoardAt(2,4)){
 				if('*' == g.getBoard().getBoardAt(3, 4) || '*' == g.getBoard().getBoardAt(1, 4) || '*' == g.getBoard().getBoardAt(2, 3))
 					outcome1 = true;
 				else
 					break;
+
 			}
 			else{
+
 				break;
 			}
 			
@@ -309,55 +313,37 @@ public class dungeonTest {
 		g.updateGame(Direction.RIGHT);
 		assertEquals(new Coord(7,2), g.getHero().getPosition());
 	}
-
-	@Test
-	public void testTroll(){
-		Level l2 = new Level(-1);
-		GameConfig game = new GameConfig();
-		game.setGuardIndex(0);
-		game.setNumOfOgres(1);
-		GameLogic g = new GameLogic(l2, game);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.UP);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.DOWN);
-		g.updateGame(Direction.RIGHT);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
-		g.updateGame(Direction.RIGHT);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
-		g.updateGame(Direction.RIGHT);
-		g.updateGame(Direction.RIGHT);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
-		g.updateGame(Direction.DOWN);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
-		g.updateGame(Direction.DOWN);
-		assertEquals(new Coord(3,3), g.getHero().getPosition());
-		g.updateGame(Direction.LEFT);
-		assertEquals(new Coord(3,2), g.getHero().getPosition());
-	}
-
+	
+//	@Test
+//	public void testTroll(){
+//		Level l2 = new Level(-1);
+//		GameConfig game = new GameConfig();
+//		game.setGuardIndex(0);
+//		game.setNumOfOgres(1);
+//		GameLogic g = new GameLogic(l2, game);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.UP);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.RIGHT);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.DOWN);
+//		g.updateGame(Direction.LEFT);
+//		assertEquals(new Coord(8,7), g.getHero().getPosition());
+//	}
+//	
+	
 
 }
-
 
 
