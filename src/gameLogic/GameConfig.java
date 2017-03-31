@@ -21,11 +21,25 @@ public class GameConfig implements Serializable {
 	private int upKey;
 	private int guardIndex;
 	private int numOfOgres;
+
 	
 	/**
 	 * Constructs and initializes the default game settings and default keyboard configuration.
 	 * 
 	 */
+	
+	public GameConfig(boolean console){
+		if(console){
+			columns = 10;
+			rows = 10;
+			downKey = KeyEvent.VK_S;
+			leftKey = KeyEvent.VK_A;
+			rightKey = KeyEvent.VK_D;
+			upKey = KeyEvent.VK_W;
+			guardIndex = 0;
+			numOfOgres = 0;
+		}
+	}
 	
 	public GameConfig(){
 		columns = 10;

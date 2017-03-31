@@ -19,14 +19,18 @@ public class Interaction {
 	
 	@SuppressWarnings("resource")
 	public  Interaction(GameConfig gameConfig){
-		final int downKey = gameConfig.getDownKey();
-		final int upKey = gameConfig.getUpKey();
-		final int rigthKey = gameConfig.getRightKey();
-		final int leftKey = gameConfig.getLeftKey();
+		final char downKey = (char) gameConfig.getDownKey();
+		final char upKey =  (char) gameConfig.getUpKey();
+		final char rigthKey = (char) gameConfig.getRightKey();
+		final char leftKey = (char) gameConfig.getLeftKey();
+		
+		
 		
 		Scanner keyboard = new Scanner(System.in);
 		char key = keyboard.next().charAt(0);
 		
+		key = Character.toUpperCase(key);
+
 		if (key == downKey) {
 			this.direction = Direction.DOWN;
 			

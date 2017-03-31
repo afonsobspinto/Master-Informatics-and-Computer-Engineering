@@ -7,13 +7,14 @@ public class Game {
 	public static void main(String[] args) {
 		System.out.println("Hello World");
 
-		GameConfig gameConfig = new GameConfig();
+		GameConfig gameConfig = new GameConfig(true);
 
 		int i = 1;
 		GameLogic g;
 
 		while(i <= 5){
 			g = new GameLogic(new Level(i), gameConfig);
+			g.showBoard();
 			
 			while(g.isGameOn()){
 				Interaction interaction = new Interaction(gameConfig);
