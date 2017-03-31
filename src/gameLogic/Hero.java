@@ -149,7 +149,12 @@ public class Hero extends Character{
 		else nextPos = board.getBoardAt(x, y+move);
 		if(nextPos == 'X') res = Action.NOACTION;
 		else if(nextPos == 'I'){
-			if(this.gotKey){ board.setBoardAt(x,y+move, 'S'); res = Action.KEY; }
+			if(this.gotKey){ 
+				if(!vertical)
+					board.setBoardAt(x,y+move, 'S');
+				else
+					board.setBoardAt(x+move,y, 'S');
+				res = Action.KEY; }
 			else res = Action.NOACTION; }
 		else if(nextPos == 'S') res =  Action.OPENDOOR; else if(nextPos == 'G') res = Action.GUARD;
 		else if((!isArmed && (nextPos == 'O' || nextPos == '$' || nextPos == '*')) || (isArmed && nextPos == '*')) res = Action.CRAZYOGRE;

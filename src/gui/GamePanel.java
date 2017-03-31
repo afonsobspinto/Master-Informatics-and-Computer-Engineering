@@ -318,7 +318,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	private class MyKeyAdapter extends KeyAdapter {
-		public void keyPressed(KeyEvent e) { if (showBackground || customMap) return;
+		public void keyPressed(KeyEvent e) { if (showBackground || customMap || showCredits) return;
 	        int key = e.getKeyCode(); final int downKey = gameConfig.getDownKey(); final int upKey = gameConfig.getUpKey();
 			final int rigthKey = gameConfig.getRightKey(); final int leftKey = gameConfig.getLeftKey(); Direction direction;
 			if (key == downKey) { direction = Direction.DOWN; } else if (key == upKey) { direction = Direction.UP;
@@ -329,7 +329,8 @@ public class GamePanel extends JPanel {
 			if(!game.isGameOn() && game.isWon()){ String msg = "You win!"; JOptionPane.showMessageDialog(getRootPane(), msg);
 				if(++level<=numberOfLevels) startNewGame(gameConfig, level);
 				else{ showCredits = true; repaint(); JOptionPane.getRootFrame().dispose(); } }
-			else if(!game.isGameOn() && !game.isWon()){ String msg = "Game Over!"; JOptionPane.showMessageDialog(getRootPane(), msg);
+			else if(!game.isGameOn() && !game.isWon()){
+				String msg = "Game Over!"; JOptionPane.showMessageDialog(getRootPane(), msg);
 				if(!wasCustom) startNewGame(gameConfig, level); else{ showCredits = true; repaint(); JOptionPane.getRootFrame().dispose();
 				} } }
 	}
