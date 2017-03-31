@@ -13,8 +13,6 @@
 using namespace std;
 
 Place::Place(long long int id, Coord coord): id(id), coord(coord) {
-	//cout << id << endl;
-	//cout << coord << endl;
 }
 
 
@@ -24,4 +22,20 @@ double Place::distance(Place& Place2) {
 
 bool Place::operator ==(const Place& rhs) {
 	return this->id == rhs.id;
+}
+
+const Coord& Place::getCoord() const {
+	return coord;
+}
+
+long long int Place::getId() const {
+	return id;
+}
+
+const std::vector<Transition*>& Place::getTransitions() const {
+	return transitions;
+}
+
+void Place::addTransitions( Transition* transition) {
+	this->transitions.push_back(transition);
 }

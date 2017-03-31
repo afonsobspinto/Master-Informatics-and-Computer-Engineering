@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include "Place.h"
+#include "Street.h"
 
 using namespace std;
 
@@ -37,16 +38,12 @@ LoadingResources::LoadingResources(Graph<Place>*graph): graph(graph) {
 
 }
 
-bool LoadingResources::string2bool(const std::string &v){
-	if(!v.empty() && v == "True"){
-		return true;
-	}
-	return false;
-}
+
 
 void LoadingResources::loadMap() {
 	loadNodes();
 	loadRoads();
+	loadGeom();
 }
 
 void LoadingResources::loadNodes() {
@@ -70,10 +67,11 @@ void LoadingResources::loadNodes() {
 	while(nodesInfo >> id >> sep >>
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
+
+		Place place(id, Coord(latitude, longitude));
+		graph->addVertex(place);
+
 		nnodes++;
-
-		Place* no = new Place (id, Coord(latitude, longitude));
-
 	}
 
 	cout << "Read "<< nnodes << " nodes.\n";
@@ -82,9 +80,9 @@ void LoadingResources::loadNodes() {
 
 void LoadingResources::loadRoads() {
 
-	ifstream nodesInfo(graphsFiles[2]);
+	ifstream roadsInfo(graphsFiles[2]);
 
-	if(!nodesInfo.is_open()){
+	if(!roadsInfo.is_open()){
 			cerr << "Unable to open file " << GraphsInfo << endl;
 			exit(1);
 		}
@@ -96,17 +94,48 @@ void LoadingResources::loadRoads() {
 	char sep;
 	string line;
 	string is2wayS;
-	/*
-	 * Ignoring degrees Values
-	 */
 
-	while(getline(nodesInfo, id_, ';'), getline(nodesInfo, name, ';'), getline(nodesInfo, is2wayS)){
+
+	while(getline(roadsInfo, id_, ';'), getline(roadsInfo, name, ';'), getline(roadsInfo, is2wayS)){
+
 		id=stoll(id_);
-
 		is2way=string2bool(is2wayS);
 
-		//cout << id << " " << is2way << endl;
+		Street street(id,name,is2way);
+
 		nroads++;
 	}
 	cout << "Read " << nroads << " roads.\n";
 }
+
+void LoadingResources::loadGeom() {
+
+	ifstream geomInfo(graphsFiles[0]);
+
+	if(!geomInfo.is_open()){
+			cerr << "Unable to open file " << GraphsInfo << endl;
+			exit(1);
+		}
+
+	long long int road_id, node1_id, node2_id;
+	char sep;
+
+	while(geomInfo >> road_id >> sep >>
+			node1_id >> sep >> node2_id >> sep){
+		Transition transition(road_id, node1_id, node2_id);
+
+		ngeoms++;
+	}
+
+	cout << "Read " << ngeoms << " geoms.\n";
+}
+
+
+
+bool LoadingResources::string2bool(const std::string &v){
+	if(!v.empty() && v == "True"){
+		return true;
+	}
+	return false;
+}
+

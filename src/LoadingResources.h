@@ -20,6 +20,7 @@ class LoadingResources {
 
 	unsigned int nnodes=0;
 	unsigned int nroads=0;
+	unsigned int ngeoms=0;
 
 	Graph<Place>* graph;
 
@@ -33,6 +34,8 @@ public:
 	void loadNodes();
 
 	void loadRoads();
+
+	void loadGeom();
 };
 
 #endif /* LOADINGRESOURCES_H_ */
