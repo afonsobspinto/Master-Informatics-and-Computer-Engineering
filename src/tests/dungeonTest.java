@@ -314,35 +314,6 @@ public class dungeonTest {
 		assertEquals(new Coord(7,2), g.getHero().getPosition());
 	}
 	
-//	@Test
-//	public void testTroll(){
-//		Level l2 = new Level(-1);
-//		GameConfig game = new GameConfig();
-//		game.setGuardIndex(0);
-//		game.setNumOfOgres(1);
-//		GameLogic g = new GameLogic(l2, game);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.UP);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.RIGHT);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.DOWN);
-//		g.updateGame(Direction.LEFT);
-//		assertEquals(new Coord(8,7), g.getHero().getPosition());
-//	}
-//	
-	
 
 }
 
