@@ -70,8 +70,6 @@ public class GameConfig implements Serializable {
 
 	}
 
-	
-
 	/**
 	 * Returns the code of the Down Key. 
 	 * 
