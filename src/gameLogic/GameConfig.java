@@ -2,6 +2,7 @@ package gameLogic;
 
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The game settings.
@@ -36,7 +37,7 @@ public class GameConfig implements Serializable {
 			leftKey = KeyEvent.VK_A;
 			rightKey = KeyEvent.VK_D;
 			upKey = KeyEvent.VK_W;
-			guardIndex = 0;
+			guardIndex = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 			numOfOgres = 0;
 		}
 	}
