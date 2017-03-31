@@ -247,10 +247,34 @@ public class Board implements Serializable {
 		if(isAtEnd(i, j, searchForKey))
 			return true;
 
-		boolean right = existAPath(i+1, j, searchForKey);
-		boolean left = existAPath(i-1, j, searchForKey);
-		boolean up = existAPath(i, j-1, searchForKey);
-		boolean down = existAPath(i, j+1, searchForKey);
+		boolean right;
+		boolean left;
+		boolean up;
+		boolean down;
+		
+		try {
+			right = existAPath(i+1, j, searchForKey);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			right = false;
+		}
+		
+		try {
+			left = existAPath(i-1, j, searchForKey);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			left = false;
+		}
+		
+		try {
+			up = existAPath(i, j-1, searchForKey);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			up = false;
+		}
+		
+		try {
+			down = existAPath(i, j+1, searchForKey);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			down = false;
+		}
 			
 		return right || left || up || down;
 	}
