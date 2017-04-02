@@ -4,6 +4,7 @@ AEDA/APlaceInTheSun - The company "A place in the Sun" is dedicated to making re
 
 FEUP/LCOM/ChessProject - ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
 
-FEUP/PROG/Supermaket++/ Supermarket Management System
+FEUP/PROG/Supermaket++ Supermarket Management System
 
-FEUP/FPRO/Poker/ Poker Game - Five-card draw 
+FEUP/FPRO/Poker Poker Game - Five-card draw 
+	
