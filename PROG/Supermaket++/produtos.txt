@@ -1,0 +1,7 @@
+6
+arroz ; 1
+farinha ; 1
+massa ; 1
+pipocas ; 1
+batatas ; 1
+sumo ; 1
