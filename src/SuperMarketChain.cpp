@@ -14,4 +14,3 @@ SuperMarketChain::SuperMarketChain() {
 	LoadingResources loading = LoadingResources(graph);
 
 }
-
