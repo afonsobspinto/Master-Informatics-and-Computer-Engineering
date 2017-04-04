@@ -13,6 +13,7 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include "Transition.h"
 using namespace std;
 
 template <class T> class Edge;
@@ -160,6 +161,7 @@ public:
 
 	bool addVertex(const T &in);
 	bool addEdge(const T &sourc, const T &dest, double w);
+	bool addEdge(Transition *transition);
 	bool removeVertex(const T &in);
 	bool removeEdge(const T &sourc, const T &dest);
 	vector<T> dfs() const;
@@ -255,6 +257,26 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	if (found!=2) return false;
 	vD->indegree++;
 	vS->addEdge(vD,w);
+
+	return true;
+}
+
+template <class T>
+bool Graph<T>::addEdge(Transition *transition) {
+	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
+	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
+	int found=0;
+	Vertex<T> *vS, *vD;
+	while (found!=2 && it!=ite ) {
+		if ( (*it)->info.getID() == transition->getSrcId())
+			{ vS=*it; found++;}
+		if ( (*it)->info.getID() == transition->getDestId())
+			{ vD=*it; found++;}
+		it ++;
+	}
+	if (found!=2) return false;
+	vD->indegree++;
+	vS->addEdge(vD,vS->getDist(*vD));
 
 	return true;
 }
