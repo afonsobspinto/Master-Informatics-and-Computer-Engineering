@@ -12,6 +12,7 @@
 #include "Transition.h"
 #include <vector>
 
+
 class Place{
 
 private:
@@ -32,6 +33,21 @@ public:
 	void addTransitions(Transition* transition);
 };
 
+struct placeHash{
+	int operator() (const Place & p)const{
+
+		int sum = p.getId();
+
+		sum += (int) p.getCoord().getLatitude() +
+				p.getCoord().getLongitude();
+
+		return sum % 1009;
+	}
+
+	bool operator()(const Place &p1, const Place p2)const{
+		return p1.getId() == p2.getId();
+	}
+};
 
 
 #endif /* NODE_H_ */
