@@ -20,9 +20,9 @@ private:
 public:
 	Client(Place* location, std::vector<Purchase> shopping);
 	const Place* getLocation() const;
-	const std::vector<Truck>& getGroceries() const;
+	const std::vector<Purchase>& getGroceries() const;
 
-	bool Client::operator == (const Client & rhs);
+	bool operator == (const Client & rhs);
 };
 
 

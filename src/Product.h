@@ -16,7 +16,7 @@ public:
 	Product(int id);
 	const int getId() const;
 
-	bool Product::operator == (const Product& rhs);
+	bool operator == (const Product& rhs);
 };
 
 #endif /* PRODUCT_H_ */

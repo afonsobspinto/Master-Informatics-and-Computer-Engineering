@@ -15,7 +15,7 @@ const Place* Client::getLocation() const {
 	return location;
 }
 
-const std::vector<Truck>& Client::getGroceries() const {
+const std::vector<Purchase>& Client::getGroceries() const {
 	return shopping;
 }
 
