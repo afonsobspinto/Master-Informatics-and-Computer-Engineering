@@ -18,6 +18,9 @@ private:
 	Date date;
 public:
 	Purchase(Product product, unsigned short quantity, Date date);
+	const Date getDate() const;
+	const Product getProduct() const;
+	const unsigned short getQuantity() const;
 };
 
 

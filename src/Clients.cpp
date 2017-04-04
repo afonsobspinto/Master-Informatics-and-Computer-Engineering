@@ -7,4 +7,18 @@
 
 #include "Clients.h"
 
-Client::Client(Place* location, std::vector<Purchase> shopping): location(location), shopping(shopping) {}
+Client::Client(Place* location, std::vector<Purchase> shopping) :
+		location(location), shopping(shopping) {
+}
+
+const Place* Client::getLocation() const {
+	return location;
+}
+
+const std::vector<Truck>& Client::getGroceries() const {
+	return shopping;
+}
+
+bool Client::Client::operator ==(const Client& rhs) {
+	return (this->location == location);
+}

@@ -10,3 +10,10 @@
 Product::Product(int id): id(id) {
 }
 
+const int Product::getId() const {
+	return id;
+}
+
+bool Product::operator ==(const Product& rhs) {
+	return (this->id == id);
+}
