@@ -70,6 +70,9 @@ void LoadingResources::loadNodes() {
 			latitude >> sep >> longitude){
 
 		Place place(id, Coord(latitude, longitude));
+
+		pair<long long int, Place> p(id,place);
+		superMarketChain->getPlaces()->insert(p);
 		superMarketChain->getGraph()->addVertex(place);
 
 		nnodes++;
