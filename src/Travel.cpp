@@ -9,7 +9,7 @@
 #include "Travel.h"
 
 Travel::Travel(Place* begin, Place* end, unsigned char averageSpeed): begin(begin), end(end) {
-	this->distance = begin->distance(*end);
+	this->distance = begin->getDistance(*end);
 	this->time = distance/averageSpeed;
 }
 

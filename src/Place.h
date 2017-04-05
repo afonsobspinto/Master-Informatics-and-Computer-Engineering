@@ -23,12 +23,12 @@ private:
 public:
 	Place(long long int id, Coord coord);
 
-	double distance(Place &place2);
+	double getDistance(Place &place2);
 
 	bool operator== (const Place &rhs);
 	
 	const Coord& getCoord() const;
-	long long int getId() const;
+	long long int getID() const;
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
 };

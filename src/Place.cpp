@@ -16,7 +16,7 @@ Place::Place(long long int id, Coord coord): id(id), coord(coord) {
 }
 
 
-double Place::distance(Place& Place2) {
+double Place::getDistance(Place& Place2) {
 	return this->coord.distance(Place2.coord);
 }
 
@@ -28,7 +28,7 @@ const Coord& Place::getCoord() const {
 	return coord;
 }
 
-long long int Place::getId() const {
+long long int Place::getID() const {
 	return id;
 }
 

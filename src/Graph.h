@@ -276,7 +276,7 @@ bool Graph<T>::addEdge(Transition *transition) {
 	}
 	if (found!=2) return false;
 	vD->indegree++;
-	vS->addEdge(vD,vS->getDist(*vD));
+	vS->addEdge(vD,transition->getWeigth());
 
 	return true;
 }

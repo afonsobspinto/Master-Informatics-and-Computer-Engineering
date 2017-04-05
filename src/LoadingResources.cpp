@@ -71,7 +71,7 @@ void LoadingResources::loadNodes() {
 
 		Place place(id, Coord(latitude, longitude));
 
-		//superMarketChain->getPlaces()->insert(p);
+		superMarketChain->getPlaces()->insert(make_pair(id,place));
 		superMarketChain->getGraph()->addVertex(place);
 
 		nnodes++;
@@ -124,10 +124,26 @@ void LoadingResources::loadGeom() {
 
 	long long int road_id, node1_id, node2_id;
 	char sep;
+	double distance;
 
 	while(geomInfo >> road_id >> sep >>
 			node1_id >> sep >> node2_id >> sep){
-		Transition transition(road_id, node1_id, node2_id);
+
+		try {
+			distance = superMarketChain->getPlaces()->at(node1_id).getDistance(superMarketChain->getPlaces()->at(node2_id));
+		} catch (...) {
+			cerr << "File Information Corrupted " << GraphsInfo << endl;
+			exit(1);
+		}
+
+		Transition* transition = new Transition(road_id, node1_id, node2_id, distance);
+
+		superMarketChain->getGraph()->addEdge(transition);
+
+		if(superMarketChain->getRoads()->at(road_id).isIs2Way()){
+			Transition* invTransition = new Transition(road_id, node2_id, node1_id, distance);
+			superMarketChain->getGraph()->addEdge(invTransition);
+		}
 
 		ngeoms++;
 	}
