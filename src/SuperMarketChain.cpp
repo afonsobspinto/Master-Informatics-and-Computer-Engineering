@@ -17,11 +17,11 @@ SuperMarketChain::SuperMarketChain() {
 
 }
 
-const std::unordered_map<long long int, Place>* SuperMarketChain::getPlaces() {
-	return places;
-}
+//const std::unordered_map<long long int, Place>* SuperMarketChain::getPlaces() {
+//	return places;
+//}
 
-const std::unordered_map<long long int, Street>* SuperMarketChain::getRoads()  {
+std::unordered_map<long long int, Street>* SuperMarketChain::getRoads()  {
 	return roads;
 }
 

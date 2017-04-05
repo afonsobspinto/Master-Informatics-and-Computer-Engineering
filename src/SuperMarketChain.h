@@ -22,14 +22,14 @@ private:
 
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
-	std::unordered_map<long long int, Place>* places;
+	//std::unordered_map<long long int, Place>* places;
 	std::unordered_map<long long int, Street>* roads;
 
 public:
 	SuperMarketChain();
 	Graph<Place>* getGraph() const;
-	const std::unordered_map<long long int, Place>* getPlaces();
-	const std::unordered_map<long long int, Street>* getRoads();
+	//const std::unordered_map<long long int, Place>* getPlaces();
+	std::unordered_map<long long int, Street>* getRoads();
 	const std::vector<Supermarket>& getSupermarkets() const;
 };
 
