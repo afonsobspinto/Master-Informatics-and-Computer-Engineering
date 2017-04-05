@@ -22,6 +22,7 @@ private:
 
 public:
 	SuperMarketChain();
+	Graph<Place>* getGraph() const;
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

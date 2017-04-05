@@ -7,10 +7,16 @@
 
 #include "SuperMarketChain.h"
 
+
+
 SuperMarketChain::SuperMarketChain() {
 
 	graph = new Graph<Place>;
 
-	LoadingResources loading = LoadingResources(graph);
+	LoadingResources(this);
 
+}
+
+Graph<Place>* SuperMarketChain::getGraph() const {
+	return graph;
 }

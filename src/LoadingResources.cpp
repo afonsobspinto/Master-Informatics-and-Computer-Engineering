@@ -10,13 +10,14 @@
 #include <iostream>
 #include "Place.h"
 #include "Street.h"
+#include "Graph.h"
 
 using namespace std;
 
 
 const string LoadingResources::GraphsInfo = "graphsInfo.txt";
 
-LoadingResources::LoadingResources(Graph<Place>*graph): graph(graph) {
+LoadingResources::LoadingResources(SuperMarketChain* superMarketChain): superMarketChain(superMarketChain) {
 	ifstream graphsInfo(GraphsInfo);
 
 	if(!graphsInfo.is_open()){
@@ -69,7 +70,7 @@ void LoadingResources::loadNodes() {
 			latitude >> sep >> longitude){
 
 		Place place(id, Coord(latitude, longitude));
-		graph->addVertex(place);
+		superMarketChain->getGraph()->addVertex(place);
 
 		nnodes++;
 	}

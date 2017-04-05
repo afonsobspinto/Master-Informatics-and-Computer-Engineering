@@ -12,6 +12,10 @@
 #include <vector>
 #include "Graph.h"
 #include "Place.h"
+#include "SuperMarketChain.h"
+#include "Coord.h"
+
+class SuperMarketChain;
 
 class LoadingResources {
 
@@ -22,10 +26,10 @@ class LoadingResources {
 	unsigned int nroads=0;
 	unsigned int ngeoms=0;
 
-	Graph<Place>* graph;
+	SuperMarketChain* superMarketChain;
 
 public:
-	LoadingResources(Graph<Place>*graph);
+	LoadingResources(SuperMarketChain* superMarketChain);
 
 	bool string2bool(const std::string &a);
 
