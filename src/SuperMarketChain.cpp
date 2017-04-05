@@ -6,6 +6,7 @@
  */
 
 #include "SuperMarketChain.h"
+#include "graphviewer.h"
 
 
 
@@ -16,6 +17,7 @@ SuperMarketChain::SuperMarketChain() {
 	roads = new unordered_map<long long int, Street>;
 
 	LoadingResources(this);
+	displayGraph();
 
 }
 
@@ -33,4 +35,15 @@ const std::vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
 
 Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
+}
+
+void SuperMarketChain::displayGraph() const {
+	GraphViewer *gv = new GraphViewer(600,600,true);
+	gv->createWindow(600, 600);
+	gv->defineVertexColor(WHITE);
+	gv->defineEdgeColor(BLUE);
+	sleep(5);
+	gv->rearrange();
+	gv->closeWindow();
+	delete(gv);
 }

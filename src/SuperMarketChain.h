@@ -31,6 +31,7 @@ public:
 	std::unordered_map<long long int, Place>* getPlaces();
 	std::unordered_map<long long int, Street>* getRoads();
 	const std::vector<Supermarket>& getSupermarkets() const;
+	void displayGraph() const;
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
