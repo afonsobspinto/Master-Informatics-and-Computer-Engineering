@@ -13,7 +13,8 @@ Connection::Connection(short port) {
   /* Create a reliable, stream socket using TCP */
   if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     myerror("socket() failed");
-  
+
+
   /* Construct the server address structure */
   memset(&echoServAddr, 0, sizeof(echoServAddr));     /* Zero out structure */
   echoServAddr.sin_family      = AF_INET;             /* Internet address family */
@@ -26,7 +27,9 @@ Connection::Connection(short port) {
   /* Establish the connection to the echo server */
   if (connect(sock, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
     myerror("connect() failed");
+
 #else
+
 		WSADATA wsaData;
     int iResult = WSAStartup(MAKEWORD(2,2), &wsaData);
     if (iResult != NO_ERROR)

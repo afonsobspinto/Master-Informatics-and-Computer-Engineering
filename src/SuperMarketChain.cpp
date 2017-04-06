@@ -37,13 +37,18 @@ Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
-void SuperMarketChain::displayGraph() const {
+void SuperMarketChain::displayGraph() {
 	GraphViewer *gv = new GraphViewer(600,600,true);
+	cout << "CreateWindow" << endl;
 	gv->createWindow(600, 600);
-	gv->defineVertexColor(WHITE);
-	gv->defineEdgeColor(BLUE);
-	sleep(5);
+	gv->defineVertexColor(BLUE);
+	gv->defineEdgeColor(BLACK);
+	for(auto kv: *places){
+		gv->addNode(kv.first);
+	}
 	gv->rearrange();
+	sleep(5);
+
 	gv->closeWindow();
 	delete(gv);
 }
