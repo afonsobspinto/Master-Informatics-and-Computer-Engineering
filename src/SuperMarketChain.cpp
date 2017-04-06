@@ -42,10 +42,6 @@ std::vector<Transition*>* SuperMarketChain::getTransitions() {
 	return &transitions;
 }
 
-template<typename Base, typename T>
-inline bool instanceof(const T*) {
-    return std::is_base_of<Base, T>::value;
-}
 
 void SuperMarketChain::displayGraph() {
 
@@ -55,13 +51,10 @@ void SuperMarketChain::displayGraph() {
 	gv->defineEdgeColor(BLACK);
 
 	for(auto kv: *places){
-		if(instanceof<Supermarket>(kv.second)){
-			gv->defineVertexColor(RED);
-		}else
-			gv->defineVertexColor(BLUE);
+		gv->defineVertexColor(BLUE);
 
-		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*1000, kv.second->getCoord().getLongitude()*1000);
-		cout << kv.first << ":		" << kv.second->getCoord().getLatitude() <<"; "<< kv.second->getCoord().getLongitude() << endl;
+		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*100000+15000, kv.second->getCoord().getLongitude()*100000-71850);
+		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*100000 <<"; "<< kv.second->getCoord().getLongitude()*100000 << endl;
 		//gv->
 	}
 
@@ -79,7 +72,7 @@ void SuperMarketChain::displayGraph() {
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 	}
 
-	gv->addEdge(800, 429200553, 25504170, EdgeType::UNDIRECTED);
+	//gv->addEdge(800, 429200553, 25504170, EdgeType::UNDIRECTED);
 
 	gv->rearrange();
 
