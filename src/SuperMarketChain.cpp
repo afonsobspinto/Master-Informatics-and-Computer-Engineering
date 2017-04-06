@@ -50,11 +50,34 @@ void SuperMarketChain::displayGraph() {
 	gv->defineVertexColor(RED);
 	gv->defineEdgeColor(BLACK);
 
+	int dC=100000;
+
+	int averageX, averageY;
+
+	{
+		long double sumX=0, sumY=0;
+		unsigned int count=0;
+
+		for(auto kv: *places){
+
+				sumX+=kv.second->getCoord().getLatitude();
+				sumY+=kv.second->getCoord().getLongitude();
+				count++;
+
+		}
+
+		averageX=sumX*dC/count;
+		averageY=sumY*dC/count;
+
+		cout << "x: " << averageX << endl << "y: " << averageY << endl;
+	}
+
 	for(auto kv: *places){
 		gv->defineVertexColor(BLUE);
 
-		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*100000+15000, kv.second->getCoord().getLongitude()*100000-71850);
-		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*100000 <<"; "<< kv.second->getCoord().getLongitude()*100000 << endl;
+
+		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*dC-averageX, kv.second->getCoord().getLongitude()*dC-averageY);
+		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*dC-averageX <<"; "<< kv.second->getCoord().getLongitude()*dC-averageY << endl;
 		//gv->
 	}
 
