@@ -69,7 +69,7 @@ void LoadingResources::loadNodes() {
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
 
-		Place place(id, Coord(latitude, longitude));
+		Place place(id, Coord(latitude, longitude), "NoLabel");
 
 		superMarketChain->getPlaces()->insert(make_pair(id,place));
 		superMarketChain->getGraph()->addVertex(place);

@@ -11,6 +11,7 @@
 #include "Coord.h"
 #include "Transition.h"
 #include <vector>
+#include <string>
 
 
 class Place{
@@ -19,9 +20,10 @@ private:
 	long long int id;
 	Coord coord;
 	std::vector<Transition*> transitions;
+	std::string label;
 
 public:
-	Place(long long int id, Coord coord);
+	Place(long long int id, Coord coord, std::string label);
 
 	double getDistance(Place &place2);
 
@@ -31,6 +33,7 @@ public:
 	long long int getID() const;
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
+	const std::string& getLabel() const;
 };
 
 

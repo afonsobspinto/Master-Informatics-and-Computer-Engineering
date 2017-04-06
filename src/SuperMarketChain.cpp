@@ -51,12 +51,11 @@ void SuperMarketChain::displayGraph() {
 
 	for(auto kv: *places){
 		gv->addNode(kv.first);
+		gv->setVertexLabel(kv.first, kv.second.getLabel());
 	}
 
 	unsigned int idTransition = 0;
 	for (auto i: transitions){
-
-
 		if(i->is2Way())
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
 		else
