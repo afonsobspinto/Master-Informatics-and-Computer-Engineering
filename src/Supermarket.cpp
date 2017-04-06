@@ -17,6 +17,7 @@ const std::vector<Truck>& Supermarket::getTrucks() const {
 	return trucks;
 }
 
+
 void Supermarket::addTrucks(Truck& truck) {
 	this->trucks.push_back(truck);
 }
