@@ -34,3 +34,4 @@ Debug
 # Other Stuff
 *.settings
 /Debug/
+.cproject
