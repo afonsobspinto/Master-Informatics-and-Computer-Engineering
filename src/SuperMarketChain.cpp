@@ -75,8 +75,9 @@ void SuperMarketChain::displayGraph() {
 	for(auto kv: *places){
 		gv->defineVertexColor(BLUE);
 
-		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*100000+15000, kv.second->getCoord().getLongitude()*100000-71850);
-		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*100000 <<"; "<< kv.second->getCoord().getLongitude()*100000 << endl;
+
+		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*dC-averageX, kv.second->getCoord().getLongitude()*dC-averageY);
+		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*dC-averageX <<"; "<< kv.second->getCoord().getLongitude()*dC-averageY << endl;
 		//gv->
 	}
 

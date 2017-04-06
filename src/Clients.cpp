@@ -7,8 +7,8 @@
 
 #include "Clients.h"
 
-Client::Client(long long int id, Coord coord) :
-		Place(id, coord) {
+Client::Client(long long int id, Coord coord, std::string name) :
+		Place(id, coord, name) {
 }
 
 const std::vector<Purchase>& Client::getGroceries() const {

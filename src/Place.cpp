@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Place::Place(long long int id, Coord coord): id(id), coord(coord)  {
+Place::Place(long long int id, Coord coord, std::string name): id(id), coord(coord), name(name)  {
 }
 
 
@@ -29,6 +29,10 @@ const Coord& Place::getCoord() const {
 
 long long int Place::getID() const {
 	return id;
+}
+
+const std::string Place::getName() const{
+	return name;
 }
 
 const std::vector<Transition*>& Place::getTransitions() const {

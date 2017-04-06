@@ -19,7 +19,7 @@ private:
 	std::vector<Purchase> shopping;
 	std::string name;
 public:
-	Client(long long int id, Coord coord);
+	Client(long long int id, Coord coord, std::string name);
 	const std::vector<Purchase>& getGroceries() const;
 	const std::string getName() const;
 
