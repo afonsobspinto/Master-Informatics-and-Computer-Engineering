@@ -44,54 +44,27 @@ Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
+
 vector<Transition*>* SuperMarketChain::getTransitions() {
 	return &transitions;
 }
 
 
 void SuperMarketChain::displayGraph() {
+	GraphViewer *gv = new GraphViewer(800,600,false);
 
-	GraphViewer *gv = new GraphViewer(800,600, false);
 	gv->createWindow(800, 600);
-	gv->defineVertexColor(RED);
+	gv->defineVertexColor(BLUE);
 	gv->defineEdgeColor(BLACK);
 
-	int dC=100000;
-
-	int averageX, averageY;
-
-	{
-		long double sumX=0, sumY=0;
-		unsigned int count=0;
-
-		for(auto kv: *places){
-
-				sumX+=kv.second->getCoord().getLatitude();
-				sumY+=kv.second->getCoord().getLongitude();
-				count++;
-
-		}
-
-		averageX=sumX*dC/count;
-		averageY=sumY*dC/count;
-
-		cout << "x: " << averageX << endl << "y: " << averageY << endl;
-	}
+	pair<int,int> geographicCoords;
+	calcAveragePlaces();
 
 	for(auto kv: *places){
-		gv->defineVertexColor(BLUE);
-
-
-		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*dC-averageX, kv.second->getCoord().getLongitude()*dC-averageY);
-		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*dC-averageX <<"; "<< kv.second->getCoord().getLongitude()*dC-averageY << endl;
-		//gv->
+		Coord tempCoord = kv.second->getCoord();
+		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
+		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
 	}
-
-	gv->defineVertexColor(BLUE);
-
-	/*for(auto kv: *supermarkets){
-		gv->addNode(kv.first);
-	}*/
 
 	unsigned int idTransition = 0;
 	for (auto i: transitions){
@@ -100,8 +73,6 @@ void SuperMarketChain::displayGraph() {
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 	}
-
-	//gv->addEdge(800, 429200553, 25504170, EdgeType::UNDIRECTED);
 
 	gv->rearrange();
 
@@ -115,3 +86,28 @@ void SuperMarketChain::displayGraph() {
 	delete (gv);
 }
 
+
+pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
+		long double geoCoordX, long double geoCoordY) {
+
+	const int dC = 100000;
+
+	return make_pair(geoCoordX*dC-averagePlaces.first, geoCoordY*dC-averagePlaces.second);
+
+}
+
+
+void SuperMarketChain::calcAveragePlaces() {
+
+	long double sumX=0, sumY=0;
+	unsigned int count=0;
+
+	for(auto kv: *places){
+		sumX+=kv.second->getCoord().getLatitude();
+		sumY+=kv.second->getCoord().getLongitude();
+		count++;
+	}
+
+	averagePlaces = make_pair(sumX/count, sumY/count);
+
+}
