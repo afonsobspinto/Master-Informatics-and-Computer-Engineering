@@ -8,8 +8,8 @@
 #include "Transition.h"
 
 Transition::Transition(long long int roadID, long long int srcID,
-		long long int destID, double weigth):
-		roadID(roadID), srcID(srcID), destID(destID), weigth(weigth) {
+		long long int destID, double weigth, bool twoWay):
+		roadID(roadID), srcID(srcID), destID(destID), weigth(weigth), twoWay(twoWay) {
 }
 
 long long int Transition::getDestId() const {
@@ -28,3 +28,6 @@ long long int Transition::getSrcId() const {
 	return srcID;
 }
 
+bool Transition::is2Way() const {
+	return twoWay;
+}
