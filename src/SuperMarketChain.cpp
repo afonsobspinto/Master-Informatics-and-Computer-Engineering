@@ -60,10 +60,14 @@ void SuperMarketChain::displayGraph() {
 	pair<int,int> geographicCoords;
 	calcAveragePlaces();
 
-	for(auto kv: *places){
+
+	for(auto kv: *allNodes){
+
 		Coord tempCoord = kv.second->getCoord();
 		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
 		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
+
+
 	}
 
 	unsigned int idTransition = 0;
@@ -102,12 +106,13 @@ void SuperMarketChain::calcAveragePlaces() {
 	long double sumX=0, sumY=0;
 	unsigned int count=0;
 
+	const int dC = 100000;
+
 	for(auto kv: *places){
 		sumX+=kv.second->getCoord().getLatitude();
 		sumY+=kv.second->getCoord().getLongitude();
 		count++;
 	}
 
-	averagePlaces = make_pair(sumX/count, sumY/count);
-
+	averagePlaces = make_pair(sumX*dC/count, sumY*dC/count);
 }
