@@ -7,14 +7,19 @@
 
 #include "Clients.h"
 
+using namespace std;
+
+
 Client::Client(long long int id, Coord coord, std::string name) :
-		Place(id, coord, name) {
+		Place(id, coord) {
+	this->name = name;
+	setLabel("client");
 }
 
-const std::vector<Purchase>& Client::getGroceries() const {
+const vector<Purchase>& Client::getGroceries() const {
 	return shopping;
 }
 
-const std::string Client::getName() const {
+const string Client::getName() const {
 	return name;
 }

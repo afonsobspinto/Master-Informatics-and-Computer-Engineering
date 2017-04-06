@@ -16,7 +16,7 @@
 #include "Coord.h"
 
 
-enum Files {GeomFile, ClientsFile, SuperMarketsFile, StreetsFiles};
+enum Files {GeomFile, ClientsFile, SuperMarketsFile, StreetsFiles, NodesFiles};
 
 class SuperMarketChain;
 
@@ -29,6 +29,7 @@ class LoadingResources {
 	unsigned int nsupers=0;
 	unsigned int nroads=0;
 	unsigned int ngeoms=0;
+	unsigned int nAllNodes=0;
 
 	SuperMarketChain* superMarketChain;
 
@@ -46,6 +47,8 @@ public:
 	void loadRoads();
 
 	void loadGeom();
+
+	void loadNodes();
 };
 
 #endif /* LOADINGRESOURCES_H_ */

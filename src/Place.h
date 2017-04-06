@@ -19,11 +19,11 @@ class Place{
 private:
 	long long int id;
 	Coord coord;
-	std::string name;
 	std::vector<Transition*> transitions;
+	std::string label;
 
 public:
-	Place(long long int id, Coord coord, std::string name);
+	Place(long long int id, Coord coord);
 
 	long long int getID() const;
 	const Coord& getCoord() const;
@@ -33,7 +33,8 @@ public:
 	double getDistance(Place* place2);
 
 	bool operator== (const Place &rhs);
-
+	const std::string& getLabel() const;
+	void setLabel(const std::string& label);
 };
 
 

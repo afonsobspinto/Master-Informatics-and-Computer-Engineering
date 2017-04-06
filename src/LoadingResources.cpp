@@ -42,10 +42,10 @@ LoadingResources::LoadingResources(SuperMarketChain* superMarketChain): superMar
 }
 
 
-
 void LoadingResources::loadMap() {
 	loadClients();
 	loadSuperMarkets();
+	loadNodes();
 	loadRoads();
 	loadGeom();
 }
@@ -62,22 +62,27 @@ void LoadingResources::loadClients() {
 	long long id;
 	double latitude;
 	double longitude;
-	std::string name;
-	char sep;
+	string name;
+	string id_str;
+	string lat_str;
+	string long_str;
 
 	/*
 	 * Ignoring degrees Values
 	 */
 
-	while(clientsInfo >> id >> sep >>
-			latitude >> sep >> longitude >> sep >>
-			latitude >> sep >> longitude >> sep >> name){
+	while(getline(clientsInfo, id_str, ';'), getline(clientsInfo, lat_str, ';'), getline(clientsInfo, long_str, ';'),
+			getline(clientsInfo, lat_str, ';'),  getline(clientsInfo, long_str, ';'), getline(clientsInfo, name, ';')){
 
-		Client* client= new Client(id, Coord(latitude, longitude), name);
 
-		cout << "read " << id << ":	" << latitude << "; " << longitude << endl;
+		id = stol(id_str);
+		latitude = stod(lat_str);
+		longitude = stod(long_str);
+
+		Place* client= new Client(id, Coord(latitude, longitude), name);
 
 		superMarketChain->getPlaces()->insert(make_pair(id,client));
+		superMarketChain->getAllNodes()->insert(make_pair(id,client));
 		superMarketChain->getGraph()->addVertex(*client);
 
 		nclients++;
@@ -99,20 +104,28 @@ void LoadingResources::loadSuperMarkets() {
 	long long id;
 	double latitude;
 	double longitude;
-	std::string name;
-	char sep;
+	string name;
+	string id_str;
+	string lat_str;
+	string long_str;
 
 	/*
 	 * Ignoring degrees Values
 	 */
 
-	while(superMarketsInfo >> id >> sep >>
-			latitude >> sep >> longitude >> sep >>
-			latitude >> sep >> longitude >> sep >> name){
 
-		Supermarket* superMarket=new Supermarket(id, Coord(latitude, longitude), name);
+	while(getline(superMarketsInfo, id_str, ';'), getline(superMarketsInfo, lat_str, ';'), getline(superMarketsInfo, long_str, ';'),
+			getline(superMarketsInfo, lat_str, ';'),  getline(superMarketsInfo, long_str, ';'), getline(superMarketsInfo, name, ';')){
+
+
+		id = stol(id_str);
+		latitude = stod(lat_str);
+		longitude = stod(long_str);
+
+		Place* superMarket=new Supermarket(id, Coord(latitude, longitude), name);
 
 		superMarketChain->getPlaces()->insert(make_pair(id,superMarket));
+		superMarketChain->getAllNodes()->insert(make_pair(id,superMarket));
 		superMarketChain->getGraph()->addVertex(*superMarket);
 
 		nsupers++;
@@ -122,6 +135,50 @@ void LoadingResources::loadSuperMarkets() {
 
 }
 
+
+void LoadingResources::loadNodes() {
+
+	ifstream nodesInfo(graphsFiles[Files::NodesFiles]);
+
+	if(!nodesInfo.is_open()){
+		cerr << "Unable to open file " << GraphsInfo << endl;
+		exit(1);
+	}
+
+	long long id;
+	double latitude;
+	double longitude;
+	char sep;
+	int nodesIgnored = 0;
+
+	/*
+	 * Ignoring degrees Values
+	 */
+
+	while(nodesInfo >> id >> sep >>
+			latitude >> sep >> longitude >> sep >>
+			latitude >> sep >> longitude){
+
+
+		if(superMarketChain->getPlaces()->find(id)==superMarketChain->getPlaces()->end()){
+
+			Place* place= new Place(id, Coord(latitude, longitude));
+
+
+			superMarketChain->getAllNodes()->insert(make_pair(id,place));
+			superMarketChain->getGraph()->addVertex(*place);
+
+
+			nAllNodes++;
+		}
+		else
+			nodesIgnored++;
+	}
+
+	cout << "Read "<< nAllNodes << " nodes.\n";
+	cout << "Ignored "<< nodesIgnored << "/" << nsupers + nclients << " nodes.\n";
+
+}
 
 void LoadingResources::loadRoads() {
 
@@ -171,9 +228,8 @@ void LoadingResources::loadGeom() {
 	while(geomInfo >> road_id >> sep >>
 			node1_id >> sep >> node2_id >> sep){
 
-		unordered_map<long long int, Place*>* temp = superMarketChain->getPlaces();
+		unordered_map<long long int, Place*>* temp = superMarketChain->getAllNodes();
 
-		if(temp->find(node1_id)!= temp->end() && temp->find(node2_id) != temp->end()){
 
 		try {
 			distance = temp->at(node1_id)->getDistance(temp->at(node2_id));
@@ -201,11 +257,9 @@ void LoadingResources::loadGeom() {
 		ngeoms++;
 
 		}
-	}
 
 	cout << "Read " << ngeoms << " geoms.\n";
 }
-
 
 
 bool LoadingResources::string2bool(const std::string &v){

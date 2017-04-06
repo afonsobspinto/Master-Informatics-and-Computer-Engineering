@@ -9,7 +9,9 @@
 
 using namespace std;
 
-Supermarket::Supermarket(long long int id, Coord coord, std::string name): Place(id, coord, name){
+Supermarket::Supermarket(long long int id, Coord coord, std::string name): Place(id, coord){
+	this->name = name;
+	setLabel("supermarket");
 }
 
 

@@ -8,29 +8,35 @@
 #include "SuperMarketChain.h"
 #include "edgetype.h"
 #include "graphviewer.h"
+#include "LoadingResources.h"
 
-
+using namespace std;
 
 SuperMarketChain::SuperMarketChain() {
 
 	graph = new Graph<Place>;
 	places = new unordered_map<long long int, Place*>;
 	roads = new unordered_map<long long int, Street>;
+	allNodes = new unordered_map<long long int, Place*>;
 
 	LoadingResources(this);
 	displayGraph();
 
 }
 
-std::unordered_map<long long int, Place*>* SuperMarketChain::getPlaces() {
+unordered_map<long long int, Place*>* SuperMarketChain::getPlaces() {
 	return places;
 }
 
-std::unordered_map<long long int, Street>* SuperMarketChain::getRoads()  {
+unordered_map<long long int, Street>* SuperMarketChain::getRoads()  {
 	return roads;
 }
 
-const std::vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
+unordered_map<long long int, Place*>* SuperMarketChain::getAllNodes() {
+	return allNodes;
+}
+
+const vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
 	return supermarkets;
 }
 
@@ -38,7 +44,7 @@ Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
-std::vector<Transition*>* SuperMarketChain::getTransitions() {
+vector<Transition*>* SuperMarketChain::getTransitions() {
 	return &transitions;
 }
 
@@ -108,3 +114,4 @@ void SuperMarketChain::displayGraph() {
 	gv->closeWindow();
 	delete (gv);
 }
+

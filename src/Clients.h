@@ -23,7 +23,9 @@ public:
 	const std::vector<Purchase>& getGroceries() const;
 	const std::string getName() const;
 
+
 	//bool operator == (const Client & rhs);
+
 };
 
 

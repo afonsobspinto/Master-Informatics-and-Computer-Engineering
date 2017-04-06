@@ -8,13 +8,12 @@
 #ifndef SUPERMARKETCHAIN_H_
 #define SUPERMARKETCHAIN_H_
 
-#include <vector>
 #include <unordered_map>
-#include "Supermarket.h"
+#include <vector>
+
 #include "Graph.h"
-#include "Place.h"
 #include "Street.h"
-#include "LoadingResources.h"
+#include "Supermarket.h"
 #include "Transition.h"
 
 
@@ -23,6 +22,7 @@ private:
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
 	std::unordered_map<long long int, Place*>* places;
+	std::unordered_map<long long int, Place*>* allNodes;
 	std::unordered_map<long long int, Street>* roads;
 	std::vector<Transition*>transitions;
 
@@ -31,9 +31,11 @@ public:
 	Graph<Place>* getGraph() const;
 	std::unordered_map<long long int, Place*>* getPlaces();
 	std::unordered_map<long long int, Street>* getRoads();
+	std::unordered_map<long long int, Place*>* getAllNodes();
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void displayGraph();
 	std::vector<Transition*>* getTransitions();
+
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
