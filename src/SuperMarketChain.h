@@ -28,6 +28,8 @@ private:
 	std::vector<Transition*>transitions;
 	pair<int, int> convertGeoGraphicCoord(long double geoCoordX, long double geoCoordY);
 	void calcAveragePlaces();
+	static const int heigth;
+	static const int width;
 
 
 public:

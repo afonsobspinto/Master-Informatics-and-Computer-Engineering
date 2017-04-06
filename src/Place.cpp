@@ -49,3 +49,7 @@ const std::string& Place::getLabel() const {
 void Place::setLabel(const std::string& label) {
 	this->label = label;
 }
+
+const std::string Place::getName() const {
+	return "";
+}

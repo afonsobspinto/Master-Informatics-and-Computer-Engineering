@@ -27,7 +27,7 @@ public:
 
 	long long int getID() const;
 	const Coord& getCoord() const;
-	const std::string getName() const;
+	const virtual std::string getName() const;
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
 	double getDistance(Place* place2);

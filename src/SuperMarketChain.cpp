@@ -12,6 +12,9 @@
 
 using namespace std;
 
+const int SuperMarketChain::heigth = 600;
+const int SuperMarketChain::width = 800;
+
 SuperMarketChain::SuperMarketChain() {
 
 	graph = new Graph<Place>;
@@ -51,10 +54,10 @@ vector<Transition*>* SuperMarketChain::getTransitions() {
 
 
 void SuperMarketChain::displayGraph() {
-	GraphViewer *gv = new GraphViewer(800,600,false);
+	GraphViewer *gv = new GraphViewer(width,heigth,false);
 
-	gv->createWindow(800, 600);
-	gv->defineVertexColor(BLUE);
+	gv->createWindow(width, heigth);
+	gv->defineVertexColor(WHITE);
 	gv->defineEdgeColor(BLACK);
 
 	pair<int,int> geographicCoords;
@@ -67,6 +70,13 @@ void SuperMarketChain::displayGraph() {
 		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
 		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
 
+		if(kv.second->getLabel() == "client")
+			gv->setVertexColor(kv.first, BLUE);
+		else if(kv.second->getLabel()=="supermarket")
+			gv->setVertexColor(kv.first, RED);
+
+		gv->setVertexLabel(kv.first, kv.second->getName());
+
 
 	}
 
@@ -76,9 +86,9 @@ void SuperMarketChain::displayGraph() {
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
-	}
 
-	gv->rearrange();
+		gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+	}
 
 	cin.clear();
 	cin.ignore(10000, '\n');
@@ -96,7 +106,7 @@ pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
 
 	const int dC = 100000;
 
-	return make_pair(geoCoordX*dC-averagePlaces.first, geoCoordY*dC-averagePlaces.second);
+	return make_pair(geoCoordX*dC-averagePlaces.first + width/2, geoCoordY*dC-averagePlaces.second + heigth/2);
 
 }
 
