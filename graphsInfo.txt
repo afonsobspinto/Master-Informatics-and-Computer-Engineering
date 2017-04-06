@@ -1,4 +1,5 @@
-3
+4
 resources/geom.txt
-resources/nodes.txt
+resources/clients.txt
+resources/supermarkets.txt
 resources/roads.txt

@@ -15,8 +15,8 @@ Place::Place(long long int id, Coord coord): id(id), coord(coord)  {
 }
 
 
-double Place::getDistance(Place& Place2) {
-	return this->coord.distance(Place2.coord);
+double Place::getDistance(Place* Place2) {
+	return this->coord.distance(Place2->coord);
 }
 
 bool Place::operator ==(const Place& rhs) {

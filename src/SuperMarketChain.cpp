@@ -14,7 +14,7 @@
 SuperMarketChain::SuperMarketChain() {
 
 	graph = new Graph<Place>;
-	places = new unordered_map<long long int, Place>;
+	places = new unordered_map<long long int, Place*>;
 	roads = new unordered_map<long long int, Street>;
 
 	LoadingResources(this);
@@ -22,7 +22,7 @@ SuperMarketChain::SuperMarketChain() {
 
 }
 
-std::unordered_map<long long int, Place>* SuperMarketChain::getPlaces() {
+std::unordered_map<long long int, Place*>* SuperMarketChain::getPlaces() {
 	return places;
 }
 

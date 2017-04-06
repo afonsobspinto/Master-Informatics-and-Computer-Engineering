@@ -11,6 +11,8 @@
 #include "Place.h"
 #include "Street.h"
 #include "Graph.h"
+#include "Clients.h"
+#include "Supermarket.h"
 
 using namespace std;
 
@@ -42,16 +44,17 @@ LoadingResources::LoadingResources(SuperMarketChain* superMarketChain): superMar
 
 
 void LoadingResources::loadMap() {
-	loadNodes();
+	loadClients();
+	loadSuperMarkets();
 	loadRoads();
 	loadGeom();
 }
 
-void LoadingResources::loadNodes() {
+void LoadingResources::loadClients() {
 
-	ifstream nodesInfo(graphsFiles[1]);
+	ifstream clientsInfo(graphsFiles[Files::ClientsFile]);
 
-	if(!nodesInfo.is_open()){
+	if(!clientsInfo.is_open()){
 			cerr << "Unable to open file " << GraphsInfo << endl;
 			exit(1);
 		}
@@ -65,25 +68,60 @@ void LoadingResources::loadNodes() {
 	 * Ignoring degrees Values
 	 */
 
-	while(nodesInfo >> id >> sep >>
+	while(clientsInfo >> id >> sep >>
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
 
-		Place place(id, Coord(latitude, longitude));
+		Client client(id, Coord(latitude, longitude));
 
-		superMarketChain->getPlaces()->insert(make_pair(id,place));
-		superMarketChain->getGraph()->addVertex(place);
+		superMarketChain->getPlaces()->insert(make_pair(id,&client));
+		superMarketChain->getGraph()->addVertex(client);
 
-		nnodes++;
+		nclients++;
 	}
 
-	cout << "Read "<< nnodes << " nodes.\n";
+	cout << "Read "<< nclients << " clients.\n";
 
 }
 
+void LoadingResources::loadSuperMarkets() {
+
+	ifstream superMarketsInfo(graphsFiles[Files::SuperMarketsFile]);
+
+	if(!superMarketsInfo.is_open()){
+			cerr << "Unable to open file " << GraphsInfo << endl;
+			exit(1);
+		}
+
+	long long id;
+	double latitude;
+	double longitude;
+	char sep;
+
+	/*
+	 * Ignoring degrees Values
+	 */
+
+	while(superMarketsInfo >> id >> sep >>
+			latitude >> sep >> longitude >> sep >>
+			latitude >> sep >> longitude){
+
+		Supermarket superMarket(id, Coord(latitude, longitude));
+
+		superMarketChain->getPlaces()->insert(make_pair(id,&superMarket));
+		superMarketChain->getGraph()->addVertex(superMarket);
+
+		nsupers++;
+	}
+
+	cout << "Read "<< nsupers << " SuperMarkets.\n";
+
+}
+
+
 void LoadingResources::loadRoads() {
 
-	ifstream roadsInfo(graphsFiles[2]);
+	ifstream roadsInfo(graphsFiles[Files::StreetsFiles]);
 
 	if(!roadsInfo.is_open()){
 			cerr << "Unable to open file " << GraphsInfo << endl;
@@ -115,7 +153,7 @@ void LoadingResources::loadRoads() {
 
 void LoadingResources::loadGeom() {
 
-	ifstream geomInfo(graphsFiles[0]);
+	ifstream geomInfo(graphsFiles[Files::GeomFile]);
 
 	if(!geomInfo.is_open()){
 			cerr << "Unable to open file " << GraphsInfo << endl;
@@ -129,8 +167,12 @@ void LoadingResources::loadGeom() {
 	while(geomInfo >> road_id >> sep >>
 			node1_id >> sep >> node2_id >> sep){
 
+		unordered_map<long long int, Place*>* temp = superMarketChain->getPlaces();
+
+		if(temp->find(node1_id)!= temp->end() && temp->find(node2_id) != temp->end()){
+
 		try {
-			distance = superMarketChain->getPlaces()->at(node1_id).getDistance(superMarketChain->getPlaces()->at(node2_id));
+			distance = temp->at(node1_id)->getDistance(temp->at(node2_id));
 		} catch (...) {
 			cerr << "File Information Corrupted " << GraphsInfo << endl;
 			exit(1);
@@ -153,6 +195,8 @@ void LoadingResources::loadGeom() {
 
 
 		ngeoms++;
+
+		}
 	}
 
 	cout << "Read " << ngeoms << " geoms.\n";

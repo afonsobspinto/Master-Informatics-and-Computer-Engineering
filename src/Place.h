@@ -28,7 +28,7 @@ public:
 	const Coord& getCoord() const;
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
-	double getDistance(Place &place2);
+	double getDistance(Place* place2);
 
 	bool operator== (const Place &rhs);
 

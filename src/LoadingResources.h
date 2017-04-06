@@ -15,6 +15,9 @@
 #include "SuperMarketChain.h"
 #include "Coord.h"
 
+
+enum Files {GeomFile, ClientsFile, SuperMarketsFile, StreetsFiles};
+
 class SuperMarketChain;
 
 class LoadingResources {
@@ -22,7 +25,8 @@ class LoadingResources {
 	static const std::string GraphsInfo;
 	std::vector<std::string> graphsFiles;
 
-	unsigned int nnodes=0;
+	unsigned int nclients=0;
+	unsigned int nsupers=0;
 	unsigned int nroads=0;
 	unsigned int ngeoms=0;
 
@@ -35,7 +39,9 @@ public:
 
 	void loadMap();
 
-	void loadNodes();
+	void loadClients();
+
+	void loadSuperMarkets();
 
 	void loadRoads();
 
