@@ -34,7 +34,11 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1444139431" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1829305419" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
+<<<<<<< HEAD
 								<option id="gnu.cpp.link.option.libs.493895444" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
+=======
+								<option id="gnu.cpp.link.option.libs.1207267084" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
+>>>>>>> branch 'newFeature' of https://github.com/FooWalksIntoABar/CAL1617_T5GG.git
 									<listOptionValue builtIn="false" value="wsock32"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.968925684" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -125,5 +129,16 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+<<<<<<< HEAD
 	<storageModule moduleId="refreshScope"/>
+=======
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/supermarket"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/supermarket"/>
+		</configuration>
+	</storageModule>
+>>>>>>> branch 'newFeature' of https://github.com/FooWalksIntoABar/CAL1617_T5GG.git
 </cproject>

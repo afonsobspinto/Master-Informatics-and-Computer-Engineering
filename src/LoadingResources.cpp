@@ -72,10 +72,12 @@ void LoadingResources::loadClients() {
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
 
-		Client client(id, Coord(latitude, longitude));
+		Client* client= new Client(id, Coord(latitude, longitude));
 
-		superMarketChain->getPlaces()->insert(make_pair(id,&client));
-		superMarketChain->getGraph()->addVertex(client);
+		cout << "read " << id << ":	" << latitude << "; " << longitude << endl;
+
+		superMarketChain->getPlaces()->insert(make_pair(id,client));
+		superMarketChain->getGraph()->addVertex(*client);
 
 		nclients++;
 	}
@@ -106,10 +108,10 @@ void LoadingResources::loadSuperMarkets() {
 			latitude >> sep >> longitude >> sep >>
 			latitude >> sep >> longitude){
 
-		Supermarket superMarket(id, Coord(latitude, longitude));
+		Supermarket* superMarket=new Supermarket(id, Coord(latitude, longitude));
 
-		superMarketChain->getPlaces()->insert(make_pair(id,&superMarket));
-		superMarketChain->getGraph()->addVertex(superMarket);
+		superMarketChain->getPlaces()->insert(make_pair(id,superMarket));
+		superMarketChain->getGraph()->addVertex(*superMarket);
 
 		nsupers++;
 	}

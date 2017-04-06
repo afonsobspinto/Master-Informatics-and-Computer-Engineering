@@ -42,16 +42,27 @@ std::vector<Transition*>* SuperMarketChain::getTransitions() {
 	return &transitions;
 }
 
+
 void SuperMarketChain::displayGraph() {
 
-	GraphViewer *gv = new GraphViewer(800,600,true);
+	GraphViewer *gv = new GraphViewer(800,600, false);
 	gv->createWindow(800, 600);
-	gv->defineVertexColor(BLUE);
+	gv->defineVertexColor(RED);
 	gv->defineEdgeColor(BLACK);
 
 	for(auto kv: *places){
-		gv->addNode(kv.first);
+		gv->defineVertexColor(BLUE);
+
+		gv->addNode(kv.first, kv.second->getCoord().getLatitude()*100000+15000, kv.second->getCoord().getLongitude()*100000-71850);
+		cout << kv.first << ":		" << kv.second->getCoord().getLatitude()*100000 <<"; "<< kv.second->getCoord().getLongitude()*100000 << endl;
+		//gv->
 	}
+
+	gv->defineVertexColor(BLUE);
+
+	/*for(auto kv: *supermarkets){
+		gv->addNode(kv.first);
+	}*/
 
 	unsigned int idTransition = 0;
 	for (auto i: transitions){
@@ -60,6 +71,8 @@ void SuperMarketChain::displayGraph() {
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 	}
+
+	//gv->addEdge(800, 429200553, 25504170, EdgeType::UNDIRECTED);
 
 	gv->rearrange();
 
