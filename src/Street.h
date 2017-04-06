@@ -16,12 +16,12 @@ class Street {
 private:
 	long long int id;
 	std::string name;
-	bool is2Way;
+	bool twoWay;
 
 public:
 	Street(long long int id, std::string name, bool twoWay);
 	long long int getId() const;
-	bool isIs2Way() const;
+	bool is2Way() const;
 	const std::string& getName() const;
 };
 

@@ -24,7 +24,7 @@ private:
 	std::unordered_map<long long int, Place*>* places;
 	pair<int, int> averagePlaces;
 	std::unordered_map<long long int, Place*>* allNodes;
-	std::unordered_map<long long int, Street>* roads;
+	std::unordered_map<long long int, Street*>* roads;
 	std::vector<Transition*>transitions;
 	pair<int, int> convertGeoGraphicCoord(long double geoCoordX, long double geoCoordY);
 	void calcAveragePlaces();
@@ -34,7 +34,7 @@ public:
 	SuperMarketChain();
 	Graph<Place>* getGraph() const;
 	std::unordered_map<long long int, Place*>* getPlaces();
-	std::unordered_map<long long int, Street>* getRoads();
+	std::unordered_map<long long int, Street*>* getRoads();
 	std::unordered_map<long long int, Place*>* getAllNodes();
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void displayGraph();

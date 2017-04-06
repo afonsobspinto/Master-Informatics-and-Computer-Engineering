@@ -203,7 +203,7 @@ void LoadingResources::loadRoads() {
 		id=stoll(id_);
 		is2way=string2bool(is2wayS);
 
-		Street street(id,name,is2way);
+		Street* street = new Street(id,name,is2way);
 
 		superMarketChain->getRoads()->insert(make_pair(id, street));
 
@@ -240,7 +240,7 @@ void LoadingResources::loadGeom() {
 
 		Transition* transition;
 
-		if(superMarketChain->getRoads()->at(road_id).isIs2Way()){
+		if(superMarketChain->getRoads()->at(road_id)->is2Way()){
 			transition = new Transition(road_id, node1_id, node2_id, distance, true);
 			Transition* invTransition = new Transition(road_id, node2_id, node1_id, distance, true);
 			superMarketChain->getGraph()->addEdge(invTransition);

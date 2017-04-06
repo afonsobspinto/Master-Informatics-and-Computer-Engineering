@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Street::Street(long long int id, string name, bool twoWay):id(id), name(name), is2Way(twoWay) {
+Street::Street(long long int id, string name, bool twoWay):id(id), name(name), twoWay(twoWay) {
 }
 
 
@@ -17,8 +17,8 @@ long long int Street::getId() const {
 	return id;
 }
 
-bool Street::isIs2Way() const {
-	return is2Way;
+bool Street::is2Way() const {
+	return twoWay;
 }
 
 const std::string& Street::getName() const {
