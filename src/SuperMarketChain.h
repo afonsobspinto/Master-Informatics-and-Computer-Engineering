@@ -15,15 +15,16 @@
 #include "Place.h"
 #include "Street.h"
 #include "LoadingResources.h"
+#include "Transition.h"
 
 
 class SuperMarketChain {
 private:
-
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
 	std::unordered_map<long long int, Place>* places;
 	std::unordered_map<long long int, Street>* roads;
+	std::vector<Transition*>transitions;
 
 public:
 	SuperMarketChain();
@@ -32,6 +33,7 @@ public:
 	std::unordered_map<long long int, Street>* getRoads();
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void displayGraph();
+	std::vector<Transition*>* getTransitions();
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

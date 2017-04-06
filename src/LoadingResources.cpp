@@ -136,14 +136,21 @@ void LoadingResources::loadGeom() {
 			exit(1);
 		}
 
-		Transition* transition = new Transition(road_id, node1_id, node2_id, distance);
-
-		superMarketChain->getGraph()->addEdge(transition);
+		Transition* transition;
 
 		if(superMarketChain->getRoads()->at(road_id).isIs2Way()){
-			Transition* invTransition = new Transition(road_id, node2_id, node1_id, distance);
+			transition = new Transition(road_id, node1_id, node2_id, distance, true);
+			Transition* invTransition = new Transition(road_id, node2_id, node1_id, distance, true);
 			superMarketChain->getGraph()->addEdge(invTransition);
+
 		}
+		else{
+			transition = new Transition(road_id, node1_id, node2_id, distance, false);
+		}
+
+		superMarketChain->getGraph()->addEdge(transition);
+		superMarketChain->getTransitions()->push_back(transition);
+
 
 		ngeoms++;
 	}

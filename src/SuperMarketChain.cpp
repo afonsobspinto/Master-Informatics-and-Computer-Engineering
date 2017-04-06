@@ -6,6 +6,7 @@
  */
 
 #include "SuperMarketChain.h"
+#include "edgetype.h"
 #include "graphviewer.h"
 
 
@@ -37,18 +38,39 @@ Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
+std::vector<Transition*>* SuperMarketChain::getTransitions() {
+	return &transitions;
+}
+
 void SuperMarketChain::displayGraph() {
-	GraphViewer *gv = new GraphViewer(600,600,true);
-	cout << "CreateWindow" << endl;
-	gv->createWindow(600, 600);
+
+	GraphViewer *gv = new GraphViewer(800,600,true);
+	gv->createWindow(800, 600);
 	gv->defineVertexColor(BLUE);
 	gv->defineEdgeColor(BLACK);
+
 	for(auto kv: *places){
 		gv->addNode(kv.first);
 	}
+
+	unsigned int idTransition = 0;
+	for (auto i: transitions){
+
+
+		if(i->is2Way())
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
+		else
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
+	}
+
 	gv->rearrange();
-	sleep(5);
+
+	cin.clear();
+	cin.ignore(10000, '\n');
+	cout << endl;
+	cout << "Pressione <Enter> para continuar...";
+	cin.get();
 
 	gv->closeWindow();
-	delete(gv);
+	delete (gv);
 }
