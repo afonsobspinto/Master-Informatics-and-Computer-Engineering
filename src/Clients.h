@@ -13,7 +13,7 @@
 #include <vector>
 #include "Place.h"
 
-class Client {
+class Client: public Place {
 private:
 	Place* location;
 	std::vector<Purchase> shopping;

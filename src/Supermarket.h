@@ -12,7 +12,7 @@
 #include <vector>
 #include "Place.h"
 
-class Supermarket{
+class Supermarket: public Place{
 
 private:
 	std::vector<Truck> trucks;
