@@ -14,3 +14,7 @@ Client::Client(long long int id, Coord coord) :
 const std::vector<Purchase>& Client::getGroceries() const {
 	return shopping;
 }
+
+const std::string Client::getName() const {
+	return name;
+}
