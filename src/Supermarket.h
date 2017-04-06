@@ -16,12 +16,11 @@ class Supermarket: public Place{
 
 private:
 	std::vector<Truck> trucks;
-	Place* location;
 
 public:
-	Supermarket(std::vector<Truck> trucks, Place* location);
-	const Place* getLocation() const;
+	Supermarket(long long int id, Coord coord);
 	const std::vector<Truck>& getTrucks() const;
+	void addTrucks(Truck& truck);
 };
 
 

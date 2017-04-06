@@ -51,7 +51,6 @@ void SuperMarketChain::displayGraph() {
 
 	for(auto kv: *places){
 		gv->addNode(kv.first);
-		gv->setVertexLabel(kv.first, kv.second.getLabel());
 	}
 
 	unsigned int idTransition = 0;

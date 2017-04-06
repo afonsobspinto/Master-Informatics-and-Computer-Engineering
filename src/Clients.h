@@ -15,14 +15,12 @@
 
 class Client: public Place {
 private:
-	Place* location;
 	std::vector<Purchase> shopping;
 public:
-	Client(Place* location, std::vector<Purchase> shopping);
-	const Place* getLocation() const;
+	Client(long long int id, Coord coord);
 	const std::vector<Purchase>& getGroceries() const;
 
-	bool operator == (const Client & rhs);
+	//bool operator == (const Client & rhs);
 };
 
 

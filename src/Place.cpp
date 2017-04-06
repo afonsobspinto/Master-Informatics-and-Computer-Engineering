@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Place::Place(long long int id, Coord coord, string label): id(id), coord(coord), label(label)  {
+Place::Place(long long int id, Coord coord): id(id), coord(coord)  {
 }
 
 
@@ -37,8 +37,4 @@ const std::vector<Transition*>& Place::getTransitions() const {
 
 void Place::addTransitions( Transition* transition) {
 	this->transitions.push_back(transition);
-}
-
-const std::string& Place::getLabel() const {
-	return label;
 }

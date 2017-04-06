@@ -20,20 +20,18 @@ private:
 	long long int id;
 	Coord coord;
 	std::vector<Transition*> transitions;
-	std::string label;
 
 public:
-	Place(long long int id, Coord coord, std::string label);
+	Place(long long int id, Coord coord);
 
+	long long int getID() const;
+	const Coord& getCoord() const;
+	const std::vector<Transition*>& getTransitions() const;
+	void addTransitions(Transition* transition);
 	double getDistance(Place &place2);
 
 	bool operator== (const Place &rhs);
-	
-	const Coord& getCoord() const;
-	long long int getID() const;
-	const std::vector<Transition*>& getTransitions() const;
-	void addTransitions(Transition* transition);
-	const std::string& getLabel() const;
+
 };
 
 

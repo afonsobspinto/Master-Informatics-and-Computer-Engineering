@@ -9,13 +9,14 @@
 
 using namespace std;
 
-Supermarket::Supermarket(vector<Truck> trucks, Place* location): trucks(trucks), location(location) {
+Supermarket::Supermarket(long long int id, Coord coord): Place(id, coord){
 }
 
-const Place* Supermarket::getLocation() const {
-	return location;
-}
 
 const std::vector<Truck>& Supermarket::getTrucks() const {
 	return trucks;
+}
+
+void Supermarket::addTrucks(Truck& truck) {
+	this->trucks.push_back(truck);
 }
