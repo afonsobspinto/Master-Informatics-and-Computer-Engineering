@@ -27,7 +27,7 @@ int parser(char directory[])
 
 
 		lstat(direntp->d_name, &stat_buf);
-		if (S_ISREG(stat_buf.st_mode)){ // Is this the file I'm looking for?
+		if (S_ISREG(stat_buf.st_mode)){ // Is this the file I'm looking for? || Guardar files numa hashTable
 			str = "regular";
 		}
 		else if (S_ISDIR(stat_buf.st_mode)){ // Fork Here
@@ -37,24 +37,27 @@ int parser(char directory[])
 
 
 			str = "directory";
-			strcat(directory, "/");
-			parser(strcat(directory, direntp->d_name));
 
-//			if((pid=fork())<0){
-//				 fprintf(stderr,"fork error\n");
-//			}
-//			 else if (pid == 0) { //Update Dir & Recall Function
-//			 }
+
+			if((pid=fork())<0){
+				fprintf(stderr,"fork error\n");
+			}
+
+			else if (pid == 0) { //Update Dir & Recall Function
+				strcat(directory, "/");
+				parser(strcat(directory, direntp->d_name));
+			}
 
 		}
 		else{
 			str = "other";
 		}
+
 		printf("%-25s - %s\n", direntp->d_name, str);
 	}
 	closedir(dirp);
 
 
-	waitpid(-1,NULL,0); //Make parent wait for all Childs (do it after find the cena)
+	waitpid(-1,NULL,0); //Make parent wait for all Childs (Guardar PIDs num array)
 	exit(0);
 }
