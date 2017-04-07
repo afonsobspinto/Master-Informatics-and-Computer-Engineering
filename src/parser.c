@@ -24,13 +24,23 @@ int parser(char directory[])
 	}
 	while ((direntp = readdir( dirp)) != NULL)
 	{
+
+
 		lstat(direntp->d_name, &stat_buf);
 		if (S_ISREG(stat_buf.st_mode)){ // Is this the file I'm looking for?
 			str = "regular";
 		}
 		else if (S_ISDIR(stat_buf.st_mode)){ // Fork Here
+
+
+			if (strcmp(direntp->d_name, ".") == 0 || strcmp(direntp->d_name, "..") == 0)
+				continue;
+
 			str = "directory";
 
+//			printf("Ei vou entrar na pasta! \n\n");
+//			strcat(directory, "/");
+//			parser(strcat(directory, direntp->d_name));
 
 //			if((pid=fork())<0){
 //				 fprintf(stderr,"fork error\n");
