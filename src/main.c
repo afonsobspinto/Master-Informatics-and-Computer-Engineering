@@ -20,6 +20,6 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	parser(argc, argv[1]);
+	parser(argv[1]);
 	return 0;
 }

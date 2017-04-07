@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-int parser(int argc, char directory[])
+int parser(char directory[])
 {
 	DIR *dirp;
 	struct dirent *direntp;
@@ -30,6 +30,7 @@ int parser(int argc, char directory[])
 		}
 		else if (S_ISDIR(stat_buf.st_mode)){ // Fork Here
 			str = "directory";
+
 
 //			if((pid=fork())<0){
 //				 fprintf(stderr,"fork error\n");
