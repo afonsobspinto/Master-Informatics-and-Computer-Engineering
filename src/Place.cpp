@@ -51,5 +51,5 @@ void Place::setLabel(const std::string& label) {
 }
 
 const std::string Place::getName() const {
-	return "";
+	return "			";
 }

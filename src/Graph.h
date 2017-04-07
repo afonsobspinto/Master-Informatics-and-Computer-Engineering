@@ -148,6 +148,7 @@ template <class T>
 class Graph {
 	vector<Vertex<T> *> vertexSet;
 	void dfs(Vertex<T> *v, vector<T> &res) const;
+	void removeGeoVertex(Vertex<T> *v, vector<T> &res);
 
 	//exercicio 5
 	int numCycles;
@@ -180,9 +181,7 @@ public:
 	void unweightedShortestPath(const T &v);
 	bool isDAG();
 
-	//exercicio 5
 	void dijkstraShortestPath(const T &s);
-
 };
 
 
@@ -243,6 +242,7 @@ bool Graph<T>::removeVertex(const T &in) {
 	}
 	return false;
 }
+
 
 template <class T>
 bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {

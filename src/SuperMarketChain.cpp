@@ -87,7 +87,7 @@ void SuperMarketChain::displayGraph() {
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 
-		gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+		//gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
 	}
 
 	cin.clear();
