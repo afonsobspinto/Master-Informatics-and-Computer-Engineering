@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-int parser(int argc, char *argv[])
+int parser(int argc, char directory[])
 {
 	DIR *dirp;
 	struct dirent *direntp;
@@ -17,14 +17,9 @@ int parser(int argc, char *argv[])
 	char *str;
 	pid_t pid;
 
-	if (argc != 2)
+	if ((dirp = opendir(directory)) == NULL)
 	{
-		fprintf( stderr, "Usage: %s dir_name\n", argv[0]);
-		exit(1);
-	}
-	if ((dirp = opendir( argv[1])) == NULL)
-	{
-		perror(argv[1]);
+		perror(directory);
 		exit(2);
 	}
 	while ((direntp = readdir( dirp)) != NULL)
@@ -36,11 +31,11 @@ int parser(int argc, char *argv[])
 		else if (S_ISDIR(stat_buf.st_mode)){ // Fork Here
 			str = "directory";
 
-			if((pid=fork())<0){
-				 fprintf(stderr,"fork error\n");
-			}
-			 else if (pid == 0) { //Update Dir & Recall Function
-			 }
+//			if((pid=fork())<0){
+//				 fprintf(stderr,"fork error\n");
+//			}
+//			 else if (pid == 0) { //Update Dir & Recall Function
+//			 }
 
 		}
 		else{
