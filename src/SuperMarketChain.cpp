@@ -147,3 +147,26 @@ void SuperMarketChain::calcAveragePlaces() {
 
 	averagePlaces = make_pair(sumX*dC/count, sumY*dC/count);
 }
+
+void SuperMarketChain::generateShopping() {
+	Date currentdate = Date();
+
+	for(int i=0; i<clients.size(); i++){
+		int number = rand() % 21;
+		int product = rand() % 21;
+		for(int j=0; j<number; j++){
+			Purchase p = Purchase(product,number,currentdate);
+			clients.at(i).addGroceries(p);
+		}
+	}
+
+}
+
+void SuperMarketChain::generateTrucks() {
+/*	for(int i=0; i<supermarkets.size(); i++){
+			int number = rand() % 21;
+			for(int j=0; j<number; j++){
+
+			}
+		}*/
+}

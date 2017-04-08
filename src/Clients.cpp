@@ -23,3 +23,7 @@ const vector<Purchase>& Client::getGroceries() const {
 const string Client::getName() const {
 	return name;
 }
+
+void Client::addGroceries(Purchase& purchase){
+	this->shopping.push_back(purchase);
+}

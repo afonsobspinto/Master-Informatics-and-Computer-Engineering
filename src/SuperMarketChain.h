@@ -45,6 +45,8 @@ public:
 	void addClients(Client& client);
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void addSupermarkets(Supermarket& supermarket);
+	void generateShopping();
+	void generateTrucks();
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
