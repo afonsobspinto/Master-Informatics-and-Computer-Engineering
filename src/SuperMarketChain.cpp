@@ -19,7 +19,9 @@ SuperMarketChain::SuperMarketChain() {
 	roads = new unordered_map<long long int, Street>;
 	allNodes = new unordered_map<long long int, Place*>;
 
+	cout << "Objects created!\n";
 	LoadingResources(this);
+	cout << "Resources loaded!\n";
 	displayGraph();
 
 }
