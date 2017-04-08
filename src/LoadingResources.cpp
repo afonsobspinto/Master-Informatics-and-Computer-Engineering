@@ -118,9 +118,6 @@ void LoadingResources::loadClients() {
 
 		nclients++;
 
-		if(name == "Ana Santos")
-			cout << "Ana Santos: " << ids.at(id) << endl;
-
 	}
 
 	cout << "Read "<< nclients << " clients.\n";

@@ -91,10 +91,8 @@ void SuperMarketChain::displayGraph() {
 
 		gv->setVertexLabel(kv.first, oOStrStream.str());
 
-		if(kv.second->getLabel() == "client"){
+		if(kv.second->getLabel() == "client")
 			gv->setVertexColor(kv.first, BLUE);
-			cout << "ID: " << kv.first << " pintado de azul" << endl;
-		}
 		else if(kv.second->getLabel()=="supermarket")
 			gv->setVertexColor(kv.first, RED);
 
@@ -127,7 +125,7 @@ void SuperMarketChain::displayGraph() {
 pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
 		long double geoCoordX, long double geoCoordY) {
 
-	const int dC = 1000000;
+	const int dC = 10000000;
 
 	return make_pair(geoCoordX*dC-averagePlaces.first + width/2, geoCoordY*dC-averagePlaces.second + heigth/2);
 
@@ -139,7 +137,7 @@ void SuperMarketChain::calcAveragePlaces() {
 	long double sumX=0, sumY=0;
 	unsigned int count=0;
 
-	const int dC = 1000000;
+	const int dC = 10000000;
 
 	for(auto kv: *places){
 		sumX+=kv.second->getCoord().getLatitude();
