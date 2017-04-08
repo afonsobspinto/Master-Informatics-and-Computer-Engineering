@@ -16,11 +16,11 @@
 #include "Supermarket.h"
 #include "Transition.h"
 
-
 class SuperMarketChain {
 private:
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
+	std::vector<Client> clients;
 	std::unordered_map<long long int, Place*>* places;
 	pair<int, int> averagePlaces;
 	std::unordered_map<long long int, Place*>* allNodes;
@@ -39,6 +39,7 @@ public:
 	std::unordered_map<long long int, Street*>* getRoads();
 	std::unordered_map<long long int, Place*>* getAllNodes();
 	const std::vector<Supermarket>& getSupermarkets() const;
+	const std::vector<Client>* getClients() const;
 	void displayGraph();
 	std::vector<Transition*>* getTransitions();
 

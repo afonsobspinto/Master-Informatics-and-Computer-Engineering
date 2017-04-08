@@ -46,10 +46,13 @@ const vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
 	return supermarkets;
 }
 
+const vector<Client>* SuperMarketChain::getClients() const{
+	return clients;
+}
+
 Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
-
 
 vector<Transition*>* SuperMarketChain::getTransitions() {
 	return &transitions;

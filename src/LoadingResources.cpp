@@ -82,6 +82,7 @@ void LoadingResources::loadClients() {
 		Place* client= new Client(id, Coord(latitude, longitude), name);
 
 		superMarketChain->getPlaces()->insert(make_pair(id,client));
+		superMarketChain->getClients()->push_back(*client);
 		superMarketChain->getAllNodes()->insert(make_pair(id,client));
 		superMarketChain->getGraph()->addVertex(*client);
 
