@@ -16,7 +16,12 @@ private:
 	unsigned char day;
 	unsigned char month;
 	unsigned short year;
+
+	static const std::string currentDateTime();
+
 public:
+
+	Date();
 	Date(unsigned char day, unsigned char month, unsigned short year);
 
 	unsigned char getDay() const;
@@ -26,7 +31,7 @@ public:
 	bool operator == (const Date & rhs) const;
 	bool operator < (const Date & rhs) const;
 
-	static const std::string currentDateTime();
+
 
 
 };

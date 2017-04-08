@@ -7,6 +7,14 @@
 
 #include "Date.h"
 
+using namespace std;
+
+Date::Date() {
+	string date = currentDateTime();
+	this->day = stoi(date.substr(0,2));
+	this->month = stoi(date.substr(3,2));
+	this->year = stoi(date.substr(6,4));
+}
 
 Date::Date(unsigned char day, unsigned char month, unsigned short year): day(day), month(month), year(year){}
 
@@ -39,6 +47,7 @@ bool Date::operator <(const Date& rhs) const {
 		return true;
 	return false;
 }
+
 
 const std::string Date::currentDateTime() {
     time_t     now = time(0);
