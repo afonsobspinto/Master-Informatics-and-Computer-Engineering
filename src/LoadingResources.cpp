@@ -75,7 +75,7 @@ void LoadingResources::loadClients() {
 			getline(clientsInfo, lat_str, ';'),  getline(clientsInfo, long_str, ';'), getline(clientsInfo, name, ';')){
 
 
-		id = stol(id_str);
+		id = stoll(id_str);
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
@@ -118,7 +118,7 @@ void LoadingResources::loadSuperMarkets() {
 			getline(superMarketsInfo, lat_str, ';'),  getline(superMarketsInfo, long_str, ';'), getline(superMarketsInfo, name, ';')){
 
 
-		id = stol(id_str);
+		id = stoll(id_str);
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
