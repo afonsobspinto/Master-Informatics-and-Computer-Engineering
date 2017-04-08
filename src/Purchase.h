@@ -11,16 +11,16 @@
 #include "Product.h"
 #include "Date.h"
 
+#include <map>
+
 class Purchase{
 private:
-	Product product;
-	unsigned short quantity;
+	std::map<Product, unsigned short> purchase;
 	Date date;
 public:
 	Purchase(Product product, unsigned short quantity, Date date);
 	const Date getDate() const;
-	const Product getProduct() const;
-	const unsigned short getQuantity() const;
+	bool operator < (const Purchase & rhs) const;
 };
 
 

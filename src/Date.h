@@ -8,6 +8,8 @@
 #ifndef DATE_H_
 #define DATE_H_
 
+#include <string>
+
 class Date {
 
 private:
@@ -21,7 +23,12 @@ public:
 	unsigned char getMonth() const;
 	unsigned short getYear() const;
 
-	bool operator == (const Date & rhs);
+	bool operator == (const Date & rhs) const;
+	bool operator < (const Date & rhs) const;
+
+	static const std::string currentDateTime();
+
+
 };
 
 #endif /* DATE_H_ */
