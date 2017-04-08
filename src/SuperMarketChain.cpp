@@ -127,7 +127,7 @@ pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
 
 	const int dC = 10000000;
 
-	return make_pair(geoCoordX*dC-averagePlaces.first + width/2, geoCoordY*dC-averagePlaces.second + heigth/2);
+	return make_pair(geoCoordX*dC-averagePlaces.first + width/2, averagePlaces.second-geoCoordY*dC + heigth/2);
 
 }
 
