@@ -22,9 +22,9 @@ private:
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
 	std::vector<Client> clients;
-	std::unordered_map<long long int, Place*>* places;
+	std::unordered_map<int, Place*>* places;
 	pair<int, int> averagePlaces;
-	std::unordered_map<long long int, Place*>* allNodes;
+	std::unordered_map<int, Place*>* allNodes;
 	std::unordered_map<long long int, Street*>* roads;
 	std::vector<Transition*>transitions;
 	pair<int, int> convertGeoGraphicCoord(long double geoCoordX, long double geoCoordY);
@@ -36,9 +36,9 @@ private:
 public:
 	SuperMarketChain();
 	Graph<Place>* getGraph() const;
-	std::unordered_map<long long int, Place*>* getPlaces();
+	std::unordered_map<int, Place*>* getPlaces();
 	std::unordered_map<long long int, Street*>* getRoads();
-	std::unordered_map<long long int, Place*>* getAllNodes();
+	std::unordered_map<int, Place*>* getAllNodes();
 	void displayGraph();
 	std::vector<Transition*>* getTransitions();
 	const std::vector<Client>& getClients() const;

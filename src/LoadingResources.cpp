@@ -43,11 +43,41 @@ LoadingResources::LoadingResources(SuperMarketChain* superMarketChain): superMar
 
 
 void LoadingResources::loadMap() {
+	mapIDs();
 	loadClients();
 	loadSuperMarkets();
 	loadNodes();
 	loadRoads();
 	loadGeom();
+}
+
+void LoadingResources::mapIDs() {
+
+	ifstream nodesInfo(graphsFiles[Files::NodesFiles]);
+
+	if(!nodesInfo.is_open()){
+		cerr << "Unable to open file " << GraphsInfo << endl;
+		exit(1);
+	}
+
+	long long id;
+	double latitude;
+	double longitude;
+	char sep;
+
+	int localID = 0;
+
+	/*
+	 * Ignoring degrees Values
+	 */
+
+	while(nodesInfo >> id >> sep >>
+			latitude >> sep >> longitude >> sep >>
+			latitude >> sep >> longitude){
+
+		ids.insert(make_pair(id, ++localID));
+	}
+
 }
 
 void LoadingResources::loadClients() {
@@ -79,14 +109,18 @@ void LoadingResources::loadClients() {
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
-		Client* client= new Client(id, Coord(latitude, longitude), name);
+		Client* client= new Client(ids.at(id), Coord(latitude, longitude), name);
 
-		superMarketChain->getPlaces()->insert(make_pair(id,client));
-		superMarketChain->getAllNodes()->insert(make_pair(id,client));
+		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),client));
+		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),client));
 		superMarketChain->addClients(*client);
 		superMarketChain->getGraph()->addVertex(*client);
 
 		nclients++;
+
+		if(name == "Ana Santos")
+			cout << "Ana Santos: " << ids.at(id) << endl;
+
 	}
 
 	cout << "Read "<< nclients << " clients.\n";
@@ -123,10 +157,10 @@ void LoadingResources::loadSuperMarkets() {
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
-		Supermarket* superMarket=new Supermarket(id, Coord(latitude, longitude), name);
+		Supermarket* superMarket=new Supermarket(ids.at(id), Coord(latitude, longitude), name);
 
-		superMarketChain->getPlaces()->insert(make_pair(id,superMarket));
-		superMarketChain->getAllNodes()->insert(make_pair(id,superMarket));
+		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),superMarket));
+		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),superMarket));
 		superMarketChain->addSupermarkets(*superMarket);
 		superMarketChain->getGraph()->addVertex(*superMarket);
 
@@ -136,6 +170,7 @@ void LoadingResources::loadSuperMarkets() {
 	cout << "Read "<< nsupers << " SuperMarkets.\n";
 
 }
+
 
 
 void LoadingResources::loadNodes() {
@@ -162,12 +197,12 @@ void LoadingResources::loadNodes() {
 			latitude >> sep >> longitude){
 
 
-		if(superMarketChain->getPlaces()->find(id)==superMarketChain->getPlaces()->end()){
+		if(superMarketChain->getPlaces()->find(ids.at(id))==superMarketChain->getPlaces()->end()){
 
-			Place* place= new Place(id, Coord(latitude, longitude));
+			Place* place= new Place(ids.at(id), Coord(latitude, longitude));
 
 
-			superMarketChain->getAllNodes()->insert(make_pair(id,place));
+			superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),place));
 			superMarketChain->getGraph()->addVertex(*place);
 
 
@@ -230,11 +265,11 @@ void LoadingResources::loadGeom() {
 	while(geomInfo >> road_id >> sep >>
 			node1_id >> sep >> node2_id >> sep){
 
-		unordered_map<long long int, Place*>* temp = superMarketChain->getAllNodes();
+		unordered_map<int, Place*>* temp = superMarketChain->getAllNodes();
 
 
 		try {
-			distance = temp->at(node1_id)->getDistance(temp->at(node2_id));
+			distance = temp->at(ids.at(node1_id))->getDistance(temp->at(ids.at(node2_id)));
 		} catch (...) {
 			cerr << "File Information Corrupted " << GraphsInfo << endl;
 			exit(1);
@@ -243,13 +278,13 @@ void LoadingResources::loadGeom() {
 		Transition* transition;
 
 		if(superMarketChain->getRoads()->at(road_id)->is2Way()){
-			transition = new Transition(road_id, node1_id, node2_id, distance, true);
-			Transition* invTransition = new Transition(road_id, node2_id, node1_id, distance, true);
+			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, true);
+			Transition* invTransition = new Transition(road_id, ids.at(node2_id), ids.at(node1_id), distance, true);
 			superMarketChain->getGraph()->addEdge(invTransition);
 
 		}
 		else{
-			transition = new Transition(road_id, node1_id, node2_id, distance, false);
+			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, false);
 		}
 
 		superMarketChain->getGraph()->addEdge(transition);

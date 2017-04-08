@@ -19,9 +19,9 @@ const int SuperMarketChain::width = 800;
 SuperMarketChain::SuperMarketChain() {
 
 	graph = new Graph<Place>;
-	places = new unordered_map<long long int, Place*>;
+	places = new unordered_map<int, Place*>;
 	roads = new unordered_map<long long int, Street*>;
-	allNodes = new unordered_map<long long int, Place*>;
+	allNodes = new unordered_map<int, Place*>;
 
 	cout << "Objects created!\n";
 	LoadingResources(this);
@@ -30,7 +30,7 @@ SuperMarketChain::SuperMarketChain() {
 
 }
 
-unordered_map<long long int, Place*>* SuperMarketChain::getPlaces() {
+unordered_map<int, Place*>* SuperMarketChain::getPlaces() {
 	return places;
 }
 
@@ -38,7 +38,7 @@ unordered_map<long long int, Street*>* SuperMarketChain::getRoads()  {
 	return roads;
 }
 
-unordered_map<long long int, Place*>* SuperMarketChain::getAllNodes() {
+unordered_map<int, Place*>* SuperMarketChain::getAllNodes() {
 	return allNodes;
 }
 
@@ -91,8 +91,10 @@ void SuperMarketChain::displayGraph() {
 
 		gv->setVertexLabel(kv.first, oOStrStream.str());
 
-		if(kv.second->getLabel() == "client")
+		if(kv.second->getLabel() == "client"){
 			gv->setVertexColor(kv.first, BLUE);
+			cout << "ID: " << kv.first << " pintado de azul" << endl;
+		}
 		else if(kv.second->getLabel()=="supermarket")
 			gv->setVertexColor(kv.first, RED);
 

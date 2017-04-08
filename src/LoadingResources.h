@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "Graph.h"
 #include "Place.h"
 #include "SuperMarketChain.h"
@@ -24,6 +25,7 @@ class LoadingResources {
 
 	static const std::string GraphsInfo;
 	std::vector<std::string> graphsFiles;
+	std::map<long long int, int> ids;
 
 	unsigned int nclients=0;
 	unsigned int nsupers=0;
@@ -33,10 +35,14 @@ class LoadingResources {
 
 	SuperMarketChain* superMarketChain;
 
+
+
 public:
 	LoadingResources(SuperMarketChain* superMarketChain);
 
 	bool string2bool(const std::string &a);
+
+	void mapIDs();
 
 	void loadMap();
 
