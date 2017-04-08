@@ -7,9 +7,9 @@
 
 #include "Truck.h"
 
-Truck::Truck(unsigned short id, unsigned char capacity,
-		unsigned char usedCapcity, unsigned char averageSpeed, bool working, Place* location):
-		id(id), capacity(capacity), usedCapcity(usedCapcity), averageSpeed(averageSpeed), working(working), location(location) {
+Truck::Truck(Place* location):
+		id(ids), capacity(50), usedCapacity(0), averageSpeed(60), location(location) {
+	ids++;
 }
 
 unsigned char Truck::getCapacity() const {
@@ -24,14 +24,11 @@ const Place* Truck::getLocation() const {
 	return location;
 }
 
-unsigned char Truck::getUsedCapcity() const {
-	return usedCapcity;
+unsigned char Truck::getUsedCapacity() const {
+	return usedCapacity;
 }
 
 unsigned char Truck::getAverageSpeed() const {
 	return averageSpeed;
 }
 
-bool Truck::isWorking() const {
-	return working;
-}
