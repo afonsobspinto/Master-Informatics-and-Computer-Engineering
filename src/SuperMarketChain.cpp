@@ -42,16 +42,25 @@ unordered_map<long long int, Place*>* SuperMarketChain::getAllNodes() {
 	return allNodes;
 }
 
-const vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
-	return supermarkets;
+Graph<Place>* SuperMarketChain::getGraph() const {
+	return graph;
 }
 
-const vector<Client>* SuperMarketChain::getClients() const{
+const std::vector<Client>& SuperMarketChain::getClients() const {
 	return clients;
 }
 
-Graph<Place>* SuperMarketChain::getGraph() const {
-	return graph;
+void SuperMarketChain::addClients(Client& client) {
+	this->clients.push_back(client);
+}
+
+const std::vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
+	return supermarkets;
+}
+
+void SuperMarketChain::addSupermarkets(
+		Supermarket& supermarket) {
+	this->supermarkets.push_back(supermarket);
 }
 
 vector<Transition*>* SuperMarketChain::getTransitions() {

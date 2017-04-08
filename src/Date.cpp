@@ -6,6 +6,7 @@
  */
 
 #include "Date.h"
+#include <time.h>
 
 using namespace std;
 

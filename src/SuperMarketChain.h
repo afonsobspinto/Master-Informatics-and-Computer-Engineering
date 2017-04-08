@@ -15,6 +15,7 @@
 #include "Street.h"
 #include "Supermarket.h"
 #include "Transition.h"
+#include "Clients.h"
 
 class SuperMarketChain {
 private:
@@ -38,13 +39,12 @@ public:
 	std::unordered_map<long long int, Place*>* getPlaces();
 	std::unordered_map<long long int, Street*>* getRoads();
 	std::unordered_map<long long int, Place*>* getAllNodes();
-	const std::vector<Supermarket>& getSupermarkets() const;
-	const std::vector<Client>* getClients() const;
 	void displayGraph();
 	std::vector<Transition*>* getTransitions();
-
-
-
+	const std::vector<Client>& getClients() const;
+	void addClients(Client& client);
+	const std::vector<Supermarket>& getSupermarkets() const;
+	void addSupermarkets(Supermarket& supermarket);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

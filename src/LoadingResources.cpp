@@ -79,11 +79,11 @@ void LoadingResources::loadClients() {
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
-		Place* client= new Client(id, Coord(latitude, longitude), name);
+		Client* client= new Client(id, Coord(latitude, longitude), name);
 
 		superMarketChain->getPlaces()->insert(make_pair(id,client));
-		superMarketChain->getClients()->push_back(*client);
 		superMarketChain->getAllNodes()->insert(make_pair(id,client));
+		superMarketChain->addClients(*client);
 		superMarketChain->getGraph()->addVertex(*client);
 
 		nclients++;
@@ -123,7 +123,7 @@ void LoadingResources::loadSuperMarkets() {
 		latitude = stod(lat_str);
 		longitude = stod(long_str);
 
-		Place* superMarket=new Supermarket(id, Coord(latitude, longitude), name);
+		Supermarket* superMarket=new Supermarket(id, Coord(latitude, longitude), name);
 
 		superMarketChain->getPlaces()->insert(make_pair(id,superMarket));
 		superMarketChain->getAllNodes()->insert(make_pair(id,superMarket));
