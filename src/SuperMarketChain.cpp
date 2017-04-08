@@ -165,10 +165,12 @@ void SuperMarketChain::generateShopping() {
 }
 
 void SuperMarketChain::generateTrucks() {
-/*	for(int i=0; i<supermarkets.size(); i++){
-			int number = rand() % 21;
-			for(int j=0; j<number; j++){
 
+	for(int i=0; i<supermarkets.size(); i++){
+			int number = rand() % 10 + 1;
+			Truck truck = Truck(&supermarkets.at(i));
+			for(int j=0; j<number; j++){
+				supermarkets.at(i).addTrucks(truck);
 			}
-		}*/
+		}
 }
