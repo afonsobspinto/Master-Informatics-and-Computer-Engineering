@@ -9,6 +9,7 @@
 #include "edgetype.h"
 #include "graphviewer.h"
 #include "LoadingResources.h"
+#include <sstream>
 
 using namespace std;
 
@@ -62,12 +63,18 @@ void SuperMarketChain::displayGraph() {
 	pair<int,int> geographicCoords;
 	calcAveragePlaces();
 
-
+	unsigned int i=0;
 	for(auto kv: *allNodes){
 
 		Coord tempCoord = kv.second->getCoord();
 		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
 		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
+
+		ostringstream oOStrStream;
+		oOStrStream << kv.first;
+
+
+		gv->setVertexLabel(kv.first, oOStrStream.str());
 
 
 	}
@@ -96,7 +103,7 @@ void SuperMarketChain::displayGraph() {
 pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
 		long double geoCoordX, long double geoCoordY) {
 
-	const int dC = 100000;
+	const int dC = 1000000;
 
 	return make_pair(geoCoordX*dC-averagePlaces.first, geoCoordY*dC-averagePlaces.second);
 
@@ -108,7 +115,7 @@ void SuperMarketChain::calcAveragePlaces() {
 	long double sumX=0, sumY=0;
 	unsigned int count=0;
 
-	const int dC = 100000;
+	const int dC = 1000000;
 
 	for(auto kv: *places){
 		sumX+=kv.second->getCoord().getLatitude();
