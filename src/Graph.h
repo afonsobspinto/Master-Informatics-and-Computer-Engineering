@@ -184,10 +184,11 @@ public:
 
 	void dijkstraShortestPath(const T &s);
 
-	vector<vector<Vertex<T>*>> scc();
+	vector<set<Vertex<T>*>> scc();
 	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
+	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>* set);
 
 };
 
@@ -605,7 +606,7 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 }
 
 template<class T>
-vector<vector<Vertex<T> *> > Graph<T>::scc() {
+vector<set<Vertex<T> *> > Graph<T>::scc() {
 
 
 	 //it holds vertices by finish time in reverse order.
@@ -629,6 +630,21 @@ vector<vector<Vertex<T> *> > Graph<T>::scc() {
      Graph<T> reverseGraph = this->getTranspose();
 
 
+     //Do a DFS based off vertex finish time in decreasing order on reverse graph..
+     visited.clear();
+     vector<set<Vertex<T>*>> result;
+
+     while (!stack.empty()) {
+         Vertex<T>* vertex = reverseGraph.getVertex(stack.pop_front().info);
+         if(visited.find(vertex)!=visited.end()){
+             continue;
+         }
+         set<Vertex<T>*> set;
+         dfsUtilRG(vertex, &visited, &set);
+         result.push_back(set);
+     }
+     return result;
+
 }
 
 
@@ -651,20 +667,18 @@ template<class T>
 Graph<T> Graph<T>::getTranspose() {
 	Graph<T> g = Graph();
 
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		g.addVertex(vertexSet[i]->info);
+	}
+
+
 	for (unsigned int i = 0; i < vertexSet.size(); i++){
 		Vertex<T>* v = vertexSet[i];
 
 		typename vector<Edge<T> >::iterator it= (v->adj).begin();
 		typename vector<Edge<T> >::iterator ite= (v->adj).end();
 		for (; it !=ite; it++){
-
-
-
-
-
-
-			g.addEdge(*(it->dest), *v, it->weight);
-
+			g.addEdge(it->dest->info, v->info, it->weight);
 		}
 	}
 
@@ -687,8 +701,28 @@ void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>
 	}
 
 	stack->push_front(v);
+}
+
+
+template<class T>
+void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>*set) {
+	visited->insert(v);
+
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+
+	for (; it !=ite; it++){
+    	Vertex<T>* vertex = it->dest;
+        if (visited->find(vertex) != visited->end()) {
+            continue;
+        }
+        dfsUtil(vertex, visited, set);
+	}
+
+	set->push_front(v);
 
 }
+
 
 template<class T>
 Graph<T>::Graph() {
