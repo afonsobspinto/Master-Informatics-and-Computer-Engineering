@@ -7,7 +7,9 @@
 #include <limits>
 #include <stdlib.h>
 #include <vector>
+#include <deque>
 #include <queue>
+#include <set>
 #include <list>
 #include <limits>
 #include <cmath>
@@ -185,7 +187,7 @@ public:
 	vector<vector<Vertex<T>*>> scc();
 	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
 	Graph<T> getTranspose();
-	void dfsUtil(Vertex<T>*v, vector<Vertex<T>*>* connected);
+	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 
 };
 
@@ -605,31 +607,28 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 template<class T>
 vector<vector<Vertex<T> *> > Graph<T>::scc() {
 
-	vector<vector<Vertex<T>* >> res;
-	vector<Vertex<T>* > temp;
 
-	dfs();
+	 //it holds vertices by finish time in reverse order.
+	deque<Vertex<T>*> stack;
 
-	for (unsigned int i=0; i < vertexSet.size(); i++){
-		if(vertexSet.at(i)->visited == false)
-			scc(vertexSet[i], temp);
-	}
+	//holds visited vertices for DFS.
+	set<Vertex<T>*> visited;
 
-	Graph<T> gr = getTranspose();
 
-	gr.dfs();
+    //populate stack with vertices with vertex finishing last at the top.
+    for (unsigned int i = 0; i < vertexSet.size(); i++) {
+    	Vertex<T>* vertex = vertexSet[i];
+        if (visited.find(vertex) != visited.end()) {
+            continue;
+        }
+        dfsUtil(vertex, &visited, &stack);
+    }
 
-	for (unsigned int i = 0; i < temp.size(); i++){
-		Vertex<T>* v = temp.at(i);
-		vector <Vertex<T>*> connected;
 
-		if(!v->visited){
-			gr.dfsUtil(v, &connected);
-			res.push_back(connected);
-		}
-	}
+    //reverse the graph.
+     Graph<T> reverseGraph = this->getTranspose();
 
-	return res;
+
 }
 
 
@@ -658,8 +657,14 @@ Graph<T> Graph<T>::getTranspose() {
 		typename vector<Edge<T> >::iterator it= (v->adj).begin();
 		typename vector<Edge<T> >::iterator ite= (v->adj).end();
 		for (; it !=ite; it++){
-			Transition t = Transition(1, it->dest->info.getID(), v->info.getID(), it->weight, false);
-			g.addEdge(&t);
+
+
+
+
+
+
+			g.addEdge(*(it->dest), *v, it->weight);
+
 		}
 	}
 
@@ -667,18 +672,22 @@ Graph<T> Graph<T>::getTranspose() {
 }
 
 template<class T>
-void Graph<T>::dfsUtil(Vertex<T>* v, vector<Vertex<T>*>* connected) {
-
-	v->visited = true;
-	connected->push_back(v);
+void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack) {
+	visited->insert(v);
 
 	typename vector<Edge<T> >::iterator it= (v->adj).begin();
 	typename vector<Edge<T> >::iterator ite= (v->adj).end();
-	for (; it !=ite; it++) {
-	    if ( it->dest->visited == false ){
-	    	dfsUtil(it->dest, connected);
-	    }
+
+	for (; it !=ite; it++){
+    	Vertex<T>* vertex = it->dest;
+        if (visited->find(vertex) != visited->end()) {
+            continue;
+        }
+        dfsUtil(vertex, visited, stack);
 	}
+
+	stack->push_front(v);
+
 }
 
 template<class T>
