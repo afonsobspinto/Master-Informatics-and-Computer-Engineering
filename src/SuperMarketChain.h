@@ -17,6 +17,8 @@
 #include "Transition.h"
 #include "Clients.h"
 
+
+
 class SuperMarketChain {
 private:
 	Graph<Place>* graph;
@@ -32,6 +34,7 @@ private:
 	void calcAveragePlaces();
 	static const int heigth;
 	static const int width;
+	std::vector <string> colors;
 
 public:
 	SuperMarketChain();
@@ -40,6 +43,7 @@ public:
 	std::unordered_map<long long int, Street*>* getRoads();
 	std::unordered_map<int, Place*>* getAllNodes();
 	void displayGraph();
+	void displaySCC();
 	std::vector<Transition*>* getTransitions();
 	const std::vector<Client>& getClients() const;
 	void addClients(Client& client);
@@ -48,6 +52,7 @@ public:
 	void generateShopping();
 	void generateTrucks();
 	void showSCC();
+
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

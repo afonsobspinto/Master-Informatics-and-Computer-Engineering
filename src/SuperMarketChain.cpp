@@ -23,17 +23,18 @@ SuperMarketChain::SuperMarketChain() {
 	roads = new unordered_map<long long int, Street*>;
 	allNodes = new unordered_map<int, Place*>;
 
+	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
+
+
 	cout << "Objects created!\n";
 	LoadingResources(this);
 	cout << "Resources loaded!\n";
 
 	scc = graph->scc();
 
-	showSCC();
+	//showSCC();
 
-
-
-	displayGraph();
+	displaySCC();
 
 
 }
@@ -93,22 +94,18 @@ void SuperMarketChain::displayGraph() {
 		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
 		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
 
-		ostringstream oOStrStream;
-		oOStrStream << kv.first;
+//		ostringstream oOStrStream;
+//		oOStrStream << kv.first;
+//
+//
+//		gv->setVertexLabel(kv.first, oOStrStream.str());
 
-
-		gv->setVertexLabel(kv.first, oOStrStream.str());
-
-//		if(kv.second->getLabel() == "client")
-//			gv->setVertexColor(kv.first, BLUE);
-//		else if(kv.second->getLabel()=="supermarket")
-//			gv->setVertexColor(kv.first, RED);
-
-
-		if(kv.first == 327)
+		if(kv.second->getLabel() == "client")
 			gv->setVertexColor(kv.first, BLUE);
-		else
-			gv->setVertexLabel(kv.first, kv.second->getName());
+		else if(kv.second->getLabel()=="supermarket")
+			gv->setVertexColor(kv.first, RED);
+
+		gv->setVertexLabel(kv.first, kv.second->getName());
 
 	}
 
@@ -131,6 +128,55 @@ void SuperMarketChain::displayGraph() {
 	gv->closeWindow();
 	delete (gv);
 }
+
+
+void SuperMarketChain::displaySCC() {
+	GraphViewer *gv = new GraphViewer(width,heigth,false);
+
+	gv->createWindow(width, heigth);
+	gv->defineVertexColor(WHITE);
+	gv->defineEdgeColor(BLACK);
+
+	pair<int,int> geographicCoords;
+	calcAveragePlaces();
+
+	unsigned int i=0;
+	for(unsigned int j = 0; j < scc.size(); j++){
+
+		set <Place> temp = scc.at(i);
+
+		set<Place>::iterator it;
+
+		for (it = temp.begin(); it != temp.end(); it++){
+			Coord tempCoord = it->getCoord();
+			geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
+			gv->addNode(it->getID(), geographicCoords.first, geographicCoords.second);
+			gv->setVertexColor(it->getID(), colors[i%colors.size()]);
+			gv->setVertexLabel(it->getID(), it->getName());
+		}
+		i++;
+	}
+
+	unsigned int idTransition = 0;
+	for (auto i: transitions){
+		if(i->is2Way())
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
+		else
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
+
+		//gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+	}
+
+	cin.clear();
+	cin.ignore(10000, '\n');
+	cout << endl;
+	cout << "Pressione <Enter> para continuar...";
+	cin.get();
+
+	gv->closeWindow();
+	delete (gv);
+}
+
 
 
 pair<int, int> SuperMarketChain::convertGeoGraphicCoord(
