@@ -69,9 +69,10 @@ bool mainOptions() {
 			break;
 		}
 		case 3:{
-
+			S.displaySCC();
 			break;}
 		case 4:{
+			S.showSCC();
 			break;}
 		case 5:{
 			showClients(S);
