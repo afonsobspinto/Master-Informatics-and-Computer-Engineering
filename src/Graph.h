@@ -648,7 +648,6 @@ vector<set<T> > Graph<T>::scc() {
 
      }
 
-     sccCorrections(&result);
 
      return result;
 
