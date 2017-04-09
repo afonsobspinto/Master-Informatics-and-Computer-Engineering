@@ -47,7 +47,7 @@ bool mainOptions() {
 		cout << "   " << "1 - See the Graph" << endl;
 		cout << "   " << "2 - Generate Shopping" << endl;
 		cout << "   " << "3 - Show Route" << endl;
-		cout << "   " << "4 - Show Route" << endl;
+		cout << "   " << "4 - Study Route" << endl;
 		cout << "   " << "5 - See Clients" << endl;
 		cout << "   " << "6 - See Supermarkets" << endl;
 		cout << "   " << "7 - Leave" << endl << endl;
