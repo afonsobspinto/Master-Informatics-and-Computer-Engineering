@@ -33,11 +33,13 @@ bool mainOptions() {
 		ClearScreen();
 		cout << "Menu: " << endl;
 		cout << endl;
-		cout << "   " << "1 - See the Map" << endl;
+		cout << "   " << "1 - See the Graph" << endl;
 		cout << "   " << "2 - Generate Shopping" << endl;
-		cout << "   " << "3 - See Clients" << endl;
-		cout << "   " << "4 - See Supermarkets" << endl;
-		cout << "   " << "5 - Leave" << endl << endl;
+		cout << "   " << "3 - Show Route" << endl;
+		cout << "   " << "4 - Show Route" << endl;
+		cout << "   " << "5 - See Clients" << endl;
+		cout << "   " << "6 - See Supermarkets" << endl;
+		cout << "   " << "7 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
@@ -45,20 +47,31 @@ bool mainOptions() {
 
 		switch (option){
 		case 1:
-
+		{
+			SuperMarketChain S = SuperMarketChain();
+			S.displayGraph();
 			break;
+		}
 		case 2:
+		{
+			SuperMarketChain S = SuperMarketChain();
+			S.generateShopping();
+			S.displayGraph();
+			break;
+		}
+		case 3:{
 
-			break;
-		case 3:
-
-			break;
-		case 4:
-			break;
-		case 5:
-			return true;
-		default:
-			continue;
+			break;}
+		case 4:{
+			break;}
+		case 5:{
+			break;}
+		case 6:{
+			break;}
+		case 7:{
+			return true;}
+		default:{
+			continue;}
 		}
 	}
 }

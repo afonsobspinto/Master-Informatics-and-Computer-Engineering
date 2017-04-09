@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "SuperMarketChain.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ using namespace std;
 int main() {
 
 
-	SuperMarketChain();
+	mainOptions();
 
 	cout << "!!!Hello World!!!" << endl;
 
