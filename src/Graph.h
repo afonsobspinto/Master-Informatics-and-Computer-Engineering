@@ -158,7 +158,6 @@ class Graph {
 
 public:
 	Graph();
-	~Graph();
 
 	bool addVertex(const T &in);
 	bool addEdge(const T &sourc, const T &dest, double w);
@@ -182,6 +181,11 @@ public:
 	bool isDAG();
 
 	void dijkstraShortestPath(const T &s);
+
+	vector<vector<Vertex<T>*>> scc();
+	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
+	Graph<T> getTranspose();
+	void dfsUtil(Vertex<T>*v, vector<Vertex<T>*>* connected);
 
 };
 
@@ -599,12 +603,88 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 }
 
 template<class T>
-Graph<T>::Graph() {
+vector<vector<Vertex<T> *> > Graph<T>::scc() {
+
+	vector<vector<Vertex<T>* >> res;
+	vector<Vertex<T>* > temp;
+
+	dfs();
+
+	for (unsigned int i=0; i < vertexSet.size(); i++){
+		if(vertexSet.at(i)->visited == false)
+			scc(vertexSet[i], temp);
+	}
+
+	Graph<T> gr = getTranspose();
+
+	gr.dfs();
+
+	for (unsigned int i = 0; i < temp.size(); i++){
+		Vertex<T>* v = temp.at(i);
+		vector <Vertex<T>*> connected;
+
+		if(!v->visited){
+			gr.dfsUtil(v, &connected);
+			res.push_back(connected);
+		}
+	}
+
+	return res;
+}
+
+
+
+
+template<class T>
+void Graph<T>::scc(Vertex<T> *v, vector<Vertex<T> *> temp) {
+	v->visited = true;
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+	for (; it !=ite; it++)
+		if ( it->dest->visited == false ){
+			scc(it->dest, temp);
+		}
+	temp.push_back(v);
+
 }
 
 template<class T>
-Graph<T>::~Graph() {
+Graph<T> Graph<T>::getTranspose() {
+	Graph<T> g = Graph();
+
+	for (unsigned int i = 0; i < vertexSet.size(); i++){
+		Vertex<T>* v = vertexSet[i];
+
+		typename vector<Edge<T> >::iterator it= (v->adj).begin();
+		typename vector<Edge<T> >::iterator ite= (v->adj).end();
+		for (; it !=ite; it++){
+			Transition t = Transition(1, it->dest->info.getID(), v->info.getID(), it->weight, false);
+			g.addEdge(&t);
+		}
+	}
+
+	return g;
 }
+
+template<class T>
+void Graph<T>::dfsUtil(Vertex<T>* v, vector<Vertex<T>*>* connected) {
+
+	v->visited = true;
+	connected->push_back(v);
+
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+	for (; it !=ite; it++) {
+	    if ( it->dest->visited == false ){
+	    	dfsUtil(it->dest, connected);
+	    }
+	}
+}
+
+template<class T>
+Graph<T>::Graph() {
+}
+
 
 
 #endif /* GRAPH_H_ */

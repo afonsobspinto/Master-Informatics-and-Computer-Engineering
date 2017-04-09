@@ -26,7 +26,11 @@ SuperMarketChain::SuperMarketChain() {
 	cout << "Objects created!\n";
 	LoadingResources(this);
 	cout << "Resources loaded!\n";
+
+	cout << graph->scc().size() << endl;
+
 	displayGraph();
+
 
 }
 
