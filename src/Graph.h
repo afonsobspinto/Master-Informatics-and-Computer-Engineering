@@ -17,6 +17,7 @@
 #include <iostream>
 #include "Transition.h"
 #include "algorithm"
+#include "unistd.h"
 using namespace std;
 
 template <class T> class Edge;
@@ -190,7 +191,6 @@ public:
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>* set);
-	void sccCorrections(vector<set<T>>* result);
 
 };
 
@@ -727,47 +727,6 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>*set) {
         }
         dfsUtilRG(vertex, visited, set);
 	}
-}
-
-template<class T>
-void Graph<T>::sccCorrections(vector<set<T> >* result) {
-
-	vector<set<T>> remove;
-
-	for (unsigned int i = 0; i < result->size(); i++){
-		set<T> temp = result->at(i);
-		typename set<T>::iterator it = temp.begin();
-
-		if(temp.size()==1){
-			//cout << "Found a set with only 1 element: " << it->getID() << endl;
-			Vertex<T>* vertex = getVertex(*it);
-			if(vertex->adj.size()==0){
-				cout << "This vertex has no transitions to others" << endl;
-				continue;
-			}
-
-			Vertex<T>* vertexAdj = vertex->adj.at(0).dest;
-
-			//cout << "This vertex can go to" << vertexAdj->info.getID() << endl;
-
-			for (unsigned int j = 0; j < result->size(); j++){
-				set<T> tempCheck = result->at(i);
-				if(tempCheck.find(vertexAdj->info) != tempCheck.end()){
-					cout << "Found that vertexAdj in another set" << endl;
-					tempCheck.insert(temp.begin(), temp.end());
-					remove.push_back(temp);
-				}
-			}
-		}
-	}
-
-
-	for(unsigned int k=0; k < remove.size(); k++){
-		result->erase(std::remove(result->begin(), result->end(), remove[k]), result->end());
-	}
-
-	cout << "Removed " << remove.size() << "elements";
-
 }
 
 
