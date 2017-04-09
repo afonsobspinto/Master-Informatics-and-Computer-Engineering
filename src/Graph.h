@@ -15,6 +15,7 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include "Place.h"
 #include "Transition.h"
 #include "algorithm"
 #include "unistd.h"
@@ -191,6 +192,7 @@ public:
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
+	std::vector<Vertex<T>*> getPlacesVertex (std::set<T*> place);
 
 };
 
@@ -731,5 +733,14 @@ template<class T>
 Graph<T>::Graph() {
 }
 
+template<class T>
+std::vector<Vertex<T> *> Graph<T>::getPlacesVertex(std::set<T*> place) {
+	vector<Vertex<T> *> res;
+	std::set<int>::iterator it=place.begin();
+	std::set<int>::iterator itf=place.end();
+	 for (it; it.operator !=(itf); ++it){
+		 res.push_back(getVertex(place));
+	}
+}
 
 #endif /* GRAPH_H_ */

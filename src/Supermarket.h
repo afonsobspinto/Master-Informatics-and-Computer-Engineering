@@ -8,6 +8,7 @@
 #ifndef SUPERMARKET_H_
 #define SUPERMARKET_H_
 
+#include "Graph.h"
 #include "Truck.h"
 #include <vector>
 #include <string>
