@@ -99,13 +99,16 @@ void SuperMarketChain::displayGraph() {
 
 		gv->setVertexLabel(kv.first, oOStrStream.str());
 
-		if(kv.second->getLabel() == "client")
-			gv->setVertexColor(kv.first, BLUE);
-		else if(kv.second->getLabel()=="supermarket")
-			gv->setVertexColor(kv.first, RED);
+//		if(kv.second->getLabel() == "client")
+//			gv->setVertexColor(kv.first, BLUE);
+//		else if(kv.second->getLabel()=="supermarket")
+//			gv->setVertexColor(kv.first, RED);
 
-		//gv->setVertexLabel(kv.first, kv.second->getName());
-		gv->setVertexLabel(kv.first, to_string(kv.first));
+
+		if(kv.first == 327)
+			gv->setVertexColor(kv.first, BLUE);
+		else
+			gv->setVertexLabel(kv.first, kv.second->getName());
 
 	}
 
@@ -183,10 +186,23 @@ void SuperMarketChain::generateTrucks() {
 
 void SuperMarketChain::showSCC() {
 
+	int max = 0;
+	int secondMax = 0;
+	set <Place> maxS;
+	set <Place> secondMaxS;
+
 	for (unsigned int i = 0; i < scc.size(); i++){
 		set <Place> temp = scc.at(i);
 
 		set<Place>::iterator it;
+
+		if(temp.size() > max){
+			secondMax = max;
+			secondMaxS = maxS;
+			max = temp.size();
+			maxS = temp;
+
+		}
 
 		cout << "[";
 		for (it = temp.begin(); it != temp.end(); it++){
@@ -194,5 +210,12 @@ void SuperMarketChain::showSCC() {
 		}
 		cout << "]" << endl;
 	}
+
+	cout << secondMax << endl;
+	cout << "[" ;
+	for (set<Place>::iterator it = secondMaxS.begin(); it!= secondMaxS.end(); it++){
+		 cout << it->getID() << ", ";
+	}
+	cout << "]" << endl;
 
 }
