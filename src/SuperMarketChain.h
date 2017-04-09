@@ -35,7 +35,10 @@ private:
 	static const int heigth;
 	static const int width;
 	std::vector <string> colors;
-	std::vector<Client> getClientsOnSet(set<Place*> sccSet);
+	std::vector<Client*> getClientsOnSet(set<Place*> sccSet);
+	std::vector<Supermarket*> getSupermarketsOnSet(set<Place*> sccSet);
+	std::vector<Client*> unreachableClients;
+	std::vector<Supermarket*> unneededSupermarkets;
 
 
 public:

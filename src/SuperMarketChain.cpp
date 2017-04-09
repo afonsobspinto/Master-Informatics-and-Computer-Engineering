@@ -28,6 +28,7 @@ SuperMarketChain::SuperMarketChain() {
 	LoadingResources(this);
 
 	scc = graph->scc();
+	calculateRoutes();
 
 
 }
@@ -219,13 +220,69 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
+
+
 void SuperMarketChain::calculateRoutes() {
 
 	for (unsigned int i = 0; i < scc.size(); i++){
 		set <Place*> temp = scc.at(i);
-		vector<Client> clients;
-		vector <Supermarket> supermarkets;
+		vector<Client*> clients = getClientsOnSet(temp);
+		vector <Supermarket*> supermarkets = getSupermarketsOnSet(temp);
+
+		if(supermarkets.size()==0)
+			unreachableClients.insert(unreachableClients.end(),clients.begin(), clients.end());
+		else if(clients.size()==0)
+			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
+		else{
+			int capacityAvailable;
+			int capacityNeeded;
+			if(capacityAvailable < capacityNeeded){
+				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
+			}
+			else{
+
+				// Para Cada camião necessário:
+					//graph.calcRoute();
+			}
+
+		}
+
 
 	}
 
 }
+
+vector<Client*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
+
+	vector <Client*> result;
+	set<Place*>::iterator ite;
+
+	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
+
+		if((*ite)->getLabel()=="client"){
+			Client* client = static_cast<Client*> (*ite);
+			result.push_back(client);
+		}
+	}
+
+	return result;
+}
+
+std::vector<Supermarket*> SuperMarketChain::getSupermarketsOnSet(
+		set<Place*> sccSet) {
+	vector <Supermarket*> result;
+	set<Place*>::iterator ite;
+
+
+	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
+
+		if((*ite)->getLabel()=="supermarket"){
+			Supermarket* supermarket = static_cast<Supermarket*> (*ite);
+			result.push_back(supermarket);
+		}
+	}
+
+	return result;
+
+}
+
