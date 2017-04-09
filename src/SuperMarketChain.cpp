@@ -231,8 +231,10 @@ void SuperMarketChain::calculateRoutes() {
 
 		if(supermarkets.size()==0)
 			unreachableClients.insert(unreachableClients.end(),clients.begin(), clients.end());
+		//Acrescentar aos Advices esta info
 		else if(clients.size()==0)
 			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
+		//Acrescentar aos Advices esta info
 		else{
 			int capacityAvailable;
 			int capacityNeeded;
@@ -240,9 +242,9 @@ void SuperMarketChain::calculateRoutes() {
 				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
 			}
 			else{
-
-				// Para Cada camião necessário:
-					//graph.calcRoute();
+				//Para cada supermercado
+				// Para Cada camião:
+					 //camião.route = graph.calcRoute(temp, &clients);
 			}
 
 		}
@@ -250,7 +252,21 @@ void SuperMarketChain::calculateRoutes() {
 
 	}
 
+	cout << unreachableClients.size() << endl;
+	cout << unneededSupermarkets.size() << endl;
+
 }
+
+//Study Routes
+//Ler todos os Supermercados
+//Para cada Supermercado ler todos os trucks
+//Para cada truck ler a Rota e mostrar de forma friendly
+
+
+//DisplayRoutes
+//GraphViewerCenas
+//Se o Nó estiver na Rota de algum truck desenhar Laranja e as transições desse nó para outro qql a verde
+
 
 vector<Client*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 
