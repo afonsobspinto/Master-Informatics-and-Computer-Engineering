@@ -32,7 +32,8 @@ public:
 	void addTransitions(Transition* transition);
 	double getDistance(Place* place2);
 
-	bool operator== (const Place &rhs);
+	bool operator== (const Place &rhs) const;
+	bool operator < (const Place& rhs) const;
 	const std::string& getLabel() const;
 	void setLabel(const std::string& label);
 };

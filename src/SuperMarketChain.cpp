@@ -27,7 +27,9 @@ SuperMarketChain::SuperMarketChain() {
 	LoadingResources(this);
 	cout << "Resources loaded!\n";
 
-	cout << graph->scc().size() << endl;
+	scc = graph->scc();
+
+	cout << "Conjuntos Conexos: " <<  scc.size() << endl;
 
 	displayGraph();
 

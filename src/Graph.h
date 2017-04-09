@@ -184,11 +184,11 @@ public:
 
 	void dijkstraShortestPath(const T &s);
 
-	vector<set<Vertex<T>*>> scc();
+	vector<set<T> > scc();
 	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
-	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>* set);
+	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>* set);
 
 };
 
@@ -606,7 +606,7 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 }
 
 template<class T>
-vector<set<Vertex<T> *> > Graph<T>::scc() {
+vector<set<T> > Graph<T>::scc() {
 
 
 	 //it holds vertices by finish time in reverse order.
@@ -625,25 +625,29 @@ vector<set<Vertex<T> *> > Graph<T>::scc() {
         dfsUtil(vertex, &visited, &stack);
     }
 
-
     //reverse the graph.
      Graph<T> reverseGraph = this->getTranspose();
 
-
      //Do a DFS based off vertex finish time in decreasing order on reverse graph..
      visited.clear();
-     vector<set<Vertex<T>*>> result;
+     vector<set<T>> result;
 
      while (!stack.empty()) {
          Vertex<T>* vertex = reverseGraph.getVertex(stack.front()->info);
+
          stack.pop_front();
+
          if(visited.find(vertex)!=visited.end()){
              continue;
          }
-         set<Vertex<T>*> set;
+         set<T> set;
          dfsUtilRG(vertex, &visited, &set);
          result.push_back(set);
+
      }
+
+     cout << result.size() << endl;
+
      return result;
 
 }
@@ -706,9 +710,10 @@ void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>
 
 
 template<class T>
-void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>*set) {
+void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>*set) {
+
 	visited->insert(v);
-	set->insert(v);
+	set->insert(v->info);
 
 	typename vector<Edge<T> >::iterator it= (v->adj).begin();
 	typename vector<Edge<T> >::iterator ite= (v->adj).end();
@@ -718,7 +723,7 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>
         if (visited->find(vertex) != visited->end()) {
             continue;
         }
-        dfsUtilRG(v, visited, set);
+        dfsUtilRG(vertex, visited, set);
 	}
 }
 

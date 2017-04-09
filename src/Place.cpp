@@ -22,7 +22,7 @@ double Place::getDistance(Place* Place2) {
 	return this->coord.distance(Place2->coord);
 }
 
-bool Place::operator ==(const Place& rhs) {
+bool Place::operator ==(const Place& rhs) const{
 	return this->id == rhs.id;
 }
 
@@ -52,4 +52,8 @@ void Place::setLabel(const std::string& label) {
 
 const std::string Place::getName() const {
 	return "			";
+}
+
+bool Place::operator <(const Place& rhs) const {
+	return this->id < rhs.id;
 }
