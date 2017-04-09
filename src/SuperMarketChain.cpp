@@ -32,10 +32,6 @@ SuperMarketChain::SuperMarketChain() {
 
 	scc = graph->scc();
 
-	//showSCC();
-
-	//displaySCC();
-
 
 }
 
@@ -143,16 +139,16 @@ void SuperMarketChain::displaySCC() {
 	unsigned int i=0;
 	for(unsigned int j = 0; j < scc.size(); j++){
 
-		set <Place> temp = scc.at(i);
+		set <Place*> temp = scc.at(i);
 
-		set<Place>::iterator it;
+		set<Place*>::iterator it;
 
 		for (it = temp.begin(); it != temp.end(); it++){
-			Coord tempCoord = it->getCoord();
+			Coord tempCoord = (*it)->getCoord();
 			geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
-			gv->addNode(it->getID(), geographicCoords.first, geographicCoords.second);
-			gv->setVertexColor(it->getID(), colors[i%colors.size()]);
-			gv->setVertexLabel(it->getID(), it->getName());
+			gv->addNode((*it)->getID(), geographicCoords.first, geographicCoords.second);
+			gv->setVertexColor((*it)->getID(), colors[i%colors.size()]);
+			gv->setVertexLabel((*it)->getID(), (*it)->getName());
 		}
 		i++;
 	}
@@ -230,38 +226,13 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
-void SuperMarketChain::showSCC() {
-
-	int max = 0;
-	int secondMax = 0;
-	set <Place> maxS;
-	set <Place> secondMaxS;
+void SuperMarketChain::calculateRoutes() {
 
 	for (unsigned int i = 0; i < scc.size(); i++){
-		set <Place> temp = scc.at(i);
+		set <Place*> temp = scc.at(i);
+		vector<Client> clients;
+		vector <Supermarket> supermarkets;
 
-		set<Place>::iterator it;
-
-		if(temp.size() > max){
-			secondMax = max;
-			secondMaxS = maxS;
-			max = temp.size();
-			maxS = temp;
-
-		}
-
-		cout << "[";
-		for (it = temp.begin(); it != temp.end(); it++){
-			cout << it->getID() << ", ";
-		}
-		cout << "]" << endl;
 	}
-
-	cout << secondMax << endl;
-	cout << "[" ;
-	for (set<Place>::iterator it = secondMaxS.begin(); it!= secondMaxS.end(); it++){
-		 cout << it->getID() << ", ";
-	}
-	cout << "]" << endl;
 
 }
