@@ -25,10 +25,7 @@ SuperMarketChain::SuperMarketChain() {
 
 	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
 
-
-	cout << "Objects created!\n";
 	LoadingResources(this);
-	cout << "Resources loaded!\n";
 
 	scc = graph->scc();
 	calculateRoutes();
@@ -118,8 +115,6 @@ void SuperMarketChain::displayGraph() {
 
 	cin.clear();
 	cin.ignore(10000, '\n');
-	cout << endl;
-	cout << "Pressione <Enter> para continuar...";
 	cin.get();
 
 	gv->closeWindow();
@@ -166,8 +161,6 @@ void SuperMarketChain::displaySCC() {
 
 	cin.clear();
 	cin.ignore(10000, '\n');
-	cout << endl;
-	cout << "Pressione <Enter> para continuar...";
 	cin.get();
 
 	gv->closeWindow();

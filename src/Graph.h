@@ -470,7 +470,6 @@ vector<T> Graph<T>::topologicalOrder() {
 
 	//verificar se é um DAG
 	if( getNumCycles() > 0 ) {
-		cout << "Ordenacao Impossivel!" << endl;
 		return res;
 	}
 
@@ -517,7 +516,6 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest){
 	list<T> buffer;
 	Vertex<T>* v = getVertex(dest);
 
-	//cout << v->info << " ";
 	buffer.push_front(v->info);
 	while ( v->path != NULL &&  v->path->info != origin) {
 		v = v->path;

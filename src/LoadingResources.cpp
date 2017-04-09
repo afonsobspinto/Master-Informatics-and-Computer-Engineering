@@ -120,8 +120,6 @@ void LoadingResources::loadClients() {
 
 	}
 
-	cout << "Read "<< nclients << " clients.\n";
-
 }
 
 void LoadingResources::loadSuperMarkets() {
@@ -163,8 +161,6 @@ void LoadingResources::loadSuperMarkets() {
 
 		nsupers++;
 	}
-
-	cout << "Read "<< nsupers << " SuperMarkets.\n";
 
 }
 
@@ -209,9 +205,6 @@ void LoadingResources::loadNodes() {
 			nodesIgnored++;
 	}
 
-	cout << "Read "<< nAllNodes << " nodes.\n";
-	cout << "Ignored "<< nodesIgnored << "/" << nsupers + nclients << " nodes.\n";
-
 }
 
 void LoadingResources::loadRoads() {
@@ -243,7 +236,6 @@ void LoadingResources::loadRoads() {
 
 		nroads++;
 	}
-	cout << "Read " << nroads << " roads.\n";
 }
 
 void LoadingResources::loadGeom() {
@@ -291,8 +283,6 @@ void LoadingResources::loadGeom() {
 		ngeoms++;
 
 		}
-
-	cout << "Read " << ngeoms << " geoms.\n";
 }
 
 
