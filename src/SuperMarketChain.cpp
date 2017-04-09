@@ -32,10 +32,6 @@ SuperMarketChain::SuperMarketChain() {
 
 	scc = graph->scc();
 
-	//showSCC();
-
-	//displaySCC();
-
 
 }
 
@@ -230,38 +226,3 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
-void SuperMarketChain::showSCC() {
-
-	int max = 0;
-	int secondMax = 0;
-	set <Place> maxS;
-	set <Place> secondMaxS;
-
-	for (unsigned int i = 0; i < scc.size(); i++){
-		set <Place> temp = scc.at(i);
-
-		set<Place>::iterator it;
-
-		if(temp.size() > max){
-			secondMax = max;
-			secondMaxS = maxS;
-			max = temp.size();
-			maxS = temp;
-
-		}
-
-		cout << "[";
-		for (it = temp.begin(); it != temp.end(); it++){
-			cout << it->getID() << ", ";
-		}
-		cout << "]" << endl;
-	}
-
-	cout << secondMax << endl;
-	cout << "[" ;
-	for (set<Place>::iterator it = secondMaxS.begin(); it!= secondMaxS.end(); it++){
-		 cout << it->getID() << ", ";
-	}
-	cout << "]" << endl;
-
-}
