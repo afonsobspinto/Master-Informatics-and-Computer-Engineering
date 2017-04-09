@@ -635,7 +635,8 @@ vector<set<Vertex<T> *> > Graph<T>::scc() {
      vector<set<Vertex<T>*>> result;
 
      while (!stack.empty()) {
-         Vertex<T>* vertex = reverseGraph.getVertex(stack.pop_front().info);
+         Vertex<T>* vertex = reverseGraph.getVertex(stack.front()->info);
+         stack.pop_front();
          if(visited.find(vertex)!=visited.end()){
              continue;
          }
@@ -707,6 +708,7 @@ void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>
 template<class T>
 void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>*set) {
 	visited->insert(v);
+	set->insert(v);
 
 	typename vector<Edge<T> >::iterator it= (v->adj).begin();
 	typename vector<Edge<T> >::iterator ite= (v->adj).end();
@@ -716,11 +718,8 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<Vertex<T>*>
         if (visited->find(vertex) != visited->end()) {
             continue;
         }
-        dfsUtil(vertex, visited, set);
+        dfsUtilRG(v, visited, set);
 	}
-
-	set->push_front(v);
-
 }
 
 
