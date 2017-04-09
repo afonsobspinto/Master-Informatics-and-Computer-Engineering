@@ -29,12 +29,14 @@ private:
 	std::unordered_map<int, Place*>* allNodes;
 	std::unordered_map<long long int, Street*>* roads;
 	std::vector<Transition*>transitions;
-	std::vector<set<Place>> scc;
+	std::vector<set<Place*>> scc;
 	pair<int, int> convertGeoGraphicCoord(long double geoCoordX, long double geoCoordY);
 	void calcAveragePlaces();
 	static const int heigth;
 	static const int width;
 	std::vector <string> colors;
+	std::vector<Client> getClientsOnSet(set<Place*> sccSet);
+
 
 public:
 	SuperMarketChain();
@@ -51,6 +53,7 @@ public:
 	void addSupermarkets(Supermarket& supermarket);
 	void generateShopping();
 	void generateTrucks();
+	void calculateRoutes();
 
 };
 

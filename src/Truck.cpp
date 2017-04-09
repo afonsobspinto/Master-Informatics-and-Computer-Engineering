@@ -32,3 +32,10 @@ unsigned char Truck::getAverageSpeed() const {
 	return averageSpeed;
 }
 
+const std::list<Place*>& Truck::getRoute() const {
+	return route;
+}
+
+void Truck::addRoute(Place* place) {
+	this->route.push_back(place);
+}

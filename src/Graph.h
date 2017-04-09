@@ -186,11 +186,11 @@ public:
 
 	void dijkstraShortestPath(const T &s);
 
-	vector<set<T> > scc();
+	vector<set<T*> > scc();
 	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
-	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>* set);
+	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
 
 };
 
@@ -608,7 +608,7 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 }
 
 template<class T>
-vector<set<T> > Graph<T>::scc() {
+vector<set<T*> > Graph<T>::scc() {
 
 
 	 //it holds vertices by finish time in reverse order.
@@ -632,7 +632,7 @@ vector<set<T> > Graph<T>::scc() {
 
      //Do a DFS based off vertex finish time in decreasing order on reverse graph..
      visited.clear();
-     vector<set<T>> result;
+     vector<set<T*>> result;
 
      while (!stack.empty()) {
          Vertex<T>* vertex = reverseGraph.getVertex(stack.front()->info);
@@ -642,7 +642,7 @@ vector<set<T> > Graph<T>::scc() {
          if(visited.find(vertex)!=visited.end()){
              continue;
          }
-         set<T> set;
+         set<T*> set;
          dfsUtilRG(vertex, &visited, &set);
          result.push_back(set);
 
@@ -710,10 +710,10 @@ void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>
 
 
 template<class T>
-void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>*set) {
+void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 
 	visited->insert(v);
-	set->insert(v->info);
+	set->insert(&v->info);
 
 	typename vector<Edge<T> >::iterator it= (v->adj).begin();
 	typename vector<Edge<T> >::iterator ite= (v->adj).end();
