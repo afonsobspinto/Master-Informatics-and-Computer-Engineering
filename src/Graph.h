@@ -192,7 +192,9 @@ public:
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
-	std::vector<Vertex<T>*> getPlacesVertex (std::set<T*> place);
+	std::vector<Vertex<T>*> getPlacesVertex (std::set<T*> places);
+
+	std::vector<Vertex<T*>*> calcRoute(std::set<T*> places, vector<T*> clients);
 
 };
 
@@ -741,6 +743,11 @@ std::vector<Vertex<T> *> Graph<T>::getPlacesVertex(std::set<T*> place) {
 	 for (it; it.operator !=(itf); ++it){
 		 res.push_back(getVertex(place));
 	}
+}
+
+template<class T>
+inline std::vector<Vertex<T*> *> Graph<T>::calcRoute(std::set<T*> places,
+		vector<T*> clients) {
 }
 
 #endif /* GRAPH_H_ */

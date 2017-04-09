@@ -256,7 +256,7 @@ void SuperMarketChain::calculateRoutes() {
 				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
 				while(capacityAvailable < capacityNeeded){
 					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
-					unreachableClients.insert(unreachableClients.end(),clients.at(clients.size()-1));
+					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
 			}
