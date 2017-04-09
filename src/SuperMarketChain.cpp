@@ -29,7 +29,9 @@ SuperMarketChain::SuperMarketChain() {
 
 	scc = graph->scc();
 
-	cout << "Conjuntos Conexos: " <<  scc.size() << endl;
+	showSCC();
+
+
 
 	displayGraph();
 
@@ -177,4 +179,20 @@ void SuperMarketChain::generateTrucks() {
 				supermarkets.at(i).addTrucks(truck);
 			}
 		}
+}
+
+void SuperMarketChain::showSCC() {
+
+	for (unsigned int i = 0; i < scc.size(); i++){
+		set <Place> temp = scc.at(i);
+
+		set<Place>::iterator it;
+
+		cout << "[";
+		for (it = temp.begin(); it != temp.end(); it++){
+			cout << it->getID() << ", ";
+		}
+		cout << "]" << endl;
+	}
+
 }

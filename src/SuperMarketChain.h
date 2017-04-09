@@ -47,6 +47,7 @@ public:
 	void addSupermarkets(Supermarket& supermarket);
 	void generateShopping();
 	void generateTrucks();
+	void showSCC();
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
