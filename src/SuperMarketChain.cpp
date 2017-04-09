@@ -241,7 +241,8 @@ void SuperMarketChain::calculateRoutes() {
 			}
 			else{
 
-				graph.calcRoute();
+				// Para Cada camião necessário:
+					//graph.calcRoute();
 			}
 
 		}
