@@ -220,7 +220,21 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
+int SuperMarketChain::getTotalShopping() {
+	int res;
+	for (int i = 0; i<clients.size(); i++){
+		res += clients.at(i).getGroceries().size();
+	}
+	return res;
+}
 
+int SuperMarketChain::getTotalCapacity() {
+	int res;
+	for (int i = 0; i<supermarkets.size(); i++){
+		res += supermarkets.at(i).getCapacity();
+	}
+	return res;
+}
 
 void SuperMarketChain::calculateRoutes() {
 
@@ -236,20 +250,22 @@ void SuperMarketChain::calculateRoutes() {
 			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
 		//Acrescentar aos Advices esta info
 		else{
-			int capacityAvailable;
-			int capacityNeeded;
+			int capacityAvailable = getTotalCapacity();
+			int capacityNeeded = getTotalShopping();
 			if(capacityAvailable < capacityNeeded){
 				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
+				while(capacityAvailable < capacityNeeded){
+					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
+					unreachableClients.insert(unreachableClients.end(),clients.at(clients.size()-1));
+					clients.pop_back();
+				}
 			}
 			else{
 				//Para cada supermercado
 				// Para Cada camião:
 					 //camião.route = graph.calcRoute(temp, &clients);
 			}
-
 		}
-
-
 	}
 
 	cout << unreachableClients.size() << endl;
