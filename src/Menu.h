@@ -28,12 +28,12 @@ void ClearScreen() {
 
 void showClients(SuperMarketChain S){
 	for (int i=0; i< S.getClients().size();i++)
-		cout << i << ". " << S.getClients().at(i).getName() << endl;
+		cout << i+1 << ". " << S.getClients().at(i).getName() << endl;
 }
 
 void showSupermarkets(SuperMarketChain S){
 	for (int i=0; i< S.getSupermarkets().size();i++)
-		cout << i << ". " << S.getSupermarkets().at(i).getName() << endl;
+		cout << i+1 << ". " << S.getSupermarkets().at(i).getName() << endl;
 }
 
 bool mainOptions() {
