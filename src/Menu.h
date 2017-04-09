@@ -46,11 +46,12 @@ bool mainOptions() {
 		cout << endl;
 		cout << "   " << "1 - See the Graph" << endl;
 		cout << "   " << "2 - Generate Shopping" << endl;
-		cout << "   " << "3 - Show Route" << endl;
-		cout << "   " << "4 - Study Route" << endl;
+		cout << "   " << "3 - Show Routes" << endl;
+		cout << "   " << "4 - Study Routes" << endl;
 		cout << "   " << "5 - See Clients" << endl;
 		cout << "   " << "6 - See Supermarkets" << endl;
-		cout << "   " << "7 - Leave" << endl << endl;
+		cout << "   " << "7 - Show Strongly connected components" << endl;
+		cout << "   " << "8 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
@@ -69,10 +70,8 @@ bool mainOptions() {
 			break;
 		}
 		case 3:{
-			S.displaySCC();
 			break;}
 		case 4:{
-			S.showSCC();
 			break;}
 		case 5:{
 			showClients(S);
@@ -81,6 +80,9 @@ bool mainOptions() {
 			showSupermarkets(S);
 			break;}
 		case 7:{
+			S.displaySCC();
+			break;}
+		case 8:{
 			return true;}
 		default:{
 			continue;}
