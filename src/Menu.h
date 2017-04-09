@@ -26,17 +26,28 @@ void ClearScreen() {
 
 }
 
+void showClients(SuperMarketChain S){
+	for (int i=0; i< S.getClients().size();i++)
+		cout << i << ". " << S.getClients().at(i).getName() << endl;
+}
+
+void showSupermarkets(SuperMarketChain S){
+	for (int i=0; i< S.getSupermarkets().size();i++)
+		cout << i << ". " << S.getSupermarkets().at(i).getName() << endl;
+}
+
 bool mainOptions() {
 	int option;
 
 	while(1){
+		SuperMarketChain S = SuperMarketChain();
 		ClearScreen();
 		cout << "Menu: " << endl;
 		cout << endl;
 		cout << "   " << "1 - See the Graph" << endl;
 		cout << "   " << "2 - Generate Shopping" << endl;
 		cout << "   " << "3 - Show Route" << endl;
-		cout << "   " << "4 - Show Route" << endl;
+		cout << "   " << "4 - Study Route" << endl;
 		cout << "   " << "5 - See Clients" << endl;
 		cout << "   " << "6 - See Supermarkets" << endl;
 		cout << "   " << "7 - Leave" << endl << endl;
@@ -48,25 +59,26 @@ bool mainOptions() {
 		switch (option){
 		case 1:
 		{
-			SuperMarketChain S = SuperMarketChain();
 			S.displayGraph();
 			break;
 		}
 		case 2:
 		{
-			SuperMarketChain S = SuperMarketChain();
 			S.generateShopping();
 			S.displayGraph();
 			break;
 		}
 		case 3:{
-
+			S.displaySCC();
 			break;}
 		case 4:{
+			S.showSCC();
 			break;}
 		case 5:{
+			showClients(S);
 			break;}
 		case 6:{
+			showSupermarkets(S);
 			break;}
 		case 7:{
 			return true;}

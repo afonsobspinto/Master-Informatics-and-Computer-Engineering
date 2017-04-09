@@ -34,7 +34,7 @@ SuperMarketChain::SuperMarketChain() {
 
 	//showSCC();
 
-	displaySCC();
+	//displaySCC();
 
 
 }
