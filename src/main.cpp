@@ -19,7 +19,5 @@ int main() {
 
 	mainOptions();
 
-	cout << "!!!Hello World!!!" << endl;
-
 	return 0;
 }
