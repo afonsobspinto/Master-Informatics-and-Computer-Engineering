@@ -104,8 +104,8 @@ void SuperMarketChain::displayGraph() {
 		else if(kv.second->getLabel()=="supermarket")
 			gv->setVertexColor(kv.first, RED);
 
-		gv->setVertexLabel(kv.first, kv.second->getName());
-
+		//gv->setVertexLabel(kv.first, kv.second->getName());
+		gv->setVertexLabel(kv.first, to_string(kv.first));
 
 	}
 
