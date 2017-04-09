@@ -210,6 +210,7 @@ bool GraphViewer::setVertexColor(int k, string color) {
 	char buff[200];
 	sprintf(buff, "setVertexColor %d %s\n", k, color.c_str());
 	string str(buff);
+
 	return con->sendMsg(str);
 }
 
