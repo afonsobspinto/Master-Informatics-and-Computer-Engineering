@@ -766,6 +766,7 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 	}
 
 
+	res = solveGreedy(clients, start);
 
 	return res;
 }
