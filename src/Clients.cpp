@@ -6,6 +6,7 @@
  */
 
 #include "Clients.h"
+#include <iostream>
 
 using namespace std;
 
@@ -30,5 +31,6 @@ void Client::addGroceries(Purchase& purchase){
 }
 
 int Client::getShoppingSize() {
+	cout << "ou" << endl;
 	return shopping.size();
 }

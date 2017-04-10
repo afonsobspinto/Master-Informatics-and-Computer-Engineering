@@ -200,6 +200,7 @@ void SuperMarketChain::calcAveragePlaces() {
 void SuperMarketChain::generateShopping() {
 	Date currentdate = Date();
 
+
 	for(unsigned int i=0; i<clients.size(); i++){
 		int number = rand() % 21;
 		int product = rand() % 21;
@@ -208,6 +209,7 @@ void SuperMarketChain::generateShopping() {
 			clients.at(i).addGroceries(p);
 		}
 	}
+
 
 }
 
@@ -345,7 +347,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet2(set<Place*> sccSet) {
 	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
 
 		if((*ite)->getLabel()=="client"){
-			Client* client = static_cast<Client*>(*ite);
+			Place* client = (*ite);
 			result.push_back(client);
 		}
 	}
