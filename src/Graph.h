@@ -88,7 +88,7 @@ bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
 //atualizado pelo exercício 5
 template <class T>
 Vertex<T>::Vertex(T in): info(in), visited(false), processing(false), indegree(0), dist(0) {
-	path = NULL;
+	path = nullptr;
 }
 
 
@@ -192,10 +192,8 @@ public:
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
-	std::vector<Vertex<T>*> getPlacesVertex (std::set<T*> places);
 
-	std::vector<Vertex<T*>*> calcRoute(std::set<T*> places, vector<T*> clients);
-
+	vector<T*> calcRoute(set<T*> places , vector<T*>* clients);
 
 };
 
@@ -413,7 +411,7 @@ template <class T>
 Vertex<T>* Graph<T>::getVertex(const T &v) const {
 	for(unsigned int i = 0; i < vertexSet.size(); i++)
 		if (vertexSet[i]->info == v) return vertexSet[i];
-	return NULL;
+	return nullptr;
 }
 
 template<class T>
@@ -522,11 +520,11 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest){
 	Vertex<T>* v = getVertex(dest);
 
 	buffer.push_front(v->info);
-	while ( v->path != NULL &&  v->path->info != origin) {
+	while (v->path != nullptr && v->path->info != origin) {
 		v = v->path;
 		buffer.push_front(v->info);
 	}
-	if( v->path != NULL )
+	if (v->path != nullptr)
 		buffer.push_front(v->path->info);
 
 
@@ -543,7 +541,7 @@ template<class T>
 void Graph<T>::unweightedShortestPath(const T &s) {
 
 	for(unsigned int i = 0; i < vertexSet.size(); i++) {
-		vertexSet[i]->path = NULL;
+		vertexSet[i]->path = nullptr;
 		vertexSet[i]->dist = INT_INFINITY;
 	}
 
@@ -569,7 +567,7 @@ template<class T>
 void Graph<T>::dijkstraShortestPath(const T &s) {
 
 	for(unsigned int i = 0; i < vertexSet.size(); i++) {
-		vertexSet[i]->path = NULL;
+		vertexSet[i]->path = nullptr;
 		vertexSet[i]->dist = INT_INFINITY;
 		vertexSet[i]->processing = false;
 	}
@@ -730,36 +728,20 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 	}
 }
 
+template <class T>
+vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients)  {
+
+	vector<T*> res;
+
+
+	return res;
+}
+
 
 
 template<class T>
 Graph<T>::Graph() {
 }
 
-//template<class T>
-//std::vector<Vertex<T> *> Graph<T>::getPlacesVertex(std::set<T*> place) {
-//	vector<Vertex<T> *> res;
-//	std::set<int>::iterator it=place.begin();
-//	std::set<int>::iterator itf=place.end();
-//	 for (; it!=itf; ++it){
-//		 res.push_back(*it);
-//	}
-//}
-//
-//template<class T>
-//std::vector<Vertex<T*> *> Graph<T>::calcRoute(std::set<T*> places,
-//		vector<T*> clients) {
-//
-//	vector<Vertex<T> *> vertices = getPlacesVertex(places);
-//	Graph subGraph = Graph();
-//
-//	for(unsigned int i = 0; i < vertices.size(); i++){
-//		subGraph.addVertex(vertices.at(i));
-//	}
-//
-//
-//	cout << subGraph.getNumVertex().size();
-//
-//}
 
 #endif /* GRAPH_H_ */

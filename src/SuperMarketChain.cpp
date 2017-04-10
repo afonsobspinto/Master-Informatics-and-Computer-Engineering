@@ -28,7 +28,9 @@ SuperMarketChain::SuperMarketChain() {
 	LoadingResources(this);
 
 	scc = graph->scc();
+
 	calculateRoutes();
+	generateShopping();
 
 
 }
@@ -198,7 +200,7 @@ void SuperMarketChain::calcAveragePlaces() {
 void SuperMarketChain::generateShopping() {
 	Date currentdate = Date();
 
-	for(int i=0; i<clients.size(); i++){
+	for(unsigned int i=0; i<clients.size(); i++){
 		int number = rand() % 21;
 		int product = rand() % 21;
 		for(int j=0; j<number; j++){
@@ -211,7 +213,7 @@ void SuperMarketChain::generateShopping() {
 
 void SuperMarketChain::generateTrucks() {
 
-	for(int i=0; i<supermarkets.size(); i++){
+	for(unsigned int i=0; i<supermarkets.size(); i++){
 			int number = rand() % 10 + 1;
 			Truck truck = Truck(&supermarkets.at(i));
 			for(int j=0; j<number; j++){
@@ -222,7 +224,7 @@ void SuperMarketChain::generateTrucks() {
 
 int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
 	int res;
-	for (int i = 0; i<clients.size(); i++){
+	for (unsigned int i = 0; i<clients.size(); i++){
 		res += clients.at(i)->getGroceries().size();
 	}
 	return res;
@@ -230,7 +232,7 @@ int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
 
 int SuperMarketChain::getTotalCapacity() {
 	int res;
-	for (int i = 0; i<supermarkets.size(); i++){
+	for (unsigned int i = 0; i<supermarkets.size(); i++){
 		res += supermarkets.at(i).getCapacity();
 	}
 	return res;
@@ -261,7 +263,8 @@ void SuperMarketChain::calculateRoutes() {
 				}
 			}
 			else{
-				//graph->calcRoute(temp, clients);
+
+				graph->calcRoute(temp, &clients).size();
 				//Para cada supermercado
 				// Para Cada camião:
 					 //camião.route = graph.calcRoute(temp, &clients);
