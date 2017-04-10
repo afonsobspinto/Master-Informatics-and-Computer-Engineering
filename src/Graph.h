@@ -19,6 +19,8 @@
 #include "Transition.h"
 #include "algorithm"
 #include "unistd.h"
+#include <unordered_set>
+#include <limits>
 using namespace std;
 
 template <class T> class Edge;
@@ -194,9 +196,15 @@ public:
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
 
+
 	vector<T*> calcRoute(set<T*> places , vector<T*>* clients, T* start);
 
+	vector<T*>solveGreedy(vector<T*>* clients, T* start);
+
+	double distance(vector<T> path);
+
 };
+
 
 
 template <class T>
@@ -757,8 +765,7 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 
 	}
 
-	cout << subGraph.vertexSet.size() << endl;
-	cout << start->getID() << endl;
+
 
 	return res;
 }
@@ -780,6 +787,59 @@ vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
 }
 
 
+template <class T>
+vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
+
+	vector<T*> res;
+	T* best;
+
+	int capacity = 50;
+
+	while(capacity > 0){
+
+	dijkstraShortestPath(*start);
+
+	double distance = numeric_limits<double>::max();
+
+	for (unsigned int i = 0; i < clients->size(); i++){
+		T* node = clients->at(i);
+		vector<T> path = getPath(*start, *node);
+
+		double tempdist = 0;
+
+		for(unsigned int j = 0; j < path.size(); j++){
+			tempdist += distance(path);
+		}
+
+		if(tempdist < distance){
+			distance = tempdist;
+			best = node;
+		}
+
+	}
+
+	res.push_back(best);
+	capacity -= best->getGroceries().size();
+	start = best;
+	clients->erase(remove(clients->begin(), clients->end(), best));
+
+	}
+
+	return res;
+
+
+}
+
+
+template <class T>
+double Graph<T>::distance(vector<T> path){
+	double res = 0;
+	for(unsigned int i = 0; i < path.size()-1; i++){
+		T node = path.at(i);
+		T nextNode = path(i++);
+		res += node->distance(nextNode);
+	}
+}
 
 template<class T>
 Graph<T>::Graph() {
