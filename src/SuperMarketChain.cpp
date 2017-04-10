@@ -265,7 +265,7 @@ void SuperMarketChain::calculateRoutes() {
 			if(capacityAvailable < capacityNeeded){
 
 				while(capacityAvailable < capacityNeeded){
-					//capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
+					capacityNeeded -= clients.at(clients.size()-1)->getShoppingSize();
 					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
@@ -317,7 +317,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
 
 		if((*ite)->getLabel()=="client"){
-			Place* client = (*ite);
+			Client* client = static_cast<Client*>(*ite);
 			result.push_back(client);
 		}
 	}
@@ -325,7 +325,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 	return result;
 }
 
-std::vector<Supermarket*> SuperMarketChain::getSupermarketsOnSet(
+std::vector<Place*> SuperMarketChain::getSupermarketsOnSet(
 		set<Place*> sccSet) {
 	vector <Supermarket*> result;
 	set<Place*>::iterator ite;

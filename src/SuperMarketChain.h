@@ -36,7 +36,7 @@ private:
 	static const int width;
 	std::vector <string> colors;
 	std::vector<Place*> getClientsOnSet(set<Place*> sccSet);
-	std::vector<Supermarket*> getSupermarketsOnSet(set<Place*> sccSet);
+	std::vector<Place*> getSupermarketsOnSet(set<Place*> sccSet);
 	std::vector<Place*> unreachableClients;
 	std::vector<Place*> unneededSupermarkets;
 	int getTotalShopping(vector<Place*> clients);
