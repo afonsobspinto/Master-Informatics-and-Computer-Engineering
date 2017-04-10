@@ -67,3 +67,4 @@ int Place::getShoppingSize() {
 bool Place::operator !=(const Place& rhs) const {
 	return this->id != rhs.id;
 }
+

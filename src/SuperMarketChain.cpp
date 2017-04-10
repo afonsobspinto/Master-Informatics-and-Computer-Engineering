@@ -231,7 +231,10 @@ int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
 	int res = 0;
 	for (unsigned int i = 0; i<clients.size(); i++){
 
-		//res += clients.at(i)->getGroceries().size();
+		Client* client = static_cast<Client*> (clients.at(i));
+
+
+		res += client->getShoppingSize();
 	}
 	return res;
 
@@ -276,8 +279,7 @@ void SuperMarketChain::calculateRoutes() {
 
 				cout << "Supermarkets Size: " <<  supermarkets.size() << endl;
 				for(unsigned int j = 0; j < supermarkets.size(); j++){
-					Supermarket* supermarket = dynamic_cast<Supermarket*>(supermarkets.at(j));
-					if(supermarket!= nullptr){
+					Supermarket* supermarket = static_cast<Supermarket*>(supermarkets.at(j));
 
 						cout << supermarket->getLabel() << endl;
 
@@ -286,18 +288,12 @@ void SuperMarketChain::calculateRoutes() {
 						for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
 							Truck truck = supermarket->getTrucks().at(k);
 							vector<Place*> route = graph->calcRoute(temp, &clients, supermarkets.at(j));
-							//truck.setRoute(route);
-
-						}
+							truck.setRoute(route);
 					}
 				}
 			}
 		}
 	}
-
-//	cout << unreachableClients.size() << endl;
-//	cout << unneededSupermarkets.size() << endl;
-
 }
 
 //Study Routes

@@ -15,7 +15,6 @@
 #include "Purchase.h"
 
 
-
 class Truck;
 
 class Place{
@@ -27,6 +26,7 @@ private:
 	std::string label;
 
 public:
+
 	Place(long long int id, Coord coord);
 
 	long long int getID() const;
@@ -42,7 +42,7 @@ public:
 	void setLabel(const std::string& label);
 	virtual int getShoppingSize();
 
-	virtual ~Place() {}
+	virtual ~Place() {};
 
 };
 
