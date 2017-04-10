@@ -177,6 +177,7 @@ public:
 
 	//exercicio 5
 	Vertex<T>* getVertex(const T &v) const;
+	vector<Vertex<T>*> getVertexFromSet(const set<T*> places ) const;
 	void resetIndegrees();
 	vector<Vertex<T>*> getSources() const;
 	int getNumCycles();
@@ -732,7 +733,45 @@ template <class T>
 vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients)  {
 
 	vector<T*> res;
+	Graph subGraph = Graph();
 
+	vector<Vertex<T>*> vertices = getVertexFromSet(places);
+
+	typename set<T*>::iterator it;
+
+
+	for(it = places.begin(); it!=places.end(); it++){
+		T place = *(*it);
+		subGraph.addVertex(place);
+	}
+
+	for (unsigned int i = 0; i < vertices.size(); i++){
+		Vertex<T>* vertex = vertices.at(i);
+
+		typename vector<Edge<T> >::iterator it= (vertex->adj).begin();
+		typename vector<Edge<T> >::iterator ite= (vertex->adj).end();
+
+		for (; it !=ite; it++){
+			subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
+		}
+
+	}
+
+	return res;
+}
+
+template <class T>
+vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
+
+	vector<Vertex<T>*> res;
+
+	typename set<T*>::iterator it;
+	for(it = places.begin(); it!=places.end(); it++){
+		T place = *(*it);
+		Vertex<T>* vertex = getVertex(place);
+		res.push_back(vertex);
+
+	}
 
 	return res;
 }

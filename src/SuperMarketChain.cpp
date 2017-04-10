@@ -242,6 +242,7 @@ void SuperMarketChain::calculateRoutes() {
 
 	for (unsigned int i = 0; i < scc.size(); i++){
 		set <Place*> temp = scc.at(i);
+
 		vector<Place*> clients = getClientsOnSet(temp);
 		vector <Supermarket*> supermarkets = getSupermarketsOnSet(temp);
 
@@ -272,8 +273,8 @@ void SuperMarketChain::calculateRoutes() {
 		}
 	}
 
-	cout << unreachableClients.size() << endl;
-	cout << unneededSupermarkets.size() << endl;
+//	cout << unreachableClients.size() << endl;
+//	cout << unneededSupermarkets.size() << endl;
 
 }
 
