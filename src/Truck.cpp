@@ -32,10 +32,12 @@ unsigned char Truck::getAverageSpeed() const {
 	return averageSpeed;
 }
 
-const std::list<Place*>& Truck::getRoute() const {
-	return route;
+
+void Truck::setRoute(const std::vector<Place*>& route) {
+	this->route = route;
 }
 
-void Truck::addRoute(Place* place) {
-	this->route.push_back(place);
+
+const std::vector<Place*>& Truck::getRoute() const {
+	return route;
 }

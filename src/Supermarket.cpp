@@ -16,10 +16,6 @@ Supermarket::Supermarket(long long int id, Coord coord, std::string name): Place
 }
 
 
-const std::vector<Truck>& Supermarket::getTrucks() const {
-	return trucks;
-}
-
 const std::string Supermarket::getName() const{
 	return name;
 }
@@ -27,6 +23,11 @@ const std::string Supermarket::getName() const{
 
 void Supermarket::addTrucks(Truck& truck) {
 	this->trucks.push_back(truck);
+}
+
+const std::vector<Truck>& Supermarket::getTrucks() const {
+	cout << "Hey " << endl;
+	return trucks;
 }
 
 const int Supermarket::getCapacity() const {

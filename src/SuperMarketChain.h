@@ -38,7 +38,7 @@ private:
 	std::vector<Place*> getClientsOnSet(set<Place*> sccSet);
 	std::vector<Supermarket*> getSupermarketsOnSet(set<Place*> sccSet);
 	std::vector<Place*> unreachableClients;
-	std::vector<Supermarket*> unneededSupermarkets;
+	std::vector<Place*> unneededSupermarkets;
 	int getTotalShopping(vector<Place*> clients);
 	int getTotalCapacity();
 

@@ -24,10 +24,10 @@ private:
 
 public:
 	Supermarket(long long int id, Coord coord, std::string name);
-	const std::vector<Truck>& getTrucks() const;
 	const std::string getName() const;
 	void addTrucks(Truck& truck);
 	const int getCapacity() const;
+	virtual const std::vector<Truck>& getTrucks() const;
 };
 
 

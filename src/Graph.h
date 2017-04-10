@@ -194,7 +194,7 @@ public:
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
 	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
 
-	vector<T*> calcRoute(set<T*> places , vector<T*>* clients);
+	vector<T*> calcRoute(set<T*> places , vector<T*>* clients, T* start);
 
 };
 
@@ -730,7 +730,7 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 }
 
 template <class T>
-vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients)  {
+vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 
 	vector<T*> res;
 	Graph subGraph = Graph();
@@ -756,6 +756,9 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients)  {
 		}
 
 	}
+
+	cout << subGraph.vertexSet.size() << endl;
+	cout << start->getID() << endl;
 
 	return res;
 }

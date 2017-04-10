@@ -13,6 +13,8 @@
 
 static unsigned short ids = 1;
 
+class Place;
+
 class Truck{
 
 private:
@@ -21,7 +23,7 @@ private:
 	unsigned char usedCapacity;
 	unsigned char averageSpeed;
 	Place* location;
-	std::list<Place*> route;
+	std::vector<Place*> route;
 
 public:
 	Truck(Place* location);
@@ -30,8 +32,8 @@ public:
 	const Place* getLocation() const;
 	unsigned char getUsedCapacity() const;
 	unsigned char getAverageSpeed() const;
-	const std::list<Place*>& getRoute() const;
-	void addRoute(Place* place);
+	void setRoute(const std::vector<Place*>& route);
+	const std::vector<Place*>& getRoute() const;
 };
 
 

@@ -29,8 +29,10 @@ SuperMarketChain::SuperMarketChain() {
 
 	scc = graph->scc();
 
-	calculateRoutes();
 	generateShopping();
+	generateTrucks();
+	calculateRoutes();
+
 
 
 }
@@ -225,6 +227,7 @@ void SuperMarketChain::generateTrucks() {
 int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
 	int res;
 	for (unsigned int i = 0; i<clients.size(); i++){
+
 		res += clients.at(i)->getGroceries().size();
 	}
 	return res;
@@ -248,27 +251,37 @@ void SuperMarketChain::calculateRoutes() {
 
 		if(supermarkets.size()==0)
 			unreachableClients.insert(unreachableClients.end(),clients.begin(), clients.end());
-		//Acrescentar aos Advices esta info
 		else if(clients.size()==0)
 			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
-		//Acrescentar aos Advices esta info
+
 		else{
+
 			int capacityAvailable = getTotalCapacity();
 			int capacityNeeded = getTotalShopping(clients);
+
 			if(capacityAvailable < capacityNeeded){
-				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
+
 				while(capacityAvailable < capacityNeeded){
 					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
 					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
 			}
-			else{
 
-				graph->calcRoute(temp, &clients).size();
-				//Para cada supermercado
-				// Para Cada camião:
-					 //camião.route = graph.calcRoute(temp, &clients);
+			else{
+				cout << "Supermarkets Size: " <<  supermarkets.size() << endl;
+				for(unsigned int j = 0; j < supermarkets.size(); j++){
+					Supermarket* supermarket = supermarkets.at(j);
+
+					cout << supermarket->getTrucks().size() << endl;
+
+					for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
+						Truck truck = supermarket->getTrucks().at(k);
+						vector<Place*> route = graph->calcRoute(temp, &clients, supermarkets.at(j));
+						//truck.setRoute(route);
+
+					}
+				}
 			}
 		}
 	}

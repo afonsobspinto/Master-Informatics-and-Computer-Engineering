@@ -46,6 +46,12 @@ const std::string& Place::getLabel() const {
 	return label;
 }
 
+const std::vector<Truck>& Place::getTrucks() const {
+
+	vector<Truck>empty;
+	return empty;
+}
+
 void Place::setLabel(const std::string& label) {
 	this->label = label;
 }
