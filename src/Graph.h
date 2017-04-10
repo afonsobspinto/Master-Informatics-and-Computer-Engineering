@@ -765,10 +765,13 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 		typename vector<Edge<T> >::iterator ite= (vertex->adj).end();
 
 		for (; it !=ite; it++){
-			subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
+			if(places.find(&it->dest->info)!=places.end())
+				subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
 		}
 
 	}
+
+	cout << "Solved" << endl;
 
 	res = solveGreedy(clients, start);
 
@@ -785,7 +788,6 @@ vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
 		T place = *(*it);
 		Vertex<T>* vertex = getVertex(place);
 		res.push_back(vertex);
-
 	}
 
 	return res;
