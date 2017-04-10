@@ -26,6 +26,8 @@ public:
 
 	//bool operator == (const Client & rhs);
 	virtual std::vector<Purchase>& getGroceries();
+	virtual int getShoppingSize();
+
 };
 
 

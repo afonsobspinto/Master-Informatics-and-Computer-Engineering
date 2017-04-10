@@ -201,7 +201,7 @@ public:
 
 	vector<T*>solveGreedy(vector<T*>* clients, T* start);
 
-	double distance(vector<T> path);
+	double getDistance(vector<T> path);
 
 };
 
@@ -529,7 +529,7 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest){
 	Vertex<T>* v = getVertex(dest);
 
 	buffer.push_front(v->info);
-	while (v->path != nullptr && v->path->info != origin) {
+	while (v->path != NULL && v->path->info != origin) {
 		v = v->path;
 		buffer.push_front(v->info);
 	}
@@ -809,7 +809,7 @@ vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
 		double tempdist = 0;
 
 		for(unsigned int j = 0; j < path.size(); j++){
-			tempdist += distance(path);
+			tempdist += getDistance(path);
 		}
 
 		if(tempdist < distance){
@@ -820,7 +820,7 @@ vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
 	}
 
 	res.push_back(best);
-	capacity -= best->getGroceries().size();
+	capacity -= best->getShoppingSize();
 	start = best;
 	clients->erase(remove(clients->begin(), clients->end(), best));
 
@@ -833,12 +833,12 @@ vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
 
 
 template <class T>
-double Graph<T>::distance(vector<T> path){
+double Graph<T>::getDistance(vector<T> path){
 	double res = 0;
 	for(unsigned int i = 0; i < path.size()-1; i++){
 		T node = path.at(i);
-		T nextNode = path(i++);
-		res += node->distance(nextNode);
+		T nextNode = path.at(i++);
+		res += node.getDistance(&nextNode);
 	}
 }
 

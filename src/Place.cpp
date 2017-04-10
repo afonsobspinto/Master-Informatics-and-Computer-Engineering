@@ -59,3 +59,11 @@ const std::string Place::getName() const {
 bool Place::operator <(const Place& rhs) const {
 	return this->id < rhs.id;
 }
+
+int Place::getShoppingSize() {
+	return 0;
+}
+
+bool Place::operator !=(const Place& rhs) const {
+	return this->id != rhs.id;
+}

@@ -28,3 +28,7 @@ std::vector<Purchase>& Client::getGroceries(){
 void Client::addGroceries(Purchase& purchase){
 	this->shopping.push_back(purchase);
 }
+
+int Client::getShoppingSize() {
+	return shopping.size();
+}
