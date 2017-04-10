@@ -276,17 +276,19 @@ void SuperMarketChain::calculateRoutes() {
 
 				cout << "Supermarkets Size: " <<  supermarkets.size() << endl;
 				for(unsigned int j = 0; j < supermarkets.size(); j++){
-					Supermarket* supermarket = static_cast<Supermarket*>(supermarkets.at(j));
+					Supermarket* supermarket = dynamic_cast<Supermarket*>(supermarkets.at(j));
+					if(supermarket!= nullptr){
 
-					cout << supermarket->getLabel() << endl;
+						cout << supermarket->getLabel() << endl;
 
-					cout << supermarket->getTrucks().size() << endl;
+						cout << supermarket->getTrucks().size() << endl;
 
-					for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
-						Truck truck = supermarket->getTrucks().at(k);
-						vector<Place*> route = graph->calcRoute(temp, &clients, supermarkets.at(j));
-						//truck.setRoute(route);
+						for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
+							Truck truck = supermarket->getTrucks().at(k);
+							vector<Place*> route = graph->calcRoute(temp, &clients, supermarkets.at(j));
+							//truck.setRoute(route);
 
+						}
 					}
 				}
 			}
