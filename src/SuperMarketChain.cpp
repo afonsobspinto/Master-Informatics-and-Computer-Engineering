@@ -261,29 +261,24 @@ void SuperMarketChain::calculateRoutes() {
 			int capacityAvailable = getTotalCapacity();
 			int capacityNeeded = getTotalShopping(clients);
 
-			if(capacityAvailable < capacityNeeded){
 
+			if(capacityAvailable < capacityNeeded){
 				while(capacityAvailable < capacityNeeded){
 					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
 					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
-
 			}
 
-			else{
-				for(unsigned int j = 0; j < supermarkets.size(); j++){
-					Supermarket* supermarket = supermarkets.at(j);
-					cout << supermarket->getLabel() << endl << flush;
 
-					cout << supermarket->getTrucks().size() << endl  << flush;
+			for(unsigned int j = 0; j < supermarkets.size(); j++){
+				Supermarket* supermarket = supermarkets.at(j);
 
-					for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
-						Truck truck = supermarket->getTrucks().at(k);
-						vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
-						truck.setRoute(route);
+				for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
+					Truck truck = supermarket->getTrucks().at(k);
+					vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
+					truck.setRoute(route);
 
-					}
 				}
 			}
 		}

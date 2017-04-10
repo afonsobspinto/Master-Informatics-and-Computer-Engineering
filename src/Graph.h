@@ -740,6 +740,9 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 template <class T>
 vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 
+
+	cout << "Here" << endl;
+
 	vector<T*> res;
 	Graph subGraph = Graph();
 
@@ -753,6 +756,8 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 		subGraph.addVertex(place);
 	}
 
+	cout << "Here" << endl;
+
 	for (unsigned int i = 0; i < vertices.size(); i++){
 		Vertex<T>* vertex = vertices.at(i);
 
@@ -764,7 +769,6 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 		}
 
 	}
-
 
 	res = solveGreedy(clients, start);
 
