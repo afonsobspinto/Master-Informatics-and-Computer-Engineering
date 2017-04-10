@@ -35,11 +35,11 @@ private:
 	static const int heigth;
 	static const int width;
 	std::vector <string> colors;
-	std::vector<Client*> getClientsOnSet(set<Place*> sccSet);
+	std::vector<Place*> getClientsOnSet(set<Place*> sccSet);
 	std::vector<Supermarket*> getSupermarketsOnSet(set<Place*> sccSet);
-	std::vector<Client*> unreachableClients;
+	std::vector<Place*> unreachableClients;
 	std::vector<Supermarket*> unneededSupermarkets;
-	int getTotalShopping(vector<Client*> clients);
+	int getTotalShopping(vector<Place*> clients);
 	int getTotalCapacity();
 
 

@@ -220,7 +220,7 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
-int SuperMarketChain::getTotalShopping(vector<Client*> clients) {
+int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
 	int res;
 	for (int i = 0; i<clients.size(); i++){
 		res += clients.at(i)->getGroceries().size();
@@ -240,7 +240,7 @@ void SuperMarketChain::calculateRoutes() {
 
 	for (unsigned int i = 0; i < scc.size(); i++){
 		set <Place*> temp = scc.at(i);
-		vector<Client*> clients = getClientsOnSet(temp);
+		vector<Place*> clients = getClientsOnSet(temp);
 		vector <Supermarket*> supermarkets = getSupermarketsOnSet(temp);
 
 		if(supermarkets.size()==0)
@@ -261,6 +261,7 @@ void SuperMarketChain::calculateRoutes() {
 				}
 			}
 			else{
+				//graph->calcRoute(temp, clients);
 				//Para cada supermercado
 				// Para Cada camião:
 					 //camião.route = graph.calcRoute(temp, &clients);
@@ -284,15 +285,15 @@ void SuperMarketChain::calculateRoutes() {
 //Se o Nó estiver na Rota de algum truck desenhar Laranja e as transições desse nó para outro qql a verde
 
 
-vector<Client*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
+vector<Place*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 
-	vector <Client*> result;
+	vector <Place*> result;
 	set<Place*>::iterator ite;
 
 	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
 
 		if((*ite)->getLabel()=="client"){
-			Client* client = static_cast<Client*> (*ite);
+			Place* client = (*ite);
 			result.push_back(client);
 		}
 	}
