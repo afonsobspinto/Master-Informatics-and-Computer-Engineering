@@ -300,10 +300,6 @@ void SuperMarketChain::calculateRoutes() {
 
 }
 
-//Study Routes
-//Ler todos os Supermercados
-//Para cada Supermercado ler todos os trucks
-//Para cada truck ler a Rota e mostrar de forma friendly
 void SuperMarketChain::studyRoutes() {
 	double numberofroutes = 0;
 	double totaldistance = 0.0, totaltime = 0.0;
