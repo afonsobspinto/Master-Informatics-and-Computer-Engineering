@@ -251,7 +251,7 @@ void SuperMarketChain::calculateRoutes() {
 		set <Place*> temp = scc.at(i);
 
 		vector<Place*> clients = getClientsOnSet(temp);
-		vector <Supermarket*> supermarkets = getSupermarketsOnSet(temp);
+		vector <Place*> supermarkets = getSupermarketsOnSet(temp);
 
 		if(supermarkets.size()==0)
 			unreachableClients.insert(unreachableClients.end(),clients.begin(), clients.end());
@@ -276,7 +276,7 @@ void SuperMarketChain::calculateRoutes() {
 
 				cout << "Supermarkets Size: " <<  supermarkets.size() << endl;
 				for(unsigned int j = 0; j < supermarkets.size(); j++){
-					Supermarket* supermarket = supermarkets.at(j);
+					Supermarket* supermarket = static_cast<Supermarket*>(supermarkets.at(j));
 
 					cout << supermarket->getLabel() << endl;
 
@@ -327,7 +327,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 
 std::vector<Place*> SuperMarketChain::getSupermarketsOnSet(
 		set<Place*> sccSet) {
-	vector <Supermarket*> result;
+	vector <Place*> result;
 	set<Place*>::iterator ite;
 
 
