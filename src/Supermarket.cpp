@@ -26,10 +26,6 @@ void Supermarket::addTrucks() {
 	Truck truck = Truck();
 
 	this->trucks.push_back(truck);
-
-	cout << "Added Truck " << trucks.size() << " " << this->getID() <<  endl;
-
-
 }
 
 const int Supermarket::getCapacity() const {
