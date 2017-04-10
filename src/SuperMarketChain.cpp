@@ -279,9 +279,9 @@ void SuperMarketChain::calculateRoutes() {
 					Supermarket* supermarket = dynamic_cast<Supermarket*>(supermarkets.at(j));
 					if(supermarket!= nullptr){
 
-						cout << supermarket->getLabel() << endl;
+						//cout << supermarket->getLabel() << endl;
 
-						cout << supermarket->getTrucks().size() << endl;
+						//cout << supermarket->getTrucks().size() << endl;
 
 						for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
 							Truck truck = supermarket->getTrucks().at(k);
@@ -304,7 +304,28 @@ void SuperMarketChain::calculateRoutes() {
 //Ler todos os Supermercados
 //Para cada Supermercado ler todos os trucks
 //Para cada truck ler a Rota e mostrar de forma friendly
+void SuperMarketChain::studyRoutes() {
+	double numberofroutes = 0;
+	double totaldistance = 0.0, totaltime = 0.0;
+	for (int i=0; i<supermarkets.size(); i++){
+		cout << i+1 << ". " << supermarkets.at(i).getName() << ":" << endl;
+		for (int j=0; j<supermarkets.at(i).getTrucks().size(); j++){
+			cout << "Routes of Truck " << supermarkets.at(i).getTrucks().at(j).getId() << ":" << endl;
+			for (int k=0; k<supermarkets.at(i).getTrucks().at(j).getRoute().size(); k++){
+				std::vector<Place*> routes = supermarkets.at(i).getTrucks().at(j).getRoute();
+				cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
+						" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
+						" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
+				numberofroutes++;
+				totaldistance += routes.at(k)->getDistance(routes.at(k+1));
 
+			}
+		}
+	}
+	cout << endl;
+	cout << "Average Distance: " << totaldistance/numberofroutes << endl;
+	cout << "Average Time:" << totaltime/numberofroutes << endl;
+}
 
 //DisplayRoutes
 //GraphViewerCenas

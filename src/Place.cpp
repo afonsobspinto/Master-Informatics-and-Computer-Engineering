@@ -60,6 +60,10 @@ bool Place::operator <(const Place& rhs) const {
 	return this->id < rhs.id;
 }
 
+double Place::getTime(Place* place2) {
+	return this->getDistance(place2)/60;
+}
+
 int Place::getShoppingSize() {
 	return 0;
 }

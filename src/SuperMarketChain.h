@@ -59,6 +59,7 @@ public:
 	void generateShopping();
 	void generateTrucks();
 	void calculateRoutes();
+	void studyRoutes();
 
 };
 

@@ -44,7 +44,5 @@ void Supermarket::calculateCapacity() {
 }
 
 std::vector<Truck> Supermarket::getTrucks() {
-	cout << "Hey" << endl;
-	cout << this->getID() << " " << trucks.size() << endl;
 	return trucks;
 }
