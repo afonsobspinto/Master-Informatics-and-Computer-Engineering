@@ -16,12 +16,13 @@ Client::Client(long long int id, Coord coord, std::string name) :
 	setLabel("client");
 }
 
-const vector<Purchase>& Client::getGroceries() const {
-	return shopping;
-}
 
 const string Client::getName() const {
 	return name;
+}
+
+std::vector<Purchase>& Client::getGroceries(){
+	return shopping;
 }
 
 void Client::addGroceries(Purchase& purchase){

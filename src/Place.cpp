@@ -7,6 +7,7 @@
 
 #include "Place.h"
 #include <iostream>
+#include "Supermarket.h"
 
 
 using namespace std;
@@ -46,11 +47,6 @@ const std::string& Place::getLabel() const {
 	return label;
 }
 
-const std::vector<Truck>& Place::getTrucks() const {
-
-	vector<Truck>empty;
-	return empty;
-}
 
 void Place::setLabel(const std::string& label) {
 	this->label = label;
@@ -62,10 +58,4 @@ const std::string Place::getName() const {
 
 bool Place::operator <(const Place& rhs) const {
 	return this->id < rhs.id;
-}
-
-const std::vector<Purchase>& Place::getGroceries() const {
-
-	vector<Purchase>empty;
-	return empty;
 }

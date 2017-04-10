@@ -26,6 +26,7 @@ private:
 	std::vector<Place*> route;
 
 public:
+	Truck();
 	Truck(Place* location);
 	unsigned char getCapacity() const;
 	unsigned short getId() const;
@@ -34,6 +35,7 @@ public:
 	unsigned char getAverageSpeed() const;
 	void setRoute(const std::vector<Place*>& route);
 	const std::vector<Place*>& getRoute() const;
+
 };
 
 

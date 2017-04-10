@@ -20,13 +20,12 @@ private:
 	std::string name;
 public:
 	Client(long long int id, Coord coord, std::string name);
-	virtual const std::vector<Purchase>& getGroceries() const;
 	const std::string getName() const;
 	void addGroceries(Purchase& purchase);
 
 
 	//bool operator == (const Client & rhs);
-
+	virtual std::vector<Purchase>& getGroceries();
 };
 
 

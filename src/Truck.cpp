@@ -41,3 +41,8 @@ void Truck::setRoute(const std::vector<Place*>& route) {
 const std::vector<Place*>& Truck::getRoute() const {
 	return route;
 }
+
+Truck::Truck():
+		id(ids), capacity(50), usedCapacity(0), averageSpeed(60) {
+	ids++;
+}

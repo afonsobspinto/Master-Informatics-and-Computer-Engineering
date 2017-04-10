@@ -211,26 +211,30 @@ void SuperMarketChain::generateShopping() {
 		}
 	}
 
+	cout << "Generated Shopping" << endl;
+
 }
 
 void SuperMarketChain::generateTrucks() {
 
 	for(unsigned int i=0; i<supermarkets.size(); i++){
 			int number = rand() % 10 + 1;
-			Truck truck = Truck(&supermarkets.at(i));
 			for(int j=0; j<number; j++){
-				supermarkets.at(i).addTrucks(truck);
+				supermarkets.at(i).addTrucks();
 			}
 		}
+
+	cout << "Generated Trucks" << endl;
 }
 
 int SuperMarketChain::getTotalShopping(vector<Place*> clients) {
-	int res;
+	int res = 0;
 	for (unsigned int i = 0; i<clients.size(); i++){
 
-		res += clients.at(i)->getGroceries().size();
+		//res += clients.at(i)->getGroceries().size();
 	}
 	return res;
+
 }
 
 int SuperMarketChain::getTotalCapacity() {
@@ -255,23 +259,26 @@ void SuperMarketChain::calculateRoutes() {
 			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
 
 		else{
-
 			int capacityAvailable = getTotalCapacity();
 			int capacityNeeded = getTotalShopping(clients);
 
 			if(capacityAvailable < capacityNeeded){
 
 				while(capacityAvailable < capacityNeeded){
-					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
+					//capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
 					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
+
 			}
 
 			else{
+
 				cout << "Supermarkets Size: " <<  supermarkets.size() << endl;
 				for(unsigned int j = 0; j < supermarkets.size(); j++){
 					Supermarket* supermarket = supermarkets.at(j);
+
+					cout << supermarket->getLabel() << endl;
 
 					cout << supermarket->getTrucks().size() << endl;
 
@@ -328,6 +335,7 @@ std::vector<Supermarket*> SuperMarketChain::getSupermarketsOnSet(
 
 		if((*ite)->getLabel()=="supermarket"){
 			Supermarket* supermarket = static_cast<Supermarket*> (*ite);
+
 			result.push_back(supermarket);
 		}
 	}

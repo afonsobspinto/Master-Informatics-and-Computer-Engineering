@@ -13,6 +13,7 @@ Supermarket::Supermarket(long long int id, Coord coord, std::string name): Place
 	this->name = name;
 	setLabel("supermarket");
 	calculateCapacity();
+	trucks={};
 }
 
 
@@ -21,13 +22,14 @@ const std::string Supermarket::getName() const{
 }
 
 
-void Supermarket::addTrucks(Truck& truck) {
-	this->trucks.push_back(truck);
-}
+void Supermarket::addTrucks() {
+	Truck truck = Truck();
 
-const std::vector<Truck>& Supermarket::getTrucks() const {
-	cout << "Hey " << endl;
-	return trucks;
+	this->trucks.push_back(truck);
+
+	cout << "Added Truck " << trucks.size() << " " << this->getID() <<  endl;
+
+
 }
 
 const int Supermarket::getCapacity() const {
@@ -39,4 +41,10 @@ void Supermarket::calculateCapacity() {
 	for(unsigned int i = 0; i < trucks.size(); i++){
 		this->capacity += trucks.at(i).getCapacity();
 	}
+}
+
+std::vector<Truck> Supermarket::getTrucks() {
+	cout << "Hey" << endl;
+	cout << this->getID() << " " << trucks.size() << endl;
+	return trucks;
 }
