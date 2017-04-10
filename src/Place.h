@@ -12,6 +12,7 @@
 #include "Transition.h"
 #include <vector>
 #include <string>
+#include "Purchase.h"
 
 
 class Place{
@@ -31,6 +32,7 @@ public:
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
 	double getDistance(Place* place2);
+	const std::vector<Purchase>& getGroceries() const;
 
 	bool operator== (const Place &rhs) const;
 	bool operator < (const Place& rhs) const;

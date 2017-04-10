@@ -196,6 +196,7 @@ public:
 
 	std::vector<Vertex<T*>*> calcRoute(std::set<T*> places, vector<T*> clients);
 
+
 };
 
 
@@ -740,14 +741,25 @@ std::vector<Vertex<T> *> Graph<T>::getPlacesVertex(std::set<T*> place) {
 	vector<Vertex<T> *> res;
 	std::set<int>::iterator it=place.begin();
 	std::set<int>::iterator itf=place.end();
-	 for (it; it.operator !=(itf); ++it){
-		 res.push_back(getVertex(place));
+	 for (; it!=itf; ++it){
+		 res.push_back(*it);
 	}
 }
 
 template<class T>
-inline std::vector<Vertex<T*> *> Graph<T>::calcRoute(std::set<T*> places,
+std::vector<Vertex<T*> *> Graph<T>::calcRoute(std::set<T*> places,
 		vector<T*> clients) {
+
+	vector<Vertex<T> *> vertices = getPlacesVertex(places);
+	Graph subGraph = Graph();
+
+	for(unsigned int i = 0; i < vertices.size(); i++){
+		subGraph.addVertex(vertices.at(i));
+	}
+
+
+	cout << subGraph.getNumVertex().size();
+
 }
 
 #endif /* GRAPH_H_ */

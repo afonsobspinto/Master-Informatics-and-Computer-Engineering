@@ -39,6 +39,8 @@ private:
 	std::vector<Supermarket*> getSupermarketsOnSet(set<Place*> sccSet);
 	std::vector<Client*> unreachableClients;
 	std::vector<Supermarket*> unneededSupermarkets;
+	int getTotalShopping(vector<Client*> clients);
+	int getTotalCapacity();
 
 
 public:
@@ -54,8 +56,6 @@ public:
 	void addClients(Client& client);
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void addSupermarkets(Supermarket& supermarket);
-	int getTotalShopping();
-	int getTotalCapacity();
 	void generateShopping();
 	void generateTrucks();
 	void calculateRoutes();

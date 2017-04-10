@@ -57,3 +57,9 @@ const std::string Place::getName() const {
 bool Place::operator <(const Place& rhs) const {
 	return this->id < rhs.id;
 }
+
+const std::vector<Purchase>& Place::getGroceries() const {
+
+	vector<Purchase>empty;
+	return empty;
+}

@@ -220,10 +220,10 @@ void SuperMarketChain::generateTrucks() {
 		}
 }
 
-int SuperMarketChain::getTotalShopping() {
+int SuperMarketChain::getTotalShopping(vector<Client*> clients) {
 	int res;
 	for (int i = 0; i<clients.size(); i++){
-		res += clients.at(i).getGroceries().size();
+		res += clients.at(i)->getGroceries().size();
 	}
 	return res;
 }
@@ -251,7 +251,7 @@ void SuperMarketChain::calculateRoutes() {
 		//Acrescentar aos Advices esta info
 		else{
 			int capacityAvailable = getTotalCapacity();
-			int capacityNeeded = getTotalShopping();
+			int capacityNeeded = getTotalShopping(clients);
 			if(capacityAvailable < capacityNeeded){
 				//Add Some Clients to unreachableClients && add to vector<string> Advices(create this) this vector
 				while(capacityAvailable < capacityNeeded){
