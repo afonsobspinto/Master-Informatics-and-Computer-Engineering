@@ -72,6 +72,7 @@ bool mainOptions() {
 		case 3:{
 			break;}
 		case 4:{
+			S.studyRoutes();
 			break;}
 		case 5:{
 			showClients(S);

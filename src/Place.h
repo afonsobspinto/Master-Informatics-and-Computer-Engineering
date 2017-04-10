@@ -35,6 +35,7 @@ public:
 	const std::vector<Transition*>& getTransitions() const;
 	void addTransitions(Transition* transition);
 	double getDistance(Place* place2);
+	double getTime(Place* place2);
 	bool operator== (const Place &rhs) const;
 	bool operator!= (const Place &rhs) const;
 	bool operator < (const Place& rhs) const;
