@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+	puts("!!Hello World!!"); /* prints !!!Hello World!!! */
 
 	parser(argc, argv);
 	return 0;
