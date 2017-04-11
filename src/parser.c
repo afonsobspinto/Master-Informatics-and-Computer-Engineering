@@ -23,7 +23,11 @@ int parser(int argc, char *argv[])
 	}
 	while ((direntp = readdir( dirp)) != NULL)
 	{
+		#ifdef __unix__
 		lstat(direntp->d_name, &stat_buf);
+		#else
+		stat(direntp->d_name, &stat_buf);
+		#endif
 		if (S_ISREG(stat_buf.st_mode)) str = "regular";
 		else if (S_ISDIR(stat_buf.st_mode)) str = "directory";
 		else str = "other";
