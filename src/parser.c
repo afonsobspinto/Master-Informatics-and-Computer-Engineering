@@ -9,55 +9,55 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-int parser(char directory[])
+int parser(const char *path)
 {
 	DIR *dirp;
 	struct dirent *direntp;
-	struct stat stat_buf;
+	struct stat statBuf;
 	char *str;
 	pid_t pid;
 
-	if ((dirp = opendir(directory)) == NULL)
-	{
-		perror(directory);
+	dirp = opendir(path);
+	if (dirp == NULL) {
+		perror("opendir");
 		exit(2);
 	}
-	while ((direntp = readdir(dirp)) != NULL)
-	{
 
+	printf("%s:\n", path);
 
-		lstat(direntp->d_name, &stat_buf);
-		if (S_ISREG(stat_buf.st_mode)){ // Is this the file I'm looking for? || Guardar files numa hashTable
+	while ((direntp = readdir(dirp))) {
+		if (!strcmp(direntp->d_name, ".") || !strcmp(direntp->d_name, "..")) {
+			continue;
+		}
+		char *abs_path = malloc(strlen(path) + strlen(direntp->d_name) + 2);
+		if (!abs_path) {
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		strcpy(abs_path, path);
+		strcat(abs_path, "/");
+		strcat(abs_path, direntp->d_name);
+		if (lstat(abs_path, &statBuf) < 0) {
+			free(abs_path);
+			continue;
+		}
+
+		if(S_ISREG(statBuf.st_mode)){
 			str = "regular";
 		}
-		else if (S_ISDIR(stat_buf.st_mode)){ // Fork Here
 
-			if (strcmp(direntp->d_name, ".") == 0 || strcmp(direntp->d_name, "..") == 0)
-				continue;
-
-
+		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
-
-
-			if((pid=fork())<0){
-				fprintf(stderr,"fork error\n");
-			}
-
-			else if (pid == 0) { //Update Dir & Recall Function
-				strcat(directory, "/");
-				parser(strcat(directory, direntp->d_name));
-			}
-
+			parser(abs_path);
 		}
+
 		else{
 			str = "other";
 		}
-
 		printf("%-25s - %s\n", direntp->d_name, str);
+		free(abs_path);
 	}
 	closedir(dirp);
-
-
-	waitpid(-1,NULL,0); //Make parent wait for all Childs (Guardar PIDs num array)
+	//waitpid(-1,NULL,0); //Make parent wait for all Childs (Guardar PIDs num array)
 	exit(0);
 }
