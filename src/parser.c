@@ -23,8 +23,6 @@ int parser(const char *path)
 		exit(2);
 	}
 
-	printf("%s:\n", path);
-
 	while ((direntp = readdir(dirp))) {
 		if (!strcmp(direntp->d_name, ".") || !strcmp(direntp->d_name, "..")) {
 			continue;
@@ -48,7 +46,14 @@ int parser(const char *path)
 
 		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
-			parser(abs_path);
+
+			if((pid=fork())<0){
+				fprintf(stderr,"fork error\n");
+			}
+
+			else if (pid == 0) { //Update Dir & Recall Function
+				parser(abs_path);
+			}
 		}
 
 		else{
