@@ -6,10 +6,10 @@ void vector_init(vector *v)
 {
     v->capacity = 1;
     v->total = 0;
-    v->items = malloc(sizeof(void *) * v->capacity);
+    v->items = malloc(sizeof(char *) * v->capacity);
 }
 
-int vector_total(vector *v)
+int vector_size(vector *v)
 {
     return v->total;
 }
@@ -28,6 +28,7 @@ void vector_add(vector *v, void *item)
     if (v->capacity == v->total)
         vector_resize(v, v->capacity * 2);
     v->items[v->total++] = item;
+    printf("%s added \n", v->items[v->total]);
 }
 
 void vector_set(vector *v, int index, void *item)

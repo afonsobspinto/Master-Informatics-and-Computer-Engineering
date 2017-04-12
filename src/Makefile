@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = vector.h, args.h
+DEPS = vector.h, args.h, parser.h
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
