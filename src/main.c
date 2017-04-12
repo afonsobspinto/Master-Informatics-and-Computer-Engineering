@@ -10,16 +10,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "args.h"
+
 
 int main(int argc, char *argv[]) {
-	puts("!!Hello World!!"); /* prints !!!Hello World!!! */
 
-	if (argc != 2)
+	if (argc < 2)
 	{
-		fprintf( stderr, "Usage: %s dir_name\n", argv[0]);
+		perror("Wrong number of arguments");
 		exit(1);
 	}
 
-	parser(argv[1]);
+	struct Args args;
+
+	readArgs(argc, argv, &args);
+	parser(args.path, &args);
 	return 0;
 }

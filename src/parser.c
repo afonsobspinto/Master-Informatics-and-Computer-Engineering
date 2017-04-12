@@ -6,16 +6,20 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
-//#include <sys/wait.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include "args.h"
 
-int parser(const char *path)
+
+int parser(const char *path, const struct Args* args)
 {
 	DIR *dirp;
 	struct dirent *direntp;
 	struct stat statBuf;
 	char *str;
 	pid_t pid;
+
+
 
 	dirp = opendir(path);
 	if (dirp == NULL) {
@@ -53,7 +57,7 @@ int parser(const char *path)
 			}
 
 			else if (pid == 0) { //Update Dir & Recall Function
-				parser(abs_path);
+				parser(abs_path, args);
 			}
 		}
 
