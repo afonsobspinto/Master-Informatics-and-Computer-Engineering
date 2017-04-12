@@ -51,6 +51,7 @@ void parser(const char *path, const struct Args* args, vector* files)
 			printf("true");
 			vector_add(files, abs_path);
 		}
+
 		if(S_ISREG(statBuf.st_mode)){
 			str = "regular";
 		}
