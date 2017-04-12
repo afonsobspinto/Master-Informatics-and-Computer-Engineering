@@ -21,7 +21,6 @@
 #include <stdio.h>
 #include "parser.h"
 
-
 void action(vector* files){
 //	int i;
 //	int size = vector_size(files);
