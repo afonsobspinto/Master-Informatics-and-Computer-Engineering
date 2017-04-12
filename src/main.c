@@ -22,13 +22,17 @@
 #include "parser.h"
 
 void action(vector* files){
+
+//	printf("Action: \n");
+//
 //	int i;
-//	int size = vector_size(files);
+//	int size = vector_count(files);
 //
-//	printf("%d", size);
+//	printf("%d \n", size);
 //
-//	printf("action: \n");
 //	for(i = 0; i < size; i++){
+//
+//		printf("%s \n",  vector_get(files, i));
 //		DIR *dirp;
 //		struct dirent *direntp;
 //		struct stat statBuf;
@@ -59,7 +63,6 @@ int main(int argc, char *argv[]) {
 	readArgs(argc, argv, &args);
 	//showMeArgs(&args);
 
-    printf("parent_pid = %d\n", getpid());
 	parser(args.path, &args, &files);
 	action(&files);
 	return 0;
