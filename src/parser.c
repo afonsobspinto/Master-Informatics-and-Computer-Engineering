@@ -119,9 +119,11 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 			return false;
 		}
 	}
-	if((args->perm != 0) && ((statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO) == args->perm))){
-		printf("Valid file %d \n", statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
-		return true;
+	if(args->perm != 0){
+		if(((statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO)) == args->perm)){
+			printf("Valid file %d \n", statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+			return true;
+		}
 	}
 	return false;
 }

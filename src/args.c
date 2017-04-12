@@ -30,8 +30,9 @@ void readArgs(int argc, char* argv[], struct Args* args){
 		else if(strcmp(argv[i],"-type") == 0)
 			args->type = argv[++i];
 
-		else if(strcmp(argv[i],"-perm") == 0)
+		else if(strcmp(argv[i],"-perm") == 0){
 			args->perm = strtoul(argv[++i], NULL, 8);
+		}
 
 		else if(strcmp(argv[i],"-print") == 0)
 			args->print = true;
