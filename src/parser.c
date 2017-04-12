@@ -47,7 +47,7 @@ void parser(const char *path, const struct Args* args, vector* files)
 					continue;
 				}
 
-//		if(isValidFile(&statBuf, args))
+//		if(isValidFile(&statBuf, direntp, args))
 //			vector_add(files, abs_path);
 
 		if(S_ISREG(statBuf.st_mode)){
@@ -82,6 +82,6 @@ void parser(const char *path, const struct Args* args, vector* files)
 }
 
 
-bool isValidFile(const struct stat* statBuf, const struct Args* args){
+bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args){
 	return true;
 }
