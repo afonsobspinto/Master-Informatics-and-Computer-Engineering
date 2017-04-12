@@ -13,7 +13,7 @@
 struct Args{
 	char* path;
 	char* name;
-	char type;
+	char* type;
 	int perm;
 	bool print;
 	bool delete;
@@ -23,5 +23,6 @@ struct Args{
 };
 
 void readArgs(int argc, char* argv[], struct Args* args);
+void showMeArgs(struct Args* args);
 
 #endif /* ARGS_H_ */
