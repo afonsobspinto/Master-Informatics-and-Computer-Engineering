@@ -47,9 +47,10 @@ void parser(const char *path, const struct Args* args, vector* files)
 					continue;
 				}
 
-//		if(isValidFile(&statBuf, args))
-//			vector_add(files, abs_path);
-
+		if(isValidFile(&statBuf, direntp, args)){
+			printf("true");
+			vector_add(files, abs_path);
+		}
 		if(S_ISREG(statBuf.st_mode)){
 			str = "regular";
 		}
@@ -82,6 +83,20 @@ void parser(const char *path, const struct Args* args, vector* files)
 }
 
 
-bool isValidFile(const struct stat* statBuf, const struct Args* args){
-	return true;
+bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args){
+	if((args->name != "") && (direntp->d_name == args->name))
+		return true;
+	else if(args->type == ""){
+		if((args->type == "r") && (S_ISREG(statBuf->st_mode)))
+			return true;
+		else if((args->type == "d") && (S_ISDIR(statBuf->st_mode)))
+			return true;
+		else if((args->type == "l") && (S_ISLNK(statBuf->st_mode)))
+			return true;
+		else
+			return false;
+	}
+	//else if((args->perm != 0))
+
+	return false;
 }
