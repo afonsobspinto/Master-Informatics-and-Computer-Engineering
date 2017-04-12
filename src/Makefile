@@ -1,9 +1,9 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = defs.h
+DEPS = vector.h, args.h, parser.h
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-sfind: main.o parser.o 
-	gcc -o sfind main.o parser.o -I.
+sfind: main.o parser.o args.o vector.o
+	gcc -o sfind main.o parser.o args.o vector.o -I.

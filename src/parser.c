@@ -6,16 +6,22 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
-//#include <sys/wait.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include "args.h"
+#include "vector.h"
+#include "parser.h"
 
-int parser(const char *path)
+
+void parser(const char *path, const struct Args* args, vector* files)
 {
 	DIR *dirp;
 	struct dirent *direntp;
 	struct stat statBuf;
 	char *str;
 	pid_t pid;
+	int status;
+
 
 	dirp = opendir(path);
 	if (dirp == NULL) {
@@ -36,17 +42,13 @@ int parser(const char *path)
 		strcat(abs_path, "/");
 		strcat(abs_path, direntp->d_name);
 
-        #ifdef __unix__
 		if (lstat(abs_path, &statBuf) < 0) {
-					free(abs_path);
-					continue;
-				}
-		#else
-		if (stat(abs_path, &statBuf) < 0) {
-					free(abs_path);
-					continue;
-				}
-		#endif
+			free(abs_path);
+			continue;
+		}
+
+		if(isValidFile(&statBuf, args))
+			vector_add(files, abs_path);
 
 		if(S_ISREG(statBuf.st_mode)){
 			str = "regular";
@@ -55,13 +57,13 @@ int parser(const char *path)
 		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
 
-			if((pid=fork())<0){
-				fprintf(stderr,"fork error\n");
-			}
+//			if((pid=fork())<0){
+//				fprintf(stderr,"fork error\n");
+//			}
 
-			else if (pid == 0) { //Update Dir & Recall Function
-				parser(abs_path);
-			}
+			//else if (pid == 0) { //Update Dir & Recall Function
+				parser(abs_path, args, files);
+			//}
 		}
 
 		else{
@@ -71,6 +73,15 @@ int parser(const char *path)
 		free(abs_path);
 	}
 	closedir(dirp);
-	//waitpid(-1,NULL,0); //Make parent wait for all Childs (Guardar PIDs num array)
-	exit(0);
+    while ((pid = wait(&status)) > 0)
+    {
+        printf("Exit status of %d was %d (%s)\n", (int)pid, status,
+               (status > 0) ? "accept" : "reject");
+    }
+	return;
+}
+
+
+bool isValidFile(const struct stat* statBuf, const struct Args* args){
+	return true;
 }
