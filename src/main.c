@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "args.h"
+#include "vector.h"
 
 
 int main(int argc, char *argv[]) {
@@ -22,9 +23,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	struct Args args;
+	vector files;
+	vector_init(&files);
 
 	readArgs(argc, argv, &args);
 	showMeArgs(&args);
-	parser(args.path, &args);
+	parser(args.path, &args, &files);
 	return 0;
 }

@@ -9,9 +9,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "args.h"
+#include "vector.h"
 
 
-int parser(const char *path, const struct Args* args)
+int parser(const char *path, const struct Args* args, vector* files)
 {
 	DIR *dirp;
 	struct dirent *direntp;
@@ -57,7 +58,7 @@ int parser(const char *path, const struct Args* args)
 			}
 
 			else if (pid == 0) { //Update Dir & Recall Function
-				parser(abs_path, args);
+				parser(abs_path, args, files);
 			}
 		}
 
