@@ -123,7 +123,5 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 		printf("Valid file %d \n", statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
 		return true;
 	}
-
-
 	return false;
 }
