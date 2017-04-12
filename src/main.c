@@ -40,7 +40,8 @@ void action(vector* files){
 //		dirp = opendir(path);
 //		direntp = readdir(dirp);
 //		printf("%s \n", direntp->d_name);
-	}
+//  }
+
 }
 
 

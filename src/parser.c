@@ -42,10 +42,17 @@ void parser(const char *path, const struct Args* args, vector* files)
 		strcat(abs_path, "/");
 		strcat(abs_path, direntp->d_name);
 
+		#ifdef __unix__
 		if (lstat(abs_path, &statBuf) < 0) {
-			free(abs_path);
-			continue;
-		}
+					free(abs_path);
+					continue;
+				}
+		#else
+		if (stat(abs_path, &statBuf) < 0) {
+					free(abs_path);
+					continue;
+				}
+		#endif
 
 		if(isValidFile(&statBuf, args))
 			vector_add(files, abs_path);
