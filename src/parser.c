@@ -108,7 +108,8 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 			return false;
 		}
 	}
-	//if((args->perm != 0))
+	if((args->perm != 0) && ((buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO) == args->perm))
+			return true;
 
 	return false;
 }
