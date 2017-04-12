@@ -48,7 +48,6 @@ void parser(const char *path, const struct Args* args, vector* files)
 				}
 
 		if(isValidFile(&statBuf, direntp, args)){
-			printf("true");
 			vector_add(files, abs_path);
 		}
 
@@ -85,19 +84,31 @@ void parser(const char *path, const struct Args* args, vector* files)
 
 
 bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args){
-	if((args->name != "") && (direntp->d_name == args->name))
+
+	if(strcmp(direntp->d_name,  args->name)==0){
+		printf("Valid file %s \n", direntp->d_name);
 		return true;
-	else if(args->type == ""){
-		if((args->type == "r") && (S_ISREG(statBuf->st_mode)))
-			return true;
-		else if((args->type == "d") && (S_ISDIR(statBuf->st_mode)))
-			return true;
-		else if((args->type == "l") && (S_ISLNK(statBuf->st_mode)))
-			return true;
-		else
-			return false;
 	}
-	//else if((args->perm != 0))
+	if(strcmp(args->type, "")!=0){
+		if(strcmp(args->type, "r")==0 && (S_ISREG(statBuf->st_mode))){
+			printf("Valid file %s \n", direntp->d_name);
+			return true;
+		}
+		else if(strcmp(args->type, "d")==0 && (S_ISDIR(statBuf->st_mode))){
+			printf("Valid file %s \n", direntp->d_name);
+			return true;
+		}
+
+		else if(strcmp(args->type, "l")==0 && (S_ISLNK(statBuf->st_mode))){
+			printf("Valid file %s \n", direntp->d_name);
+			return true;
+		}
+		else{
+			//perror("Type of file not recognized");
+			return false;
+		}
+	}
+	//if((args->perm != 0))
 
 	return false;
 }
