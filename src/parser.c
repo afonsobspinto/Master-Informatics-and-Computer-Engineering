@@ -58,37 +58,37 @@ void parser(const char *path, const struct Args* args, vector* files)
 		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
 
-			if((childPids[pidCounter] =fork())<0){
-				fprintf(stderr,"fork error\n");
-			}
+//			if((childPids[pidCounter] =fork())<0){
+//				fprintf(stderr,"fork error\n");
+//			}
 
 
-			else if (childPids[pidCounter] == 0) { //Update Dir & Recall Function
-				printf("Child of %d calling parser to %s \n", getppid(), abs_path);
+//			else if (childPids[pidCounter] == 0) { //Update Dir & Recall Function
+//				printf("Child of %d calling parser to %s \n", getppid(), abs_path);
 				parser(abs_path, args, files);
-			}
+//			}
 
-			pidCounter++;
+//			pidCounter++;
 		}
 
 		else{
 			str = "other";
 		}
 
-		printf( "%d:  %-25s - %s\n", getpid(), direntp->d_name, str);
+		printf( " %-25s - %s\n", direntp->d_name, str);
 		free(abs_path);
 	}
 
 
 	/*Wait for child processes*/
-	int counter = 0;
-
-	for (; counter < pidCounter; counter++)
-	{
-		if(waitpid(childPids[counter], NULL, 0) == 0){
-			printf("Kid killed sucessfuly :D \n");
-		}
-	}
+//	int counter = 0;
+//
+//	for (; counter < pidCounter; counter++)
+//	{
+//		if(waitpid(childPids[counter], NULL, 0) == 0){
+//			printf("Kid killed sucessfuly :D \n");
+//		}
+//	}
 
 	return;
 }
@@ -119,8 +119,11 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 			return false;
 		}
 	}
-	if((args->perm != 0) && ((buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO) == args->perm)))
-			return true;
+	if((args->perm != 0) && ((statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO) == args->perm))){
+		printf("Valid file %d \n", statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+		return true;
+	}
+
 
 	return false;
 }
