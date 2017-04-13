@@ -46,6 +46,7 @@ int main(int argc, char *argv[]) {
 	readArgs(argc, argv, &args);
 	//showMeArgs(&args);
 
+
 	parser(args.path, &args);
 
 	int i;

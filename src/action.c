@@ -14,6 +14,8 @@ void performAction(const struct Args* args, char *path){
 			perror("remove");
 			exit(-2);
 		}
+		else
+			printf("%s deleted \n", path);
 	}
 	if(args->exec){
 

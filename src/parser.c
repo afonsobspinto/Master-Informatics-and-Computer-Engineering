@@ -24,7 +24,6 @@ void parser(const char *path, const struct Args* args)
 	struct stat statBuf;
 	char *str;
 	int status;
-	//pid_t childPids[100];
 	pid_t pid;
 
 	dirp = opendir(path);
@@ -37,6 +36,8 @@ void parser(const char *path, const struct Args* args)
 		if (!strcmp(direntp->d_name, ".") || !strcmp(direntp->d_name, "..")) {
 			continue;
 		}
+
+		//sleep(5); //To test signal handler
 		char *abs_path = malloc(strlen(path) + strlen(direntp->d_name) + 2);
 		if (!abs_path) {
 			perror("malloc");
@@ -65,11 +66,10 @@ void parser(const char *path, const struct Args* args)
 				child_counter++;
 
 			}
-			else if (pid == 0) { //Update Dir & Recall Function
-				//printf("Child of %d calling parser to %s \n", getppid(), abs_path);
+			else if (pid == 0) {
 
-				sigaction(SIGTSTP, &oldsigaction,0);
-				signal(SIGINT, SIG_IGN);
+//				sigaction(SIGTSTP, &oldsigaction,0);
+//				signal(SIGINT, SIG_IGN);
 				child_counter = 0;
 				parser(abs_path, args);
 				while(child_counter--){
@@ -88,34 +88,23 @@ void parser(const char *path, const struct Args* args)
 
 bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args){
 
-	if(strcmp(direntp->d_name,  args->name)==0){
-		//printf("Valid file %s \n", direntp->d_name);
+	if(strcmp(direntp->d_name,  args->name)==0)
 		return true;
-	}
-	if(strcmp(args->type, "")!=0){
-		if(strcmp(args->type, "r")==0 && (S_ISREG(statBuf->st_mode))){
-			//printf("Valid file %s \n", direntp->d_name);
-			return true;
-		}
-		else if(strcmp(args->type, "d")==0 && (S_ISDIR(statBuf->st_mode))){
-			//printf("Valid file %s \n", direntp->d_name);
-			return true;
-		}
 
-		else if(strcmp(args->type, "l")==0 && (S_ISLNK(statBuf->st_mode))){
-			//printf("Valid file %s \n", direntp->d_name);
+	if(strcmp(args->type, "")!=0){
+		if(strcmp(args->type, "r")==0 && (S_ISREG(statBuf->st_mode)))
 			return true;
-		}
-		else{
-			//perror("Type of file not recognized");
+		else if(strcmp(args->type, "d")==0 && (S_ISDIR(statBuf->st_mode)))
+			return true;
+
+		else if(strcmp(args->type, "l")==0 && (S_ISLNK(statBuf->st_mode)))
+			return true;
+		else
 			return false;
-		}
 	}
 	if(args->perm != 0){
-		if(((statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO)) == args->perm)){
-			printf("Valid file %d \n", statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+		if(((statBuf->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO)) == args->perm))
 			return true;
-		}
 	}
 	return false;
 }
