@@ -23,28 +23,6 @@
 
 void action(vector* files){
 
-//	printf("Action: \n");
-//
-//	int i;
-//	int size = vector_count(files);
-//
-//	printf("%d \n", size);
-//
-//	for(i = 0; i < size; i++){
-//
-//		printf("%s \n",  vector_get(files, i));
-//		DIR *dirp;
-//		struct dirent *direntp;
-//		struct stat statBuf;
-//		char *path = (char *) vector_get(files, i);
-//
-//		printf("%s \n",path);
-//
-//		dirp = opendir(path);
-//		direntp = readdir(dirp);
-//		printf("%s \n", direntp->d_name);
-//  }
-
 }
 
 
@@ -64,6 +42,9 @@ int main(int argc, char *argv[]) {
 	//showMeArgs(&args);
 
 	parser(args.path, &args, &files);
+
+
+
 	action(&files);
 	return 0;
 

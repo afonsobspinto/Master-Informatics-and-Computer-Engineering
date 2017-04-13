@@ -32,8 +32,6 @@ void vector_add(vector *v, void *e)
 
 	v->data[v->count] = e;
 	v->count++;
-
-	printf("%s added \n", v->data[v->count-1]);
 }
 
 void vector_set(vector *v, int index, void *e)

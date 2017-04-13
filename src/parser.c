@@ -48,7 +48,9 @@ void parser(const char *path, const struct Args* args, vector* files)
 		 }
 
 		if(isValidFile(&statBuf, direntp, args)){
+			printf("%s \n", abs_path);
 			vector_add(files, abs_path);
+			printf("%s \n",vector_get(files, 0));
 		}
 
 		if(S_ISREG(statBuf.st_mode)){
@@ -82,14 +84,14 @@ void parser(const char *path, const struct Args* args, vector* files)
 
 
 	/*Wait for child processes*/
-//	int counter = 0;
-//
-//	for (; counter < pidCounter; counter++)
-//	{
-//		if(waitpid(childPids[counter], NULL, 0) == 0){
-//			printf("Kid killed sucessfuly :D \n");
-//		}
-//	}
+	int counter = 0;
+
+	for (; counter < pidCounter; counter++)
+	{
+		if(waitpid(childPids[counter], NULL, 0) == 0){
+			printf("Kid killed sucessfuly :D \n");
+		}
+	}
 
 	return;
 }
