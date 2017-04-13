@@ -163,7 +163,9 @@ void performAction(const struct Args* args, vector *files){
 				exit(-2);
 			}
 		}
+		if(args->exec){
+			if(!fork())
+				execlp(args->command, args->command, path, NULL);
+		}
 	}
-
-
 }
