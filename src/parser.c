@@ -92,7 +92,7 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 		return true;
 
 	if(strcmp(args->type, "")!=0){
-		if(strcmp(args->type, "r")==0 && (S_ISREG(statBuf->st_mode)))
+		if(strcmp(args->type, "f")==0 && (S_ISREG(statBuf->st_mode)))
 			return true;
 		else if(strcmp(args->type, "d")==0 && (S_ISDIR(statBuf->st_mode)))
 			return true;
