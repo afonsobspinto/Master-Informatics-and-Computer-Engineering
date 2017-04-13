@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 	struct Args args;
 
 	readArgs(argc, argv, &args);
-	showMeArgs(&args);
+	//showMeArgs(&args);
 
 	parser(args.path, &args);
 

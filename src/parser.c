@@ -30,7 +30,7 @@ void parser(const char *path, const struct Args* args)
 	dirp = opendir(path);
 	if (dirp == NULL) {
 		perror("opendir");
-		exit(2);
+		exit(-4);
 	}
 
 	while ((direntp = readdir(dirp))) {

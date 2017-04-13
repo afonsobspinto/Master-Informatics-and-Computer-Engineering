@@ -6,8 +6,6 @@
 
 void performAction(const struct Args* args, char *path){
 
-	printf("\n Action: \n");
-
 	if(args->print){
 		printf("%s \n", path);
 	}
@@ -20,7 +18,10 @@ void performAction(const struct Args* args, char *path){
 	if(args->exec){
 
 		if(!fork())
-			execlp(args->command, args->command, path, NULL);
+			if(execlp(args->command, args->command, path, NULL) < 0){
+				perror("exec");
+				exit(-3);
+			}
 		else
 			wait(0);
 	}
