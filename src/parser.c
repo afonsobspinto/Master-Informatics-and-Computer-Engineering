@@ -11,7 +11,9 @@
 #include "args.h"
 #include "vector.h"
 #include "parser.h"
+#include <unistd.h>
 
+static int pidCounter = 0;
 
 void parser(const char *path, const struct Args* args, vector* files)
 {
@@ -20,8 +22,8 @@ void parser(const char *path, const struct Args* args, vector* files)
 	struct stat statBuf;
 	char *str;
 	int status;
-	pid_t childPids[100];
-	int pidCounter = 0;
+	//pid_t childPids[100];
+	pid_t pid;
 
 	dirp = opendir(path);
 	if (dirp == NULL) {
@@ -48,9 +50,7 @@ void parser(const char *path, const struct Args* args, vector* files)
 		 }
 
 		if(isValidFile(&statBuf, direntp, args)){
-			printf("%s \n", abs_path);
 			vector_add(files, abs_path);
-			printf("%s \n",vector_get(files, 0));
 		}
 
 		if(S_ISREG(statBuf.st_mode)){
@@ -60,15 +60,19 @@ void parser(const char *path, const struct Args* args, vector* files)
 		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
 
-			if((childPids[pidCounter] =fork())<0){
+			if((pid =fork())<0){
 				fprintf(stderr,"fork error\n");
 			}
 
 
-			else if (childPids[pidCounter] == 0) { //Update Dir & Recall Function
-				printf("Child of %d calling parser to %s \n", getppid(), abs_path);
+			else if (pid == 0) { //Update Dir & Recall Function
+				//printf("Child of %d calling parser to %s \n", getppid(), abs_path);
 				parser(abs_path, args, files);
 				exit(0);
+			}
+
+			else{
+				waitpid(pid,NULL,0);
 			}
 
 			pidCounter++;
@@ -78,23 +82,27 @@ void parser(const char *path, const struct Args* args, vector* files)
 			str = "other";
 		}
 
-		printf( " %-25s - %s\n", direntp->d_name, str);
+		//printf( " %-25s - %s\n", direntp->d_name, str);
 		free(abs_path);
 	}
 
-
+	//Not working properly
 	/*Wait for child processes*/
-	int counter = 0;
+//	int counter = 0;
+//
+////	for (; counter < pidCounter; counter++)
+////	{
+//////		printf("%d \n", childPids[counter]);
+////
+////		if(waitpid(childPids[counter], NULL, 0) == 0){
+////			printf("Kid killed sucessfuly :D \n");
+////		}
+////	}
 
-	for (; counter < pidCounter; counter++)
-	{
-		if(waitpid(childPids[counter], NULL, 0) == 0){
-			printf("Kid killed sucessfuly :D \n");
-		}
-	}
 
+//	sleep(5);
 
-	sleep(5);
+	performAction(args,files);
 
 	return;
 }
@@ -103,21 +111,21 @@ void parser(const char *path, const struct Args* args, vector* files)
 bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args){
 
 	if(strcmp(direntp->d_name,  args->name)==0){
-		printf("Valid file %s \n", direntp->d_name);
+		//printf("Valid file %s \n", direntp->d_name);
 		return true;
 	}
 	if(strcmp(args->type, "")!=0){
 		if(strcmp(args->type, "r")==0 && (S_ISREG(statBuf->st_mode))){
-			printf("Valid file %s \n", direntp->d_name);
+			//printf("Valid file %s \n", direntp->d_name);
 			return true;
 		}
 		else if(strcmp(args->type, "d")==0 && (S_ISDIR(statBuf->st_mode))){
-			printf("Valid file %s \n", direntp->d_name);
+			//printf("Valid file %s \n", direntp->d_name);
 			return true;
 		}
 
 		else if(strcmp(args->type, "l")==0 && (S_ISLNK(statBuf->st_mode))){
-			printf("Valid file %s \n", direntp->d_name);
+			//printf("Valid file %s \n", direntp->d_name);
 			return true;
 		}
 		else{
@@ -132,4 +140,30 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 		}
 	}
 	return false;
+}
+
+
+void performAction(const struct Args* args, vector *files){
+
+	printf("\n Action: \n");
+
+	char * path;
+
+	int i;
+	for(i = 0; i < vector_count(files); i++){
+
+		path = vector_get(files, i);
+
+		if(args->print){
+			printf("%s \n", path);
+		}
+		if(args->delete){
+			if(remove(path)<0){
+				perror("remove");
+				exit(-2);
+			}
+		}
+	}
+
+
 }

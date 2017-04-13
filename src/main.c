@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	vector_init(&files);
 
 	readArgs(argc, argv, &args);
-	//showMeArgs(&args);
+	showMeArgs(&args);
 
 	parser(args.path, &args, &files);
 
