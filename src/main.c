@@ -20,10 +20,30 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "parser.h"
+#include <signal.h>
 
-void action(vector* files){
+static pid_t parent_pid;
 
+
+void sigint_handler(int signo)
+{
+	if(parent_pid == getpid()){
+		char ans;
+
+		printf(" \n Are you sure you want to terminate (Y/N)?");
+		scanf("%s",&ans);
+
+		ans =  (char) toupper(ans);
+
+		if(ans == 'Y'){
+			printf("Exiting... \n");
+			exit(0);
+		}
+		else
+			return;
+	}
 }
+
 
 
 int main(int argc, char *argv[]) {
@@ -33,6 +53,17 @@ int main(int argc, char *argv[]) {
 		perror("Wrong number of arguments");
 		exit(1);
 	}
+
+	parent_pid = getpid();
+
+	struct sigaction action;
+	// prepare the 'sigaction struct'
+	action.sa_handler = sigint_handler;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = 0;
+	// install the handler
+	sigaction(SIGINT,&action,NULL);
+
 
 	struct Args args;
 	vector files;
@@ -44,8 +75,6 @@ int main(int argc, char *argv[]) {
 	parser(args.path, &args, &files);
 
 
-
-	action(&files);
 	return 0;
 
 	/*

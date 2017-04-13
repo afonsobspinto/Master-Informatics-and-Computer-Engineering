@@ -93,6 +93,9 @@ void parser(const char *path, const struct Args* args, vector* files)
 		}
 	}
 
+
+	sleep(5);
+
 	return;
 }
 
