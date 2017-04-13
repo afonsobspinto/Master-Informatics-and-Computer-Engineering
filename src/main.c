@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "args.h"
-#include "vector.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -43,13 +42,11 @@ int main(int argc, char *argv[]) {
 	sigaction(SIGINT,&action,NULL);
 
 	struct Args args;
-	vector files;
-	vector_init(&files);
 
 	readArgs(argc, argv, &args);
 	showMeArgs(&args);
 
-	parser(args.path, &args, &files);
+	parser(args.path, &args);
 
 	int i;
 	child_counter = 0;

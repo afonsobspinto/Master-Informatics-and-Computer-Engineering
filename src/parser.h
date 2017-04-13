@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-void parser(const char *path, const struct Args* args, vector* files);
+void parser(const char *path, const struct Args* args);
 bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args);
 
 #endif /* PARSER_H_ */

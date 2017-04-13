@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "args.h"
-#include "vector.h"
 #include "parser.h"
 #include <unistd.h>
 #include "signal.h"
@@ -18,7 +17,7 @@
 extern int child_counter;
 struct sigaction oldsigaction;
 
-void parser(const char *path, const struct Args* args, vector* files)
+void parser(const char *path, const struct Args* args)
 {
 	DIR *dirp;
 	struct dirent *direntp;
@@ -72,7 +71,7 @@ void parser(const char *path, const struct Args* args, vector* files)
 				sigaction(SIGTSTP, &oldsigaction,0);
 				signal(SIGINT, SIG_IGN);
 				child_counter = 0;
-				parser(abs_path, args, files);
+				parser(abs_path, args);
 				while(child_counter--){
 					wait(0);
 				}
