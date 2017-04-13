@@ -12,8 +12,11 @@
 #include "vector.h"
 #include "parser.h"
 #include <unistd.h>
+#include "signal.h"
+#include "action.h"
 
-static int pidCounter = 0;
+extern int child_counter;
+struct sigaction oldsigaction;
 
 void parser(const char *path, const struct Args* args, vector* files)
 {
@@ -53,54 +56,32 @@ void parser(const char *path, const struct Args* args, vector* files)
 			vector_add(files, abs_path);
 		}
 
-		if(S_ISREG(statBuf.st_mode)){
-			str = "regular";
-		}
-
-		else if (S_ISDIR(statBuf.st_mode)) {
-			str = "directory";
+		if (S_ISDIR(statBuf.st_mode)) {
 
 			if((pid =fork())<0){
 				fprintf(stderr,"fork error\n");
 			}
 
+			else if(pid){
+				child_counter++;
 
+			}
 			else if (pid == 0) { //Update Dir & Recall Function
 				//printf("Child of %d calling parser to %s \n", getppid(), abs_path);
+
+				sigaction(SIGTSTP, &oldsigaction,0);
+				signal(SIGINT, SIG_IGN);
+				child_counter = 0;
 				parser(abs_path, args, files);
+				while(child_counter--){
+					wait(0);
+				}
 				exit(0);
 			}
-
-			else{
-				waitpid(pid,NULL,0);
-			}
-
-			pidCounter++;
 		}
 
-		else{
-			str = "other";
-		}
-
-		//printf( " %-25s - %s\n", direntp->d_name, str);
 		free(abs_path);
 	}
-
-	//Not working properly
-	/*Wait for child processes*/
-//	int counter = 0;
-//
-////	for (; counter < pidCounter; counter++)
-////	{
-//////		printf("%d \n", childPids[counter]);
-////
-////		if(waitpid(childPids[counter], NULL, 0) == 0){
-////			printf("Kid killed sucessfuly :D \n");
-////		}
-////	}
-
-
-//	sleep(5);
 
 	performAction(args,files);
 
@@ -143,29 +124,3 @@ bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const
 }
 
 
-void performAction(const struct Args* args, vector *files){
-
-	printf("\n Action: \n");
-
-	char * path;
-
-	int i;
-	for(i = 0; i < vector_count(files); i++){
-
-		path = vector_get(files, i);
-
-		if(args->print){
-			printf("%s \n", path);
-		}
-		if(args->delete){
-			if(remove(path)<0){
-				perror("remove");
-				exit(-2);
-			}
-		}
-		if(args->exec){
-			if(!fork())
-				execlp(args->command, args->command, path, NULL);
-		}
-	}
-}

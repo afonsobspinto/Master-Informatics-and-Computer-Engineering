@@ -21,33 +21,9 @@
 #include <stdio.h>
 #include "parser.h"
 #include <signal.h>
+#include "signal_handlers.h"
 
-static pid_t parent_pid;
-
-
-void sigint_handler(int signo)
-{
-	if(parent_pid == getpid()){
-		char ans;
-
-		printf(" \n Are you sure you want to terminate (Y/N)?");
-		scanf("%s",&ans);
-		kill(0, SIGTSTP);
-
-		ans =  (char) toupper(ans);
-
-		if(ans == 'Y'){
-			printf("Exiting... \n");
-			kill(0,SIGTERM);
-			exit(0);
-		}
-		else{
-			kill(0,SIGCONT);
-			return;
-		}
-	}
-}
-
+int child_counter;
 
 
 int main(int argc, char *argv[]) {
@@ -58,8 +34,6 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	parent_pid = getpid();
-
 	struct sigaction action;
 	// prepare the 'sigaction struct'
 	action.sa_handler = sigint_handler;
@@ -67,7 +41,6 @@ int main(int argc, char *argv[]) {
 	action.sa_flags = 0;
 	// install the handler
 	sigaction(SIGINT,&action,NULL);
-
 
 	struct Args args;
 	vector files;
@@ -78,35 +51,13 @@ int main(int argc, char *argv[]) {
 
 	parser(args.path, &args, &files);
 
+	int i;
+	child_counter = 0;
+	for(i = 0; i < child_counter; i++){
+		wait(0);
+	}
+
 
 	return 0;
-
-	/*
-	vector v;
-	vector_init(&v);
-
-	vector_add(&v, "emil");
-	vector_add(&v, "hannes");
-	vector_add(&v, "lydia");
-	vector_add(&v, "olle");
-	vector_add(&v, "erik");
-
-	int i;
-	printf("first round:\n");
-	for (i = 0; i < vector_count(&v); i++) {
-		printf("%s\n", vector_get(&v, i));
-	}
-
-	vector_delete(&v, 1);
-	vector_delete(&v, 3);
-
-	printf("second round:\n");
-	for (i = 0; i < vector_count(&v); i++) {
-		printf("%s\n", vector_get(&v, i));
-	}
-
-	vector_free(&v);
-
-	return 0;*/
 }
 
