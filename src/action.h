@@ -10,6 +10,6 @@
 #include "vector.h"
 #include "args.h"
 
-void performAction(const struct Args* args, vector *files);
+void performAction(const struct Args* args, char *path);
 
 #endif

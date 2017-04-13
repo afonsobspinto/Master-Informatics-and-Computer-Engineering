@@ -5,6 +5,5 @@
 
 void parser(const char *path, const struct Args* args, vector* files);
 bool isValidFile(const struct stat* statBuf, const struct dirent *direntp, const struct Args* args);
-void performAction(const struct Args* args, vector *files);
 
 #endif /* PARSER_H_ */

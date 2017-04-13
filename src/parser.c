@@ -53,7 +53,7 @@ void parser(const char *path, const struct Args* args, vector* files)
 		 }
 
 		if(isValidFile(&statBuf, direntp, args)){
-			vector_add(files, abs_path);
+			performAction(args, abs_path);
 		}
 
 		if (S_ISDIR(statBuf.st_mode)) {
@@ -82,8 +82,6 @@ void parser(const char *path, const struct Args* args, vector* files)
 
 		free(abs_path);
 	}
-
-	performAction(args,files);
 
 	return;
 }
