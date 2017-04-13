@@ -58,17 +58,18 @@ void parser(const char *path, const struct Args* args, vector* files)
 		else if (S_ISDIR(statBuf.st_mode)) {
 			str = "directory";
 
-//			if((childPids[pidCounter] =fork())<0){
-//				fprintf(stderr,"fork error\n");
-//			}
+			if((childPids[pidCounter] =fork())<0){
+				fprintf(stderr,"fork error\n");
+			}
 
 
-//			else if (childPids[pidCounter] == 0) { //Update Dir & Recall Function
-//				printf("Child of %d calling parser to %s \n", getppid(), abs_path);
+			else if (childPids[pidCounter] == 0) { //Update Dir & Recall Function
+				printf("Child of %d calling parser to %s \n", getppid(), abs_path);
 				parser(abs_path, args, files);
-//			}
+				exit(0);
+			}
 
-//			pidCounter++;
+			pidCounter++;
 		}
 
 		else{
