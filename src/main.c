@@ -32,15 +32,19 @@ void sigint_handler(int signo)
 
 		printf(" \n Are you sure you want to terminate (Y/N)?");
 		scanf("%s",&ans);
+		kill(0, SIGTSTP);
 
 		ans =  (char) toupper(ans);
 
 		if(ans == 'Y'){
 			printf("Exiting... \n");
+			kill(0,SIGTERM);
 			exit(0);
 		}
-		else
+		else{
+			kill(0,SIGCONT);
 			return;
+		}
 	}
 }
 
