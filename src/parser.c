@@ -8,11 +8,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "args.h"
-#include "parser.h"
 #include <unistd.h>
 #include "signal.h"
 #include "action.h"
+#include "args.h"
+#include "parser.h"
 
 extern int child_counter;
 struct sigaction oldsigaction;

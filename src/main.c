@@ -10,16 +10,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "args.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
-#include "parser.h"
 #include <signal.h>
+#include "parser.h"
+#include "args.h"
 #include "signal_handlers.h"
 
 int child_counter;
