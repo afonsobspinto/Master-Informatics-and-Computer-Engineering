@@ -6,9 +6,7 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <stdbool.h>
-#include <unistd.h>
 #include "signal.h"
 #include "action.h"
 #include "args.h"
