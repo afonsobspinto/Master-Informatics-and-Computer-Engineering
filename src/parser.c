@@ -15,7 +15,7 @@
 #include "parser.h"
 
 extern int child_counter;
-struct sigaction oldsigaction;
+//struct sigaction oldsigaction;
 
 void parser(const char *path, const struct Args* args)
 {
