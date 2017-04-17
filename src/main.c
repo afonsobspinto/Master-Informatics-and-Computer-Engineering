@@ -1,10 +1,10 @@
 /*
  ============================================================================
- Name        : Hello.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Name        : Sfind
+ Author      : Afonso & Tomas
+ Version     : 1.0
+ Copyright   : 
+ Description : Simplified version of find
  ============================================================================
  */
 
