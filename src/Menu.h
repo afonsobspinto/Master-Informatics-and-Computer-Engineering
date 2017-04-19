@@ -29,29 +29,31 @@ void ClearScreen() {
 void showClients(SuperMarketChain S){
 	for (unsigned int i=0; i< S.getClients().size();i++)
 		cout << i+1 << ". " << S.getClients().at(i).getName() << endl;
+	getchar();
 }
 
 void showSupermarkets(SuperMarketChain S){
 	for (unsigned int i=0; i< S.getSupermarkets().size();i++)
 		cout << i+1 << ". " << S.getSupermarkets().at(i).getName() << endl;
+	getchar();
 }
 
 bool mainOptions() {
 	int option;
+	SuperMarketChain S = SuperMarketChain();
 
 	while(1){
-		SuperMarketChain S = SuperMarketChain();
+
 		ClearScreen();
 		cout << "Menu: " << endl;
 		cout << endl;
 		cout << "   " << "1 - See the Graph" << endl;
-		cout << "   " << "2 - Generate Shopping" << endl;
-		cout << "   " << "3 - Show Routes" << endl;
-		cout << "   " << "4 - Study Routes" << endl;
-		cout << "   " << "5 - See Clients" << endl;
-		cout << "   " << "6 - See Supermarkets" << endl;
-		cout << "   " << "7 - Show Strongly connected components" << endl;
-		cout << "   " << "8 - Leave" << endl << endl;
+		cout << "   " << "2 - Show Routes" << endl;
+		cout << "   " << "3 - Study Routes" << endl;
+		cout << "   " << "4 - See Clients" << endl;
+		cout << "   " << "5 - See Supermarkets" << endl;
+		cout << "   " << "6 - Show Strongly connected components" << endl;
+		cout << "   " << "7 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
@@ -60,12 +62,6 @@ bool mainOptions() {
 		switch (option){
 		case 1:
 		{
-			S.displayGraph();
-			break;
-		}
-		case 2:
-		{
-			//S.generateShopping();
 			S.displayGraph();
 			break;
 		}
