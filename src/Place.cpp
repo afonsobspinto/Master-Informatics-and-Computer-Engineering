@@ -8,7 +8,6 @@
 #include "Place.h"
 #include <iostream>
 #include "Supermarket.h"
-#include "Clients.h"
 
 
 using namespace std;
@@ -65,8 +64,11 @@ double Place::getTime(Place* place2) {
 	return this->getDistance(place2)/60;
 }
 
+int Place::getShoppingSize() {
+	return 0;
+}
+
 bool Place::operator !=(const Place& rhs) const {
 	return this->id != rhs.id;
 }
-
 

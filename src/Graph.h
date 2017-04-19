@@ -740,9 +740,6 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 template <class T>
 vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 
-
-	cout << "Here" << endl;
-
 	vector<T*> res;
 	Graph subGraph = Graph();
 
@@ -763,11 +760,11 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 		typename vector<Edge<T> >::iterator ite= (vertex->adj).end();
 
 		for (; it !=ite; it++){
-			if(places.find(&it->dest->info)!=places.end())
-				subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
+			subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
 		}
 
 	}
+
 
 	res = solveGreedy(clients, start);
 
@@ -784,6 +781,7 @@ vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
 		T place = *(*it);
 		Vertex<T>* vertex = getVertex(place);
 		res.push_back(vertex);
+
 	}
 
 	return res;
@@ -799,7 +797,6 @@ vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
 	int capacity = 50;
 
 	while(capacity > 0){
-		cout << "Here" << endl;
 
 	dijkstraShortestPath(*start);
 
@@ -824,7 +821,6 @@ vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
 
 	res.push_back(best);
 	capacity -= best->getShoppingSize();
-	cout << best->getShoppingSize() << endl;
 	start = best;
 	clients->erase(remove(clients->begin(), clients->end(), best));
 

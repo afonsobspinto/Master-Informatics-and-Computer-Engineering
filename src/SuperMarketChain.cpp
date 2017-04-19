@@ -200,7 +200,6 @@ void SuperMarketChain::calcAveragePlaces() {
 void SuperMarketChain::generateShopping() {
 	Date currentdate = Date();
 
-
 	for(unsigned int i=0; i<clients.size(); i++){
 		int number = rand() % 21;
 		int product = rand() % 21;
@@ -209,7 +208,6 @@ void SuperMarketChain::generateShopping() {
 			clients.at(i).addGroceries(p);
 		}
 	}
-
 
 }
 
@@ -263,24 +261,29 @@ void SuperMarketChain::calculateRoutes() {
 			int capacityAvailable = getTotalCapacity();
 			int capacityNeeded = getTotalShopping(clients);
 
-
 			if(capacityAvailable < capacityNeeded){
+
 				while(capacityAvailable < capacityNeeded){
 					capacityNeeded -= clients.at(clients.size()-1)->getGroceries().size();
 					unreachableClients.push_back(clients.at(clients.size()-1));
 					clients.pop_back();
 				}
+
 			}
 
+			else{
+				for(unsigned int j = 0; j < supermarkets.size(); j++){
+					Supermarket* supermarket = supermarkets.at(j);
+					cout << supermarket->getLabel() << endl << flush;
 
-			for(unsigned int j = 0; j < supermarkets.size(); j++){
-				Supermarket* supermarket = supermarkets.at(j);
+					cout << supermarket->getTrucks().size() << endl  << flush;
 
-				for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
-					Truck truck = supermarket->getTrucks().at(k);
-					vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
-					truck.setRoute(route);
+					for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
+						Truck truck = supermarket->getTrucks().at(k);
+						vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
+						truck.setRoute(route);
 
+					}
 				}
 			}
 		}
@@ -347,7 +350,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet2(set<Place*> sccSet) {
 	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
 
 		if((*ite)->getLabel()=="client"){
-			Place* client = (*ite);
+			Client* client = static_cast<Client*>(*ite);
 			result.push_back(client);
 		}
 	}
