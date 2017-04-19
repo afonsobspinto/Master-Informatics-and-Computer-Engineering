@@ -18,7 +18,7 @@ const int SuperMarketChain::width = 800;
 
 SuperMarketChain::SuperMarketChain() {
 
-	graph = new Graph<Place>;
+	graph = new Graph<Place*>;
 	places = new unordered_map<int, Place*>;
 	roads = new unordered_map<long long int, Street*>;
 	allNodes = new unordered_map<int, Place*>;
@@ -47,7 +47,7 @@ unordered_map<int, Place*>* SuperMarketChain::getAllNodes() {
 	return allNodes;
 }
 
-Graph<Place>* SuperMarketChain::getGraph() const {
+Graph<Place*>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
@@ -348,12 +348,9 @@ vector<Place*> SuperMarketChain::getClientsOnSet2(set<Place*> sccSet) {
 
 		if((*ite)->getLabel()=="client"){
 			Place* client = (*ite);
-			cout << client->getShoppingSize() << endl;
 			result.push_back(client);
 		}
 	}
-
-	cout << endl << endl;
 
 	return result;
 }

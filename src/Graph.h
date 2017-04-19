@@ -167,7 +167,7 @@ class Graph {
 public:
 	Graph();
 
-	bool addVertex(const T &in);
+	bool addVertex(const T in);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	bool addEdge(Transition *transition);
 	bool removeVertex(const T &in);
@@ -180,7 +180,7 @@ public:
 
 	//exercicio 5
 	Vertex<T>* getVertex(const T &v) const;
-	vector<Vertex<T>*> getVertexFromSet(const set<T*> places ) const;
+	vector<Vertex<T>*> getVertexFromSet(const set<T> places ) const;
 	void resetIndegrees();
 	vector<Vertex<T>*> getSources() const;
 	int getNumCycles();
@@ -191,16 +191,16 @@ public:
 
 	void dijkstraShortestPath(const T &s);
 
-	vector<set<T*> > scc();
+	vector<set<T> > scc();
 	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
 	Graph<T> getTranspose();
 	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
-	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>* set);
+	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>* set);
 
 
-	vector<T*> calcRoute(set<T*> places , vector<T*>* clients, T* start);
+	vector<T> calcRoute(set<T> places , vector<T>* clients, T start);
 
-	vector<T*>solveGreedy(vector<T*>* clients, T* start);
+	vector<T>solveGreedy(vector<T>* clients, T start);
 
 	double getDistance(vector<T> path);
 
@@ -230,7 +230,7 @@ bool Graph<T>::isDAG() {
 }
 
 template <class T>
-bool Graph<T>::addVertex(const T &in) {
+bool Graph<T>::addVertex(const T in) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	for (; it!=ite; it++)
@@ -294,9 +294,9 @@ bool Graph<T>::addEdge(Transition *transition) {
 	int found=0;
 	Vertex<T> *vS, *vD;
 	while (found!=2 && it!=ite ) {
-		if ( (*it)->info.getID() == transition->getSrcId())
+		if ( (*it)->info->getID() == transition->getSrcId())
 			{ vS=*it; found++;}
-		if ( (*it)->info.getID() == transition->getDestId())
+		if ( (*it)->info->getID() == transition->getDestId())
 			{ vD=*it; found++;}
 		it ++;
 	}
@@ -619,7 +619,7 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 }
 
 template<class T>
-vector<set<T*> > Graph<T>::scc() {
+vector<set<T> > Graph<T>::scc() {
 
 
 	 //it holds vertices by finish time in reverse order.
@@ -643,7 +643,7 @@ vector<set<T*> > Graph<T>::scc() {
 
      //Do a DFS based off vertex finish time in decreasing order on reverse graph..
      visited.clear();
-     vector<set<T*>> result;
+     vector<set<T>> result;
 
      while (!stack.empty()) {
          Vertex<T>* vertex = reverseGraph.getVertex(stack.front()->info);
@@ -653,7 +653,7 @@ vector<set<T*> > Graph<T>::scc() {
          if(visited.find(vertex)!=visited.end()){
              continue;
          }
-         set<T*> set;
+         set<T> set;
          dfsUtilRG(vertex, &visited, &set);
          result.push_back(set);
 
@@ -721,10 +721,10 @@ void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>
 
 
 template<class T>
-void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
+void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>*set) {
 
 	visited->insert(v);
-	set->insert(&v->info);
+	set->insert(v->info);
 
 	typename vector<Edge<T> >::iterator it= (v->adj).begin();
 	typename vector<Edge<T> >::iterator ite= (v->adj).end();
@@ -739,21 +739,21 @@ void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T*>*set) {
 }
 
 template <class T>
-vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
+vector<T> Graph<T>::calcRoute(set<T> places, vector<T>* clients, T start)  {
 
 
 	cout << "Here" << endl;
 
-	vector<T*> res;
+	vector<T> res;
 	Graph subGraph = Graph();
 
 	vector<Vertex<T>*> vertices = getVertexFromSet(places);
 
-	typename set<T*>::iterator it;
+	typename set<T>::iterator it;
 
 
 	for(it = places.begin(); it!=places.end(); it++){
-		T place = *(*it);
+		T place = *it;
 		subGraph.addVertex(place);
 	}
 
@@ -764,7 +764,7 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 		typename vector<Edge<T> >::iterator ite= (vertex->adj).end();
 
 		for (; it !=ite; it++){
-			if(places.find(&it->dest->info)!=places.end())
+			if(places.find(it->dest->info)!=places.end())
 				subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
 		}
 
@@ -776,13 +776,13 @@ vector<T*> Graph<T>::calcRoute(set<T*> places, vector<T*>* clients, T* start)  {
 }
 
 template <class T>
-vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
+vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T> places ) const {
 
 	vector<Vertex<T>*> res;
 
-	typename set<T*>::iterator it;
+	typename set<T>::iterator it;
 	for(it = places.begin(); it!=places.end(); it++){
-		T place = *(*it);
+		T place = *it;
 		Vertex<T>* vertex = getVertex(place);
 		res.push_back(vertex);
 	}
@@ -792,23 +792,22 @@ vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T*> places ) const {
 
 
 template <class T>
-vector<T*> Graph<T>::solveGreedy(vector<T*>* clients, T* start)  {
+vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
 
-	vector<T*> res;
-	T* best;
+	vector<T> res;
+	T best;
 
 	int capacity = 50;
 
 	while(capacity > 0){
-		cout << "Here" << endl;
 
-	dijkstraShortestPath(*start);
+	dijkstraShortestPath(start);
 
 	double distance = numeric_limits<double>::max();
 
 	for (unsigned int i = 0; i < clients->size(); i++){
-		T* node = clients->at(i);
-		vector<T> path = getPath(*start, *node);
+		T node = clients->at(i);
+		vector<T> path = getPath(start, node);
 
 		double tempdist = 0;
 
@@ -843,7 +842,7 @@ double Graph<T>::getDistance(vector<T> path){
 	for(unsigned int i = 0; i < path.size()-1; i++){
 		T node = path.at(i);
 		T nextNode = path.at(i++);
-		res += node.getDistance(&nextNode);
+		res += node->getDistance(nextNode);
 	}
 }
 

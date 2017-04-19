@@ -114,7 +114,7 @@ void LoadingResources::loadClients() {
 		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),client));
 		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),client));
 		superMarketChain->addClients(client);
-		superMarketChain->getGraph()->addVertex(*client);
+		superMarketChain->getGraph()->addVertex(client);
 
 		nclients++;
 
@@ -157,7 +157,7 @@ void LoadingResources::loadSuperMarkets() {
 		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),superMarket));
 		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),superMarket));
 		superMarketChain->addSupermarkets(*superMarket);
-		superMarketChain->getGraph()->addVertex(*superMarket);
+		superMarketChain->getGraph()->addVertex(superMarket);
 
 		nsupers++;
 	}
@@ -196,7 +196,7 @@ void LoadingResources::loadNodes() {
 
 
 			superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),place));
-			superMarketChain->getGraph()->addVertex(*place);
+			superMarketChain->getGraph()->addVertex(place);
 
 
 			nAllNodes++;

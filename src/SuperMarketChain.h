@@ -21,7 +21,7 @@
 
 class SuperMarketChain {
 private:
-	Graph<Place>* graph;
+	Graph<Place*>* graph;
 	std::vector<Supermarket> supermarkets;
 	std::vector<Client*> clients;
 	std::unordered_map<int, Place*>* places;
@@ -46,7 +46,7 @@ private:
 
 public:
 	SuperMarketChain();
-	Graph<Place>* getGraph() const;
+	Graph<Place*>* getGraph() const;
 	std::unordered_map<int, Place*>* getPlaces();
 	std::unordered_map<long long int, Street*>* getRoads();
 	std::unordered_map<int, Place*>* getAllNodes();
