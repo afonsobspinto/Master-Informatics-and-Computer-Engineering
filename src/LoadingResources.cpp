@@ -113,7 +113,7 @@ void LoadingResources::loadClients() {
 
 		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),client));
 		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),client));
-		superMarketChain->addClients(*client);
+		superMarketChain->addClients(client);
 		superMarketChain->getGraph()->addVertex(*client);
 
 		nclients++;

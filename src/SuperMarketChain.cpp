@@ -51,11 +51,11 @@ Graph<Place>* SuperMarketChain::getGraph() const {
 	return graph;
 }
 
-const std::vector<Client>& SuperMarketChain::getClients() const {
+const std::vector<Client*>& SuperMarketChain::getClients() const {
 	return clients;
 }
 
-void SuperMarketChain::addClients(Client& client) {
+void SuperMarketChain::addClients(Client* client) {
 	this->clients.push_back(client);
 }
 
@@ -206,7 +206,7 @@ void SuperMarketChain::generateShopping() {
 		int product = rand() % 21;
 		for(int j=0; j<number; j++){
 			Purchase p = Purchase(product,number,currentdate);
-			clients.at(i).addGroceries(p);
+			clients.at(i)->addGroceries(p);
 		}
 	}
 
@@ -328,8 +328,8 @@ vector<Client*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 
 		if((*ite)->getLabel()=="client"){
 			for(unsigned int i=0;i<clients.size();i++){
-				if(clients[i].getID()==(*ite)->getID()){
-					result.push_back(&(clients[i]));
+				if(clients[i]->getID()==(*ite)->getID()){
+					result.push_back(clients[i]);
 					break;
 				}
 			}

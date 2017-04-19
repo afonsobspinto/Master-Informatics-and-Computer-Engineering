@@ -23,7 +23,7 @@ class SuperMarketChain {
 private:
 	Graph<Place>* graph;
 	std::vector<Supermarket> supermarkets;
-	std::vector<Client> clients;
+	std::vector<Client*> clients;
 	std::unordered_map<int, Place*>* places;
 	pair<int, int> averagePlaces;
 	std::unordered_map<int, Place*>* allNodes;
@@ -53,8 +53,8 @@ public:
 	void displayGraph();
 	void displaySCC();
 	std::vector<Transition*>* getTransitions();
-	const std::vector<Client>& getClients() const;
-	void addClients(Client& client);
+	const std::vector<Client*>& getClients() const;
+	void addClients(Client* client);
 	const std::vector<Supermarket>& getSupermarkets() const;
 	void addSupermarkets(Supermarket& supermarket);
 	void generateShopping();

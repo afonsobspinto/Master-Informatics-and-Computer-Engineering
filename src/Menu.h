@@ -28,7 +28,7 @@ void ClearScreen() {
 
 void showClients(SuperMarketChain S){
 	for (unsigned int i=0; i< S.getClients().size();i++)
-		cout << i+1 << ". " << S.getClients().at(i).getName() << endl;
+		cout << i+1 << ". " << S.getClients().at(i)->getName() << endl;
 	getchar();
 }
 
