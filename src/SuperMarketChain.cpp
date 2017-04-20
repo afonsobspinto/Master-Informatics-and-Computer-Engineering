@@ -288,30 +288,33 @@ void SuperMarketChain::calculateRoutes() {
 
 
 void SuperMarketChain::studyRoutes() {
+	string tempN;
 	for (int i=0; i<supermarkets.size(); i++){
 		double numberofroutes = 0;
 		double totaldistance = 0.0, totaltime = 0.0;
-
 		cout << i+1 << ". " << supermarkets.at(i)->getName() << ":" << endl;
-
 		for (int j=0; j<supermarkets.at(i)->getTrucks()->size(); j++){
-
 			if(supermarkets.at(i)->getTrucks()->at(j)->getRoute().size() > 0){
 				cout << "Routes of Truck " << supermarkets.at(i)->getTrucks()->at(j)->getId() << ":" << endl;
-
-
 				for (int k=0; k<supermarkets.at(i)->getTrucks()->at(j)->getRoute().size(); k++){
 					if(k != supermarkets.at(i)->getTrucks()->at(j)->getRoute().size()-1) {
+
 						std::vector<Place*> routes = supermarkets.at(i)->getTrucks()->at(j)->getRoute();
-
-						if(routes.at(k)->getName() !=" 			" && routes.at(k+1)->getName() != " 			"){
-
-							cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
-									" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
+						numberofroutes++;
+						totaldistance += routes.at(k)->getDistance(routes.at(k+1));
+						totaltime += routes.at(k)->getTime(routes.at(k+1));
+						if(routes.at(k)->getName()!=routes.at(k+1)->getName())
+						{
+							if(routes.at(k+1)->getName()=="\t\t\t"){
+								tempN=routes.at(k)->getName();
+								continue;
+							}else if(routes.at(k)->getName()=="\t\t\t"){
+								cout << k+1 << ". From " << tempN << " to " << routes.at(k+1)->getName();
+							}else{
+								cout << k+1 << ". From " << routes.at(k)->getName() << " to " << tempN;
+							}
+							cout <<	" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
 									" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
-							numberofroutes++;
-							totaldistance += routes.at(k)->getDistance(routes.at(k+1));
-							totaltime += routes.at(k)->getTime(routes.at(k+1));
 						}
 					}
 				}
