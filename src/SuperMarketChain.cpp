@@ -251,10 +251,12 @@ void SuperMarketChain::calculateRoutes() {
 		vector<Place*> clients2 = getClientsOnSet2(temp);
 		vector <Supermarket*> supermarkets = getSupermarketsOnSet(temp);
 
-		if(supermarkets.size()==0)
+		if(supermarkets.size()==0){
 			unreachableClients.insert(unreachableClients.end(),clients.begin(), clients.end());
+		}
 		else if(clients.size()==0)
 			unneededSupermarkets.insert(unneededSupermarkets.end(), supermarkets.begin(), supermarkets.end());
+
 
 		else{
 			int capacityAvailable = getTotalCapacity();
@@ -282,10 +284,7 @@ void SuperMarketChain::calculateRoutes() {
 			}
 		}
 	}
-
-
 }
-
 
 
 void SuperMarketChain::studyRoutes() {
@@ -315,7 +314,7 @@ void SuperMarketChain::studyRoutes() {
 								cout << k+1 << ". From " << routes.at(k)->getName() << " to " << tempN;
 							}
 							cout <<	" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
-							" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
+									" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
 						}
 					}
 				}
@@ -396,7 +395,7 @@ void SuperMarketChain::displayRoutes() {
 
 	for (auto i: transitions){
 
-		if(tempTransitions.find(i) == tempTransitions.end()){
+		if(!checkSet(tempTransitions, i)){
 
 		if(i->is2Way())
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
@@ -482,8 +481,8 @@ const std::vector<Place*>& SuperMarketChain::getUnreachableClients() {
 }
 
 bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
-	std::set<unsigned long>::iterator it;
-	for (it == set.begin(); !(it == set.end()); it++){
+
+	 for (std::set<Transition*>::iterator it=set.begin(); it!=set.end(); ++it){
 		Transition* temp = *it;
 	    if(t->getDestId() == temp->getDestId() && t->getSrcId() == temp->getSrcId())
 	    	return true;

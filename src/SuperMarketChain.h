@@ -53,7 +53,6 @@ public:
 	void displayGraph();
 	void displaySCC();
 	void displayRoutes();
-	bool checkSet(set<Transition*> set, Transition *t);
 	std::vector<Transition*>* getTransitions();
 	std::vector<Supermarket*>* getSupermarkets();
 	const std::vector<Client*>& getClients() const;
@@ -65,6 +64,7 @@ public:
 	void studyRoutes();
 	const std::vector<Place*>& getUnneededSupermarkets();
 	const std::vector<Place*>& getUnreachableClients();
+	bool checkSet(set<Transition*> set, Transition *t);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
