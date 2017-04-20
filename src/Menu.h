@@ -33,8 +33,8 @@ void showClients(SuperMarketChain S){
 }
 
 void showSupermarkets(SuperMarketChain S){
-	for (unsigned int i=0; i< S.getSupermarkets().size();i++)
-		cout << i+1 << ". " << S.getSupermarkets().at(i).getName() << endl;
+	for (unsigned int i=0; i< S.getSupermarkets()->size();i++)
+		cout << i+1 << ". " << S.getSupermarkets()->at(i)->getName() << endl;
 	getchar();
 }
 
@@ -66,6 +66,7 @@ bool mainOptions() {
 			break;
 		}
 		case 2:{
+			S.displayRoutes();
 			break;}
 		case 3:{
 			S.studyRoutes();

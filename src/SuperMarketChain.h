@@ -22,7 +22,7 @@
 class SuperMarketChain {
 private:
 	Graph<Place*>* graph;
-	std::vector<Supermarket> supermarkets;
+	std::vector<Supermarket*> supermarkets;
 	std::vector<Client*> clients;
 	std::unordered_map<int, Place*>* places;
 	pair<int, int> averagePlaces;
@@ -52,11 +52,12 @@ public:
 	std::unordered_map<int, Place*>* getAllNodes();
 	void displayGraph();
 	void displaySCC();
+	void displayRoutes();
 	std::vector<Transition*>* getTransitions();
+	std::vector<Supermarket*>* getSupermarkets();
 	const std::vector<Client*>& getClients() const;
 	void addClients(Client* client);
-	const std::vector<Supermarket>& getSupermarkets() const;
-	void addSupermarkets(Supermarket& supermarket);
+	void addSupermarkets(Supermarket* supermarket);
 	void generateShopping();
 	void generateTrucks();
 	void calculateRoutes();

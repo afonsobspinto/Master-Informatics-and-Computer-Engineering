@@ -17,7 +17,7 @@
 class Supermarket: public Place{
 
 private:
-	std::vector<Truck> trucks;
+	std::vector<Truck*> trucks;
 	std::string name;
 	int capacity;
 	void calculateCapacity();
@@ -27,7 +27,7 @@ public:
 	const std::string getName() const;
 	void addTrucks();
 	const int getCapacity() const;
-	std::vector<Truck> *getTrucks();
+	std::vector<Truck*> *getTrucks();
 };
 
 

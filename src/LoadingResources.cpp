@@ -156,7 +156,7 @@ void LoadingResources::loadSuperMarkets() {
 
 		superMarketChain->getPlaces()->insert(make_pair(ids.at(id),superMarket));
 		superMarketChain->getAllNodes()->insert(make_pair(ids.at(id),superMarket));
-		superMarketChain->addSupermarkets(*superMarket);
+		superMarketChain->addSupermarkets(superMarket);
 		superMarketChain->getGraph()->addVertex(superMarket);
 
 		nsupers++;

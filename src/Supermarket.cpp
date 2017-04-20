@@ -23,7 +23,7 @@ const std::string Supermarket::getName() const{
 
 
 void Supermarket::addTrucks() {
-	Truck truck = Truck();
+	Truck* truck = new Truck();
 
 	this->trucks.push_back(truck);
 }
@@ -35,10 +35,10 @@ const int Supermarket::getCapacity() const {
 void Supermarket::calculateCapacity() {
 	this->capacity = 0;
 	for(unsigned int i = 0; i < trucks.size(); i++){
-		this->capacity += trucks.at(i).getCapacity();
+		this->capacity += trucks.at(i)->getCapacity();
 	}
 }
 
-std::vector<Truck>* Supermarket::getTrucks() {
+std::vector<Truck*>* Supermarket::getTrucks() {
 	return &trucks;
 }

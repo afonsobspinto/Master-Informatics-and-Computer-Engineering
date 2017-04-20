@@ -59,12 +59,12 @@ void SuperMarketChain::addClients(Client* client) {
 	this->clients.push_back(client);
 }
 
-const std::vector<Supermarket>& SuperMarketChain::getSupermarkets() const {
-	return supermarkets;
+std::vector<Supermarket*>* SuperMarketChain::getSupermarkets() {
+	return &supermarkets;
 }
 
 void SuperMarketChain::addSupermarkets(
-		Supermarket& supermarket) {
+		Supermarket* supermarket) {
 	this->supermarkets.push_back(supermarket);
 }
 
@@ -215,13 +215,10 @@ void SuperMarketChain::generateShopping() {
 
 void SuperMarketChain::generateTrucks() {
 
-	int count=0;
-
 	for(unsigned int i=0; i<supermarkets.size(); i++){
 			int number = rand() % 10 + 1;
 			for(int j=0; j<number; j++){
-				supermarkets.at(i).addTrucks();
-				count++;
+				supermarkets.at(i)->addTrucks();
 			}
 		}
 }
@@ -239,7 +236,7 @@ int SuperMarketChain::getTotalShopping(vector<Client*> clients) {
 int SuperMarketChain::getTotalCapacity() {
 	int res;
 	for (unsigned int i = 0; i<supermarkets.size(); i++){
-		res += supermarkets.at(i).getCapacity();
+		res += supermarkets.at(i)->getCapacity();
 	}
 	return res;
 }
@@ -278,10 +275,9 @@ void SuperMarketChain::calculateRoutes() {
 				Supermarket* supermarket = supermarkets.at(j);
 
 				for (unsigned int k = 0; k < supermarket->getTrucks()->size(); k++){
-					Truck truck = supermarket->getTrucks()->at(k);
+					Truck* truck = supermarket->getTrucks()->at(k);
 					vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
-					truck.setRoute(route);
-
+					truck->setRoute(route);
 				}
 			}
 		}
@@ -290,21 +286,26 @@ void SuperMarketChain::calculateRoutes() {
 
 }
 
+
+
 void SuperMarketChain::studyRoutes() {
 	double numberofroutes = 0;
 	double totaldistance = 0.0, totaltime = 0.0;
 	for (int i=0; i<supermarkets.size(); i++){
-		cout << i+1 << ". " << supermarkets.at(i).getName() << ":" << endl;
-		for (int j=0; j<supermarkets.at(i).getTrucks()->size(); j++){
-			cout << "Routes of Truck " << supermarkets.at(i).getTrucks()->at(j).getId() << ":" << endl;
-			for (int k=0; k<supermarkets.at(i).getTrucks()->at(j).getRoute().size(); k++){
-				std::vector<Place*> routes = supermarkets.at(i).getTrucks()->at(j).getRoute();
-				cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
-						" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
-						" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
-				numberofroutes++;
-				totaldistance += routes.at(k)->getDistance(routes.at(k+1));
+		cout << i+1 << ". " << supermarkets.at(i)->getName() << ":" << endl;
+		for (int j=0; j<supermarkets.at(i)->getTrucks()->size(); j++){
+			cout << "Routes of Truck " << supermarkets.at(i)->getTrucks()->at(j)->getId() << ":" << endl;
+			for (int k=0; k<supermarkets.at(i)->getTrucks()->at(j)->getRoute().size(); k++){
 
+				if(k != supermarkets.at(i)->getTrucks()->at(j)->getRoute().size()-1) {
+
+					std::vector<Place*> routes = supermarkets.at(i)->getTrucks()->at(j)->getRoute();
+					cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
+							" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
+							" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
+					numberofroutes++;
+					totaldistance += routes.at(k)->getDistance(routes.at(k+1));
+				}
 			}
 		}
 	}
@@ -314,11 +315,80 @@ void SuperMarketChain::studyRoutes() {
 }
 
 
+void SuperMarketChain::displayRoutes() {
+	GraphViewer *gv = new GraphViewer(width,heigth,false);
 
-//DisplayRoutes
-//GraphViewerCenas
-//Se o Nó estiver na Rota de algum truck desenhar Laranja e as transições desse nó para outro qql a verde
+	gv->createWindow(width, heigth);
+	gv->defineVertexColor(WHITE);
+	gv->defineEdgeColor(BLACK);
 
+	pair<int,int> geographicCoords;
+	calcAveragePlaces();
+
+	set<Place*> tempNodes;
+	set<Transition*> tempTransitions;
+
+	unsigned int idTransition = 0;
+
+	for (unsigned int i = 0; i < supermarkets.size(); i++){
+		Supermarket* super = supermarkets.at(i);
+		for (unsigned int j = 0; j < super->getTrucks()->size(); j++){
+			Truck* truck = super->getTrucks()->at(j);
+			for (unsigned int k = 0; k < truck->getRoute().size(); k++){
+				Place* node = truck->getRoute().at(k);
+				geographicCoords = convertGeoGraphicCoord(node->getCoord().getLatitude(), node->getCoord().getLongitude());
+				gv->addNode( node->getID(), geographicCoords.first, geographicCoords.second);
+				gv->setVertexColor(node->getID(), ORANGE);
+				tempNodes.insert(node);
+				if(k != truck->getRoute().size()-1){
+					gv->addEdge(idTransition++, node->getID(), truck->getRoute().at(k+1)->getID(), EdgeType::UNDIRECTED);
+					gv->setEdgeColor(idTransition, GREEN);
+					Transition* tempt = new Transition(idTransition, node->getID(), truck->getRoute().at(k+1)->getID(), node->getDistance(truck->getRoute().at(k+1)), false );
+					tempTransitions.insert(tempt);
+				}
+			}
+		}
+	}
+
+	for(auto kv: *allNodes){
+
+		Coord tempCoord = kv.second->getCoord();
+		geographicCoords = convertGeoGraphicCoord(tempCoord.getLatitude(), tempCoord.getLongitude());
+		gv->addNode(kv.first, geographicCoords.first, geographicCoords.second);
+
+
+		if(tempNodes.find(kv.second) == tempNodes.end()){
+
+			if(kv.second->getLabel() == "client")
+				gv->setVertexColor(kv.first, BLUE);
+			else if(kv.second->getLabel()=="supermarket")
+				gv->setVertexColor(kv.first, RED);
+
+			gv->setVertexLabel(kv.first, kv.second->getName());
+
+		}
+	}
+
+	for (auto i: transitions){
+
+		if(tempTransitions.find(i) == tempTransitions.end()){
+
+		if(i->is2Way())
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
+		else
+			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
+
+		//gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+		}
+	}
+
+	cin.clear();
+	cin.ignore(10000, '\n');
+	cin.get();
+
+	gv->closeWindow();
+	delete (gv);
+}
 
 vector<Client*> SuperMarketChain::getClientsOnSet(set<Place*> sccSet) {
 
@@ -365,8 +435,8 @@ std::vector<Supermarket*> SuperMarketChain::getSupermarketsOnSet(
 
 		if((*ite)->getLabel()=="supermarket"){
 			for(unsigned int i=0;i<supermarkets.size();i++){
-				if(supermarkets[i].getID()==(*ite)->getID()){
-					result.push_back(&(supermarkets[i]));
+				if(supermarkets[i]->getID()==(*ite)->getID()){
+					result.push_back(supermarkets[i]);
 					break;
 				}
 			}
