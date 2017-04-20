@@ -799,7 +799,10 @@ template <class T>
 vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
 
 	vector<T> res;
+	vector<T> bestPath;
 	T best;
+
+	res.push_back(start);
 
 	int capacity = 50;
 
@@ -822,14 +825,13 @@ vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
 
 		if(tempdist < distance){
 			distance = tempdist;
+			bestPath = path;
 			best = node;
 		}
 
 	}
 
-
-
-	res.push_back(best);
+	res.insert(res.end(), bestPath.begin(), bestPath.end());
 	capacity -= best->getShoppingSize();
 	start = best;
 	clients->erase(remove(clients->begin(), clients->end(), best));

@@ -348,7 +348,11 @@ void SuperMarketChain::displayRoutes() {
 				Place* node = truck->getRoute().at(k);
 				geographicCoords = convertGeoGraphicCoord(node->getCoord().getLatitude(), node->getCoord().getLongitude());
 				gv->addNode( node->getID(), geographicCoords.first, geographicCoords.second);
-				gv->setVertexColor(node->getID(), ORANGE);
+				if(node->getLabel() == "client")
+					gv->setVertexColor(node->getID(), ORANGE);
+				else if(node->getLabel() == "supermarket")
+					gv->setVertexColor(node->getID(), YELLOW);
+				gv->setVertexLabel(node->getID(),node->getName());
 				tempNodes.insert(node);
 				if(k != truck->getRoute().size()-1){
 					gv->addEdge(idTransition++, node->getID(), truck->getRoute().at(k+1)->getID(), EdgeType::UNDIRECTED);
