@@ -27,7 +27,7 @@ public:
 	const std::string getName() const;
 	void addTrucks();
 	const int getCapacity() const;
-	std::vector<Truck> getTrucks();
+	std::vector<Truck> *getTrucks();
 };
 
 

@@ -65,21 +65,21 @@ bool mainOptions() {
 			S.displayGraph();
 			break;
 		}
-		case 3:{
+		case 2:{
 			break;}
-		case 4:{
+		case 3:{
 			S.studyRoutes();
 			break;}
-		case 5:{
+		case 4:{
 			showClients(S);
 			break;}
-		case 6:{
+		case 5:{
 			showSupermarkets(S);
 			break;}
-		case 7:{
+		case 6:{
 			S.displaySCC();
 			break;}
-		case 8:{
+		case 7:{
 			return true;}
 		default:{
 			continue;}

@@ -273,11 +273,12 @@ void SuperMarketChain::calculateRoutes() {
 			}
 
 
+
 			for(unsigned int j = 0; j < supermarkets.size(); j++){
 				Supermarket* supermarket = supermarkets.at(j);
 
-				for (unsigned int k = 0; k < supermarket->getTrucks().size(); k++){
-					Truck truck = supermarket->getTrucks().at(k);
+				for (unsigned int k = 0; k < supermarket->getTrucks()->size(); k++){
+					Truck truck = supermarket->getTrucks()->at(k);
 					vector<Place*> route = graph->calcRoute(temp, &clients2, supermarkets.at(j));
 					truck.setRoute(route);
 
@@ -294,10 +295,10 @@ void SuperMarketChain::studyRoutes() {
 	double totaldistance = 0.0, totaltime = 0.0;
 	for (int i=0; i<supermarkets.size(); i++){
 		cout << i+1 << ". " << supermarkets.at(i).getName() << ":" << endl;
-		for (int j=0; j<supermarkets.at(i).getTrucks().size(); j++){
-			cout << "Routes of Truck " << supermarkets.at(i).getTrucks().at(j).getId() << ":" << endl;
-			for (int k=0; k<supermarkets.at(i).getTrucks().at(j).getRoute().size(); k++){
-				std::vector<Place*> routes = supermarkets.at(i).getTrucks().at(j).getRoute();
+		for (int j=0; j<supermarkets.at(i).getTrucks()->size(); j++){
+			cout << "Routes of Truck " << supermarkets.at(i).getTrucks()->at(j).getId() << ":" << endl;
+			for (int k=0; k<supermarkets.at(i).getTrucks()->at(j).getRoute().size(); k++){
+				std::vector<Place*> routes = supermarkets.at(i).getTrucks()->at(j).getRoute();
 				cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
 						" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
 						" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
@@ -347,8 +348,7 @@ vector<Place*> SuperMarketChain::getClientsOnSet2(set<Place*> sccSet) {
 	for(ite = sccSet.begin(); ite != sccSet.end(); ite++){
 
 		if((*ite)->getLabel()=="client"){
-			Place* client = (*ite);
-			result.push_back(client);
+			result.push_back(*ite);
 		}
 	}
 

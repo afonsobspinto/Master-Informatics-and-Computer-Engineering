@@ -6,6 +6,7 @@
  */
 
 #include "Truck.h"
+#include "iostream"
 
 Truck::Truck(Place* location):
 		id(ids), capacity(50), usedCapacity(0), averageSpeed(60), location(location) {

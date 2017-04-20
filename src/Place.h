@@ -23,7 +23,6 @@ private:
 	long long int id;
 	Coord coord;
 	std::vector<Transition*> transitions;
-	std::vector<Purchase> shopping;
 	std::string label;
 
 public:

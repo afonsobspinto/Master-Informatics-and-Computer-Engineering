@@ -65,7 +65,7 @@ double Place::getTime(Place* place2) {
 }
 
 int Place::getShoppingSize() {
-	return shopping.size();
+	return 0;
 }
 
 bool Place::operator !=(const Place& rhs) const {

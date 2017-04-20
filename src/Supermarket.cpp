@@ -39,6 +39,6 @@ void Supermarket::calculateCapacity() {
 	}
 }
 
-std::vector<Truck> Supermarket::getTrucks() {
-	return trucks;
+std::vector<Truck>* Supermarket::getTrucks() {
+	return &trucks;
 }

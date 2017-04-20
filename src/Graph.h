@@ -234,7 +234,7 @@ bool Graph<T>::addVertex(const T in) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	for (; it!=ite; it++)
-		if ((*it)->info == in) return false;
+		if (*((*it)->info) == *in) return false;
 	Vertex<T> *v1 = new Vertex<T>(in);
 	vertexSet.push_back(v1);
 	return true;
@@ -245,7 +245,7 @@ bool Graph<T>::removeVertex(const T &in) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	for (; it!=ite; it++) {
-		if ((*it)->info == in) {
+		if (*((*it)->info) == *in) {
 			Vertex<T> * v= *it;
 			vertexSet.erase(it);
 			typename vector<Vertex<T>*>::iterator it1= vertexSet.begin();
@@ -274,9 +274,9 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	int found=0;
 	Vertex<T> *vS, *vD;
 	while (found!=2 && it!=ite ) {
-		if ( (*it)->info == sourc )
+		if ( *((*it)->info) == *sourc )
 			{ vS=*it; found++;}
-		if ( (*it)->info == dest )
+		if ( *((*it)->info) == *dest )
 			{ vD=*it; found++;}
 		it ++;
 	}
@@ -314,9 +314,9 @@ bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
 	int found=0;
 	Vertex<T> *vS, *vD;
 	while (found!=2 && it!=ite ) {
-		if ( (*it)->info == sourc )
+		if ( *((*it)->info) == *sourc )
 			{ vS=*it; found++;}
-		if ( (*it)->info == dest )
+		if ( *((*it)->info) == *dest )
 			{ vD=*it; found++;}
 		it ++;
 	}
@@ -419,8 +419,9 @@ int Graph<T>::maxNewChildren(Vertex<T> *v, T &inf) const {
 
 template <class T>
 Vertex<T>* Graph<T>::getVertex(const T &v) const {
-	for(unsigned int i = 0; i < vertexSet.size(); i++)
-		if (vertexSet[i]->info == v) return vertexSet[i];
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		if (*(vertexSet[i]->info) == *v) return vertexSet[i];
+	}
 	return nullptr;
 }
 
@@ -530,7 +531,7 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest){
 	Vertex<T>* v = getVertex(dest);
 
 	buffer.push_front(v->info);
-	while (v->path != NULL && v->path->info != origin) {
+	while (v->path != NULL && *(v->path->info) != *origin) {
 		v = v->path;
 		buffer.push_front(v->info);
 	}
@@ -576,6 +577,7 @@ void Graph<T>::unweightedShortestPath(const T &s) {
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &s) {
 
+
 	for(unsigned int i = 0; i < vertexSet.size(); i++) {
 		vertexSet[i]->path = nullptr;
 		vertexSet[i]->dist = INT_INFINITY;
@@ -583,8 +585,11 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 	}
 
 	Vertex<T>* v = getVertex(s);
-	v->dist = 0;
 
+	if(v==nullptr)
+		cout << "dijkstraShortestPath vertex not found" << endl;
+
+	v->dist = 0;
 	vector< Vertex<T>* > pq;
 	pq.push_back(v);
 
@@ -616,6 +621,7 @@ void Graph<T>::dijkstraShortestPath(const T &s) {
 			}
 		}
 	}
+
 }
 
 template<class T>
@@ -742,8 +748,6 @@ template <class T>
 vector<T> Graph<T>::calcRoute(set<T> places, vector<T>* clients, T start)  {
 
 
-	cout << "Here" << endl;
-
 	vector<T> res;
 	Graph subGraph = Graph();
 
@@ -799,13 +803,14 @@ vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
 
 	int capacity = 50;
 
-	while(capacity > 0){
+	while(capacity > 0 && clients->size()>0){
 
 	dijkstraShortestPath(start);
 
 	double distance = numeric_limits<double>::max();
 
 	for (unsigned int i = 0; i < clients->size(); i++){
+
 		T node = clients->at(i);
 		vector<T> path = getPath(start, node);
 
@@ -822,28 +827,31 @@ vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
 
 	}
 
+
+
 	res.push_back(best);
-	capacity -=(best)->getShoppingSize();
-	cout << best->getShoppingSize() << endl;
+	capacity -= best->getShoppingSize();
 	start = best;
 	clients->erase(remove(clients->begin(), clients->end(), best));
 
 	}
 
 	return res;
-
-
 }
 
 
 template <class T>
 double Graph<T>::getDistance(vector<T> path){
 	double res = 0;
+
 	for(unsigned int i = 0; i < path.size()-1; i++){
 		T node = path.at(i);
-		T nextNode = path.at(i++);
+		T nextNode = path.at(++i);
+		i--;
 		res += node->getDistance(nextNode);
 	}
+
+	return res;
 }
 
 template<class T>
