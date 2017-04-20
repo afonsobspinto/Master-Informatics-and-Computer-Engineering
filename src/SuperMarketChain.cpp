@@ -289,14 +289,13 @@ void SuperMarketChain::calculateRoutes() {
 
 
 void SuperMarketChain::studyRoutes() {
-	double numberofroutes = 0;
-	double totaldistance = 0.0, totaltime = 0.0;
 	for (int i=0; i<supermarkets.size(); i++){
+		double numberofroutes = 0;
+		double totaldistance = 0.0, totaltime = 0.0;
 		cout << i+1 << ". " << supermarkets.at(i)->getName() << ":" << endl;
 		for (int j=0; j<supermarkets.at(i)->getTrucks()->size(); j++){
 			cout << "Routes of Truck " << supermarkets.at(i)->getTrucks()->at(j)->getId() << ":" << endl;
 			for (int k=0; k<supermarkets.at(i)->getTrucks()->at(j)->getRoute().size(); k++){
-
 				if(k != supermarkets.at(i)->getTrucks()->at(j)->getRoute().size()-1) {
 
 					std::vector<Place*> routes = supermarkets.at(i)->getTrucks()->at(j)->getRoute();
@@ -305,13 +304,22 @@ void SuperMarketChain::studyRoutes() {
 							" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
 					numberofroutes++;
 					totaldistance += routes.at(k)->getDistance(routes.at(k+1));
+					totaltime += routes.at(k)->getTime(routes.at(k+1));
 				}
 			}
 		}
+		if (totaldistance == 0.0){
+			cout << endl;
+			cout << "No Routes in this SuperMarket" << endl;
+			cout << endl;
+		}
+		else{
+			cout << endl;
+			cout << "Average Distance: " << totaldistance/numberofroutes << endl;
+			cout << "Average Time:" << totaltime/numberofroutes << " hours" << endl;
+			cout << endl;
+		}
 	}
-	cout << endl;
-	cout << "Average Distance: " << totaldistance/numberofroutes << endl;
-	cout << "Average Time:" << totaltime/numberofroutes << endl;
 }
 
 
@@ -448,3 +456,10 @@ std::vector<Supermarket*> SuperMarketChain::getSupermarketsOnSet(
 
 }
 
+const std::vector<Place*>& SuperMarketChain::getUnneededSupermarkets() {
+	return unneededSupermarkets;
+}
+
+const std::vector<Place*>& SuperMarketChain::getUnreachableClients() {
+	return unreachableClients;
+}

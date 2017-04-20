@@ -62,7 +62,8 @@ public:
 	void generateTrucks();
 	void calculateRoutes();
 	void studyRoutes();
-
+	const std::vector<Place*>& getUnneededSupermarkets();
+	const std::vector<Place*>& getUnreachableClients();
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

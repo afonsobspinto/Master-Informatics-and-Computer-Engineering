@@ -38,6 +38,18 @@ void showSupermarkets(SuperMarketChain S){
 	getchar();
 }
 
+void showUnreachable(SuperMarketChain S){
+	for(unsigned int i=0; i< S.getUnreachableClients().size();i++)
+		cout << i+1 << ". " << S.getUnreachableClients().at(i)->getName() << endl;
+	getchar();
+}
+
+void showUseless(SuperMarketChain S){
+	for(unsigned int i=0; i< S.getUnneededSupermarkets().size();i++)
+			cout << i+1 << ". " << S.getUnneededSupermarkets().at(i)->getName() << endl;
+	getchar();
+}
+
 bool mainOptions() {
 	int option;
 	SuperMarketChain S = SuperMarketChain();
@@ -53,18 +65,18 @@ bool mainOptions() {
 		cout << "   " << "4 - See Clients" << endl;
 		cout << "   " << "5 - See Supermarkets" << endl;
 		cout << "   " << "6 - Show Strongly connected components" << endl;
-		cout << "   " << "7 - Leave" << endl << endl;
+		cout << "   " << "7 - Show unreachable Clients" << endl;
+		cout << "   " << "8 - Show useless Supermarkets" << endl;
+		cout << "   " << "9 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
 		option = stoi(str_option);
 
 		switch (option){
-		case 1:
-		{
+		case 1:{
 			S.displayGraph();
-			break;
-		}
+			break;}
 		case 2:{
 			S.displayRoutes();
 			break;}
@@ -81,6 +93,12 @@ bool mainOptions() {
 			S.displaySCC();
 			break;}
 		case 7:{
+			showUnreachable(S);
+			break;}
+		case 8:{
+			showUseless(S);
+			break;}
+		case 9:{
 			return true;}
 		default:{
 			continue;}
