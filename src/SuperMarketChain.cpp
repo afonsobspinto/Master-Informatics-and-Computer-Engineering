@@ -289,6 +289,7 @@ void SuperMarketChain::calculateRoutes() {
 
 
 void SuperMarketChain::studyRoutes() {
+	string tempN;
 	for (int i=0; i<supermarkets.size(); i++){
 		double numberofroutes = 0;
 		double totaldistance = 0.0, totaltime = 0.0;
@@ -300,12 +301,22 @@ void SuperMarketChain::studyRoutes() {
 					if(k != supermarkets.at(i)->getTrucks()->at(j)->getRoute().size()-1) {
 
 						std::vector<Place*> routes = supermarkets.at(i)->getTrucks()->at(j)->getRoute();
-						cout << k+1 << ". From " << routes.at(k)->getName() << " to " << routes.at(k+1)->getName() <<
-								" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
-								" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
 						numberofroutes++;
 						totaldistance += routes.at(k)->getDistance(routes.at(k+1));
 						totaltime += routes.at(k)->getTime(routes.at(k+1));
+						if(routes.at(k)->getName()!=routes.at(k+1)->getName())
+						{
+							if(routes.at(k+1)->getName()=="\t\t\t"){
+								tempN=routes.at(k)->getName();
+								continue;
+							}else if(routes.at(k)->getName()=="\t\t\t"){
+								cout << k+1 << ". From " << tempN << " to " << routes.at(k+1)->getName();
+							}else{
+								cout << k+1 << ". From " << routes.at(k)->getName() << " to " << tempN;
+							}
+							cout <<	" with distance " << routes.at(k)->getDistance(routes.at(k+1)) <<
+							" and time " << routes.at(k)->getTime(routes.at(k+1)) << " hours" << endl;
+						}
 					}
 				}
 			}
@@ -468,4 +479,14 @@ const std::vector<Place*>& SuperMarketChain::getUnneededSupermarkets() {
 
 const std::vector<Place*>& SuperMarketChain::getUnreachableClients() {
 	return unreachableClients;
+}
+
+bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
+	std::set<unsigned long>::iterator it;
+	for (it == set.begin(); !(it == set.end()); it++){
+		Transition* temp = *it;
+	    if(t->getDestId() == temp->getDestId() && t->getSrcId() == temp->getSrcId())
+	    	return true;
+	}
+	return false;
 }

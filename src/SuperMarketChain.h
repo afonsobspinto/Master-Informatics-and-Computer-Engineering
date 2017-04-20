@@ -53,6 +53,7 @@ public:
 	void displayGraph();
 	void displaySCC();
 	void displayRoutes();
+	bool checkSet(set<Transition*> set, Transition *t);
 	std::vector<Transition*>* getTransitions();
 	std::vector<Supermarket*>* getSupermarkets();
 	const std::vector<Client*>& getClients() const;
