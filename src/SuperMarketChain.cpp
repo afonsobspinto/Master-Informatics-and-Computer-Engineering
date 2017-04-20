@@ -395,7 +395,7 @@ void SuperMarketChain::displayRoutes() {
 
 	for (auto i: transitions){
 
-		if(tempTransitions.find(i) == tempTransitions.end()){
+		if(!checkSet(tempTransitions, i)){
 
 		if(i->is2Way())
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::UNDIRECTED);
@@ -478,4 +478,14 @@ const std::vector<Place*>& SuperMarketChain::getUnneededSupermarkets() {
 
 const std::vector<Place*>& SuperMarketChain::getUnreachableClients() {
 	return unreachableClients;
+}
+
+bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
+
+	 for (std::set<Transition*>::iterator it=set.begin(); it!=set.end(); ++it){
+		Transition* temp = *it;
+	    if(t->getDestId() == temp->getDestId() && t->getSrcId() == temp->getSrcId())
+	    	return true;
+	}
+	return false;
 }

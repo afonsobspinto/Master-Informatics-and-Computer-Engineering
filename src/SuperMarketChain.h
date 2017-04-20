@@ -64,6 +64,7 @@ public:
 	void studyRoutes();
 	const std::vector<Place*>& getUnneededSupermarkets();
 	const std::vector<Place*>& getUnreachableClients();
+	bool checkSet(set<Transition*> set, Transition *t);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
