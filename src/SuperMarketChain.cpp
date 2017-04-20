@@ -484,7 +484,8 @@ bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
 
 	 for (std::set<Transition*>::iterator it=set.begin(); it!=set.end(); ++it){
 		Transition* temp = *it;
-	    if(t->getDestId() == temp->getDestId() && t->getSrcId() == temp->getSrcId())
+	    if((t->getDestId() == temp->getDestId() && t->getSrcId() == temp->getSrcId()) ||
+	    		(t->getSrcId() == temp->getDestId() && t->getDestId() == temp->getSrcId()))
 	    	return true;
 	}
 	return false;
