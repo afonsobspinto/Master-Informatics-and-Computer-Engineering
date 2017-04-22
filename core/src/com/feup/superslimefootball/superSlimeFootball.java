@@ -6,19 +6,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
 
 public class superSlimeFootball extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	private Socket socket;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		connectSocket();
+
 	}
 
 	@Override
@@ -36,12 +33,4 @@ public class superSlimeFootball extends ApplicationAdapter {
 		img.dispose();
 	}
 
-	public void connectSocket(){
-		try {
-			socket = IO.socket("http://localhost:8080");
-			socket.connect();
-		}catch (Exception e){
-			System.out.println(e);
-		}
-	}
 }
