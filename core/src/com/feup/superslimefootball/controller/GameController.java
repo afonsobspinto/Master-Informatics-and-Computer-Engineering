@@ -1,11 +1,12 @@
 package com.feup.superslimefootball.controller;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.feup.superslimefootball.controller.entities.BallBody;
+import com.badlogic.gdx.physics.box2d.World;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
@@ -40,6 +41,11 @@ public class GameController implements ContactListener {
     private static final float ACCELERATION_FORCE = 1000f;
 
     /**
+     * The physics world controlled by this controller.
+     */
+    private final World world;
+
+    /**
      * The slime body.
      */
     private final SlimeBody slimeBody;
@@ -55,8 +61,11 @@ public class GameController implements ContactListener {
     private float accumulator;
 
     public GameController() {
-        this.slimeBody = new SlimeBody();
-        this.opponentSlimeBody = new SlimeBody();
+
+        world = new World(new Vector2(0, 0), true);
+
+        this.slimeBody = new SlimeBody(world, GameModel.getInstance().getSlime());
+        this.opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlime());
     }
 
     /**
@@ -177,8 +186,8 @@ public class GameController implements ContactListener {
 
     /**
      * A Slime collided with the ball.
-     * @param SlimeBody the bullet that collided
-     * @param BallBody the asteroid that collided
+     * @param slimeBody the bullet that collided
+     * @param ballBody the asteroid that collided
      */
     private void SlimeBallCollision(Body slimeBody, Body ballBody) {
         // BallModel asteroidModel = (BallModel) BallBody.getUserData();
@@ -187,10 +196,10 @@ public class GameController implements ContactListener {
 
     /**
      * A Slime collided with the ball.
-     * @param SlimeBody the bullet that collided
-     * @param BallBody the asteroid that collided
+     * @param slimeBody the bullet that collided
+     * @param goalBody the asteroid that collided
      */
-    private void SlimeGoalCollision(Body slimeBody, Body GoalBody) {
+    private void SlimeGoalCollision(Body slimeBody, Body goalBody) {
         // BallModel asteroidModel = (BallModel) BallBody.getUserData();
 
     }

@@ -22,7 +22,7 @@ public class SlimeBody extends EntityBody {
      * @param model the model representing this space ship.
      */
     public SlimeBody(World world, SlimeModel model) {
-        //super(world, model);
+        super(world, model);
 
         float density = 0.5f, friction = 0.4f, restitution = 0.5f;
         int width = 75, height = 75;
