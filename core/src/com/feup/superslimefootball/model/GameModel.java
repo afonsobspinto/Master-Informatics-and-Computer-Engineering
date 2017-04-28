@@ -54,8 +54,8 @@ public class GameModel {
      * pitch and a two slimes on different side of the pitch.
      */
     private GameModel() {
-        ball = new BallModel();
-        slime = new SlimeModel();
+        ball = new BallModel(1,1);
+        slime = new SlimeModel(1,1);
        //opponentSlime = new BallModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
 
     }
