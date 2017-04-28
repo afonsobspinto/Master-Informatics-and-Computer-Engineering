@@ -16,8 +16,9 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 \*image\*
 
 ### Behavioural Aspects
-* Moving by Tilting
-* Newtwork connection (Multiplayer Mode) via QRCode (??)
+* Moving by tilting
+* Newtwork connection (multiplayer mode) via QRCode (??)
+* Share match result on social networks
 
 ### Design Patterns
 
