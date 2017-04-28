@@ -11,6 +11,7 @@ import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
+import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 
 /**
@@ -144,19 +145,24 @@ public class GameController implements ContactListener {
         Body bodyB = contact.getFixtureB().getBody();
 
         if (bodyA.getUserData() instanceof SlimeModel)
-            SlimeCollision(bodyA);
+            slimeCollision(bodyA);
         if (bodyB.getUserData() instanceof SlimeModel)
-            SlimeCollision(bodyB);
+            slimeCollision(bodyB);
 
         if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
-            SlimeBallCollision(bodyA, bodyB);
+            slimeBallCollision(bodyA, bodyB);
         if (bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof SlimeModel)
-            SlimeBallCollision(bodyA, bodyB);
+            slimeBallCollision(bodyA, bodyB);
 
         if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof GoalModel)
-            SlimeGoalCollision(bodyA, bodyB);
+            slimeGoalCollision(bodyA, bodyB);
         if (bodyA.getUserData() instanceof GoalModel && bodyB.getUserData() instanceof SlimeModel)
-            SlimeGoalCollision(bodyA, bodyB);
+            slimeGoalCollision(bodyA, bodyB);
+
+        if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof PowerModel)
+            slimePowerCollision(bodyA, bodyB);
+        if (bodyA.getUserData() instanceof PowerModel && bodyB.getUserData() instanceof SlimeModel)
+            slimePowerCollision(bodyA, bodyB);
     }
 
     @Override
@@ -176,11 +182,21 @@ public class GameController implements ContactListener {
     }
 
     /**
+     * A slime colided with a power. Lets remove it.
+     *
+     * @param slimeBody the bullet that collided
+     * @param powerBody the power that colided
+     */
+    private void slimePowerCollision(Body slimeBody, Body powerBody) {
+        ((PowerModel)powerBody.getUserData()).setFlaggedForRemoval(true);
+    }
+
+    /**
      * A Slime colided with something.
      *
      * @param SlimeBody the bullet that colided
      */
-    private void SlimeCollision(Body SlimeBody) {
+    private void slimeCollision(Body SlimeBody) {
        // ((SlimeModel)SlimeBody.getUserData()).setFlaggedForRemoval(true);
     }
 
@@ -189,7 +205,7 @@ public class GameController implements ContactListener {
      * @param slimeBody the bullet that collided
      * @param ballBody the asteroid that collided
      */
-    private void SlimeBallCollision(Body slimeBody, Body ballBody) {
+    private void slimeBallCollision(Body slimeBody, Body ballBody) {
         // BallModel asteroidModel = (BallModel) BallBody.getUserData();
 
     }
@@ -199,7 +215,7 @@ public class GameController implements ContactListener {
      * @param slimeBody the bullet that collided
      * @param goalBody the asteroid that collided
      */
-    private void SlimeGoalCollision(Body slimeBody, Body goalBody) {
+    private void slimeGoalCollision(Body slimeBody, Body goalBody) {
         // BallModel asteroidModel = (BallModel) BallBody.getUserData();
 
     }

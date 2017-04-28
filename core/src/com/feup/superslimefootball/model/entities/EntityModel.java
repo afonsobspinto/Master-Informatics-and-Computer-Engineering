@@ -5,6 +5,9 @@ package com.feup.superslimefootball.model.entities;
  */
 
 public abstract class EntityModel {
+
+    public enum ModelType {BALL, GOAL, POWER, SLIME};
+
     /**
      * The x-coordinate of this model in meters.
      */
@@ -14,6 +17,11 @@ public abstract class EntityModel {
      * The y-coordinate of this model in meters.
      */
     private float y;
+
+    /**
+     * Has this model been flagged for removal?
+     */
+    private boolean flaggedForRemoval = false;
 
     /**
      * Constructs a model with a position.
@@ -55,4 +63,21 @@ public abstract class EntityModel {
         this.y = y;
     }
 
+    /**
+     * Returns if this entity has been flagged for removal
+     *
+     * @return
+     */
+    public boolean isFlaggedToBeRemoved() {
+        return flaggedForRemoval;
+    }
+
+    /**
+     * Makes this model flagged for removal on next step
+     */
+    public void setFlaggedForRemoval(boolean flaggedForRemoval) {
+        this.flaggedForRemoval = flaggedForRemoval;
+    }
+
+    public abstract ModelType getType();
 }

@@ -8,11 +8,11 @@ import com.feup.superslimefootball.model.entities.GoalModel;
  */
 public class GoalBody extends EntityBody {
     /**
-     * Constructs a bullet body according to
+     * Constructs a goal body according to
      * a goal model.
      *
-     * @param world the physical world this asteroid belongs to.
-     * @param model the model representing this bullet.
+     * @param world the physical world this goal belongs to.
+     * @param model the model representing this goal.
      */
     public GoalBody(World world, GoalModel model) {
         super(world, model);

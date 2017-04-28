@@ -14,4 +14,9 @@ public class GoalModel extends EntityModel {
     public GoalModel(float x, float y) {
         super(x, y);
     }
+
+    @Override
+    public ModelType getType() {
+        return ModelType.GOAL;
+    }
 }

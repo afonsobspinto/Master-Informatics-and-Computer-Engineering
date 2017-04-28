@@ -15,11 +15,11 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
 public class SlimeBody extends EntityBody {
 
     /**
-     * Constructs a space ship body according to
-     * a space ship model.
+     * Constructs a slime body according to
+     * a slime model.
      *
-     * @param world the physical world this space ship belongs to.
-     * @param model the model representing this space ship.
+     * @param world the physical world this slime belongs to.
+     * @param model the model representing this slime ship.
      */
     public SlimeBody(World world, SlimeModel model) {
         super(world, model);

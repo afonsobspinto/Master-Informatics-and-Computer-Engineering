@@ -1,20 +1,20 @@
 package com.feup.superslimefootball.controller.entities;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.PowerModel;
 
 /**
- * A concrete representation of an EntityBody representing a ball.
+ * A concrete representation of an PowerBody representing a goal.
  */
-public class BallBody extends EntityBody {
+public class PowerBody extends EntityBody {
     /**
-     * Constructs a ball body according to
-     * a ball model.
+     * Constructs a power body according to
+     * a power model.
      *
-     * @param world the physical world this ball belongs to.
-     * @param model the model representing this ball.
+     * @param world the physical world this power belongs to.
+     * @param model the model representing this power.
      */
-    public BallBody(World world, BallModel model) {
+    public PowerBody(World world, PowerModel model) {
         super(world, model);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;

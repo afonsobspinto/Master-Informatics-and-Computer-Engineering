@@ -4,7 +4,6 @@ package com.feup.superslimefootball.model.entities;
  * A model representing a ball.
  */
 public class BallModel extends EntityModel {
-
     /**
      * Creates a new ball model in a certain position.
      *
@@ -14,4 +13,10 @@ public class BallModel extends EntityModel {
     public BallModel(float x, float y) {
         super(x, y);
     }
+
+    @Override
+    public ModelType getType() {
+        return ModelType.BALL;
+    }
+
 }

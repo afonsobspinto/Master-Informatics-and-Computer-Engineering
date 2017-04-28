@@ -14,4 +14,9 @@ public class SlimeModel extends EntityModel {
     public SlimeModel(float x, float y) {
         super(x, y);
     }
+
+    @Override
+    public ModelType getType() {
+        return ModelType.SLIME;
+    }
 }
