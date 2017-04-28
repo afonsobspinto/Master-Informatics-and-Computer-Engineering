@@ -25,8 +25,9 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
 * [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
 * [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
-* [DoubleBuffer]() - Implemented by Libgdx (??)
-* [Template Method]() - Implemented by Libgdx (??)
+* [DoubleBuffer]() - Implemented by Libgdx in Graphics(??)
+* [Template Method]() - Implemented by Libgdx in GameLoop(??)
+* [Observer]() - Implemented by Libgdx with controls listeners
 
 
 ## Test Design
