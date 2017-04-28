@@ -29,5 +29,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gdx-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="gdx-box2d-1.9.6" level="project" />
+    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
+    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
+    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
+    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
   </component>
 </module>
