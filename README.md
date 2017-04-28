@@ -64,28 +64,28 @@ Explain how to run the automated tests for this system
 
 #### [Game Tests]
 
-* Construct Slime
-* Construct Ball
-* Construct Goal 
-* Score
-* End Game
-* Catch Powers
+* Construct Slime - Verifies if constructs a slime properly
+* Construct Ball - Verifies if constructs a ball properly
+* Construct Goal - Verifies if constructs a goal properly
+* Score - Verifies if a slime scores into an oponent's goal
+* End Game - Verifies if the game ends 
+* Catch Powers - Verifies if the slime catches a power
 
 #### [Physics Tests]
 
-* Move Slime
-* Contact between Slime and Ball
-* Contact between Slime and Goal
-* Contact between Ball and Goal
+* Move Slime - Verifies if the slime moves correctly
+* Contact between Slime and Ball - Verifies if the slime makes contact with the ball
+* Contact between Slime and Goal - Verifies if the slime makes contact with the goal
+* Contact between Ball and Goal - Verifies if the ball makes contact with the goal
 
 #### [AI Tests]
 
-* Slime Movement
-* Slime Strategies
+* Slime Movement - Verifies if the AI slime moves correctly
+* Slime Strategies - Verifies if the AI slime makes apropriate strategies
 
 #### [Networking Tests]
 
-* Connection between Devices
+* Connection between Devices - Verifies if connects with other devices
 
 
 ## Authors
