@@ -10,25 +10,28 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 ## Main Functionalities
 
 Main Menu:
-  * SinglePlayer
-  * MultiPlayer
-  * Options
+  * SinglePlayer - allows user to play against computer
+  * MultiPlayer - allows user to play with a friend nearby
+  * Options - allows user to change settings
+  * Facebook - login onto Facebook
+  * Twitter - login onto Twitter
 
 SinglePlayer: 
-  Choose your Slime (Expected other colours when finishing the game): 
+  Choose your Slime (Expected other colours/types when finishing the game): 
   * Blue Slime
   * Green Slime
   
 MultiPlayer:
   Searching for other devices in the area
-  * Refresh
-  * Find IP
+  * Refresh - Starts looking for nearby devices again
+  * Find IP - Manual configuration via IP
+  * (we migth change this to read QRcodes instead)
  
 Options:
-  * How to Play?
-  * Sound On/Off
-  * Comments On/Off
-  * Goal Limit 3/4/5/6/7
+  * How to Play? - Info about the game
+  * Sound On/Off - Change sound settings
+  * Comments On/Off - Change comments 
+  * Goal Limit 3/4/5/6/7 - Change goals limit
 
 ## Architecture Design
 
@@ -47,6 +50,7 @@ Options:
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
 * [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
 * [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
+* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites
 * [DoubleBuffer]() - Implemented by Libgdx in Graphics(??)
 * [Template Method]() - Implemented by Libgdx in GameLoop(??)
 * [Observer]() - Implemented by Libgdx with controls listeners (??)
@@ -58,19 +62,31 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+#### [Game Tests]
 
-```
-Give an example
-```
+* Construct Slime - Verifies if constructs a slime properly
+* Construct Ball - Verifies if constructs a ball properly
+* Construct Goal - Verifies if constructs a goal properly
+* Score - Verifies if a slime scores into an oponent's goal
+* End Game - Verifies if the game ends 
+* Catch Powers - Verifies if the slime catches a power
 
-### And coding style tests
+#### [Physics Tests]
 
-Explain what these tests test and why
+* Move Slime - Verifies if the slime moves correctly
+* Contact between Slime and Ball - Verifies if the slime makes contact with the ball
+* Contact between Slime and Goal - Verifies if the slime makes contact with the goal
+* Contact between Ball and Goal - Verifies if the ball makes contact with the goal
 
-```
-Give an example
-```
+#### [AI Tests]
+
+* Slime Movement - Verifies if the AI slime moves correctly
+* Slime Strategies - Verifies if the AI slime makes apropriate strategies
+
+#### [Networking Tests]
+
+* Connection between Devices - Verifies if connects with other devices
+
 
 ## Authors
 
