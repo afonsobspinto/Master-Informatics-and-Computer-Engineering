@@ -5,7 +5,7 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ## GUI Design
 
-![alt tag](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/CheckPoint/GUIMockups.png)
+![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/GUIMockups.png)
 
 * Listing of the main functionalities goes here
 
