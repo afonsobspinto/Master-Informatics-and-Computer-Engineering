@@ -3,7 +3,7 @@ package com.feup.superslimefootball.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.feup.superslimefootball.superSlimeFootball;
+import com.feup.superslimefootball.SuperSlimeFootball;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new superSlimeFootball();
+                return new SuperSlimeFootball();
         }
 }
