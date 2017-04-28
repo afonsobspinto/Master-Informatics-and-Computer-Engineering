@@ -27,7 +27,7 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 * [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
 * [DoubleBuffer]() - Implemented by Libgdx in Graphics(??)
 * [Template Method]() - Implemented by Libgdx in GameLoop(??)
-* [Observer]() - Implemented by Libgdx with controls listeners
+* [Observer]() - Implemented by Libgdx with controls listeners (??)
 
 
 ## Test Design
