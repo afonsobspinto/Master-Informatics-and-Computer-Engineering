@@ -7,7 +7,28 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/GUIMockups.png)
 
-* Listing of the main functionalities goes here
+## Main Functionalities
+
+Main Menu:
+  * SinglePlayer
+  * MultiPlayer
+  * Options
+
+SinglePlayer: 
+  Choose your Slime (Expected other colours when finishing the game): 
+  * Blue Slime
+  * Green Slime
+  
+MultiPlayer:
+  Searching for other devices in the area
+  * Refresh
+  * Find IP
+ 
+Options:
+  * How to Play?
+  * Sound On/Off
+  * Comments On/Off
+  * Goal Limit 3/4/5/6/7
 
 ## Architecture Design
 
