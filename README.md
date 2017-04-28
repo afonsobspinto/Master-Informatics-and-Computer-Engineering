@@ -10,25 +10,26 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 ## Main Functionalities
 
 Main Menu:
-  * SinglePlayer
-  * MultiPlayer
-  * Options
+  * SinglePlayer - allows user to play against computer
+  * MultiPlayer - allows user to play with a friend nearby
+  * Options - allows user to change settings
 
 SinglePlayer: 
-  Choose your Slime (Expected other colours when finishing the game): 
+  Choose your Slime (Expected other colours/types when finishing the game): 
   * Blue Slime
   * Green Slime
   
 MultiPlayer:
   Searching for other devices in the area
-  * Refresh
-  * Find IP
+  * Refresh - Starts looking for nearby devices again
+  * Find IP - Manual configuration via IP
+  * (we migth change this to read QRcodes instead)
  
 Options:
-  * How to Play?
-  * Sound On/Off
-  * Comments On/Off
-  * Goal Limit 3/4/5/6/7
+  * How to Play? - Info about the game
+  * Sound On/Off - Change sound settings
+  * Comments On/Off - Change comments 
+  * Goal Limit 3/4/5/6/7 - Change goals limit
 
 ## Architecture Design
 
@@ -47,6 +48,7 @@ Options:
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
 * [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
 * [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
+* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites
 * [DoubleBuffer]() - Implemented by Libgdx in Graphics(??)
 * [Template Method]() - Implemented by Libgdx in GameLoop(??)
 * [Observer]() - Implemented by Libgdx with controls listeners (??)
