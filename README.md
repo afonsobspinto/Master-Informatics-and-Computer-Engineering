@@ -13,6 +13,8 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ### UML
 
+\*image\*
+
 ### Behavioural Aspects
 * Moving by Tilting
 * Newtwork connection (Multiplayer Mode) via QRCode (??)
@@ -21,7 +23,11 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 * [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
+* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
+* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
 * [DoubleBuffer]() - Implemented by Libgdx (??)
+* [Template Method]() - Implemented by Libgdx (??)
+
 
 ## Test Design
 

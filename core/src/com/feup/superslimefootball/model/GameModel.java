@@ -11,6 +11,7 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
  * A model representing a game.
  */
 
+//TODO: Complete GameModel
 
 public class GameModel {
 

@@ -85,10 +85,9 @@ public class GameView extends ScreenAdapter {
         handleInputs(delta);
 
 
+        //TODO: Change update Logic we can't move the camera
 
 //        GameController.getInstance().update(delta);
-
-        // We can't use this this way;
 
 //        camera.position.set(GameModel.getInstance().getShip().getX() / PIXEL_TO_METER, GameModel.getInstance().getShip().getY() / PIXEL_TO_METER, 0);
         camera.update();
@@ -103,6 +102,8 @@ public class GameView extends ScreenAdapter {
         game.getBatch().end();
 
     }
+
+    //TODO: handleInputs by tilting
 
     /**
      * Handles any inputs and passes them to the controller.
@@ -126,6 +127,7 @@ public class GameView extends ScreenAdapter {
         }
     }
 
+//TODO: drawEntities
 
     /**
      * Draws the entities to the screen.
@@ -157,6 +159,8 @@ public class GameView extends ScreenAdapter {
     private void drawBackground() {
         Texture background = game.getAssetManager().get("background.png", Texture.class);
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+
+        //TODO: Change background dimension
         game.getBatch().draw(background, 0, 0, 0, 0, (int)(100 / PIXEL_TO_METER), (int) (50 / PIXEL_TO_METER));
     }
 
