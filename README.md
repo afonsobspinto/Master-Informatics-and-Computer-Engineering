@@ -8,3 +8,4 @@ FEUP/PROG/Supermaket++ Supermarket Management System
 
 FEUP/FPRO/Poker Poker Game - Five-card draw 
 	
+FEUP/SOPE/sfind - Simplified version of find command
