@@ -13,6 +13,8 @@ Main Menu:
   * SinglePlayer - allows user to play against computer
   * MultiPlayer - allows user to play with a friend nearby
   * Options - allows user to change settings
+  * Facebook - login onto Facebook
+  * Twitter - login onto Twitter
 
 SinglePlayer: 
   Choose your Slime (Expected other colours/types when finishing the game): 
@@ -60,19 +62,31 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+[Game Tests]
 
-```
-Give an example
-```
+* Construct Slime
+* Construct Ball
+* Construct Goal 
+* Score
+* End Game
+* Catch Powers
 
-### And coding style tests
+[Physics Tests]
 
-Explain what these tests test and why
+* Move Slime
+* Contact between Slime and Ball
+* Contact between Slime and Goal
+* Contact between Ball and Goal
 
-```
-Give an example
-```
+[AI Tests]
+
+* Slime Movement
+* Slime Strategies
+
+[Networking Tests]
+
+* Connection between Devices
+
 
 ## Authors
 
