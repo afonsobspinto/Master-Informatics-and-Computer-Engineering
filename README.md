@@ -62,7 +62,7 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
-[Game Tests]
+#### [Game Tests]
 
 * Construct Slime
 * Construct Ball
@@ -71,19 +71,19 @@ Explain how to run the automated tests for this system
 * End Game
 * Catch Powers
 
-[Physics Tests]
+#### [Physics Tests]
 
 * Move Slime
 * Contact between Slime and Ball
 * Contact between Slime and Goal
 * Contact between Ball and Goal
 
-[AI Tests]
+#### [AI Tests]
 
 * Slime Movement
 * Slime Strategies
 
-[Networking Tests]
+#### [Networking Tests]
 
 * Connection between Devices
 
