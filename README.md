@@ -35,6 +35,10 @@ Options:
 
 ## Architecture Design
 
+## Package Diagram
+
+![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/PackageDiagram.png)
+
 ### UML
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/uml.png)
