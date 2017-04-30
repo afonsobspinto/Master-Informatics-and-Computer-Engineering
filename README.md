@@ -52,13 +52,13 @@ Options:
 
 * [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern 
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
-* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement (in GameController class) && controls the game flow (StateModel )
-* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural (in GameController) 
+* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement (in GameController class) && controls the game flow (in StateModel class and extensions)
+* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural (in GameController Class) 
 * [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites (in EntityView class)
 * [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface (in ViewFactory class)
-* [DoubleBuffer]() - Implemented by Libgdx in Graphics Management (in GameView) 
-* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop (GameView, GameModel, Game Controller)
-* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners (in GameView)
+* [DoubleBuffer]() - Implemented by Libgdx in Graphics Management (in GameView Class) 
+* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop (GameView, GameModel, Game Controller classes)
+* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners (in GameView class)
 
 
 ## Test Design
