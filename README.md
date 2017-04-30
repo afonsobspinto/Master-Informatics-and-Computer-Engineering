@@ -19,7 +19,7 @@ Main Menu:
 SinglePlayer: 
   Choose your Slime (Expected other colours/types when finishing the game): 
   * Blue Slime
-  * Green Slime
+  * Red Slime
   
 MultiPlayer:
   Searching for other devices in the area
