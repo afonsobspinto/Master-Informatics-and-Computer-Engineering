@@ -43,7 +43,7 @@ Options:
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/uml.png)
 
-<center>[brief explanation on each class responsibility](https://docs.google.com/a/gcloud.fe.up.pt/document/d/1Dg7HwwphZf1RFEJUeRXyqyy0OFN_X1u8by7sTHiatXY/edit?usp=sharing)</center>
+[brief explanation on each class responsibility](https://docs.google.com/a/gcloud.fe.up.pt/document/d/1Dg7HwwphZf1RFEJUeRXyqyy0OFN_X1u8by7sTHiatXY/edit?usp=sharing)
 
 
 ### Behavioural Aspects
