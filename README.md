@@ -35,7 +35,7 @@ Options:
 
 ## Architecture Design
 
-## Package Diagram
+### Package Diagram
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/PackageDiagram.png)
 
