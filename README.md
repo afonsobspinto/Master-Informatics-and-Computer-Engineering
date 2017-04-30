@@ -50,15 +50,15 @@ Options:
 
 ### Design Patterns
 
-* [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern
+* [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern 
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
-* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
-* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
-* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites
-* [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface  
-* [DoubleBuffer]() - Implemented by Libgdx in Graphics
-* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop
-* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners
+* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement (in GameController class) && controls the game flow (StateModel )
+* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural (in GameController) 
+* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites (in EntityView class)
+* [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface (in ViewFactory class)
+* [DoubleBuffer]() - Implemented by Libgdx in Graphics Management (in GameView) 
+* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop (GameView, GameModel, Game Controller)
+* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners (in GameView)
 
 
 ## Test Design
