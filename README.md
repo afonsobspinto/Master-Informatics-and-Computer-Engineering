@@ -37,7 +37,7 @@ Options:
 
 ### UML
 
-\*image\*
+![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/uml.png)
 
 ### Behavioural Aspects
 * Moving by tilting
