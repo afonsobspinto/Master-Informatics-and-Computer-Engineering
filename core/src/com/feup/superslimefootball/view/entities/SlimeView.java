@@ -8,7 +8,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * A view representing a slime
  */
 
-public abstract class SlimeView extends EntityView {
+public class SlimeView extends EntityView {
 
     /**
      * Constructs a slime.

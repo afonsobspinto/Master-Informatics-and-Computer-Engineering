@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.feup.superslimefootball.model.entities.EntityModel;
 
-import static com.feup.superslimefootball.view.GameView.PIXEL_TO_METER;
 /**
  * Wrapper class that represents an abstract physical
  * body supported by a Box2D body.
@@ -59,7 +58,7 @@ public abstract class EntityBody {
 
             if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
 
-            vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+           // vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
         }
 
         PolygonShape polygon = new PolygonShape();

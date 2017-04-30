@@ -8,7 +8,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * A view representing a ball
  */
 
-public abstract class BallView extends EntityView{
+public class BallView extends EntityView{
     /**
      * Constructs a ball view.
      *

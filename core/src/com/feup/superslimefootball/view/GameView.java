@@ -6,11 +6,13 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.feup.superslimefootball.SuperSlimeFootball;
-
-/**
- * Created by afonso on 4/28/17.
- */
+import com.feup.superslimefootball.model.GameModel;
+import com.feup.superslimefootball.model.entities.SlimeModel;
+import com.feup.superslimefootball.view.entities.EntityView;
+import com.feup.superslimefootball.view.entities.ViewFactory;
 
 /**
  * A view representing the game screen. Draws all the other views and
@@ -20,15 +22,14 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 public class GameView extends ScreenAdapter {
 
     /**
-     * How much meters does a pixel represent.
+     * The game width.
      */
-    public final static float PIXEL_TO_METER = 0.04f;
+    public static final int GAME_WIDTH = 100;
 
     /**
-     * The width of the viewport in meters. The height is
-     * automatically calculated using the screen ratio.
+     * The game height.
      */
-    private static final float VIEWPORT_WIDTH = 20;
+    public static final int GAME_HEIGHT = 50;
 
     /**
      * The game this screen belongs to.
@@ -36,30 +37,34 @@ public class GameView extends ScreenAdapter {
     private final SuperSlimeFootball game;
 
     /**
+     * The viewport used to show the game.
+     */
+
+    private final Viewport viewport;
+
+    /**
      * The camera used to show the viewport.
      */
 
     private final OrthographicCamera camera;
 
+
+    /**
+     * The aspectRatio of the screen.
+     */
+    private final float aspectRatio;
+
     public GameView(SuperSlimeFootball game) {
         this.game = game;
-        this.camera = createCamera();
+        this.aspectRatio = (float) Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
+        this.camera = new OrthographicCamera();
+        //TODO: Change to ExtendViewPort
+        viewport = new ScreenViewport(camera);
+        viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         loadAssets();
     }
 
-    /**
-     * Creates the camera used to show the viewport.
-     *
-     * @return the camera
-     */
-    private OrthographicCamera createCamera() {
 
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
-
-        return camera;
-    }
 
     /**
      * Loads the assets needed by this screen.
@@ -75,6 +80,17 @@ public class GameView extends ScreenAdapter {
     }
 
 
+    /**
+     * Updates viewport on screen resize .
+     *
+     * @param width width of new screen size;
+     * @param height width of new screen size;
+     */
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
 
     /**
      * Renders this screen.
@@ -83,20 +99,15 @@ public class GameView extends ScreenAdapter {
      */
     @Override
     public void render(float delta) {
-        handleInputs(delta);
+        //handleInputs(delta);
 
 
         //TODO: Change update Logic we can't move the camera
 
-//        GameController.getInstance().update(delta);
-
-//        camera.position.set(GameModel.getInstance().getShip().getX() / PIXEL_TO_METER, GameModel.getInstance().getShip().getY() / PIXEL_TO_METER, 0);
-        camera.update();
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        viewport.apply();
         game.getBatch().setProjectionMatrix(camera.combined);
-
-        Gdx.gl.glClearColor( 103/255f, 69/255f, 117/255f, 1 );
-        Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-
         game.getBatch().begin();
         drawBackground();
         drawEntities();
@@ -134,24 +145,12 @@ public class GameView extends ScreenAdapter {
      * Draws the entities to the screen.
      */
     private void drawEntities() {
-//        List<AsteroidModel> asteroids = GameModel.getInstance().getAsteroids();
-//        for (AsteroidModel asteroid : asteroids) {
-//            EntityView view = ViewFactory.makeView(game, asteroid);
-//            view.update(asteroid);
-//            view.draw(game.getBatch());
-//        }
-//
-//        List<BulletModel> bullets = GameModel.getInstance().getBullets();
-//        for (BulletModel bullet : bullets) {
-//            EntityView view = ViewFactory.makeView(game, bullet);
-//            view.update(bullet);
-//            view.draw(game.getBatch());
-//        }
-//
-//        ShipModel ship = GameModel.getInstance().getShip();
-//        EntityView view = ViewFactory.makeView(game, ship);
-//        view.update(ship);
-//        view.draw(game.getBatch());
+
+        //TODO: Draw the others Entities
+        SlimeModel slime = GameModel.getInstance().getSlime();
+        EntityView view = ViewFactory.makeView(game, slime);
+        view.update(slime);
+        view.draw(game.getBatch());
     }
 
     /**
@@ -159,10 +158,7 @@ public class GameView extends ScreenAdapter {
      */
     private void drawBackground() {
         Texture background = game.getAssetManager().get("background.png", Texture.class);
-        background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-
-        //TODO: Change background dimension
-        game.getBatch().draw(background, 0, 0, 0, 0, (int)(100 / PIXEL_TO_METER), (int) (50 / PIXEL_TO_METER));
+        game.getBatch().draw(background,0,0, viewport.getScreenWidth(), viewport.getScreenHeight());
     }
 
 }

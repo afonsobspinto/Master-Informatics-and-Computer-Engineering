@@ -44,10 +44,14 @@ public class SuperSlimeFootball extends Game {
         assetManager.dispose();
 	}
 
+	//TODO: pause
+
 	@Override
 	public void pause() {
 		super.pause();
 	}
+
+	//TODO: resume
 
 	@Override
 	public void resume() {
@@ -71,6 +75,7 @@ public class SuperSlimeFootball extends Game {
      */
 
     public AssetManager getAssetManager() {
+
         return assetManager;
     }
 }

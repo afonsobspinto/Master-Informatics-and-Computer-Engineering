@@ -7,7 +7,7 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/GUIMockups.png)
 
-## Main Functionalities
+### Main Functionalities
 
 Main Menu:
   * SinglePlayer - allows user to play against computer
@@ -41,8 +41,8 @@ Options:
 
 ### Behavioural Aspects
 * Moving by tilting
-* Newtwork connection (multiplayer mode) via QRCode (??)
-* Share match result on social networks
+* Newtwork connection (multiplayer mode) via QRCode 
+* Login and Share options on social networks
 
 ### Design Patterns
 
@@ -51,9 +51,10 @@ Options:
 * [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
 * [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
 * [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites
-* [DoubleBuffer]() - Implemented by Libgdx in Graphics(??)
-* [Template Method]() - Implemented by Libgdx in GameLoop(??)
-* [Observer]() - Implemented by Libgdx with controls listeners (??)
+* [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface  
+* [DoubleBuffer]() - Implemented by Libgdx in Graphics
+* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop
+* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners
 
 
 ## Test Design
@@ -67,25 +68,28 @@ Explain how to run the automated tests for this system
 * Construct Slime - Verifies if constructs a slime properly
 * Construct Ball - Verifies if constructs a ball properly
 * Construct Goal - Verifies if constructs a goal properly
-* Score - Verifies if a slime scores into an oponent's goal
-* End Game - Verifies if the game ends 
-* Catch Powers - Verifies if the slime catches a power
+* Score - Verifies if the score is updated when ball gets into a slime goal
+* End Game - Verifies if the game ends when goal limit is reached
+
 
 #### [Physics Tests]
 
 * Move Slime - Verifies if the slime moves correctly
-* Contact between Slime and Ball - Verifies if the slime makes contact with the ball
-* Contact between Slime and Goal - Verifies if the slime makes contact with the goal
-* Contact between Ball and Goal - Verifies if the ball makes contact with the goal
+* Jump Slime - Verifies if the slime can jump only once 
+* Contact between Slime and Ball - Verifies if the ball position and velocity after it contacts with slime
+* Contact between Slime and Goal - Verifies if the slime position after it makes contact with the goal
+* Contact between Ball and Goal - Verifies if the ball position after it makes contact with the goal
+* Catch Powers - Verifies if the slime catches a power when contacts with it
 
 #### [AI Tests]
 
-* Slime Movement - Verifies if the AI slime moves correctly
-* Slime Strategies - Verifies if the AI slime makes apropriate strategies
+* Slime Movement - Verifies if the AI slime moves in order to catch the ball
+* Slime Jumps - Verifies if the AI slime tries to reach Powers or avoid own goals by jumping over a moving ball in direction to his own goal
+* Slime Strategies - Verifies if the AI slime average position on pitch agrees with a given strategy (Attack, Defense)
 
 #### [Networking Tests]
 
-* Connection between Devices - Verifies if connects with other devices
+* Connection between Devices - Verifies if two devices are connected
 
 
 ## Authors
@@ -93,7 +97,3 @@ Explain how to run the automated tests for this system
 * **Afonso Pinto** - [FooWalksIntoABar](https://github.com/FooWalksIntoABar)
 * **Tomas Oliveira** - [Toliveira97](https://github.com/Toliveira97)
 
-## Game Art
-
-* Background by [Amon](https://opengameart.org/content/football-pitch)
-* Ball and Goal by [looneybits](https://opengameart.org/content/soccer-pack)

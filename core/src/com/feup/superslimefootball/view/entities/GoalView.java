@@ -8,7 +8,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * A view representing a goal
  */
 
-public abstract class GoalView extends EntityView{
+public class GoalView extends EntityView{
     /**
      * Constructs a goal view.
      *

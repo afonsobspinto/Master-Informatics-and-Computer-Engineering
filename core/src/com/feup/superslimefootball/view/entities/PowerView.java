@@ -8,7 +8,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * A view representing a power
  */
 
-public abstract class PowerView extends EntityView {
+public class PowerView extends EntityView {
 
     /**
      * Constructs a power.
