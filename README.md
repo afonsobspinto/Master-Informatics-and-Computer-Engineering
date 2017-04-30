@@ -68,17 +68,17 @@ Explain how to run the automated tests for this system
 * Construct Slime - Verifies if constructs a slime properly
 * Construct Ball - Verifies if constructs a ball properly
 * Construct Goal - Verifies if constructs a goal properly
-* Score - Verifies if the score is updated when ball gets into a slime goal
+* Score - Verifies if the score is updated when ball gets into a slime's goal
 * End Game - Verifies if the game ends when goal limit is reached
 
 
 #### [Physics Tests]
 
 * Move Slime - Verifies if the slime moves correctly
-* Jump Slime - Verifies if the slime can jump only once 
-* Contact between Slime and Ball - Verifies if the ball position and velocity after it contacts with slime
-* Contact between Slime and Goal - Verifies if the slime position after it makes contact with the goal
-* Contact between Ball and Goal - Verifies if the ball position after it makes contact with the goal
+* Jump Slime - Verifies if the slime can jump only when  he is in the ground
+* Contact between Slime and Ball - Verifies the ball position and velocity after it contacts with slime
+* Contact between Slime and Goal - Verifies the slime position after it makes contact with the goal
+* Contact between Ball and Goal - Verifies the ball position after it makes contact with the goal
 * Catch Powers - Verifies if the slime catches a power when contacts with it
 
 #### [AI Tests]
