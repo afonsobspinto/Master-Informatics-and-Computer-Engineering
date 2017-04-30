@@ -16,10 +16,6 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
-
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-
 /**
  * Created by afonso on 4/28/17.
  */
@@ -168,7 +164,7 @@ public class GameController implements ContactListener {
     public void moveRight(float delta) {
         //TODO: Choose Slime to accelerate
 
-        slimeBody.applyForceToCenter(-(float) sin(slimeBody.getAngle()) * ACCELERATION_FORCE * delta, (float) cos(slimeBody.getAngle()) * ACCELERATION_FORCE * delta, true);
+        slimeBody.applyLinearImpulse(2000,0,true);
         ((SlimeModel)slimeBody.getUserData()).setAccelerating(true);
 
     }

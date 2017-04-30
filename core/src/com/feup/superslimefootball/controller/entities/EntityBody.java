@@ -152,6 +152,17 @@ public abstract class EntityBody {
     }
 
     /**
+     * Wraps the applyLinearImpulse method from the Box2D body class.
+     *
+     * @param impulseX the x-component of the impulse to be applied
+     * @param impulseY the y-component of the force to be applied
+     * @param awake should the body be awaken
+     */
+    public void applyLinearImpulse(float impulseX, float impulseY, boolean awake) {
+        body.applyLinearImpulse(impulseX, impulseY, body.getWorldCenter().x, body.getWorldCenter().y, awake);
+    }
+
+    /**
      * Wraps the getUserData method from the Box2D body class.
      *
      * @return the user data
