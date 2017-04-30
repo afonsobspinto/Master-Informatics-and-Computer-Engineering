@@ -1,4 +1,4 @@
-# SuperSlimeFootball
+# SuperSlimeFootball / LPOO1617_T6G7
 
 A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
@@ -101,5 +101,3 @@ Options:
 
 * **Afonso Pinto** - [FooWalksIntoABar](https://github.com/FooWalksIntoABar)
 * **Tomas Oliveira** - [Toliveira97](https://github.com/Toliveira97)
-
-LPOO1617_T6G7
