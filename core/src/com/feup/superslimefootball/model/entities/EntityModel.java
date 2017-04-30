@@ -6,7 +6,7 @@ package com.feup.superslimefootball.model.entities;
 
 public abstract class EntityModel {
 
-    public enum ModelType {BALL, GOAL, POWER, SLIME};
+    public enum ModelType {BALL, GOAL, POWER, SLIME, FLOOR};
 
     /**
      * The x-coordinate of this model in meters.

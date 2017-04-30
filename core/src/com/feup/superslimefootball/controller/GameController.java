@@ -7,12 +7,18 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.feup.superslimefootball.controller.entities.FloorBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
+
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 /**
  * Created by afonso on 4/28/17.
@@ -27,19 +33,20 @@ public class GameController implements ContactListener {
     private static GameController instance;
 
     /**
-     * The arena width in meters.
+     * The game width.
      */
-    public static final int PITCH_WIDTH = 100;
+    public static final int GAME_WIDTH = 100;
 
     /**
-     * The arena height in meters.
+     * The game height.
      */
-    public static final int PITCH_HEIGHT = 50;
+    public static final int GAME_HEIGHT = 50;
 
     /**
      * The acceleration impulse in newtons.
      */
     private static final float ACCELERATION_FORCE = 1000f;
+
 
     /**
      * The physics world controlled by this controller.
@@ -54,7 +61,12 @@ public class GameController implements ContactListener {
     /**
      * The opponent slime body.
      */
-    private final SlimeBody opponentSlimeBody;
+    //private final SlimeBody opponentSlimeBody;
+
+    /**
+     * The floor body.
+     */
+    private final FloorBody floorBody;
 
     /**
      * Accumulator used to calculate the simulation step.
@@ -63,10 +75,11 @@ public class GameController implements ContactListener {
 
     public GameController() {
 
-        world = new World(new Vector2(0, 0), true);
+        world = new World(new Vector2(0, -9.8f), true);
 
         this.slimeBody = new SlimeBody(world, GameModel.getInstance().getSlime());
-        this.opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlime());
+        this.floorBody = new FloorBody(world, GameModel.getInstance().getFloor());
+        //this.opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlime());
     }
 
     /**
@@ -88,50 +101,76 @@ public class GameController implements ContactListener {
      * @param delta The size of this physics step in seconds.
      */
     public void update(float delta) {
+
         GameModel.getInstance().update(delta);
 
-
         float frameTime = Math.min(delta, 0.25f);
-//        accumulator += frameTime;
-//        while (accumulator >= 1/60f) {
-//            world.step(1/60f, 6, 2);
-//            accumulator -= 1/60f;
-//        }
+        accumulator += frameTime;
+        while (accumulator >= 1/60f) {
+            world.step(1/60f, 6, 2);
+            accumulator -= 1/60f;
+        }
+
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            if(verifyBounds(body))
+              ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
+        }
+
+
 
     }
 
     /**
-     * Verifies if the body is inside the arena bounds and if not
-     * wraps it around to the other side.
+     * Verifies if the body is inside the arena bounds
      *
      * @param body The body to be verified.
+     *
+     * @return true if the body is inside the arena bounds false elsewhere
      */
-    private void verifyBounds(Body body) {
-        if (body.getPosition().x < 0)
-            body.setTransform(PITCH_WIDTH, body.getPosition().y, body.getAngle());
 
-        if (body.getPosition().y < 0)
-            body.setTransform(body.getPosition().x, PITCH_HEIGHT, body.getAngle());
+    //Todo: Complete this
+    private boolean verifyBounds(Body body) {
+        if (body.getPosition().x < 0){}
+            //return false;
 
-        if (body.getPosition().x > PITCH_WIDTH)
-            body.setTransform(0, body.getPosition().y, body.getAngle());
+        if (body.getPosition().y < 0) {}
+           //return false;
 
-        if (body.getPosition().y > PITCH_HEIGHT)
-            body.setTransform(body.getPosition().x, 0, body.getAngle());
+        if (body.getPosition().x > GAME_WIDTH){}
+            //return false;
+
+        if (body.getPosition().y > GAME_HEIGHT){}
+            //return false;
+
+        return true;
     }
 
+    /**
+     * Returns the world controlled by this controller. Needed for debugging purposes only.
+     *
+     * @return The world controlled by this controller.
+     */
+
+    public World getWorld() {
+        return world;
+    }
 
     /**
-     * Acceleratesins the spaceship. The acceleration takes into consideration the
+     * Moves the slime to the rigth. The acceleration takes into consideration the
      * constant acceleration force and the delta for this simulation step.
      *
      * @param delta Duration of the rotation in seconds.
      */
-    public void accelerate(float delta) {
+
+    public void moveRight(float delta) {
         //TODO: Choose Slime to accelerate
 
-//        slimeBody.applyForceToCenter(-(float) sin(ACCELERATION_FORCE * delta, (float) cos(ACCELERATION_FORCE * delta, true));
-//        ((SlimeModel)SlimeBody.getUserData()).setAccelerating(true);
+        slimeBody.applyForceToCenter(-(float) sin(slimeBody.getAngle()) * ACCELERATION_FORCE * delta, (float) cos(slimeBody.getAngle()) * ACCELERATION_FORCE * delta, true);
+        ((SlimeModel)slimeBody.getUserData()).setAccelerating(true);
+
     }
 
     /**

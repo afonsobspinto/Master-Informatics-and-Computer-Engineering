@@ -5,6 +5,13 @@ package com.feup.superslimefootball.model.entities;
  */
 public class SlimeModel extends EntityModel {
 
+
+    /**
+     * Is this slime accelerating in this update delta
+     */
+    private boolean accelerating = true;
+
+
     /**
      * Creates a new slime model in a certain position.
      *
@@ -13,6 +20,25 @@ public class SlimeModel extends EntityModel {
      */
     public SlimeModel(float x, float y) {
         super(x, y);
+    }
+
+
+    /**
+     * Set the accelerating flag for this slime
+     *
+     * @param accelerating the accelerating tag
+     */
+    public void setAccelerating(boolean accelerating) {
+        this.accelerating = accelerating;
+    }
+
+    /**
+     * Is the slime accelerating in this update
+     *
+     * @return the accelerating flag
+     */
+    public boolean isAccelerating() {
+        return accelerating;
     }
 
     @Override

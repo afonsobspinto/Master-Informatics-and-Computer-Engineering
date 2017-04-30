@@ -6,9 +6,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
@@ -21,15 +24,7 @@ import com.feup.superslimefootball.view.entities.ViewFactory;
 
 public class GameView extends ScreenAdapter {
 
-    /**
-     * The game width.
-     */
-    public static final int GAME_WIDTH = 100;
 
-    /**
-     * The game height.
-     */
-    public static final int GAME_HEIGHT = 50;
 
     /**
      * The game this screen belongs to.
@@ -54,10 +49,25 @@ public class GameView extends ScreenAdapter {
      */
     private final float aspectRatio;
 
+    /**
+     * A renderer used to debug the physical fixtures.
+     */
+    private Box2DDebugRenderer debugRenderer;
+
+
+    /**
+     * The transformation matrix used to transform meters into
+     * pixels in order to show fixtures in their correct places.
+     */
+    private Matrix4 debugCamera;
+
+
     public GameView(SuperSlimeFootball game) {
         this.game = game;
         this.aspectRatio = (float) Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
         this.camera = new OrthographicCamera();
+        debugRenderer = new Box2DDebugRenderer();
+        debugCamera = camera.combined.cpy();
         //TODO: Change to ExtendViewPort
         viewport = new ScreenViewport(camera);
         viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -99,7 +109,8 @@ public class GameView extends ScreenAdapter {
      */
     @Override
     public void render(float delta) {
-        //handleInputs(delta);
+        handleInputs(delta);
+        GameController.getInstance().update(delta);
 
 
         //TODO: Change update Logic we can't move the camera
@@ -112,6 +123,8 @@ public class GameView extends ScreenAdapter {
         drawBackground();
         drawEntities();
         game.getBatch().end();
+        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        debugCamera = camera.combined.cpy();
 
     }
 
@@ -123,19 +136,19 @@ public class GameView extends ScreenAdapter {
      * @param delta time since last time inputs where handled in seconds
      */
     private void handleInputs(float delta) {
-        // How do we do tilting?
+        //TODO: How do we do tilting?
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            //GameController.getInstance().rotateLeft(delta);
+            //GameController.getInstance().moveLeft(delta);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            //GameController.getInstance().rotateRight(delta);
+            GameController.getInstance().moveRight(delta);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            //GameController.getInstance().accelerate(delta);
+            //GameController.getInstance().jump(delta);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            //GameController.getInstance().shoot();
+            //GameController.getInstance().powerUp();
         }
     }
 

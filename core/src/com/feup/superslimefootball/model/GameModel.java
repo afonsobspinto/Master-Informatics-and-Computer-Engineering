@@ -4,7 +4,9 @@ package com.feup.superslimefootball.model;
  * Created by afonso on 4/28/17.
  */
 
+import com.badlogic.gdx.Gdx;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.FloorModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 
 /**
@@ -37,6 +39,14 @@ public class GameModel {
      */
     private SlimeModel opponentSlime;
 
+
+
+    /**
+     * The floor in this game.
+     */
+    private FloorModel floor;
+
+
     /**
      * Returns a singleton instance of the game model
      *
@@ -55,7 +65,8 @@ public class GameModel {
      */
     private GameModel() {
         ball = new BallModel(1,1);
-        slime = new SlimeModel(1,1);
+        slime = new SlimeModel(80,150);
+        floor = new FloorModel(Gdx.graphics.getWidth()/2, 0);
        //opponentSlime = new BallModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
 
     }
@@ -79,6 +90,17 @@ public class GameModel {
     public BallModel getBall() {
         return ball;
     }
+
+    /**
+     * Returns the floor.
+     *
+     * @return the floor.
+     */
+
+    public FloorModel getFloor() {
+        return floor;
+    }
+
 
     /**
      * Returns the opponent slime.

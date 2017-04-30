@@ -15,7 +15,7 @@ public class PowerBody extends EntityBody {
      * @param model the model representing this power.
      */
     public PowerBody(World world, PowerModel model) {
-        super(world, model);
+        super(world, model, false);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;
         int width = 12, height = 12;

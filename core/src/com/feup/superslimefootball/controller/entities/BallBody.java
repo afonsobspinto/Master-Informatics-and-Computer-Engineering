@@ -15,7 +15,7 @@ public class BallBody extends EntityBody {
      * @param model the model representing this ball.
      */
     public BallBody(World world, BallModel model) {
-        super(world, model);
+        super(world, model, true);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;
         int width = 12, height = 12;

@@ -26,9 +26,10 @@ public class SlimeView extends EntityView {
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
-     * @return the sprite representing this bullet
+     * @return the sprite representing this slime
      */
     public Sprite createSprite(SuperSlimeFootball game) {
+        //TODO: Change image based on color
         Texture texture = game.getAssetManager().get("blueSlime.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());

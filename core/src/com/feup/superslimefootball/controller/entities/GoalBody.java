@@ -15,7 +15,7 @@ public class GoalBody extends EntityBody {
      * @param model the model representing this goal.
      */
     public GoalBody(World world, GoalModel model) {
-        super(world, model);
+        super(world, model, false);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;
         int width = 12, height = 12;
