@@ -171,7 +171,7 @@ public class GameController implements ContactListener {
     public void moveRight(float delta) {
         //TODO: Choose Slime to accelerate
 
-        slimeBody.applyLinearImpulse(2000,0,true);
+        slimeBody.applyForceToCenter(100000, 0, true);
         ((SlimeModel)slimeBody.getUserData()).setAccelerating(true);
 
     }
