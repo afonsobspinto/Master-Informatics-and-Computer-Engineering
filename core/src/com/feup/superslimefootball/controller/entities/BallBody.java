@@ -18,7 +18,7 @@ public class BallBody extends EntityBody {
         super(world, model, true);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;
-        int width = 12, height = 12;
+        int width = 25, height = 25;
 
         createFixture(body, new float[]{
                 5,5, 5,10, 10,10, 10,5,

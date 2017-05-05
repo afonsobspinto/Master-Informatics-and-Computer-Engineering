@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
+import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
@@ -160,10 +161,18 @@ public class GameView extends ScreenAdapter {
     private void drawEntities() {
 
         //TODO: Draw the others Entities
+
+        // Ball
+        BallModel ball = GameModel.getInstance().getBall();
+        EntityView viewBall = ViewFactory.makeView(game, ball);
+        viewBall.update(ball);
+        viewBall.draw(game.getBatch());
+
+        // Slime
         SlimeModel slime = GameModel.getInstance().getSlime();
-        EntityView view = ViewFactory.makeView(game, slime);
-        view.update(slime);
-        view.draw(game.getBatch());
+        EntityView viewSlime = ViewFactory.makeView(game, slime);
+        viewSlime.update(slime);
+        viewSlime.draw(game.getBatch());
     }
 
     /**

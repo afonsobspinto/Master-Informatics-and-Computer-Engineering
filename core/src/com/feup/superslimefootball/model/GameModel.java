@@ -64,7 +64,7 @@ public class GameModel {
      * pitch and a two slimes on different side of the pitch.
      */
     private GameModel() {
-        ball = new BallModel(1,1);
+        ball = new BallModel(325,300);
         slime = new SlimeModel(80,150);
         floor = new FloorModel(Gdx.graphics.getWidth()/2, 0);
        //opponentSlime = new BallModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
