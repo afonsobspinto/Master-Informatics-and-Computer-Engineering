@@ -53,6 +53,50 @@ public abstract class EntityBody {
      * @param category
      * @param mask
      */
+    final void createFixture(Body body, int width, int height) {
+//       Todo: Change this to use elipses and circles
+//
+//  Transform pixels into meters, center and invert the y-coordinate
+//        for (int i = 0; i < vertexes.length; i++) {
+//            if (i % 2 == 0) vertexes[i] -= width / 2;   // center the vertex x-coordinate
+//            if (i % 2 != 0) vertexes[i] -= height / 2;  // center the vertex y-coordinate
+//
+//            if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
+//
+//           // vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+//        }
+
+        PolygonShape polygonShape = new PolygonShape();
+        polygonShape.setAsBox(width, height);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = polygonShape;
+        fixtureDef.density = 1f;
+
+//        fixtureDef.friction = friction;
+//        fixtureDef.restitution = restitution;
+//        fixtureDef.filter.categoryBits = category;
+//        fixtureDef.filter.maskBits = mask;
+
+        body.createFixture(fixtureDef);
+
+        polygonShape.dispose();
+    }
+
+
+    /**
+     * Helper method to create a polygon fixture represented by a set of vertexes.
+     * @param body The body the fixture is to be attached to.
+     * @param vertexes The vertexes defining the fixture in pixels so it is
+     *                 easier to get them from a bitmap image.
+     * @param width The width of the bitmap the vertexes where extracted from.
+     * @param height The height of the bitmap the vertexes where extracted from.
+     * @param density The density of the fixture. How heavy it is in relation to its area.
+     * @param friction The friction of the fixture. How slippery it is.
+     * @param restitution The restitution of the fixture. How much it bounces.
+     * @param category
+     * @param mask
+     */
     final void createFixture(Body body, float[] vertexes, int width, int height, float density, float friction, float restitution, short category, short mask) {
 //       Todo: Change this to use elipses and circles
 //
@@ -160,6 +204,18 @@ public abstract class EntityBody {
      */
     public void applyLinearImpulse(float impulseX, float impulseY, boolean awake) {
         body.applyLinearImpulse(impulseX, impulseY, body.getWorldCenter().x, body.getWorldCenter().y, awake);
+    }
+
+
+    /**
+     * Wraps the setLinearVelocity method from the Box2D body class.
+     *
+     * @param vX the x-component of the velocity to be applied
+     * @param vY the y-component of the velocity to be applied
+
+     */
+    public void setLinearVelocity(float vX, float vY) {
+        body.setLinearVelocity(vX, vY);
     }
 
     /**
