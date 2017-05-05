@@ -1,4 +1,4 @@
-# SuperSlimeFootball
+# SuperSlimeFootball / LPOO1617_T6G7
 
 A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
@@ -19,7 +19,7 @@ Main Menu:
 SinglePlayer: 
   Choose your Slime (Expected other colours/types when finishing the game): 
   * Blue Slime
-  * Green Slime
+  * Red Slime
   
 MultiPlayer:
   Searching for other devices in the area
@@ -35,13 +35,16 @@ Options:
 
 ## Architecture Design
 
-## Package Diagram
+### Package Diagram
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/PackageDiagram.png)
 
 ### UML
 
 ![](https://github.com/Toliveira97/SuperSlimeFootball/blob/master/checkPoint/uml.png)
+
+[brief explanation on each class responsibility](https://docs.google.com/a/gcloud.fe.up.pt/document/d/1Dg7HwwphZf1RFEJUeRXyqyy0OFN_X1u8by7sTHiatXY/edit?usp=sharing)
+
 
 ### Behavioural Aspects
 * Moving by tilting
@@ -50,15 +53,15 @@ Options:
 
 ### Design Patterns
 
-* [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern
+* [MVC Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - Software architectural pattern 
 * [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) -  Restricts the instantiation of GameModel class
-* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement && controls the game flow
-* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural 
-* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites
-* [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface  
-* [DoubleBuffer]() - Implemented by Libgdx in Graphics
-* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop
-* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners
+* [State Pattern](https://en.wikipedia.org/wiki/State_pattern) - Restricts the slime movement (in GameController class) && controls the game flow (in StateModel class and extensions)
+* [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) - Controls the AI behavioural (in GameController Class) 
+* [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern) - Minimizes memory usage by sharing sprites (in EntityView class)
+* [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) - Creates new object Views using EntityView as a common interface (in ViewFactory class)
+* [DoubleBuffer]() - Implemented by Libgdx in Graphics Management (in GameView Class) 
+* [Template Method](https://en.wikipedia.org/wiki/Template_method_pattern) - Implemented by Libgdx in GameLoop (GameView, GameModel, Game Controller classes)
+* [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) - Implemented by Libgdx with controls listeners (in GameView class)
 
 
 ## Test Design
@@ -98,4 +101,3 @@ Options:
 
 * **Afonso Pinto** - [FooWalksIntoABar](https://github.com/FooWalksIntoABar)
 * **Tomas Oliveira** - [Toliveira97](https://github.com/Toliveira97)
-
