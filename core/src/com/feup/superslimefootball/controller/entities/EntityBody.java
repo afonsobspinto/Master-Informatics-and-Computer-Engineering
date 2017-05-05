@@ -2,6 +2,7 @@ package com.feup.superslimefootball.controller.entities;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -81,6 +82,48 @@ public abstract class EntityBody {
         body.createFixture(fixtureDef);
 
         polygonShape.dispose();
+    }
+
+    /**
+     * Helper method to create a polygon fixture represented by a set of vertexes.
+     * @param body The body the fixture is to be attached to.
+     * @param vertexes The vertexes defining the fixture in pixels so it is
+     *                 easier to get them from a bitmap image.
+     * @param radius The radius of the circle.
+     * @param density The density of the fixture. How heavy it is in relation to its area.
+     * @param friction The friction of the fixture. How slippery it is.
+     * @param restitution The restitution of the fixture. How much it bounces.
+     * @param category
+     * @param mask
+     */
+    final void createFixture(Body body, short info, int radius) {
+//       Todo: Change this to use elipses and circles
+//
+//  Transform pixels into meters, center and invert the y-coordinate
+//        for (int i = 0; i < vertexes.length; i++) {
+//            if (i % 2 == 0) vertexes[i] -= width / 2;   // center the vertex x-coordinate
+//            if (i % 2 != 0) vertexes[i] -= height / 2;  // center the vertex y-coordinate
+//
+//            if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
+//
+//           // vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+//        }
+
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(radius);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = circleShape;
+        fixtureDef.density = 1f;
+
+//        fixtureDef.friction = friction;
+//        fixtureDef.restitution = restitution;
+//        fixtureDef.filter.categoryBits = category;
+//        fixtureDef.filter.maskBits = mask;
+
+        body.createFixture(fixtureDef);
+
+        circleShape.dispose();
     }
 
 
