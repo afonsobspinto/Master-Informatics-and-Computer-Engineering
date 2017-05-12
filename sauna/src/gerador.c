@@ -25,17 +25,26 @@ void createOrdersFIFO(){
 
 void* requestsThread(void* arg){
 
-	int fdRequests = (REQUESTS_FIFO,O_WRONLY);
+	//int fdRequests = open(REQUESTS_FIFO,O_WRONLY);
 	unsigned int numberRequests = *(int*) arg;
+	unsigned int i;
 
 
-	if(fdRequests == -1){
-		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
-		 exit(1);
-	}
+//	if(fdRequests == -1){
+//		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
+//		 exit(1);
+//	}
 
 	sleep(3);
 	printf("REQUESTS_FIFO '/tmp/entrada' openned in WRITEONLY mode\n");
+
+
+
+	for(i=0; i < numberRequests; i++){
+		Request* request = malloc(sizeof(Request));
+
+		generate(request);
+	}
 
 }
 
