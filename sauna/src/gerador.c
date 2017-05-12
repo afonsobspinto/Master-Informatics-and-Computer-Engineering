@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/file.h>
 #include <errno.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <fcntl.h>
+
 
 #include "request.h"
 
@@ -24,16 +25,17 @@ void createOrdersFIFO(){
 
 void* requestsThread(void* arg){
 
-	int fdRequests;
+	int fdRequests = (REQUESTS_FIFO,O_WRONLY);
 	unsigned int numberRequests = *(int*) arg;
 
-//	if((fdRequests = open(REQUESTS_FIFO, O_WRONLY)) == -1){
-//		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
-//		 exit(1);
-//	}
+
+	if(fdRequests == -1){
+		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
+		 exit(1);
+	}
 
 	sleep(3);
-	printf("Hello from auxiliar thread\n");
+	printf("REQUESTS_FIFO '/tmp/entrada' openned in WRITEONLY mode\n");
 
 }
 
