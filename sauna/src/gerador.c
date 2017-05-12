@@ -4,6 +4,11 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <unistd.h>
+#include <pthread.h>
+#include <fcntl.h>
+
+#include "request.h"
+
 
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTEDS_FIFO = "/tmp/rejeitados";
@@ -16,6 +21,23 @@ void createOrdersFIFO(){
 	}
 }
 
+
+void* requestsThread(void* arg){
+
+	int fdRequests;
+	unsigned int numberRequests = *(int*) arg;
+
+//	if((fdRequests = open(REQUESTS_FIFO, O_WRONLY)) == -1){
+//		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
+//		 exit(1);
+//	}
+
+	sleep(3);
+	printf("Hello from auxiliar thread\n");
+
+}
+
+
 int main (int argc, char* argv[], char* envp[]){
 
 
@@ -24,10 +46,10 @@ int main (int argc, char* argv[], char* envp[]){
 		exit(1);
 	}
 
-	unsigned int numberOrders;
+	unsigned int numberRequests;
 	unsigned int usageTime;
 
-	if((numberOrders = atoi(argv[1])) == 0){
+	if((numberRequests = atoi(argv[1])) == 0){
 		printf("Invalid number of orders. \n");
 		exit(1);
 	}
@@ -37,15 +59,23 @@ int main (int argc, char* argv[], char* envp[]){
 		exit(1);
 	}
 
-	printf("Number of Orders: %d \nUsage Time: %d \n", numberOrders, usageTime);
+	printf("Number of Orders: %d \nUsage Time: %d \n", numberRequests, usageTime);
 
 	createOrdersFIFO();
-	printf("FIFO '/tmp/entrada' sucessfully created\n");
+	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
 
 
+	pthread_t requests_tid;
 
-	unlink(REQUESTS_FIFO);
-	printf("FIFO '/tmp/entrada' sucessfully deleted \n");
+	pthread_create(&requests_tid, NULL, requestsThread, (void*) &numberRequests);
+
+	pthread_join(requests_tid, NULL);
+
+
+	if(unlink(REQUESTS_FIFO) < 0)
+		printf("Error when destroying REQUESTS_FIFO '/tmp/entrada'\n");
+	else
+		printf("REQUESTS_FIFO '/tmp/entrada' has been destroyed \n");
 
 	return 0;
 

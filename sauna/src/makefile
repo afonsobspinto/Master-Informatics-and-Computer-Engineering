@@ -1,3 +1,3 @@
 all: gerador.c sauna.c
-	gcc -Wall -o gerador gerador.c
-	gcc -Wall -o sauna sauna.c
+	gcc -Wall -pthread -o gerador gerador.c
+	gcc -Wall -pthread -o sauna sauna.c
