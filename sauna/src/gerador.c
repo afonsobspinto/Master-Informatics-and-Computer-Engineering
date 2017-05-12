@@ -5,13 +5,15 @@
 #include <errno.h>
 #include <unistd.h>
 
-char* createOrdersFIFO(){
-	char* ordersFIFO = "/tmp/entrada";
-	if(mkfifo(ordersFIFO, S_IRUSR | S_IWUSR)<0  && errno==EEXIST){// Permissions: User Read and User Write
-		perror("FIFO '/tmp/entrada' already exists\n");
+char* REQUESTS_FIFO = "/tmp/entrada";
+char* REJECTEDS_FIFO = "/tmp/rejeitados";
+
+void createOrdersFIFO(){
+	if(mkfifo(REQUESTS_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
+			&& errno==EEXIST){
+		perror("REQUESTS_FIFO '/tmp/entrada' already exists\n");
 		exit(1);
 	}
-	return ordersFIFO;
 }
 
 int main (int argc, char* argv[], char* envp[]){
@@ -37,11 +39,13 @@ int main (int argc, char* argv[], char* envp[]){
 
 	printf("Number of Orders: %d \nUsage Time: %d \n", numberOrders, usageTime);
 
-	char *orderFifo = createOrdersFIFO();
+	createOrdersFIFO();
+	printf("FIFO '/tmp/entrada' sucessfully created\n");
 
 
 
-	unlink(orderFifo);
+	unlink(REQUESTS_FIFO);
+	printf("FIFO '/tmp/entrada' sucessfully deleted \n");
 
 	return 0;
 
