@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <time.h>
+#include <math.h>
 
 #define gettid() syscall(SYS_gettid)
 
@@ -51,6 +52,8 @@ void* requestsThread(void* arg){
 		Request* request = malloc(sizeof(Request));
 
 		generate(request, maxUsageTime);
+		int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
+		int lengthIDs = floor(log10(abs(numberRequests))) + 1;
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
@@ -60,8 +63,9 @@ void* requestsThread(void* arg){
 		gettimeofday(&tvalAfter, NULL);
 		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
 
-		fprintf(LOGS, "%.2f - %d - %u: %c - %u - PEDIDO\n",
-				(afterTime-STARTING_TIME) / 1000, gettid(), request->id, request->gender, request->duration);
+
+		fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - PEDIDO\n",
+				(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
 	}
 
