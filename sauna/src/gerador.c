@@ -3,16 +3,22 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/file.h>
+#include <sys/syscall.h>
 #include <errno.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <time.h>
+
+#define gettid() syscall(SYS_gettid)
 
 
 #include "request.h"
 
-
+FILE* LOGS;
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTEDS_FIFO = "/tmp/rejeitados";
+double STARTING_TIME;
+
 
 void createOrdersFIFO(){
 	if(mkfifo(REQUESTS_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
@@ -27,7 +33,7 @@ void* requestsThread(void* arg){
 
 	//int fdRequests = open(REQUESTS_FIFO,O_WRONLY);
 	unsigned int numberRequests =  ((int *)arg)[0];
-	unsigned int usageTime = ((int *)arg)[1];
+	unsigned int maxUsageTime = ((int *)arg)[1];
 
 	unsigned int i;
 
@@ -37,7 +43,6 @@ void* requestsThread(void* arg){
 //		 exit(1);
 //	}
 
-	sleep(3);
 	printf("REQUESTS_FIFO '/tmp/entrada' openned in WRITEONLY mode\n");
 
 
@@ -45,9 +50,19 @@ void* requestsThread(void* arg){
 	for(i=0; i < numberRequests; i++){
 		Request* request = malloc(sizeof(Request));
 
-		generate(request, usageTime);
+		generate(request, maxUsageTime);
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
+
+		//write(fdRequests, &request, sizeof(request));
+
+		struct timeval tvalAfter;
+		gettimeofday(&tvalAfter, NULL);
+		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
+
+		fprintf(LOGS, "%.2f - %d - %u: %c - %u - PEDIDO\n",
+				afterTime-STARTING_TIME, gettid(), request->id, request->gender, request->duration);
+
 	}
 
 }
@@ -57,31 +72,46 @@ int main (int argc, char* argv[], char* envp[]){
 
 	srand(time(NULL));
 
+	struct timeval tvalBegin;
+	gettimeofday(&tvalBegin, NULL);
+	STARTING_TIME = tvalBegin.tv_sec * 1000000 + tvalBegin.tv_usec;
+
+	printf("Starting Time: %d \n", (int) STARTING_TIME);
+
 	if(argc != 3){
 		printf("Wrong number of arguments \n.");
 		exit(1);
 	}
 
 	unsigned int numberRequests;
-	unsigned int usageTime;
+	unsigned int maxUsageTime;
 
 	if((numberRequests = atoi(argv[1])) == 0){
 		printf("Invalid number of orders. \n");
 		exit(1);
 	}
 
-	if((usageTime = atoi(argv[2])) == 0){
+	if((maxUsageTime = atoi(argv[2])) == 0){
 		printf("Invalid usage time. \n");
 		exit(1);
 	}
 
-	printf("Number of Orders: %d \nUsage Time: %d \n", numberRequests, usageTime);
+	printf("Number of Orders: %d \nMaxUsage Time: %d \n", numberRequests, maxUsageTime);
 
 	createOrdersFIFO();
 	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
 
 
-	unsigned int data[] = {numberRequests, usageTime};
+	char logsPath[32];
+	sprintf(logsPath, "/tmp/ger.%d", getpid());
+	if((LOGS = fopen(logsPath, "w")) == NULL){ // Opens a text file for writing. If it does not exist, then a new file is created.
+		perror("Unable to create LOGS file");
+		exit(1);
+	}
+	printf("LOGS file: %s created \n", logsPath);
+
+
+	unsigned int data[] = {numberRequests, maxUsageTime};
 
 	pthread_t requests_tid;
 
