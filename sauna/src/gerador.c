@@ -61,7 +61,7 @@ void* requestsThread(void* arg){
 		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
 
 		fprintf(LOGS, "%.2f - %d - %u: %c - %u - PEDIDO\n",
-				afterTime-STARTING_TIME, gettid(), request->id, request->gender, request->duration);
+				(afterTime-STARTING_TIME) / 1000, gettid(), request->id, request->gender, request->duration);
 
 	}
 
