@@ -20,9 +20,11 @@ char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
 double STARTING_TIME;
 
-int M_REQUESTS, F_REQUESTS;
-int M_REJECTIONS, F_REJECTIONS;
-int M_DISCARDED, F_DISCARDED;
+int FD_REQUESTS;
+
+int M_REQUESTS = 0, F_REQUESTS = 0;
+int M_REJECTIONS = 0, F_REJECTIONS = 0;
+int M_DISCARDED = 0, F_DISCARDED = 0;
 
 
 
@@ -37,7 +39,6 @@ void createOrdersFIFO(){
 
 void* requestsThread(void* arg){
 
-	//int fdRequests = open(REQUESTS_FIFO,O_WRONLY);
 	unsigned int numberRequests =  ((int *)arg)[0];
 	unsigned int maxUsageTime = ((int *)arg)[1];
 	int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
@@ -47,13 +48,19 @@ void* requestsThread(void* arg){
 	unsigned int i;
 
 
-//	if(fdRequests == -1){
-//		 printf("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
-//		 exit(1);
-//	}
+	while ((FD_REQUESTS = open(REQUESTS_FIFO, O_WRONLY | O_NONBLOCK)) == -1){
+		if (errno != ENXIO){
+			perror("REQUESTS_FIFO '/tmp/entrada' could not be openned in WRITEONLY mode\n");
+			exit(1);
+		}
+		else{
+			printf("REQUESTS_FIFO '/tmp/entrada' not available, read side hasn't been opened yet \n");
+			sleep(1);
+		}
+
+	}
 
 	printf("REQUESTS_FIFO '/tmp/entrada' openned in WRITEONLY mode\n");
-
 
 
 	for(i=0; i < numberRequests; i++){
@@ -63,7 +70,12 @@ void* requestsThread(void* arg){
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
-		//write(fdRequests, &request, sizeof(request));
+		if(request->gender == 'M')
+			M_REQUESTS++;
+		else
+			F_REQUESTS++;
+
+		write(FD_REQUESTS, &request, sizeof(request));
 
 		struct timeval tvalAfter;
 		gettimeofday(&tvalAfter, NULL);
@@ -74,8 +86,6 @@ void* requestsThread(void* arg){
 				(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
 	}
-
-	//close(fdRequests);
 
 	return NULL;
 
@@ -91,38 +101,68 @@ void* rejectedThread(void* arg){
 	int lengthIDs = floor(log10(abs(numberRequests))) + 1;
 
 
-//	while ((fdRejected = open(REJECTED_FIFO, O_RDONLY)) == -1){
-//		if (errno == ENOENT)
-//			printf("REJECTED_FIFO '/tmp/rejeitados' not available \n");
-//		sleep(1);
-//	}
+	while ((fdRejected = open(REJECTED_FIFO, O_RDONLY)) == -1){
+		if (errno == ENOENT)
+			printf("REJECTED_FIFO '/tmp/rejeitados' not available \n");
+		sleep(1);
+	}
 
 	printf("REJECTED_FIFO '/tmp/rejeitados' openned in READONLY mode\n");
 
 
 	Request* request = malloc(sizeof(Request));
 
-//	while(read(fdRejected, request, sizeof(Request)) != 0){
-//
-//		struct timeval tvalAfter;
-//		gettimeofday(&tvalAfter, NULL);
-//		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
-//
-//		if ( ++request->rejections < 3){
-//			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - REJEITADO\n",
-//								(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
-//			write(REQUESTS_FIFO, request, sizeof(*request));
-//		}
-//
-//		else
-//			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - DESCARTADO\n",
-//					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
-//	}
+	while(read(fdRejected, request, sizeof(Request)) != 0){
+
+		struct timeval tvalAfter;
+		gettimeofday(&tvalAfter, NULL);
+		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
+
+		if ( ++request->rejections < 3){
+
+			write(FD_REQUESTS, request, sizeof(*request));
+
+			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - REJEITADO\n",
+						(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+
+
+			if(request->gender == 'M')
+				M_REJECTIONS++;
+			else
+				F_REJECTIONS++;
+
+		}
+
+		else{
+			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - DESCARTADO\n",
+					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+
+			if(request->gender == 'M')
+				M_DISCARDED++;
+			else
+				F_DISCARDED++;
+		}
+	}
 
 
 	free(request);
 
 	return NULL;
+}
+
+void showStatistics(){
+	printf("Number of Requests: %u \n 	"
+			"Male: %u \n 	"
+			"Female: %u \n "
+			"Number of Rejections: %u \n 	"
+			"Male: %u \n 	"
+			"Female: %u \n "
+			"Number of Discarded: %u \n 	"
+			"Male: %u \n 	"
+			"Female: %u \n ",
+			M_REQUESTS+F_REQUESTS, M_REQUESTS, F_REQUESTS,
+			M_REJECTIONS+F_REJECTIONS, M_REJECTIONS, F_REJECTIONS,
+			M_DISCARDED+F_DISCARDED, M_DISCARDED, F_DISCARDED);
 }
 
 
@@ -181,11 +221,19 @@ int main (int argc, char* argv[], char* envp[]){
 	pthread_join(requestsTID, NULL);
 	pthread_join(rejectedTID, NULL);
 
+	showStatistics();
+
+	fclose(LOGS);
+	close(FD_REQUESTS);
 
 	if(unlink(REQUESTS_FIFO) < 0)
 		printf("Error when destroying REQUESTS_FIFO '/tmp/entrada'\n");
 	else
 		printf("REQUESTS_FIFO '/tmp/entrada' has been destroyed \n");
+
+
+
+
 
 	return 0;
 
