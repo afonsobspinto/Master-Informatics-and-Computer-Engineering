@@ -8,6 +8,8 @@
 #ifndef REQUEST_H_
 #define REQUEST_H_
 
+static int ID = 0;
+
 typedef struct {
     unsigned int id;
     char gender;
@@ -16,8 +18,12 @@ typedef struct {
 
 } Request;
 
-void generate(Request* r){
-	printf("Boas");
+void generate(Request* r, int usageTime){
+
+	r->id = ++ID;
+	r->gender =  (rand() % 2) ? 'M' : 'F';
+	r->duration = rand() % usageTime + 1;
+	r->rejections = 0;
 
 }
 

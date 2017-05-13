@@ -26,7 +26,9 @@ void createOrdersFIFO(){
 void* requestsThread(void* arg){
 
 	//int fdRequests = open(REQUESTS_FIFO,O_WRONLY);
-	unsigned int numberRequests = *(int*) arg;
+	unsigned int numberRequests =  ((int *)arg)[0];
+	unsigned int usageTime = ((int *)arg)[1];
+
 	unsigned int i;
 
 
@@ -43,7 +45,9 @@ void* requestsThread(void* arg){
 	for(i=0; i < numberRequests; i++){
 		Request* request = malloc(sizeof(Request));
 
-		generate(request);
+		generate(request, usageTime);
+
+		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 	}
 
 }
@@ -51,6 +55,7 @@ void* requestsThread(void* arg){
 
 int main (int argc, char* argv[], char* envp[]){
 
+	srand(time(NULL));
 
 	if(argc != 3){
 		printf("Wrong number of arguments \n.");
@@ -76,9 +81,11 @@ int main (int argc, char* argv[], char* envp[]){
 	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
 
 
+	unsigned int data[] = {numberRequests, usageTime};
+
 	pthread_t requests_tid;
 
-	pthread_create(&requests_tid, NULL, requestsThread, (void*) &numberRequests);
+	pthread_create(&requests_tid, NULL, requestsThread, (void*) &data);
 
 	pthread_join(requests_tid, NULL);
 
