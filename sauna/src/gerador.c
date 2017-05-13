@@ -17,8 +17,13 @@
 
 FILE* LOGS;
 char* REQUESTS_FIFO = "/tmp/entrada";
-char* REJECTEDS_FIFO = "/tmp/rejeitados";
+char* REJECTED_FIFO = "/tmp/rejeitados";
 double STARTING_TIME;
+
+int M_REQUESTS, F_REQUESTS;
+int M_REJECTIONS, F_REJECTIONS;
+int M_DISCARDED, F_DISCARDED;
+
 
 
 void createOrdersFIFO(){
@@ -35,6 +40,9 @@ void* requestsThread(void* arg){
 	//int fdRequests = open(REQUESTS_FIFO,O_WRONLY);
 	unsigned int numberRequests =  ((int *)arg)[0];
 	unsigned int maxUsageTime = ((int *)arg)[1];
+	int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
+	int lengthIDs = floor(log10(abs(numberRequests))) + 1;
+
 
 	unsigned int i;
 
@@ -52,8 +60,6 @@ void* requestsThread(void* arg){
 		Request* request = malloc(sizeof(Request));
 
 		generate(request, maxUsageTime);
-		int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
-		int lengthIDs = floor(log10(abs(numberRequests))) + 1;
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
@@ -64,11 +70,59 @@ void* requestsThread(void* arg){
 		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
 
 
-		fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - PEDIDO\n",
+		fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - PEDIDO\n",
 				(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
 	}
 
+	//close(fdRequests);
+
+	return NULL;
+
+}
+
+void* rejectedThread(void* arg){
+
+	int fdRejected;
+
+	unsigned int numberRequests =  ((int *)arg)[0];
+	unsigned int maxUsageTime = ((int *)arg)[1];
+	int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
+	int lengthIDs = floor(log10(abs(numberRequests))) + 1;
+
+
+//	while ((fdRejected = open(REJECTED_FIFO, O_RDONLY)) == -1){
+//		if (errno == ENOENT)
+//			printf("REJECTED_FIFO '/tmp/rejeitados' not available \n");
+//		sleep(1);
+//	}
+
+	printf("REJECTED_FIFO '/tmp/rejeitados' openned in READONLY mode\n");
+
+
+	Request* request = malloc(sizeof(Request));
+
+//	while(read(fdRejected, request, sizeof(Request)) != 0){
+//
+//		struct timeval tvalAfter;
+//		gettimeofday(&tvalAfter, NULL);
+//		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
+//
+//		if ( ++request->rejections < 3){
+//			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - REJEITADO\n",
+//								(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+//			write(REQUESTS_FIFO, request, sizeof(*request));
+//		}
+//
+//		else
+//			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - DESCARTADO\n",
+//					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+//	}
+
+
+	free(request);
+
+	return NULL;
 }
 
 
@@ -117,11 +171,15 @@ int main (int argc, char* argv[], char* envp[]){
 
 	unsigned int data[] = {numberRequests, maxUsageTime};
 
-	pthread_t requests_tid;
+	pthread_t requestsTID;
+	pthread_t rejectedTID;
 
-	pthread_create(&requests_tid, NULL, requestsThread, (void*) &data);
 
-	pthread_join(requests_tid, NULL);
+	pthread_create(&requestsTID, NULL, requestsThread, (void*) &data);
+	pthread_create(&rejectedTID, NULL, rejectedThread, (void*) &data);
+
+	pthread_join(requestsTID, NULL);
+	pthread_join(rejectedTID, NULL);
 
 
 	if(unlink(REQUESTS_FIFO) < 0)
