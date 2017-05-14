@@ -203,7 +203,7 @@ int main (int argc, char* argv[], char* envp[]){
 
 	char logsPath[32];
 	sprintf(logsPath, "/tmp/ger.%d", getpid());
-	if((LOGS = fopen(logsPath, "w")) == NULL){ // Opens a text file for writing. If it does not exist, then a new file is created.
+	if((LOGS = fopen(logsPath, "a")) == NULL){ // Opens a text file for writing in Appends mode. If it does not exist, then a new file is created.
 		perror("Unable to create LOGS file");
 		exit(1);
 	}

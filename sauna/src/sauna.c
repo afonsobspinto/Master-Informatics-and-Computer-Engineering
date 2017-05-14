@@ -7,6 +7,18 @@ typedef struct {
         char gender;
 } Sauna;
 
+static FILE* LOGS;
+static double STARTING_TIME;
+static Sauna sauna = {0,0,' '};
+
+void startSauna(int numberPlaces){
+
+	sauna.capacity = numberPlaces;
+
+
+
+}
+
 
 int main (int argc, char* argv[], char* envp[]){
 
@@ -24,8 +36,15 @@ int main (int argc, char* argv[], char* envp[]){
 
 	printf("Number of Places: %d \n", numberPlaces);
 
+	char logsPath[32];
+	sprintf(logsPath, "/tmp/bal.%d", getpid());
+	if((LOGS = fopen(logsPath, "a")) == NULL){ // Opens a text file for writing in Appends mode. If it does not exist, then a new file is created.
+		perror("Unable to create LOGS file");
+		exit(1);
+	}
+	printf("LOGS file: %s created \n", logsPath);
 
-
+	startSauna(numberPlaces);
 
 	return 0;
 }
