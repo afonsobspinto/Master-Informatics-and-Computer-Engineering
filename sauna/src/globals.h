@@ -8,30 +8,23 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
+typedef int bool;
+#define true 1
+#define false 0
+
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
 
-void checkVality(char* argv[], unsigned int numberRequests, unsigned int maxUsageTime){
+bool checkVality(char* argv[], unsigned int* var){
 
-	if((numberRequests = atoi(argv[1])) == 0){
-		printf("Invalid number of orders. \n");
-		exit(1);
+	if(((var = atoi(argv[1])) == 0) || ((var = atoi(argv[2])) == 0)){
+		return false;
 	}
-
-	if(numberRequests < 0){
-		printf("Invalid number of orders. \n");
-		exit(1);
+	else if(var < 0){
+		return false;
 	}
-
-	if((maxUsageTime = atoi(argv[2])) == 0){
-		printf("Invalid usage time. \n");
-		exit(1);
-	}
-
-	if(maxUsageTime < 0){
-		printf("Invalid usage time. \n");
-		exit(1);
-	}
+	else
+		return true;
 }
 
 #endif /* GLOBALS_H_ */

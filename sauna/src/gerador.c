@@ -203,24 +203,12 @@ int main (int argc, char* argv[], char* envp[]){
 	unsigned int numberRequests;
 	unsigned int maxUsageTime;
 
-	checkVality(argv, numberRequests, maxUsageTime);
-
-	if((numberRequests = atoi(argv[1])) == 0){
+	if(checkVality(argv, numberRequests)){
 		printf("Invalid number of orders. \n");
 		exit(1);
 	}
 
-	if(numberRequests < 0){
-		printf("Invalid number of orders. \n");
-		exit(1);
-	}
-
-	if((maxUsageTime = atoi(argv[2])) == 0){
-		printf("Invalid usage time. \n");
-		exit(1);
-	}
-
-	if(maxUsageTime < 0){
+	if(checkVality(argv, maxUsageTime)){
 		printf("Invalid usage time. \n");
 		exit(1);
 	}
