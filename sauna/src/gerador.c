@@ -203,6 +203,8 @@ int main (int argc, char* argv[], char* envp[]){
 	unsigned int numberRequests;
 	unsigned int maxUsageTime;
 
+	checkVality(argv, numberRequests, maxUsageTime);
+
 	if((numberRequests = atoi(argv[1])) == 0){
 		printf("Invalid number of orders. \n");
 		exit(1);
