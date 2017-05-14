@@ -63,6 +63,7 @@ void checkStats(char type, char gender){
 		case 'd':
 			stats.F_DISCARDED++;
 			break;
+		}
 	}
 }
 
@@ -250,6 +251,4 @@ int main (int argc, char* argv[], char* envp[]){
 		printf("REQUESTS_FIFO '/tmp/entrada' has been destroyed \n");
 
 	return 0;
-
-
 }
