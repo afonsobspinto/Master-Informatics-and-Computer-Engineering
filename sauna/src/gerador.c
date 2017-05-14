@@ -204,14 +204,14 @@ int main (int argc, char* argv[], char* envp[]){
 	unsigned int maxUsageTime;
 
 	if(checkVality(argv, numberRequests)){
-		printf("Invalid number of orders. \n");
-		exit(1);
-	}
+			printf("Invalid number of orders. \n");
+			exit(1);
+		}
 
 	if(checkVality(argv, maxUsageTime)){
-		printf("Invalid usage time. \n");
-		exit(1);
-	}
+			printf("Invalid usage time. \n");
+			exit(1);
+		}
 
 	printf("Number of Orders: %d \nMaxUsage Time: %d \n", numberRequests, maxUsageTime);
 
