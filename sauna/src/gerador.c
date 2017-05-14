@@ -27,7 +27,10 @@ typedef struct {
 static FILE* LOGS;
 static double STARTING_TIME;
 static int FD_REQUESTS;
+static int FD_REJECTED;
 static Stats stats = {0,0,0,0,0,0};
+
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
 void createOrdersFIFO(){
@@ -69,14 +72,7 @@ void updateStats(char type, char gender){
 	}
 }
 
-void* requestsThread(void* arg){
-
-	unsigned int numberRequests =  ((int *)arg)[0];
-	unsigned int maxUsageTime = ((int *)arg)[1];
-
-
-	unsigned int i;
-
+void openCommunications(){
 
 	while ((FD_REQUESTS = open(REQUESTS_FIFO, O_WRONLY | O_NONBLOCK)) == -1){
 		if (errno != ENXIO){
@@ -92,8 +88,28 @@ void* requestsThread(void* arg){
 
 	printf("REQUESTS_FIFO '/tmp/entrada' openned in WRITEONLY mode\n");
 
+	while ((FD_REJECTED = open(REJECTED_FIFO, O_RDONLY)) == -1){
+		if (errno == ENOENT)
+			printf("REJECTED_FIFO '/tmp/rejeitados' not available \n");
+		sleep(1);
+	}
+
+	printf("REJECTED_FIFO '/tmp/rejeitados' openned in READONLY mode\n");
+
+}
+
+
+void* requestsThread(void* arg){
+
+	unsigned int numberRequests =  ((int *)arg)[0];
+	unsigned int maxUsageTime = ((int *)arg)[1];
+
+
+	unsigned int i;
+
 
 	for(i=0; i < numberRequests; i++){
+		pthread_mutex_lock(&mutex);
 		Request* request = malloc(sizeof(Request));
 
 		generate(request, maxUsageTime);
@@ -112,7 +128,12 @@ void* requestsThread(void* arg){
 		fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - PEDIDO\n",
 				(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
 
+		free(request);
+		pthread_mutex_unlock(&mutex);
+
 	}
+
+	close(FD_REQUESTS);
 
 	return NULL;
 
@@ -120,26 +141,17 @@ void* requestsThread(void* arg){
 
 void* rejectedThread(void* arg){
 
-	int fdRejected;
-
-	while ((fdRejected = open(REJECTED_FIFO, O_RDONLY)) == -1){
-		if (errno == ENOENT)
-			printf("REJECTED_FIFO '/tmp/rejeitados' not available \n");
-		sleep(1);
-	}
-
-	printf("REJECTED_FIFO '/tmp/rejeitados' openned in READONLY mode\n");
-
-
 	Request* request = malloc(sizeof(Request));
 
-	while(read(fdRejected, request, sizeof(Request)) != 0){
+	while(read(FD_REJECTED, request, sizeof(Request)) != 0){
 
 		struct timeval tvalAfter;
 		gettimeofday(&tvalAfter, NULL);
 		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
 
-		if ( ++request->rejections < 3){
+		 pthread_mutex_lock(&mutex);
+
+		if (request->rejections < 3){
 
 			write(FD_REQUESTS, request, sizeof(*request));
 
@@ -156,12 +168,31 @@ void* rejectedThread(void* arg){
 
 			updateStats('d',request->gender);
 		}
-	}
 
+		 pthread_mutex_unlock(&mutex);
+	}
 
 	free(request);
 
 	return NULL;
+}
+
+void geradorManagement(void *arg){
+
+	openCommunications();
+
+	pthread_t requestsTID;
+	pthread_t rejectedTID;
+
+	pthread_create(&requestsTID, NULL, requestsThread, arg);
+	pthread_create(&rejectedTID, NULL, rejectedThread, NULL);
+
+	pthread_join(requestsTID, NULL);
+	pthread_join(rejectedTID, NULL);
+
+
+	close(FD_REJECTED);
+
 }
 
 void showStatistics(){
@@ -225,20 +256,11 @@ int main (int argc, char* argv[], char* envp[]){
 
 	unsigned int data[] = {numberRequests, maxUsageTime};
 
-	pthread_t requestsTID;
-	pthread_t rejectedTID;
-
-
-	pthread_create(&requestsTID, NULL, requestsThread, (void*) &data);
-	pthread_create(&rejectedTID, NULL, rejectedThread, NULL);
-
-	pthread_join(requestsTID, NULL);
-	pthread_join(rejectedTID, NULL);
+	geradorManagement((void*) &data);
 
 	showStatistics();
 
 	fclose(LOGS);
-	close(FD_REQUESTS);
 
 	if(unlink(REQUESTS_FIFO) < 0)
 		printf("Error when destroying REQUESTS_FIFO '/tmp/entrada'\n");

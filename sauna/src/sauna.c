@@ -29,7 +29,7 @@ static FILE* LOGS;
 static double STARTING_TIME;
 static Sauna sauna = {0,0,' '};
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void createRejectedFIFO(){
 	if(mkfifo(REJECTED_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
@@ -119,17 +119,19 @@ void updateStatsAndLogs(char type, Request* request){
 
 
 void* addToSauna(void* arg){
+	pthread_mutex_lock(&mutex);
 	Request* request = (Request*) arg;
+	pthread_mutex_unlock(&mutex);
 
-	 usleep(request->duration * 1000);
+	usleep(request->duration * 1000);
 
-	 pthread_mutex_lock(&mutex);
-	 sauna.ocupation--;
-	 if(sauna.ocupation==0)
-		 sauna.gender = ' ';
-	 pthread_mutex_unlock(&mutex);
+	pthread_mutex_lock(&mutex);
+	sauna.ocupation--;
+	if(sauna.ocupation==0)
+		sauna.gender = ' ';
+	pthread_mutex_unlock(&mutex);
 
-	 pthread_exit(NULL);
+	pthread_exit(NULL);
 }
 
 void saunaManagement(){
@@ -143,12 +145,18 @@ void saunaManagement(){
 	openCommunications(&fdRequests, &fdRejected);
 
 	while(read(fdRejected, request, sizeof(Request)) != 0){
+
+		pthread_mutex_lock(&mutex);
+
 		updateStatsAndLogs('p', request);
 
 		if(sauna.ocupation == 0)
 			sauna.gender = request->gender;
 
 		if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
+
+			printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
+
 			updateStatsAndLogs('s', request);
 
 			pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, &request);
@@ -156,14 +164,20 @@ void saunaManagement(){
 			sauna.ocupation++;
 		}
 		else{
+
+			printf("Rejected Request: %d %c %d %d \n", request->id, request->gender, request->duration, request->rejections);
+
 			updateStatsAndLogs('r', request);
 			request->rejections++;
 			write(fdRejected, request, sizeof(request));
 		}
+
+		 pthread_mutex_unlock(&mutex);
 	}
 
 
 	  close(fdRejected);
+	  close(fdRequests);
 
 	  for(i = 0; seatsTID[i] != 0; i++){
 	    pthread_join(seatsTID[i], NULL);
