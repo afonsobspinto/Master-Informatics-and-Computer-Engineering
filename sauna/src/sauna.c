@@ -144,7 +144,7 @@ void saunaManagement(){
 
 	openCommunications(&fdRequests, &fdRejected);
 
-	while(read(fdRejected, request, sizeof(Request)) != 0){
+	while(read(fdRequests, request, sizeof(Request)) != 0){
 
 		pthread_mutex_lock(&mutex);
 
@@ -156,6 +156,8 @@ void saunaManagement(){
 		if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
 
 			printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
+
+			sleep(5);
 
 			updateStatsAndLogs('s', request);
 
