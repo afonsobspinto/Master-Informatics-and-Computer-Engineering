@@ -8,9 +8,7 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
-typedef int bool;
-#define true 1
-#define false 0
+#include <stdbool.h>
 
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
