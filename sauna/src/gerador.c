@@ -38,6 +38,33 @@ void createOrdersFIFO(){
 	}
 }
 
+void checkStats(char type, char gender){
+	if(gender == 'M'){
+		switch(type){
+		case 'p':
+			stats.M_REQUESTS++;
+			break;
+		case 'r':
+			stats.M_REJECTIONS++;
+			break;
+		case 'd':
+			stats.M_DISCARDED++;
+			break;
+		}
+	}
+	else {
+		switch(type){
+		case 'p':
+			stats.F_REQUESTS++;
+			break;
+		case 'r':
+			stats.F_REJECTIONS++;
+			break;
+		case 'd':
+			stats.F_DISCARDED++;
+			break;
+	}
+}
 
 void* requestsThread(void* arg){
 
@@ -72,10 +99,7 @@ void* requestsThread(void* arg){
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
-		if(request->gender == 'M')
-			stats.M_REQUESTS++;
-		else
-			stats.F_REQUESTS++;
+		checkStats('p',request->gender);
 
 		write(FD_REQUESTS, &request, sizeof(request));
 
@@ -127,11 +151,7 @@ void* rejectedThread(void* arg){
 			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - REJEITADO\n",
 						(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
-
-			if(request->gender == 'M')
-				stats.M_REJECTIONS++;
-			else
-				stats.F_REJECTIONS++;
+			checkStats('r',request->gender);
 
 		}
 
@@ -139,10 +159,7 @@ void* rejectedThread(void* arg){
 			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - DESCARTADO\n",
 					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
-			if(request->gender == 'M')
-				stats.M_DISCARDED++;
-			else
-				stats.F_DISCARDED++;
+			checkStats('d',request->gender);
 		}
 	}
 
@@ -231,10 +248,6 @@ int main (int argc, char* argv[], char* envp[]){
 		printf("Error when destroying REQUESTS_FIFO '/tmp/entrada'\n");
 	else
 		printf("REQUESTS_FIFO '/tmp/entrada' has been destroyed \n");
-
-
-
-
 
 	return 0;
 
