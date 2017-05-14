@@ -134,14 +134,16 @@ void* requestsThread(void* arg){
 
 		updateStatsAndLogs('p',request);
 
-		write(FD_REQUESTS, &request, sizeof(request));
+		if(write(FD_REQUESTS, &request, sizeof(request)) == -1){
+			perror("Could not write in REQUESTS_FIFO :: requestsThread\n");
+			exit(1);
+		}
 
 		free(request);
 		pthread_mutex_unlock(&mutex);
 
 	}
 
-	close(FD_REQUESTS);
 
 	return NULL;
 
@@ -157,7 +159,10 @@ void* rejectedThread(void* arg){
 
 		if (request->rejections < 3){
 
-			write(FD_REQUESTS, request, sizeof(*request));
+			if(write(FD_REQUESTS, &request, sizeof(request)) == -1){
+				perror("Could not write in REQUESTS_FIFO :: rejectedThread\n");
+				exit(1);
+			}
 
 			updateStatsAndLogs('r',request);
 
@@ -189,6 +194,8 @@ void geradorManagement(void *arg){
 
 
 	close(FD_REJECTED);
+	close(FD_REQUESTS);
+
 
 }
 
