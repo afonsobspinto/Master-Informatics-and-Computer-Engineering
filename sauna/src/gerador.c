@@ -173,13 +173,13 @@ void* rejectedThread(void* arg){
 void showStatistics(){
 	printf("Number of Requests: %u \n 	"
 			"Male: %u \n 	"
-			"Female: %u \n "
+			"Female: %u \n"
 			"Number of Rejections: %u \n 	"
 			"Male: %u \n 	"
-			"Female: %u \n "
+			"Female: %u \n"
 			"Number of Discarded: %u \n 	"
 			"Male: %u \n 	"
-			"Female: %u \n ",
+			"Female: %u \n",
 			stats.M_REQUESTS+stats.F_REQUESTS, stats.M_REQUESTS, stats.F_REQUESTS,
 			stats.M_REJECTIONS+stats.F_REJECTIONS, stats.M_REJECTIONS, stats.F_REJECTIONS,
 			stats.M_DISCARDED+stats.F_DISCARDED, stats.M_DISCARDED, stats.F_DISCARDED);
@@ -200,8 +200,8 @@ int main (int argc, char* argv[], char* envp[]){
 		exit(1);
 	}
 
-	unsigned int numberRequests;
-	unsigned int maxUsageTime;
+	int numberRequests;
+	int maxUsageTime;
 
 	if(!checkVality(argv[1], &numberRequests)){
 			printf("Invalid number of orders. \n");
