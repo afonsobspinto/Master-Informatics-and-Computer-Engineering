@@ -14,7 +14,7 @@ char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
 
 
-bool checkVality(char* argv, unsigned int* var){
+bool checkVality(char* argv, int* var){
 
 	if(((*var = atoi(argv)) == 0))
 		return false;
