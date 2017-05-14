@@ -15,7 +15,6 @@ typedef int bool;
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
 
-<<<<<<< HEAD
 bool checkVality(char* argv[], unsigned int* var){
 
 	if(((var = atoi(argv[1])) == 0) || ((var = atoi(argv[2])) == 0)){
@@ -27,7 +26,6 @@ bool checkVality(char* argv[], unsigned int* var){
 	else
 		return true;
 }
-=======
->>>>>>> branch 'master' of https://github.com/FooWalksIntoABar/SOPE1617_T1G3.git
+
 
 #endif /* GLOBALS_H_ */

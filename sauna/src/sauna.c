@@ -25,13 +25,15 @@ void createRejectedFIFO(){
 		perror("REJECTED_FIFO '/tmp/rejeitados' already exists\n");
 		exit(1);
 	}
+
+	printf("REJECTED_FIFO '/tmp/rejeitados' sucessfully created\n");
 }
 
 void saunaManagement(){
 	int fdRequests;
 	int fdRejected;
 
-	while ((fdRequests = open(REJECTED_FIFO, O_RDONLY)) == -1){
+	while ((fdRequests = open(REQUESTS_FIFO, O_RDONLY)) == -1){
 		if (errno != ENXIO){
 			perror("REQUESTS_FIFO '/tmp/entrada' could not be openned in READONLY mode\n");
 			exit(1);
@@ -43,6 +45,21 @@ void saunaManagement(){
 	}
 
 	printf("REQUESTS_FIFO '/tmp/entrada' openned in READONLY mode\n");
+
+
+	while ((fdRejected = open(REJECTED_FIFO, O_WRONLY | O_NONBLOCK)) == -1){
+		if (errno != ENXIO){
+			perror("REJECTED_FIFO '/tmp/rejeitados' could not be openned in WRITEONLY mode\n");
+			exit(1);
+		}
+		else{
+			printf("REJECTED_FIFO '/tmp/rejeitados' not available, read side hasn't been opened yet \n");
+			sleep(1);
+		}
+	}
+
+	printf("REJECTED_FIFO '/tmp/rejeitados' openned in WRITEONLY mode\n");
+
 
 }
 
@@ -66,7 +83,6 @@ int main (int argc, char* argv[], char* envp[]){
 	sauna.capacity = numberPlaces;
 
 	createRejectedFIFO();
-	printf("REJECTED_FIFO '/tmp/rejeitados' sucessfully created\n");
 
 
 	char logsPath[32];
