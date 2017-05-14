@@ -13,7 +13,7 @@
 #include "request.h"
 #include "globals.h"
 
-#define gettid() syscall(SYS_gettid)
+
 
 typedef struct {
         unsigned int M_REQUESTS;
@@ -36,9 +36,11 @@ void createOrdersFIFO(){
 		perror("REQUESTS_FIFO '/tmp/entrada' already exists\n");
 		exit(1);
 	}
+
+	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
 }
 
-void checkStats(char type, char gender){
+void updateStats(char type, char gender){
 	if(gender == 'M'){
 		switch(type){
 		case 'p':
@@ -71,8 +73,6 @@ void* requestsThread(void* arg){
 
 	unsigned int numberRequests =  ((int *)arg)[0];
 	unsigned int maxUsageTime = ((int *)arg)[1];
-	int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
-	int lengthIDs = floor(log10(abs(numberRequests))) + 1;
 
 
 	unsigned int i;
@@ -100,7 +100,7 @@ void* requestsThread(void* arg){
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
-		checkStats('p',request->gender);
+		updateStats('p',request->gender);
 
 		write(FD_REQUESTS, &request, sizeof(request));
 
@@ -109,8 +109,8 @@ void* requestsThread(void* arg){
 		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
 
 
-		fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - PEDIDO\n",
-				(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+		fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - PEDIDO\n",
+				(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
 
 	}
 
@@ -121,12 +121,6 @@ void* requestsThread(void* arg){
 void* rejectedThread(void* arg){
 
 	int fdRejected;
-
-	unsigned int numberRequests =  ((int *)arg)[0];
-	unsigned int maxUsageTime = ((int *)arg)[1];
-	int lengthDuration = floor(log10(abs(maxUsageTime))) + 1;
-	int lengthIDs = floor(log10(abs(numberRequests))) + 1;
-
 
 	while ((fdRejected = open(REJECTED_FIFO, O_RDONLY)) == -1){
 		if (errno == ENOENT)
@@ -149,18 +143,18 @@ void* rejectedThread(void* arg){
 
 			write(FD_REQUESTS, request, sizeof(*request));
 
-			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - REJEITADO\n",
-						(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+			fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - REJEITADO\n",
+						(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
 
-			checkStats('r',request->gender);
+			updateStats('r',request->gender);
 
 		}
 
 		else{
-			fprintf(LOGS, "%.2f - %ld - %*u: %c - %*u - DESCARTADO\n",
-					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
+			fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - DESCARTADO\n",
+					(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
 
-			checkStats('d',request->gender);
+			updateStats('d',request->gender);
 		}
 	}
 
@@ -215,9 +209,10 @@ int main (int argc, char* argv[], char* envp[]){
 
 	printf("Number of Orders: %d \nMaxUsage Time: %d \n", numberRequests, maxUsageTime);
 
-	createOrdersFIFO();
-	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
+	LENGTHDURATION = floor(log10(abs(maxUsageTime))) + 1;
+	LENGTHIDS = floor(log10(abs(numberRequests))) + 1;
 
+	createOrdersFIFO();
 
 	char logsPath[32];
 	sprintf(logsPath, "/tmp/ger.%d", getpid());
@@ -235,7 +230,7 @@ int main (int argc, char* argv[], char* envp[]){
 
 
 	pthread_create(&requestsTID, NULL, requestsThread, (void*) &data);
-	pthread_create(&rejectedTID, NULL, rejectedThread, (void*) &data);
+	pthread_create(&rejectedTID, NULL, rejectedThread, NULL);
 
 	pthread_join(requestsTID, NULL);
 	pthread_join(rejectedTID, NULL);

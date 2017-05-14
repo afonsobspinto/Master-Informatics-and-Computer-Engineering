@@ -13,6 +13,9 @@
 char* REQUESTS_FIFO = "/tmp/entrada";
 char* REJECTED_FIFO = "/tmp/rejeitados";
 
+int LENGTHDURATION;
+int LENGTHIDS;
+
 
 bool checkVality(char* argv, int* var){
 
