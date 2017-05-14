@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/file.h>
 #include <errno.h>
 #include <unistd.h>
 
@@ -24,6 +25,25 @@ void createRejectedFIFO(){
 		perror("REJECTED_FIFO '/tmp/rejeitados' already exists\n");
 		exit(1);
 	}
+}
+
+void saunaManagement(){
+	int fdRequests;
+	int fdRejected;
+
+	while ((fdRequests = open(REJECTED_FIFO, O_RDONLY)) == -1){
+		if (errno != ENXIO){
+			perror("REQUESTS_FIFO '/tmp/entrada' could not be openned in READONLY mode\n");
+			exit(1);
+		}
+		else{
+			printf("REQUESTS_FIFO '/tmp/entrada' not available, write side hasn't been opened yet \n");
+			sleep(1);
+		}
+	}
+
+	printf("REQUESTS_FIFO '/tmp/entrada' openned in READONLY mode\n");
+
 }
 
 
@@ -58,6 +78,7 @@ int main (int argc, char* argv[], char* envp[]){
 	printf("LOGS file: %s created \n", logsPath);
 
 
+	saunaManagement();
 
 
 	if(unlink(REJECTED_FIFO) < 0)
