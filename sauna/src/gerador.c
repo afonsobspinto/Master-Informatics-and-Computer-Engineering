@@ -208,7 +208,17 @@ int main (int argc, char* argv[], char* envp[]){
 		exit(1);
 	}
 
+	if(numberRequests < 0){
+		printf("Invalid number of orders. \n");
+		exit(1);
+	}
+
 	if((maxUsageTime = atoi(argv[2])) == 0){
+		printf("Invalid usage time. \n");
+		exit(1);
+	}
+
+	if(maxUsageTime < 0){
 		printf("Invalid usage time. \n");
 		exit(1);
 	}
