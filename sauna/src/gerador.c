@@ -134,7 +134,7 @@ void* requestsThread(void* arg){
 
 		updateStatsAndLogs('p',request);
 
-		if(write(FD_REQUESTS, &request, sizeof(request)) == -1){
+		if(write(FD_REQUESTS, &request, sizeof(Request)) == -1){
 			perror("Could not write in REQUESTS_FIFO :: requestsThread\n");
 			exit(1);
 		}
@@ -159,7 +159,7 @@ void* rejectedThread(void* arg){
 
 		if (request->rejections < 3){
 
-			if(write(FD_REQUESTS, &request, sizeof(request)) == -1){
+			if(write(FD_REQUESTS, &request, sizeof(Request)) == -1){
 				perror("Could not write in REQUESTS_FIFO :: rejectedThread\n");
 				exit(1);
 			}
