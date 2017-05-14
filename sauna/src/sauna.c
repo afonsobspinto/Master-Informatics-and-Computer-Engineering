@@ -36,7 +36,7 @@ int main (int argc, char* argv[], char* envp[]){
 
 	unsigned int numberPlaces;
 
-	if((numberPlaces = atoi(argv[1])) <= 0){
+	if((numberPlaces = atoi(argv[1])) == 0){
 		printf("Invalid number of places. \n");
 		exit(1);
 	}
