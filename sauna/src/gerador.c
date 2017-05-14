@@ -10,22 +10,24 @@
 #include <time.h>
 #include <math.h>
 
+#include "request.h"
+#include "globals.h"
+
 #define gettid() syscall(SYS_gettid)
 
+typedef struct {
+        unsigned int M_REQUESTS;
+        unsigned int F_REQUESTS;
+        unsigned int M_REJECTIONS;
+        unsigned int F_REJECTIONS;
+        unsigned int M_DISCARDED;
+        unsigned int F_DISCARDED;
+} Stats;
 
-#include "request.h"
-
-FILE* LOGS;
-char* REQUESTS_FIFO = "/tmp/entrada";
-char* REJECTED_FIFO = "/tmp/rejeitados";
-double STARTING_TIME;
-
-int FD_REQUESTS;
-
-int M_REQUESTS = 0, F_REQUESTS = 0;
-int M_REJECTIONS = 0, F_REJECTIONS = 0;
-int M_DISCARDED = 0, F_DISCARDED = 0;
-
+static FILE* LOGS;
+static double STARTING_TIME;
+static int FD_REQUESTS;
+static Stats stats = {0,0,0,0,0,0};
 
 
 void createOrdersFIFO(){
@@ -71,9 +73,9 @@ void* requestsThread(void* arg){
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
 		if(request->gender == 'M')
-			M_REQUESTS++;
+			stats.M_REQUESTS++;
 		else
-			F_REQUESTS++;
+			stats.F_REQUESTS++;
 
 		write(FD_REQUESTS, &request, sizeof(request));
 
@@ -127,9 +129,9 @@ void* rejectedThread(void* arg){
 
 
 			if(request->gender == 'M')
-				M_REJECTIONS++;
+				stats.M_REJECTIONS++;
 			else
-				F_REJECTIONS++;
+				stats.F_REJECTIONS++;
 
 		}
 
@@ -138,9 +140,9 @@ void* rejectedThread(void* arg){
 					(afterTime-STARTING_TIME) / 1000, gettid(), lengthIDs,request->id, request->gender, lengthDuration,request->duration);
 
 			if(request->gender == 'M')
-				M_DISCARDED++;
+				stats.M_DISCARDED++;
 			else
-				F_DISCARDED++;
+				stats.F_DISCARDED++;
 		}
 	}
 
@@ -160,14 +162,13 @@ void showStatistics(){
 			"Number of Discarded: %u \n 	"
 			"Male: %u \n 	"
 			"Female: %u \n ",
-			M_REQUESTS+F_REQUESTS, M_REQUESTS, F_REQUESTS,
-			M_REJECTIONS+F_REJECTIONS, M_REJECTIONS, F_REJECTIONS,
-			M_DISCARDED+F_DISCARDED, M_DISCARDED, F_DISCARDED);
+			stats.M_REQUESTS+stats.F_REQUESTS, stats.M_REQUESTS, stats.F_REQUESTS,
+			stats.M_REJECTIONS+stats.F_REJECTIONS, stats.M_REJECTIONS, stats.F_REJECTIONS,
+			stats.M_DISCARDED+stats.F_DISCARDED, stats.M_DISCARDED, stats.F_DISCARDED);
 }
 
 
 int main (int argc, char* argv[], char* envp[]){
-
 	srand(time(NULL));
 
 	struct timeval tvalBegin;
