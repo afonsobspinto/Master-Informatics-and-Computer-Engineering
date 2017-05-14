@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <unistd.h>
+
+
+#include "globals.h"
 
 typedef struct {
         unsigned int ocupation;
@@ -11,12 +18,12 @@ static FILE* LOGS;
 static double STARTING_TIME;
 static Sauna sauna = {0,0,' '};
 
-void startSauna(int numberPlaces){
-
-	sauna.capacity = numberPlaces;
-
-
-
+void createRejectedFIFO(){
+	if(mkfifo(REJECTED_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
+			&& errno==EEXIST){
+		perror("REJECTED_FIFO '/tmp/rejeitados' already exists\n");
+		exit(1);
+	}
 }
 
 
@@ -36,6 +43,12 @@ int main (int argc, char* argv[], char* envp[]){
 
 	printf("Number of Places: %d \n", numberPlaces);
 
+	sauna.capacity = numberPlaces;
+
+	createRejectedFIFO();
+	printf("REJECTED_FIFO '/tmp/rejeitados' sucessfully created\n");
+
+
 	char logsPath[32];
 	sprintf(logsPath, "/tmp/bal.%d", getpid());
 	if((LOGS = fopen(logsPath, "a")) == NULL){ // Opens a text file for writing in Appends mode. If it does not exist, then a new file is created.
@@ -44,7 +57,13 @@ int main (int argc, char* argv[], char* envp[]){
 	}
 	printf("LOGS file: %s created \n", logsPath);
 
-	startSauna(numberPlaces);
+
+
+
+	if(unlink(REJECTED_FIFO) < 0)
+		printf("Error when destroying REJECTED_FIFO '/tmp/rejeitados'\n");
+	else
+		printf("REJECTED_FIFO '/tmp/rejeitados' has been destroyed \n");
 
 	return 0;
 }
