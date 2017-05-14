@@ -43,17 +43,27 @@ void createOrdersFIFO(){
 	printf("REQUESTS_FIFO '/tmp/entrada' sucessfully created\n");
 }
 
-void updateStats(char type, char gender){
-	if(gender == 'M'){
+void updateStatsAndLogs(char type, Request* request){
+
+	struct timeval tvalAfter;
+	gettimeofday(&tvalAfter, NULL);
+	double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
+
+	char* tip;
+
+	if(request->gender == 'M'){
 		switch(type){
 		case 'p':
 			stats.M_REQUESTS++;
+			tip = "PEDIDO";
 			break;
 		case 'r':
 			stats.M_REJECTIONS++;
+			tip = "REJEITADO";
 			break;
 		case 'd':
 			stats.M_DISCARDED++;
+			tip = "DESCARTADO";
 			break;
 		}
 	}
@@ -61,15 +71,21 @@ void updateStats(char type, char gender){
 		switch(type){
 		case 'p':
 			stats.F_REQUESTS++;
+			tip = "PEDIDO";
 			break;
 		case 'r':
 			stats.F_REJECTIONS++;
+			tip = "REJEITADO";
 			break;
 		case 'd':
 			stats.F_DISCARDED++;
+			tip = "DESCARTADO";
 			break;
 		}
 	}
+	fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - %s\n",
+			(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip);
+
 }
 
 void openCommunications(){
@@ -116,17 +132,9 @@ void* requestsThread(void* arg){
 
 		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
 
-		updateStats('p',request->gender);
+		updateStatsAndLogs('p',request);
 
 		write(FD_REQUESTS, &request, sizeof(request));
-
-		struct timeval tvalAfter;
-		gettimeofday(&tvalAfter, NULL);
-		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
-
-
-		fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - PEDIDO\n",
-				(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
 
 		free(request);
 		pthread_mutex_unlock(&mutex);
@@ -145,29 +153,18 @@ void* rejectedThread(void* arg){
 
 	while(read(FD_REJECTED, request, sizeof(Request)) != 0){
 
-		struct timeval tvalAfter;
-		gettimeofday(&tvalAfter, NULL);
-		double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
-
 		 pthread_mutex_lock(&mutex);
 
 		if (request->rejections < 3){
 
 			write(FD_REQUESTS, request, sizeof(*request));
 
-			fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - REJEITADO\n",
-						(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
-
-			updateStats('r',request->gender);
+			updateStatsAndLogs('r',request);
 
 		}
 
-		else{
-			fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - DESCARTADO\n",
-					(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration);
-
-			updateStats('d',request->gender);
-		}
+		else
+			updateStatsAndLogs('d',request);
 
 		 pthread_mutex_unlock(&mutex);
 	}
