@@ -136,59 +136,71 @@ void* addToSauna(void* arg){
 
 	printf("Served Request: %d %c %d \n", request->id, request->gender, request->duration);
 
+	free(request);
 	pthread_exit(NULL);
 }
 
 void saunaManagement(){
 	unsigned int i;
-
+	int toRead;
 
 	pthread_t seatsTID[sauna.capacity];
-	Request* request = malloc(sizeof(Request));
 
 	openCommunications();
 
-	while(read(FD_REQUESTS, request, sizeof(Request)) != 0){
+	read(FD_REQUESTS, &toRead, sizeof(int));
 
-		pthread_mutex_lock(&mutex);
+	while(toRead){
 
-		updateStatsAndLogs('p', request);
+		Request* request = malloc(sizeof(Request));
 
-		if(sauna.ocupation == 0)
-			sauna.gender = request->gender;
+		if (read(FD_REQUESTS, request, sizeof(Request)) != 0){
+			toRead--;
 
-		if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
+			pthread_mutex_lock(&mutex);
 
-			printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
+			updateStatsAndLogs('p', request);
 
-			pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, (void*) request);
+			if(sauna.ocupation == 0)
+				sauna.gender = request->gender;
 
-			updateStatsAndLogs('s', request);
+			if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
 
-			sauna.ocupation++;
+				printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
+
+				pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, (void*) request);
+
+				updateStatsAndLogs('s', request);
+
+				sauna.ocupation++;
+			}
+			else{
+
+				printf("Rejected Request: %d %c %d %d \n", request->id, request->gender, request->duration, request->rejections);
+
+				updateStatsAndLogs('r', request);
+
+				if(++request->rejections < 3)
+					toRead++;
+
+				if(write(FD_REJECTED, request, sizeof(*request)) == -1){
+					perror("Could not write in REJECTED_FIFO :: saunaManagement\n");
+					exit(1);
+				}
+			}
+
+			pthread_mutex_unlock(&mutex);
 		}
-		else{
-
-			printf("Rejected Request: %d %c %d %d \n", request->id, request->gender, request->duration, request->rejections);
-
-			updateStatsAndLogs('r', request);
-			++request->rejections;
-			write(FD_REJECTED, request, sizeof(request));
-		}
-
-		pthread_mutex_unlock(&mutex);
-
 	}
 
+		close(FD_REJECTED);
+		close(FD_REQUESTS);
 
-	close(FD_REJECTED);
-	close(FD_REQUESTS);
+		for(i = 0; seatsTID[i] != 0; i++){
+			pthread_join(seatsTID[i], NULL);
+		}
 
-	for(i = 0; seatsTID[i] != 0; i++){
-		pthread_join(seatsTID[i], NULL);
-	}
-
-	return;
+		return;
 
 }
 

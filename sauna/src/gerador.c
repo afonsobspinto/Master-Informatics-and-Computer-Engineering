@@ -123,7 +123,7 @@ void* requestsThread(void* arg){
 
 	unsigned int i;
 
-	//write(FD_REQUESTS, &numberRequests, sizeof(int));
+	write(FD_REQUESTS, &numberRequests, sizeof(int));
 
 	for(i=0; i < numberRequests; i++){
 		pthread_mutex_lock(&mutex);
@@ -131,7 +131,7 @@ void* requestsThread(void* arg){
 
 		generate(request, maxUsageTime);
 
-		printf("p%d | %c | t%d | ...  \n",request->id, request->gender, request->duration);
+		printf("Added Request: %d %c %d \n", request->id, request->gender, request->duration);
 
 		updateStatsAndLogs('p',request);
 
@@ -166,11 +166,16 @@ void* rejectedThread(void* arg){
 			}
 
 			updateStatsAndLogs('r',request);
+			printf("Reinserted Request: %d %c %d \n", request->id, request->gender, request->duration);
+
 
 		}
 
-		else
+		else{
 			updateStatsAndLogs('d',request);
+			printf("Discarded Request: %d %c %d \n", request->id, request->gender, request->duration);
+
+		}
 
 		 pthread_mutex_unlock(&mutex);
 		 sleep(1);
