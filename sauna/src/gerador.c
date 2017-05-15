@@ -83,7 +83,8 @@ void updateStatsAndLogs(char type, Request* request){
 			break;
 		}
 	}
-	fprintf(LOGS, "%.2f - %d - %*u: %c - %*u - %s\n",
+
+	fprintf(LOGS, "%10.2f - %4d - %*u: %c - %*u - %10s\n",
 			(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip);
 
 }
@@ -120,10 +121,10 @@ void* requestsThread(void* arg){
 	unsigned int numberRequests =  ((int *)arg)[0];
 	unsigned int maxUsageTime = ((int *)arg)[1];
 
-
 	unsigned int i;
 
 	write(FD_REQUESTS, &numberRequests, sizeof(int));
+	write(FD_REQUESTS, &maxUsageTime, sizeof(int));
 
 	for(i=0; i < numberRequests; i++){
 		pthread_mutex_lock(&mutex);
@@ -178,7 +179,6 @@ void* rejectedThread(void* arg){
 		}
 
 		 pthread_mutex_unlock(&mutex);
-		 sleep(1);
 	}
 
 	free(request);

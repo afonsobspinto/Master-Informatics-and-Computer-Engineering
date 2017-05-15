@@ -3,10 +3,12 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/file.h>
+#include <sys/syscall.h>
 #include <errno.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <sys/syscall.h>
+#include <math.h>
+
 
 #include "globals.h"
 #include "request.h"
@@ -114,7 +116,8 @@ void updateStatsAndLogs(char type, Request* request){
 		}
 	}
 
-	fprintf(LOGS, "%.2f - %d - %lu - %*u: %c - %*u - %s\n",
+
+	fprintf(LOGS, "%10.2f - %4d - %15lu - %*u: %c - %*u - %9s\n",
 			(afterTime-STARTING_TIME) / 1000, getpid(), pthread_self(),LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip);
 
 }
@@ -143,12 +146,17 @@ void* addToSauna(void* arg){
 void saunaManagement(){
 	unsigned int i;
 	int toRead;
+	int maxUsageTime;
 
 	pthread_t seatsTID[sauna.capacity];
 
 	openCommunications();
 
 	read(FD_REQUESTS, &toRead, sizeof(int));
+	read(FD_REQUESTS, &maxUsageTime, sizeof(int));
+
+	LENGTHIDS = floor(log10(abs(toRead))) + 1;
+	LENGTHDURATION = floor(log10(abs(maxUsageTime))) + 1;
 
 	while(toRead){
 
