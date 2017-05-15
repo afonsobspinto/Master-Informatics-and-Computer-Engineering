@@ -123,7 +123,7 @@ void* requestsThread(void* arg){
 
 	unsigned int i;
 
-	write(FD_REQUESTS, &numberRequests, sizeof(int));
+	//write(FD_REQUESTS, &numberRequests, sizeof(int));
 
 	for(i=0; i < numberRequests; i++){
 		pthread_mutex_lock(&mutex);
