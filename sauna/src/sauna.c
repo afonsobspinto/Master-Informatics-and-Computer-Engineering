@@ -34,6 +34,7 @@ static int FD_REQUESTS;
 static int FD_REJECTED;
 
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t seatsMutex = PTHREAD_COND_INITIALIZER;
 
 void createRejectedFIFO(){
 	if(mkfifo(REJECTED_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
@@ -140,6 +141,7 @@ void* addToSauna(void* arg){
 		sauna.gender = ' ';
 	pthread_mutex_unlock(&mutex);
 
+	pthread_cond_signal(&seatsMutex);
 	printf("Served Request: %d %c %d \n", request->id, request->gender, request->duration);
 
 	free(request);
@@ -175,7 +177,13 @@ void saunaManagement(){
 			if(sauna.ocupation == 0)
 				sauna.gender = request->gender;
 
-			if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
+			if(sauna.gender == request->gender){
+
+				while (sauna.ocupation == sauna.capacity)
+				{
+					printf("FULL FULL FULL \n");
+					pthread_cond_wait(&seatsMutex, &mutex);
+				}
 
 				printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
 

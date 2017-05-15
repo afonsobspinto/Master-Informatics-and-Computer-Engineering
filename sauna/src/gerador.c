@@ -45,6 +45,8 @@ void createRequestFIFO(){
 
 void updateStatsAndLogs(char type, Request* request){
 
+	pthread_mutex_lock(&mutex);
+
 	struct timeval tvalAfter;
 	gettimeofday(&tvalAfter, NULL);
 	double afterTime = tvalAfter.tv_sec * 1000000 + tvalAfter.tv_usec;
@@ -90,6 +92,8 @@ void updateStatsAndLogs(char type, Request* request){
 		exit(1);
 	}
 
+	pthread_mutex_unlock(&mutex);
+
 }
 
 void openCommunications(){
@@ -130,7 +134,7 @@ void* requestsThread(void* arg){
 	write(FD_REQUESTS, &maxUsageTime, sizeof(int));
 
 	for(i=0; i < numberRequests; i++){
-		pthread_mutex_lock(&mutex);
+
 		Request* request = malloc(sizeof(Request));
 
 		generate(request, maxUsageTime);
@@ -145,7 +149,7 @@ void* requestsThread(void* arg){
 		}
 
 		free(request);
-		pthread_mutex_unlock(&mutex);
+
 
 	}
 
