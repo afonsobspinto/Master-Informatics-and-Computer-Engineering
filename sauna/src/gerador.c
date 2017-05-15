@@ -33,7 +33,7 @@ static Stats stats = {0,0,0,0,0,0};
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
-void createOrdersFIFO(){
+void createRequestFIFO(){
 	if(mkfifo(REQUESTS_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
 			&& errno==EEXIST){
 		perror("REQUESTS_FIFO '/tmp/entrada' already exists\n");
@@ -123,6 +123,7 @@ void* requestsThread(void* arg){
 
 	unsigned int i;
 
+	write(FD_REQUESTS, &numberRequests, sizeof(int));
 
 	for(i=0; i < numberRequests; i++){
 		pthread_mutex_lock(&mutex);
@@ -134,7 +135,7 @@ void* requestsThread(void* arg){
 
 		updateStatsAndLogs('p',request);
 
-		if(write(FD_REQUESTS, &request, sizeof(Request)) == -1){
+		if(write(FD_REQUESTS, request, sizeof(Request)) == -1){
 			perror("Could not write in REQUESTS_FIFO :: requestsThread\n");
 			exit(1);
 		}
@@ -159,7 +160,7 @@ void* rejectedThread(void* arg){
 
 		if (request->rejections < 3){
 
-			if(write(FD_REQUESTS, &request, sizeof(Request)) == -1){
+			if(write(FD_REQUESTS, request, sizeof(*request)) == -1){
 				perror("Could not write in REQUESTS_FIFO :: rejectedThread\n");
 				exit(1);
 			}
@@ -172,6 +173,7 @@ void* rejectedThread(void* arg){
 			updateStatsAndLogs('d',request);
 
 		 pthread_mutex_unlock(&mutex);
+		 sleep(1);
 	}
 
 	free(request);
@@ -247,7 +249,7 @@ int main (int argc, char* argv[], char* envp[]){
 	LENGTHDURATION = floor(log10(abs(maxUsageTime))) + 1;
 	LENGTHIDS = floor(log10(abs(numberRequests))) + 1;
 
-	createOrdersFIFO();
+	createRequestFIFO();
 
 	char logsPath[32];
 	sprintf(logsPath, "/tmp/ger.%d", getpid());

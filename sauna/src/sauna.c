@@ -27,7 +27,9 @@ typedef struct {
 
 static FILE* LOGS;
 static double STARTING_TIME;
-static Sauna sauna = {0,0,' '};
+static Sauna sauna = {0,0,' ', 0,0,0,0,0,0};
+static int FD_REQUESTS;
+static int FD_REJECTED;
 
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -41,8 +43,8 @@ void createRejectedFIFO(){
 	printf("REJECTED_FIFO '/tmp/rejeitados' sucessfully created\n");
 }
 
-void openCommunications(int* fdRequests, int* fdRejected){
-	while ((*fdRequests = open(REQUESTS_FIFO, O_RDONLY)) == -1){
+void openCommunications(){
+	while ((FD_REQUESTS = open(REQUESTS_FIFO, O_RDONLY)) == -1){
 			if (errno != ENXIO){
 				perror("REQUESTS_FIFO '/tmp/entrada' could not be openned in READONLY mode\n");
 				exit(1);
@@ -56,7 +58,7 @@ void openCommunications(int* fdRequests, int* fdRejected){
 		printf("REQUESTS_FIFO '/tmp/entrada' openned in READONLY mode\n");
 
 
-		while ((*fdRejected = open(REJECTED_FIFO, O_WRONLY | O_NONBLOCK)) == -1){
+		while ((FD_REJECTED = open(REJECTED_FIFO, O_WRONLY | O_NONBLOCK)) == -1){
 			if (errno != ENXIO){
 				perror("REJECTED_FIFO '/tmp/rejeitados' could not be openned in WRITEONLY mode\n");
 				exit(1);
@@ -121,6 +123,7 @@ void updateStatsAndLogs(char type, Request* request){
 void* addToSauna(void* arg){
 	pthread_mutex_lock(&mutex);
 	Request* request = (Request*) arg;
+
 	pthread_mutex_unlock(&mutex);
 
 	usleep(request->duration * 1000);
@@ -131,55 +134,64 @@ void* addToSauna(void* arg){
 		sauna.gender = ' ';
 	pthread_mutex_unlock(&mutex);
 
+	printf("Served Request: %d %c %d \n", request->id, request->gender, request->duration);
+
 	pthread_exit(NULL);
 }
 
 void saunaManagement(){
-	int fdRequests;
-	int fdRejected;
 	unsigned int i;
+	int toRead;
 
 	pthread_t seatsTID[sauna.capacity];
-	Request* request = malloc(sizeof(Request));
 
-	openCommunications(&fdRequests, &fdRejected);
+	openCommunications();
 
-	while(read(fdRequests, request, sizeof(Request)) != 0){
+	read(FD_REQUESTS, &toRead, sizeof(int));
 
-		pthread_mutex_lock(&mutex);
+	while(toRead){
 
-		updateStatsAndLogs('p', request);
+		Request* request = malloc(sizeof(Request));
 
-		if(sauna.ocupation == 0)
-			sauna.gender = request->gender;
+		if (read(FD_REQUESTS, request, sizeof(Request)) != 0){
+			toRead--;
 
-		if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
+			pthread_mutex_lock(&mutex);
 
-			printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
+			updateStatsAndLogs('p', request);
 
-			sleep(5);
+			if(sauna.ocupation == 0)
+				sauna.gender = request->gender;
 
-			updateStatsAndLogs('s', request);
+			if(sauna.gender == request->gender && sauna.ocupation < sauna.capacity){
 
-			pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, &request);
+				printf("Accepted Request: %d %c %d \n", request->id, request->gender, request->duration);
 
-			sauna.ocupation++;
+				pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, (void*) request);
+
+				updateStatsAndLogs('s', request);
+
+				sauna.ocupation++;
+			}
+			else{
+
+				printf("Rejected Request: %d %c %d %d \n", request->id, request->gender, request->duration, request->rejections);
+
+				updateStatsAndLogs('r', request);
+				if(++request->rejections < 3)
+					toRead++;
+
+				write(FD_REJECTED, request, sizeof(request));
+			}
+
+			pthread_mutex_unlock(&mutex);
+
 		}
-		else{
-
-			printf("Rejected Request: %d %c %d %d \n", request->id, request->gender, request->duration, request->rejections);
-
-			updateStatsAndLogs('r', request);
-			request->rejections++;
-			write(fdRejected, request, sizeof(request));
-		}
-
-		 pthread_mutex_unlock(&mutex);
 	}
 
 
-	  close(fdRejected);
-	  close(fdRequests);
+	  close(FD_REJECTED);
+	  close(FD_REQUESTS);
 
 	  for(i = 0; seatsTID[i] != 0; i++){
 	    pthread_join(seatsTID[i], NULL);
