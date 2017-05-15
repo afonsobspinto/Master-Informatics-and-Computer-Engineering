@@ -1,0 +1,14 @@
+Comando de invocação:
+  gerador <n. pedidos> <max. utilização>
+
+Saída Padrão:
+  standard output - Mensagens de Controlo e Estatísticas Finais;
+  standard error - Mensagens de Erro (seguido do termino do programa com retorno 1);
+
+Registos:
+
+  /tmp/ger.pid
+
+Outros:
+  Comunica com a Sauna através de pipes com nome.
+  Deve ser executado em primeiro lugar.

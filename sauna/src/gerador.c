@@ -30,8 +30,6 @@ static int FD_REQUESTS;
 static int FD_REJECTED;
 static Stats stats = {0,0,0,0,0,0};
 
-static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-
 
 void createRequestFIFO(){
 	if(mkfifo(REQUESTS_FIFO, S_IRUSR | S_IWUSR) < 0 // Permissions: User Read and User Write
@@ -44,8 +42,6 @@ void createRequestFIFO(){
 }
 
 void updateStatsAndLogs(char type, Request* request){
-
-	pthread_mutex_lock(&mutex);
 
 	struct timeval tvalAfter;
 	gettimeofday(&tvalAfter, NULL);
@@ -91,8 +87,6 @@ void updateStatsAndLogs(char type, Request* request){
 		perror("Could not write in LOGS :: Gerador \n");
 		exit(1);
 	}
-
-	pthread_mutex_unlock(&mutex);
 
 }
 
