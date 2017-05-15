@@ -84,8 +84,11 @@ void updateStatsAndLogs(char type, Request* request){
 		}
 	}
 
-	fprintf(LOGS, "%10.2f - %4d - %*u: %c - %*u - %10s\n",
-			(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip);
+	if(fprintf(LOGS, "%10.2f - %4d - %*u: %c - %*u - %10s\n",
+			(afterTime-STARTING_TIME) / 1000, getpid(), LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip)<0){
+		perror("Could not write in LOGS :: Gerador \n");
+		exit(1);
+	}
 
 }
 
@@ -157,8 +160,6 @@ void* rejectedThread(void* arg){
 
 	while(read(FD_REJECTED, request, sizeof(Request)) != 0){
 
-		 pthread_mutex_lock(&mutex);
-
 		if (request->rejections < 3){
 
 			if(write(FD_REQUESTS, request, sizeof(*request)) == -1){
@@ -178,7 +179,7 @@ void* rejectedThread(void* arg){
 
 		}
 
-		 pthread_mutex_unlock(&mutex);
+		//usleep(30 * 1000);
 	}
 
 	free(request);

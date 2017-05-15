@@ -117,8 +117,11 @@ void updateStatsAndLogs(char type, Request* request){
 	}
 
 
-	fprintf(LOGS, "%10.2f - %4d - %15lu - %*u: %c - %*u - %9s\n",
-			(afterTime-STARTING_TIME) / 1000, getpid(), pthread_self(),LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip);
+	if(fprintf(LOGS, "%10.2f - %4d - %15lu - %*u: %c - %*u - %9s\n",
+			(afterTime-STARTING_TIME) / 1000, getpid(), pthread_self(),LENGTHIDS,request->id, request->gender, LENGTHDURATION,request->duration, tip) < 0){
+		perror("Could not write in LOGS :: Sauna\n");
+		exit(1);
+	}
 
 }
 
@@ -140,7 +143,7 @@ void* addToSauna(void* arg){
 	printf("Served Request: %d %c %d \n", request->id, request->gender, request->duration);
 
 	free(request);
-	pthread_exit(NULL);
+	return NULL;
 }
 
 void saunaManagement(){
@@ -201,12 +204,14 @@ void saunaManagement(){
 		}
 	}
 
+
+		for(i = 0; seatsTID[i] < sauna.capacity; i++){
+			pthread_join(seatsTID[i], NULL);
+		}
+
 		close(FD_REJECTED);
 		close(FD_REQUESTS);
 
-		for(i = 0; seatsTID[i] != 0; i++){
-			pthread_join(seatsTID[i], NULL);
-		}
 
 		return;
 
