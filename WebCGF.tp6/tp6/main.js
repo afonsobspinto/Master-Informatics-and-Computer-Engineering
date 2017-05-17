@@ -21,7 +21,6 @@ serialInclude([
 	'MyInterface.js',
 	'MyTriangle.js',
 	'MySubmarine.js',
-	'MyParallelepiped.js',
 	'MyTrapezoid.js',
 
 	main=function() {

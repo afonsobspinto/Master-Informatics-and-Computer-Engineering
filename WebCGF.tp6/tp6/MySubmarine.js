@@ -4,6 +4,7 @@ function MySubmarine(scene) {
     CGFobject.call(this, scene);
     this.angle = Math.PI;
     this.x = 8;
+    this.y = 2;
     this.z = 8;
     this.vx = 0;
     this.vz = 0;
@@ -21,134 +22,160 @@ function MySubmarine(scene) {
     this.secondPropeller = new MyCylinder(scene,20,20);
     this.firstPropellerSemisphere = new MyLamp(scene,20,20);
     this.secondPropellerSemisphere = new MyLamp(scene,20,20);
-    this.firstPropellerParallelepiped = new MyParallelepiped(scene,1,1,3);
-    //this.secondPropellerParallelepiped = new MyParallelepiped();
-    //this.frontTrapezoid = new MyTrapezoid();
-    //this.horizontalTrapezoid = new MyTrapezoid();
-    //this.verticalTrapezoid = new MyTrapezoid();
+    this.firstPropellerParallelepiped = new MyUnitCubeQuad(scene);
+    this.secondPropellerParallelepiped = new MyUnitCubeQuad(scene);
+    this.frontTrapezoid = new MyTrapezoid(scene);
+    this.horizontalTrapezoid = new MyTrapezoid(scene);
+    this.verticalTrapezoid = new MyTrapezoid(scene);
 };
 
 MySubmarine.prototype = Object.create(CGFobject.prototype);
 MySubmarine.prototype.constructor = MyTriangle;
 MySubmarine.prototype.display = function() {
     
+	// Display Movement as 1
+    this.scene.pushMatrix();
+    this.scene.translate(this.x, this.y, this.z);
+    this.scene.rotate(this.angle, 0, 1, 0);
+
     // Main Cylinder
     this.scene.pushMatrix();
-        this.scene.translate(this.x,5,this.z);
-        this.scene.rotate(this.angle,0,1,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,2,1);
+        this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.73,1,4.08);
 		this.mainCylinder.display();
 	this.scene.popMatrix();
 
 	// Front Semisphere
     this.scene.pushMatrix();
-        this.scene.translate(this.x,5,this.z);
-        this.scene.rotate(this.angle,0,0,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,2,1);
+        this.scene.rotate(Math.PI,0,0,0);
         this.scene.scale(0.73,1,1);
         this.frontSemisphere.display();
 	this.scene.popMatrix();
 
 	// Back Semisphere
 	this.scene.pushMatrix();
-        this.scene.translate(this.x,5,this.z-4.08);
-        this.scene.rotate(this.angle,0,1,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,2,1-4.08);
+        this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.73,1,1);
         this.backSemisphere.display();
 	this.scene.popMatrix();
 
 	// Top Cylinder
 	this.scene.pushMatrix();
-        this.scene.translate(this.x,5.8,this.z-1);
-        this.scene.rotate(this.angle,0,1,1);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,2.8,1-1);
+        this.scene.rotate(Math.PI,0,1,1);
         this.scene.scale(0.73,0.57,1);
 		this.topCylinder.display();
 	this.scene.popMatrix();
 
 	// Periscope
 	this.scene.pushMatrix();
-        this.scene.translate(this.x,6.7,this.z-0.7);
-        this.scene.rotate(this.angle,0,1,1);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,3.7,1-0.7);
+        this.scene.rotate(Math.PI,0,1,1);
         this.scene.scale(0.1,0.1,1);
 		this.periscope.display();
 	this.scene.popMatrix();
 
 	// Top Periscope
 	this.scene.pushMatrix();
-        this.scene.translate(this.x,7.6,this.z-0.75);
-        this.scene.rotate(this.angle,0,0,1);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1,4.6,1-0.75);
+        this.scene.rotate(Math.PI,0,0,1);
         this.scene.scale(0.1,0.1,0.3);
 		this.topPeriscope.display();
 	this.scene.popMatrix();
 
 	// Top Cylinder Base
 	this.scene.pushMatrix();
-		this.scene.translate(this.x,6.8,this.z-1);
-        this.scene.rotate(this.angle,0,1,-1);
-        this.scene.rotate(-this.a/10,1,0,0);
+		this.scene.translate(1,3.8,1-1);
+        this.scene.rotate(Math.PI,0,1,-1);
         this.scene.scale(0.73,0.57,1);
 		this.topCylinderBase.display();
 	this.scene.popMatrix();
 
 	// Top Periscope Base
 	this.scene.pushMatrix();
-		this.scene.translate(this.x,7.6,this.z-0.5);
-        this.scene.rotate(this.angle,0,1,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+		this.scene.translate(1,4.6,1-0.5);
+        this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.1,0.1,0.3);
 		this.topPeriscopeBase.display();
 	this.scene.popMatrix();
 
 	// First Propeller
 	this.scene.pushMatrix();
-		this.scene.translate(this.x+1,4.3,this.z-4.08);
-        this.scene.rotate(this.angle,0,0,1);
-        this.scene.rotate(-this.a/10,1,0,0);
+		this.scene.translate(1+1,1.3,1-4.08);
+        this.scene.rotate(Math.PI,0,0,1);
         this.scene.scale(0.4,0.4,0.5);
 		this.firstPropeller.display();
 	this.scene.popMatrix();
 
 	// Second Propeller
 	this.scene.pushMatrix();
-		this.scene.translate(this.x-1,4.3,this.z-4.08);
-        this.scene.rotate(this.angle,0,0,1);
-        this.scene.rotate(-this.a/10,1,0,0);
+		this.scene.translate(1-1,1.3,1-4.08);
+        this.scene.rotate(Math.PI,0,0,1);
         this.scene.scale(0.4,0.4,0.5);
 		this.firstPropeller.display();
 	this.scene.popMatrix();
 
 	// First Propeller Semisphere
 	this.scene.pushMatrix();
-        this.scene.translate(this.x+1,4.3,this.z-4);
-        this.scene.rotate(this.angle,0,1,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1+1,1.3,1-4);
+        this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.1,0.1,0.1);
 		this.firstPropellerSemisphere.display();
 	this.scene.popMatrix();
 
 	// Second Propeller Semisphere
 	this.scene.pushMatrix();
-        this.scene.translate(this.x-1,4.3,this.z-4);
-        this.scene.rotate(this.angle,0,1,0);
-        this.scene.rotate(-this.a/10,1,0,0);
+        this.scene.translate(1-1,1.3,1-4);
+        this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.1,0.1,0.1);
 		this.secondPropellerSemisphere.display();
 	this.scene.popMatrix();
 
 	// First Propeller Parallelepiped
 	this.scene.pushMatrix();
-        this.scene.translate(this.x,8,this.z);
-        //this.scene.rotate(this.angle,0,1,0);
-        //this.scene.rotate(-this.a/10,1,0,0);
-        //this.scene.scale(0.1,0.1,0.1);
+        this.scene.translate(1+1,1.3,1-3.9);
+        this.scene.rotate(Math.PI,0,0,0);
+        this.scene.scale(0.5,0.1,0.1);
 		this.firstPropellerParallelepiped.display();
 	this.scene.popMatrix();
 
+	// Second Propeller Parallelepiped
+	this.scene.pushMatrix();
+        this.scene.translate(1-1,1.3,1-3.9);
+       	this.scene.rotate(Math.PI,0,0,0);
+        this.scene.scale(0.5,0.1,0.1);
+		this.secondPropellerParallelepiped.display();
+	this.scene.popMatrix();
+
+    // Front Trapezoid
+	this.scene.pushMatrix();
+		this.scene.translate(1,3.2,1-1);
+		this.scene.rotate(Math.PI/2,0,1,0);
+		this.scene.scale(2,2,1.42*2);
+		this.frontTrapezoid.display();
+	this.scene.popMatrix();
+
+	// Horizontal Trapezoid
+	this.scene.pushMatrix();
+		this.scene.translate(1,2,1-4);
+		this.scene.rotate(-Math.PI/2,0,1,0);
+		this.scene.scale(2,2,2.34*1.75);
+		this.horizontalTrapezoid.display();
+	this.scene.popMatrix();
+
+	// Vertical Trapezoid
+	this.scene.pushMatrix();
+		this.scene.translate(1,2,1-4);
+		this.scene.rotate(-Math.PI/2,1,0,0);
+		this.scene.rotate(-Math.PI/2,0,0,1);
+		this.scene.scale(2,2,2.34*1.75);
+		this.verticalTrapezoid.display();
+	this.scene.popMatrix();
+
+this.scene.popMatrix();
 };
 
 MySubmarine.prototype.rotate = function(angle){

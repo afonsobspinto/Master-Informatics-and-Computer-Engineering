@@ -1,36 +1,35 @@
 
-function MyTrapezoid(scene, height, smallBase, longBase) {
+function MyTrapezoid(scene) {
     CGFobject.call(this, scene);
 
-    this.height = height;
-    this.smallBase = smallBase;
-    this.longBase = longBase;
+    this.parallelepiped = new MyUnitCubeQuad(scene);
+    this.prism = new MyPrism(scene);
     
-    this.initBuffers();
 };
 
 MyTrapezoid.prototype = Object.create(CGFobject.prototype);
 MyTrapezoid.prototype.constructor = MyTrapezoid;
 
-MyTrapezoid.prototype.initBuffers = function() {
- 	
-	this.vertices = [
-        0.5, 0.3, 0.0,
-        -0.5, 0.3, 0.0, 
-        0.0, 0.3, 2.0
-    ];
+MyTrapezoid.prototype.display  = function() {
 
-    this.indices = [
-        0, 1, 2,
-    ];
+    // Parallelepiped
+    this.scene.pushMatrix();
+        this.scene.scale(0.15, 0.1, 0.7);
+        this.parallelepiped.display();
+    this.scene.popMatrix();
+    
+    // Prism
+    this.scene.pushMatrix();  
+        this.scene.translate(-0.07,0.05,-0.35);
+        this.scene.rotate(Math.PI,1,0,0);
+        this.scene.scale(0.23,1,0.15);
+        this.prism.display();
+    this.scene.popMatrix();
 
-    this.normals = [
-        0, 0, 1,
-        0, 0, 1,
-        0, 0, 1  
-    ];
+    this.scene.pushMatrix();  
+        this.scene.translate(-0.07,-0.05,0.35);
+        this.scene.scale(0.23,1,0.15);
+        this.prism.display();
+    this.scene.popMatrix();
 
-
- 	this.primitiveType = this.scene.gl.TRIANGLES;
- 	this.initGLBuffers();
  };

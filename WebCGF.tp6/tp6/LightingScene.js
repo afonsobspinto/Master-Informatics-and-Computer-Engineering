@@ -64,10 +64,41 @@ LightingScene.prototype.init = function(application) {
 	this.oceanAppearance.setShininess(100);
     this.oceanAppearance.loadTexture("../resources/images/deepOcean.png");
 
-	this.setUpdatePeriod(1);
+    this.yellowAppearance=new CGFappearance(this);
+	this.yellowAppearance.setAmbient(1, 1, 1, 0.2);
+	this.yellowAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.yellowAppearance.setSpecular(1, 1, 1, 0.3);
+	this.yellowAppearance.setShininess(100);
+    this.yellowAppearance.loadTexture("../resources/images/yellow.png");
 
-	this.option1=true; 
-    this.option2=false; 
+    this.redWoodAppearance=new CGFappearance(this);
+	this.redWoodAppearance.setAmbient(1, 1, 1, 0.2);
+	this.redWoodAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.redWoodAppearance.setSpecular(1, 1, 1, 0.3);
+	this.redWoodAppearance.setShininess(100);
+    this.redWoodAppearance.loadTexture("../resources/images/redWood.png");
+
+	this.waterDropsAppearance=new CGFappearance(this);
+	this.waterDropsAppearance.setAmbient(1, 1, 1, 0.2);
+	this.waterDropsAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.waterDropsAppearance.setSpecular(1, 1, 1, 0.3);
+	this.waterDropsAppearance.setShininess(100);
+    this.waterDropsAppearance.loadTexture("../resources/images/waterDrops.png");
+
+	this.submarineAppearances = [this.materialDefault,this.yellowAppearance,this.redWoodAppearance,this.waterDropsAppearance];
+    this.submarineAppearanceList = {};
+    this.submarineAppearanceList["Default"] = 0;
+    this.submarineAppearanceList["Yellow"] = 1;
+    this.submarineAppearanceList["Red Wood"] = 2;
+    this.submarineAppearanceList["Water Drops"] = 3;
+
+    this.currSubmarineAppearance = "Yellow";
+
+	this.setUpdatePeriod(1);
+	this.ligth1=true; 
+    this.ligth2=false;
+	this.lightsVec = new Array(2);
+    this.enableClock = true;
     this.speed=3;
 };
 
@@ -107,8 +138,18 @@ LightingScene.prototype.initLights = function() {
 };
 
 LightingScene.prototype.updateLights = function() {
-	for (i = 0; i < this.lights.length; i++)
+	this.lightsVec[0] = true;
+	this.lightsVec[1] = this.ligth1;
+	this.lightsVec[2] = this.ligth2;
+	
+	for(i=0; i < this.lights.length; i++){
 		this.lights[i].update();
+		if(this.lightsVec[i])
+			this.lights[i].enable();
+		else
+			this.lights[i].disable();
+		this.lights[i].setVisible[this.lightsVec[i]];
+	}
 }
 
 LightingScene.prototype.display = function() {
@@ -170,6 +211,7 @@ LightingScene.prototype.display = function() {
 	// Submarine
 
 	this.pushMatrix();
+		this.submarineAppearances[this.submarineAppearanceList[this.currSubmarineAppearance]].apply();
 		this.submarine.display();
 	this.popMatrix();
 
@@ -177,7 +219,9 @@ LightingScene.prototype.display = function() {
 };
 
 LightingScene.prototype.update = function(currTime) {
- 	this.clock.update(currTime);
+	if(this.enableClock){
+ 		this.clock.update(currTime);
+ 	}
  	this.lastTime = this.lastTime || 0;
     this.Time = currTime - this.lastTime;
     this.lastTime = currTime;
@@ -187,6 +231,11 @@ LightingScene.prototype.update = function(currTime) {
 LightingScene.prototype.doSomething = function ()
 { 
 	console.log("Doing something..."); 
+};
+
+LightingScene.prototype.doClock = function ()
+{ 
+	this.enableClock = !this.enableClock;
 };
 
 LightingScene.prototype.subRotate = function(angle){
