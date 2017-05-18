@@ -3,12 +3,18 @@ function MySubmarine(scene) {
 
     CGFobject.call(this, scene);
     this.angle = Math.PI;
+    this.heliceAngle = 0;
+    this.heliceRPS = 1;
+
     this.x = 8;
     this.y = 2;
     this.z = 8;
+
     this.vx = 0;
     this.vz = 0;
-    this.a = 0;
+    this.speed = 0;
+    this.maxSpeed = 5;
+
 
     this.mainCylinder = new MyCylinder(scene,20,20);
     this.frontSemisphere = new MyLamp(scene,20,20);
@@ -134,18 +140,18 @@ MySubmarine.prototype.display = function() {
 		this.secondPropellerSemisphere.display();
 	this.scene.popMatrix();
 
-	// First Propeller Parallelepiped
+	// First Propeller Parallelepiped // Left Helice
 	this.scene.pushMatrix();
         this.scene.translate(1+1,1.3,1-3.9);
-        this.scene.rotate(Math.PI,0,0,0);
+        this.scene.rotate(this.heliceAngle * Math.PI / 180.0,0,0,1);
         this.scene.scale(0.5,0.1,0.1);
 		this.firstPropellerParallelepiped.display();
 	this.scene.popMatrix();
 
-	// Second Propeller Parallelepiped
-	this.scene.pushMatrix();
+	// Second Propeller Parallelepiped // Rigth Helice 
+	this.scene.pushMatrix();;
         this.scene.translate(1-1,1.3,1-3.9);
-       	this.scene.rotate(Math.PI,0,0,0);
+       	this.scene.rotate(-this.heliceAngle * Math.PI / 180.0,0,0,1);
         this.scene.scale(0.5,0.1,0.1);
 		this.secondPropellerParallelepiped.display();
 	this.scene.popMatrix();
@@ -182,49 +188,44 @@ MySubmarine.prototype.rotate = function(angle){
     this.angle += angle * Math.PI / 180.0;
 }
 
-MySubmarine.prototype.translate = function(a){
-    this.a = a;
+MySubmarine.prototype.decreaseVelocity = function(){
+    if(this.speed < -this.maxSpeed){
+    	this.speed = -this.maxSpeed;
+    }
+    else{
+    	this.speed -= 0.5;
+    }
+}
+
+MySubmarine.prototype.increaseVelocity = function(){
+    if(this.speed > this.maxSpeed){
+    	this.speed = this.maxSpeed;
+    }
+    else{
+    	this.speed += 0.5;
+    }
+}
+
+MySubmarine.prototype.setSpeed = function(speed){
+	this.speed = speed;
 }
 
 MySubmarine.prototype.updatePosition = function(t){
-    this.time = t / 500;
+    this.time = t / 1000;
 
-    // Water Resistence
-    this.rx = - this.vx * this.vx; 
-    this.rz = - this.vz * this.vz; 
+	// Speed Parameters
+    this.vx = this.speed * Math.cos(this.angle - Math.PI/2);
+    this.vz = this.speed * Math.sin(this.angle + Math.PI/2);
 
-    if (this.vx < 0)
-        this.rx = 0 - this.rx;
-    if (this.vz < 0)
-        this.rz = 0 - this.rz;
+    //Position
+    this.x += this.vx * this.time;
+    this.z += this.vz * this.time;
+
+    // Helices
     
-    // Acceleration
-    this.ax = this.a * Math.cos(this.angle - Math.PI/2) + this.rx;
-    this.az = this.a * Math.sin(this.angle + Math.PI/2) + this.rz;
+	this.heliceRPS = 2 * this.speed;
+    this.heliceAngle = this.heliceAngle + t * 0.36 * this.heliceRPS;
+	
+	console.log(this.heliceAngle);
 
-    // Velocity
-    this.vx = this.vx + this.ax * this.time;
-    this.vz = this.vz + this.az * this.time;
-    
-    if (this.vx > -0.1 && this.vx < 0.1)
-        this.vx = 0;
-  
-    if (this.vz > -0.1 && this.vz < 0.1)
-        this.vz = 0;
-
-    if (this.vx > 4)
-        vx = 4;
-    else if (this.vx < -4)
-        vx = -4;
-    if(this.vz > 4)
-        vz = 4;
-    else if (this.vz < -4)
-        vz = -4;
-
-
-    // Position
-    this.x = this.x + this.time*(this.vx + this.ax/2);
-    this.z = this.z + this.time*(this.vz + this.az/2);
-    
-    this.a /= 1.5;
 }

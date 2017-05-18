@@ -50,7 +50,7 @@ MyInterface.prototype.init = function(application) {
 	// this.speed=3;
 	// min and max values can be specified as parameters
 	
-	this.gui.add(this.scene, 'speed', -5, 5);
+	//this.gui.add(this.scene, 'speed', -5, 5);
 
     submarineTextures.add(this.scene, 'currSubmarineAppearance',Object.keys(this.scene.submarineAppearanceList) );
 
@@ -93,22 +93,22 @@ MyInterface.prototype.processKeyboard = function(event) {
 		}
 		case(83):{
 			console.log("Key 'S' pressed");
-			this.scene.subTranslate(-4);
+			this.scene.decreaseVelocity();
 			break;
 		}
 		case (115):{
 			console.log("Key 's' pressed");
-			this.scene.subTranslate(-4);
+			this.scene.decreaseVelocity();
 			break;
 		}
 		case(87):{
 			console.log("Key 'W' pressed");
-			this.scene.subTranslate(4);
+			this.scene.increaseVelocity();
 			break;
 		}
 		case (119):{
 			console.log("Key 'w' pressed");
-			this.scene.subTranslate(4);
+			this.scene.increaseVelocity();
 			break;
 		}
 	};

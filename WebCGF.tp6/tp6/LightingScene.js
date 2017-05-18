@@ -94,12 +94,12 @@ LightingScene.prototype.init = function(application) {
 
     this.currSubmarineAppearance = "Yellow";
 
-	this.setUpdatePeriod(1);
+	this.setUpdatePeriod(1000 / 60);
 	this.ligth1=true; 
     this.ligth2=false;
 	this.lightsVec = new Array(2);
     this.enableClock = true;
-    this.speed=3;
+    //this.speed=3;
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -151,6 +151,7 @@ LightingScene.prototype.updateLights = function() {
 		this.lights[i].setVisible[this.lightsVec[i]];
 	}
 }
+
 
 LightingScene.prototype.display = function() {
 	// ---- BEGIN Background, camera and axis setup
@@ -223,9 +224,9 @@ LightingScene.prototype.update = function(currTime) {
  		this.clock.update(currTime);
  	}
  	this.lastTime = this.lastTime || 0;
-    this.Time = currTime - this.lastTime;
+    this.time = currTime - this.lastTime;
     this.lastTime = currTime;
-    this.submarine.updatePosition(this.Time);
+    this.submarine.updatePosition(this.time);
 };
 
 LightingScene.prototype.doSomething = function ()
@@ -243,8 +244,13 @@ LightingScene.prototype.subRotate = function(angle){
     this.submarine.rotate(angle);
 };
 
-LightingScene.prototype.subTranslate = function(a){
-    console.log("translating");
-    this.submarine.translate(a);
+LightingScene.prototype.increaseVelocity = function(){
+    console.log("increaseVelocity");
+    this.submarine.increaseVelocity();
 };
 
+
+LightingScene.prototype.decreaseVelocity = function(){
+    console.log("decreaseVelocity");
+    this.submarine.decreaseVelocity();
+};
