@@ -112,7 +112,7 @@ void SuperMarketChain::displayGraph() {
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 
-		//gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+		gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
 	}
 
 	cin.clear();
@@ -479,4 +479,17 @@ bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
 	    	return true;
 	}
 	return false;
+}
+
+void SuperMarketChain::exactSearch(string road1, string road2) {
+	for(unsigned int i=0;i<this->getTransitions()->size();i++){
+		unsigned long long rId= this->getTransitions()->at(i)->getRoadId();
+		cout << rId << ": ";
+		if(this->roads->find(rId)==this->roads->end()){
+			cout << "0 ";
+		}else
+			cout << "1 ";
+		cout << this->roads->at(rId)->getName();
+		cout << endl;
+	}
 }

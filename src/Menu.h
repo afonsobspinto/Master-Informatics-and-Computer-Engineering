@@ -50,6 +50,18 @@ void showUseless(SuperMarketChain S){
 	getchar();
 }
 
+void searchSupermarkets(SuperMarketChain S){
+	string r1, r2;
+	cout << "Insert the first road's name: ";
+	getline(cin, r1);
+	cout << "Insert the second road's name: ";
+	getline(cin, r2);
+
+	S.exactSearch(r1, r2);
+
+	getchar();
+}
+
 bool mainOptions() {
 	int option;
 	SuperMarketChain S = SuperMarketChain();
@@ -67,7 +79,8 @@ bool mainOptions() {
 		cout << "   " << "6 - Show Strongly connected components" << endl;
 //		cout << "   " << "7 - Show unreachable Clients" << endl;
 		cout << "   " << "7 - Show useless Supermarkets" << endl;
-		cout << "   " << "8 - Leave" << endl << endl;
+		cout << "   " << "8 - Search for a supermarket" << endl;
+		cout << "   " << "9 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
@@ -92,13 +105,13 @@ bool mainOptions() {
 		case 6:{
 			S.displaySCC();
 			break;}
-		/*case 7:{
-			showUnreachable(S);
-			break;}*/
 		case 7:{
 			showUseless(S);
 			break;}
 		case 8:{
+			searchSupermarkets(S);
+			break;}
+		case 9:{
 			return true;}
 		default:{
 			continue;}

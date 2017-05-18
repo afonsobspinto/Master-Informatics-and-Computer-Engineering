@@ -65,6 +65,8 @@ public:
 	const std::vector<Place*>& getUnneededSupermarkets();
 	const std::vector<Place*>& getUnreachableClients();
 	bool checkSet(set<Transition*> set, Transition *t);
+
+	void exactSearch(string road1, string road2);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */
