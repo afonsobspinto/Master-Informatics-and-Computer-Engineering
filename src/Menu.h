@@ -77,10 +77,10 @@ bool mainOptions() {
 		cout << "   " << "4 - See Clients" << endl;
 		cout << "   " << "5 - See Supermarkets" << endl;
 		cout << "   " << "6 - Show Strongly connected components" << endl;
-//		cout << "   " << "7 - Show unreachable Clients" << endl;
 		cout << "   " << "7 - Show useless Supermarkets" << endl;
-		cout << "   " << "8 - Search for a supermarket" << endl;
-		cout << "   " << "9 - Leave" << endl << endl;
+		cout << "   " << "8 - Search for a supermarket (Exactly)" << endl;
+		cout << "   " << "9 - Search for a supermarket (Approximately)" << endl;
+		cout << "   " << "10 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
 		string str_option;
 		getline(cin, str_option);
@@ -112,6 +112,9 @@ bool mainOptions() {
 			searchSupermarkets(S);
 			break;}
 		case 9:{
+			//searchAproxSupermarkets(S);
+			break;}
+		case 10:{
 			return true;}
 		default:{
 			continue;}
