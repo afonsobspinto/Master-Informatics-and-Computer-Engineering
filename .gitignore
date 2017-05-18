@@ -34,4 +34,8 @@ Debug
 # Other Stuff
 *.settings
 /Debug/
+<<<<<<< HEAD
 language.settings.xml
+=======
+.cproject
+>>>>>>> refs/remotes/realorigin/official

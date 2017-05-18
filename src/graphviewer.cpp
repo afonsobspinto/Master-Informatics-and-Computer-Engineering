@@ -28,15 +28,15 @@ void GraphViewer::initialize(int width, int height, bool dynamic, int port_n) {
 	command += port_string;
 
 #ifdef __unix__
+
 	if (!(procId = fork())) {
 		system(command.c_str());
 		kill(getppid(), SIGINT);
 		exit(0);
 	}
 	else {
-		sleep(2000000);
+		usleep(2000000);
 		con = new Connection(port_n);
-
 		char buff[200];
 		sprintf(buff, "newGraph %d %d %s\n", width, height, (dynamic?"true":"false"));
 		string str(buff);
@@ -210,6 +210,7 @@ bool GraphViewer::setVertexColor(int k, string color) {
 	char buff[200];
 	sprintf(buff, "setVertexColor %d %s\n", k, color.c_str());
 	string str(buff);
+
 	return con->sendMsg(str);
 }
 

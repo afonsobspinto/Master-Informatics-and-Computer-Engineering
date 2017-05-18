@@ -7,11 +7,21 @@
 #include <limits>
 #include <stdlib.h>
 #include <vector>
+#include <deque>
 #include <queue>
+#include <set>
 #include <list>
 #include <limits>
 #include <cmath>
 #include <string>
+#include <iostream>
+#include "Place.h"
+#include "Transition.h"
+#include "algorithm"
+#include "unistd.h"
+#include <unordered_set>
+#include <limits>
+#include "Clients.h"
 using namespace std;
 
 template <class T> class Edge;
@@ -21,7 +31,7 @@ const int NOT_VISITED = 0;
 const int BEING_VISITED = 1;
 const int DONE_VISITED = 2;
 const int INT_INFINITY = std::numeric_limits<int>::max();;
-const int NULL = 0;
+const int __NULL = 0;
 
 /*
  * ================================================================================================
@@ -81,7 +91,7 @@ bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
 //atualizado pelo exercício 5
 template <class T>
 Vertex<T>::Vertex(T in): info(in), visited(false), processing(false), indegree(0), dist(0) {
-	path = NULL;
+	path = nullptr;
 }
 
 
@@ -123,7 +133,7 @@ int Vertex<T>::getIndegree() const {
 template <class T>
 class Edge {
 	Vertex<T> * dest;
-	double weight;
+	double weight; // Used as the distance
 	string roadName;
 public:
 	Edge(Vertex<T> *d, double w);
@@ -146,6 +156,7 @@ template <class T>
 class Graph {
 	vector<Vertex<T> *> vertexSet;
 	void dfs(Vertex<T> *v, vector<T> &res) const;
+	void removeGeoVertex(Vertex<T> *v, vector<T> &res);
 
 	//exercicio 5
 	int numCycles;
@@ -154,8 +165,11 @@ class Graph {
 	void getPathTo(Vertex<T> *origin, list<T> &res);
 
 public:
-	bool addVertex(const T &in);
+	Graph();
+
+	bool addVertex(const T in);
 	bool addEdge(const T &sourc, const T &dest, double w);
+	bool addEdge(Transition *transition);
 	bool removeVertex(const T &in);
 	bool removeEdge(const T &sourc, const T &dest);
 	vector<T> dfs() const;
@@ -166,6 +180,7 @@ public:
 
 	//exercicio 5
 	Vertex<T>* getVertex(const T &v) const;
+	vector<Vertex<T>*> getVertexFromSet(const set<T> places ) const;
 	void resetIndegrees();
 	vector<Vertex<T>*> getSources() const;
 	int getNumCycles();
@@ -174,7 +189,23 @@ public:
 	void unweightedShortestPath(const T &v);
 	bool isDAG();
 
+	void dijkstraShortestPath(const T &s);
+
+	vector<set<T> > scc();
+	void scc(Vertex<T> *v, vector<Vertex<T>*> temp);
+	Graph<T> getTranspose();
+	void dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack);
+	void dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>* set);
+
+
+	vector<T> calcRoute(set<T> places , vector<T>* clients, T start);
+
+	vector<T>solveGreedy(vector<T>* clients, T start);
+
+	double getDistance(vector<T> path);
+
 };
+
 
 
 template <class T>
@@ -199,11 +230,11 @@ bool Graph<T>::isDAG() {
 }
 
 template <class T>
-bool Graph<T>::addVertex(const T &in) {
+bool Graph<T>::addVertex(const T in) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	for (; it!=ite; it++)
-		if ((*it)->info == in) return false;
+		if (*((*it)->info) == *in) return false;
 	Vertex<T> *v1 = new Vertex<T>(in);
 	vertexSet.push_back(v1);
 	return true;
@@ -214,7 +245,7 @@ bool Graph<T>::removeVertex(const T &in) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	for (; it!=ite; it++) {
-		if ((*it)->info == in) {
+		if (*((*it)->info) == *in) {
 			Vertex<T> * v= *it;
 			vertexSet.erase(it);
 			typename vector<Vertex<T>*>::iterator it1= vertexSet.begin();
@@ -235,6 +266,7 @@ bool Graph<T>::removeVertex(const T &in) {
 	return false;
 }
 
+
 template <class T>
 bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
@@ -242,9 +274,9 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	int found=0;
 	Vertex<T> *vS, *vD;
 	while (found!=2 && it!=ite ) {
-		if ( (*it)->info == sourc )
+		if ( *((*it)->info) == *sourc )
 			{ vS=*it; found++;}
-		if ( (*it)->info == dest )
+		if ( *((*it)->info) == *dest )
 			{ vD=*it; found++;}
 		it ++;
 	}
@@ -256,15 +288,35 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 }
 
 template <class T>
+bool Graph<T>::addEdge(Transition *transition) {
+	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
+	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
+	int found=0;
+	Vertex<T> *vS, *vD;
+	while (found!=2 && it!=ite ) {
+		if ( (*it)->info->getID() == transition->getSrcId())
+			{ vS=*it; found++;}
+		if ( (*it)->info->getID() == transition->getDestId())
+			{ vD=*it; found++;}
+		it ++;
+	}
+	if (found!=2) return false;
+	vD->indegree++;
+	vS->addEdge(vD,transition->getWeigth());
+
+	return true;
+}
+
+template <class T>
 bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
 	typename vector<Vertex<T>*>::iterator it= vertexSet.begin();
 	typename vector<Vertex<T>*>::iterator ite= vertexSet.end();
 	int found=0;
 	Vertex<T> *vS, *vD;
 	while (found!=2 && it!=ite ) {
-		if ( (*it)->info == sourc )
+		if ( *((*it)->info) == *sourc )
 			{ vS=*it; found++;}
-		if ( (*it)->info == dest )
+		if ( *((*it)->info) == *dest )
 			{ vD=*it; found++;}
 		it ++;
 	}
@@ -367,9 +419,10 @@ int Graph<T>::maxNewChildren(Vertex<T> *v, T &inf) const {
 
 template <class T>
 Vertex<T>* Graph<T>::getVertex(const T &v) const {
-	for(unsigned int i = 0; i < vertexSet.size(); i++)
-		if (vertexSet[i]->info == v) return vertexSet[i];
-	return NULL;
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		if (*(vertexSet[i]->info) == *v) return vertexSet[i];
+	}
+	return nullptr;
 }
 
 template<class T>
@@ -431,7 +484,6 @@ vector<T> Graph<T>::topologicalOrder() {
 
 	//verificar se é um DAG
 	if( getNumCycles() > 0 ) {
-		cout << "Ordenacao Impossivel!" << endl;
 		return res;
 	}
 
@@ -478,13 +530,12 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest){
 	list<T> buffer;
 	Vertex<T>* v = getVertex(dest);
 
-	//cout << v->info << " ";
 	buffer.push_front(v->info);
-	while ( v->path != NULL &&  v->path->info != origin) {
+	while (v->path != NULL && *(v->path->info) != *origin) {
 		v = v->path;
 		buffer.push_front(v->info);
 	}
-	if( v->path != NULL )
+	if (v->path != nullptr)
 		buffer.push_front(v->path->info);
 
 
@@ -501,7 +552,7 @@ template<class T>
 void Graph<T>::unweightedShortestPath(const T &s) {
 
 	for(unsigned int i = 0; i < vertexSet.size(); i++) {
-		vertexSet[i]->path = NULL;
+		vertexSet[i]->path = nullptr;
 		vertexSet[i]->dist = INT_INFINITY;
 	}
 
@@ -521,6 +572,292 @@ void Graph<T>::unweightedShortestPath(const T &s) {
 			}
 		}
 	}
+}
+
+template<class T>
+void Graph<T>::dijkstraShortestPath(const T &s) {
+
+
+	for(unsigned int i = 0; i < vertexSet.size(); i++) {
+		vertexSet[i]->path = nullptr;
+		vertexSet[i]->dist = INT_INFINITY;
+		vertexSet[i]->processing = false;
+	}
+
+	Vertex<T>* v = getVertex(s);
+
+	if(v==nullptr)
+		cout << "dijkstraShortestPath vertex not found" << endl;
+
+	v->dist = 0;
+	vector< Vertex<T>* > pq;
+	pq.push_back(v);
+
+	make_heap(pq.begin(), pq.end());
+
+
+	while( !pq.empty() ) {
+
+		v = pq.front();
+		pop_heap(pq.begin(), pq.end());
+		pq.pop_back();
+
+		for(unsigned int i = 0; i < v->adj.size(); i++) {
+			Vertex<T>* w = v->adj[i].dest;
+
+			if(v->dist + v->adj[i].weight < w->dist ) {
+
+				w->dist = v->dist + v->adj[i].weight;
+				w->path = v;
+
+				//se j� estiver na lista, apenas a actualiza
+				if(!w->processing)
+				{
+					w->processing = true;
+					pq.push_back(w);
+				}
+
+				make_heap (pq.begin(),pq.end(),vertex_greater_than<T>());
+			}
+		}
+	}
+
+}
+
+template<class T>
+vector<set<T> > Graph<T>::scc() {
+
+
+	 //it holds vertices by finish time in reverse order.
+	deque<Vertex<T>*> stack;
+
+	//holds visited vertices for DFS.
+	set<Vertex<T>*> visited;
+
+
+    //populate stack with vertices with vertex finishing last at the top.
+    for (unsigned int i = 0; i < vertexSet.size(); i++) {
+    	Vertex<T>* vertex = vertexSet[i];
+        if (visited.find(vertex) != visited.end()) {
+            continue;
+        }
+        dfsUtil(vertex, &visited, &stack);
+    }
+
+    //reverse the graph.
+     Graph<T> reverseGraph = this->getTranspose();
+
+     //Do a DFS based off vertex finish time in decreasing order on reverse graph..
+     visited.clear();
+     vector<set<T>> result;
+
+     while (!stack.empty()) {
+         Vertex<T>* vertex = reverseGraph.getVertex(stack.front()->info);
+
+         stack.pop_front();
+
+         if(visited.find(vertex)!=visited.end()){
+             continue;
+         }
+         set<T> set;
+         dfsUtilRG(vertex, &visited, &set);
+         result.push_back(set);
+
+     }
+
+     return result;
+
+}
+
+
+
+
+template<class T>
+void Graph<T>::scc(Vertex<T> *v, vector<Vertex<T> *> temp) {
+	v->visited = true;
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+	for (; it !=ite; it++)
+		if ( it->dest->visited == false ){
+			scc(it->dest, temp);
+		}
+	temp.push_back(v);
+
+}
+
+template<class T>
+Graph<T> Graph<T>::getTranspose() {
+	Graph<T> g = Graph();
+
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		g.addVertex(vertexSet[i]->info);
+	}
+
+
+	for (unsigned int i = 0; i < vertexSet.size(); i++){
+		Vertex<T>* v = vertexSet[i];
+
+		typename vector<Edge<T> >::iterator it= (v->adj).begin();
+		typename vector<Edge<T> >::iterator ite= (v->adj).end();
+		for (; it !=ite; it++){
+			g.addEdge(it->dest->info, v->info, it->weight);
+		}
+	}
+
+	return g;
+}
+
+template<class T>
+void Graph<T>::dfsUtil(Vertex<T>* v, set<Vertex<T>*>* visited, deque<Vertex<T>*>* stack) {
+	visited->insert(v);
+
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+
+	for (; it !=ite; it++){
+    	Vertex<T>* vertex = it->dest;
+        if (visited->find(vertex) != visited->end()) {
+            continue;
+        }
+        dfsUtil(vertex, visited, stack);
+	}
+
+	stack->push_front(v);
+}
+
+
+template<class T>
+void Graph<T>::dfsUtilRG(Vertex<T>* v, set<Vertex<T>*>* visited, set<T>*set) {
+
+	visited->insert(v);
+	set->insert(v->info);
+
+	typename vector<Edge<T> >::iterator it= (v->adj).begin();
+	typename vector<Edge<T> >::iterator ite= (v->adj).end();
+
+	for (; it !=ite; it++){
+    	Vertex<T>* vertex = it->dest;
+        if (visited->find(vertex) != visited->end()) {
+            continue;
+        }
+        dfsUtilRG(vertex, visited, set);
+	}
+}
+
+template <class T>
+vector<T> Graph<T>::calcRoute(set<T> places, vector<T>* clients, T start)  {
+
+
+	vector<T> res;
+	Graph subGraph = Graph();
+
+	vector<Vertex<T>*> vertices = getVertexFromSet(places);
+
+	typename set<T>::iterator it;
+
+
+	for(it = places.begin(); it!=places.end(); it++){
+		T place = *it;
+		subGraph.addVertex(place);
+	}
+
+	for (unsigned int i = 0; i < vertices.size(); i++){
+		Vertex<T>* vertex = vertices.at(i);
+
+		typename vector<Edge<T> >::iterator it= (vertex->adj).begin();
+		typename vector<Edge<T> >::iterator ite= (vertex->adj).end();
+
+		for (; it !=ite; it++){
+			if(places.find(it->dest->info)!=places.end())
+				subGraph.addEdge(vertex->info ,it->dest->info, it->weight);
+		}
+
+	}
+
+	res = solveGreedy(clients, start);
+
+	return res;
+}
+
+template <class T>
+vector<Vertex<T>*>  Graph<T>::getVertexFromSet(const set<T> places ) const {
+
+	vector<Vertex<T>*> res;
+
+	typename set<T>::iterator it;
+	for(it = places.begin(); it!=places.end(); it++){
+		T place = *it;
+		Vertex<T>* vertex = getVertex(place);
+		res.push_back(vertex);
+	}
+
+	return res;
+}
+
+
+template <class T>
+vector<T> Graph<T>::solveGreedy(vector<T>* clients, T start)  {
+
+	vector<T> res;
+	vector<T> bestPath;
+	T best;
+
+	res.push_back(start);
+
+	int capacity = 50;
+
+	while(capacity > 0 && clients->size()>0){
+
+	dijkstraShortestPath(start);
+
+	double distance = numeric_limits<double>::max();
+
+	for (unsigned int i = 0; i < clients->size(); i++){
+
+		T node = clients->at(i);
+		vector<T> path = getPath(start, node);
+
+		double tempdist = 0;
+
+		for(unsigned int j = 0; j < path.size(); j++){
+			tempdist += getDistance(path);
+		}
+
+		if(tempdist < distance){
+			distance = tempdist;
+			bestPath = path;
+			best = node;
+		}
+
+	}
+
+	res.insert(res.end(), bestPath.begin(), bestPath.end());
+	capacity -= best->getShoppingSize();
+	start = best;
+	clients->erase(remove(clients->begin(), clients->end(), best));
+
+	}
+
+	return res;
+}
+
+
+template <class T>
+double Graph<T>::getDistance(vector<T> path){
+	double res = 0;
+
+	for(unsigned int i = 0; i < path.size()-1; i++){
+		T node = path.at(i);
+		T nextNode = path.at(++i);
+		i--;
+		res += node->getDistance(nextNode);
+	}
+
+	return res;
+}
+
+template<class T>
+Graph<T>::Graph() {
 }
 
 

@@ -7,9 +7,17 @@
 //============================================================================
 
 #include <iostream>
+#include "SuperMarketChain.h"
+#include "Menu.h"
+
+
 using namespace std;
 
+
+
 int main() {
-	cout << "!!!Hello World!!!!" << endl; // prints !!!Hello World!!!
+
+	mainOptions();
+
 	return 0;
 }
