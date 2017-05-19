@@ -48,7 +48,7 @@ Options:
 
 ### Behavioural Aspects
 * Moving by tilting
-* Newtwork connection (multiplayer mode) via QRCode 
+* Network connection (multiplayer mode) via QRCode 
 * Login and Share options on social networks
 
 ### Design Patterns
