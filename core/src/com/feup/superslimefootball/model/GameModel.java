@@ -7,6 +7,7 @@ package com.feup.superslimefootball.model;
 import com.badlogic.gdx.Gdx;
 import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.FloorModel;
+import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 
 /**
@@ -27,6 +28,12 @@ public class GameModel {
      */
 
     private SlimeModel slime;
+
+    /**
+     * The goal of the game.
+     */
+
+    private GoalModel goal;
 
     /**
      * The ball roaming around in this game.
@@ -65,6 +72,7 @@ public class GameModel {
      */
     private GameModel() {
         ball = new BallModel(325,300);
+        goal = new GoalModel(570,85);
         slime = new SlimeModel(80,150);
         floor = new FloorModel(Gdx.graphics.getWidth()/2, 0);
        //opponentSlime = new BallModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
@@ -80,6 +88,14 @@ public class GameModel {
     public SlimeModel getSlime() {
         return slime;
     }
+
+    /**
+     * Returns the goal.
+     *
+     * @return the goal.
+     */
+
+    public GoalModel getGoal() { return goal; }
 
     /**
      * Returns the ball.

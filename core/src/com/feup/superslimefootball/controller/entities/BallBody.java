@@ -17,8 +17,8 @@ public class BallBody extends EntityBody {
     public BallBody(World world, BallModel model) {
         super(world, model, true);
 
-        int radius = 25;
+        int radius = 13;
 
-        createFixture(body, BALL_BODY, 25);
+        createFixture(body, radius);
     }
 }

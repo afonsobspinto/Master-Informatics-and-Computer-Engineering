@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.feup.superslimefootball.controller.entities.BallBody;
 import com.feup.superslimefootball.controller.entities.FloorBody;
+import com.feup.superslimefootball.controller.entities.GoalBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
@@ -56,6 +57,12 @@ public class GameController implements ContactListener {
     private final BallBody ballBody;
 
     /**
+     * The goal body.
+     */
+
+    private final GoalBody goalBody;
+
+    /**
      * The slime body.
      */
     private final SlimeBody slimeBody;
@@ -80,6 +87,7 @@ public class GameController implements ContactListener {
         world = new World(new Vector2(0, -9.8f), true);
 
         this.ballBody = new BallBody(world, GameModel.getInstance().getBall());
+        this.goalBody = new GoalBody(world, GameModel.getInstance().getGoal());
         this.slimeBody = new SlimeBody(world, GameModel.getInstance().getSlime());
         this.floorBody = new FloorBody(world, GameModel.getInstance().getFloor());
         //this.opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlime());

@@ -25,7 +25,7 @@ public class SlimeBody extends EntityBody {
         super(world, model, true);
 
         float density = 0.5f, friction = 0.4f, restitution = 0.5f;
-        int width = 72, height = 40;
+        int width = 42, height = 22;
 
         // Body
 

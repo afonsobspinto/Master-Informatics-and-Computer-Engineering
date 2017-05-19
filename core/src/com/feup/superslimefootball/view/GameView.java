@@ -14,6 +14,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
@@ -85,7 +86,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "ball.png" , Texture.class);
         this.game.getAssetManager().load( "blueSlime.png" , Texture.class);
         this.game.getAssetManager().load( "redSlime.png" , Texture.class);
-        this.game.getAssetManager().load( "ball.png" , Texture.class);
+        this.game.getAssetManager().load( "goal.png" , Texture.class);
         //this.game.getAssetManager().load( "power.png", Texture.class);
         this.game.getAssetManager().finishLoading();
     }
@@ -165,8 +166,15 @@ public class GameView extends ScreenAdapter {
         // Ball
         BallModel ball = GameModel.getInstance().getBall();
         EntityView viewBall = ViewFactory.makeView(game, ball);
+
         viewBall.update(ball);
         viewBall.draw(game.getBatch());
+
+        // Goal
+        GoalModel goal = GameModel.getInstance().getGoal();
+        EntityView viewGoal = ViewFactory.makeView(game, goal);
+        viewGoal.update(goal);
+        viewGoal.draw(game.getBatch());
 
         // Slime
         SlimeModel slime = GameModel.getInstance().getSlime();

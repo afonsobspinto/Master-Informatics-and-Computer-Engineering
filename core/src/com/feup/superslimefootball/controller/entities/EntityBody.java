@@ -41,19 +41,6 @@ public abstract class EntityBody {
         body.setUserData(model);
     }
 
-    /**
-     * Helper method to create a polygon fixture represented by a set of vertexes.
-     * @param body The body the fixture is to be attached to.
-     * @param vertexes The vertexes defining the fixture in pixels so it is
-     *                 easier to get them from a bitmap image.
-     * @param width The width of the bitmap the vertexes where extracted from.
-     * @param height The height of the bitmap the vertexes where extracted from.
-     * @param density The density of the fixture. How heavy it is in relation to its area.
-     * @param friction The friction of the fixture. How slippery it is.
-     * @param restitution The restitution of the fixture. How much it bounces.
-     * @param category
-     * @param mask
-     */
     final void createFixture(Body body, int width, int height) {
 //       Todo: Change this to use elipses and circles
 //
@@ -84,19 +71,7 @@ public abstract class EntityBody {
         polygonShape.dispose();
     }
 
-    /**
-     * Helper method to create a polygon fixture represented by a set of vertexes.
-     * @param body The body the fixture is to be attached to.
-     * @param vertexes The vertexes defining the fixture in pixels so it is
-     *                 easier to get them from a bitmap image.
-     * @param radius The radius of the circle.
-     * @param density The density of the fixture. How heavy it is in relation to its area.
-     * @param friction The friction of the fixture. How slippery it is.
-     * @param restitution The restitution of the fixture. How much it bounces.
-     * @param category
-     * @param mask
-     */
-    final void createFixture(Body body, short info, int radius) {
+    final void createFixture(Body body, int radius) {
 //       Todo: Change this to use elipses and circles
 //
 //  Transform pixels into meters, center and invert the y-coordinate

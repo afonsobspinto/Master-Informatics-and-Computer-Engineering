@@ -18,7 +18,7 @@ public class GoalBody extends EntityBody {
         super(world, model, false);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;
-        int width = 12, height = 12;
+        int width = 62, height = 80;
 
         createFixture(body, new float[]{
                 5,5, 5,10, 10,10, 10,5,
