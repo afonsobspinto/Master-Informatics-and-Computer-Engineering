@@ -99,6 +99,7 @@ template <class T>
 void Vertex<T>::addEdge(Vertex<T> *dest, double w) {
 	Edge<T> edgeD(dest,w);
 	adj.push_back(edgeD);
+	edgeD.source=this;
 }
 
 
@@ -133,6 +134,7 @@ int Vertex<T>::getIndegree() const {
 template <class T>
 class Edge {
 	Vertex<T> * dest;
+	Vertex<T> * source;
 	double weight; // Used as the distance
 	string roadName;
 public:

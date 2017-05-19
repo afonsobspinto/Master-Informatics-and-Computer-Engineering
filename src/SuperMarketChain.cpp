@@ -25,7 +25,7 @@ SuperMarketChain::SuperMarketChain() {
 
 	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
 
-	LoadingResources(this);
+	res =  new LoadingResources(this);
 
 	scc = graph->scc();
 
@@ -488,7 +488,8 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 			set<string> s;
 			cout << rId << ": ";
 			//cout << this->roads->at(this->getTransitions()->at(i)->getSrcId())->getName();
-			cout << this->getTransitions()->at(i)->getSrcId() << endl;  // retorna um id que não existe!
+			long long int bah = res->getRids().find(this->getTransitions()->at(i)->getSrcId())->second;
+			cout << this->roads->at(bah)->getName() << endl;  // retorna um id que não existe!
 			//s.insert();
 		}
 	}
