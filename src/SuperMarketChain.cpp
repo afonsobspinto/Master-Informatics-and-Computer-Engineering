@@ -482,7 +482,7 @@ bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
 }
 
 void SuperMarketChain::exactSearch(string road1, string road2) {
-	for(unsigned int i=0;i<this->getTransitions()->size();i++){
+	/*for(unsigned int i=0;i<this->getTransitions()->size();i++){
 		unsigned long long rId= this->getTransitions()->at(i)->getRoadId();
 		if(this->roads->at(rId)->getName()==road1){
 			set<string> s;
@@ -492,6 +492,9 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 			cout << this->roads->at(bah)->getName() << endl;  // retorna um id que não existe!
 			//s.insert();
 		}
-	}
+	}*/
+
+	// Abandonar código acima. Vamos com grafos!
+
 	cout << flush;
 }
