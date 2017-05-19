@@ -488,7 +488,7 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 			set<string> s;
 			cout << rId << ": ";
 			//cout << this->roads->at(this->getTransitions()->at(i)->getSrcId())->getName();
-			cout << this->getTransitions()->at(i)->getSrcId() << endl;
+			cout << this->getTransitions()->at(i)->getSrcId() << endl;  // retorna um id que não existe!
 			//s.insert();
 		}
 	}
