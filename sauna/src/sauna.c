@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/syscall.h>
+#include <sys/time.h>
 #include <errno.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -128,10 +129,7 @@ void updateStatsAndLogs(char type, Request* request){
 
 
 void* addToSauna(void* arg){
-	pthread_mutex_lock(&mutex);
 	Request* request = (Request*) arg;
-
-	pthread_mutex_unlock(&mutex);
 
 	usleep(request->duration * 1000);
 
@@ -142,6 +140,9 @@ void* addToSauna(void* arg){
 	pthread_mutex_unlock(&mutex);
 
 	pthread_cond_signal(&seatsMutex);
+
+	updateStatsAndLogs('s', request);
+
 	printf("Served Request: %d %c %d \n", request->id, request->gender, request->duration);
 
 	free(request);
@@ -170,9 +171,9 @@ void saunaManagement(){
 		if (read(FD_REQUESTS, request, sizeof(Request)) != 0){
 			toRead--;
 
-			pthread_mutex_lock(&mutex);
-
 			updateStatsAndLogs('p', request);
+
+			pthread_mutex_lock(&mutex);
 
 			if(sauna.ocupation == 0)
 				sauna.gender = request->gender;
@@ -189,9 +190,10 @@ void saunaManagement(){
 
 				pthread_create(&seatsTID[sauna.ocupation], NULL, addToSauna, (void*) request);
 
-				updateStatsAndLogs('s', request);
 
 				sauna.ocupation++;
+
+				pthread_mutex_unlock(&mutex);
 			}
 			else{
 
@@ -207,14 +209,16 @@ void saunaManagement(){
 					exit(1);
 				}
 			}
-
 			pthread_mutex_unlock(&mutex);
 		}
 	}
 
 
 		for(i = 0; seatsTID[i] < sauna.capacity; i++){
-			pthread_join(seatsTID[i], NULL);
+			if(pthread_join(seatsTID[i], NULL) != 0){
+				perror("Join Problem");
+				exit(1);
+			}
 		}
 
 		close(FD_REJECTED);
@@ -287,6 +291,7 @@ int main (int argc, char* argv[], char* envp[]){
 		printf("Error when destroying REJECTED_FIFO '/tmp/rejeitados'\n");
 	else
 		printf("REJECTED_FIFO '/tmp/rejeitados' has been destroyed \n");
+
 
 	return 0;
 }

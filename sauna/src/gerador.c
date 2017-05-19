@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <time.h>
+#include <sys/time.h>
 #include <math.h>
 
 #include "request.h"
@@ -142,9 +142,9 @@ void* requestsThread(void* arg){
 			exit(1);
 		}
 
+		usleep(0.25f * maxUsageTime * 1000);
+
 		free(request);
-
-
 	}
 
 
@@ -177,7 +177,7 @@ void* rejectedThread(void* arg){
 
 		}
 
-		//usleep(30 * 1000);
+		usleep(30 * 1000);
 	}
 
 	free(request);
