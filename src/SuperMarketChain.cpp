@@ -484,11 +484,12 @@ bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
 void SuperMarketChain::exactSearch(string road1, string road2) {
 	for(unsigned int i=0;i<this->getTransitions()->size();i++){
 		unsigned long long rId= this->getTransitions()->at(i)->getRoadId();
-		//cout << road1 << endl;
-		//cout << road2 << endl;
-		//cout << this->roads->at(rId)->getName() << endl<< endl;
-		if(this->roads->at(rId)->getName()==road1||this->roads->at(rId)->getName()==road2){
-			cout << "found!\n";
+		if(this->roads->at(rId)->getName()==road1){
+			set<string> s;
+			cout << rId << ": ";
+			//cout << this->roads->at(this->getTransitions()->at(i)->getSrcId())->getName();
+			cout << this->getTransitions()->at(i)->getSrcId() << endl;
+			//s.insert();
 		}
 	}
 	cout << flush;
