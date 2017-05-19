@@ -25,7 +25,9 @@ class LoadingResources {
 
 	static const std::string GraphsInfo;
 	std::vector<std::string> graphsFiles;
-	std::map<long long int, int> ids;
+	std::map<long long int, int> ids; // 	key		->	value
+
+	std::map<int, long long int> rids; // 	value 	->	key
 
 	unsigned int nclients=0;
 	unsigned int nsupers=0;
@@ -55,6 +57,11 @@ public:
 	void loadGeom();
 
 	void loadNodes();
+
+	std::map<long long int, int> getIds();
+
+	std::map<int, long long int> getRids();
+
 };
 
 #endif /* LOADINGRESOURCES_H_ */

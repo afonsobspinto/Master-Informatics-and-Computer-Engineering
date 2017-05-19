@@ -76,6 +76,7 @@ void LoadingResources::mapIDs() {
 			latitude >> sep >> longitude){
 
 		ids.insert(make_pair(id, ++localID));
+		rids.insert(make_pair(localID, id));
 	}
 
 }
@@ -291,4 +292,12 @@ bool LoadingResources::string2bool(const std::string &v){
 		return true;
 	}
 	return false;
+}
+
+std::map<long long int, int> LoadingResources::getIds() {
+	return ids;
+}
+
+std::map<int, long long int> LoadingResources::getRids() {
+	return rids;
 }
