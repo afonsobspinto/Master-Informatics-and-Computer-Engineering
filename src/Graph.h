@@ -60,7 +60,7 @@ public:
 
 	int getDist() const;
 	int getIndegree() const;
-
+	vector<Edge<T> > getAdj();
 	Vertex* path;
 };
 
@@ -141,6 +141,7 @@ public:
 	Edge(Vertex<T> *d, double w);
 	friend class Graph<T>;
 	friend class Vertex<T>;
+	string getRoadName();
 };
 
 template <class T>
@@ -862,5 +863,14 @@ template<class T>
 Graph<T>::Graph() {
 }
 
+template<class T>
+inline vector<Edge<T> > Vertex<T>::getAdj() {
+	return adj;
+}
+
+template<class T>
+inline string Edge<T>::getRoadName() {
+	return roadName;
+}
 
 #endif /* GRAPH_H_ */

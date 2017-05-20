@@ -25,7 +25,7 @@ SuperMarketChain::SuperMarketChain() {
 
 	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
 
-	res =  new LoadingResources(this);
+	LoadingResources(this);
 
 	scc = graph->scc();
 
@@ -495,6 +495,12 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 	}*/
 
 	// Abandonar código acima. Vamos com grafos!
+	vector<Vertex<Place *> * > vs = this->getGraph()->getVertexSet();
+	for(unsigned int i=0;i<vs.size();i++){
+		for(unsigned int j=0;j<vs.at(i)->getAdj().size();j++){
+			cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :(
+		}
+	}
 
 	cout << flush;
 }

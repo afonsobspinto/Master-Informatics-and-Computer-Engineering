@@ -18,7 +18,7 @@
 #include "Clients.h"
 #include "LoadingResources.h"
 
-class LoadingResources;
+//class LoadingResources;
 
 class SuperMarketChain {
 private:
@@ -43,7 +43,7 @@ private:
 	std::vector<Place*> unneededSupermarkets;
 	int getTotalShopping(vector<Client*> clients);
 	int getTotalCapacity();
-	LoadingResources* res;
+	//LoadingResources* res;
 
 
 public:
