@@ -22,6 +22,8 @@ serialInclude([
 	'MyTriangle.js',
 	'MySubmarine.js',
 	'MyTrapezoid.js',
+	'MyTorpedo.js',
+	'MyTarget.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);

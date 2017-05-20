@@ -38,7 +38,11 @@ LightingScene.prototype.init = function(application) {
 	this.clock = new MyClock(this,12,1);
 
 	this.submarine = new MySubmarine(this);
-	
+
+	this.target1 = new MyTarget(this,0.5,0.5);
+	this.target2 = new MyTarget(this,3,8);
+	this.target3 = new MyTarget(this,9,2);
+
 	this.materialDefault = new CGFappearance(this);
 
 	this.windowAppearance = new CGFappearance(this);
@@ -94,10 +98,46 @@ LightingScene.prototype.init = function(application) {
 
     this.currSubmarineAppearance = "Yellow";
 
+	this.dangerAppearance=new CGFappearance(this);
+	this.dangerAppearance.setAmbient(1, 1, 1, 0.2);
+	this.dangerAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.dangerAppearance.setSpecular(1, 1, 1, 0.3);
+	this.dangerAppearance.setShininess(100);
+    this.dangerAppearance.loadTexture("../resources/images/danger.png");
+
+	this.portasAppearance=new CGFappearance(this);
+	this.portasAppearance.setAmbient(1, 1, 1, 0.2);
+	this.portasAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.portasAppearance.setSpecular(1, 1, 1, 0.3);
+	this.portasAppearance.setShininess(100);
+    this.portasAppearance.loadTexture("../resources/images/Portas.jpg");
+
+	this.targetsAppearances = [this.materialDefault, this.dangerAppearance, this.portasAppearance];
+    this.targetsAppearanceList = {};
+    this.targetsAppearanceList["Default"] = 0;
+    this.targetsAppearanceList["Danger"] = 1;
+    this.targetsAppearanceList["Portas"] = 2;
+
+    this.currTargetAppearance = "Danger";
+
+	
+    // Targets
+	this.targets = [this.target1,this.target2,this.target3];
+    this.targetsList = {};
+    this.targetsList["1"] = 0;
+    this.targetsList["2"] = 1;
+    this.targetsList["3"] = 2;
+
+    this.currTargets = "2";
+
 	this.setUpdatePeriod(1000 / 60);
+	this.ligth0=true;
 	this.ligth1=true; 
-    this.ligth2=false;
-	this.lightsVec = new Array(2);
+    this.ligth2=true;
+    this.ligth3=false;
+	this.ligth4=false; 
+   
+	this.lightsVec = new Array(5);
     this.enableClock = true;
     //this.speed=3;
 };
@@ -119,6 +159,12 @@ LightingScene.prototype.initLights = function() {
 	this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
 	this.lights[2].setVisible(true);
 	
+	this.lights[3].setPosition(3, 2, 12, 1);
+	this.lights[3].setVisible(true);
+
+	this.lights[4].setPosition(12, 2, 10, 1);
+	this.lights[4].setVisible(true);
+
 	this.lights[0].setAmbient(0, 0, 0, 1);
 	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
@@ -131,16 +177,31 @@ LightingScene.prototype.initLights = function() {
 
 	this.lights[2].setAmbient(0, 0, 0, 1);
 	this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[2].setSpecular(1.0, 1.0, 1.0, 1.0);
 	this.lights[2].enable();
-	this.lights[2].setConstantAttenuation(0.0);
-	this.lights[2].setLinearAttenuation(1.0);
-	this.lights[2].setQuadraticAttenuation(0.0);
+
+	this.lights[3].setAmbient(0, 0, 1, 1);
+	this.lights[3].setDiffuse(0, 0, 1.0, 1.0);
+	this.lights[3].setSpecular(0, 0, 1.0, 1.0);
+	this.lights[3].setLinearAttenuation(1);
+    this.lights[3].setConstantAttenuation(0);
+	this.lights[3].enable();
+
+	this.lights[4].setAmbient(0, 1, 0, 1);
+	this.lights[4].setDiffuse(0, 1.0, 0, 1.0);
+	this.lights[4].setSpecular(0, 1.0, 0, 1.0);
+	this.lights[4].setConstantAttenuation(0);
+    this.lights[4].setQuadraticAttenuation(0.2);
+	this.lights[4].enable();
+
 };
 
 LightingScene.prototype.updateLights = function() {
-	this.lightsVec[0] = true;
+	this.lightsVec[0] = this.ligth0;
 	this.lightsVec[1] = this.ligth1;
 	this.lightsVec[2] = this.ligth2;
+	this.lightsVec[3] = this.ligth3;
+	this.lightsVec[4] = this.ligth4;
 	
 	for(i=0; i < this.lights.length; i++){
 		this.lights[i].update();
@@ -216,6 +277,27 @@ LightingScene.prototype.display = function() {
 		this.submarine.display();
 	this.popMatrix();
 
+    // Targets
+    
+
+	this.pushMatrix();
+		this.targetsAppearances[this.targetsAppearanceList[this.currTargetAppearance]].apply();
+
+		if(this.currTargets == 1 && this.targets[0] != null){
+			this.targets[0].display();
+		}
+		else if(this.currTargets == 2 && this.targets[1] != null){
+				this.targets[1].display();
+				this.targets[0].display()
+		}
+		else if(this.currTargets == 3 && this.targets[2] != null){
+					this.targets[0].display()
+					this.targets[1].display()
+					this.targets[2].display();
+				}
+					
+	this.popMatrix();
+
 	// ---- END Primitive drawing section
 };
 
@@ -229,9 +311,9 @@ LightingScene.prototype.update = function(currTime) {
     this.submarine.updatePosition(this.time);
 };
 
-LightingScene.prototype.doSomething = function ()
+LightingScene.prototype.resetTargets = function ()
 { 
-	console.log("Doing something..."); 
+	this.targets = [this.target1,this.target2,this.target3];
 };
 
 LightingScene.prototype.doClock = function ()
@@ -240,17 +322,34 @@ LightingScene.prototype.doClock = function ()
 };
 
 LightingScene.prototype.subRotate = function(angle){
-	console.log("rotating");
     this.submarine.rotate(angle);
 };
 
 LightingScene.prototype.increaseVelocity = function(){
-    console.log("increaseVelocity");
     this.submarine.increaseVelocity();
 };
 
 
 LightingScene.prototype.decreaseVelocity = function(){
-    console.log("decreaseVelocity");
     this.submarine.decreaseVelocity();
 };
+
+LightingScene.prototype.setInclination = function (deltaInclination){
+    this.submarine.setInclination(deltaInclination);
+}
+
+LightingScene.prototype.setPeriscopeHeight = function(deltaHeight) {
+    this.submarine.setPeriscopeHeight(deltaHeight);
+}
+
+LightingScene.prototype.activateTorpedo = function(){
+	if(this.targets.length > 0){
+		this.submarine.lockTarget(this.targets[0].getPos());
+    	this.submarine.activateTorpedo(true);
+    }
+}
+
+LightingScene.prototype.destroy = function(){
+	this.targets.shift();
+	this.submarine.destroy();
+}

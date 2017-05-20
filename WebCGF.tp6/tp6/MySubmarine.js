@@ -1,10 +1,18 @@
-
 function MySubmarine(scene) {
 
     CGFobject.call(this, scene);
+
     this.angle = Math.PI;
+
     this.heliceAngle = 0;
     this.heliceRPS = 1;
+
+	this.rudderAngle = 0;
+	this.inclination = 0;
+
+	this.periscopeHeight = 0.7;
+	this.periscopeMaxHeigth = 1;
+	this.periscopeMinHeigth = 0.2;
 
     this.x = 8;
     this.y = 2;
@@ -15,6 +23,7 @@ function MySubmarine(scene) {
     this.speed = 0;
     this.maxSpeed = 5;
 
+    this.torpedoActivated;
 
     this.mainCylinder = new MyCylinder(scene,20,20);
     this.frontSemisphere = new MyLamp(scene,20,20);
@@ -33,6 +42,7 @@ function MySubmarine(scene) {
     this.frontTrapezoid = new MyTrapezoid(scene);
     this.horizontalTrapezoid = new MyTrapezoid(scene);
     this.verticalTrapezoid = new MyTrapezoid(scene);
+    this.torpedo = new MyTorpedo(scene);
 };
 
 MySubmarine.prototype = Object.create(CGFobject.prototype);
@@ -41,8 +51,10 @@ MySubmarine.prototype.display = function() {
     
 	// Display Movement as 1
     this.scene.pushMatrix();
+    
     this.scene.translate(this.x, this.y, this.z);
     this.scene.rotate(this.angle, 0, 1, 0);
+    this.scene.rotate(-this.inclination,1,0,0);
 
     // Main Cylinder
     this.scene.pushMatrix();
@@ -78,7 +90,7 @@ MySubmarine.prototype.display = function() {
 
 	// Periscope
 	this.scene.pushMatrix();
-        this.scene.translate(1,3.7,1-0.7);
+        this.scene.translate(1,2.8+this.periscopeHeight,1-0.7);
         this.scene.rotate(Math.PI,0,1,1);
         this.scene.scale(0.1,0.1,1);
 		this.periscope.display();
@@ -86,7 +98,7 @@ MySubmarine.prototype.display = function() {
 
 	// Top Periscope
 	this.scene.pushMatrix();
-        this.scene.translate(1,4.6,1-0.75);
+        this.scene.translate(1,3.7+this.periscopeHeight,1-0.8);
         this.scene.rotate(Math.PI,0,0,1);
         this.scene.scale(0.1,0.1,0.3);
 		this.topPeriscope.display();
@@ -94,7 +106,7 @@ MySubmarine.prototype.display = function() {
 
 	// Top Cylinder Base
 	this.scene.pushMatrix();
-		this.scene.translate(1,3.8,1-1);
+		this.scene.translate(1,3.7,1-1);
         this.scene.rotate(Math.PI,0,1,-1);
         this.scene.scale(0.73,0.57,1);
 		this.topCylinderBase.display();
@@ -102,7 +114,7 @@ MySubmarine.prototype.display = function() {
 
 	// Top Periscope Base
 	this.scene.pushMatrix();
-		this.scene.translate(1,4.6,1-0.5);
+		this.scene.translate(1,3.8+this.periscopeHeight,1-0.5);
         this.scene.rotate(Math.PI,0,1,0);
         this.scene.scale(0.1,0.1,0.3);
 		this.topPeriscopeBase.display();
@@ -156,25 +168,28 @@ MySubmarine.prototype.display = function() {
 		this.secondPropellerParallelepiped.display();
 	this.scene.popMatrix();
 
-    // Front Trapezoid
+    // Front Trapezoid // Leme Frente
 	this.scene.pushMatrix();
 		this.scene.translate(1,3.2,1-1);
 		this.scene.rotate(Math.PI/2,0,1,0);
+		this.scene.rotate(-this.inclination,0,0,1);
 		this.scene.scale(2,2,1.42*2);
 		this.frontTrapezoid.display();
 	this.scene.popMatrix();
 
-	// Horizontal Trapezoid
+	// Horizontal Trapezoid // Leme Trás
 	this.scene.pushMatrix();
 		this.scene.translate(1,2,1-4);
 		this.scene.rotate(-Math.PI/2,0,1,0);
+		this.scene.rotate(this.inclination,0,0,1);
 		this.scene.scale(2,2,2.34*1.75);
 		this.horizontalTrapezoid.display();
 	this.scene.popMatrix();
 
-	// Vertical Trapezoid
+	// Vertical Trapezoid // Leme Trás Vertical
 	this.scene.pushMatrix();
 		this.scene.translate(1,2,1-4);
+		this.scene.rotate(this.rudderAngle, 0, 1, 0);
 		this.scene.rotate(-Math.PI/2,1,0,0);
 		this.scene.rotate(-Math.PI/2,0,0,1);
 		this.scene.scale(2,2,2.34*1.75);
@@ -182,10 +197,29 @@ MySubmarine.prototype.display = function() {
 	this.scene.popMatrix();
 
 this.scene.popMatrix();
+
+	// Torpedo
+	if(this.torpedoActivated)
+		this.torpedo.display();
+
 };
 
 MySubmarine.prototype.rotate = function(angle){
-    this.angle += angle * Math.PI / 180.0;
+    this.angle += angle * this.speed * 0.8 * Math.PI / 180.0;
+	
+
+    if(angle < 0){
+    	this.rudderAngle += 0.1;
+    	if(this.rudderAngle > 0.7)
+    		this.rudderAngle = 0.7;
+    }
+    	
+    else{
+    	this.rudderAngle -= 0.1;
+    	if(this.rudderAngle < -0.7)
+    		this.rudderAngle = -0.7;
+    	}
+
 }
 
 MySubmarine.prototype.decreaseVelocity = function(){
@@ -206,6 +240,29 @@ MySubmarine.prototype.increaseVelocity = function(){
     }
 }
 
+
+MySubmarine.prototype.setInclination = function(deltaInclination){
+    this.inclination += deltaInclination;
+
+    if (this.inclination > Math.PI/2){
+        this.inclination = Math.PI/2;
+    }
+    if (this.inclination < -Math.PI/2){
+        this.inclination = -Math.PI/2;
+    }
+
+}
+
+MySubmarine.prototype.setPeriscopeHeight = function(deltaHeight) {
+    this.periscopeHeight += deltaHeight;
+    
+    if (this.periscopeHeight > this.periscopeMaxHeigth) {
+        this.periscopeHeight = this.periscopeMaxHeigth;
+    } else if (this.periscopeHeight < this.periscopeMinHeigth) {
+        this.periscopeHeight = this.periscopeMinHeigth;
+    }
+}
+
 MySubmarine.prototype.setSpeed = function(speed){
 	this.speed = speed;
 }
@@ -216,16 +273,50 @@ MySubmarine.prototype.updatePosition = function(t){
 	// Speed Parameters
     this.vx = this.speed * Math.cos(this.angle - Math.PI/2);
     this.vz = this.speed * Math.sin(this.angle + Math.PI/2);
+    this.vy = this.speed * Math.sin(this.inclination);
 
     //Position
     this.x += this.vx * this.time;
     this.z += this.vz * this.time;
+    this.y += this.vy * this.time;
+
 
     // Helices
-    
 	this.heliceRPS = 2 * this.speed;
     this.heliceAngle = this.heliceAngle + t * 0.36 * this.heliceRPS;
-	
-	console.log(this.heliceAngle);
 
+
+	// Vertical Rudder
+
+	if (this.rudderAngle < 0) {
+        this.rudderAngle += 0.0001 * t;
+    	if (this.rudderAngle > 0)
+            this.rudderAngle = 0;
+    } else if (this.rudderAngle > 0) {
+        this.rudderAngle -= 0.0001 * t;
+        if (this.rudderAngle < 0)
+            this.rudderAngle = 0;
+    }
+
+    // Torpedo
+    if(this.torpedoActivated){
+    	this.torpedo.updatePosition(t);
+    }
+}
+
+MySubmarine.prototype.activateTorpedo = function(bool){
+    this.torpedoActivated = bool;
+	if(this.torpedoActivated){
+		this.torpedo.setPos(this.angle,this.inclination,this.x,this.y,this.z);
+	}
+    	
+}
+
+MySubmarine.prototype.lockTarget = function(targetPos){
+    this.torpedo.lockTarget(targetPos);
+    console.log("Locked")
+}
+
+MySubmarine.prototype.destroy = function(){
+	this.torpedo = new MyTorpedo(this.scene);
 }
