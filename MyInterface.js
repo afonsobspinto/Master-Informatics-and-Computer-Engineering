@@ -30,21 +30,25 @@ MyInterface.prototype.init = function(application) {
 	// the identifier 'doSomething' must be a function declared as part of that object (i.e. a member of the scene class)
 	// e.g. LightingScene.prototype.doSomething = function () { console.log("Doing something..."); }; 
 
-	this.gui.add(this.scene, 'doSomething');
+	
 	this.gui.add(this.scene, 'doClock');	
 
 	// add a group of controls (and open/expand by defult)
 	
 	var group=this.gui.addFolder("Ligths");
-	var submarineTextures = this.gui.addFolder("Choose Textures");
+	var textures = this.gui.addFolder("Choose Textures");
 	var targetsNumber = this.gui.addFolder("How many targets?");
 	group.open();
 
 	// add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
 	// e.g. this.option1=true; this.option2=false;
 	
+	group.add(this.scene, 'ligth0');
 	group.add(this.scene, 'ligth1');
 	group.add(this.scene, 'ligth2');
+	group.add(this.scene, 'ligth3');
+	group.add(this.scene, 'ligth4');
+
 
 	// add a slider
 	// must be a numeric variable of the scene, initialized in scene.init e.g.
@@ -53,9 +57,12 @@ MyInterface.prototype.init = function(application) {
 	
 	//this.gui.add(this.scene, 'speed', -5, 5);
 
-    submarineTextures.add(this.scene, 'currSubmarineAppearance',Object.keys(this.scene.submarineAppearanceList) );
+    textures.add(this.scene, 'currSubmarineAppearance',Object.keys(this.scene.submarineAppearanceList) );
+	textures.add(this.scene, 'currTargetAppearance',Object.keys(this.scene.targetsAppearanceList) );
+	
 	targetsNumber.add(this.scene, 'currTargets',Object.keys(this.scene.targetsList));
-
+	this.gui.add(this.scene, 'resetTargets');
+	
 	return true;
 };
 

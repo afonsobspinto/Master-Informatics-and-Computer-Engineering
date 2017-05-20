@@ -280,6 +280,7 @@ MySubmarine.prototype.updatePosition = function(t){
     this.z += this.vz * this.time;
     this.y += this.vy * this.time;
 
+
     // Helices
 	this.heliceRPS = 2 * this.speed;
     this.heliceAngle = this.heliceAngle + t * 0.36 * this.heliceRPS;
