@@ -238,6 +238,7 @@ void LoadingResources::loadRoads() {
 
 		nroads++;
 	}
+	superMarketChain->roadNames->erase("");
 }
 
 void LoadingResources::loadGeom() {

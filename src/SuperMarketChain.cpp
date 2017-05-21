@@ -511,24 +511,19 @@ int SuperMarketChain::editDistance(string pattern, string text) {
 }
 
 void SuperMarketChain::exactSearch(string road1, string road2) {
-	/*for(unsigned int i=0;i<this->getTransitions()->size();i++){
-		unsigned long long rId= this->getTransitions()->at(i)->getRoadId();
-		if(this->roads->at(rId)->getName()==road1){
-			set<string> s;
-			cout << rId << ": ";
-			//cout << this->roads->at(this->getTransitions()->at(i)->getSrcId())->getName();
-			long long int bah = res->getRids().find(this->getTransitions()->at(i)->getSrcId())->second;
-			cout << this->roads->at(bah)->getName() << endl;  // retorna um id que nï¿½o existe!
-			//s.insert();
-		}
-	}*/
 
-	// Abandonar cï¿½digo acima. Vamos com grafos!
 	vector<Vertex<Place *> * > vs = this->getGraph()->getVertexSet();
 	for(unsigned int i=0;i<vs.size();i++){
 		for(unsigned int j=0;j<vs.at(i)->getAdj().size();j++){
-			cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :(
-
+			//cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :( -- no más! :D
+			if(vs.at(i)->getAdj().at(j).getRoadName()==road1){
+				for(unsigned k=0;k<vs.at(i)->getAdj().at(j).getDest()->getAdj().size();k++){
+					cout << vs.at(i)->getAdj().at(j).getDest()->getAdj().at(k).getRoadName() << endl;/*
+					if(vs.at(i)->getAdj().at(j).getDest()->getAdj().at(k).getRoadName()==road2){
+						cout << "Cruzamento Encontrado!!!!!!!!\n";
+					}*/
+				}
+			}
 		}
 	}
 
@@ -558,11 +553,13 @@ string SuperMarketChain::getApprRoad(string r) {
 		char ch;
 		cin >> ch;
 		if(ch=='n' || ch == 'N'){
+			getline(cin, r);
 			return getApprRoad(r);
 		}else{
-			return scores[ch-'0'].second;
+			return scores[ch-'0'-1].second;
 		}
 	}
+	cin.ignore(100, '\n');
 
 }
 

@@ -142,6 +142,14 @@ public:
 	friend class Graph<T>;
 	friend class Vertex<T>;
 	string getRoadName();
+
+	Vertex<T>* getDest() const {
+		return dest;
+	}
+
+	Vertex<T>* getSource() const {
+		return source;
+	}
 };
 
 template <class T>
