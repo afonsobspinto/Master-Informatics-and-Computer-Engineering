@@ -530,7 +530,7 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 					cout << roadsTouched.at(k).getRoadName() << endl;
 
 					if(roadsTouched.at(k).getRoadName()==road2){
-						cout << "Cruzamento Encontrado!!!!!!!!\n";
+						cout << "Cruzamento Encontrado!!!!!!!!"<< tempEndOfRoad->getInfo()->getLabel() << "\n";
 					}
 				}
 			}
@@ -564,13 +564,13 @@ string SuperMarketChain::getApprRoad(string r) {
 		char ch;
 		cin >> ch;
 		if(ch=='n' || ch == 'N'){
+			cin.ignore(100, '\n');
 			getline(cin, r);
 			return getApprRoad(r);
 		}else{
 			return scores[ch-'0'-1].second;
 		}
 	}
-	cin.ignore(100, '\n');
 
 }
 
