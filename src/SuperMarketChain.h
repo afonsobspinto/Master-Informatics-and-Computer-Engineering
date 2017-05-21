@@ -48,6 +48,13 @@ private:
 
 public:
 	SuperMarketChain();
+
+	//std::map<unsigned long long int, string> id2name;
+	std::set<string>* roadNames;
+
+
+
+	int editDistance(string pattern, string text);
 	Graph<Place*>* getGraph() const;
 	std::unordered_map<int, Place*>* getPlaces();
 	std::unordered_map<long long int, Street*>* getRoads();
@@ -68,7 +75,10 @@ public:
 	const std::vector<Place*>& getUnreachableClients();
 	bool checkSet(set<Transition*> set, Transition *t);
 
+	string getApprRoad(string r);
+
 	void exactSearch(string road1, string road2);
+	void approxSearch(string road1, string road2);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

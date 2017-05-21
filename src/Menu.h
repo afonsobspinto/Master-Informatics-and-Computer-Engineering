@@ -62,6 +62,19 @@ void searchSupermarkets(SuperMarketChain S){
 	getchar();
 }
 
+
+void searchApproxSupermarkets(SuperMarketChain S){
+	string r1, r2;
+	cout << "Insert the first road's name: ";
+	getline(cin, r1);
+	cout << "Insert the second road's name: ";
+	getline(cin, r2);
+
+	S.approxSearch(r1, r2);
+
+	getchar();
+}
+
 bool mainOptions() {
 	int option;
 	SuperMarketChain S = SuperMarketChain();
@@ -112,7 +125,7 @@ bool mainOptions() {
 			searchSupermarkets(S);
 			break;}
 		case 9:{
-			//searchAproxSupermarkets(S);
+			searchApproxSupermarkets(S);
 			break;}
 		case 10:{
 			return true;}

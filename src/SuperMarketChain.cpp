@@ -10,6 +10,8 @@
 #include "graphviewer.h"
 #include "LoadingResources.h"
 #include <sstream>
+#include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -22,6 +24,8 @@ SuperMarketChain::SuperMarketChain() {
 	places = new unordered_map<int, Place*>;
 	roads = new unordered_map<long long int, Street*>;
 	allNodes = new unordered_map<int, Place*>;
+	roadNames = new set<string>;
+	//id2name = new std::map<unsigned long long int, string>;
 
 	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
 
@@ -481,6 +485,31 @@ bool SuperMarketChain::checkSet(set<Transition*> set, Transition* t) {
 	return false;
 }
 
+int SuperMarketChain::editDistance(string pattern, string text) {
+
+	int n=text.length();
+	vector<int> d(n+1);
+	int old,neww;
+	for (int j=0; j<=n; j++)
+		d[j]=j;
+	int m=pattern.length();
+	for (int i=1; i<=m; i++) {
+		old = d[0];
+		d[0]=i;
+		for (int j=1; j<=n; j++) {
+			if (pattern[i-1]==text[j-1]) neww = old;
+			else {
+				neww = min(old,d[j]);
+				neww = min(neww,d[j-1]);
+				neww = neww +1;
+			}
+			old = d[j];
+			d[j] = neww;
+		}
+	}
+	return d[n];
+}
+
 void SuperMarketChain::exactSearch(string road1, string road2) {
 	/*for(unsigned int i=0;i<this->getTransitions()->size();i++){
 		unsigned long long rId= this->getTransitions()->at(i)->getRoadId();
@@ -498,9 +527,48 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 	vector<Vertex<Place *> * > vs = this->getGraph()->getVertexSet();
 	for(unsigned int i=0;i<vs.size();i++){
 		for(unsigned int j=0;j<vs.at(i)->getAdj().size();j++){
-			cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :(
+			//cout << vs.at(i)->getAdj().at(j). << endl; // imprime string vazia :(
+
 		}
 	}
 
+	cout << flush;
+}
+
+bool minSort (pair<int, string> i,pair<int, string> j){
+	if (i.first < j.first)
+		return true;
+	return false;
+}
+
+string SuperMarketChain::getApprRoad(string r) {
+	vector<pair<int, string>> scores;
+	for(auto s : *roadNames){
+		scores.push_back(make_pair(editDistance(r, s), s));
+	}
+	sort(scores.begin(), scores.end(), minSort);
+	if(scores[0].first==0){
+		return r;
+	}else{
+		cout << "Road " << r << " was not found! Perhaps you meant..." << endl;
+		for(unsigned i=0;i<5;i++){
+			cout << i+1 << ". " << scores[i].second << endl;
+		}
+		cout << "Insert n to make a new search." << endl;
+		char ch;
+		cin >> ch;
+		if(ch=='n' || ch == 'N'){
+			return getApprRoad(r);
+		}else{
+			return scores[ch-'0'].second;
+		}
+	}
+
+}
+
+void SuperMarketChain::approxSearch(string road1, string road2) {
+	road1=getApprRoad(road1);
+	road2=getApprRoad(road2);
+	exactSearch(road1, road2);
 	cout << flush;
 }

@@ -234,6 +234,7 @@ void LoadingResources::loadRoads() {
 		Street* street = new Street(id,name,is2way);
 
 		superMarketChain->getRoads()->insert(make_pair(id, street));
+		superMarketChain->roadNames->insert(name);
 
 		nroads++;
 	}
