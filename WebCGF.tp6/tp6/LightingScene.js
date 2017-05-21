@@ -34,14 +34,9 @@ LightingScene.prototype.init = function(application) {
 
 	this.cylinder = new MyCylinder(this, 8, 20);
 	this.floor = new MyQuad(this, 0, 1, 0, 1);
-
 	this.clock = new MyClock(this,12,1);
-
 	this.submarine = new MySubmarine(this);
-
-	this.target1 = new MyTarget(this,0.5,0.5);
-	this.target2 = new MyTarget(this,3,8);
-	this.target3 = new MyTarget(this,9,2);
+	this.explosion = null;
 
 	this.materialDefault = new CGFappearance(this);
 
@@ -60,6 +55,13 @@ LightingScene.prototype.init = function(application) {
 	this.clockAppearance.setSpecular(0.2, 0.2, 0.2, 1);
 	this.clockAppearance.setShininess(10);
 	this.clockAppearance.setDiffuse(0.8, 0.8, 0.8, 1);
+
+	this.woodAppearance = new CGFappearance(this);
+	this.woodAppearance.loadTexture("../resources/images/wood.png");
+	this.woodAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+	this.woodAppearance.setSpecular(0.2, 0.2, 0.2, 1);
+	this.woodAppearance.setShininess(10);
+	this.woodAppearance.setDiffuse(0.8, 0.8, 0.8, 1);
 
 	this.oceanAppearance=new CGFappearance(this);
 	this.oceanAppearance.setAmbient(1, 1, 1, 0.2);
@@ -89,12 +91,20 @@ LightingScene.prototype.init = function(application) {
 	this.waterDropsAppearance.setShininess(100);
     this.waterDropsAppearance.loadTexture("../resources/images/waterDrops.png");
 
+	this.portugalAppearance=new CGFappearance(this);
+	this.portugalAppearance.setAmbient(1, 1, 1, 0.2);
+	this.portugalAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.portugalAppearance.setSpecular(1, 1, 1, 0.3);
+	this.portugalAppearance.setShininess(100);
+    this.portugalAppearance.loadTexture("../resources/images/portugal.png");
+
 	this.submarineAppearances = [this.materialDefault,this.yellowAppearance,this.redWoodAppearance,this.waterDropsAppearance];
     this.submarineAppearanceList = {};
     this.submarineAppearanceList["Default"] = 0;
     this.submarineAppearanceList["Yellow"] = 1;
     this.submarineAppearanceList["Red Wood"] = 2;
     this.submarineAppearanceList["Water Drops"] = 3;
+    this.submarineAppearanceList["Portugal"] = 4;
 
     this.currSubmarineAppearance = "Yellow";
 
@@ -105,30 +115,40 @@ LightingScene.prototype.init = function(application) {
 	this.dangerAppearance.setShininess(100);
     this.dangerAppearance.loadTexture("../resources/images/danger.png");
 
-	this.portasAppearance=new CGFappearance(this);
-	this.portasAppearance.setAmbient(1, 1, 1, 0.2);
-	this.portasAppearance.setDiffuse(1, 1, 1, 0.2);
-	this.portasAppearance.setSpecular(1, 1, 1, 0.3);
-	this.portasAppearance.setShininess(100);
-    this.portasAppearance.loadTexture("../resources/images/Portas.jpg");
+	this.trumpAppearance=new CGFappearance(this);
+	this.trumpAppearance.setAmbient(1, 1, 1, 0.2);
+	this.trumpAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.trumpAppearance.setSpecular(1, 1, 1, 0.3);
+	this.trumpAppearance.setShininess(100);
+    this.trumpAppearance.loadTexture("../resources/images/trump.png");
 
-	this.targetsAppearances = [this.materialDefault, this.dangerAppearance, this.portasAppearance];
+    this.explosionAppearance=new CGFappearance(this);
+	this.explosionAppearance.setAmbient(1, 1, 1, 0.2);
+	this.explosionAppearance.setDiffuse(1, 1, 1, 0.2);
+	this.explosionAppearance.setSpecular(1, 1, 1, 0.3);
+	this.explosionAppearance.setShininess(100);
+    this.explosionAppearance.loadTexture("../resources/images/explosion.png");
+
+	this.targetsAppearances = [this.materialDefault, this.dangerAppearance, this.trumpAppearance];
     this.targetsAppearanceList = {};
     this.targetsAppearanceList["Default"] = 0;
     this.targetsAppearanceList["Danger"] = 1;
-    this.targetsAppearanceList["Portas"] = 2;
+    this.targetsAppearanceList["Trump"] = 2;
 
     this.currTargetAppearance = "Danger";
 
 	
     // Targets
-	this.targets = [this.target1,this.target2,this.target3];
+	this.targets = [];
     this.targetsList = {};
     this.targetsList["1"] = 0;
     this.targetsList["2"] = 1;
     this.targetsList["3"] = 2;
 
     this.currTargets = "2";
+    this.currTargetsOld = parseInt(this.currTargets);
+    this.resetTargets();
+
 
 	this.setUpdatePeriod(1000 / 60);
 	this.ligth0=true;
@@ -246,7 +266,6 @@ LightingScene.prototype.display = function() {
 		this.translate(7.5, 0, 7.5);
 		this.rotate(-90 * degToRad, 1, 0, 0);
 		this.scale(15, 15, 0.2);
-		//this.color1.apply();
 		this.oceanAppearance.apply();
 		this.floor.display();
 	this.popMatrix();
@@ -267,36 +286,44 @@ LightingScene.prototype.display = function() {
     this.translate(8,0,-0.05);
 	this.rotate(90 * degToRad, -1, 0, 0);
 	this.scale(0.1,0.1,4.35);
+	this.woodAppearance.apply();
     this.cylinder.display();
     this.popMatrix();
 
 	// Submarine
 
 	this.pushMatrix();
-		this.submarineAppearances[this.submarineAppearanceList[this.currSubmarineAppearance]].apply();
-		this.submarine.display();
+		if(this.currSubmarineAppearance == "Portugal"){
+			this.submarine.portugal(true);
+			this.submarine.display();
+		}
+		else{
+			this.submarine.portugal(false);
+			this.submarineAppearances[this.submarineAppearanceList[this.currSubmarineAppearance]].apply();
+			this.submarine.display();
+		}
 	this.popMatrix();
 
     // Targets
-    
 
-	this.pushMatrix();
-		this.targetsAppearances[this.targetsAppearanceList[this.currTargetAppearance]].apply();
-
-		if(this.currTargets == 1 && this.targets[0] != null){
-			this.targets[0].display();
+	for(var i = 0; i < this.targets.length; i++){
+		if(this.targets[i] != null){
+			this.pushMatrix();
+			this.targetsAppearances[this.targetsAppearanceList[this.currTargetAppearance]].apply();
+			this.targets[i].display();
+			this.popMatrix();
 		}
-		else if(this.currTargets == 2 && this.targets[1] != null){
-				this.targets[1].display();
-				this.targets[0].display()
-		}
-		else if(this.currTargets == 3 && this.targets[2] != null){
-					this.targets[0].display()
-					this.targets[1].display()
-					this.targets[2].display();
-				}
+	}
 					
-	this.popMatrix();
+	if(this.explosion != null){
+		this.pushMatrix();
+		this.explosionAppearance.apply();
+			this.explosion.display();
+			if(this.explosion.getEnd())
+				this.explosion =  null;
+		this.popMatrix();
+	}
+
 
 	// ---- END Primitive drawing section
 };
@@ -309,11 +336,22 @@ LightingScene.prototype.update = function(currTime) {
     this.time = currTime - this.lastTime;
     this.lastTime = currTime;
     this.submarine.updatePosition(this.time);
+    if(this.explosion != null)
+    	this.explosion.update(currTime);
+
+    if(parseInt(this.currTargets)!=this.currTargetsOld){
+    	console.log("update");
+    	this.currTargetsOld = parseInt(this.currTargets);
+    	this.resetTargets();
+
+    }
 };
 
 LightingScene.prototype.resetTargets = function ()
 { 
-	this.targets = [this.target1,this.target2,this.target3];
+	this.targets = [];
+	for(var i = 0; i < parseInt(this.currTargets); i++)
+		this.targets.push(new MyTarget(this, Math.floor((Math.random() * 10) + 1), Math.floor((Math.random() * 10) + 1)));
 };
 
 LightingScene.prototype.doClock = function ()
@@ -343,13 +381,15 @@ LightingScene.prototype.setPeriscopeHeight = function(deltaHeight) {
 }
 
 LightingScene.prototype.activateTorpedo = function(){
-	if(this.targets.length > 0){
+	if(this.targets.length> 0){
 		this.submarine.lockTarget(this.targets[0].getPos());
     	this.submarine.activateTorpedo(true);
     }
 }
 
 LightingScene.prototype.destroy = function(){
+	
+	this.explosion = new MyExplosion(this, this.targets[0]);
 	this.targets.shift();
 	this.submarine.destroy();
 }

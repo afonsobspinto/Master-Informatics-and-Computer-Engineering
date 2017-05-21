@@ -28,14 +28,12 @@ MyTorpedo.prototype.constructor=MyTorpedo;
 MyTorpedo.prototype.display = function(){
     
     this.scene.pushMatrix();
-    
 
     this.scene.translate(this.x, this.y, this.z);
-    this.scene.rotate(this.angle, 0, 1, 0); 
-    this.scene.rotate(this.inclination, 1, 0, 0);
+    this.scene.rotate(this.inclination, 0, 1, 0);
+    this.scene.rotate(-this.angle, 1, 0, 0);
 
      
-
     // Cylinder
     this.scene.pushMatrix();
         this.scene.scale(0.2, 0.2, 1);
@@ -116,15 +114,8 @@ MyTorpedo.prototype.updatePosition = function (time){
             3*t*t* (1-t) * this.P3[2] + 
             t*t*t* this.P4[2];
 
-        
-        this.angle += Math.acos( (oldx * this.x + oldz * this.z) / 
-                ((Math.sqrt(Math.pow(oldx,2) + Math.pow(oldz,2))) * 
-                (Math.sqrt(Math.pow(this.x,2) + Math.pow(this.z,2)) )));
-
-
-        this.inclination += Math.acos( (oldy * this.y + oldz * this.z) / 
-                ((Math.sqrt(Math.pow(oldy,2) + Math.pow(oldz,2))) * 
-                (Math.sqrt(Math.pow(this.y,2) + Math.pow(this.z,2)) )));
+        this.inclination =  Math.atan((this.x-oldx) / (this.z-oldz)) + ((this.z-oldz) < 0 ? Math.PI : 0);
+        this.angle = Math.atan((this.y-oldy) / Math.sqrt(Math.pow((this.x-oldx),2) + Math.pow((this.y-oldy),2) + Math.pow((this.z-oldz),2)));
 
         this.t += (time/1000)/this.distance;
     }

@@ -66,13 +66,15 @@ MyInterface.prototype.init = function(application) {
 	return true;
 };
 
+
+
 /**
  * processKeyboard
  * @param event {Event}
  */
 MyInterface.prototype.processKeyboard = function(event) {
 	// call CGFinterface default code (omit if you want to override)
-	CGFinterface.prototype.processKeyboard.call(this,event);
+	//CGFinterface.prototype.processKeyboard.call();
 	
 	// Check key codes e.g. here: http://www.asciitable.com/
 	// or use String.fromCharCode(event.keyCode) to compare chars
