@@ -105,7 +105,7 @@ void SuperMarketChain::displayGraph() {
 		else if(kv.second->getLabel()=="supermarket")
 			gv->setVertexColor(kv.first, RED);
 
-		gv->setVertexLabel(kv.first, kv.second->getName());
+		gv->setVertexLabel(kv.first, to_string(kv.second->getID()));
 
 	}
 
@@ -117,7 +117,7 @@ void SuperMarketChain::displayGraph() {
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 
 
-		if(roads->at(i->getRoadId())->getName() == "Rua do Amial" || roads->at(i->getRoadId())->getName() == " Rua do Mestre Guilherme Camarinha")
+		if(roads->at(i->getRoadId())->getName() == "Rua da Arroteia" || roads->at(i->getRoadId())->getName() == "Rua do Mestre Guilherme Camarinha")
 			gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
 	}
 
@@ -523,6 +523,9 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 			if(roadsAtNodeI.at(j).getRoadName()==road1){
 
 				Vertex<Place*>* tempEndOfRoad = roadsAtNodeI.at(j).getDest();
+				if(tempEndOfRoad->getInfo()->getID() == 1011){
+					cout << "\n\n\nRuas Nó 1011: \n";
+
 				vector<Edge<Place *> > roadsTouched =tempEndOfRoad->getAdj();
 
 				for(unsigned k=0;k<roadsTouched.size();k++){
@@ -532,6 +535,7 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 					if(roadsTouched.at(k).getRoadName()==road2){
 						cout << "Cruzamento Encontrado!!!!!!!!\n";
 					}
+				}
 				}
 			}
 		}
