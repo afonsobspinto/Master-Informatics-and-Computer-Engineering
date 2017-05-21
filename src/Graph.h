@@ -52,7 +52,7 @@ public:
 	Vertex(T in);
 	friend class Graph<T>;
 
-	void addEdge(Vertex<T> *dest, double w);
+	void addEdge(Vertex<T> *dest, double w, string roadName);
 	bool removeEdgeTo(Vertex<T> *d);
 
 	T getInfo() const;
@@ -96,8 +96,8 @@ Vertex<T>::Vertex(T in): info(in), visited(false), processing(false), indegree(0
 
 
 template <class T>
-void Vertex<T>::addEdge(Vertex<T> *dest, double w) {
-	Edge<T> edgeD(dest,w);
+void Vertex<T>::addEdge(Vertex<T> *dest, double w, string roadName) {
+	Edge<T> edgeD(dest,w,roadName);
 	adj.push_back(edgeD);
 	edgeD.source=this;
 }
@@ -138,16 +138,14 @@ class Edge {
 	double weight; // Used as the distance
 	string roadName;
 public:
-	Edge(Vertex<T> *d, double w);
+	Edge(Vertex<T> *d, double w, string roadName);
 	friend class Graph<T>;
 	friend class Vertex<T>;
 	string getRoadName();
 };
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w){}
-
-
+Edge<T>::Edge(Vertex<T> *d, double w, string roadName): dest(d), weight(w),roadName(roadName){}
 
 
 
@@ -285,7 +283,7 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 	}
 	if (found!=2) return false;
 	vD->indegree++;
-	vS->addEdge(vD,w);
+	vS->addEdge(vD,w, "No name");
 
 	return true;
 }
@@ -305,7 +303,7 @@ bool Graph<T>::addEdge(Transition *transition) {
 	}
 	if (found!=2) return false;
 	vD->indegree++;
-	vS->addEdge(vD,transition->getWeigth());
+	vS->addEdge(vD,transition->getWeigth(), transition->getRoadName());
 
 	return true;
 }

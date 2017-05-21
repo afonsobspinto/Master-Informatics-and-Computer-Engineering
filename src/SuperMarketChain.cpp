@@ -361,7 +361,7 @@ void SuperMarketChain::displayRoutes() {
 				if(k != truck->getRoute().size()-1){
 					gv->addEdge(idTransition++, node->getID(), truck->getRoute().at(k+1)->getID(), EdgeType::UNDIRECTED);
 					gv->setEdgeColor(idTransition, GREEN);
-					Transition* tempt = new Transition(idTransition, node->getID(), truck->getRoute().at(k+1)->getID(), node->getDistance(truck->getRoute().at(k+1)), false );
+					Transition* tempt = new Transition(idTransition, node->getID(), truck->getRoute().at(k+1)->getID(), node->getDistance(truck->getRoute().at(k+1)), false, "No Name" );
 					tempTransitions.insert(tempt);
 				}
 			}
@@ -518,16 +518,16 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 			cout << rId << ": ";
 			//cout << this->roads->at(this->getTransitions()->at(i)->getSrcId())->getName();
 			long long int bah = res->getRids().find(this->getTransitions()->at(i)->getSrcId())->second;
-			cout << this->roads->at(bah)->getName() << endl;  // retorna um id que não existe!
+			cout << this->roads->at(bah)->getName() << endl;  // retorna um id que nï¿½o existe!
 			//s.insert();
 		}
 	}*/
 
-	// Abandonar código acima. Vamos com grafos!
+	// Abandonar cï¿½digo acima. Vamos com grafos!
 	vector<Vertex<Place *> * > vs = this->getGraph()->getVertexSet();
 	for(unsigned int i=0;i<vs.size();i++){
 		for(unsigned int j=0;j<vs.at(i)->getAdj().size();j++){
-			//cout << vs.at(i)->getAdj().at(j). << endl; // imprime string vazia :(
+			cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :(
 
 		}
 	}

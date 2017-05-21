@@ -269,13 +269,13 @@ void LoadingResources::loadGeom() {
 		Transition* transition;
 
 		if(superMarketChain->getRoads()->at(road_id)->is2Way()){
-			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, true);
-			Transition* invTransition = new Transition(road_id, ids.at(node2_id), ids.at(node1_id), distance, true);
+			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, true, superMarketChain->getRoads()->at(road_id)->getName());
+			Transition* invTransition = new Transition(road_id, ids.at(node2_id), ids.at(node1_id), distance, true, superMarketChain->getRoads()->at(road_id)->getName());
 			superMarketChain->getGraph()->addEdge(invTransition);
 
 		}
 		else{
-			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, false);
+			transition = new Transition(road_id, ids.at(node1_id), ids.at(node2_id), distance, false, superMarketChain->getRoads()->at(road_id)->getName());
 		}
 
 		superMarketChain->getGraph()->addEdge(transition);
