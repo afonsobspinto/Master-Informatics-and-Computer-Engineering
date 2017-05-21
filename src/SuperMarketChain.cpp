@@ -116,7 +116,9 @@ void SuperMarketChain::displayGraph() {
 		else
 			gv->addEdge(idTransition++, i->getSrcId(), i->getDestId(), EdgeType::DIRECTED);
 
-		gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
+
+		if(roads->at(i->getRoadId())->getName() == "Rua do Amial" || roads->at(i->getRoadId())->getName() == " Rua do Mestre Guilherme Camarinha")
+			gv->setEdgeLabel(idTransition, roads->at(i->getRoadId())->getName());
 	}
 
 	cin.clear();
@@ -512,22 +514,32 @@ int SuperMarketChain::editDistance(string pattern, string text) {
 
 void SuperMarketChain::exactSearch(string road1, string road2) {
 
-	vector<Vertex<Place *> * > vs = this->getGraph()->getVertexSet();
-	for(unsigned int i=0;i<vs.size();i++){
-		for(unsigned int j=0;j<vs.at(i)->getAdj().size();j++){
-			//cout << vs.at(i)->getAdj().at(j).getRoadName() << endl; // imprime string vazia :( -- no más! :D
-			if(vs.at(i)->getAdj().at(j).getRoadName()==road1){
-				for(unsigned k=0;k<vs.at(i)->getAdj().at(j).getDest()->getAdj().size();k++){
-					cout << vs.at(i)->getAdj().at(j).getDest()->getAdj().at(k).getRoadName() << endl;/*
-					if(vs.at(i)->getAdj().at(j).getDest()->getAdj().at(k).getRoadName()==road2){
+	vector<Vertex<Place *> * > vertexSet = this->getGraph()->getVertexSet();
+	for(unsigned int i=0;i<vertexSet.size();i++){
+
+		vector<Edge<Place *>  > roadsAtNodeI = vertexSet.at(i)->getAdj();
+
+		for(unsigned int j=0;j<roadsAtNodeI.size();j++){
+			if(roadsAtNodeI.at(j).getRoadName()==road1){
+
+				Vertex<Place*>* tempEndOfRoad = roadsAtNodeI.at(j).getDest();
+				vector<Edge<Place *> > roadsTouched =tempEndOfRoad->getAdj();
+
+				for(unsigned k=0;k<roadsTouched.size();k++){
+
+					cout << roadsTouched.at(k).getRoadName() << endl;
+
+					if(roadsTouched.at(k).getRoadName()==road2){
 						cout << "Cruzamento Encontrado!!!!!!!!\n";
-					}*/
+					}
 				}
 			}
 		}
 	}
 
+	cout << "oi"<< endl;
 	cout << flush;
+	return;
 }
 
 bool minSort (pair<int, string> i,pair<int, string> j){
