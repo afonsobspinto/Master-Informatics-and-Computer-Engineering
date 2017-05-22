@@ -534,15 +534,18 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 
 				Vertex<Place*>* tempEndOfRoad = roadsAtNodeI.at(j).getDest();
 
-				vector<Edge<Place *> > roadsTouched =tempEndOfRoad->getAdj();
+				if(tempEndOfRoad->getInfo()->getLabel() == "supermarket"){
 
-				for(unsigned k=0;k<roadsTouched.size();k++){
+					vector<Edge<Place *> > roadsTouched =tempEndOfRoad->getAdj();
 
-					//cout << roadsTouched.at(k).getRoadName() << endl;
+					for(unsigned k=0;k<roadsTouched.size();k++){
 
-					if(roadsTouched.at(k).getRoadName()==road2){
-						cout << "Supermarket found: " << tempEndOfRoad->getInfo()->getName() << "\n";
-						return;
+						//cout << roadsTouched.at(k).getRoadName() << endl;
+
+						if(roadsTouched.at(k).getRoadName()==road2){
+							cout << "Supermarket found: " << tempEndOfRoad->getInfo()->getName() << "\n";
+							return;
+						}
 					}
 				}
 			}
