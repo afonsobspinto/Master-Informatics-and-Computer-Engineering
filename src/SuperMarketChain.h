@@ -52,7 +52,7 @@ public:
 	//std::map<unsigned long long int, string> id2name;
 	std::set<string>* roadNames;
 
-
+	std::set<string>* roadWSNames;
 
 	int editDistance(string pattern, string text);
 	Graph<Place*>* getGraph() const;

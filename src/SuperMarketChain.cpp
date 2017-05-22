@@ -25,7 +25,8 @@ SuperMarketChain::SuperMarketChain() {
 	roads = new unordered_map<long long int, Street*>;
 	allNodes = new unordered_map<int, Place*>;
 	roadNames = new set<string>;
-	//id2name = new std::map<unsigned long long int, string>;
+	roadWSNames = new set<string>;
+
 
 	colors = { "BLUE", "RED", "PINK", "BLACK", "WHITE", "ORANGE", "YELLOW", "GREEN", "CYAN", "GRAY", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA"};
 
@@ -37,6 +38,16 @@ SuperMarketChain::SuperMarketChain() {
 	generateTrucks();
 	calculateRoutes();
 
+
+	vector<Vertex<Place *> * > vertexSet = this->getGraph()->getVertexSet();
+	for(unsigned int i=0;i<vertexSet.size();i++){
+		vector<Edge<Place *>  > roadsAtNodeI = vertexSet.at(i)->getAdj();
+		if(vertexSet.at(i)->getInfo()->getLabel()=="supermarket")
+		for(unsigned int j=0;j<roadsAtNodeI.size();j++){
+			roadWSNames->insert(roadsAtNodeI.at(j).getRoadName());
+		}
+	}
+	roadWSNames->erase("");
 }
 
 unordered_map<int, Place*>* SuperMarketChain::getPlaces() {
@@ -549,8 +560,10 @@ bool minSort (pair<int, string> i,pair<int, string> j){
 }
 
 string SuperMarketChain::getApprRoad(string r) {
+	cout << roadWSNames->size() << endl;
+	cout << roadNames->size() << endl;
 	vector<pair<int, string>> scores;
-	for(auto s : *roadNames){
+	for(auto s : *roadWSNames){
 		scores.push_back(make_pair(editDistance(r, s), s));
 	}
 	sort(scores.begin(), scores.end(), minSort);
