@@ -527,16 +527,17 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 
 				for(unsigned k=0;k<roadsTouched.size();k++){
 
-					cout << roadsTouched.at(k).getRoadName() << endl;
+					//cout << roadsTouched.at(k).getRoadName() << endl;
 
 					if(roadsTouched.at(k).getRoadName()==road2){
-						cout << "Cruzamento Encontrado!!!!!!!!"<< tempEndOfRoad->getInfo()->getName() << "\n";
+						cout << "Supermarket found: " << tempEndOfRoad->getInfo()->getName() << "\n";
+						return;
 					}
 				}
 			}
 		}
 	}
-
+	cout << "No supermarket was found at the designated crossing." << endl;
 	cout << flush;
 	return;
 }
