@@ -573,8 +573,6 @@ string SuperMarketChain::getApprString(string r, bool roads) {
 
 	  using namespace std::chrono;
 
-	  duration<double> time_span = 0;
-
 	  cout << "Data Size: " << roadWSNames->size() << endl;
 
 	  steady_clock::time_point t1 = steady_clock::now();
