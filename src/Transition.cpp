@@ -25,6 +25,7 @@ double Transition::getWeigth() const {
 	return weigth;
 }
 
+
 long long int Transition::getSrcId() const {
 	return srcID;
 }

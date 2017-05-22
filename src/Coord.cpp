@@ -8,6 +8,7 @@
 #include "math.h"
 #include "Coord.h"
 
+
 Coord::Coord(double latitude, double longitude): latitude(latitude), longitude(longitude)
 {}
 

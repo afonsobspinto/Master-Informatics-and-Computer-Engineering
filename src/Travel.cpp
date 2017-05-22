@@ -21,6 +21,7 @@ double Travel::getDistance() const {
 	return distance;
 }
 
+
 const Place* Travel::getEnd() const {
 	return end;
 }

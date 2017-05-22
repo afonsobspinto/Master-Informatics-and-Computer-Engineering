@@ -17,6 +17,7 @@ Supermarket::Supermarket(long long int id, Coord coord, std::string name): Place
 }
 
 
+
 const std::string Supermarket::getName() const{
 	return name;
 }

@@ -13,6 +13,11 @@
 #include <string>
 #include <iostream>
 
+#include <iostream>
+#include <ctime>
+#include <ratio>
+#include <chrono>
+
 using namespace std;
 
 const int SuperMarketChain::heigth = 600;
@@ -565,6 +570,15 @@ bool minSort (pair<int, string> i,pair<int, string> j){
 
 string SuperMarketChain::getApprString(string r, bool roads) {
 
+
+	  using namespace std::chrono;
+
+	  duration<double> time_span = 0;
+
+	  cout << "Data Size: " << roadWSNames->size() << endl;
+
+	  steady_clock::time_point t1 = steady_clock::now();
+
 	vector<pair<int, string>> scores;
 	if(roads){
 
@@ -578,6 +592,13 @@ string SuperMarketChain::getApprString(string r, bool roads) {
 		}
 	}
 	sort(scores.begin(), scores.end(), minSort);
+
+	steady_clock::time_point t2 = steady_clock::now();
+
+	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+
+	std::cout << "It took me " << time_span.count() << " seconds." << endl;
+
 	if(scores[0].first==0){
 		return r;
 	}else{
@@ -609,11 +630,18 @@ void SuperMarketChain::exactSearch(string supermarket) {
 	}
 }
 
+
+
 void SuperMarketChain::approxSearch(string road1, string road2) {
-	road1=getApprString(road1, true);
-	road2=getApprString(road2, true);
-	exactSearch(road1, road2);
-	cout << flush;
+
+
+
+	  road1=getApprString(road1, true);
+	  road2=getApprString(road2, true);
+	  exactSearch(road1, road2);
+	  cout << flush;
+
+
 }
 
 void SuperMarketChain::approxSearch(string supermarket) {

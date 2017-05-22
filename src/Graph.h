@@ -187,6 +187,7 @@ public:
 	vector<Vertex<T> * > getVertexSet() const;
 	int getNumVertex() const;
 
+
 	//exercicio 5
 	Vertex<T>* getVertex(const T &v) const;
 	vector<Vertex<T>*> getVertexFromSet(const set<T> places ) const;

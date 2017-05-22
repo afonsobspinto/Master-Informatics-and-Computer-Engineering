@@ -5,6 +5,7 @@
  *      Author: afonso
  */
 
+
 #include "Truck.h"
 #include "iostream"
 

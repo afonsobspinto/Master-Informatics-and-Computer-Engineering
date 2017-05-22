@@ -97,6 +97,7 @@ void searchRoadsExact(SuperMarketChain S){
 	cout << "Insert the second road's name: ";
 	getline(cin, r2);
 
+
 	S.exactSearch(r1, r2);
 
 	getchar();

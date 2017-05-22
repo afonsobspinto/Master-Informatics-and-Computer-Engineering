@@ -56,6 +56,7 @@ const std::string Place::getName() const {
 	return "			";
 }
 
+
 bool Place::operator <(const Place& rhs) const {
 	return this->id < rhs.id;
 }

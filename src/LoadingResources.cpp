@@ -237,6 +237,7 @@ void LoadingResources::loadRoads() {
 		superMarketChain->getRoads()->insert(make_pair(id, street));
 		superMarketChain->roadNames->insert(name);
 
+
 		nroads++;
 	}
 	superMarketChain->roadNames->erase("");

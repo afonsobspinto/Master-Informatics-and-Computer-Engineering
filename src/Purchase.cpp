@@ -17,6 +17,7 @@ const Date Purchase::getDate() const {
 	return date;
 }
 
+
 bool Purchase::operator <(const Purchase& rhs) const {
 	return this->date < rhs.date;
 }

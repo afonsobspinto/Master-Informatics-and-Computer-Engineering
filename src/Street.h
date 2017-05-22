@@ -12,6 +12,7 @@
 
 
 
+
 class Street {
 private:
 	long long int id;

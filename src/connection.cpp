@@ -1,5 +1,6 @@
 #include "connection.h"
 
+
 void myerror(string msg) {
   printf("%s\n", msg.c_str());
   exit(-1);

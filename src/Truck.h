@@ -8,6 +8,7 @@
 #ifndef TRUCK_H_
 #define TRUCK_H_
 
+
 #include "Place.h"
 #include <list>
 

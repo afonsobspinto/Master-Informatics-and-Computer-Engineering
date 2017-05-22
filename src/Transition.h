@@ -19,6 +19,7 @@ private:
 	bool twoWay;
 	std::string roadName;
 
+
 public:
 	Transition(long long int id, long long int srcID, long long int destID, double weigth, bool twoWay, std::string roadName);
 	long long int getDestId() const;

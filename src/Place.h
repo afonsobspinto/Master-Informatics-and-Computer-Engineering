@@ -15,6 +15,7 @@
 #include "Purchase.h"
 
 
+
 class Truck;
 
 class Place{

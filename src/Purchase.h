@@ -13,6 +13,7 @@
 
 #include <map>
 
+
 class Purchase{
 private:
 	std::map<Product, unsigned short> purchase;

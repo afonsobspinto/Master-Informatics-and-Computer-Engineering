@@ -11,6 +11,7 @@
 using namespace std;
 
 
+
 Client::Client(long long int id, Coord coord, std::string name) :
 		Place(id, coord) {
 	this->name = name;

@@ -16,6 +16,7 @@ public:
 	Product(int id);
 	const int getId() const;
 
+
 	bool operator == (const Product& rhs) const;
 	bool operator < (const Product& rhs) const;
 };

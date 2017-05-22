@@ -16,6 +16,7 @@
 
 class Supermarket: public Place{
 
+
 private:
 	std::vector<Truck*> trucks;
 	std::string name;

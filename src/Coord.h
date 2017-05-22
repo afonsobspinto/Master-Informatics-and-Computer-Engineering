@@ -11,6 +11,7 @@
 #include <ostream>
 
 
+
 constexpr auto earthRadiusKm = 6371.0;
 
 class Coord{

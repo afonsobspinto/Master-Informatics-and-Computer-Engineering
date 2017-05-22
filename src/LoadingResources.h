@@ -21,6 +21,7 @@ enum Files {GeomFile, ClientsFile, SuperMarketsFile, StreetsFiles, NodesFiles};
 
 class SuperMarketChain;
 
+
 class LoadingResources {
 
 	static const std::string GraphsInfo;

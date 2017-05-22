@@ -17,6 +17,7 @@ long long int Street::getId() const {
 	return id;
 }
 
+
 bool Street::is2Way() const {
 	return twoWay;
 }

@@ -14,6 +14,7 @@ const int Product::getId() const {
 	return id;
 }
 
+
 bool Product::operator ==(const Product& rhs) const {
 	return (this->id == rhs.id);
 }
