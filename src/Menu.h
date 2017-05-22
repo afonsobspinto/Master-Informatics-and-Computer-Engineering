@@ -9,10 +9,11 @@
 #define MENU_CPP_
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
-void ClearScreen() {
+void clearScreen() {
 
 #ifdef __unix__                    /* __unix__ is usually defined by compilers targeting Unix systems */
 
@@ -23,6 +24,45 @@ void ClearScreen() {
 	system("cls");
 
 #endif
+
+}
+
+
+bool is_number(const string& s)
+{
+	long double num;
+	istringstream iss(s);
+	return !(iss >> num).fail();
+}
+
+
+unsigned short int readUnsignedShortInt(unsigned short int min, unsigned short int  max){
+	string opcao_str;
+	unsigned int opcao;
+
+	getline(cin, opcao_str);
+
+	try{
+		if(!is_number(opcao_str))
+			throw 1;
+	}
+	catch (exception &e) {
+		cout << "Apanhou excecao. Introduziu um valor invalido" << endl;
+		return 0;
+	}
+
+	opcao = stoi(opcao_str);
+
+	try{
+		if(opcao < min || opcao > max)
+			throw 1;
+	}
+	catch (exception &e) {
+		cout << "Apanhou excecao. "<< opcao << " não se encontra entre as opções." << endl;
+		return 0;
+	}
+
+	return opcao;
 
 }
 
@@ -50,7 +90,7 @@ void showUseless(SuperMarketChain S){
 	getchar();
 }
 
-void searchSupermarkets(SuperMarketChain S){
+void searchRoadsExact(SuperMarketChain S){
 	string r1, r2;
 	cout << "Insert the first road's name: ";
 	getline(cin, r1);
@@ -62,8 +102,17 @@ void searchSupermarkets(SuperMarketChain S){
 	getchar();
 }
 
+void searchSupermaketExact(SuperMarketChain S){
+	string s;
+	cout << "Insert the supermarket name: ";
+	getline(cin, s);
 
-void searchApproxSupermarkets(SuperMarketChain S){
+	S.exactSearch(s);
+
+	getchar();
+}
+
+void searchApproxRoads(SuperMarketChain S){
 	string r1, r2;
 	cout << "Insert the first road's name: ";
 	getline(cin, r1);
@@ -75,13 +124,86 @@ void searchApproxSupermarkets(SuperMarketChain S){
 	getchar();
 }
 
+void searchApproxSupermarket(SuperMarketChain S){
+	string s;
+	cout << "Insert the supermarket name: ";
+	getline(cin, s);
+
+	S.approxSearch(s);
+
+	getchar();
+}
+
+
+bool stringMatchingOptions(SuperMarketChain S){
+
+	int option;
+
+	while(1){
+		clearScreen();
+		cout << "String Matching: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Road Names" << endl;
+		cout << "   " << "2 - Supermarkets" << endl;
+		cout << "   " << "3 - Back" << endl << endl;
+		cout << "   " << "What's your option: ";
+		option = readUnsignedShortInt(1, 3);
+
+		switch (option){
+		case 1:{
+			searchRoadsExact(S);
+			break;}
+		case 2:{
+			searchSupermaketExact(S);
+			break;}
+		case 3:{
+			return true;
+		}
+		default:{
+			continue;}
+		}
+	}
+
+}
+
+bool approximateStringMatchingOptions(SuperMarketChain S){
+
+	int option;
+
+	while(1){
+		clearScreen();
+		cout << "Approximate String Matching: " << endl;
+		cout << endl;
+		cout << "   " << "1 - Road Names" << endl;
+		cout << "   " << "2 - Supermarkets" << endl;
+		cout << "   " << "3 - Back" << endl << endl;
+		cout << "   " << "What's your option: ";
+		option = readUnsignedShortInt(1, 3);
+
+		switch (option){
+		case 1:{
+			searchApproxRoads(S);
+			break;}
+		case 2:{
+			searchApproxSupermarket(S);
+			break;}
+		case 3:{
+			return true;
+		}
+		default:{
+			continue;}
+		}
+	}
+
+}
+
 bool mainOptions() {
 	int option;
 	SuperMarketChain S = SuperMarketChain();
 
 	while(1){
 
-		ClearScreen();
+		clearScreen();
 		cout << "Menu: " << endl;
 		cout << endl;
 		cout << "   " << "1 - See the Graph" << endl;
@@ -91,13 +213,12 @@ bool mainOptions() {
 		cout << "   " << "5 - See Supermarkets" << endl;
 		cout << "   " << "6 - Show Strongly connected components" << endl;
 		cout << "   " << "7 - Show useless Supermarkets" << endl;
-		cout << "   " << "8 - Search for a supermarket (Exactly)" << endl;
-		cout << "   " << "9 - Search for a supermarket (Approximately)" << endl;
+		cout << "   " << "8 - String Matching" << endl;
+		cout << "   " << "9 - Approximate String Matching" << endl;
 		cout << "   " << "10 - Leave" << endl << endl;
 		cout << "   " << "Choose your option: ";
-		string str_option;
-		getline(cin, str_option);
-		option = stoi(str_option);
+
+		option = readUnsignedShortInt(1, 10);
 
 		switch (option){
 		case 1:{
@@ -122,10 +243,10 @@ bool mainOptions() {
 			showUseless(S);
 			break;}
 		case 8:{
-			searchSupermarkets(S);
+			stringMatchingOptions(S);
 			break;}
 		case 9:{
-			searchApproxSupermarkets(S);
+			approximateStringMatchingOptions(S);
 			break;}
 		case 10:{
 			return true;}

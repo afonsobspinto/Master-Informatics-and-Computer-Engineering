@@ -75,10 +75,12 @@ public:
 	const std::vector<Place*>& getUnreachableClients();
 	bool checkSet(set<Transition*> set, Transition *t);
 
-	string getApprRoad(string r);
+	string getApprString(string r, bool roads);
 
 	void exactSearch(string road1, string road2);
+	void exactSearch(string supermarket);
 	void approxSearch(string road1, string road2);
+	void approxSearch(string supermarket);
 };
 
 #endif /* SUPERMARKETCHAIN_H_ */

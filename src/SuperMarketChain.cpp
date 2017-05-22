@@ -550,6 +550,7 @@ void SuperMarketChain::exactSearch(string road1, string road2) {
 	}
 	cout << "No supermarket was found at the designated crossing." << endl;
 	cout << flush;
+	//getchar();
 	return;
 }
 
@@ -559,18 +560,28 @@ bool minSort (pair<int, string> i,pair<int, string> j){
 	return false;
 }
 
-string SuperMarketChain::getApprRoad(string r) {
-	cout << roadWSNames->size() << endl;
-	cout << roadNames->size() << endl;
+string SuperMarketChain::getApprString(string r, bool roads) {
+
 	vector<pair<int, string>> scores;
-	for(auto s : *roadWSNames){
-		scores.push_back(make_pair(editDistance(r, s), s));
+	if(roads){
+
+		for(auto s : *roadWSNames){
+			scores.push_back(make_pair(editDistance(r, s), s));
+		}
+	}
+	else{
+		for(unsigned int i = 0; i < supermarkets.size(); i++){
+			scores.push_back(make_pair(editDistance(r, supermarkets.at(i)->getName()), supermarkets.at(i)->getName()));
+		}
 	}
 	sort(scores.begin(), scores.end(), minSort);
 	if(scores[0].first==0){
 		return r;
 	}else{
-		cout << "Road " << r << " was not found! Perhaps you meant..." << endl;
+		if(roads)
+			cout << "Road " << r << " was not found! Perhaps you meant..." << endl;
+		else
+			cout << "Supermarket " << r << " was not found! Perhaps you meant..." << endl;
 		for(unsigned i=0;i<5;i++){
 			cout << i+1 << ". " << scores[i].second << endl;
 		}
@@ -580,17 +591,31 @@ string SuperMarketChain::getApprRoad(string r) {
 		if(ch=='n' || ch == 'N'){
 			cin.ignore(100, '\n');
 			getline(cin, r);
-			return getApprRoad(r);
+			return getApprString(r, roads);
 		}else{
 			return scores[ch-'0'-1].second;
 		}
 	}
+}
 
+
+void SuperMarketChain::exactSearch(string supermarket) {
+	for(unsigned int i = 0; i < supermarkets.size(); i++){
+		if(supermarkets.at(i)->getName() == supermarket)
+			cout << "Supermarket found: " << supermarket << endl;
+	}
 }
 
 void SuperMarketChain::approxSearch(string road1, string road2) {
-	road1=getApprRoad(road1);
-	road2=getApprRoad(road2);
+	road1=getApprString(road1, true);
+	road2=getApprString(road2, true);
 	exactSearch(road1, road2);
 	cout << flush;
+}
+
+void SuperMarketChain::approxSearch(string supermarket) {
+	supermarket = getApprString(supermarket, false);
+	exactSearch(supermarket);
+	cout << flush;
+
 }
