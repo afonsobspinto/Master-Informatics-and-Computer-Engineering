@@ -1,0 +1,1 @@
+[![Watch the video](https://github.com/FooWalksIntoABar/FEUP/tree/master/CGRA/FinalProject/resources/preview.png)](https://youtu.be/tTyLsS8jxOU)
