@@ -1,7 +1,11 @@
-## [CGRA-FEUP] Projeto Final - Yellow Submarine
+## ChessProject
+
+ ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
+
+![menu preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LCOM/ChessProject/res/menuPreview.png?raw=true)
 
 
-An 3D Computer Graphics project using WebGL 1.0
+![game preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LCOM/ChessProject/res/gamePreview.png?raw=true)
 
-[![Yellow Submarine](https://github.com/FooWalksIntoABar/FEUP/blob/master/CGRA/FinalProject/resources/preview.png?raw=true)](https://youtu.be/tTyLsS8jxOU "Yellow Submarine")
 
+![states preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LCOM/ChessProject/res/statesPreview.png?raw=true)
