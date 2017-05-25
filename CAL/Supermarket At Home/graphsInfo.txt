@@ -1,0 +1,6 @@
+5
+resources/geom.txt
+resources/clients.txt
+resources/supermarkets.txt
+resources/roads.txt
+resources/nodes.txt
