@@ -23,3 +23,8 @@ Simulation of access to shared resources: Saunas Manager
 
 ### CGRA/Final Project
 3D Computer Graphics project using WebGL 1.0
+
+### CAL/Supermarket At Home/
+A supermarket chain wants to innovate and let its customers purchase over the Internet. 
+To monetize the service, the supermarket tries to group the largest number of purchases in a single trip.
+Also, both Exact search, as well as approximate search, of the strings identifying the names of the Streets and supermarkets are implemented.
