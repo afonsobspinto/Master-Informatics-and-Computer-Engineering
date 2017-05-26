@@ -72,7 +72,7 @@ public class GameModel {
      */
     private GameModel() {
         ball = new BallModel(325,300);
-        goal = new GoalModel(570,85);
+        goal = new GoalModel(575,95);
         slime = new SlimeModel(80,150);
         floor = new FloorModel(Gdx.graphics.getWidth()/2, 0);
        //opponentSlime = new BallModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 0);
