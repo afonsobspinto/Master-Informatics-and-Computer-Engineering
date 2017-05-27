@@ -1,24 +1,26 @@
 package com.feup.superslimefootball.controller.entities;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.feup.superslimefootball.model.entities.SlimeModel;
+import com.feup.superslimefootball.model.entities.EntityModel;
 
 /**
- * Created by afonso on 5/26/17.
+ * Created by afonso on 5/27/17.
  */
 
-public class SlimeBody extends EntityBody {
+public class BallBody extends EntityBody {
     /**
      * Constructs a body representing a model in a certain world.
      *
      * @param world The world this body lives on.
      * @param model The model representing the body.
      */
-    public SlimeBody(World world, SlimeModel model) {
+    public BallBody(World world, EntityModel model) {
         super(world, model, true);
 
         float density = 1.0f;
 
-        createFixture(body, 40, 40, density);
+        createFixture(body, 14, density);
     }
+
+
 }

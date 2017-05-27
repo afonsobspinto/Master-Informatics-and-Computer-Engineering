@@ -8,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.feup.superslimefootball.controller.entities.BallBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
+import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.EntityModel;
 
@@ -42,9 +44,20 @@ public class GameController implements ContactListener {
     private final World world;
 
     /**
-     * The spaceship body.
+     * The arena walls.
+     */
+
+    private  final WallsBody wallsBody;
+
+    /**
+     * The slime body.
      */
     private final SlimeBody slimeBody;
+
+    /**
+     * The ball body.
+     */
+    private final BallBody ballBody;
 
     /**
      * Accumulator used to calculate the simulation step.
@@ -59,7 +72,9 @@ public class GameController implements ContactListener {
     private GameController() {
         world = new World(new Vector2(0f, -9.8f), false);
 
+        wallsBody = new WallsBody(world, GameModel.getInstance().getWallsModel());
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
+        ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
 
         world.setContactListener(this);
     }
@@ -94,7 +109,6 @@ public class GameController implements ContactListener {
         world.getBodies(bodies);
 
         for (Body body : bodies) {
-            System.out.println(body.getPosition().x + " - " + body.getPosition().y);
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
         }
 

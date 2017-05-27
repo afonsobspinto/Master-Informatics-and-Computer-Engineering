@@ -6,7 +6,7 @@ package com.feup.superslimefootball.model.entities;
 
 public abstract class EntityModel {
 
-    public enum ModelType {SLIME}
+    public enum ModelType {SLIME, BALL}
 
     ;
 
@@ -36,8 +36,6 @@ public abstract class EntityModel {
         this.x = x;
         this.y = y;
 
-        System.out.println("GameModel");
-        System.out.println(x + " - " + y);
         this.rotation = rotation;
     }
 

@@ -1,10 +1,10 @@
 package com.feup.superslimefootball.model.entities;
 
 /**
- * Created by afonso on 5/26/17.
+ * Created by afonso on 5/27/17.
  */
 
-public class SlimeModel extends EntityModel {
+public class BallModel extends EntityModel {
 
     /**
      * Constructs a model with a position and a rotation.
@@ -13,12 +13,12 @@ public class SlimeModel extends EntityModel {
      * @param y        The y-coordinate of this entity in pixels.
      * @param rotation The current rotation of this entity in radians.
      */
-    public SlimeModel(float x, float y, float rotation) {
+    public BallModel(float x, float y, float rotation) {
         super(x, y, rotation);
     }
 
     @Override
     public ModelType getType() {
-        return ModelType.SLIME;
+        return ModelType.BALL;
     }
 }

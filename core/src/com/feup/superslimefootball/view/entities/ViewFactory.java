@@ -6,6 +6,7 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.BALL;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIME;
 
 /**
@@ -21,6 +22,8 @@ public class ViewFactory {
         if (!cache.containsKey(model.getType())) {
             if (model.getType() == SLIME)
                 cache.put(model.getType(), new SlimeView(game));
+            if (model.getType() == BALL)
+                cache.put(model.getType(), new BallView(game));
         }
         return cache.get(model.getType());
     }

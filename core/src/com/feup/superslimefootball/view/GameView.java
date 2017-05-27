@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
+import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
@@ -28,12 +29,12 @@ public class GameView extends ScreenAdapter {
     /**
      * The width of the viewport.
      */
-    private static final float VIEWPORT_WIDTH = 800;
+    public static final float VIEWPORT_WIDTH = 800;
 
     /**
      * The height of the viewport.
      */
-    private static final float VIEWPORT_HEIGHT = 400;
+    public static final float VIEWPORT_HEIGHT = 400;
 
     /**
      * The game this screen belongs to.
@@ -79,7 +80,7 @@ public class GameView extends ScreenAdapter {
 
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        this.game.getBatch().setProjectionMatrix(camera.combined);
+
 
         debugRenderer = new Box2DDebugRenderer();
         return camera;
@@ -92,6 +93,7 @@ public class GameView extends ScreenAdapter {
     private void loadAssets() {
         this.game.getAssetManager().load( "background.png" , Texture.class);
         this.game.getAssetManager().load( "blueSlime.png" , Texture.class);
+        this.game.getAssetManager().load( "ball.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -105,6 +107,7 @@ public class GameView extends ScreenAdapter {
     @Override
     public void render (float delta) {
 
+        this.game.getBatch().setProjectionMatrix(camera.combined);
         GameController.getInstance().update(delta);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -129,8 +132,16 @@ public class GameView extends ScreenAdapter {
      */
     private void drawEntities() {
         SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
-        EntityView view = ViewFactory.makeView(game, slimeOne);
-        view.update(slimeOne);
-        view.draw(game.getBatch());
+        EntityView slimeView = ViewFactory.makeView(game, slimeOne);
+        slimeView.update(slimeOne);
+        slimeView.draw(game.getBatch());
+
+        BallModel ball = GameModel.getInstance().getBallModel();
+        EntityView ballView = ViewFactory.makeView(game, ball);
+        ballView.update(ball);
+        ballView.draw(game.getBatch());
+
+
+
     }
 }
