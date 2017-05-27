@@ -1,6 +1,7 @@
 package com.feup.superslimefootball.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -108,6 +109,9 @@ public class GameView extends ScreenAdapter {
     public void render (float delta) {
 
         this.game.getBatch().setProjectionMatrix(camera.combined);
+
+        handleInputs(delta);
+
         GameController.getInstance().update(delta);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -118,6 +122,42 @@ public class GameView extends ScreenAdapter {
         game.getBatch().end();
         debugRenderer.render(GameController.getInstance().getWorld(), camera.combined.cpy().scl(PPM));
     }
+
+    /**
+     * Handles any inputs and passes them to the controller.
+     *
+     * @param delta time since last time inputs where handled in seconds
+     */
+    private void handleInputs(float delta) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            GameController.getInstance().moveLeft(delta);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            GameController.getInstance().moveRight(delta);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            GameController.getInstance().jump(delta);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            //GameController.getInstance().shoot();
+        }
+        if (Gdx.input.getAccelerometerY() > 0) {
+            System.out.println(Gdx.input.getAccelerometerY());
+            GameController.getInstance().moveRight(delta * Gdx.input.getAccelerometerY());
+        }
+        if (Gdx.input.getAccelerometerY() < 0) {
+            System.out.println(Gdx.input.getAccelerometerY());
+            GameController.getInstance().moveLeft(delta * -Gdx.input.getAccelerometerY());
+        }
+        if (Gdx.input.isTouched()) {
+            if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
+                GameController.getInstance().jump(delta);
+            //else
+                //GameController.getInstance().shoot();
+        }
+    }
+
+
 
     /**
      * Draws the background

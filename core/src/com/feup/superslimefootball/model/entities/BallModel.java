@@ -11,10 +11,9 @@ public class BallModel extends EntityModel {
      *
      * @param x        The x-coordinate of this entity in pixels.
      * @param y        The y-coordinate of this entity in pixels.
-     * @param rotation The current rotation of this entity in radians.
      */
-    public BallModel(float x, float y, float rotation) {
-        super(x, y, rotation);
+    public BallModel(float x, float y) {
+        super(x, y);
     }
 
     @Override

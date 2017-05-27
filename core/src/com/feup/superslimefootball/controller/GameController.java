@@ -13,6 +13,7 @@ import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.EntityModel;
+import com.feup.superslimefootball.model.entities.SlimeModel;
 
 import static com.feup.superslimefootball.view.GameView.PPM;
 
@@ -59,6 +60,8 @@ public class GameController implements ContactListener {
      */
     private final BallBody ballBody;
 
+
+
     /**
      * Accumulator used to calculate the simulation step.
      */
@@ -98,6 +101,8 @@ public class GameController implements ContactListener {
      */
     public void update(float delta) {
 
+        updateState();
+
         float frameTime = Math.min(delta, 0.25f);
         accumulator += frameTime;
         while (accumulator >= 1/60f) {
@@ -123,6 +128,47 @@ public class GameController implements ContactListener {
         return world;
     }
 
+    /**
+     * Verifies in witch state SlimeOne is
+     * */
+    public void updateState() {
+        if(slimeBody.getLinearVelocity().y != 0)
+            ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.JUMPING);
+        else
+            ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.RUNNING);
+    }
+
+
+    /**
+     * Moves the Slime to the right.
+     *
+     * @param delta Duration of the movement in seconds.
+     */
+    public void moveRight(float delta) {
+        slimeBody.applyLinearImpulse(5f * delta, 0, true);
+        //slimeBody.applyForceToCenter(5f,0,true);
+    }
+
+    /**
+     * Moves the Slime to the left.
+     *
+     * @param delta Duration of the movement in seconds.
+     */
+    public void moveLeft(float delta) {
+        slimeBody.applyLinearImpulse(-5f * delta, 0, true);
+        //slimeBody.applyForceToCenter(-5f,0,true);
+    }
+
+    /**
+     * Moves the Slime up.
+     *
+     * @param delta Duration of the movement in seconds.
+     */
+    public void jump(float delta) {
+        if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
+            slimeBody.applyLinearImpulse(0, 555f * delta, true);
+            //slimeBody.applyForceToCenter(0,300f,true);
+    }
 
     @Override
     public void beginContact(Contact contact) {

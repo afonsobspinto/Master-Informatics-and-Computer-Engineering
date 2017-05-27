@@ -6,15 +6,38 @@ package com.feup.superslimefootball.model.entities;
 
 public class SlimeModel extends EntityModel {
 
+    public enum State {JUMPING, RUNNING};
+    /**
+     * The slime state in this update delta
+     */
+    private State currentState;
+
+
     /**
      * Constructs a model with a position and a rotation.
      *
      * @param x        The x-coordinate of this entity in pixels.
      * @param y        The y-coordinate of this entity in pixels.
-     * @param rotation The current rotation of this entity in radians.
+
      */
-    public SlimeModel(float x, float y, float rotation) {
-        super(x, y, rotation);
+    public SlimeModel(float x, float y) {
+
+        super(x, y);
+        this.currentState = State.RUNNING;
+    }
+
+    /**
+     * Gets the slime state in this update delta
+     */
+    public State getCurrentState() {
+        return currentState;
+    }
+
+    /**
+     * Sets the slime state in this update delta
+     */
+    public void setCurrentState(State currentState) {
+        this.currentState = currentState;
     }
 
     @Override

@@ -18,8 +18,9 @@ public class BallBody extends EntityBody {
         super(world, model, true);
 
         float density = 1.0f;
+        float restitution = 0.65f;
 
-        createFixture(body, 14, density);
+        createCircleFixture(body, 13, density, restitution);
     }
 
 
