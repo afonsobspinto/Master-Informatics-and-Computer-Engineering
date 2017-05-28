@@ -145,7 +145,7 @@ public class GameController implements ContactListener {
      * @param delta Duration of the movement in seconds.
      */
     public void moveRight(float delta) {
-        slimeBody.applyLinearImpulse(5f * delta, 0, true);
+        slimeBody.applyLinearImpulse(10f * delta, 0, true);
         //slimeBody.applyForceToCenter(5f,0,true);
     }
 
@@ -155,7 +155,7 @@ public class GameController implements ContactListener {
      * @param delta Duration of the movement in seconds.
      */
     public void moveLeft(float delta) {
-        slimeBody.applyLinearImpulse(-5f * delta, 0, true);
+        slimeBody.applyLinearImpulse(-10f * delta, 0, true);
         //slimeBody.applyForceToCenter(-5f,0,true);
     }
 
@@ -166,7 +166,7 @@ public class GameController implements ContactListener {
      */
     public void jump(float delta) {
         if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
-            slimeBody.applyLinearImpulse(0, 555f * delta, true);
+            slimeBody.applyLinearImpulse(0, 1000f * delta, true);
             //slimeBody.applyForceToCenter(0,300f,true);
     }
 

@@ -49,25 +49,27 @@ public abstract class EntityBody {
 
     }
 
+
     /**
      * Helper method to create a polygon fixture represented by a set of vertexes.
      * @param body The body the fixture is to be attached to.
-     * @param width The width of the bitmap the vertexes where extracted from.
-     * @param height The height of the bitmap the vertexes where extracted from.
+     * @param vertexes The vertexes defining the fixture in pixels so it is
+     *                 easier to get them from a bitmap image.
      * @param density The density of the fixture. How heavy it is in relation to its area.
+     * */
 
+    final void createFixture(Body body, Vector2[] vertexes, float density, float friction, float restitution) {
 
-
-     */
-    final void createFixture(Body body, float width, float height, float density) {
 
         PolygonShape polygon = new PolygonShape();
-        polygon.setAsBox(width/2/PPM, height/2/PPM);
+        polygon.set(vertexes);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygon;
-        fixtureDef.density = density;
 
+        fixtureDef.density = density;
+        fixtureDef.friction = friction;
+        fixtureDef.restitution = restitution;
 
         body.createFixture(fixtureDef);
 
@@ -107,12 +109,12 @@ public abstract class EntityBody {
      * @param density The density of the fixture. How heavy it is in relation to its area.
 
      */
-    final void createFixture(Body body, Vector2[] vertexes, float density) {
+    final void createWallsFixture(Body body, Vector2[] vertexes, float density) {
 
-        ChainShape walls = new ChainShape();
-        walls.createChain(vertexes);
-        body.createFixture(walls, density);
-        walls.dispose();
+        ChainShape shape = new ChainShape();
+        shape.createChain(vertexes);
+        body.createFixture(shape, density);
+        shape.dispose();
 
 
     }

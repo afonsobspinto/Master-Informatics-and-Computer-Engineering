@@ -23,14 +23,14 @@ public class WallsBody extends EntityBody {
         super(world, model, false);
 
         Vector2[] vertexes = new Vector2[5];
-        vertexes[0] = new Vector2(0/PPM, 0);
-        vertexes[1] = new Vector2(VIEWPORT_WIDTH / PPM, 0);
+        vertexes[0] = new Vector2(0/PPM, 2 / PPM);
+        vertexes[1] = new Vector2(VIEWPORT_WIDTH / PPM, 2 / PPM);
         vertexes[2] = new Vector2(VIEWPORT_WIDTH / PPM, VIEWPORT_HEIGHT/PPM);
         vertexes[3] = new Vector2(0, VIEWPORT_HEIGHT/PPM);
         vertexes[4] = new Vector2(0/PPM, 0);
 
         float density = 1.0f;
 
-        createFixture(body, vertexes, density);
+        createWallsFixture(body, vertexes, density);
     }
 }

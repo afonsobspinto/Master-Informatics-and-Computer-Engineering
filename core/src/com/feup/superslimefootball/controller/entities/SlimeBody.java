@@ -1,5 +1,6 @@
 package com.feup.superslimefootball.controller.entities;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 
@@ -18,7 +19,31 @@ public class SlimeBody extends EntityBody {
         super(world, model, true);
 
         float density = 1.0f;
+        float restitution = 0.01f;
+        float friction = 0.1f;
 
-        createFixture(body, 40, 40, density);
+        Vector2[] vertexes = new Vector2[8];
+
+        vertexes[0] = new Vector2(-1.2f, -0.7f);
+        vertexes[1] = new Vector2(0f, -0.7f);
+        vertexes[2] = new Vector2(0f, 0.7f);
+        vertexes[3] = new Vector2(-0.4f, 0.6f);
+        vertexes[4] = new Vector2(-0.9f, 0.4f);
+        vertexes[5] = new Vector2(-1.0f, 0.0f);
+        vertexes[6] = new Vector2(-1.2f, -0.2f);
+        vertexes[7] = new Vector2(-1.2f, -0.7f);
+
+        createFixture(body,vertexes, density, friction, restitution);
+
+        vertexes[0] = new Vector2(1.3f, -0.7f);
+        vertexes[1] = new Vector2(0f, -0.7f);
+        vertexes[2] = new Vector2(0f, 0.7f);
+        vertexes[3] = new Vector2(0.6f, 0.6f);
+        vertexes[4] = new Vector2(1.0f, 0.3f);
+        vertexes[5] = new Vector2(1.1f, 0.0f);
+        vertexes[6] = new Vector2(1.3f, -0.2f);
+        vertexes[7] = new Vector2(1.2f, -0.7f);
+
+        createFixture(body,vertexes, density, friction, restitution);
     }
 }
