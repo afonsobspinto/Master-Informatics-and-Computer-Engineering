@@ -24,21 +24,21 @@ public class GoalBody extends EntityBody {
         float friction = 1.0f;
 
         Vector2[] vertexes = new Vector2[4];
-//
-//        vertexes[0] = new Vector2(-0.2f, -2.2f);
-//        vertexes[1] = new Vector2(-0.0f, -2.2f);
-//        vertexes[2] = new Vector2(-0.0f, 1.1f);
-//        vertexes[3] = new Vector2(0.1f, 1.1f);
-//
-//
-//        createFixture(body,vertexes, density, friction, restitution);
 
+        // Goal Line Technology
+        vertexes[0] = new Vector2(-0.9f, -2.0f);
+        vertexes[1] = new Vector2(-0.8f, -2.0f);
+        vertexes[2] = new Vector2(-0.7f, 1.0f);
+        vertexes[3] = new Vector2(-0.8f, 1.0f);
+        createFixture(body,vertexes, density, friction, restitution, true);
+
+        // TOP
         vertexes[0] = new Vector2(-0.9f, 1.1f);
         vertexes[1] = new Vector2(0.0f, 1.1f);
         vertexes[2] = new Vector2(0.8f, 2.2f);
         vertexes[3] = new Vector2(1.5f, 2.2f);
 
-        createFixture(body,vertexes, density, friction, restitution);
+        createFixture(body,vertexes, density, friction, restitution, false);
 
     }
 }

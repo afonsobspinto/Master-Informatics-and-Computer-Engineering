@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -16,6 +17,7 @@ import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.EntityModel;
+import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 
@@ -70,6 +72,8 @@ public class GameController implements ContactListener {
      * The left Goal body.
      */
     private final GoalBody leftGoalBody;
+
+
 
 
     /**
@@ -151,7 +155,8 @@ public class GameController implements ContactListener {
      * Verifies in witch state SlimeOne is
      * */
     public void updateState() {
-        if(slimeBody.getLinearVelocity().y != 0)
+
+        if(slimeBody.getLinearVelocity().y != 0 && Math.round(((SlimeModel) slimeBody.getUserData()).getY()) != 25)
             ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.JUMPING);
         else
             ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.RUNNING);
@@ -183,7 +188,7 @@ public class GameController implements ContactListener {
      */
     public void jump() {
         if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
-            slimeBody.applyLinearImpulse(0, 20f, true);
+            slimeBody.applyLinearImpulse(0, 15f, true);
             //slimeBody.applyForceToCenter(0,300f,true);
     }
 
@@ -209,13 +214,19 @@ public class GameController implements ContactListener {
 
         if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
             slimeBallCollision(bodyA, bodyB);
-        else if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
+        else if (bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof SlimeModel)
             slimeBallCollision(bodyB, bodyA);
 
         else if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof PowerModel)
             slimePowerCollision(bodyA, bodyB);
-        else if (bodyA.getUserData() instanceof PowerModel && bodyB.getUserData() instanceof BallModel)
+        else if (bodyA.getUserData() instanceof PowerModel && bodyB.getUserData() instanceof SlimeModel)
             slimePowerCollision(bodyB, bodyA);
+
+        else if (bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof GoalModel)
+            ballGoalCollision(bodyA, contact.getFixtureB());
+        else if (bodyA.getUserData() instanceof GoalModel && bodyB.getUserData() instanceof BallModel)
+            ballGoalCollision(bodyB, contact.getFixtureA());
+
 
     }
 
@@ -236,18 +247,33 @@ public class GameController implements ContactListener {
 
     /**
      * A slime collided with the Ball.
-     * @param slimeBody the bullet that collided
-     * @param ballBody the asteroid that collided
+     * @param slimeBody the slime that collided
+     * @param ballBody the ball that collided
      */
     private void slimeBallCollision(Body slimeBody, Body ballBody) {
         System.out.println("Colisão Slime Bola");
         System.out.println("Velocidade da Bola: " + ballBody.getLinearVelocity().x + "-" + ballBody.getLinearVelocity().y);
     }
 
+
     /**
-     * A slime collided with the Ball.
-     * @param slimeBody the bullet that collided
-     * @param powerBody the asteroid that collided
+     * A ball collided with a goal.
+     * @param ballBody the ball that collided
+     * @param goalFixture the fixture of the goal that collided
+     */
+    private void ballGoalCollision(Body ballBody, Fixture goalFixture) {
+        System.out.println("Colisão Bola Baliza");
+
+        if(goalFixture.isSensor())
+            System.out.println("GOLOOOO!");
+        else
+            System.out.println("Trave");
+    }
+
+    /**
+     * A slime collided with a Power.
+     * @param slimeBody the slime that collided
+     * @param powerBody the power that collided
      */
     private void slimePowerCollision(Body slimeBody, Body powerBody) {
         System.out.println("Colisão Slime Power");

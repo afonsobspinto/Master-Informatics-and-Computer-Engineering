@@ -179,28 +179,28 @@ public class GameView extends ScreenAdapter {
      */
     private void drawEntities() {
 
-        SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
-        EntityView slimeView = ViewFactory.makeView(game, slimeOne);
-        slimeView.update(slimeOne);
-        slimeView.draw(game.getBatch());
-
-        GoalModel leftGoal = GameModel.getInstance().getLeftGoalModel();
-        EntityView goalView = ViewFactory.makeView(game, leftGoal);
-        goalView.update(leftGoal);
-        goalView.draw(game.getBatch());
-
-
-        BallModel ball = GameModel.getInstance().getBallModel();
-        EntityView ballView = ViewFactory.makeView(game, ball);
-        ballView.update(ball);
-        ballView.draw(game.getBatch());
-
         List<PowerModel> powers = GameModel.getInstance().getPowers();
         for (PowerModel power : powers) {
             EntityView powerView = ViewFactory.makeView(game, power);
             powerView.update(power);
             powerView.draw(game.getBatch());
         }
+
+        SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
+        EntityView slimeView = ViewFactory.makeView(game, slimeOne);
+        slimeView.update(slimeOne);
+        slimeView.draw(game.getBatch());
+
+        BallModel ball = GameModel.getInstance().getBallModel();
+        EntityView ballView = ViewFactory.makeView(game, ball);
+        ballView.update(ball);
+        ballView.draw(game.getBatch());
+
+        GoalModel leftGoal = GameModel.getInstance().getLeftGoalModel();
+        EntityView goalView = ViewFactory.makeView(game, leftGoal);
+        goalView.update(leftGoal);
+        goalView.draw(game.getBatch());
+
 
 
     }

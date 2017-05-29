@@ -43,7 +43,7 @@ public abstract class EntityBody {
 
         bodyDef.position.set(model.getX()/PPM, model.getY()/PPM);
         bodyDef.fixedRotation = true;
-        bodyDef.linearDamping = 0.5f;
+        bodyDef.linearDamping = 1.0f;
 
         this.body = world.createBody(bodyDef);
         this.body.setUserData(model);
@@ -59,7 +59,7 @@ public abstract class EntityBody {
      * @param density The density of the fixture. How heavy it is in relation to its area.
      * */
 
-    final void createFixture(Body body, Vector2[] vertexes, float density, float friction, float restitution) {
+    final void createFixture(Body body, Vector2[] vertexes, float density, float friction, float restitution, boolean isSensor) {
 
 
         PolygonShape polygon = new PolygonShape();
@@ -71,6 +71,7 @@ public abstract class EntityBody {
         fixtureDef.density = density;
         fixtureDef.friction = friction;
         fixtureDef.restitution = restitution;
+        fixtureDef.isSensor = isSensor;
 
         body.createFixture(fixtureDef);
 
