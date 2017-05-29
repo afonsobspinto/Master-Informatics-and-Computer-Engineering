@@ -6,6 +6,7 @@ package com.feup.superslimefootball.model;
 
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.model.entities.WallsModel;
 
@@ -40,6 +41,18 @@ public class GameModel {
     private BallModel ballModel;
 
 
+    /**
+     * The Left Goal in this game.
+     */
+
+    private GoalModel leftGoalModel;
+
+
+    /**
+     * The Rigth Goal in this game.
+     */
+
+    private GoalModel rigthGoalModel;
 
     /**
      * Constructs a game with....
@@ -49,6 +62,7 @@ public class GameModel {
         wallsModel = new WallsModel(0,0);
         slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
+        leftGoalModel = new GoalModel(GameController.GAME_WIDTH * (1.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f));
 
    }
 
@@ -96,6 +110,17 @@ public class GameModel {
 
     public WallsModel getWallsModel() {
         return wallsModel;
+    }
+
+
+    /**
+     * Returns the left Goal.
+     *
+     * @return the left Goal.
+     */
+
+    public GoalModel getLeftGoalModel() {
+        return leftGoalModel;
     }
 }
 

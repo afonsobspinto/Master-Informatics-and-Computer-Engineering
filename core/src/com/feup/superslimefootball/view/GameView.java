@@ -12,6 +12,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
@@ -95,6 +96,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "background.png" , Texture.class);
         this.game.getAssetManager().load( "blueSlime.png" , Texture.class);
         this.game.getAssetManager().load( "ball.png", Texture.class);
+        this.game.getAssetManager().load( "goal.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -110,7 +112,7 @@ public class GameView extends ScreenAdapter {
 
         this.game.getBatch().setProjectionMatrix(camera.combined);
 
-        handleInputs(delta);
+        handleInputs();
 
         GameController.getInstance().update(delta);
 
@@ -126,32 +128,31 @@ public class GameView extends ScreenAdapter {
     /**
      * Handles any inputs and passes them to the controller.
      *
-     * @param delta time since last time inputs where handled in seconds
      */
-    private void handleInputs(float delta) {
+    private void handleInputs() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            GameController.getInstance().moveLeft(delta);
+            GameController.getInstance().moveLeft();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            GameController.getInstance().moveRight(delta);
+            GameController.getInstance().moveRight();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            GameController.getInstance().jump(delta);
+            GameController.getInstance().jump();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             //GameController.getInstance().shoot();
         }
         if (Gdx.input.getAccelerometerY() > 0) {
             System.out.println(Gdx.input.getAccelerometerY());
-            GameController.getInstance().moveRight(delta * Gdx.input.getAccelerometerY());
+            GameController.getInstance().moveRight();
         }
         if (Gdx.input.getAccelerometerY() < 0) {
             System.out.println(Gdx.input.getAccelerometerY());
-            GameController.getInstance().moveLeft(delta * -Gdx.input.getAccelerometerY());
+            GameController.getInstance().moveLeft();
         }
         if (Gdx.input.isTouched()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
-                GameController.getInstance().jump(delta);
+                GameController.getInstance().jump();
             //else
                 //GameController.getInstance().shoot();
         }
@@ -171,15 +172,23 @@ public class GameView extends ScreenAdapter {
      * Draws the entities to the screen.
      */
     private void drawEntities() {
+
         SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
         EntityView slimeView = ViewFactory.makeView(game, slimeOne);
         slimeView.update(slimeOne);
         slimeView.draw(game.getBatch());
 
+        GoalModel leftGoal = GameModel.getInstance().getLeftGoalModel();
+        EntityView goalView = ViewFactory.makeView(game, leftGoal);
+        goalView.update(leftGoal);
+        goalView.draw(game.getBatch());
+
+
         BallModel ball = GameModel.getInstance().getBallModel();
         EntityView ballView = ViewFactory.makeView(game, ball);
         ballView.update(ball);
         ballView.draw(game.getBatch());
+
 
 
 

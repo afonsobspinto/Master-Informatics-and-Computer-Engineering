@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.feup.superslimefootball.controller.entities.BallBody;
+import com.feup.superslimefootball.controller.entities.GoalBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
@@ -60,7 +61,10 @@ public class GameController implements ContactListener {
      */
     private final BallBody ballBody;
 
-
+    /**
+     * The left Goal body.
+     */
+    private final GoalBody leftGoalBody;
 
     /**
      * Accumulator used to calculate the simulation step.
@@ -78,6 +82,7 @@ public class GameController implements ContactListener {
         wallsBody = new WallsBody(world, GameModel.getInstance().getWallsModel());
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
+        leftGoalBody = new GoalBody(world, GameModel.getInstance().getLeftGoalModel());
 
         world.setContactListener(this);
     }
@@ -142,31 +147,29 @@ public class GameController implements ContactListener {
     /**
      * Moves the Slime to the right.
      *
-     * @param delta Duration of the movement in seconds.
+     *
      */
-    public void moveRight(float delta) {
-        slimeBody.applyLinearImpulse(10f * delta, 0, true);
+    public void moveRight() {
+        slimeBody.applyLinearImpulse(1f , 0, true);
         //slimeBody.applyForceToCenter(5f,0,true);
     }
 
     /**
      * Moves the Slime to the left.
      *
-     * @param delta Duration of the movement in seconds.
      */
-    public void moveLeft(float delta) {
-        slimeBody.applyLinearImpulse(-10f * delta, 0, true);
+    public void moveLeft() {
+        slimeBody.applyLinearImpulse(-1f , 0, true);
         //slimeBody.applyForceToCenter(-5f,0,true);
     }
 
     /**
      * Moves the Slime up.
      *
-     * @param delta Duration of the movement in seconds.
      */
-    public void jump(float delta) {
+    public void jump() {
         if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
-            slimeBody.applyLinearImpulse(0, 1000f * delta, true);
+            slimeBody.applyLinearImpulse(0, 20f, true);
             //slimeBody.applyForceToCenter(0,300f,true);
     }
 
