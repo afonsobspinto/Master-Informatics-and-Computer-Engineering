@@ -43,6 +43,7 @@ public abstract class EntityBody {
 
         bodyDef.position.set(model.getX()/PPM, model.getY()/PPM);
         bodyDef.fixedRotation = true;
+        bodyDef.linearDamping = 0.5f;
 
         this.body = world.createBody(bodyDef);
         this.body.setUserData(model);
