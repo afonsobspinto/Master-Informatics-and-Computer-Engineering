@@ -37,6 +37,8 @@ public class MenuView extends ScreenAdapter {
         this.menu.getAssetManager().load("singleplayer.png", Texture.class);
         this.menu.getAssetManager().load("multiplayer.png", Texture.class);
         this.menu.getAssetManager().load("options.png", Texture.class);
+
+        //todo: possivel problema aqui
         this.menu.getAssetManager().finishLoading();
     }
 

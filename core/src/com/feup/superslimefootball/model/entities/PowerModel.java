@@ -6,6 +6,9 @@ package com.feup.superslimefootball.model.entities;
 
 public class PowerModel extends EntityModel {
 
+    private float timeToLive;
+
+
     /**
      * Possible POWER types.
      */
@@ -28,6 +31,26 @@ public class PowerModel extends EntityModel {
     public PowerModel(float x, float y, PowerType powerType) {
         super(x, y);
         this.powerType = powerType;
+        this.timeToLive = 10f;
+    }
+
+    /**
+     * Decreases this power's time to leave by delta seconds
+     *
+     * @param delta
+     * @return
+     */
+    public boolean decreaseTimeToLive(float delta) {
+        timeToLive -= delta;
+        return  timeToLive < 0;
+    }
+
+    /**
+     * Sets this power's time to live in seconds
+     * @param timeToLive
+     */
+    public void setTimeToLive(float timeToLive) {
+        this.timeToLive = timeToLive;
     }
 
     @Override

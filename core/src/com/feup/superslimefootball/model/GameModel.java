@@ -6,6 +6,7 @@ package com.feup.superslimefootball.model;
 
 import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.entities.BallModel;
+import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
@@ -82,6 +83,23 @@ public class GameModel {
         powers.add(new PowerModel(random.nextFloat() * GameController.GAME_WIDTH,  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
 
    }
+
+    /**
+     * Removes a model from this game.
+     *
+     * @param model the model to be removed
+     */
+    public void remove(EntityModel model) {
+        if (model instanceof PowerModel) {
+            powers.remove(model);
+        }
+    }
+
+    public void update(float delta) {
+        for (PowerModel power : powers)
+            if (power.decreaseTimeToLive(delta))
+                power.setFlaggedForRemoval(true);
+    }
 
 
     /**

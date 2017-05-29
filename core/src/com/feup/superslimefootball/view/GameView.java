@@ -114,6 +114,8 @@ public class GameView extends ScreenAdapter {
     @Override
     public void render (float delta) {
 
+        GameController.getInstance().removeFlagged();
+
         this.game.getBatch().setProjectionMatrix(camera.combined);
 
         handleInputs();
@@ -144,7 +146,7 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().jump();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            //GameController.getInstance().shoot();
+            GameController.getInstance().powerUP();
         }
         if (Gdx.input.getAccelerometerY() > 0) {
             System.out.println(Gdx.input.getAccelerometerY());
@@ -157,8 +159,8 @@ public class GameView extends ScreenAdapter {
         if (Gdx.input.isTouched()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
                 GameController.getInstance().jump();
-            //else
-                //GameController.getInstance().shoot();
+            else
+                GameController.getInstance().powerUP();
         }
     }
 

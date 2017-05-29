@@ -6,12 +6,16 @@ package com.feup.superslimefootball.model.entities;
 
 public class SlimeModel extends EntityModel {
 
-    public enum State {JUMPING, RUNNING};
+    public enum State {JUMPING, RUNNING, POWER};
     /**
      * The slime state in this update delta
      */
     private State currentState;
 
+    /**
+     * The slime power type state in this update delta
+     */
+    private PowerModel.PowerType power;
 
     /**
      * Constructs a model with a position and a rotation.
@@ -38,6 +42,21 @@ public class SlimeModel extends EntityModel {
      */
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
+    }
+
+    /**
+     * Gets the slime power type state in this update delta
+     */
+
+    public PowerModel.PowerType getPowerType() {
+        return power;
+    }
+
+    /**
+     * Sets the slime power in this update delta
+     */
+    public void setPowerType(PowerModel.PowerType power) {
+        this.power = power;
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.feup.superslimefootball.controller.entities.PowerBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
+import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
@@ -117,6 +118,8 @@ public class GameController implements ContactListener {
      */
     public void update(float delta) {
 
+        GameModel.getInstance().update(delta);
+
         updateState();
 
         float frameTime = Math.min(delta, 0.25f);
@@ -184,8 +187,35 @@ public class GameController implements ContactListener {
             //slimeBody.applyForceToCenter(0,300f,true);
     }
 
+    /**
+     * Uses the Slime power.
+     *
+     */
+    public void powerUP() {
+        if(((SlimeModel)slimeBody.getUserData()).getPowerType() != null){
+            System.out.println("Power Up");
+            ((SlimeModel)slimeBody.getUserData()).setPowerType(null);
+        }
+        else
+            System.out.println(" No Power");
+    }
+
     @Override
     public void beginContact(Contact contact) {
+
+        Body bodyA = contact.getFixtureA().getBody();
+        Body bodyB = contact.getFixtureB().getBody();
+
+
+        if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
+            slimeBallCollision(bodyA, bodyB);
+        else if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
+            slimeBallCollision(bodyB, bodyA);
+
+        else if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof PowerModel)
+            slimePowerCollision(bodyA, bodyB);
+        else if (bodyA.getUserData() instanceof PowerModel && bodyB.getUserData() instanceof BallModel)
+            slimePowerCollision(bodyB, bodyA);
 
     }
 
@@ -202,5 +232,47 @@ public class GameController implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    /**
+     * A slime collided with the Ball.
+     * @param slimeBody the bullet that collided
+     * @param ballBody the asteroid that collided
+     */
+    private void slimeBallCollision(Body slimeBody, Body ballBody) {
+        System.out.println("Colisão Slime Bola");
+        System.out.println("Velocidade da Bola: " + ballBody.getLinearVelocity().x + "-" + ballBody.getLinearVelocity().y);
+    }
+
+    /**
+     * A slime collided with the Ball.
+     * @param slimeBody the bullet that collided
+     * @param powerBody the asteroid that collided
+     */
+    private void slimePowerCollision(Body slimeBody, Body powerBody) {
+        System.out.println("Colisão Slime Power");
+
+        if(((SlimeModel)slimeBody.getUserData()).getPowerType() == null){
+            System.out.println("Power Atribuido ao Slime");
+            ((SlimeModel)slimeBody.getUserData()).setPowerType(((PowerModel) powerBody.getUserData()).getPowerType());
+            ((PowerModel)powerBody.getUserData()).setFlaggedForRemoval(true);
+        }
+    }
+
+
+    /**
+     * Removes objects that have been flagged for removal on the
+     * previous step.
+     */
+    public void removeFlagged() {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for (Body body : bodies) {
+            if (((EntityModel)body.getUserData()).isFlaggedToBeRemoved()) {
+                System.out.println("Removed");
+                GameModel.getInstance().remove((EntityModel) body.getUserData());
+                world.destroyBody(body);
+            }
+        }
     }
 }
