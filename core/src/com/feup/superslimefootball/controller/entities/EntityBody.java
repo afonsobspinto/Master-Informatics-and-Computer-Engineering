@@ -36,7 +36,7 @@ public abstract class EntityBody {
      * @param model The model representing the body.
      * @param isDynamic is the body dynamic
      */
-    EntityBody(World world, EntityModel model, boolean isDynamic) {
+    EntityBody(World world, EntityModel model, boolean isDynamic ) {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = isDynamic? BodyDef.BodyType.DynamicBody : BodyDef.BodyType.StaticBody;
@@ -86,7 +86,7 @@ public abstract class EntityBody {
      * @param restitution The restitution of the fixture. How much it bounces.
 
      */
-    final void createCircleFixture(Body body, float radius, float density, float restitution) {
+    final void createCircleFixture(Body body, float radius, float density, float restitution, boolean isSensor) {
 
         CircleShape circle = new CircleShape();
         circle.setRadius(radius / PPM);
@@ -95,6 +95,7 @@ public abstract class EntityBody {
         fixtureDef.shape = circle;
         fixtureDef.density = density;
         fixtureDef.restitution = restitution;
+        fixtureDef.isSensor = isSensor;
 
         body.createFixture(fixtureDef);
 
