@@ -20,7 +20,7 @@ public class BallBody extends EntityBody {
         float density = 0.9f;
         float restitution = 0.7f;
 
-        createCircleFixture(body, 13, density, restitution);
+        createCircleFixture(body, 13, density, restitution, false);
     }
 
 

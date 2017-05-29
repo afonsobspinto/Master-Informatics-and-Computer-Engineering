@@ -10,11 +10,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.feup.superslimefootball.controller.entities.BallBody;
 import com.feup.superslimefootball.controller.entities.GoalBody;
+import com.feup.superslimefootball.controller.entities.PowerBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
 import com.feup.superslimefootball.controller.entities.WallsBody;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.EntityModel;
+import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
+
+import java.util.List;
 
 import static com.feup.superslimefootball.view.GameView.PPM;
 
@@ -66,6 +70,7 @@ public class GameController implements ContactListener {
      */
     private final GoalBody leftGoalBody;
 
+
     /**
      * Accumulator used to calculate the simulation step.
      */
@@ -83,6 +88,12 @@ public class GameController implements ContactListener {
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
         leftGoalBody = new GoalBody(world, GameModel.getInstance().getLeftGoalModel());
+
+
+        List<PowerModel> powers = GameModel.getInstance().getPowers();
+        for (PowerModel power : powers)
+            if (power.getPowerType() == PowerModel.PowerType.SPEED)
+                new PowerBody(world, power);
 
         world.setContactListener(this);
     }

@@ -13,9 +13,12 @@ import com.feup.superslimefootball.controller.GameController;
 import com.feup.superslimefootball.model.GameModel;
 import com.feup.superslimefootball.model.entities.BallModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
+import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
+
+import java.util.List;
 
 /**
  * Created by afonso on 5/26/17.
@@ -97,6 +100,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "blueSlime.png" , Texture.class);
         this.game.getAssetManager().load( "ball.png", Texture.class);
         this.game.getAssetManager().load( "goal.png", Texture.class);
+        this.game.getAssetManager().load( "speedPower.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -189,7 +193,12 @@ public class GameView extends ScreenAdapter {
         ballView.update(ball);
         ballView.draw(game.getBatch());
 
-
+        List<PowerModel> powers = GameModel.getInstance().getPowers();
+        for (PowerModel power : powers) {
+            EntityView powerView = ViewFactory.makeView(game, power);
+            powerView.update(power);
+            powerView.draw(game.getBatch());
+        }
 
 
     }

@@ -6,7 +6,7 @@ package com.feup.superslimefootball.model.entities;
 
 public abstract class EntityModel {
 
-    public enum ModelType {SLIME, BALL, GOAL}
+    public enum ModelType {SLIME, BALL, GOAL, SPEED}
 
     ;
 
