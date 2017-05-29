@@ -3,7 +3,7 @@ package com.feup.superslimefootball;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.feup.superslimefootball.view.GameView;
+import com.feup.superslimefootball.view.MenuView;
 
 public class SuperSlimeFootball extends Game {
     private SpriteBatch batch;
@@ -21,7 +21,7 @@ public class SuperSlimeFootball extends Game {
      * Starts the game.
      */
     private void startGame() {
-        setScreen(new GameView(this));
+        setScreen(new MenuView(this));
     }
 
 
