@@ -24,22 +24,22 @@ public class SlimeBody extends EntityBody {
 
         Vector2[] vertexes = new Vector2[8];
 
-        vertexes[0] = new Vector2(-1.2f, -0.7f);
+        vertexes[0] = new Vector2(-1.35f, -0.7f);
         vertexes[1] = new Vector2(0.1f, -0.7f);
         vertexes[2] = new Vector2(0.1f, 0.7f);
-        vertexes[3] = new Vector2(-0.4f, 0.6f);
-        vertexes[4] = new Vector2(-0.9f, 0.4f);
-        vertexes[5] = new Vector2(-1.0f, 0.0f);
-        vertexes[6] = new Vector2(-1.2f, -0.2f);
+        vertexes[3] = new Vector2(-0.6f, 0.5f);
+        vertexes[4] = new Vector2(-1.0f, 0.25f);
+        vertexes[5] = new Vector2(-1.1f, 0.0f);
+        vertexes[6] = new Vector2(-1.3f, -0.2f);
         vertexes[7] = new Vector2(-1.2f, -0.7f);
 
         createFixture(body,vertexes, density, friction, restitution, false);
 
-        vertexes[0] = new Vector2(1.3f, -0.7f);
+        vertexes[0] = new Vector2(1.35f, -0.7f);
         vertexes[1] = new Vector2(-0.1f, -0.7f);
         vertexes[2] = new Vector2(-0.1f, 0.7f);
-        vertexes[3] = new Vector2(0.6f, 0.6f);
-        vertexes[4] = new Vector2(1.0f, 0.3f);
+        vertexes[3] = new Vector2(0.6f, 0.5f);
+        vertexes[4] = new Vector2(1.0f, 0.25f);
         vertexes[5] = new Vector2(1.1f, 0.0f);
         vertexes[6] = new Vector2(1.3f, -0.2f);
         vertexes[7] = new Vector2(1.2f, -0.7f);
