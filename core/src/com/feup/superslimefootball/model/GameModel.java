@@ -77,7 +77,7 @@ public class GameModel {
 
         powers = new ArrayList<PowerModel>();
 
-        powers.add(new PowerModel(random.nextFloat() * GameController.GAME_WIDTH,  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
+        powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
 
    }
 
