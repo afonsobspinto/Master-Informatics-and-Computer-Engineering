@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
 
-public class MenuView extends ScreenAdapter {
+import java.util.HashMap;
+
+public abstract class MenuView extends ScreenAdapter {
 
     /**
      * How much pixels does a meter represent.
@@ -31,7 +33,7 @@ public class MenuView extends ScreenAdapter {
     /**
      * The menu this screen belongs to.
      */
-    private final SuperSlimeFootball menu;
+    public final SuperSlimeFootball menu;
 
     /**
      * The camera used to show the viewport.
@@ -48,13 +50,20 @@ public class MenuView extends ScreenAdapter {
      */
     MenuState state = MenuState.INITIAL;
 
+    /*
+     * ArrayList with the Textures
+     */
+    public HashMap<String, Texture> textures;
+
     /**
      * Creates this screen.
      *
      * @param menu The menu this screen belongs to
      */
     public MenuView(SuperSlimeFootball menu) {
+        //super();
         this.menu = menu;
+        this.textures = new HashMap<String, Texture>();
         this.loadAssets();
         this.camera = this.createCamera();
     }
@@ -92,7 +101,26 @@ public class MenuView extends ScreenAdapter {
         this.menu.getAssetManager().load("comments.png", Texture.class);
         this.menu.getAssetManager().load("goalLimit.png", Texture.class);
 
-        this.menu.getAssetManager().finishLoading(); // Possivel problema aqui
+        this.menu.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
+
+        this.textures.put("menuBackground",(Texture)this.menu.getAssetManager().get("menuBackground.png", Texture.class));
+        this.textures.put("ball",(Texture)this.menu.getAssetManager().get("ball.png", Texture.class));
+        this.textures.put("singlePlayer",(Texture)this.menu.getAssetManager().get("singleplayer.png", Texture.class));
+        this.textures.put("multiPlayer",(Texture)this.menu.getAssetManager().get("multiplayer.png", Texture.class));
+        this.textures.put("options",(Texture)this.menu.getAssetManager().get("options.png", Texture.class));
+        this.textures.put("facebook",(Texture)this.menu.getAssetManager().get("facebook.png", Texture.class));
+        this.textures.put("twitter",(Texture)this.menu.getAssetManager().get("twitter.png", Texture.class));
+        this.textures.put("blueSlime",(Texture)this.menu.getAssetManager().get("blueSlime.png", Texture.class));
+        this.textures.put("redSlime",(Texture)this.menu.getAssetManager().get("redSlime.png", Texture.class));
+        this.textures.put("blueSlimeButton",(Texture)this.menu.getAssetManager().get("blueSlimeButton.png", Texture.class));
+        this.textures.put("redSlimeButton",(Texture)this.menu.getAssetManager().get("redSlimeButton.png", Texture.class));
+        this.textures.put("refresh",(Texture)this.menu.getAssetManager().get("refresh.png", Texture.class));
+        this.textures.put("findIP",(Texture)this.menu.getAssetManager().get("findIP.png", Texture.class));
+        this.textures.put("howToPlay",(Texture)this.menu.getAssetManager().get("howToPlay.png", Texture.class));
+        this.textures.put("sound",(Texture)this.menu.getAssetManager().get("sound.png", Texture.class));
+        this.textures.put("comments",(Texture)this.menu.getAssetManager().get("comments.png", Texture.class));
+        this.textures.put("goalLimit",(Texture)this.menu.getAssetManager().get("goalLimit.png", Texture.class));
+
     }
 
     /*
@@ -114,7 +142,7 @@ public class MenuView extends ScreenAdapter {
         Gdx.gl.glClear(16384);
         this.menu.getBatch().begin();
         this.drawBackground();
-        this.drawButtons();
+        //this.drawButtons();
         this.menu.getBatch().end();
     }
 
@@ -128,61 +156,13 @@ public class MenuView extends ScreenAdapter {
      * Draws the background
      */
     private void drawBackground() {
-        Texture background = (Texture)this.menu.getAssetManager().get("menuBackground.png", Texture.class);
-        Texture ball = (Texture)this.menu.getAssetManager().get("ball.png", Texture.class);
-        this.menu.getBatch().draw(background, 0.0F, 0.0F);
-        this.menu.getBatch().draw(ball, VIEWPORT_WIDTH/2, VIEWPORT_HEIGHT/5);
-
+        this.menu.getBatch().draw(this.textures.get("menuBackground"), 0.0F, 0.0F);
+        this.menu.getBatch().draw(this.textures.get("ball"), VIEWPORT_WIDTH/2, VIEWPORT_HEIGHT/5);
     }
 
     /**
      * Draws the buttons
      */
-    private void drawButtons() {
-        Texture singlePlayer = (Texture)this.menu.getAssetManager().get("singleplayer.png", Texture.class);
-        Texture multiPlayer = (Texture)this.menu.getAssetManager().get("multiplayer.png", Texture.class);
-        Texture options = (Texture)this.menu.getAssetManager().get("options.png", Texture.class);
-        Texture facebook = (Texture)this.menu.getAssetManager().get("facebook.png", Texture.class);
-        Texture twitter = (Texture)this.menu.getAssetManager().get("twitter.png", Texture.class);
-        Texture blueSlime = (Texture)this.menu.getAssetManager().get("blueSlime.png", Texture.class);
-        Texture redSlime = (Texture)this.menu.getAssetManager().get("redSlime.png", Texture.class);
-        Texture blueSlimeButton = (Texture)this.menu.getAssetManager().get("blueSlimeButton.png", Texture.class);
-        Texture redSlimeButton = (Texture)this.menu.getAssetManager().get("redSlimeButton.png", Texture.class);
-        Texture refresh = (Texture)this.menu.getAssetManager().get("refresh.png", Texture.class);
-        Texture findIP = (Texture)this.menu.getAssetManager().get("findIP.png", Texture.class);
-        Texture howToPlay = (Texture)this.menu.getAssetManager().get("howToPlay.png", Texture.class);
-        Texture sound = (Texture)this.menu.getAssetManager().get("sound.png", Texture.class);
-        Texture comments = (Texture)this.menu.getAssetManager().get("comments.png", Texture.class);
-        Texture goalLimit = (Texture)this.menu.getAssetManager().get("goalLimit.png", Texture.class);
+    void drawButtons() {}
 
-        switch (state){
-            case INITIAL:
-                this.menu.getBatch().draw(singlePlayer, VIEWPORT_WIDTH*(1F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(multiPlayer, VIEWPORT_WIDTH*(2F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(options, VIEWPORT_WIDTH*(3F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(facebook, VIEWPORT_WIDTH*(12F/13), VIEWPORT_HEIGHT*(17F/20));
-                this.menu.getBatch().draw(twitter, VIEWPORT_WIDTH*(12F/13), VIEWPORT_HEIGHT*(14F/20));
-                break;
-            case SINGLEPLAYER:
-                this.menu.getBatch().draw(blueSlime, VIEWPORT_WIDTH*(1F/4), VIEWPORT_HEIGHT*(4F/25));
-                this.menu.getBatch().draw(redSlime, VIEWPORT_WIDTH*(5F/8), VIEWPORT_HEIGHT*(4F/25));
-                this.menu.getBatch().draw(blueSlimeButton, VIEWPORT_WIDTH*(1F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(redSlimeButton, VIEWPORT_WIDTH*(3F/5), VIEWPORT_HEIGHT*(1F/25));
-                break;
-            case MULTIPLAYER:
-                this.menu.getBatch().draw(refresh, VIEWPORT_WIDTH*(1F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(findIP, VIEWPORT_WIDTH*(3F/5), VIEWPORT_HEIGHT*(1F/25));
-                break;
-            case OPTIONS:
-                this.menu.getBatch().draw(howToPlay, VIEWPORT_WIDTH*(1F/13), VIEWPORT_HEIGHT*(17F/20));
-                this.menu.getBatch().draw(sound, VIEWPORT_WIDTH*(1F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(comments, VIEWPORT_WIDTH*(2F/5), VIEWPORT_HEIGHT*(1F/25));
-                this.menu.getBatch().draw(goalLimit, VIEWPORT_WIDTH*(3F/5), VIEWPORT_HEIGHT*(1F/25));
-                break;
-            case WINNER:
-                break;
-            case LOSER:
-                break;
-        }
-    }
 }
