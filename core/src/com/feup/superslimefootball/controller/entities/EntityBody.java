@@ -36,14 +36,14 @@ public abstract class EntityBody {
      * @param model The model representing the body.
      * @param isDynamic is the body dynamic
      */
-    EntityBody(World world, EntityModel model, boolean isDynamic ) {
+    EntityBody(World world, EntityModel model, boolean isDynamic, float linearDamping ) {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = isDynamic? BodyDef.BodyType.DynamicBody : BodyDef.BodyType.StaticBody;
 
         bodyDef.position.set(model.getX()/PPM, model.getY()/PPM);
         bodyDef.fixedRotation = true;
-        bodyDef.linearDamping = 1.0f;
+        bodyDef.linearDamping = linearDamping;
 
         this.body = world.createBody(bodyDef);
         this.body.setUserData(model);

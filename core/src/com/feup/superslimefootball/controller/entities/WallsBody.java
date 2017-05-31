@@ -20,7 +20,7 @@ public class WallsBody extends EntityBody {
      * @param model   The model representing the body.
      */
     public WallsBody(World world, EntityModel model) {
-        super(world, model, false);
+        super(world, model, false, 1.0f);
 
         Vector2[] vertexes = new Vector2[5];
         vertexes[0] = new Vector2(0/PPM, 2 / PPM);

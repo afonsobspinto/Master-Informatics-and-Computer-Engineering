@@ -27,7 +27,7 @@ public class ViewFactory {
             else if (model.getType() == BALL)
                 cache.put(model.getType(), new BallView(game));
             else if (model.getType() == GOAL)
-                cache.put(model.getType(), new GoalView(game));
+                cache.put(model.getType(), new GoalViewLeft(game));
             else if (model.getType() == SPEED)
                 cache.put(model.getType(), new SpeedView(game));
         }

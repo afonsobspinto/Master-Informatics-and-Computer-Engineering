@@ -16,7 +16,7 @@ public class SlimeBody extends EntityBody {
      * @param model The model representing the body.
      */
     public SlimeBody(World world, SlimeModel model) {
-        super(world, model, true);
+        super(world, model, true, 1.0f);
 
         float density = 1.0f;
         float restitution = 0.01f;

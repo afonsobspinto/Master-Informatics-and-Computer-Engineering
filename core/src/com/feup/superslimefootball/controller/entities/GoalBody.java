@@ -16,7 +16,7 @@ public class GoalBody extends EntityBody {
      * @param model     The model representing the body.
      */
     public GoalBody(World world, EntityModel model) {
-        super(world, model, false);
+        super(world, model, false, 1.0f);
 
 
         float density = 1.0f;

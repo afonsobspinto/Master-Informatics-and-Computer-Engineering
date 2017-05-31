@@ -187,6 +187,7 @@ public class GameController implements ContactListener {
      *
      */
     public void jump() {
+        //todo: decrease speed horizontally;
         if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
             slimeBody.applyLinearImpulse(0, 15f, true);
             //slimeBody.applyForceToCenter(0,300f,true);
@@ -228,6 +229,7 @@ public class GameController implements ContactListener {
             ballGoalCollision(bodyB, contact.getFixtureA());
 
 
+
     }
 
     @Override
@@ -245,14 +247,18 @@ public class GameController implements ContactListener {
 
     }
 
+
+
     /**
      * A slime collided with the Ball.
      * @param slimeBody the slime that collided
      * @param ballBody the ball that collided
      */
+
+    //todo: Ball jump when slime gets over it
     private void slimeBallCollision(Body slimeBody, Body ballBody) {
         System.out.println("Colisão Slime Bola");
-        System.out.println("Velocidade da Bola: " + ballBody.getLinearVelocity().x + "-" + ballBody.getLinearVelocity().y);
+
     }
 
 

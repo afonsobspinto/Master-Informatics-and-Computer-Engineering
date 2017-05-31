@@ -55,11 +55,6 @@ public class GameModel {
     private GoalModel leftGoalModel;
 
 
-    /**
-     * The Rigth Goal in this game.
-     */
-
-    private GoalModel rigthGoalModel;
 
 
 
@@ -67,6 +62,7 @@ public class GameModel {
      * The powers roaming around in this game.
      */
     private List<PowerModel> powers;
+
 
 
     /**
@@ -77,7 +73,8 @@ public class GameModel {
         wallsModel = new WallsModel(0,0);
         slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
-        leftGoalModel = new GoalModel(GameController.GAME_WIDTH * (1.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f));
+        leftGoalModel = new GoalModel(GameController.GAME_WIDTH * (1.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f), false);
+
         powers = new ArrayList<PowerModel>();
 
         powers.add(new PowerModel(random.nextFloat() * GameController.GAME_WIDTH,  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
@@ -157,7 +154,6 @@ public class GameModel {
     public GoalModel getLeftGoalModel() {
         return leftGoalModel;
     }
-
 
     /**
      * Returns the powers List.

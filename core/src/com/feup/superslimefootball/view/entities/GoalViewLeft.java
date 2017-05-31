@@ -8,14 +8,16 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * Created by afonso on 5/29/17.
  */
 
-public class GoalView extends EntityView {
+public class GoalViewLeft extends EntityView {
+
+
     /**
      * Creates a view belonging to a game.
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    GoalView(SuperSlimeFootball game) {
+    GoalViewLeft(SuperSlimeFootball game) {
         super(game);
     }
 
@@ -25,5 +27,6 @@ public class GoalView extends EntityView {
         Texture texture = game.getAssetManager().get("goal.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
+
     }
 }
