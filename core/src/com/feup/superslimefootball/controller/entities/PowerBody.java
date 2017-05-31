@@ -15,7 +15,7 @@ public class PowerBody extends EntityBody {
      * @param model     The model representing the body.
      */
     public PowerBody(World world, EntityModel model) {
-        super(world, model, false);
+        super(world, model, false, 1.0f);
 
         float density = 1.0f;
         float restitution = 0.0f;

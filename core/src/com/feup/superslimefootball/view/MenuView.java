@@ -103,23 +103,23 @@ public abstract class MenuView extends ScreenAdapter {
 
         this.menu.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
 
-        this.textures.put("menuBackground",(Texture)this.menu.getAssetManager().get("menuBackground.png", Texture.class));
-        this.textures.put("ball",(Texture)this.menu.getAssetManager().get("ball.png", Texture.class));
-        this.textures.put("singlePlayer",(Texture)this.menu.getAssetManager().get("singleplayer.png", Texture.class));
-        this.textures.put("multiPlayer",(Texture)this.menu.getAssetManager().get("multiplayer.png", Texture.class));
-        this.textures.put("options",(Texture)this.menu.getAssetManager().get("options.png", Texture.class));
-        this.textures.put("facebook",(Texture)this.menu.getAssetManager().get("facebook.png", Texture.class));
-        this.textures.put("twitter",(Texture)this.menu.getAssetManager().get("twitter.png", Texture.class));
-        this.textures.put("blueSlime",(Texture)this.menu.getAssetManager().get("blueSlime.png", Texture.class));
-        this.textures.put("redSlime",(Texture)this.menu.getAssetManager().get("redSlime.png", Texture.class));
-        this.textures.put("blueSlimeButton",(Texture)this.menu.getAssetManager().get("blueSlimeButton.png", Texture.class));
-        this.textures.put("redSlimeButton",(Texture)this.menu.getAssetManager().get("redSlimeButton.png", Texture.class));
-        this.textures.put("refresh",(Texture)this.menu.getAssetManager().get("refresh.png", Texture.class));
-        this.textures.put("findIP",(Texture)this.menu.getAssetManager().get("findIP.png", Texture.class));
-        this.textures.put("howToPlay",(Texture)this.menu.getAssetManager().get("howToPlay.png", Texture.class));
-        this.textures.put("sound",(Texture)this.menu.getAssetManager().get("sound.png", Texture.class));
-        this.textures.put("comments",(Texture)this.menu.getAssetManager().get("comments.png", Texture.class));
-        this.textures.put("goalLimit",(Texture)this.menu.getAssetManager().get("goalLimit.png", Texture.class));
+//        this.textures.put("menuBackground",(Texture)this.menu.getAssetManager().get("menuBackground.png", Texture.class));
+//        this.textures.put("ball",(Texture)this.menu.getAssetManager().get("ball.png", Texture.class));
+//        this.textures.put("singlePlayer",(Texture)this.menu.getAssetManager().get("singleplayer.png", Texture.class));
+//        this.textures.put("multiPlayer",(Texture)this.menu.getAssetManager().get("multiplayer.png", Texture.class));
+//        this.textures.put("options",(Texture)this.menu.getAssetManager().get("options.png", Texture.class));
+//        this.textures.put("facebook",(Texture)this.menu.getAssetManager().get("facebook.png", Texture.class));
+//        this.textures.put("twitter",(Texture)this.menu.getAssetManager().get("twitter.png", Texture.class));
+//        this.textures.put("blueSlime",(Texture)this.menu.getAssetManager().get("blueSlime.png", Texture.class));
+//        this.textures.put("redSlime",(Texture)this.menu.getAssetManager().get("redSlime.png", Texture.class));
+//        this.textures.put("blueSlimeButton",(Texture)this.menu.getAssetManager().get("blueSlimeButton.png", Texture.class));
+//        this.textures.put("redSlimeButton",(Texture)this.menu.getAssetManager().get("redSlimeButton.png", Texture.class));
+//        this.textures.put("refresh",(Texture)this.menu.getAssetManager().get("refresh.png", Texture.class));
+//        this.textures.put("findIP",(Texture)this.menu.getAssetManager().get("findIP.png", Texture.class));
+//        this.textures.put("howToPlay",(Texture)this.menu.getAssetManager().get("howToPlay.png", Texture.class));
+//        this.textures.put("sound",(Texture)this.menu.getAssetManager().get("sound.png", Texture.class));
+//        this.textures.put("comments",(Texture)this.menu.getAssetManager().get("comments.png", Texture.class));
+//        this.textures.put("goalLimit",(Texture)this.menu.getAssetManager().get("goalLimit.png", Texture.class));
 
     }
 
@@ -137,7 +137,7 @@ public abstract class MenuView extends ScreenAdapter {
      */
     public void render(float delta) {
         this.menu.getBatch().setProjectionMatrix(this.camera.combined);
-        this.handleInputs(delta);
+        //this.handleInputs(delta);
         Gdx.gl.glClearColor(1.0F, 0.0F, 0.0F, 1.0F);
         Gdx.gl.glClear(16384);
         this.menu.getBatch().begin();

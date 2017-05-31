@@ -16,7 +16,7 @@ public class SlimeBody extends EntityBody {
      * @param model The model representing the body.
      */
     public SlimeBody(World world, SlimeModel model) {
-        super(world, model, true);
+        super(world, model, true, 1.0f);
 
         float density = 1.0f;
         float restitution = 0.01f;
@@ -33,7 +33,7 @@ public class SlimeBody extends EntityBody {
         vertexes[6] = new Vector2(-1.2f, -0.2f);
         vertexes[7] = new Vector2(-1.2f, -0.7f);
 
-        createFixture(body,vertexes, density, friction, restitution);
+        createFixture(body,vertexes, density, friction, restitution, false);
 
         vertexes[0] = new Vector2(1.3f, -0.7f);
         vertexes[1] = new Vector2(-0.1f, -0.7f);
@@ -44,6 +44,6 @@ public class SlimeBody extends EntityBody {
         vertexes[6] = new Vector2(1.3f, -0.2f);
         vertexes[7] = new Vector2(1.2f, -0.7f);
 
-        createFixture(body,vertexes, density, friction, restitution);
+        createFixture(body,vertexes, density, friction, restitution, false);
     }
 }
