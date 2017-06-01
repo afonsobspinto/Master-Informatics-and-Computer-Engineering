@@ -98,9 +98,7 @@ public class MenuView extends ScreenAdapter {
      */
     public void render(float delta) {
         this.menu.getBatch().setProjectionMatrix(this.camera.combined);
-        //state.handleMouse(delta);
-
-
+        state.handleMouse();
         Gdx.gl.glClearColor(1.0F, 0.0F, 0.0F, 1.0F);
         Gdx.gl.glClear(16384);
         this.menu.getBatch().begin();

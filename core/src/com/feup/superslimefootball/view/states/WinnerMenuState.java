@@ -22,10 +22,6 @@ public class WinnerMenuState extends MenuState {
 
     }
 
-    @Override
-    public void dispose() {
-
-    }
 
     @Override
     public void handleMouse() {

@@ -6,7 +6,7 @@ import com.feup.superslimefootball.view.MenuView;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
 
-public class LoserMenuState extends MenuState {
+public class LoserMenuState extends MenuState { //Tomás Menu xD
     public LoserMenuState(MenuView menuView) {
         super(menuView);
     }
@@ -22,10 +22,6 @@ public class LoserMenuState extends MenuState {
 
     }
 
-    @Override
-    public void dispose() {
-
-    }
 
     @Override
     public void handleMouse() {

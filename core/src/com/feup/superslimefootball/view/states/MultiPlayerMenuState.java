@@ -22,11 +22,6 @@ public class MultiPlayerMenuState extends MenuState {
     }
 
     @Override
-    public void dispose() {
-
-    }
-
-    @Override
     public void handleMouse() {
 
     }

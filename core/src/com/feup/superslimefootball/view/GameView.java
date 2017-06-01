@@ -158,7 +158,7 @@ public class GameView extends ScreenAdapter {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
                 GameController.getInstance().jump();
             //else
-                //GameController.getInstance().shoot();
+            //GameController.getInstance().shoot();
         }
     }
 

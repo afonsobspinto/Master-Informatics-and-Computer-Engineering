@@ -19,8 +19,6 @@ public abstract class MenuState {
 
     public abstract void  drawButtons();
 
-    public abstract void dispose();
-
     public abstract void  handleMouse();
 
 
