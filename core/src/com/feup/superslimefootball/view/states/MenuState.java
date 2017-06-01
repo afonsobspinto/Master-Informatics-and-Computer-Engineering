@@ -4,9 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.view.MenuView;
 
-import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
-import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
-
 public abstract class MenuState {
 
     /**
@@ -36,8 +33,8 @@ public abstract class MenuState {
     public abstract void  handleMouse();
 
     public boolean touchButton(double width, double height){
-        if ((Gdx.input.getX() > VIEWPORT_WIDTH*width) && (Gdx.input.getX() < VIEWPORT_WIDTH*(width+BUTTONS_WIDTH))
-                && (Gdx.input.getY() < VIEWPORT_HEIGHT*(1-height)) && (Gdx.input.getY() > VIEWPORT_HEIGHT*((1-height) - BUTTONS_HEIGHT)))
+        if ((Gdx.input.getX() > Gdx.graphics.getWidth()*width) && (Gdx.input.getX() < Gdx.graphics.getWidth()*(width+BUTTONS_WIDTH))
+                && (Gdx.input.getY() < Gdx.graphics.getHeight()*(1-height)) && (Gdx.input.getY() > Gdx.graphics.getHeight()*((1-height) - BUTTONS_HEIGHT)))
             return true;
         return false;
     }
