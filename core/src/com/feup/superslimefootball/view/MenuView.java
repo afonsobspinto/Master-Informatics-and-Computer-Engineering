@@ -10,8 +10,8 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.view.states.InitialMenuState;
 import com.feup.superslimefootball.view.states.MenuState;
-import com.feup.superslimefootball.view.states.OptionsMenuState;
 
 public class MenuView extends ScreenAdapter {
 
@@ -49,8 +49,8 @@ public class MenuView extends ScreenAdapter {
      */
     public MenuView(SuperSlimeFootball menu) {
         this.menu = menu;
-        this.state = new OptionsMenuState(menu);
         this.loadAssets();
+        this.state = new InitialMenuState(this);
         this.camera = this.createCamera();
     }
 
@@ -129,8 +129,10 @@ public class MenuView extends ScreenAdapter {
       /*
      * Sets the state
      */
-
     public void setState(MenuState state) {
         this.state = state;
     }
+
+    public SuperSlimeFootball getMenu() { return menu; }
 }
+

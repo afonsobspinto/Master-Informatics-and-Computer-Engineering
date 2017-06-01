@@ -1,14 +1,14 @@
 package com.feup.superslimefootball.view.states;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.view.MenuView;
 
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
 
 public class SinglePlayerMenuState extends MenuState {
-    public SinglePlayerMenuState(SuperSlimeFootball menu) {
-        super(menu);
+    public SinglePlayerMenuState(MenuView menuView) {
+        super(menuView);
     }
 
     @Override
@@ -25,6 +25,11 @@ public class SinglePlayerMenuState extends MenuState {
 
         Texture redSlimeButton = (Texture)this.menu.getAssetManager().get("redSlimeButton.png", Texture.class);
         this.menu.getBatch().draw(redSlimeButton, VIEWPORT_WIDTH*(3.0f/5.0f), VIEWPORT_HEIGHT*(1.0f/25.0f));
+
+    }
+
+    @Override
+    public void dispose() {
 
     }
 
