@@ -52,11 +52,6 @@ public class GameController implements ContactListener {
      */
     private final World world;
 
-    /**
-     * The arena walls.
-     */
-
-    private  final WallsBody wallsBody;
 
     /**
      * The slime body.
@@ -68,10 +63,6 @@ public class GameController implements ContactListener {
      */
     private final BallBody ballBody;
 
-    /**
-     * The left Goal body.
-     */
-    private final GoalBody leftGoalBody;
 
 
 
@@ -89,16 +80,23 @@ public class GameController implements ContactListener {
     private GameController() {
         world = new World(new Vector2(0f, -9.8f), false);
 
-        wallsBody = new WallsBody(world, GameModel.getInstance().getWallsModel());
+        new WallsBody(world, GameModel.getInstance().getWallsModel());
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
-        leftGoalBody = new GoalBody(world, GameModel.getInstance().getLeftGoalModel());
 
 
         List<PowerModel> powers = GameModel.getInstance().getPowers();
         for (PowerModel power : powers)
             if (power.getPowerType() == PowerModel.PowerType.SPEED)
                 new PowerBody(world, power);
+
+        List<GoalModel> goals = GameModel.getInstance().getGoals();
+        boolean flip = true;
+        for (GoalModel goal : goals){
+            flip = !flip;
+            new GoalBody(world, goal, flip);
+        }
+
 
         world.setContactListener(this);
     }
@@ -156,10 +154,10 @@ public class GameController implements ContactListener {
      * */
     public void updateState() {
 
-        if(slimeBody.getLinearVelocity().y != 0 && Math.round(((SlimeModel) slimeBody.getUserData()).getY()) != 25)
-            ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.JUMPING);
+        if(slimeBody.getLinearVelocity().y != 0)
+            ((SlimeModel)slimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.JUMPING);
         else
-            ((SlimeModel)slimeBody.getUserData()).setCurrentState(SlimeModel.State.RUNNING);
+            ((SlimeModel)slimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.RUNNING);
     }
 
 
@@ -170,6 +168,7 @@ public class GameController implements ContactListener {
      */
     public void moveRight() {
         slimeBody.applyLinearImpulse(1f , 0, true);
+        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
         //slimeBody.applyForceToCenter(5f,0,true);
     }
 
@@ -178,7 +177,9 @@ public class GameController implements ContactListener {
      *
      */
     public void moveLeft() {
+
         slimeBody.applyLinearImpulse(-1f , 0, true);
+        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
         //slimeBody.applyForceToCenter(-5f,0,true);
     }
 
@@ -188,7 +189,7 @@ public class GameController implements ContactListener {
      */
     public void jump() {
         //todo: decrease speed horizontally;
-        if(((SlimeModel)slimeBody.getUserData()).getCurrentState() != SlimeModel.State.JUMPING)
+        if(((SlimeModel)slimeBody.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
             slimeBody.applyLinearImpulse(0, 15f, true);
             //slimeBody.applyForceToCenter(0,300f,true);
     }

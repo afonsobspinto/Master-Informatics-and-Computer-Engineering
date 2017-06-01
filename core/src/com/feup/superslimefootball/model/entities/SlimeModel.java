@@ -1,16 +1,26 @@
 package com.feup.superslimefootball.model.entities;
 
+import com.feup.superslimefootball.controller.GameController;
+
 /**
  * Created by afonso on 5/26/17.
  */
 
 public class SlimeModel extends EntityModel {
 
-    public enum State {JUMPING, RUNNING, POWER};
+    public enum SlimeState {JUMPING, RUNNING};
+
+    public enum OrientationState {LEFT, RIGHT};
+
     /**
      * The slime state in this update delta
      */
-    private State currentState;
+    private SlimeState slimeState;
+
+    /**
+     * The slime orientation state in this update delta
+     */
+    private OrientationState orientationState;
 
     /**
      * The slime power type state in this update delta
@@ -27,22 +37,38 @@ public class SlimeModel extends EntityModel {
     public SlimeModel(float x, float y) {
 
         super(x, y);
-        this.currentState = State.RUNNING;
+
+        this.orientationState = (x > GameController.GAME_WIDTH / 2) ? orientationState.LEFT : orientationState.RIGHT;
     }
 
     /**
      * Gets the slime state in this update delta
      */
-    public State getCurrentState() {
-        return currentState;
+    public SlimeState getSlimeState() {
+        return slimeState;
     }
 
     /**
      * Sets the slime state in this update delta
      */
-    public void setCurrentState(State currentState) {
-        this.currentState = currentState;
+    public void setSlimeState(SlimeState currentState) {
+        this.slimeState = currentState;
     }
+
+    /**
+     * Gets the orientation slime state in this update delta
+     */
+    public OrientationState getOrientationState() {
+        return orientationState;
+    }
+
+    /**
+     * Sets the orientation slime state in this update delta
+     */
+    public void setOrientationState(OrientationState orientationState) {
+        this.orientationState = orientationState;
+    }
+
 
     /**
      * Gets the slime power type state in this update delta
@@ -61,6 +87,6 @@ public class SlimeModel extends EntityModel {
 
     @Override
     public ModelType getType() {
-        return ModelType.SLIME;
+        return  (orientationState == OrientationState.RIGHT) ? ModelType.SLIMERIGHT: ModelType.SLIMELEFT;
     }
 }

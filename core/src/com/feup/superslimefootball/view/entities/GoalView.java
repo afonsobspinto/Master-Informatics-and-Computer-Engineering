@@ -8,7 +8,7 @@ import com.feup.superslimefootball.SuperSlimeFootball;
  * Created by afonso on 5/29/17.
  */
 
-public class GoalViewLeft extends EntityView {
+public class GoalView extends EntityView {
 
 
     /**
@@ -16,9 +16,13 @@ public class GoalViewLeft extends EntityView {
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
+     *
+     * @param flip the sprite needs to be flipped?
      */
-    GoalViewLeft(SuperSlimeFootball game) {
+    GoalView(SuperSlimeFootball game, boolean flip) {
         super(game);
+        if(flip)
+            sprite.flip(true,false);
     }
 
     @Override

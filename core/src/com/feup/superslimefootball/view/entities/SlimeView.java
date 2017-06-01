@@ -18,9 +18,13 @@ public class SlimeView extends EntityView {
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
+     * @param flip the sprite needs to be flipped?
      */
-    SlimeView(SuperSlimeFootball game) {
+    SlimeView(SuperSlimeFootball game, boolean flip) {
         super(game);
+
+        if (flip)
+            sprite.flip(true,false);
     }
 
     @Override
@@ -29,5 +33,6 @@ public class SlimeView extends EntityView {
         Texture texture = game.getAssetManager().get("blueSlime.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
+
     }
 }

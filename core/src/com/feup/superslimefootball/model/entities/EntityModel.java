@@ -6,17 +6,17 @@ package com.feup.superslimefootball.model.entities;
 
 public abstract class EntityModel {
 
-    public enum ModelType {SLIME, BALL, GOAL, SPEED};
+    public enum ModelType {SLIMELEFT, SLIMERIGHT, BALL, GOALRIGHT, GOALLEFT, SPEED};
 
     /**
      * The x-coordinate of this model in meters.
      */
-    private float x;
+    protected float x;
 
     /**
      * The y-coordinate of this model in meters.
      */
-    private float y;
+    protected float y;
 
     /**
      * Has this model been flagged for removal?

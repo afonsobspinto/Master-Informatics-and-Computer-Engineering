@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.BALL;
-import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.GOAL;
-import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIME;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.GOALLEFT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.GOALRIGHT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIMELEFT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIMERIGHT;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SPEED;
 
 /**
@@ -22,12 +24,16 @@ public class ViewFactory {
 
     public static EntityView makeView(SuperSlimeFootball game, EntityModel model) {
         if (!cache.containsKey(model.getType())) {
-            if (model.getType() == SLIME)
-                cache.put(model.getType(), new SlimeView(game));
+            if (model.getType() == SLIMELEFT)
+                cache.put(model.getType(), new SlimeView(game, true));
+            else if (model.getType() == SLIMERIGHT)
+                cache.put(model.getType(), new SlimeView(game, false));
             else if (model.getType() == BALL)
                 cache.put(model.getType(), new BallView(game));
-            else if (model.getType() == GOAL)
-                cache.put(model.getType(), new GoalViewLeft(game));
+            else if (model.getType() == GOALRIGHT)
+                cache.put(model.getType(), new GoalView(game, true));
+            else if (model.getType() == GOALLEFT)
+                cache.put(model.getType(), new GoalView(game, false));
             else if (model.getType() == SPEED)
                 cache.put(model.getType(), new SpeedView(game));
         }

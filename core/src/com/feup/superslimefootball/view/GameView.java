@@ -196,13 +196,12 @@ public class GameView extends ScreenAdapter {
         ballView.update(ball);
         ballView.draw(game.getBatch());
 
-        GoalModel leftGoal = GameModel.getInstance().getLeftGoalModel();
-        EntityView goalViewLeft = ViewFactory.makeView(game, leftGoal);
-        goalViewLeft.update(leftGoal);
-        goalViewLeft.draw(game.getBatch());
 
-
-
-
+        List<GoalModel> goals = GameModel.getInstance().getGoals();
+        for (GoalModel goal : goals) {
+            EntityView goalView = ViewFactory.makeView(game, goal);
+            goalView.update(goal);
+            goalView.draw(game.getBatch());
+        }
     }
 }

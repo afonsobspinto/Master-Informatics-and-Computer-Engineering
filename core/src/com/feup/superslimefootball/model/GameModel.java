@@ -49,11 +49,9 @@ public class GameModel {
 
 
     /**
-     * The Left Goal in this game.
+     * The goals in this game.
      */
-
-    private GoalModel leftGoalModel;
-
+    private List<GoalModel> goals;
 
 
 
@@ -73,10 +71,12 @@ public class GameModel {
         wallsModel = new WallsModel(0,0);
         slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
-        leftGoalModel = new GoalModel(GameController.GAME_WIDTH * (1.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f), false);
+
+        goals = new ArrayList<GoalModel>();
+        goals.add(new GoalModel(GameController.GAME_WIDTH * (1.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f)));
+        goals.add(new GoalModel(GameController.GAME_WIDTH * (12.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f)));
 
         powers = new ArrayList<PowerModel>();
-
         powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
 
    }
@@ -146,13 +146,13 @@ public class GameModel {
 
 
     /**
-     * Returns the left Goal.
+     * Returns the Goals.
      *
-     * @return the left Goal.
+     * @return the  Goals
      */
 
-    public GoalModel getLeftGoalModel() {
-        return leftGoalModel;
+    public List<GoalModel> getGoals() {
+        return goals;
     }
 
     /**
