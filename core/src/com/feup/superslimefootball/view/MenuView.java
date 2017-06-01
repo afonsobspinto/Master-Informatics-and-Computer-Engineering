@@ -86,6 +86,10 @@ public class MenuView extends ScreenAdapter {
         this.menu.getAssetManager().load("sound.png", Texture.class);
         this.menu.getAssetManager().load("comments.png", Texture.class);
         this.menu.getAssetManager().load("goalLimit.png", Texture.class);
+        this.menu.getAssetManager().load("onButton.png", Texture.class);
+        this.menu.getAssetManager().load("offButton.png", Texture.class);
+        this.menu.getAssetManager().load("goBack.png", Texture.class);
+        this.menu.getAssetManager().load("howToPlayBackground.png", Texture.class);
 
         this.menu.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
     }
