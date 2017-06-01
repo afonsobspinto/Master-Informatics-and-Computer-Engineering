@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.view.GameView;
 import com.feup.superslimefootball.view.MenuView;
 
-import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
-import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
-
 public class SinglePlayerMenuState extends MenuState {
     public SinglePlayerMenuState(MenuView menuView) {
         super(menuView);
@@ -21,10 +18,10 @@ public class SinglePlayerMenuState extends MenuState {
         Texture blueSlimeButton = this.menu.getAssetManager().get("blueSlimeButton.png", Texture.class);
         Texture redSlimeButton = this.menu.getAssetManager().get("redSlimeButton.png", Texture.class);
 
-        this.menu.getBatch().draw(blueSlime, VIEWPORT_WIDTH*(1.0f/4.0f), VIEWPORT_HEIGHT*(4.0f/25.0f));
-        this.menu.getBatch().draw(redSlime, VIEWPORT_WIDTH*(5.0f/8.0f), VIEWPORT_HEIGHT*(4.0f/25.0f));
-        this.menu.getBatch().draw(blueSlimeButton, VIEWPORT_WIDTH*(1.0f/5.0f), VIEWPORT_HEIGHT*(1.0f/25.0f));
-        this.menu.getBatch().draw(redSlimeButton, VIEWPORT_WIDTH*(3.0f/5.0f), VIEWPORT_HEIGHT*(1.0f/25.0f));
+        this.menu.getBatch().draw(blueSlime, Gdx.graphics.getWidth()*(1.0f/4.0f), Gdx.graphics.getHeight()*(4.0f/25.0f));
+        this.menu.getBatch().draw(redSlime, Gdx.graphics.getWidth()*(5.0f/8.0f), Gdx.graphics.getHeight()*(4.0f/25.0f));
+        this.menu.getBatch().draw(blueSlimeButton, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.menu.getBatch().draw(redSlimeButton, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
     }
 
 
