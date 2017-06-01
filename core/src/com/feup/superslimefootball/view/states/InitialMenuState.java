@@ -33,7 +33,7 @@ public class InitialMenuState extends MenuState {
 
     @Override
     public void handleMouse() {
-        if(Gdx.input.isTouched()){
+        if(Gdx.input.justTouched()){
             if (touchButton(1.0f/5.0f,1.0f/25.0f))
                 this.menuView.setState(new SinglePlayerMenuState(this.menuView));
             else if(touchButton(2.0f/5.0f,1.0f/25.0f))

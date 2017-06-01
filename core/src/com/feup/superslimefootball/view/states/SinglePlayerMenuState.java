@@ -30,7 +30,7 @@ public class SinglePlayerMenuState extends MenuState {
 
     @Override
     public void handleMouse() {
-        if(Gdx.input.isTouched()){
+        if(Gdx.input.justTouched()){
             if(touchButton(1.0f/5.0f,1.0f/25.0f))
                 this.menu.setScreen(new GameView(this.menu));
            /* else if(touchButton(3.0f/5.0f,1.0f/25.0f))
