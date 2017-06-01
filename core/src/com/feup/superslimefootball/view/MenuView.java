@@ -124,13 +124,23 @@ public class MenuView extends ScreenAdapter {
         menu.getBatch().draw(ball, VIEWPORT_WIDTH*(3.9f/5.0f) - ball.getWidth()/2, VIEWPORT_HEIGHT*(2.0f/3.0f) - ball.getWidth()/2);
     }
 
-      /*
+    /*
+     * Returns the state
+     */
+    public MenuState getState(){
+        return state;
+    }
+
+    /*
      * Sets the state
      */
     public void setState(MenuState state) {
         this.state = state;
     }
 
+    /*
+     * Returns the menu
+     */
     public SuperSlimeFootball getMenu() { return menu; }
 }
 
