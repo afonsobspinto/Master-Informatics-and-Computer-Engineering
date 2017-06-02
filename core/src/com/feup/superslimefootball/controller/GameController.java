@@ -174,9 +174,7 @@ public class GameController implements ContactListener {
      *
      */
     public void moveRight() {
-        slimeBody.applyLinearImpulse(1f , 0, true);
-        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
-        //slimeBody.applyForceToCenter(5f,0,true);
+        slimeBody.moveRight();
     }
 
     /**
@@ -184,10 +182,8 @@ public class GameController implements ContactListener {
      *
      */
     public void moveLeft() {
+        slimeBody.moveLeft();
 
-        slimeBody.applyLinearImpulse(-1f , 0, true);
-        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
-        //slimeBody.applyForceToCenter(-5f,0,true);
     }
 
     /**
@@ -195,10 +191,7 @@ public class GameController implements ContactListener {
      *
      */
     public void jump() {
-        //todo: decrease speed horizontally;
-        if(((SlimeModel)slimeBody.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
-            slimeBody.applyLinearImpulse(0, 25f, true);
-            //slimeBody.applyForceToCenter(0,300f,true);
+        slimeBody.jump();
     }
 
     /**
