@@ -42,6 +42,12 @@ public class GameModel {
 
 
     /**
+     * The Slime controlled by the opponent in this game.
+     */
+
+    private SlimeModel opponentSlimeModel;
+
+    /**
      * The Ball in this game.
      */
 
@@ -70,6 +76,7 @@ public class GameModel {
 
         wallsModel = new WallsModel(0,0);
         slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
+        opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
 
         goals = new ArrayList<GoalModel>();
@@ -120,6 +127,19 @@ public class GameModel {
     public SlimeModel getSlimeModel() {
         return slimeModel;
     }
+
+
+    /**
+     * Returns the opponent slime .
+     *
+     * @return the opponent slime.
+     */
+
+
+    public SlimeModel getOpponentSlimeModel() {
+        return opponentSlimeModel;
+    }
+
 
 
     /**

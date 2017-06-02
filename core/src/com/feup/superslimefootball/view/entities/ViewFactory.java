@@ -2,15 +2,18 @@ package com.feup.superslimefootball.view.entities;
 
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.model.entities.EntityModel;
+import com.feup.superslimefootball.view.utilities.Color;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.BALL;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.BLUESLIMELEFT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.BLUESLIMERIGHT;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.GOALLEFT;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.GOALRIGHT;
-import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIMELEFT;
-import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SLIMERIGHT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.REDSLIMELEFT;
+import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.REDSLIMERIGHT;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SPEED;
 
 /**
@@ -23,11 +26,16 @@ public class ViewFactory {
             new HashMap<EntityModel.ModelType, EntityView>();
 
     public static EntityView makeView(SuperSlimeFootball game, EntityModel model) {
+
         if (!cache.containsKey(model.getType())) {
-            if (model.getType() == SLIMELEFT)
-                cache.put(model.getType(), new SlimeView(game, true));
-            else if (model.getType() == SLIMERIGHT)
-                cache.put(model.getType(), new SlimeView(game, false));
+            if (model.getType() == BLUESLIMELEFT)
+                cache.put(model.getType(), new SlimeView(game, true, Color.BLUE));
+            else if (model.getType() == BLUESLIMERIGHT)
+                cache.put(model.getType(), new SlimeView(game, false, Color.BLUE));
+            else if (model.getType() == REDSLIMELEFT)
+                cache.put(model.getType(), new SlimeView(game, true, Color.RED));
+            else if (model.getType() == REDSLIMERIGHT)
+                cache.put(model.getType(), new SlimeView(game, false, Color.RED));
             else if (model.getType() == BALL)
                 cache.put(model.getType(), new BallView(game));
             else if (model.getType() == GOALRIGHT)

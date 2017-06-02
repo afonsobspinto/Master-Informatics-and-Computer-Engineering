@@ -12,15 +12,15 @@ public class OptionsMenuState extends MenuState {
     @Override
     public void drawButtons() {
 
-        Texture howToPlay = this.menu.getAssetManager().get("howToPlay.png", Texture.class);
-        Texture sound = this.menu.getAssetManager().get("sound.png", Texture.class);
-        Texture comments = this.menu.getAssetManager().get("comments.png", Texture.class);
-        Texture goalLimit = this.menu.getAssetManager().get("goalLimit.png", Texture.class);
+        Texture howToPlay = this.game.getAssetManager().get("howToPlay.png", Texture.class);
+        Texture sound = this.game.getAssetManager().get("sound.png", Texture.class);
+        Texture comments = this.game.getAssetManager().get("comments.png", Texture.class);
+        Texture goalLimit = this.game.getAssetManager().get("goalLimit.png", Texture.class);
 
-        this.menu.getBatch().draw(howToPlay, Gdx.graphics.getWidth()*(1.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
-        this.menu.getBatch().draw(sound, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
-        this.menu.getBatch().draw(comments, Gdx.graphics.getWidth()*(2.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
-        this.menu.getBatch().draw(goalLimit, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(howToPlay, Gdx.graphics.getWidth()*(1.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
+        this.game.getBatch().draw(sound, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(comments, Gdx.graphics.getWidth()*(2.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(goalLimit, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
 
     }
 

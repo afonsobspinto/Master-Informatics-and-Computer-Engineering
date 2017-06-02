@@ -3,11 +3,14 @@ package com.feup.superslimefootball;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.feup.superslimefootball.view.GameView;
+import com.feup.superslimefootball.view.utilities.Color;
+import com.feup.superslimefootball.view.MenuView;
 
 public class SuperSlimeFootball extends Game {
     private SpriteBatch batch;
     private AssetManager assetManager;
+
+    private Color selectedColor;
 
     @Override
     public void create () {
@@ -21,7 +24,7 @@ public class SuperSlimeFootball extends Game {
      * Starts the game.
      */
     private void startGame() {
-        setScreen(new GameView(this));
+        setScreen(new MenuView(this));
     }
 
 
@@ -53,5 +56,20 @@ public class SuperSlimeFootball extends Game {
     }
 
 
+    /**
+     * Gets the color chosen on game
+     *
+     */
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
 
+    /**
+     * Sets the color chosen on game
+     *
+     * @param selectedColor
+     */
+    public void setSelectedColor(Color selectedColor) {
+        this.selectedColor = selectedColor;
+    }
 }

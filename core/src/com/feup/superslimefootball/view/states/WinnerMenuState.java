@@ -12,11 +12,11 @@ public class WinnerMenuState extends MenuState {
     @Override
     public void drawButtons() {
 
-        Texture facebook = this.menu.getAssetManager().get("facebook.png", Texture.class);
-        Texture twitter = this.menu.getAssetManager().get("twitter.png", Texture.class);
+        Texture facebook = this.game.getAssetManager().get("facebook.png", Texture.class);
+        Texture twitter = this.game.getAssetManager().get("twitter.png", Texture.class);
 
-        this.menu.getBatch().draw(facebook, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
-        this.menu.getBatch().draw(twitter, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
+        this.game.getBatch().draw(facebook, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
+        this.game.getBatch().draw(twitter, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
 
     }
 

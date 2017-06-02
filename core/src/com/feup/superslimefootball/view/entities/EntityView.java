@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.model.entities.EntityModel;
+import com.feup.superslimefootball.view.utilities.Color;
 
 /**
  * Created by afonso on 5/26/17.
@@ -18,6 +19,8 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 
 public abstract class EntityView {
 
+    protected Color color;
+
     /**
      * The sprite representing this entity view.
      */
@@ -30,6 +33,17 @@ public abstract class EntityView {
      *             asset manager to get textures.
      */
     EntityView(SuperSlimeFootball game) {
+        sprite = createSprite(game);
+    }
+
+    /**
+     * Creates a view belonging to a game.
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     */
+    EntityView(SuperSlimeFootball game, Color color) {
+        this.color = color;
         sprite = createSprite(game);
     }
 

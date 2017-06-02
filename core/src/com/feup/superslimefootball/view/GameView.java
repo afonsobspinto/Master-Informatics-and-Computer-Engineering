@@ -156,7 +156,7 @@ public class GameView extends ScreenAdapter {
             System.out.println(Gdx.input.getAccelerometerY());
             GameController.getInstance().moveLeft();
         }
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
                 GameController.getInstance().jump();
             else
@@ -187,9 +187,16 @@ public class GameView extends ScreenAdapter {
         }
 
         SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
-        EntityView slimeView = ViewFactory.makeView(game, slimeOne);
-        slimeView.update(slimeOne);
-        slimeView.draw(game.getBatch());
+        slimeOne.setColor(game.getSelectedColor());
+        EntityView slimeOneView = ViewFactory.makeView(game, slimeOne);
+        slimeOneView.update(slimeOne);
+        slimeOneView.draw(game.getBatch());
+
+        SlimeModel slimeTwo = GameModel.getInstance().getOpponentSlimeModel();
+        slimeTwo.setColor(com.feup.superslimefootball.view.utilities.Color.getRandom(game.getSelectedColor()));
+        EntityView slimeTwoView = ViewFactory.makeView(game, slimeTwo);
+        slimeTwoView.update(slimeTwo);
+        slimeTwoView.draw(game.getBatch());
 
         BallModel ball = GameModel.getInstance().getBallModel();
         EntityView ballView = ViewFactory.makeView(game, ball);

@@ -59,6 +59,12 @@ public class GameController implements ContactListener {
     private final SlimeBody slimeBody;
 
     /**
+     * The slime body.
+     */
+    private final SlimeBody opponentSlimeBody;
+
+
+    /**
      * The ball body.
      */
     private final BallBody ballBody;
@@ -82,6 +88,7 @@ public class GameController implements ContactListener {
 
         new WallsBody(world, GameModel.getInstance().getWallsModel());
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
+        opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlimeModel());
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
 
 
@@ -190,7 +197,7 @@ public class GameController implements ContactListener {
     public void jump() {
         //todo: decrease speed horizontally;
         if(((SlimeModel)slimeBody.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
-            slimeBody.applyLinearImpulse(0, 15f, true);
+            slimeBody.applyLinearImpulse(0, 25f, true);
             //slimeBody.applyForceToCenter(0,300f,true);
     }
 

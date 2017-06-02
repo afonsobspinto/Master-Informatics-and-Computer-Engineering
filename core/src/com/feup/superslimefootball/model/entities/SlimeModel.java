@@ -1,6 +1,7 @@
 package com.feup.superslimefootball.model.entities;
 
 import com.feup.superslimefootball.controller.GameController;
+import com.feup.superslimefootball.view.utilities.Color;
 
 /**
  * Created by afonso on 5/26/17.
@@ -28,6 +29,14 @@ public class SlimeModel extends EntityModel {
     private PowerModel.PowerType power;
 
     /**
+     * The slime color
+     */
+
+    private Color color;
+
+
+    /**
+
      * Constructs a model with a position and a rotation.
      *
      * @param x        The x-coordinate of this entity in pixels.
@@ -85,8 +94,24 @@ public class SlimeModel extends EntityModel {
         this.power = power;
     }
 
+    /**
+     * Sets the slime color
+     */
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+
     @Override
     public ModelType getType() {
-        return  (orientationState == OrientationState.RIGHT) ? ModelType.SLIMERIGHT: ModelType.SLIMELEFT;
+        if(color == Color.BLUE)
+            return  (orientationState == OrientationState.RIGHT) ? ModelType.BLUESLIMERIGHT: ModelType.BLUESLIMELEFT;
+        if(color == Color.RED)
+            return  (orientationState == OrientationState.RIGHT) ? ModelType.REDSLIMERIGHT: ModelType.REDSLIMELEFT;
+
+        return null;
     }
+
+
 }

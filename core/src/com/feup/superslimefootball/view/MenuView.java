@@ -9,60 +9,138 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Matrix4;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.view.states.InitialMenuState;
+import com.feup.superslimefootball.view.states.MenuState;
 
 public class MenuView extends ScreenAdapter {
-    public static final float PPM = 32.0F;
-    public static final float VIEWPORT_WIDTH = 800.0F;
-    public static final float VIEWPORT_HEIGHT = 400.0F;
-    private final SuperSlimeFootball menu;
-    private final OrthographicCamera camera;
-    private Matrix4 debugCamera;
 
-    public MenuView(SuperSlimeFootball menu) {
-        this.menu = menu;
+    /**
+     * The width of the viewport.
+     */
+    public static final float VIEWPORT_WIDTH = 800.0F;
+
+    /**
+     * The height of the viewport.
+     */
+    public static final float VIEWPORT_HEIGHT = 400.0F;
+
+    /**
+     * The game this screen belongs to.
+     */
+    public final SuperSlimeFootball game;
+
+    /**
+     * The camera used to show the viewport.
+     */
+    private final OrthographicCamera camera;
+
+
+    /*
+     * The state of the Menu
+     */
+
+    MenuState state;
+
+    /**
+     * Creates this screen.
+     *
+     * @param game The game this screen belongs to
+     */
+    public MenuView(SuperSlimeFootball game) {
+        this.game = game;
         this.loadAssets();
+        this.state = new InitialMenuState(this);
         this.camera = this.createCamera();
     }
 
+    /**
+     * Creates the camera used to show the viewport.
+     *
+     * @return the camera
+     */
     private OrthographicCamera createCamera() {
         OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800.0F, 400.0F);
+        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         return camera;
     }
 
+    /**
+     * Loads the assets needed by this screen.
+     */
     private void loadAssets() {
-        this.menu.getAssetManager().load("menuBackground.png", Texture.class);
-        this.menu.getAssetManager().load("singleplayer.png", Texture.class);
-        this.menu.getAssetManager().load("multiplayer.png", Texture.class);
-        this.menu.getAssetManager().load("options.png", Texture.class);
+        this.game.getAssetManager().load("menuBackground.png", Texture.class);
+        this.game.getAssetManager().load("singleplayer.png", Texture.class);
+        this.game.getAssetManager().load("multiplayer.png", Texture.class);
+        this.game.getAssetManager().load("options.png", Texture.class);
+        this.game.getAssetManager().load("facebook.png", Texture.class);
+        this.game.getAssetManager().load("twitter.png", Texture.class);
+        this.game.getAssetManager().load("ball.png", Texture.class);
+        this.game.getAssetManager().load("blueSlime.png", Texture.class);
+        this.game.getAssetManager().load("redSlime.png", Texture.class);
+        this.game.getAssetManager().load("blueSlimeButton.png", Texture.class);
+        this.game.getAssetManager().load("redSlimeButton.png", Texture.class);
+        this.game.getAssetManager().load("refresh.png", Texture.class);
+        this.game.getAssetManager().load("findIP.png", Texture.class);
+        this.game.getAssetManager().load("howToPlay.png", Texture.class);
+        this.game.getAssetManager().load("sound.png", Texture.class);
+        this.game.getAssetManager().load("comments.png", Texture.class);
+        this.game.getAssetManager().load("goalLimit.png", Texture.class);
 
-        //todo: possivel problema aqui
-        this.menu.getAssetManager().finishLoading();
+        this.game.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
     }
 
+
+    /**
+     * Renders this screen.
+     *
+     * @param delta time since last renders in seconds.
+     */
     public void render(float delta) {
-        this.menu.getBatch().setProjectionMatrix(this.camera.combined);
-        this.handleInputs(delta);
+        this.game.getBatch().setProjectionMatrix(this.camera.combined);
+        state.handleMouse();
         Gdx.gl.glClearColor(1.0F, 0.0F, 0.0F, 1.0F);
         Gdx.gl.glClear(16384);
-        this.menu.getBatch().begin();
+        this.game.getBatch().begin();
         this.drawBackground();
-        this.menu.getBatch().end();
+        state.drawButtons();
+        this.game.getBatch().end();
     }
 
+    /**
+     * Handles any inputs and passes them to the controller.
+     */
     private void handleInputs(float delta) {
     }
 
+    /**
+     * Draws the background
+     */
     private void drawBackground() {
-        Texture background = (Texture)this.menu.getAssetManager().get("menuBackground.png", Texture.class);
-        Texture singlePlayer = (Texture)this.menu.getAssetManager().get("singleplayer.png", Texture.class);
-        Texture multiPlayer = (Texture)this.menu.getAssetManager().get("multiplayer.png", Texture.class);
-        Texture options = (Texture)this.menu.getAssetManager().get("options.png", Texture.class);
-        this.menu.getBatch().draw(background, 0.0F, 0.0F);
-        this.menu.getBatch().draw(singlePlayer, 170.0F, 15.0F);
-        this.menu.getBatch().draw(multiPlayer, 352.0F, 15.0F);
-        this.menu.getBatch().draw(options, 530.0F, 15.0F);
+        Texture background = game.getAssetManager().get("menuBackground.png", Texture.class);
+        game.getBatch().draw(background, 0, 0);
+
+        Texture ball = game.getAssetManager().get("ball.png", Texture.class);
+        game.getBatch().draw(ball, VIEWPORT_WIDTH*(3.9f/5.0f) - ball.getWidth()/2, VIEWPORT_HEIGHT*(2.0f/3.0f) - ball.getWidth()/2);
     }
+
+    /*
+     * Returns the state
+     */
+    public MenuState getState(){
+        return state;
+    }
+
+    /*
+     * Sets the state
+     */
+    public void setState(MenuState state) {
+        this.state = state;
+    }
+
+    /*
+     * Returns the game
+     */
+    public SuperSlimeFootball getGame() { return game; }
 }
+
