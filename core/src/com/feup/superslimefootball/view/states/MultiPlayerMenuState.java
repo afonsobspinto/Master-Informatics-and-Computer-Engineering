@@ -2,12 +2,12 @@ package com.feup.superslimefootball.view.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.network.NetworkManager;
-import com.feup.superslimefootball.view.MenuView;
 
 public class MultiPlayerMenuState extends MenuState {
-    public MultiPlayerMenuState(MenuView menuView) {
-        super(menuView);
+    public MultiPlayerMenuState(SuperSlimeFootball game) {
+        super(game);
         new NetworkManager();
     }
 
@@ -27,7 +27,7 @@ public class MultiPlayerMenuState extends MenuState {
     public void handleMouse() {
         if(Gdx.input.justTouched()) {
             if(touchButton(1.0f/13.0f,17.0f/20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
-                this.menuView.setState(new InitialMenuState(this.menuView));
+                this.game.setGameState(new InitialMenuState(this.game));
        /*     if (touchButton(1.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 // refresh
             else if(touchButton(3.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))

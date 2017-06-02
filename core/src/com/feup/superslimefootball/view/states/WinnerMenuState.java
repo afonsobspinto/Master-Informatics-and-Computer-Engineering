@@ -2,11 +2,11 @@ package com.feup.superslimefootball.view.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.feup.superslimefootball.view.MenuView;
+import com.feup.superslimefootball.SuperSlimeFootball;
 
 public class WinnerMenuState extends MenuState {
-    public WinnerMenuState(MenuView menuView) {
-        super(menuView);
+    public WinnerMenuState(SuperSlimeFootball game) {
+        super(game);
     }
 
     @Override

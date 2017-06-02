@@ -10,8 +10,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
-import com.feup.superslimefootball.view.states.InitialMenuState;
-import com.feup.superslimefootball.view.states.MenuState;
 
 public class MenuView extends ScreenAdapter {
 
@@ -36,12 +34,6 @@ public class MenuView extends ScreenAdapter {
     private final OrthographicCamera camera;
 
 
-    /*
-     * The state of the Menu
-     */
-
-    MenuState state;
-
     /**
      * Creates this screen.
      *
@@ -50,10 +42,9 @@ public class MenuView extends ScreenAdapter {
     public MenuView(SuperSlimeFootball game) {
         this.game = game;
         this.loadAssets();
-        this.state = new InitialMenuState(this);
         this.camera = this.createCamera();
     }
-    
+
 
 
     /**
@@ -117,12 +108,12 @@ public class MenuView extends ScreenAdapter {
      */
     public void render(float delta) {
         this.game.getBatch().setProjectionMatrix(this.camera.combined);
-        state.handleMouse();
+        this.game.getGameState().handleMouse();
         Gdx.gl.glClearColor(1.0F, 0.0F, 0.0F, 1.0F);
         Gdx.gl.glClear(16384);
         this.game.getBatch().begin();
         this.drawBackground();
-        state.drawButtons();
+        this.game.getGameState().drawButtons();
         this.game.getBatch().end();
     }
 
@@ -141,20 +132,6 @@ public class MenuView extends ScreenAdapter {
 
         Texture ball = game.getAssetManager().get("ball.png", Texture.class);
         game.getBatch().draw(ball, VIEWPORT_WIDTH*(3.9f/5.0f) - ball.getWidth()/2, VIEWPORT_HEIGHT*(2.0f/3.0f) - ball.getWidth()/2);
-    }
-
-    /*
-     * Returns the state
-     */
-    public MenuState getState(){
-        return state;
-    }
-
-    /*
-     * Sets the state
-     */
-    public void setState(MenuState state) {
-        this.state = state;
     }
 
     /*

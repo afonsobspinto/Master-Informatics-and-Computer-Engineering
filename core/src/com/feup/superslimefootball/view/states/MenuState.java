@@ -2,14 +2,9 @@ package com.feup.superslimefootball.view.states;
 
 import com.badlogic.gdx.Gdx;
 import com.feup.superslimefootball.SuperSlimeFootball;
-import com.feup.superslimefootball.view.MenuView;
 
 public abstract class MenuState {
 
-    /**
-     * The game this screen belongs to.
-     */
-    protected final MenuView menuView;
 
     protected final SuperSlimeFootball game;
 
@@ -23,9 +18,8 @@ public abstract class MenuState {
      */
     public static final float BUTTONS_HEIGHT = 1.0f/10.0f;
 
-    public MenuState(MenuView menuView){
-        this.menuView = menuView;
-        this.game = menuView.getGame();
+    public MenuState(SuperSlimeFootball game){
+        this.game = game;
     }
 
     public abstract void  drawButtons();

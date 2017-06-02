@@ -2,13 +2,13 @@ package com.feup.superslimefootball.view.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.feup.superslimefootball.view.MenuView;
+import com.feup.superslimefootball.SuperSlimeFootball;
 
 public class InitialMenuState extends MenuState {
 
 
-    public InitialMenuState(MenuView menuView) {
-        super(menuView);
+    public InitialMenuState(SuperSlimeFootball game) {
+        super(game);
     }
 
     @Override
@@ -32,11 +32,11 @@ public class InitialMenuState extends MenuState {
     public void handleMouse() {
         if(Gdx.input.justTouched()){
             if (touchButton(1.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
-                this.menuView.setState(new SinglePlayerMenuState(this.menuView));
+                this.game.setGameState(new SinglePlayerMenuState(this.game));
             else if(touchButton(2.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
-                this.menuView.setState(new MultiPlayerMenuState(this.menuView));
+                this.game.setGameState(new MultiPlayerMenuState(this.game));
             else if(touchButton(3.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
-                this.menuView.setState(new OptionsMenuState(this.menuView));
+                this.game.setGameState(new OptionsMenuState(this.game));
         }
     }
 }

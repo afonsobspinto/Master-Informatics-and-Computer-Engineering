@@ -18,6 +18,8 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
 import com.feup.superslimefootball.view.scenes.Hud;
+import com.feup.superslimefootball.view.states.LoserMenuState;
+import com.feup.superslimefootball.view.states.WinnerMenuState;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import java.util.List;
@@ -229,9 +231,13 @@ public class GameView extends ScreenAdapter {
 
     private void updateScore(){
         if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer1()) {
-            game.setScreen(new MenuView(game)); //// TODO: Change this
+            this.game.setGameState(new WinnerMenuState(this.game));
+            game.setScreen(new MenuView(game));
         }
-        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2())
-            game.setScreen(new MenuView(game)); //// TODO: Change this
+        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2()){
+            this.game.setGameState(new LoserMenuState(this.game));
+            game.setScreen(new MenuView(game));
+        }
+
     }
 }

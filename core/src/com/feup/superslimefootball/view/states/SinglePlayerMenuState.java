@@ -3,13 +3,13 @@ package com.feup.superslimefootball.view.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.view.GameView;
-import com.feup.superslimefootball.view.MenuView;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class SinglePlayerMenuState extends MenuState {
-    public SinglePlayerMenuState(MenuView menuView) {
-        super(menuView);
+    public SinglePlayerMenuState(SuperSlimeFootball game) {
+        super(game);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SinglePlayerMenuState extends MenuState {
                 this.game.setScreen(new GameView(this.game));
             }
             else if(touchButton(1.0f/13.0f,17.0f/20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
-                this.menuView.setState(new InitialMenuState(this.menuView));
+                this.game.setGameState(new InitialMenuState(this.game));
         }
     }
 
