@@ -58,21 +58,18 @@ public class GameController implements ContactListener {
     /**
      * The slime body.
      */
-    private final SlimeBody slimeBody;
+    private SlimeBody slimeBody;
 
     /**
      * The slime body.
      */
-    private final SlimeBody opponentSlimeBody;
+    private SlimeBody opponentSlimeBody;
 
 
     /**
      * The ball body.
      */
-    private final BallBody ballBody;
-
-
-
+    private BallBody ballBody;
 
 
     /**
@@ -92,6 +89,8 @@ public class GameController implements ContactListener {
         slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
         opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlimeModel());
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
+
+
 
 
 
@@ -174,8 +173,7 @@ public class GameController implements ContactListener {
      *
      */
     public void moveRight() {
-        slimeBody.applyLinearImpulse(1f , 0, true);
-        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
+        slimeBody.moveRight();
     }
 
     /**
@@ -183,8 +181,7 @@ public class GameController implements ContactListener {
      *
      */
     public void moveLeft() {
-        slimeBody.applyLinearImpulse(-1f , 0, true);
-        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
+        slimeBody.moveLeft();
 
     }
 
@@ -193,8 +190,7 @@ public class GameController implements ContactListener {
      *
      */
     public void jump() {
-        if(((SlimeModel)slimeBody.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
-            slimeBody.applyLinearImpulse(0, 25f, true);
+        slimeBody.jump();
     }
 
     /**
@@ -202,8 +198,12 @@ public class GameController implements ContactListener {
      *
      */
     public void powerUP() {
-        if(((SlimeModel)slimeBody.getUserData()).getPowerType() != null){
-            System.out.println("Power Up");
+        SlimeModel slimeModel = (SlimeModel)slimeBody.getUserData();
+
+
+        if(slimeModel.getPowerType() != null){
+            if(slimeModel.getPowerType() == PowerModel.PowerType.SPEED)
+            slimeBody.setSlimeBodyBehaviour(slimeModel.getPowerType());
             ((SlimeModel)slimeBody.getUserData()).setPowerType(null);
         }
         else
@@ -299,7 +299,6 @@ public class GameController implements ContactListener {
         System.out.println("Colisão Slime Power");
 
         if(((SlimeModel)slimeBody.getUserData()).getPowerType() == null){
-            System.out.println("Power Atribuido ao Slime");
             ((SlimeModel)slimeBody.getUserData()).setPowerType(((PowerModel) powerBody.getUserData()).getPowerType());
             ((PowerModel)powerBody.getUserData()).setFlaggedForRemoval(true);
         }

@@ -85,8 +85,6 @@ public class GameModel {
         goals.add(new GoalModel(GameController.GAME_WIDTH * (12.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f)));
 
         powers = new ArrayList<PowerModel>();
-        //powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
-
    }
 
     /**
@@ -189,7 +187,7 @@ public class GameModel {
     }
 
     private void generatePowers(){
-        if(Math.random() < 0.001)
+        if(Math.random() < 0.0015)
             powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), getRandomPowerType()));
     }
 

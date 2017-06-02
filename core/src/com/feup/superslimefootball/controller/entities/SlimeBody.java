@@ -2,13 +2,24 @@ package com.feup.superslimefootball.controller.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyBehaviour;
+import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyNormalBehaviour;
+import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodySpeedBehaviour;
+import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by afonso on 5/26/17.
  */
 
 public class SlimeBody extends EntityBody {
+
+    private SlimeBodyBehaviour slimeBodyBehaviour;
+
+
     /**
      * Constructs a body representing a model in a certain world.
      *
@@ -17,6 +28,9 @@ public class SlimeBody extends EntityBody {
      */
     public SlimeBody(World world, SlimeModel model) {
         super(world, model, true, 1.0f);
+
+
+        this.slimeBodyBehaviour = new SlimeBodyNormalBehaviour(this.body);
 
         float density = 1.0f;
         float restitution = 0.01f;
@@ -46,4 +60,34 @@ public class SlimeBody extends EntityBody {
 
         createFixture(body,vertexes, density, friction, restitution, false);
     }
+
+    public void moveRight(){
+        slimeBodyBehaviour.moveRight();
+        ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
+    }
+
+    public void moveLeft(){
+        slimeBodyBehaviour.moveLeft();
+        ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
+    }
+
+    public void jump() {
+        if(((SlimeModel)this.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
+            slimeBodyBehaviour.jump();
+
+    }
+
+    public void setSlimeBodyBehaviour(PowerModel.PowerType powerType) {
+        if (powerType == PowerModel.PowerType.SPEED) {
+            slimeBodyBehaviour = new SlimeBodySpeedBehaviour(body);
+        }
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                slimeBodyBehaviour = new SlimeBodyNormalBehaviour(body);
+            }
+        }, 3000);
+    }
+
 }

@@ -92,6 +92,7 @@ public class SlimeModel extends EntityModel {
      */
     public void setPowerType(PowerModel.PowerType power) {
         this.power = power;
+        if(power == PowerModel.PowerType.SPEED);
     }
 
     /**
