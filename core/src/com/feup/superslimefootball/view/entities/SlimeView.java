@@ -1,9 +1,9 @@
 package com.feup.superslimefootball.view.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.feup.superslimefootball.SuperSlimeFootball;
-import com.feup.superslimefootball.view.utilities.Color;
 
 /**
  * Created by afonso on 5/26/17.

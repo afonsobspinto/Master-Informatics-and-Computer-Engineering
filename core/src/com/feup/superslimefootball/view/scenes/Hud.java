@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
@@ -20,9 +21,6 @@ import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
 public class Hud {
 
     public Stage stage;
-    private Integer scorePlayer;
-    private Integer scoreOpponent;
-    private Integer goalLimit;
     private Viewport viewport;
 
     Label scorePlayerLabel;
@@ -30,9 +28,6 @@ public class Hud {
     Label goalLimitLabel;
 
     public Hud(Camera camera, SpriteBatch spriteBatch){
-        scorePlayer = 0;
-        scoreOpponent = 0;
-        goalLimit = 3;
 
         viewport = new FillViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, camera);
         stage = new Stage(viewport, spriteBatch);
@@ -41,9 +36,9 @@ public class Hud {
         table.top();
         table.setFillParent(true);
 
-        scorePlayerLabel = new Label(scorePlayer.toString(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
-        scoreOpponentLabel= new Label(scoreOpponent.toString(), new Label.LabelStyle(new BitmapFont(), Color.RED));
-        goalLimitLabel= new Label(goalLimit.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scorePlayerLabel = new Label(GameConfig.getInstance().getScore().getPlayer1().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor1()));
+        scoreOpponentLabel= new Label(GameConfig.getInstance().getScore().getPlayer2().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor2()));
+        goalLimitLabel= new Label(GameConfig.getInstance().getGoalLimit().toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         table.add(scorePlayerLabel).expandX().padTop(10);
         table.add(goalLimitLabel).expandX().padTop(10);

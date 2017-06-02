@@ -1,8 +1,8 @@
 package com.feup.superslimefootball.view.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.model.entities.EntityModel;
-import com.feup.superslimefootball.view.utilities.Color;
 
 import java.util.HashMap;
 import java.util.Map;

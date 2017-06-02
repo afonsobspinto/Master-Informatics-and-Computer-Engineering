@@ -18,6 +18,7 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
 import com.feup.superslimefootball.view.scenes.Hud;
+import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import java.util.List;
 
@@ -197,13 +198,14 @@ public class GameView extends ScreenAdapter {
         }
 
         SlimeModel slimeOne = GameModel.getInstance().getSlimeModel();
-        slimeOne.setColor(game.getSelectedColor());
+        slimeOne.setColor(GameConfig.getInstance().getColors().getColor1());
+
         EntityView slimeOneView = ViewFactory.makeView(game, slimeOne);
         slimeOneView.update(slimeOne);
         slimeOneView.draw(game.getBatch());
 
         SlimeModel slimeTwo = GameModel.getInstance().getOpponentSlimeModel();
-        slimeTwo.setColor(com.feup.superslimefootball.view.utilities.Color.getRandom(game.getSelectedColor()));
+        slimeTwo.setColor(GameConfig.getInstance().getColors().getColor2());
         EntityView slimeTwoView = ViewFactory.makeView(game, slimeTwo);
         slimeTwoView.update(slimeTwo);
         slimeTwoView.draw(game.getBatch());

@@ -1,7 +1,7 @@
 package com.feup.superslimefootball.model.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.feup.superslimefootball.controller.GameController;
-import com.feup.superslimefootball.view.utilities.Color;
 
 /**
  * Created by afonso on 5/26/17.
