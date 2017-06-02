@@ -17,6 +17,7 @@ import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.view.entities.EntityView;
 import com.feup.superslimefootball.view.entities.ViewFactory;
+import com.feup.superslimefootball.view.scenes.Hud;
 
 import java.util.List;
 
@@ -51,6 +52,12 @@ public class GameView extends ScreenAdapter {
      */
     private final OrthographicCamera camera;
 
+
+    /**
+     * The hud to show
+     */
+    private Hud hud;
+
     /**
      * A renderer used to debug the physical fixtures.
      */
@@ -73,6 +80,8 @@ public class GameView extends ScreenAdapter {
 
         loadAssets();
         this.camera = createCamera();
+
+        this.hud = new Hud(camera, this.game.getBatch());
     }
 
 
@@ -128,6 +137,7 @@ public class GameView extends ScreenAdapter {
         drawBackground();
         drawEntities();
         game.getBatch().end();
+        hud.stage.draw();
         debugRenderer.render(GameController.getInstance().getWorld(), camera.combined.cpy().scl(PPM));
     }
 
