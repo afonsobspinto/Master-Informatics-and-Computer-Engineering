@@ -86,10 +86,27 @@ public class MenuView extends ScreenAdapter {
         this.game.getAssetManager().load("sound.png", Texture.class);
         this.game.getAssetManager().load("comments.png", Texture.class);
         this.game.getAssetManager().load("goalLimit.png", Texture.class);
+        this.game.getAssetManager().load("goBack.png", Texture.class);
+        this.game.getAssetManager().load("howToPlayBackground.png", Texture.class);
+
+        loadOptionsAssets();
 
         this.game.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
     }
 
+    /**
+     * Loads the options assets needed by this screen.
+     */
+    private void loadOptionsAssets(){
+        this.game.getAssetManager().load("optionsButtons/onButton.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/offButton.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/threeChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/fiveChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/sevenChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/threeNotChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/fiveNotChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/sevenNotChosen.png", Texture.class);
+    }
 
     /**
      * Renders this screen.
