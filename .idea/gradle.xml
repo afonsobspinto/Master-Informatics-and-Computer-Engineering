@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/desktop" />
             <option value="$PROJECT_DIR$/html" />
             <option value="$PROJECT_DIR$/ios" />
+            <option value="$PROJECT_DIR$/tests" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
