@@ -1,5 +1,9 @@
 package com.feup.superslimefootball.model.entities;
 
+import com.badlogic.gdx.math.Vector2;
+
+import static com.feup.superslimefootball.view.GameView.PPM;
+
 /**
  * Created by afonso on 5/26/17.
  */
@@ -21,7 +25,14 @@ public abstract class EntityModel {
     /**
      * Has this model been flagged for removal?
      */
+    private boolean flaggedForReset = false;
+
+    /**
+     * Has this model been flagged for removal?
+     */
     private boolean flaggedForRemoval = false;
+
+    private final Vector2 initialPos;
 
     /**
      * Constructs a model with a position and a rotation.
@@ -32,6 +43,7 @@ public abstract class EntityModel {
     EntityModel(float x, float y) {
         this.x = x;
         this.y = y;
+        this.initialPos = new Vector2(x / PPM,y / PPM);
     }
 
 
@@ -78,8 +90,33 @@ public abstract class EntityModel {
      * Makes this model flagged for removal on next step
      */
     public void setFlaggedForRemoval(boolean flaggedForRemoval) {
-        System.out.println("Flag");
         this.flaggedForRemoval = flaggedForRemoval;
+    }
+
+
+    /**
+     * Returns if this entity has been flagged for reset
+     *
+     * @return
+     */
+    public boolean isFlaggedToBeReseted() {
+        return flaggedForReset;
+    }
+    /**
+     * Makes this model flagged for reset on next step
+     */
+    public void setFlaggedForReset(boolean flaggedForReset) {
+        this.flaggedForReset = flaggedForReset;
+    }
+
+    /**
+     * Returns the initial pos
+     *
+     * @return
+     */
+
+    public Vector2 getInicialPos() {
+        return initialPos;
     }
 
     public abstract ModelType getType();

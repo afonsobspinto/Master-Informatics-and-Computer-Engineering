@@ -75,8 +75,8 @@ public class GameModel {
     private GameModel() {
 
         wallsModel = new WallsModel(0,0);
-        slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
-        opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f/5.0f) , GameController.GAME_HEIGHT * (4.0f/5.0f));
+        slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
+        opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
 
         goals = new ArrayList<GoalModel>();

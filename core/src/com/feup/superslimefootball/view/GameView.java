@@ -126,7 +126,7 @@ public class GameView extends ScreenAdapter {
 
         updateScore();
 
-        GameController.getInstance().removeFlagged();
+        GameController.getInstance().manageFlagged();
 
         this.game.getBatch().setProjectionMatrix(camera.combined);
 

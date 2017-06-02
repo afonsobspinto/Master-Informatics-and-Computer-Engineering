@@ -290,8 +290,7 @@ public class GameController implements ContactListener {
                 GameConfig.getInstance().updateScore(0, 1);
                 System.out.println("Golo Player2");
             }
-
-            ((BallModel)ballBody.getUserData()).setFlaggedForRemoval(true);
+            setFlagsToReset();
         }
         else
             System.out.println("Trave");
@@ -314,28 +313,33 @@ public class GameController implements ContactListener {
 
 
     /**
-     * Removes objects that have been flagged for removal on the
+     * Manages the  objects that have been flagged for removal or reset on the
      * previous step.
      */
-    public void removeFlagged() {
+    public void manageFlagged() {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         for (Body body : bodies) {
 
             EntityModel model = ((EntityModel)body.getUserData());
 
-            if((body.getUserData()) instanceof BallModel && model.isFlaggedToBeRemoved()){
+            if(model.isFlaggedToBeReseted()){
                 body.setLinearVelocity(0,0);
-                body.setTransform(new Vector2(GAME_WIDTH / PPM / 2.0f, GAME_HEIGHT / PPM * (4.0f/5.0f)), 0);
-                model.setFlaggedForRemoval(false);
+                body.setTransform(model.getInicialPos(), 0);
+                model.setFlaggedForReset(false);
             }
 
-
-            else if (model.isFlaggedToBeRemoved()) {
+            if (model.isFlaggedToBeRemoved()) {
                 GameModel.getInstance().remove((EntityModel) body.getUserData());
                 world.destroyBody(body);
             }
         }
+    }
+
+    private void setFlagsToReset(){
+        ((EntityModel)slimeBody.getUserData()).setFlaggedForReset(true);
+        ((EntityModel)ballBody.getUserData()).setFlaggedForReset(true);
+        ((EntityModel)opponentSlimeBody.getUserData()).setFlaggedForReset(true);
     }
 
 }
