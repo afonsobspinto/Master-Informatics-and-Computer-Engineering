@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.badlogic.gdx.math.MathUtils.random;
+import static com.feup.superslimefootball.model.entities.PowerModel.PowerType.getRandomPowerType;
 
 /**
  * A model representing a game.
@@ -84,7 +85,7 @@ public class GameModel {
         goals.add(new GoalModel(GameController.GAME_WIDTH * (12.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f)));
 
         powers = new ArrayList<PowerModel>();
-        powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
+        //powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), PowerModel.PowerType.SPEED ));
 
    }
 
@@ -103,6 +104,8 @@ public class GameModel {
         for (PowerModel power : powers)
             if (power.decreaseTimeToLive(delta))
                 power.setFlaggedForRemoval(true);
+
+        generatePowers();
     }
 
 
@@ -184,6 +187,12 @@ public class GameModel {
     public List<PowerModel> getPowers() {
         return powers;
     }
+
+    private void generatePowers(){
+        if(Math.random() < 0.001)
+            powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), getRandomPowerType()));
+    }
+
 }
 
 

@@ -1,5 +1,7 @@
 package com.feup.superslimefootball.model.entities;
 
+import java.util.Random;
+
 /**
  * Created by afonso on 5/29/17.
  */
@@ -12,7 +14,12 @@ public class PowerModel extends EntityModel {
     /**
      * Possible POWER types.
      */
-    public enum PowerType {SPEED}
+    public enum PowerType {SPEED;
+
+        public static PowerType getRandomPowerType()  {
+            return PowerType.values()[new Random().nextInt(PowerType.values().length)];
+        }
+    }
 
 
     /**

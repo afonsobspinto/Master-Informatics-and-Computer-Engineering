@@ -94,10 +94,7 @@ public class GameController implements ContactListener {
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
 
 
-        List<PowerModel> powers = GameModel.getInstance().getPowers();
-        for (PowerModel power : powers)
-            if (power.getPowerType() == PowerModel.PowerType.SPEED)
-                new PowerBody(world, power);
+
 
         List<GoalModel> goals = GameModel.getInstance().getGoals();
         boolean flip = true;
@@ -131,6 +128,7 @@ public class GameController implements ContactListener {
 
         GameModel.getInstance().update(delta);
 
+        updatePowers();
         updateState();
 
         float frameTime = Math.min(delta, 0.25f);
@@ -340,6 +338,18 @@ public class GameController implements ContactListener {
         ((EntityModel)slimeBody.getUserData()).setFlaggedForReset(true);
         ((EntityModel)ballBody.getUserData()).setFlaggedForReset(true);
         ((EntityModel)opponentSlimeBody.getUserData()).setFlaggedForReset(true);
+
+        List<PowerModel> powers = GameModel.getInstance().getPowers();
+        for (PowerModel power : powers)
+            power.setFlaggedForRemoval(true);
+
+    }
+
+
+    private void updatePowers(){
+        List<PowerModel> powers = GameModel.getInstance().getPowers();
+        for (PowerModel power : powers)
+                new PowerBody(world, power);
     }
 
 }
