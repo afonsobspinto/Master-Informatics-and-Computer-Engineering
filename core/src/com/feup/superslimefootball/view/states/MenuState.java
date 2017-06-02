@@ -7,11 +7,11 @@ import com.feup.superslimefootball.view.MenuView;
 public abstract class MenuState {
 
     /**
-     * The menu this screen belongs to.
+     * The game this screen belongs to.
      */
     protected final MenuView menuView;
 
-    protected final SuperSlimeFootball menu;
+    protected final SuperSlimeFootball game;
 
     /**
      * The width of the buttons.
@@ -25,7 +25,7 @@ public abstract class MenuState {
 
     public MenuState(MenuView menuView){
         this.menuView = menuView;
-        this.menu = menuView.getMenu();
+        this.game = menuView.getGame();
     }
 
     public abstract void  drawButtons();

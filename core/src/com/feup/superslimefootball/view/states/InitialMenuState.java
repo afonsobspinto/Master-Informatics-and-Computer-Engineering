@@ -14,17 +14,17 @@ public class InitialMenuState extends MenuState {
     @Override
     public void drawButtons() {
 
-        Texture singlePlayer = this.menu.getAssetManager().get("singleplayer.png", Texture.class);
-        Texture multiPlayer = this.menu.getAssetManager().get("multiplayer.png", Texture.class);
-        Texture options = this.menu.getAssetManager().get("options.png", Texture.class);
-        Texture facebook = this.menu.getAssetManager().get("facebook.png", Texture.class);
-        Texture twitter = this.menu.getAssetManager().get("twitter.png", Texture.class);
+        Texture singlePlayer = this.game.getAssetManager().get("singleplayer.png", Texture.class);
+        Texture multiPlayer = this.game.getAssetManager().get("multiplayer.png", Texture.class);
+        Texture options = this.game.getAssetManager().get("options.png", Texture.class);
+        Texture facebook = this.game.getAssetManager().get("facebook.png", Texture.class);
+        Texture twitter = this.game.getAssetManager().get("twitter.png", Texture.class);
 
-        this.menu.getBatch().draw(singlePlayer, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
-        this.menu.getBatch().draw(multiPlayer, Gdx.graphics.getWidth()*(2.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
-        this.menu.getBatch().draw(options, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
-        this.menu.getBatch().draw(facebook, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
-        this.menu.getBatch().draw(twitter, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
+        this.game.getBatch().draw(singlePlayer, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(multiPlayer, Gdx.graphics.getWidth()*(2.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(options, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
+        this.game.getBatch().draw(facebook, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
+        this.game.getBatch().draw(twitter, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
 
     }
 

@@ -12,11 +12,11 @@ public class HowToPlayMenuState extends MenuState {
     @Override
     public void drawButtons() {
 
-        Texture howToPlayBackground = this.menu.getAssetManager().get("howToPlayBackground.png", Texture.class);
-        Texture goBack = this.menu.getAssetManager().get("goBack.png", Texture.class);
+        Texture howToPlayBackground = this.game.getAssetManager().get("howToPlayBackground.png", Texture.class);
+        Texture goBack = this.game.getAssetManager().get("goBack.png", Texture.class);
 
-        this.menu.getBatch().draw(howToPlayBackground, 0.0f, 0.0f);
-        this.menu.getBatch().draw(goBack, Gdx.graphics.getWidth()*(10.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
+        this.game.getBatch().draw(howToPlayBackground, 0.0f, 0.0f);
+        this.game.getBatch().draw(goBack, Gdx.graphics.getWidth()*(10.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
 
     }
 

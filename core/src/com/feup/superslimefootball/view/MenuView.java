@@ -26,9 +26,9 @@ public class MenuView extends ScreenAdapter {
     public static final float VIEWPORT_HEIGHT = 400.0F;
 
     /**
-     * The menu this screen belongs to.
+     * The game this screen belongs to.
      */
-    public final SuperSlimeFootball menu;
+    public final SuperSlimeFootball game;
 
     /**
      * The camera used to show the viewport.
@@ -45,10 +45,10 @@ public class MenuView extends ScreenAdapter {
     /**
      * Creates this screen.
      *
-     * @param menu The menu this screen belongs to
+     * @param game The game this screen belongs to
      */
-    public MenuView(SuperSlimeFootball menu) {
-        this.menu = menu;
+    public MenuView(SuperSlimeFootball game) {
+        this.game = game;
         this.loadAssets();
         this.state = new InitialMenuState(this);
         this.camera = this.createCamera();
@@ -69,43 +69,43 @@ public class MenuView extends ScreenAdapter {
      * Loads the assets needed by this screen.
      */
     private void loadAssets() {
-        this.menu.getAssetManager().load("menuBackground.png", Texture.class);
-        this.menu.getAssetManager().load("singleplayer.png", Texture.class);
-        this.menu.getAssetManager().load("multiplayer.png", Texture.class);
-        this.menu.getAssetManager().load("options.png", Texture.class);
-        this.menu.getAssetManager().load("facebook.png", Texture.class);
-        this.menu.getAssetManager().load("twitter.png", Texture.class);
-        this.menu.getAssetManager().load("ball.png", Texture.class);
-        this.menu.getAssetManager().load("blueSlime.png", Texture.class);
-        this.menu.getAssetManager().load("redSlime.png", Texture.class);
-        this.menu.getAssetManager().load("blueSlimeButton.png", Texture.class);
-        this.menu.getAssetManager().load("redSlimeButton.png", Texture.class);
-        this.menu.getAssetManager().load("refresh.png", Texture.class);
-        this.menu.getAssetManager().load("findIP.png", Texture.class);
-        this.menu.getAssetManager().load("howToPlay.png", Texture.class);
-        this.menu.getAssetManager().load("sound.png", Texture.class);
-        this.menu.getAssetManager().load("comments.png", Texture.class);
-        this.menu.getAssetManager().load("goalLimit.png", Texture.class);
-        this.menu.getAssetManager().load("goBack.png", Texture.class);
-        this.menu.getAssetManager().load("howToPlayBackground.png", Texture.class);
+        this.game.getAssetManager().load("menuBackground.png", Texture.class);
+        this.game.getAssetManager().load("singleplayer.png", Texture.class);
+        this.game.getAssetManager().load("multiplayer.png", Texture.class);
+        this.game.getAssetManager().load("options.png", Texture.class);
+        this.game.getAssetManager().load("facebook.png", Texture.class);
+        this.game.getAssetManager().load("twitter.png", Texture.class);
+        this.game.getAssetManager().load("ball.png", Texture.class);
+        this.game.getAssetManager().load("blueSlime.png", Texture.class);
+        this.game.getAssetManager().load("redSlime.png", Texture.class);
+        this.game.getAssetManager().load("blueSlimeButton.png", Texture.class);
+        this.game.getAssetManager().load("redSlimeButton.png", Texture.class);
+        this.game.getAssetManager().load("refresh.png", Texture.class);
+        this.game.getAssetManager().load("findIP.png", Texture.class);
+        this.game.getAssetManager().load("howToPlay.png", Texture.class);
+        this.game.getAssetManager().load("sound.png", Texture.class);
+        this.game.getAssetManager().load("comments.png", Texture.class);
+        this.game.getAssetManager().load("goalLimit.png", Texture.class);
+        this.game.getAssetManager().load("goBack.png", Texture.class);
+        this.game.getAssetManager().load("howToPlayBackground.png", Texture.class);
 
         loadOptionsAssets();
 
-        this.menu.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
+        this.game.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
     }
 
     /**
      * Loads the options assets needed by this screen.
      */
     private void loadOptionsAssets(){
-        this.menu.getAssetManager().load("optionsButtons/onButton.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/offButton.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/threeChosen.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/fiveChosen.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/sevenChosen.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/threeNotChosen.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/fiveNotChosen.png", Texture.class);
-        this.menu.getAssetManager().load("optionsButtons/sevenNotChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/onButton.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/offButton.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/threeChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/fiveChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/sevenChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/threeNotChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/fiveNotChosen.png", Texture.class);
+        this.game.getAssetManager().load("optionsButtons/sevenNotChosen.png", Texture.class);
     }
 
     /**
@@ -114,14 +114,14 @@ public class MenuView extends ScreenAdapter {
      * @param delta time since last renders in seconds.
      */
     public void render(float delta) {
-        this.menu.getBatch().setProjectionMatrix(this.camera.combined);
+        this.game.getBatch().setProjectionMatrix(this.camera.combined);
         state.handleMouse();
         Gdx.gl.glClearColor(1.0F, 0.0F, 0.0F, 1.0F);
         Gdx.gl.glClear(16384);
-        this.menu.getBatch().begin();
+        this.game.getBatch().begin();
         this.drawBackground();
         state.drawButtons();
-        this.menu.getBatch().end();
+        this.game.getBatch().end();
     }
 
     /**
@@ -134,11 +134,11 @@ public class MenuView extends ScreenAdapter {
      * Draws the background
      */
     private void drawBackground() {
-        Texture background = menu.getAssetManager().get("menuBackground.png", Texture.class);
-        menu.getBatch().draw(background, 0, 0);
+        Texture background = game.getAssetManager().get("menuBackground.png", Texture.class);
+        game.getBatch().draw(background, 0, 0);
 
-        Texture ball = menu.getAssetManager().get("ball.png", Texture.class);
-        menu.getBatch().draw(ball, VIEWPORT_WIDTH*(3.9f/5.0f) - ball.getWidth()/2, VIEWPORT_HEIGHT*(2.0f/3.0f) - ball.getWidth()/2);
+        Texture ball = game.getAssetManager().get("ball.png", Texture.class);
+        game.getBatch().draw(ball, VIEWPORT_WIDTH*(3.9f/5.0f) - ball.getWidth()/2, VIEWPORT_HEIGHT*(2.0f/3.0f) - ball.getWidth()/2);
     }
 
     /*
@@ -156,8 +156,8 @@ public class MenuView extends ScreenAdapter {
     }
 
     /*
-     * Returns the menu
+     * Returns the game
      */
-    public SuperSlimeFootball getMenu() { return menu; }
+    public SuperSlimeFootball getGame() { return game; }
 }
 
