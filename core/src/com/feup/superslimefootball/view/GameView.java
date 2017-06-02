@@ -124,6 +124,8 @@ public class GameView extends ScreenAdapter {
     @Override
     public void render (float delta) {
 
+        updateScore();
+
         GameController.getInstance().removeFlagged();
 
         this.game.getBatch().setProjectionMatrix(camera.combined);
@@ -131,6 +133,7 @@ public class GameView extends ScreenAdapter {
         handleInputs();
 
         GameController.getInstance().update(delta);
+        hud.update(delta);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -222,5 +225,13 @@ public class GameView extends ScreenAdapter {
             goalView.update(goal);
             goalView.draw(game.getBatch());
         }
+    }
+
+    private void updateScore(){
+        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer1()) {
+            game.setScreen(new MenuView(game)); //// TODO: Change this
+        }
+        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2())
+            game.setScreen(new MenuView(game)); //// TODO: Change this
     }
 }

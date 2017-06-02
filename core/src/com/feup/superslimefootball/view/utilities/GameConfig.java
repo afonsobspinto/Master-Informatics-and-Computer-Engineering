@@ -75,8 +75,8 @@ public class GameConfig {
         return score;
     }
 
-    public void setScore(Score score) {
-        this.score = score;
+    public void updateScore(Integer player1, Integer player2) {
+        this.score = new Score(score.getPlayer1()+player1, score.getPlayer2()+player2);
     }
 
     public ColorPair getColors() {

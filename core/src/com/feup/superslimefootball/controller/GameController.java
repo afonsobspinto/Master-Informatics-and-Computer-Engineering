@@ -1,5 +1,6 @@
 package com.feup.superslimefootball.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -20,6 +21,7 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
+import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import java.util.List;
 
@@ -278,8 +280,19 @@ public class GameController implements ContactListener {
     private void ballGoalCollision(Body ballBody, Fixture goalFixture) {
         System.out.println("Colisão Bola Baliza");
 
-        if(goalFixture.isSensor())
-            System.out.println("GOLOOOO!");
+        if(goalFixture.isSensor()) {
+            if (goalFixture.getBody().getPosition().x * PPM > Gdx.graphics.getWidth() / 2){
+                GameConfig.getInstance().updateScore(1, 0);
+                System.out.println("Golo Player1");
+            }
+
+            else {
+                GameConfig.getInstance().updateScore(0, 1);
+                System.out.println("Golo Player2");
+            }
+
+            ((BallModel)ballBody.getUserData()).setFlaggedForRemoval(true);
+        }
         else
             System.out.println("Trave");
     }
@@ -308,11 +321,21 @@ public class GameController implements ContactListener {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         for (Body body : bodies) {
-            if (((EntityModel)body.getUserData()).isFlaggedToBeRemoved()) {
-                System.out.println("Removed");
+
+            EntityModel model = ((EntityModel)body.getUserData());
+
+            if((body.getUserData()) instanceof BallModel && model.isFlaggedToBeRemoved()){
+                body.setLinearVelocity(0,0);
+                body.setTransform(new Vector2(GAME_WIDTH / PPM / 2.0f, GAME_HEIGHT / PPM * (4.0f/5.0f)), 0);
+                model.setFlaggedForRemoval(false);
+            }
+
+
+            else if (model.isFlaggedToBeRemoved()) {
                 GameModel.getInstance().remove((EntityModel) body.getUserData());
                 world.destroyBody(body);
             }
         }
     }
+
 }

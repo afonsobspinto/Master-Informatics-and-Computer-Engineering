@@ -53,6 +53,8 @@ public class MenuView extends ScreenAdapter {
         this.state = new InitialMenuState(this);
         this.camera = this.createCamera();
     }
+    
+
 
     /**
      * Creates the camera used to show the viewport.
@@ -91,7 +93,7 @@ public class MenuView extends ScreenAdapter {
 
         loadOptionsAssets();
 
-        this.game.getAssetManager().finishLoading(); // TODO: Possivel problema aqui
+        this.game.getAssetManager().finishLoading();
     }
 
     /**

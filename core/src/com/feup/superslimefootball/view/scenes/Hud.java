@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.feup.superslimefootball.view.utilities.GameConfig;
@@ -18,7 +19,7 @@ import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
  * Created by afonso on 6/2/17.
  */
 
-public class Hud {
+public class Hud implements Disposable {
 
     public Stage stage;
     private Viewport viewport;
@@ -36,6 +37,8 @@ public class Hud {
         table.top();
         table.setFillParent(true);
 
+        System.out.println(GameConfig.getInstance().getScore().getPlayer2());
+
         scorePlayerLabel = new Label(GameConfig.getInstance().getScore().getPlayer1().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor1()));
         scoreOpponentLabel= new Label(GameConfig.getInstance().getScore().getPlayer2().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor2()));
         goalLimitLabel= new Label(GameConfig.getInstance().getGoalLimit().toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -48,5 +51,14 @@ public class Hud {
 
     }
 
+    public void update(float delta){
+        scoreOpponentLabel.setText(GameConfig.getInstance().getScore().getPlayer2().toString());
+        scorePlayerLabel.setText(GameConfig.getInstance().getScore().getPlayer1().toString());
+    }
 
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
 }
+

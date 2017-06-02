@@ -146,6 +146,15 @@ public abstract class EntityBody {
     }
 
     /**
+     * Wraps the setTransform method from the Box2D body class.
+     *@param position the new position
+     * @param angle the new angle
+     */
+    public void setTransform(Vector2 position, float angle ){
+        body.setTransform(position, angle);
+    }
+
+    /**
      * Wraps the getLinearVelocity method from the Box2D body class.
      *
      * @return the user Linear Velocity

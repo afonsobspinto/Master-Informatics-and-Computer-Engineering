@@ -9,7 +9,6 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 
 public class BallBody extends EntityBody {
 
-
     /**
      * Constructs a body representing a model in a certain world.
      *
