@@ -19,12 +19,14 @@ public class InitialMenuState extends MenuState {
         Texture options = this.game.getAssetManager().get("options.png", Texture.class);
         Texture facebook = this.game.getAssetManager().get("facebook.png", Texture.class);
         Texture twitter = this.game.getAssetManager().get("twitter.png", Texture.class);
+        Texture superslimefootball = this.game.getAssetManager().get("expressions/SuperSlimeFootball.png", Texture.class);
 
         this.game.getBatch().draw(singlePlayer, Gdx.graphics.getWidth()*(1.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
         this.game.getBatch().draw(multiPlayer, Gdx.graphics.getWidth()*(2.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
         this.game.getBatch().draw(options, Gdx.graphics.getWidth()*(3.0f/5.0f), Gdx.graphics.getHeight()*(1.0f/25.0f));
         this.game.getBatch().draw(facebook, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(17.0f/20.0f));
         this.game.getBatch().draw(twitter, Gdx.graphics.getWidth()*(12.0f/13.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
+        this.game.getBatch().draw(superslimefootball, Gdx.graphics.getWidth()*(1.0f/20.0f), Gdx.graphics.getHeight()*(14.0f/20.0f));
 
     }
 
