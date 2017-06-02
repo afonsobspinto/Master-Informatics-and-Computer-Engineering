@@ -32,9 +32,9 @@ public abstract class MenuState {
 
     public abstract void  handleMouse();
 
-    public boolean touchButton(double width, double height){
-        if ((Gdx.input.getX() > Gdx.graphics.getWidth()*width) && (Gdx.input.getX() < Gdx.graphics.getWidth()*(width+BUTTONS_WIDTH))
-                && (Gdx.input.getY() < Gdx.graphics.getHeight()*(1-height)) && (Gdx.input.getY() > Gdx.graphics.getHeight()*((1-height) - BUTTONS_HEIGHT)))
+    public boolean touchButton(double xPos, double yPos, double width, double height){
+        if ((Gdx.input.getX() > Gdx.graphics.getWidth()*xPos) && (Gdx.input.getX() < Gdx.graphics.getWidth()*(xPos+width))
+                && (Gdx.input.getY() < Gdx.graphics.getHeight()*(1-yPos)) && (Gdx.input.getY() > Gdx.graphics.getHeight()*((1-yPos) - height)))
             return true;
         return false;
     }

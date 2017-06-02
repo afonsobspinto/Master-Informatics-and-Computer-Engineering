@@ -30,11 +30,11 @@ public class SinglePlayerMenuState extends MenuState {
     @Override
     public void handleMouse() {
         if(Gdx.input.justTouched()){
-            if(touchButton(1.0f/5.0f,1.0f/25.0f))
+            if(touchButton(1.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 this.menu.setScreen(new GameView(this.menu));
-           /* else if(touchButton(3.0f/5.0f,1.0f/25.0f))
+           /* else if(touchButton(3.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 this.menuView.setState(new GameView(this.menu)); // Red Slime*/
-           else if(touchButton(1.0f/13.0f,17.0f/20.0f))
+           else if(touchButton(1.0f/13.0f,17.0f/20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 this.menuView.setState(new InitialMenuState(this.menuView));
         }
     }

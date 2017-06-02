@@ -23,7 +23,7 @@ public class HowToPlayMenuState extends MenuState {
     @Override
     public void handleMouse() {
         if(Gdx.input.justTouched()) {
-            if(touchButton(10.0f/13.0f,17.0f/20.0f))
+            if(touchButton(10.0f/13.0f,17.0f/20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 this.menuView.setState(new OptionsMenuState(this.menuView));
         }
     }
