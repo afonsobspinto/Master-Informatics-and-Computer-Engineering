@@ -46,20 +46,4 @@ public class SlimeBody extends EntityBody {
 
         createFixture(body,vertexes, density, friction, restitution, false);
     }
-
-    public void moveRight(){
-        body.applyLinearImpulse(1f , 0,body.getWorldCenter().x, body.getWorldCenter().y, true);
-        ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
-    }
-
-    public void moveLeft(){
-        body.applyLinearImpulse(-1f , 0,body.getWorldCenter().x, body.getWorldCenter().y, true);
-        ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
-    }
-
-    public void jump() {
-        if(((SlimeModel)this.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
-            body.applyLinearImpulse(0, 25f, body.getWorldCenter().x, body.getWorldCenter().y, true);
-
-    }
 }

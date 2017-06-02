@@ -174,7 +174,8 @@ public class GameController implements ContactListener {
      *
      */
     public void moveRight() {
-        slimeBody.moveRight();
+        slimeBody.applyLinearImpulse(1f , 0, true);
+        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
     }
 
     /**
@@ -182,7 +183,8 @@ public class GameController implements ContactListener {
      *
      */
     public void moveLeft() {
-        slimeBody.moveLeft();
+        slimeBody.applyLinearImpulse(-1f , 0, true);
+        ((SlimeModel)slimeBody.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
 
     }
 
@@ -191,7 +193,8 @@ public class GameController implements ContactListener {
      *
      */
     public void jump() {
-        slimeBody.jump();
+        if(((SlimeModel)slimeBody.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
+            slimeBody.applyLinearImpulse(0, 25f, true);
     }
 
     /**
