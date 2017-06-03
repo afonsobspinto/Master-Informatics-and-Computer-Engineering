@@ -83,6 +83,7 @@ public class MenuView extends ScreenAdapter {
         this.game.getAssetManager().load("howToPlayBackground.png", Texture.class);
 
         loadOptionsAssets();
+        loadExpressionsAssets();
 
         this.game.getAssetManager().finishLoading();
     }
@@ -99,6 +100,16 @@ public class MenuView extends ScreenAdapter {
         this.game.getAssetManager().load("optionsButtons/threeNotChosen.png", Texture.class);
         this.game.getAssetManager().load("optionsButtons/fiveNotChosen.png", Texture.class);
         this.game.getAssetManager().load("optionsButtons/sevenNotChosen.png", Texture.class);
+    }
+
+    /**
+     * Loads the expressions assets needed by this screen.
+     */
+    private void loadExpressionsAssets(){
+        this.game.getAssetManager().load("expressions/Chooseyourslime.png", Texture.class);
+        this.game.getAssetManager().load("expressions/Congratulationsyouwon.png", Texture.class);
+        this.game.getAssetManager().load("expressions/Sorryyoulost.png", Texture.class);
+        this.game.getAssetManager().load("expressions/SuperSlimeFootball.png", Texture.class);
     }
 
     /**
