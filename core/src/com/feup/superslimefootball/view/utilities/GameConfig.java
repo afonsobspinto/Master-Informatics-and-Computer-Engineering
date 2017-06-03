@@ -25,7 +25,7 @@ public class GameConfig {
     private ColorPair colors;
     private List<Color> colorList;
 
-    public GameConfig() {
+    private GameConfig() {
         this.goalLimit = 3;
         this.comments = true;
         this.sound = true;
@@ -96,7 +96,7 @@ public class GameConfig {
     }
 
 
-    public static void resetInstance(){ //// TODO: 6/3/17 Bad Desing? 
+    public static void resetInstance(){ //// TODO: 6/3/17 Bad Desing?
         instance = new GameConfig();
     }
 }

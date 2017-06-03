@@ -6,13 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.feup.superslimefootball.view.MenuView;
 import com.feup.superslimefootball.view.states.InitialMenuState;
 import com.feup.superslimefootball.view.states.MenuState;
-import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class SuperSlimeFootball extends Game {
     private SpriteBatch batch;
     private AssetManager assetManager;
 
-    private GameConfig gameConfig;
 
     private MenuState gameState;
 
@@ -20,7 +18,6 @@ public class SuperSlimeFootball extends Game {
     public void create () {
         batch = new SpriteBatch();
         assetManager = new AssetManager();
-        gameConfig = new GameConfig();
         gameState = new InitialMenuState(this);
 
         startGame();
