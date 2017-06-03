@@ -35,6 +35,7 @@
     <orderEntry type="library" exported="" name="gdx-box2d-platform-1.9.6-natives-ios" level="project" />
     <orderEntry type="library" exported="" name="gdx-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="gdx-box2d-1.9.6" level="project" />
+    <orderEntry type="library" exported="" name="gdx-ai-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="robovm-objc-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="hamcrest-core-1.3" level="project" />

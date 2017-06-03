@@ -174,5 +174,12 @@ public abstract class EntityBody {
 
     }
 
+    /**
+     * gets the body
+     * @return
+     */
+    public Body getBody() {
+        return body;
+    }
 }
 

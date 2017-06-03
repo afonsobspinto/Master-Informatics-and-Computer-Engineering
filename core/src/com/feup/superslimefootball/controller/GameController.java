@@ -1,6 +1,7 @@
 package com.feup.superslimefootball.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.steer.behaviors.Seek;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.feup.superslimefootball.controller.entities.BallBody;
+import com.feup.superslimefootball.controller.entities.GdxAI.B2dSteeringBody;
 import com.feup.superslimefootball.controller.entities.GoalBody;
 import com.feup.superslimefootball.controller.entities.PowerBody;
 import com.feup.superslimefootball.controller.entities.SlimeBody;
@@ -79,6 +81,12 @@ public class GameController implements ContactListener {
 
 
     /**
+     * Bodys used on AI
+     */
+    B2dSteeringBody entity, target;
+
+
+    /**
      * Creates a new GameController that controls the physics of a certain GameModel.
      *
      */
@@ -91,8 +99,11 @@ public class GameController implements ContactListener {
         ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
 
 
+        entity = new B2dSteeringBody(opponentSlimeBody.getBody(), 30f);
+        target = new B2dSteeringBody(ballBody.getBody(), 13f);
 
-
+        Seek<Vector2> seek = new Seek<Vector2>(entity, target);
+        entity.setBehavior(seek);
 
 
         List<GoalModel> goals = GameModel.getInstance().getGoals();
@@ -101,6 +112,7 @@ public class GameController implements ContactListener {
             flip = !flip;
             new GoalBody(world, goal, flip);
         }
+
 
 
         world.setContactListener(this);
@@ -127,6 +139,7 @@ public class GameController implements ContactListener {
 
         GameModel.getInstance().update(delta);
 
+        moveOpponentPlayer(delta);
         updatePowers();
         updateState();
 
@@ -345,6 +358,12 @@ public class GameController implements ContactListener {
         List<PowerModel> powers = GameModel.getInstance().getPowers();
         for (PowerModel power : powers)
                 new PowerBody(world, power);
+    }
+
+
+    private void moveOpponentPlayer(float delta){
+        entity.update(delta);
+
     }
 
 }

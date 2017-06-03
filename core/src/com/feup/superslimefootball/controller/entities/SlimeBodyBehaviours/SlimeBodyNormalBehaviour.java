@@ -25,5 +25,6 @@ public class SlimeBodyNormalBehaviour extends SlimeBodyBehaviour {
     @Override
     public void jump() {
         slimeBody.applyLinearImpulse(0, 25f, slimeBody.getWorldCenter().x, slimeBody.getWorldCenter().y, true);
+        System.out.println(slimeBody.getLinearVelocity().y);
     }
 }
