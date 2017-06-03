@@ -20,7 +20,7 @@ public class SinglePlayerMenuState extends MenuState {
         Texture blueSlimeButton = this.game.getAssetManager().get("blueSlimeButton.png", Texture.class);
         Texture redSlimeButton = this.game.getAssetManager().get("redSlimeButton.png", Texture.class);
         Texture goBack = this.game.getAssetManager().get("goBack.png", Texture.class);
-        Texture chooseyourslime = this.game.getAssetManager().get("expressions/Chooseyourslime.png", Texture.class);
+        Texture chooseyourslime = this.game.getAssetManager().get("expressions/ChooseyourSlime.png", Texture.class);
 
         this.game.getBatch().draw(blueSlime, Gdx.graphics.getWidth()*(1.0f/4.0f), Gdx.graphics.getHeight()*(4.0f/25.0f));
         this.game.getBatch().draw(redSlime, Gdx.graphics.getWidth()*(5.0f/8.0f), Gdx.graphics.getHeight()*(4.0f/25.0f));

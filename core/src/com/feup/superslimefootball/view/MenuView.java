@@ -106,7 +106,7 @@ public class MenuView extends ScreenAdapter {
      * Loads the expressions assets needed by this screen.
      */
     private void loadExpressionsAssets(){
-        this.game.getAssetManager().load("expressions/Chooseyourslime.png", Texture.class);
+        this.game.getAssetManager().load("expressions/ChooseyourSlime.png", Texture.class);
         this.game.getAssetManager().load("expressions/Congratulationsyouwon.png", Texture.class);
         this.game.getAssetManager().load("expressions/Sorryyoulost.png", Texture.class);
         this.game.getAssetManager().load("expressions/SuperSlimeFootball.png", Texture.class);
