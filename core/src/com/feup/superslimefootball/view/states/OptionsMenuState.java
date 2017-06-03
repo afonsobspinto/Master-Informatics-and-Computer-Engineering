@@ -112,6 +112,7 @@ public class OptionsMenuState extends MenuState {
         Texture fiveNotChosen = this.game.getAssetManager().get("optionsButtons/fiveNotChosen.png", Texture.class);
         Texture sevenNotChosen = this.game.getAssetManager().get("optionsButtons/sevenNotChosen.png", Texture.class);
 
+
         if(goalLimit == 3)
             this.game.getBatch().draw(threeChosen, Gdx.graphics.getWidth()*(30.0f/50.0f), Gdx.graphics.getHeight()*(1.0f/5.0f));
         else
