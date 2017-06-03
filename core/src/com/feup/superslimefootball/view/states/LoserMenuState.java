@@ -3,6 +3,7 @@ package com.feup.superslimefootball.view.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class LoserMenuState extends MenuState {
     public LoserMenuState(SuperSlimeFootball game) {
@@ -27,8 +28,10 @@ public class LoserMenuState extends MenuState {
     @Override
     public void handleMouse() {
         if(Gdx.input.justTouched()) {
-            if (touchButton(1.0f / 13.0f, 17.0f / 20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
+            if (touchButton(1.0f / 13.0f, 17.0f / 20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT)){
+                GameConfig.resetInstance();
                 this.game.setGameState(new InitialMenuState(this.game));
+            }
         }
     }
 }
