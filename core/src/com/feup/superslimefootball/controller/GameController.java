@@ -142,6 +142,7 @@ public class GameController implements ContactListener {
         moveOpponentPlayer(delta);
         updatePowers();
         updateState();
+        updateBall();
 
         float frameTime = Math.min(delta, 0.25f);
         accumulator += frameTime;
@@ -179,6 +180,21 @@ public class GameController implements ContactListener {
             ((SlimeModel)slimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.RUNNING);
     }
 
+    /**
+     * Verifies if the ball has stopped
+     */
+    public void updateBall(){
+        float xVelocity = ballBody.getLinearVelocity().x;
+        float yVelocity = ballBody.getLinearVelocity().y;
+        BallModel ballModel = (BallModel)ballBody.getUserData();
+        if(xVelocity == 0.0 && yVelocity == 0.0)
+            ballModel.setTimer(1);
+        else
+            ballModel.setTimer(0);
+        if(ballModel.getTimer() >= 200) {
+            ballBody.applyForceToCenter(500f, 500f, true);
+        }
+    }
 
     /**
      * Moves the Slime to the right.

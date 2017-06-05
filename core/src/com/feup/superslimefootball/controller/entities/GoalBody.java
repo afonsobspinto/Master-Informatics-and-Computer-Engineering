@@ -48,6 +48,14 @@ public class GoalBody extends EntityBody {
         vertexes[3] = new Vector2(1.5f, 2.2f);
 
         createFixture(body,vertexes, density, friction, restitution, false);
+
+        // Net
+        vertexes[0] = new Vector2(-0.9f, 1.1f);
+        vertexes[1] = new Vector2(-2.0f, 1.1f);
+        vertexes[2] = new Vector2(-2.1f, 1.2f);
+        vertexes[3] = new Vector2(-0.8f, 1.2f);
+
+        createFixture(body,vertexes, density, friction, restitution, false);
     }
 
     void createRightFixture(float density, float friction, float restitution){
@@ -65,6 +73,14 @@ public class GoalBody extends EntityBody {
         vertexes[1] = new Vector2(0.0f, 1.1f);
         vertexes[2] = new Vector2(-0.8f, 2.2f);
         vertexes[3] = new Vector2(-1.5f, 2.2f);
+
+        createFixture(body,vertexes, density, friction, restitution, false);
+
+        // Net
+        vertexes[0] = new Vector2(0.9f, 1.1f);
+        vertexes[1] = new Vector2(2.0f, 1.1f);
+        vertexes[2] = new Vector2(2.1f, 1.2f);
+        vertexes[3] = new Vector2(0.8f, 1.2f);
 
         createFixture(body,vertexes, density, friction, restitution, false);
     }

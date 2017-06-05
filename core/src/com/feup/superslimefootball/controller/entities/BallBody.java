@@ -25,5 +25,4 @@ public class BallBody extends EntityBody {
         createCircleFixture(body, radius, density, restitution, false);
     }
 
-
 }
