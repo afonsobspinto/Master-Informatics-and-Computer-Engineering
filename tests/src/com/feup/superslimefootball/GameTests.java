@@ -14,19 +14,31 @@
  * limitations under the License.
  ******************************************************************************/
 
-package com.feup.superslimefootball.examples;
+package com.feup.superslimefootball;
 
-import com.feup.superslimefootball.view.utilities.GameConfig;
+import com.feup.superslimefootball.view.states.InitialMenuState;
 
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Assert;
 
-public class UnitTestExample {
-
+public class GameTests {
 
 	@Test
-	public void scoreZero(){
-		Assert.assertTrue("Score starts 0-0", GameConfig.getInstance().getScore().getPlayer1()==0);
+	public void testInitialMenu(){
+		SuperSlimeFootball game = new SuperSlimeFootball();
+		Assert.assertTrue(game.getGameState() instanceof InitialMenuState);
+		System.out.print(game.getGameState().getClass());
+		System.out.print("-----------------AQUI");
 	}
 
+
+
+
+
+
+	/*@Test
+	public void testSlime(){
+		SuperSlimeFootball game = new SuperSlimeFootball();
+		//Slime
+	}*/
 }

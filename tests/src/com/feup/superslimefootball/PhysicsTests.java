@@ -14,19 +14,24 @@
  * limitations under the License.
  ******************************************************************************/
 
-package com.feup.superslimefootball.examples;
+package com.feup.superslimefootball;
 
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UnitTestExample {
+public class PhysicsTests {
 
 
 	@Test
-	public void scoreZero(){
+	public void testInitialScore(){
 		Assert.assertTrue("Score starts 0-0", GameConfig.getInstance().getScore().getPlayer1()==0);
 	}
 
+	@Test
+	public void testSlimeMovement(){
+		SuperSlimeFootball game = new SuperSlimeFootball();
+		//GameConfig g =
+	}
 }
