@@ -28,13 +28,14 @@ public class NetworkManager implements Runnable {
 
     private ServerSocket serverSocket;
 
-    private boolean accepted = false;
+    private boolean connected = false;
+
 
     @Override
     public void run() {
         if(!connect()) initializeServer();
 
-        if(!accepted) //todo: add condition to distinguish btw server and client
+        if(!connected) //todo: add condition to distinguish btw server and client
             listenForServerRequest();
     }
 
@@ -71,8 +72,8 @@ public class NetworkManager implements Runnable {
             socket = serverSocket.accept();
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataInputStream = new DataInputStream(socket.getInputStream());
-            accepted = true;
             System.out.println("Client request to join");
+            connected = true;
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -83,7 +84,7 @@ public class NetworkManager implements Runnable {
             socket = new Socket(ipAddress, port);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataInputStream = new DataInputStream(socket.getInputStream());
-            accepted = true; // todo: is this right?
+            connected = true;
         }catch (IOException e){
             System.out.println("Unable to connect");
             return false;
@@ -100,7 +101,9 @@ public class NetworkManager implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
 }

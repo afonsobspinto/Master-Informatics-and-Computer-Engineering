@@ -126,6 +126,9 @@ public class MenuView extends ScreenAdapter {
         this.drawBackground();
         this.game.getGameState().drawButtons();
         this.game.getBatch().end();
+
+        if(this.game.getGameState().isConnected())
+            this.game.setScreen(new GameView(this.game));
     }
 
     /**
