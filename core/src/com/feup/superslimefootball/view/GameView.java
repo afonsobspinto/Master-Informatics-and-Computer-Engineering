@@ -73,22 +73,14 @@ public class GameView extends ScreenAdapter {
     private Matrix4 debugCamera;
 
 
-    public enum GAMETYPE{SINGLEPLAYER, SERVER, CLIENT};
-
-    /**
-     * A flag used to know witch type of game it is;
-     */
-    private GAMETYPE gametype;
-
 
     /**
      * Creates this screen.
      *
      * @param game The game this screen belongs to
      */
-    public GameView(SuperSlimeFootball game, GAMETYPE gametype) {
+    public GameView(SuperSlimeFootball game) {
         this.game = game;
-        this.gametype = gametype;
 
         loadAssets();
         this.camera = createCamera();
@@ -143,7 +135,7 @@ public class GameView extends ScreenAdapter {
 
         handleInputs();
 
-        GameController.getInstance().update(delta, gametype);
+        GameController.getInstance().update(delta);
         hud.update(delta);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);

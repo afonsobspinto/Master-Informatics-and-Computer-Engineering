@@ -11,6 +11,7 @@ import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.model.entities.WallsModel;
+import com.feup.superslimefootball.network.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +77,16 @@ public class GameModel {
     private GameModel() {
 
         wallsModel = new WallsModel(0,0);
-        slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
-        opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
+
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
+            slimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f / 5.0f), GameController.GAME_HEIGHT * (1.0f / 5.0f));
+            opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f / 5.0f), GameController.GAME_HEIGHT * (1.0f / 5.0f));
+        }
+        else{
+                opponentSlimeModel = new SlimeModel(GameController.GAME_WIDTH * (1.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
+                slimeModel = new SlimeModel(GameController.GAME_WIDTH * (4.0f/5.0f) , GameController.GAME_HEIGHT * (1.0f/5.0f));
+            }
+
         ballModel = new BallModel(GameController.GAME_WIDTH / 2.0f, GameController.GAME_HEIGHT * (4.0f/5.0f));
 
         goals = new ArrayList<GoalModel>();

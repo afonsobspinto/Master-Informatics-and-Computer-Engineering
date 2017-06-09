@@ -12,7 +12,7 @@ public class MultiPlayerMenuState extends MenuState {
     public MultiPlayerMenuState(SuperSlimeFootball game) {
         super(game);
 
-        networkManager = new NetworkManager();
+        networkManager = NetworkManager.getInstance();
         Thread thread = new Thread(networkManager);
         thread.start();
     }

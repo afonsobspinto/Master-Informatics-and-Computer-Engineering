@@ -15,7 +15,6 @@ public class SuperSlimeFootballTest extends GameTest {
     public void testHandler() {
         GameController gameController = GameController.getInstance();
         gameController.moveRight();
-
         Assert.assertTrue(1==1);
     }
 }

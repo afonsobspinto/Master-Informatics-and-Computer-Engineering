@@ -36,12 +36,12 @@ public class SinglePlayerMenuState extends MenuState {
         if(Gdx.input.justTouched()){
             if(touchButton(1.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT)){
                 GameConfig.getInstance().setColors(Color.BLUE);
-                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.SINGLEPLAYER));
+                this.game.setScreen(new GameView(this.game));
 
             }
             else if(touchButton(3.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT)) {
                 GameConfig.getInstance().setColors(Color.RED);
-                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.SINGLEPLAYER));
+                this.game.setScreen(new GameView(this.game));
             }
             else if(touchButton(1.0f/13.0f,17.0f/20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 this.game.setGameState(new InitialMenuState(this.game));

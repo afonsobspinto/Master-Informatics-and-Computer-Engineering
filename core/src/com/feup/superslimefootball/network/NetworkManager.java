@@ -20,6 +20,11 @@ import java.util.List;
 
 public class NetworkManager implements Runnable {
 
+    /**
+     * The singleton instance of the game model
+     */
+    private static NetworkManager instance;
+
     private String ipAddress = "localhost";
     private int port = 22222;
     private Socket socket;
@@ -30,6 +35,18 @@ public class NetworkManager implements Runnable {
 
     private boolean connected = false;
     private boolean server = false;
+
+
+    /**
+     * Returns a singleton instance of the game model
+     *
+     * @return the singleton instance
+     */
+    public static NetworkManager getInstance() {
+        if (instance == null)
+            instance = new NetworkManager();
+        return instance;
+    }
 
 
     @Override

@@ -7,9 +7,11 @@ package com.feup.superslimefootball.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class MenuView extends ScreenAdapter {
 
@@ -128,10 +130,16 @@ public class MenuView extends ScreenAdapter {
         this.game.getBatch().end();
 
         if(this.game.getGameState().isConnected())
-            if(this.game.getGameState().isServer())
-                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.SERVER));
-            else
-                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.CLIENT));
+            if(this.game.getGameState().isServer()){
+                GameConfig.getInstance().setColors(Color.BLUE);
+                this.game.setScreen(new GameView(this.game));
+            }
+
+            else{
+                GameConfig.getInstance().setColors(Color.RED);
+                this.game.setScreen(new GameView(this.game));
+            }
+
     }
 
     /**
