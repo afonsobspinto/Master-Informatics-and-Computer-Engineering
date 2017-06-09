@@ -23,6 +23,7 @@ import com.feup.superslimefootball.model.entities.EntityModel;
 import com.feup.superslimefootball.model.entities.GoalModel;
 import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
+import com.feup.superslimefootball.view.GameView;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import java.util.List;
@@ -135,11 +136,14 @@ public class GameController implements ContactListener {
      *
      * @param delta The size of this physics step in seconds.
      */
-    public void update(float delta) {
+    public void update(float delta, GameView.GAMETYPE gametype) {
 
         GameModel.getInstance().update(delta);
 
-        moveOpponentPlayer(delta);
+        if(gametype == GameView.GAMETYPE.SINGLEPLAYER)
+            moveOpponentPlayer(delta);
+//        else
+//            ;
         updatePowers();
         updateState();
         updateBall();

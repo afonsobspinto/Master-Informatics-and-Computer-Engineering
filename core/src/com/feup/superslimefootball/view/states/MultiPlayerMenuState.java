@@ -6,10 +6,17 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.network.NetworkManager;
 
 public class MultiPlayerMenuState extends MenuState {
+
+    NetworkManager networkManager;
+
     public MultiPlayerMenuState(SuperSlimeFootball game) {
         super(game);
-        new NetworkManager();
+
+        networkManager = new NetworkManager();
+        Thread thread = new Thread(networkManager);
+        thread.start();
     }
+
 
     @Override
     public void drawButtons() {
@@ -33,5 +40,15 @@ public class MultiPlayerMenuState extends MenuState {
             else if(touchButton(3.0f/5.0f,1.0f/25.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT))
                 // find ip*/
         }
+    }
+
+    @Override
+    public boolean isConnected() {
+        return networkManager.isConnected();
+    }
+
+    @Override
+    public boolean isServer() {
+        return networkManager.isServer();
     }
 }

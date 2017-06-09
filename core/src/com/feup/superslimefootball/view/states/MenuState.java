@@ -33,5 +33,12 @@ public abstract class MenuState {
         return false;
     }
 
+    public boolean isConnected(){
+        return false;
+    }
+
+    public boolean isServer(){
+        return false;
+    }
 
 }

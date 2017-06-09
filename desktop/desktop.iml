@@ -36,6 +36,7 @@
     <orderEntry type="library" exported="" name="gdx-box2d-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="gdx-ai-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="junit-4.12" level="project" />
+    <orderEntry type="library" exported="" name="gdx-backend-headless-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="kryo-2.24.0" level="project" />
     <orderEntry type="library" exported="" name="jsonbeans-0.7" level="project" />
     <orderEntry type="library" exported="" name="lwjgl-2.9.2" level="project" />
