@@ -8,7 +8,9 @@ import com.feup.superslimefootball.network.NetworkManager;
 public class MultiPlayerMenuState extends MenuState {
     public MultiPlayerMenuState(SuperSlimeFootball game) {
         super(game);
-        new NetworkManager();
+
+        Thread t = new Thread(new NetworkManager());
+        t.start();
     }
 
     @Override

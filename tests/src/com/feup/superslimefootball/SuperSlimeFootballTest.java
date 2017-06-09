@@ -1,8 +1,7 @@
 package com.feup.superslimefootball;
 
-import com.feup.superslimefootball.view.states.InitialMenuState;
+import com.feup.superslimefootball.controller.GameController;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,10 +13,9 @@ import org.junit.runner.RunWith;
 public class SuperSlimeFootballTest {
     @Test
     public void bestTestInHistory() {
+        GameController gameController = GameController.getInstance();
 
-        SuperSlimeFootball superSlimeFootball = new SuperSlimeFootball();
-        superSlimeFootball.create();
-        Assert.assertTrue(superSlimeFootball.getGameState() instanceof InitialMenuState);
+        gameController.moveRight();
 
     }
 }
