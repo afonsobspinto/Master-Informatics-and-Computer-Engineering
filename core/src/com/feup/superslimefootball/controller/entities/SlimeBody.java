@@ -90,4 +90,8 @@ public class SlimeBody extends EntityBody {
         }, 3000);
     }
 
+    public SlimeBodyBehaviour getSlimeBodyBehaviour(){
+        return slimeBodyBehaviour;
+    }
+
 }

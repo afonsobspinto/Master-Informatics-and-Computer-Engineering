@@ -6,6 +6,8 @@ import com.badlogic.gdx.ai.steer.SteeringBehavior;
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyBehaviour;
+import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyNormalBehaviour;
 
 /**
  * Created by afonso on 6/2/17.
@@ -21,6 +23,8 @@ public class B2dSteeringBody implements Steerable<Vector2> {
     float maxAngularSpeed;
     float maxAngularAcceleration;
 
+    private SlimeBodyBehaviour slimeBodyBehaviour;
+
     SteeringBehavior<Vector2>behavior;
     SteeringAcceleration<Vector2> steergOutput;
 
@@ -34,6 +38,8 @@ public class B2dSteeringBody implements Steerable<Vector2> {
 
         this.tagged = false;
         this.steergOutput = new SteeringAcceleration<Vector2>(new Vector2());
+
+        this.slimeBodyBehaviour = new SlimeBodyNormalBehaviour(this.body);
     }
 
     public void update(float delta){
@@ -173,7 +179,6 @@ public class B2dSteeringBody implements Steerable<Vector2> {
         return null;
     }
 
-
     /**
      * gets the body
      */
@@ -198,8 +203,5 @@ public class B2dSteeringBody implements Steerable<Vector2> {
     public SteeringBehavior<Vector2> getBehavior() {
         return behavior;
     }
-
-
-
 
 }
