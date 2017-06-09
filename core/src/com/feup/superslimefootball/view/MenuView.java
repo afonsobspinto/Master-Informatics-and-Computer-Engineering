@@ -128,7 +128,10 @@ public class MenuView extends ScreenAdapter {
         this.game.getBatch().end();
 
         if(this.game.getGameState().isConnected())
-            this.game.setScreen(new GameView(this.game));
+            if(this.game.getGameState().isServer())
+                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.SERVER));
+            else
+                this.game.setScreen(new GameView(this.game, GameView.GAMETYPE.CLIENT));
     }
 
     /**

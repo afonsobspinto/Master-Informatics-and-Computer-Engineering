@@ -29,6 +29,7 @@ public class NetworkManager implements Runnable {
     private ServerSocket serverSocket;
 
     private boolean connected = false;
+    private boolean server = false;
 
 
     @Override
@@ -98,6 +99,7 @@ public class NetworkManager implements Runnable {
         try {
             serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ipAddress));
             System.out.println("Server Initialized");
+            server = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,5 +107,9 @@ public class NetworkManager implements Runnable {
 
     public boolean isConnected() {
         return connected;
+    }
+
+    public boolean isServer() {
+        return server;
     }
 }

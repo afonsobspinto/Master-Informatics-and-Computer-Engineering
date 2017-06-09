@@ -46,4 +46,9 @@ public class MultiPlayerMenuState extends MenuState {
     public boolean isConnected() {
         return networkManager.isConnected();
     }
+
+    @Override
+    public boolean isServer() {
+        return networkManager.isServer();
+    }
 }
