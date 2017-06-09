@@ -1,21 +1,21 @@
-package com.feup.superslimefootball;
+package com.feup.superslimefootball.tests;
 
 import com.feup.superslimefootball.controller.GameController;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * Created by afonso on 6/8/17.
  */
 
-@RunWith(GdxTestRunner.class)
-public class SuperSlimeFootballTest {
-    @Test
-    public void bestTestInHistory() {
-        GameController gameController = GameController.getInstance();
+public class SuperSlimeFootballTest extends GameTest {
 
+    @Test
+    public void testHandler() {
+        GameController gameController = GameController.getInstance();
         gameController.moveRight();
 
+        Assert.assertTrue(1==1);
     }
 }
