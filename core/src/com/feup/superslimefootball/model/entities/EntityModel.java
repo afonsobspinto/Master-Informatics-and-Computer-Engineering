@@ -2,13 +2,15 @@ package com.feup.superslimefootball.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.io.Serializable;
+
 import static com.feup.superslimefootball.view.GameView.PPM;
 
 /**
  * Created by afonso on 5/26/17.
  */
 
-public abstract class EntityModel {
+public abstract class EntityModel implements Serializable {
 
     public enum ModelType {BLUESLIMERIGHT, BLUESLIMELEFT,REDSLIMERIGHT, REDSLIMELEFT, BALL, GOALRIGHT, GOALLEFT, SPEED};
 

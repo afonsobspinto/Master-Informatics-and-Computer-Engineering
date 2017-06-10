@@ -25,7 +25,6 @@ import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
-import com.feup.superslimefootball.view.utilities.MoveEvent;
 
 import java.util.List;
 
@@ -141,6 +140,9 @@ public class GameController implements ContactListener {
 
         GameModel.getInstance().update(delta);
 
+//        if(NetworkManager.getInstance().isConnected())
+//            updateNetwork();
+
         moveOpponentPlayer(delta);
 
         updatePowers();
@@ -160,6 +162,7 @@ public class GameController implements ContactListener {
         for (Body body : bodies) {
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
         }
+
 
 
 
@@ -238,8 +241,8 @@ public class GameController implements ContactListener {
      */
     public void moveRight(SlimeBody body) {
         body.moveRight();
-        if(NetworkManager.getInstance().isConnected())
-            NetworkManager.getInstance().sendInput(MoveEvent.RIGHT);
+//        if(NetworkManager.getInstance().isConnected())
+//            NetworkManager.getInstance().sendInput(MoveEvent.RIGHT);
     }
 
     /**
@@ -248,8 +251,8 @@ public class GameController implements ContactListener {
      */
     public void moveLeft(SlimeBody body) {
         body.moveLeft();
-        if(NetworkManager.getInstance().isConnected())
-            NetworkManager.getInstance().sendInput(MoveEvent.LEFT);
+//        if(NetworkManager.getInstance().isConnected())
+//            NetworkManager.getInstance().sendInput(MoveEvent.LEFT);
     }
 
     /**
@@ -258,8 +261,8 @@ public class GameController implements ContactListener {
      */
     public void jump(SlimeBody body) {
         body.jump();
-        if(NetworkManager.getInstance().isConnected())
-            NetworkManager.getInstance().sendInput(MoveEvent.JUMP);
+//        if(NetworkManager.getInstance().isConnected())
+//            NetworkManager.getInstance().sendInput(MoveEvent.JUMP);
     }
 
     /**
@@ -274,8 +277,8 @@ public class GameController implements ContactListener {
             if(slimeModel.getPowerType() == PowerModel.PowerType.SPEED)
                 body.setSlimeBodyBehaviour(slimeModel.getPowerType());
             ((SlimeModel)body.getUserData()).setPowerType(null);
-            if(NetworkManager.getInstance().isConnected())
-                NetworkManager.getInstance().sendInput(MoveEvent.POWER);
+//            if(NetworkManager.getInstance().isConnected())
+//                NetworkManager.getInstance().sendInput(MoveEvent.POWER);
         }
         else
             System.out.println(" No Power");
@@ -433,19 +436,38 @@ public class GameController implements ContactListener {
 
     private void moveOpponentPlayerNetwork(){
 
-        MoveEvent moveEvent = NetworkManager.getInstance().receiveInput();
+//        MoveEvent moveEvent = NetworkManager.getInstance().receiveInput();
+//
+//        if (moveEvent == MoveEvent.LEFT) {
+//            GameController.getInstance().moveLeft(opponentSlimeBody);
+//        }
+//        if (moveEvent == MoveEvent.RIGHT) {
+//            GameController.getInstance().moveRight(opponentSlimeBody);
+//        }
+//        if (moveEvent == MoveEvent.JUMP) {
+//            GameController.getInstance().jump(opponentSlimeBody);
+//        }
+//        if (moveEvent == MoveEvent.POWER) {
+//            GameController.getInstance().powerUP(opponentSlimeBody);
+//        }
+    }
 
-        if (moveEvent == MoveEvent.LEFT) {
-            GameController.getInstance().moveLeft(opponentSlimeBody);
-        }
-        if (moveEvent == MoveEvent.RIGHT) {
-            GameController.getInstance().moveRight(opponentSlimeBody);
-        }
-        if (moveEvent == MoveEvent.JUMP) {
-            GameController.getInstance().jump(opponentSlimeBody);
-        }
-        if (moveEvent == MoveEvent.POWER) {
-            GameController.getInstance().powerUP(opponentSlimeBody);
+
+    /**
+     * Updates Network
+     * */
+    public void updateNetwork() {
+
+        if(NetworkManager.getInstance().isServer())
+            NetworkManager.getInstance().sendData(GameModel.getInstance());
+        else {
+            System.out.println("Cliente");
+            GameModel gameModel = NetworkManager.getInstance().receiveData();
+            System.out.println("Cliente2");
+            if(gameModel!= null)
+                GameModel.setInstance(gameModel);
+            System.out.println("Cliente3");
+
         }
     }
 

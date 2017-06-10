@@ -1,10 +1,16 @@
 package com.feup.superslimefootball.network;
 
-import com.feup.superslimefootball.view.utilities.MoveEvent;
+import com.feup.superslimefootball.model.GameModel;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -15,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-
-import static com.feup.superslimefootball.view.utilities.MoveEvent.getMoveEvent;
 
 /**
  * Created by afonso on 6/1/17.
@@ -30,17 +34,14 @@ public class NetworkManager implements Runnable {
     private static NetworkManager instance;
 
     private String ipAddress = "localhost";
-    private int port = 22222;
-    private Socket socket;
-    private DataOutputStream dataOutputStream;
-    private DataInputStream dataInputStream;
-
+    private int tcpPort = 22222;
+    private int udpPort = 22223;
+    private DatagramSocket udpSocket;
+    private Socket tcpSocket;
     private ServerSocket serverSocket;
 
     private boolean connected = false;
     private boolean server = false;
-    private int errors = 0;
-
 
     /**
      * Returns a singleton instance of the game model
@@ -58,7 +59,7 @@ public class NetworkManager implements Runnable {
     public void run() {
         if(!connect()) initializeServer();
 
-        if(!connected) //todo: add condition to distinguish btw server and client
+        if(!connected)
             listenForServerRequest();
     }
 
@@ -90,11 +91,8 @@ public class NetworkManager implements Runnable {
     }
 
     private void listenForServerRequest(){
-        Socket socket = null;
         try{
-            socket = serverSocket.accept();
-            dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            dataInputStream = new DataInputStream(socket.getInputStream());
+            serverSocket.accept();
             System.out.println("Client request to join");
             connected = true;
         }catch (IOException e){
@@ -104,9 +102,8 @@ public class NetworkManager implements Runnable {
 
     private boolean connect(){
         try{
-            socket = new Socket(ipAddress, port);
-            dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            dataInputStream = new DataInputStream(socket.getInputStream());
+            tcpSocket = new Socket(ipAddress, tcpPort);
+            udpSocket = new DatagramSocket();
             connected = true;
         }catch (IOException e){
             System.out.println("Unable to connect");
@@ -119,7 +116,8 @@ public class NetworkManager implements Runnable {
 
     private void initializeServer() {
         try {
-            serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ipAddress));
+            udpSocket = new DatagramSocket(udpPort);
+            serverSocket = new ServerSocket(tcpPort, 8, InetAddress.getByName(ipAddress));
             System.out.println("Server Initialized");
             server = true;
         } catch (Exception e) {
@@ -128,26 +126,52 @@ public class NetworkManager implements Runnable {
     }
 
 
-    public void sendInput(MoveEvent moveEvent){
-        try {
-            dataOutputStream.writeInt(moveEvent.getValue());
-            dataOutputStream.flush();
+    public void sendData(GameModel gameModel){
+        try{
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(5000);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream((new BufferedOutputStream(byteArrayOutputStream)));
+            objectOutputStream.flush();
+            objectOutputStream.writeObject(gameModel);
+            objectOutputStream.flush();
+            byte[] sendBuf = byteArrayOutputStream.toByteArray();
+            DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPort);
+            int byteCount = packet.getLength();
+            udpSocket.send(packet);
+            objectOutputStream.close();
         } catch (IOException e) {
-            errors++;
             e.printStackTrace();
         }
+
+
     }
 
-    public MoveEvent receiveInput(){
-        int value = -1;
+    public GameModel receiveData(){
+        try{
+            byte[] recvBuf = new byte[5000];
+            System.out.println("Receiving Data");
+            //todo: not receiving data
+            DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
+            System.out.println("Receiving Data 1");
+            udpSocket.receive(packet);
+            System.out.println("Receiving Data 2");
+            int byteCount = packet.getLength();
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(recvBuf);
+            System.out.println("Receiving Data 3");
+            ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(byteArrayInputStream));
+            System.out.println("Receiving Data 4");
+            GameModel gameModel = (GameModel) objectInputStream.readObject();
+            System.out.println("Receiving Data 5");
+            objectInputStream.close();
+            System.out.println("Receiving Data 6");
+            return gameModel;
 
-        try {
-            value = dataInputStream.readInt();
         } catch (IOException e) {
-            errors++;
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return getMoveEvent(value);
+
+        return null;
     }
 
     public boolean isConnected() {

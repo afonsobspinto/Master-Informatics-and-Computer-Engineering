@@ -13,6 +13,7 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.model.entities.WallsModel;
 import com.feup.superslimefootball.network.NetworkManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import static com.feup.superslimefootball.model.entities.PowerModel.PowerType.ge
  * A model representing a game.
  */
 
-public class GameModel {
+public class GameModel implements Serializable {
 
     /**
      * The singleton instance of the game model
@@ -200,6 +201,9 @@ public class GameModel {
             powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), getRandomPowerType()));
     }
 
+    public static void setInstance(GameModel instance) {
+        GameModel.instance = instance;
+    }
 }
 
 

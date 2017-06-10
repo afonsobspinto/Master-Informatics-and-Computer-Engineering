@@ -1,12 +1,13 @@
 package com.feup.superslimefootball.model.entities;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by afonso on 5/29/17.
  */
 
-public class PowerModel extends EntityModel {
+public class PowerModel extends EntityModel implements Serializable {
 
     private float timeToLive;
 

@@ -1,10 +1,12 @@
 package com.feup.superslimefootball.model.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by afonso on 5/27/17.
  */
 
-public class BallModel extends EntityModel {
+public class BallModel extends EntityModel implements Serializable {
 
     private float timer;
 

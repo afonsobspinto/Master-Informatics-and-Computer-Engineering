@@ -22,7 +22,6 @@ import com.feup.superslimefootball.view.scenes.Hud;
 import com.feup.superslimefootball.view.states.LoserMenuState;
 import com.feup.superslimefootball.view.states.WinnerMenuState;
 import com.feup.superslimefootball.view.utilities.GameConfig;
-import com.feup.superslimefootball.view.utilities.MoveEvent;
 
 import java.util.List;
 
@@ -129,6 +128,9 @@ public class GameView extends ScreenAdapter {
     @Override
     public void render (float delta) {
 
+        if(NetworkManager.getInstance().isConnected())
+            GameController.getInstance().updateNetwork();
+
         updateScore();
 
         GameController.getInstance().manageFlagged();
@@ -179,9 +181,9 @@ public class GameView extends ScreenAdapter {
             else
                 GameController.getInstance().powerUP();
         }
-
-        else if(NetworkManager.getInstance().isConnected())
-            NetworkManager.getInstance().sendInput(MoveEvent.UNDEFINED);
+//
+//        else if(NetworkManager.getInstance().isConnected())
+//            NetworkManager.getInstance().sendInput(MoveEvent.UNDEFINED);
 
     }
 
