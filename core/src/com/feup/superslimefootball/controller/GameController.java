@@ -25,6 +25,7 @@ import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
+import com.feup.superslimefootball.view.utilities.MoveEvent;
 
 import java.util.List;
 
@@ -140,9 +141,7 @@ public class GameController implements ContactListener {
 
         GameModel.getInstance().update(delta);
 
-
-        if(!NetworkManager.getInstance().isConnected())
-            moveOpponentPlayer(delta);
+        moveOpponentPlayer(delta);
 
         updatePowers();
         updateState();
@@ -201,43 +200,80 @@ public class GameController implements ContactListener {
     }
 
     /**
-     * Moves the Slime to the right.
-     *
+     *Wrapper of moveRight
      *
      */
     public void moveRight() {
-        slimeBody.moveRight();
+        moveRight(slimeBody);
+    }
+
+    /**
+     *Wrapper of moveLeft
+     *
+     */
+    public void moveLeft() {
+        moveLeft(slimeBody);
+    }
+    /**
+     *Wrapper of Jump
+     *
+     */
+    public void jump() {
+        jump(slimeBody);
+    }
+    /**
+     *Wrapper of powerUP
+     *
+     */
+    public void powerUP() {
+        powerUP(slimeBody);
+    }
+
+    /**
+     * Moves the Slime to the right.
+     * @param body of the slime to move
+     *
+     */
+    public void moveRight(SlimeBody body) {
+        body.moveRight();
+        if(NetworkManager.getInstance().isConnected())
+            NetworkManager.getInstance().sendInput(MoveEvent.RIGHT);
     }
 
     /**
      * Moves the Slime to the left.
-     *
+     *@param body of the slime to move
      */
-    public void moveLeft() {
-        slimeBody.moveLeft();
-
+    public void moveLeft(SlimeBody body) {
+        body.moveLeft();
+        if(NetworkManager.getInstance().isConnected())
+            NetworkManager.getInstance().sendInput(MoveEvent.LEFT);
     }
 
     /**
      * Moves the Slime up.
-     *
+     *@param body of the slime to move
      */
-    public void jump() {
-        slimeBody.jump();
+    public void jump(SlimeBody body) {
+        body.jump();
+        if(NetworkManager.getInstance().isConnected())
+            NetworkManager.getInstance().sendInput(MoveEvent.JUMP);
     }
 
     /**
      * Uses the Slime power.
-     *
+     *@param body of the slime to move
      */
-    public void powerUP() {
-        SlimeModel slimeModel = (SlimeModel)slimeBody.getUserData();
 
+    public void powerUP(SlimeBody body) {
+        SlimeModel slimeModel = (SlimeModel)body.getUserData();
 
         if(slimeModel.getPowerType() != null){
             if(slimeModel.getPowerType() == PowerModel.PowerType.SPEED)
-            slimeBody.setSlimeBodyBehaviour(slimeModel.getPowerType());
-            ((SlimeModel)slimeBody.getUserData()).setPowerType(null);
+                body.setSlimeBodyBehaviour(slimeModel.getPowerType());
+            ((SlimeModel)body.getUserData()).setPowerType(null);
+            if(NetworkManager.getInstance().isConnected())
+                NetworkManager.getInstance().sendInput(MoveEvent.POWER);
         }
         else
             System.out.println(" No Power");
@@ -382,8 +418,36 @@ public class GameController implements ContactListener {
 
 
     private void moveOpponentPlayer(float delta){
-        entity.update(delta);
+        if(NetworkManager.getInstance().isConnected())
+            moveOpponentPlayerNetwork();
+        else
+            moveOpponentPlayerAI(delta);
 
     }
+
+    private void moveOpponentPlayerAI(float delta){
+        entity.update(delta);
+    }
+
+    private void moveOpponentPlayerNetwork(){
+
+        MoveEvent moveEvent = NetworkManager.getInstance().receiveInput();
+
+        if (moveEvent == MoveEvent.LEFT) {
+            GameController.getInstance().moveLeft(opponentSlimeBody);
+        }
+        if (moveEvent == MoveEvent.RIGHT) {
+            GameController.getInstance().moveRight(opponentSlimeBody);
+        }
+        if (moveEvent == MoveEvent.JUMP) {
+            GameController.getInstance().jump(opponentSlimeBody);
+        }
+        if (moveEvent == MoveEvent.POWER) {
+            GameController.getInstance().powerUP(opponentSlimeBody);
+        }
+
+        //todo: add Android Info
+    }
+
 
 }

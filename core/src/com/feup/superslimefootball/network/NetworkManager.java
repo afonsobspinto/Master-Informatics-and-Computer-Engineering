@@ -1,5 +1,7 @@
 package com.feup.superslimefootball.network;
 
+import com.feup.superslimefootball.view.utilities.MoveEvent;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+
+import static com.feup.superslimefootball.view.utilities.MoveEvent.getMoveEvent;
 
 /**
  * Created by afonso on 6/1/17.
@@ -35,6 +39,7 @@ public class NetworkManager implements Runnable {
 
     private boolean connected = false;
     private boolean server = false;
+    private int errors = 0;
 
 
     /**
@@ -120,6 +125,27 @@ public class NetworkManager implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void sendInput(MoveEvent moveEvent){
+        try {
+            dataOutputStream.writeInt(moveEvent.getValue());
+            dataOutputStream.flush();
+        } catch (IOException e) {
+            errors++;
+            e.printStackTrace();
+        }
+    }
+
+    public MoveEvent receiveInput(){
+        try {
+            return getMoveEvent(dataInputStream.readInt());
+        } catch (IOException e) {
+            errors++;
+            e.printStackTrace();
+        }
+        return getMoveEvent(-1);
     }
 
     public boolean isConnected() {

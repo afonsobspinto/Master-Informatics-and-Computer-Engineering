@@ -166,11 +166,9 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().powerUP();
         }
         if (Gdx.input.getAccelerometerY() > 0) {
-            System.out.println(Gdx.input.getAccelerometerY());
             GameController.getInstance().moveRight();
         }
         if (Gdx.input.getAccelerometerY() < 0) {
-            System.out.println(Gdx.input.getAccelerometerY());
             GameController.getInstance().moveLeft();
         }
         if (Gdx.input.justTouched()) {

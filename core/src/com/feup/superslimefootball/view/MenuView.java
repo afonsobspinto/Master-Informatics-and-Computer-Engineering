@@ -142,11 +142,6 @@ public class MenuView extends ScreenAdapter {
 
     }
 
-    /**
-     * Handles any inputs and passes them to the controller.
-     */
-    private void handleInputs(float delta) {
-    }
 
     /**
      * Draws the background
