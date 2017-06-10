@@ -1,7 +1,5 @@
 package com.feup.superslimefootball.network;
 
-import com.feup.superslimefootball.model.GameModel;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -35,7 +33,8 @@ public class NetworkManager implements Runnable {
 
     private String ipAddress = "localhost";
     private int tcpPort = 22222;
-    private int udpPort = 22223;
+    private int udpPortServer = 22223;
+    private int udpPortClient = 22224;
     private DatagramSocket udpSocket;
     private Socket tcpSocket;
     private ServerSocket serverSocket;
@@ -103,7 +102,7 @@ public class NetworkManager implements Runnable {
     private boolean connect(){
         try{
             tcpSocket = new Socket(ipAddress, tcpPort);
-            udpSocket = new DatagramSocket();
+            udpSocket = new DatagramSocket(udpPortClient);
             connected = true;
         }catch (IOException e){
             System.out.println("Unable to connect");
@@ -116,7 +115,7 @@ public class NetworkManager implements Runnable {
 
     private void initializeServer() {
         try {
-            udpSocket = new DatagramSocket(udpPort);
+            udpSocket = new DatagramSocket(udpPortServer);
             serverSocket = new ServerSocket(tcpPort, 8, InetAddress.getByName(ipAddress));
             System.out.println("Server Initialized");
             server = true;
@@ -126,16 +125,17 @@ public class NetworkManager implements Runnable {
     }
 
 
-    public void sendData(GameModel gameModel){
+    public void sendData(Object object){
         try{
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(5000);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream((new BufferedOutputStream(byteArrayOutputStream)));
             objectOutputStream.flush();
-            objectOutputStream.writeObject(gameModel);
+            objectOutputStream.writeObject(object);
             objectOutputStream.flush();
             byte[] sendBuf = byteArrayOutputStream.toByteArray();
-            DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPort);
+            DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPortClient);
             int byteCount = packet.getLength();
+            System.out.println("Packet Size: "+ byteCount);
             udpSocket.send(packet);
             objectOutputStream.close();
         } catch (IOException e) {
@@ -145,25 +145,18 @@ public class NetworkManager implements Runnable {
 
     }
 
-    public GameModel receiveData(){
+    public Object receiveData(){
         try{
             byte[] recvBuf = new byte[5000];
-            System.out.println("Receiving Data");
             //todo: not receiving data
             DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
-            System.out.println("Receiving Data 1");
             udpSocket.receive(packet);
-            System.out.println("Receiving Data 2");
             int byteCount = packet.getLength();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(recvBuf);
-            System.out.println("Receiving Data 3");
             ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(byteArrayInputStream));
-            System.out.println("Receiving Data 4");
-            GameModel gameModel = (GameModel) objectInputStream.readObject();
-            System.out.println("Receiving Data 5");
+            Object object =  objectInputStream.readObject();
             objectInputStream.close();
-            System.out.println("Receiving Data 6");
-            return gameModel;
+            return object;
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -461,13 +461,17 @@ public class GameController implements ContactListener {
         if(NetworkManager.getInstance().isServer())
             NetworkManager.getInstance().sendData(GameModel.getInstance());
         else {
-            System.out.println("Cliente");
-            GameModel gameModel = NetworkManager.getInstance().receiveData();
-            System.out.println("Cliente2");
-            if(gameModel!= null)
-                GameModel.setInstance(gameModel);
-            System.out.println("Cliente3");
 
+            Object object = NetworkManager.getInstance().receiveData();
+
+            if (object instanceof GameModel) {
+
+                GameModel gameModel = (GameModel) object;
+                if (gameModel != null)
+                    GameModel.setInstance(gameModel);
+                System.out.println("Cliente3");
+
+            }
         }
     }
 
