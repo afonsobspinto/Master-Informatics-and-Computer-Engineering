@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.feup.superslimefootball.SuperSlimeFootball;
@@ -111,6 +112,7 @@ public class GameView extends ScreenAdapter {
      */
     private void loadAssets() {
         this.game.getAssetManager().load( "background.png" , Texture.class);
+        this.game.getAssetManager().load( "post.png", Texture.class);
         this.game.getAssetManager().load( "blueSlime.png" , Texture.class);
         this.game.getAssetManager().load( "ball.png", Texture.class);
         this.game.getAssetManager().load( "goal.png", Texture.class);
@@ -195,6 +197,13 @@ public class GameView extends ScreenAdapter {
     private void drawBackground() {
         Texture background = game.getAssetManager().get("background.png", Texture.class);
         game.getBatch().draw(background, 0, 0);
+
+        Texture post = game.getAssetManager().get("post.png", Texture.class);
+        game.getBatch().draw(post,60f,30f);
+
+        TextureRegion rightPost = new TextureRegion(post);
+        rightPost.flip(true,false);
+        game.getBatch().draw(rightPost,690f,30f);
     }
 
     /**
