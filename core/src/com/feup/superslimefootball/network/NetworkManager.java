@@ -139,13 +139,15 @@ public class NetworkManager implements Runnable {
     }
 
     public MoveEvent receiveInput(){
+        int value = -1;
+
         try {
-            return getMoveEvent(dataInputStream.readInt());
+            value = dataInputStream.readInt();
         } catch (IOException e) {
             errors++;
             e.printStackTrace();
         }
-        return getMoveEvent(-1);
+        return getMoveEvent(value);
     }
 
     public boolean isConnected() {

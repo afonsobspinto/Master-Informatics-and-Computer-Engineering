@@ -161,6 +161,8 @@ public class GameController implements ContactListener {
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
         }
 
+
+
     }
 
     /**
@@ -445,9 +447,21 @@ public class GameController implements ContactListener {
         if (moveEvent == MoveEvent.POWER) {
             GameController.getInstance().powerUP(opponentSlimeBody);
         }
-
-        //todo: add Android Info
     }
 
+    public SlimeBody getSlimeBody() {
+        return slimeBody;
+    }
 
+    public SlimeBody getOpponentSlimeBody() {
+        return opponentSlimeBody;
+    }
+
+    public BallBody getBallBody() {
+        return ballBody;
+    }
+
+    public void resetInstance(){
+        instance = new GameController();
+    }
 }

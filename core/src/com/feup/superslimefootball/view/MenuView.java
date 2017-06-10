@@ -134,7 +134,6 @@ public class MenuView extends ScreenAdapter {
                 GameConfig.getInstance().setColors(Color.BLUE);
                 this.game.setScreen(new GameView(this.game));
             }
-
             else{
                 GameConfig.getInstance().setColors(Color.RED);
                 this.game.setScreen(new GameView(this.game));
