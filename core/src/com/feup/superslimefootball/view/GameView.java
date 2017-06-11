@@ -128,14 +128,7 @@ public class GameView extends ScreenAdapter {
      */
     @Override
     public void render (float delta) {
-
-        if(NetworkManager.getInstance().isConnected())
-            GameController.getInstance().updateNetwork();
-
-        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
-            GameController.getInstance().manageFlagged();
-        }
-
+        handlesInstances();
         updateScore();
         handleInputs();
 
@@ -159,6 +152,19 @@ public class GameView extends ScreenAdapter {
 
     }
 
+    /**
+     * Handles Instances to the Render
+     *
+     */
+    private void handlesInstances() {
+        if(NetworkManager.getInstance().isConnected())
+            GameController.getInstance().updateNetwork();
+
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
+            GameController.getInstance().manageFlagged();
+        }
+
+    }
     /**
      * Handles any inputs and passes them to the controller.
      *

@@ -110,6 +110,21 @@ public class NetworkManager implements Runnable {
 
         List<String> addresses = new ArrayList<String>();
 
+        checksNetworkInterface(addresses);
+
+        for(String str:addresses)
+        {
+            this.ipAddress = this.ipAddress + str + "\n";
+        }
+
+        System.out.println(ipAddress);
+
+    }
+
+    /**
+     * Checks Network Interface Exception
+     */
+    private void checksNetworkInterface(List<String> addresses){
         try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             for(NetworkInterface ni : Collections.list(interfaces)){
@@ -123,14 +138,8 @@ public class NetworkManager implements Runnable {
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        for(String str:addresses)
-        {
-            this.ipAddress = this.ipAddress + str + "\n";
-        }
-
-        System.out.println(ipAddress);
-
     }
+
 
     /**
      * Finds a Server Request
