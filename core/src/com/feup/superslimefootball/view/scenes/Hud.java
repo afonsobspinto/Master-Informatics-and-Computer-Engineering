@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.feup.superslimefootball.model.GameModel;
+import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
@@ -52,6 +54,11 @@ public class Hud implements Disposable {
     public void update(float delta){
         scoreOpponentLabel.setText(GameConfig.getInstance().getScore().getPlayer2().toString());
         scorePlayerLabel.setText(GameConfig.getInstance().getScore().getPlayer1().toString());
+
+        if(NetworkManager.getInstance().isConnected()){
+            scoreOpponentLabel.setText(GameModel.getInstance().getScore().getPlayer2().toString());
+            scorePlayerLabel.setText(GameModel.getInstance().getScore().getPlayer1().toString());
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.model.entities.WallsModel;
 import com.feup.superslimefootball.network.NetworkManager;
+import com.feup.superslimefootball.view.utilities.Score;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -71,6 +72,8 @@ public class GameModel implements Serializable {
     private List<PowerModel> powers;
 
 
+    private Score score;
+
 
     /**
      * Constructs a game with....
@@ -95,6 +98,8 @@ public class GameModel implements Serializable {
         goals.add(new GoalModel(GameController.GAME_WIDTH * (12.0f/13.0f) , GameController.GAME_HEIGHT * (1.0f/6.0f)));
 
         powers = new ArrayList<PowerModel>();
+
+        score = new Score(0, 0);
    }
 
     /**
@@ -203,6 +208,14 @@ public class GameModel implements Serializable {
 
     public static void setInstance(GameModel instance) {
         GameModel.instance = instance;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 }
 

@@ -326,7 +326,6 @@ public class GameController implements ContactListener {
         if(goalFixture.isSensor()) {
             if (goalFixture.getBody().getPosition().x * PPM > Gdx.graphics.getWidth() / 2){
                 GameConfig.getInstance().updateScore(1, 0);
-
             }
 
             else {
@@ -438,18 +437,10 @@ public class GameController implements ContactListener {
     /**
      * Updates Network
      * */
-    public void updateNetwork(boolean broadcast) {
-
-        if(broadcast)
-            updateClient();
-    }
-
-    public void updateClient(){
-        if(NetworkManager.getInstance().isServer()) {
-
+    public void updateNetwork( ) {
+        if (NetworkManager.getInstance().isServer()) {
             NetworkManager.getInstance().sendData(GameModel.getInstance());
-        }
-        else {
+        } else {
             Object object = NetworkManager.getInstance().receiveData();
 
             if (object instanceof GameModel) {

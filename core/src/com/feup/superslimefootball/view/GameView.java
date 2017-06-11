@@ -134,7 +134,7 @@ public class GameView extends ScreenAdapter {
     public void render (float delta) {
 
         if(NetworkManager.getInstance().isConnected())
-            GameController.getInstance().updateNetwork(true);
+            GameController.getInstance().updateNetwork();
 
         if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
             GameController.getInstance().manageFlagged();
@@ -294,6 +294,10 @@ public class GameView extends ScreenAdapter {
     }
 
     private void updateScore(){
+
+        if(NetworkManager.getInstance().isServer())
+            GameModel.getInstance().setScore(GameConfig.getInstance().getScore());
+
         if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer1()) {
             this.game.setGameState(new WinnerMenuState(this.game));
             game.setScreen(new MenuView(game));
