@@ -135,17 +135,19 @@ public class GameView extends ScreenAdapter {
         if(NetworkManager.getInstance().isConnected())
             GameController.getInstance().updateNetwork(true);
 
-        updateScore();
-
-        GameController.getInstance().manageFlagged();
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
+            updateScore();
+            GameController.getInstance().manageFlagged();
+        }
 
         handleInputs();
 
         if(NetworkManager.getInstance().isConnected())
             GameController.getInstance().updateNetwork(false);
 
-
-        GameController.getInstance().update(delta);
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
+            GameController.getInstance().update(delta);
+        }
         hud.update(delta);
 
         this.game.getBatch().setProjectionMatrix(camera.combined);

@@ -94,29 +94,30 @@ public class GameController implements ContactListener {
     private GameController() {
         world = new World(new Vector2(0f, -9.8f), false);
 
-        new WallsBody(world, GameModel.getInstance().getWallsModel());
-        slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
-        opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlimeModel());
-        ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
+            new WallsBody(world, GameModel.getInstance().getWallsModel());
+            slimeBody = new SlimeBody(world, GameModel.getInstance().getSlimeModel());
+
+            opponentSlimeBody = new SlimeBody(world, GameModel.getInstance().getOpponentSlimeModel());
+            ballBody = new BallBody(world, GameModel.getInstance().getBallModel());
 
 
-        entity = new B2dSteeringBody(opponentSlimeBody.getBody(), 30f);
-        target = new B2dSteeringBody(ballBody.getBody(), 13f);
+            entity = new B2dSteeringBody(opponentSlimeBody.getBody(), 30f);
+            target = new B2dSteeringBody(ballBody.getBody(), 13f);
 
-        Seek<Vector2> seek = new Seek<Vector2>(entity, target);
-        entity.setBehavior(seek);
+            Seek<Vector2> seek = new Seek<Vector2>(entity, target);
+            entity.setBehavior(seek);
 
 
-        List<GoalModel> goals = GameModel.getInstance().getGoals();
-        boolean flip = true;
-        for (GoalModel goal : goals){
-            flip = !flip;
-            new GoalBody(world, goal, flip);
+            List<GoalModel> goals = GameModel.getInstance().getGoals();
+            boolean flip = true;
+            for (GoalModel goal : goals) {
+                flip = !flip;
+                new GoalBody(world, goal, flip);
+            }
+
+            world.setContactListener(this);
         }
-
-
-
-        world.setContactListener(this);
     }
 
     /**
@@ -138,7 +139,8 @@ public class GameController implements ContactListener {
      */
     public void update(float delta) {
 
-        if(!NetworkManager.getInstance().isConnected() || NetworkManager.getInstance().isServer()) {
+
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
             GameModel.getInstance().update(delta);
 
             moveOpponentPlayer(delta);
@@ -161,10 +163,7 @@ public class GameController implements ContactListener {
                 ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
             }
 
-
         }
-
-
     }
 
     /**
@@ -488,37 +487,26 @@ public class GameController implements ContactListener {
                 GameModel gameModel = (GameModel) object;
                 if (gameModel != null) {
                     GameModel.setInstance(gameModel);
-                    updateBodies();
                 }
             }
         }
     }
 
     public void updateServer(){
-        if(NetworkManager.getInstance().isServer()) {
-            Object object = NetworkManager.getInstance().receiveData();
-            if (object instanceof SlimeModel) {
-                EntityModel slimeModel = (EntityModel) object;
-                if (slimeModel != null) {
-                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
-                }
-            }
-        }
-        else {
-            NetworkManager.getInstance().sendData(slimeBody.getUserData());
-        }
+//        if(NetworkManager.getInstance().isServer()) {
+//            Object object = NetworkManager.getInstance().receiveData();
+//            if (object instanceof SlimeModel) {
+//                EntityModel slimeModel = (EntityModel) object;
+//                if (slimeModel != null) {
+//                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
+//                }
+//            }
+//        }
+//        else {
+//            NetworkManager.getInstance().sendData(slimeBody.getUserData());
+//        }
     }
 
-    private void updateBodies(){
-        Array<Body> bodies = new Array<Body>();
-        world.getBodies(bodies);
-
-        for (Body body : bodies) {
-            body.setTransform(new Vector2(((EntityModel) body.getUserData()).getX(), ((EntityModel) body.getUserData()).getY()), 0);
-        }
-
-
-    }
 
     public SlimeBody getSlimeBody() {
         return slimeBody;
