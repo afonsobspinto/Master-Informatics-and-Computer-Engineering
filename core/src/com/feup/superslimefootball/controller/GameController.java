@@ -25,6 +25,7 @@ import com.feup.superslimefootball.model.entities.PowerModel;
 import com.feup.superslimefootball.model.entities.SlimeModel;
 import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
+import com.feup.superslimefootball.view.utilities.MoveEvent;
 
 import java.util.List;
 
@@ -401,30 +402,31 @@ public class GameController implements ContactListener {
     }
 
     private void moveOpponentPlayerNetwork(){
-//        Object object = NetworkManager.getInstance().receiveData();
-//
-//        if(object instanceof MoveEvent) {
-//            MoveEvent moveEvent = (MoveEvent) object;
-//
-//            if (moveEvent == MoveEvent.LEFT) {
-//                GameController.getInstance().moveLeft(opponentSlimeBody);
-//                System.out.println("Left");
-//            }
-//            if (moveEvent == MoveEvent.RIGHT) {
-//                GameController.getInstance().moveRight(opponentSlimeBody);
-//                System.out.println("Right");
-//            }FSy
-//            if (moveEvent == MoveEvent.JUMP) {
-//                GameController.getInstance().jump(opponentSlimeBody);
-//                System.out.println("Jump");
-//            }
-//            if (moveEvent == MoveEvent.POWER) {
-//                GameController.getInstance().powerUP(opponentSlimeBody);
-//                System.out.println("Power");
-//            }
-//
-//            System.out.println("Undefined");
-//        }
+        Object object = NetworkManager.getInstance().receiveData();
+
+        if(object instanceof MoveEvent) {
+            MoveEvent moveEvent = (MoveEvent) object;
+
+            if (moveEvent == MoveEvent.LEFT) {
+                GameController.getInstance().moveLeft(opponentSlimeBody);
+                System.out.println("Left");
+            }
+            if (moveEvent == MoveEvent.RIGHT) {
+                GameController.getInstance().moveRight(opponentSlimeBody);
+                System.out.println("Right");
+            }
+            if (moveEvent == MoveEvent.JUMP) {
+                GameController.getInstance().jump(opponentSlimeBody);
+                System.out.println("Jump");
+            }
+            if (moveEvent == MoveEvent.POWER) {
+                GameController.getInstance().powerUP(opponentSlimeBody);
+                System.out.println("Power");
+            }
+
+            else
+                System.out.println("Undefined");
+        }
     }
 
 

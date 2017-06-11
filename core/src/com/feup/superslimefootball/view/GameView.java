@@ -23,6 +23,7 @@ import com.feup.superslimefootball.view.scenes.Hud;
 import com.feup.superslimefootball.view.states.LoserMenuState;
 import com.feup.superslimefootball.view.states.WinnerMenuState;
 import com.feup.superslimefootball.view.utilities.GameConfig;
+import com.feup.superslimefootball.view.utilities.MoveEvent;
 
 import java.util.List;
 
@@ -142,9 +143,6 @@ public class GameView extends ScreenAdapter {
 
         handleInputs();
 
-        if(NetworkManager.getInstance().isConnected())
-            GameController.getInstance().updateNetwork(false);
-
         if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
             GameController.getInstance().update(delta);
         }
@@ -168,33 +166,77 @@ public class GameView extends ScreenAdapter {
      *
      */
     private void handleInputs() {
+        if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected())
+            handleInputsController();
+        else
+            handleInputsClient();
+
+    }
+
+    /**
+     * Handles any inputs and passes them to the controller.
+     *
+     */
+    private void handleInputsController() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             GameController.getInstance().moveLeft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             GameController.getInstance().moveRight();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             GameController.getInstance().jump();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             GameController.getInstance().powerUP();
         }
-        if (Gdx.input.getAccelerometerY() > 0) {
+        else if (Gdx.input.getAccelerometerY() > 0) {
             GameController.getInstance().moveRight();
         }
-        if (Gdx.input.getAccelerometerY() < 0) {
+        else if (Gdx.input.getAccelerometerY() < 0) {
             GameController.getInstance().moveLeft();
         }
-        if (Gdx.input.justTouched()) {
+        else if (Gdx.input.justTouched()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
                 GameController.getInstance().jump();
             else
                 GameController.getInstance().powerUP();
         }
-
     }
 
+    /**
+     * Handles any inputs and passes them to the networkManager.
+     *
+     */
+    private void handleInputsClient(){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            NetworkManager.getInstance().sendData(MoveEvent.LEFT);
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            NetworkManager.getInstance().sendData(MoveEvent.RIGHT);
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            NetworkManager.getInstance().sendData(MoveEvent.JUMP);
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            NetworkManager.getInstance().sendData(MoveEvent.POWER);
+        }
+        else if (Gdx.input.getAccelerometerY() > 0) {
+            NetworkManager.getInstance().sendData(MoveEvent.RIGHT);
+        }
+        else if (Gdx.input.getAccelerometerY() < 0) {
+            NetworkManager.getInstance().sendData(MoveEvent.LEFT);
+        }
+        else if (Gdx.input.justTouched()) {
+            if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
+                NetworkManager.getInstance().sendData(MoveEvent.JUMP);
+            else
+                NetworkManager.getInstance().sendData(MoveEvent.POWER);
+        }
+        else
+            NetworkManager.getInstance().sendData(MoveEvent.UNDEFINED);
+
+    }
 
 
     /**
