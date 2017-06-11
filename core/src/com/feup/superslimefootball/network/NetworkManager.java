@@ -160,7 +160,11 @@ public class NetworkManager implements Runnable {
             return object;
 
         }catch (SocketTimeoutException e){
-            opponentDisconnected = true;
+
+//            if(GameModel.getInstance().getScore().getPlayer1().intValue() != GameConfig.getInstance().getGoalLimit().intValue() &&
+//                    GameModel.getInstance().getScore().getPlayer2().intValue() != GameConfig.getInstance().getGoalLimit().intValue()) {
+//                System.out.println("Here");
+                opponentDisconnected = true;
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

@@ -33,7 +33,7 @@ import java.util.List;
 
 public class GameView extends ScreenAdapter {
 
-    private final static boolean DEBUG = true;
+    private final static boolean DEBUG = false;
 
     /**
      * How much pixels does a meter represent.
@@ -159,6 +159,8 @@ public class GameView extends ScreenAdapter {
         hud.stage.draw();
         if(DEBUG)
             debugRenderer.render(GameController.getInstance().getWorld(), camera.combined.cpy().scl(PPM));
+
+
     }
 
     /**
@@ -295,11 +297,13 @@ public class GameView extends ScreenAdapter {
 
     private void updateScore(){
 
-        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer1()) {
+        if(GameConfig.getInstance().getGoalLimit().intValue() == GameConfig.getInstance().getScore().getPlayer1().intValue() ||
+                GameConfig.getInstance().getGoalLimit().intValue() == GameModel.getInstance().getScore().getPlayer2().intValue() ) {
             this.game.setGameState(new WinnerMenuState(this.game));
             game.setScreen(new MenuView(game));
         }
-        else if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2()){
+        else if(GameConfig.getInstance().getGoalLimit().intValue() == GameConfig.getInstance().getScore().getPlayer2().intValue() ||
+                GameConfig.getInstance().getGoalLimit().intValue() == GameModel.getInstance().getScore().getPlayer1().intValue()){
             this.game.setGameState(new LoserMenuState(this.game));
             game.setScreen(new MenuView(game));
         }
