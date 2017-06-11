@@ -54,8 +54,8 @@ public class B2dSteeringBody implements Steerable<Vector2> {
 
         if(!steergOutput.linear.isZero()){
             Vector2 force = steergOutput.linear.scl(delta);
-            if(force.y > force.x && force.y > 20) {
-                force.y = 20;
+            if(force.y > force.x && force.y > 25) {
+                force.y = 25;
                 force.x = force.x / 2;
             }
             body.applyForceToCenter(force, true);

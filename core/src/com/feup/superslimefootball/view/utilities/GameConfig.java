@@ -99,7 +99,7 @@ public class GameConfig {
         this.colors = new ColorPair(color, randomColor(color));
     }
 
-    public static void resetInstance(){ //// TODO: 6/3/17 Bad Desing?
+    public static void resetInstance(){
         instance = new GameConfig();
     }
 }

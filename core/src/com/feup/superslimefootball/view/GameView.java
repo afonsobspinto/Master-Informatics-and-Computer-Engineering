@@ -137,10 +137,10 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().updateNetwork(true);
 
         if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
-            updateScore();
             GameController.getInstance().manageFlagged();
         }
 
+        updateScore();
         handleInputs();
 
         if(NetworkManager.getInstance().isServer() || !NetworkManager.getInstance().isConnected()) {
@@ -181,22 +181,22 @@ public class GameView extends ScreenAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             GameController.getInstance().moveLeft();
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             GameController.getInstance().moveRight();
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             GameController.getInstance().jump();
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             GameController.getInstance().powerUP();
         }
-        else if (Gdx.input.getAccelerometerY() > 0) {
+        if (Gdx.input.getAccelerometerY() > 0) {
             GameController.getInstance().moveRight();
         }
-        else if (Gdx.input.getAccelerometerY() < 0) {
+        if (Gdx.input.getAccelerometerY() < 0) {
             GameController.getInstance().moveLeft();
         }
-        else if (Gdx.input.justTouched()) {
+        if (Gdx.input.justTouched()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2)
                 GameController.getInstance().jump();
             else
@@ -298,10 +298,16 @@ public class GameView extends ScreenAdapter {
             this.game.setGameState(new WinnerMenuState(this.game));
             game.setScreen(new MenuView(game));
         }
-        if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2()){
+        else if(GameConfig.getInstance().getGoalLimit() == GameConfig.getInstance().getScore().getPlayer2()){
             this.game.setGameState(new LoserMenuState(this.game));
             game.setScreen(new MenuView(game));
         }
 
+        if(NetworkManager.getInstance().isOpponentDisconnected()){
+            this.game.setGameState(new WinnerMenuState(this.game));
+            game.setScreen(new MenuView(game));
+        }
+
     }
+
 }

@@ -442,51 +442,15 @@ public class GameController implements ContactListener {
 
         if(broadcast)
             updateClient();
-        else
-            updateServer();
-
-
     }
 
     public void updateClient(){
         if(NetworkManager.getInstance().isServer()) {
 
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    NetworkManager.getInstance().sendData(GameConfig.getInstance().getScore());
-//                    return;
-//                }
-//
-//            }).start();
-
             NetworkManager.getInstance().sendData(GameModel.getInstance());
         }
         else {
             Object object = NetworkManager.getInstance().receiveData();
-
-//            new Thread(new Runnable() {
-//                private Object object;
-//
-//                public Runnable init(Object object){
-//                    this.object = object;
-//                    return this;
-//                }
-//
-//                @Override
-//                public void run() {
-//
-//                    if (object instanceof Score) {
-//                        Score score = (Score) object;
-//                        if (score != null) {
-//                            GameConfig.getInstance().updateScore(score);
-//                        }
-//                    }
-//                    return;
-//                }
-//
-//            }.init(object)).start();
-
 
             if (object instanceof GameModel) {
                 GameModel gameModel = (GameModel) object;
@@ -496,22 +460,6 @@ public class GameController implements ContactListener {
             }
         }
     }
-
-    public void updateServer(){
-//        if(NetworkManager.getInstance().isServer()) {
-//            Object object = NetworkManager.getInstance().receiveData();
-//            if (object instanceof SlimeModel) {
-//                EntityModel slimeModel = (EntityModel) object;
-//                if (slimeModel != null) {
-//                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
-//                }
-//            }
-//        }
-//        else {
-//            NetworkManager.getInstance().sendData(slimeBody.getUserData());
-//        }
-    }
-
 
     public SlimeBody getSlimeBody() {
         return slimeBody;
@@ -525,7 +473,7 @@ public class GameController implements ContactListener {
         return ballBody;
     }
 
-    public void resetInstance(){
+    public static void resetInstance(){
         instance = new GameController();
     }
 }

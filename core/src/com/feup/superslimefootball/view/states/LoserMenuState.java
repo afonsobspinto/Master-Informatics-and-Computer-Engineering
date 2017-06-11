@@ -3,6 +3,7 @@ package com.feup.superslimefootball.view.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
+import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class LoserMenuState extends MenuState {
@@ -30,6 +31,10 @@ public class LoserMenuState extends MenuState {
         if(Gdx.input.justTouched()) {
             if (touchButton(1.0f / 13.0f, 17.0f / 20.0f, BUTTONS_WIDTH, BUTTONS_HEIGHT)){
                 GameConfig.resetInstance();
+                if(NetworkManager.getInstance().isConnected()){
+                    NetworkManager.getInstance().closeSockets();
+                    NetworkManager.resetInstance();
+                }
                 this.game.setGameState(new InitialMenuState(this.game));
             }
         }

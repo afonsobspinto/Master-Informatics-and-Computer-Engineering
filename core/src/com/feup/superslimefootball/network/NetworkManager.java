@@ -15,6 +15,7 @@ import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -41,6 +42,7 @@ public class NetworkManager implements Runnable {
 
     private boolean connected = false;
     private boolean server = false;
+    private boolean opponentDisconnected = false;
 
     /**
      * Returns a singleton instance of the game model
@@ -137,6 +139,7 @@ public class NetworkManager implements Runnable {
             udpSocket.send(packet);
             objectOutputStream.close();
         } catch (IOException e) {
+            opponentDisconnected = true;
             e.printStackTrace();
         }
 
@@ -145,8 +148,10 @@ public class NetworkManager implements Runnable {
 
     public Object receiveData(){
         try{
+
             byte[] recvBuf = new byte[5000];
             DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
+            udpSocket.setSoTimeout(2000);
             udpSocket.receive(packet);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(recvBuf);
             ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(byteArrayInputStream));
@@ -154,6 +159,9 @@ public class NetworkManager implements Runnable {
             objectInputStream.close();
             return object;
 
+        }catch (SocketTimeoutException e){
+            opponentDisconnected = true;
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -170,4 +178,26 @@ public class NetworkManager implements Runnable {
     public boolean isServer() {
         return server;
     }
+
+    public boolean isOpponentDisconnected() {
+        return opponentDisconnected;
+    }
+
+    public static void resetInstance(){
+        instance = new NetworkManager();
+    }
+
+    public void closeSockets(){
+        udpSocket.disconnect();
+        udpSocket.close();
+        try {
+            if(tcpSocket!=null)
+            tcpSocket.close();
+            if(server && serverSocket!=null) serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
