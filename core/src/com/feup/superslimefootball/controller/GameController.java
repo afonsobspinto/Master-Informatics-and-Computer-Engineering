@@ -138,32 +138,31 @@ public class GameController implements ContactListener {
      */
     public void update(float delta) {
 
-        GameModel.getInstance().update(delta);
+        if(NetworkManager.getInstance().isConnected() && NetworkManager.getInstance().isServer()) {
+            GameModel.getInstance().update(delta);
 
-//        if(NetworkManager.getInstance().isConnected())
-//            updateNetwork();
+            moveOpponentPlayer(delta);
 
-        moveOpponentPlayer(delta);
+            updatePowers();
+            updateState();
+            updateBall();
 
-        updatePowers();
-        updateState();
-        updateBall();
+            float frameTime = Math.min(delta, 0.25f);
+            accumulator += frameTime;
+            while (accumulator >= 1 / 60f) {
+                world.step(1 / 60f, 6, 2);
+                accumulator -= 1 / 60f;
+            }
 
-        float frameTime = Math.min(delta, 0.25f);
-        accumulator += frameTime;
-        while (accumulator >= 1/60f) {
-            world.step(1/60f, 6, 2);
-            accumulator -= 1/60f;
+            Array<Body> bodies = new Array<Body>();
+            world.getBodies(bodies);
+
+            for (Body body : bodies) {
+                ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
+            }
+
+
         }
-
-        Array<Body> bodies = new Array<Body>();
-        world.getBodies(bodies);
-
-        for (Body body : bodies) {
-            ((EntityModel) body.getUserData()).setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
-        }
-
-
 
 
     }
@@ -467,12 +466,24 @@ public class GameController implements ContactListener {
             if (object instanceof GameModel) {
 
                 GameModel gameModel = (GameModel) object;
-                if (gameModel != null)
+                if (gameModel != null) {
                     GameModel.setInstance(gameModel);
-                System.out.println("Cliente3");
+                    updateBodies();
+                }
 
             }
         }
+    }
+
+    private void updateBodies(){
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            body.setTransform(new Vector2(((EntityModel) body.getUserData()).getX(), ((EntityModel) body.getUserData()).getY()), 0);
+        }
+
+
     }
 
     public SlimeBody getSlimeBody() {
