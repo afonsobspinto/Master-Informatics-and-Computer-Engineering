@@ -185,6 +185,11 @@ public class GameController implements ContactListener {
             ((SlimeModel)slimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.JUMPING);
         else
             ((SlimeModel)slimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.RUNNING);
+
+        if(opponentSlimeBody.getLinearVelocity().y != 0)
+            ((SlimeModel)opponentSlimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.JUMPING);
+        else
+            ((SlimeModel)opponentSlimeBody.getUserData()).setSlimeState(SlimeModel.SlimeState.RUNNING);
     }
 
     /**
