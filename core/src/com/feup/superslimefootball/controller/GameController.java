@@ -413,23 +413,16 @@ public class GameController implements ContactListener {
 
             if (moveEvent == MoveEvent.LEFT) {
                 GameController.getInstance().moveLeft(opponentSlimeBody);
-                System.out.println("Left");
             }
             if (moveEvent == MoveEvent.RIGHT) {
                 GameController.getInstance().moveRight(opponentSlimeBody);
-                System.out.println("Right");
             }
             if (moveEvent == MoveEvent.JUMP) {
                 GameController.getInstance().jump(opponentSlimeBody);
-                System.out.println("Jump");
             }
             if (moveEvent == MoveEvent.POWER) {
                 GameController.getInstance().powerUP(opponentSlimeBody);
-                System.out.println("Power");
             }
-
-            else
-                System.out.println("Undefined");
         }
     }
 
