@@ -445,7 +445,16 @@ public class GameController implements ContactListener {
     public void updateClient(){
         if(NetworkManager.getInstance().isServer()) {
             NetworkManager.getInstance().sendData(GameModel.getInstance());
-            NetworkManager.getInstance().sendData(GameConfig.getInstance());
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    NetworkManager.getInstance().sendData(GameConfig.getInstance());
+                    return;
+                }
+
+            }).start();
+
         }
         else {
             Object object = NetworkManager.getInstance().receiveData();
@@ -456,15 +465,31 @@ public class GameController implements ContactListener {
                     updateBodies();
                 }
             }
-            //todo:add a thread here?!
-            if (object instanceof GameConfig) {
-                GameConfig gameConfig = (GameConfig) object;
-                if (gameConfig != null) {
-                    gameConfig.setColors(GameConfig.getInstance().getColors());
-                    gameConfig.setColorList(GameConfig.getInstance().getColorList());
-                    GameConfig.setInstance(gameConfig);
+
+            new Thread(new Runnable() {
+                private Object object;
+
+                public Runnable init(Object object){
+                    this.object = object;
+                    return this;
                 }
-            }
+
+                @Override
+                public void run() {
+
+                    if (object instanceof GameConfig) {
+                        GameConfig gameConfig = (GameConfig) object;
+                        if (gameConfig != null) {
+                            gameConfig.setColors(GameConfig.getInstance().getColors());
+                            gameConfig.setColorList(GameConfig.getInstance().getColorList());
+                            GameConfig.setInstance(gameConfig);
+                        }
+                    }
+                    return;
+                }
+
+            }.init(object)).start();
+
         }
     }
 
