@@ -446,43 +446,41 @@ public class GameController implements ContactListener {
     public void updateClient(){
         if(NetworkManager.getInstance().isServer()) {
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    NetworkManager.getInstance().sendData(GameConfig.getInstance());
-                    return;
-                }
-
-            }).start();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    NetworkManager.getInstance().sendData(GameConfig.getInstance().getScore());
+//                    return;
+//                }
+//
+//            }).start();
 
             NetworkManager.getInstance().sendData(GameModel.getInstance());
         }
         else {
             Object object = NetworkManager.getInstance().receiveData();
 
-            new Thread(new Runnable() {
-                private Object object;
-
-                public Runnable init(Object object){
-                    this.object = object;
-                    return this;
-                }
-
-                @Override
-                public void run() {
-
-                    if (object instanceof GameConfig) {
-                        GameConfig gameConfig = (GameConfig) object;
-                        if (gameConfig != null) {
-                            gameConfig.setColors(GameConfig.getInstance().getColors());
-                            gameConfig.setColorList(GameConfig.getInstance().getColorList());
-                            GameConfig.setInstance(gameConfig);
-                        }
-                    }
-                    return;
-                }
-
-            }.init(object)).start();
+//            new Thread(new Runnable() {
+//                private Object object;
+//
+//                public Runnable init(Object object){
+//                    this.object = object;
+//                    return this;
+//                }
+//
+//                @Override
+//                public void run() {
+//
+//                    if (object instanceof Score) {
+//                        Score score = (Score) object;
+//                        if (score != null) {
+//                            GameConfig.getInstance().updateScore(score);
+//                        }
+//                    }
+//                    return;
+//                }
+//
+//            }.init(object)).start();
 
 
             if (object instanceof GameModel) {
