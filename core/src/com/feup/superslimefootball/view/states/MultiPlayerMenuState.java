@@ -7,8 +7,15 @@ import com.feup.superslimefootball.network.NetworkManager;
 
 public class MultiPlayerMenuState extends MenuState {
 
+    /**
+     * the network manager of the menu
+     */
     NetworkManager networkManager;
 
+    /**
+     * Creates a MultiPlayer MenuState in the game
+     * @param game
+     */
     public MultiPlayerMenuState(SuperSlimeFootball game) {
         super(game);
 

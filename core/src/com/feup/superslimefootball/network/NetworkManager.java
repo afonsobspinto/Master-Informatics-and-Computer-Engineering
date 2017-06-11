@@ -32,16 +32,54 @@ public class NetworkManager implements Runnable {
      */
     private static NetworkManager instance;
 
+    /**
+     * The string of the ipAddress
+     */
     private String ipAddress = "localhost";
+
+    /**
+     * The tcp Port
+     */
     private int tcpPort = 22222;
+
+    /**
+     * The udpPortServer
+     */
     private int udpPortServer = 22223;
+
+    /**
+     * The udpPortClient
+     */
     private int udpPortClient = 22224;
+
+    /**
+     * The udp Socket
+     */
     private DatagramSocket udpSocket;
+
+    /**
+     * The tcp Socket
+     */
     private Socket tcpSocket;
+
+    /**
+     * The server Socket
+     */
     private ServerSocket serverSocket;
 
+    /**
+     * The boolean representing if the network is connect
+     */
     private boolean connected = false;
+
+    /**
+     * The boolean representing if the server is activated
+     */
     private boolean server = false;
+
+    /**
+     * The boolean representing if the opponent is connect
+     */
     private boolean opponentDisconnected = false;
 
     /**
@@ -64,6 +102,9 @@ public class NetworkManager implements Runnable {
             listenForServerRequest();
     }
 
+    /**
+     * Gets the IPAddress of the player
+     */
     private void getOwnIPAddress(){
         this.ipAddress = new String();
 
@@ -91,6 +132,9 @@ public class NetworkManager implements Runnable {
 
     }
 
+    /**
+     * Finds a Server Request
+     */
     private void listenForServerRequest(){
         try{
             serverSocket.accept();
@@ -101,6 +145,9 @@ public class NetworkManager implements Runnable {
         }
     }
 
+    /**
+     * Connects with the Server
+     */
     private boolean connect(){
         try{
             tcpSocket = new Socket(ipAddress, tcpPort);
@@ -115,6 +162,9 @@ public class NetworkManager implements Runnable {
         return true;
     }
 
+    /**
+     * Initializes the Server
+     */
     private void initializeServer() {
         try {
             udpSocket = new DatagramSocket(udpPortServer);
@@ -126,7 +176,11 @@ public class NetworkManager implements Runnable {
         }
     }
 
-
+    /**
+     * Sends Data
+     *
+     * @param object
+     */
     public void sendData(Object object){
         try{
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(5000);
@@ -146,6 +200,9 @@ public class NetworkManager implements Runnable {
 
     }
 
+    /**
+     * Receives Data
+     */
     public Object receiveData(){
         try{
 
@@ -172,22 +229,43 @@ public class NetworkManager implements Runnable {
         return null;
     }
 
+    /**
+     * Returns the connected boolean
+     *
+     * @return connected
+     */
     public boolean isConnected() {
         return connected;
     }
 
+    /**
+     * Returns the server boolean
+     *
+     * @return server
+     */
     public boolean isServer() {
         return server;
     }
 
+    /**
+     * Returns the opponentDisconnected boolean
+     *
+     * @return opponentDisconnected
+     */
     public boolean isOpponentDisconnected() {
         return opponentDisconnected;
     }
 
+    /**
+     * Resets the Singleton Instance
+     */
     public static void resetInstance(){
         instance = new NetworkManager();
     }
 
+    /**
+     * Closes the Sockets
+     */
     public void closeSockets(){
         udpSocket.disconnect();
         udpSocket.close();

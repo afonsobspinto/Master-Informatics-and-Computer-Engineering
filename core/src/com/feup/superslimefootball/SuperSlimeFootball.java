@@ -8,10 +8,20 @@ import com.feup.superslimefootball.view.states.InitialMenuState;
 import com.feup.superslimefootball.view.states.MenuState;
 
 public class SuperSlimeFootball extends Game {
+
+    /**
+     * The Batch of the game
+     */
     private SpriteBatch batch;
+
+    /**
+     * The assetManager of the game
+     */
     private AssetManager assetManager;
 
-
+    /**
+     * The gameState of the Menu
+     */
     private MenuState gameState;
 
     @Override
@@ -58,11 +68,20 @@ public class SuperSlimeFootball extends Game {
         return batch;
     }
 
-
+    /**
+     * Returns the game's state
+     *
+     * @return
+     */
     public MenuState getGameState() {
         return gameState;
     }
 
+    /**
+     * Sets the game State
+     *
+     * @param gameState
+     */
     public void setGameState(MenuState gameState) {
         this.gameState = gameState;
     }

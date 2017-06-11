@@ -11,12 +11,11 @@ import com.feup.superslimefootball.model.entities.SlimeModel;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Created by afonso on 5/26/17.
- */
-
 public class SlimeBody extends EntityBody {
 
+    /**
+     * The behaviour of the Slime
+     */
     private SlimeBodyBehaviour slimeBodyBehaviour;
 
 
@@ -61,22 +60,39 @@ public class SlimeBody extends EntityBody {
         createFixture(body,vertexes, density, friction, restitution, false);
     }
 
+    /**
+     * Moves the slime to the right
+     *
+     */
     public void moveRight(){
         slimeBodyBehaviour.moveRight();
         ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.RIGHT);
     }
 
+    /**
+     * Moves the slime to the left
+     *
+     */
     public void moveLeft(){
         slimeBodyBehaviour.moveLeft();
         ((SlimeModel)this.getUserData()).setOrientationState(SlimeModel.OrientationState.LEFT);
     }
 
+    /**
+     * Makes the slime jump
+     *
+     */
     public void jump() {
         if(((SlimeModel)this.getUserData()).getSlimeState() != SlimeModel.SlimeState.JUMPING)
             slimeBodyBehaviour.jump();
 
     }
 
+    /**
+     * Sets the behaviour of the Slime
+     *
+     * @param powerType the type of the power of the slime
+     */
     public void setSlimeBodyBehaviour(PowerModel.PowerType powerType) {
         if (powerType == PowerModel.PowerType.SPEED) {
             slimeBodyBehaviour = new SlimeBodySpeedBehaviour(body);
@@ -90,6 +106,11 @@ public class SlimeBody extends EntityBody {
         }, 3000);
     }
 
+    /**
+     * Returns the slime behaviour
+     *
+     * @return slimeBodyBehaviour
+     */
     public SlimeBodyBehaviour getSlimeBodyBehaviour(){
         return slimeBodyBehaviour;
     }

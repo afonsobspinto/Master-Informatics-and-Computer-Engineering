@@ -31,6 +31,13 @@ public class GoalBody extends EntityBody {
 
     }
 
+    /**
+     * Creates the Fixture on the Left Side
+     *
+     * @param density         The density of the fixture
+     * @param friction        The friction of the fixture
+     * @param restitution     The restitution of the fixture
+     */
     void createLeftFixture(float density, float friction, float restitution){
         Vector2[] vertexes = new Vector2[4];
 
@@ -58,6 +65,13 @@ public class GoalBody extends EntityBody {
         createFixture(body,vertexes, density, friction, restitution, false);
     }
 
+    /**
+     * Creates the Fixture on the Right Side
+     *
+     * @param density         The density of the fixture
+     * @param friction        The friction of the fixture
+     * @param restitution     The restitution of the fixture
+     */
     void createRightFixture(float density, float friction, float restitution){
         Vector2[] vertexes = new Vector2[4];
 

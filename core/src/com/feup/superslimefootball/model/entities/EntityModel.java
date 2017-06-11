@@ -121,12 +121,27 @@ public abstract class EntityModel implements Serializable {
         return initialPos;
     }
 
+    /**
+     * Returns the type of the Model
+     *
+     * @return
+     */
     public abstract ModelType getType();
 
+    /**
+     * Returns the initial X in m
+     *
+     * @return
+     */
     public float getInitialX(){
         return this.initialPos.x*PPM;
     }
 
+    /**
+     * Returns the initial Y in m
+     *
+     * @return
+     */
     public float getInitialY(){
         return this.initialPos.y*PPM;
     }

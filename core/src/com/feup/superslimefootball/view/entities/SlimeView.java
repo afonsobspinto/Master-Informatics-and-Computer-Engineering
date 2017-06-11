@@ -6,10 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.feup.superslimefootball.SuperSlimeFootball;
 
 /**
- * Created by afonso on 5/26/17.
- */
-
-/**
  * A view representing a slime
  */
 

@@ -6,7 +6,10 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 
 public class InitialMenuState extends MenuState {
 
-
+    /**
+     * Creates a Initial MenuState in the game
+     * @param game
+     */
     public InitialMenuState(SuperSlimeFootball game) {
         super(game);
     }

@@ -1,9 +1,5 @@
 package com.feup.superslimefootball.controller.entities;
 
-/**
- * Created by afonso on 5/26/17.
- */
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;

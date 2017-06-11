@@ -17,19 +17,39 @@ import com.feup.superslimefootball.view.utilities.GameConfig;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_HEIGHT;
 import static com.feup.superslimefootball.view.GameView.VIEWPORT_WIDTH;
 
-/**
- * Created by afonso on 6/2/17.
- */
-
 public class Hud implements Disposable {
 
+    /**
+     * The stage of the Hud
+     */
     public Stage stage;
+
+    /**
+     * The viewport of the Hud
+     */
     private Viewport viewport;
 
+    /**
+     * The player's score of the Hud
+     */
     Label scorePlayerLabel;
+
+    /**
+     * The opponent's score of the Hud
+     */
     Label scoreOpponentLabel;
+
+    /**
+     * The goal Limit of the Hud
+     */
     Label goalLimitLabel;
 
+    /**
+     * Creates a new Hud
+     *
+     * @param camera
+     * @param spriteBatch
+     */
     public Hud(Camera camera, SpriteBatch spriteBatch){
 
         viewport = new FillViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, camera);
@@ -51,6 +71,11 @@ public class Hud implements Disposable {
 
     }
 
+    /**
+     * Updates the Hud in delta seconds
+     *
+     * @param delta
+     */
     public void update(float delta){
         scoreOpponentLabel.setText(GameConfig.getInstance().getScore().getPlayer2().toString());
         scorePlayerLabel.setText(GameConfig.getInstance().getScore().getPlayer1().toString());

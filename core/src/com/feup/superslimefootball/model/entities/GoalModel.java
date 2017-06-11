@@ -4,10 +4,6 @@ import com.feup.superslimefootball.controller.GameController;
 
 import java.io.Serializable;
 
-/**
- * Created by afonso on 5/29/17.
- */
-
 public class GoalModel extends EntityModel implements Serializable {
 
     /**

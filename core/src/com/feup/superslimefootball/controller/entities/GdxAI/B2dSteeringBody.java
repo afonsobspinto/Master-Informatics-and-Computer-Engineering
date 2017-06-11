@@ -9,25 +9,64 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyBehaviour;
 import com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours.SlimeBodyNormalBehaviour;
 
-/**
- * Created by afonso on 6/2/17.
- */
-
 public class B2dSteeringBody implements Steerable<Vector2> {
 
+    /**
+     * The body.
+     */
     private Body body;
+
+    /**
+     * Represents if the body is tagged.
+     */
     boolean tagged;
+
+    /**
+     * The radius of the bounding
+     */
     float boundingRadius;
+
+    /**
+     * The maximum linear speed
+     */
     float maxLinearSpeed;
+
+    /**
+     * The maximum linear acceleration
+     */
     float maxLinearAcceleration;
+
+    /**
+     * The maximum angular speed
+     */
     float maxAngularSpeed;
+
+    /**
+     * The maximum angular acceleration
+     */
     float maxAngularAcceleration;
 
+    /**
+     * The slime's body behaviour
+     */
     private SlimeBodyBehaviour slimeBodyBehaviour;
 
+    /**
+     * The behavior of the body
+     */
     SteeringBehavior<Vector2>behavior;
+
+    /**
+     * The steerg Output of the body
+     */
     SteeringAcceleration<Vector2> steergOutput;
 
+    /**
+     * Creates a new Steering Body with a bounding Radius.
+     *
+     * @param body
+     * @param boundingRadius the radius of the bounding
+     */
     public B2dSteeringBody(Body body, float boundingRadius){
         this.body = body;
         this.boundingRadius = boundingRadius;
@@ -42,6 +81,11 @@ public class B2dSteeringBody implements Steerable<Vector2> {
         this.slimeBodyBehaviour = new SlimeBodyNormalBehaviour(this.body);
     }
 
+    /**
+     * Calculates the next physics step of duration delta (in seconds).
+     *
+     * @param delta The size of this physics step in seconds.
+     */
     public void update(float delta){
         if(behavior != null){
             behavior.calculateSteering(steergOutput);
@@ -49,6 +93,11 @@ public class B2dSteeringBody implements Steerable<Vector2> {
         }
     }
 
+    /**
+     * Applys the Steering of duration delta (in seconds).
+     *
+     * @param delta The size of this physics step in seconds.
+     */
     private void applySteering(float delta){
         boolean anyAccelerations = false;
 
@@ -182,8 +231,6 @@ public class B2dSteeringBody implements Steerable<Vector2> {
     /**
      * gets the body
      */
-
-
     public Body getBody() {
         return body;
     }

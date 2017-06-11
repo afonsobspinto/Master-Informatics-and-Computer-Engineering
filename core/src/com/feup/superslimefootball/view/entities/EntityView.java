@@ -7,10 +7,6 @@ import com.feup.superslimefootball.SuperSlimeFootball;
 import com.feup.superslimefootball.model.entities.EntityModel;
 
 /**
- * Created by afonso on 5/26/17.
- */
-
-/**
  * A abstract view capable of holding a sprite with a certain
  * position and rotation.
  *

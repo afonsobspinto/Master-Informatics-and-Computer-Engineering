@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.feup.superslimefootball.SuperSlimeFootball;
 
 public class HowToPlayMenuState extends MenuState {
+
+    /**
+     * Creates a HowToPlay MenuState in the game
+     * @param game
+     */
     public HowToPlayMenuState(SuperSlimeFootball game) {
         super(game);
     }

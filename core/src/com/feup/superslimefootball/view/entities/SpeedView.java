@@ -4,10 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.feup.superslimefootball.SuperSlimeFootball;
 
-/**
- * Created by afonso on 5/29/17.
- */
-
 public class SpeedView extends EntityView {
     /**
      * Creates a view belonging to a game.

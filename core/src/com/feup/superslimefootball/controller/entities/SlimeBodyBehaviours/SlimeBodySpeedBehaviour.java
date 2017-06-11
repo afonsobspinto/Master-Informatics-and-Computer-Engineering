@@ -9,6 +9,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public class SlimeBodySpeedBehaviour extends SlimeBodyBehaviour {
 
+    /**
+     * Creates a speed behaviour with body slimeBody
+     *
+     * @param slimeBody
+     */
     public SlimeBodySpeedBehaviour(Body slimeBody) {
         super(slimeBody);
     }

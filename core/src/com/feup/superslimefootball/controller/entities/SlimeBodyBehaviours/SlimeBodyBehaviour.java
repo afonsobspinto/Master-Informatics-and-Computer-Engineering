@@ -8,16 +8,33 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class SlimeBodyBehaviour {
 
+    /**
+     * The slime's body
+     */
     Body slimeBody;
 
+    /**
+     * Creates a behaviour with body slimeBody
+     *
+     * @param slimeBody
+     */
     public SlimeBodyBehaviour(Body slimeBody) {
         this.slimeBody = slimeBody;
     }
 
+    /**
+     * Moves the slime to the right
+     */
     public abstract void moveRight();
 
+    /**
+     * Moves the slime to the left
+     */
     public abstract void  moveLeft();
 
+    /**
+     * Makes the slime jump
+     */
     public abstract void  jump();
 
 }

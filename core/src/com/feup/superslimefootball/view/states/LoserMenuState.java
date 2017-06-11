@@ -7,6 +7,11 @@ import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class LoserMenuState extends MenuState {
+
+    /**
+     * Creates a Loser MenuState in the game
+     * @param game
+     */
     public LoserMenuState(SuperSlimeFootball game) {
         super(game);
     }

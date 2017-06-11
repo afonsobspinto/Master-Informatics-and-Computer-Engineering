@@ -8,6 +8,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public class SlimeBodyNormalBehaviour extends SlimeBodyBehaviour {
 
+    /**
+     * Creates a normal behaviour with body slimeBody
+     *
+     * @param slimeBody
+     */
     public SlimeBodyNormalBehaviour(Body slimeBody) {
         super(slimeBody);
     }

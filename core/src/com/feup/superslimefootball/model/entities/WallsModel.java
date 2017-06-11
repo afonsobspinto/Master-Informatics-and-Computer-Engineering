@@ -2,10 +2,6 @@ package com.feup.superslimefootball.model.entities;
 
 import java.io.Serializable;
 
-/**
- * Created by afonso on 5/27/17.
- */
-
 public class WallsModel extends EntityModel implements Serializable {
 
     /**

@@ -8,6 +8,11 @@ import com.feup.superslimefootball.network.NetworkManager;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class WinnerMenuState extends MenuState {
+
+    /**
+     * Creates a Winner MenuState in the game
+     * @param game
+     */
     public WinnerMenuState(SuperSlimeFootball game) {
         super(game);
     }

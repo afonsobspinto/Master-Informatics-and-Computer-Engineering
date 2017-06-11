@@ -28,6 +28,10 @@ public class OptionsMenuState extends MenuState {
     private boolean soundOption = false;
     private boolean commentsOption = false;
 
+    /**
+     * Creates an Options MenuState in the game
+     * @param game
+     */
     public OptionsMenuState(SuperSlimeFootball game) {
         super(game);
     }
@@ -63,6 +67,9 @@ public class OptionsMenuState extends MenuState {
         }
     }
 
+    /**
+     * Handles the sound and the comments
+     */
     private void handleSoundCommentsMouse(){
         if (touchButton(5.0f/20.0f, 9.0f/50.0f, 875.0f/10000.0f, 6.0f/50.0f)){
             soundOption = !soundOption;
@@ -76,6 +83,9 @@ public class OptionsMenuState extends MenuState {
 
     }
 
+    /**
+     * Handles the goal limit
+     */
     private void handleGoalLimitMouse(){
         if (touchButton(30.0f/50.0f, 1.0f / 5.0f, OPTIONS_BUTTONS_WIDTH, OPTIONS_BUTTONS_HEIGHT))
             setGoalLimit(3);
@@ -85,11 +95,19 @@ public class OptionsMenuState extends MenuState {
             setGoalLimit(7);
     }
 
+    /**
+     * Sets the goal Limit
+     *
+     * @param goalLimit
+     */
     private void setGoalLimit(int goalLimit){
         this.goalLimit = goalLimit;
         GameConfig.getInstance().setGoalLimit(goalLimit);
     }
 
+    /**
+     * Draws the sound and comments buttons
+     */
     private void drawSoundComments(){
         Texture onButton = this.game.getAssetManager().get("optionsButtons/onButton.png", Texture.class);
         Texture offButton = this.game.getAssetManager().get("optionsButtons/offButton.png", Texture.class);
@@ -104,6 +122,9 @@ public class OptionsMenuState extends MenuState {
             this.game.getBatch().draw(onButton, Gdx.graphics.getWidth()*(9.0f/20.0f), Gdx.graphics.getHeight()*(9.0f/50.0f));
     }
 
+    /**
+     * Draws the goal Limit buttons
+     */
     private void drawGoalLimit(){
         Texture threeChosen = this.game.getAssetManager().get("optionsButtons/threeChosen.png", Texture.class);
         Texture fiveChosen = this.game.getAssetManager().get("optionsButtons/fiveChosen.png", Texture.class);

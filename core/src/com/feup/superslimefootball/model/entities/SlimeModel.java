@@ -5,14 +5,16 @@ import com.feup.superslimefootball.controller.GameController;
 
 import java.io.Serializable;
 
-/**
- * Created by afonso on 5/26/17.
- */
-
 public class SlimeModel extends EntityModel implements Serializable {
 
+    /**
+     * The enum representing the state of the slime
+     */
     public enum SlimeState {JUMPING, RUNNING};
 
+    /**
+     * The enum representing the orientation of the slime
+     */
     public enum OrientationState {LEFT, RIGHT};
 
     /**
@@ -33,8 +35,6 @@ public class SlimeModel extends EntityModel implements Serializable {
     /**
      * The slime color
      */
-
-
     private transient Color color;
 
 

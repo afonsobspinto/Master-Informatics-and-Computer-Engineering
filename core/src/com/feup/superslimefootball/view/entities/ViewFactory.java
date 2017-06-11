@@ -16,15 +16,21 @@ import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.R
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.REDSLIMERIGHT;
 import static com.feup.superslimefootball.model.entities.EntityModel.ModelType.SPEED;
 
-/**
- * Created by afonso on 5/26/17.
- */
-
 public class ViewFactory {
 
+    /**
+     * The map of the entities
+     */
     private static Map<EntityModel.ModelType, EntityView> cache =
             new HashMap<EntityModel.ModelType, EntityView>();
 
+    /**
+     * Creates a view with the entities
+     *
+     * @param game
+     * @param model
+     * @return
+     */
     public static EntityView makeView(SuperSlimeFootball game, EntityModel model) {
 
         if (!cache.containsKey(model.getType())) {

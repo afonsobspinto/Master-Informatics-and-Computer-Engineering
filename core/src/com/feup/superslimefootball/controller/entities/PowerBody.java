@@ -3,10 +3,6 @@ package com.feup.superslimefootball.controller.entities;
 import com.badlogic.gdx.physics.box2d.World;
 import com.feup.superslimefootball.model.entities.EntityModel;
 
-/**
- * Created by afonso on 5/29/17.
- */
-
 public class PowerBody extends EntityBody {
     /**
      * Constructs a body representing a model in a certain world.

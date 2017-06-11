@@ -31,10 +31,6 @@ import java.util.List;
 
 import static com.feup.superslimefootball.view.GameView.PPM;
 
-/**
- * Created by afonso on 5/26/17.
- */
-
 public class GameController implements ContactListener {
 
 
@@ -57,7 +53,6 @@ public class GameController implements ContactListener {
      * The physics world controlled by this controller.
      */
     private final World world;
-
 
     /**
      * The slime body.
@@ -315,8 +310,6 @@ public class GameController implements ContactListener {
 
     }
 
-
-
     /**
      * A ball collided with a goal.
      * @param ballBody the ball that collided
@@ -374,6 +367,9 @@ public class GameController implements ContactListener {
         }
     }
 
+    /**
+     * Resets the Flags
+     */
     private void setFlagsToReset(){
         ((EntityModel)slimeBody.getUserData()).setFlaggedForReset(true);
         ((EntityModel)ballBody.getUserData()).setFlaggedForReset(true);
@@ -385,14 +381,19 @@ public class GameController implements ContactListener {
 
     }
 
-
+    /**
+     * Updates the game's powers
+     */
     private void updatePowers(){
         List<PowerModel> powers = GameModel.getInstance().getPowers();
         for (PowerModel power : powers)
                 new PowerBody(world, power);
     }
 
-
+    /**
+     * Moves the opponent of the player
+     *@param delta the time in seconds
+     */
     private void moveOpponentPlayer(float delta){
         if(NetworkManager.getInstance().isConnected())
             moveOpponentPlayerNetwork();
@@ -401,10 +402,17 @@ public class GameController implements ContactListener {
 
     }
 
+    /**
+     * Moves the AI opponent of the player
+     *@param delta the time in seconds
+     */
     private void moveOpponentPlayerAI(float delta){
         entity.update(delta);
     }
 
+    /**
+     * Moves the opponent of the player in Multiplayer
+     */
     private void moveOpponentPlayerNetwork(){
         Object object = NetworkManager.getInstance().receiveData();
 
@@ -426,7 +434,6 @@ public class GameController implements ContactListener {
         }
     }
 
-
     /**
      * Updates Network
      * */
@@ -446,18 +453,36 @@ public class GameController implements ContactListener {
         }
     }
 
+    /**
+     * Returns the slimeBody
+     *
+     * @return
+     */
     public SlimeBody getSlimeBody() {
         return slimeBody;
     }
 
+    /**
+     * Returns the opponentSlimeBody
+     *
+     * @return
+     */
     public SlimeBody getOpponentSlimeBody() {
         return opponentSlimeBody;
     }
 
+    /**
+     * Returns the ballBody
+     *
+     * @return
+     */
     public BallBody getBallBody() {
         return ballBody;
     }
 
+    /**
+     * Resets the singleton instance
+     */
     public static void resetInstance(){
         instance = new GameController();
     }

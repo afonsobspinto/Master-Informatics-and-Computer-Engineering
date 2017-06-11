@@ -8,6 +8,11 @@ import com.feup.superslimefootball.view.GameView;
 import com.feup.superslimefootball.view.utilities.GameConfig;
 
 public class SinglePlayerMenuState extends MenuState {
+
+    /**
+     * Creates a SinglePlayer MenuState in the game
+     * @param game
+     */
     public SinglePlayerMenuState(SuperSlimeFootball game) {
         super(game);
     }

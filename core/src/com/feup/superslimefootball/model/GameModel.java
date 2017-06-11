@@ -206,14 +206,29 @@ public class GameModel implements Serializable {
             powers.add(new PowerModel(random.nextFloat() * (GameController.GAME_WIDTH*(4.0f/5.0f)-GameController.GAME_WIDTH*(1.0f/5.0f)) + GameController.GAME_WIDTH*(1.0f/5.0f),  GameController.GAME_HEIGHT * (1.0f/5.0f), getRandomPowerType()));
     }
 
+    /**
+     * Sets the instance
+     *
+     * @param instance of the Model
+     */
     public static void setInstance(GameModel instance) {
         GameModel.instance = instance;
     }
 
+    /**
+     * Returns the score of the game.
+     *
+     * @return the score of the game.
+     */
     public Score getScore() {
         return score;
     }
 
+    /**
+     * Sets the score of the game.
+     *
+     * @param score of the game.
+     */
     public void setScore(Score score) {
         this.score = score;
     }
