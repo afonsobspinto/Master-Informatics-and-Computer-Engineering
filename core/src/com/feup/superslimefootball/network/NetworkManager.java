@@ -133,9 +133,7 @@ public class NetworkManager implements Runnable {
             objectOutputStream.writeObject(object);
             objectOutputStream.flush();
             byte[] sendBuf = byteArrayOutputStream.toByteArray();
-            DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPortClient);
-            int byteCount = packet.getLength();
-            System.out.println("Packet Size: "+ byteCount);
+            DatagramPacket packet = (server) ? new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPortClient) : new DatagramPacket(sendBuf, sendBuf.length, InetAddress.getByName(ipAddress), udpPortServer);
             udpSocket.send(packet);
             objectOutputStream.close();
         } catch (IOException e) {
@@ -148,10 +146,8 @@ public class NetworkManager implements Runnable {
     public Object receiveData(){
         try{
             byte[] recvBuf = new byte[5000];
-            //todo: not receiving data
             DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
             udpSocket.receive(packet);
-            int byteCount = packet.getLength();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(recvBuf);
             ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(byteArrayInputStream));
             Object object =  objectInputStream.readObject();

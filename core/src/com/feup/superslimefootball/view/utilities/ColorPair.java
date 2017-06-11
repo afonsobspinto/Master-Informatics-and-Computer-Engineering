@@ -2,11 +2,13 @@ package com.feup.superslimefootball.view.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 
+import java.io.Serializable;
+
 /**
  * Created by afonso on 6/2/17.
  */
 
-public class ColorPair {
+public class ColorPair implements Serializable {
     private Color color1;
     private Color color2;
 

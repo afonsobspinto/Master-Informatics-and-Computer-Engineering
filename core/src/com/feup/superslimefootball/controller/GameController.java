@@ -240,8 +240,6 @@ public class GameController implements ContactListener {
      */
     public void moveRight(SlimeBody body) {
         body.moveRight();
-//        if(NetworkManager.getInstance().isConnected())
-//            NetworkManager.getInstance().sendInput(MoveEvent.RIGHT);
     }
 
     /**
@@ -250,8 +248,6 @@ public class GameController implements ContactListener {
      */
     public void moveLeft(SlimeBody body) {
         body.moveLeft();
-//        if(NetworkManager.getInstance().isConnected())
-//            NetworkManager.getInstance().sendInput(MoveEvent.LEFT);
     }
 
     /**
@@ -260,8 +256,6 @@ public class GameController implements ContactListener {
      */
     public void jump(SlimeBody body) {
         body.jump();
-//        if(NetworkManager.getInstance().isConnected())
-//            NetworkManager.getInstance().sendInput(MoveEvent.JUMP);
     }
 
     /**
@@ -276,11 +270,8 @@ public class GameController implements ContactListener {
             if(slimeModel.getPowerType() == PowerModel.PowerType.SPEED)
                 body.setSlimeBodyBehaviour(slimeModel.getPowerType());
             ((SlimeModel)body.getUserData()).setPowerType(null);
-//            if(NetworkManager.getInstance().isConnected())
-//                NetworkManager.getInstance().sendInput(MoveEvent.POWER);
         }
-        else
-            System.out.println(" No Power");
+
     }
 
     @Override
@@ -290,12 +281,7 @@ public class GameController implements ContactListener {
         Body bodyB = contact.getFixtureB().getBody();
 
 
-        if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof BallModel)
-            slimeBallCollision(bodyA, bodyB);
-        else if (bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof SlimeModel)
-            slimeBallCollision(bodyB, bodyA);
-
-        else if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof PowerModel)
+        if (bodyA.getUserData() instanceof SlimeModel && bodyB.getUserData() instanceof PowerModel)
             slimePowerCollision(bodyA, bodyB);
         else if (bodyA.getUserData() instanceof PowerModel && bodyB.getUserData() instanceof SlimeModel)
             slimePowerCollision(bodyB, bodyA);
@@ -327,40 +313,23 @@ public class GameController implements ContactListener {
 
 
     /**
-     * A slime collided with the Ball.
-     * @param slimeBody the slime that collided
-     * @param ballBody the ball that collided
-     */
-
-    //todo: Ball jump when slime gets over it
-    private void slimeBallCollision(Body slimeBody, Body ballBody) {
-        System.out.println("Colisão Slime Bola");
-
-    }
-
-
-    /**
      * A ball collided with a goal.
      * @param ballBody the ball that collided
      * @param goalFixture the fixture of the goal that collided
      */
     private void ballGoalCollision(Body ballBody, Fixture goalFixture) {
-        System.out.println("Colisão Bola Baliza");
-
         if(goalFixture.isSensor()) {
             if (goalFixture.getBody().getPosition().x * PPM > Gdx.graphics.getWidth() / 2){
                 GameConfig.getInstance().updateScore(1, 0);
-                System.out.println("Golo Player1");
+
             }
 
             else {
                 GameConfig.getInstance().updateScore(0, 1);
-                System.out.println("Golo Player2");
+
             }
             setFlagsToReset();
         }
-        else
-            System.out.println("Trave");
     }
 
     /**
@@ -369,7 +338,6 @@ public class GameController implements ContactListener {
      * @param powerBody the power that collided
      */
     private void slimePowerCollision(Body slimeBody, Body powerBody) {
-        System.out.println("Colisão Slime Power");
 
         if(((SlimeModel)slimeBody.getUserData()).getPowerType() == null){
             ((SlimeModel)slimeBody.getUserData()).setPowerType(((PowerModel) powerBody.getUserData()).getPowerType());
@@ -434,20 +402,29 @@ public class GameController implements ContactListener {
     }
 
     private void moveOpponentPlayerNetwork(){
-
-//        MoveEvent moveEvent = NetworkManager.getInstance().receiveInput();
+//        Object object = NetworkManager.getInstance().receiveData();
 //
-//        if (moveEvent == MoveEvent.LEFT) {
-//            GameController.getInstance().moveLeft(opponentSlimeBody);
-//        }
-//        if (moveEvent == MoveEvent.RIGHT) {
-//            GameController.getInstance().moveRight(opponentSlimeBody);
-//        }
-//        if (moveEvent == MoveEvent.JUMP) {
-//            GameController.getInstance().jump(opponentSlimeBody);
-//        }
-//        if (moveEvent == MoveEvent.POWER) {
-//            GameController.getInstance().powerUP(opponentSlimeBody);
+//        if(object instanceof MoveEvent) {
+//            MoveEvent moveEvent = (MoveEvent) object;
+//
+//            if (moveEvent == MoveEvent.LEFT) {
+//                GameController.getInstance().moveLeft(opponentSlimeBody);
+//                System.out.println("Left");
+//            }
+//            if (moveEvent == MoveEvent.RIGHT) {
+//                GameController.getInstance().moveRight(opponentSlimeBody);
+//                System.out.println("Right");
+//            }FSy
+//            if (moveEvent == MoveEvent.JUMP) {
+//                GameController.getInstance().jump(opponentSlimeBody);
+//                System.out.println("Jump");
+//            }
+//            if (moveEvent == MoveEvent.POWER) {
+//                GameController.getInstance().powerUP(opponentSlimeBody);
+//                System.out.println("Power");
+//            }
+//
+//            System.out.println("Undefined");
 //        }
     }
 
@@ -455,24 +432,55 @@ public class GameController implements ContactListener {
     /**
      * Updates Network
      * */
-    public void updateNetwork() {
+    public void updateNetwork(boolean broadcast) {
 
-        if(NetworkManager.getInstance().isServer())
+        if(broadcast)
+            updateClient();
+        else
+            updateServer();
+
+
+    }
+
+    public void updateClient(){
+        if(NetworkManager.getInstance().isServer()) {
             NetworkManager.getInstance().sendData(GameModel.getInstance());
+            NetworkManager.getInstance().sendData(GameConfig.getInstance());
+        }
         else {
-
             Object object = NetworkManager.getInstance().receiveData();
-
             if (object instanceof GameModel) {
-
                 GameModel gameModel = (GameModel) object;
                 if (gameModel != null) {
                     GameModel.setInstance(gameModel);
                     updateBodies();
                 }
-
+            }
+            //todo:add a thread here?!
+            if (object instanceof GameConfig) {
+                GameConfig gameConfig = (GameConfig) object;
+                if (gameConfig != null) {
+                    gameConfig.setColors(GameConfig.getInstance().getColors());
+                    gameConfig.setColorList(GameConfig.getInstance().getColorList());
+                    GameConfig.setInstance(gameConfig);
+                }
             }
         }
+    }
+
+    public void updateServer(){
+//        if(NetworkManager.getInstance().isServer()) {
+//            Object object = NetworkManager.getInstance().receiveData();
+//            if (object instanceof SlimeModel) {
+//                EntityModel slimeModel = (EntityModel) object;
+//                if (slimeModel != null) {
+//                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
+//                }
+//            }
+//        }
+//        else {
+//            NetworkManager.getInstance().sendData(slimeBody.getUserData());
+//        }
     }
 
     private void updateBodies(){

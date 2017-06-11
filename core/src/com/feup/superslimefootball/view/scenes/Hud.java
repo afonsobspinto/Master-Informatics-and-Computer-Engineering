@@ -37,8 +37,6 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        System.out.println(GameConfig.getInstance().getScore().getPlayer2());
-
         scorePlayerLabel = new Label(GameConfig.getInstance().getScore().getPlayer1().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor1()));
         scoreOpponentLabel= new Label(GameConfig.getInstance().getScore().getPlayer2().toString(), new Label.LabelStyle(new BitmapFont(), GameConfig.getInstance().getColors().getColor2()));
         goalLimitLabel= new Label(GameConfig.getInstance().getGoalLimit().toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));

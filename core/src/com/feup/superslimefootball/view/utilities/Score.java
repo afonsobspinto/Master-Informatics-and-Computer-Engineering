@@ -1,10 +1,12 @@
 package com.feup.superslimefootball.view.utilities;
 
+import java.io.Serializable;
+
 /**
  * Created by afonso on 6/2/17.
  */
 
-public class Score {
+public class Score implements Serializable {
 
     private Integer player1;
     private Integer player2;

@@ -131,7 +131,7 @@ public class GameView extends ScreenAdapter {
     public void render (float delta) {
 
         if(NetworkManager.getInstance().isConnected())
-            GameController.getInstance().updateNetwork();
+            GameController.getInstance().updateNetwork(true);
 
         updateScore();
 
@@ -143,6 +143,9 @@ public class GameView extends ScreenAdapter {
 
         GameController.getInstance().update(delta);
         hud.update(delta);
+
+        if(NetworkManager.getInstance().isConnected())
+            GameController.getInstance().updateNetwork(false);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -183,9 +186,6 @@ public class GameView extends ScreenAdapter {
             else
                 GameController.getInstance().powerUP();
         }
-//
-//        else if(NetworkManager.getInstance().isConnected())
-//            NetworkManager.getInstance().sendInput(MoveEvent.UNDEFINED);
 
     }
 

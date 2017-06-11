@@ -2,6 +2,7 @@ package com.feup.superslimefootball.view.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
  * Created by afonso on 6/2/17.
  */
 
-public class GameConfig {
+public class GameConfig implements Serializable {
 
     /**
      * The singleton instance of this controller
@@ -22,8 +23,8 @@ public class GameConfig {
     private boolean comments;
     private boolean sound;
     private Score score;
-    private ColorPair colors;
-    private List<Color> colorList;
+    private transient ColorPair colors;
+    private transient List<Color> colorList;
 
     private GameConfig() {
         this.goalLimit = 3;
@@ -95,8 +96,23 @@ public class GameConfig {
         this.colors = new ColorPair(color, randomColor(color));
     }
 
+    public void setColors(ColorPair colors) {
+        this.colors = colors;
+    }
+
+    public List<Color> getColorList() {
+        return colorList;
+    }
+
+    public void setColorList(List<Color> colorList) {
+        this.colorList = colorList;
+    }
 
     public static void resetInstance(){ //// TODO: 6/3/17 Bad Desing?
         instance = new GameConfig();
+    }
+
+    public static void setInstance(GameConfig instance) {
+        GameConfig.instance = instance;
     }
 }
