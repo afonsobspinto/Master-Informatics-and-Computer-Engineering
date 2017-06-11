@@ -439,6 +439,7 @@ public class GameController implements ContactListener {
      * */
     public void updateNetwork( ) {
         if (NetworkManager.getInstance().isServer()) {
+            GameModel.getInstance().setScore(GameConfig.getInstance().getScore());
             NetworkManager.getInstance().sendData(GameModel.getInstance());
         } else {
             Object object = NetworkManager.getInstance().receiveData();
