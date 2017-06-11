@@ -138,7 +138,7 @@ public class GameController implements ContactListener {
      */
     public void update(float delta) {
 
-        if(NetworkManager.getInstance().isConnected() && NetworkManager.getInstance().isServer()) {
+        if(!NetworkManager.getInstance().isConnected() || NetworkManager.getInstance().isServer()) {
             GameModel.getInstance().update(delta);
 
             moveOpponentPlayer(delta);
@@ -444,7 +444,6 @@ public class GameController implements ContactListener {
 
     public void updateClient(){
         if(NetworkManager.getInstance().isServer()) {
-            NetworkManager.getInstance().sendData(GameModel.getInstance());
 
             new Thread(new Runnable() {
                 @Override
@@ -455,16 +454,10 @@ public class GameController implements ContactListener {
 
             }).start();
 
+            NetworkManager.getInstance().sendData(GameModel.getInstance());
         }
         else {
             Object object = NetworkManager.getInstance().receiveData();
-            if (object instanceof GameModel) {
-                GameModel gameModel = (GameModel) object;
-                if (gameModel != null) {
-                    GameModel.setInstance(gameModel);
-                    updateBodies();
-                }
-            }
 
             new Thread(new Runnable() {
                 private Object object;
@@ -490,22 +483,30 @@ public class GameController implements ContactListener {
 
             }.init(object)).start();
 
+
+            if (object instanceof GameModel) {
+                GameModel gameModel = (GameModel) object;
+                if (gameModel != null) {
+                    GameModel.setInstance(gameModel);
+                    updateBodies();
+                }
+            }
         }
     }
 
     public void updateServer(){
-//        if(NetworkManager.getInstance().isServer()) {
-//            Object object = NetworkManager.getInstance().receiveData();
-//            if (object instanceof SlimeModel) {
-//                EntityModel slimeModel = (EntityModel) object;
-//                if (slimeModel != null) {
-//                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
-//                }
-//            }
-//        }
-//        else {
-//            NetworkManager.getInstance().sendData(slimeBody.getUserData());
-//        }
+        if(NetworkManager.getInstance().isServer()) {
+            Object object = NetworkManager.getInstance().receiveData();
+            if (object instanceof SlimeModel) {
+                EntityModel slimeModel = (EntityModel) object;
+                if (slimeModel != null) {
+                    opponentSlimeBody.setTransform(new Vector2(slimeModel.getX(), slimeModel.getY()), 0);
+                }
+            }
+        }
+        else {
+            NetworkManager.getInstance().sendData(slimeBody.getUserData());
+        }
     }
 
     private void updateBodies(){

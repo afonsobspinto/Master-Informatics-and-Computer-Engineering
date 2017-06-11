@@ -32,6 +32,8 @@ import java.util.List;
 
 public class GameView extends ScreenAdapter {
 
+    private final static boolean DEBUG = true;
+
     /**
      * How much pixels does a meter represent.
      */
@@ -137,15 +139,16 @@ public class GameView extends ScreenAdapter {
 
         GameController.getInstance().manageFlagged();
 
-        this.game.getBatch().setProjectionMatrix(camera.combined);
-
         handleInputs();
+
+        if(NetworkManager.getInstance().isConnected())
+            GameController.getInstance().updateNetwork(false);
+
 
         GameController.getInstance().update(delta);
         hud.update(delta);
 
-        if(NetworkManager.getInstance().isConnected())
-            GameController.getInstance().updateNetwork(false);
+        this.game.getBatch().setProjectionMatrix(camera.combined);
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -154,7 +157,8 @@ public class GameView extends ScreenAdapter {
         drawEntities();
         game.getBatch().end();
         hud.stage.draw();
-        debugRenderer.render(GameController.getInstance().getWorld(), camera.combined.cpy().scl(PPM));
+        if(DEBUG)
+            debugRenderer.render(GameController.getInstance().getWorld(), camera.combined.cpy().scl(PPM));
     }
 
     /**
