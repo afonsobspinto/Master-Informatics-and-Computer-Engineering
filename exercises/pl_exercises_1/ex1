@@ -1,0 +1,9 @@
+% --- a) michael parents --- %
+
+parent(X,michael).
+
+
+% --- b) aldo kids --- %
+
+parent(aldo,X).
+
