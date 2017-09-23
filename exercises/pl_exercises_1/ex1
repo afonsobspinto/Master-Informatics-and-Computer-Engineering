@@ -1,9 +1,9 @@
 % --- a) michael parents --- %
 
-parent(X,michael).
+parent(X,'michael').
 
 
 % --- b) aldo kids --- %
 
-parent(aldo,X).
+parent('aldo',X).
 
