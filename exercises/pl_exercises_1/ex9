@@ -1,0 +1,9 @@
+% --- a) students from teacher X --- %
+
+parent(X,'michael').
+
+
+% --- b) aldo kids --- %
+
+parent('aldo',X).
+
