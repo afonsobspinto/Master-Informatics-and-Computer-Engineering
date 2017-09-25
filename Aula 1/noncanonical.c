@@ -65,12 +65,17 @@ int main(int argc, char** argv)
     int i = 0;
 
     while (STOP==FALSE) {       /* loop for input */
+
       res = read(fd,buf+i,1);
-      buf[++i]=0;               /* so we can printf... */
-      printf("%s\n", buf);
+
+      if (res > 0){
       if (buf[i]=='\0') STOP=TRUE;
+
+      buf[++i]=0;               /* so we can printf... */
+    }
     }
 
+    printf("%s \n", buf);
     write(fd, buf, strlen(buf)+1);
 
     tcsetattr(fd,TCSANOW,&oldtio);
