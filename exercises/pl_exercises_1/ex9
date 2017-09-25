@@ -1,9 +1,8 @@
 % --- a) students from teacher X --- %
 
-parent(X,'michael').
+isStudentOf(A,X).
 
 
-% --- b) aldo kids --- %
+% --- b) people from college --- %
 
-parent('aldo',X).
-
+isPersonOn(P,X).
