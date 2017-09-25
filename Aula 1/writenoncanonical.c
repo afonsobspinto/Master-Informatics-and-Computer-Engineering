@@ -51,16 +51,8 @@ int main(int argc, char** argv)
     /* set input mode (non-canonical, no echo,...) */
     newtio.c_lflag = 0;
 
-    newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
-    newtio.c_cc[VMIN]     = 5;   /* blocking read until 5 chars received */
-
-
-
-  /*
-    VTIME e VMIN devem ser alterados de forma a proteger com um temporizador a
-    leitura do(s) pr�ximo(s) caracter(es)
-  */
-
+    newtio.c_cc[VTIME]    = 1;   /* inter-character timer unused */
+    newtio.c_cc[VMIN]     = 0;   /* blocking read until 5 chars received */
 
 
     tcflush(fd, TCIOFLUSH);
@@ -72,23 +64,19 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
+    gets(buf);
+    buf[strlen(buf)] = '\0';
 
-
-    for (i = 0; i < 255; i++) {
-      buf[i] = 'a';
-    }
-
-    /*testing*/
-    buf[25] = '\n';
-
-    res = write(fd,buf,255);
+    res = write(fd,buf,strlen(buf)+1);
     printf("%d bytes written\n", res);
 
 
-  /*
-    O ciclo FOR e as instru��es seguintes devem ser alterados de modo a respeitar
-    o indicado no gui�o
-  */
+    while (STOP==FALSE) {       /* loop for input */
+      res = read(fd,buf,1);
+      buf[res]=0;               /* so we can printf... */
+      printf(":%s:%d\n", buf, res);
+      if (buf[i]=='\0') STOP=TRUE;
+    }
 
 
 
