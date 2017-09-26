@@ -7,7 +7,7 @@ function MyGraphNode(graph, nodeID) {
     this.graph = graph;
 
     this.nodeID = nodeID;
-    
+
     // IDs of child nodes.
     this.children = [];
 
@@ -21,7 +21,7 @@ function MyGraphNode(graph, nodeID) {
     this.textureID = null ;
 
     this.transformMatrix = mat4.create();
-    mat4.identity(this.transformMatrix);
+    mat4.identity(this.transformMatrix); // Contém a matrix equivalente. O valor deve ser atribruido com math.clone().
 }
 
 /**
@@ -37,5 +37,3 @@ MyGraphNode.prototype.addChild = function(nodeID) {
 MyGraphNode.prototype.addChild = function(leaf) {
     this.leaves.push(leaf);
 }
-
-
