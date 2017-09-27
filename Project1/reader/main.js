@@ -13,6 +13,7 @@ function getUrlVars() {
 
 serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 
 			 'MyGraphNode.js', 'MyGraphLeaf.js', 'MyInterface.js',
+            'primitives/MyTriangle.js', 'utils.js',
 
 main=function()
 {

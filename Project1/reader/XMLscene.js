@@ -137,6 +137,11 @@ XMLscene.prototype.display = function() {
             }
         }
 
+        // Just Testing
+        var triangle = new MyTriangle(this, new Vector3(2, 0, 12), new Vector3(12, 0, 2), new Vector3(0, 0,0));
+        triangle.display();
+
+
         // Displays the scene.
         this.graph.displayScene();
 
@@ -144,6 +149,7 @@ XMLscene.prototype.display = function() {
 	else
 	{
 		// Draw axis
+
 		this.axis.display();
 	}
     

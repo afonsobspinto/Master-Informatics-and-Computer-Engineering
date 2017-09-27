@@ -14,6 +14,7 @@ var NODES_INDEX = 6;
  * @constructor
  */
 function MySceneGraph(filename, scene) {
+
     this.loadedOk = null ;
 
     // Establish bidirectional references between scene and graph.
