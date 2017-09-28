@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Form</title>
+
+        <meta charset="utf-8"/>
+      	<meta name="Afonso" content="Web Form" />
+      	<meta name="Web Form" content="" />
+
+    </head>
+    <body>
+        <div id="header"><h1>Web Form</h1></div>
+          <div id="wrapper">
+            <form name="input" action="#" method="post">
+              <label> Name: <input type="text" name="name" ><br/> </label>
+
+              <p> <label> Age: </label></p>
+              <input type="radio" name="age" value="<18">&lt; 18
+              <input type="radio" name="age" value="19-35">19 - 35
+              <input type="radio" name="age" value="36-48">36 - 48
+              <input type="radio" name="age" value=">49">&gt; 49<br/>
+
+              <label> Profession: <input type="text" name="profession"> </label> <br/>
+
+              <label> How did you find out about us?: <br/><textarea name="findOut"></textarea> </label><br/>
+
+              <label for="id_interests"><select name="interests" multiple='multiple' id="id_interests">
+                <option value="sports">Sports</option>
+                <option value="politics">Politics</option>
+                <option value="music">Music</option>
+                <option value="cinema">Cinema</option>
+              </select> </label> <br/>
+
+
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+    </body>
+</html>
