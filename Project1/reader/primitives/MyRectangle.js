@@ -1,3 +1,15 @@
+/**
+ * MyRectangle
+ * @param scene
+ * @param vertex1 top left vertex
+ * @param vertex2  right-bottom vertex
+ * @param minS  texture coordinates
+ * @param maxS  texture coordinates
+ * @param minT  texture coordinates
+ * @param maxT  texture coordinates
+ * @constructor
+ */
+
 function MyRectangle(scene, vertex1, vertex2, minS, maxS, minT, maxT){ //vertex1 -> left-top, vertex2 -> right-bottom
     CGFobject.call(this, scene);
 
@@ -14,6 +26,10 @@ function MyRectangle(scene, vertex1, vertex2, minS, maxS, minT, maxT){ //vertex1
 
 MyRectangle.prototype = Object.create(CGFobject.prototype);
 MyRectangle.prototype.constructor = MyRectangle;
+
+/**
+ * Initializes the buffers
+ */
 
 MyRectangle.prototype.initBuffers = function() {
 

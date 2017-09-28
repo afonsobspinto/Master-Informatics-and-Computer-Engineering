@@ -1,3 +1,12 @@
+/**
+ * MyTriangle
+ * @param scene
+ * @param vertex1
+ * @param vertex2
+ * @param vertex3
+ * @constructor
+ */
+
 function MyTriangle(scene, vertex1, vertex2, vertex3){
     CGFobject.call(this, scene);
 
@@ -10,6 +19,11 @@ function MyTriangle(scene, vertex1, vertex2, vertex3){
 
 MyTriangle.prototype = Object.create(CGFobject.prototype);
 MyTriangle.prototype.constructor = MyTriangle;
+
+
+/**
+ * Initializes the buffers
+ */
 
 MyTriangle.prototype.initBuffers = function() {
 
