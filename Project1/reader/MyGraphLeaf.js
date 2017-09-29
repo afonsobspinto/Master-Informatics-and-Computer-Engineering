@@ -3,6 +3,9 @@
  * @constructor
 **/
 
-function MyGraphLeaf(graph, xmlelem) {
+function MyGraphLeaf(graph, leafID, type, args) {
+
+    console.log('MyGraphLeaf called with:' + leafID + type + args);
+
 }
 
