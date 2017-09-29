@@ -148,7 +148,7 @@ XMLscene.prototype.display = function() {
         //sphere.display();
 
         var cylinder = new MyCylinder(this, 4, 1, 1, 20, 20);
-        cylinder.display();
+        //cylinder.display();
 
 
         // Displays the scene.

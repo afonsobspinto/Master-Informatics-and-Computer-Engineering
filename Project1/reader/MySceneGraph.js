@@ -1341,15 +1341,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
-						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
 
-						if (type != null)
-							this.log("   Leaf: "+ type);
-						else
-							this.warn("Error in leaf");
+					    this.parseLeaf(nodeID, descendants[j]);
 
-						//parse leaf
-						//this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]);
                         sizeChildren++;
 					}
 					else
@@ -1366,6 +1360,34 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
     console.log("Parsed nodes");
     return null ;
 }
+
+
+MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
+
+    var type=this.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
+
+    if (type != null){
+
+        this.log("Leaf Processed:")
+
+        var leafID = this.reader.getString(xmlelem, 'id');
+        var args = this.reader.getString(xmlelem, 'args');
+        var intArgs = args.split(" ").map(Number).filter(Boolean);
+
+        if(leafID != null)
+            this.log(leafID);
+
+        this.log(type+' '+intArgs);
+
+        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,leafID, type, intArgs));
+
+    }
+
+    else
+        this.warn("Error in leaf");
+}
+
+
 
 /*
  * Callback to be executed on any read error
