@@ -1368,26 +1368,18 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
 
     if (type != null){
 
-        this.log("Leaf Processed:")
-
-        var leafID = this.reader.getString(xmlelem, 'id');
+        var leafID = this.reader.getString(xmlelem, 'id'); //TODO: not always appear (problem with XML?)
         var args = this.reader.getString(xmlelem, 'args');
-        var intArgs = args.split(" ").map(Number).filter(Boolean);
+        var intArgs = args.split(" ").map(Number);
 
-        if(leafID != null)
-            this.log(leafID);
 
-        this.log(type+' '+intArgs);
-
-        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,leafID, type, intArgs));
+        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this.scene, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
 
     }
 
     else
         this.warn("Error in leaf");
 }
-
-
 
 /*
  * Callback to be executed on any read error
@@ -1448,4 +1440,6 @@ MySceneGraph.prototype.displayScene = function() {
 	// entry point for graph rendering
 	// remove log below to avoid performance issues
 	this.log("Graph should be rendered here...");
+
+	// TODO: DPS on graph
 }
