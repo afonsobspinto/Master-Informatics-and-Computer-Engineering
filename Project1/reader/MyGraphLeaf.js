@@ -18,11 +18,6 @@ function MyGraphLeaf(graph, primitive, leafID) {
     // The texture ID.
     this.textureID = null ;
 
-
-    console.log('Leaf Processed: ');
-    console.log(primitive);
-
-
 }
 
 

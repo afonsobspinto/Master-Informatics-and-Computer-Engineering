@@ -1373,7 +1373,7 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
         var intArgs = args.split(" ").map(Number);
 
 
-        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this.scene, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
+        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
 
     }
 
@@ -1439,7 +1439,9 @@ MySceneGraph.generateRandomString = function(length) {
 MySceneGraph.prototype.displayScene = function() {
 	// entry point for graph rendering
 	// remove log below to avoid performance issues
-	this.log("Graph should be rendered here...");
 
-	// TODO: DPS on graph
+    if(this.loadedOk){
+     this.nodes[this.idRoot].display();
+    }
+
 }

@@ -37,3 +37,31 @@ MyGraphNode.prototype.addChild = function(nodeID) {
 MyGraphNode.prototype.addLeaf = function(leaf) {
     this.leaves.push(leaf);
 }
+
+/**
+ * Displays the node
+ */
+
+MyGraphNode.prototype.display = function() {
+
+
+    //TODO: ADD Textures and Materials
+
+    this.graph.scene.pushMatrix();
+
+    this.graph.scene.multMatrix(this.transformMatrix);
+
+    for(var i = 0; i < this.leaves.length; i++){
+        console.log(this.leaves);
+        this.leaves[i].display();
+    }
+
+    for (var j = 0; j < this.children.length; j++){
+        console.log(this.children);
+        this.graph.nodes[this.children[j]].display();
+    }
+
+    this.graph.scene.popMatrix();
+
+
+}
