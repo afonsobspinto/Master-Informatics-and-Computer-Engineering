@@ -21,7 +21,7 @@ function MyGraphNode(graph, nodeID) {
     this.textureID = null ;
 
     this.transformMatrix = mat4.create();
-    mat4.identity(this.transformMatrix); // Contém a matrix equivalente. O valor deve ser atribruido com math.clone().
+    mat4.identity(this.transformMatrix);
 }
 
 /**
@@ -62,6 +62,5 @@ MyGraphNode.prototype.display = function() {
     }
 
     this.graph.scene.popMatrix();
-
 
 }

@@ -137,20 +137,6 @@ XMLscene.prototype.display = function() {
             }
         }
 
-        // Just Testing
-        //var triangle = new MyTriangle(this, new Vector3(2, 0, 12), new Vector3(12, 0, 2), new Vector3(0, 0,0));
-        //triangle.display();
-
-        //var rectangle = new MyRectangle(this, new Vector2(0, 4), new Vector2(5, 0));
-        //rectangle.display();
-
-        //var sphere = new MySphere(this, 2, 20, 20);
-        //sphere.display();
-
-        //var cylinder = new MyCylinder(this, 4, 1, 1, 20, 20);
-        //cylinder.display();
-
-
         // Displays the scene.
         this.graph.displayScene();
 

@@ -9,6 +9,7 @@ function MyPrimitivesFactory(scene, type, args){
 
     var primitive;
     //Todo: Change this to a map?
+    //Todo: Create a Primitive Abstract Class?
 
     switch(type){
         case 'triangle':
