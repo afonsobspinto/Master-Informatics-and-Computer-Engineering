@@ -19,3 +19,5 @@ funcionario(carlos, feup).
 isStudentOf(A, X):- aluno(A, D), professor(X,D).
 
 isPersonOn(P,X):- frequenta(P,X) ; funcionario(P,X).
+
+isColleagueOf(C,X):- aluno(C,Y), aluno(X,Y), C\=X; frequenta(C,Y), frequenta(X,Y), C\=X; funcionario(C,Y), funcionario(X,Y), C\=X.
