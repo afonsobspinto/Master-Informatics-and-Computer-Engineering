@@ -75,7 +75,7 @@ int main(int argc, char** argv)
       printf("%d bytes written\n", res);
 
       //read from serial port
-      int i = 0;
+      int j = 0;
       char chr;
       while(STOP==FALSE) {
         res = read(fd,&chr,1);
@@ -83,10 +83,11 @@ int main(int argc, char** argv)
           perror("Error on reading");
           exit(-1);
         }
-        readBuf[i++] = chr;
+        readBuf[j++] = chr;
         if (chr=='\0') STOP=TRUE;
       }
       printf("Read %s, Length:%d bytes\n", readBuf, (int)strlen(readBuf));
+      sleep(1);
 
 
     if ( tcsetattr(fd,TCSANOW,&oldtio) == -1) {
