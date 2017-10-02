@@ -1,8 +1,10 @@
-exec(x,y):- f(x,y).
-exec(x,x):- s(x).
-f(x,y):- q(x), r(y).
-p(x,y):- s(x), r(y).
-q(a).
+% --- Exercise 3 --- %
+
+exec(X,Y) :- p(X,Y).
+exec(X,X) :- s(X).
+p(X,Y) :- q(X), r(Y).
+p(X,Y) :- s(X), r(Y).
+q(a)
 q(b).
 r(c).
 r(d).
