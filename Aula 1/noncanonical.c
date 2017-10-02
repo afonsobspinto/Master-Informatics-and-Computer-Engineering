@@ -5,6 +5,9 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h> /* To use read function */
 
 #define BAUDRATE B38400
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
@@ -20,8 +23,8 @@ int main(int argc, char** argv)
     char buf[255];
 
     if ( (argc < 2) ||
-  	     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
-  	      (strcmp("/dev/ttyS1", argv[1])!=0) )) {
+  	     (strcmp("/dev/ttyS0", argv[1])!=0) &&
+  	      strcmp("/dev/ttyS1", argv[1])!=0))){
       printf("Usage:\tnserial SerialPort\n\tex: nserial /dev/ttyS1\n");
       exit(1);
     }
@@ -49,9 +52,8 @@ int main(int argc, char** argv)
     /* set input mode (non-canonical, no echo,...) */
     newtio.c_lflag = 0;
 
-    newtio.c_cc[VTIME]    = 1;   /* inter-character timer unused */
-    newtio.c_cc[VMIN]     = 0;   /* blocking read until 5 chars received */
-
+    newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
+    newtio.c_cc[VMIN]     = 1;   /* blocking read until 5 chars received */
 
     tcflush(fd, TCIOFLUSH);
 
@@ -62,16 +64,24 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
+    char msg[255];
     int i = 0;
 
     while (STOP==FALSE) {       /* loop for input */
-      res = read(fd,buf+i,1);
-      buf[++i]=0;               /* so we can printf... */
-      printf("%s\n", buf);
-      if (buf[i]=='\0') STOP=TRUE;
+      res = read(fd,buf,1);   /* returns after 5 chars have been input */
+      printf("Char read: %c, Result of read: %d;\n", buf[0], res);
+      if (buf[0]=='\0') STOP=TRUE;
+      msg[i++] = buf[0];
     }
+    printf("Complete msg: %s, nº chars: %d\n", msg, (int)strlen(msg));
 
-    write(fd, buf, strlen(buf)+1);
+    res = write(fd, msg, strlen(msg)+1);
+    if(res == -1){
+      perror("Error on Writing");
+      exit(1);
+    }
+    printf("Msg write: %s, Result of write: %d;\n",msg, res);
+
 
     tcsetattr(fd,TCSANOW,&oldtio);
     close(fd);

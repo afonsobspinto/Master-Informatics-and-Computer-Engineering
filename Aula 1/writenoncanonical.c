@@ -5,6 +5,9 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h> // for close
 
 #define BAUDRATE B38400
 #define MODEMDEVICE "/dev/ttyS1"
@@ -16,9 +19,10 @@ volatile int STOP=FALSE;
 
 int main(int argc, char** argv)
 {
-    int fd,c, res;
+    int fd,res;
     struct termios oldtio,newtio;
     char buf[255];
+    char readBuf[255];
     int i, sum = 0, speed = 0;
 
     if ( (argc < 2) ||
@@ -51,8 +55,8 @@ int main(int argc, char** argv)
     /* set input mode (non-canonical, no echo,...) */
     newtio.c_lflag = 0;
 
-    newtio.c_cc[VTIME]    = 1;   /* inter-character timer unused */
-    newtio.c_cc[VMIN]     = 0;   /* blocking read until 5 chars received */
+    newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
+    newtio.c_cc[VMIN]     = 1;   /* blocking read until 5 chars received */
 
 
     tcflush(fd, TCIOFLUSH);
@@ -64,29 +68,31 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
-    gets(buf);
-    buf[strlen(buf)] = '\0';
 
-    res = write(fd,buf,strlen(buf)+1);
-    printf("%d bytes written\n", res);
+      gets(buf);
+      int bufLength = strlen(buf) + 1;
+      res = write(fd,buf,bufLength);
+      printf("%d bytes written\n", res);
 
-
-    while (STOP==FALSE) {       /* loop for input */
-      res = read(fd,buf,1);
-      buf[res]=0;               /* so we can printf... */
-      printf(":%s:%d\n", buf, res);
-      if (buf[i]=='\0') STOP=TRUE;
-    }
-
-
+      //read from serial port
+      int i = 0;
+      char chr;
+      while(STOP==FALSE) {
+        res = read(fd,&chr,1);
+        if (res == -1) {
+          perror("Error on reading");
+          exit(-1);
+        }
+        readBuf[i++] = chr;
+        if (chr=='\0') STOP=TRUE;
+      }
+      printf("Read %s, Length:%d bytes\n", readBuf, (int)strlen(readBuf));
 
 
     if ( tcsetattr(fd,TCSANOW,&oldtio) == -1) {
       perror("tcsetattr");
       exit(-1);
     }
-
-
 
 
     close(fd);
