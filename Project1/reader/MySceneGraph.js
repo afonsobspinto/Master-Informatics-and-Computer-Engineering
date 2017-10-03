@@ -1440,9 +1440,10 @@ MySceneGraph.prototype.displayScene = function() {
 	// entry point for graph rendering
 
     //Todo: Test Error Scenarios
+    var rootNode = this.nodes[this.idRoot];
 
     if(this.loadedOk){
-     this.nodes[this.idRoot].display();
+     rootNode.display(rootNode.getTexture(),rootNode.getMaterial());
     }
 
 }

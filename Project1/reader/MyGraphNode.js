@@ -42,7 +42,10 @@ MyGraphNode.prototype.addLeaf = function(leaf) {
  * Displays the node
  */
 
-MyGraphNode.prototype.display = function() {
+MyGraphNode.prototype.display = function(initialTextureID, initialMaterialID) {
+
+    var materialID = initialMaterialID;
+    var textureID = initialTextureID;
 
 
     //TODO: ADD Textures and Materials
@@ -52,15 +55,43 @@ MyGraphNode.prototype.display = function() {
     this.graph.scene.multMatrix(this.transformMatrix);
 
     for(var i = 0; i < this.leaves.length; i++){
-        console.log(this.leaves);
         this.leaves[i].display();
     }
 
     for (var j = 0; j < this.children.length; j++){
-        console.log(this.children);
-        this.graph.nodes[this.children[j]].display();
+        if (this.materialID != 'null')
+            materialID = this.materialID;
+
+        if (materialID != 'null')
+            this.graph.materials[materialID].apply();
+
+/*        if (this.textureID != 'null')
+            textureID = this.textureID;
+
+        if(textureID!='clear' && textureID !='null')
+            this.graph.textures[textureID].bind();*/
+
+        this.graph.nodes[this.children[j]].display(textureID, materialID);
     }
 
     this.graph.scene.popMatrix();
 
+}
+
+/**
+ *
+ * @returns the node's material
+ */
+
+MyGraphNode.prototype.getMaterial = function() {
+    return this.materialID;
+}
+
+
+/**
+ *
+ * @returns the node's texture
+ */
+MyGraphNode.prototype.getTexture = function() {
+    return this.textureID;
 }
