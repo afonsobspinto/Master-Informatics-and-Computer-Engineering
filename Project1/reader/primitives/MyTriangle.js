@@ -55,11 +55,12 @@ MyTriangle.prototype.initBuffers = function() {
     var dAC = distanceBetweenVertex(this.vertexA, this.vertexC);
     var beta =  Math.acos((Math.pow(dBC, 2) + Math.pow(dAB, 2) - Math.pow(dAC, 2)) / (2*dAB*dBC)); // cos(Beta) = a^2 - b^2 + c^2 / (2*a*c)
 
+    //TODO: Mudar isto para estar de acordo com o novo pdf.
 
     this.texCoords = [
         this.minS, this.minT,
         this.maxS, this.minT,
-        (dAB - dBC * Math.cos(beta)) / dAB, (dBC*Math.sin(beta))/dAB // P0 = (c-a*cos(Beta), a*sin(B); /dAB para normalizar.
+        (dAB - dBC * Math.cos(beta)) / dAB, (dBC*Math.sin(beta))/dAB
     ];
 
 
