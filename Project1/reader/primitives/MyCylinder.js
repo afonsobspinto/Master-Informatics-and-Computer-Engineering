@@ -74,4 +74,4 @@ MyCylinder.prototype.initBuffers = function() {
     this.initGLBuffers();
 };
 
-//TODO: Adicionar Tampas e comparar com notas adicionais
+//TODO: Adicionar Tampas e TextCoords

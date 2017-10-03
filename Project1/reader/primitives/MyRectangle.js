@@ -10,16 +10,16 @@
  * @constructor
  */
 
-function MyRectangle(scene, vertex1, vertex2, minS, maxS, minT, maxT){ //vertex1 -> left-top, vertex2 -> right-bottom
+function MyRectangle(scene, vertex1, vertex2){ //vertex1 -> left-top, vertex2 -> right-bottom
     CGFobject.call(this, scene);
 
     this.vertex1 = vertex1;
     this.vertex2 = vertex2;
 
-    this.minS = minS || 0.0;
-    this.maxS = maxS || 1.0;
-    this.minT = minT || 0.0;
-    this.maxT = maxT || 1.0;
+    this.minS = 0.0;
+    this.minT = 0.0;
+    this.maxS = 1.0;
+    this.maxT = 1.0;
 
     this.initBuffers();
 };
@@ -49,9 +49,10 @@ MyRectangle.prototype.initBuffers = function() {
         0, 0, 1,
         0, 0, 1,
         0, 0, 1,
-        0, 0,1
+        0, 0, 1
     ];
 
+    //TODO: Change this?!
     this.texCoords = [
         this.minS,this.maxT,
         this.maxS,this.maxT,
@@ -64,4 +65,4 @@ MyRectangle.prototype.initBuffers = function() {
 }
 
 
-//TODO: Set amplification Factors e comparar com notas adicionais
+//TODO: Set amplification Factors
