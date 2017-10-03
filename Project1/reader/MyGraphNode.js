@@ -42,13 +42,13 @@ MyGraphNode.prototype.addLeaf = function(leaf) {
  * Displays the node
  */
 
-MyGraphNode.prototype.display = function(initialTextureID, initialMaterialID) {
+MyGraphNode.prototype.display = function(parentTextureID, parentMaterialID) {
 
-    var materialID = initialMaterialID;
-    var textureID = initialTextureID;
+    var newMaterial = parentMaterialID;
+    var newTexture = parentTextureID;
 
 
-    //TODO: ADD Textures and Materials
+    //TODO: Check if every situation is controlled
 
     this.graph.scene.pushMatrix();
 
@@ -60,18 +60,23 @@ MyGraphNode.prototype.display = function(initialTextureID, initialMaterialID) {
 
     for (var j = 0; j < this.children.length; j++){
         if (this.materialID != 'null')
-            materialID = this.materialID;
+            newMaterial = this.materialID;
 
-        if (materialID != 'null')
-            this.graph.materials[materialID].apply();
+        if (newMaterial != 'null')
+            this.graph.materials[newMaterial].apply();
 
-/*        if (this.textureID != 'null')
-            textureID = this.textureID;
 
-        if(textureID!='clear' && textureID !='null')
-            this.graph.textures[textureID].bind();*/
+        if(this.textureID != 'null' && this.textureID != 'clear')
+            newTexture = this.textureID;
+        if(this.textureID != 'clear' && newTexture!='null'){
+            console.log(newTexture);
+            this.graph.textures[newTexture][0].bind();
+        }
 
-        this.graph.nodes[this.children[j]].display(textureID, materialID);
+
+
+        this.graph.nodes[this.children[j]].display(newTexture, newMaterial);
+
     }
 
     this.graph.scene.popMatrix();

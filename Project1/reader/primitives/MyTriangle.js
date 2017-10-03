@@ -46,3 +46,5 @@ MyTriangle.prototype.initBuffers = function() {
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 }
+
+//TODO: Set amplification Factors e comparar com notas adicionais

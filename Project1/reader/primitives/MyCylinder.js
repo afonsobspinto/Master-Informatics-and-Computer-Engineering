@@ -73,3 +73,5 @@ MyCylinder.prototype.initBuffers = function() {
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 };
+
+//TODO: Adicionar Tampas e comparar com notas adicionais
