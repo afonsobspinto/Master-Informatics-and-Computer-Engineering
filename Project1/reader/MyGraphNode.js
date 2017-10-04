@@ -63,7 +63,7 @@ MyGraphNode.prototype.display = function(parentTextureID, parentMaterialID) {
             newMaterial = this.materialID;
 
         if (newMaterial != 'null')
-            this.graph.materials[newMaterial].apply();
+            this.graph.materials[newMaterial].apply(); //TODO: Might have some problems here
 
 
         if(this.textureID != 'null' && this.textureID != 'clear')
