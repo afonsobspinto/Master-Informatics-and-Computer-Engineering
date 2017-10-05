@@ -69,7 +69,7 @@ MyGraphNode.prototype.display = function(parentTextureID, parentMaterialID) {
         if(this.textureID != 'null' && this.textureID != 'clear')
             newTexture = this.textureID;
         if(this.textureID != 'clear' && newTexture!='null'){
-            console.log(newTexture);
+            //console.log(newTexture);
             this.graph.textures[newTexture][0].bind();
         }
 

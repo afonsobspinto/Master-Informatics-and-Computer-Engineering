@@ -33,35 +33,55 @@ MyTriangle.prototype.initBuffers = function() {
         this.vertexC.x, this.vertexC.y, this.vertexC.z
     ];
 
+    this.indices = [
+        0, 1, 2,
+    ];
+
+    var a, b, c; // sides length of triangle
+
+    a = Math.sqrt(Math.pow((this.vertexA.x - this.vertexC.x), 2) + Math.pow((this.vertexA.y - this.vertexC.y), 2) + Math.pow((this.vertexA.z - this.vertexC.z), 2));
+
+    b = Math.sqrt(Math.pow((this.vertexB.x - this.vertexA.x), 2) + Math.pow((this.vertexB.y - this.vertexA.y), 2) + Math.pow((this.vertexB.z - this.vertexA.z), 2));
+
+    c = Math.sqrt(Math.pow((this.vertexC.x - this.vertexB.x), 2) + Math.pow((this.vertexC.y - this.vertexB.y), 2) + Math.pow((this.vertexC.z - this.vertexB.z), 2));
+
+
+    var vertex = [this.vertexA, this.vertexB, this.vertexC];
+    var normal = calculateSurfaceNormal (vertex);
+
+    this.normals = [
+        normal.x, normal.y, normal.z,
+        normal.x, normal.y, normal.z,
+        normal.x, normal.y, normal.z
+    ];
+
+    var cosBeta, sinBeta; // trigonometric functions of internal angle of triangle
+
+    cosBeta = (Math.pow(a,2) - Math.pow(b,2) + Math.pow(c,2) )/ (2 * a * c);
+    sinBeta = Math.sqrt(1 - Math.pow(cosBeta, 2));
+
+    var P0, P1, P2;
+
+    P0 = new Vector2(c-a*cosBeta, a*sinBeta);
+    P1 = new Vector2(0,0);
+    P2 = new Vector2(c, 0);
+
     this.minS = 0.0;
     this.minT = 0.0;
     this.maxS = 1.0;
     this.maxT = 1.0;
 
-    this.indices = [
-        0, 1, 2,
-    ];
-
-    this.normals = [
-        0, 0, 1,
-        0, 0, 1,
-        0, 0, 1
-    ];
-
-
-
-    var dAB = distanceBetweenVertex(this.vertexA, this.vertexB);
-    var dBC = distanceBetweenVertex(this.vertexB, this.vertexC);
-    var dAC = distanceBetweenVertex(this.vertexA, this.vertexC);
-    var beta =  Math.acos((Math.pow(dBC, 2) + Math.pow(dAB, 2) - Math.pow(dAC, 2)) / (2*dAB*dBC)); // cos(Beta) = a^2 - b^2 + c^2 / (2*a*c)
-
-    //TODO: Mudar isto para estar de acordo com o novo pdf.
+    //TODO: Some problem here;
 
     this.texCoords = [
         this.minS, this.minT,
         this.maxS, this.minT,
-        (dAB - dBC * Math.cos(beta)) / dAB, (dBC*Math.sin(beta))/dAB
+        P0.x * this.maxS / c ,  ((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta
     ];
+
+
+
+    console.log(this.texCoords);
 
 
     this.primitiveType = this.scene.gl.TRIANGLES;
@@ -77,16 +97,5 @@ MyTriangle.prototype.initBuffers = function() {
  */
 MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
-/*    var ab = Math.sqrt(Math.pow(this.v2x-this.v1x, 2) + Math.pow(this.v2y-this.v1y, 2) + Math.pow(this.v2z-this.v1z, 2));
-    var bc = Math.sqrt(Math.pow(this.v2x-this.v3x, 2) + Math.pow(this.v2y-this.v3y, 2) + Math.pow(this.v2z-this.v3z, 2));
-    var ac = Math.sqrt(Math.pow(this.v1x-this.v3x, 2) + Math.pow(this.v1y-this.v3y, 2) + Math.pow(this.v1z-this.v3z, 2));
-    var beta = Math.acos((Math.pow(bc, 2) + Math.pow(ab, 2) - Math.pow(ac, 2))/(2*ab*bc));
 
-    this.texCoords = [
-        this.minS, this.minT,
-        this.maxS, this.minT*ab/amplif_s,
-        ((ab - bc*Math.cos(beta))/ab)*ab/amplif_s, (bc*Math.sin(beta)/ab)*ab/amplif_t
-    ];
-
-    this.updateTexCoordsGLBuffers();*/
 }
