@@ -74,9 +74,9 @@ MyTriangle.prototype.initBuffers = function() {
     //TODO: Some problem here;
 
     this.texCoords = [
-        this.minS, this.minT,
+        P0.x * this.maxS / c ,  ((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta,
         this.maxS, this.minT,
-        P0.x * this.maxS / c ,  ((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta
+        this.minT, this.minT
     ];
 
 
