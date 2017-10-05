@@ -52,12 +52,11 @@ MyRectangle.prototype.initBuffers = function() {
         0, 0, 1
     ];
 
-    //TODO: Change this?!
     this.texCoords = [
         this.minS,this.maxT,
         this.maxS,this.maxT,
-        this.minS,this.minT,
-        this.maxS,this.minT
+        this.maxS,this.minT,
+        this.minS,this.minT
     ];
 
     this.primitiveType = this.scene.gl.TRIANGLES;
@@ -66,3 +65,13 @@ MyRectangle.prototype.initBuffers = function() {
 
 
 //TODO: Set amplification Factors
+
+/**
+ * Updates the Triangle amplification factors
+ * @param amplifFactorS s domain amplification factor
+ * @param amplifFactorT t domain amplification factor
+ */
+MyRectangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
+
+
+}
