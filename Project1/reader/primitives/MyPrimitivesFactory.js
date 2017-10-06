@@ -22,7 +22,7 @@ function MyPrimitivesFactory(scene, type, args){
             primitive = new MySphere(scene, args[0], args[1], args[2]);
             break;
         case 'cylinder':
-            primitive = new MyCylinder(scene, args[0], args[1], args[2], args[3], args[4]);
+            primitive = new MyCylinder(scene, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             break;
 
     }

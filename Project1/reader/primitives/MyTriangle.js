@@ -71,7 +71,6 @@ MyTriangle.prototype.initBuffers = function() {
     this.maxS = 1.0;
     this.maxT = 1.0;
 
-    //TODO: Some problem here;
 
     this.texCoords = [
         P0.x * this.maxS / c ,  ((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta,
@@ -80,15 +79,11 @@ MyTriangle.prototype.initBuffers = function() {
     ];
 
 
-
-    console.log(this.texCoords);
-
-
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 }
 
-//TODO: Set amplification Factors e TextCoords
+//TODO: Set amplification Factors
 
 /**
  * Updates the Triangle amplification factors

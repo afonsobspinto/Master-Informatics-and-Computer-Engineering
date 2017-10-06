@@ -289,7 +289,7 @@
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-					<LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20" /> 
+					<LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
         </DESCENDANTS>
 
     </NODE>
@@ -411,7 +411,7 @@
         <TRANSLATION x="5" y="5" z="-4" />
 
         <DESCENDANTS>
-					<LEAF type="cylinder" args="4 1 1 20 20" /> 
+					<LEAF type="cylinder" args="4 1 1 20 20 1 1" />
         </DESCENDANTS>
 
     </NODE>
