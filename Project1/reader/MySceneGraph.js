@@ -1444,11 +1444,38 @@ MySceneGraph.prototype.displayScene = function() {
 
     var rootNode = this.nodes[this.idRoot];
 
-    if(rootNode!=null){
+    return this.dfsDisplay(rootNode);
 
-        if(this.loadedOk){
-            rootNode.display();
-        }
+}
+
+
+MySceneGraph.prototype.dfsDisplay = function(node) {
+
+
+    this.scene.pushMatrix();
+
+    this.scene.multMatrix(node.transformMatrix);
+
+
+    if (node.materialID == "null")
+        this.materialsStack.push(this.materialsStack[this.materialsStack.length-1]);
+    else
+        this.materialsStack.push(node.materialID);
+
+
+    for (var i = 0; i < node.children.length; i++){
+        this.dfsDisplay(this.nodes[node.children[i]]);
     }
+
+    for(var j = 0; j < node.leaves.length; j++){
+        var material = this.materials[this.materialsStack[this.materialsStack.length-1]];
+        material.apply();
+        node.leaves[j].display();
+    }
+
+    this.materialsStack.pop();
+
+    this.scene.popMatrix();
+
 
 }
