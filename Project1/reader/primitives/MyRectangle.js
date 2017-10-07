@@ -71,9 +71,6 @@ MyRectangle.prototype.initBuffers = function() {
  */
 MyRectangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
-    var distS = this.vertex2.x - this.vertex1.x;
-    var distT = this.vertex1.y - this.vertex2.y;
-
     this.texCoords = [
         this.minS,this.maxT,
         (this.vertex2.x - this.vertex1.x) / amplifFactorS,this.maxT,
