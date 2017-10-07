@@ -36,6 +36,8 @@ MyCylinderSurface.prototype.initBuffers = function() {
     this.normals = [];
     this.texCoords = [];
 
+    // Adapted from http://richardssoftware.net/Home/Post/7
+
     this.slicesAngle = (2* Math.PI)/ this.slices;
     this.stacksHigth = this.height / this.stacks;
     this.radiusRatio = (this.top_radius - this.bottom_radius) / this.stacks;
@@ -55,8 +57,6 @@ MyCylinderSurface.prototype.initBuffers = function() {
 
         }
     }
-
-    // Adapted from http://richardssoftware.net/Home/Post/7
 
     for (var stack = 0; stack < this.stacks; stack++) {
         for (var slice = 0; slice < this.slices; slice++) {

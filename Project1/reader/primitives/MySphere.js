@@ -6,6 +6,7 @@
  * @param stacks parts per section
  * @constructor
  */
+
 function MySphere(scene, radius, slices, stacks) {
     CGFobject.call(this,scene);
 
@@ -26,44 +27,46 @@ MySphere.prototype.constructor = MySphere;
 MySphere.prototype.initBuffers = function() {
 
     this.vertices = [];
-    this.normals = [];
     this.indices = [];
+    this.normals = [];
     this.texCoords = [];
 
-    var ang_z = Math.PI*2/this.stacks;
-    var ang_xy = 2*Math.PI / this.slices;
+    // Adapted from http://richardssoftware.net/Home/Post/7
 
-    // This code is adapted from http://learningwebgl.com/blog/?p=1253
+    this.slicesAngle = (2* Math.PI)/ this.slices;
+    this.stacksAngle = Math.PI / this.stacks;
 
-    for(var j = 0; j < this.stacks+1; j++){
+    for(var stack = 0; stack <= this.stacks; stack++){
+        var phi = stack * this.stacksAngle;
+        var cosPhi = Math.cos(phi);
+        var sinPhi = Math.sin(phi);
 
-        for(var i = 0; i < this.slices; i++)
-        {
-            this.vertices.push(Math.cos(i * ang_xy)*Math.cos(j *ang_z) * this.radius,Math.sin(i * ang_xy)*Math.cos(j * ang_z)*this.radius, Math.sin(j*ang_z)*this.radius);
-            this.normals.push(Math.cos(i * ang_xy)*Math.cos(j *ang_z),Math.sin(i * ang_xy)*Math.cos(j * ang_z), 0);
-            this.texCoords.push(i/this.slices,j/this.stacks);
-        }
+        for (var slice = 0; slice <= this.slices; slice++){
+            var theta = slice * this.slicesAngle;
+            var cosTheta = Math.cos(theta);
+            var sinTheta = Math.sin(theta);
 
-    }
+            var x = this.radius * cosTheta * sinPhi;
+            var y = this.radius * cosPhi;
+            var z = this.radius * sinPhi * sinTheta;
 
-    for(var j = 0; j < this.stacks; j++){
-        for(var i = 0; i < this.slices; i++)
-        {
-            this.indices.push(this.slices*j+i,this.slices*j+i+1,this.slices*(j+1)+i);
-            if (i != (this.slices - 1)) {
-                this.indices.push(this.slices*(j+1)+i+1,this.slices*(j+1)+i,this.slices*j+i+1);
-            }
-            else {
-                this.indices.push(this.slices*j,this.slices*j+i+1,this.slices*j+i);
-            }
+            this.vertices.push(x,y,z);
+            this.normals.push(x,y,z);
+            this.texCoords.push(slice/this.slices, stack/this.stacks);
 
         }
-
     }
+
+    for (var stack = 0; stack < this.stacks; stack++) {
+        for (var slice = 0; slice < this.slices; slice++) {
+
+            this.indices.push(stack*(this.slices + 1) + slice, (stack+1)*(this.slices + 1) + slice + 1, (stack+1)*(this.slices + 1) + slice);
+
+            this.indices.push(stack*(this.slices + 1) + slice, stack*(this.slices + 1) + slice + 1, (stack+1)*(this.slices + 1) + slice + 1);
+        }
+    }
+
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 };
-
-
-//TODO: Text Coords
