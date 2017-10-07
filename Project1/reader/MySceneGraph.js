@@ -21,7 +21,10 @@ function MySceneGraph(filename, scene) {
     this.scene = scene;
     scene.graph = this;
 
-    this.nodes = []; // Funciona como um map nodes['root'] = new node();
+    this.nodes = [];
+
+    this.texturesStack = [];
+    this.materialsStack = [];
 
     this.idRoot = null;                    // The id of the root element.
 
@@ -1439,11 +1442,13 @@ MySceneGraph.generateRandomString = function(length) {
 MySceneGraph.prototype.displayScene = function() {
 	// entry point for graph rendering
 
-    //Todo: Test Error Scenarios
     var rootNode = this.nodes[this.idRoot];
 
-    if(this.loadedOk){
-     rootNode.display(rootNode.getTexture(),rootNode.getMaterial());
+    if(rootNode!=null){
+
+        if(this.loadedOk){
+            rootNode.display();
+        }
     }
 
 }

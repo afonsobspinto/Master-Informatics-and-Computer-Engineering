@@ -20,6 +20,8 @@ function MyGraphNode(graph, nodeID) {
     // The texture ID.
     this.textureID = null ;
 
+
+
     this.transformMatrix = mat4.create();
     mat4.identity(this.transformMatrix);
 }
@@ -42,42 +44,31 @@ MyGraphNode.prototype.addLeaf = function(leaf) {
  * Displays the node
  */
 
-MyGraphNode.prototype.display = function(parentTextureID, parentMaterialID) {
+MyGraphNode.prototype.display = function() {
 
-    var newMaterial = parentMaterialID;
-    var newTexture = parentTextureID;
-
-
-    //TODO: Check if every situation is controlled
 
     this.graph.scene.pushMatrix();
 
     this.graph.scene.multMatrix(this.transformMatrix);
 
-    for(var i = 0; i < this.leaves.length; i++){
-        this.leaves[i].display();
+
+    if (this.materialID == "null")
+        this.graph.materialsStack.push(this.graph.materialsStack[this.graph.materialsStack.length-1]);
+    else
+        this.graph.materialsStack.push(this.materialID);
+
+
+    for (var i = 0; i < this.children.length; i++){
+        this.graph.nodes[this.children[i]].display();
     }
 
-    for (var j = 0; j < this.children.length; j++){
-        if (this.materialID != 'null')
-            newMaterial = this.materialID;
-
-        if (newMaterial != 'null')
-            this.graph.materials[newMaterial].apply(); //TODO: Might have some problems here
-
-
-        if(this.textureID != 'null' && this.textureID != 'clear')
-            newTexture = this.textureID;
-        if(this.textureID != 'clear' && newTexture!='null'){
-            //console.log(newTexture);
-            this.graph.textures[newTexture][0].bind();
-        }
-
-
-
-        this.graph.nodes[this.children[j]].display(newTexture, newMaterial);
-
+    for(var j = 0; j < this.leaves.length; j++){
+        var material = this.graph.materials[this.graph.materialsStack[this.graph.materialsStack.length-1]];
+        material.apply();
+        this.leaves[j].display();
     }
+
+    this.graph.materialsStack.pop();
 
     this.graph.scene.popMatrix();
 
