@@ -1457,10 +1457,16 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
     this.scene.multMatrix(node.transformMatrix);
 
 
-    if (node.materialID == "null")
+    if (node.materialID == 'null')
         this.materialsStack.push(this.materialsStack[this.materialsStack.length-1]);
     else
         this.materialsStack.push(node.materialID);
+
+
+    if (node.textureID == 'null')
+        this.texturesStack.push(this.texturesStack[this.texturesStack.length-1]);
+    else
+        this.texturesStack.push(node.textureID);
 
 
     for (var i = 0; i < node.children.length; i++){
@@ -1469,13 +1475,20 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
 
     for(var j = 0; j < node.leaves.length; j++){
         var material = this.materials[this.materialsStack[this.materialsStack.length-1]];
+        var texture = this.textures[this.texturesStack[this.texturesStack.length-1]];
+
+        if(texture!=null){
+            if(texture!='clear')
+                material.setTexture(texture[0]);
+        }
+
         material.apply();
         node.leaves[j].display();
     }
 
     this.materialsStack.pop();
-
+    this.texturesStack.pop();
     this.scene.popMatrix();
 
-
+    return 0;
 }
