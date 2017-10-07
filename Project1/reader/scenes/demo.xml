@@ -288,7 +288,7 @@
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-					<LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20" /> 
+					<LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" /> 
         </DESCENDANTS>
 
     </NODE>
@@ -366,7 +366,7 @@
         <ROTATION axis="x" angle="-90" />
         
         <DESCENDANTS>
-                   <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20" />       
+                   <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />       
         </DESCENDANTS>
 
     </NODE>
@@ -472,7 +472,7 @@
         <TEXTURE id="null" />       			
         
         <DESCENDANTS>
-				  <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20" />
+				  <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
         </DESCENDANTS>
 
     </NODE>
@@ -503,8 +503,6 @@
         
         <DESCENDANTS>
             <NODEREF id="top" /> 
-			<NODEREF id="mirror1" />
-			<NODEREF id="mirror2" />
 			<NODEREF id="antenna" />
         </DESCENDANTS>
 
@@ -529,36 +527,6 @@
 
     </NODE>
 	
-		<!-- Left rear view mirror of the car -->
-	<NODE id="mirror1">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />     
-		
-		<TRANSLATION x="18" y="7" z="5" />
-        <ROTATION axis="x" angle="-90" />	
-		<SCALE sx="0.1" sy="0.1" sz="0.5" />
-        
-        <DESCENDANTS>
-				<LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
-        </DESCENDANTS>
-
-    </NODE>
-	
-	<!-- Right rear view mirror of the car -->
-	<NODE id="mirror2">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />   
-		
-		<TRANSLATION x="18" y="10" z="18" />
-		<ROTATION axis="x" angle="-90" />
-		<SCALE sx="0.1" sy="0.1" sz="0.5" />
-        
-        <DESCENDANTS>
-				<LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
-        </DESCENDANTS>
-
-    </NODE>
-	
 	<!-- Antenna of the car -->
 	<NODE id="antenna">       
         <MATERIAL id="null" />     
@@ -569,7 +537,7 @@
         <SCALE sx="0.1" sy="0.1" sz="1" />
         
         <DESCENDANTS>
-                   <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20" />       
+                   <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />       
         </DESCENDANTS>
 
     </NODE>
