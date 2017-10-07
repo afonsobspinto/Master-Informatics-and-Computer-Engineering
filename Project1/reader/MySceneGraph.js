@@ -1478,8 +1478,12 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
         var texture = this.textures[this.texturesStack[this.texturesStack.length-1]];
 
         if(texture!=null){
-            if(texture!='clear')
+            if(texture!='clear'){
+                if(node.leaves[j].primitive instanceof MyTriangle || node.leaves[j].primitive instanceof MyRectangle){
+                    node.leaves[j].primitive.setAmplifFactor(texture[1], texture[2]);
+                }
                 material.setTexture(texture[0]);
+            }
         }
 
         material.apply();

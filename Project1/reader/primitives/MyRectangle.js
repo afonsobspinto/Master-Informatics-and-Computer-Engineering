@@ -45,13 +45,6 @@ MyRectangle.prototype.initBuffers = function() {
         0, 3, 2
     ];
 
-    this.normals = [
-        0, 0, 1,
-        0, 0, 1,
-        0, 0, 1,
-        0, 0, 1
-    ];
-
     this.texCoords = [
         this.minS,this.maxT,
         this.maxS,this.maxT,
@@ -59,19 +52,35 @@ MyRectangle.prototype.initBuffers = function() {
         this.minS,this.minT
     ];
 
+    this.texCoords = [
+        this.minS,this.maxT,
+        this.vertex2.x-this.vertex1.x,this.maxT,
+        this.vertex2.x-this.vertex1.x,this.vertex1.y-this.vertex2.y,
+        this.minS,this.vertex1.y-this.vertex2.y
+    ];
+
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 }
 
 
-//TODO: Set amplification Factors
-
 /**
- * Updates the Triangle amplification factors
+ * Updates the Rectangle amplification factors
  * @param amplifFactorS s domain amplification factor
  * @param amplifFactorT t domain amplification factor
  */
 MyRectangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
+    var distS = this.vertex2.x - this.vertex1.x;
+    var distT = this.vertex1.y - this.vertex2.y;
+
+    this.texCoords = [
+        this.minS,this.maxT,
+        (this.vertex2.x - this.vertex1.x) / amplifFactorS,this.maxT,
+        (this.vertex2.x - this.vertex1.x) / amplifFactorS, 1 - (this.vertex1.y - this.vertex2.y) / amplifFactorT,
+        this.minS, 1 - (this.vertex1.y - this.vertex2.y) / amplifFactorT
+    ];
+
+    this.updateTexCoordsGLBuffers();
 
 }
