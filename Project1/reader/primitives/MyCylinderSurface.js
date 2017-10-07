@@ -56,14 +56,14 @@ MyCylinderSurface.prototype.initBuffers = function() {
         }
     }
 
-    for(var stack = 0; stack < this.stacks; stack++){
-        for(var slice = 0; slice < this.slices; slice++){
-            var index = (stack * (this.slices + 1)) + slice;
-            var next = index + this.slices + 1;
+    // Adapted from http://richardssoftware.net/Home/Post/7
 
-            this.indices.push(index, next + 1, next);
-            this.indices.push(index, index + 1, next + 1);
+    for (var stack = 0; stack < this.stacks; stack++) {
+        for (var slice = 0; slice < this.slices; slice++) {
 
+            this.indices.push(stack*(this.slices + 1) + slice, (stack+1)*(this.slices + 1) + slice + 1, (stack+1)*(this.slices + 1) + slice);
+
+            this.indices.push(stack*(this.slices + 1) + slice, stack*(this.slices + 1) + slice + 1, (stack+1)*(this.slices + 1) + slice + 1);
         }
     }
 
