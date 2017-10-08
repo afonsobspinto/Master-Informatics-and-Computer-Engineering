@@ -74,7 +74,7 @@ int main(int argc, char** argv)
     newtio.c_lflag = 0;
 
     newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
-    newtio.c_cc[VMIN]     = 1;   /* blocking read until 5 chars received */
+    newtio.c_cc[VMIN]     = 1;   /* blocking read until 1 chars received */
 
 
     tcflush(fd, TCIOFLUSH);
@@ -89,7 +89,11 @@ int main(int argc, char** argv)
     //Write to serial port
     res = write(fd,SET,sizeof(SET));
     printf("%d bytes written\n", res);
-
+    if(res == -1){
+      perror("Error on Writing");
+      exit(1);
+    }
+    sleep(1);
 
 
     //read from serial port
