@@ -24,7 +24,7 @@
 	<LIGHT id="light0">                                    
         <enable value ="1" />                   	       
         <position  x="0" y="10" z="0" w="1" />       	   
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />        	 
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />      
     </LIGHT>
@@ -32,7 +32,7 @@
 	<LIGHT id="light1">                                    
         <enable value ="1" />                   	      
         <position x="30" y="10" z="0" w="1" />       	   
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />       
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />       
     </LIGHT>
@@ -40,7 +40,7 @@
 	<LIGHT id="light2">                                   
         <enable value ="1" />                   	       
         <position x="0" y="10" z="20" w="1" />       		   
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />      
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />       
     </LIGHT>
@@ -48,44 +48,25 @@
     <LIGHT id="light3">                                   
         <enable value ="1" />                   	       
         <position x="30" y="10" z="20" w="1" />       			
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />           	
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />       
         <specular r="0.6" g="0.6" b="0.6" a="1.0" />      
     </LIGHT>
-    
+
+<!--
+    <LIGHT id="lightUnderCar">
+        <enable value ="1" />
+        <position x="15" y="0" z="10" w="1" />
+        <ambient r="0.3" g="0.3" b="1" a="1.0" />
+        <diffuse r="0.3" g="0.3" b="0.5" a="1.0" />
+        <specular r="0.3" g="0.3" b="0.5" a="1.0" />
+    </LIGHT>
+-->
+
 </LIGHTS>
 
 <!-- Textures -->
 <TEXTURES>
-	<!-- Tree trunk -->
-    <TEXTURE id="trunk">
-        <file path="images/trunk-image.jpg" />               
-        <amplif_factor s="2" t="2" />                           
-    </TEXTURE>
-
-     <!-- Tree leaves -->
-    <TEXTURE id="folhas">
-        <file path="images/leaves.jpg" />                
-        <amplif_factor s="3" t="4" />                           
-    </TEXTURE>
-
-    <!-- Rocks -->
-    <TEXTURE id="rocks">
-        <file path="images/rocks.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <!-- Glass work -->
-    <TEXTURE id="vidral">
-        <file path="images/vidral.jpg" />               
-        <amplif_factor s="15" t="10" />                           
-    </TEXTURE>
-
-    <!-- Street bench -->
-    <TEXTURE id="banco">
-        <file path="images/bank.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
 	
 	<!-- Stone -->
 	<TEXTURE id="stone">
@@ -99,15 +80,27 @@
         <amplif_factor s="1" t="1" />                           
     </TEXTURE>
 	
-	<!-- Old Paint -->
-	<TEXTURE id="oldpaint">
-        <file path="images/oldpaint.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-	
-	<!-- Black -->
+	<!-- Black-->
 	<TEXTURE id="black">
         <file path="images/black.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
+
+    <!-- Blue-->
+    <TEXTURE id="blue">
+        <file path="images/blue.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <!-- White-->
+    <TEXTURE id="white">
+        <file path="images/white.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <!-- garage -->
+	<TEXTURE id="garage">
+        <file path="images/garage.jpg" />                
         <amplif_factor s="1" t="1" />                           
     </TEXTURE>
 
@@ -115,31 +108,14 @@
 
 
 <MATERIALS>
-	<!-- Pyramid material -->
-    <MATERIAL id="piramideMaterial">                                  
-        <shininess value="1" />
-        <specular r="0" g="0" b="0" a="1" />        
-        <diffuse r="1.0" g="0.68" b="0.4" a="1" />        
-        <ambient r="0.2" g="0.2" b="0.2" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
-	
-	<!-- Tree leaves material -->
-	<MATERIAL id="leavesTreeMaterial">                                  
-        <shininess value="1" />
-        <specular r="0.2" g="0.2" b="0.2" a="1" />        
-        <diffuse r="0.0" g="0.207" b="0.0" a="1" />       
-        <ambient r="0.1" g="0.1" b="0.1" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
-	
-	<!-- Tree trunk material -->
-	<MATERIAL id="trunkTreeMaterial">                                  
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.6" g="0.298" b="0.0" a="1" />      
-        <ambient r="0.1" g="0.1" b="0.1" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />       
+
+    <!-- bright metal material -->
+    <MATERIAL id="bright-metal">
+        <shininess value="20" />
+        <specular r="1" g="1" b="1" a="1" />
+        <diffuse r="0.2" g="0.2" b="0.2" a="1" />
+        <ambient r="0.2" g="0.2" b="0.2" a="1" />
+        <emission r="0" g="0" b="0" a="1" />
     </MATERIAL>
 
     <!-- Lamp post material -->
@@ -189,7 +165,6 @@
 
         <DESCENDANTS>
 
-            <NODEREF id="luzes" />      
 			<NODEREF id="columns" />
             <NODEREF id="chao" />
 			<NODEREF id="car" />
@@ -200,7 +175,7 @@
     <!-- The floor -->
     <NODE id="chao">      
         <MATERIAL id="null" />    
-        <TEXTURE id="black" />       			
+        <TEXTURE id="garage" />       			
 
         <SCALE sx="6" sy="1" sz="5" />
         <TRANSLATION x="0" y="0" z="4" />
@@ -211,111 +186,7 @@
 		</DESCENDANTS>
 
     </NODE>
-    
-    <!-- The lights -->
-     <NODE id="luzes">       
-        <MATERIAL id="lightMaterial" />    
-        <TEXTURE id="clear" />       			
 
-        <DESCENDANTS>
-            <NODEREF id="luz1" />     	    
-            <NODEREF id="luz2" />     	    
-            <NODEREF id="luz3" />     	   
-            <NODEREF id="luz4" />     	    
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- The first light -->
-     <NODE id="luz1">       
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />       			
-
-        <DESCENDANTS>
-            <NODEREF id="luz_candeeiro" />  
-        </DESCENDANTS>
-
-    </NODE>
-
-   <!-- The second light -->
-    <NODE id="luz2">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
-
-        <TRANSLATION x="30" y="0" z="0" />
-
-        <DESCENDANTS>
-            <NODEREF id="luz_candeeiro" />   
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- The third light -->
-    <NODE id="luz3">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
-
-        <TRANSLATION x="0" y="0" z="20" />
-
-        <DESCENDANTS>
-           <NODEREF id="luz_candeeiro" />   
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- The fourth light -->
-    <NODE id="luz4">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
-
-        <TRANSLATION x="30" y="0" z="20" />
-
-        <DESCENDANTS>
-           <NODEREF id="luz_candeeiro" />      
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- Lamp post -->
-    <NODE id="luz_candeeiro">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
-
-        <DESCENDANTS>
-           <NODEREF id="luz_esfera" />       
-           <NODEREF id="luz_suporte" /> 	   
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- Light bulb -->
-    <NODE id="luz_esfera">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
-
-        <TRANSLATION x="0" y="10" z="0" />
-        <SCALE sx="-1" sy="1" sz="1" />
-        
-        <DESCENDANTS>
-						<LEAF id="sphere1" type="sphere" args="2 20 20" />
-
-        </DESCENDANTS>
-
-    </NODE>
-
-    <!-- The post in the lamp post... -->
-    <NODE id="luz_suporte">       
-        <MATERIAL id="lightPostMaterial" />     
-        <TEXTURE id="null" />       			
-
-        <SCALE sx="0.5" sy="2.02" sz="0.5" />
-        <ROTATION axis="x" angle="-90" />
-
-        <DESCENDANTS>
-					<LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" /> 
-        </DESCENDANTS>
-
-    </NODE>
 
 	<!-- The columns -->
      <NODE id="columns">       
@@ -398,8 +269,8 @@
 	<!-- The car -->
 	
 	 <NODE id="car">       
-        <MATERIAL id="lightMaterial" />    
-        <TEXTURE id="oldpaint" />       			
+        <MATERIAL id="bright-metal" />
+        <TEXTURE id="black" />       			
 
         <DESCENDANTS>
             <NODEREF id="carBase" /> 
@@ -411,7 +282,7 @@
     <!-- The base of the car -->
     <NODE id="carBase">       
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="white" />
         
         <DESCENDANTS>
 			<NODEREF id="base" />
@@ -523,7 +394,7 @@
 	<!-- The top of the car -->
     <NODE id="carTop">       
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="blue" />
         
         <DESCENDANTS>
             <NODEREF id="top" /> 
@@ -554,7 +425,7 @@
 	<!-- Antenna of the car -->
 	<NODE id="antenna">       
         <MATERIAL id="null" />     
-        <TEXTURE id="black" />       			
+        <TEXTURE id="black" />
 
         <TRANSLATION x="18" y="10" z="8" />
 		<ROTATION axis="x" angle="-90" />
@@ -569,7 +440,7 @@
 	<!-- A cube face -->
     <NODE id="faceCubo1">       
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="null" />
 
         <TRANSLATION x="2.5" y="4" z="7.5" />
 
@@ -582,7 +453,7 @@
     <!-- Another cube face -->
      <NODE id="faceCubo2">      
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="null" />
 
         <TRANSLATION x="2.5" y="4" z="2.5" />
 		<ROTATION axis="y" angle="-90" />
