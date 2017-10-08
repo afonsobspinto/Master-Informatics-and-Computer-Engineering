@@ -21,7 +21,10 @@ function MySceneGraph(filename, scene) {
     this.scene = scene;
     scene.graph = this;
 
-    this.nodes = []; // Funciona como um map nodes['root'] = new node();
+    this.nodes = [];
+
+    this.texturesStack = [];
+    this.materialsStack = [];
 
     this.idRoot = null;                    // The id of the root element.
 
@@ -1439,11 +1442,57 @@ MySceneGraph.generateRandomString = function(length) {
 MySceneGraph.prototype.displayScene = function() {
 	// entry point for graph rendering
 
-    //Todo: Test Error Scenarios
     var rootNode = this.nodes[this.idRoot];
 
-    if(this.loadedOk){
-     rootNode.display(rootNode.getTexture(),rootNode.getMaterial());
+    return this.dfsDisplay(rootNode);
+
+}
+
+
+MySceneGraph.prototype.dfsDisplay = function(node) {
+
+
+    this.scene.pushMatrix();
+
+    this.scene.multMatrix(node.transformMatrix);
+
+
+    if (node.materialID == 'null')
+        this.materialsStack.push(this.materialsStack[this.materialsStack.length-1]);
+    else
+        this.materialsStack.push(node.materialID);
+
+
+    if (node.textureID == 'null')
+        this.texturesStack.push(this.texturesStack[this.texturesStack.length-1]);
+    else
+        this.texturesStack.push(node.textureID);
+
+
+    for (var i = 0; i < node.children.length; i++){
+        this.dfsDisplay(this.nodes[node.children[i]]);
     }
 
+    for(var j = 0; j < node.leaves.length; j++){
+        var material = this.materials[this.materialsStack[this.materialsStack.length-1]];
+        var texture = this.textures[this.texturesStack[this.texturesStack.length-1]];
+
+        if(texture!=null){
+            if(texture!='clear'){
+                if(node.leaves[j].primitive instanceof MyTriangle || node.leaves[j].primitive instanceof MyRectangle){
+                    node.leaves[j].primitive.setAmplifFactor(texture[1], texture[2]);
+                }
+                material.setTexture(texture[0]);
+            }
+        }
+
+        material.apply();
+        node.leaves[j].display();
+    }
+
+    this.materialsStack.pop();
+    this.texturesStack.pop();
+    this.scene.popMatrix();
+
+    return 0;
 }

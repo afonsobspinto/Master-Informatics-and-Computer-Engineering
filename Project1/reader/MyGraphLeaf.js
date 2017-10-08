@@ -28,20 +28,3 @@ function MyGraphLeaf(graph, primitive, leafID) {
 MyGraphLeaf.prototype.display = function () {
     this.primitive.display();
 }
-
-/**
- *
- * @returns the leaf's material
- */
-
-MyGraphLeaf.prototype.getMaterial = function () {
-    return this.materialID;
-}
-
-/**
- *
- * @returns the leaf's texture
- */
-MyGraphLeaf.prototype.getTexture = function () {
-    return this.textureID;
-}
