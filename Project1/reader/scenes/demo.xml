@@ -86,7 +86,31 @@
         <file path="images/bank.jpg" />                
         <amplif_factor s="1" t="1" />                           
     </TEXTURE>
+	
+	<!-- Stone -->
+	<TEXTURE id="stone">
+        <file path="images/column.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
     
+	<!-- Wheel -->
+	<TEXTURE id="wheel">
+        <file path="images/wheel.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
+	
+	<!-- Old Paint -->
+	<TEXTURE id="oldpaint">
+        <file path="images/oldpaint.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
+	
+	<!-- Black -->
+	<TEXTURE id="black">
+        <file path="images/black.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
+
 </TEXTURES>
 
 
@@ -176,7 +200,7 @@
     <!-- The floor -->
     <NODE id="chao">      
         <MATERIAL id="null" />    
-        <TEXTURE id="rocks" />       			
+        <TEXTURE id="black" />       			
 
         <SCALE sx="6" sy="1" sz="5" />
         <TRANSLATION x="0" y="0" z="4" />
@@ -184,7 +208,7 @@
 
         <DESCENDANTS>
 					<LEAF  type="rectangle" args="0 4 5 0" />        
-				</DESCENDANTS>
+		</DESCENDANTS>
 
     </NODE>
     
@@ -296,7 +320,7 @@
 	<!-- The columns -->
      <NODE id="columns">       
         <MATERIAL id="lightPostMaterial" />    
-        <TEXTURE id="clear" />       			
+        <TEXTURE id="stone" />       			
 
         <DESCENDANTS>
             <NODEREF id="column1" />     	    
@@ -375,7 +399,7 @@
 	
 	 <NODE id="car">       
         <MATERIAL id="lightMaterial" />    
-        <TEXTURE id="clear" />       			
+        <TEXTURE id="oldpaint" />       			
 
         <DESCENDANTS>
             <NODEREF id="carBase" /> 
@@ -399,7 +423,7 @@
 	<!-- The wheels of the car -->
     <NODE id="wheels">       
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="wheel" />       			
         
         <DESCENDANTS>
             <NODEREF id="wheel1" /> 
@@ -530,7 +554,7 @@
 	<!-- Antenna of the car -->
 	<NODE id="antenna">       
         <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <TEXTURE id="black" />       			
 
         <TRANSLATION x="18" y="10" z="8" />
 		<ROTATION axis="x" angle="-90" />
