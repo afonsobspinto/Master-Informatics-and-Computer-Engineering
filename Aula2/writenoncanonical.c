@@ -19,10 +19,9 @@
 #define A 0x03
 #define C 0x03
 
-volatile int STOP=FALSE;
+enum State {start, flagRCV, aRCV, cRCV, bccOK, stop};
 
-enum state { start, flagRCV, aRCV, cRCV, bccOK, stop};
-
+int changeState(enum State* state, unsigned char readChar, unsigned char* ua);
 
 int main(int argc, char** argv)
 {
@@ -32,11 +31,7 @@ int main(int argc, char** argv)
     unsigned char SET[5];
     unsigned char UA[5];
 
-    char buf[255];
-    char readBuf[255];
-    int i, sum = 0, speed = 0;
-
-    enum state actualState;
+    enum State actualState;
     actualState = start;
 
 
@@ -51,11 +46,11 @@ int main(int argc, char** argv)
      Init the SET buffer
      **/
 
-    set[0] = FLAG;
-    set[1] = A;
-    set[2] = C_SET;
-    set[3] = set[1]^set[2];
-    set[4] = FLAG
+    SET[0] = FLAG;
+    SET[1] = A;
+    SET[2] = C;
+    SET[3] = SET[1]^SET[2];
+    SET[4] = FLAG;
 
   /*
     Open serial port device for reading and writing and not as controlling tty
@@ -91,26 +86,34 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
+    //Write to serial port
+    res = write(fd,SET,sizeof(SET));
+    printf("%d bytes written\n", res);
 
-      gets(buf);
-      int bufLength = strlen(buf) + 1;
-      res = write(fd,buf,bufLength);
-      printf("%d bytes written\n", res);
 
-      //read from serial port
-      int j = 0;
-      char chr;
-      while(STOP==FALSE) {
-        res = read(fd,&chr,1);
-        if (res == -1) {
-          perror("Error on reading");
-          exit(-1);
-        }
-        readBuf[j++] = chr;
-        if (chr=='\0') STOP=TRUE;
+
+    //read from serial port
+    unsigned char readChar;
+    while(actualState!=stop) {
+
+      res = read(fd,&readChar,1);
+
+
+      if (res == -1) {
+        perror("Error on reading");
+        exit(-1);
       }
-      printf("Read %s, Length:%d bytes\n", readBuf, (int)strlen(readBuf));
+      if(changeState(&actualState, readChar, &UA)!=0){
+        perror("Error on changing state.");
+        exit(-1);
+      }
 
+      printf("read byte: 0x%x\n", read_char);
+      printf("changed to state = %d\n",state);
+
+    }
+
+    printf("UA received successfully.\n");
 
     if ( tcsetattr(fd,TCSANOW,&oldtio) == -1) {
       perror("tcsetattr");
@@ -120,4 +123,72 @@ int main(int argc, char** argv)
 
     close(fd);
     return 0;
+}
+
+
+int changeState(enum State* state, unsigned char readChar, unsigned char* UA){
+
+  switch (*state) {
+
+    case start:{
+      if(readChar == FLAG){
+        UA[*state] = readChar;
+        (*state)++;
+      }
+      return 0;
+    }
+
+    case flagRCV:{
+      if(readChar == A){
+        UA[*state] = readChar;
+        (*state)++;
+      }
+      else if (readChar!=FLAG)
+        *state = start;
+
+      return 0;
+    }
+
+    case aRCV:{
+      if(readChar == C){
+        UA[*state] = readChar;
+        (*state)++;
+      }
+      else if (readChar==FLAG)
+        (*state)--;
+      else
+        *state = start;
+
+      return 0;
+    }
+
+    case cRCV:{
+      if(readChar == UA[1]^UA[2]){
+        UA[*state] = readChar;
+        (*state)++;
+      }
+      else if (readChar==FLAG)
+        *state = flagRCV;
+      else
+        *state = start;
+
+      return 0;
+    }
+
+    case bccOK:{
+      if(readChar == FLAG){
+        UA[*state] = readChar;
+        (*state)++;
+      }
+      else
+        *state = start;
+      return 0;
+    }
+
+    default:
+      return -1;
+
+  }
+
+  return -1;
 }
