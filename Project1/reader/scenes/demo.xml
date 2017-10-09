@@ -419,7 +419,7 @@
             <TEXTURE id="wood" />
 
             <DESCENDANTS>
-                <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
+                <LEAF id="cylinder1" type="cylinder" args="4 1 1.5 20 20 1 1" />
             </DESCENDANTS>
 
         </NODE>
@@ -458,7 +458,7 @@
             <TEXTURE id="darkWood" />
 			
             <TRANSLATION x="0" y="0" z="4" />
-            <SCALE sx="0.5" sy="0.5" sz="0.05" />
+            <SCALE sx="0.7" sy="0.7" sz="0.07" />
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
