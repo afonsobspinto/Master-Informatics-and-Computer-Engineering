@@ -193,8 +193,6 @@
         <DESCENDANTS>
 			<NODEREF id="legs" />
 			<NODEREF id="top" />
-			<NODEREF id="cue" />
-			<NODEREF id="balls" />
 		</DESCENDANTS>
 
     </NODE>
@@ -285,6 +283,9 @@
         
         <DESCENDANTS>
             <NODEREF id="base" /> 
+			<NODEREF id="cue" />
+			<NODEREF id="balls" />
+			<NODEREF id="holes" />
         </DESCENDANTS>
 
     </NODE>
@@ -473,6 +474,113 @@
 		
         <DESCENDANTS>
 			<LEAF id="sphere1" type="sphere" args="2 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The holes of the table -->
+    <NODE id="holes">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="black" />       			
+
+        <DESCENDANTS>
+			<NODEREF id="hole1" />
+			<NODEREF id="hole2" />   
+			<NODEREF id="hole3" />
+			<NODEREF id="hole4" />
+			<NODEREF id="hole5" />
+			<NODEREF id="hole6" />
+		</DESCENDANTS>
+
+    </NODE>
+
+	<!-- One hole -->
+    <NODE id="hole1">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another hole -->
+    <NODE id="hole2">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="15" y="0" z="0" />
+		
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another hole -->
+    <NODE id="hole3">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="0" y="0" z="10" />
+		
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another hole -->
+    <NODE id="hole4">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="15" y="0" z="10" />
+		
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another hole -->
+    <NODE id="hole5">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="7.5" y="0" z="0" />
+		
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another hole -->
+    <NODE id="hole6">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="7.5" y="0" z="10" />
+		
+        <DESCENDANTS>
+                 <NODEREF id="hole" />   
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Generic hole -->
+    <NODE id="hole">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+        
+		<TRANSLATION x="8.5" y="4.5" z="5" />
+		<SCALE sx="0.5" sy="0.01" sz="0.5" />
+        <ROTATION axis="x" angle="-90" />
+		
+        <DESCENDANTS>
+                 <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />  
         </DESCENDANTS>
 
     </NODE>
