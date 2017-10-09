@@ -566,7 +566,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
-            <TRANSLATION x="8.5" y="4.5" z="5" />
+            <TRANSLATION x="8.5" y="4.2" z="5" />
             <SCALE sx="0.5" sy="0.08" sz="0.5" />
             <ROTATION axis="x" angle="-90" />
 
@@ -742,7 +742,7 @@
             <TEXTURE id="null" />
 
             <ROTATION axis="x" angle="-90" />
-            <TRANSLATION x="7.25" y="-7.5" z="8" />
+            <TRANSLATION x="7.25" y="-7.5" z="7.5" />
             <SCALE sx="0.05" sy="1.25" sz="1" />
 
             <DESCENDANTS>
@@ -757,7 +757,7 @@
             <TEXTURE id="null" />
 
             <ROTATION axis="x" angle="-90" />
-            <TRANSLATION x="2.5" y="-7.5" z="8" />
+            <TRANSLATION x="2.5" y="-7.5" z="7.5" />
             <SCALE sx="0.05" sy="1.25" sz="1" />
 
             <DESCENDANTS>
@@ -772,7 +772,7 @@
             <TEXTURE id="null" />
 
             <ROTATION axis="x" angle="-90" />
-            <TRANSLATION x="2.5" y="-2.8" z="8" />
+            <TRANSLATION x="2.5" y="-2.8" z="7.5" />
             <SCALE sx="1" sy="0.07" sz="1" />
 
             <DESCENDANTS>
@@ -787,7 +787,7 @@
             <TEXTURE id="null" />
 
             <ROTATION axis="x" angle="-90" />
-            <TRANSLATION x="2.5" y="-7.5" z="8" />
+            <TRANSLATION x="2.5" y="-7.5" z="7.5" />
             <SCALE sx="1" sy="0.07" sz="1" />
 
             <DESCENDANTS>
