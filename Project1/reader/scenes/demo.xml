@@ -383,6 +383,7 @@
 
         </NODE>
 
+		
         <!-- The cue -->
         <NODE id="cue">
             <MATERIAL id="null" />
@@ -566,7 +567,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
-            <TRANSLATION x="8.5" y="4.2" z="5" />
+            <TRANSLATION x="8.5" y="4.45" z="5" />
             <SCALE sx="0.5" sy="0.08" sz="0.5" />
             <ROTATION axis="x" angle="-90" />
 
