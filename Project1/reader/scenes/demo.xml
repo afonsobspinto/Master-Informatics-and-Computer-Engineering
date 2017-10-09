@@ -286,6 +286,7 @@
 			<NODEREF id="cue" />
 			<NODEREF id="balls" />
 			<NODEREF id="holes" />
+			<NODEREF id="partitions" />
         </DESCENDANTS>
 
     </NODE>
@@ -499,6 +500,8 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
+		<TRANSLATION x="-0.25" y="0" z="0" />
+		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
         </DESCENDANTS>
@@ -510,7 +513,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="15" y="0" z="0" />
+		<TRANSLATION x="15.25" y="0" z="0" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -523,7 +526,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="0" y="0" z="10" />
+		<TRANSLATION x="-0.25" y="0" z="10" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -536,7 +539,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="15" y="0" z="10" />
+		<TRANSLATION x="15.25" y="0" z="10" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -581,6 +584,148 @@
 		
         <DESCENDANTS>
                  <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />  
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The partitions of the table -->
+    <NODE id="partitions">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />
+        
+        <DESCENDANTS>
+            <NODEREF id="utmost" /> 
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The utmost of the table -->
+    <NODE id="utmost">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />
+        
+		<SCALE sx="3.3" sy="0.1" sz="2.2" />
+		<TRANSLATION x="-0.15" y="40" z="-0.45" />
+		
+        <DESCENDANTS>
+            <NODEREF id="utmostFront" /> 
+			<NODEREF id="utmostBack" /> 
+			<NODEREF id="utmostRight" /> 
+			<NODEREF id="utmostLeft" /> 
+			<NODEREF id="utmostFrontBehind" /> 
+			<NODEREF id="utmostBackBehind" /> 
+			<NODEREF id="utmostRightBehind" /> 
+			<NODEREF id="utmostLeftBehind" /> 
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The utmost front face -->
+    <NODE id="utmostFront">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="2.5" y="4" z="7.5" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost back face -->
+     <NODE id="utmostBack">      
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="2.5" y="4" z="2.5" />
+		<ROTATION axis="y" angle="-90" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost right face -->
+    <NODE id="utmostRight">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+
+        <TRANSLATION x="7.5" y="4" z="7.5" />
+		<ROTATION axis="y" angle="90" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost left face -->
+    <NODE id="utmostLeft">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <TRANSLATION x="7.5" y="4" z="2.5" />
+        <ROTATION axis="y" angle="180" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The utmost front face (behind) -->
+    <NODE id="utmostFrontBehind">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="2.5" y="4" z="2.5" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost back face (behind) -->
+     <NODE id="utmostBackBehind">      
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="7.5" y="4" z="2.5" />
+		<ROTATION axis="y" angle="-90" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost right face (behind) -->
+    <NODE id="utmostRightBehind">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="null" />       			
+
+        <TRANSLATION x="2.5" y="4" z="7.5" />
+		<ROTATION axis="y" angle="90" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- The utmost left face (behind) -->
+    <NODE id="utmostLeftBehind">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <TRANSLATION x="7.5" y="4" z="7.5" />
+        <ROTATION axis="y" angle="180" />
+
+        <DESCENDANTS>
+					<LEAF  type="rectangle" args="0 4 5 0" />        
         </DESCENDANTS>
 
     </NODE>
