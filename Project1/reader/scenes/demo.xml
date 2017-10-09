@@ -373,7 +373,7 @@
 	<!-- The balls -->
     <NODE id="balls">      
         <MATERIAL id="null" />    
-        <TEXTURE id="stone" />       			
+        <TEXTURE id="null" />
 
         <DESCENDANTS>
 			<NODEREF id="ball1" />
@@ -387,7 +387,7 @@
 	<!-- One ball -->
     <NODE id="ball1">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="10" y="4.9" z="10" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -401,7 +401,7 @@
 	<!-- Another ball -->
     <NODE id="ball2">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="15" y="4.9" z="13" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -415,7 +415,7 @@
 	<!-- Another ball -->
     <NODE id="ball3">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="18" y="4.9" z="8" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -429,7 +429,7 @@
 	<!-- Another ball -->
     <NODE id="ball4">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="23" y="4.9" z="6" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
