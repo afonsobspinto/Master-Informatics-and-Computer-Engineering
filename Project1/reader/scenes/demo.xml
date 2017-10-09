@@ -549,8 +549,8 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="7.5" y="0" z="0.25" />
-		
+		<TRANSLATION x="7.5" y="0" z="0.1" />
+	
         <DESCENDANTS>
                  <NODEREF id="hole" />   
         </DESCENDANTS>
@@ -562,7 +562,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="7.5" y="0" z="9.75" />
+		<TRANSLATION x="7.5" y="0" z="9.8" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
