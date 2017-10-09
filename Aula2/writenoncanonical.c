@@ -85,8 +85,8 @@ int main(int argc, char** argv)
     /* set input mode (non-canonical, no echo,...) */
     newtio.c_lflag = 0;
 
-    newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
-    newtio.c_cc[VMIN]     = 1;   /* blocking read until 1 chars received */
+    newtio.c_cc[VTIME]    = 10;   /* inter-character timer unused */
+    newtio.c_cc[VMIN]     = 0;   /* blocking read until 1 chars received */
 
 
     tcflush(fd, TCIOFLUSH);
@@ -98,8 +98,7 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
-	while (conta < 3 || over==0) {
-
+	while (conta < 4 && flagAlarme == 1) {
     //Write to serial port
     res = write(fd,SET,sizeof(SET));
     printf("%d bytes written\n", res);
@@ -107,18 +106,17 @@ int main(int argc, char** argv)
       perror("Error on Writing");
       exit(1);
     }
-	if(flagAlarme){
+
       alarm(3);                 // activa alarme de 3s
       flagAlarme=0;
-   }
+	
    // sleep(1);
 
     //read from serial port
     unsigned char readChar;
-    while(actualState!=stop) {
-
+    while(actualState!=stop && flagAlarme==0) {
+	
       res = read(fd,&readChar,1);
-
 
       if (res == -1) {
         perror("Error on reading");
@@ -131,14 +129,10 @@ int main(int argc, char** argv)
 
       printf("read byte: 0x%x\n", readChar);
       printf("changed to state = %d\n",actualState);
-
     }
 
     printf("UA received successfully.\n");
-	printf("Conta %s\n", conta);
-	over=1;
-	}
-
+}
     if ( tcsetattr(fd,TCSANOW,&oldtio) == -1) {
       perror("tcsetattr");
       exit(-1);
@@ -203,6 +197,7 @@ int changeState(enum State* state, unsigned char readChar, unsigned char* UA){
       if(readChar == FLAG){
         UA[*state] = readChar;
         (*state)++;
+		flagAlarme = 0;
       }
       else
         *state = start;
