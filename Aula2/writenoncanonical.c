@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 #include <unistd.h> // for close
 
 #define BAUDRATE B38400
@@ -19,6 +20,15 @@
 #define A 0x03
 #define C 0x03
 
+int flagAlarme=1, conta=1;
+
+void atende()                   // atende alarme
+{
+	printf("alarme # %d\n", conta);
+	flagAlarme=1;
+	conta++;
+}
+
 enum State {start, flagRCV, aRCV, cRCV, bccOK, stop};
 
 int changeState(enum State* state, unsigned char readChar, unsigned char* ua);
@@ -26,7 +36,9 @@ int changeState(enum State* state, unsigned char readChar, unsigned char* ua);
 int main(int argc, char** argv)
 {
     int fd,res;
+	int over = 0;
     struct termios oldtio,newtio;
+	(void) signal(SIGALRM, atende);  // instala  rotina que atende interrupcao
 
     unsigned char SET[5];
     unsigned char UA[5];
@@ -86,6 +98,8 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
+	while (conta < 3 || over==0) {
+
     //Write to serial port
     res = write(fd,SET,sizeof(SET));
     printf("%d bytes written\n", res);
@@ -93,8 +107,11 @@ int main(int argc, char** argv)
       perror("Error on Writing");
       exit(1);
     }
-    sleep(1);
-
+	if(flagAlarme){
+      alarm(3);                 // activa alarme de 3s
+      flagAlarme=0;
+   }
+   // sleep(1);
 
     //read from serial port
     unsigned char readChar;
@@ -112,12 +129,15 @@ int main(int argc, char** argv)
         exit(-1);
       }
 
-      printf("read byte: 0x%x\n", read_char);
-      printf("changed to state = %d\n",state);
+      printf("read byte: 0x%x\n", readChar);
+      printf("changed to state = %d\n",actualState);
 
     }
 
     printf("UA received successfully.\n");
+	printf("Conta %s\n", conta);
+	over=1;
+	}
 
     if ( tcsetattr(fd,TCSANOW,&oldtio) == -1) {
       perror("tcsetattr");
