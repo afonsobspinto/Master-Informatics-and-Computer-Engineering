@@ -194,6 +194,7 @@
 			<NODEREF id="legs" />
 			<NODEREF id="top" />
 			<NODEREF id="cue" />
+			<NODEREF id="balls" />
 		</DESCENDANTS>
 
     </NODE>
@@ -406,6 +407,75 @@
 
     </NODE>
 	
+	<!-- The balls -->
+    <NODE id="balls">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="stone" />       			
+
+        <DESCENDANTS>
+			<NODEREF id="ball1" />
+			<NODEREF id="ball2" />
+			<NODEREF id="ball3" />
+			<NODEREF id="ball4" />
+		</DESCENDANTS>
+
+    </NODE>
+	
+	<!-- One ball -->
+    <NODE id="ball1">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />       			
+        
+		<TRANSLATION x="10" y="4.9" z="10" />
+		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		
+        <DESCENDANTS>
+			<LEAF id="sphere1" type="sphere" args="2 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another ball -->
+    <NODE id="ball2">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />       			
+        
+		<TRANSLATION x="15" y="4.9" z="13" />
+		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		
+        <DESCENDANTS>
+			<LEAF id="sphere1" type="sphere" args="2 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another ball -->
+    <NODE id="ball3">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />       			
+        
+		<TRANSLATION x="18" y="4.9" z="8" />
+		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		
+        <DESCENDANTS>
+			<LEAF id="sphere1" type="sphere" args="2 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Another ball -->
+    <NODE id="ball4">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />       			
+        
+		<TRANSLATION x="23" y="4.9" z="6" />
+		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		
+        <DESCENDANTS>
+			<LEAF id="sphere1" type="sphere" args="2 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
 	
 </NODES>
 
