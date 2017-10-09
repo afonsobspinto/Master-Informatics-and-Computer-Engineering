@@ -136,7 +136,7 @@
     <!-- The floor -->
     <NODE id="floor">      
         <MATERIAL id="null" />    
-        <TEXTURE id="floor" />
+        <TEXTURE id="wood" />
 
         <SCALE sx="6" sy="1" sz="5" />
         <TRANSLATION x="0" y="0" z="4" />
@@ -330,8 +330,8 @@
 
     <!-- Another base face -->
     <NODE id="faceBase5">
-        <MATERIAL id="tableGreen" />
-        <TEXTURE id="tableFelt" />
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
 
         <ROTATION axis="x" angle="-90" />
         <TRANSLATION x="2.5" y="-7.5" z="8" />
@@ -445,7 +445,7 @@
 	<!-- The holes of the table -->
     <NODE id="holes">      
         <MATERIAL id="null" />    
-        <TEXTURE id="black" />       			
+        <TEXTURE id="null" />       			
 
         <DESCENDANTS>
 			<NODEREF id="hole1" />
@@ -566,7 +566,7 @@
 	<!-- The utmost of the table -->
     <NODE id="utmost">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />
+        <TEXTURE id="wood" />
         
 		<SCALE sx="3.3" sy="0.1" sz="2.2" />
 		<TRANSLATION x="-0.15" y="40" z="-0.45" />
@@ -697,7 +697,7 @@
 	<!-- The borders of the table -->
     <NODE id="borders">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />
+        <TEXTURE id="wood" />
         
 		<SCALE sx="3.3" sy="0.1" sz="2.2" />
 		<TRANSLATION x="-0.15" y="40" z="-0.45" />
