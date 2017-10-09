@@ -500,7 +500,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="-0.25" y="0" z="0" />
+		<TRANSLATION x="0" y="0" z="0.25" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -513,7 +513,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="15.25" y="0" z="0" />
+		<TRANSLATION x="15" y="0" z="0.25" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -526,7 +526,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="-0.25" y="0" z="10" />
+		<TRANSLATION x="0" y="0" z="9.75" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -539,7 +539,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="15.25" y="0" z="10" />
+		<TRANSLATION x="15" y="0" z="9.75" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -552,7 +552,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="7.5" y="0" z="0" />
+		<TRANSLATION x="7.5" y="0" z="0.25" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -565,7 +565,7 @@
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
         
-		<TRANSLATION x="7.5" y="0" z="10" />
+		<TRANSLATION x="7.5" y="0" z="9.75" />
 		
         <DESCENDANTS>
                  <NODEREF id="hole" />   
@@ -579,7 +579,7 @@
         <TEXTURE id="null" />       			
         
 		<TRANSLATION x="8.5" y="4.5" z="5" />
-		<SCALE sx="0.5" sy="0.01" sz="0.5" />
+		<SCALE sx="0.5" sy="0.08" sz="0.5" />
         <ROTATION axis="x" angle="-90" />
 		
         <DESCENDANTS>
@@ -594,7 +594,8 @@
         <TEXTURE id="null" />
         
         <DESCENDANTS>
-            <NODEREF id="utmost" /> 
+            <NODEREF id="utmost" />
+			<NODEREF id="borders" />
         </DESCENDANTS>
 
     </NODE>
@@ -727,6 +728,83 @@
         <DESCENDANTS>
 					<LEAF  type="rectangle" args="0 4 5 0" />        
         </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- The borders of the table -->
+    <NODE id="borders">       
+        <MATERIAL id="null" />     
+        <TEXTURE id="white" />
+        
+		<SCALE sx="3.3" sy="0.1" sz="2.2" />
+		<TRANSLATION x="-0.15" y="40" z="-0.45" />
+		
+        <DESCENDANTS>
+            <NODEREF id="borderFront" />
+			<NODEREF id="borderBack" />
+			<NODEREF id="borderRight" />
+			<NODEREF id="borderLeft" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Front border -->
+    <NODE id="borderFront">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <ROTATION axis="x" angle="-90" />
+        <TRANSLATION x="7.25" y="-7.5" z="8" />
+        <SCALE sx="0.05" sy="1.25" sz="1" />
+
+        <DESCENDANTS>
+ 					<LEAF  type="rectangle" args="0 4 5 0" />        
+       </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Back border -->
+    <NODE id="borderBack">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <ROTATION axis="x" angle="-90" />
+        <TRANSLATION x="2.5" y="-7.5" z="8" />
+        <SCALE sx="0.05" sy="1.25" sz="1" />
+
+        <DESCENDANTS>
+ 					<LEAF  type="rectangle" args="0 4 5 0" />        
+       </DESCENDANTS>
+
+    </NODE>
+	
+	<!-- Right border -->
+    <NODE id="borderRight">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <ROTATION axis="x" angle="-90" />
+        <TRANSLATION x="2.5" y="-2.8" z="8" />
+        <SCALE sx="1" sy="0.07" sz="1" />
+
+        <DESCENDANTS>
+ 					<LEAF  type="rectangle" args="0 4 5 0" />        
+       </DESCENDANTS>
+
+    </NODE>
+
+	<!-- Left border -->
+    <NODE id="borderLeft">       
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />       			
+
+        <ROTATION axis="x" angle="-90" />
+        <TRANSLATION x="2.5" y="-7.5" z="8" />
+        <SCALE sx="1" sy="0.07" sz="1" />
+
+        <DESCENDANTS>
+ 					<LEAF  type="rectangle" args="0 4 5 0" />        
+       </DESCENDANTS>
 
     </NODE>
 	
