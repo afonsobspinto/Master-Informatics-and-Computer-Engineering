@@ -410,7 +410,7 @@
     <NODE id="balls">      
         <MATERIAL id="null" />
         <TEXTURE id="clear" />
-
+		
         <DESCENDANTS>
 			<NODEREF id="ball1" />
 			<NODEREF id="ball2" />
@@ -426,7 +426,7 @@
         <TEXTURE id="null" />
         
 		<TRANSLATION x="10" y="4.9" z="10" />
-		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		<SCALE sx="0.15" sy="0.15" sz="0.15" />
 		
         <DESCENDANTS>
 			<LEAF id="sphere1" type="sphere" args="2 20 20" />
@@ -440,7 +440,7 @@
         <TEXTURE id="null" />
         
 		<TRANSLATION x="15" y="4.9" z="13" />
-		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		<SCALE sx="0.15" sy="0.15" sz="0.15" />
 		
         <DESCENDANTS>
 			<LEAF id="sphere1" type="sphere" args="2 20 20" />
@@ -454,7 +454,7 @@
         <TEXTURE id="null" />
         
 		<TRANSLATION x="18" y="4.9" z="8" />
-		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		<SCALE sx="0.15" sy="0.15" sz="0.15" />
 		
         <DESCENDANTS>
 			<LEAF id="sphere1" type="sphere" args="2 20 20" />
@@ -468,7 +468,7 @@
         <TEXTURE id="null" />
         
 		<TRANSLATION x="23" y="4.9" z="6" />
-		<SCALE sx="0.2" sy="0.2" sz="0.2" />
+		<SCALE sx="0.15" sy="0.15" sz="0.15" />
 		
         <DESCENDANTS>
 			<LEAF id="sphere1" type="sphere" args="2 20 20" />
@@ -591,14 +591,14 @@
         <TEXTURE id="null" />
         
         <DESCENDANTS>
-            <NODEREF id="utmost" />
-			<NODEREF id="borders" />
+            <NODEREF id="verticalBorders" />
+			<NODEREF id="horizontalBorders" />
         </DESCENDANTS>
 
     </NODE>
 	
-	<!-- The utmost of the table -->
-    <NODE id="utmost">       
+	<!-- The vertical borders of the table -->
+    <NODE id="verticalBorders">       
         <MATERIAL id="null" />     
         <TEXTURE id="wood" />
         
@@ -606,20 +606,20 @@
 		<TRANSLATION x="-0.15" y="40" z="-0.45" />
 		
         <DESCENDANTS>
-            <NODEREF id="utmostFront" /> 
-			<NODEREF id="utmostBack" /> 
-			<NODEREF id="utmostRight" /> 
-			<NODEREF id="utmostLeft" /> 
-			<NODEREF id="utmostFrontBehind" /> 
-			<NODEREF id="utmostBackBehind" /> 
-			<NODEREF id="utmostRightBehind" /> 
-			<NODEREF id="utmostLeftBehind" /> 
+            <NODEREF id="verticalBorderFront" /> 
+			<NODEREF id="verticalBorderBack" /> 
+			<NODEREF id="verticalBorderRight" /> 
+			<NODEREF id="verticalBorderLeft" /> 
+			<NODEREF id="verticalBorderFrontBehind" /> 
+			<NODEREF id="verticalBorderBackBehind" /> 
+			<NODEREF id="verticalBorderRightBehind" /> 
+			<NODEREF id="verticalBorderLeftBehind" /> 
         </DESCENDANTS>
 
     </NODE>
 	
-	<!-- The utmost front face -->
-    <NODE id="utmostFront">       
+	<!-- The vertical borders front face -->
+    <NODE id="verticalBorderFront">       
         <MATERIAL id="null" />     
         <TEXTURE id="null" />
 
@@ -631,8 +631,8 @@
 
     </NODE>
 
-    <!-- The utmost back face -->
-     <NODE id="utmostBack">      
+    <!-- The vertical borders back face -->
+     <NODE id="verticalBorderBack">      
         <MATERIAL id="null" />     
         <TEXTURE id="null" />
 
@@ -645,8 +645,8 @@
 
     </NODE>
 
-    <!-- The utmost right face -->
-    <NODE id="utmostRight">       
+    <!-- The vertical borders right face -->
+    <NODE id="verticalBorderRight">       
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
 
@@ -659,8 +659,8 @@
 
     </NODE>
 
-    <!-- The utmost left face -->
-    <NODE id="utmostLeft">       
+    <!-- The vertical borders left face -->
+    <NODE id="verticalBorderLeft">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
@@ -673,12 +673,12 @@
 
     </NODE>
 	
-	<!-- The utmost front face (behind) -->
-    <NODE id="utmostFrontBehind">       
+	<!-- The vertical borders front face (behind) -->
+    <NODE id="verticalBorderFrontBehind">       
         <MATERIAL id="null" />     
         <TEXTURE id="null" />
 
-        <TRANSLATION x="2.5" y="4" z="2.5" />
+        <TRANSLATION x="2.5" y="4" z="2.8" />
 
         <DESCENDANTS>
 					<LEAF  type="rectangle" args="0 4 5 0" />        
@@ -686,12 +686,12 @@
 
     </NODE>
 
-    <!-- The utmost back face (behind) -->
-     <NODE id="utmostBackBehind">      
+    <!-- The vertical borders back face (behind) -->
+     <NODE id="verticalBorderBackBehind">      
         <MATERIAL id="null" />     
         <TEXTURE id="null" />
 
-        <TRANSLATION x="7.5" y="4" z="2.5" />
+        <TRANSLATION x="7.3" y="4" z="2.5" />
 		<ROTATION axis="y" angle="-90" />
 
         <DESCENDANTS>
@@ -700,12 +700,12 @@
 
     </NODE>
 
-    <!-- The utmost right face (behind) -->
-    <NODE id="utmostRightBehind">       
+    <!-- The vertical borders right face (behind) -->
+    <NODE id="verticalBorderRightBehind">       
         <MATERIAL id="null" />     
         <TEXTURE id="null" />       			
 
-        <TRANSLATION x="2.5" y="4" z="7.5" />
+        <TRANSLATION x="2.7" y="4" z="7.5" />
 		<ROTATION axis="y" angle="90" />
 
         <DESCENDANTS>
@@ -714,12 +714,12 @@
 
     </NODE>
 
-    <!-- The utmost left face (behind) -->
-    <NODE id="utmostLeftBehind">       
+    <!-- The vertical borders left face (behind) -->
+    <NODE id="verticalBorderLeftBehind">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
-        <TRANSLATION x="7.5" y="4" z="7.5" />
+        <TRANSLATION x="7.5" y="4" z="7.25" />
         <ROTATION axis="y" angle="180" />
 
         <DESCENDANTS>
@@ -728,8 +728,8 @@
 
     </NODE>
 	
-	<!-- The borders of the table -->
-    <NODE id="borders">       
+	<!-- The horizontal borders of the table -->
+    <NODE id="horizontalBorders">       
         <MATERIAL id="null" />     
         <TEXTURE id="wood" />
         
@@ -737,16 +737,16 @@
 		<TRANSLATION x="-0.15" y="40" z="-0.45" />
 		
         <DESCENDANTS>
-            <NODEREF id="borderFront" />
-			<NODEREF id="borderBack" />
-			<NODEREF id="borderRight" />
-			<NODEREF id="borderLeft" />
+            <NODEREF id="horizontalBorderFront" />
+			<NODEREF id="horizontalBorderBack" />
+			<NODEREF id="horizontalBorderRight" />
+			<NODEREF id="horizontalBorderLeft" />
         </DESCENDANTS>
 
     </NODE>
 	
-	<!-- Front border -->
-    <NODE id="borderFront">       
+	<!-- Front horizontal border -->
+    <NODE id="horizontalBorderFront">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
@@ -760,8 +760,8 @@
 
     </NODE>
 	
-	<!-- Back border -->
-    <NODE id="borderBack">       
+	<!-- Back horizontal border -->
+    <NODE id="horizontalBorderBack">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
@@ -775,8 +775,8 @@
 
     </NODE>
 	
-	<!-- Right border -->
-    <NODE id="borderRight">       
+	<!-- Right horizontal border -->
+    <NODE id="horizontalBorderRight">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
@@ -790,8 +790,8 @@
 
     </NODE>
 
-	<!-- Left border -->
-    <NODE id="borderLeft">       
+	<!-- Left horizontal border -->
+    <NODE id="horizontalBorderLeft">       
         <MATERIAL id="null" />    
         <TEXTURE id="null" />       			
 
