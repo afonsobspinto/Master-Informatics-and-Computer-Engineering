@@ -65,87 +65,50 @@
 
 </LIGHTS>
 
-<!-- Textures -->
-<TEXTURES>
-	
-	<!-- Stone -->
-	<TEXTURE id="stone">
-        <file path="images/column.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-    
-	<!-- Wheel -->
-	<TEXTURE id="wheel">
-        <file path="images/wheel.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-	
-	<!-- Black-->
-	<TEXTURE id="black">
-        <file path="images/black.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+    <!-- Textures -->
+    <TEXTURES>
 
-    <!-- Blue-->
-    <TEXTURE id="blue">
-        <file path="images/blue.jpg" />
-        <amplif_factor s="1" t="1" />
-    </TEXTURE>
+        <!-- Wood -->
+        <TEXTURE id="floor">
+            <file path="images/floor.png" />
+            <amplif_factor s="0.25" t="1.5" />
+        </TEXTURE>
 
-    <!-- White-->
-    <TEXTURE id="white">
-        <file path="images/white.jpg" />
-        <amplif_factor s="1" t="1" />
-    </TEXTURE>
+        <!-- Wood -->
+        <TEXTURE id="wood">
+            <file path="images/wood.jpg" />
+            <amplif_factor s="0.25" t="1.5" />
+        </TEXTURE>
 
-    <!-- garage -->
-	<TEXTURE id="garage">
-        <file path="images/garage.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <!-- Felt -->
+        <TEXTURE id="tableFelt">
+            <file path="images/felt.jpg" />
+            <amplif_factor s="0.25" t="0.5" />
+        </TEXTURE>
 
-</TEXTURES>
+    </TEXTURES>
 
 
-<MATERIALS>
+    <MATERIALS>
 
-    <!-- bright metal material -->
-    <MATERIAL id="bright-metal">
-        <shininess value="20" />
-        <specular r="1" g="1" b="1" a="1" />
-        <diffuse r="0.2" g="0.2" b="0.2" a="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1" />
-        <emission r="0" g="0" b="0" a="1" />
-    </MATERIAL>
+        <MATERIAL id="tableGreen">
+            <shininess value="5" />
+            <specular r="0.1" g="0.1" b="0.1" a="0.5" />
+            <diffuse r="0.06" g="0.44" b="0.3" a="1.0" />
+            <ambient r="0.06" g="0.44" b="0.3" a="0.8" />
+            <emission r="0.0" g="0.0" b="0.0" a="0.0" />
+        </MATERIAL>
 
-    <!-- Lamp post material -->
-    <MATERIAL id="lightPostMaterial">                                  
-        <shininess value="100" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.447" g="0.416" b="0.416" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- A default material -->
+        <MATERIAL id="defaultMaterial">
+            <shininess value="1" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />
+            <diffuse r="0.4" g="0.4" b="0.4" a="1" />
+            <ambient r="0.4" g="0.4" b="0.4" a="1" />
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+        </MATERIAL>
 
-    <!-- Light bulb material -->
-    <MATERIAL id="lightMaterial">                                  
-        <shininess value="100" />
-        <specular r="0.5" g="0.5" b="0.5" a="1" />       
-        <diffuse r="0.5" g="0.5" b="0.5" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />        
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
-
-    <!-- A default material -->
-    <MATERIAL id="defaultMaterial">                                  
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.4" g="0.4" b="0.4" a="1" />       
-        <ambient r="0.4" g="0.4" b="0.4" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
-
-</MATERIALS>
+    </MATERIALS>
 
 
 <!-- The leaves -->
@@ -173,7 +136,7 @@
     <!-- The floor -->
     <NODE id="floor">      
         <MATERIAL id="null" />    
-        <TEXTURE id="garage" />       			
+        <TEXTURE id="floor" />
 
         <SCALE sx="6" sy="1" sz="5" />
         <TRANSLATION x="0" y="0" z="4" />
@@ -188,7 +151,7 @@
 	<!-- The table -->
     <NODE id="table">      
         <MATERIAL id="null" />    
-        <TEXTURE id="null" />       			
+        <TEXTURE id="null" />
 
         <DESCENDANTS>
 			<NODEREF id="legs" />
@@ -200,7 +163,7 @@
 	<!-- The legs of the table -->
     <NODE id="legs">      
         <MATERIAL id="null" />    
-        <TEXTURE id="stone" />       			
+        <TEXTURE id="wood" />
 
         <DESCENDANTS>
 			<NODEREF id="leg1" />
@@ -278,8 +241,8 @@
 
 	<!-- The top of the table -->
     <NODE id="top">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="blue" />
+        <MATERIAL id="null" />
+        <TEXTURE id="wood" />
         
         <DESCENDANTS>
             <NODEREF id="base" /> 
@@ -293,8 +256,8 @@
 	
 	<!-- The base of the top of the table -->
     <NODE id="base">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="blue" />
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
         
 		<SCALE sx="3.3" sy="0.25" sz="2.2" />
 		<TRANSLATION x="-0.15" y="10" z="-0.45" />
@@ -312,7 +275,7 @@
 	
 	<!-- A base face -->
     <NODE id="faceBase1">       
-        <MATERIAL id="null" />     
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
 
         <TRANSLATION x="2.5" y="4" z="7.5" />
@@ -325,7 +288,7 @@
 
     <!-- Another base face -->
      <NODE id="faceBase2">      
-        <MATERIAL id="null" />     
+        <MATERIAL id="null" />
         <TEXTURE id="null" />
 
         <TRANSLATION x="2.5" y="4" z="2.5" />
@@ -339,8 +302,8 @@
 
     <!-- Another base face -->
     <NODE id="faceBase3">       
-        <MATERIAL id="null" />     
-        <TEXTURE id="null" />       			
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
 
         <TRANSLATION x="7.5" y="4" z="7.5" />
 		<ROTATION axis="y" angle="90" />
@@ -353,8 +316,8 @@
 
     <!-- Another base face -->
     <NODE id="faceBase4">       
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />       			
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
 
         <TRANSLATION x="7.5" y="4" z="2.5" />
         <ROTATION axis="y" angle="180" />
@@ -366,9 +329,9 @@
     </NODE>
 
     <!-- Another base face -->
-    <NODE id="faceBase5">       
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />       			
+    <NODE id="faceBase5">
+        <MATERIAL id="tableGreen" />
+        <TEXTURE id="tableFelt" />
 
         <ROTATION axis="x" angle="-90" />
         <TRANSLATION x="2.5" y="-7.5" z="8" />
@@ -398,7 +361,7 @@
 	<!-- The cue -->
     <NODE id="cue">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="wood" />
 
         <SCALE sx="0.2" sy="0.2" sz="2" />
 		<TRANSLATION x="100" y="24" z="4" />
@@ -412,7 +375,7 @@
 	<!-- The balls -->
     <NODE id="balls">      
         <MATERIAL id="null" />    
-        <TEXTURE id="stone" />       			
+        <TEXTURE id="null" />
 
         <DESCENDANTS>
 			<NODEREF id="ball1" />
@@ -426,7 +389,7 @@
 	<!-- One ball -->
     <NODE id="ball1">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="10" y="4.9" z="10" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -440,7 +403,7 @@
 	<!-- Another ball -->
     <NODE id="ball2">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="15" y="4.9" z="13" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -454,7 +417,7 @@
 	<!-- Another ball -->
     <NODE id="ball3">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="18" y="4.9" z="8" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
@@ -468,7 +431,7 @@
 	<!-- Another ball -->
     <NODE id="ball4">       
         <MATERIAL id="null" />     
-        <TEXTURE id="white" />       			
+        <TEXTURE id="null" />
         
 		<TRANSLATION x="23" y="4.9" z="6" />
 		<SCALE sx="0.2" sy="0.2" sz="0.2" />
