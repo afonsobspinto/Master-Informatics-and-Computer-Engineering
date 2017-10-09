@@ -86,8 +86,8 @@ int main(int argc, char** argv)
         exit(-1);
       }
 
-      printf("read byte: 0x%x\n", read_char);
-      printf("changed to state = %d\n",state);
+      printf("read byte: 0x%x\n", readChar);
+      printf("changed to state = %d\n",actualState);
 
     }
     printf("UA received successfully.\n");
