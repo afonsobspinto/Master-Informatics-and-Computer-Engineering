@@ -53,37 +53,34 @@
         <specular r="0.6" g="0.6" b="0.6" a="1.0" />      
     </LIGHT>
 
-<!--
-    <LIGHT id="lightUnderCar">
-        <enable value ="1" />
-        <position x="15" y="0" z="10" w="1" />
-        <ambient r="0.3" g="0.3" b="1" a="1.0" />
-        <diffuse r="0.3" g="0.3" b="0.5" a="1.0" />
-        <specular r="0.3" g="0.3" b="0.5" a="1.0" />
-    </LIGHT>
--->
 
 </LIGHTS>
 
     <!-- Textures -->
     <TEXTURES>
 
-        <!-- Wood -->
+        <!-- Floor -->
         <TEXTURE id="floor">
             <file path="images/floor.png" />
-            <amplif_factor s="0.25" t="1.5" />
+            <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
         <!-- Wood -->
         <TEXTURE id="wood">
             <file path="images/wood.jpg" />
-            <amplif_factor s="0.25" t="1.5" />
+            <amplif_factor s="5.0" t="5.0" />
+        </TEXTURE>
+
+        <!-- blackWood -->
+        <TEXTURE id="blackWood">
+            <file path="images/blackWood.png" />
+            <amplif_factor s="5.0" t="5.0" />
         </TEXTURE>
 
         <!-- Felt -->
         <TEXTURE id="tableFelt">
             <file path="images/felt.jpg" />
-            <amplif_factor s="0.25" t="0.5" />
+            <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
     </TEXTURES>
@@ -125,9 +122,9 @@
 
         <MATERIAL id="darkHole">
             <shininess value="1" />
-            <specular r="0.1" g="0.1" b="0.1" a="0.5" />
-            <diffuse r="0.1" g="0.1" b="0.1" a="0.5" />
-            <ambient r="0.05" g="0.05" b="0.05" a="0.5" />
+            <specular r="0.0" g="0.0" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.0" b="0.0" a="1.0" />
             <emission r="0.0" g="0.0" b="0.0" a="0.0" />
         </MATERIAL>
 
@@ -395,7 +392,7 @@
 	<!-- The cue -->
     <NODE id="cue">
         <MATERIAL id="null" />
-        <TEXTURE id="wood" />
+        <TEXTURE id="blackWood" />
 
         <SCALE sx="0.2" sy="0.2" sz="2" />
 		<TRANSLATION x="100" y="24" z="4" />
@@ -479,7 +476,7 @@
 	<!-- The holes of the table -->
     <NODE id="holes">      
         <MATERIAL id="darkHole" />
-        <TEXTURE id="null" />       			
+        <TEXTURE id="clear" />
 
         <DESCENDANTS>
 			<NODEREF id="hole1" />
@@ -731,7 +728,7 @@
 	<!-- The borders of the table -->
     <NODE id="borders">       
         <MATERIAL id="null" />     
-        <TEXTURE id="wood" />
+        <TEXTURE id="blackWood" />
         
 		<SCALE sx="3.3" sy="0.1" sz="2.2" />
 		<TRANSLATION x="-0.15" y="40" z="-0.45" />
