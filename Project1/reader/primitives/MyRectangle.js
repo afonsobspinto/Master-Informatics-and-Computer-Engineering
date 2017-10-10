@@ -16,10 +16,13 @@ function MyRectangle(scene, vertex1, vertex2){ //vertex1 -> left-top, vertex2 ->
     this.vertex1 = vertex1;
     this.vertex2 = vertex2;
 
-    this.minS = 0.0;
+
+    this.lengthS = vertex2.x - vertex1.x;
+    this.lengthT = vertex1.y - vertex2.y;
+  /*  this.minS = 0.0;
     this.minT = 0.0;
     this.maxS = 1.0;
-    this.maxT = 1.0;
+    this.maxT = 1.0;*/
 
     this.initBuffers();
 };
@@ -47,12 +50,10 @@ MyRectangle.prototype.initBuffers = function() {
 
     this.texCoords = [
         this.minS,this.maxT,
-        this.maxS,this.maxT,
-        this.maxS,this.minT,
+        this.maxS / this.lengthS,this.maxT,
+        this.maxS / this.lengthS,this.minT / this.lengthT,
         this.minS,this.minT
     ];
-    this.setAmplifFactor(this.maxS, this.maxT);
-
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 }
