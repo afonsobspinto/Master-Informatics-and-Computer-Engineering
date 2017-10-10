@@ -51,13 +51,7 @@ MyRectangle.prototype.initBuffers = function() {
         this.maxS,this.minT,
         this.minS,this.minT
     ];
-
-    this.texCoords = [
-        this.minS,this.maxT,
-        this.vertex2.x-this.vertex1.x,this.maxT,
-        this.vertex2.x-this.vertex1.x,this.vertex1.y-this.vertex2.y,
-        this.minS,this.vertex1.y-this.vertex2.y
-    ];
+    this.setAmplifFactor(this.maxS, this.maxT);
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
