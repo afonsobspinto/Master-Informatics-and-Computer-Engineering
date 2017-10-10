@@ -49,10 +49,10 @@ MyRectangle.prototype.initBuffers = function() {
     ];
 
     this.texCoords = [
-        this.minS,this.maxT,
-        this.maxS / this.lengthS,this.maxT,
-        this.maxS / this.lengthS,this.minT / this.lengthT,
-        this.minS,this.minT
+        0,1,
+        this.lengthS ,1,
+        this.lengthS , this.lengthT ,
+        0,this.lengthT
     ];
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
