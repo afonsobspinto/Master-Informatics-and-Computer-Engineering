@@ -89,6 +89,12 @@
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
+        <!-- Yelllow Chalk -->
+        <TEXTURE id="yellowChalk">
+            <file path="images/yellowChalkTexture.jpg" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+
     </TEXTURES>
 
 
@@ -166,6 +172,7 @@
             <DESCENDANTS>
                 <NODEREF id="floor" />
                 <NODEREF id="table" />
+                <NODEREF id="facePiramide1"/>
             </DESCENDANTS>
 
         </NODE>
@@ -861,6 +868,20 @@
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <NODE id="facePiramide1">
+            <MATERIAL id="null" />
+            <TEXTURE id="yellowChalk" />
+
+            <TRANSLATION x="8" y="4" z="13" />
+            <ROTATION axis="x" angle="44.42" />
+            <ROTATION axis="y" angle="-45" />
+
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
             </DESCENDANTS>
 
         </NODE>

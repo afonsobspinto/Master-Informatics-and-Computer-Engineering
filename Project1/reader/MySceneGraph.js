@@ -1450,8 +1450,6 @@ MySceneGraph.prototype.displayScene = function() {
 
 
 MySceneGraph.prototype.dfsDisplay = function(node) {
-
-
     this.scene.pushMatrix();
 
     this.scene.multMatrix(node.transformMatrix);
