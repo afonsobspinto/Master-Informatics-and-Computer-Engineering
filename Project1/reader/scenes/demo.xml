@@ -76,15 +76,15 @@
             <file path="images/felt.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-
-        <!-- White -->
-        <TEXTURE id="white">
+		
+		<!-- White -->
+		<TEXTURE id="white">
             <file path="images/white.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-
-        <!-- Dark Wood -->
-        <TEXTURE id="darkWood">
+		
+		<!-- Dark Wood -->
+		<TEXTURE id="darkWood">
             <file path="images/darkwood.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
@@ -395,7 +395,7 @@
 
         </NODE>
 
-
+		
         <!-- The cue -->
         <NODE id="cue">
             <MATERIAL id="null" />
@@ -406,14 +406,14 @@
 
             <DESCENDANTS>
                 <NODEREF id="cueBody" />
-                <NODEREF id="cueTop" />
-                <NODEREF id="cueTip" />
-                <NODEREF id="cueBack" />
+				<NODEREF id="cueTop" />
+				<NODEREF id="cueTip" />
+				<NODEREF id="cueBack" />
             </DESCENDANTS>
 
         </NODE>
-
-        <!-- The body of the cue -->
+		
+		<!-- The body of the cue -->
         <NODE id="cueBody">
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
@@ -423,13 +423,13 @@
             </DESCENDANTS>
 
         </NODE>
-
-        <!-- The top of the cue -->
+		
+		<!-- The top of the cue -->
         <NODE id="cueTop">
             <MATERIAL id="null" />
             <TEXTURE id="white" />
-
-            <SCALE sx="0.8" sy="0.8" sz="0.05" />
+			
+			<SCALE sx="0.8" sy="0.8" sz="0.05" />
             <TRANSLATION x="0" y="0" z="-4.2" />
 
             <DESCENDANTS>
@@ -438,12 +438,12 @@
 
         </NODE>
 
-        <!-- The tip of the cue -->
+		<!-- The tip of the cue -->
         <NODE id="cueTip">
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
-
-            <SCALE sx="0.8" sy="0.8" sz="0.02" />
+			
+			<SCALE sx="0.8" sy="0.8" sz="0.02" />
             <TRANSLATION x="0" y="0" z="-15" />
 
             <DESCENDANTS>
@@ -451,12 +451,12 @@
             </DESCENDANTS>
 
         </NODE>
-
-        <!-- The back of the cue -->
+		
+		<!-- The back of the cue -->
         <NODE id="cueBack">
             <MATERIAL id="null" />
             <TEXTURE id="darkWood" />
-
+			
             <TRANSLATION x="0" y="0" z="4" />
             <SCALE sx="0.7" sy="0.7" sz="0.07" />
 
@@ -465,7 +465,7 @@
             </DESCENDANTS>
 
         </NODE>
-
+		
         <!-- The balls -->
         <NODE id="balls">
             <MATERIAL id="null" />
