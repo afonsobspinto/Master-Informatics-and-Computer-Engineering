@@ -1,68 +1,10 @@
-position(0,0,p).
-position(0,1,p).
-position(0,2,p).
-position(0,3,p).
-position(0,4,p).
-position(0,5,p).
-position(0,6,p).
-position(0,7,p).
-position(1,0,p).
-position(1,1,p).
-position(1,2,p).
-position(1,3,p).
-position(1,4,p).
-position(1,5,p).
-position(1,6,p).
-position(1,7,p).
-position(2,0,p).
-position(2,1,p).
-position(2,2,p).
-position(2,3,p).
-position(2,4,p).
-position(2,5,p).
-position(2,6,p).
-position(2,7,p).
-position(3,0,p).
-position(3,1,p).
-position(3,2,p).
-position(3,3,p).
-position(3,4,p).
-position(3,5,p).
-position(3,6,p).
-position(3,7,p).
-position(4,0,p).
-position(4,1,p).
-position(4,2,p).
-position(4,3,p).
-position(4,4,p).
-position(4,5,p).
-position(4,6,p).
-position(4,7,p).
-position(5,0,p).
-position(5,1,p).
-position(5,2,p).
-position(5,3,p).
-position(5,4,p).
-position(5,5,p).
-position(5,6,p).
-position(5,7,p).
-position(6,0,p).
-position(6,1,p).
-position(6,2,p).
-position(6,3,p).
-position(6,4,p).
-position(6,5,p).
-position(6,6,p).
-position(6,7,p).
-position(7,0,p).
-position(7,1,p).
-position(7,2,p).
-position(7,3,p).
-position(7,4,p).
-position(7,5,p).
-position(7,6,p).
-position(7,7,p).
 
-line(n):- position(n,0,_).
+%=    ..:: Racing Kings ::..    =%
 
-Board:- line(0), line(1), line(2), line(3), line(4), line(5), line(6), line(7).
+:- include('menus.pl').
+:- include('utilities.pl').
+:- include('board.pl').
+:- include('game.pl').
+
+racingKings:-
+  mainMenu.
