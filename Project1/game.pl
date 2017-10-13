@@ -14,7 +14,8 @@ createPvPGame(Game):-
 
 playGame(Game):-
 	clearConsole,
-	% printBoard(Board),
+	getBoard(Game, Board),
+	printBoard(Board).
 	% getPieceToBeMovedSourceCoords(SrcRow, SrcCol),
 	% validateChosenPieceOwnership(SrcRow, SrcCol, Board, Player),
 	%
