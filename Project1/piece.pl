@@ -19,3 +19,23 @@ blackKnigth1(['Knight', 'Black', 'D2']).
 blackKnigth2(['Knight', 'Black', 'D1']).
 
 nonePiece(['none', 'none', 'none']).
+
+
+getPieceSymbol(nonePiece, '  ').
+getPieceSymbol(blackKing, 'bK').
+getPieceSymbol(blackQueen, 'bQ').
+getPieceSymbol(blackRook1, 'bR').
+getPieceSymbol(blackRook2, 'bR').
+getPieceSymbol(blackBishop1, 'bB').
+getPieceSymbol(blackBishop2, 'bB').
+getPieceSymbol(blackKnigth1, 'bN').
+getPieceSymbol(blackKnigth2, 'bN').
+
+getPieceSymbol(whiteKing, 'wK').
+getPieceSymbol(whiteQueen, 'wQ').
+getPieceSymbol(whiteRook1, 'wR').
+getPieceSymbol(whiteRook2, 'wR').
+getPieceSymbol(whiteBishop1, 'wB').
+getPieceSymbol(whiteBishop2, 'wB').
+getPieceSymbol(whiteKnigth1, 'wN').
+getPieceSymbol(whiteKnigth2, 'wN').

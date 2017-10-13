@@ -19,12 +19,10 @@ printBoard(Board):-
 	rowIDsList(RowIDs),
 	printBoard(Board, RowIDs).
 
-
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write(RowsIDHead), write('|'),
 	printLine(Line), nl,
 	printBoard(BoardTail,RowsIDTail).
-
 
 printLine([]).
 printLine([Piece|LineTail]):-
@@ -39,21 +37,33 @@ printColumnIDs:-
 rowIDsList([' 1 ', ' 2 ', ' 3 ', ' 4 ', ' 5 ', ' 6 ', ' 7 ', ' 8 ']).
 
 
-getPieceSymbol(nonePiece, '  ').
-getPieceSymbol(blackKing, 'bK').
-getPieceSymbol(blackQueen, 'bQ').
-getPieceSymbol(blackRook1, 'bR').
-getPieceSymbol(blackRook2, 'bR').
-getPieceSymbol(blackBishop1, 'bB').
-getPieceSymbol(blackBishop2, 'bB').
-getPieceSymbol(blackKnigth1, 'bN').
-getPieceSymbol(blackKnigth2, 'bN').
+getPiece(Board, Row, Col, Piece) :-
+	getElePos(Row, Board, Line),
+	getElePos(Col, Line, Piece).
 
-getPieceSymbol(whiteKing, 'wK').
-getPieceSymbol(whiteQueen, 'wQ').
-getPieceSymbol(whiteRook1, 'wR').
-getPieceSymbol(whiteRook2, 'wR').
-getPieceSymbol(whiteBishop1, 'wB').
-getPieceSymbol(whiteBishop2, 'wB').
-getPieceSymbol(whiteKnigth1, 'wN').
-getPieceSymbol(whiteKnigth2, 'wN').
+getElePos(1, [Element|_], Element).
+
+getElePos(Pos, [_|Tail], Element) :-
+	Pos > 1,
+	Next is Pos-1,
+	getElePos(Next, Tail, Element).
+
+
+
+setPiece(BoardIn, Row, Col, Piece, BoardOut) :-
+	setRow(Row, BoardIn, Col, Piece, BoardOut).
+
+setRow(1, [Row|Tail], Col, Piece, [NewRow|Tail]):-
+	setCol(Col, Row, Piece, NewRow).
+
+setRow(Pos, [Row|Tail], Col, Piece, [Row|NewTail]):-
+	Pos > 1,
+	Next is Pos-1,
+	setRow(Next, Tail, Col, Piece, NewTail).
+
+setCol(1, [_|Tail], Piece, [Piece|Tail]).
+
+setCol(Pos, [Element|Tail], Piece, [Element|NewTail]):-
+	Pos > 1,
+	Next is Pos-1,
+	setCol(Next, Tail, Piece, NewTail).
