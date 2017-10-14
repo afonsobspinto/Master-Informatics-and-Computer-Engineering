@@ -37,27 +37,31 @@ printColumnIDs:-
 rowIDsList([' 1 ', ' 2 ', ' 3 ', ' 4 ', ' 5 ', ' 6 ', ' 7 ', ' 8 ']).
 
 
-getPiece(Board, Row, Col, Piece) :-
+getPiece(Board, Col, Row, Piece) :-
 	getElePos(Row, Board, Line),
-	getElePos(Col, Line, Piece).
+	convertToNumber(Col, ColNumber),
+	getElePos(ColNumber, Line, Piece).
 
 getElePos(1, [Element|_], Element).
 
 getElePos(Pos, [_|Tail], Element) :-
 	Pos > 1,
+	Pos < 9,
 	Next is Pos-1,
 	getElePos(Next, Tail, Element).
 
 
 
-setPiece(BoardIn, Row, Col, Piece, BoardOut) :-
-	setRow(Row, BoardIn, Col, Piece, BoardOut).
+setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
+	convertToNumber(Col, ColNumber),
+	setRow(Row, BoardIn, ColNumber, Piece, BoardOut).
 
 setRow(1, [Row|Tail], Col, Piece, [NewRow|Tail]):-
 	setCol(Col, Row, Piece, NewRow).
 
 setRow(Pos, [Row|Tail], Col, Piece, [Row|NewTail]):-
 	Pos > 1,
+	Pos < 9,
 	Next is Pos-1,
 	setRow(Next, Tail, Col, Piece, NewTail).
 

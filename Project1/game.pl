@@ -16,10 +16,10 @@ playGame(Game):-
 	clearConsole,
 	getBoard(Game, Board),
 	printBoard(Board),
-	getPiece(Board, 7, 8, Piece), nl,
+	getPiece(Board, a, 8, Piece), nl,
 	write(Piece),
-	setPiece(Board,7,8, nonePiece, NewBoard),
-	getPiece(NewBoard, 7, 8, Piece2), nl,
+	setPiece(Board,'e',8, nonePiece, NewBoard),
+	getPiece(NewBoard, 'e', 8, Piece2), nl,
 	write(Piece2).
 	% getPieceToBeMovedSourceCoords(SrcRow, SrcCol),
 	% validateChosenPieceOwnership(SrcRow, SrcCol, Board, Player),
