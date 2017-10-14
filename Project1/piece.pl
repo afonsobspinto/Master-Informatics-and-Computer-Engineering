@@ -59,5 +59,5 @@ validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
   abs(DestCol-SrcCol) == abs(DestRow-SrcRow).
 
-validBasicMove(_, _, _, _, _)
+validBasicMove(_, _, _, _, _):-
   invalidMove.

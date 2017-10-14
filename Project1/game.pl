@@ -24,7 +24,7 @@ playGame(Game):-
 	getGameState(Game, GameState),
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow).
-	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board),
+	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
 	%makeMove().
 	%ChangeTurn
 
