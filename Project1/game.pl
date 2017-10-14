@@ -16,12 +16,7 @@ playGame(Game):-
 	clearConsole,
 	getBoard(Game, Board),
 	printBoard(Board),
-	getPiece(Board, a, 8, Piece), nl,
-	write(Piece),
-	setPiece(Board,'e',8, nonePiece, NewBoard),
-	getPiece(NewBoard, 'e', 8, Piece2), nl,
-	write(Piece2).
-	% getPieceToBeMovedSourceCoords(SrcRow, SrcCol),
+	getPieceToBeMovedSourceCoords(SrcRow, SrcCol).
 	% validateChosenPieceOwnership(SrcRow, SrcCol, Board, Player),
 	%
 	% clearConsole,
@@ -32,3 +27,26 @@ playGame(Game):-
 	%
 	% validateMove(SrcRow, SrcCol, DestRow, DestCol, Game, TempGame),
 	% changePlayer(TempGame, ResultantGame), !.
+
+
+
+
+
+
+
+
+	%Interaction functions
+
+	%some problems here with j2 input for example.
+getInputCoords(SrcCol, SrcRow):-
+	getColChar(SrcCol),
+	getRowInt(SrcRow).
+
+
+getSourceCoords(SrcCol,SrcRow):-
+	write('Piece To Move: '), nl,
+	getInputCoords(SrcCol, SrcRow), nl.
+
+getDestinyCoords(SrcCol,SrcRow):-
+	write('Piece New Position: '), nl,
+	getInputCoords(SrcCol, SrcRow), nl.
