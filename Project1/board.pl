@@ -56,7 +56,7 @@ printLine([Piece|LineTail]):-
 printColumnIDs:-
 	write('     a  b  c  d  e  f  g  h').
 
-rowIDsList([' 1 ', ' 2 ', ' 3 ', ' 4 ', ' 5 ', ' 6 ', ' 7 ', ' 8 ']).
+rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
 
 getPiece(Board, Col, Row, Piece) :-

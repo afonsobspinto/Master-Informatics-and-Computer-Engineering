@@ -25,3 +25,39 @@ getPieceSymbol(Piece, Symbol):-
 
 getPieceColor(Piece, Color):-
 	nth0(1, Piece, Color).
+
+getPieceName(Piece, Name):-
+  	nth0(0, Piece, Name).
+
+
+%Basic Piece Movement
+
+validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow):-
+  abs(DestCol - SrcCol) =< 1,
+  abs(DestRow - SrcRow) =< 1.
+
+validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+  (SrcCol == DestCol).
+validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+  (SrcRow == DestRow).
+
+validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow):-
+  abs(DestCol-SrcCol) == abs(DestRow-SrcRow).
+
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
+  abs(DestCol - SrcCol) = 2,
+  abs(DestRow - SrcRow) = 1.
+
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
+  abs(DestCol - SrcCol) = 1,
+  abs(DestRow - SrcRow) = 2.
+
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+  (SrcCol == DestCol).
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+  (SrcRow == DestRow).
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+  abs(DestCol-SrcCol) == abs(DestRow-SrcRow).
+
+validBasicMove(_, _, _, _, _)
+  invalidMove.

@@ -22,17 +22,11 @@ playGame(Game):-
 	getSourceCoords(SrcCol, SrcRow),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState).
-	%
-	% clearConsole,
-	% printBoard(Board),
-	% printTurnInfo(Player), nl, nl,
-	% getPieceToBeMovedDestinyCoords(DestRow, DestCol),
-	% validateDifferentCoordinates(SrcRow, SrcCol, DestRow, DestCol),
-	%
-	% validateMove(SrcRow, SrcCol, DestRow, DestCol, Game, TempGame),
-	% changePlayer(TempGame, ResultantGame), !.
-
+	validateOwnership(Piece, GameState),
+	getDestinyCoords(DestCol, DestRow).
+	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board),
+	%makeMove().
+	%ChangeTurn
 
 
 
@@ -45,7 +39,8 @@ playGame(Game):-
 	%some problems here with j2 input for example.
 getInputCoords(SrcCol, SrcRow):-
 	getColChar(SrcCol),
-	getRowInt(SrcRow).
+	getRowInt(SrcRow),
+	get_code(_).
 
 
 getSourceCoords(SrcCol,SrcRow):-
@@ -55,8 +50,6 @@ getSourceCoords(SrcCol,SrcRow):-
 getDestinyCoords(SrcCol,SrcRow):-
 	write('Piece New Position: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
-
-
 
 
 validateOwnership(Piece, GameState):-
@@ -69,6 +62,35 @@ validateOwnership(Piece, GameState):-
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
-validateOwnership(Piece, GameState):-
+validateOwnership(_, _):-
 	write('Invalid Piece!'), nl,
+	fail.
+
+validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
+	differentPositions(SrcCol, SrcRow, DestCol, DestRow),
+	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
+	validBasicMove(Piece, SrcCol, SrcRow, DestCol, DestRow).
+	%CheckForJumping().
+	%CheckForCheck().
+
+
+
+differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
+	SrcRow =\= SrcCol ; SrcCol =\= DestCol.
+
+differentPositions(_, _, _, _):-
+	invalidMove.
+
+differentColors(SrcCol, SrcRow, DestCol, DestRow, Board):-
+	getPiece(Board, SrcCol, SrcRow, PieceSrc),
+	getPiece(Board, SrcCol, SrcRow, PieceDest),
+	getPieceColor(PieceSrc, ColorSrc),
+	getPieceColor(PieceDest, ColorDest),
+	ColorSrc =\= ColorDest.
+
+differentColors(_, _, _, _, _):-
+	invalidMove.
+
+invalidMove:-
+	write('Invalid Move!'), nl,
 	fail.
