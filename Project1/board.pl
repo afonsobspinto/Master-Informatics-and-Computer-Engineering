@@ -1,19 +1,41 @@
 
-initialBoard([
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece, nonePiece],
-	[blackKing, blackRook1, blackBishop1, blackKnigth1, whiteKnigth1, whiteBishop1, whiteRook1, whiteKing],
-  [blackQueen, blackRook2, blackBishop2, blackKnigth2, whiteKnigth2, whiteBishop2, whiteRook2, whiteQueen]
-	]).
+initialBoard(Board):-
+	whiteKing(WhiteKing),
+	whiteQueen(WhiteQueen),
+	whiteRook1(WhiteRook1),
+	whiteRook2(WhiteRook2),
+	whiteBishop1(WhiteBishop1),
+	whiteBishop2(WhiteBishop2),
+	whiteKnigth1(WhiteKnigth1),
+	whiteKnigth2(WhiteKnigth2),
+
+	blackKing(BlackKing),
+	blackQueen(BlackQueen),
+	blackRook1(BlackRook1),
+	blackRook2(BlackRook2),
+	blackBishop1(BlackBishop1),
+	blackBishop2(BlackBishop2),
+	blackKnigth1(BlackKnigth1),
+	blackKnigth2(BlackKnigth2),
+
+	nonePiece(NonePiece),
+
+	append([], [
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[BlackKing, BlackRook1, BlackBishop1, BlackKnigth1, WhiteKnigth1, WhiteBishop1, WhiteRook1, WhiteKing],
+  [BlackQueen, BlackRook2, BlackBishop2, BlackKnigth2, WhiteKnigth2, WhiteBishop2, WhiteRook2, WhiteQueen]], Board).
+
 
 
 getBoard([Board|_], Board).
 
-printBoard([],[]):-printColumnIDs.
+printBoard([],[]):-
+	printColumnIDs, nl, nl.
 
 printBoard(Board):-
 	rowIDsList(RowIDs),

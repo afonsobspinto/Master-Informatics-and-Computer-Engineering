@@ -12,12 +12,17 @@ createPvPGame(Game):-
 	Game = [Board, whitePlayer, pvp], !.
 
 
+getGameState(Game, GameState):-
+	nth0(1,Game, GameState).
+
 playGame(Game):-
 	clearConsole,
 	getBoard(Game, Board),
 	printBoard(Board),
-	getPieceToBeMovedSourceCoords(SrcRow, SrcCol).
-	% validateChosenPieceOwnership(SrcRow, SrcCol, Board, Player),
+	getSourceCoords(SrcCol, SrcRow),
+	getPiece(Board, SrcCol, SrcRow, Piece),
+	getGameState(Game, GameState),
+	validateOwnership(Piece, GameState).
 	%
 	% clearConsole,
 	% printBoard(Board),
@@ -50,3 +55,20 @@ getSourceCoords(SrcCol,SrcRow):-
 getDestinyCoords(SrcCol,SrcRow):-
 	write('Piece New Position: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
+
+
+
+
+validateOwnership(Piece, GameState):-
+	GameState == whitePlayer,
+	getPieceColor(Piece, Color),
+	Color == 'White'.
+
+validateOwnership(Piece, GameState):-
+	GameState == blackPlayer,
+	getPieceColor(Piece, Color),
+	Color == 'Black'.
+
+validateOwnership(Piece, GameState):-
+	write('Invalid Piece!'), nl,
+	fail.

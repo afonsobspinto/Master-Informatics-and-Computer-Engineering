@@ -7,5 +7,7 @@
 :- include('game.pl').
 :- include('piece.pl').
 
+:- use_module(library(lists)).
+
 racingKings:-
   mainMenu.
