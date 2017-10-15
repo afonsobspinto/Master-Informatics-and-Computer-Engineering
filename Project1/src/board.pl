@@ -60,7 +60,7 @@ rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
 
 getPiece(Board, Col, Row, Piece) :-
-	getElePos(Row, Board, Line),
+	getElePos(abs(Row-9), Board, Line),
 	convertToNumber(Col, ColNumber),
 	getElePos(ColNumber, Line, Piece).
 

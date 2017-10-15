@@ -25,8 +25,8 @@ playGame(Game):-
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow).
 	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
-	%makeMove().
-	%ChangeTurn
+	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
+	%changeTurn(TempGame, NewGame).
 
 
 
@@ -70,8 +70,8 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow),
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
 	validBasicMove(Piece, SrcCol, SrcRow, DestCol, DestRow).
-	%CheckForJumping().
-	%CheckForCheck().
+	checkForJumping(Piece, SrcCol, SrcRow, DestCol, DestRow).
+	checkForCheck(Piece, SrcCol, SrcRow, DestCol, DestRow).
 
 
 
