@@ -72,8 +72,9 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
 	getPieceName(Piece, PieceName),
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow).
-	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board).
-	%checkForCheck(Piece, SrcCol, SrcRow, DestCol, DestRow).
+	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
+	setPiece(Board, DestCol, DestRow, Piece, TempBoard).
+	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
 
 
 
@@ -180,3 +181,10 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
+
+
+% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
+% 	findKingPosition('White', WhiteKingCol, WhiteKingRow, TempBoard),
+% 	findKingPosition('Black', BlackKingCol, BlackKingRow, TempBoard),
+% 	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
+% 	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).

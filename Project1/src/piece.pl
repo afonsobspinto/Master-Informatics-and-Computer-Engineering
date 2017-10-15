@@ -27,7 +27,7 @@ getPieceColor(Piece, Color):-
 	nth0(1, Piece, Color).
 
 getPieceName(Piece, Name):-
-  	nth0(0, Piece, Name).
+  nth0(0, Piece, Name).
 
 
 %Basic Piece Movement
