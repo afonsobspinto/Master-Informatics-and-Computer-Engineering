@@ -30,9 +30,7 @@ initialBoard(Board):-
 	[BlackKing, BlackRook1, BlackBishop1, BlackKnigth1, WhiteKnigth1, WhiteBishop1, WhiteRook1, WhiteKing],
   [BlackQueen, BlackRook2, BlackBishop2, BlackKnigth2, WhiteKnigth2, WhiteBishop2, WhiteRook2, WhiteQueen]], Board).
 
-
-
-getBoard([Board|_], Board).
+	%Print Board functions
 
 printBoard([],[]):-
 	printColumnIDs, nl, nl.
@@ -59,6 +57,10 @@ printColumnIDs:-
 rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
 
+%Matrix Helper functions
+
+getBoard([Board|_], Board).
+
 getPiece(Board, Col, Row, Piece) :-
 	getElePos(abs(Row-9), Board, Line),
 	convertToNumber(Col, ColNumber),
@@ -71,8 +73,6 @@ getElePos(Pos, [_|Tail], Element) :-
 	Pos < 9,
 	Next is Pos-1,
 	getElePos(Next, Tail, Element).
-
-
 
 setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
 	convertToNumber(Col, ColNumber),
@@ -93,3 +93,39 @@ setCol(Pos, [Element|Tail], Piece, [Element|NewTail]):-
 	Pos > 1,
 	Next is Pos-1,
 	setCol(Next, Tail, Piece, NewTail).
+
+
+%Validation Helper functions
+
+findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
+	LowRow==HighRow.
+
+findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
+	getPiece(Board, SrcCol, LowRow, Piece),
+	getPieceName(Piece, Name),
+	Name == 'none',
+	Next is (LowRow+1),
+	findPieceOnCol(SrcCol, Next, HighRow, Board).
+
+findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
+	LowCol == HighCol.
+
+findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
+	getPiece(Board, LowCol, SrcRow, Piece),
+	getPieceName(Piece, Name),
+	Name == 'none',
+	Next is (LowCol+1),
+	findPieceOnRow(SrcRow, Next, HighCol, Board).
+
+
+findPieceOnDiagonal(LowCol, HighCol, LowRow, HighRow, Board):-
+	LowRow == HighRow,
+	LowCol == HighCol.
+
+findPieceOnDiagonal(LowCol, HighCol, LowRow, HighRow, Board):-
+	getPiece(Board, LowCol, LowRow, Piece),
+	getPieceName(Piece, Name),
+	Name == 'none',
+	NextRow is (LowRow+1),
+	NextCol is (LowCol+1),
+	findPieceOnDiagonal(NextCol, HighCol, NextRow, HighRow, Board).

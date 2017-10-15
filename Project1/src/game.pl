@@ -36,7 +36,6 @@ playGame(Game):-
 
 	%Interaction functions
 
-	%some problems here with j2 input for example.
 getInputCoords(SrcCol, SrcRow):-
 	getColChar(SrcCol),
 	getRowInt(SrcRow),
@@ -51,6 +50,8 @@ getDestinyCoords(SrcCol,SrcRow):-
 	write('Piece New Position: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
 
+
+	%Validation functions
 
 validateOwnership(Piece, GameState):-
 	GameState == whitePlayer,
@@ -69,9 +70,10 @@ validateOwnership(_, _):-
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow),
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
-	validBasicMove(Piece, SrcCol, SrcRow, DestCol, DestRow).
-	checkForJumping(Piece, SrcCol, SrcRow, DestCol, DestRow).
-	checkForCheck(Piece, SrcCol, SrcRow, DestCol, DestRow).
+	getPieceName(Piece, PieceName),
+	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow).
+	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board).
+	%checkForCheck(Piece, SrcCol, SrcRow, DestCol, DestRow).
 
 
 
@@ -94,3 +96,87 @@ differentColors(_, _, _, _, _):-
 invalidMove:-
 	write('Invalid Move!'), nl,
 	fail.
+
+
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcCol == DestCol),
+	(DestRow - SrcRow) < 0, %Up
+	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
+
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcCol == DestCol),
+	(DestRow - SrcRow) > 0, %Down
+	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
+
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcRow == DestRow),
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
+
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcRow == DestRow),
+	(DestCol - SrcCol) > 0, %Right
+	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
+
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Up
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnDiagonal(DestCol, SrcCol, DestRow, SrcRow, Board).
+
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Up
+	(DestCol - SrcCol) < 0, %Right
+	findPieceOnDiagonal(SrcCol, DestCol, DestRow, SrcRow, Board).
+
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Down
+	(DestCol - SrcCol) < 0, %Right
+	findPieceOnDiagonal(SrcCol, DestCol, SrcRow, DestRow, Board).
+
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Down
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnDiagonal(DestCol, SrcCol, SrcRow, DestRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcCol == DestCol),
+	(DestRow - SrcRow) < 0, %Up
+	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcCol == DestCol),
+	(DestRow - SrcRow) > 0, %Down
+	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcRow == DestRow),
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(SrcRow == DestRow),
+	(DestCol - SrcCol) > 0, %Right
+	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Up
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnDiagonal(DestCol, SrcCol, DestRow, SrcRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Up
+	(DestCol - SrcCol) < 0, %Right
+	findPieceOnDiagonal(SrcCol, DestCol, DestRow, SrcRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Down
+	(DestCol - SrcCol) < 0, %Right
+	findPieceOnDiagonal(SrcCol, DestCol, SrcRow, DestRow, Board).
+
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+	(DestRow - SrcRow) < 0, %Down
+	(DestCol - SrcCol) < 0, %Left
+	findPieceOnDiagonal(DestCol, SrcCol, SrcRow, DestRow, Board).
+
+checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
+checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
