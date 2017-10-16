@@ -6,6 +6,7 @@
 enum USAGE { SEND, RECEIVE };
 
 int appLayer(char* serialPort, enum USAGE usage);
+int llopen(char* serialPort, enum USAGE usage);
 
 
 #endif

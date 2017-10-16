@@ -24,6 +24,22 @@ int appLayer(char* serialPort, enum USAGE usage){
     exit(-1);
   }
 
+  llopen(serialPort, usage);
 
   return 0;
+}
+
+int llopen(char* serialPort, enum USAGE usage) {
+
+  switch (usage) {
+    case SEND:
+      llopenSender(serialPort);
+      break;
+    case RECEIVE:
+      llopenReceiver(serialPort);
+      break;
+  }
+
+
+  return 1;
 }
