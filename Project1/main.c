@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
   printf("SerialPort: %s\n", serialPort);
   sleep(1);
 
-  //appLayer(serialPort, usage);
+  appLayer(serialPort, usage);
 
   return 0;
 }
