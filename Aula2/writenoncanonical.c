@@ -98,18 +98,19 @@ int main(int argc, char** argv)
 
     printf("New termios structure set\n");
 
-	while (conta < 4 && flagAlarme == 1) {
+		while(conta < 4)
     //Write to serial port
     res = write(fd,SET,sizeof(SET));
+		if(flagAlarme){
+			alarm(3);
+			flagAlarme=0;
+		}
     printf("%d bytes written\n", res);
     if(res == -1){
       perror("Error on Writing");
       exit(1);
     }
 
-      alarm(3);                 // activa alarme de 3s
-      flagAlarme=0;
-	
    // sleep(1);
 
     //read from serial port
