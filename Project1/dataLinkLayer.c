@@ -1,4 +1,17 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <unistd.h>
+
 #include "dataLinkLayer.h"
+#include "appLayer.h"
+
+int fd;
 
 int openSerialPort(char* serialPort) {
 
@@ -9,6 +22,6 @@ int openSerialPort(char* serialPort) {
 
   fd = open(serialPort, O_RDWR | O_NOCTTY );
   if (fd <0) {perror(serialPort); return -1; }
-  
+
   return fd;
 }
