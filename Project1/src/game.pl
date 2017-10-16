@@ -24,7 +24,7 @@ playGame(Game):-
 	getGameState(Game, GameState),
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow).
-	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
+	%validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
 	%changeTurn(TempGame, NewGame).
 
@@ -67,29 +67,37 @@ validateOwnership(_, _):-
 	write('Invalid Piece!'), nl,
 	fail.
 
+%%Piece Nao é preciso aqui
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow),
+	write('differentPositions'),
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
+	write('differentColors'),
 	getPieceName(Piece, PieceName),
-	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow).
+	write('pieceName'),
+	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow),
+	write('validMove'),
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
-	setPiece(Board, DestCol, DestRow, Piece, TempBoard).
+	write('Jumping'),
+	setPiece(Board, DestCol, DestRow, Piece, TempBoard),
+	write('set').
 	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
 
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
-	SrcRow =\= SrcCol ; SrcCol =\= DestCol.
+	SrcRow =\= DestRow ; SrcCol =\= DestCol.
 
 differentPositions(_, _, _, _):-
 	invalidMove.
 
 differentColors(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	getPiece(Board, SrcCol, SrcRow, PieceSrc),
-	getPiece(Board, SrcCol, SrcRow, PieceDest),
+	getPiece(Board, DestCol, DestRow, PieceDest),
 	getPieceColor(PieceSrc, ColorSrc),
-	getPieceColor(PieceDest, ColorDest),
-	ColorSrc =\= ColorDest.
+	getPieceColor(PieceDest, ColorDest), nl,
+	write(ColorSrc), nl, write(ColorDest), nl,
+	ColorSrc \== ColorDest.
 
 differentColors(_, _, _, _, _):-
 	invalidMove.

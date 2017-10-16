@@ -62,17 +62,18 @@ rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 getBoard([Board|_], Board).
 
 getPiece(Board, Col, Row, Piece) :-
-	getElePos(abs(Row-9), Board, Line),
-	convertToNumber(Col, ColNumber),
-	getElePos(ColNumber, Line, Piece).
+	convertToNumber(Col,ColNumber),
+	RowNumber is abs(Row-9),
+	nth1(RowNumber, Board, Line),
+    nth1(ColNumber, Line, Piece).
 
-getElePos(1, [Element|_], Element).
-
-getElePos(Pos, [_|Tail], Element) :-
-	Pos > 1,
-	Pos < 9,
-	Next is Pos-1,
-	getElePos(Next, Tail, Element).
+getPiece(Board, Col, Row, PieceName, PieceColor) :-
+	nth1(Row, Board, Line),
+    nth1(Col, Line, Value),
+	getPieceName(Value, PieceNameTemp),
+	getPieceColor(Value, PieceColorTemp),
+	PieceName = PieceNameTemp,
+	PieceColor = PieceColorTemp.
 
 setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
 	convertToNumber(Col, ColNumber),

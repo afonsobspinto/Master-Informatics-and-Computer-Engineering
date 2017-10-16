@@ -1,5 +1,8 @@
 %%% Piece[piece, color, symbol];
 
+%%Retirar simbolo da parte da peça
+%%Brancas com maiúscula.
+
 whiteKing(['King', 'White', 'wK']).
 whiteQueen(['Queen', 'White', 'wQ']).
 whiteRook1(['Rook', 'White', 'wR']).
