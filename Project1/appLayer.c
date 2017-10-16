@@ -19,7 +19,11 @@ int appLayer(char* serialPort, enum USAGE usage){
     exit(-1);
   }
 
-  printf("Serial Port Open\n");
+  if (setNewTermiosStructure() == -1) {
+    perror("Error Setting New Termios \n");
+    exit(-1);
+  }
+
 
   return 0;
 }

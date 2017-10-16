@@ -1,12 +1,16 @@
 #ifndef DATALINKLAYER_H
 #define DATALINKLAYER_H
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include <termios.h>
+
+#define BAUDRATE B38400
+
+int fd;
+struct termios oldtio, newtio;
 
 int openSerialPort(char* serialPort);
+int setNewTermiosStructure();
+
 
 
 #endif
