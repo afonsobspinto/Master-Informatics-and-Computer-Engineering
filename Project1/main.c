@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   if ((argc != 3) ||
     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
     (strcmp("/dev/ttyS1", argv[1])!=0)) ) {
-      printf("Usage: <serial port> <usage> \n"); // /dev/ttyS1 1
+      perror("Usage: <serial port> <usage> \n"); // /dev/ttyS1 1
       exit(1);
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     usage = RECEIVE;
   }
   else{
-    printf("<usage> must be 0 or 1 \n"); // /dev/ttyS1 1
+    perror("<usage> must be 0 or 1 \n"); // /dev/ttyS1 1
     exit(1);
   }
 
