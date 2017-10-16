@@ -1,8 +1,0 @@
-In file included from /home/afonso/git/FEUP-RCOM/Project1/main.c:5:0:
-/home/afonso/git/FEUP-RCOM/Project1/appLayer.h:1:0: error: unterminated #ifndef
- #ifndef APPLAYER_H
- ^
-/home/afonso/git/FEUP-RCOM/Project1/main.c: In function ‘main’:
-/home/afonso/git/FEUP-RCOM/Project1/main.c:19:19: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
-   serialPort[255] = argv[1];
-                   ^
