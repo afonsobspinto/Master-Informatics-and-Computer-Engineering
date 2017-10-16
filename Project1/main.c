@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
       exit(1);
     }
 
-  strcat(serialPort, argv[1]);
+  strcpy(serialPort, argv[1]);
 
   /*
   Read = 0;
