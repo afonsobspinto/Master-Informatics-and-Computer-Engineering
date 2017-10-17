@@ -12,7 +12,7 @@
 #include "dataLinkLayer.h"
 #include "appLayer.h"
 
-int appLayer(char* serialPort, enum USAGE usage){
+int appLayer(char* serialPort, STATUS status){
 
   if (openSerialPort(serialPort) == -1) {
     perror("Error Opening Serial Port \n");
@@ -24,18 +24,18 @@ int appLayer(char* serialPort, enum USAGE usage){
     exit(-1);
   }
 
-  llopen(serialPort, usage);
+  llopen(serialPort, status);
 
   return 0;
 }
 
-int llopen(char* serialPort, enum USAGE usage) {
+int llopen(char* serialPort, STATUS status) {
 
-  switch (usage) {
-    case SEND:
-      llopenSender(serialPort);
+  switch (status) {
+    case TRANSMITTER:
+      llopenTransmitter(serialPort);
       break;
-    case RECEIVE:
+    case RECEIVER:
       llopenReceiver(serialPort);
       break;
   }

@@ -3,10 +3,15 @@
 
 #include "dataLinkLayer.h"
 
-enum USAGE { SEND, RECEIVE };
+typedef enum { TRANSMITTER, RECEIVER } STATUS;
 
-int appLayer(char* serialPort, enum USAGE usage);
-int llopen(char* serialPort, enum USAGE usage);
+typedef struct {
+  int fileDescriptor; /*Descritor correspondente à porta série*/
+  STATUS status; /*TRANSMITTER | RECEIVER*/
+}ApplicationLayer;
+
+int appLayer(char* serialPort, STATUS status);
+int llopen(char* serialPort, STATUS status);
 
 
 #endif

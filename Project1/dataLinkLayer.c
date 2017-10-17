@@ -11,6 +11,12 @@
 #include "dataLinkLayer.h"
 #include "appLayer.h"
 
+int flagAlarm = 1; tries = 0;
+
+void answer(){
+
+}
+
 int openSerialPort(char* serialPort) {
 
   /*
@@ -52,4 +58,17 @@ int setNewTermiosStructure(){
 
   printf("New termios structure set\n");
   return 0;
+}
+
+
+int llopenTransmitter(char* serialPort){
+
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+
+}
+
+int llopenReceiver(char* serialPort){
+
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+
 }

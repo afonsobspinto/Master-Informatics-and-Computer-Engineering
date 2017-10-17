@@ -7,17 +7,18 @@
 
 int main(int argc, char **argv) {
 
-  char serialPort[255];
-  enum USAGE usage;
+  ApplicationLayer applicationLayer;
+  LinkLayer linkLayer;
+
 
   if ((argc != 3) ||
     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
     (strcmp("/dev/ttyS1", argv[1])!=0)) ) {
-      perror("Usage: <serial port> <usage> \n"); // /dev/ttyS1 1
+      perror("STATUS: <serial port> <STATUS> \n"); // /dev/ttyS1 1
       exit(1);
     }
 
-  strcpy(serialPort, argv[1]);
+  strcpy(linkLayer.port, argv[1]);
 
   /*
   Read = 0;
@@ -26,21 +27,21 @@ int main(int argc, char **argv) {
 
   if ((strcmp("1", argv[2]) == 0)) {
     printf("Write Mode. \n");
-    usage = SEND;
+    applicationLayer.status = TRANSMITTER;
   }
   else if ((strcmp("0", argv[2]) == 0)) {
     printf("Read Mode. \n");
-    usage = RECEIVE;
+    applicationLayer.status = RECEIVER;
   }
   else{
-    perror("<usage> must be 0 or 1 \n"); // /dev/ttyS1 1
+    perror("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
     exit(1);
   }
 
-  printf("SerialPort: %s\n", serialPort);
+  printf("SerialPort: %s\n", linkLayer.port);
   sleep(1);
 
-  appLayer(serialPort, usage);
+  //appLayer(serialPort, status);
 
   return 0;
 }
