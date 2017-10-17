@@ -187,6 +187,7 @@
                 <NODEREF id="floor" />
 				<NODEREF id="walls" />
                 <NODEREF id="table" />
+                <NODEREF id="facePiramide1"/>
             </DESCENDANTS>
 
         </NODE>
