@@ -89,12 +89,24 @@
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
-        <!-- Yelllow Chalk -->
-        <TEXTURE id="yellowChalk">
-            <file path="images/yellowChalkTexture.jpg" />
+		<!-- Blue Chalk -->
+		<TEXTURE id="blueChalk">
+            <file path="images/blueChalk.jpg" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+		
+		<!-- Yellow Chalk -->
+		<TEXTURE id="yellowChalk">
+            <file path="images/yellowChalk.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
+		<!-- Vending Machine -->
+		<TEXTURE id="vendingMachine">
+            <file path="images/vendingMachine.jpg" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+		
     </TEXTURES>
 
 
@@ -172,6 +184,7 @@
             <DESCENDANTS>
                 <NODEREF id="floor" />
                 <NODEREF id="table" />
+				<NODEREF id="vendingMachine" />
             </DESCENDANTS>
 
         </NODE>
@@ -181,7 +194,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="floor" />
 
-            <SCALE sx="6" sy="1" sz="5" />
+            <SCALE sx="10" sy="1" sz="8" />
             <TRANSLATION x="0" y="0" z="4" />
             <ROTATION axis="x" angle="-90" />
 
@@ -293,6 +306,7 @@
                 <NODEREF id="balls" />
                 <NODEREF id="holes" />
                 <NODEREF id="partitions" />
+				<NODEREF id="chalk" />
             </DESCENDANTS>
 
         </NODE>
@@ -871,7 +885,137 @@
 
         </NODE>
 
+        <!-- The chalk -->
+        <NODE id="chalk">
+            <MATERIAL id="null" />
+            <TEXTURE id="yellowChalk" />
 
+			<TRANSLATION x="10" y="4.4" z="14.75" />
+			<SCALE sx="0.1" sy="0.1" sz="0.1" />
+
+            <DESCENDANTS>
+                <NODEREF id="chalkFront" />
+                <NODEREF id="chalkBack" />
+                <NODEREF id="chalkRight" />
+                <NODEREF id="chalkLeft" />
+                <NODEREF id="chalkTop" />
+                <NODEREF id="chalkBottom" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The front of the chalk -->
+        <NODE id="chalkFront">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="4" z="7.5" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The back of the chalk -->
+        <NODE id="chalkBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="4" z="2.5" />
+            <ROTATION axis="y" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The right of the chalk -->
+        <NODE id="chalkRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="7.5" y="4" z="7.5" />
+            <ROTATION axis="y" angle="90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The left of the chalk -->
+        <NODE id="chalkLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="7.5" y="4" z="2.5" />
+            <ROTATION axis="y" angle="180" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The top of the chalk -->
+        <NODE id="chalkTop">
+            <MATERIAL id="null" />
+            <TEXTURE id="blueChalk" />
+
+            <ROTATION axis="x" angle="-90" />
+            <TRANSLATION x="2.5" y="-7.5" z="8" />
+            <SCALE sx="1" sy="1.25" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The bottom of the chalk -->
+        <NODE id="chalkBottom">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="4" z="2.5" />
+            <ROTATION axis="x" angle="90" />
+            <SCALE sx="1" sy="1.25" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		 <!-- The vending machine -->
+        <NODE id="vendingMachine">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+			<SCALE sx="10" sy="13" sz="1" />
+			<TRANSLATION x="0" y="-4" z="-5" />
+
+            <DESCENDANTS>
+                <NODEREF id="vendingMachineFront" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The front of the vending machine -->
+        <NODE id="vendingMachineFront">
+            <MATERIAL id="null" />
+            <TEXTURE id="vendingMachine" />
+
+            <TRANSLATION x="2.5" y="4" z="7.5" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 1 1 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
     </NODES>
 
 </SCENE>
