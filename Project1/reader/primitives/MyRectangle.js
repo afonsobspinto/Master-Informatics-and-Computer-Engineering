@@ -59,7 +59,7 @@ MyRectangle.prototype.initBuffers = function() {
     this.initGLBuffers();
 }
 
-//TODO: Change this to coordinates
+//TODO: Change this to coordinates. Clamp to Edge 
 
 /**
  * Updates the Rectangle amplification factors
