@@ -76,31 +76,25 @@
             <file path="images/felt.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-		
-		<!-- White -->
-		<TEXTURE id="white">
+
+        <!-- White -->
+        <TEXTURE id="white">
             <file path="images/white.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-		
-		<!-- Dark Wood -->
-		<TEXTURE id="darkWood">
+
+        <!-- Dark Wood -->
+        <TEXTURE id="darkWood">
             <file path="images/darkwood.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
-		<!-- Blue Chalk -->
-		<TEXTURE id="blueChalk">
-            <file path="images/blueChalk.jpg" />
+        <!-- Yelllow Chalk -->
+        <TEXTURE id="yellowChalk">
+            <file path="images/yellowChalkTexture.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-		
-		<!-- Yellow Chalk -->
-		<TEXTURE id="yellowChalk">
-            <file path="images/yellowChalk.jpg" />
-            <amplif_factor s="1.0" t="1.0" />
-        </TEXTURE>
-		
+
     </TEXTURES>
 
 
@@ -146,14 +140,6 @@
             <emission r="0.0" g="0.0" b="0.0" a="0.0" />
         </MATERIAL>
 
-		<MATERIAL id="yellowSurface">
-            <shininess value="2" />
-            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="0.0" a="1.0" />
-            <ambient r="1.0" g="1.0" b="0.0" a="1.0" />
-            <emission r="0.0" g="0.0" b="0.0" a="0.0" />
-        </MATERIAL>
-		
         <!-- A default material -->
         <MATERIAL id="defaultMaterial">
             <shininess value="1" />
@@ -185,9 +171,7 @@
 
             <DESCENDANTS>
                 <NODEREF id="floor" />
-				<NODEREF id="walls" />
                 <NODEREF id="table" />
-                <NODEREF id="facePiramide1"/>
             </DESCENDANTS>
 
         </NODE>
@@ -207,82 +191,6 @@
 
         </NODE>
 
-				
-		<!-- The walls -->
-        <NODE id="walls">
-            <MATERIAL id="null" />
-            <TEXTURE id="darkWood" />
-
-         <!--   <SCALE sx="6" sy="1" sz="5" />
-            <TRANSLATION x="0" y="0" z="4" /> -->
-
-            <DESCENDANTS>
-                <NODEREF id="frontWall" />
-				<NODEREF id="backWall" />
-				<NODEREF id="leftWall" />
-				<NODEREF id="rightWall" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The front wall -->
-        <NODE id="frontWall">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-		    <SCALE sx="6" sy="4" sz="5" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The back wall -->
-        <NODE id="backWall">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-		    <SCALE sx="6" sy="4" sz="5" />
-            <ROTATION axis="y" angle="180" />
-			<TRANSLATION x="-5" y="0" z="-4" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-			
-	    </NODE>
-
-		<!-- The left wall -->
-        <NODE id="leftWall">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-		    <SCALE sx="3" sy="4" sz="4" />
-            <ROTATION axis="y" angle="90" />
-			<TRANSLATION x="-5" y="0" z="0" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-		<!-- The right wall -->
-        <NODE id="rightWall">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-		    <SCALE sx="3" sy="4" sz="4" />
-            <ROTATION axis="y" angle="-90" />
-			<TRANSLATION x="0" y="0" z="-10" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-				
         <!-- The table -->
         <NODE id="table">
             <MATERIAL id="null" />
@@ -378,14 +286,13 @@
         <NODE id="top">
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
-			
+
             <DESCENDANTS>
                 <NODEREF id="base" />
                 <NODEREF id="cue" />
                 <NODEREF id="balls" />
                 <NODEREF id="holes" />
                 <NODEREF id="partitions" />
-				<NODEREF id="chalk" />
             </DESCENDANTS>
 
         </NODE>
@@ -494,7 +401,7 @@
 
         </NODE>
 
-		
+
         <!-- The cue -->
         <NODE id="cue">
             <MATERIAL id="null" />
@@ -505,14 +412,14 @@
 
             <DESCENDANTS>
                 <NODEREF id="cueBody" />
-				<NODEREF id="cueTop" />
-				<NODEREF id="cueTip" />
-				<NODEREF id="cueBack" />
+                <NODEREF id="cueTop" />
+                <NODEREF id="cueTip" />
+                <NODEREF id="cueBack" />
             </DESCENDANTS>
 
         </NODE>
-		
-		<!-- The body of the cue -->
+
+        <!-- The body of the cue -->
         <NODE id="cueBody">
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
@@ -522,13 +429,13 @@
             </DESCENDANTS>
 
         </NODE>
-		
-		<!-- The top of the cue -->
+
+        <!-- The top of the cue -->
         <NODE id="cueTop">
             <MATERIAL id="null" />
             <TEXTURE id="white" />
-			
-			<SCALE sx="0.8" sy="0.8" sz="0.05" />
+
+            <SCALE sx="0.8" sy="0.8" sz="0.05" />
             <TRANSLATION x="0" y="0" z="-4.2" />
 
             <DESCENDANTS>
@@ -537,12 +444,12 @@
 
         </NODE>
 
-		<!-- The tip of the cue -->
+        <!-- The tip of the cue -->
         <NODE id="cueTip">
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
-			
-			<SCALE sx="0.8" sy="0.8" sz="0.02" />
+
+            <SCALE sx="0.8" sy="0.8" sz="0.02" />
             <TRANSLATION x="0" y="0" z="-15" />
 
             <DESCENDANTS>
@@ -550,12 +457,12 @@
             </DESCENDANTS>
 
         </NODE>
-		
-		<!-- The back of the cue -->
+
+        <!-- The back of the cue -->
         <NODE id="cueBack">
             <MATERIAL id="null" />
             <TEXTURE id="darkWood" />
-			
+
             <TRANSLATION x="0" y="0" z="4" />
             <SCALE sx="0.7" sy="0.7" sz="0.07" />
 
@@ -564,7 +471,7 @@
             </DESCENDANTS>
 
         </NODE>
-		
+
         <!-- The balls -->
         <NODE id="balls">
             <MATERIAL id="null" />
@@ -957,111 +864,6 @@
             <ROTATION axis="x" angle="-90" />
             <TRANSLATION x="2.5" y="-7.5" z="7.5" />
             <SCALE sx="1" sy="0.07" sz="1" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-		
-		
-        <!-- The chalk -->
-        <NODE id="chalk">
-            <MATERIAL id="null" />
-            <TEXTURE id="yellowChalk" />
-
-			<TRANSLATION x="10" y="4.4" z="14.75" />
-			<SCALE sx="0.1" sy="0.1" sz="0.1" />
-
-            <DESCENDANTS>
-                <NODEREF id="chalkFront" />
-                <NODEREF id="chalkBack" />
-                <NODEREF id="chalkRight" />
-                <NODEREF id="chalkLeft" />
-                <NODEREF id="chalkTop" />
-                <NODEREF id="chalkBottom" />
-            </DESCENDANTS>
-
-        </NODE>
-		
-		<!-- The front of the chalk -->
-        <NODE id="chalkFront">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-            <TRANSLATION x="2.5" y="4" z="7.5" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The back of the chalk -->
-        <NODE id="chalkBack">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-            <TRANSLATION x="2.5" y="4" z="2.5" />
-            <ROTATION axis="y" angle="-90" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The right of the chalk -->
-        <NODE id="chalkRight">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-            <TRANSLATION x="7.5" y="4" z="7.5" />
-            <ROTATION axis="y" angle="90" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The left of the chalk -->
-        <NODE id="chalkLeft">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-            <TRANSLATION x="7.5" y="4" z="2.5" />
-            <ROTATION axis="y" angle="180" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The top of the chalk -->
-        <NODE id="chalkTop">
-            <MATERIAL id="null" />
-            <TEXTURE id="blueChalk" />
-
-            <ROTATION axis="x" angle="-90" />
-            <TRANSLATION x="2.5" y="-7.5" z="8" />
-            <SCALE sx="1" sy="1.25" sz="1" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 4 5 0" />
-            </DESCENDANTS>
-
-        </NODE>
-
-        <!-- The bottom of the chalk -->
-        <NODE id="chalkBottom">
-            <MATERIAL id="null" />
-            <TEXTURE id="null" />
-
-            <TRANSLATION x="2.5" y="4" z="2.5" />
-            <ROTATION axis="x" angle="90" />
-            <SCALE sx="1" sy="1.25" sz="1" />
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 4 5 0" />
