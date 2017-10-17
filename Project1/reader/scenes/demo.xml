@@ -102,7 +102,7 @@
         </TEXTURE>
 
 		<!-- Vending Machine -->
-		<TEXTURE id="vendingMachine">
+		<TEXTURE id="vendingMachineTexture">
             <file path="images/vendingMachine.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
@@ -152,9 +152,17 @@
             <emission r="0.0" g="0.0" b="0.0" a="0.0" />
         </MATERIAL>
 
+		<MATERIAL id="black">
+            <shininess value="10" />
+            <specular r="0.0" g="0.0" b="1.0" a="1.0" />
+            <diffuse r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+            <emission r="0.0" g="0.0" b="0.0" a="0.0" />
+        </MATERIAL>
+		
         <!-- A default material -->
         <MATERIAL id="defaultMaterial">
-            <shininess value="1" />
+            <shininess value="10" />
             <specular r="0.0" g="0.0" b="0.0" a="1.0" />
             <diffuse r="0.4" g="0.4" b="0.4" a="1.0" />
             <ambient r="0.4" g="0.4" b="0.4" a="1.0" />
@@ -991,27 +999,91 @@
 		
 		 <!-- The vending machine -->
         <NODE id="vendingMachine">
-            <MATERIAL id="null" />
+            <MATERIAL id="black" />
             <TEXTURE id="null" />
 
 			<SCALE sx="10" sy="13" sz="1" />
-			<TRANSLATION x="0" y="-4" z="-5" />
+			<TRANSLATION x="1" y="-4" z="0" />
 
             <DESCENDANTS>
                 <NODEREF id="vendingMachineFront" />
+                <NODEREF id="vendingMachineBack" />	
+			    <NODEREF id="vendingMachineRight" />
+				<NODEREF id="vendingMachineLeft" />
+				<NODEREF id="vendingMachineTop" />
+
             </DESCENDANTS>
 
         </NODE>
 		
 		<!-- The front of the vending machine -->
         <NODE id="vendingMachineFront">
-            <MATERIAL id="null" />
-            <TEXTURE id="vendingMachine" />
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="vendingMachineTexture" />
 
             <TRANSLATION x="2.5" y="4" z="7.5" />
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 1 1 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The back of the vending machine -->
+        <NODE id="vendingMachineBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="5" z="2.5" />
+			<ROTATION axis="x" angle="180" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 1 1 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The right of the vending machine -->
+        <NODE id="vendingMachineRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+			<SCALE sx="0.25" sy="0.25" sz="1" /> 
+            <TRANSLATION x="14" y="16" z="7.5" />
+            <ROTATION axis="y" angle="90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The left of the vending machine -->
+        <NODE id="vendingMachineLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+			<SCALE sx="0.25" sy="0.25" sz="1" /> 
+            <TRANSLATION x="10" y="16" z="2.5" />
+            <ROTATION axis="y" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+	    <!-- The top of the vending machine -->
+        <NODE id="vendingMachineTop">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="0.2" sy="1" sz="1.25" />
+            <TRANSLATION x="12.5" y="5" z="6" />
+            <ROTATION axis="x" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
             </DESCENDANTS>
 
         </NODE>

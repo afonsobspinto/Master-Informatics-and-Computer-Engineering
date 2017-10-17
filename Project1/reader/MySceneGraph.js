@@ -1486,6 +1486,7 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
 
         material.apply();
         node.leaves[j].display();
+		material.setTexture(null);
     }
 
     this.materialsStack.pop();
