@@ -89,6 +89,12 @@
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
+        <!-- Yelllow Chalk -->
+        <TEXTURE id="yellowChalk">
+            <file path="images/yellowChalkTexture.jpg" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+
     </TEXTURES>
 
 
@@ -864,6 +870,7 @@
             </DESCENDANTS>
 
         </NODE>
+
 
     </NODES>
 
