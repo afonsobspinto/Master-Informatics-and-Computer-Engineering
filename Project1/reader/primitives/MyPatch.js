@@ -1,16 +1,15 @@
 /**
  * MyPatch
  * @param scene
- * @param degree1
- * @param degree2
  * @param partsU
  * @param partsV
+ * @param degree1
+ * @param degree2
  * @param controlPoints
  * @constructor
  */
 
-function MyPatch(scene, degree1, degree2, partsU, partsV, controlPoints){
-    CGFobject.call(this, scene);
+function MyPatch(scene, partsU, partsV, degree1, degree2, controlPoints){
 
     var knots1 = this.getKnotsVector(degree1);
     var knots2 = this.getKnotsVector(degree2);
@@ -39,13 +38,13 @@ MyPatch.prototype.constructor = MyPatch;
 
 MyPatch.prototype.getVertexes = function(degree1, degree2, controlPoints) {
 
-    var pos = 0;
+    var index = 0;
 
     for (var i = 0; i < degree1 + 1; i++) {
         var vec = [];
         for (var j = 0; j < degree2 + 1; j++) {
-            vec.push(controlPoints[pos]);
-            pos++;
+            vec.push(controlPoints[index]);
+            index++;
         }
         this.controlvertexes.push(vec);
     }
