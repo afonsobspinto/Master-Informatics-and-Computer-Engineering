@@ -185,6 +185,7 @@
 
             <DESCENDANTS>
                 <NODEREF id="floor" />
+				<NODEREF id="walls" />
                 <NODEREF id="table" />
             </DESCENDANTS>
 
@@ -205,6 +206,82 @@
 
         </NODE>
 
+				
+		<!-- The walls -->
+        <NODE id="walls">
+            <MATERIAL id="null" />
+            <TEXTURE id="darkWood" />
+
+         <!--   <SCALE sx="6" sy="1" sz="5" />
+            <TRANSLATION x="0" y="0" z="4" /> -->
+
+            <DESCENDANTS>
+                <NODEREF id="frontWall" />
+				<NODEREF id="backWall" />
+				<NODEREF id="leftWall" />
+				<NODEREF id="rightWall" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The front wall -->
+        <NODE id="frontWall">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+		    <SCALE sx="6" sy="4" sz="5" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The back wall -->
+        <NODE id="backWall">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+		    <SCALE sx="6" sy="4" sz="5" />
+            <ROTATION axis="y" angle="180" />
+			<TRANSLATION x="-5" y="0" z="-4" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+			
+	    </NODE>
+
+		<!-- The left wall -->
+        <NODE id="leftWall">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+		    <SCALE sx="3" sy="4" sz="4" />
+            <ROTATION axis="y" angle="90" />
+			<TRANSLATION x="-5" y="0" z="0" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+		<!-- The right wall -->
+        <NODE id="rightWall">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+		    <SCALE sx="3" sy="4" sz="4" />
+            <ROTATION axis="y" angle="-90" />
+			<TRANSLATION x="0" y="0" z="-10" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+				
         <!-- The table -->
         <NODE id="table">
             <MATERIAL id="null" />
