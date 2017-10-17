@@ -53,6 +53,13 @@
             <specular r="0.6" g="0.6" b="0.6" a="1.0" />
         </LIGHT>
 
+		<LIGHT id="light4">
+            <enable value ="1" />
+            <position x="5" y="9" z="25" w="1" />
+            <ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="0.0" b="0.0" a="1.0" />
+            <specular r="0.0" g="1.0" b="0.0" a="1.0" />
+        </LIGHT>
 
     </LIGHTS>
 
@@ -193,6 +200,7 @@
                 <NODEREF id="floor" />
                 <NODEREF id="table" />
 				<NODEREF id="vendingMachine" />
+				<NODEREF id="lamp" />
             </DESCENDANTS>
 
         </NODE>
@@ -1087,6 +1095,112 @@
             </DESCENDANTS>
 
         </NODE>
+		
+	    <!-- The lamp -->
+        <NODE id="lamp">
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="null" />
+
+			<TRANSLATION x="5" y="0" z="25" />
+
+            <DESCENDANTS>
+                <NODEREF id="lampSupport" />
+				<NODEREF id="lampTop" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The support of the lamp -->
+        <NODE id="lampSupport">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="0.2" sy="2.25" sz="0.2" />
+            <ROTATION axis="x" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The top of the lamp -->
+        <NODE id="lampTop">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+			<SCALE sx="0.25" sy="0.25" sz="0.25" />
+
+            <DESCENDANTS>
+				<NODEREF id="side1" />
+				<NODEREF id="side2" />
+				<NODEREF id="side3" />
+				<NODEREF id="side4" />
+            </DESCENDANTS>
+
+        </NODE>		
+		
+		<!-- The first side of the lamp -->
+        <NODE id="side1">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+     	    <TRANSLATION x="0" y="40" z="0" />			
+            <ROTATION axis="z" angle="-44.42" />
+            <ROTATION axis="y" angle="45" />
+			
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+		<!-- The second side of the lamp -->
+        <NODE id="side2">       
+			<MATERIAL id="null" />      
+			<TEXTURE id="null" />       			
+
+			<TRANSLATION x="0" y="40" z="0" />
+			<ROTATION axis="x" angle="44.42" />
+			<ROTATION axis="y" angle="-45" />
+        
+			<DESCENDANTS>
+				<LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
+			</DESCENDANTS>
+
+        </NODE>	
+
+		<!-- The third side of the lamp -->
+        <NODE id="side3">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+		    <ROTATION axis="y" angle="180" />
+     	    <TRANSLATION x="0" y="40" z="0" />			
+            <ROTATION axis="z" angle="-44.42" />
+            <ROTATION axis="y" angle="45" />
+			
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
+            </DESCENDANTS>
+
+        </NODE>
+		
+		<!-- The fourth side of the lamp -->
+        <NODE id="side4">       
+			<MATERIAL id="null" />      
+			<TEXTURE id="null" />       			
+
+			<ROTATION axis="y" angle="180" />
+			<TRANSLATION x="0" y="40" z="0" />
+			<ROTATION axis="x" angle="44.42" />
+			<ROTATION axis="y" angle="-45" />
+        
+			<DESCENDANTS>
+				<LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
+			</DESCENDANTS>
+
+        </NODE>	
 		
     </NODES>
 
