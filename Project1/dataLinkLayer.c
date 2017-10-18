@@ -52,8 +52,8 @@ int setNewTermiosStructure(ApplicationLayer* applicationLayer, LinkLayer* linkLa
   /* set input mode (non-canonical, no echo,...) */
   newtio.c_lflag = 0;
 
-  newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
-  newtio.c_cc[VMIN]     = 1;   /* blocking read until 1 chars received */
+  newtio.c_cc[VTIME]    = 10;   /* inter-character timer unused */
+  newtio.c_cc[VMIN]     = 0;   /* blocking read until 1 chars received */
 
 
   tcflush(applicationLayer->fileDescriptor, TCIOFLUSH);
@@ -74,11 +74,13 @@ int readingArray(int fd, char validation[]){
   int pos = 0;
   int res;
 
-  while(state != stop){
+  while(state != stop && !flagAlarm){
     if((res= read(fd, &readChar, 1))<0){
       perror("readingArray: Reading");
       exit(-1);
     }
+
+
     if(readChar==validation[pos]){
       pos++;
       state++;
@@ -89,7 +91,10 @@ int readingArray(int fd, char validation[]){
       state = start;
   }
 
-  return 1; //True
+  if(state == stop)
+  	return 1;
+  else
+  	return 0;
 }
 
 int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
@@ -104,9 +109,10 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
     printf("llopenTransmitter: sent SET\n");
     alarm(linkLayer->timeout);
     flagAlarm=0;
-    if(readingArray(applicationLayer->fileDescriptor, UA)) //TODO: UA should be equal to SET right?
+    if(readingArray(applicationLayer->fileDescriptor, UA)){ //TODO: UA should be equal to SET right?
       printf("llopenTransmitter: UA received successfully.\n");
-    break;
+      break;
+      }
   }
 
   return 0;
@@ -114,14 +120,31 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
 int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   int res;
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+  int sucess = 0;
 
-  if(readingArray(applicationLayer->fileDescriptor, SET))
-    printf("llopenReceiver: SET received successfully.\n");
+  printf("llopenReceiver: start reading\n");
+
+  while(numTries < linkLayer->numTransmissions && flagAlarm){
+	  alarm(linkLayer->timeout);
+	  flagAlarm=0;
+	  if(readingArray(applicationLayer->fileDescriptor, SET)){
+	    printf("llopenReceiver: SET received successfully.\n");
+	    sucess = 1;
+	    break;
+	    }
+  }
+
+  if(!sucess){
+  	perror("llopenReceiver: SET was NOT received successfully");
+  	exit(-1);
+  }
 
   if((res = write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
-    perror("llopenTransmitter: Writing");
+    perror("llopenReceiver: Writing");
     exit(-1);
   }
+  printf("llopenReceiver: sent UA\n");
 
   return 0;
 }
