@@ -1382,10 +1382,8 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
         if(type=='patch') {
             var moreArgs = this.parsePatchs(xmlelem);
             intArgs = intArgs.concat(moreArgs);
-            console.log(intArgs);
         }
-        else
-            this.nodes[nodeID].addLeaf(new MyGraphLeaf(this, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
+        this.nodes[nodeID].addLeaf(new MyGraphLeaf(this, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
 
     }
 
@@ -1401,12 +1399,13 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
  */
 MySceneGraph.prototype.parsePatchs = function(xmlelem){
 
-    var cPlinesU = xmlelem.getElementsByTagName("CPLINE")[0];
-    var cPlinesV = xmlelem.getElementsByTagName("CPLINE")[1];
-    var orderU = cPlinesU.getElementsByTagName("CPOINT").length - 1;
-    var orderV = cPlinesV.getElementsByTagName("CPOINT").length - 1;
+    var orderU = xmlelem.getElementsByTagName("CPLINE").length - 1;
+    var orderV = xmlelem.getElementsByTagName("CPOINT").length / (orderU+1) - 1;
+
+
 
     var controlPointsElement = xmlelem.getElementsByTagName("CPOINT");
+
     var controlPoints = [];
     var x, y, z, w;
     var info;

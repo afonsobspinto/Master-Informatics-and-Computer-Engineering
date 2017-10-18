@@ -170,6 +170,20 @@
                 <NODEREF id="arvores" />
                 <NODEREF id="chao" />
                 <NODEREF id="bancos" />
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="-1.5" yy="-1.5" zz="0.0" ww="1"/>
+                        <CPOINT xx="-1.5" yy="1.5" zz="0.0" ww="1"/>
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="0" yy="-1.5" zz="3.0" ww="1"/>
+                        <CPOINT xx="0" yy="1.5" zz="3.0" ww="1"/>
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="1.5" yy="-1.5" zz="0.0" ww="1"/>
+                        <CPOINT xx="1.5" yy="1.5" zz="0.0" ww="1"/>
+                    </CPLINE>
+                </LEAF>
             </DESCENDANTS>
 
         </NODE>
@@ -613,25 +627,6 @@
 
             <DESCENDANTS>
                 <LEAF id="triangle1" type="triangle" args="2 0 12 12 0 2 0 0 0" />
-
-                <LEAF type="patch" args="20 20" >
-                    <CPLINE>
-                        <CPOINT xx="-25" yy="5" zz="0" ww="1" />
-                        <CPOINT xx="-7.5" yy="5" zz="0" ww="0.3" />
-                        <CPOINT xx="-7.5" yy="-25" zz="0" ww="0.3" />
-                        <CPOINT xx="10" yy="-25" zz="0" ww="1" />
-                        <CPOINT xx="10" yy="-25" zz="0" ww="1" />
-                    </CPLINE>
-                    <CPLINE>
-                        <CPOINT xx="-25" yy="-25" zz="0" ww="1" />
-                        <CPOINT xx="-7.5" yy="-25" zz="0" ww="0.3" />
-                        <CPOINT xx="-7.5" yy="-55" zz="0" ww="0.3" />
-                        <CPOINT xx="10" yy="-55" zz="0" ww="1" />
-                        <CPOINT xx="10" yy="-25" zz="0" ww="1" />
-                        <CPOINT xx="10" yy="-25" zz="0" ww="1" />
-                    </CPLINE>
-                </LEAF>
-
             </DESCENDANTS>
 
         </NODE>

@@ -18,7 +18,11 @@ function MyPatch(scene, partsU, partsV, degree1, degree2, controlPoints){
 
     this.getVertexes(degree1, degree2, controlPoints);
 
+    console.log(this.controlvertexes);
+
     var nurbsSurface = new CGFnurbsSurface(degree1, degree2, knots1, knots2, this.controlvertexes);
+
+    console.log(nurbsSurface);
 
     getSurfacePoint = function(u, v) {
         return nurbsSurface.getPoint(u, v);

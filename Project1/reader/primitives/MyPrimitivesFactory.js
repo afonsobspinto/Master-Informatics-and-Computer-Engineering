@@ -8,8 +8,6 @@
 function MyPrimitivesFactory(scene, type, args){
 
     var primitive;
-    //Todo: Change this to a map?
-    //Todo: Create a Primitive Abstract Class?
 
     switch(type){
         case 'triangle':
@@ -23,6 +21,9 @@ function MyPrimitivesFactory(scene, type, args){
             break;
         case 'cylinder':
             primitive = new MyCylinder(scene, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+            break;
+        case 'patch':
+            primitive = new MyPatch(scene, args[0], args[1], args[2], args[3], args[4]);
             break;
 
     }
