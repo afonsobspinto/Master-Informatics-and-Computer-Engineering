@@ -1364,10 +1364,14 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
     return null ;
 }
 
-
+/**
+ * Parses Leafs
+ * @param nodeID
+ * @param xmlelem
+ */
 MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
 
-    var type=this.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
+    var type=this.reader.getItem(xmlelem, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
 
     if (type != null){
 
@@ -1375,7 +1379,10 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
         var args = this.reader.getString(xmlelem, 'args');
         var intArgs = args.split(" ").map(Number);
 
-
+        if(type=='patch') {
+            var moreArgs = this.parsePatchs(xmlelem);
+            intArgs = intArgs.concat(moreArgs);
+        }
         this.nodes[nodeID].addLeaf(new MyGraphLeaf(this, new MyPrimitivesFactory(this.scene, type, intArgs), leafID));
 
     }
@@ -1383,6 +1390,41 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
     else
         this.warn("Error in leaf");
 }
+
+
+/**
+ * Parses Patchs
+ * @param nodeID
+ * @param xmlelem
+ */
+MySceneGraph.prototype.parsePatchs = function(xmlelem){
+
+    var orderU = xmlelem.getElementsByTagName("CPLINE").length - 1;
+    var orderV = xmlelem.getElementsByTagName("CPOINT").length / (orderU+1) - 1;
+
+
+
+    var controlPointsElement = xmlelem.getElementsByTagName("CPOINT");
+
+    var controlPoints = [];
+    var x, y, z, w;
+    var info;
+
+    for(var i = 0; i < controlPointsElement.length; i++){
+
+        info = controlPointsElement.item(i).attributes;
+
+        x = info.getNamedItem("xx").nodeValue * 1.0;
+        y = info.getNamedItem("yy").nodeValue * 1-0;
+        z = info.getNamedItem("zz").nodeValue * 1.0;
+        w = info.getNamedItem("ww").nodeValue * 1.0;
+
+        controlPoints.push([x,y,z,w]);
+    }
+
+    return [orderU, orderV, controlPoints];
+}
+
 
 /*
  * Callback to be executed on any read error
@@ -1486,6 +1528,7 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
 
         material.apply();
         node.leaves[j].display();
+        material.setTexture(null);
     }
 
     this.materialsStack.pop();

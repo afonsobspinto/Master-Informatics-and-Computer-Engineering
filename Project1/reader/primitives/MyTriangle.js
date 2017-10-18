@@ -74,9 +74,9 @@ MyTriangle.prototype.initBuffers = function() {
     //TODO: Check if this is working
 
     this.texCoords = [
-        P0.x * this.maxS / c ,  ((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta,
-        this.maxS, this.minT,
-        this.minS, this.minT
+        P0.x, 1-P0.y,
+        this.minS, 1,
+        this.vertexC.x - this.vertexB.x, 1
     ];
 
 
@@ -84,7 +84,6 @@ MyTriangle.prototype.initBuffers = function() {
     this.initGLBuffers();
 }
 
-//TODO: Set amplification Factors
 
 /**
  * Updates the Triangle amplification factors
@@ -115,10 +114,11 @@ MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
 
     this.texCoords = [
-        (P0.x * this.maxS / c) * c/amplifFactorS ,  (((this.maxS - (P0.x * this.maxS / c))/cosBeta) * sinBeta) * (c/amplifFactorT),
-        this.maxS, this.minT * (c/amplifFactorS),
-        this.minS, this.minT
+        P0.x / amplifFactorS, 1 - P0.y / amplifFactorT,
+        this.minS, 1,
+        (this.vertexC.x - this.vertexB.x) / amplifFactorS, 1
     ];
+
 
     this.updateTexCoordsGLBuffers();
 }

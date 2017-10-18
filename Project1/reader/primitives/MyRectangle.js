@@ -45,13 +45,6 @@ MyRectangle.prototype.initBuffers = function() {
         0, 3, 2
     ];
 
-/*    this.texCoords = [
-        this.minS,this.maxT,
-        this.maxS,this.maxT,
-        this.maxS,this.minT,
-        this.minS,this.minT
-    ];*/
-
     this.texCoords = [
         this.minS, this.vertex1.y - this.minT,
         this.vertex2.x-this.vertex1.x, this.minT,
