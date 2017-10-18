@@ -8,23 +8,22 @@
 #include <string.h>
 #include <signal.h>
 #include <unistd.h>
-
 #include "dataLinkLayer.h"
 #include "appLayer.h"
 
-int appLayer(char* serialPort, STATUS status){
+int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
-  if (openSerialPort(serialPort) == -1) {
+  if (openSerialPort(applicationLayer, linkLayer) == -1) {
     perror("Error Opening Serial Port \n");
     exit(-1);
   }
 
-  if (setNewTermiosStructure() == -1) {
+  if (setNewTermiosStructure(applicationLayer, linkLayer) == -1) {
     perror("Error Setting New Termios \n");
     exit(-1);
   }
 
-  llopen(serialPort, status);
+  llopen(linkLayer->port, applicationLayer->status);
 
   return 0;
 }

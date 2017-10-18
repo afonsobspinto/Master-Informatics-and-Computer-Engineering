@@ -2,16 +2,9 @@
 #define APPLAYER_H
 
 #include "dataLinkLayer.h"
+#include "utilities.h"
 
-typedef enum { TRANSMITTER, RECEIVER } STATUS;
-
-typedef struct {
-  int fileDescriptor; /*Descritor correspondente à porta série*/
-  STATUS status; /*TRANSMITTER | RECEIVER*/
-}ApplicationLayer;
-
-int appLayer(char* serialPort, STATUS status);
+int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llopen(char* serialPort, STATUS status);
-
 
 #endif

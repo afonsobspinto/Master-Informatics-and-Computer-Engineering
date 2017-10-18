@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
 #include "appLayer.h"
 
 int main(int argc, char **argv) {
 
-  ApplicationLayer applicationLayer;
-  LinkLayer linkLayer;
+  ApplicationLayer* applicationLayer = malloc(sizeof(ApplicationLayer));
+  LinkLayer* linkLayer = malloc(sizeof(LinkLayer));
+
+  linkLayer->baudRate = B38400;
+  linkLayer->timeout = 3;
+  linkLayer->numTransmissions = 3;
 
 
   if ((argc != 3) ||
@@ -18,7 +21,7 @@ int main(int argc, char **argv) {
       exit(1);
     }
 
-  strcpy(linkLayer.port, argv[1]);
+  strcpy(linkLayer->port, argv[1]);
 
   /*
   Read = 0;
@@ -27,21 +30,21 @@ int main(int argc, char **argv) {
 
   if ((strcmp("1", argv[2]) == 0)) {
     printf("Write Mode. \n");
-    applicationLayer.status = TRANSMITTER;
+    applicationLayer->status = TRANSMITTER;
   }
   else if ((strcmp("0", argv[2]) == 0)) {
     printf("Read Mode. \n");
-    applicationLayer.status = RECEIVER;
+    applicationLayer->status = RECEIVER;
   }
   else{
     perror("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
     exit(1);
   }
 
-  printf("SerialPort: %s\n", linkLayer.port);
+  printf("SerialPort: %s\n", linkLayer->port);
   sleep(1);
 
-  //appLayer(serialPort, status);
+  appLayer(applicationLayer, linkLayer);
 
   return 0;
 }
