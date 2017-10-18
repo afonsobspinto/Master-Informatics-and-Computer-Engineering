@@ -10,9 +10,11 @@
 
 struct termios oldtio, newtio;
 
+void answer();
 int openSerialPort(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int setNewTermiosStructure(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
-int llopenTransmitter(char* serialPort);
-int llopenReceiver(char* serialPort);
+int readingArray(int fd, char validation[]);
+int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
+int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
 #endif

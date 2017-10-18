@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
     (strcmp("/dev/ttyS1", argv[1])!=0)) ) {
       perror("STATUS: <serial port> <STATUS> \n"); // /dev/ttyS1 1
-      exit(1);
+      exit(-1);
     }
 
   strcpy(linkLayer->port, argv[1]);
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
   }
   else{
     perror("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
-    exit(1);
+    exit(-1);
   }
 
   printf("SerialPort: %s\n", linkLayer->port);

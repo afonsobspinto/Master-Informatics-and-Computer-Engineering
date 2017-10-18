@@ -5,6 +5,6 @@
 #include "utilities.h"
 
 int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
-int llopen(char* serialPort, STATUS status);
+int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
 #endif

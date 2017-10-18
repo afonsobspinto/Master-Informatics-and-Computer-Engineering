@@ -14,28 +14,28 @@
 int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   if (openSerialPort(applicationLayer, linkLayer) == -1) {
-    perror("Error Opening Serial Port \n");
+    perror("appLayer: openSerialPort \n");
     exit(-1);
   }
 
   if (setNewTermiosStructure(applicationLayer, linkLayer) == -1) {
-    perror("Error Setting New Termios \n");
+    perror("appLayer: setNewTermiosStructure \n");
     exit(-1);
   }
 
-  llopen(linkLayer->port, applicationLayer->status);
+  llopen(applicationLayer, linkLayer);
 
   return 0;
 }
 
-int llopen(char* serialPort, STATUS status) {
+int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 
-  switch (status) {
+  switch (applicationLayer->status) {
     case TRANSMITTER:
-      llopenTransmitter(serialPort);
+      llopenTransmitter(applicationLayer, linkLayers);
       break;
     case RECEIVER:
-      llopenReceiver(serialPort);
+      llopenReceiver(applicationLayer, linkLayers);
       break;
   }
 
