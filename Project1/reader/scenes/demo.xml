@@ -1353,7 +1353,7 @@
 		<!-- The small table bottoms -->
         <NODE id="smallTableBottoms">
             <MATERIAL id="null" />
-            <TEXTURE id="wood" />
+            <TEXTURE id="null" />
 
             <DESCENDANTS>
                 <NODEREF id="smallTableBottom1" />
