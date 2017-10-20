@@ -10,8 +10,9 @@ int main(int argc, char **argv) {
   LinkLayer* linkLayer = malloc(sizeof(LinkLayer));
 
   linkLayer->baudRate = B38400;
-  linkLayer->timeout = 3;
+  linkLayer->timeout = 1;
   linkLayer->numTransmissions = 3;
+  linkLayer->sequenceNumber = 0;
 
 
   if ((argc != 3) ||

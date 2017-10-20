@@ -11,8 +11,10 @@
 
 static int numTries = 0;
 static int flagAlarm = 1;
-char SET[5] = {FLAG, A, C, A ^ C, FLAG};
-char UA[5] = {FLAG, A, C, A ^ C, FLAG};
+char SET[5] = {FLAG, A, C_SET, A ^ C_SET, FLAG};
+char UA[5] = {FLAG, A, C_UA, A ^ C_UA, FLAG};
+char RR1[5] = {FLAG, A, C_UA, A ^ C_RR1, FLAG};
+char RR0[5] = {FLAG, A, C_UA, A ^ C_RR0, FLAG};
 
 void answer(){ //answers alarm
 
@@ -97,6 +99,19 @@ int readingArray(int fd, char validation[]){
   	return 0;
 }
 
+int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
+
+  switch (applicationLayer->status) {
+    case TRANSMITTER:
+      llopenTransmitter(applicationLayer, linkLayers);
+      break;
+    case RECEIVER:
+      llopenReceiver(applicationLayer, linkLayers);
+      break;
+  }
+  return 1;
+}
+
 int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   int res;
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
@@ -109,7 +124,7 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
     printf("llopenTransmitter: sent SET\n");
     alarm(linkLayer->timeout);
     flagAlarm=0;
-    if(readingArray(applicationLayer->fileDescriptor, UA)){ //TODO: UA should be equal to SET right?
+    if(readingArray(applicationLayer->fileDescriptor, UA)){
       printf("llopenTransmitter: UA received successfully.\n");
       break;
       }
@@ -121,7 +136,7 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   int res;
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
-  int sucess = 0;
+  int success = 0;
 
   printf("llopenReceiver: start reading\n");
 
@@ -130,12 +145,12 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 	  flagAlarm=0;
 	  if(readingArray(applicationLayer->fileDescriptor, SET)){
 	    printf("llopenReceiver: SET received successfully.\n");
-	    sucess = 1;
+	    success = 1;
 	    break;
 	    }
   }
 
-  if(!sucess){
+  if(!success){
   	perror("llopenReceiver: SET was NOT received successfully");
   	exit(-1);
   }
@@ -145,6 +160,113 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
     exit(-1);
   }
   printf("llopenReceiver: sent UA\n");
+
+  return 0;
+}
+
+
+int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char* buffer, int bufferSize){
+
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+
+  //Add Header
+  linkLayer->frame[0] = FLAG;
+  linkLayer->frame[1] = A;
+  linkLayer->frame[2] = linkLayer->sequenceNumber;
+  linkLayer->frame[0] = linkLayer->frame[1] ^ linkLayer->frame[2];
+
+  //Add Data
+  memcpy(&linkLayer->frame[4], buffer, bufferSize);
+
+  //Get and Add BCC2
+  linkLayer->frame[bufferSize + 4] = getBCC2(buffer, bufferSize);
+
+  //Add end Flag
+  linkLayer->frame[bufferSize + 5] = FLAG;
+
+  int frameSize = stuffingFrame(linkLayer, bufferSize + 6);
+
+  numTries = 0;
+  flagAlarm = 1;
+
+  while(numTries < linkLayer->numTransmissions && flagAlarm){
+    if((write(applicationLayer->fileDescriptor, linkLayer->frame, frameSize)) < 0){
+      perror("llwrite: Writing");
+      exit(-1);
+    }
+    alarm(linkLayer->timeout);
+    flagAlarm=0;
+
+    if(linkLayer->sequenceNumber){
+      if(readingArray(applicationLayer->fileDescriptor, RR1)){
+        printf("llwrite: RR1 received successfully.\n");
+        break;
+      }
+    }
+    else{
+      if(readingArray(applicationLayer->fileDescriptor, RR0)){
+        printf("llwrite: RR0 received successfully.\n");
+        break;
+      }
+    }
+  }
+
+  return 0;
+
+}
+
+
+unsigned char getBCC2(unsigned char *buffer, int bufferSize) {
+  unsigned char BCC = 0;
+
+  int i = 0;
+  for (; i < bufferSize; i++) {
+    BCC ^= buffer[i];
+  }
+
+  return BCC;
+}
+
+int stuffingFrame(LinkLayer* linkLayer, int bufferSize){
+
+    int i;
+    for (i = 1; i < bufferSize-1; i++){
+      if(linkLayer->frame[i] == FLAG){
+        linkLayer->frame[i] = ESCAPE;
+        i++;
+        shiftFrame(linkLayer, i, bufferSize, RIGHT);
+        bufferSize++;
+        linkLayer->frame[i] = FLAG ^ OCTETO0x20;
+      }
+      else if(linkLayer->frame[i] == ESCAPE){
+        i++;
+        shiftFrame(linkLayer, i, bufferSize, RIGHT);
+        bufferSize++;
+        linkLayer->frame[i] = ESCAPE ^ OCTETO0x20;
+      }
+    }
+
+    return bufferSize;
+}
+
+
+int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientation){
+  if(orientation == RIGHT){
+    bufferSize--;
+    for(; bufferSize>=i; bufferSize--)
+      linkLayer->frame[bufferSize+1] = linkLayer->frame[bufferSize];
+  }
+
+  else if(orientation == LEFT){
+    int over = 0;
+    i++;
+    do{
+      linkLayer->frame[i] = linkLayer->frame[i+1];
+      i++;
+      if(linkLayer->frame[i] == FLAG) {over = 1;}
+
+    }while (!over);
+  }
 
   return 0;
 }
