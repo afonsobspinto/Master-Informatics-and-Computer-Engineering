@@ -15,6 +15,7 @@ char SET[5] = {FLAG, A, C_SET, A ^ C_SET, FLAG};
 char UA[5] = {FLAG, A, C_UA, A ^ C_UA, FLAG};
 char RR1[5] = {FLAG, A, C_UA, A ^ C_RR1, FLAG};
 char RR0[5] = {FLAG, A, C_UA, A ^ C_RR0, FLAG};
+char DISC[5] = {FLAG, A, C_DISC, A ^ C_DISC, FLAG};
 
 void answer(){ //answers alarm
 
@@ -109,15 +110,14 @@ int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
       llopenReceiver(applicationLayer, linkLayers);
       break;
   }
-  return 1;
+  return 0;
 }
 
 int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-  int res;
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
-    if((res = write(applicationLayer->fileDescriptor, SET, sizeof(SET))) < 0){
+    if((write(applicationLayer->fileDescriptor, SET, sizeof(SET))) < 0){
       perror("llopenTransmitter: Writing");
       exit(-1);
     }
@@ -134,7 +134,6 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 }
 
 int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-  int res;
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
   int success = 0;
 
@@ -155,7 +154,7 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   	exit(-1);
   }
 
-  if((res = write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
+  if((write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
     perror("llopenReceiver: Writing");
     exit(-1);
   }
@@ -173,7 +172,7 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
   linkLayer->frame[0] = FLAG;
   linkLayer->frame[1] = A;
   linkLayer->frame[2] = linkLayer->sequenceNumber;
-  linkLayer->frame[0] = linkLayer->frame[1] ^ linkLayer->frame[2];
+  linkLayer->frame[3] = linkLayer->frame[1] ^ linkLayer->frame[2];
 
   //Add Data
   memcpy(&linkLayer->frame[4], buffer, bufferSize);
@@ -267,6 +266,83 @@ int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientat
 
     }while (!over);
   }
+
+  return 0;
+}
+
+int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
+
+  switch (applicationLayer->status) {
+    case TRANSMITTER:
+      llcloseTransmitter(applicationLayer, linkLayers);
+      break;
+    case RECEIVER:
+      llcloseReceiver(applicationLayer, linkLayers);
+      break;
+  }
+  return 0;
+}
+
+int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+  printf("llcloseTramsitter: Disconecting\n");
+
+  numTries = 0;
+  flagAlarm = 1;
+
+  while(numTries < linkLayer->numTransmissions && flagAlarm){
+    if((write(applicationLayer->fileDescriptor, DISC, sizeof(DISC))) < 0){
+      perror("llcloseTramsitter: Writing DISC");
+      exit(-1);
+    }
+    printf("llcloseTramsitter: sent DISC\n");
+    alarm(linkLayer->timeout);
+    flagAlarm=0;
+    if(readingArray(applicationLayer->fileDescriptor, DISC)){
+      printf("llcloseTramsitter: DISC received successfully.\n");
+      break;
+    }
+  }
+
+  if((write(applicationLayer->fileDescriptor, UA, sizeof(UA))) < 0){
+    perror("llcloseTramsitter: Writing UA");
+    exit(-1);
+  }
+
+  printf("llcloseTramsitter: Disconnected.\n");
+  return 0;
+}
+
+
+int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+  int success = 0;
+  numTries = 0;
+  flagAlarm = 1;
+
+  printf("llcloseReceiver: Disconecting\n");
+
+  while(numTries < linkLayer->numTransmissions && flagAlarm){
+	  alarm(linkLayer->timeout);
+	  flagAlarm=0;
+	  if(readingArray(applicationLayer->fileDescriptor, DISC)){
+	    printf("llcloseReceiver: DISC received successfully.\n");
+	    success = 1;
+	    break;
+	    }
+  }
+
+  if(!success){
+  	perror("llcloseReceiver: DISC was NOT received successfully");
+  	exit(-1);
+  }
+
+  if((write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
+    perror("llcloseReceiver: Writing");
+    exit(-1);
+  }
+  printf("llcloseReceiver: sent UA\n");
+  printf("llcloseReceiver: Disconnected.\n");
 
   return 0;
 }

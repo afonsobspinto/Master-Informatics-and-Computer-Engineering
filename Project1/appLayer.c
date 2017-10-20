@@ -30,6 +30,9 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   // else
   //   receiveData()
 
+
+  llclose(applicationLayer, linkLayer);
+
   return 0;
 }
 
@@ -74,8 +77,6 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   if(sendControlPackage(CTRL_PACKET_END, file, applicationLayer, linkLayer) < 0)
     {perror("sendData: sendControlPackage"); return -1; }
 
-  // if (!llclose())
-  //   return 0;
 
   printf("File successfully transferred.\n");
   return 0;
