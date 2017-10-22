@@ -72,6 +72,12 @@
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
+        <!-- Window -->
+        <TEXTURE id="window">
+            <file path="images/window.png" />
+            <amplif_factor s="12.0" t="5.8" />
+        </TEXTURE>
+
         <!-- Wood -->
         <TEXTURE id="wood">
             <file path="images/wood.jpg" />
@@ -265,6 +271,7 @@
                 <NODEREF id="poolTable" />
 				<NODEREF id="vendingMachine" />
 				<NODEREF id="smallTable" />
+                <NODEREF id="window" />
             </DESCENDANTS>
 
         </NODE>
@@ -280,6 +287,20 @@
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- Window -->
+        <NODE id="window">
+            <MATERIAL id="null" />
+            <TEXTURE id="window" />
+
+            <TRANSLATION x="0" y="4" z="30" />
+            <ROTATION axis="y" angle="90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 6 12 0" />
             </DESCENDANTS>
 
         </NODE>
