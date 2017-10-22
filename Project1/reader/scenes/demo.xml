@@ -125,7 +125,19 @@
             <file path="images/table.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
+
+		<!-- Book Cover -->
+		<TEXTURE id="bookCoverTexture">
+            <file path="images/bookCover.png" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
 		
+		<!-- Book Pages -->
+		<TEXTURE id="bookPagesTexture">
+            <file path="images/bookPages.png" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+	
     </TEXTURES>
 
 
@@ -1235,6 +1247,7 @@
 				<NODEREF id="smallTableTops" />
 				<NODEREF id="smallTableBottoms" />
 				<NODEREF id="glassCup" />
+				<NODEREF id="book" />
             </DESCENDANTS>
 
         </NODE>
@@ -1416,7 +1429,111 @@
             </DESCENDANTS>
 
         </NODE>
+
+        <!-- The book -->
+        <NODE id="book">
+            <MATERIAL id="null" />
+            <TEXTURE id="bookPagesTexture" />
+
+			<TRANSLATION x="1.25" y="3.6" z="-0.5" />
+			<SCALE sx="0.2" sy="0.1" sz="0.3" />
+
+            <DESCENDANTS>
+                <NODEREF id="bookFront" />
+                <NODEREF id="bookBack" />
+                <NODEREF id="bookRight" />
+                <NODEREF id="bookLeft" />
+                <NODEREF id="bookCover" />
+                <NODEREF id="bookBottom" />
+            </DESCENDANTS>
+
+        </NODE>
 		
+		<!-- The front of the book -->
+        <NODE id="bookFront">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="4" z="7.5" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The back of the book -->
+        <NODE id="bookBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="bookCoverTexture" />
+
+            <TRANSLATION x="2.5" y="4" z="2.5" />
+            <ROTATION axis="y" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The right of the book -->
+        <NODE id="bookRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="7.5" y="4" z="7.5" />
+            <ROTATION axis="y" angle="90" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The left of the book -->
+        <NODE id="bookLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="7.5" y="4" z="2.5" />
+            <ROTATION axis="y" angle="180" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The cover of the book -->
+        <NODE id="bookCover">
+            <MATERIAL id="null" />
+            <TEXTURE id="bookCoverTexture" />
+
+            <ROTATION axis="x" angle="-90" />
+            <TRANSLATION x="2.5" y="-7.5" z="8" />
+            <SCALE sx="1" sy="1.25" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+
+        <!-- The bottom of the book -->
+        <NODE id="bookBottom">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="2.5" y="4" z="2.5" />
+            <ROTATION axis="x" angle="90" />
+            <SCALE sx="1" sy="1.25" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 4 5 0" />
+            </DESCENDANTS>
+
+        </NODE>
+				
     </NODES>
 
 </SCENE>
