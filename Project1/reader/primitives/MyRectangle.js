@@ -45,6 +45,13 @@ MyRectangle.prototype.initBuffers = function() {
         0, 3, 2
     ];
 
+    this.normals = [
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1
+    ]
+
     this.texCoords = [
         this.minS, this.vertex1.y - this.minT,
         this.vertex2.x-this.vertex1.x, this.minT,
