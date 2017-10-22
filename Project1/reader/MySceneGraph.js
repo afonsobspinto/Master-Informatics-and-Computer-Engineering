@@ -1400,11 +1400,25 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
 MySceneGraph.prototype.parsePatchs = function(xmlelem){
 
     var orderU = xmlelem.getElementsByTagName("CPLINE").length - 1;
+
+    if(orderU == null){
+        console.error("CPLINE not found");
+        return;
+    }
+
     var orderV = xmlelem.getElementsByTagName("CPOINT").length / (orderU+1) - 1;
 
-
+    if(orderV == null){
+        console.error("CPOINT not found");
+        return;
+    }
 
     var controlPointsElement = xmlelem.getElementsByTagName("CPOINT");
+
+    if((controlPointsElement.length % 2)!= 0) {
+        console.error("CPOINTS doesn't match");
+        return;
+    }
 
     var controlPoints = [];
     var x, y, z, w;
@@ -1415,7 +1429,7 @@ MySceneGraph.prototype.parsePatchs = function(xmlelem){
         info = controlPointsElement.item(i).attributes;
 
         x = info.getNamedItem("xx").nodeValue * 1.0;
-        y = info.getNamedItem("yy").nodeValue * 1-0;
+        y = info.getNamedItem("yy").nodeValue * 1.0;
         z = info.getNamedItem("zz").nodeValue * 1.0;
         w = info.getNamedItem("ww").nodeValue * 1.0;
 
