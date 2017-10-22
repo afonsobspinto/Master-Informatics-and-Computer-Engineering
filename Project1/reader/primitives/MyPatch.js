@@ -32,7 +32,7 @@ function MyPatch(scene, partsU, partsV, degree1, degree2, controlPoints){
 
 };
 
-MyPatch.prototype = Object.create(CGFobject.prototype);
+MyPatch.prototype = Object.create(CGFnurbsObject.prototype);
 MyPatch.prototype.constructor = MyPatch;
 
 /**
