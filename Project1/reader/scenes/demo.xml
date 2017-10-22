@@ -23,7 +23,7 @@
     <LIGHTS>
         <LIGHT id="light0">
             <enable value ="1" />
-            <position  x="0" y="10" z="0" w="1" />
+            <position  x="15" y="10" z="0" w="1" />
             <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
             <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -31,15 +31,15 @@
 
         <LIGHT id="light1">
             <enable value ="1" />
-            <position x="30" y="10" z="0" w="1" />
-            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <position x="30" y="15" z="0" w="1" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="0.0" g="0.0" b="1.0" a="1.0" />
+            <ambient r="0.0" g="0.0" b="1.0" a="1.0" />
         </LIGHT>
 
         <LIGHT id="light2">
             <enable value ="1" />
-            <position x="0" y="10" z="20" w="1" />
+            <position x="15" y="15" z="15" w="1" />
             <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
             <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -47,10 +47,10 @@
 
         <LIGHT id="light3">
             <enable value ="1" />
-            <position x="30" y="10" z="20" w="1" />
-            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
-            <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
-            <specular r="0.6" g="0.6" b="0.6" a="1.0" />
+            <position x="10" y="20" z="20" w="1" />
+            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="1.0" g="1.0" b="0.0" a="1.0" />
+            <ambient r="1.0" g="1.0" b="0.0" a="1.0" />
         </LIGHT>
 
 		<LIGHT id="light4">
@@ -143,7 +143,13 @@
             <file path="images/bookPages.png" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
-	
+
+		<!-- Blue Tissue -->
+        <TEXTURE id="blueTissue">
+            <file path="images/tissue.jpg" />
+            <amplif_factor s="1.0" t="1.0" />
+        </TEXTURE>
+		
     </TEXTURES>
 
 
@@ -300,6 +306,7 @@
             <ROTATION axis="y" angle="90" />
 
             <DESCENDANTS>
+                <NODEREF id="curtains" />
                 <LEAF  type="rectangle" args="0 6 12 0" />
             </DESCENDANTS>
 
@@ -1555,6 +1562,47 @@
 
         </NODE>
 				
+		<!-- curtains -->
+        <NODE id="curtains">
+            <MATERIAL id="null" />
+            <TEXTURE id="blueTissue" />
+
+            <TRANSLATION x="0" y="0" z="0.8" />
+
+            <DESCENDANTS>
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="5" yy="0" zz="0" ww="1" />
+                        <CPOINT xx="2" yy="0" zz="-2" ww="1" />
+                        <CPOINT xx="1" yy="0" zz="2" ww="1" />
+                        <CPOINT xx="0" yy="0" zz="0" ww="1" />
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="5" yy="6.2" zz="0" ww="1" />
+                        <CPOINT xx="2" yy="6.2" zz="-2" ww="1" />
+                        <CPOINT xx="1" yy="6.2" zz="2" ww="1" />
+                        <CPOINT xx="0" yy="6.2" zz="0" ww="1" />
+                    </CPLINE>
+                </LEAF>
+
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="12" yy="0" zz="0" ww="1" />
+                        <CPOINT xx="11" yy="0" zz="2" ww="1" />
+                        <CPOINT xx="10" yy="0" zz="-2" ww="1" />
+                        <CPOINT xx="7" yy="0" zz="0" ww="1" />
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="12" yy="6.2" zz="0" ww="1" />
+                        <CPOINT xx="11" yy="6.2" zz="2" ww="1" />
+                        <CPOINT xx="10" yy="6.2" zz="-2" ww="1" />
+                        <CPOINT xx="7" yy="6.2" zz="0" ww="1" />
+                    </CPLINE>
+                </LEAF>
+
+            </DESCENDANTS>
+
+        </NODE>
     </NODES>
 
 </SCENE>
