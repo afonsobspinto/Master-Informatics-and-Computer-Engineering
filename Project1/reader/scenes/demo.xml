@@ -278,6 +278,22 @@
 				<NODEREF id="vendingMachine" />
 				<NODEREF id="smallTable" />
                 <NODEREF id="window" />
+                <NODEREF id="testTriangle" />
+            </DESCENDANTS>
+
+        </NODE>
+
+
+        <!-- The root node -->
+        <NODE id="testTriangle">
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="3" sy="3" sz="3" />
+            <TRANSLATION x="5" y="2" z="8" />
+
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="2 0 3 4 0 0 0 0 0" />
             </DESCENDANTS>
 
         </NODE>
@@ -1463,7 +1479,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="bookPagesTexture" />
 
-			<TRANSLATION x="1.25" y="3.6" z="-0.5" />
+			<TRANSLATION x="1.25" y="3.7" z="-0.5" />
 			<SCALE sx="0.2" sy="0.1" sz="0.3" />
 
             <DESCENDANTS>
