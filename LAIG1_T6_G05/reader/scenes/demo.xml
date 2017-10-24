@@ -105,13 +105,13 @@
 		<!-- Blue Chalk -->
 		<TEXTURE id="blueChalk">
             <file path="images/blueChalk.jpg" />
-            <amplif_factor s="1.0" t="1.0" />
+            <amplif_factor s="5.0" t="4.0" />
         </TEXTURE>
 		
 		<!-- Yellow Chalk -->
 		<TEXTURE id="yellowChalk">
             <file path="images/yellowChalk.jpg" />
-            <amplif_factor s="1.0" t="1.0" />
+            <amplif_factor s="5.0" t="4.0" />
         </TEXTURE>
 
 		<!-- Vending Machine -->
@@ -129,19 +129,19 @@
 		<!-- Table -->
 		<TEXTURE id="table">
             <file path="images/table.jpg" />
-            <amplif_factor s="1.0" t="1.0" />
+            <amplif_factor s="4.0" t="3.0" />
         </TEXTURE>
 
 		<!-- Book Cover -->
 		<TEXTURE id="bookCoverTexture">
             <file path="images/bookCover.png" />
-            <amplif_factor s="1.0" t="1.0" />
+            <amplif_factor s="4.0" t="5.0" />
         </TEXTURE>
 		
 		<!-- Book Pages -->
 		<TEXTURE id="bookPagesTexture">
             <file path="images/bookPages.png" />
-            <amplif_factor s="1.0" t="1.0" />
+            <amplif_factor s="4.0" t="5.0" />
         </TEXTURE>
 
 		<!-- Blue Tissue -->
@@ -153,7 +153,7 @@
         <!-- triangle -->
         <TEXTURE id="triangle">
             <file path="images/rgb-triangle.jpg" />
-            <amplif_factor s="4.0" t="4.0" />
+            <amplif_factor s="4.0" t="3.0" />
         </TEXTURE>
 		
     </TEXTURES>
@@ -296,7 +296,7 @@
             <TEXTURE id="triangle" />
 
             <SCALE sx="3" sy="3" sz="3" />
-            <TRANSLATION x="5" y="2" z="8" />
+            <TRANSLATION x="3.5" y="0.1" z="6.5" />
 
             <DESCENDANTS>
                 <LEAF id="triangle1" type="triangle" args="2 0 3 4 0 0 0 0 0" />
@@ -765,6 +765,8 @@
         <NODE id="holes">
             <MATERIAL id="darkHole" />
             <TEXTURE id="clear" />
+
+            <TRANSLATION x="0" y="0.0" z="0.0" />
 
             <DESCENDANTS>
                 <NODEREF id="hole1" />
