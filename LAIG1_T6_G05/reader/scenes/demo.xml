@@ -1552,7 +1552,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
-            <TRANSLATION x="2.5" y="4" z="2.5" />
+            <TRANSLATION x="2.5" y="4.1" z="2.5" />
             <ROTATION axis="x" angle="90" />
             <SCALE sx="1" sy="1.25" sz="1" />
 
