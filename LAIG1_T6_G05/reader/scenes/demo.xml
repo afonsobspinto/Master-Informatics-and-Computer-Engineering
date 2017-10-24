@@ -152,7 +152,7 @@
 
         <!-- triangle -->
         <TEXTURE id="triangle">
-            <file path="images/rgb-triangle.png" />
+            <file path="images/rgb-triangle.jpg" />
             <amplif_factor s="1.0" t="2.0" />
         </TEXTURE>
 		
