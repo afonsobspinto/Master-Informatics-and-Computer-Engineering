@@ -150,10 +150,10 @@
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
-        <!-- Lady Bug -->
-        <TEXTURE id="ladyBug">
-            <file path="images/ladybug.jpg" />
-            <amplif_factor s="5.0" t="5.0" />
+        <!-- triangle -->
+        <TEXTURE id="triangle">
+            <file path="images/rgb-triangle.png" />
+            <amplif_factor s="1.0" t="2.0" />
         </TEXTURE>
 		
     </TEXTURES>
@@ -293,7 +293,7 @@
         <!-- The root node -->
         <NODE id="testTriangle">
             <MATERIAL id="defaultMaterial" />
-            <TEXTURE id="ladyBug" />
+            <TEXTURE id="triangle" />
 
             <SCALE sx="3" sy="3" sz="3" />
             <TRANSLATION x="5" y="2" z="8" />
