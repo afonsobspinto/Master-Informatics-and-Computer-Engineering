@@ -116,7 +116,7 @@ MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
     this.texCoords = [
         P0.x / amplifFactorS, 1 - P0.y / amplifFactorT,
         this.minS, 1,
-        (this.vertexC.x - this.vertexB.x) / amplifFactorS, 1
+        (this.vertexB.x - this.vertexC.x) / amplifFactorS, 1
     ];
 
 
