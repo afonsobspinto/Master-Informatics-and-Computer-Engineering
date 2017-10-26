@@ -1,0 +1,13 @@
+CREATE TABLE users (
+    id NUMBER PRIMARY KEY CHECK (id > 0),
+	name NVARCHAR2(50) NOT NULL,
+	email NVARCHAR2(50) NOT NULL,
+    password VARCHAR NOT NULL
+);
+
+CREATE TABLE todolists (
+	id NUMBER PRIMARY KEY CHECK (id > 0),
+	autor NUMBER REFERENCES users(id)),
+	title VARCHAR NOT NULL,
+	list VARCHAR
+);
