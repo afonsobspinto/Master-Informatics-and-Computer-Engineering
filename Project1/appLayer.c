@@ -27,8 +27,8 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   if(applicationLayer->status == TRANSMITTER)
     sendData(applicationLayer, linkLayer);
-  // else
-  //   receiveData()
+  else if(applicationLayer->status == RECEIVER)
+    receiveData(applicationLayer, linkLayer);
 
 
   llclose(applicationLayer, linkLayer);
