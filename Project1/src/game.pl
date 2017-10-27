@@ -23,8 +23,8 @@ playGame(Game):-
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
 	validateOwnership(Piece, GameState),
-	getDestinyCoords(DestCol, DestRow).
-	%validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
+	getDestinyCoords(DestCol, DestRow),
+	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
 	%changeTurn(TempGame, NewGame).
 
@@ -75,7 +75,9 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	write('differentColors'),
 	getPieceName(Piece, PieceName),
 	write('pieceName'),
-	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow),
+	convertToNumber(SrcCol, SrcColNumber),
+	convertToNumber(DestCol, DestColNumber),
+	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow).
 	write('validMove'),
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
 	write('Jumping'),
@@ -95,8 +97,7 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	getPiece(Board, SrcCol, SrcRow, PieceSrc),
 	getPiece(Board, DestCol, DestRow, PieceDest),
 	getPieceColor(PieceSrc, ColorSrc),
-	getPieceColor(PieceDest, ColorDest), nl,
-	write(ColorSrc), nl, write(ColorDest), nl,
+	getPieceColor(PieceDest, ColorDest),
 	ColorSrc \== ColorDest.
 
 differentColors(_, _, _, _, _):-
