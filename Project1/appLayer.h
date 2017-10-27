@@ -16,7 +16,7 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int sendControlPackage(int controlField, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int sendDataPackage(int N, char* buffer, int length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
-void showStats(LinkLayer* linkLayer, FileData* fileData);
+void showStats(LinkLayer* linkLayer, FileData* fileData, double timeElapsed);
 
 
 #endif

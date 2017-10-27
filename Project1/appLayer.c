@@ -29,6 +29,12 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
     sendData(applicationLayer, linkLayer, file);
   else if(applicationLayer->status == RECEIVER)
     //receiveData(applicationLayer, linkLayer);
+    /*
+    Rejeitar Duplicados -> Ver numero de sequencia
+    Adicionar Sleep/Funcao Alarme para causar delay no T_Prop
+    Induzir erros no BCC com recurso a à função probability
+    Comparar tamanho final com tamanho inicial
+    */
 
 
   llclose(applicationLayer, linkLayer);
@@ -140,12 +146,13 @@ int sendDataPackage(int N, char* buffer, int length, ApplicationLayer* applicati
 
 }
 
-void showStats(LinkLayer* linkLayer, FileData* file){
+void showStats(LinkLayer* linkLayer, FileData* file, double timeElapsed){
 
 	printf("\n");
 	printf("----------- STATISTICS -----------\n");
   printf("Filename: %s\n", file->name);
   printf("File Size: %d\n", file->size);
+  printf("Time Elapsed: %f\n", timeElapsed);
 	printf("Sent RR: %d\n", linkLayer->stats->numSentRR);
 	printf("Received RR: %d\n", linkLayer->stats->numReceivedRR);
 	printf("Sent REJ: %d\n", linkLayer->stats->numSentREJ);

@@ -50,9 +50,16 @@ int main(int argc, char **argv) {
   printf("SerialPort: %s\n", linkLayer->port);
   sleep(1);
 
+
+  clock_t tic = clock();
+
   appLayer(applicationLayer, linkLayer, file);
 
-  showStats(linkLayer, file);
+  clock_t toc = clock();
+
+  double timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
+
+  showStats(linkLayer, file, timeElapsed);
 
   return 0;
 }
