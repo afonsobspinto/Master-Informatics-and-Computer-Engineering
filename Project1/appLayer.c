@@ -34,6 +34,7 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
     Adicionar Sleep/Funcao Alarme para causar delay no T_Prop
     Induzir erros no BCC com recurso a à função probability
     Comparar tamanho final com tamanho inicial
+    Update das estatisticas
     */
 
 
