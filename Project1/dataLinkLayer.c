@@ -199,15 +199,19 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
     if(linkLayer->sequenceNumber){
       if(readingArray(applicationLayer->fileDescriptor, RR1)){
         printf("llwrite: RR1 received successfully.\n");
+        linkLayer->stats->numReceivedRR++;
         break;
       }
     }
     else{
       if(readingArray(applicationLayer->fileDescriptor, RR0)){
         printf("llwrite: RR0 received successfully.\n");
+        linkLayer->stats->numReceivedRR++;
         break;
       }
     }
+
+    linkLayer->stats->numReceivedREJ++;
   }
 
   return 0;
@@ -345,4 +349,21 @@ int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   printf("llcloseReceiver: Disconnected.\n");
 
   return 0;
+}
+
+int initStatistics(Statistics* stats){
+  stats = (Statistics*) malloc(sizeof(Statistics));
+
+  stats->numSentRR = 0;
+  stats->numReceivedRR = 0;
+
+  stats->numSentREJ = 0;
+  stats->numReceivedREJ = 0;
+
+  return 0;
+}
+
+int errorProbability(int value) {
+	int num = rand() % 100;
+	return num < value;
 }

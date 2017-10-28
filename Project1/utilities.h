@@ -8,6 +8,15 @@ typedef enum { TRANSMITTER, RECEIVER } STATUS;
 typedef enum { RIGHT, LEFT } ORIENTATION;
 
 typedef struct {
+	int numSentRR;
+	int numReceivedRR;
+
+	int numSentREJ;
+	int numReceivedREJ;
+} Statistics;
+
+
+typedef struct {
   int fileDescriptor; /*Descritor correspondente à porta série*/
   STATUS status; /*TRANSMITTER | RECEIVER*/
 }ApplicationLayer;
@@ -19,6 +28,7 @@ typedef struct {
   unsigned int timeout; /*Timer Value: 1 s*/
   unsigned int numTransmissions;  /*Num of tries in case of error*/
   char frame[MAX_SIZE];
+  Statistics* stats;
 } LinkLayer;
 
 typedef struct {

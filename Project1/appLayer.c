@@ -11,7 +11,7 @@
 #include "dataLinkLayer.h"
 #include "appLayer.h"
 
-int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file){
 
   if (openSerialPort(applicationLayer, linkLayer) == -1) {
     perror("appLayer: openSerialPort \n");
@@ -26,9 +26,16 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   llopen(applicationLayer, linkLayer);
 
   if(applicationLayer->status == TRANSMITTER)
-    sendData(applicationLayer, linkLayer);
-  // else
-  //   receiveData()
+    sendData(applicationLayer, linkLayer, file);
+  else if(applicationLayer->status == RECEIVER)
+    //receiveData(applicationLayer, linkLayer);
+    /*
+    Rejeitar Duplicados -> Ver numero de sequencia
+    Adicionar Sleep/Funcao Alarme para causar delay no T_Prop
+    Induzir erros no BCC com recurso a à função probability
+    Comparar tamanho final com tamanho inicial
+    Update das estatisticas
+    */
 
 
   llclose(applicationLayer, linkLayer);
@@ -38,18 +45,17 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
 
 
-int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file){
 
-  FileData file;
   FILE* fp;
 
-  getFileName(file.name);
+  getFileName(file->name);
 
-  fp = fopen(file.name, "rb");
+  fp = fopen(file->name, "rb");
   if (!fp) {perror("sendData: open"); return -1; }
 
-  file.size = getFileSize(fp);
-  if(file.size < 0) {perror("sendData: getFileSize"); return -1; }
+  file->size = getFileSize(fp);
+  if(file->size < 0) {perror("sendData: getFileSize"); return -1; }
 
 
   if((sendControlPackage(CTRL_PACKET_START, file, applicationLayer, linkLayer)) < 0)
@@ -83,12 +89,12 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 }
 
 
-int sendControlPackage(int controlField, FileData file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int sendControlPackage(int controlField, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   char* fileSize = malloc(MAX_SIZE);
-  memcpy(fileSize, &file.size, sizeof(file.size));
+  memcpy(fileSize, &file->size, sizeof(file->size));
 
-  int packageSize = 5 + strlen(fileSize) + strlen(file.name);
+  int packageSize = 5 + strlen(fileSize) + strlen(file->name);
   int pos = 0;
 
   unsigned char controlPackage[packageSize];
@@ -101,11 +107,11 @@ int sendControlPackage(int controlField, FileData file, ApplicationLayer* applic
   }
 
   controlPackage[pos++] = T_FILE_NAME;
-  controlPackage[pos++] = strlen(file.name);
+  controlPackage[pos++] = strlen(file->name);
 
   int i;
-  for (i = 0; i < strlen(file.name); i++)
-    controlPackage[pos++] = file.name[i];
+  for (i = 0; i < strlen(file->name); i++)
+    controlPackage[pos++] = file->name[i];
 
   if(llwrite(applicationLayer, linkLayer, controlPackage, packageSize) < 0)
     {perror("sendControlPackage: llwrite"); return -1; }
@@ -138,5 +144,22 @@ int sendDataPackage(int N, char* buffer, int length, ApplicationLayer* applicati
   free(package);
 
   return 0;
+
+}
+
+void showStats(LinkLayer* linkLayer, FileData* file, double timeElapsed){
+
+	printf("\n");
+	printf("----------- STATISTICS -----------\n");
+  printf("Filename: %s\n", file->name);
+  printf("File Size: %d\n", file->size);
+  printf("Time Elapsed: %f\n", timeElapsed);
+	printf("Sent RR: %d\n", linkLayer->stats->numSentRR);
+	printf("Received RR: %d\n", linkLayer->stats->numReceivedRR);
+	printf("Sent REJ: %d\n", linkLayer->stats->numSentREJ);
+	printf("Received REJ: %d\n", linkLayer->stats->numReceivedREJ);
+	printf("----------------------------------\n");
+	printf("\n");
+
 
 }

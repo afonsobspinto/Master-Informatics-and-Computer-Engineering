@@ -17,6 +17,8 @@
 #define T_FILE_NAME 1
 #define ESCAPE 0x7D
 #define OCTETO0x20 0x20
+#define FER_ERR_PROB 10
+
 
 struct termios oldtio, newtio;
 
@@ -34,5 +36,8 @@ int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientat
 int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
+
+int initStatistics(Statistics* stats);
+int errorProbability(int value);
 
 #endif

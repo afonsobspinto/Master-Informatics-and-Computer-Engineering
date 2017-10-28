@@ -2,17 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include "appLayer.h"
 
 int main(int argc, char **argv) {
 
+  srand(time(NULL));
+
   ApplicationLayer* applicationLayer = malloc(sizeof(ApplicationLayer));
   LinkLayer* linkLayer = malloc(sizeof(LinkLayer));
+  FileData* file = malloc(sizeof(FileData));
 
   linkLayer->baudRate = B38400;
   linkLayer->timeout = 1;
   linkLayer->numTransmissions = 3;
   linkLayer->sequenceNumber = 0;
+  initStatistics(linkLayer->stats);
 
 
   if ((argc != 3) ||
@@ -45,7 +50,16 @@ int main(int argc, char **argv) {
   printf("SerialPort: %s\n", linkLayer->port);
   sleep(1);
 
-  appLayer(applicationLayer, linkLayer);
+
+  clock_t tic = clock();
+
+  appLayer(applicationLayer, linkLayer, file);
+
+  clock_t toc = clock();
+
+  double timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
+
+  showStats(linkLayer, file, timeElapsed);
 
   return 0;
 }
