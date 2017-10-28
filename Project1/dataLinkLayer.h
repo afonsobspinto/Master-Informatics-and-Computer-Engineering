@@ -30,6 +30,7 @@ int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char* buffer, int bufferSize);
+int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char** buffer);
 unsigned char getBCC2(unsigned char *buffer, int bufferSize);
 int stuffingFrame(LinkLayer* linkLayer, int bufferSize);
 int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientation);

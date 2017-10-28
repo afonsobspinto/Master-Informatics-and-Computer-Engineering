@@ -274,6 +274,11 @@ int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientat
   return 0;
 }
 
+int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char** buffer){
+  //TODO:
+  return 0;
+}
+
 int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 
   switch (applicationLayer->status) {
