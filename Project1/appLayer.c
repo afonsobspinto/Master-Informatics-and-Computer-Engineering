@@ -29,14 +29,6 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
     sendData(applicationLayer, linkLayer, file);
   else if(applicationLayer->status == RECEIVER)
     receiveData(applicationLayer, linkLayer, file);
-    /*
-    Rejeitar Duplicados -> Ver numero de sequencia
-    Adicionar Sleep/Funcao Alarme para causar delay no T_Prop
-    Induzir erros no BCC com recurso a à função probability
-    Comparar tamanho final com tamanho inicial
-    Update das estatisticas
-    */
-
 
   llclose(applicationLayer, linkLayer);
 
@@ -151,17 +143,20 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
 
   FILE* outFile;
   int controlStart;
-  int fileRead = 0, N = -1;
+  int fileRead = 0;
+  int N = -1;
+  int ret;
 
-  if(!receiveControlPackage(&controlStart, file, applicationLayer, linkLayer)){
-    perror("receiveData: start");
-    return -1;
-  }
+  do {
+    ret = receiveControlPackage(&controlStart, file, applicationLayer, linkLayer);
 
-  if(controlStart != CTRL_PACKET_START) {
-    perror("receiveData: controlStart");
-    return -1;
-  }
+    if(controlStart != CTRL_PACKET_START)
+      ret = -1;
+
+    if(ret < 0)
+      printf("receiveData: CTRL_PACKET_START not received \n");
+
+  } while(ret < 0);
 
   outFile = fopen(file->name, "wb");
 
@@ -171,26 +166,32 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
   }
 
   while(fileRead < file->size){
+
     int lastN = N;
     char* dataBuffer = NULL;
     int length = 0;
 
-    if(!receiveDataPackage(&N, &dataBuffer, &length, applicationLayer, linkLayer)){
-      perror("receiveData: read file");
-      free(dataBuffer);
-      return -1;
-    }
+    ret = receiveDataPackage(&N, &dataBuffer, &length, applicationLayer, linkLayer);
+
 
     if(N != 0 && lastN + 1 != N){
-      perror("receiveData: wrong sequence");
-      free(dataBuffer);
-      return -1;
+      printf("receiveData: Duplicated \n");
+      ret = -1;
     }
+
+    if(ret < 0){
+      (N == 0) ? write(applicationLayer->fileDescriptor, REJ0, 5): write(applicationLayer->fileDescriptor, REJ1, 5);
+      linkLayer->stats->numSentREJ++;
+      continue;
+    }
+
 
     fwrite(dataBuffer, sizeof(char), length, outFile);
     free(dataBuffer);
 
     fileRead += length;
+    (N == 0) ? write(applicationLayer->fileDescriptor, RR0, 5): write(applicationLayer->fileDescriptor, RR1, 5);
+    linkLayer->stats->numSentRR++;
   }
 
   if(fclose(outFile) != 0){
@@ -199,7 +200,7 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
   }
 
   int controlPackageTypeReceived = -1;
-  if(!receiveControlPackage(&controlPackageTypeReceived, file, applicationLayer, linkLayer)){
+  if((ret = receiveControlPackage(&controlPackageTypeReceived, file, applicationLayer, linkLayer)) < 0){
     perror("receiveData: end control package");
     return -1;
   }
@@ -209,11 +210,6 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     return -1;
   }
 
-  // if(!llclose(applicationLayer, linkLayer)){
-  //   perror("receiveData: llclose");
-  //   return -1;
-  // } TODO: @Coconette já faço isto no appLayer
-
   printf("File successfully received.\n");
   return 0;
 }
@@ -221,66 +217,67 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
 
 int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
-  unsigned char* package;
-  unsigned int totalSize = llread(applicationLayer, linkLayer, &package);
+  int totalSize = llread(applicationLayer, linkLayer);
 
   if(totalSize < 0){
     perror("receiveControlPackage: llread");
     return -1;
   }
 
-  *controlPackageType = package[0];
+  *controlPackageType = linkLayer->frame[0];
 
   unsigned int i = 0, numParams = 2, pos = 1, numOcts = 0;
   for(i= 0; i < numParams; i++){
-    int paramType = package[pos++];
+    int paramType = linkLayer->frame[pos++];
 
     switch(paramType){
       case T_FILE_SIZE:
-        numOcts = (unsigned int) package[pos++];
+        numOcts = (unsigned int) linkLayer->frame[pos++];
         char* length = malloc(numOcts);
-        memcpy(length, &package[pos], numOcts);
+        memcpy(length, &linkLayer->frame[pos], numOcts);
 
         file->size = atoi(length);
         free(length);
         break;
 
       case T_FILE_NAME:
-        numOcts = (unsigned char) package[pos++];
-        memcpy(file->name, &package[pos], numOcts);
+        numOcts = (unsigned char) linkLayer->frame[pos++];
+        memcpy(file->name, &linkLayer->frame[pos], numOcts);
         break;
     }
   }
   return 0;
-
 }
 
 int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-  unsigned char* package;
 
-  unsigned int size = llread(applicationLayer, linkLayer, &package);
+  int size = llread(applicationLayer, linkLayer);
 
   if(size < 0){
-    perror("receiveDataPackage: llread");
+    printf("receiveDataPackage: llread");
     return -1;
   }
 
-  int C = package[0];
-  *N = (unsigned char) package[1];
-  int L2 = package[2];
-  int L3 = package[3];
+  int C = linkLayer->frame[4];
+  *N = (int) linkLayer->frame[5];
+  int L2 = linkLayer->frame[6];
+  int L1 = linkLayer->frame[7];
 
   if(C != CTRL_PACKET_DATA){
-    perror("receiveDataPackage: not data package");
+    printf("receiveDataPackage: not data package");
     return -1;
   }
 
-  *length = 256 * L2 + L3;
+  *length = 256 * L2 + L1;
   *buf = malloc(*length);
 
-  memcpy(*buf, &package[4], *length);
+  if (linkLayer->frame[8 + *length] != getBCC2(&linkLayer->frame[4], *length + 4)) {
+    printf("receiveDataPackage: BCC2 error");
+  return -1;
+}
 
-  free(package);
+  memcpy(*buf, &linkLayer->frame[8], *length);
+
 
   return 0;
 }

@@ -27,7 +27,7 @@ typedef struct {
   unsigned int sequenceNumber;
   unsigned int timeout; /*Timer Value: 1 s*/
   unsigned int numTransmissions;  /*Num of tries in case of error*/
-  char frame[MAX_SIZE];
+  unsigned char frame[MAX_SIZE];
   Statistics* stats;
 } LinkLayer;
 

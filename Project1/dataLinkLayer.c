@@ -11,11 +11,9 @@
 
 static int numTries = 0;
 static int flagAlarm = 1;
-char SET[5] = {FLAG, A, C_SET, A ^ C_SET, FLAG};
-char UA[5] = {FLAG, A, C_UA, A ^ C_UA, FLAG};
-char RR1[5] = {FLAG, A, C_UA, A ^ C_RR1, FLAG};
-char RR0[5] = {FLAG, A, C_UA, A ^ C_RR0, FLAG};
-char DISC[5] = {FLAG, A, C_DISC, A ^ C_DISC, FLAG};
+static int inducedError = 0;
+static int increaseTProg = 0;
+
 
 void answer(){ //answers alarm
 
@@ -70,15 +68,14 @@ int setNewTermiosStructure(ApplicationLayer* applicationLayer, LinkLayer* linkLa
   return 0;
 }
 
-int readingArray(int fd, char validation[]){
+int readingArray(int fd, const char validation[]){
 
   unsigned char readChar;
   State state = start;
   int pos = 0;
-  int res;
 
   while(state != stop && !flagAlarm){
-    if((res= read(fd, &readChar, 1))<0){
+    if((read(fd, &readChar, 1))<0){
       perror("readingArray: Reading");
       exit(-1);
     }
@@ -98,6 +95,71 @@ int readingArray(int fd, char validation[]){
   	return 1;
   else
   	return 0;
+}
+
+int readingFrame(int fd, LinkLayer* linkLayer){
+  unsigned char readChar;
+  State state = start;
+  int size = 0;
+
+    while(state != stop){
+      if((read(fd, &readChar, 1))<0){
+        perror("readingFrame: Reading");
+        exit(-1);
+      }
+
+      switch (state) {
+        case start:
+          if(readChar == FLAG){
+            linkLayer->frame[size++]=readChar;
+            state++;
+          }
+        break;
+        case flagRCV:
+          if(readChar == A){
+            linkLayer->frame[size++]=readChar;
+            state++;
+          }
+          else if(readChar != FLAG){
+            size = 0;
+            state = start;
+          }
+        break;
+        case aRCV:
+          if(readChar == 0 || readChar == 1){
+            linkLayer->frame[size++]=readChar;
+            state++;
+          }
+          else{
+            size = 1;
+            state = flagRCV;
+          }
+        break;
+        case cRCV:
+          if(readChar == (linkLayer->frame[1] ^ linkLayer->frame[2])){
+            linkLayer->frame[size++]=readChar;
+            state++;
+          }
+          else if(readChar == FLAG){
+            size = 1;
+            state = flagRCV;
+          }
+          else{
+            size = 0;
+            state = start;
+          }
+        break;
+        case bccOK:
+          linkLayer->frame[size++]=readChar;
+          if(readChar == FLAG)
+              state++;
+        break;
+        default:
+          break;
+      }
+  }
+
+  return size;
 }
 
 int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
@@ -239,17 +301,40 @@ int stuffingFrame(LinkLayer* linkLayer, int bufferSize){
         i++;
         shiftFrame(linkLayer, i, bufferSize, RIGHT);
         bufferSize++;
-        linkLayer->frame[i] = FLAG ^ OCTETO0x20;
+        linkLayer->frame[i] = (FLAG ^ OCTETO0x20);
       }
       else if(linkLayer->frame[i] == ESCAPE){
         i++;
         shiftFrame(linkLayer, i, bufferSize, RIGHT);
         bufferSize++;
-        linkLayer->frame[i] = ESCAPE ^ OCTETO0x20;
+        linkLayer->frame[i] = (ESCAPE ^ OCTETO0x20);
       }
     }
 
     return bufferSize;
+}
+
+int destuffingFrame(LinkLayer* linkLayer){
+
+  int i = 1;
+
+  while (1) {
+    if (linkLayer->frame[i] == FLAG)
+      break;
+
+    else if (linkLayer->frame[i] == ESCAPE && linkLayer->frame[i + 1] == (FLAG ^ OCTETO0x20)) {
+      linkLayer->frame[i] = FLAG;
+      shiftFrame(linkLayer, i, 0, 1);
+    }
+
+    else if (linkLayer->frame[i] == ESCAPE && linkLayer->frame[i + 1] == (ESCAPE ^ OCTETO0x20)) {
+      shiftFrame(linkLayer, i, 0, 1);
+    }
+
+    i++;
+  }
+
+  return i;
 }
 
 
@@ -274,10 +359,44 @@ int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientat
   return 0;
 }
 
-int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char** buffer){
-  //TODO:
+int processingDataFrame(LinkLayer* linkLayer){
+
+  if(linkLayer->frame[0] != FLAG)
+    return -1;
+
+  if(linkLayer->frame[1] != A)
+    return -1;
+
+  if(linkLayer->frame[2] != 0 && linkLayer->frame[2] != 1)
+    return -1;
+
+  if(linkLayer->frame[3] != (linkLayer->frame[1] ^ linkLayer->frame[2]))
+    return -1;
+
+  if(inducedError){
+    if(errorProbability(FER_ERR_PROB))
+      return -1;
+  }
+
+  if(increaseTProg){
+    usleep(rand() % 10);
+  }
+
   return 0;
 }
+
+int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+
+  int size = readingFrame(applicationLayer->fileDescriptor, linkLayer);
+  size = destuffingFrame(linkLayer);
+
+  if(processingDataFrame(linkLayer)<0){
+    printf("llread: processingDataFrame\n"); return -1;
+  }
+
+  return size;
+}
+
 
 int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 
