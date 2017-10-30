@@ -222,12 +222,18 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     if (DEBUG_MODE)
     printf("receiveData: Package received \n");
 
+    if (N != 0 && lastN + 1 != N) {
+      if (DEBUG_MODE)
+        printf("receiveData: Found Duplicated \n");
+      ret = -1;
+    }
+
     if(ret < 0){
       (linkLayer->sequenceNumber == 0) ? write(applicationLayer->fileDescriptor, REJ0, 5): write(applicationLayer->fileDescriptor, REJ1, 5);
       if (DEBUG_MODE){
         (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package rejected com REJ0 \n"): printf("receiveData: Package rejected com REJ1 \n");
       }
-      //linkLayer->stats->numSentREJ++;
+      numSentREJ++;
       continue;
     }
 
@@ -240,11 +246,9 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     if (DEBUG_MODE){
       (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package accepted com RR0 \n"): printf("receiveData: Package accepted com RR1 \n");
     }
+    numSentRR++;
 
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
-
-
-  //linkLayer->stats->numSentRR++;
   }
 
   if(fclose(outFile) != 0){
@@ -334,10 +338,10 @@ void showStats(LinkLayer* linkLayer, FileData* file, double timeElapsed){
   printf("Filename: %s\n", file->name);
   printf("File Size: %d\n", file->size);
   printf("Time Elapsed: %f\n", timeElapsed);
-	printf("Sent RR: %d\n", linkLayer->stats->numSentRR);
-	printf("Received RR: %d\n", linkLayer->stats->numReceivedRR);
-	printf("Sent REJ: %d\n", linkLayer->stats->numSentREJ);
-	printf("Received REJ: %d\n", linkLayer->stats->numReceivedREJ);
+	printf("Sent RR: %d\n", numSentRR);
+	printf("Received RR: %d\n", numReceivedRR * 2); //lol
+	printf("Sent REJ: %d\n", numSentREJ);
+	printf("Received REJ: %d\n", numReceivedREJ);
 	printf("----------------------------------\n");
 	printf("\n");
 

@@ -31,6 +31,10 @@ static const char DISC[5] = {FLAG, A, C_DISC, A ^ C_DISC, FLAG};
 extern int numTries;
 extern int flagAlarm;
 extern int DEBUG_MODE;
+extern int numSentRR;
+extern int numReceivedRR;
+extern int numSentREJ;
+extern int numReceivedREJ;
 
 
 struct termios oldtio, newtio;
@@ -54,7 +58,6 @@ int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
-Statistics* initStatistics();
 int errorProbability(int value);
 
 #endif

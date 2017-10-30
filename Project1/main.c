@@ -7,6 +7,11 @@
 
 int DEBUG_MODE = 0;
 
+int numSentRR = 0;
+int numReceivedRR = 0;
+int numSentREJ = 0;
+int numReceivedREJ = 0;
+
 int main(int argc, char **argv) {
 
   srand(time(NULL));
@@ -19,7 +24,6 @@ int main(int argc, char **argv) {
   linkLayer->timeout = 1;
   linkLayer->numTransmissions = 3;
   linkLayer->sequenceNumber = 0;
-  //linkLayer->stats = initStatistics();
 
 
 
@@ -63,7 +67,7 @@ int main(int argc, char **argv) {
 
   double timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
 
-  //showStats(linkLayer, file, timeElapsed);
+  showStats(linkLayer, file, timeElapsed);
 
   return ret;
 }

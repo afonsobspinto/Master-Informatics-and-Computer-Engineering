@@ -7,13 +7,6 @@ typedef enum {start, flagRCV, aRCV, cRCV, bccOK, stop} State;
 typedef enum { TRANSMITTER, RECEIVER } STATUS;
 typedef enum { RIGHT, LEFT } ORIENTATION;
 
-typedef struct {
-	int numSentRR;
-	int numReceivedRR;
-
-	int numSentREJ;
-	int numReceivedREJ;
-} Statistics;
 
 
 typedef struct {
@@ -28,7 +21,10 @@ typedef struct {
   unsigned int timeout; /*Timer Value: 1 s*/
   unsigned int numTransmissions;  /*Num of tries in case of error*/
   unsigned char frame[MAX_SIZE];
-  Statistics* stats;
+	int numSentRR;
+	int numReceivedRR;
+	int numSentREJ;
+	int numReceivedREJ;
 } LinkLayer;
 
 typedef struct {

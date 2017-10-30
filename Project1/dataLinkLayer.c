@@ -295,10 +295,12 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
       if(temp[2] == C_REJ1){
         if (DEBUG_MODE)
           printf("llwrite: REJ1 received successfully.\n");
+        numReceivedREJ++;
         }
       else if(temp[2] == C_RR1){
         if (DEBUG_MODE)
             printf("llwrite: RR1 received successfully.\n");
+        numReceivedRR++;
         break;
         }
       }
@@ -306,10 +308,12 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
       if(temp[2] == C_REJ0){
         if (DEBUG_MODE)
           printf("llwrite: REJ0 received successfully.\n");
+        numReceivedREJ++;
       }
       else if(temp[2] == C_RR0){
         if (DEBUG_MODE)
           printf("llwrite: RR0 received successfully.\n");
+        numReceivedRR++;
         break;
         }
       }
@@ -566,18 +570,6 @@ int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   alarm(0);
   return 0;
-}
-
-Statistics* initStatistics(){
-  Statistics* stats = (Statistics*) malloc(sizeof(Statistics));
-
-  stats->numSentRR = 0;
-  stats->numReceivedRR = 0;
-
-  stats->numSentREJ = 0;
-  stats->numReceivedREJ = 0;
-
-  return stats;
 }
 
 int errorProbability(int value) {
