@@ -14,7 +14,7 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
 int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file);
 int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file);
 int sendControlPackage(int controlField, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
-int sendDataPackage(int N, char* buffer, int length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
+int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 

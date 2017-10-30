@@ -32,7 +32,7 @@ typedef struct {
 } LinkLayer;
 
 typedef struct {
-  int size;
+  unsigned int size;
   char name[MAX_SIZE];
 } FileData;
 

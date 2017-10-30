@@ -17,7 +17,8 @@ int main(int argc, char **argv) {
   linkLayer->timeout = 1;
   linkLayer->numTransmissions = 3;
   linkLayer->sequenceNumber = 0;
-  initStatistics(linkLayer->stats);
+  //linkLayer->stats = initStatistics();
+
 
 
   if ((argc != 3) ||
@@ -37,6 +38,7 @@ int main(int argc, char **argv) {
   if ((strcmp("1", argv[2]) == 0)) {
     printf("Write Mode. \n");
     applicationLayer->status = TRANSMITTER;
+    getFileName(file->name);
   }
   else if ((strcmp("0", argv[2]) == 0)) {
     printf("Read Mode. \n");
@@ -53,13 +55,13 @@ int main(int argc, char **argv) {
 
   clock_t tic = clock();
 
-  appLayer(applicationLayer, linkLayer, file);
+  int ret = appLayer(applicationLayer, linkLayer, file);
 
   clock_t toc = clock();
 
   double timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
 
-  showStats(linkLayer, file, timeElapsed);
+  //showStats(linkLayer, file, timeElapsed);
 
-  return 0;
+  return ret;
 }

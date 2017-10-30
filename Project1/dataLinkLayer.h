@@ -22,11 +22,14 @@
 
 static const char SET[5] = {FLAG, A, C_SET, A ^ C_SET, FLAG};
 static const char UA[5] = {FLAG, A, C_UA, A ^ C_UA, FLAG};
-static const char RR1[5] = {FLAG, A, C_UA, A ^ C_RR1, FLAG};
-static const char RR0[5] = {FLAG, A, C_UA, A ^ C_RR0, FLAG};
-static const char REJ0[5] = {FLAG, A, C_UA, A ^ C_REJ0, FLAG};
-static const char REJ1[5] = {FLAG, A, C_UA, A ^ C_REJ1, FLAG};
+static const char RR1[5] = {FLAG, A, C_RR1, A ^ C_RR1, FLAG};
+static const char RR0[5] = {FLAG, A, C_RR0, A ^ C_RR0, FLAG};
+static const char REJ0[5] = {FLAG, A, C_REJ0, A ^ C_REJ0, FLAG};
+static const char REJ1[5] = {FLAG, A, C_REJ1, A ^ C_REJ1, FLAG};
 static const char DISC[5] = {FLAG, A, C_DISC, A ^ C_DISC, FLAG};
+
+extern int numTries;
+extern int flagAlarm;
 
 
 struct termios oldtio, newtio;
@@ -50,7 +53,7 @@ int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
-int initStatistics(Statistics* stats);
+Statistics* initStatistics();
 int errorProbability(int value);
 
 #endif

@@ -9,10 +9,11 @@
 #include <unistd.h>
 #include "dataLinkLayer.h"
 
-static int numTries = 0;
-static int flagAlarm = 1;
 static int inducedError = 0;
 static int increaseTProg = 0;
+
+int numTries = 0;
+int flagAlarm = 1;
 
 
 void answer(){ //answers alarm
@@ -33,6 +34,8 @@ int openSerialPort(ApplicationLayer* applicationLayer, LinkLayer* linkLayer) {
 
   applicationLayer->fileDescriptor = open(linkLayer->port, O_RDWR | O_NOCTTY );
   if (applicationLayer->fileDescriptor <0) {perror(linkLayer->port); return -1; }
+
+  printf("appLayer: Serial Port Open. \n");
 
   return applicationLayer->fileDescriptor;
 }
@@ -76,10 +79,11 @@ int readingArray(int fd, const char validation[]){
 
   while(state != stop && !flagAlarm){
     if((read(fd, &readChar, 1))<0){
-      perror("readingArray: Reading");
-      exit(-1);
+      printf("readingArray: Reading");
+      return -1;
     }
 
+    printf("%d == %d\n", (int) readChar, (int) validation[pos] );
 
     if(readChar==validation[pos]){
       pos++;
@@ -91,10 +95,15 @@ int readingArray(int fd, const char validation[]){
       state = start;
   }
 
-  if(state == stop)
-  	return 1;
-  else
-  	return 0;
+  if(state == stop){
+      printf("readingArray: array read successfully \n");
+      return 1;
+  }
+  else{
+    printf("readingArray: array NOT read successfully \n");
+    return 0;
+  }
+
 }
 
 int readingFrame(int fd, LinkLayer* linkLayer){
@@ -102,10 +111,10 @@ int readingFrame(int fd, LinkLayer* linkLayer){
   State state = start;
   int size = 0;
 
-    while(state != stop){
+    while(state != stop){ // TODO: you might get trapped in here forever
       if((read(fd, &readChar, 1))<0){
         perror("readingFrame: Reading");
-        exit(-1);
+        return -1;
       }
 
       switch (state) {
@@ -126,7 +135,7 @@ int readingFrame(int fd, LinkLayer* linkLayer){
           }
         break;
         case aRCV:
-          if(readChar == 0 || readChar == 1){
+          if(readChar == 0 || readChar == (1 << 6)){
             linkLayer->frame[size++]=readChar;
             state++;
           }
@@ -159,6 +168,7 @@ int readingFrame(int fd, LinkLayer* linkLayer){
       }
   }
 
+  printf("readingFrame: frame read \n");
   return size;
 }
 
@@ -166,17 +176,16 @@ int llopen(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 
   switch (applicationLayer->status) {
     case TRANSMITTER:
-      llopenTransmitter(applicationLayer, linkLayers);
-      break;
+      return llopenTransmitter(applicationLayer, linkLayers);
     case RECEIVER:
-      llopenReceiver(applicationLayer, linkLayers);
-      break;
+      return llopenReceiver(applicationLayer, linkLayers);
   }
-  return 0;
+  return -1;
 }
 
 int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
+  int success = 0;
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, SET, sizeof(SET))) < 0){
@@ -188,9 +197,16 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
     flagAlarm=0;
     if(readingArray(applicationLayer->fileDescriptor, UA)){
       printf("llopenTransmitter: UA received successfully.\n");
+      success = 1;
       break;
       }
   }
+
+  if(!success){
+    printf("llopenTransmitter: UA not acknowledge.\n");
+    return -1;
+}
+
 
   return 0;
 }
@@ -202,7 +218,7 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   printf("llopenReceiver: start reading\n");
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
-	  alarm(linkLayer->timeout);
+	  alarm(linkLayer->timeout * 2); // We want a bigger timeout in the start of the connection - logistic purposes
 	  flagAlarm=0;
 	  if(readingArray(applicationLayer->fileDescriptor, SET)){
 	    printf("llopenReceiver: SET received successfully.\n");
@@ -228,12 +244,10 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
 int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned char* buffer, int bufferSize){
 
-  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
-
   //Add Header
   linkLayer->frame[0] = FLAG;
   linkLayer->frame[1] = A;
-  linkLayer->frame[2] = linkLayer->sequenceNumber;
+  linkLayer->frame[2] = linkLayer->sequenceNumber << 6;
   linkLayer->frame[3] = linkLayer->frame[1] ^ linkLayer->frame[2];
 
   //Add Data
@@ -253,31 +267,65 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, linkLayer->frame, frameSize)) < 0){
       perror("llwrite: Writing");
-      exit(-1);
+      return -1;
     }
     alarm(linkLayer->timeout);
     flagAlarm=0;
 
+
+    printf("llwrite: Write Complete.\n");
+
+    printf("llwrite: Start looking for confirmation in %d space \n", linkLayer->sequenceNumber);
+    char temp[5];
+    read(applicationLayer->fileDescriptor, temp, 5);
+
     if(linkLayer->sequenceNumber){
-      if(readingArray(applicationLayer->fileDescriptor, RR1)){
+      if(temp[2] == C_REJ1)
+      printf("llwrite: REJ1 received successfully.\n");
+      else if(temp[2] == C_RR1){
         printf("llwrite: RR1 received successfully.\n");
-        linkLayer->stats->numReceivedRR++;
         break;
       }
     }
     else{
-      if(readingArray(applicationLayer->fileDescriptor, RR0)){
+      if(temp[2] == C_REJ0)
+      printf("llwrite: REJ0 received successfully.\n");
+      else if(temp[2] == C_RR0){
         printf("llwrite: RR0 received successfully.\n");
-        linkLayer->stats->numReceivedRR++;
         break;
       }
-    }
 
-    linkLayer->stats->numReceivedREJ++;
+    }
+  //   if(linkLayer->sequenceNumber){
+  //     if(readingArray(applicationLayer->fileDescriptor, RR1)){
+  //       printf("llwrite: RR1 received successfully.\n");
+  //       //linkLayer->stats->numReceivedRR++;
+  //       break;
+  //     }
+  //     else if(readingArray(applicationLayer->fileDescriptor, REJ1)){
+  //       printf("llwrite: REJ1 received.\n");
+  //       //linkLayer->stats->numReceivedREJ++;
+  //     }
+  //   }
+  //
+  //   else{
+  //     if(readingArray(applicationLayer->fileDescriptor, RR0)){
+  //       printf("llwrite: RR0 received successfully.\n");
+  //       //linkLayer->stats->numReceivedRR++;
+  //       break;
+  //     }
+  //
+  //     else if(readingArray(applicationLayer->fileDescriptor, REJ0)){
+  //       printf("llwrite: REJ0 received.\n");
+  //       //linkLayer->stats->numReceivedREJ++;
+  //     }
+  //   }
   }
 
-  return 0;
+  if(numTries == linkLayer->numTransmissions)
+    return -1;
 
+  return 0;
 }
 
 
@@ -311,6 +359,8 @@ int stuffingFrame(LinkLayer* linkLayer, int bufferSize){
       }
     }
 
+    printf("stuffingFrame: stuffing ready \n");
+
     return bufferSize;
 }
 
@@ -333,6 +383,8 @@ int destuffingFrame(LinkLayer* linkLayer){
 
     i++;
   }
+
+  printf("destuffingFrame: destuffing ready \n");
 
   return i;
 }
@@ -367,7 +419,7 @@ int processingDataFrame(LinkLayer* linkLayer){
   if(linkLayer->frame[1] != A)
     return -1;
 
-  if(linkLayer->frame[2] != 0 && linkLayer->frame[2] != 1)
+  if(linkLayer->frame[2] != 0 && linkLayer->frame[2] != (1<<6))
     return -1;
 
   if(linkLayer->frame[3] != (linkLayer->frame[1] ^ linkLayer->frame[2]))
@@ -387,13 +439,21 @@ int processingDataFrame(LinkLayer* linkLayer){
 
 int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
+  numTries = 0;
+  flagAlarm = 1;
+
   int size = readingFrame(applicationLayer->fileDescriptor, linkLayer);
+
+  if (numTries == linkLayer->numTransmissions)
+    return -1;
+
   size = destuffingFrame(linkLayer);
 
   if(processingDataFrame(linkLayer)<0){
-    printf("llread: processingDataFrame\n"); return -1;
+    printf("llread: processingDataFrame failed \n"); return -1;
   }
 
+  printf("llread: Read Complete \n");
   return size;
 }
 
@@ -412,7 +472,6 @@ int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 }
 
 int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
   printf("llcloseTramsitter: Disconecting\n");
 
   numTries = 0;
@@ -420,8 +479,8 @@ int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer)
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, DISC, sizeof(DISC))) < 0){
-      perror("llcloseTramsitter: Writing DISC");
-      exit(-1);
+      printf("llcloseTramsitter: Writing DISC Error \n");
+      return -1;
     }
     printf("llcloseTramsitter: sent DISC\n");
     alarm(linkLayer->timeout);
@@ -432,9 +491,15 @@ int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer)
     }
   }
 
+
+  if(numTries == linkLayer->numTransmissions){
+    perror("llcloseReceiver: DISC was NOT received successfully");
+    return -1;
+  }
+  printf("llcloseTramsitter: sent UA\n");
   if((write(applicationLayer->fileDescriptor, UA, sizeof(UA))) < 0){
-    perror("llcloseTramsitter: Writing UA");
-    exit(-1);
+    printf("llcloseTramsitter: Writing UA error \n");
+    return -1;
   }
 
   printf("llcloseTramsitter: Disconnected.\n");
@@ -443,8 +508,6 @@ int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer)
 
 
 int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
-  int success = 0;
   numTries = 0;
   flagAlarm = 1;
 
@@ -455,28 +518,43 @@ int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 	  flagAlarm=0;
 	  if(readingArray(applicationLayer->fileDescriptor, DISC)){
 	    printf("llcloseReceiver: DISC received successfully.\n");
-	    success = 1;
 	    break;
 	    }
   }
 
-  if(!success){
+  if(numTries == linkLayer->numTransmissions){
   	perror("llcloseReceiver: DISC was NOT received successfully");
-  	exit(-1);
+  	return -1;
   }
 
-  if((write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
-    perror("llcloseReceiver: Writing");
-    exit(-1);
+  numTries = 0;
+  flagAlarm = 1;
+
+  while(numTries < linkLayer->numTransmissions && flagAlarm){
+    if((write(applicationLayer->fileDescriptor, DISC, sizeof(DISC))) < 0){
+      printf("llcloseReceiver: Writing DISC Error \n");
+      return -1;
+    }
+    printf("llcloseReceiver: sent DISC\n");
+    alarm(linkLayer->timeout);
+    flagAlarm=0;
+    if(readingArray(applicationLayer->fileDescriptor, UA)){
+      printf("llcloseReceiver: UA received successfully.\n");
+      break;
+    }
   }
-  printf("llcloseReceiver: sent UA\n");
+
+  if(numTries == linkLayer->numTransmissions){
+    printf("llcloseReceiver: UA NOT received successfully.\n");
+    return -1;
+  }
   printf("llcloseReceiver: Disconnected.\n");
 
   return 0;
 }
 
-int initStatistics(Statistics* stats){
-  stats = (Statistics*) malloc(sizeof(Statistics));
+Statistics* initStatistics(){
+  Statistics* stats = (Statistics*) malloc(sizeof(Statistics));
 
   stats->numSentRR = 0;
   stats->numReceivedRR = 0;
@@ -484,7 +562,7 @@ int initStatistics(Statistics* stats){
   stats->numSentREJ = 0;
   stats->numReceivedREJ = 0;
 
-  return 0;
+  return stats;
 }
 
 int errorProbability(int value) {
