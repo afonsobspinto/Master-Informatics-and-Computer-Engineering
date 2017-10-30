@@ -331,6 +331,29 @@ int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applic
 }
 
 
+void showInfo(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file) {
+	printf("----------- CONNECTION INFO -----------\n");
+	switch (applicationLayer->status) {
+	case TRANSMITTER:
+		printf("# Mode: Write\n");
+		break;
+	case RECEIVER:
+		printf("# Mode: Read\n");
+		break;
+  default:
+    exit(-1);
+	}
+
+	printf("# Baud Rate: %d\n", linkLayer->baudRate);
+	//printf("# Message data max. size: %d\n", ll->messageDataMaxSize);
+	printf("# Max No. of Transmissions: %d\n", linkLayer->numTransmissions);
+	printf("# Time-out interval: %d\n", linkLayer->timeout);
+	printf("# Port: %s\n", linkLayer->port);
+	printf("# File: %s\n", file->name);
+  printf("----------------------------------\n");
+	printf("\n");
+}
+
 void showStats(LinkLayer* linkLayer, FileData* file, double timeElapsed){
 
 	printf("\n");

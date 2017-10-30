@@ -3,6 +3,9 @@
 
 #define MAX_SIZE 255
 
+extern int inducedError;
+extern int increaseTProg;
+
 typedef enum {start, flagRCV, aRCV, cRCV, bccOK, stop} State;
 typedef enum { TRANSMITTER, RECEIVER } STATUS;
 typedef enum { RIGHT, LEFT } ORIENTATION;
@@ -35,5 +38,8 @@ typedef struct {
 
 int getFileName(char *filename);
 int getFileSize(FILE *fd);
+void userInteraction(LinkLayer* linkLayer);
+int getInput(int min, int max);
+
 
 #endif

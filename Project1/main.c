@@ -6,6 +6,8 @@
 #include "appLayer.h"
 
 int DEBUG_MODE = 0;
+int inducedError = 0;
+int increaseTProg = 0;
 
 int numSentRR = 0;
 int numReceivedRR = 0;
@@ -25,7 +27,7 @@ int main(int argc, char **argv) {
   linkLayer->numTransmissions = 3;
   linkLayer->sequenceNumber = 0;
 
-
+  userInteraction(linkLayer);
 
   if ((argc != 3) ||
     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
@@ -42,22 +44,19 @@ int main(int argc, char **argv) {
   */
 
   if ((strcmp("1", argv[2]) == 0)) {
-    printf("Write Mode. \n");
     applicationLayer->status = TRANSMITTER;
     getFileName(file->name);
   }
   else if ((strcmp("0", argv[2]) == 0)) {
-    printf("Read Mode. \n");
     applicationLayer->status = RECEIVER;
   }
   else{
     printf("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
     exit(1);
   }
+  showInfo(applicationLayer, linkLayer, file);
 
-  printf("SerialPort: %s\n", linkLayer->port);
   sleep(1);
-
 
   clock_t tic = clock();
 

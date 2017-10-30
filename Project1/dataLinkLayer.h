@@ -37,6 +37,7 @@ extern int numSentREJ;
 extern int numReceivedREJ;
 
 
+
 struct termios oldtio, newtio;
 
 void answer();

@@ -20,6 +20,7 @@ int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicati
 int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer);
 
+void showInfo(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file);
 void showStats(LinkLayer* linkLayer, FileData* fileData, double timeElapsed);
 
 

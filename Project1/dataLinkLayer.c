@@ -9,8 +9,7 @@
 #include <unistd.h>
 #include "dataLinkLayer.h"
 
-static int inducedError = 0;
-static int increaseTProg = 0;
+
 
 int numTries = 0;
 int flagAlarm = 1;
