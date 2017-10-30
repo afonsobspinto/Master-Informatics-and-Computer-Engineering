@@ -30,6 +30,7 @@ static const char DISC[5] = {FLAG, A, C_DISC, A ^ C_DISC, FLAG};
 
 extern int numTries;
 extern int flagAlarm;
+extern int DEBUG_MODE;
 
 
 struct termios oldtio, newtio;

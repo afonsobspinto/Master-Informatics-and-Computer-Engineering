@@ -18,7 +18,7 @@ int flagAlarm = 1;
 
 void answer(){ //answers alarm
 
-  printf("answer: alarm # %d\n", numTries);
+  printf("Timeout #%d\n", numTries + 1);
   flagAlarm=1;
   numTries++;
 
@@ -33,8 +33,9 @@ int openSerialPort(ApplicationLayer* applicationLayer, LinkLayer* linkLayer) {
   */
 
   applicationLayer->fileDescriptor = open(linkLayer->port, O_RDWR | O_NOCTTY );
-  if (applicationLayer->fileDescriptor <0) {perror(linkLayer->port); return -1; }
+  if (applicationLayer->fileDescriptor <0) {printf("Open Serial Port Error"); return -1; }
 
+  if (DEBUG_MODE)
   printf("appLayer: Serial Port Open. \n");
 
   return applicationLayer->fileDescriptor;
@@ -44,7 +45,7 @@ int openSerialPort(ApplicationLayer* applicationLayer, LinkLayer* linkLayer) {
 int setNewTermiosStructure(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   if ( tcgetattr(applicationLayer->fileDescriptor,&oldtio) == -1) { /* save current port settings */
-    perror("setNewTermiosStructure: tcgetattr");
+    printf("setNewTermiosStructure: tcgetattr error");
     exit(-1);
     }
 
@@ -63,10 +64,11 @@ int setNewTermiosStructure(ApplicationLayer* applicationLayer, LinkLayer* linkLa
   tcflush(applicationLayer->fileDescriptor, TCIOFLUSH);
 
   if ( tcsetattr(applicationLayer->fileDescriptor,TCSANOW,&newtio) == -1) {
-    perror("setNewTermiosStructure: tcsetattr");
-     exit(-1);
+    printf("setNewTermiosStructure: tcsetattr error");
+    exit(-1);
   }
 
+  if (DEBUG_MODE)
   printf("setNewTermiosStructure: New termios structure set\n");
   return 0;
 }
@@ -79,11 +81,9 @@ int readingArray(int fd, const char validation[]){
 
   while(state != stop && !flagAlarm){
     if((read(fd, &readChar, 1))<0){
-      printf("readingArray: Reading");
+      printf("readingArray: Reading Error");
       return -1;
     }
-
-    printf("%d == %d\n", (int) readChar, (int) validation[pos] );
 
     if(readChar==validation[pos]){
       pos++;
@@ -96,11 +96,13 @@ int readingArray(int fd, const char validation[]){
   }
 
   if(state == stop){
-      printf("readingArray: array read successfully \n");
+      if (DEBUG_MODE)
+        printf("readingArray: array read successfully \n");
       return 1;
   }
   else{
-    printf("readingArray: array NOT read successfully \n");
+    if (DEBUG_MODE)
+      printf("readingArray: array NOT read successfully \n");
     return 0;
   }
 
@@ -113,7 +115,7 @@ int readingFrame(int fd, LinkLayer* linkLayer){
 
     while(state != stop){ // TODO: you might get trapped in here forever
       if((read(fd, &readChar, 1))<0){
-        perror("readingFrame: Reading");
+        printf("readingFrame: Reading Error");
         return -1;
       }
 
@@ -168,7 +170,8 @@ int readingFrame(int fd, LinkLayer* linkLayer){
       }
   }
 
-  printf("readingFrame: frame read \n");
+  if (DEBUG_MODE)
+    printf("readingFrame: frame read \n");
   return size;
 }
 
@@ -189,25 +192,30 @@ int llopenTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, SET, sizeof(SET))) < 0){
-      perror("llopenTransmitter: Writing");
-      exit(-1);
+      printf("llopenTransmitter: Writing error");
+      return -1;
     }
-    printf("llopenTransmitter: sent SET\n");
+    if (DEBUG_MODE)
+      printf("llopenTransmitter: sent SET\n");
+
     alarm(linkLayer->timeout);
     flagAlarm=0;
+
     if(readingArray(applicationLayer->fileDescriptor, UA)){
-      printf("llopenTransmitter: UA received successfully.\n");
+      if (DEBUG_MODE)
+        printf("llopenTransmitter: UA received successfully.\n");
       success = 1;
       break;
       }
   }
 
   if(!success){
+    if (DEBUG_MODE)
     printf("llopenTransmitter: UA not acknowledge.\n");
     return -1;
 }
 
-
+  alarm(0);
   return 0;
 }
 
@@ -215,29 +223,34 @@ int llopenReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   (void) signal(SIGALRM, answer);  // installs routine which answers interruption
   int success = 0;
 
-  printf("llopenReceiver: start reading\n");
+  if (DEBUG_MODE)
+    printf("llopenReceiver: start reading\n");
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
-	  alarm(linkLayer->timeout * 2); // We want a bigger timeout in the start of the connection - logistic purposes
+	  alarm(linkLayer->timeout);
 	  flagAlarm=0;
 	  if(readingArray(applicationLayer->fileDescriptor, SET)){
-	    printf("llopenReceiver: SET received successfully.\n");
+      if (DEBUG_MODE)
+        printf("llopenReceiver: SET received successfully.\n");
 	    success = 1;
 	    break;
 	    }
   }
 
   if(!success){
-  	perror("llopenReceiver: SET was NOT received successfully");
-  	exit(-1);
+    if (DEBUG_MODE)
+  	printf("llopenReceiver: SET was NOT received successfully");
+  	return -1;
   }
 
   if((write(applicationLayer->fileDescriptor, UA, sizeof(UA)))<0){
-    perror("llopenReceiver: Writing");
-    exit(-1);
+    printf("llopenReceiver: Writing error");
+    return -1;
   }
-  printf("llopenReceiver: sent UA\n");
+  if (DEBUG_MODE)
+    printf("llopenReceiver: sent UA\n");
 
+  alarm(0);
   return 0;
 }
 
@@ -266,65 +279,46 @@ int llwrite(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, unsigned c
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, linkLayer->frame, frameSize)) < 0){
-      perror("llwrite: Writing");
-      return -1;
+        printf("llwrite: Writing error");
+        return -1;
     }
     alarm(linkLayer->timeout);
     flagAlarm=0;
 
-
+    if (DEBUG_MODE)
     printf("llwrite: Write Complete.\n");
 
-    printf("llwrite: Start looking for confirmation in %d space \n", linkLayer->sequenceNumber);
     char temp[5];
     read(applicationLayer->fileDescriptor, temp, 5);
 
     if(linkLayer->sequenceNumber){
-      if(temp[2] == C_REJ1)
-      printf("llwrite: REJ1 received successfully.\n");
+      if(temp[2] == C_REJ1){
+        if (DEBUG_MODE)
+          printf("llwrite: REJ1 received successfully.\n");
+        }
       else if(temp[2] == C_RR1){
-        printf("llwrite: RR1 received successfully.\n");
+        if (DEBUG_MODE)
+            printf("llwrite: RR1 received successfully.\n");
         break;
+        }
       }
-    }
     else{
-      if(temp[2] == C_REJ0)
-      printf("llwrite: REJ0 received successfully.\n");
-      else if(temp[2] == C_RR0){
-        printf("llwrite: RR0 received successfully.\n");
-        break;
+      if(temp[2] == C_REJ0){
+        if (DEBUG_MODE)
+          printf("llwrite: REJ0 received successfully.\n");
       }
-
-    }
-  //   if(linkLayer->sequenceNumber){
-  //     if(readingArray(applicationLayer->fileDescriptor, RR1)){
-  //       printf("llwrite: RR1 received successfully.\n");
-  //       //linkLayer->stats->numReceivedRR++;
-  //       break;
-  //     }
-  //     else if(readingArray(applicationLayer->fileDescriptor, REJ1)){
-  //       printf("llwrite: REJ1 received.\n");
-  //       //linkLayer->stats->numReceivedREJ++;
-  //     }
-  //   }
-  //
-  //   else{
-  //     if(readingArray(applicationLayer->fileDescriptor, RR0)){
-  //       printf("llwrite: RR0 received successfully.\n");
-  //       //linkLayer->stats->numReceivedRR++;
-  //       break;
-  //     }
-  //
-  //     else if(readingArray(applicationLayer->fileDescriptor, REJ0)){
-  //       printf("llwrite: REJ0 received.\n");
-  //       //linkLayer->stats->numReceivedREJ++;
-  //     }
-  //   }
+      else if(temp[2] == C_RR0){
+        if (DEBUG_MODE)
+          printf("llwrite: RR0 received successfully.\n");
+        break;
+        }
+      }
   }
 
   if(numTries == linkLayer->numTransmissions)
     return -1;
 
+  alarm(0);
   return 0;
 }
 
@@ -358,7 +352,7 @@ int stuffingFrame(LinkLayer* linkLayer, int bufferSize){
         linkLayer->frame[i] = (ESCAPE ^ OCTETO0x20);
       }
     }
-
+    if(DEBUG_MODE)
     printf("stuffingFrame: stuffing ready \n");
 
     return bufferSize;
@@ -384,6 +378,7 @@ int destuffingFrame(LinkLayer* linkLayer){
     i++;
   }
 
+  if(DEBUG_MODE)
   printf("destuffingFrame: destuffing ready \n");
 
   return i;
@@ -450,10 +445,12 @@ int llread(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   size = destuffingFrame(linkLayer);
 
   if(processingDataFrame(linkLayer)<0){
+    if (DEBUG_MODE)
     printf("llread: processingDataFrame failed \n"); return -1;
   }
 
-  printf("llread: Read Complete \n");
+  if(DEBUG_MODE)
+    printf("llread: Read Complete \n");
   return size;
 }
 
@@ -472,6 +469,7 @@ int llclose(ApplicationLayer* applicationLayer, LinkLayer* linkLayers) {
 }
 
 int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+  if(DEBUG_MODE)
   printf("llcloseTramsitter: Disconecting\n");
 
   numTries = 0;
@@ -479,13 +477,16 @@ int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer)
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, DISC, sizeof(DISC))) < 0){
+      if(DEBUG_MODE)
       printf("llcloseTramsitter: Writing DISC Error \n");
       return -1;
     }
+    if(DEBUG_MODE)
     printf("llcloseTramsitter: sent DISC\n");
     alarm(linkLayer->timeout);
     flagAlarm=0;
     if(readingArray(applicationLayer->fileDescriptor, DISC)){
+      if(DEBUG_MODE)
       printf("llcloseTramsitter: DISC received successfully.\n");
       break;
     }
@@ -493,16 +494,20 @@ int llcloseTransmitter(ApplicationLayer* applicationLayer, LinkLayer* linkLayer)
 
 
   if(numTries == linkLayer->numTransmissions){
-    perror("llcloseReceiver: DISC was NOT received successfully");
+    if(DEBUG_MODE)
+    printf("llcloseReceiver: DISC was NOT received successfully");
     return -1;
   }
+  if(DEBUG_MODE)
   printf("llcloseTramsitter: sent UA\n");
   if((write(applicationLayer->fileDescriptor, UA, sizeof(UA))) < 0){
+    if(DEBUG_MODE)
     printf("llcloseTramsitter: Writing UA error \n");
     return -1;
   }
 
-  printf("llcloseTramsitter: Disconnected.\n");
+  printf("Disconnected!\n");
+  alarm(0);
   return 0;
 }
 
@@ -511,45 +516,55 @@ int llcloseReceiver(ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
   numTries = 0;
   flagAlarm = 1;
 
+  if(DEBUG_MODE)
   printf("llcloseReceiver: Disconecting\n");
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
 	  alarm(linkLayer->timeout);
 	  flagAlarm=0;
 	  if(readingArray(applicationLayer->fileDescriptor, DISC)){
+      if(DEBUG_MODE)
 	    printf("llcloseReceiver: DISC received successfully.\n");
 	    break;
 	    }
   }
 
   if(numTries == linkLayer->numTransmissions){
-  	perror("llcloseReceiver: DISC was NOT received successfully");
+    if(DEBUG_MODE)
+  	printf("llcloseReceiver: DISC was NOT received successfully");
   	return -1;
   }
 
   numTries = 0;
   flagAlarm = 1;
+  alarm(0);
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
     if((write(applicationLayer->fileDescriptor, DISC, sizeof(DISC))) < 0){
       printf("llcloseReceiver: Writing DISC Error \n");
       return -1;
     }
-    printf("llcloseReceiver: sent DISC\n");
+    if(DEBUG_MODE)
+      printf("llcloseReceiver: sent DISC\n");
+
     alarm(linkLayer->timeout);
     flagAlarm=0;
     if(readingArray(applicationLayer->fileDescriptor, UA)){
-      printf("llcloseReceiver: UA received successfully.\n");
+      if(DEBUG_MODE)
+        printf("llcloseReceiver: UA received successfully.\n");
       break;
     }
   }
 
   if(numTries == linkLayer->numTransmissions){
-    printf("llcloseReceiver: UA NOT received successfully.\n");
+    if(DEBUG_MODE)
+      printf("llcloseReceiver: UA NOT received successfully.\n");
     return -1;
   }
-  printf("llcloseReceiver: Disconnected.\n");
 
+  printf("Disconnected!\n");
+
+  alarm(0);
   return 0;
 }
 

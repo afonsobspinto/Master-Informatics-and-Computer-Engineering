@@ -16,17 +16,18 @@ int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
 
   if (openSerialPort(applicationLayer, linkLayer) == -1) {
     printf("appLayer: openSerialPort \n");
-    exit(-1);
+    return -1;
   }
 
   if (setNewTermiosStructure(applicationLayer, linkLayer) == -1) {
     printf("appLayer: setNewTermiosStructure \n");
-    exit(-1);
+    return -1;
   }
 
   if(llopen(applicationLayer, linkLayer)<0)
     return -1;
 
+  printf("Connection Established!\n");
     if(applicationLayer->status == TRANSMITTER){
       if(sendData(applicationLayer, linkLayer, file)<0)
         return -1;
@@ -50,12 +51,11 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
   fp = fopen(file->name, "rb");
   if (!fp) {printf("sendData: open error \n"); return -1; }
 
+  if (DEBUG_MODE)
   printf("sendData: opened file %s\n", file->name);
 
   file->size = getFileSize(fp);
   if(file->size < 0) {printf("sendData: getFileSize error \n"); return -1; }
-
-  printf("sendData: file size %d\n", file->size);
 
 
   if((sendControlPackage(CTRL_PACKET_START, file, applicationLayer, linkLayer)) < 0)
@@ -74,9 +74,7 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
     }
 
     dataBuffer = memset(dataBuffer, 0, MAX_SIZE);
-    printf("%d\n", linkLayer->sequenceNumber);
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
-    printf("%d\n", linkLayer->sequenceNumber);
 
   }
 
@@ -88,7 +86,9 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
     {printf("sendData: sendControlPackage error \n"); return -1; }
 
 
-  printf("File successfully transferred.\n");
+  printf("File successfully transferred!\n");
+  printf("File Name: %s\n", file->name);
+  printf("File Size: %d\n", file->size);
   return 0;
 }
 
@@ -117,10 +117,8 @@ int sendControlPackage(int controlField, FileData* file, ApplicationLayer* appli
   for (i = 0; i < strlen(file->name); i++)
     controlPackage[pos++] = file->name[i];
 
+  if (DEBUG_MODE)
   printf("sendControlPackage: Start sending Control Package: \n");
-  //
-  // for (int u = 0; u < pos; u++)
-  //   printf("%d: %c\n", u, controlPackage[u]);
 
   if(llwrite(applicationLayer, linkLayer, controlPackage, packageSize) < 0)
     {printf("sendControlPackage: llwrite \n"); return -1; }
@@ -147,6 +145,7 @@ int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicati
 
   memcpy(&package[4], buffer, length);
 
+  if (DEBUG_MODE)
   printf("sendDataPackage: Start sending Data Packet: \n");
 
   if(llwrite(applicationLayer, linkLayer, package, packageSize) < 0)
@@ -154,19 +153,17 @@ int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicati
 
   free(package);
 
-
   return 0;
 
 }
 
 int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file ){
 
-  write(applicationLayer->fileDescriptor, RR1, 5);
-
   FILE* outFile;
   int controlStart;
   int ret;
 
+  if (DEBUG_MODE)
   printf("receiveControlPackage: Start looking for Control Package \n");
 
   numTries = 0;
@@ -179,14 +176,17 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     ret = -1;
 
     if(ret < 0){
-      printf("receiveData: CTRL_PACKET_START not received \n");
+      if (DEBUG_MODE)
+        printf("receiveData: CTRL_PACKET_START not received \n");
       write(applicationLayer->fileDescriptor, REJ0, 5);
     }
     else{
-      printf("receiveData: CTRL_PACKET_START received \n");
-      printf("receiveData: Sending confirmation \n");
+      if (DEBUG_MODE){
+        printf("receiveData: CTRL_PACKET_START received \n");
+        printf("receiveData: Sending confirmation \n");
+      }
       write(applicationLayer->fileDescriptor, RR0, 5);
-      linkLayer->sequenceNumber = 0; //workaround
+      linkLayer->sequenceNumber = 0; //workaround to not change sequenceNumber after reading CTRL_PACKET_START
       break;
     }
 
@@ -195,17 +195,15 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
   if(ret<0)
     return -1;
 
-  printf("receiveData: file name to read %s\n", file->name);
-  printf("receiveData: file size to read %d\n", file->size);
-
 
   outFile = fopen(file->name, "wb");
 
   if(!outFile){
-    printf("receiveData: open");
+    printf("receiveData: Open Error");
     return -1;
   }
 
+  if (DEBUG_MODE)
   printf("receiveData: file created \n");
 
 
@@ -217,25 +215,21 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     char* dataBuffer = NULL;
     int length = 0;
 
+    if (DEBUG_MODE)
     printf("receiveData: Start looking for Data Package: \n");
     ret = receiveDataPackage(&N, &dataBuffer, &length, applicationLayer, linkLayer);
 
+    if (DEBUG_MODE)
     printf("receiveData: Package received \n");
-
-    // if(N != 0 && lastN + 1 != N){
-    //   printf("receiveData: Duplicated \n");
-    //   ret = -1;
-    // }
 
     if(ret < 0){
       (linkLayer->sequenceNumber == 0) ? write(applicationLayer->fileDescriptor, REJ0, 5): write(applicationLayer->fileDescriptor, REJ1, 5);
-      (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package rejected com REJ0 \n"): printf("receiveData: Package rejected com REJ1 \n");
+      if (DEBUG_MODE){
+        (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package rejected com REJ0 \n"): printf("receiveData: Package rejected com REJ1 \n");
+      }
       //linkLayer->stats->numSentREJ++;
-      //printf("receiveData: Package rejected \n");
       continue;
     }
-
-    //printf("receiveData: Package accepted \n");
 
     fwrite(dataBuffer, sizeof(char), length, outFile);
     free(dataBuffer);
@@ -243,34 +237,33 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     fileRead += length;
 
     (linkLayer->sequenceNumber == 0) ? write(applicationLayer->fileDescriptor, RR0, 5): write(applicationLayer->fileDescriptor, RR1, 5);
-    (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package accepted com RR0 \n"): printf("receiveData: Package accepted com RR1 \n");
-    printf("%d\n", linkLayer->sequenceNumber);
+    if (DEBUG_MODE){
+      (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package accepted com RR0 \n"): printf("receiveData: Package accepted com RR1 \n");
+    }
+
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
-    printf("%d\n", linkLayer->sequenceNumber);
+
 
   //linkLayer->stats->numSentRR++;
   }
 
   if(fclose(outFile) != 0){
-    printf("receiveData: closing file \n");
+    printf("receiveData: Closing File Error \n");
     return -1;
   }
 
-  printf("File successfully received.\n");
+  printf("File successfully transferred!\n");
+  printf("File Name: %s\n", file->name);
+  printf("File Size: %d\n", file->size);
   return 0;
 }
 
-
 int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
-
 
   int totalSize = llread(applicationLayer, linkLayer);
 
-  // for (int u = 4; u < 30; u++)
-  //   printf("%d: %c\n", u, linkLayer->frame[u]);
-
   if(totalSize < 0){
-    printf("receiveControlPackage: llread \n");
+    printf("receiveControlPackage: llread error \n");
     return -1;
   }
 
@@ -306,7 +299,7 @@ int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applic
   int size = llread(applicationLayer, linkLayer);
 
   if(size < 0){
-    printf("receiveDataPackage: llread \n");
+    printf("receiveDataPackage: llread error \n");
     return -1;
   }
 
@@ -316,7 +309,7 @@ int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applic
   int L1 = linkLayer->frame[7];
 
   if(C != CTRL_PACKET_DATA){
-    printf("receiveDataPackage: not data package \n");
+      printf("receiveDataPackage: not a data package \n");
     return -1;
   }
 
@@ -325,7 +318,7 @@ int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applic
 
   if (linkLayer->frame[8 + *length] != getBCC2(&linkLayer->frame[4], *length + 4)) {
     printf("receiveDataPackage: BCC2 error \n");
-  return -1;
+    return -1;
 }
 
   memcpy(*buf, &linkLayer->frame[8], *length);

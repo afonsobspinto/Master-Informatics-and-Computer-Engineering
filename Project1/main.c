@@ -5,6 +5,8 @@
 #include <time.h>
 #include "appLayer.h"
 
+int DEBUG_MODE = 0;
+
 int main(int argc, char **argv) {
 
   srand(time(NULL));
@@ -24,7 +26,7 @@ int main(int argc, char **argv) {
   if ((argc != 3) ||
     ((strcmp("/dev/ttyS0", argv[1])!=0) &&
     (strcmp("/dev/ttyS1", argv[1])!=0)) ) {
-      perror("STATUS: <serial port> <STATUS> \n"); // /dev/ttyS1 1
+      printf("USAGE: <serial port> <STATUS> \n"); // /dev/ttyS1 1
       exit(1);
     }
 
@@ -45,7 +47,7 @@ int main(int argc, char **argv) {
     applicationLayer->status = RECEIVER;
   }
   else{
-    perror("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
+    printf("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
     exit(1);
   }
 
