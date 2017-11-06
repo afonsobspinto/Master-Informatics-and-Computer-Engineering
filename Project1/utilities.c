@@ -74,7 +74,7 @@ void showStats(LinkLayer* linkLayer){
   printf("File Size: %d\n", linkLayer->fileSize);
 	printf("Time Elapsed: %f\n", linkLayer->timeElapsed);
 	printf("Sent RR: %d\n", linkLayer->numSentRR);
-	printf("Received RR: %d\n", linkLayer->numReceivedRR * 4); //lol
+	printf("Received RR: %d\n", linkLayer->numReceivedRR * 2); //lol
 	printf("Sent REJ: %d\n", linkLayer->numSentREJ);
 	printf("Received REJ: %d\n", linkLayer->numReceivedREJ);
 	printf("----------------------------------\n");

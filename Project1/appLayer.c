@@ -278,7 +278,6 @@ int receiveData(LinkLayer* linkLayer){
 
   while(1){
 
-    int lastN = N;
     dataBuffer = NULL;
     int length = 0;
 
@@ -290,13 +289,7 @@ int receiveData(LinkLayer* linkLayer){
       break;
 
     if (DEBUG_MODE)
-    printf("receiveData: Package received \n");
-
-    if (N != 0 && lastN + 1 != N) {
-      if (DEBUG_MODE)
-        printf("receiveData: Found Duplicated \n");
-      ret = -1;
-    }
+      printf("receiveData: Package received \n");
 
     if(ret < 0){
       (linkLayer->sequenceNumber == 0) ? write(linkLayer->fileDescriptor, REJ0, 5): write(linkLayer->fileDescriptor, REJ1, 5);
@@ -401,12 +394,17 @@ int receiveDataPackage(int* N, char** buf, int* length, LinkLayer* linkLayer){
   *length = 256 * L2 + L1;
   *buf = malloc(*length);
 
-  if (linkLayer->frame[8 + *length] != getBCC2(&linkLayer->frame[4], *length + 4)) {
-    printf("receiveDataPackage: BCC2 error \n");
-    return -1;
-}
+  if(ORDER_BIT(linkLayer->sequenceNumber) == C){
+    if (linkLayer->frame[8 + *length] != getBCC2(&linkLayer->frame[4], *length + 4)) {
+      printf("receiveDataPackage: BCC2 error \n");
+      return -1;
+    }
+  }
+
+  // if(ORDER_BIT(linkLayer->sequenceNumber) != C)
+  //   printf("duplicado\n");
+  //   return 0;
 
   memcpy(*buf, &linkLayer->frame[8], *length);
-
   return 0;
 }

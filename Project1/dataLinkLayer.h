@@ -3,6 +3,7 @@
 
 #include <termios.h>
 
+
 #define MAX_SIZE 256
 #define SEQUENCE_NUMBER_INDEX 2
 #define FLAG 0x7E
@@ -15,7 +16,8 @@
 #define C_REJ1 0x81
 #define C_RR0 0x05
 #define C_RR1 0x85
-#define C_DATA(S) ((S) << 5)
+#define C_DATA(S) ((S) << 6)
+#define ORDER_BIT(n) ((n) << 6)
 #define ESCAPE 0x7D
 #define OCTETO0x20 0x20
 

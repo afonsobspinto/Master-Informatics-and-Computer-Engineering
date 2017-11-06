@@ -10,7 +10,6 @@
 #include "dataLinkLayer.h"
 
 
-
 int numTries = 0;
 int flagAlarm = 1;
 
