@@ -66,7 +66,7 @@ typedef struct {
   unsigned int increaseTProg;
 
   //frame
-   unsigned char frame[MAX_SIZE];
+   unsigned char* frame;
 } LinkLayer;
 
 
@@ -82,7 +82,7 @@ int processingDataFrame(LinkLayer* linkLayer);
 int llopen(LinkLayer* linkLayer);
 int llopenTransmitter(LinkLayer* linkLayer);
 int llopenReceiver(LinkLayer* linkLayer);
-int llwrite(LinkLayer* linkLayer, char* buffer, int bufferSize);
+int llwrite(LinkLayer* linkLayer, unsigned char* buffer, int bufferSize);
 int llread(LinkLayer* linkLayer);
 unsigned char getBCC2(unsigned char *buffer, int bufferSize);
 int stuffingFrame(LinkLayer* linkLayer, int bufferSize);

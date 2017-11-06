@@ -101,18 +101,18 @@ int sendData(LinkLayer* linkLayer){
   fp = fopen(linkLayer->fileName, "rb");
   if (!fp) {printf("sendData: open error \n"); return -1; }
 
-  char* dataBuffer = malloc(MAX_SIZE);
+  char* dataBuffer = malloc(linkLayer->dataSize);
   int readBytes = 0;
   int i = 0;
 
-  while ((readBytes = fread(dataBuffer, sizeof(char), MAX_SIZE, fp)) > 0) {
+  while ((readBytes = fread(dataBuffer, sizeof(char), linkLayer->dataSize, fp)) > 0) {
     if ((sendDataPackage(dataBuffer, (i++) % 255, readBytes, linkLayer)) < 0) {
       printf("sendData: sendDataPackage error \n");
       free(dataBuffer);
       return -1;
     }
 
-    dataBuffer = memset(dataBuffer, 0, MAX_SIZE);
+    dataBuffer = memset(dataBuffer, 0, linkLayer->dataSize);
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
 
   }
@@ -151,7 +151,7 @@ int sendControlPackage(LinkLayer* linkLayer, ControlPacket* controlPacket){
     dataBufferSize += controlPacket->params[i].length;
   }
 
-  char dataBuffer[dataBufferSize];
+  unsigned char dataBuffer[dataBufferSize];
   dataBuffer[0] = controlPacket->controlField;
 
   unsigned int j;
@@ -206,7 +206,7 @@ int receiveData(LinkLayer* linkLayer){
   if(DEBUG_MODE)
      printf("Reading Start Control Packet...\n");
 
-   char dataBuffer[MAX_SIZE];
+   char* dataBuffer = malloc(linkLayer->dataSize);
    unsigned int dataBufferSize;
 
    if((dataBufferSize = llread(linkLayer)) < 0)
@@ -219,7 +219,7 @@ int receiveData(LinkLayer* linkLayer){
 
    ControlPacket startControlPacket;
    startControlPacket.controlField = linkLayer->frame[i++];
-   ControlPacketTLV startControlPacketParams[MAX_SIZE];
+   ControlPacketTLV startControlPacketParams[linkLayer->dataSize];
 
    unsigned int j;
    for (j= 0; i < dataBufferSize; j++){
@@ -273,7 +273,7 @@ int receiveData(LinkLayer* linkLayer){
   while(1){
 
     int lastN = N;
-    char* dataBuffer = NULL;
+    dataBuffer = NULL;
     int length = 0;
 
     if (DEBUG_MODE)

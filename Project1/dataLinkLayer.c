@@ -45,6 +45,8 @@ void linkLayerInit(LinkLayer *linkLayer){
 
   linkLayer->induceError = 0;
   linkLayer->increaseTProg = 0;
+
+  linkLayer->frame = malloc(linkLayer->dataSize);
 }
 
 
@@ -278,7 +280,7 @@ int llopenReceiver(LinkLayer* linkLayer){
 }
 
 
-int llwrite(LinkLayer* linkLayer, char* buffer, int bufferSize){
+int llwrite(LinkLayer* linkLayer, unsigned char* buffer, int bufferSize){
 
   //Add Header
   linkLayer->frame[0] = FLAG;
@@ -484,6 +486,7 @@ int llread(LinkLayer* linkLayer){
 
 int llclose(LinkLayer* linkLayer) {
 
+
   switch (linkLayer->mode) {
     case TRANSMITTER:
       llcloseTransmitter(linkLayer);
@@ -492,6 +495,7 @@ int llclose(LinkLayer* linkLayer) {
       llcloseReceiver(linkLayer);
       break;
   }
+
   return 0;
 }
 
