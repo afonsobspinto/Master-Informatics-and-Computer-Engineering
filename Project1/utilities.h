@@ -12,6 +12,7 @@ extern const char* validBaudRatesChar[BAUDRATE_VALUES];
 
 int printUsage(const char *programName);
 void showConnectionInfo(LinkLayer* linkLayer);
+void showStats(LinkLayer* linkLayerData);
 unsigned int getFileSize(char* fileName);
 char* getBaudRateString(int baudRate);
 void clearBuffer(FILE* fp);

@@ -15,19 +15,12 @@ int numTries = 0;
 int flagAlarm = 1;
 
 
-void alarmHandler(){ //answers alarm
+void answer(){ //answers alarm
 
   printf("Timeout #%d\n", numTries + 1);
   flagAlarm=1;
   numTries++;
 
-}
-
-int installHandler(){
-	struct sigaction sigact;
-	memset(&sigact, 0, sizeof sigact);
-	sigact.sa_handler = &alarmHandler;
-	return sigaction(SIGALRM, &sigact, NULL);
 }
 
 void linkLayerInit(LinkLayer *linkLayer){
@@ -49,6 +42,7 @@ void linkLayerInit(LinkLayer *linkLayer){
   linkLayer->numSentREJ = 0;
   linkLayer->numReceivedREJ = 0;
   linkLayer->numTimeouts = 0;
+  linkLayer->timeElapsed = 0;
 
   linkLayer->induceError = 0;
   linkLayer->increaseTProg = 0;
@@ -191,6 +185,11 @@ int readingFrame(int fd, LinkLayer* linkLayer){
             size = 0;
             state = START;
           }
+          if(errorProbability(linkLayer->induceError)){
+            printf("induced Bcc1 error\n");
+            size = 0;
+            state = START;
+          }
         break;
         case BCC_OK:
           linkLayer->frame[size++]=readChar;
@@ -219,7 +218,7 @@ int llopen(LinkLayer* linkLayer) {
 }
 
 int llopenTransmitter(LinkLayer* linkLayer){
-  installHandler();
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
   int success = 0;
 
   while(numTries < linkLayer->numTransmissions && flagAlarm){
@@ -252,7 +251,7 @@ int llopenTransmitter(LinkLayer* linkLayer){
 }
 
 int llopenReceiver(LinkLayer* linkLayer){
-  installHandler();
+  (void) signal(SIGALRM, answer);  // installs routine which answers interruption
   int success = 0;
 
   if (DEBUG_MODE)
@@ -442,6 +441,22 @@ int shiftFrame(LinkLayer* linkLayer, int i, int bufferSize, ORIENTATION orientat
   return 0;
 }
 
+int processingDataFrame(LinkLayer* linkLayer){
+
+
+
+  int L2 = linkLayer->frame[6];
+  int L1 = linkLayer->frame[7];
+
+  int length = 256 * L2 + L1;
+
+    if(errorProbability(linkLayer->induceError / 2)){
+      printf("induced bcc2 error\n");
+      linkLayer->frame[8 + length] += 13;
+    }
+
+  return 0;
+}
 
 int llread(LinkLayer* linkLayer){
 
@@ -455,10 +470,10 @@ int llread(LinkLayer* linkLayer){
 
   size = destuffingFrame(linkLayer);
 
-  // if(processingDataFrame(linkLayer)<0){
-  //   if(DEBUG_MODE){
-  //     printf("llread: processingDataFrame failed \n"); return -1;}
-  // }
+  if(processingDataFrame(linkLayer)<0){
+    if(DEBUG_MODE){
+      printf("llread: processingDataFrame failed \n"); return -1;}
+  }
 
   if(DEBUG_MODE)
     printf("llread: Read Complete \n");
@@ -471,13 +486,14 @@ int llclose(LinkLayer* linkLayer) {
 
   switch (linkLayer->mode) {
     case TRANSMITTER:
-      return llcloseTransmitter(linkLayer);
+      llcloseTransmitter(linkLayer);
+      break;
     case RECEIVER:
-      return llcloseReceiver(linkLayer);
+      llcloseReceiver(linkLayer);
+      break;
   }
 
-  printf("llclose: unexpected behaviour\n");
-  return -1;
+  return 0;
 }
 
 int llcloseTransmitter(LinkLayer* linkLayer){

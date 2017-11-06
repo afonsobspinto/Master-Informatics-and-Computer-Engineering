@@ -8,6 +8,7 @@
 #include <string.h>
 #include <signal.h>
 #include <unistd.h>
+#include <time.h>
 #include "dataLinkLayer.h"
 #include "appLayer.h"
 
@@ -87,6 +88,8 @@ int sendData(LinkLayer* linkLayer){
   ControlPacketTLV startControlPacketParams[] = {startControlPacketTLV_size, startControlPacketTLV_name};
   startControlPacket.params = startControlPacketParams;
 
+  clock_t tic = clock();
+
   if(sendControlPackage(linkLayer, &startControlPacket) < 0)
     return -1;
 
@@ -131,6 +134,9 @@ int sendData(LinkLayer* linkLayer){
   if(sendControlPackage(linkLayer, &endControlPacket) < 0)
     {printf("sendData: sendControlPackage error \n"); return -1; }
 
+
+  clock_t toc = clock();
+  linkLayer->timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
 
 
   printf("File successfully transferred!\n");
@@ -203,6 +209,7 @@ int sendDataPackage(char* buffer, int N, int length, LinkLayer* linkLayer){
 
 int receiveData(LinkLayer* linkLayer){
 
+  clock_t tic = clock();
   if(DEBUG_MODE)
      printf("Reading Start Control Packet...\n");
 
@@ -314,6 +321,9 @@ int receiveData(LinkLayer* linkLayer){
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
   }
 
+  clock_t toc = clock();
+  linkLayer->timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
+
   if(fclose(outFile) != 0){
     printf("receiveData: Closing File Error \n");
     return -1;
@@ -399,45 +409,4 @@ int receiveDataPackage(int* N, char** buf, int* length, LinkLayer* linkLayer){
   memcpy(*buf, &linkLayer->frame[8], *length);
 
   return 0;
-}
-
-
-void showInfo(LinkLayer* linkLayer) {
-	printf("----------- CONNECTION INFO -----------\n");
-	switch (linkLayer->mode) {
-	case TRANSMITTER:
-		printf("# Mode: Write\n");
-		break;
-	case RECEIVER:
-		printf("# Mode: Read\n");
-		break;
-  default:
-    exit(-1);
-	}
-
-	printf("# Baud Rate: %d\n", linkLayer->baudRate);
-	//printf("# Message data max. size: %d\n", ll->messageDataMaxSize);
-	printf("# Max No. of Transmissions: %d\n", linkLayer->numTransmissions);
-	printf("# Time-out interval: %d\n", linkLayer->timeout);
-	printf("# Port: %s\n", linkLayer->port);
-	printf("# File: %s\n", linkLayer->fileName);
-  printf("----------------------------------\n");
-	printf("\n");
-}
-
-void showStats(LinkLayer* linkLayer, double timeElapsed){
-
-	printf("\n");
-	printf("----------- STATISTICS -----------\n");
-  printf("Filename: %s\n", linkLayer->fileName);
-  printf("File Size: %d\n", linkLayer->fileSize);
-  printf("Time Elapsed: %f\n", timeElapsed);
-	printf("Sent RR: %d\n", linkLayer->numSentRR);
-	printf("Received RR: %d\n", linkLayer->numReceivedRR * 2); //lol
-	printf("Sent REJ: %d\n", linkLayer->numSentREJ);
-	printf("Received REJ: %d\n", linkLayer->numReceivedREJ);
-	printf("----------------------------------\n");
-	printf("\n");
-
-
 }

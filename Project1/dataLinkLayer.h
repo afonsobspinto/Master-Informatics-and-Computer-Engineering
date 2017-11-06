@@ -60,6 +60,7 @@ typedef struct {
 	unsigned int numSentREJ;
 	unsigned int numReceivedREJ;
   unsigned int numTimeouts;
+  double timeElapsed;
 
   /*Error Induction*/
   unsigned int induceError;

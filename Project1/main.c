@@ -9,7 +9,7 @@
 #include "utilities.h"
 #include "appLayer.h"
 
-const int DEBUG_MODE = 1;
+const int DEBUG_MODE = 0;
 
 int main(int argc, char *argv[]) {
   srand(time(NULL));
@@ -37,5 +37,10 @@ int main(int argc, char *argv[]) {
 
   showConnectionInfo(linkLayer);
 
-  return appLayer(linkLayer);
+  if(appLayer(linkLayer)<0)
+    return -1;
+
+  showStats(linkLayer);
+
+  return 0;
 }

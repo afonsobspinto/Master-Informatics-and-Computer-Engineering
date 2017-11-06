@@ -39,8 +39,5 @@ int sendDataPackage(char* buffer, int N, int length, LinkLayer* linkLayer);
 int receiveControlPackage(int* controlPackageType, LinkLayer* linkLayer);
 int receiveDataPackage(int* N, char** buf, int* length, LinkLayer* linkLayer);
 
-void showInfo(LinkLayer* linkLayer);
-void showStats(LinkLayer* linkLayerData, double timeElapsed);
-
 
 #endif
