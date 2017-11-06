@@ -1,72 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>      /* printf, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 #include <string.h>
 #include <unistd.h>
-#include <time.h>
+
+#include "dataLinkLayer.h"
+#include "interaction.h"
+#include "utilities.h"
 #include "appLayer.h"
 
-int DEBUG_MODE = 0;
-int inducedError = 0;
-int increaseTProg = 0;
+const int DEBUG_MODE = 1;
 
-int numSentRR = 0;
-int numReceivedRR = 0;
-int numSentREJ = 0;
-int numReceivedREJ = 0;
-
-int main(int argc, char **argv) {
-
+int main(int argc, char *argv[]) {
   srand(time(NULL));
 
-  ApplicationLayer* applicationLayer = malloc(sizeof(ApplicationLayer));
   LinkLayer* linkLayer = malloc(sizeof(LinkLayer));
-  FileData* file = malloc(sizeof(FileData));
+  linkLayerInit(linkLayer);
 
-  linkLayer->baudRate = B38400;
-  linkLayer->timeout = 1;
-  linkLayer->numTransmissions = 3;
-  linkLayer->sequenceNumber = 0;
+  if(argc == 1)
+    userInteraction(linkLayer);
 
-  userInteraction(linkLayer);
-
-  if ((argc != 3) ||
-    ((strcmp("/dev/ttyS0", argv[1])!=0) &&
-    (strcmp("/dev/ttyS1", argv[1])!=0)) ) {
-      printf("USAGE: <serial port> <STATUS> \n"); // /dev/ttyS1 1
-      exit(1);
+  else if(argc == 2){
+    if ((strcmp("0", argv[1]) == 0)) {
+      linkLayer->mode = TRANSMITTER;
     }
-
-  strcpy(linkLayer->port, argv[1]);
-
-  /*
-  Read = 0;
-  Write = 1;
-  */
-
-  if ((strcmp("1", argv[2]) == 0)) {
-    applicationLayer->status = TRANSMITTER;
-    getFileName(file->name);
+    else if ((strcmp("1", argv[1]) == 0)) {
+      linkLayer->mode = RECEIVER;
+    }
+    else{
+      return printUsage(argv[0]);
+    }
   }
-  else if ((strcmp("0", argv[2]) == 0)) {
-    applicationLayer->status = RECEIVER;
-  }
-  else{
-    printf("<STATUS> must be 0 or 1 \n"); // /dev/ttyS1 1
-    exit(1);
-  }
-  showInfo(applicationLayer, linkLayer, file);
 
-  sleep(1);
+  else
+    return printUsage(argv[0]);
 
-  clock_t tic = clock();
+  showConnectionInfo(linkLayer);
 
-  int ret = appLayer(applicationLayer, linkLayer, file);
-
-  clock_t toc = clock();
-
-  double timeElapsed = (double)(toc - tic) / CLOCKS_PER_SEC;
-
-  showStats(linkLayer, file, timeElapsed);
-
-  return ret;
+  return appLayer(linkLayer);
 }

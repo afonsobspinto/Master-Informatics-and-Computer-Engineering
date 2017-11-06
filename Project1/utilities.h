@@ -1,45 +1,20 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#define MAX_SIZE 255
+#include <stdio.h>
+#include "dataLinkLayer.h"
 
-extern int inducedError;
-extern int increaseTProg;
+#define BAUDRATE_VALUES 19
 
-typedef enum {start, flagRCV, aRCV, cRCV, bccOK, stop} State;
-typedef enum { TRANSMITTER, RECEIVER } STATUS;
-typedef enum { RIGHT, LEFT } ORIENTATION;
-
+extern const int validBaudRates[BAUDRATE_VALUES];
+extern const char* validBaudRatesChar[BAUDRATE_VALUES];
 
 
-typedef struct {
-  int fileDescriptor; /*Descritor correspondente à porta série*/
-  STATUS status; /*TRANSMITTER | RECEIVER*/
-}ApplicationLayer;
-
-typedef struct {
-  char port[20]; /*Device /dev/ttySx, x = 0, 1*/
-  int baudRate; /*Transmission Speed*/
-  unsigned int sequenceNumber;
-  unsigned int timeout; /*Timer Value: 1 s*/
-  unsigned int numTransmissions;  /*Num of tries in case of error*/
-  unsigned char frame[MAX_SIZE];
-	int numSentRR;
-	int numReceivedRR;
-	int numSentREJ;
-	int numReceivedREJ;
-} LinkLayer;
-
-typedef struct {
-  unsigned int size;
-  char name[MAX_SIZE];
-} FileData;
-
-
-int getFileName(char *filename);
-int getFileSize(FILE *fd);
-void userInteraction(LinkLayer* linkLayer);
-int getInput(int min, int max);
-
+int printUsage(const char *programName);
+void showConnectionInfo(LinkLayer* linkLayer);
+unsigned int getFileSize(char* fileName);
+char* getBaudRateString(int baudRate);
+void clearBuffer(FILE* fp);
+unsigned int nDigits(int integer);
 
 #endif

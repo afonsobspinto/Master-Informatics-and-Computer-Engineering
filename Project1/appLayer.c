@@ -12,54 +12,103 @@
 #include "appLayer.h"
 
 
-int appLayer(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file){
+int appLayer(LinkLayer* linkLayer){
 
-  if (openSerialPort(applicationLayer, linkLayer) == -1) {
+  if (openSerialPort(linkLayer) == -1) {
     printf("appLayer: openSerialPort \n");
     return -1;
   }
 
-  if (setNewTermiosStructure(applicationLayer, linkLayer) == -1) {
+  if (setNewTermiosStructure(linkLayer) == -1) {
     printf("appLayer: setNewTermiosStructure \n");
     return -1;
   }
 
-  if(llopen(applicationLayer, linkLayer)<0)
+  if(llopen(linkLayer)<0)
     return -1;
 
   printf("Connection Established!\n");
-    if(applicationLayer->status == TRANSMITTER){
-      if(sendData(applicationLayer, linkLayer, file)<0)
+    if(linkLayer->mode == TRANSMITTER){
+      if(sendData(linkLayer)<0)
         return -1;
     }
-    else if(applicationLayer->status == RECEIVER){
-      if(receiveData(applicationLayer, linkLayer, file)<0)
+    else if(linkLayer->mode == RECEIVER){
+      if(receiveData(linkLayer)<0)
         return -1;
     }
 
 
-  return llclose(applicationLayer, linkLayer);
+  return llclose(linkLayer);
 }
 
 
 
-int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file){
+int sendData(LinkLayer* linkLayer){
 
+
+  // Preparing Start Control Packet
+
+  ControlPacket startControlPacket;
+  startControlPacket.controlField = CTRL_PACKET_START;
+  startControlPacket.numParams = 2;
+
+
+   // Preparing Size Info
+
+  ControlPacketTLV startControlPacketTLV_size;
+  startControlPacketTLV_size.type = T_FILE_SIZE;
+
+  int numDigits = nDigits(linkLayer->fileSize);
+  char fileSize[numDigits * sizeof(char)];
+
+  if (sprintf(fileSize, "%u", linkLayer->fileSize) < 0){
+    perror("sendData error"); return -1;}
+
+  startControlPacketTLV_size.length = strlen(fileSize) + 1; // A terminating null character is automatically appended after the content.
+  startControlPacketTLV_size.value = fileSize;
+
+  if(DEBUG_MODE)
+    printf("Start Control Packet Size: %s\n", fileSize);
+
+     // Preparing Name Info
+
+  ControlPacketTLV startControlPacketTLV_name;
+  startControlPacketTLV_name.type = T_FILE_NAME;
+  char fileName[strlen(linkLayer->fileName)+1];
+  strcpy(fileName, linkLayer->fileName);
+  startControlPacketTLV_name.length = strlen(fileName)+1;
+  startControlPacketTLV_name.value = fileName;
+
+  if(DEBUG_MODE)
+    printf("Start Control Packet Name: %s\n", fileName);
+
+
+
+  ControlPacketTLV startControlPacketParams[] = {startControlPacketTLV_size, startControlPacketTLV_name};
+  startControlPacket.params = startControlPacketParams;
+
+  if(sendControlPackage(linkLayer, &startControlPacket) < 0)
+    return -1;
+
+  if(DEBUG_MODE)
+  printf("Control Packet Sent: %s\n", fileName);
+
+  sleep(10);
 
   FILE* fp;
 
-  fp = fopen(file->name, "rb");
+  fp = fopen(linkLayer->fileName, "rb");
   if (!fp) {printf("sendData: open error \n"); return -1; }
 
-  if (DEBUG_MODE)
-  printf("sendData: opened file %s\n", file->name);
-
-  file->size = getFileSize(fp);
-  if(file->size < 0) {printf("sendData: getFileSize error \n"); return -1; }
-
-
-  if((sendControlPackage(CTRL_PACKET_START, file, applicationLayer, linkLayer)) < 0)
-    {printf("sendData: sendControlPackage error \n"); return -1; }
+  // if (DEBUG_MODE)
+  // printf("sendData: opened file %s\n", linkLayer->fileName);
+  //
+  // linkLayer->fileSize = getFileSize(linkLayer->fileName);
+  // if(linkLayer->fileSize < 0) {printf("sendData: getFileSize error \n"); return -1; }
+  //
+  //
+  // if((sendControlPackage(CTRL_PACKET_START,linkLayer)) < 0)
+  // {printf("sendData: sendControlPackage error \n"); return -1; }
 
 
   char* dataBuffer = malloc(MAX_SIZE);
@@ -67,7 +116,7 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
   int i = 0;
 
   while ((readBytes = fread(dataBuffer, sizeof(char), MAX_SIZE, fp)) > 0) {
-    if ((sendDataPackage(dataBuffer, (i++) % 255, readBytes, applicationLayer, linkLayer)) < 0) {
+    if ((sendDataPackage(dataBuffer, (i++) % 255, readBytes, linkLayer)) < 0) {
       printf("sendData: sendDataPackage error \n");
       free(dataBuffer);
       return -1;
@@ -82,53 +131,50 @@ int sendData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData*
   if (fclose(fp) != 0)
     {printf("sendData: fclose error \n"); return -1; }
 
-  if(sendControlPackage(CTRL_PACKET_END, file, applicationLayer, linkLayer) < 0)
-    {printf("sendData: sendControlPackage error \n"); return -1; }
+  // if(sendControlPackage(CTRL_PACKET_END,linkLayer) < 0)
+  //   {printf("sendData: sendControlPackage error \n"); return -1; }
 
 
   printf("File successfully transferred!\n");
-  printf("File Name: %s\n", file->name);
-  printf("File Size: %d\n", file->size);
+  printf("File Name: %s\n", linkLayer->fileName);
+  printf("File Size: %d\n", linkLayer->fileSize);
   return 0;
 }
 
 
-int sendControlPackage(int controlField, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int sendControlPackage(LinkLayer* linkLayer, ControlPacket* controlPacket){
 
-  char* fileSize = malloc(MAX_SIZE);
-  memcpy(fileSize, &(file->size), sizeof(file->size));
+  if(DEBUG_MODE)
+    printf("Sending Control Packet...\n");
 
-  int packageSize = 5 + strlen(fileSize) + strlen(file->name); // 5 <-> C, T1, L1, T2, L2
-  int pos = 0;
-
-  unsigned char controlPackage[packageSize];
-  controlPackage[pos++] = controlField;
-	controlPackage[pos++] = T_FILE_SIZE;
-  controlPackage[pos++] = strlen(fileSize);
-
-  for(int i = 0; i < strlen(fileSize); i++){
-      controlPackage[pos++] = fileSize[i];
+  unsigned int dataBufferSize = 1 + 2 * controlPacket->numParams; // C + T1 L1 + T2 L2
+  unsigned int i;
+  for (i = 0; i < controlPacket->numParams; i++){
+    dataBufferSize += controlPacket->params[i].length;
   }
 
-  controlPackage[pos++] = T_FILE_NAME;
-  controlPackage[pos++] = strlen(file->name);
+  char dataBuffer[dataBufferSize];
+  dataBuffer[0] = controlPacket->controlField;
 
-  int i;
-  for (i = 0; i < strlen(file->name); i++)
-    controlPackage[pos++] = file->name[i];
+  unsigned int j;
 
-  if (DEBUG_MODE)
-  printf("sendControlPackage: Start sending Control Package: \n");
+  for (i = 0, j = 1; i < controlPacket->numParams; i++){
+    dataBuffer[j++] = controlPacket->params[i].type; // Ti Field
+    dataBuffer[j++] = controlPacket->params[i].length; // Li FIeld
+    memcpy(&dataBuffer[j], controlPacket->params[i].value, controlPacket->params[i].length);  // Vi Field
+    j+= controlPacket->params[i].length;
+  }
 
-  if(llwrite(applicationLayer, linkLayer, controlPackage, packageSize) < 0)
-    {printf("sendControlPackage: llwrite \n"); return -1; }
+  if(llwrite(linkLayer, dataBuffer, dataBufferSize) < 0)
+    return -1;
 
-  return 0;
-
+  if(DEBUG_MODE)
+    printf("Control Packet Sent. \n");
+return 0;
 }
 
 
-int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int sendDataPackage(char* buffer, int N, int length, LinkLayer* linkLayer){
 
   unsigned char C = CTRL_PACKET_DATA;
   unsigned char L2 = length / 256;  //K = 256 * L2+ L1
@@ -148,7 +194,7 @@ int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicati
   if (DEBUG_MODE)
   printf("sendDataPackage: Start sending Data Packet: \n");
 
-  if(llwrite(applicationLayer, linkLayer, package, packageSize) < 0)
+  if(llwrite(linkLayer, package, packageSize) < 0)
     {printf("sendDataPackage: llwrite error \n"); free(package); return -1; }
 
   free(package);
@@ -157,49 +203,99 @@ int sendDataPackage(char* buffer, int N, int length, ApplicationLayer* applicati
 
 }
 
-int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file ){
+int receiveData(LinkLayer* linkLayer){
+
+  if(DEBUG_MODE)
+     printf("Reading Start Control Packet...\n");
+
+   char dataBuffer[MAX_SIZE];
+   unsigned int dataBufferSize;
+
+   if((dataBufferSize = llread(linkLayer)) < 0)
+     return -1;
+
+   unsigned int i = 0;
+
+   char* fileName;
+   unsigned int fileSize;
+
+   ControlPacket startControlPacket;
+   startControlPacket.controlField = linkLayer->frame[i++];
+   ControlPacketTLV startControlPacketParams[MAX_SIZE];
+
+   unsigned int j;
+   for (j= 0; i < dataBufferSize; j++){
+     startControlPacketParams[j].type = linkLayer->frame[i++];
+     startControlPacketParams[j].length = linkLayer->frame[i++];
+     startControlPacketParams[j].value = malloc(startControlPacketParams[j].length);
+
+     memcpy(startControlPacketParams[j].value, &linkLayer->frame[i], startControlPacketParams[j].length);
+
+     if(startControlPacketParams[j].type == T_FILE_NAME){
+       fileName = malloc(startControlPacketParams[j].length);
+       memcpy(fileName, startControlPacketParams[j].value, startControlPacketParams[j].length);
+       if(DEBUG_MODE)
+         printf("Start Control Packet Name: %s\n", fileName);
+     }
+     else if(startControlPacketParams[j].type == T_FILE_SIZE){
+       fileSize = strtoul(startControlPacketParams[j].value, NULL, 10);
+
+       if(DEBUG_MODE)
+         printf("Start Control Packet Size: %d\n", fileSize);
+     }
+
+     i+= startControlPacketParams[j].length;
+   }
+
+   startControlPacket.numParams = j;
+   startControlPacket.params = startControlPacketParams;
+
 
   FILE* outFile;
   int controlStart;
   int ret;
 
-  if (DEBUG_MODE)
-  printf("receiveControlPackage: Start looking for Control Package \n");
+  // if (DEBUG_MODE)
+  // printf("receiveControlPackage: Start looking for Control Package \n");
+  //
+  // numTries = 0;
+  // flagAlarm = 1;
+  //
+  // while(numTries < linkLayer->numTransmissions && flagAlarm){
+  //   ret = receiveControlPackage(&controlStart,linkLayer);
+  //
+  //   if(controlStart != CTRL_PACKET_START)
+  //   ret = -1;
+  //
+  //   if(ret < 0){
+  //     if (DEBUG_MODE)
+  //       printf("receiveData: CTRL_PACKET_START not received \n");
+  //     write(linkLayer->fileDescriptor, REJ0, 5);
+  //   }
+  //   else{
+  //     if (DEBUG_MODE){
+  //       printf("receiveData: CTRL_PACKET_START received \n");
+  //       printf("receiveData: Sending confirmation \n");
+  //     }
+  //     write(linkLayer->fileDescriptor, RR0, 5);
+  //     linkLayer->sequenceNumber = 0; //workaround to not change sequenceNumber after reading CTRL_PACKET_START
+  //     break;
+  //   }
+  //
+  // }
+  //
+  // if(ret<0)
+  //   return -1;
+  //
+  printf("File Size: %d\n", linkLayer->fileSize);
+  printf("File Name: %s\n", linkLayer->fileName);
 
-  numTries = 0;
-  flagAlarm = 1;
-
-  while(numTries < linkLayer->numTransmissions && flagAlarm){
-    ret = receiveControlPackage(&controlStart, file, applicationLayer, linkLayer);
-
-    if(controlStart != CTRL_PACKET_START)
-    ret = -1;
-
-    if(ret < 0){
-      if (DEBUG_MODE)
-        printf("receiveData: CTRL_PACKET_START not received \n");
-      write(applicationLayer->fileDescriptor, REJ0, 5);
-    }
-    else{
-      if (DEBUG_MODE){
-        printf("receiveData: CTRL_PACKET_START received \n");
-        printf("receiveData: Sending confirmation \n");
-      }
-      write(applicationLayer->fileDescriptor, RR0, 5);
-      linkLayer->sequenceNumber = 0; //workaround to not change sequenceNumber after reading CTRL_PACKET_START
-      break;
-    }
-
-  }
-
-  if(ret<0)
-    return -1;
 
 
-  outFile = fopen(file->name, "wb");
+  outFile = fopen(linkLayer->fileName, "wb");
 
   if(!outFile){
-    printf("receiveData: Open Error");
+    printf("receiveData: Open Error \n");
     return -1;
   }
 
@@ -209,7 +305,7 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
 
   int fileRead = 0;
   int N = -1;
-  while(fileRead < file->size){
+  while(fileRead < linkLayer->fileSize){
 
     int lastN = N;
     char* dataBuffer = NULL;
@@ -217,7 +313,7 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
 
     if (DEBUG_MODE)
     printf("receiveData: Start looking for Data Package: \n");
-    ret = receiveDataPackage(&N, &dataBuffer, &length, applicationLayer, linkLayer);
+    ret = receiveDataPackage(&N, &dataBuffer, &length, linkLayer);
 
     if (DEBUG_MODE)
     printf("receiveData: Package received \n");
@@ -229,11 +325,11 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
     }
 
     if(ret < 0){
-      (linkLayer->sequenceNumber == 0) ? write(applicationLayer->fileDescriptor, REJ0, 5): write(applicationLayer->fileDescriptor, REJ1, 5);
+      (linkLayer->sequenceNumber == 0) ? write(linkLayer->fileDescriptor, REJ0, 5): write(linkLayer->fileDescriptor, REJ1, 5);
       if (DEBUG_MODE){
         (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package rejected com REJ0 \n"): printf("receiveData: Package rejected com REJ1 \n");
       }
-      numSentREJ++;
+      linkLayer->numSentREJ++;
       continue;
     }
 
@@ -242,11 +338,11 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
 
     fileRead += length;
 
-    (linkLayer->sequenceNumber == 0) ? write(applicationLayer->fileDescriptor, RR0, 5): write(applicationLayer->fileDescriptor, RR1, 5);
+    (linkLayer->sequenceNumber == 0) ? write(linkLayer->fileDescriptor, RR0, 5): write(linkLayer->fileDescriptor, RR1, 5);
     if (DEBUG_MODE){
       (linkLayer->sequenceNumber == 0) ? printf("receiveData: Package accepted com RR0 \n"): printf("receiveData: Package accepted com RR1 \n");
     }
-    numSentRR++;
+    linkLayer->numSentRR++;
 
     linkLayer->sequenceNumber = !linkLayer->sequenceNumber;
   }
@@ -257,14 +353,17 @@ int receiveData(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileDa
   }
 
   printf("File successfully transferred!\n");
-  printf("File Name: %s\n", file->name);
-  printf("File Size: %d\n", file->size);
+  printf("File Name: %s\n", linkLayer->fileName);
+  printf("File Size: %d\n", linkLayer->fileSize);
   return 0;
 }
 
-int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int receiveControlPackage(int* controlPackageType, LinkLayer* linkLayer){
 
-  int totalSize = llread(applicationLayer, linkLayer);
+  int totalSize = llread(linkLayer);
+
+  for (int u = 4; u < 30; u++)
+  printf("%d: %c\n", u, linkLayer->frame[u]);
 
   if(totalSize < 0){
     printf("receiveControlPackage: llread error \n");
@@ -284,13 +383,13 @@ int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLa
     switch(paramType){
       case T_FILE_SIZE:
         numberOfBytes = (int) linkLayer->frame[pos++];
-        memcpy(&(file->size), linkLayer->frame + pos, numberOfBytes);
+        memcpy(&(linkLayer->fileSize), linkLayer->frame + pos, numberOfBytes);
         pos += numberOfBytes;
         break;
 
       case T_FILE_NAME:
         numberOfBytes = (int) linkLayer->frame[pos++];
-        memcpy(&(file->name), linkLayer->frame + pos, numberOfBytes);;
+        memcpy(&(linkLayer->fileName), linkLayer->frame + pos, numberOfBytes);
         pos += numberOfBytes;
         break;
     }
@@ -298,9 +397,9 @@ int receiveControlPackage(int* controlPackageType, FileData* file, ApplicationLa
   return 0;
 }
 
-int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applicationLayer, LinkLayer* linkLayer){
+int receiveDataPackage(int* N, char** buf, int* length, LinkLayer* linkLayer){
 
-  int size = llread(applicationLayer, linkLayer);
+  int size = llread(linkLayer);
 
   if(size < 0){
     printf("receiveDataPackage: llread error \n");
@@ -331,9 +430,9 @@ int receiveDataPackage(int* N, char** buf, int* length, ApplicationLayer* applic
 }
 
 
-void showInfo(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData* file) {
+void showInfo(LinkLayer* linkLayer) {
 	printf("----------- CONNECTION INFO -----------\n");
-	switch (applicationLayer->status) {
+	switch (linkLayer->mode) {
 	case TRANSMITTER:
 		printf("# Mode: Write\n");
 		break;
@@ -349,22 +448,22 @@ void showInfo(ApplicationLayer* applicationLayer, LinkLayer* linkLayer, FileData
 	printf("# Max No. of Transmissions: %d\n", linkLayer->numTransmissions);
 	printf("# Time-out interval: %d\n", linkLayer->timeout);
 	printf("# Port: %s\n", linkLayer->port);
-	printf("# File: %s\n", file->name);
+	printf("# File: %s\n", linkLayer->fileName);
   printf("----------------------------------\n");
 	printf("\n");
 }
 
-void showStats(LinkLayer* linkLayer, FileData* file, double timeElapsed){
+void showStats(LinkLayer* linkLayer, double timeElapsed){
 
 	printf("\n");
 	printf("----------- STATISTICS -----------\n");
-  printf("Filename: %s\n", file->name);
-  printf("File Size: %d\n", file->size);
+  printf("Filename: %s\n", linkLayer->fileName);
+  printf("File Size: %d\n", linkLayer->fileSize);
   printf("Time Elapsed: %f\n", timeElapsed);
-	printf("Sent RR: %d\n", numSentRR);
-	printf("Received RR: %d\n", numReceivedRR * 2); //lol
-	printf("Sent REJ: %d\n", numSentREJ);
-	printf("Received REJ: %d\n", numReceivedREJ);
+	printf("Sent RR: %d\n", linkLayer->numSentRR);
+	printf("Received RR: %d\n", linkLayer->numReceivedRR * 2); //lol
+	printf("Sent REJ: %d\n", linkLayer->numSentREJ);
+	printf("Received REJ: %d\n", linkLayer->numReceivedREJ);
 	printf("----------------------------------\n");
 	printf("\n");
 

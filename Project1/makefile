@@ -1,2 +1,2 @@
-all: main.c appLayer.c dataLinkLayer.c utilities.c
-	gcc -Wall main.c appLayer.c dataLinkLayer.c utilities.c -o serialPortScript
+all: main.c appLayer.c dataLinkLayer.c utilities.c interaction.c
+		gcc -Wall main.c appLayer.c dataLinkLayer.c utilities.c interaction.c -lm -o serialPortScript
