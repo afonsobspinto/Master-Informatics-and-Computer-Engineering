@@ -217,8 +217,8 @@ int receiveData(LinkLayer* linkLayer){
    char* fileName;
    unsigned int fileSize;
 
-   ControlPacket startControlPacket;
-   startControlPacket.controlField = linkLayer->frame[i++];
+  //  ControlPacket startControlPacket;
+  //  startControlPacket.controlField = linkLayer->frame[i++];
    ControlPacketTLV startControlPacketParams[linkLayer->dataSize];
 
    unsigned int j;
@@ -245,12 +245,11 @@ int receiveData(LinkLayer* linkLayer){
      i+= startControlPacketParams[j].length;
    }
 
-   startControlPacket.numParams = j;
-   startControlPacket.params = startControlPacketParams;
+  //  startControlPacket.numParams = j;
+  //  startControlPacket.params = startControlPacketParams;
 
 
   FILE* outFile;
-  int controlStart;
   int ret;
 
   printf("File Size: %d\n", linkLayer->fileSize);
