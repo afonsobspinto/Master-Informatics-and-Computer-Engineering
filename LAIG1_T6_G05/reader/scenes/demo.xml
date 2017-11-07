@@ -284,22 +284,6 @@
 				<NODEREF id="vendingMachine" />
 				<NODEREF id="smallTable" />
                 <NODEREF id="window" />
-                <NODEREF id="testTriangle" />
-            </DESCENDANTS>
-
-        </NODE>
-
-
-        <!-- The root node -->
-        <NODE id="testTriangle">
-            <MATERIAL id="defaultMaterial" />
-            <TEXTURE id="triangle" />
-
-            <SCALE sx="3" sy="3" sz="3" />
-            <TRANSLATION x="3.5" y="0.1" z="6.5" />
-
-            <DESCENDANTS>
-                <LEAF id="triangle1" type="triangle" args="2 0 3 4 0 0 0 0 0" />
             </DESCENDANTS>
 
         </NODE>
