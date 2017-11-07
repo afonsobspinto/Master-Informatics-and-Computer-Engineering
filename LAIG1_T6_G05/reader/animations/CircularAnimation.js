@@ -1,6 +1,6 @@
 function CircularAnimation(scene, id, center, radius, inicialAngle, rotationAngle, vel) {
   
-  CircularAnimation.call(this, scene, id);
+  Animation.call(this, scene, id);
   
   this.center = center;
   this.radius = radius;

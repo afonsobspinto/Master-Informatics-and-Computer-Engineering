@@ -1,6 +1,6 @@
 function LinearAnimation(scene, id, controlPoints, vel) {
   
-  LinearAnimation.call(this, scene, id);
+  Animation.call(this, scene, id);
   
   this.id = id;
   this.controlPoints = controlPoints;
