@@ -16,13 +16,14 @@ getGameState(Game, GameState):-
 	nth0(1,Game, GameState).
 
 playGame(Game):-
-	clearConsole,
 	getBoard(Game, Board),
+	repeat,
+	clearConsole,
 	printBoard(Board),
 	getSourceCoords(SrcCol, SrcRow),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState),
+	validateOwnership(Piece, GameState), !,
 	getDestinyCoords(DestCol, DestRow),
 	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
@@ -78,7 +79,7 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	getPieceName(Piece, PieceName),
 	write('PieceName:'), write(PieceName), nl,
 	write('Initial Coords: '), write(SrcColNumber), write(SrcRow), nl,
-	write('Final Coords: '), write(DestColNumber), write(DestRow), nl,
+	write('Final Coords: '), write(DestColNumber), write(DestRow), nl, !,
 	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow),
 	write('validMove'), nl.
 	% checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
