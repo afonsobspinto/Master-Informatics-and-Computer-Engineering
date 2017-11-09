@@ -21,12 +21,12 @@ playGame(Game):-
 	clearConsole,
 	printBoard(Board),
 	getSourceCoords(SrcCol, SrcRow),
-	convertColToNumber(SrcCol, SrcColNumber),
+	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
 	getGameState(Game, GameState),
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
-	convertColToNumber(DestCol, DestColNumber),
+	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
 	%changeTurn(TempGame, NewGame).
