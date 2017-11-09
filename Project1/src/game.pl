@@ -43,11 +43,11 @@ getInputCoords(SrcCol, SrcRow):-
 
 
 getSourceCoords(SrcCol,SrcRow):-
-	write('Piece To Move: '), nl,
+	write('Coords of Piece To Move: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
 
 getDestinyCoords(SrcCol,SrcRow):-
-	write('Piece New Position: '), nl,
+	write('Coords of Piece New Position: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
 
 
@@ -69,20 +69,22 @@ validateOwnership(_, _):-
 
 %%Piece Nao é preciso aqui
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
-	differentPositions(SrcCol, SrcRow, DestCol, DestRow),
-	write('differentPositions'),
-	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
-	write('differentColors'),
-	getPieceName(Piece, PieceName),
-	write('pieceName'),
 	convertToNumber(SrcCol, SrcColNumber),
 	convertToNumber(DestCol, DestColNumber),
-	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow).
-	write('validMove'),
-	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
-	write('Jumping'),
-	setPiece(Board, DestCol, DestRow, Piece, TempBoard),
-	write('set').
+	differentPositions(SrcColNumber, SrcRow, DestColNumber, DestRow),
+	write('differentPositions'), nl,
+	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
+	write('differentColors'), nl,
+	getPieceName(Piece, PieceName),
+	write('PieceName:'), write(PieceName), nl,
+	write('Initial Coords: '), write(SrcColNumber), write(SrcRow), nl,
+	write('Final Coords: '), write(DestColNumber), write(DestRow), nl,
+	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow),
+	write('validMove'), nl.
+	% checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
+	% write('Jumping'), nl,
+	% setPiece(Board, DestCol, DestRow, Piece, TempBoard),
+	% write('set'), nl.
 	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
 
 
@@ -196,13 +198,13 @@ checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
  	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'bK'),
  	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
  	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
-	
+
 makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
 	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
 
 makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
 	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
-	
+
 checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(TempBoard, DestCol, DestRow, 'bR'),
 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
@@ -222,7 +224,7 @@ checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(TempBoard, DestCol, DestRow, 'bK'),
 	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
-	
+
 checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(TempBoard, DestCol, DestRow, 'wR'),
 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
