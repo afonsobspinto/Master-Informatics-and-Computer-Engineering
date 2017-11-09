@@ -23,7 +23,7 @@ playGame(Game):-
 	getSourceCoords(SrcCol, SrcRow),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState), !,
+	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
@@ -65,21 +65,21 @@ validateOwnership(Piece, GameState):-
 	Color == 'Black'.
 
 validateOwnership(_, _):-
-	write('Invalid Piece!'), nl,
+	% write('Invalid Piece!'), nl, TODO: Ask that cut stuff to the teacher
 	fail.
 
 %%Piece Nao é preciso aqui
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	convertToNumber(SrcCol, SrcColNumber),
 	convertToNumber(DestCol, DestColNumber),
-	differentPositions(SrcColNumber, SrcRow, DestColNumber, DestRow),
+	differentPositions(SrcColNumber, SrcRow, DestColNumber, DestRow), !,
 	write('differentPositions'), nl,
-	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board),
+	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	write('differentColors'), nl,
 	getPieceName(Piece, PieceName),
 	write('PieceName:'), write(PieceName), nl,
 	write('Initial Coords: '), write(SrcColNumber), write(SrcRow), nl,
-	write('Final Coords: '), write(DestColNumber), write(DestRow), nl, !,
+	write('Final Coords: '), write(DestColNumber), write(DestRow), nl,
 	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow),
 	write('validMove'), nl.
 	% checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
