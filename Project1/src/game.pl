@@ -84,6 +84,8 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	write('Valid Basic Move'), nl,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	write('No Jumping'), nl,
+	checkForCheck(Board, SrcCol, SrcRow, DestCol, DestRow), !,
+	write('No check'), nl,
 	makePseudoMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
 	printBoard(TempBoard).
 	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
@@ -259,57 +261,24 @@ makePseudoMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
-
-
-
 checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
- 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'wK'),
- 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'bK'),
+ 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
+ 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
  	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
  	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
 
 makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
-	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
+	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, TempBoard).
 
 makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
-	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
+	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, TempBoard).
 
-checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bR'),
-	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+checkMove('Rook', 'Black', SrcCol, SrcRow, TempBoard):-
+	getPiece(TempBoard, OppCol, OppRow, 'Rook', 'Black'),
+	validBasicMove('Rook', SrcCol, SrcRow, OppCol, OppRow),
+	checkForJumping('Rook', SrcCol, SrcRow, OppCol, OppCol, TempBoard).
 
-checkMove('Bishop', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bB'),
-	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Queen', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bQ'),
-	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bN'),
-	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bK'),
-	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wR'),
-	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Bishop', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wB'),
-	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Queen', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wQ'),
-	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Knight', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wN'),
-	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('King', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wK'),
-	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
+checkMove('Rook', 'White', SrcCol, SrcRow, TempBoard):-
+	getPiece(TempBoard, OppCol, OppRow, 'Rook', 'White'),
+	validBasicMove('Rook', SrcCol, SrcRow, OppCol, OppRow),
+	checkForJumping('Rook', SrcCol, SrcRow, OppCol, OppCol, TempBoard).
