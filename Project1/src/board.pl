@@ -104,6 +104,7 @@ findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 	getPiece(Board, SrcCol, LowRow, Piece),
 	getPieceName(Piece, Name),
+	write(LowRow), nl,
 	Name == 'none',
 	Next is (LowRow+1),
 	findPieceOnCol(SrcCol, Next, HighRow, Board).

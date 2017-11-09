@@ -80,10 +80,10 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	write('PieceName:'), write(PieceName), nl,
 	write('Initial Coords: '), write(SrcColNumber), write(SrcRow), nl,
 	write('Final Coords: '), write(DestColNumber), write(DestRow), nl,
-	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow),
-	write('validMove'), nl.
-	% checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
-	% write('Jumping'), nl,
+	validBasicMove(PieceName, SrcColNumber, SrcRow, DestColNumber, DestRow), !,
+	write('Valid Basic Move'), nl,
+	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
+	write('No Jumping'), nl.
 	% setPiece(Board, DestCol, DestRow, Piece, TempBoard),
 	% write('set'), nl.
 	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
@@ -112,28 +112,36 @@ invalidMove:-
 
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
-	(SrcCol == DestCol),
-	(DestRow - SrcRow) < 0, %Up
-	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
+	SrcCol == DestCol,
+	DiffRows is (DestRow - SrcRow),
+	DiffRows < 0, %Down
+	LastRow is SrcRow-1,
+	findPieceOnCol(SrcCol, DestRow, LastRow, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
-	(SrcCol == DestCol),
-	(DestRow - SrcRow) > 0, %Down
-	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
+	SrcCol == DestCol,
+	DiffRows is (DestRow - SrcRow),
+	DiffRows > 0, %UP
+	NextRow is SrcRow+1,
+	findPieceOnCol(SrcCol, NextRow, DestRow, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
-	(SrcRow == DestRow),
-	(DestCol - SrcCol) < 0, %Left
-	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
+	SrcRow == DestRow,
+	DiffCols is DestCol-SrcCol,
+	DiffCols < 0, %Right
+	LastCol is SrcCol-1,
+	findPieceOnRow(SrcRow, DestCol, LastCol, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
-	(SrcRow == DestRow),
-	(DestCol - SrcCol) > 0, %Right
-	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
+	SrcRow == DestRow,
+	DiffCols is DestCol-SrcCol,
+	DiffCols > 0, %Left
+	NextCol is SrcCol+1,
+	findPieceOnRow(SrcRow, NextCol, DestCol, Board).
 
 checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
-	(DestRow - SrcRow) < 0, %Up
-	(DestCol - SrcCol) < 0, %Left
+	(DestRow - SrcRow) < 0, %Down
+	(DestCol - SrcCol) < 0, %Right
 	findPieceOnDiagonal(DestCol, SrcCol, DestRow, SrcRow, Board).
 
 checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
@@ -190,6 +198,10 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	(DestRow - SrcRow) < 0, %Down
 	(DestCol - SrcCol) < 0, %Left
 	findPieceOnDiagonal(DestCol, SrcCol, SrcRow, DestRow, Board).
+
+checkForJumping(_, _, _, _, _, _):-
+	invalidMove.
+
 
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
