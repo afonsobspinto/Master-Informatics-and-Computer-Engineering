@@ -191,9 +191,54 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
 
+checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
+ 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'wK'),
+ 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'bK'),
+ 	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
+ 	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
+	
+makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
+	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
 
-% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
-% 	findKingPosition('White', WhiteKingCol, WhiteKingRow, TempBoard),
-% 	findKingPosition('Black', BlackKingCol, BlackKingRow, TempBoard),
-% 	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
-% 	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
+makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
+	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
+	
+checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'bR'),
+	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Bishop', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'bB'),
+	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Queen', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'bQ'),
+	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'bN'),
+	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'bK'),
+	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
+	
+checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'wR'),
+	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Bishop', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'wB'),
+	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Queen', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'wQ'),
+	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('Knight', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'wN'),
+	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
+
+checkMove('King', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(TempBoard, DestCol, DestRow, 'wK'),
+	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
