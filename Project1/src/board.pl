@@ -106,7 +106,6 @@ findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 	getPiece(Board, SrcCol, LowRow, Piece),
 	getPieceName(Piece, Name),
-	write(LowRow), nl,
 	Name == 'none',
 	Next is (LowRow+1),
 	findPieceOnCol(SrcCol, Next, HighRow, Board).
@@ -122,14 +121,26 @@ findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
 	findPieceOnRow(SrcRow, Next, HighCol, Board).
 
 
-findPieceOnDiagonal(LowCol, HighCol, LowRow, HighRow, Board):-
+findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
 	LowRow == HighRow,
 	LowCol == HighCol.
 
-findPieceOnDiagonal(LowCol, HighCol, LowRow, HighRow, Board):-
-	getPiece(Board, LowCol, LowRow, Piece),
+findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
+	getPiece(Board, HighCol, LowRow, Piece),
+	getPieceName(Piece, Name),
+	Name == 'none',
+	NextRow is (LowRow+1),
+	NextCol is (HighCol-1),
+	findPieceOnDiagonalLeft(NextRow, NextCol, HighRow, LowCol, Board).
+
+findPieceOnDiagonalRigth(LowRow, LowCol, HighRow, HighCol, Board):-
+	LowRow == HighRow,
+	LowCol == HighCol.
+
+findPieceOnDiagonalRigth(LowRow, LowCol, HighRow, HighCol, Board):-
+	getPiece(Board, HighCol, LowRow, Piece),
 	getPieceName(Piece, Name),
 	Name == 'none',
 	NextRow is (LowRow+1),
 	NextCol is (LowCol+1),
-	findPieceOnDiagonal(NextCol, HighCol, NextRow, HighRow, Board).
+	findPieceOnDiagonalRigth(NextRow, NextCol, HighRow, HighCol, Board).
