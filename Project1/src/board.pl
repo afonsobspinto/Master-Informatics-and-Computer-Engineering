@@ -78,8 +78,8 @@ getPiece(Board, Col, Row, PieceName, PieceColor) :-
 	PieceColor = PieceColorTemp.
 
 setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
-	convertToNumber(Col, ColNumber),
-	setRow(Row, BoardIn, ColNumber, Piece, BoardOut).
+	RowDiff is abs(9-Row),
+	setRow(RowDiff, BoardIn, Col, Piece, BoardOut).
 
 setRow(1, [Row|Tail], Col, Piece, [NewRow|Tail]):-
 	setCol(Col, Row, Piece, NewRow).

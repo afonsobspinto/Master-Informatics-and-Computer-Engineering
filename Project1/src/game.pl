@@ -29,7 +29,7 @@ playGame(Game):-
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board).
 	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
-	%changeTurn(TempGame, NewGame).
+	%UpdateGameState & changeTurn
 
 
 
@@ -82,10 +82,10 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	write('Final Coords: '), write(DestCol), write(DestRow), nl,
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	write('Valid Basic Move'), nl,
-	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board),
-	write('No Jumping'), nl.
-	% setPiece(Board, DestCol, DestRow, Piece, TempBoard),
-	% write('set'), nl.
+	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
+	write('No Jumping'), nl,
+	makePseudoMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
+	printBoard(TempBoard).
 	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
 
 
@@ -246,11 +246,21 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRigth(LowRow, LowCol, SrcRow, SrcCol, Board).
 
+checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
+checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
+
 checkForJumping(_, _, _, _, _, _):-
 	invalidMove.
 
-checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
-checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
+makePseudoMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+	getPiece(Board, SrcCol, SrcRow, Piece),
+	nonePiece(NonePiece),
+	write(SrcCol), write(SrcRow), nl,
+	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
+	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
+
+
+
 
 checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
  	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'wK'),
