@@ -61,11 +61,13 @@ rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
 getBoard([Board|_], Board).
 
+
+
 getPiece(Board, Col, Row, Piece) :-
-	convertToNumber(Col,ColNumber),
+	% convertToNumber(Col,ColNumber),
 	RowNumber is abs(Row-9),
 	nth1(RowNumber, Board, Line),
-    nth1(ColNumber, Line, Piece).
+    nth1(Col, Line, Piece).
 
 getPiece(Board, Col, Row, PieceName, PieceColor) :-
 	nth1(Row, Board, Line),
