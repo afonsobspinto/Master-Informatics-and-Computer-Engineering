@@ -27,10 +27,10 @@ playGame(Game):-
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
-	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board).
-	% makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
-	% getPieceColor(Piece, PieceColor),
-	% updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
+	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
+	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
+	getPieceColor(Piece, PieceColor),
+	updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
 	%UpdateGameState & changeTurn
 
 
@@ -273,18 +273,24 @@ kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol, 8),
+	getPiece(TempBoard, OtherKingCol, 8, OtherPieceName, OtherPieceColor),
+	OtherPieceName == 'none',
 	write('Tie 1').
 
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol + 1), 8),
+	getPiece(TempBoard, (OtherKingCol + 1), 8, OtherPieceName, OtherPieceColor),
+	OtherPieceName == 'none',
 	write('Tie 2').
 
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol - 1), 8),
+	getPiece(TempBoard, (OtherKingCol - 1), 8, OtherPieceName, OtherPieceColor),
+	OtherPieceName == 'none',
 	write('Tie 3').
 
 kingOnLastRow('White', TempBoard, DestRow):-

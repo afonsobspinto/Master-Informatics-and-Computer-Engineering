@@ -21,11 +21,11 @@ intermediateBoard(Board):-
 
 	append([], [
 	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	[NonePiece, BlackRook1, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook1, WhiteKing],
+	[BlackKing, BlackRook1, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook1, WhiteKing],
 	[BlackQueen, WhiteRook2, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
 	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
 	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, BlackBishop1, NonePiece, NonePiece],
-	[BlackKing, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
 	[NonePiece, NonePiece, NonePiece, BlackKnigth1, WhiteKnigth1, WhiteBishop1, WhiteBishop2, NonePiece],
   [NonePiece, BlackRook2, BlackBishop2, BlackKnigth2, WhiteKnigth2, NonePiece, NonePiece, NonePiece]], Board).
 
