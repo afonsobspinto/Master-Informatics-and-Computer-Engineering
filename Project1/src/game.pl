@@ -12,7 +12,7 @@ gameState(tie).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	intermediateBoard(Board),
+	initialBoard(Board),
 	Game = [Board, whiteToMove, pvp], !.
 
 
@@ -36,8 +36,8 @@ playGame(Game):-
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
-	updateGameState(Game, NextBoard, ContinueGame).
-	%playGame(ContinueGame).
+	updateGameState(Game, NextBoard, ContinueGame),
+	playGame(ContinueGame).
 
 
 
