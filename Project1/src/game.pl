@@ -115,6 +115,8 @@ checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	HighRow is (SrcRow-1),
+	write('Initial Coords: '), write(SrcCol), write(SrcRow), nl,
+	write('Final Coords: '), write(DestCol), write(DestRow), nl,
 	findPieceOnCol(SrcCol, DestRow, HighRow, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-

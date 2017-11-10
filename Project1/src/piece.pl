@@ -36,43 +36,36 @@ getPieceName(Piece, Name):-
 %Basic Piece Movement
 
 validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow):-
-  DiffCols is abs(DestCol-SrcCol),
-  DiffRows is abs(DestRow-SrcRow),
-  DiffCols < 2,
-  DiffRows < 2.
+  abs(DestCol-SrcCol) < 2,
+  abs(DestRow-SrcRow) < 2.
 
 validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+  write(SrcCol), write(SrcRow), nl,
   (SrcCol == DestCol).
+
 validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+  write(SrcCol), write(SrcRow), nl,
   (SrcRow == DestRow).
 
 validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow):-
-  DiffCols is abs(DestCol-SrcCol),
-  DiffRows is abs(DestRow-SrcRow),
-  DiffCols == DiffRows.
+  abs(DestCol-SrcCol) == abs(DestRow-SrcRow).
 
-%not working
 validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
-  DiffCols is abs(DestCol-SrcCol),
-  DiffRows is abs(DestRow-SrcRow),
-  DiffCols == 2,
-  DiffRows == 1.
+  abs(DestCol-SrcCol) == 2,
+  abs(DestRow-SrcRow) == 1.
 
-%not working
 validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
-  DiffCols is abs(DestCol-SrcCol),
-  DiffRows is abs(DestRow-SrcRow),
-  DiffCols == 1,
-  DiffRows == 2.
+  abs(DestCol-SrcCol) == 1,
+  abs(DestRow-SrcRow) == 2.
 
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
   (SrcCol == DestCol).
+
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
   (SrcRow == DestRow).
+  
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
-  DiffCols is abs(DestCol-SrcCol),
-  DiffRows is abs(DestRow-SrcRow),
-  DiffCols == DiffRows.
+  abs(DestCol-SrcCol) == abs(DestRow-SrcRow).
 
 validBasicMove(_, _, _, _, _):-
   invalidMove.

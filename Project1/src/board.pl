@@ -108,6 +108,7 @@ findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 	getPiece(Board, SrcCol, LowRow, Piece),
 	getPieceName(Piece, Name),
 	Name == 'none',
+	write(SrcCol), write(LowRow),
 	Next is (LowRow+1),
 	findPieceOnCol(SrcCol, Next, HighRow, Board).
 
