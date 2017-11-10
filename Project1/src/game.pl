@@ -85,7 +85,7 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	printBoard(TempBoard),
+	printBoard(TempBoard), !,
 	checkForCheck(TempBoard),
 	write('Valid Move').
 
