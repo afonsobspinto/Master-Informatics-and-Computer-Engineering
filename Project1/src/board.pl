@@ -67,15 +67,16 @@ getPiece(Board, Col, Row, Piece) :-
 	% convertToNumber(Col,ColNumber),
 	RowNumber is abs(Row-9),
 	nth1(RowNumber, Board, Line),
-    nth1(Col, Line, Piece).
+  nth1(Col, Line, Piece).
 
 getPiece(Board, Col, Row, PieceName, PieceColor) :-
-	nth1(Row, Board, Line),
+	nth1(TempRow, Board, Line),
     nth1(Col, Line, Value),
 	getPieceName(Value, PieceNameTemp),
 	getPieceColor(Value, PieceColorTemp),
 	PieceName = PieceNameTemp,
-	PieceColor = PieceColorTemp.
+	PieceColor = PieceColorTemp,
+	Row is abs(9-TempRow).
 
 setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
 	RowDiff is abs(9-Row),

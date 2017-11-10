@@ -8,7 +8,7 @@ player(blackPlayer).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	initialBoard(Board),
+	intermediateBoard(Board),
 	Game = [Board, whitePlayer, pvp], !.
 
 
@@ -85,8 +85,8 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	write('No Jumping'), nl,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	printBoard(TempBoard).
-	% checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow).
+	printBoard(TempBoard),
+	checkForCheck(TempBoard).
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
@@ -259,54 +259,76 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
 
-checkForCheck(TempBoard, SrcCol, SrcRow, DestCol, DestRow):-
- 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'wK'),
- 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'bK'),
- 	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
- 	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
+checkForCheck(TempBoard):-
+	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
+	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
+	\+(makePseudoMoves('Black', TempBoard, WhiteKingCol, WhiteKingRow)),
+	\+(makePseudoMoves('White', TempBoard, BlackKingCol, BlackKingRow)).
 
-makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
-	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
 
-makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
-	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
 
-checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bR'),
-	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
+	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
+	PieceColor == 'Black',
+	write(PieceName),write(PieceColor),
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow),%TODO: Doesn't show Invalid Move when fails cause it's pseudo
+	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
-checkMove('Bishop', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bB'),
-	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
 
-checkMove('Queen', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bQ'),
-	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
+makePseudoMoves('White', TempBoard, DestCol, DestRow):-
+	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
+	PieceColor == 'White',
+	write(PieceName), write(PieceColor),
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
+	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
-checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bN'),
-	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
 
-checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'bK'),
-	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
 
-checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wR'),
-	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Bishop', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wB'),
-	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Queen', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wQ'),
-	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('Knight', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wN'),
-	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
-
-checkMove('King', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-	getPiece(TempBoard, DestCol, DestRow, 'wK'),
-	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
+%  	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
+%  	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
+%
+% makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
+% 	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
+%
+% makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
+% 	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
+%
+% checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'bR'),
+% 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Bishop', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'bB'),
+% 	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Queen', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'bQ'),
+% 	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'bN'),
+% 	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'bK'),
+% 	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'wR'),
+% 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Bishop', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'wB'),
+% 	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Queen', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'wQ'),
+% 	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('Knight', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'wN'),
+% 	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
+%
+% checkMove('King', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
+% 	getPiece(TempBoard, DestCol, DestRow, 'wK'),
+% 	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
