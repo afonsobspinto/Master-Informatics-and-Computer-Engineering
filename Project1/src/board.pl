@@ -47,12 +47,12 @@ printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 printLine([]).
 printLine([Piece|LineTail]):-
 	getPieceSymbol(Piece, Symbol),
-	write(Symbol), write('|'),
+	write(' '), write(Symbol), write(' |'),
 	printLine(LineTail).
 
 
 printColumnIDs:-
-	write('     a  b  c  d  e  f  g  h').
+	write('      a    b    c    d    e    f    g    h').
 
 rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
