@@ -175,31 +175,27 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcCol == DestCol,
-	DiffRows is (DestRow - SrcRow),
+	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
-	HighRow is (SrcRow-1),
-	findPieceOnCol(SrcCol, DestRow, HighRow, Board).
+	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcCol == DestCol,
-	DiffRows is (DestRow - SrcRow),
+	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
-	LowRow is (SrcRow+1),
-	findPieceOnCol(SrcCol, LowRow, DestRow, Board).
+	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
-	LowCol is (SrcCol+1),
-	findPieceOnRow(SrcRow, LowCol, DestCol, Board).
+	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
-	HighCol is (SrcCol-1),
-	findPieceOnRow(SrcRow, DestCol, HighCol, Board).
+	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows is (DestRow - SrcRow),
@@ -216,6 +212,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
+
 	LowRow is (DestRow+1),
 	HighCol is (DestCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, SrcRow, SrcCol, Board).
@@ -228,7 +225,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 	LowRow is (SrcRow+1),
 	LowCol is (SrcCol+1),
-	findPieceOnDiagonalRigth(LowRow, LowCol, DestRow, DestCol, Board).
+	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows is (DestRow - SrcRow),
@@ -238,7 +235,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 	LowRow is (DestRow+1),
 	LowCol is (DestCol+1),
-	findPieceOnDiagonalRigth(LowRow, LowCol, SrcRow, SrcCol, Board).
+	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).

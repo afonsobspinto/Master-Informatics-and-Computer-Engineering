@@ -86,10 +86,10 @@ finalBoard(Board):-
 
 	  append([], [
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, BlackKing, NonePiece, WhiteRook1, NonePiece, NonePiece, BlackKing, NonePiece],
+	  [NonePiece, NonePiece, NonePiece, WhiteBishop1, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece]], Board).
