@@ -102,26 +102,26 @@ setCol(Pos, [Element|Tail], Piece, [Element|NewTail]):-
 %Validation Helper functions
 
 findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
-	LowRow==HighRow.
+	NextRow is (LowRow+1),
+	NextRow == HighRow.
 
 findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
-	getPiece(Board, SrcCol, LowRow, Piece),
+	NextRow is (LowRow+1),
+	getPiece(Board, SrcCol, NextRow, Piece),
 	getPieceName(Piece, Name),
 	Name == 'none',
-	write(SrcCol), write(LowRow),
-	Next is (LowRow+1),
-	findPieceOnCol(SrcCol, Next, HighRow, Board).
+	findPieceOnCol(SrcCol, NextRow, HighRow, Board).
 
 findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
-	LowCol == HighCol.
+	NextCol is (LowCol+1),
+	NextCol == HighCol.
 
 findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
-	getPiece(Board, LowCol, SrcRow, Piece),
+	NextCol is (LowCol+1),
+	getPiece(Board, NextCol, SrcRow, Piece),
 	getPieceName(Piece, Name),
 	Name == 'none',
-	Next is (LowCol+1),
-	findPieceOnRow(SrcRow, Next, HighCol, Board).
-
+	findPieceOnRow(SrcRow, NextCol, HighCol, Board).
 
 findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
 	LowRow == HighRow,

@@ -8,7 +8,7 @@ player(blackPlayer).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	intermediateBoard(Board),
+	testBoard(Board),
 	Game = [Board, whitePlayer, pvp], !.
 
 
@@ -27,14 +27,11 @@ playGame(Game):-
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
-	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
-	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
-	getPieceColor(Piece, PieceColor),
-	updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
+	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board).
+	% makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
+	% getPieceColor(Piece, PieceColor),
+	% updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
 	%UpdateGameState & changeTurn
-
-
-
 
 
 
@@ -80,15 +77,15 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	write('differentColors'), nl,
 	getPieceName(Piece, PieceName),
 	write('PieceName:'), write(PieceName), nl,
-	write('Initial Coords: '), write(SrcCol), write(SrcRow), nl,
-	write('Final Coords: '), write(DestCol), write(DestRow), nl,
+	% write('Initial Coords: '), write(SrcCol), write(SrcRow), nl,
+	% write('Final Coords: '), write(DestCol), write(DestRow), nl,
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	write('Valid Basic Move'), nl,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	write('No Jumping'), nl,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	printBoard(TempBoard),
-	checkForCheck(TempBoard).
+	printBoard(TempBoard).
+	% checkForCheck(TempBoard).
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
@@ -114,33 +111,27 @@ invalidMove:-
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcCol == DestCol,
-	DiffRows is (DestRow - SrcRow),
+	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
-	HighRow is (SrcRow-1),
-	write('Initial Coords: '), write(SrcCol), write(SrcRow), nl,
-	write('Final Coords: '), write(DestCol), write(DestRow), nl,
-	findPieceOnCol(SrcCol, DestRow, HighRow, Board).
+	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcCol == DestCol,
-	DiffRows is (DestRow - SrcRow),
+	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
-	LowRow is (SrcRow+1),
-	findPieceOnCol(SrcCol, LowRow, DestRow, Board).
+	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
-	LowCol is (SrcCol+1),
-	findPieceOnRow(SrcRow, LowCol, DestCol, Board).
+	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
-	HighCol is (SrcCol-1),
-	findPieceOnRow(SrcRow, DestCol, HighCol, Board).
+	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
 checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows is (DestRow - SrcRow),
@@ -271,7 +262,7 @@ checkForCheck(TempBoard):-
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'Black',
-	write(PieceName),write(PieceColor),
+	write(PieceName),write(' '),write(PieceColor), nl,
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),%TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
@@ -279,17 +270,18 @@ makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	write(PieceName), write(PieceColor),
+	write(PieceName),write(' '),write(PieceColor), nl,
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
+	write('ok'), nl,
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
 updateGameState(PieceColor, TempBoard, DestCol, DestRow):-
 	kingOnLastRow(PieceColor, TempBoard, DestRow).
-	
+
 kingOnLastRow('Black', TempBoard, DestRow):-
 	DestRow = 8,
 	write('Black Win').
-	
+
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
@@ -307,7 +299,7 @@ kingOnLastRow('White', TempBoard, DestRow):-
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol-1, 8),
 	write('Tie 3').
-	
+
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	write('White Win').
