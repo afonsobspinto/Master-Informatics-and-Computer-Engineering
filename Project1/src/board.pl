@@ -37,32 +37,34 @@ printBoard([],[]):-
 
 printBoard(Board):-
 	rowIDsList(RowIDs),
-	write('    _______________________________________'), nl,
+	write('    _______________________________________________________'), nl,
+	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(Board, RowIDs).
 
 printBoard([Line|[]], [RowsIDHead|[]]):-
     write(RowsIDHead), write('|'),
 	printLine(Line), nl,
-	write('   |    |    |    |    |    |    |    |    |'),nl,
-	write('   |____|____|____|____|____|____|____|____|'), nl,
+	% write('   |      |      |      |      |      |      |      |      |'), nl,
+	write('   |______|______|______|______|______|______|______|______|'), nl,
 	printBoard(BoardTail,RowsIDTail).
 
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write(RowsIDHead), write('|'),
 	printLine(Line), nl,
-	write('   |    |    |    |    |    |    |    |    |'),nl,
-	write('   |----|----|----|----|----|----|----|----|'), nl,
+	write('   |      |      |      |      |      |      |      |      |'), nl,
+	write('   |------|------|------|------|------|------|------|------|'), nl,
+	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(BoardTail,RowsIDTail).
 
 printLine([]).
 printLine([Piece|LineTail]):-
 	getPieceSymbol(Piece, Symbol),
-	write(' '), write(Symbol), write(' |'), 
+	write('  '), write(Symbol), write('  |'),
 	printLine(LineTail).
 
 
 printColumnIDs:-
-	write('      a    b    c    d    e    f    g    h').
+	write('       a      b      c      d      e      f      g      h').
 
 rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 
