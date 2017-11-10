@@ -27,13 +27,12 @@ printMainMenu:-
   write('| Choose an option:                           |'),nl,
   write('|_____________________________________________|'),nl,
   nl, nl.
-  
+
 howToPlayMenu:-
   printHowToPlayMenu,
   getChar(Char),
   (
 		Char = '1' -> mainMenu;
-		Char = '2';
 		nl,
 		write('Error: invalid input.'), nl,
 		pressEnterToContinue, nl,
@@ -56,7 +55,7 @@ printHowToPlayMenu:-
   write('| opponents king.                                                        |'),nl,
   write('|                                                                        |'),nl,
   write('| 1. Back                                                                |'),nl,
-  write('| 2. Exit                                                                |'),nl,
+  write('|                                                                        |'),nl,
   write('|________________________________________________________________________|'),nl,
   nl, nl.
 
@@ -65,7 +64,6 @@ aboutMenu:-
   getChar(Char),
   (
 		Char = '1' -> mainMenu;
-		Char = '2';
 		nl,
 		write('Error: invalid input.'), nl,
 		pressEnterToContinue, nl,
@@ -80,13 +78,13 @@ printAboutMenu:-
   write('|                                                                |'),nl,
   write('|                                                                |'),nl,
   write('| The game is a variant of Chess, invented by Vernan R. Parton.  |'),nl,
-  write('| Adapted to PROLOG by Afonso Pinto and Tomás Oliveira.          |'),nl,
+  write('| Adapted to PROLOG by Afonso Pinto and Tomï¿½s Oliveira.          |'),nl,
   write('|                                                                |'),nl,
   write('| 1. Back                                                        |'),nl,
-  write('| 2. Exit                                                        |'),nl,
+  write('|                                                                |'),nl,
   write('|_______________________________________________________________ |'),nl,
   nl, nl.
-  
+
 gameMenu:-
   	printGameMenu,
   	getChar(Char),
@@ -94,7 +92,7 @@ gameMenu:-
   		Char = '1' -> startPvPGame;
   		Char = '2';
   		Char = '3';
-        Char = '4';
+      Char = '4';
 
   		nl,
   		write('Error: invalid input.'), nl,

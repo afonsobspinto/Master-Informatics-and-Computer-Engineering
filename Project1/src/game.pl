@@ -22,6 +22,25 @@ getGameState(Game, GameState):-
 getGameMode(Game, GameMode):-
 	nth0(2,Game, GameMode).
 
+%Game Over
+playGame(Game):-
+	getGameState(Game, GameState),
+	getBoard(Game, Board),
+	clearConsole,
+	printBoard(Board),
+	(
+		GameState == whiteVictorious ->
+			(write('# Game over. White player won, congratulations!'), nl);
+		GameState == blackVictorious ->
+			(write('# Game over. Black player won, congratulations!'), nl);
+		GameState == tie ->
+			(write('# Game over. We got a tie, good game!'), nl);
+		fail
+	),
+	pressEnterToContinue, !.
+
+%TODO: Show GameState: White2Move...
+%Game Cycle PVP
 playGame(Game):-
 	getBoard(Game, Board),
 	repeat,
@@ -31,15 +50,13 @@ playGame(Game):-
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState),
+	validateOwnershipWrapper(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame),
 	playGame(ContinueGame).
-
-
 
 
 	%Interaction functions
@@ -61,6 +78,9 @@ getDestinyCoords(SrcCol,SrcRow):-
 
 	%Validation functions
 
+validateOwnershipWrapper(Piece, GameState):-
+	validateOwnership(Piece, GameState), !.
+
 validateOwnership(Piece, GameState):-
 	GameState == whiteToMove,
 	getPieceColor(Piece, Color),
@@ -71,10 +91,12 @@ validateOwnership(Piece, GameState):-
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
-
 validateOwnership(_, _):-
-	%write('Invalid Piece!'), nl, %TODO: Ask that cut stuff to the teacher
+	write('Invalid Piece!'), nl,
+	pressEnterToContinue, !,
 	fail.
+
+
 
 %TODO:
 %%Piece Nao é preciso aqui
@@ -84,10 +106,9 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	getPieceName(Piece, PieceName),
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
-	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
+	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !, %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	printBoard(TempBoard), !,
-	checkForCheck(TempBoard),
-	write('Valid Move').
+	checkForCheck(TempBoard).
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
@@ -106,6 +127,7 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board):-
 differentColors(_, _, _, _, _):-
 	invalidMove.
 
+%TODO: Maybe add a Flag
 invalidMove:-
 	write('Invalid Move!'), nl,
 	fail.
@@ -268,7 +290,7 @@ makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
 updateGameState(Game, NextBoard, ContinueGame):-
@@ -281,21 +303,19 @@ gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	\+(blackCanTie(NextBoard)),
 	getGameMode(Game, GameMode),
-	ContinueGame = [NextBoard, whiteVictorious, GameMode], !,
-	write(white).
+	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
 
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('Black', NextBoard),
 	getGameMode(Game, GameMode),
-	ContinueGame = [NextBoard, blackVictorious, GameMode], !,
-	write(black).
+	ContinueGame = [NextBoard, blackVictorious, GameMode], !.
 
+%TODO: tecnically they can make other move besides the one that gives a draw. But then they lose
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	blackCanTie(NextBoard),
 	getGameMode(Game, GameMode),
-	ContinueGame = [NextBoard, tie, GameMode],!,
-	write(tie).
+	ContinueGame = [NextBoard, tie, GameMode],!.
 
 kingOnLastRow(Color, Board):-
 	getPiece(Board, _, 8, 'King', Color).
@@ -303,21 +323,21 @@ kingOnLastRow(Color, Board):-
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	differentColors(Col, 7, Col, 8, Board),
-	makeMove(Board, Col, 7, Col, 8, NextBoard),
+	makeMove(Board, Col, 7, Col, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	NextCol is Col+1,
 	differentColors(Col, 7, NextCol, 8, Board),
-	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
+	makeMove(Board, Col, 7, NextCol, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	LastCol is Col-1,
 	differentColors(Col, 7, LastCol, 8, Board),
-	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
+	makeMove(Board, Col, 7, LastCol, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
 changeTurn(Game, NextBoard, ContinueGame):-
