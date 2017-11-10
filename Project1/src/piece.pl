@@ -1,5 +1,6 @@
 %%% Piece[piece, color, symbol];
 
+%TODO:
 %%Retirar simbolo da parte da peça
 %%Brancas com maiúscula.
 
@@ -51,14 +52,12 @@ validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow):-
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == DiffRows.
 
-%not working
 validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == 2,
   DiffRows == 1.
 
-%not working
 validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),

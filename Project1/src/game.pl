@@ -8,7 +8,7 @@ player(blackPlayer).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	testBoard(Board),
+	intermediateBoard(Board),
 	Game = [Board, whitePlayer, pvp], !.
 
 
@@ -66,26 +66,19 @@ validateOwnership(Piece, GameState):-
 	Color == 'Black'.
 
 validateOwnership(_, _):-
-	% write('Invalid Piece!'), nl, TODO: Ask that cut stuff to the teacher
+	write('Invalid Piece!'), nl, %TODO: Ask that cut stuff to the teacher
 	fail.
 
 %%Piece Nao é preciso aqui
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow), !,
-	write('differentPositions'), nl,
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board), !,
-	write('differentColors'), nl,
 	getPieceName(Piece, PieceName),
-	write('PieceName:'), write(PieceName), nl,
-	% write('Initial Coords: '), write(SrcCol), write(SrcRow), nl,
-	% write('Final Coords: '), write(DestCol), write(DestRow), nl,
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
-	write('Valid Basic Move'), nl,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
-	write('No Jumping'), nl,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	printBoard(TempBoard).
-	% checkForCheck(TempBoard).
+	printBoard(TempBoard),
+	checkForCheck(TempBoard).
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
@@ -259,7 +252,6 @@ checkForCheck(TempBoard):-
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'Black',
-	write(PieceName),write(' '),write(PieceColor), nl,
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),%TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
@@ -267,9 +259,7 @@ makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	write(PieceName),write(' '),write(PieceColor), nl,
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
-	write('ok'), nl,
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
 updateGameState(PieceColor, TempBoard, DestCol, DestRow):-
