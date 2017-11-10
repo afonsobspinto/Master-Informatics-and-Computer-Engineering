@@ -134,14 +134,14 @@ findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
 	NextCol is (HighCol-1),
 	findPieceOnDiagonalLeft(NextRow, NextCol, HighRow, LowCol, Board).
 
-findPieceOnDiagonalRigth(LowRow, LowCol, HighRow, HighCol, Board):-
+findPieceOnDiagonalRight(LowRow, LowCol, HighRow, HighCol, Board):-
 	LowRow == HighRow,
 	LowCol == HighCol.
 
-findPieceOnDiagonalRigth(LowRow, LowCol, HighRow, HighCol, Board):-
-	getPiece(Board, HighCol, LowRow, Piece),
+findPieceOnDiagonalRight(LowRow, LowCol, HighRow, HighCol, Board):-
+	getPiece(Board, LowCol, LowRow, Piece),
 	getPieceName(Piece, Name),
 	Name == 'none',
 	NextRow is (LowRow+1),
 	NextCol is (LowCol+1),
-	findPieceOnDiagonalRigth(NextRow, NextCol, HighRow, HighCol, Board).
+	findPieceOnDiagonalRight(NextRow, NextCol, HighRow, HighCol, Board).

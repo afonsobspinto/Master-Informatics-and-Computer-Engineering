@@ -166,7 +166,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 	LowRow is (SrcRow+1),
 	LowCol is (SrcCol+1),
-	findPieceOnDiagonalRigth(LowRow, LowCol, DestRow, DestCol, Board).
+	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
 checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DiffRows is (DestRow - SrcRow),
@@ -176,7 +176,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 
 	LowRow is (DestRow+1),
 	LowCol is (DestCol+1),
-	findPieceOnDiagonalRigth(LowRow, LowCol, SrcRow, SrcCol, Board).
+	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
 checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	SrcCol == DestCol,
