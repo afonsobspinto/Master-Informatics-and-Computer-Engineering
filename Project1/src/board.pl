@@ -43,13 +43,17 @@ printBoard(Board):-
 printBoard([Line|[]], [RowsIDHead|[]]):-
     write(RowsIDHead), write('|'),
 	printLine(Line), nl,
+	write('   |    |    |    |    |    |    |    |    |'),nl,
 	write('   |____|____|____|____|____|____|____|____|'), nl,
+	write('   |    |    |    |    |    |    |    |    |'),nl,
 	printBoard(BoardTail,RowsIDTail).
 
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write(RowsIDHead), write('|'),
 	printLine(Line), nl,
+	write('   |    |    |    |    |    |    |    |    |'),nl,
 	write('   |----|----|----|----|----|----|----|----|'), nl,
+	write('   |    |    |    |    |    |    |    |    |'),nl,
 	printBoard(BoardTail,RowsIDTail).
 
 printLine([]).
