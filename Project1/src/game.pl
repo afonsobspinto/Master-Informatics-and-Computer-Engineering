@@ -71,8 +71,9 @@ validateOwnership(Piece, GameState):-
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
+
 validateOwnership(_, _):-
-	write('Invalid Piece!'), nl, %TODO: Ask that cut stuff to the teacher
+	%write('Invalid Piece!'), nl, %TODO: Ask that cut stuff to the teacher
 	fail.
 
 %TODO:
@@ -85,7 +86,8 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
 	printBoard(TempBoard),
-	checkForCheck(TempBoard).
+	checkForCheck(TempBoard),
+	write('Valid Move').
 
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-

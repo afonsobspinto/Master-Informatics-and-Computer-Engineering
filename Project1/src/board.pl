@@ -41,12 +41,6 @@ printBoard(Board):-
 	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(Board, RowIDs).
 
-printBoard([Line|[]], [RowsIDHead|[]]):-
-    write(RowsIDHead), write('|'),
-	printLine(Line), nl,
-	% write('   |      |      |      |      |      |      |      |      |'), nl,
-	write('   |______|______|______|______|______|______|______|______|'), nl,
-	printBoard(BoardTail,RowsIDTail).
 
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write(RowsIDHead), write('|'),
@@ -55,6 +49,8 @@ printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write('   |------|------|------|------|------|------|------|------|'), nl,
 	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(BoardTail,RowsIDTail).
+
+
 
 printLine([]).
 printLine([Piece|LineTail]):-

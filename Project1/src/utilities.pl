@@ -1,6 +1,6 @@
 clearConsole:-
-  %write('\33\[2J').
-  nl,nl,nl.
+  write('\33\[2J').
+  %nl,nl,nl.
 
 getChar(Input):-
   get_char(Input),
