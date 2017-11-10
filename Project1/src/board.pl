@@ -74,7 +74,6 @@ rowIDsList([' 8 ', ' 7 ', ' 6 ', ' 5 ', ' 4 ', ' 3 ', ' 2 ', ' 1 ']).
 getBoard([Board|_], Board).
 
 
-
 getPiece(Board, Col, Row, Piece) :-
 	% convertToNumber(Col,ColNumber),
 	RowNumber is abs(Row-9),

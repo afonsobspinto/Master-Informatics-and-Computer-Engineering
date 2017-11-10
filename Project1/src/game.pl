@@ -2,18 +2,25 @@ gameMode(pvp).
 gameMode(pvb).
 gameMode(bvb).
 
-player(whitePlayer).
-player(blackPlayer).
+gameState(whiteToMove).
+gameState(blackToMove).
+gameState(whiteVictorious).
+gameState(blackVictorious).
+gameState(tie).
+%gameState(stalemate).
 
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
 	intermediateBoard(Board),
-	Game = [Board, whitePlayer, pvp], !.
+	Game = [Board, whiteToMove, pvp], !.
 
 
 getGameState(Game, GameState):-
 	nth0(1,Game, GameState).
+
+getGameMode(Game, GameMode):-
+	nth0(2,Game, GameMode).
 
 playGame(Game):-
 	getBoard(Game, Board),
@@ -28,10 +35,9 @@ playGame(Game):-
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
-	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
-	getPieceColor(Piece, PieceColor),
-	updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
-	%UpdateGameState & changeTurn
+	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
+	updateGameState(Game, NextBoard, ContinueGame).
+	%playGame(ContinueGame).
 
 
 
@@ -56,12 +62,12 @@ getDestinyCoords(SrcCol,SrcRow):-
 	%Validation functions
 
 validateOwnership(Piece, GameState):-
-	GameState == whitePlayer,
+	GameState == whiteToMove,
 	getPieceColor(Piece, Color),
 	Color == 'White'.
 
 validateOwnership(Piece, GameState):-
-	GameState == blackPlayer,
+	GameState == blackToMove,
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
@@ -69,6 +75,7 @@ validateOwnership(_, _):-
 	write('Invalid Piece!'), nl, %TODO: Ask that cut stuff to the teacher
 	fail.
 
+%TODO:
 %%Piece Nao é preciso aqui
 validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow), !,
@@ -262,37 +269,61 @@ makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
-updateGameState(PieceColor, TempBoard, DestCol, DestRow):-
-	kingOnLastRow(PieceColor, TempBoard, DestRow).
+updateGameState(Game, NextBoard, ContinueGame):-
+	gameOver(Game, NextBoard, ContinueGame).
 
-kingOnLastRow('Black', TempBoard, DestRow):-
-	DestRow = 8,
-	write('Black Win').
+updateGameState(Game, NextBoard, ContinueGame):-
+	changeTurn(Game, NextBoard, ContinueGame).
 
-kingOnLastRow('White', TempBoard, DestRow):-
-	DestRow = 8,
-	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
-	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol, 8),
-	getPiece(TempBoard, OtherKingCol, 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'Black',
-	write('Tie 1').
+gameOver(Game, NextBoard, ContinueGame):-
+	kingOnLastRow('White', NextBoard),
+	\+(blackCanTie(NextBoard)),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, whiteVictorious, GameMode], !,
+	write(white).
 
-kingOnLastRow('White', TempBoard, DestRow):-
-	DestRow = 8,
-	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
-	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol + 1), 8),
-	getPiece(TempBoard, (OtherKingCol + 1), 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'Black',
-	write('Tie 2').
+gameOver(Game, NextBoard, ContinueGame):-
+	kingOnLastRow('Black', NextBoard),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, blackVictorious, GameMode], !,
+	write(black).
 
-kingOnLastRow('White', TempBoard, DestRow):-
-	DestRow = 8,
-	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
-	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol - 1), 8),
-	getPiece(TempBoard, (OtherKingCol - 1), 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'Black',
-	write('Tie 3').
+gameOver(Game, NextBoard, ContinueGame):-
+	kingOnLastRow('White', NextBoard),
+	blackCanTie(NextBoard),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, tie, GameMode],!,
+	write(tie).
 
-kingOnLastRow('White', TempBoard, DestRow):-
-	DestRow = 8,
-	write('White Win').
+kingOnLastRow(Color, Board):-
+	getPiece(Board, _, 8, 'King', Color).
+
+blackCanTie(Board):-
+	getPiece(Board, Col, 7, 'King', 'Black'),
+	differentColors(Col, 7, Col, 8, Board),
+	makeMove(Board, Col, 7, Col, 8, NextBoard),
+	checkForCheck(NextBoard).
+
+blackCanTie(Board):-
+	getPiece(Board, Col, 7, 'King', 'Black'),
+	NextCol is Col+1,
+	differentColors(Col, 7, NextCol, 8, Board),
+	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
+	checkForCheck(NextBoard).
+
+blackCanTie(Board):-
+	getPiece(Board, Col, 7, 'King', 'Black'),
+	LastCol is Col-1,
+	differentColors(Col, 7, LastCol, 8, Board),
+	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
+	checkForCheck(NextBoard).
+
+changeTurn(Game, NextBoard, ContinueGame):-
+	getGameMode(Game, GameMode),
+	getGameState(Game, GameState),
+	(
+		GameState == whiteToMove ->
+		NextGameState = blackToMove;
+		NextGameState = whiteToMove
+	),
+	ContinueGame = [NextBoard, NextGameState, GameMode], !.
