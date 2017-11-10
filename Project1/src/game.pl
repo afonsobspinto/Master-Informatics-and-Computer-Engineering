@@ -27,8 +27,10 @@ playGame(Game):-
 	validateOwnership(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
-	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board).
-	%makeMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Game, TempGame),
+	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
+	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, FinalBoard),
+	getPieceColor(Piece, PieceColor),
+	updateGameState(PieceColor, FinalBoard, DestCol, DestRow).
 	%UpdateGameState & changeTurn
 
 
@@ -260,14 +262,11 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
-
 checkForCheck(TempBoard):-
 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
 	\+(makePseudoMoves('Black', TempBoard, WhiteKingCol, WhiteKingRow)),
 	\+(makePseudoMoves('White', TempBoard, BlackKingCol, BlackKingRow)).
-
-
 
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
@@ -284,53 +283,31 @@ makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
 
+updateGameState(PieceColor, TempBoard, DestCol, DestRow):-
+	kingOnLastRow(PieceColor, TempBoard, DestRow).
+	
+kingOnLastRow('Black', TempBoard, DestRow):-
+	DestRow = 8,
+	write('Black Win').
+	
+kingOnLastRow('White', TempBoard, DestRow):-
+	DestRow = 8,
+	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
+	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol, 8),
+	write('Tie 1').
 
+kingOnLastRow('White', TempBoard, DestRow):-
+	DestRow = 8,
+	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
+	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol+1, 8),
+	write('Tie 2').
 
-%  	makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard),
-%  	makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard).
-%
-% makePseudoMoves('Black', WhiteKingCol, WhiteKingRow, TempBoard):-
-% 	checkMove(PieceName, 'Black', WhiteKingCol, WhiteKingRow, DestCol, DestRow, TempBoard).
-%
-% makePseudoMoves('White', BlackKingCol, BlackKingRow, TempBoard):-
-% 	checkMove(PieceName, 'White', BlackKingCol, BlackKingRow, DestCol, DestRow, TempBoard).
-%
-% checkMove('Rook', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'bR'),
-% 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Bishop', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'bB'),
-% 	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Queen', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'bQ'),
-% 	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Knight', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'bN'),
-% 	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('King', 'Black', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'bK'),
-% 	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Rook', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'wR'),
-% 	validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Bishop', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'wB'),
-% 	validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Queen', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'wQ'),
-% 	validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('Knight', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'wN'),
-% 	validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow).
-%
-% checkMove('King', 'White', SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
-% 	getPiece(TempBoard, DestCol, DestRow, 'wK'),
-% 	validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow).
+kingOnLastRow('White', TempBoard, DestRow):-
+	DestRow = 8,
+	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
+	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol-1, 8),
+	write('Tie 3').
+	
+kingOnLastRow('White', TempBoard, DestRow):-
+	DestRow = 8,
+	write('White Win').
