@@ -299,13 +299,13 @@ kingOnLastRow('White', TempBoard, DestRow):-
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
-	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol+1, 8),
+	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol + 1), 8),
 	write('Tie 2').
 
 kingOnLastRow('White', TempBoard, DestRow):-
 	DestRow = 8,
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
-	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol-1, 8),
+	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol - 1), 8),
 	write('Tie 3').
 	
 kingOnLastRow('White', TempBoard, DestRow):-
