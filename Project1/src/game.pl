@@ -274,7 +274,7 @@ kingOnLastRow('White', TempBoard, DestRow):-
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, OtherKingCol, 8),
 	getPiece(TempBoard, OtherKingCol, 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'White',
+	OtherPieceColor \= 'Black',
 	write('Tie 1').
 
 kingOnLastRow('White', TempBoard, DestRow):-
@@ -282,7 +282,7 @@ kingOnLastRow('White', TempBoard, DestRow):-
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol + 1), 8),
 	getPiece(TempBoard, (OtherKingCol + 1), 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'White',
+	OtherPieceColor \= 'Black',
 	write('Tie 2').
 
 kingOnLastRow('White', TempBoard, DestRow):-
@@ -290,7 +290,7 @@ kingOnLastRow('White', TempBoard, DestRow):-
 	getPiece(TempBoard, OtherKingCol, OtherKingRow, 'King', 'Black'),
 	validBasicMove('King', OtherKingCol, OtherKingRow, (OtherKingCol - 1), 8),
 	getPiece(TempBoard, (OtherKingCol - 1), 8, OtherPieceName, OtherPieceColor),
-	OtherPieceColor \= 'White',
+	OtherPieceColor \= 'Black',
 	write('Tie 3').
 
 kingOnLastRow('White', TempBoard, DestRow):-
