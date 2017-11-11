@@ -76,7 +76,7 @@ humanTurn(Game, ContinueGame):-
 	validateOwnershipWrapper(Piece, GameState),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
-	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
+	validateMove(SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
@@ -101,7 +101,7 @@ botTurn(Game, ContinueGame):-
 	validateOwnershipWrapper(Piece, GameState),
 	random(1, 9, DestRow),
 	random(1, 9, DestCol),
-	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board),
+	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
@@ -146,15 +146,15 @@ validateOwnership(_, _):-
 
 %TODO:
 %%Piece Nao é preciso aqui
-validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
+validateMove(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow), !,
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board), !,
+	getPiece(Board, SrcCol, SrcRow, Piece),
 	getPieceName(Piece, PieceName),
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !, %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(TempBoard).
-
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
