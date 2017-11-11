@@ -123,4 +123,4 @@ stalemateBoard(Board):-
 	  [BlackKing, NonePiece, NonePiece, WhiteKnigth2, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteKing, NonePiece],
 	  [NonePiece, NonePiece, WhiteKnigth1, WhiteRook1, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook2, NonePiece, NonePiece]], Board).
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook2, NonePiece, NonePiece]], Board).
