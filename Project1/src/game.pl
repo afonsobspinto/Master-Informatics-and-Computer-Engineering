@@ -62,6 +62,15 @@ playGame(Game):-
 
 
 %TODO: Show GameState: White2Move...
+printGameInfo(Game):-
+	getGameState(Game, GameState),
+	(
+		GameState == whiteToMove ->
+			(write('# White Player Turn:'), nl);
+		GameState == blackToMove ->
+			(write('# Black Player Turn:'), nl);
+		fail
+	).
 
 %Game Cycle Human
 humanTurn(Game, ContinueGame):-
@@ -69,6 +78,7 @@ humanTurn(Game, ContinueGame):-
 	repeat,
 	clearConsole,
 	printBoard(Board),
+	printGameInfo(Game),
 	getSourceCoords(SrcCol, SrcRow),
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
