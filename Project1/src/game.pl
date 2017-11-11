@@ -73,10 +73,10 @@ humanTurn(Game, ContinueGame):-
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState, 1),
+	validateOwnershipWrapper(Piece, GameState, 1),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
-	validateMove(SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
+	validateMove(SrcColNumber, SrcRow, DestColNumber, DestRow, Board, 1),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
@@ -98,13 +98,12 @@ somehowSmartBotTurn(Game, ContinueGame):-
 		GameState == whiteToMove -> getPiece(Board, SrcCol, SrcRow, 'King', 'White');
 		getPiece(Board, SrcCol, SrcRow, 'King', 'Black')
 	),
-	getPiece(Board, SrcCol, SrcRow, Piece),
 	DestRow is SrcRow + 1,
 	random(0, 3, Move),
 	(
-		(Move =:= 0, DestCol is SrcCol, validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board));
-		(Move =:= 1, DestCol is SrcCol + 1,  validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board));
-		(Move =:= 2, DestCol is SrcCol-1, validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board))
+		(Move =:= 0, DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+		(Move =:= 1, DestCol is SrcCol + 1,  validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+		(Move =:= 2, DestCol is SrcCol-1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
 	),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
@@ -132,10 +131,10 @@ botTurn(Game, ContinueGame):-
 	random(1, 9, SrcCol),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnership(Piece, GameState, 0),
+	validateOwnershipWrapper(Piece, GameState, 0),
 	random(1, 9, DestRow),
 	random(1, 9, DestCol),
-	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board),
+	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
@@ -158,6 +157,8 @@ getDestinyCoords(SrcCol,SrcRow):-
 
 	%Validation functions
 
+validateOwnershipWrapper(Piece, GameState, Flag):-
+ validateOwnership(Piece, GameState, Flag), !.
 
 validateOwnership(Piece, GameState, _):-
 	GameState == whiteToMove,
@@ -180,63 +181,69 @@ validateOwnership(_, _, _):-
 
 
 
-validateMove(SrcCol, SrcRow, DestCol, DestRow, Board):-
-	differentPositions(SrcCol, SrcRow, DestCol, DestRow), !,
-	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board), !,
+validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
+	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Flag), !,
+	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getPieceName(Piece, PieceName),
-	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
-	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
+	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
+	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !, %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(TempBoard).
 
-differentPositions(SrcCol, SrcRow, DestCol, DestRow):-
+differentPositions(SrcCol, SrcRow, DestCol, DestRow, _):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
 
-differentPositions(_, _, _, _):-
-	invalidMove.
+differentPositions(_, _, _, _, Flag):-
+	invalidMove(Flag).
 
-differentColors(SrcCol, SrcRow, DestCol, DestRow, Board):-
+differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	getPiece(Board, SrcCol, SrcRow, PieceSrc),
 	getPiece(Board, DestCol, DestRow, PieceDest),
 	getPieceColor(PieceSrc, ColorSrc),
 	getPieceColor(PieceDest, ColorDest),
 	ColorSrc \== ColorDest.
 
-differentColors(_, _, _, _, _):-
-	invalidMove.
+differentColors(_, _, _, _, _, Flag):-
+	invalidMove(Flag).
 
 %TODO: Maybe add a Flag
-invalidMove:-
-	%write('Invalid Move!'), nl,
+invalidMove(Flag):-
+	Flag == 1,
+	write('Invalid Move!'), nl,
+	pressEnterToContinue, !,
+	fail.
+
+invalidMove(_):-
 	fail.
 
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
 	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
 	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
 	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
 	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -246,7 +253,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	HighCol is (SrcCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, DestRow, DestCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -256,7 +263,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	HighCol is (DestCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -266,7 +273,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	LowCol is (SrcCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -276,31 +283,31 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
 	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
 	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
 	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
 	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -310,7 +317,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	HighCol is (SrcCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, DestRow, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -320,7 +327,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	HighCol is (DestCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -330,7 +337,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	LowCol is (SrcCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
+checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -340,11 +347,11 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
-checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board).
-checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board).
+checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board, _).
+checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board, _).
 
-checkForJumping(_, _, _, _, _, _):-
-	invalidMove.
+checkForJumping(_, _, _, _, _, _, Flag):-
+	invalidMove(Flag).
 
 makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(Board, SrcCol, SrcRow, Piece),
@@ -361,15 +368,15 @@ checkForCheck(TempBoard):-
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'Black',
-	validBasicMove(PieceName, Col, Row, DestCol, DestRow),%TODO: Doesn't show Invalid Move when fails cause it's pseudo
-	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),%TODO: Doesn't show Invalid Move when fails cause it's pseudo
+	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	validBasicMove(PieceName, Col, Row, DestCol, DestRow), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
-	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard).
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
+	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 updateGameState(Game, NextBoard, ContinueGame):-
 	gameOver(Game, NextBoard, ContinueGame).
@@ -400,21 +407,21 @@ kingOnLastRow(Color, Board):-
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
-	differentColors(Col, 7, Col, 8, Board),
+	differentColors(Col, 7, Col, 8, Board, 0),
 	makeMove(Board, Col, 7, Col, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	NextCol is Col+1,
-	differentColors(Col, 7, NextCol, 8, Board),
+	differentColors(Col, 7, NextCol, 8, Board,0),
 	makeMove(Board, Col, 7, NextCol, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	LastCol is Col-1,
-	differentColors(Col, 7, LastCol, 8, Board),
+	differentColors(Col, 7, LastCol, 8, Board,0),
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard), %TODO: Doesn't show Invalid Move when fails cause it's pseudo
 	checkForCheck(NextBoard).
 
