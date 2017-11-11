@@ -83,8 +83,8 @@ printGameInfo(Game):-
 
 %Game Cycle Human
 humanTurn(Game, ContinueGame):-
-	repeat,
 	getBoard(Game, Board),
+	repeat,
 	getSourceCoords(SrcCol, SrcRow),
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
@@ -223,7 +223,7 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 differentColors(_, _, _, _, _, Flag):-
 	invalidMove(Flag).
 
-
+%TODO: clearConsole and PrintBoard on failure
 invalidMove(Flag):-
 	Flag == 1,
 	write('Invalid Move!'), nl,

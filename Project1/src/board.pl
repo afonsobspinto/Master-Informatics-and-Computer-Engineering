@@ -32,6 +32,8 @@ initialBoard(Board):-
 
 	%Print Board functions
 
+%TODO: Colors
+
 printBoard([],[]):-
 	printColumnIDs, nl, nl.
 
