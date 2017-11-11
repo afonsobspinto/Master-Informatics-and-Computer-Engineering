@@ -17,7 +17,11 @@ createPvPGame(Game):-
 
 createPvCGame(Game):-
 	initialBoard(Board),
-	Game = [Board, whiteToMove, pvc], !.
+	random(0,2,Color),
+	(
+		Color == 0, Game = [Board, whiteToMove, pvcWhite], !;
+		Game = [Board, whiteToMove, pvcBlack], !
+	).
 
 createCvCGame(Game):-
 	initialBoard(Board),
@@ -52,11 +56,18 @@ playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
-		GameMode == pvc -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), somehowSmartBotTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
+		GameMode == pvcWhite ->(
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame),
+			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
+			playGame(BotContinueGame), !);
+		GameMode == pvcBlack -> (
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame),
+			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
+			playGame(HumanContinueGame), !);
 		GameMode == cvc -> (
-		getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
-		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
-		playGame(BotContinueGame), !)
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
+			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
+			playGame(BotContinueGame), !)
 	).
 
 
@@ -93,6 +104,7 @@ somehowSmartBotTurn(Game, ContinueGame):-
 	GameState == blackVictorious;
 	GameState == tie
 	),
+	write(GameState),
 	ContinueGame = Game.
 
 	%Game Cycle Smart Bot - tries somehow Smart move
