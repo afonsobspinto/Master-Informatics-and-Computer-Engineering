@@ -54,7 +54,7 @@ playGame(Game):-
 	),
 	pressEnterToContinue, !.
 
-%Game Manager
+%Game Manager %TODO: Add Random bot side in cvc
 playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
@@ -64,7 +64,7 @@ playGame(Game):-
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlack -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame),
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), %TODO: RandomBot Opponent
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == cvc -> (
@@ -120,6 +120,7 @@ somehowSmartBotTurn(Game, ContinueGame):-
 	),
 	DestRow is SrcRow + 1,
 	(
+		%TODO: Make this tries in a random order
 		(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
 		(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
 		(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
@@ -428,8 +429,6 @@ gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('Black', NextBoard),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, blackVictorious, GameMode], !.
-
-%TODO: tecnically they can make other move besides the one that gives a draw. But then they lose
 
 kingOnLastRow(Color, Board):-
 	getPiece(Board, _, 8, 'King', Color).

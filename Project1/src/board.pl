@@ -59,7 +59,6 @@ printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	printBoard(BoardTail,RowsIDTail).
 
 
-
 printLine([]).
 printLine([Piece|LineTail]):-
 	getPieceSymbol(Piece, Symbol),
