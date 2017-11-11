@@ -73,7 +73,7 @@ humanTurn(Game, ContinueGame):-
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnershipWrapper(Piece, GameState),
+	validateOwnership(Piece, GameState, 1),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
@@ -132,7 +132,7 @@ botTurn(Game, ContinueGame):-
 	random(1, 9, SrcCol),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnershipWrapper(Piece, GameState),
+	validateOwnership(Piece, GameState, 0),
 	random(1, 9, DestRow),
 	random(1, 9, DestCol),
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board),
@@ -158,22 +158,24 @@ getDestinyCoords(SrcCol,SrcRow):-
 
 	%Validation functions
 
-validateOwnershipWrapper(Piece, GameState):-
-	validateOwnership(Piece, GameState), !.
 
-validateOwnership(Piece, GameState):-
+validateOwnership(Piece, GameState, _):-
 	GameState == whiteToMove,
 	getPieceColor(Piece, Color),
 	Color == 'White'.
 
-validateOwnership(Piece, GameState):-
+validateOwnership(Piece, GameState, _):-
 	GameState == blackToMove,
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
-validateOwnership(_, _):-
-	%write('Invalid Piece!'), nl,
-	%pressEnterToContinue, !,
+validateOwnership(_, _, Flag):-
+	Flag == 1,
+	write('Invalid Piece!'), nl,
+	pressEnterToContinue, !,
+	fail.
+
+validateOwnership(_, _, _):-
 	fail.
 
 
