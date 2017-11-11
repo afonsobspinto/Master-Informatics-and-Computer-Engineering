@@ -2,7 +2,7 @@ clearConsole:-
   write('\33\[2J').
   %nl,nl,nl.
 
-getChar(Input):-
+getChar(Input):- %TODO: 34 is read as 3 with this method
   get_char(Input),
   get_char(_).
 

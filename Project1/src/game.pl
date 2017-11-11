@@ -53,11 +53,11 @@ playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
 		GameMode == pvp -> (humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
-		GameMode == pvc -> (humanTurn(Game, ContinueGame), botTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
+		GameMode == pvc -> (humanTurn(Game, ContinueGame), somehowSmartBotTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
 		GameMode == cvc -> (
 		getBoard(Game, Board), clearConsole, printBoard(Board), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
 		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
-		playGame(BotContinueGame), !) %TODO: Bots com abordagens diferentes
+		playGame(BotContinueGame), !)
 	).
 
 
@@ -178,8 +178,6 @@ validateOwnership(_, _):-
 
 
 
-%TODO:
-%%Piece Nao é preciso aqui
 validateMove(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow), !,
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board), !,
