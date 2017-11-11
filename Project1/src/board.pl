@@ -41,6 +41,12 @@ printBoard(Board):-
 	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(Board, RowIDs).
 
+printBoard([Line|[]],[RowsIDTail|[]]):-
+	write(RowsIDTail), write('|'),
+	printLine(Line), nl,
+	write('   |      |      |      |      |      |      |      |      |'), nl,
+	write('   |______|______|______|______|______|______|______|______|'), nl,
+	printBoard([],[]).
 
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write(RowsIDHead), write('|'),
