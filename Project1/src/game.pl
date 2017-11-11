@@ -7,7 +7,6 @@ gameState(blackToMove).
 gameState(whiteVictorious).
 gameState(blackVictorious).
 gameState(tie).
-%gameState(stalemate). %TODO: Esta regra existe aqui?
 
 %%% Game[Board, gameState, gameMode];
 
@@ -63,7 +62,7 @@ playGame(Game):-
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhite ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame),
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), %TODO: EndGame if GameIsOver with this move
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlack -> (
@@ -205,7 +204,6 @@ validateOwnership(_, _, Flag):-
 
 validateOwnership(_, _, _):-
 	fail.
-
 
 
 validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
