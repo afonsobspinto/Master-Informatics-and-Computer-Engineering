@@ -52,7 +52,7 @@ playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
-		GameMode == pvc -> (humanTurn(Game, ContinueGame), somehowSmartBotTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
+		GameMode == pvc -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), somehowSmartBotTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
 		GameMode == cvc -> (
 		getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
 		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
@@ -104,11 +104,10 @@ somehowSmartBotTurn(Game, ContinueGame):-
 		getPiece(Board, SrcCol, SrcRow, 'King', 'Black')
 	),
 	DestRow is SrcRow + 1,
-	random(0, 3, Move),
 	(
-		(Move == 0, DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
-		(Move == 1, write(hey), DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
-		(Move == 2, write(oh), DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
+		(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+		(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+		(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
 	),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
