@@ -117,10 +117,10 @@ stalemateBoard(Board):-
 
 	append([], [
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, WhiteBishop1, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, BlackKing, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece]], Board).
+	  [NonePiece, NonePiece, NonePiece, WhiteQueen, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [BlackKing, NonePiece, NonePiece, WhiteKnigth2, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteKing, NonePiece],
+	  [NonePiece, NonePiece, WhiteKnigth1, WhiteRook1, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook2, NonePiece, NonePiece]], Board).
