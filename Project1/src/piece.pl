@@ -1,31 +1,24 @@
 %%% Piece[piece, color, symbol];
 
-%TODO:
-%%Retirar simbolo da parte da peça
-%%Brancas com maiúscula.
+whiteKing(['King', 'White']).
+whiteQueen(['Queen', 'White']).
+whiteRook1(['Rook', 'White']).
+whiteRook2(['Rook', 'White']).
+whiteBishop1(['Bishop', 'White']).
+whiteBishop2(['Bishop', 'White']).
+whiteKnigth1(['Knight', 'White']).
+whiteKnigth2(['Knight', 'White']).
 
-whiteKing(['King', 'White', 'wK']).
-whiteQueen(['Queen', 'White', 'wQ']).
-whiteRook1(['Rook', 'White', 'wR']).
-whiteRook2(['Rook', 'White', 'wR']).
-whiteBishop1(['Bishop', 'White', 'wB']).
-whiteBishop2(['Bishop', 'White', 'wB']).
-whiteKnigth1(['Knight', 'White', 'wN']).
-whiteKnigth2(['Knight', 'White', 'wN']).
+blackKing(['King', 'Black']).
+blackQueen(['Queen', 'Black']).
+blackRook1(['Rook', 'Black']).
+blackRook2(['Rook', 'Black']).
+blackBishop1(['Bishop', 'Black']).
+blackBishop2(['Bishop', 'Black']).
+blackKnigth1(['Knight', 'Black']).
+blackKnigth2(['Knight', 'Black']).
 
-blackKing(['King', 'Black', 'bK']).
-blackQueen(['Queen', 'Black', 'bQ']).
-blackRook1(['Rook', 'Black', 'bR']).
-blackRook2(['Rook', 'Black', 'bR']).
-blackBishop1(['Bishop', 'Black', 'bB']).
-blackBishop2(['Bishop', 'Black', 'bB']).
-blackKnigth1(['Knight', 'Black', 'bN']).
-blackKnigth2(['Knight', 'Black', 'bN']).
-
-nonePiece(['none', 'none', '  ']).
-
-getPieceSymbol(Piece, Symbol):-
-  nth0(2, Piece, Symbol).
+nonePiece(['none', 'none']).
 
 getPieceColor(Piece, Color):-
 	nth0(1, Piece, Color).
@@ -33,7 +26,39 @@ getPieceColor(Piece, Color):-
 getPieceName(Piece, Name):-
   nth0(0, Piece, Name).
 
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'King', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wK'.
+  
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Queen', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wQ'.
 
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Rook', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wR'.
+  
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Bishop', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wB'.
+
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Knight', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wN'.
+
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'King', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bK'.
+  
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Queen', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bQ'.
+
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Rook', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bR'.
+  
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Bishop', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bB'.
+
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'Knight', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bN'. 
+
+getPieceSymbol(Piece, Symbol):-
+  getPieceName(Piece,Name), Name == 'none', getPieceColor(Piece, Color), Color == 'none', Symbol = '  '. 
+  
 %Basic Piece Movement
 
 validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-
