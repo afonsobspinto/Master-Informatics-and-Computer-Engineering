@@ -36,42 +36,42 @@ getPieceName(Piece, Name):-
 
 %Basic Piece Movement
 
-validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols < 2,
   DiffRows < 2.
 
-validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcCol == DestCol).
-validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcRow == DestRow).
 
-validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == DiffRows.
 
-validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == 2,
   DiffRows == 1.
 
-validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == 1,
   DiffRows == 2.
 
-validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcCol == DestCol).
-validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcRow == DestRow).
-validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow):-
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == DiffRows.
 
-validBasicMove(_, _, _, _, _):-
-invalidMove.
+validBasicMove(_, _, _, _, _, Flag):-
+invalidMove(Flag).
