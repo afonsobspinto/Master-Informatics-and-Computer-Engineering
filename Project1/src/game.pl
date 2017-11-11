@@ -56,7 +56,7 @@ playGame(Game):-
 		GameMode == pvc -> (humanTurn(Game, ContinueGame), botTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
 		GameMode == cvc -> (
 		getBoard(Game, Board), clearConsole, printBoard(Board), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
-		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), nl,nl, pressEnterToContinue, botTurn(ContinueGame, BotContinueGame),
+		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 		playGame(BotContinueGame), !) %TODO: Bots com abordagens diferentes
 	).
 
@@ -80,6 +80,39 @@ humanTurn(Game, ContinueGame):-
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
+
+somehowSmartBotTurn(Game, ContinueGame):-
+	getGameState(Game, GameState),
+	(
+	GameState == whiteVictorious;
+	GameState == blackVictorious;
+	GameState == tie
+	),
+	ContinueGame = Game.
+
+	%Game Cycle Smart Bot - tries somehow Smart move
+somehowSmartBotTurn(Game, ContinueGame):-
+	getBoard(Game, Board),
+	getGameState(Game, GameState),
+	(
+		GameState == whiteToMove -> getPiece(Board, SrcCol, SrcRow, 'King', 'White');
+		getPiece(Board, SrcCol, SrcRow, 'King', 'Black')
+	),
+	getPiece(Board, SrcCol, SrcRow, Piece),
+	DestRow is SrcRow + 1,
+	random(0, 3, Move),
+	(
+		(Move =:= 0, DestCol is SrcCol, validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board));
+		(Move =:= 1, DestCol is SrcCol + 1,  validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board));
+		(Move =:= 2, DestCol is SrcCol-1, validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board))
+	),
+	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
+	updateGameState(Game, NextBoard, ContinueGame).
+
+%Game Cycle Smart Bot - tries Random move
+somehowSmartBotTurn(Game, ContinueGame):-
+	botTurn(Game, ContinueGame).
+
 %Check if Game as over in the first Play
 botTurn(Game, ContinueGame):-
 	getGameState(Game, GameState),
@@ -89,6 +122,7 @@ botTurn(Game, ContinueGame):-
 	GameState == tie
 	),
 	ContinueGame = Game.
+
 
 %Game Cycle Random Bot
 botTurn(Game, ContinueGame):-
