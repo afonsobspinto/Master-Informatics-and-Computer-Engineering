@@ -55,20 +55,19 @@ playGame(Game):-
 		GameMode == pvp -> (humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvc -> (humanTurn(Game, ContinueGame), somehowSmartBotTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
 		GameMode == cvc -> (
-		getBoard(Game, Board), clearConsole, printBoard(Board), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
-		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
+		getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
+		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 		playGame(BotContinueGame), !)
 	).
 
 
-%TODO: Show GameState: White2Move...
 printGameInfo(Game):-
 	getGameState(Game, GameState),
 	(
 		GameState == whiteToMove ->
-			(write('# White Player Turn:'), nl);
+			(write('# White Player Turn '), nl, nl);
 		GameState == blackToMove ->
-			(write('# Black Player Turn:'), nl);
+			(write('# Black Player Turn '), nl, nl);
 		fail
 	).
 
