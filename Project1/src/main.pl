@@ -9,6 +9,7 @@
 :- include('testsBoard.pl').
 
 :- use_module(library(lists)).
+:- use_module(library(random)).
 
 racingKings:-
   mainMenu.

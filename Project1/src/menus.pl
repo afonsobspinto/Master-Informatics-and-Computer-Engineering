@@ -90,8 +90,8 @@ gameMenu:-
   	getChar(Char),
   	(
   		Char = '1' -> startPvPGame;
-  		Char = '2';
-  		Char = '3';
+  		Char = '2' -> startPvCGame;
+  		Char = '3' -> startCvCGame;
       Char = '4';
 
   		nl,
@@ -117,5 +117,13 @@ printGameMenu:-
   nl, nl.
 
 startPvPGame:-
-    createPvPGame(Game),
-    playGame(Game).
+  createPvPGame(Game),
+  playGame(Game).
+
+startPvCGame:-
+  createPvCGame(Game),
+  playGame(Game).
+
+startCvCGame:-
+  createCvCGame(Game),
+  playGame(Game).

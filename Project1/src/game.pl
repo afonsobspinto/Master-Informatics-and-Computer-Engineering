@@ -7,13 +7,22 @@ gameState(blackToMove).
 gameState(whiteVictorious).
 gameState(blackVictorious).
 gameState(tie).
-%gameState(stalemate).
+%gameState(stalemate). %TODO: Esta regra existe aqui?
 
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
 	initialBoard(Board),
 	Game = [Board, whiteToMove, pvp], !.
+
+createPvCGame(Game):-
+	initialBoard(Board),
+	Game = [Board, whiteToMove, pvc], !.
+
+createCvCGame(Game):-
+	initialBoard(Board),
+	Game = [Board, whiteToMove, cvc], !.
+
 
 
 getGameState(Game, GameState):-
@@ -39,9 +48,23 @@ playGame(Game):-
 	),
 	pressEnterToContinue, !.
 
-%TODO: Show GameState: White2Move...
-%Game Cycle PVP
+%Game Manager
 playGame(Game):-
+	getGameMode(Game, GameMode),
+	(
+		GameMode == pvp -> (humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
+		GameMode == pvc -> (humanTurn(Game, ContinueGame), botTurn(ContinueGame, BotContinueGame), playGame(BotContinueGame), !); %TODO: Human poder ser preto(2º a jogar) #Racismo
+		GameMode == cvc -> (
+		getBoard(Game, Board), clearConsole, printBoard(Board), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
+		getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), nl,nl, pressEnterToContinue, botTurn(ContinueGame, BotContinueGame),
+		playGame(BotContinueGame), !) %TODO: Bots com abordagens diferentes
+	).
+
+
+%TODO: Show GameState: White2Move...
+
+%Game Cycle Human
+humanTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
 	repeat,
 	clearConsole,
@@ -55,9 +78,32 @@ playGame(Game):-
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(Piece, SrcColNumber, SrcRow, DestColNumber, DestRow, Board),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
-	updateGameState(Game, NextBoard, ContinueGame),
-	playGame(ContinueGame).
+	updateGameState(Game, NextBoard, ContinueGame).
 
+%Check if Game as over in the first Play
+botTurn(Game, ContinueGame):-
+	getGameState(Game, GameState),
+	(
+	GameState == whiteVictorious;
+	GameState == blackVictorious;
+	GameState == tie
+	),
+	ContinueGame = Game.
+
+%Game Cycle Random Bot
+botTurn(Game, ContinueGame):-
+	getBoard(Game, Board),
+	repeat,
+	random(1, 9, SrcRow),
+	random(1, 9, SrcCol),
+	getPiece(Board, SrcCol, SrcRow, Piece),
+	getGameState(Game, GameState),
+	validateOwnershipWrapper(Piece, GameState),
+	random(1, 9, DestRow),
+	random(1, 9, DestCol),
+	validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board),
+	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
+	updateGameState(Game, NextBoard, ContinueGame).
 
 	%Interaction functions
 
@@ -92,8 +138,8 @@ validateOwnership(Piece, GameState):-
 	Color == 'Black'.
 
 validateOwnership(_, _):-
-	write('Invalid Piece!'), nl,
-	pressEnterToContinue, !,
+	%write('Invalid Piece!'), nl,
+	%pressEnterToContinue, !,
 	fail.
 
 
@@ -107,7 +153,6 @@ validateMove(Piece, SrcCol, SrcRow, DestCol, DestRow, Board):-
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !, %TODO: Doesn't show Invalid Move when fails cause it's pseudo
-	printBoard(TempBoard), !,
 	checkForCheck(TempBoard).
 
 
@@ -129,7 +174,7 @@ differentColors(_, _, _, _, _):-
 
 %TODO: Maybe add a Flag
 invalidMove:-
-	write('Invalid Move!'), nl,
+	%write('Invalid Move!'), nl,
 	fail.
 
 
@@ -270,7 +315,6 @@ checkForJumping(_, _, _, _, _, _):-
 makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	nonePiece(NonePiece),
-	write(SrcCol), write(SrcRow), nl,
 	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
