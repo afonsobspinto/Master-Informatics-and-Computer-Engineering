@@ -12,7 +12,7 @@ gameState(tie).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	initialBoard(Board),
+	stalemateBoard(Board),
 	Game = [Board, whiteToMove, pvp], !,
 	bb_put(blackCanTieFlag, 0).
 
@@ -64,7 +64,7 @@ playGame(Game):-
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlack -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), 
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame),
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == cvcWhite -> (
@@ -405,6 +405,19 @@ updateGameState(Game, NextBoard, ContinueGame):-
 updateGameState(Game, NextBoard, ContinueGame):-
 	changeTurn(Game, NextBoard, ContinueGame).
 
+gameOver(Game, NextBoard, ContinueGame):-
+	getGameState(Game, GameState),
+	GameState == whiteToMove,
+	\+(canMoveAnyPiece('Black', NextBoard)),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, tie, GameMode],!.
+
+gameOver(Game, NextBoard, ContinueGame):-
+	getGameState(Game, GameState),
+	GameState == blackToMove,
+	\+(canMoveAnyPiece('White', NextBoard)),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, tie, GameMode],!.
 
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
@@ -456,6 +469,42 @@ blackCanTie(Board):-
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
 	checkForCheck(NextBoard),
 	bb_put(blackCanTieFlag, 1).
+
+canMoveAnyPiece(Color, Board):-
+	getPiece(Board, Col, Row, PieceName, PieceColor),
+	PieceColor == Color,
+	write(PieceName), nl,
+	testAllCols(Col, Row, 1, Board).
+
+testAllCols(SrcCol, SrcRow, DestCol, Board):-
+	write(DestCol),
+	DestCol > 0,
+	DestCol < 9,
+	testAllRows(SrcCol, SrcRow, DestCol, 1, Board).
+
+testAllCols(SrcCol, SrcRow, DestCol, Board):-
+	DestCol == 9, !,
+	fail.
+
+testAllCols(SrcCol, SrcRow, DestCol, Board):-
+	NextCol is DestCol + 1,
+	testAllCols(SrcCol, SrcRow, NextCol, Board).
+
+testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
+	DestRow > 0,
+	DestRow < 9,
+	write(DestCol), write(DestRow), nl,
+	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0).
+
+testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
+	DestRow == 9, !,
+	fail.
+
+testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
+	NextRow is DestRow + 1,
+	testAllRows(SrcCol, SrcRow, DestCol, NextRow, Board).
+
+
 
 changeTurn(Game, NextBoard, ContinueGame):-
 	getGameMode(Game, GameMode),

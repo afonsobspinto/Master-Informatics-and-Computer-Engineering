@@ -119,7 +119,7 @@ stalemateBoard(Board):-
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, WhiteQueen, NonePiece, NonePiece, NonePiece, NonePiece],
+	  [NonePiece, NonePiece, NonePiece, BlackQueen, NonePiece, NonePiece, NonePiece, WhiteQueen],
 	  [BlackKing, NonePiece, NonePiece, WhiteKnigth2, NonePiece, NonePiece, NonePiece, NonePiece],
 	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteKing, NonePiece],
 	  [NonePiece, NonePiece, WhiteKnigth1, WhiteRook1, NonePiece, NonePiece, NonePiece, NonePiece],
