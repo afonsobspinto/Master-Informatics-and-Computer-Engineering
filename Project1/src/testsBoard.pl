@@ -83,17 +83,17 @@ testBoard(Board):-
 
 	  nonePiece(NonePiece),
 
-	  append([], [
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, WhiteQueen, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [BlackKing, NonePiece, NonePiece, WhiteKnigth1, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteKing, NonePiece],
-	  [NonePiece, NonePiece, WhiteKnigth2, WhiteRook1, NonePiece, NonePiece, NonePiece, NonePiece],
-	  [NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, WhiteRook2, NonePiece, NonePiece]], Board).
-	  
-	  
+		append([], [
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+		[NonePiece, BlackKing, NonePiece, NonePiece, NonePiece, NonePiece, WhiteKing, NonePiece],
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+		[NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece, NonePiece],
+		[NonePiece, BlackRook1, BlackBishop1, BlackKnigth1, WhiteKnigth1, WhiteBishop1, WhiteRook1, NonePiece],
+	  [BlackQueen, BlackRook2, BlackBishop2, BlackKnigth2, WhiteKnigth2, WhiteBishop2, WhiteRook2, WhiteQueen]], Board).
+
+
 stalemateBoard(Board):-
 	whiteKing(WhiteKing),
 	whiteQueen(WhiteQueen),

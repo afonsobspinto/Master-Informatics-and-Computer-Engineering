@@ -11,9 +11,11 @@ gameState(tie).
 
 %%% Game[Board, gameState, gameMode];
 
+
 createPvPGame(Game):-
-	initialBoard(Board),
-	Game = [Board, whiteToMove, pvp], !.
+	testBoard(Board),
+	Game = [Board, whiteToMove, pvp], !,
+	bb_put(blackCanTieFlag, 0).
 
 createPvCGame(Game):-
 	initialBoard(Board),
@@ -21,11 +23,13 @@ createPvCGame(Game):-
 	(
 		Color == 0, Game = [Board, whiteToMove, pvcWhite], !;
 		Game = [Board, whiteToMove, pvcBlack], !
-	).
+	),
+	bb_put(blackCanTieFlag, 0).
 
 createCvCGame(Game):-
 	initialBoard(Board),
-	Game = [Board, whiteToMove, cvc], !.
+	Game = [Board, whiteToMove, cvc], !,
+	bb_put(blackCanTieFlag, 0).
 
 
 
@@ -39,7 +43,6 @@ getGameMode(Game, GameMode):-
 playGame(Game):-
 	getGameState(Game, GameState),
 	getBoard(Game, Board),
-
 	(
 		GameState == whiteVictorious -> clearConsole, printBoard(Board),
 			(write('# Game over. White player won, congratulations!'), nl);
@@ -400,6 +403,21 @@ updateGameState(Game, NextBoard, ContinueGame):-
 updateGameState(Game, NextBoard, ContinueGame):-
 	changeTurn(Game, NextBoard, ContinueGame).
 
+
+gameOver(Game, NextBoard, ContinueGame):-
+	kingOnLastRow('White', NextBoard),
+	kingOnLastRow('Black', NextBoard),
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, tie, GameMode],!.
+
+gameOver(Game, NextBoard, ContinueGame):-
+	kingOnLastRow('White', NextBoard),
+	bb_get(blackCanTieFlag, BlackCanTieFlag),
+	write(BlackCanTieFlag),
+	BlackCanTieFlag == 1,
+	getGameMode(Game, GameMode),
+	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
+
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	\+(blackCanTie(NextBoard)),
@@ -412,11 +430,6 @@ gameOver(Game, NextBoard, ContinueGame):-
 	ContinueGame = [NextBoard, blackVictorious, GameMode], !.
 
 %TODO: tecnically they can make other move besides the one that gives a draw. But then they lose
-gameOver(Game, NextBoard, ContinueGame):-
-	kingOnLastRow('White', NextBoard),
-	blackCanTie(NextBoard),
-	getGameMode(Game, GameMode),
-	ContinueGame = [NextBoard, tie, GameMode],!.
 
 kingOnLastRow(Color, Board):-
 	getPiece(Board, _, 8, 'King', Color).
@@ -425,21 +438,24 @@ blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	differentColors(Col, 7, Col, 8, Board, 0),
 	makeMove(Board, Col, 7, Col, 8, NextBoard),
-	checkForCheck(NextBoard).
+	checkForCheck(NextBoard),
+	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	NextCol is Col+1,
 	differentColors(Col, 7, NextCol, 8, Board,0),
 	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
-	checkForCheck(NextBoard).
+	checkForCheck(NextBoard),
+	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	LastCol is Col-1,
 	differentColors(Col, 7, LastCol, 8, Board,0),
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
-	checkForCheck(NextBoard).
+	checkForCheck(NextBoard),
+	bb_put(blackCanTieFlag, 1).
 
 changeTurn(Game, NextBoard, ContinueGame):-
 	getGameMode(Game, GameMode),
