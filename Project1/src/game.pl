@@ -202,7 +202,7 @@ validateOwnership(_, _, _):-
 
 
 validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
-	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Flag), !,
+	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getPieceName(Piece, PieceName),
@@ -211,11 +211,11 @@ validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
 	checkForCheck(TempBoard).
 
-differentPositions(SrcCol, SrcRow, DestCol, DestRow, _):-
+differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
 
-differentPositions(_, _, _, _, Flag):-
-	invalidMove(Flag).
+differentPositions(_, _, _, _, Board, Flag):-
+	invalidMove(Board, Flag).
 
 differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	getPiece(Board, SrcCol, SrcRow, PieceSrc),
@@ -224,17 +224,21 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	getPieceColor(PieceDest, ColorDest),
 	ColorSrc \== ColorDest.
 
-differentColors(_, _, _, _, _, Flag):-
-	invalidMove(Flag).
+differentColors(_, _, _, _, Board, Flag):-
+	invalidMove(Board, Flag).
 
 %TODO: clearConsole and PrintBoard on failure
-invalidMove(Flag):-
+invalidMove(Board, Flag):-
 	Flag == 1,
+	write('Invalid!'), nl,
+	clearConsole,
+	printBoard(Board),
 	write('Invalid Move!'), nl,
 	pressEnterToContinue, !,
 	fail.
 
 invalidMove(_):-
+	write('INVALID??'), nl,
 	fail.
 
 
@@ -370,8 +374,8 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board, _).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board, _).
 
-checkForJumping(_, _, _, _, _, _, Flag):-
-	invalidMove(Flag).
+checkForJumping(_, _, _, _, _, Board, Flag):-
+	invalidMove(Board, Flag).
 
 makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(Board, SrcCol, SrcRow, Piece),
