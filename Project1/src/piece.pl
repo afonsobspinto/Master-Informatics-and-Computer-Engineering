@@ -61,39 +61,39 @@ getPieceSymbol(Piece, Symbol):-
 
 %Basic Piece Movement
 
-validBasicMove(Board, 'King', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols < 2,
   DiffRows < 2.
 
-validBasicMove(Board, 'Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcCol == DestCol).
 validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcRow == DestRow).
 
-validBasicMove(Board, 'Bishop', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == DiffRows.
 
-validBasicMove(Board, 'Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == 2,
   DiffRows == 1.
 
-validBasicMove(Board, 'Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == 1,
   DiffRows == 2.
 
-validBasicMove(Board, 'Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcCol == DestCol).
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   (SrcRow == DestRow).
-validBasicMove(Board, 'Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
   DiffRows is abs(DestRow-SrcRow),
   DiffCols == DiffRows.

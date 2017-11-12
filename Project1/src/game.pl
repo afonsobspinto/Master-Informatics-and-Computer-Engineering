@@ -10,6 +10,7 @@ gameState(tie).
 
 %%% Game[Board, gameState, gameMode];
 
+
 createPvPGame(Game):-
 	initialBoard(Board),
 	Game = [Board, whiteToMove, pvp], !,
@@ -35,6 +36,7 @@ createCvCGame(Game):-
 		Game = [Board, whiteToMove, cvcBlack], !
 	),
 	bb_put(blackCanTieFlag, 0).
+
 
 getGameState(Game, GameState):-
 	nth0(1,Game, GameState).
@@ -131,12 +133,13 @@ humanTurn(Game, ContinueGame):-
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnershipWrapper(Board, Piece, GameState, 1),
+	validateOwnershipWrapper(Piece, GameState, 1),
 	getDestinyCoords(DestCol, DestRow),
 	convertToNumber(DestCol, DestColNumber),
 	validateMove(SrcColNumber, SrcRow, DestColNumber, DestRow, Board, 1),
 	makeMove(Board, SrcColNumber, SrcRow, DestColNumber, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
+
 
 somehowSmartBotTurn(Game, ContinueGame):-
 	getGameState(Game, GameState),
@@ -202,6 +205,7 @@ botTurn(Game, ContinueGame):-
 	),
 	ContinueGame = Game.
 
+
 %Game Cycle Random Bot
 botTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
@@ -210,7 +214,7 @@ botTurn(Game, ContinueGame):-
 	random(1, 9, SrcCol),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
-	validateOwnershipWrapper(Board, Piece, GameState, 0),
+	validateOwnershipWrapper(Piece, GameState, 0),
 	random(1, 9, DestRow),
 	random(1, 9, DestCol),
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0),
@@ -224,6 +228,7 @@ getInputCoords(SrcCol, SrcRow):-
 	getRowInt(SrcRow),
 	get_code(_).
 
+
 getSourceCoords(SrcCol,SrcRow):-
 	write('Coords of Piece To Move: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
@@ -232,48 +237,47 @@ getDestinyCoords(SrcCol,SrcRow):-
 	write('Coords of Piece New Position: '), nl,
 	getInputCoords(SrcCol, SrcRow), nl.
 
+
 	%Validation functions
 
-validateOwnershipWrapper(Board, Piece, GameState, Flag):-
- validateOwnership(Board, Piece, GameState, Flag), !.
+validateOwnershipWrapper(Piece, GameState, Flag):-
+ validateOwnership(Piece, GameState, Flag), !.
 
-validateOwnership(Board, Piece, GameState, _):-
+validateOwnership(Piece, GameState, _):-
 	GameState == whiteToMove,
 	getPieceColor(Piece, Color),
 	Color == 'White'.
 
-validateOwnership(Board, Piece, GameState, _):-
+validateOwnership(Piece, GameState, _):-
 	GameState == blackToMove,
 	getPieceColor(Piece, Color),
 	Color == 'Black'.
 
-validateOwnership(Board, _, _, Flag):-
+validateOwnership(_, _, Flag):-
 	Flag == 1,
-	clearConsole,
-	printBoard(Board),
 	write('Invalid Piece!'), nl,
 	pressEnterToContinue, !,
 	fail.
 
-validateOwnership(_, _, _, _):-
+validateOwnership(_, _, _):-
 	fail.
 
 
 validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
-	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
+	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Flag), !,
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getPieceName(Piece, PieceName),
-	validBasicMove(Board, PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
+	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
 	checkForCheck(TempBoard, Flag).
 
-differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+differentPositions(SrcCol, SrcRow, DestCol, DestRow, _):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
 
-differentPositions(_, _, _, _, Board, Flag):-
-	invalidMove(Board, Flag).
+differentPositions(_, _, _, _, Flag):-
+	invalidMove(Flag).
 
 differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	getPiece(Board, SrcCol, SrcRow, PieceSrc),
@@ -282,19 +286,20 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	getPieceColor(PieceDest, ColorDest),
 	ColorSrc \== ColorDest.
 
-differentColors(_, _, _, _, Board, Flag):-
-	invalidMove(Board, Flag).
+differentColors(_, _, _, _, _, Flag):-
+	invalidMove(Flag).
 
-invalidMove(Board, Flag):-
+%TODO: clearConsole and PrintBoard on failure
+invalidMove(Flag):-
 	Flag == 1,
-	clearConsole,
-	printBoard(Board),
 	write('Invalid Move!'), nl,
 	pressEnterToContinue, !,
 	fail.
 
-invalidMove(_, _):-
+invalidMove(_):-
 	fail.
+
+
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
@@ -427,8 +432,8 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board, _).
 checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board, _).
 
-checkForJumping(_, _, _, _, _, Board, Flag):-
-	invalidMove(Board, Flag).
+checkForJumping(_, _, _, _, _, _, Flag):-
+	invalidMove(Flag).
 
 makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	getPiece(Board, SrcCol, SrcRow, Piece),
@@ -448,13 +453,14 @@ checkForCheck(_ ,Flag ):-
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'Black',
-	validBasicMove(Board, PieceName, Col, Row, DestCol, DestRow, 0),
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
+
 
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	validBasicMove(Board, PieceName, Col, Row, DestCol, DestRow, 0),
+	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 updateGameState(Game, NextBoard, ContinueGame):-
@@ -514,7 +520,7 @@ blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	differentColors(Col, 7, Col, 8, Board, 0),
 	makeMove(Board, Col, 7, Col, 8, NextBoard),
-	checkForCheck(NextBoard, NextBoard, 0),      % Workaround
+	checkForCheck(NextBoard),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
@@ -522,7 +528,7 @@ blackCanTie(Board):-
 	NextCol is Col+1,
 	differentColors(Col, 7, NextCol, 8, Board,0),
 	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
-	checkForCheck(NextBoard, NextBoard, 0),
+	checkForCheck(NextBoard),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
@@ -530,7 +536,7 @@ blackCanTie(Board):-
 	LastCol is Col-1,
 	differentColors(Col, 7, LastCol, 8, Board,0),
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
-	checkForCheck(NextBoard, NextBoard, 0),
+	checkForCheck(NextBoard),
 	bb_put(blackCanTieFlag, 1).
 
 canMoveAnyPiece(Color, Board):-
