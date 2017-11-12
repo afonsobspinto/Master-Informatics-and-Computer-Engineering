@@ -69,7 +69,7 @@ getPieceValue('Bishop', Value):-
 	Value = 30.
 getPieceValue('Knight', Value):-
 	Value = 25.
-	
+
 %Basic Piece Movement
 
 validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-

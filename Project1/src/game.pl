@@ -112,11 +112,12 @@ showTurnBot(Game, ContinueGame):-
 
 printGameInfo(Game):-
 	getGameState(Game, GameState),
+	getBoard(Game, Board),
 	(
 		GameState == whiteToMove ->
-			(write('# White Player Turn '), nl, nl);
+			(write('# White Player Turn '), evaluatePosition('White', Board, Value), !, write(Value), nl, nl);
 		GameState == blackToMove ->
-			(write('# Black Player Turn '), nl, nl);
+			(write('# Black Player Turn '), evaluatePosition('Black', Board, Value), !, write(Value), nl, nl);
 		fail
 	).
 
@@ -295,7 +296,6 @@ invalidMove(Flag):-
 
 invalidMove(_):-
 	fail.
-
 
 
 checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
