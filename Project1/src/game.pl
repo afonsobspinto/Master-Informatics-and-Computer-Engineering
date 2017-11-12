@@ -54,17 +54,25 @@ playGame(Game):-
 	),
 	pressEnterToContinue, !.
 
+isItOver(Game):-
+	getGameState(Game, GameState),
+	(
+		GameState == whiteVictorious;
+		GameState == blackVictorious;
+		GameState == tie
+	),
+	
 %Game Manager
 playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhite ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), %TODO: EndGame if GameIsOver with this move
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), isItOver(ContinueGame) -> playGame(ContinueGame),
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlack -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), %TODO: RandomBot Opponent
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), isItOver(ContinueGame) -> playGame(ContinueGame),
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == cvcWhite -> (
