@@ -429,7 +429,6 @@ gameOver(Game, NextBoard, ContinueGame):-
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	bb_get(blackCanTieFlag, BlackCanTieFlag),
-	write(BlackCanTieFlag),
 	BlackCanTieFlag == 1,
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
@@ -474,11 +473,9 @@ blackCanTie(Board):-
 canMoveAnyPiece(Color, Board):-
 	getPiece(Board, Col, Row, PieceName, PieceColor),
 	PieceColor == Color,
-	write(PieceName), nl,
 	testAllCols(Col, Row, 1, Board).
 
 testAllCols(SrcCol, SrcRow, DestCol, Board):-
-	write(DestCol),
 	DestCol > 0,
 	DestCol < 9,
 	testAllRows(SrcCol, SrcRow, DestCol, 1, Board).
@@ -494,7 +491,6 @@ testAllCols(SrcCol, SrcRow, DestCol, Board):-
 testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DestRow > 0,
 	DestRow < 9,
-	write(DestCol), write(DestRow), nl,
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0).
 
 testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
