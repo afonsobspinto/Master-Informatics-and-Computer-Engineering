@@ -59,44 +59,55 @@ playGame(Game):-
 	),
 	pressEnterToContinue, !.
 
-%Game Manager
+%Game Manager %TODO:I
 playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
-		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
+		GameMode == pvp -> (showTurnHuman(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhiteSmart ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
+			showTurnHuman(Game, ContinueGame),
+			showTurnSmartBot(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlackSmart -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
+			showTurnSmartBot(Game, ContinueGame),
+			showTurnHuman(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == pvcWhiteRandom ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, botTurn(ContinueGame, BotContinueGame),
+			showTurnHuman(Game, ContinueGame),
+			showTurnBot(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlackRandom -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
+			showTurnBot(Game, ContinueGame),
+			showTurnHuman(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == cvcWhite -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
+			showTurnSmartBot(Game, ContinueGame),
+			showTurnBot(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == cvcBlack -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), isItOver(ContinueGame)->playGame(ContinueGame);
-			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, botTurn(ContinueGame, BotContinueGame),
+			showTurnBot(Game, ContinueGame),
+			showTurnSmartBot(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !)
 	).
 
-isItOver(Game):-
+isItOver(Game, Bool):-
 	getGameState(Game, GameState),
 	(
-		GameState == whiteVictorious;
-		GameState == blackVictorious;
-		GameState == tie
-	).
+	GameState == whiteVictorious;
+	GameState == blackVictorious;
+	GameState == tie
+	)
+
+
+showTurnHuman(Game, ContinueGame):-
+	getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame).
+
+showTurnSmartBot(Game, ContinueGame):-
+	getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame).
+
+showTurnBot(Game, ContinueGame):-
+	getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame).
+
 
 printGameInfo(Game):-
 	getGameState(Game, GameState),
@@ -255,7 +266,7 @@ validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	checkForCheck(TempBoard, Flag).
+	checkForCheck(TempBoard).
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow, _):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
@@ -425,15 +436,11 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
-checkForCheck(TempBoard, Flag):-
+checkForCheck(TempBoard):-
 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
 	\+(makePseudoMoves('Black', TempBoard, WhiteKingCol, WhiteKingRow)),
 	\+(makePseudoMoves('White', TempBoard, BlackKingCol, BlackKingRow)).
-
-checkForCheck(_, Flag):-
-	invalidMove(Flag),
-	fail.
 
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
