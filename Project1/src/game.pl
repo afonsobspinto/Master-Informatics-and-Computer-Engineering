@@ -66,20 +66,24 @@ playGame(Game):-
 		GameMode == pvp -> (showTurnHuman(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhiteSmart ->(
 			showTurnHuman(Game, ContinueGame),
-			showTurnSmartBot(ContinueGame, BotContinueGame),
-			playGame(BotContinueGame), !);
+			(isItOver(ContinueGame) -> playGame(ContinueGame)
+			; showTurnSmartBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
+			);
 		GameMode == pvcBlackSmart -> (
 			showTurnSmartBot(Game, ContinueGame),
-			showTurnHuman(ContinueGame, HumanContinueGame),
-			playGame(HumanContinueGame), !);
+			(isItOver(ContinueGame) -> playGame(ContinueGame)
+			; showTurnHuman(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
+			);
 		GameMode == pvcWhiteRandom ->(
 			showTurnHuman(Game, ContinueGame),
-			showTurnBot(ContinueGame, BotContinueGame),
-			playGame(BotContinueGame), !);
+			(isItOver(ContinueGame) -> playGame(ContinueGame)
+			; showTurnBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
+			);
 		GameMode == pvcBlackRandom -> (
 			showTurnBot(Game, ContinueGame),
-			showTurnHuman(ContinueGame, HumanContinueGame),
-			playGame(HumanContinueGame), !);
+			(isItOver(ContinueGame) -> playGame(ContinueGame)
+			; showTurnHuman(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
+			);
 		GameMode == cvcWhite -> (
 			showTurnSmartBot(Game, ContinueGame),
 			(isItOver(ContinueGame) -> playGame(ContinueGame)
