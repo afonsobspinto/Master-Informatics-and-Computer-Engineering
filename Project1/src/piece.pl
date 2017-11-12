@@ -59,7 +59,7 @@ getPieceSymbol(Piece, Symbol):-
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'none', getPieceColor(Piece, Color), Color == 'none', Symbol = '  '.
 
- getPieceValue('King', Value):-
+getPieceValue('King', Value):-
 	Value = 900.
 getPieceValue('Queen', Value):-
 	Value = 90.

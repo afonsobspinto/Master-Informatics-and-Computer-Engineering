@@ -78,11 +78,11 @@ printAboutMenu:-
   write('|                                                                |'),nl,
   write('|                                                                |'),nl,
   write('| The game is a variant of Chess, invented by Vernan R. Parton.  |'),nl,
-  write('| Adapted to PROLOG by Afonso Pinto and Tom�s Oliveira.          |'),nl,
+  write('| Adapted to PROLOG by Afonso Pinto and Tomas Oliveira.          |'),nl,
   write('|                                                                |'),nl,
   write('| 1. Back                                                        |'),nl,
   write('|                                                                |'),nl,
-  write('|_______________________________________________________________ |'),nl,
+  write('|________________________________________________________________|'),nl,
   nl, nl.
 
 gameMenu:-
