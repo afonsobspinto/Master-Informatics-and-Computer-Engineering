@@ -12,7 +12,7 @@ gameState(tie).
 
 
 createPvPGame(Game):-
-	stalemateBoard(Board),
+	initialBoard(Board),
 	Game = [Board, whiteToMove, pvp], !,
 	bb_put(blackCanTieFlag, 0).
 
