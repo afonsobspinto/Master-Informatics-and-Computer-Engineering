@@ -28,13 +28,13 @@ getPieceName(Piece, Name):-
 
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'King', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wK'.
-  
+
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Queen', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wQ'.
 
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Rook', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wR'.
-  
+
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Bishop', getPieceColor(Piece, Color), Color == 'White', Symbol = 'wB'.
 
@@ -43,22 +43,22 @@ getPieceSymbol(Piece, Symbol):-
 
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'King', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bK'.
-  
+
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Queen', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bQ'.
 
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Rook', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bR'.
-  
+
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'Bishop', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bB'.
 
 getPieceSymbol(Piece, Symbol):-
-  getPieceName(Piece,Name), Name == 'Knight', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bN'. 
+  getPieceName(Piece,Name), Name == 'Knight', getPieceColor(Piece, Color), Color == 'Black', Symbol = 'bN'.
 
 getPieceSymbol(Piece, Symbol):-
-  getPieceName(Piece,Name), Name == 'none', getPieceColor(Piece, Color), Color == 'none', Symbol = '  '. 
-  
+  getPieceName(Piece,Name), Name == 'none', getPieceColor(Piece, Color), Color == 'none', Symbol = '  '.
+
 %Basic Piece Movement
 
 validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-
@@ -99,4 +99,4 @@ validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols == DiffRows.
 
 validBasicMove(_, _, _, _, _, Flag):-
-invalidMove(Flag).
+	invalidMove(Flag).
