@@ -113,11 +113,13 @@ showTurnBot(Game, ContinueGame):-
 printGameInfo(Game):-
 	getGameState(Game, GameState),
 	getBoard(Game, Board),
+	evaluatePosition('White', Board, WhiteValue), !,
+	evaluatePosition('Black', Board, BlackValue), !,
 	(
 		GameState == whiteToMove ->
-			(write('# White Player Turn '), evaluatePosition('White', Board, Value), !, nl, write('# Position Strength: '), write(Value), nl, nl);
+			(write('# White Player Turn '), WhiteNewValue is (WhiteValue+10), nl, write('# Position strength: '), PositionStrength is (WhiteNewValue-BlackValue), write(PositionStrength), nl, nl);
 		GameState == blackToMove ->
-			(write('# Black Player Turn '), evaluatePosition('Black', Board, Value), !, nl, write('# Position Strength: '), write(Value), nl, nl);
+			(write('# Black Player Turn '), BlackNewValue is (BlackValue+10), nl, write('# Position strength: '), PositionStrength is (WhiteValue-BlackNewValue), write(PositionStrength), nl, nl);
 		fail
 	).
 
