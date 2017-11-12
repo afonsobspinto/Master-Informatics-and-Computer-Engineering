@@ -80,20 +80,22 @@ playGame(Game):-
 			playGame(HumanContinueGame), !);
 		GameMode == cvcWhite -> (
 			showTurnSmartBot(Game, ContinueGame),
-			showTurnBot(ContinueGame, BotContinueGame),
-			playGame(BotContinueGame), !);
+			(isItOver(ContinueGame) -> playGame(ContinueGame)
+			; showTurnBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
+			);
 		GameMode == cvcBlack -> (
-			showTurnBot(Game, ContinueGame),
-			showTurnSmartBot(ContinueGame, BotContinueGame),
-			playGame(BotContinueGame), !)
+		showTurnBot(Game, ContinueGame),
+		(isItOver(ContinueGame) -> playGame(ContinueGame)
+		; showTurnSmartBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
+		)
 	).
 
-isItOver(Game, Bool):-
+isItOver(Game):-
 	getGameState(Game, GameState),
 	(
-	GameState == whiteVictorious;
-	GameState == blackVictorious;
-	GameState == tie
+		GameState == whiteVictorious;
+		GameState == blackVictorious;
+		GameState == tie
 	).
 
 
@@ -139,7 +141,6 @@ somehowSmartBotTurn(Game, ContinueGame):-
 	GameState == blackVictorious;
 	GameState == tie
 	),
-	write(GameState),
 	ContinueGame = Game.
 
 	%Game Cycle Smart Bot - tries somehow Smart move
@@ -458,6 +459,7 @@ updateGameState(Game, NextBoard, ContinueGame):-
 updateGameState(Game, NextBoard, ContinueGame):-
 	changeTurn(Game, NextBoard, ContinueGame).
 
+%Stalemate Black
 gameOver(Game, NextBoard, ContinueGame):-
 	getGameState(Game, GameState),
 	GameState == whiteToMove,
@@ -465,6 +467,7 @@ gameOver(Game, NextBoard, ContinueGame):-
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
+%Stalemate White
 gameOver(Game, NextBoard, ContinueGame):-
 	getGameState(Game, GameState),
 	GameState == blackToMove,
@@ -472,12 +475,14 @@ gameOver(Game, NextBoard, ContinueGame):-
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
+%Tie
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	kingOnLastRow('Black', NextBoard),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
+%WhiteWins black could have tied
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	bb_get(blackCanTieFlag, BlackCanTieFlag),
@@ -485,12 +490,14 @@ gameOver(Game, NextBoard, ContinueGame):-
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
 
+%WhiteWins Black can't tie
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('White', NextBoard),
 	\+(blackCanTie(NextBoard)),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
 
+%BlackWins
 gameOver(Game, NextBoard, ContinueGame):-
 	kingOnLastRow('Black', NextBoard),
 	getGameMode(Game, GameMode),
