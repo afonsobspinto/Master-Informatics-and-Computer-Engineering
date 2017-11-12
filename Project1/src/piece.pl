@@ -59,6 +59,17 @@ getPieceSymbol(Piece, Symbol):-
 getPieceSymbol(Piece, Symbol):-
   getPieceName(Piece,Name), Name == 'none', getPieceColor(Piece, Color), Color == 'none', Symbol = '  '.
 
+ getPieceValue('King', Value):-
+	Value = 900.
+getPieceValue('Queen', Value):-
+	Value = 90.
+getPieceValue('Rook', Value):-
+	Value = 50.
+getPieceValue('Bishop', Value):-
+	Value = 30.
+getPieceValue('Knight', Value):-
+	Value = 25.
+	
 %Basic Piece Movement
 
 validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-

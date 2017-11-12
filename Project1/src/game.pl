@@ -576,3 +576,35 @@ changeTurn(Game, NextBoard, ContinueGame):-
 		NextGameState = whiteToMove
 	),
 	ContinueGame = [NextBoard, NextGameState, GameMode], !.
+
+evaluatePosition(Color, Board, Value):-
+	evaluatePositionCols(Color, Board, 1, 0, Value).
+
+evaluatePositionCols(_, _, Col, InitialValue, Value):-
+	Col == 9,
+	Value is InitialValue.
+
+evaluatePositionCols(Color, Board, Col, InitialValue, Value):-
+	Col > 0,
+	Col < 9,
+	evaluatePositionRows(Color, Board, Col, 1, InitialValue, TempValue),
+	NextCol is Col + 1,
+	evaluatePositionCols(Color, Board, NextCol, TempValue, Value).
+
+evaluatePositionRows(_, _, _, Row, InitialValue,  Value):-
+	Row == 9,
+	Value is InitialValue.
+
+evaluatePositionRows(Color, Board, Col, Row, InitialValue, Value):-
+	Row > 0,
+	Row < 9,
+	getPiece(Board, Col, Row, PieceName, PieceColor),
+	PieceColor == Color,
+	getPieceValue(PieceName, PieceValue),
+	NextValue is InitialValue + PieceValue,
+	NextRow is Row + 1,
+	evaluatePositionRows(Color, Board, Col, NextRow, NextValue, Value).
+
+evaluatePositionRows(Color, Board, Col, Row, InitialValue, Value):-
+	NextRow is Row + 1,
+	evaluatePositionRows(Color, Board, Col, NextRow, InitialValue, Value).
