@@ -10,7 +10,6 @@
 
 :- use_module(library(lists)).
 :- use_module(library(random)).
-:- use_module(library(system)).
 
 %TODO: Remove Warnings
 racingKings:-
