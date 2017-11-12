@@ -94,7 +94,7 @@ isItOver(Game, Bool):-
 	GameState == whiteVictorious;
 	GameState == blackVictorious;
 	GameState == tie
-	)
+	).
 
 
 showTurnHuman(Game, ContinueGame):-
@@ -262,7 +262,7 @@ validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	validBasicMove(Board, PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
-	checkForCheck(TempBoard).
+	checkForCheck(TempBoard, Flag).
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow =\= DestRow ; SrcCol =\= DestCol.
@@ -431,11 +431,14 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(Board, SrcCol, SrcRow, NonePiece, TempTempBoard),
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
-checkForCheck(TempBoard):-
+checkForCheck(TempBoard, _):-
 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
 	\+(makePseudoMoves('Black', TempBoard, WhiteKingCol, WhiteKingRow)),
 	\+(makePseudoMoves('White', TempBoard, BlackKingCol, BlackKingRow)).
+
+checkForCheck(_ ,Flag ):-
+	invalidMove(Flag).
 
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
