@@ -59,30 +59,29 @@ playGame(Game):-
 	),
 	pressEnterToContinue, !.
 
-%Game Manager %TODO:I
 playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
-		GameMode == pvp -> (showTurnHuman(Game, ContinueGame), playGame(ContinueGame), !);
+		GameMode == pvp -> (humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhiteSmart ->(
-			showTurnHuman(Game, ContinueGame),
+			humanTurn(Game, ContinueGame),
 			(isItOver(ContinueGame) -> playGame(ContinueGame)
 			; showTurnSmartBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
 			);
 		GameMode == pvcBlackSmart -> (
 			showTurnSmartBot(Game, ContinueGame),
 			(isItOver(ContinueGame) -> playGame(ContinueGame)
-			; showTurnHuman(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
+			; humanTurn(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
 			);
 		GameMode == pvcWhiteRandom ->(
-			showTurnHuman(Game, ContinueGame),
+			humanTurn(Game, ContinueGame),
 			(isItOver(ContinueGame) -> playGame(ContinueGame)
 			; showTurnBot(ContinueGame, BotContinueGame), playGame(BotContinueGame), !)
 			);
 		GameMode == pvcBlackRandom -> (
 			showTurnBot(Game, ContinueGame),
 			(isItOver(ContinueGame) -> playGame(ContinueGame)
-			; showTurnHuman(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
+			; humanTurn(ContinueGame, HumanContinueGame), playGame(HumanContinueGame), !)
 			);
 		GameMode == cvcWhite -> (
 			showTurnSmartBot(Game, ContinueGame),
@@ -104,10 +103,6 @@ isItOver(Game):-
 		GameState == tie
 	).
 
-
-showTurnHuman(Game, ContinueGame):-
-	getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame).
-
 showTurnSmartBot(Game, ContinueGame):-
 	getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame).
 
@@ -128,8 +123,10 @@ printGameInfo(Game):-
 %Game Cycle Human
 humanTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
-	bb_put(boardGlobal, Board),
 	repeat,
+	clearConsole,
+	printBoard(Board),
+	printGameInfo(Game),
 	getSourceCoords(SrcCol, SrcRow),
 	convertToNumber(SrcCol, SrcColNumber),
 	getPiece(Board, SrcColNumber, SrcRow, Piece),
@@ -258,9 +255,6 @@ validateOwnership(_, _, Flag):-
 	Flag == 1,
 	write('Invalid Piece!'), nl,
 	pressEnterToContinue, !,
-	bb_get(boardGlobal, Board),
-	clearConsole,
-	printBoard(Board),
 	fail.
 
 validateOwnership(_, _, _):-
@@ -293,14 +287,10 @@ differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 differentColors(_, _, _, _, _, Flag):-
 	invalidMove(Flag).
 
-%TODO: clearConsole and PrintBoard on failure
 invalidMove(Flag):-
 	Flag == 1,
 	write('Invalid Move!'), nl,
 	pressEnterToContinue, !,
-	bb_get(boardGlobal, Board),
-	clearConsole,
-	printBoard(Board),
 	fail.
 
 invalidMove(_):-

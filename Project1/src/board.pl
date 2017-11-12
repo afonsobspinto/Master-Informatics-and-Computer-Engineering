@@ -53,6 +53,7 @@ printBoard([Line|[]],[RowsIDTail|[]]):-
 	printBoard([],[]).
 
 printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
+	BoardTail \= [],
 	write(RowsIDHead), write('|'),
 	printLine(Line), nl,
 	write('   |      |      |      |      |      |      |      |      |'), nl,
