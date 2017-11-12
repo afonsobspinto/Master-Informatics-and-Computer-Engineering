@@ -121,18 +121,41 @@ somehowSmartBotTurn(Game, ContinueGame):-
 		getPiece(Board, SrcCol, SrcRow, 'King', 'Black')
 	),
 	DestRow is SrcRow + 1,
-	(
-		%TODO: Make this tries in a random order
-		(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
-		(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
-		(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
-	),
+	random(0,3,Move),
+	somehowSmartMove(Move, SrcCol, SrcRow, DestCol, DestRow, Board),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
 
 %Game Cycle Smart Bot - tries Random move
 somehowSmartBotTurn(Game, ContinueGame):-
 	botTurn(Game, ContinueGame).
+
+
+somehowSmartMove(Move, SrcCol, SrcRow, DestCol, DestRow, Board):-
+	Move == 0,
+	(
+	(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
+	).
+
+somehowSmartMove(Move, SrcCol, SrcRow, DestCol, DestRow, Board):-
+	Move == 1,
+	(
+	(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
+	).
+
+somehowSmartMove(Move, SrcCol, SrcRow, DestCol, DestRow, Board):-
+	Move == 2,
+	(
+	(DestCol is SrcCol - 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol + 1, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0));
+	(DestCol is SrcCol, validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0))
+	).
+
+
 
 %Check if Game as over in the first Play
 botTurn(Game, ContinueGame):-
