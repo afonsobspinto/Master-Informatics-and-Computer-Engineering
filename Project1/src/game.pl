@@ -205,7 +205,7 @@ validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getPieceName(Piece, PieceName),
-	validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
+	validBasicMove(Board, PieceName, SrcCol, SrcRow, DestCol, DestRow, Flag), !,
 	checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard), !,
 	checkForCheck(Board, TempBoard, Flag).
@@ -390,13 +390,13 @@ checkForCheck(Board, TempBoard, Flag):-
 makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'Black',
-	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
+	validBasicMove(Board, PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 makePseudoMoves('White', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
 	PieceColor == 'White',
-	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
+	validBasicMove(Board, PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 updateGameState(Game, NextBoard, ContinueGame):-
