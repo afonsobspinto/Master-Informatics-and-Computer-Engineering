@@ -11,7 +11,7 @@ gameState(tie).
 %%% Game[Board, gameState, gameMode];
 
 createPvPGame(Game):-
-	stalemateBoard(Board),
+	initialBoard(Board),
 	Game = [Board, whiteToMove, pvp], !,
 	bb_put(blackCanTieFlag, 0).
 
@@ -60,7 +60,7 @@ playGame(Game):-
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
 		GameMode == pvcWhite ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame),
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), %TODO: EndGame if GameIsOver with this move
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
 		GameMode == pvcBlack -> (
@@ -199,6 +199,7 @@ validateOwnership(Board, _, _, Flag):-
 
 validateOwnership(_, _, _, _):-
 	fail.
+
 
 validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	differentPositions(SrcCol, SrcRow, DestCol, DestRow, Board, Flag), !,
