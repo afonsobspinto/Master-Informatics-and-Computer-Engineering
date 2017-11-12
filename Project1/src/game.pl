@@ -18,9 +18,12 @@ createPvPGame(Game):-
 createPvCGame(Game):-
 	initialBoard(Board),
 	random(0,2,Color),
+	random(0,2,Bot),
 	(
-		Color == 0, Game = [Board, whiteToMove, pvcWhite], !;
-		Game = [Board, whiteToMove, pvcBlack], !
+		Color == 0, Bot == 0, Game = [Board, whiteToMove, pvcWhiteRandom], !;
+		Color == 0, Bot == 1, Game = [Board, whiteToMove, pvcWhiteSmart], !;
+		Color == 1, Bot == 0, Game = [Board, whiteToMove, pvcBlackRandom], !;
+		Game = [Board, whiteToMove, pvcBlackSmart], !
 	),
 	bb_put(blackCanTieFlag, 0).
 
@@ -67,12 +70,20 @@ playGame(Game):-
 	getGameMode(Game, GameMode),
 	(
 		GameMode == pvp -> (getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), playGame(ContinueGame), !);
-		GameMode == pvcWhite ->(
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), isItOver(ContinueGame) -> playGame(ContinueGame),
+		GameMode == pvcWhiteSmart ->(
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame), %TODO: EndGame if GameIsOver with this move
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, somehowSmartBotTurn(ContinueGame, BotContinueGame),
 			playGame(BotContinueGame), !);
-		GameMode == pvcBlack -> (
-			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame), isItOver(ContinueGame) -> playGame(ContinueGame),
+		GameMode == pvcBlackSmart -> (
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, somehowSmartBotTurn(Game, ContinueGame),
+			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
+			playGame(HumanContinueGame), !);
+		GameMode == pvcWhiteRandom ->(
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), humanTurn(Game, ContinueGame),
+			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), nl,nl, pressEnterToContinue, botTurn(ContinueGame, BotContinueGame),
+			playGame(BotContinueGame), !);
+		GameMode == pvcBlackRandom -> (
+			getBoard(Game, Board), clearConsole, printBoard(Board), printGameInfo(Game), nl,nl, pressEnterToContinue, botTurn(Game, ContinueGame),
 			getBoard(ContinueGame, ContinueBoard), clearConsole, printBoard(ContinueBoard), printGameInfo(ContinueGame), humanTurn(ContinueGame, HumanContinueGame),
 			playGame(HumanContinueGame), !);
 		GameMode == cvcWhite -> (
