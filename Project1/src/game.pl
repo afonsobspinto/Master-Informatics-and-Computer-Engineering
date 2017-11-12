@@ -115,9 +115,9 @@ printGameInfo(Game):-
 	getBoard(Game, Board),
 	(
 		GameState == whiteToMove ->
-			(write('# White Player Turn '), evaluatePosition('White', Board, Value), !, write(Value), nl, nl);
+			(write('# White Player Turn '), evaluatePosition('White', Board, Value), !, nl, write('# Position Strength: '), write(Value), nl, nl);
 		GameState == blackToMove ->
-			(write('# Black Player Turn '), evaluatePosition('Black', Board, Value), !, write(Value), nl, nl);
+			(write('# Black Player Turn '), evaluatePosition('Black', Board, Value), !, nl, write('# Position Strength: '), write(Value), nl, nl);
 		fail
 	).
 
@@ -601,7 +601,7 @@ evaluatePositionRows(Color, Board, Col, Row, InitialValue, Value):-
 	getPiece(Board, Col, Row, PieceName, PieceColor),
 	PieceColor == Color,
 	getPieceValue(PieceName, PieceValue),
-	NextValue is InitialValue + PieceValue,
+	(PieceName == 'King' -> (NextValue is InitialValue + PieceValue + 100 * Row); (NextValue is InitialValue + PieceValue)),
 	NextRow is Row + 1,
 	evaluatePositionRows(Color, Board, Col, NextRow, NextValue, Value).
 
