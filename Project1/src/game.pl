@@ -128,6 +128,7 @@ printGameInfo(Game):-
 %Game Cycle Human
 humanTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
+	bb_put(boardGlobal, Board),
 	repeat,
 	getSourceCoords(SrcCol, SrcRow),
 	convertToNumber(SrcCol, SrcColNumber),
@@ -257,6 +258,9 @@ validateOwnership(_, _, Flag):-
 	Flag == 1,
 	write('Invalid Piece!'), nl,
 	pressEnterToContinue, !,
+	bb_get(boardGlobal, Board),
+	clearConsole,
+	printBoard(Board),
 	fail.
 
 validateOwnership(_, _, _):-
@@ -294,6 +298,9 @@ invalidMove(Flag):-
 	Flag == 1,
 	write('Invalid Move!'), nl,
 	pressEnterToContinue, !,
+	bb_get(boardGlobal, Board),
+	clearConsole,
+	printBoard(Board),
 	fail.
 
 invalidMove(_):-
@@ -429,8 +436,8 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
-checkForJumping('King', SrcCol, SrcRow, DestCol, DestRow, Board, _).
-checkForJumping('Knight', SrcCol, SrcRow, DestCol, DestRow, Board, _).
+checkForJumping('King', _, _, _, _, _, _).
+checkForJumping('Knight', _, _, _, _, _, _).
 
 checkForJumping(_, _, _, _, _, _, Flag):-
 	invalidMove(Flag).
@@ -540,7 +547,7 @@ blackCanTie(Board):-
 	bb_put(blackCanTieFlag, 1).
 
 canMoveAnyPiece(Color, Board):-
-	getPiece(Board, Col, Row, PieceName, PieceColor),
+	getPiece(Board, Col, Row, _, PieceColor),
 	PieceColor == Color,
 	testAllCols(Col, Row, 1, Board).
 
@@ -549,7 +556,7 @@ testAllCols(SrcCol, SrcRow, DestCol, Board):-
 	DestCol < 9,
 	testAllRows(SrcCol, SrcRow, DestCol, 1, Board).
 
-testAllCols(SrcCol, SrcRow, DestCol, Board):-
+testAllCols(_, _, DestCol, _):-
 	DestCol == 9, !,
 	fail.
 
@@ -562,7 +569,7 @@ testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
 	DestRow < 9,
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0).
 
-testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
+testAllRows(_, _, _, DestRow, _):-
 	DestRow == 9, !,
 	fail.
 

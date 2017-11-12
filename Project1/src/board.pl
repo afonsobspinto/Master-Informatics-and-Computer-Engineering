@@ -34,14 +34,16 @@ initialBoard(Board):-
 
 %TODO: Colors
 
-printBoard([],[]):-
-	printColumnIDs, nl, nl.
+
 
 printBoard(Board):-
 	rowIDsList(RowIDs),
 	write('    _______________________________________________________'), nl,
 	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(Board, RowIDs).
+
+printBoard([],[]):-
+		printColumnIDs, nl, nl.
 
 printBoard([Line|[]],[RowsIDTail|[]]):-
 	write(RowsIDTail), write('|'),
@@ -58,13 +60,11 @@ printBoard([Line|BoardTail], [RowsIDHead|RowsIDTail]) :-
 	write('   |      |      |      |      |      |      |      |      |'), nl,
 	printBoard(BoardTail,RowsIDTail).
 
-
 printLine([]).
 printLine([Piece|LineTail]):-
 	getPieceSymbol(Piece, Symbol),
 	write('  '), write(Symbol), write('  |'),
 	printLine(LineTail).
-
 
 printColumnIDs:-
 	write('       a      b      c      d      e      f      g      h').
@@ -115,7 +115,7 @@ setCol(Pos, [Element|Tail], Piece, [Element|NewTail]):-
 
 %Validation Helper functions
 
-findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
+findPieceOnCol(_, LowRow, HighRow, _):-
 	NextRow is (LowRow+1),
 	NextRow == HighRow.
 
@@ -126,7 +126,7 @@ findPieceOnCol(SrcCol, LowRow, HighRow, Board):-
 	Name == 'none',
 	findPieceOnCol(SrcCol, NextRow, HighRow, Board).
 
-findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
+findPieceOnRow(_, LowCol, HighCol, _):-
 	NextCol is (LowCol+1),
 	NextCol == HighCol.
 
@@ -137,7 +137,7 @@ findPieceOnRow(SrcRow, LowCol, HighCol, Board):-
 	Name == 'none',
 	findPieceOnRow(SrcRow, NextCol, HighCol, Board).
 
-findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
+findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, _):-
 	LowRow == HighRow,
 	LowCol == HighCol.
 
@@ -149,7 +149,7 @@ findPieceOnDiagonalLeft(LowRow, HighCol, HighRow, LowCol, Board):-
 	NextCol is (HighCol-1),
 	findPieceOnDiagonalLeft(NextRow, NextCol, HighRow, LowCol, Board).
 
-findPieceOnDiagonalRight(LowRow, LowCol, HighRow, HighCol, Board):-
+findPieceOnDiagonalRight(LowRow, LowCol, HighRow, HighCol, _):-
 	LowRow == HighRow,
 	LowCol == HighCol.
 

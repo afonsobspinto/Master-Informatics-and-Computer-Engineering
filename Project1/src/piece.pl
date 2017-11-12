@@ -67,9 +67,9 @@ validBasicMove('King', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols < 2,
   DiffRows < 2.
 
-validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Rook', SrcCol, _, DestCol, _, _):-
   (SrcCol == DestCol).
-validBasicMove('Rook', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Rook', _, SrcRow, _, DestRow, _):-
   (SrcRow == DestRow).
 
 validBasicMove('Bishop', SrcCol, SrcRow, DestCol, DestRow, _):-
@@ -89,9 +89,9 @@ validBasicMove('Knight', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols == 1,
   DiffRows == 2.
 
-validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Queen', SrcCol, _, DestCol, _, _):-
   (SrcCol == DestCol).
-validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
+validBasicMove('Queen', _, SrcRow, _, DestRow, _):-
   (SrcRow == DestRow).
 validBasicMove('Queen', SrcCol, SrcRow, DestCol, DestRow, _):-
   DiffCols is abs(DestCol-SrcCol),
