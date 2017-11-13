@@ -519,7 +519,7 @@ blackCanTie(Board):-
 	getPiece(Board, Col, 7, 'King', 'Black'),
 	differentColors(Col, 7, Col, 8, Board, 0),
 	makeMove(Board, Col, 7, Col, 8, NextBoard),
-	checkForCheck(NextBoard),
+	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
@@ -527,7 +527,7 @@ blackCanTie(Board):-
 	NextCol is Col+1,
 	differentColors(Col, 7, NextCol, 8, Board,0),
 	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
-	checkForCheck(NextBoard),
+	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
@@ -535,7 +535,7 @@ blackCanTie(Board):-
 	LastCol is Col-1,
 	differentColors(Col, 7, LastCol, 8, Board,0),
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
-	checkForCheck(NextBoard),
+	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 canMoveAnyPiece(Color, Board):-
