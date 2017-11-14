@@ -31,8 +31,5 @@ CircularAnimation.prototype.update = function(currentTime) {
 	this.scene.translate(x + this.center.x, this.center.y, z + this.center.z);
     this.scene.rotate(this.initialAngle + this.currentAngle, 0, 1, 0);
     this.scene.rotate(Math.PI / 2, 0, 1, 0);
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
+
