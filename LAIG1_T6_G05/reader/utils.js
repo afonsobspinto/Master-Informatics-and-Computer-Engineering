@@ -13,6 +13,10 @@ var distanceBetweenVertex = function(vertexA, vertexB) {
     return  Math.sqrt(Math.pow(vertexB.x-vertexA.x, 2) + Math.pow(vertexB.y-vertexA.y, 2) + Math.pow(vertexB.z-vertexA.z, 2));
 }
 
+var middlePoint = function(vertexA, vertexB){
+	
+	return new Vector3((vertexB.x-vertexA.x)/2.0, (vertexB.y-vertexA.y)/2.0, (vertexB.z-vertexA.z)/2.0);
+}
 
 var normalizeVector = function (vertex) {
     var length = (Math.sqrt(Math.pow(vertex.x, 2) + Math.pow(vertex.y,2)+ Math.pow(vertex.z,2)));

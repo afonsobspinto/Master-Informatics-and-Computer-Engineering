@@ -20,8 +20,8 @@ CircularAnimation.prototype.update = function(currentTime) {
 	var delta, t;
 	var x, y, z;
 	
-	delta = (lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
-	lastCurrentTime = currentTime;
+	delta = (this.lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
+	this.lastCurrentTime = currentTime;
 	
 	this.currentAngle = this.rotationAngle * currentTime;
 	

@@ -32,8 +32,8 @@ LinearAnimation.prototype.update = function(currentTime) { //TODO: ADD CASO BASE
 	var delta, t;
 	var x, y, z;
 	
-	delta = (lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
-	lastCurrentTime = currentTime;
+	delta = (this.lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
+	this.lastCurrentTime = currentTime;
 	
 	this.accumulatedDistance += this.vel * delta;
 	if(this.accumulatedDistance > this.distances[this.currentControlPoint]){
