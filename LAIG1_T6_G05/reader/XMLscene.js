@@ -10,6 +10,8 @@ function XMLscene(interface) {
     this.interface = interface;
 
     this.lightValues = {};
+
+
 }
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -29,6 +31,8 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+
+    this.setUpdatePeriod(10); //milliseconds
 
     this.axis = new CGFaxis(this);
 }
@@ -152,5 +156,19 @@ XMLscene.prototype.display = function() {
     this.popMatrix();
 
     // ---- END Background, camera and axis setup
+
+}
+
+
+/**
+ * Updates the scene.
+ */
+XMLscene.prototype.update = function(currTime) {
+
+    if(this.graph.loadedOk){
+        for(var animationID in this.graph.animations){
+            this.graph.animations[animationID].update(currTime);
+        }
+    }
 
 }
