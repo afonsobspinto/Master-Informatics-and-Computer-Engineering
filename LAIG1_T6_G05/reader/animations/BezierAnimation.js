@@ -1,6 +1,6 @@
-function BezierAnimation(scene, id, bezierPoints, vel) {
+function BezierAnimation(id, bezierPoints, vel) {
   
-  Animation.call(this, scene, id);
+  Animation.call(this, id);
   
   this.p1 = bezierPoints[0];
   this.p2 = bezierPoints[1];
@@ -28,12 +28,12 @@ BezierAnimation.prototype.update = function(currentTime) {
 	delta = (this.lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
 	this.lastCurrentTime = currentTime;
 
-	totalDistance = this.calculateDistance(this.p1,this.p2,this.p3,this.p4);
+	totalDistance = this.calculateDistance();
 	t = this.vel/totalDistance;
 	s = delta/t;
 	
-	Q = this.bezier(s,p1,p2,p3,p4);
-	Qs = this.bezierDerivate(s,p1,p2,p3,p4);
+	Q = this.bezier(s);
+	Qs = this.bezierDerivate(s);
 	
 	this.currentAngle = Math.atan2(Qs.z, Qs.x);
 }
@@ -42,10 +42,10 @@ BezierAnimation.prototype.calculateAngle = function(point1, point2) {
 	return Math.atan2((point2.x - point1.x), (point2.z - point1.z));
 }
 
-BezierAnimation.prototype.bezier = function(s, p1, p2, p3, p4){
+BezierAnimation.prototype.bezier = function(s){
 	var x, y, z;
 	
-	x = Math.pow((1-s), 3) * this.p1.x + 
+	x = Math.pow((1-s), 3) * this.p1.x +
             3*s* Math.pow((1-s), 2) * this.p2.x + 
             3*s*s* (1-s) * this.p3.x + 
             s*s*s* this.p4.x;
@@ -64,7 +64,7 @@ BezierAnimation.prototype.bezier = function(s, p1, p2, p3, p4){
 	return res;
 }
 
-BezierAnimation.prototype.bezierDerivate = function(s, p1, p2, p3, p4){
+BezierAnimation.prototype.bezierDerivate = function(s){
 	var x, y, z;
 	
 	x = -3*Math.pow((1-s), 2) * this.p1.x + 
@@ -86,16 +86,19 @@ BezierAnimation.prototype.bezierDerivate = function(s, p1, p2, p3, p4){
 	return res;
 }
 
-BezierAnimation.prototype.calculateDistance = function(p1,p2,p3,p4){
+BezierAnimation.prototype.calculateDistance = function(){
 	var p12, p123, p23, p234, p34;
 	
-	p12 = middlePoint(p1,p2);
-	p23 = middlePoint(p2,p3);
-	p34 = middlePoint(p3,p4);
+	p12 = middlePoint(this.p1,this.p2);
+	p23 = middlePoint(this.p2,this.p3);
+	p34 = middlePoint(this.p3,this.p4);
 	p123 = middlePoint(p12,p23);
 	p234 = middlePoint(p23,p34);
 	
-	return (distanceBetweenVertex(p1,p12) + distanceBetweenVertex(p12,p123) + 
+	return (distanceBetweenVertex(this.p1,p12) + distanceBetweenVertex(p12,p123) +
 			distanceBetweenVertex(p123,p234) + distanceBetweenVertex(p23, p34) +
-			distanceBetweenVertex(p34,p4));
+			distanceBetweenVertex(p34,this.p4));
 }
+
+BezierAnimation.prototype.getCurrentPosition = function() { };
+BezierAnimation.prototype.getCurrentAngle = function() { };

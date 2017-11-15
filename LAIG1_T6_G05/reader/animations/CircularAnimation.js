@@ -1,6 +1,6 @@
-function CircularAnimation(scene, id, center, radius, initialAngle, rotationAngle, vel) {
+function CircularAnimation(id, center, radius, initialAngle, rotationAngle, vel) {
   
-  Animation.call(this, scene, id);
+  Animation.call(this, id);
   
   this.center = center;
   this.radius = radius;
@@ -28,8 +28,11 @@ CircularAnimation.prototype.update = function(currentTime) {
 	x = this.radius * Math.sin(this.initialAngle + this.currentAngle);
     z = this.radius * Math.cos(this.initialAngle + this.currentAngle);
 	
-	this.scene.translate(x + this.center.x, this.center.y, z + this.center.z);
+/*	this.scene.translate(x + this.center.x, this.center.y, z + this.center.z);
     this.scene.rotate(this.initialAngle + this.currentAngle, 0, 1, 0);
-    this.scene.rotate(Math.PI / 2, 0, 1, 0);
+    this.scene.rotate(Math.PI / 2, 0, 1, 0);*/
 }
 
+
+CircularAnimation.prototype.getCurrentPosition = function() { };
+CircularAnimation.prototype.getCurrentAngle = function() { };
