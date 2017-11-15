@@ -1317,7 +1317,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
             var specsNames = [];
-            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS"];
+            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS", "ANIMATIONREFS"];
             for (var j = 0; j < nodeSpecs.length; j++) {
                 var name = nodeSpecs[j].nodeName;
                 specsNames.push(nodeSpecs[j].nodeName);
@@ -1336,6 +1336,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "unable to parse material ID (node ID = " + nodeID + ")";
             if (materialID != "null" && this.materials[materialID] == null )
                 return "ID does not correspond to a valid material (node ID = " + nodeID + ")";
+
 
             this.nodes[nodeID].materialID = materialID;
 
@@ -1431,6 +1432,28 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     break;
                 }
             }
+
+
+            // Retrieves animations ID.
+            var animationsIndex = specsNames.indexOf("ANIMATIONREFS");
+            if (animationsIndex != -1) {
+
+                var animations = nodeSpecs[animationsIndex].children;
+
+                for (var k = 0; k < animations.length; k++){
+                    var animationsID = this.reader.getString(animations[k], 'id');
+
+                    this.log("   Animation: "+animationsID);
+                    if (animationsID == null)
+                        this.onXMLMinorError("unable to parse animation id");
+                    if (this.animations[animationsID] == null)
+                        this.onXMLMinorError("ID does not correspond to a valid animation");
+                    else
+                        this.nodes[nodeID].addAnimation(animationsID);
+                }
+
+            }
+
 
             // Retrieves information about children.
             var descendantsIndex = specsNames.indexOf("DESCENDANTS");

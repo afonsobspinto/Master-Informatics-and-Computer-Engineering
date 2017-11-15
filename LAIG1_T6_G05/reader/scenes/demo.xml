@@ -658,6 +658,10 @@
             <TRANSLATION x="10" y="4.9" z="10" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
 
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="LinearAnimationExample"/>
+            </ANIMATIONREFS>
+
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
             </DESCENDANTS>
@@ -671,6 +675,11 @@
 
             <TRANSLATION x="15" y="4.9" z="13" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
+
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="LinearAnimationExample"/>
+                <ANIMATIONREF id="CircularAnimationExample"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
