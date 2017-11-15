@@ -1223,7 +1223,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) {
             var rotationAngle = this.reader.getString(children[j], 'rotang');
 
             console.log("FOUND CIRCULAR");
-            this.animations[animationID] = new CircularAnimation(this.scene, animationID, new Vector3(centerX, centerY, centerZ), radius, startAngle, rotationAngle, speed);
+            this.animations[animationID] = new CircularAnimation(animationID, new Vector3(centerX, centerY, centerZ), radius, startAngle, rotationAngle, speed);
             console.log(this.animations[animationID]);
         }
         else if (type == "linear" || type == "bezier") {
@@ -1243,7 +1243,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) {
 
                 controlPoints.push(new Vector3(xx, yy, zz));
             }
-            this.animations[animationID] = (type == "linear") ? new LinearAnimation(this.scene, animationID, controlPoints, speed) : new BezierAnimation(this.scene, animationID, controlPoints, speed);
+            this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed) : new BezierAnimation(this.scene, animationID, controlPoints, speed);
 
             console.log(this.animations[animationID]);
 
@@ -1267,7 +1267,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) {
                 spanRefs.push(spanID);
             }
 
-            this.animations[animationID] = new ComboAnimation(this.scene, animationID, spanRefs);
+            this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
             console.log(this.animations[animationID]);
         }
     }
@@ -1434,11 +1434,12 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             }
 
 
-            // Retrieves animations ID.
+            // Retrieves animations.
             var animationsIndex = specsNames.indexOf("ANIMATIONREFS");
             if (animationsIndex != -1) {
 
                 var animations = nodeSpecs[animationsIndex].children;
+                var animationsArray = [];
 
                 for (var k = 0; k < animations.length; k++){
                     var animationsID = this.reader.getString(animations[k], 'id');
@@ -1449,10 +1450,13 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     if (this.animations[animationsID] == null)
                         this.onXMLMinorError("ID does not correspond to a valid animation");
                     else
-                        this.nodes[nodeID].addAnimation(animationsID);
+                        animationsArray.push(this.animations[animationsID]);
                 }
 
+                this.nodes[nodeID].animationManager = new AnimationManager(animationsArray);
             }
+
+
 
 
             // Retrieves information about children.
@@ -1646,6 +1650,10 @@ MySceneGraph.prototype.displayScene = function() {
 
 MySceneGraph.prototype.dfsDisplay = function(node) {
     this.scene.pushMatrix();
+
+
+    if(node.animationManager != null)
+        this.scene.multMatrix(node.animationManager.getAnimationMatrix());
 
     this.scene.multMatrix(node.transformMatrix);
 
