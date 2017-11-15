@@ -262,6 +262,37 @@
 
     </MATERIALS>
 
+    <!-- Animations -->
+
+    <ANIMATIONS>
+
+        <ANIMATION id="LinearAnimationExample" speed="10" type="linear">
+            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
+            <controlpoint xx="0.0" yy="5.0" zz="0.0"></controlpoint>
+        </ANIMATION>
+
+        <ANIMATION id="CircularAnimationExample" speed="10" type="circular"
+                   centerx="0.0" centery="0.0" centerz="0.0"
+                   radius="5.0" startAng="0.0" rotang="360"/>
+
+        <ANIMATION id="BezierAnimationExample" speed="10" type="bezier">
+            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
+            <controlpoint xx="4.0" yy="5.0" zz="0.0"></controlpoint>
+            <controlpoint xx="8.0" yy="5.0" zz="0.0"></controlpoint>
+            <controlpoint xx="0.0" yy="5.0" zz="0.0"></controlpoint>
+        </ANIMATION>
+
+        <ANIMATION id="ComboAnimationExample" speed="10" type="combo">
+            <SPANREF id="LinearAnimationExample"/>
+            <SPANREF id="CircularAnimationExample"/>
+            <SPANREF id="BezierAnimationExample"/>
+            <SPANREF id="fail"/>
+        </ANIMATION>
+
+
+    </ANIMATIONS>
+
+
 
     <!-- The leaves -->
     <LEAVES>

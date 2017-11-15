@@ -2,10 +2,10 @@ function BezierAnimation(scene, id, bezierPoints, vel) {
   
   Animation.call(this, scene, id);
   
-  this.p1 = this.bezierPoints[0];
-  this.p2 = this.bezierPoints[1];
-  this.p3 = this.bezierPoints[2];
-  this.p4 = this.bezierPoints[3];
+  this.p1 = bezierPoints[0];
+  this.p2 = bezierPoints[1];
+  this.p3 = bezierPoints[2];
+  this.p4 = bezierPoints[3];
   this.vel = vel;
   
   this.distance = Math.sqrt(Math.pow(this.p4.x - this.p1.x, 2) 
@@ -14,7 +14,7 @@ function BezierAnimation(scene, id, bezierPoints, vel) {
 						  
   this.lastCurrentTime = -1;
   this.currentAngle = 0; 
-  this.inclination = this.calculateAngle(p1,p2);
+  this.inclination = this.calculateAngle(this.p1,this.p2);
 }
 
 BezierAnimation.prototype = Object.create(Animation.prototype);
@@ -28,7 +28,7 @@ BezierAnimation.prototype.update = function(currentTime) {
 	delta = (this.lastCurrentTime == -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
 	this.lastCurrentTime = currentTime;
 
-	totalDistance = this.calculateDistance(p1,p2,p3,p4);
+	totalDistance = this.calculateDistance(this.p1,this.p2,this.p3,this.p4);
 	t = this.vel/totalDistance;
 	s = delta/t;
 	
@@ -96,6 +96,6 @@ BezierAnimation.prototype.calculateDistance = function(p1,p2,p3,p4){
 	p234 = middlePoint(p23,p34);
 	
 	return (distanceBetweenVertex(p1,p12) + distanceBetweenVertex(p12,p123) + 
-			(distanceBetweenVertex(p123,p234) + distanceBetweenVertex(p23, p34) + 
-			(distanceBetweenVertex(p34,p4);
+			distanceBetweenVertex(p123,p234) + distanceBetweenVertex(p23, p34) +
+			distanceBetweenVertex(p34,p4));
 }

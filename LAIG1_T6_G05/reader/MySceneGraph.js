@@ -158,9 +158,6 @@ MySceneGraph.prototype.parseLSXFile = function(rootElement) {
 
 
 
-
-
-
     // <NODES>
     if ((index = nodeNames.indexOf("NODES")) == -1)
         return "tag <NODES> missing";
@@ -1181,7 +1178,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
 }
 
 
-MySceneGraph.prototype.parseAnimations = function(animationsNode){
+MySceneGraph.prototype.parseAnimations = function (animationsNode) {
 
     var children = animationsNode.children;
     // Each material.
@@ -1196,114 +1193,88 @@ MySceneGraph.prototype.parseAnimations = function(animationsNode){
             continue;
         }
     }
-        
-       
-        for(var i=0;i<children.length;i++){
-             animationID = this.reader.getString(children[i], 'id');
 
-             if (animationID == null )
-                 return "no ID defined for animation";
 
-             if (this.animations[animationID] != null )
+    for (var j = 0; j < children.length; j++) {
+
+        var animationID = this.reader.getString(children[j], 'id');
+        var speed = this.reader.getString(children[j], 'speed');
+        var type = this.reader.getString(children[j], 'type');
+
+        if (animationID == null)
+            return "no ID defined for animation";
+
+        if (this.animations[animationID] != null)
             return "ID must be unique for each material (conflict: ID = " + animationID + ")";
 
+        if (speed <= 0)
+            return "Speed must be >=0";
 
-             var speed = this.reader.getString(children[i], 'speed');
-
-               if(speed <=0 )
-                   return "Speed must be >=0";
-
-            var type = this.reader.getString(children[i], 'type');
-
-            if(type != "circular" && type != "linear" && type != "combo"  && type != "bezier" )
-                 return "Type must be circular,linear, bezier or combo";
+        if (type != "circular" && type != "linear" && type != "combo" && type != "bezier")
+            return "Type must be circular,linear, bezier or combo";
 
 
-           if(type=="circular"){
+        if (type == "circular") {
+            var centerX = this.reader.getString(children[j], 'centerx');
+            var centerY = this.reader.getString(children[j], 'centery');
+            var centerZ = this.reader.getString(children[j], 'centerz');
+            var radius = this.reader.getString(children[j], 'radius');
+            var startAngle = this.reader.getString(children[j], 'startang');
+            var rotationAngle = this.reader.getString(children[j], 'rotang');
 
-                var centerX = this.reader.getString(children[i], 'centerx');
-                var centerY = this.reader.getString(children[i], 'centery');
-                var centerZ = this.reader.getString(children[i], 'centerz');
-                var radius = this.reader.getString(children[i], 'radius');
-                var startAngle = this.reader.getString(children[i], 'startang');
-                var rotationAngle = this.reader.getString(children[i], 'rotang');
+            console.log("FOUND CIRCULAR");
+            this.animations[animationID] = new CircularAnimation(this.scene, animationID, new Vector3(centerX, centerY, centerZ), radius, startAngle, rotationAngle, speed);
+            console.log(this.animations[animationID]);
+        }
+        else if (type == "linear" || type == "bezier") {
 
-                console.log("FOUND CIRCULAR");
-                // TODO --> create animation + add to animations[]
+            (type == "linear") ? console.log("FOUND LINEAR") : console.log("FOUND BEZIER");
 
+            var animationSpecs = children[j].children;  // all controlpoints
+            var controlPoints = [];
+            var xx;
+            var yy;
+            var zz;
+
+            for (var i = 0; i < animationSpecs.length; i++) {
+                xx = this.reader.getString(animationSpecs[i], 'xx') * 1.0;
+                yy = this.reader.getString(animationSpecs[i], 'yy') * 1.0;
+                zz = this.reader.getString(animationSpecs[i], 'zz') * 1.0;
+
+                controlPoints.push(new Vector3(xx, yy, zz));
             }
-            else if( type == "linear" ){
-                                console.log("FOUND LINEAR");
+            this.animations[animationID] = (type == "linear") ? new LinearAnimation(this.scene, animationID, controlPoints, speed) : new BezierAnimation(this.scene, animationID, controlPoints, speed);
 
+            console.log(this.animations[animationID]);
 
-                  var animationSpecs = children[i].children;  // all controlpoints
-             //   console.log(animationSpecs);
+        }
+        else if (type == "combo"){
+            console.log("FOUND COMBO");
 
-                var cpoints = [];
+            var animationSpecs = children[j].children;
+            var spanRefs = [];
+            var spanID;
 
-                for(var i=0;i<animationSpecs.length;i++){
+            for (var i = 0; i < animationSpecs.length; i++) {
 
-                    var point =[];
-                     console.log(animationSpecs[i]);
+                spanID = this.reader.getString(animationSpecs[i], 'id');
 
-                     var xx = this.reader.getString(animationSpecs[i], 'xx');
-                     var yy = this.reader.getString(animationSpecs[i], 'yy');
-                     var zz = this.reader.getString(animationSpecs[i], 'zz');
-
-                  //   console.log(yy);
-
-                     point.push(xx);
-                     point.push(yy);
-                     point.push(zz);
-
-                     cpoints.push(point);
-
-                     //TODO -> create linearAnimation + add to animations[]
-                     
+                if(this.animations[spanID]==null){
+                    console.warn("ID must be already defined for each SPANREF (conflict: ID = " + spanID + ")");
+                    continue;
                 }
 
-               // console.log(cpoints);
+                spanRefs.push(spanID);
+            }
 
+            this.animations[animationID] = new ComboAnimation(this.scene, animationID, spanRefs);
+            console.log(this.animations[animationID]);
         }
-         else if( type == "bezier" ){
-                             console.log("FOUND BEZIER");
+    }
 
 
-                  var animationSpecs = children[i].children;  // all controlpoints
-             //   console.log(animationSpecs);
-
-                var cpoints = [];
-
-                for(var i=0;i<animationSpecs.length;i++){
-
-                    var point =[];
-                     console.log(animationSpecs[i]);
-
-                     var xx = this.reader.getString(animationSpecs[i], 'xx');
-                     var yy = this.reader.getString(animationSpecs[i], 'yy');
-                     var zz = this.reader.getString(animationSpecs[i], 'zz');
-
-                  //   console.log(yy);
-
-                     point.push(xx);
-                     point.push(yy);
-                     point.push(zz);
-
-                     cpoints.push(point);
-
-                     //TODO -> create BezierAnimation + add to animations[]
-                     
-                }
-
-             //   console.log(cpoints);
-
-        }
-
-
-
-        }
-
-        console.log("PARSED ANIMATIONS")
+    console.log("PARSED ANIMATIONS");
+    return null;
 
 }
 

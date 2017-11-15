@@ -6,9 +6,9 @@ function LinearAnimation(scene, id, controlPoints, vel) {
   
   this.controlPoints = controlPoints;
   this.currentControlPoint = 0;
-  this.currentControlPointPos = new Vector3[this.controlPoints[0].x, 
+  this.currentControlPointPos = new Vector3(this.controlPoints[0].x,
 											this.controlPoints[0].y, 
-											this.controlPoints[0].z];
+											this.controlPoints[0].z);
 
   var totalDistance = 0;
   this.distances = [];

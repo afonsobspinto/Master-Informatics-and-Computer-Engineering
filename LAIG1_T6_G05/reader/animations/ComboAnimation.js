@@ -1,6 +1,7 @@
-function ComboAnimation(scene, id) {
-  
-  Animation.call(this, scene, id);  
+function ComboAnimation(scene, id, animations) {
+  Animation.call(this, scene, id);
+
+  this.animations = animations;
 
 }
 
