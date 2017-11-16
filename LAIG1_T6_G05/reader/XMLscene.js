@@ -88,7 +88,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.axis = new CGFaxis(this,this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],
-    this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
+        this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
 
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
 
@@ -122,8 +122,8 @@ XMLscene.prototype.display = function() {
         // Applies initial transformations.
         this.multMatrix(this.graph.initialTransforms);
 
-		// Draw axis
-		this.axis.display();
+        // Draw axis
+        this.axis.display();
 
         var i = 0;
         for (var key in this.lightValues) {
@@ -145,12 +145,12 @@ XMLscene.prototype.display = function() {
         this.graph.displayScene();
 
     }
-	else
-	{
-		// Draw axis
+    else
+    {
+        // Draw axis
 
-		this.axis.display();
-	}
+        this.axis.display();
+    }
 
 
     this.popMatrix();

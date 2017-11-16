@@ -23,6 +23,7 @@ function MyGraphNode(graph, nodeID) {
     // Animation Manager with IDs of animations nodes.
     this.animationManager = null ;
 
+    this.isSelectable = false;
 
     this.transformMatrix = mat4.create();
     mat4.identity(this.transformMatrix);

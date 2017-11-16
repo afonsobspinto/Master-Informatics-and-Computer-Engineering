@@ -1314,6 +1314,15 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
 
+            // Checks selectable property
+
+            if(this.reader.hasAttribute(children[i], 'selectable')){
+
+                this.nodes[nodeID].isSelectable= this.reader.getBoolean(children[i], 'selectable');
+                console.log("Is Selectable");
+            }
+
+
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
             var specsNames = [];
@@ -1437,7 +1446,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Retrieves animations.
             var animationsIndex = specsNames.indexOf("ANIMATIONREFS");
             if (animationsIndex != -1) {
-
                 var animations = nodeSpecs[animationsIndex].children;
                 var animationsArray = [];
 
@@ -1518,7 +1526,8 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
 
     if (type != null){
 
-        var leafID = this.reader.getString(xmlelem, 'id'); //TODO: not always appear (problem with XML?)
+        if(this.reader.hasAttribute(xmlelem, 'id'))
+            var leafID = this.reader.getString(xmlelem, 'id');
         var args = this.reader.getString(xmlelem, 'args');
         var intArgs = args.split(" ").map(Number);
 

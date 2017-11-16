@@ -8,9 +8,6 @@ class Vector3{
     toArray(){
         return [this.x, this.y, this.z];
     }
-
-
-
 }
 var Vector2 = function(x, y) {
     this.x = x;

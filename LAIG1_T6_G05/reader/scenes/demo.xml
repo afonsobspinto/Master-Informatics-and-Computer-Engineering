@@ -273,7 +273,7 @@
 
         <ANIMATION id="CircularAnimationExample" speed="10" type="circular"
                    centerx="0.0" centery="0.0" centerz="0.0"
-                   radius="5.0" startAng="0.0" rotang="360"/>
+                   radius="5.0" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="10" type="bezier">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
@@ -350,7 +350,7 @@
         </NODE>
 
         <!-- The pool table -->
-        <NODE id="poolTable">
+        <NODE id="poolTable" selectable="true">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
