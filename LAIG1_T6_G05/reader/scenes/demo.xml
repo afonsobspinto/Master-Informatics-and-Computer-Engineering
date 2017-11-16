@@ -268,7 +268,7 @@
 
         <ANIMATION id="LinearAnimationExample" speed="10" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="0.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="2.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="CircularAnimationExample" speed="10" type="circular"
@@ -676,11 +676,8 @@
             <TRANSLATION x="15" y="4.9" z="13" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
 
-            <ANIMATIONREFS>
-                <ANIMATIONREF id="LinearAnimationExample"/>
-<!--
+            <ANIMATIONREFS>          
                 <ANIMATIONREF id="CircularAnimationExample"/>
--->
             </ANIMATIONREFS>
 
             <DESCENDANTS>
