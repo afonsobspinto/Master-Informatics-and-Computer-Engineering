@@ -100,5 +100,4 @@ BezierAnimation.prototype.calculateDistance = function(){
 			distanceBetweenVertex(p34,this.p4));
 }
 
-BezierAnimation.prototype.getCurrentPosition = function() { };
-BezierAnimation.prototype.getCurrentAngle = function() { };
+BezierAnimation.prototype.getAnimationMatrix = function() {return  mat4.create(); }

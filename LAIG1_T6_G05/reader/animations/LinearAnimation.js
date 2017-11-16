@@ -63,5 +63,11 @@ LinearAnimation.prototype.calculateAngle = function(point1, point2) {
 	return Math.atan2((point2.x - point1.x), (point2.z - point1.z));
 }
 
-LinearAnimation.prototype.getCurrentPosition = function() { return this.currentPosition; };
-LinearAnimation.prototype.getCurrentAngle = function() { return this.currentAngle; };
+LinearAnimation.prototype.getAnimationMatrix = function () {
+    var matrix = mat4.create();
+
+    mat4.translate(matrix, matrix, this.currentPosition.toArray());
+    mat4.rotate(matrix, matrix, this.currentAngle, [0, 1, 0]);
+
+    return matrix;
+};

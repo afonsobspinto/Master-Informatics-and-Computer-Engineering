@@ -13,5 +13,4 @@ ComboAnimation.prototype.update = function(currentTime) {
 
 }
 
-ComboAnimation.prototype.getCurrentPosition = function() { };
-ComboAnimation.prototype.getCurrentAngle = function() { };
+ComboAnimation.prototype.getAnimationMatrix = function() {return  mat4.create();}

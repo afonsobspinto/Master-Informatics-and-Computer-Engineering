@@ -6,5 +6,6 @@ function Animation(id) {
 
 
 Animation.prototype.update = function(currTime) { };
-Animation.prototype.getCurrentPosition = function() { };
-Animation.prototype.getCurrentAngle = function() { };
+Animation.prototype.getAnimationMatrix = function() { };
+
+
