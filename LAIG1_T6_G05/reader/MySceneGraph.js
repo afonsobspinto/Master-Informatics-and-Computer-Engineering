@@ -1243,7 +1243,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) {
 
                 controlPoints.push(new Vector3(xx, yy, zz));
             }
-            this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed) : new BezierAnimation(this.scene, animationID, controlPoints, speed);
+            this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed) : new BezierAnimation(animationID, controlPoints, speed);
 
             console.log(this.animations[animationID]);
 

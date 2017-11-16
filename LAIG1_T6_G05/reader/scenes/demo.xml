@@ -272,8 +272,8 @@
         </ANIMATION>
 
         <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
-                   centerx="80.0" centery="5.0" centerz="80.0"
-                   radius="80.0" startang="0.0" rotang="360"/>
+                   centerx="0.0" centery="0.0" centerz="0.0"
+                   radius="5.0" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="10" type="bezier">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
@@ -677,7 +677,7 @@
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
 
             <ANIMATIONREFS>
-                <ANIMATIONREF id="LinearAnimationExample"/>
+                <ANIMATIONREF id="CircularAnimationExample"/>
             </ANIMATIONREFS>
 
             <DESCENDANTS>
@@ -789,7 +789,6 @@
             <MATERIAL id="darkHole" />
             <TEXTURE id="clear" />
 
-            <TRANSLATION x="0" y="0.0" z="0.0" />
 
             <DESCENDANTS>
                 <NODEREF id="hole1" />

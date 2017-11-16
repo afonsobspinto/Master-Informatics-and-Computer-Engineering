@@ -11,6 +11,6 @@ ComboAnimation.prototype.constructor = ComboAnimation;
 
 ComboAnimation.prototype.update = function(currentTime) {
 
-}
+};
 
-ComboAnimation.prototype.getAnimationMatrix = function() {return  mat4.create();}
+ComboAnimation.prototype.getAnimationMatrix = function() {return  mat4.create();};

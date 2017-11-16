@@ -48,3 +48,22 @@ MyInterface.prototype.addLightsGroup = function(lights) {
     }
 }
 
+ /**
+  * Adds a listBox containing the IDs of the selectable objects passed as parameter.
+  */
+ MyInterface.prototype.addSelectableListBox = function(selectables) {
+
+     this.gui.add(this.scene, 'selectedExampleShader', {
+         'Flat Shading': 0,
+         'Passing a scale as uniform': 1,
+         'Passing a varying parameter from VS -> FS': 2,
+         'Simple texturing': 3,
+         'Multiple textures in the FS': 4,
+         'Multiple textures in VS and FS': 5,
+         'Sepia': 6,
+         'Convolution': 7
+
+     }).name('Shader examples');
+
+ }
+
