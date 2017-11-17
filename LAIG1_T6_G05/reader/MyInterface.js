@@ -24,7 +24,7 @@ MyInterface.prototype.init = function(application) {
     
     this.gui = new dat.GUI();
 
-    // add a group of controls (and open/expand by defult)
+    // add a group of controls (and open/expand by default)
     
     return true;
 };
@@ -53,17 +53,7 @@ MyInterface.prototype.addLightsGroup = function(lights) {
   */
  MyInterface.prototype.addSelectableListBox = function(selectables) {
 
-     this.gui.add(this.scene, 'selectedExampleShader', {
-         'Flat Shading': 0,
-         'Passing a scale as uniform': 1,
-         'Passing a varying parameter from VS -> FS': 2,
-         'Simple texturing': 3,
-         'Multiple textures in the FS': 4,
-         'Multiple textures in VS and FS': 5,
-         'Sepia': 6,
-         'Convolution': 7
-
-     }).name('Shader examples');
+     this.gui.add(this.scene, 'selectedSelected', selectables).name('Selectable');
 
  }
 

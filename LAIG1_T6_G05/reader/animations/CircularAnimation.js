@@ -26,11 +26,13 @@ CircularAnimation.prototype.update = function (currTime) {
     if (!this.rendering)
         return;
 
+
+
     this.firstTime = this.firstTime || currTime;
     let deltaTime = (currTime - this.firstTime) / 1000;   /* in seconds */
     this.transform = mat4.create();
 
-    if (deltaTime <= this.span) {
+    if (deltaTime <= this.span) {     //TODO: Ending a little bit too soon.
         let newTotalAngleDone = this.angVelocity * deltaTime;
         mat4.translate(this.transform, this.transform, this.center.toArray());
         mat4.rotate(this.transform, this.transform, this.startang + newTotalAngleDone, [0, 1, 0]);
@@ -46,8 +48,6 @@ CircularAnimation.prototype.update = function (currTime) {
 };
 
 CircularAnimation.prototype.getAnimationMatrix = function () {
-
-    console.log(this.transform);
 
     return this.transform;
 };

@@ -11,6 +11,8 @@ function XMLscene(interface) {
 
     this.lightValues = {};
 
+    this.selectedSelected = 0;
+
 
 }
 
@@ -96,6 +98,9 @@ XMLscene.prototype.onGraphLoaded = function()
 
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
+
+    // Adds selectable listBox.
+    this.interface.addSelectableListBox(this.graph.selectables);
 }
 
 /**
@@ -170,5 +175,7 @@ XMLscene.prototype.update = function(currTime) {
             this.graph.animations[animationID].update(currTime);
         }
     }
+
+    //this.selectedSelected; <- the object Selected
 
 }

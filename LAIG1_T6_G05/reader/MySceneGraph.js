@@ -1178,7 +1178,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
 }
 
 
-MySceneGraph.prototype.parseAnimations = function (animationsNode) {
+MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Remove console logs
 
     var children = animationsNode.children;
     // Each material.
@@ -1287,6 +1287,8 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
     // Traverses nodes.
     var children = nodesNode.children;
 
+    this.selectables = [];
+
     for (var i = 0; i < children.length; i++) {
         var nodeName;
         if ((nodeName = children[i].nodeName) == "ROOT") {
@@ -1319,7 +1321,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if(this.reader.hasAttribute(children[i], 'selectable')){
 
                 this.nodes[nodeID].isSelectable= this.reader.getBoolean(children[i], 'selectable');
-                console.log("Is Selectable");
+                this.selectables.push(nodeID);
             }
 
 
@@ -1511,6 +1513,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             this.onXMLMinorError("unknown tag name <" + nodeName);
     }
 
+    console.log(this.selectables[0]);
     console.log("Parsed nodes");
     return null ;
 }

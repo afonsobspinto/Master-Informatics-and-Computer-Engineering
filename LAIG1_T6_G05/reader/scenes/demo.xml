@@ -335,7 +335,7 @@
         </NODE>
 
         <!-- Window -->
-        <NODE id="window">
+        <NODE id="window" selectable="true">
             <MATERIAL id="null" />
             <TEXTURE id="window" />
 

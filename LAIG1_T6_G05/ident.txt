@@ -2,4 +2,5 @@ Class: 6/7
 Group: 5
 Students: 
 Afonso Bernardino da Silva Pinto - up201503316
+Rui Pedro Machado Araujo - up201403263
 Tomás Sousa Oliveira - up201504746
