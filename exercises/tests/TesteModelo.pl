@@ -69,29 +69,10 @@ cutBest([_|TempParticipants], Diff, Participants):-
   cutBest(TempParticipants, NextDiff, Participants).
 
 
-get_favorite_juris([], [], _).
-get_favorite_juris([Head|Tail], [Head_P|Tail_P], Index):-
-  Head == 120,
-  Head_P is Index,
-  Index2 is Index +1,
-  get_favorite_juris(Tail, Tail_P, Index2).
-
-get_favorite_juris([_Head|Tail], Preferences, Index):-
-  Index2 is Index +1,
-  get_favorite_juris(Tail, Preferences, Index2).
-
-goal(Participant, Preferences):-
-  performance(Participant,Times),
-  % once para nao voltar a usar esta clausula quando estiver a "subir" no backtrack
-  once(get_favorite_juris(Times, Preferences, 1)).
-
-% juriFans(-juriFansList)
-juriFans(JuriFansList):-
-  setof(Participant-Preferences, goal(Participant, Preferences), JuriFansList).
-
 %7 Incomplete
-% juriFans(L):-
-%   findall(Participant-Fan, (performance(Participant, Times), nth1(Fan, Times, 120)), L).
+ juriFans(L):-
+   findall(Participant-Fan, (performance(Participant, Times), nth1(Fan, Times, 120)), Result),
+   findall(X-FanLists, (participant(X,_,_), performance(X, _), findall(Fa, member(X-Fa, Result), FanLists)), L).
 
 
 %6
