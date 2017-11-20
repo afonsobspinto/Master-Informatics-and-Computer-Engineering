@@ -203,10 +203,11 @@ printCategory(_).
 %3
 niceGuy(User):-
   vote(User, Movies),
-  member(Film-Vote1, Movies),
+  member(Film1-Vote1, Movies),
   Vote1 >= 8,
-  member(Film-Vote2, Movies),
-  Vote2 > 8.
+  member(Film2-Vote2, Movies),
+  Vote2 >= 8,
+  Film1 \= Film2.
 
 
 %2
