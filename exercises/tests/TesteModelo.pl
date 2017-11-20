@@ -69,7 +69,7 @@ cutBest([_|TempParticipants], Diff, Participants):-
   cutBest(TempParticipants, NextDiff, Participants).
 
 
-%7 Incomplete
+%7
  juriFans(L):-
    findall(Participant-Fan, (performance(Participant, Times), nth1(Fan, Times, 120)), Result),
    findall(X-FanLists, (participant(X,_,_), performance(X, _), findall(Fa, member(X-Fa, Result), FanLists)), L).
