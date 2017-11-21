@@ -15,6 +15,9 @@ function BezierAnimation(id, bezierPoints, vel) {
   this.lastCurrentTime = -1;
   this.currentAngle = 0; 
   this.inclination = this.calculateAngle(this.p1,this.p2);
+
+  	 this.transform = mat4.create();
+
 }
 
 BezierAnimation.prototype = Object.create(Animation.prototype);
@@ -36,6 +39,13 @@ BezierAnimation.prototype.update = function(currentTime) {
 	Qs = this.bezierDerivate(s);
 	
 	this.currentAngle = Math.atan2(Qs.z, Qs.x);
+
+
+	 mat4.translate(this.transform, this.transform, Q);
+     mat4.rotate(this.transform, this.transform, this.currentAngle, [0, 1, 0]);
+
+
+
 }
 
 BezierAnimation.prototype.calculateAngle = function(point1, point2) {
@@ -100,4 +110,6 @@ BezierAnimation.prototype.calculateDistance = function(){
 			distanceBetweenVertex(p34,this.p4));
 }
 
-BezierAnimation.prototype.getAnimationMatrix = function() {return  mat4.create(); }
+BezierAnimation.prototype.getAnimationMatrix = function() {
+	return this.transform; 
+	}

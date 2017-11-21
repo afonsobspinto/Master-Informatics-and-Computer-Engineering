@@ -693,6 +693,9 @@
 
             <TRANSLATION x="18" y="4.9" z="8" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
+             <ANIMATIONREFS>
+                <ANIMATIONREF id="BezierAnimationExample"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
