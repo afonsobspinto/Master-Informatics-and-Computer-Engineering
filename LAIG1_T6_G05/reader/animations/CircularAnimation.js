@@ -26,8 +26,6 @@ CircularAnimation.prototype.update = function (currTime) {
     if (!this.rendering)
         return;
 
-
-
     this.firstTime = this.firstTime || currTime;
     let deltaTime = (currTime - this.firstTime) / 1000;   /* in seconds */
     this.transform = mat4.create();

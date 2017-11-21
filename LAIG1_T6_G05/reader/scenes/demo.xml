@@ -268,7 +268,7 @@
 
         <ANIMATION id="LinearAnimationExample" speed="10" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="0.0"></controlpoint>
+            <controlpoint xx="5.0" yy="0.0" zz="10.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
@@ -285,8 +285,6 @@
         <ANIMATION id="ComboAnimationExample" speed="10" type="combo">
             <SPANREF id="LinearAnimationExample"/>
             <SPANREF id="CircularAnimationExample"/>
-            <SPANREF id="BezierAnimationExample"/>
-            <SPANREF id="fail"/>
         </ANIMATION>
 
 
@@ -725,6 +723,10 @@
             <TRANSLATION x="15" y="4.9" z="9" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
 
+			<ANIMATIONREFS>
+                <ANIMATIONREF id="ComboAnimationExample"/>
+            </ANIMATIONREFS>
+			
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
             </DESCENDANTS>

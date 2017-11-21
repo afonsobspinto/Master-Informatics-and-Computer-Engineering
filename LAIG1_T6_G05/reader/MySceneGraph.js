@@ -1264,7 +1264,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
                     continue;
                 }
 
-                spanRefs.push(spanID);
+                spanRefs.push(this.animations[spanID]);
             }
 
             this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
