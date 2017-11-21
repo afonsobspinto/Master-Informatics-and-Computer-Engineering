@@ -41,7 +41,7 @@ BezierAnimation.prototype.update = function(currentTime) {
 	this.currentAngle = Math.atan2(Qs.z, Qs.x);
 
 
-	 mat4.translate(this.transform, this.transform, Q);
+	 mat4.translate(this.transform, this.transform, Q.toArray());
      mat4.rotate(this.transform, this.transform, this.currentAngle, [0, 1, 0]);
 
 
