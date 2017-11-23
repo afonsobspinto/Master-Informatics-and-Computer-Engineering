@@ -1,0 +1,15 @@
+.line {
+	border: 1px solid #339;
+	background-color: #99F;
+	padding: 5px;
+	margin: 5px;
+}
+
+.line input{
+	border: 1px solid black;
+}
+
+.line input[type=text]{
+	width: 50px;
+	text-align: right;
+}
