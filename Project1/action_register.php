@@ -17,7 +17,7 @@
       
       
     }else{
-      echo "User already exists";
+      echo('Checking if user exists <br>');
     } 
 	
   //header('Location: ' . $_SERVER['HTTP_REFERER']);
