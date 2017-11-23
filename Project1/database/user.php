@@ -29,6 +29,7 @@ include_once('database/connection.php');
 
     $options = ['cost' => 12];
     $hash = password_hash($password, PASSWORD_DEFAULT, $options);
+    //$hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
     $stmt = $db->prepare('INSERT INTO User(username, password) VALUES(?,?);');
 
