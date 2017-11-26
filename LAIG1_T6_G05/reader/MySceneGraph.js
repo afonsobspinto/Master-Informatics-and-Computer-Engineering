@@ -144,7 +144,7 @@ MySceneGraph.prototype.parseLSXFile = function(rootElement) {
             return error;
     }
 
-  
+
     //ANIMATIONS
     if ((index = nodeNames.indexOf("ANIMATIONS")) == -1)
         return "tag <ANIMATIONS> missing";
@@ -1223,7 +1223,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
             var rotationAngle = this.reader.getString(children[j], 'rotang');
 
             console.log("FOUND CIRCULAR");
-            this.animations[animationID] = new CircularAnimation(animationID, new Vector3(centerX, centerY, centerZ), radius, startAngle, rotationAngle, speed);
+            this.animations[animationID] = new CircularAnimation(animationID, new Vector3(centerX*1.0, centerY*1.0, centerZ*1.0), radius * 1.0, startAngle *1.0, rotationAngle * 1.0, speed * 1.0);
             console.log(this.animations[animationID]);
         }
         else if (type == "linear" || type == "bezier") {
@@ -1243,7 +1243,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
 
                 controlPoints.push(new Vector3(xx, yy, zz));
             }
-            this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed) : new BezierAnimation(animationID, controlPoints, speed);
+            this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed * 1.0) : new BezierAnimation(animationID, controlPoints, speed * 1.0);
 
             console.log(this.animations[animationID]);
 

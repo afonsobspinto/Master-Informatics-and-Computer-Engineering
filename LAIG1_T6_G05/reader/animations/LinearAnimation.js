@@ -28,17 +28,17 @@ LinearAnimation.prototype.constructor = LinearAnimation;
 
 LinearAnimation.prototype.update = function(currentTime) {
 
-	let delta, t;
-	let x, y, z;
+    let delta, t;
+    let x, y, z;
 
     if (!this.rendering)
         return;
 
-	delta = (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
-	this.lastCurrentTime = currentTime;
+    delta = (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
+    this.lastCurrentTime = currentTime;
 
-	this.accumulatedDistance += this.vel * delta; // Distance = velocity * time;
-	if(this.accumulatedDistance > this.distances[this.currentControlPoint]){
+    this.accumulatedDistance += this.vel * delta; // Distance = velocity * time;
+    if(this.accumulatedDistance > this.distances[this.currentControlPoint]){
         if (this.currentControlPoint === this.controlPoints.length-2) {
             this.finished = true;
             this.rendering = false;
@@ -49,18 +49,18 @@ LinearAnimation.prototype.update = function(currentTime) {
             this.currentControlPoint++;
             this.currentAngle = this.calculateAngle(this.controlPoints[this.currentControlPoint],this.controlPoints[this.currentControlPoint+1]);
         }
-	}
+    }
 
-	t = this.accumulatedDistance/ this.distances[this.currentControlPoint];
-	x = (this.controlPoints[this.currentControlPoint+1].x * t) + ((1-t)*this.controlPoints[this.currentControlPoint].x);
-	y = (this.controlPoints[this.currentControlPoint+1].y * t) + ((1-t)*this.controlPoints[this.currentControlPoint].y);
-	z = (this.controlPoints[this.currentControlPoint+1].z * t) + ((1-t)*this.controlPoints[this.currentControlPoint].z);
+    t = this.accumulatedDistance/ this.distances[this.currentControlPoint];
+    x = (this.controlPoints[this.currentControlPoint+1].x * t) + ((1-t)*this.controlPoints[this.currentControlPoint].x);
+    y = (this.controlPoints[this.currentControlPoint+1].y * t) + ((1-t)*this.controlPoints[this.currentControlPoint].y);
+    z = (this.controlPoints[this.currentControlPoint+1].z * t) + ((1-t)*this.controlPoints[this.currentControlPoint].z);
 
-	this.currentPosition = new Vector3(x,y,z);
+    this.currentPosition = new Vector3(x,y,z);
 };
 
 LinearAnimation.prototype.calculateAngle = function(point1, point2) {
-	return Math.atan2((point2.x - point1.x), (point2.z - point1.z));
+    return Math.atan2((point2.x - point1.x), (point2.z - point1.z));
 };
 
 LinearAnimation.prototype.getAnimationMatrix = function () {

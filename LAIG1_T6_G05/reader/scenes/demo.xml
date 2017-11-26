@@ -266,14 +266,14 @@
 
     <ANIMATIONS>
 
-        <ANIMATION id="LinearAnimationExample" speed="10" type="linear">
+        <ANIMATION id="LinearAnimationExample" speed="1" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="5.0" yy="0.0" zz="10.0"></controlpoint>
+            <controlpoint xx="15.0" yy="0.0" zz="15.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
+        <ANIMATION id="CircularAnimationExample" speed="1" type="circular"
                    centerx="0.0" centery="0.0" centerz="0.0"
-                   radius="5" startang="0.0" rotang="360"/>
+                   radius="10" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="5" type="bezier">
             <controlpoint xx="2.0" yy="0.0" zz="3.0"></controlpoint>
@@ -655,6 +655,10 @@
 
             <TRANSLATION x="10" y="4.9" z="10" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
+
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="LinearAnimationExample"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />

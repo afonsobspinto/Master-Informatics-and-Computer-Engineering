@@ -7,8 +7,7 @@ function BezierAnimation(id, bezierPoints, vel) {
   this.p3 = bezierPoints[2];
   this.p4 = bezierPoints[3];
   this.vel = vel;
-  
-  console.log(this.p1);
+
   this.distance = Math.sqrt(Math.pow(this.p4.x - this.p1.x, 2) 
                           + Math.pow(this.p4.y - this.p1.y, 2) 
                           + Math.pow(this.p4.z - this.p1.z, 2));
@@ -21,10 +20,9 @@ function BezierAnimation(id, bezierPoints, vel) {
 
 
 	this.totalDistance = this.calculateDistance();
-	// console.log(this.totalDistance);
+
 
 	this.totalTime = this.totalDistance/this.vel;
-	console.log("totalTIme:"+this.totalTime);
 
 	this.accumulatedTime=0;
 
@@ -43,35 +41,32 @@ BezierAnimation.prototype.update = function(currentTime) {
 	this.lastCurrentTime = currentTime;
 
 	// this.accumulatedTime += this.vel * delta; 
-//	console.log(delta);
+
 	if(this.accumulatedTime <= this.totalTime){
 
 		this.accumulatedTime += delta;
-		//console.log(this.accumulatedTime);
+
 		s = this.accumulatedTime/this.totalTime;
 
 		Q = this.bezier(s);
 		Qs = this.bezierDerivate(s);
 
-		console.log(Q);
 
 
-		// console.log(s);
 		this.currentAngle = Math.atan2(Qs.z, Qs.x);
 
   // var tra = Q.toArray()+this.p1.toArray();
-	//console.log(tra);
+
 			
 		mat4.identity(this.transform);
 		// mat4.rotate(this.transform, this.transform, this.currentAngle, [0, 1, 0]);
 		mat4.translate(this.transform,this.transform,Q.toArray());
-		// console.log(this.transform);
+
 
 	}
 	else{
 		this.rendering = false;
 		this.finished = true;
-		// console.log("finished");
 	}
 
 }
@@ -139,6 +134,6 @@ BezierAnimation.prototype.calculateDistance = function(){
 }
 
 BezierAnimation.prototype.getAnimationMatrix = function() {
-	//console.log(this.transform);
+
 	return this.transform; 
 	}

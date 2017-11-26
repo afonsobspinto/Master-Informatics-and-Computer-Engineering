@@ -3,56 +3,48 @@ function CircularAnimation(id, center, radius, startang, rotang, speed) {
 
     this.degToRad = Math.PI / 180;
 
-    this.speed = speed;
     this.center = center;
     this.radius = radius;
-    this.startang = startang * this.degToRad;
-    this.rotang = rotang * this.degToRad;
+    this.startang = startang;
+    this.rotang = rotang;
+    this.speed = speed;
 
-	this.totalDistance = Math.PI * 2 * this.radius;
-    this.span = 2*Math.PI*this.radius / this.speed; // time
+    this.w = this.speed / this.radius;
+    this.currentAngle = this.startang;
 
-    this.angVelocity = this.rotang / this.span;
-    this.transform = mat4.create();
-
-	this.accumulatedDistance = 0;
     this.lastCurrentTime = -1;
-    // v= 2*pi*r /t
+    this.timeElapsed = 0;
 
+    this.totalTime = 2*Math.PI*this.radius / this.speed;
 }
 
 CircularAnimation.prototype.update = function (currentTime) {
-    if (!this.rendering)
+
+    if(!this.rendering)
         return;
 
-    let delta = (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
-	this.lastCurrentTime = currentTime;
-	
+    this.timeElapsed += (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
+    this.lastCurrentTime = currentTime;
 
-	this.accumulatedDistance += this.speed * delta; // Distance = velocity * time;
-	if(this.accumulatedDistance > this.totalDistance){
-            this.finished = true;
-            this.rendering = false;
-            mat4.rotate(this.transform, this.transform, 90 * this.degToRad, [0, 1, 0]);
-            mat4.translate(this.transform, this.transform, [0, 0, this.radius]);
-            mat4.rotate(this.transform, this.transform, this.startang + this.rotang, [0, 1, 0]);
-            mat4.translate(this.transform, this.transform, this.center.toArray());
-            
-        }
-	
-    else{     //TODO: Ending a little bit too soon.
-        let newTotalAngleDone = this.angVelocity * delta;
-        mat4.rotate(this.transform, this.transform, 90 * this.degToRad, [0, 1, 0]);
-        mat4.translate(this.transform, this.transform, [0, 0, this.radius]);
-        mat4.rotate(this.transform, this.transform, this.startang + newTotalAngleDone, [0, 1, 0]);
-        mat4.translate(this.transform, this.transform, this.center.toArray());
+    this.currentAngle = this.w * this.timeElapsed + this.startang;
+
+    if(this.timeElapsed >= this.totalTime){
+        this.finished = true;
+        this.rendering = false;
     }
 
-    if(this.rotang < 0)
-        mat4.rotate(this.transform, this.transform, 180*this.degToRad, [0, 1, 0]);
+
 };
 
 CircularAnimation.prototype.getAnimationMatrix = function () {
+    let matrix = mat4.create();
 
-    return this.transform;
+    mat4.rotate(matrix,matrix, 90 * this.degToRad, [0,1,0]);
+    mat4.translate(matrix, matrix, [this.radius * Math.sin(this.currentAngle), 0 , this.radius * Math.cos(this.currentAngle)]);
+    mat4.rotate(matrix, matrix, this.currentAngle, [0,1,0]);
+    mat4.translate(matrix, matrix, this.center.toArray());
+
+
+    return matrix;
+
 };
