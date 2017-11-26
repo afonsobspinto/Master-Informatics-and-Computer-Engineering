@@ -1663,12 +1663,11 @@ MySceneGraph.prototype.displayScene = function() {
 MySceneGraph.prototype.dfsDisplay = function(node) {
     this.scene.pushMatrix();
 
+    this.scene.multMatrix(node.transformMatrix);
 
     if(node.animationManager != null)
         this.scene.multMatrix(node.animationManager.getAnimationMatrix());
-
-    this.scene.multMatrix(node.transformMatrix);
-
+    
 
     if (node.materialID == 'null')
         this.materialsStack.push(this.materialsStack[this.materialsStack.length-1]);

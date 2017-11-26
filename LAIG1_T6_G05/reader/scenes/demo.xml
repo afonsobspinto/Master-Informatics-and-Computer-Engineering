@@ -266,14 +266,14 @@
 
     <ANIMATIONS>
 
-        <ANIMATION id="LinearAnimationExample" speed="1" type="linear">
+        <ANIMATION id="LinearAnimationExample" speed="5" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="15.0" yy="0.0" zz="15.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="100.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="CircularAnimationExample" speed="1" type="circular"
+        <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
                    centerx="0.0" centery="0.0" centerz="0.0"
-                   radius="10" startang="0.0" rotang="360"/>
+                   radius="100" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="5" type="bezier">
             <controlpoint xx="2.0" yy="0.0" zz="3.0"></controlpoint>
