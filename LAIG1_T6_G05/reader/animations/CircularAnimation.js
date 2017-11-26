@@ -24,7 +24,7 @@ function CircularAnimation(id, center, radius, startang, rotang, vel) {
     this.lastCurrentTime = -1;
     this.accumulatedTime = 0;
 
-    this.totalTime = 2*Math.PI*this.radius / this.vel;
+    this.totalTime = (this.rotang * 2*Math.PI*this.radius / 360) / this.vel;
 }
 
 /**
