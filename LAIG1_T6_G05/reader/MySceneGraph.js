@@ -1689,13 +1689,36 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
         this.texturesStack.push(this.texturesStack[this.texturesStack.length-1]);
     else
         this.texturesStack.push(node.textureID);
-/**
-   if (this.scene.selectable == node.nodeID) {
+
+	   //    console.log("SELECTABLEs: "+ this.selectables);
+	    //   console.log("SELECTABLE-nodeID: "+ this.selectables[0]);
+	      //console.log("SELECTABLE-nodeID: "+ this.selectables[node.nodeID]);
+	//      console.log("SELECTABLE-nodeID: "+ this.selectables[nodeID]);
+    //console.log("NOde ID: "+ node.nodeID);
+    /**
+	var index=-1;
+	for(var p=0; p<this.selectables.length;p++){
+		if(node.nodeID == this.selectables[p])
+			index = p;
+	}
+	if(index>=0)
+		console.log("index " + index);
+
+		*/
+	
+	
+
+console.log("SELECTED IS :" +this.scene.selectedSelected);
+//if(node.nodeID=="poolTable")
+//console.log( node.nodeID);
+   if ( node.nodeID == this.scene.selectedSelected) {
         this.scene.setActiveShader(this.scene.shader);
                 console.log("chegou ao SHader ");
 
     }
-    */
+       // 
+
+    
 
     for (var i = 0; i < node.children.length; i++){
         this.dfsDisplay(this.nodes[node.children[i]]);
@@ -1731,6 +1754,10 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
         material.setTexture(null);
     }
 
+if ( node.nodeID == this.scene.selectedSelected) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+        console.log("chegou ao defaultShader ");
+    }
     this.materialsStack.pop();
     this.texturesStack.pop();
     this.scene.popMatrix();
