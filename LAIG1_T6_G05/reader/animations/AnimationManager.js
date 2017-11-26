@@ -7,7 +7,7 @@ function AnimationManager(animations) {
     this.animations = animations;
     this.animationIndex = 0;
     this.animations[0].rendering = true;
-};
+}
 
 /**
  * Returns the matrix of the animation.
@@ -24,7 +24,7 @@ AnimationManager.prototype.getAnimationMatrix = function() {
     }
 
     return this.animations[this.animationIndex].getAnimationMatrix();
-}
+};
 
 /**
  * Returns the index current Animation
@@ -32,4 +32,4 @@ AnimationManager.prototype.getAnimationMatrix = function() {
  */
 AnimationManager.prototype.getCurrentAnimation = function() {
     return this.animations[this.animationIndex];
-}
+};

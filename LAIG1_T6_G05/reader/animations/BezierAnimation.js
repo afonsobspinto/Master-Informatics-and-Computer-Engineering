@@ -32,7 +32,7 @@ BezierAnimation.prototype.constructor = BezierAnimation;
 
 /**
  * Updates the animation.
- * @param currTime - The current time of the animation
+ * @param currentTime
  */
 BezierAnimation.prototype.update = function (currentTime) {
 
@@ -60,7 +60,7 @@ BezierAnimation.prototype.update = function (currentTime) {
 /**
  * Calculates the bezier of the function s.
  * @param s - The function
- * @returns the result of the bezier
+ * @returns Vector3 result of the bezier
  */
 BezierAnimation.prototype.bezier = function (s) {
     let x, y, z;
@@ -82,12 +82,12 @@ BezierAnimation.prototype.bezier = function (s) {
 
 
     return new Vector3(x, y, z);
-}
+};
 
 /**
  * Calculates the derivate of the bezier of the function s.
  * @param s - The function
- * @returns the result of the derivate of the bezier
+ * @returns Vector3 result of the derivate of the bezier
  */
 BezierAnimation.prototype.bezierDerivate = function (s) {
     let x, y, z;
@@ -109,7 +109,7 @@ BezierAnimation.prototype.bezierDerivate = function (s) {
 
 
     return new Vector3(x, y, z);
-}
+};
 
 /**
  * Calculates the total distance between the control points.
@@ -127,7 +127,7 @@ BezierAnimation.prototype.calculateDistance = function () {
     return (distanceBetweenVertex(this.p1, p12) + distanceBetweenVertex(p12, p123) +
         distanceBetweenVertex(p123, p234) + distanceBetweenVertex(p23, p34) +
         distanceBetweenVertex(p34, this.p4));
-}
+};
 
 /**
  * Returns the matrix of the animation.
@@ -141,7 +141,7 @@ BezierAnimation.prototype.getAnimationMatrix = function () {
     mat4.translate(matrix, matrix, this.currentPosition.toArray());
 
     return matrix;
-}
+};
 
 /**
  * Clones the animation.

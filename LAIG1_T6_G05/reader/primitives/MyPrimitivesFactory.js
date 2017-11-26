@@ -1,13 +1,14 @@
 
 /**
  * MyPrimitivesFactory
+ * @param scene
  * @param type
  * @param args
  * @constructor
  */
 function MyPrimitivesFactory(scene, type, args){
 
-    var primitive;
+    let primitive;
 
     switch(type){
         case 'triangle':

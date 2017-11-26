@@ -27,4 +27,4 @@ function MyGraphLeaf(graph, primitive, leafID) {
 
 MyGraphLeaf.prototype.display = function () {
     this.primitive.display();
-}
+};

@@ -20,7 +20,7 @@ function MyCylinderSurface(scene, height, bottom_radius, top_radius, stacks, sli
     this.slices = slices;
 
     this.initBuffers();
-};
+}
 
 MyCylinderSurface.prototype = Object.create(CGFobject.prototype);
 MyCylinderSurface.prototype.constructor = MyCylinderSurface;
@@ -31,6 +31,8 @@ MyCylinderSurface.prototype.constructor = MyCylinderSurface;
 
 MyCylinderSurface.prototype.initBuffers = function() {
 
+    let slice;
+    let stack;
     this.vertices = [];
     this.indices = [];
     this.normals = [];
@@ -42,14 +44,14 @@ MyCylinderSurface.prototype.initBuffers = function() {
     this.stacksHigth = this.height / this.stacks;
     this.radiusRatio = (this.top_radius - this.bottom_radius) / this.stacks;
 
-    for(var stack = 0; stack <= this.stacks; stack++){
-        var z = stack * this.stacksHigth;
-        var radius = this.bottom_radius + (stack * this.radiusRatio);
+    for(stack = 0; stack <= this.stacks; stack++){
+        const z = stack * this.stacksHigth;
+        const radius = this.bottom_radius + (stack * this.radiusRatio);
 
 
-        for (var slice = 0; slice <= this.slices; slice++){
-            var x = radius * Math.cos(slice*this.slicesAngle);
-            var y = radius * Math.sin(slice*this.slicesAngle);
+        for (slice = 0; slice <= this.slices; slice++){
+            const x = radius * Math.cos(slice * this.slicesAngle);
+            const y = radius * Math.sin(slice * this.slicesAngle);
 
             this.vertices.push(x,y,z);
             this.normals.push(x,y, 0);
@@ -58,8 +60,8 @@ MyCylinderSurface.prototype.initBuffers = function() {
         }
     }
 
-    for (var stack = 0; stack < this.stacks; stack++) {
-        for (var slice = 0; slice < this.slices; slice++) {
+    for (stack = 0; stack < this.stacks; stack++) {
+        for (slice = 0; slice < this.slices; slice++) {
 
             this.indices.push(stack*(this.slices + 1) + slice, (stack+1)*(this.slices + 1) + slice + 1, (stack+1)*(this.slices + 1) + slice);
 

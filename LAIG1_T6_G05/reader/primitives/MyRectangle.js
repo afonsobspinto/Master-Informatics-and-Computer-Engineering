@@ -3,10 +3,6 @@
  * @param scene
  * @param vertex1 top left vertex
  * @param vertex2  right-bottom vertex
- * @param minS  texture coordinates
- * @param maxS  texture coordinates
- * @param minT  texture coordinates
- * @param maxT  texture coordinates
  * @constructor
  */
 
@@ -22,7 +18,7 @@ function MyRectangle(scene, vertex1, vertex2){ //vertex1 -> left-top, vertex2 ->
     this.maxT = 1.0;
 
     this.initBuffers();
-};
+}
 
 MyRectangle.prototype = Object.create(CGFobject.prototype);
 MyRectangle.prototype.constructor = MyRectangle;
@@ -50,7 +46,7 @@ MyRectangle.prototype.initBuffers = function() {
         0, 0, 1,
         0, 0, 1,
         0, 0, 1
-    ]
+    ];
 
     this.texCoords = [
         this.minS, this.vertex1.y - this.minT,
@@ -61,7 +57,7 @@ MyRectangle.prototype.initBuffers = function() {
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
-}
+};
 
 
 /**
@@ -80,4 +76,4 @@ MyRectangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
     this.updateTexCoordsGLBuffers();
 
-}
+};

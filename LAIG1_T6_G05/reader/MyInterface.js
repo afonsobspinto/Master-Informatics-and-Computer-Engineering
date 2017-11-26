@@ -6,7 +6,6 @@ function MyInterface() {
     //call CGFinterface constructor 
     CGFinterface.call(this);
 }
-;
 
 MyInterface.prototype = Object.create(CGFinterface.prototype);
 MyInterface.prototype.constructor = MyInterface;
@@ -46,7 +45,7 @@ MyInterface.prototype.addLightsGroup = function(lights) {
             group.add(this.scene.lightValues, key);
         }
     }
-}
+};
 
  /**
   * Adds a listBox containing the IDs of the selectable objects passed as parameter.
@@ -55,5 +54,5 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
      this.gui.add(this.scene, 'selectedSelected', selectables).name('Selectable');
 
- }
+ };
 

@@ -13,7 +13,7 @@ function MyCylinderBase(scene, radius, slices) {
     this.slices = slices;
 
     this.initBuffers();
-};
+}
 
 MyCylinderBase.prototype = Object.create(CGFobject.prototype);
 MyCylinderBase.prototype.constructor = MyCylinderBase;
@@ -31,8 +31,8 @@ MyCylinderBase.prototype.initBuffers = function() {
     this.texCoords = [];
 
 
-    var ang = (2*Math.PI) / this.slices; //angle for each slice
-    var index = 1; // Index 0 = center
+    const ang = (2 * Math.PI) / this.slices; //angle for each slice
+    let index = 1; // Index 0 = center
 
     // Circle center
     this.vertices.push(0, 0, 0);
@@ -40,9 +40,9 @@ MyCylinderBase.prototype.initBuffers = function() {
     this.texCoords.push(0.5, 0.5);
 
 
-    for (var slice = 0; slice <= this.slices; slice++) {
-        var x = Math.cos(slice * ang);
-        var y = Math.sin(slice * ang);
+    for (let slice = 0; slice <= this.slices; slice++) {
+        const x = Math.cos(slice * ang);
+        const y = Math.sin(slice * ang);
 
         this.vertices.push(this.radius * x, this.radius * y, 0);
         this.normals.push(0, 0, 1);

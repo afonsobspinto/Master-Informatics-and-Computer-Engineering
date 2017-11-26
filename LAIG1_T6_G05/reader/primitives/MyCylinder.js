@@ -7,6 +7,8 @@
  * @param top_radius radius of the top base
  * @param stacks parts along height
  * @param slices parts per section
+ * @param hasTopCap
+ * @param hasBottomCap
  * @constructor
  */
 
@@ -24,7 +26,7 @@ function MyCylinder(scene, height, bottom_radius, top_radius, stacks, slices, ha
         this.base = new MyCylinderBase(scene, bottom_radius, slices);
 
     this.initBuffers();
-};
+}
 
 MyCylinder.prototype = Object.create(CGFobject.prototype);
 MyCylinder.prototype.constructor = MyCylinder;

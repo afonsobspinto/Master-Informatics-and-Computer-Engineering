@@ -29,7 +29,7 @@ function CircularAnimation(id, center, radius, startang, rotang, vel) {
 
 /**
  * Updates the animation.
- * @param currTime - The current time of the animation
+ * @param currentTime
  */
 CircularAnimation.prototype.update = function (currentTime) {
 

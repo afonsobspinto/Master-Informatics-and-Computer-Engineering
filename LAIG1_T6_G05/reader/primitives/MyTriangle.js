@@ -15,8 +15,7 @@ function MyTriangle(scene, vertexA, vertexB, vertexC){
     this.vertexC = vertexC;
 
     this.initBuffers();
-};
-
+}
 MyTriangle.prototype = Object.create(CGFobject.prototype);
 MyTriangle.prototype.constructor = MyTriangle;
 
@@ -37,7 +36,7 @@ MyTriangle.prototype.initBuffers = function() {
         0, 1, 2,
     ];
 
-    var a, b, c; // sides length of triangle
+    let a, b, c; // sides length of triangle
 
     a = Math.sqrt(Math.pow((this.vertexA.x - this.vertexC.x), 2) + Math.pow((this.vertexA.y - this.vertexC.y), 2) + Math.pow((this.vertexA.z - this.vertexC.z), 2));
 
@@ -46,8 +45,8 @@ MyTriangle.prototype.initBuffers = function() {
     c = Math.sqrt(Math.pow((this.vertexC.x - this.vertexB.x), 2) + Math.pow((this.vertexC.y - this.vertexB.y), 2) + Math.pow((this.vertexC.z - this.vertexB.z), 2));
 
 
-    var vertex = [this.vertexA, this.vertexB, this.vertexC];
-    var normal = calculateSurfaceNormal (vertex);
+    const vertex = [this.vertexA, this.vertexB, this.vertexC];
+    const normal = calculateSurfaceNormal(vertex);
 
     this.normals = [
         normal.x, normal.y, normal.z,
@@ -55,12 +54,12 @@ MyTriangle.prototype.initBuffers = function() {
         normal.x, normal.y, normal.z
     ];
 
-    var cosBeta, sinBeta; // trigonometric functions of internal angle of triangle
+    let cosBeta, sinBeta; // trigonometric functions of internal angle of triangle
 
     cosBeta = (Math.pow(a,2) - Math.pow(b,2) + Math.pow(c,2) )/ (2 * a * c);
     sinBeta = Math.sqrt(1 - Math.pow(cosBeta, 2));
 
-    var P0;
+    let P0;
 
     P0 = new Vector2(c-a*cosBeta, a*sinBeta);
 
@@ -71,8 +70,6 @@ MyTriangle.prototype.initBuffers = function() {
     this.maxT = 1.0;
 
 
-    //TODO: Check if this is working
-
     this.texCoords = [
         P0.x, 1-P0.y,
         this.minS, 1,
@@ -82,7 +79,7 @@ MyTriangle.prototype.initBuffers = function() {
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
-}
+};
 
 
 /**
@@ -93,8 +90,7 @@ MyTriangle.prototype.initBuffers = function() {
 MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
 
-
-    var a, b, c; // sides length of triangle
+    let a, b, c; // sides length of triangle
 
     a = Math.sqrt(Math.pow((this.vertexA.x - this.vertexC.x), 2) + Math.pow((this.vertexA.y - this.vertexC.y), 2) + Math.pow((this.vertexA.z - this.vertexC.z), 2));
 
@@ -103,12 +99,12 @@ MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
     c = Math.sqrt(Math.pow((this.vertexC.x - this.vertexB.x), 2) + Math.pow((this.vertexC.y - this.vertexB.y), 2) + Math.pow((this.vertexC.z - this.vertexB.z), 2));
 
 
-    var cosBeta, sinBeta; // trigonometric functions of internal angle of triangle
+    let cosBeta, sinBeta; // trigonometric functions of internal angle of triangle
 
     cosBeta = (Math.pow(a,2) - Math.pow(b,2) + Math.pow(c,2) )/ (2 * a * c);
     sinBeta = Math.sqrt(1 - Math.pow(cosBeta, 2));
 
-    var P0;
+    let P0;
 
     P0 = new Vector2(c-a*cosBeta, a*sinBeta);
 
@@ -121,4 +117,4 @@ MyTriangle.prototype.setAmplifFactor = function(amplifFactorS, amplifFactorT) {
 
 
     this.updateTexCoordsGLBuffers();
-}
+};

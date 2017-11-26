@@ -17,7 +17,7 @@ class Vector3{
 
     /**
      * Transforms the vector to an array
-     * @returns the array [x,y,z]
+     * @returns [null,null,null] array [x,y,z]
      */
     toArray(){
         return [this.x, this.y, this.z];
@@ -29,62 +29,62 @@ class Vector3{
  * @param x - The x-coordinate
  * @param y - The y-coordinate
  */
-var Vector2 = function(x, y) {
+let Vector2 = function (x, y) {
     this.x = x;
     this.y = y;
-}
+};
 
 /**
  * Calculates the distance between two vertexes
  * @param vertexA - The first vertex
  * @param vertexB - The second vertex
- * @returns the distance between the two vertexes
+ * @returns number distance between the two vertexes
  */
-var distanceBetweenVertex = function(vertexA, vertexB) {
-    return  Math.sqrt(Math.pow(vertexB.x-vertexA.x, 2) + Math.pow(vertexB.y-vertexA.y, 2) + Math.pow(vertexB.z-vertexA.z, 2));
-}
+let distanceBetweenVertex = function (vertexA, vertexB) {
+    return Math.sqrt(Math.pow(vertexB.x - vertexA.x, 2) + Math.pow(vertexB.y - vertexA.y, 2) + Math.pow(vertexB.z - vertexA.z, 2));
+};
 
 /**
  * Calculates the middle point between two vertexes
  * @param vertexA - The first vertex
  * @param vertexB - The second vertex
- * @returns the middle point between the two vertexes
+ * @returns Vector3 middle point between the two vertexes
  */
-var middlePoint = function(vertexA, vertexB){
-	
-	return new Vector3((vertexB.x-vertexA.x)/2.0, (vertexB.y-vertexA.y)/2.0, (vertexB.z-vertexA.z)/2.0);
-}
+let middlePoint = function (vertexA, vertexB) {
+
+    return new Vector3((vertexB.x - vertexA.x) / 2.0, (vertexB.y - vertexA.y) / 2.0, (vertexB.z - vertexA.z) / 2.0);
+};
 
 /**
  * Normalizes a vertex
  * @param vertex - The vertex
- * @returns the 3D transformed vector
+ * @returns Vector3 3D transformed vector
  */
-var normalizeVector = function (vertex) {
-    var length = (Math.sqrt(Math.pow(vertex.x, 2) + Math.pow(vertex.y,2)+ Math.pow(vertex.z,2)));
+let normalizeVector = function (vertex) {
+    const length = (Math.sqrt(Math.pow(vertex.x, 2) + Math.pow(vertex.y, 2) + Math.pow(vertex.z, 2)));
 
     return new Vector3(vertex.x / length, vertex.y / length, vertex.z / length);
-}
+};
 
 // newell's method
 /**
  * Calculates the normal surface (newell's method) of a vertex
  * @param vertex - The vertex
- * @returns the 3D vector normalized
+ * @returns Vector3 3D vector normalized
  */
-var calculateSurfaceNormal = function (vertex){
+let calculateSurfaceNormal = function (vertex) {
 
-    var x = 0, y = 0, z = 0;
+    let x = 0, y = 0, z = 0;
 
-    for (var i = 0; i < vertex.length; i++){
-        var current = vertex[i];
-        var next = vertex[(i+1) % vertex.length];
+    for (let i = 0; i < vertex.length; i++) {
+        const current = vertex[i];
+        const next = vertex[(i + 1) % vertex.length];
 
         x += (current.y - next.y) * (current.z + next.z);
         y += (current.z - next.z) * (current.z + next.x);
         z += (current.x - next.x) * (current.y + next.y);
     }
 
-    return normalizeVector(new Vector3(x,y,z));
+    return normalizeVector(new Vector3(x, y, z));
 
-}
+};

@@ -15,7 +15,7 @@ ComboAnimation.prototype.constructor = ComboAnimation;
 
 /**
  * Updates the animation.
- * @param currTime - The current time of the animation
+ * @param currentTime
  */
 ComboAnimation.prototype.update = function(currentTime) {
 	this.animationManager.getCurrentAnimation().update(currentTime);

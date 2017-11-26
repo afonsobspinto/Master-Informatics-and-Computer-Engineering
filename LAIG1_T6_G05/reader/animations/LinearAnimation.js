@@ -1,7 +1,7 @@
 /**
  * Represents the Linear animation.
  * @param id - The ID of the animation
- * @param controlPoitns - The points of the Linear Function
+ * @param controlPoints
  * @param vel - The speed of the animation
  */
 function LinearAnimation(id, controlPoints, vel) {
@@ -10,11 +10,11 @@ function LinearAnimation(id, controlPoints, vel) {
     this.controlPoints = controlPoints;
     this.vel = vel;
 
-    var totalDistance = 0;
+    let totalDistance = 0;
     this.distances = [];
 
-    for (var i = 0; i < this.controlPoints.length - 1; i++) {
-        var distance = distanceBetweenVertex(controlPoints[i], controlPoints[i + 1]);
+    for (let i = 0; i < this.controlPoints.length - 1; i++) {
+        const distance = distanceBetweenVertex(controlPoints[i], controlPoints[i + 1]);
         totalDistance += distance;
         this.distances.push(distance); //Array of segments [Segment 1, Segment 2, Segment 3...]
     }
@@ -33,7 +33,7 @@ LinearAnimation.prototype.constructor = LinearAnimation;
 
 /**
  * Updates the animation.
- * @param currTime - The current time of the animation
+ * @param currentTime
  */
 LinearAnimation.prototype.update = function(currentTime) {
 
@@ -71,7 +71,7 @@ LinearAnimation.prototype.update = function(currentTime) {
  * Calculates the angle between two points
  * @param point1 - First point
  * @param point2 - Second point
- * @returns angle between the two points
+ * @returns number - angle between the two points
  */
 LinearAnimation.prototype.calculateAngle = function(point1, point2) {
     return Math.atan2((point2.z - point1.z), (point2.x - point1.x));
