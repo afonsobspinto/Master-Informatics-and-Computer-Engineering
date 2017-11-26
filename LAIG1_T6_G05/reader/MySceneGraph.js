@@ -1177,7 +1177,10 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
     console.log("Parsed materials");
 }
 
-
+/**
+ * Parses the animations of the XML file
+ * @param animationsNode - The animations of the XML
+ */
 MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Remove console logs
 
     var children = animationsNode.children;
@@ -1610,6 +1613,10 @@ MySceneGraph.prototype.onXMLMinorError = function(message) {
     console.warn("Warning: " + message);
 }
 
+/**
+ * Shows a message on the screen
+ * @param message - The message to be seen
+ */
 MySceneGraph.prototype.log = function(message) {
     console.log("   " + message);
 }
@@ -1659,7 +1666,10 @@ MySceneGraph.prototype.displayScene = function() {
 
 }
 
-
+/**
+ * Creates a Depth First Search
+ * @param node - The node to search
+ */
 MySceneGraph.prototype.dfsDisplay = function(node) {
     this.scene.pushMatrix();
 
