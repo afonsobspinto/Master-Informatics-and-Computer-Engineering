@@ -84,9 +84,10 @@ LinearAnimation.prototype.calculateAngle = function(point1, point2) {
 LinearAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
-    mat4.rotate(matrix, matrix, Math.PI / 2, [0,1,0]);
-    mat4.rotate(matrix, matrix, this.currentAngle, [0, 1, 0]);
+
     mat4.translate(matrix, matrix, this.currentPosition.toArray());
+    mat4.rotate(matrix, matrix, this.currentAngle, [0, 1, 0]);
+
 
     return matrix;
 };
