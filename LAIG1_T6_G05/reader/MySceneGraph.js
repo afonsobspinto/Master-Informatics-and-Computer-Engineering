@@ -1188,8 +1188,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
 
     this.animations = [];
 
-    var oneAnimationDefined = false;
-
     for (var i = 0; i < children.length; i++) {
         if (children[i].nodeName != "ANIMATION") {
             this.onXMLMinorError("unknown tag name <" + children[i].nodeName + ">");
@@ -1197,11 +1195,12 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
         }
     }
 
-
     for (var j = 0; j < children.length; j++) {
 
         var animationID = this.reader.getString(children[j], 'id');
-        var speed = this.reader.getString(children[j], 'speed');
+        if(this.reader.hasAttribute(children[j], 'speed')) {
+            var speed = this.reader.getString(children[j], 'speed');
+        }
         var type = this.reader.getString(children[j], 'type');
 
         if (animationID == null)
@@ -1274,7 +1273,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
 
         }
     }
-
 
     console.log("PARSED ANIMATIONS");
     return null;
@@ -1466,10 +1464,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                         animationsArray.push(this.animations[animationsID]);
                 }
 
+                console.log("animation Manager:", animationsArray);
                 this.nodes[nodeID].animationManager = new AnimationManager(animationsArray);
             }
-
-
 
 
             // Retrieves information about children.
@@ -1500,7 +1497,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
-
 					    this.parseLeaf(nodeID, descendants[j]);
 
                         sizeChildren++;
@@ -1547,7 +1543,7 @@ MySceneGraph.prototype.parseLeaf = function(nodeID ,xmlelem){
 
     else
         this.warn("Error in leaf");
-}
+};
 
 
 /**

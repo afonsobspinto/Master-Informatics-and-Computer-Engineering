@@ -19,17 +19,27 @@ AnimationManager.prototype.getAnimationMatrix = function() {
         return mat4.create();
 
     if (!this.animations[this.animationIndex].rendering && this.animationIndex !== this.animations.length-1) {
+        console.log(this.animations[this.animationIndex]);
         this.animationIndex++;
         this.animations[this.animationIndex].rendering = true;
+
     }
 
     return this.animations[this.animationIndex].getAnimationMatrix();
 };
 
 /**
- * Returns the index current Animation
- * @returns the index of the current animation
+ * Returns the current Animation
+ * @returns the current animation
  */
 AnimationManager.prototype.getCurrentAnimation = function() {
     return this.animations[this.animationIndex];
+};
+
+/**
+ * Returns the index current Animation Index
+ * @returns number index of the current animation
+ */
+AnimationManager.prototype.getCurrentAnimationIndex = function() {
+    return this.animationIndex;
 };
