@@ -1517,6 +1517,10 @@
             <SCALE sx="0.2" sy="0.25" sz="0.2" />
             <ROTATION axis="x" angle="-90" />
 
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="BezierAnimationExample"/>
+            </ANIMATIONREFS>
+
             <DESCENDANTS>
                 <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
             </DESCENDANTS>

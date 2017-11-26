@@ -136,6 +136,7 @@ BezierAnimation.prototype.calculateDistance = function () {
 BezierAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
+    mat4.rotate(matrix, matrix, Math.PI / 2, [0,1,0]);
     mat4.rotate(matrix,matrix, this.currentAngle, [0,1,0]);
     mat4.translate(matrix, matrix, this.currentPosition.toArray());
 
