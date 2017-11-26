@@ -60,7 +60,7 @@ LinearAnimation.prototype.update = function(currentTime) {
 };
 
 LinearAnimation.prototype.calculateAngle = function(point1, point2) {
-    return Math.atan2((point2.x - point1.x), (point2.z - point1.z));
+    return Math.atan2((point2.z - point1.z), (point2.x - point1.x));
 };
 
 LinearAnimation.prototype.getAnimationMatrix = function () {

@@ -1,4 +1,4 @@
-function CircularAnimation(id, center, radius, startang, rotang, speed) {
+function CircularAnimation(id, center, radius, startang, rotang, vel) {
     Animation.call(this, id);
 
     this.degToRad = Math.PI / 180;
@@ -7,15 +7,15 @@ function CircularAnimation(id, center, radius, startang, rotang, speed) {
     this.radius = radius;
     this.startang = startang;
     this.rotang = rotang;
-    this.speed = speed;
+    this.vel = vel;
 
-    this.w = this.speed / this.radius;
+    this.w = this.vel / this.radius;
     this.currentAngle = this.startang;
 
     this.lastCurrentTime = -1;
-    this.timeElapsed = 0;
+    this.accumulatedTime = 0;
 
-    this.totalTime = 2*Math.PI*this.radius / this.speed;
+    this.totalTime = 2*Math.PI*this.radius / this.vel;
 }
 
 CircularAnimation.prototype.update = function (currentTime) {
@@ -23,12 +23,12 @@ CircularAnimation.prototype.update = function (currentTime) {
     if(!this.rendering)
         return;
 
-    this.timeElapsed += (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
+    this.accumulatedTime += (this.lastCurrentTime === -1) ? 0 : (currentTime - this.lastCurrentTime)/1000;
     this.lastCurrentTime = currentTime;
 
-    this.currentAngle = this.w * this.timeElapsed + this.startang;
+    this.currentAngle = this.w * this.accumulatedTime + this.startang;
 
-    if(this.timeElapsed >= this.totalTime){
+    if(this.accumulatedTime >= this.totalTime){
         this.finished = true;
         this.rendering = false;
     }

@@ -268,7 +268,7 @@
 
         <ANIMATION id="LinearAnimationExample" speed="5" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="0.0" zz="100.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
@@ -276,10 +276,10 @@
                    radius="100" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="5" type="bezier">
-            <controlpoint xx="2.0" yy="0.0" zz="3.0"></controlpoint>
-            <controlpoint xx="3.0" yy="0" zz="13.0"></controlpoint>
-            <controlpoint xx="12.0" yy="0" zz="2.0"></controlpoint>
-            <controlpoint xx="0.0" yy="0" zz="10.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
+            <controlpoint xx="0.0" yy="10.0" zz="5.0"></controlpoint>
+            <controlpoint xx="0.0" yy="10.0" zz="10.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="ComboAnimationExample" speed="10" type="combo">
@@ -691,9 +691,6 @@
 
             <TRANSLATION x="18" y="4.9" z="8" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
-             <ANIMATIONREFS>
-                <ANIMATIONREF id="BezierAnimationExample"/>
-            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
@@ -722,7 +719,11 @@
 
             <TRANSLATION x="15" y="4.9" z="9" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
-			
+
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="BezierAnimationExample"/>
+            </ANIMATIONREFS>
+
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
             </DESCENDANTS>
