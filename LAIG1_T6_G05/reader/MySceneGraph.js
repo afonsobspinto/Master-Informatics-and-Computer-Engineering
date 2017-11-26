@@ -1689,11 +1689,24 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
         this.texturesStack.push(this.texturesStack[this.texturesStack.length-1]);
     else
         this.texturesStack.push(node.textureID);
+/**
+   if (this.scene.selectable == node.nodeID) {
+        this.scene.setActiveShader(this.scene.shader);
+                console.log("chegou ao SHader ");
 
+    }
+    */
 
     for (var i = 0; i < node.children.length; i++){
         this.dfsDisplay(this.nodes[node.children[i]]);
     }
+    /**
+     if (this.scene.selectable == node.nodeID && node.children.length != 0) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+                console.log("chegou ao defaultShader node");
+
+    }
+    */
 
     for(var j = 0; j < node.leaves.length; j++){
         var material = this.materials[this.materialsStack[this.materialsStack.length-1]];
@@ -1707,7 +1720,12 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
                 material.setTexture(texture[0]);
             }
         }
-
+/**
+         if (this.scene.selectable == node.nodeID && node.children.length == 0) {
+        this.scene.setActiveShader(this.scene.defaultShader);
+        console.log("chegou ao defaultShader leaf");
+    }
+*/
         material.apply();
         node.leaves[j].display();
         material.setTexture(null);
