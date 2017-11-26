@@ -13,6 +13,7 @@ function LinearAnimation(id, controlPoints, vel) {
     let totalDistance = 0;
     this.distances = [];
 
+
     for (let i = 0; i < this.controlPoints.length - 1; i++) {
         const distance = distanceBetweenVertex(controlPoints[i], controlPoints[i + 1]);
         totalDistance += distance;
@@ -20,7 +21,7 @@ function LinearAnimation(id, controlPoints, vel) {
     }
 
     this.currentControlPoint = 0;
-    this.currentPosition = new Vector3(this.controlPoints[0].x, this.controlPoints[0].y, this.controlPoints[0].z);
+    this.currentPosition = new Vector3(this.controlPoints[0].x, this.controlPoints[0].z, this.controlPoints[0].y);
     this.currentAngle = this.calculateAngle(controlPoints[0], controlPoints[1]);
     this.accumulatedDistance = 0;
 
@@ -64,7 +65,7 @@ LinearAnimation.prototype.update = function(currentTime) {
     y = (this.controlPoints[this.currentControlPoint+1].y * t) + ((1-t)*this.controlPoints[this.currentControlPoint].y);
     z = (this.controlPoints[this.currentControlPoint+1].z * t) + ((1-t)*this.controlPoints[this.currentControlPoint].z);
 
-    this.currentPosition = new Vector3(x,y,z);
+    this.currentPosition = new Vector3(x,z,y);
 };
 
 /**
