@@ -1,3 +1,9 @@
+/**
+ * Represents the Bezier Animation.
+ * @param id - The ID of the animation
+ * @param bezierPoints - The points of the Bezier Function
+ * @param vel - The speed of the animation
+ */
 function BezierAnimation(id, bezierPoints, vel) {
 
     Animation.call(this, id);
@@ -24,7 +30,10 @@ function BezierAnimation(id, bezierPoints, vel) {
 BezierAnimation.prototype = Object.create(Animation.prototype);
 BezierAnimation.prototype.constructor = BezierAnimation;
 
-
+/**
+ * Updates the animation.
+ * @param currTime - The current time of the animation
+ */
 BezierAnimation.prototype.update = function (currentTime) {
 
     if(!this.rendering)
@@ -48,7 +57,11 @@ BezierAnimation.prototype.update = function (currentTime) {
 
 };
 
-
+/**
+ * Calculates the bezier of the function s.
+ * @param s - The function
+ * @returns the result of the bezier
+ */
 BezierAnimation.prototype.bezier = function (s) {
     let x, y, z;
 
@@ -71,6 +84,11 @@ BezierAnimation.prototype.bezier = function (s) {
     return new Vector3(x, y, z);
 }
 
+/**
+ * Calculates the derivate of the bezier of the function s.
+ * @param s - The function
+ * @returns the result of the derivate of the bezier
+ */
 BezierAnimation.prototype.bezierDerivate = function (s) {
     let x, y, z;
 
@@ -93,6 +111,10 @@ BezierAnimation.prototype.bezierDerivate = function (s) {
     return new Vector3(x, y, z);
 }
 
+/**
+ * Calculates the total distance between the control points.
+ * @returns the total distance of the control points
+ */
 BezierAnimation.prototype.calculateDistance = function () {
     let p12, p123, p23, p234, p34;
 
@@ -107,6 +129,10 @@ BezierAnimation.prototype.calculateDistance = function () {
         distanceBetweenVertex(p34, this.p4));
 }
 
+/**
+ * Returns the matrix of the animation.
+ * @returns the matrix of the animation
+ */
 BezierAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
@@ -116,6 +142,9 @@ BezierAnimation.prototype.getAnimationMatrix = function () {
     return matrix;
 }
 
+/**
+ * Clones the animation.
+ */
 BezierAnimation.prototype.clone = function () {
 
     return new BezierAnimation(this.id+'clone', [this.p1, this.p2, this.p3, this.p4], this.vel);

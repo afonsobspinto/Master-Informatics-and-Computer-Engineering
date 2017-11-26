@@ -1,3 +1,12 @@
+/**
+ * Represents the Circular Animation.
+ * @param id - The ID of the animation
+ * @param center - The center of the circle in which the object will rotate
+ * @param radius - The radius of the circle in which the object will rotate
+ * @param startang - The initial angle (in degrees)
+ * @param rotang - The rotation angle (in degrees)
+ * @param vel - The speed of the animation
+ */
 function CircularAnimation(id, center, radius, startang, rotang, vel) {
     Animation.call(this, id);
 
@@ -18,6 +27,10 @@ function CircularAnimation(id, center, radius, startang, rotang, vel) {
     this.totalTime = 2*Math.PI*this.radius / this.vel;
 }
 
+/**
+ * Updates the animation.
+ * @param currTime - The current time of the animation
+ */
 CircularAnimation.prototype.update = function (currentTime) {
 
 
@@ -36,6 +49,10 @@ CircularAnimation.prototype.update = function (currentTime) {
 
 };
 
+/**
+ * Returns the matrix of the animation.
+ * @returns the matrix of the animation
+ */
 CircularAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
@@ -49,6 +66,9 @@ CircularAnimation.prototype.getAnimationMatrix = function () {
 
 };
 
+/**
+ * Clones the animation.
+ */
 CircularAnimation.prototype.clone = function () {
 
     return new CircularAnimation(this.id+'clone', this.center, this.radius, this.startang, this.rotang, this.vel);

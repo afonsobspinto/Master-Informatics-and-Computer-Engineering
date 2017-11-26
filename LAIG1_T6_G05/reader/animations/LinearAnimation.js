@@ -1,3 +1,9 @@
+/**
+ * Represents the Linear animation.
+ * @param id - The ID of the animation
+ * @param controlPoitns - The points of the Linear Function
+ * @param vel - The speed of the animation
+ */
 function LinearAnimation(id, controlPoints, vel) {
 
     Animation.call(this, id);
@@ -25,7 +31,10 @@ function LinearAnimation(id, controlPoints, vel) {
 LinearAnimation.prototype = Object.create(Animation.prototype);
 LinearAnimation.prototype.constructor = LinearAnimation;
 
-
+/**
+ * Updates the animation.
+ * @param currTime - The current time of the animation
+ */
 LinearAnimation.prototype.update = function(currentTime) {
 
     let delta, t;
@@ -58,10 +67,20 @@ LinearAnimation.prototype.update = function(currentTime) {
     this.currentPosition = new Vector3(x,y,z);
 };
 
+/**
+ * Calculates the angle between two points
+ * @param point1 - First point
+ * @param point2 - Second point
+ * @returns angle between the two points
+ */
 LinearAnimation.prototype.calculateAngle = function(point1, point2) {
     return Math.atan2((point2.z - point1.z), (point2.x - point1.x));
 };
 
+/**
+ * Returns the matrix of the animation.
+ * @returns the matrix of the animation
+ */
 LinearAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
@@ -71,6 +90,9 @@ LinearAnimation.prototype.getAnimationMatrix = function () {
     return matrix;
 };
 
+/**
+ * Clones the animation.
+ */
 LinearAnimation.prototype.clone = function () {
 
     return new LinearAnimation(this.id+'clone', this.controlPoints, this.vel);
