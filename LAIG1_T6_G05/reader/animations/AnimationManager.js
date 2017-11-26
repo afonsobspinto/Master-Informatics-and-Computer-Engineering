@@ -15,14 +15,14 @@ function AnimationManager(animations) {
  */
 AnimationManager.prototype.getAnimationMatrix = function() {
 
+
     if(this.animations.length === 0)
         return mat4.create();
 
     if (!this.animations[this.animationIndex].rendering && this.animationIndex !== this.animations.length-1) {
-        console.log(this.animations[this.animationIndex]);
+
         this.animationIndex++;
         this.animations[this.animationIndex].rendering = true;
-
     }
 
     return this.animations[this.animationIndex].getAnimationMatrix();

@@ -14,6 +14,7 @@ function BezierAnimation(id, bezierPoints, vel) {
     this.p4 = bezierPoints[3];
     this.vel = vel;
 
+    console.log(bezierPoints);
 
     this.totalDistance = this.calculateDistance();
 
@@ -113,7 +114,7 @@ BezierAnimation.prototype.bezierDerivate = function (s) {
 
 /**
  * Calculates the total distance between the control points.
- * @returns the total distance of the control points
+ * @returns number total distance of the control points
  */
 BezierAnimation.prototype.calculateDistance = function () {
     let p12, p123, p23, p234, p34;
@@ -136,9 +137,9 @@ BezierAnimation.prototype.calculateDistance = function () {
 BezierAnimation.prototype.getAnimationMatrix = function () {
     let matrix = mat4.create();
 
-    mat4.rotate(matrix, matrix, Math.PI / 2, [0,1,0]);
-    mat4.rotate(matrix,matrix, this.currentAngle, [0,1,0]);
+    //mat4.rotate(matrix, matrix, Math.PI / 2, [0,1,0]);
     mat4.translate(matrix, matrix, this.currentPosition.toArray());
+    mat4.rotate(matrix,matrix, this.currentAngle, [0,1,0]);
 
     return matrix;
 };
