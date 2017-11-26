@@ -14,6 +14,14 @@ function XMLscene(interface) {
     this.selectedSelected = 0;
 
 
+    //shaders
+    var start = new Date();
+    console.log("start: "+ start);
+    this.startingTime = start.getTime()/1000;
+    console.log("starting time: "+ this.startingTime);
+
+
+
 }
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -24,6 +32,12 @@ XMLscene.prototype.constructor = XMLscene;
  */
 XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
+
+     //ADDED for shaders
+    this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
+    this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0}); 
+    //sends rgb values to the shader, 
+    //for it to calculate the object color (changes with time)
 
     this.initCameras();
 
@@ -146,6 +160,19 @@ XMLscene.prototype.display = function() {
             }
         }
 
+        var currTime = new Date();
+
+        currTime = currTime.getTime()/1000;
+       // console.log("currTime:" + currTime);
+     //   console.log("chegou ao currTime");
+
+        if(this.startingTime == null){
+			this.startingTime = currTime;
+		}
+        var delta = currTime - this.startingTime;
+        this.updateShaders(delta);
+      //  console.log("delta: "+delta);
+
         // Displays the scene.
         this.graph.displayScene();
 
@@ -176,6 +203,10 @@ XMLscene.prototype.update = function(currTime) {
         }
     }
 
-    //this.selectedSelected; <- the object Selected
+    this.selectedSelected; // <- the object Selected
 
+}
+
+XMLscene.prototype.updateShaders = function(delta){
+	this.shader.setUniformsValues({timeFactor: delta});
 }
