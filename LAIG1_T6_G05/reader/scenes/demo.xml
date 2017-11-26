@@ -273,7 +273,7 @@
 
         <ANIMATION id="CircularAnimationExample" speed="5" type="circular"
                    centerx="0.0" centery="0.0" centerz="0.0"
-                   radius="100" startang="0.0" rotang="360"/>
+                   radius="5" startang="0.0" rotang="360"/>
 
         <ANIMATION id="BezierAnimationExample" speed="5" type="bezier">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
@@ -737,6 +737,10 @@
 
             <TRANSLATION x="13" y="4.9" z="6.5" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
+
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="ComboAnimationExample"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />

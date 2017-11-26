@@ -1264,7 +1264,7 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
                     continue;
                 }
 
-                spanRefs.push(this.animations[spanID]);
+                spanRefs.push(this.animations[spanID].clone());
             }
 
             this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
@@ -1667,7 +1667,7 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
 
     if(node.animationManager != null)
         this.scene.multMatrix(node.animationManager.getAnimationMatrix());
-    
+
 
     if (node.materialID == 'null')
         this.materialsStack.push(this.materialsStack[this.materialsStack.length-1]);

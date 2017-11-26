@@ -34,7 +34,6 @@ BezierAnimation.prototype.update = function (currentTime) {
     this.lastCurrentTime = currentTime;
 
     if(this.accumulatedTime >= this.totalTime){
-        this.finished = true;
         this.rendering = false;
     }
 
@@ -116,3 +115,9 @@ BezierAnimation.prototype.getAnimationMatrix = function () {
 
     return matrix;
 }
+
+BezierAnimation.prototype.clone = function () {
+
+    return new BezierAnimation(this.id+'clone', [this.p1, this.p2, this.p3, this.p4], this.vel);
+
+};

@@ -20,6 +20,7 @@ function CircularAnimation(id, center, radius, startang, rotang, vel) {
 
 CircularAnimation.prototype.update = function (currentTime) {
 
+
     if(!this.rendering)
         return;
 
@@ -29,7 +30,6 @@ CircularAnimation.prototype.update = function (currentTime) {
     this.currentAngle = this.w * this.accumulatedTime + this.startang;
 
     if(this.accumulatedTime >= this.totalTime){
-        this.finished = true;
         this.rendering = false;
     }
 
@@ -46,5 +46,11 @@ CircularAnimation.prototype.getAnimationMatrix = function () {
 
 
     return matrix;
+
+};
+
+CircularAnimation.prototype.clone = function () {
+
+    return new CircularAnimation(this.id+'clone', this.center, this.radius, this.startang, this.rotang, this.vel);
 
 };

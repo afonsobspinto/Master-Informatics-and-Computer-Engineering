@@ -40,7 +40,6 @@ LinearAnimation.prototype.update = function(currentTime) {
     this.accumulatedDistance += this.vel * delta; // Distance = velocity * time;
     if(this.accumulatedDistance > this.distances[this.currentControlPoint]){
         if (this.currentControlPoint === this.controlPoints.length-2) {
-            this.finished = true;
             this.rendering = false;
             return;
         }
@@ -70,4 +69,10 @@ LinearAnimation.prototype.getAnimationMatrix = function () {
     mat4.translate(matrix, matrix, this.currentPosition.toArray());
 
     return matrix;
+};
+
+LinearAnimation.prototype.clone = function () {
+
+    return new LinearAnimation(this.id+'clone', this.controlPoints, this.vel);
+
 };
