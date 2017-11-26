@@ -1207,12 +1207,34 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
         if (this.animations[animationID] != null)
             return "ID must be unique for each material (conflict: ID = " + animationID + ")";
 
-        if (speed <= 0)
-            return "Speed must be >=0";
-
         if (type != "circular" && type != "linear" && type != "combo" && type != "bezier")
             return "Type must be circular,linear, bezier or combo";
 
+        else if (type == "combo"){
+            console.log("FOUND COMBO");
+
+            var animationSpecs = children[j].children;
+            var spanRefs = [];
+            var spanID;
+
+            for (var i = 0; i < animationSpecs.length; i++) {
+
+                spanID = this.reader.getString(animationSpecs[i], 'id');
+
+                if(this.animations[spanID]==null){
+                    console.warn("ID must be already defined for each SPANREF (conflict: ID = " + spanID + ")");
+                    continue;
+                }
+
+                spanRefs.push(this.animations[spanID].clone());
+            }
+
+            this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
+            console.log(this.animations[animationID]);
+        }
+
+        else if (speed <= 0)
+            return "Speed must be >=0";
 
         if (type == "circular") {
             var centerX = this.reader.getString(children[j], 'centerx');
@@ -1247,28 +1269,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
 
             console.log(this.animations[animationID]);
 
-        }
-        else if (type == "combo"){
-            console.log("FOUND COMBO");
-
-            var animationSpecs = children[j].children;
-            var spanRefs = [];
-            var spanID;
-
-            for (var i = 0; i < animationSpecs.length; i++) {
-
-                spanID = this.reader.getString(animationSpecs[i], 'id');
-
-                if(this.animations[spanID]==null){
-                    console.warn("ID must be already defined for each SPANREF (conflict: ID = " + spanID + ")");
-                    continue;
-                }
-
-                spanRefs.push(this.animations[spanID].clone());
-            }
-
-            this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
-            console.log(this.animations[animationID]);
         }
     }
 

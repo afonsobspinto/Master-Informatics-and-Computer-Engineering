@@ -282,11 +282,18 @@
             <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="ComboAnimationExample" speed="10" type="combo">
+        <ANIMATION id="ComboAnimationExample" type="combo">
             <SPANREF id="LinearAnimationExample"/>
             <SPANREF id="CircularAnimationExample"/>
+            <SPANREF id="LinearAnimationExample"/>
         </ANIMATION>
 
+        <ANIMATION id="AnotherComboAnimationExample" type="combo">
+            <SPANREF id="BezierAnimationExample"/>
+            <SPANREF id="CircularAnimationExample"/>
+            <SPANREF id="LinearAnimationExample"/>
+            <SPANREF id="BezierAnimationExample"/>
+        </ANIMATION>
 
     </ANIMATIONS>
 
@@ -753,8 +760,12 @@
             <MATERIAL id="ballYellow" />
             <TEXTURE id="null" />
 
-            <TRANSLATION x="9" y="4.9" z="14" />
+            <TRANSLATION x="10" y="4.9" z="14" />
             <SCALE sx="0.15" sy="0.15" sz="0.15" />
+
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="AnotherComboAnimationExample"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <LEAF id="sphere1" type="sphere" args="2 20 20" />
