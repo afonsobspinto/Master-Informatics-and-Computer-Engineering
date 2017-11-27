@@ -728,7 +728,7 @@
         </NODE>
 
         <!-- Another ball -->
-        <NODE id="ball2">
+        <NODE id="ball2" selectable="true">
             <MATERIAL id="ballWhite" />
             <TEXTURE id="null" />
 
@@ -1374,7 +1374,7 @@
         </NODE>
 
         <!-- The small table -->
-        <NODE id="smallTable">
+        <NODE id="smallTable" selectable="true">
             <MATERIAL id="null" />
             <TEXTURE id="table" />
 

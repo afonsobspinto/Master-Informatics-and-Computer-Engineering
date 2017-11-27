@@ -204,8 +204,7 @@ XMLscene.prototype.update = function(currTime) {
 
 XMLscene.prototype.updateShaders = function(delta){
 	this.shader.setUniformsValues({timeFactor: delta});
-
-	console.log(this.selectedColor);
+    
 	switch (this.selectedColor){
         case '0':
             this.shader.setUniformsValues({red: 1.0, green: 0.0, blue: 0.0});
