@@ -34,3 +34,11 @@ AnimationManager.prototype.getAnimationMatrix = function() {
 AnimationManager.prototype.getCurrentAnimation = function() {
     return this.animations[this.animationIndex];
 };
+
+/**
+ * Returns the index current Animation Index
+ * @returns number index of the current animation
+ */
+AnimationManager.prototype.getCurrentAnimationIndex = function() {
+    return this.animationIndex;
+};

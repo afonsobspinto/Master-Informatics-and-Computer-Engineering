@@ -22,6 +22,12 @@ ComboAnimation.prototype.constructor = ComboAnimation;
  */
 
 ComboAnimation.prototype.update = function(currentTime) {
+
+    if (!this.animationManager.getCurrentAnimation().rendering && this.animationManager.getCurrentAnimationIndex() === this.animations.length-1){
+        this.rendering = false;
+        return;
+    }
+
     this.animationManager.getCurrentAnimation().update(currentTime);
 };
 
