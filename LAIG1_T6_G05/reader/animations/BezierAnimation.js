@@ -14,8 +14,6 @@ function BezierAnimation(id, bezierPoints, vel) {
     this.p4 = bezierPoints[3];
     this.vel = vel;
 
-    console.log(bezierPoints);
-
     this.totalDistance = this.calculateDistance();
 
     this.totalTime = this.totalDistance / this.vel;

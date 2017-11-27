@@ -16,9 +16,7 @@ function XMLscene(interface) {
 
     //shaders
     var start = new Date();
-    console.log("start: "+ start);
     this.startingTime = start.getTime()/1000;
-    console.log("starting time: "+ this.startingTime);
 
 
 
@@ -163,16 +161,12 @@ XMLscene.prototype.display = function() {
         var currTime = new Date();
 
         currTime = currTime.getTime()/1000;
-       // console.log("currTime:" + currTime);
-     //   console.log("chegou ao currTime");
 
         if(this.startingTime == null){
 			this.startingTime = currTime;
 		}
         var delta = currTime - this.startingTime;
         this.updateShaders(delta);
-      //  console.log("delta: "+delta);
-
         // Displays the scene.
         this.graph.displayScene();
 

@@ -1686,46 +1686,14 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
     else
         this.texturesStack.push(node.textureID);
 
-	   //    console.log("SELECTABLEs: "+ this.selectables);
-	    //   console.log("SELECTABLE-nodeID: "+ this.selectables[0]);
-	      //console.log("SELECTABLE-nodeID: "+ this.selectables[node.nodeID]);
-	//      console.log("SELECTABLE-nodeID: "+ this.selectables[nodeID]);
-    //console.log("NOde ID: "+ node.nodeID);
-    /**
-	var index=-1;
-	for(var p=0; p<this.selectables.length;p++){
-		if(node.nodeID == this.selectables[p])
-			index = p;
-	}
-	if(index>=0)
-		console.log("index " + index);
-
-		*/
-	
-	
-
-console.log("SELECTED IS :" +this.scene.selectedSelected);
-//if(node.nodeID=="poolTable")
-//console.log( node.nodeID);
    if ( node.nodeID == this.scene.selectedSelected) {
         this.scene.setActiveShader(this.scene.shader);
                 console.log("chegou ao SHader ");
-
     }
-       // 
-
-    
 
     for (var i = 0; i < node.children.length; i++){
         this.dfsDisplay(this.nodes[node.children[i]]);
     }
-    /**
-     if (this.scene.selectable == node.nodeID && node.children.length != 0) {
-        this.scene.setActiveShader(this.scene.defaultShader);
-                console.log("chegou ao defaultShader node");
-
-    }
-    */
 
     for(var j = 0; j < node.leaves.length; j++){
         var material = this.materials[this.materialsStack[this.materialsStack.length-1]];
@@ -1739,12 +1707,7 @@ console.log("SELECTED IS :" +this.scene.selectedSelected);
                 material.setTexture(texture[0]);
             }
         }
-/**
-         if (this.scene.selectable == node.nodeID && node.children.length == 0) {
-        this.scene.setActiveShader(this.scene.defaultShader);
-        console.log("chegou ao defaultShader leaf");
-    }
-*/
+
         material.apply();
         node.leaves[j].display();
         material.setTexture(null);
@@ -1752,7 +1715,6 @@ console.log("SELECTED IS :" +this.scene.selectedSelected);
 
 if ( node.nodeID == this.scene.selectedSelected) {
         this.scene.setActiveShader(this.scene.defaultShader);
-        console.log("chegou ao defaultShader ");
     }
     this.materialsStack.pop();
     this.texturesStack.pop();
