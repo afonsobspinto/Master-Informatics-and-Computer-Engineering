@@ -274,10 +274,10 @@
         </ANIMATION>
 
         <ANIMATION id="BezierAnimation2" speed="20" type="bezier">
-            <controlpoint xx="0.0" yy="0.0" zz="-20.0"></controlpoint>
-            <controlpoint xx="-5.0" yy="7.0" zz="-20.0"></controlpoint>
-            <controlpoint xx="-15.0" yy="9.0" zz="-20.0"></controlpoint>
-            <controlpoint xx="-25.0" yy="0.0" zz="-20.0"></controlpoint>
+            <controlpoint xx="0.0" yy="0.0" zz="-40.0"></controlpoint>
+            <controlpoint xx="-5.0" yy="7.0" zz="-40.0"></controlpoint>
+            <controlpoint xx="-15.0" yy="9.0" zz="-40.0"></controlpoint>
+            <controlpoint xx="-25.0" yy="0.0" zz="-40.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="LinearAnimation1" speed="20" type="linear">

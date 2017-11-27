@@ -52,7 +52,7 @@ BezierAnimation.prototype.update = function (currentTime) {
     qs = this.bezierDerivate(s);
 
     this.currentAngle = Math.atan2(qs.z, qs.x);
-    this.currentPosition = new Vector3(this.p1.x + q.x, this.p1.y + q.y, this.p1.z + q.z);
+    this.currentPosition = new Vector3(q.x, q.y, q.z);
 
 };
 
