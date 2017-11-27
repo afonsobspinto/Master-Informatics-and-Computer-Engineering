@@ -12,10 +12,11 @@ function XMLscene(interface) {
     this.lightValues = {};
 
     this.selectedSelected = 0;
+    this.selectedColor = 2;
 
 
     //shaders
-    var start = new Date();
+    let start = new Date();
     this.startingTime = start.getTime()/1000;
 
 
@@ -31,11 +32,9 @@ XMLscene.prototype.constructor = XMLscene;
 XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
 
-     //ADDED for shaders
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
     this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0}); 
-    //sends rgb values to the shader, 
-    //for it to calculate the object color (changes with time)
+
 
     this.initCameras();
 
@@ -113,6 +112,9 @@ XMLscene.prototype.onGraphLoaded = function()
 
     // Adds selectable listBox.
     this.interface.addSelectableListBox(this.graph.selectables);
+
+    // Adds color listBox.
+    this.interface.addColorDropdown();
 };
 
 /**
@@ -158,15 +160,16 @@ XMLscene.prototype.display = function() {
             }
         }
 
-        var currTime = new Date();
+        let currTime = new Date();
 
         currTime = currTime.getTime()/1000;
 
         if(this.startingTime == null){
 			this.startingTime = currTime;
 		}
-        var delta = currTime - this.startingTime;
+        let delta = currTime - this.startingTime;
         this.updateShaders(delta);
+
         // Displays the scene.
         this.graph.displayScene();
 
@@ -192,15 +195,27 @@ XMLscene.prototype.display = function() {
 XMLscene.prototype.update = function(currTime) {
 
     if(this.graph.loadedOk){
-        for(var animationID in this.graph.animations){
+        for(let animationID in this.graph.animations){
             this.graph.animations[animationID].update(currTime);
         }
     }
-
-    this.selectedSelected; // <- the object Selected
 
 }
 
 XMLscene.prototype.updateShaders = function(delta){
 	this.shader.setUniformsValues({timeFactor: delta});
+
+	console.log(this.selectedColor);
+	switch (this.selectedColor){
+        case '0':
+            this.shader.setUniformsValues({red: 1.0, green: 0.0, blue: 0.0});
+            break;
+        case '1':
+            this.shader.setUniformsValues({red: 0.0, green: 1.0, blue: 0.0});
+            break;
+        case '2':
+        default:
+            this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
+
+    }
 }

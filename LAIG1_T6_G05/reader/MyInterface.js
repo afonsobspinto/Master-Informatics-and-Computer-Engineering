@@ -56,3 +56,16 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
  };
 
+
+ /**
+  * Adds a dropDown containing Colors;
+  */
+ MyInterface.prototype.addColorDropdown = function() {
+
+     this.gui.add(this.scene, 'selectedColor', {
+         'Red': 0,
+         'Green': 1,
+         'Blue': 2,
+     }).name('Color');
+
+ };
