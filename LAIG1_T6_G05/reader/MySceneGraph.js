@@ -1213,7 +1213,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
             return "Type must be circular,linear, bezier or combo";
 
         else if (type == "combo"){
-            console.log("FOUND COMBO");
 
             var animationSpecs = children[j].children;
             var spanRefs = [];
@@ -1232,7 +1231,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
             }
 
             this.animations[animationID] = new ComboAnimation(animationID, spanRefs);
-            console.log(this.animations[animationID]);
         }
 
         else if (speed <= 0)
@@ -1246,13 +1244,10 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
             var startAngle = this.reader.getString(children[j], 'startang');
             var rotationAngle = this.reader.getString(children[j], 'rotang');
 
-            console.log("FOUND CIRCULAR");
+
             this.animations[animationID] = new CircularAnimation(animationID, new Vector3(centerX*1.0, centerY*1.0, centerZ*1.0), radius * 1.0, startAngle *1.0, rotationAngle * 1.0, speed * 1.0);
-            console.log(this.animations[animationID]);
         }
         else if (type == "linear" || type == "bezier") {
-
-            (type == "linear") ? console.log("FOUND LINEAR") : console.log("FOUND BEZIER");
 
             var animationSpecs = children[j].children;  // all controlpoints
             var controlPoints = [];
@@ -1269,7 +1264,6 @@ MySceneGraph.prototype.parseAnimations = function (animationsNode) { //TODO: Rem
             }
             this.animations[animationID] = (type == "linear") ? new LinearAnimation(animationID, controlPoints, speed * 1.0) : new BezierAnimation(animationID, controlPoints, speed * 1.0);
 
-            console.log(this.animations[animationID]);
 
         }
     }
@@ -1464,7 +1458,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                         animationsArray.push(this.animations[animationsID]);
                 }
 
-                console.log("animation Manager:", animationsArray);
                 this.nodes[nodeID].animationManager = new AnimationManager(animationsArray);
             }
 
@@ -1512,7 +1505,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             this.onXMLMinorError("unknown tag name <" + nodeName);
     }
 
-    console.log(this.selectables[0]);
     console.log("Parsed nodes");
     return null ;
 }
@@ -1688,7 +1680,6 @@ MySceneGraph.prototype.dfsDisplay = function(node) {
 
    if ( node.nodeID == this.scene.selectedSelected) {
         this.scene.setActiveShader(this.scene.shader);
-                console.log("chegou ao SHader ");
     }
 
     for (var i = 0; i < node.children.length; i++){
