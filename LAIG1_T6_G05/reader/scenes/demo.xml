@@ -317,12 +317,12 @@
             <controlpoint xx="28.0" yy="-5.0" zz="33.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="WaitingAnimation1" speed="0.016" type="linear">
+        <ANIMATION id="WaitingAnimation1" speed="0.0125" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
             <controlpoint xx="0.1" yy="0.0" zz="0.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="WaitingAnimation2" speed="0.014" type="linear">
+        <ANIMATION id="WaitingAnimation2" speed="0.011" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
             <controlpoint xx="0.1" yy="0.0" zz="0.0"></controlpoint>
         </ANIMATION>
