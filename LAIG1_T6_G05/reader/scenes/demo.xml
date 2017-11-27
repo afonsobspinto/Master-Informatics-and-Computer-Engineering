@@ -349,6 +349,7 @@
             <SPANREF id="WaitingAnimation2"/>
             <SPANREF id="LinearAnimation5"/>
         </ANIMATION>
+
     </ANIMATIONS>
 
 
@@ -625,8 +626,9 @@
             <MATERIAL id="null" />
             <TEXTURE id="wood" />
 
+            <TRANSLATION x="15" y="4.9" z="13.9" />
             <SCALE sx="0.2" sy="0.2" sz="2" />
-            <TRANSLATION x="100" y="24" z="3" />
+
 
             <DESCENDANTS>
                 <NODEREF id="cueBody" />

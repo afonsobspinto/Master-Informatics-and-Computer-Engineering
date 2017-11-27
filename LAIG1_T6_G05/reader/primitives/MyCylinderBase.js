@@ -25,7 +25,7 @@ MyCylinderBase.prototype.constructor = MyCylinderBase;
 MyCylinderBase.prototype.initBuffers = function() {
 
 
-    this.vertices = []; 
+    this.vertices = [];
     this.indices = [];
     this.normals = [];
     this.texCoords = [];
