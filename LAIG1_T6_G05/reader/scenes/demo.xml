@@ -321,40 +321,11 @@
             <SPANREF id="LinearAnimation3"/>
         </ANIMATION>
 
-        <ANIMATION id="LinearAnimationExample" speed="5" type="linear">
-            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="5.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="10.0"></controlpoint>
-            <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
+        <ANIMATION id="ComboAnimation2" type="combo">
+            <SPANREF id="LinearAnimation2"/>
+            <SPANREF id="CircularAnimation1"/>
+            <SPANREF id="LinearAnimation3"/>
         </ANIMATION>
-        <ANIMATION id="LinearAnimationExample2" speed="5" type="linear">
-            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="5.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="10.0"></controlpoint>
-            <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
-        </ANIMATION>
-
-        <ANIMATION id="CircularAnimationExample" speed="25" type="circular"
-                   centerx="0.0" centery="0.0" centerz="0.0"
-                   radius="50" startang="0.0" rotang="90"/>
-
-        <ANIMATION id="BezierAnimationExample" speed="5" type="bezier">
-            <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="5.0"></controlpoint>
-            <controlpoint xx="0.0" yy="10.0" zz="10.0"></controlpoint>
-            <controlpoint xx="0.0" yy="0.0" zz="15.0"></controlpoint>
-        </ANIMATION>
-
-        <ANIMATION id="ComboAnimationExample" type="combo">
-            <SPANREF id="LinearAnimationExample2"/>
-            <SPANREF id="LinearAnimationExample2"/>
-        </ANIMATION>
-
-        <ANIMATION id="AnotherComboAnimationExample" type="combo">
-            <SPANREF id="CircularAnimationExample"/>
-            <SPANREF id="LinearAnimationExample"/>
-        </ANIMATION>
-
     </ANIMATIONS>
 
 
