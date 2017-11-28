@@ -311,10 +311,9 @@
             <controlpoint xx="28.0" yy="-5.0" zz="33.0"></controlpoint>
         </ANIMATION>
 
-        <ANIMATION id="DummyAnimation" speed="10" type="linear">
+        <ANIMATION id="LinearAnimation6" speed="10" type="linear">
             <controlpoint xx="0.0" yy="0.0" zz="0.0"></controlpoint>
-            <controlpoint xx="27.0" yy="0.0" zz="32.0"></controlpoint>
-            <controlpoint xx="28.0" yy="-5.0" zz="33.0"></controlpoint>
+            <controlpoint xx="0.0" yy="5.0" zz="0.0"></controlpoint>
         </ANIMATION>
 
         <ANIMATION id="WaitingAnimation1" speed="0.0125" type="linear">
@@ -334,7 +333,7 @@
         </ANIMATION>
 
         <ANIMATION id="ComboAnimation2" type="combo">
-            <SPANREF id="DummyAnimation"/>
+            <SPANREF id="LinearAnimation6"/>
             <SPANREF id="LinearAnimation2"/>
             <SPANREF id="CircularAnimation1"/>
             <SPANREF id="LinearAnimation3"/>
@@ -629,6 +628,9 @@
             <TRANSLATION x="15" y="4.9" z="13.9" />
             <SCALE sx="0.2" sy="0.2" sz="2" />
 
+            <ANIMATIONREFS>
+                <ANIMATIONREF id="LinearAnimation6"/>
+            </ANIMATIONREFS>
 
             <DESCENDANTS>
                 <NODEREF id="cueBody" />
@@ -1563,6 +1565,7 @@
             <TRANSLATION x="1.5" y="6" z="1.5" />
             <SCALE sx="0.2" sy="0.25" sz="0.2" />
             <ROTATION axis="x" angle="-90" />
+
 
             <DESCENDANTS>
                 <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
