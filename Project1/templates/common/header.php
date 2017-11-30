@@ -29,10 +29,3 @@
       </div>
     </header>
 
-    <nav id="menu">
-      <ul>
-        <li><a href="/FEUP-LTW/Project1/index.php">Home</a></li>
- <!--       <li><a href="about.php">About Us</a></li>
-        <li><a href="contacts.php">Contacts</a></li> -->
-      </ul>
-    </nav>
