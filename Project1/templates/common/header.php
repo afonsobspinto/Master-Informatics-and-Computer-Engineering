@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>To Do List</title>
+<head>
+    <title>FEUP To-Do</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Cherry+Swash" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <div id="info">
+<header>
+    <div id="info">
         <img src="images/site/logo.svg">
-        <h1><a href="index.php">To Do List</a></h1>
-      </div>
-      <div id="user">
-        <form action="action_login.php" method="post">
-          <input type="text" placeholder="username" name="username">
-          <input type="password" placeholder="password" name="password">
-          <div>
-            <input type="submit" value="Login">
-            <a href="register.php">Register</a>
-          </div>
-        </form>
-      </div>
-    </header>
+        <h1><a href="index.php">FEUP To-Do</a></h1>
+    </div>
 
-    <nav id="menu">
-      <ul>
-        <li><a href="/FEUP-LTW/Project1/index.php">Home</a></li>
- <!--       <li><a href="about.php">About Us</a></li>
-        <li><a href="contacts.php">Contacts</a></li> -->
-      </ul>
-    </nav>
+    <?php include_once('templates/common/user.php'); ?>
+</header>
+
+
+<nav id="menu">
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php">About Us</a></li>
+        <li><a href="contacts.php">Contacts</a></li>
+    </ul>
+</nav>
+
+<section id="messages">
+    <?php $errors = getErrorMessages();foreach ($errors as $error) { ?>
+        <article class="error">
+            <p><?=$error?></p>
+        </article>
+    <?php } ?>
+    <?php $successes = getSuccessMessages();foreach ($successes as $success) { ?>
+        <article class="success">
+            <p><?=$success?></p>
+        </article>
+    <?php } clearMessages(); ?>
+</section>

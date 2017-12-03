@@ -7,10 +7,10 @@
   
    include_once('includes/init.php');
 
-  if (!userExists($dbh,$_POST['username']))  // test if user exists
+  if (!userExists($_POST['username']))  // test if user exists
     {
       try{
-        register($dbh, $_POST['username'], $_POST['password']);
+        register($_POST['username'], $_POST['password']);
       }catch (PDOException $e) {
         die($e->getMessage());
       }
@@ -21,4 +21,3 @@
     } 
 	
   //header('Location: ' . $_SERVER['HTTP_REFERER']);
-?>
