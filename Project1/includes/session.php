@@ -1,28 +1,26 @@
 <?php
-session_start();
+  session_start();
 
-
-
-function setCurrentUser($username) {
+  function setCurrentUser($username) {
     $_SESSION['username'] = $username;
-}
+  }
 
-function getErrorMessages() {
+  function getErrorMessages() {
     if (isset($_SESSION['error_messages']))
-        return $_SESSION['error_messages'];
+      return $_SESSION['error_messages'];
     else
-        return array();
-}
+      return array();
+  }
 
-function getSuccessMessages() {
+  function getSuccessMessages() {
     if (isset($_SESSION['success_messages']))
-        return $_SESSION['success_messages'];
+      return $_SESSION['success_messages'];
     else
-        return array();
-}
+      return array();
+  }
 
-function clearMessages() {
+  function clearMessages() {
     unset($_SESSION['error_messages']);
     unset($_SESSION['success_messages']);
-}
-
+  }
+?>

@@ -6,6 +6,7 @@ body {
   grid-template-areas:
     "header     header"
     "menu       menu"
+    "categories messages"
     "categories main"
     "footer     footer";
 }
@@ -83,7 +84,7 @@ body > header {
   display: flex;
   margin: 0;
   padding: 0;
-  justify-content: productsspace-around;
+  justify-content: tasksspace-around;
 }
 
 #menu li {
@@ -199,7 +200,6 @@ body > header {
   text-shadow:0px 0px 5px white;
 }
 
-
 footer {
   grid-area: footer;
   background-color: #333;
@@ -241,10 +241,32 @@ footer {
   #menu {
     font-size: 0.8em;
   }
+
+  #messages {
+    grid-column: 1/ span 2;
+  }
 }
 
 @media (max-width: 520px) {
   #tasks {
     grid-template-columns: 1fr;
   }
+}
+
+#messages article {
+  text-align: center;
+  color: white;
+}
+
+#messages article p {
+  margin: 2px;
+  padding: 0.5em;
+}
+
+#messages article.error {
+  background-color: #F66;
+}
+
+#messages article.success {
+  background-color: #6D6;
 }
