@@ -124,12 +124,12 @@
         <MATERIAL id="null" />
         <TEXTURE id="floor" />
 
-        <SCALE sx="10" sy="1" sz="8" />
-        <TRANSLATION x="0" y="0" z="4" />
+        <SCALE sx="10" sy="1" sz="10" />
+        <TRANSLATION x="0" y="0" z="5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-            <LEAF  type="rectangle" args="0 4 5 0" />
+            <LEAF  type="rectangle" args="0 5 5 0" />
         </DESCENDANTS>
 
     </NODE>
