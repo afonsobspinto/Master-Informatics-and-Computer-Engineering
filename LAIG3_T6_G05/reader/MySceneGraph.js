@@ -1181,7 +1181,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
  * Parses the animations of the XML file
  * @param animationsNode - The animations of the XML
  */
-MySceneGraph.prototype.parseAnimations = function (animationsNode) {
+MySceneGraph.prototype.parseAnimations = function (animationsNode) { 
 
     var children = animationsNode.children;
     // Each material.
