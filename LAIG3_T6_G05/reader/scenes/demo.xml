@@ -66,9 +66,9 @@
     <!-- Textures -->
     <TEXTURES>
 
-        <!-- Floor -->
-        <TEXTURE id="floor">
-            <file path="images/floor.png" />
+        <!-- Board -->
+        <TEXTURE id="board">
+            <file path="images/board.png" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
@@ -114,25 +114,31 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-            <NODEREF id="floor" />
+            <NODEREF id="board" />
         </DESCENDANTS>
 
     </NODE>
 
-    <!-- The floor -->
-    <NODE id="floor">
-        <MATERIAL id="null" />
-        <TEXTURE id="floor" />
+    <!-- The board -->
+        <NODE id="board">
+            <MATERIAL id="null" />
+            <TEXTURE id="board" />
 
-        <SCALE sx="10" sy="1" sz="10" />
-        <TRANSLATION x="0" y="0" z="5" />
-        <ROTATION axis="x" angle="-90" />
+            <DESCENDANTS>
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="10" yy="0" zz="-10" ww="1" />
+                        <CPOINT xx="10" yy="0" zz="10" ww="1" />
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="-10" yy="0" zz="-10" ww="1" />
+                        <CPOINT xx="-10" yy="0" zz="10" ww="1" />
+                    </CPLINE>
+                </LEAF>
 
-        <DESCENDANTS>
-            <LEAF  type="rectangle" args="0 5 5 0" />
-        </DESCENDANTS>
+            </DESCENDANTS>
 
-    </NODE>
+        </NODE>
 
     </NODES>
 </SCENE>
