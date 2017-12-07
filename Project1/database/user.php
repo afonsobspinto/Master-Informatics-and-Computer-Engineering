@@ -1,10 +1,35 @@
 <?php
 
-  function isLoginCorrect($username, $password) {
+   function isLoginCorrect($username, $password) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM user WHERE usr_username = ? AND usr_password = ?');
-    $stmt->execute(array($username, sha1($password)));
-    return $stmt->fetch() !== false;
+    $stmt = $dbh->prepare('SELECT usr_password FROM user WHERE usr_username = ?');
+    $stmt->execute(array($username));
+    $userInfo = $stmt->fetch();
+    return ($userInfo !== false && password_verify($password, $userInfo['usr_password']));
+}
+  
+   function userExists($dbh,$username){
+    echo('Checking if user exists in db <br>');
+    $stmt = $dbh->prepare('SELECT * FROM user WHERE usr_username = ?');
+    $stmt->execute(array($username));
+    $result = $stmt->fetchAll();
+    if ($result){
+      echo('user exists in db <br>');
+      return true;
+    }
+    echo('user does not exist in db <br>');
+    return false;
+  }
+
+  function register($db, $username, $password) {
+
+    $options = ['cost' => 12];
+    $hash = password_hash($password, PASSWORD_DEFAULT, $options);
+    //$hash = password_hash($password, PASSWORD_BCRYPT, $options);
+
+    $stmt = $db->prepare('INSERT INTO user(usr_username, usr_password) VALUES(?,?);');
+
+    return ($stmt->execute(array($username, $hash))) ? 0 : 1;
   }
 
 ?>

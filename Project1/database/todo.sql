@@ -25,4 +25,4 @@ INSERT INTO category VALUES (NULL, 'Shopping');
 
 INSERT INTO task VALUES (NULL, 'Task1', 'Finish this website ', 1);
 
-INSERT INTO user VALUES ('afonso', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
+INSERT INTO user VALUES ('afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
