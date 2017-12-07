@@ -1,13 +1,16 @@
+*, *::after, *::before {
+  box-sizing: border-box; }
+
 body {
-  width: 70em;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "header     header"
-    "menu       menu"
-    "categories main"
-    "footer     footer";
+    "header header"
+    "slideDeck slideDeck"
+    "footer footer";
 }
 
 body > header {
@@ -15,6 +18,16 @@ body > header {
   justify-content: space-between;
   align-items: stretch;
   grid-area: header;
+}
+
+body #homeBody {
+  height:50px;
+  width:50px;
+  margin:-25px auto 0 -25px;
+  background-position: center;
+  position:absolute;
+  top:50%;
+  left:50%;
 }
 
 #info {
@@ -83,7 +96,6 @@ body > header {
   display: flex;
   margin: 0;
   padding: 0;
-  justify-content: productsspace-around;
 }
 
 #menu li {
@@ -200,17 +212,19 @@ body > header {
 }
 
 #slideDeck {
-  css-grid-display: grid;
-  grid-template-columns: 1fr;
-  width:750px;
+  grid-area: slideDeck;
+  background-size: cover;
   height: auto;
 }
 
 footer {
-  grid-area: footer;
-  background-color: #333;
-  color: white;
-  padding: 1em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #2a2f33;
+  text-align: center;
 }
 
 @media (max-width: 70em) {

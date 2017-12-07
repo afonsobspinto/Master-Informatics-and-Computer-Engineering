@@ -6,7 +6,7 @@
 <style>
     .mySlides {display:none;}
 </style>
-<body>
+<body id="homeBody">
 
 <div id="slideDeck" style="max-width:500px">
     <img class="mySlides" src="images/site/sports.png" style="width:100%">
