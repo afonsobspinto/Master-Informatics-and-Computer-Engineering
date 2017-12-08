@@ -3,7 +3,7 @@
 #include "ftp.h"
 
 ERROR error = UNEXPECTED;
-const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Unexpected"};
+const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Unexpected"};
 
 int main(int argc, char* argv[]) {
   if (argc != 2){

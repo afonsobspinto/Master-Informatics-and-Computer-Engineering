@@ -104,8 +104,8 @@ int getIpByHost(URL* url){
 		return -1;
     }
     
-    url->ip = inet_ntoa(*((struct in_addr *) h->h_addr));
-    
+    url->ip = inet_ntoa(*((struct in_addr *) h->h_addr_list[0]));
+
     return 0;
 }
 
