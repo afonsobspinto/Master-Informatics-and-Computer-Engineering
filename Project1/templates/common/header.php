@@ -20,8 +20,8 @@
       <div class="user">
           <div class="screen">
               <form class="form" action="action_login.php" method="post">
-                  <input type="text" placeholder="username" name="username">
-                  <input type="text" placeholder="password" name="password">
+                  <input type="text" placeholder="Insert Username" name="username">
+                  <input type="text" placeholder="Insert Password" name="password">
                   <input type="submit" value="Login">
                   <a href="register.php">Register</a>
               </form>
