@@ -1,7 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define FTP_PORT 21
 #define MAX_SIZE 1024
 
 typedef enum{

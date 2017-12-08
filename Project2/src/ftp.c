@@ -96,6 +96,10 @@ int ftpLogin(int sockfd, const char* user, const char* password){
         return -1;
     }
 
+    if(validateCode(answer, FTP_USER) < 0){
+        return -1;
+    }    
+
     /* Cleaning buffers */
     memset(message, 0, sizeof(message));
     memset(answer, 0, sizeof(answer));
@@ -110,6 +114,16 @@ int ftpLogin(int sockfd, const char* user, const char* password){
     if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
         return -1;
     }
-    
-    return 0;
+
+    return validateCode(answer, FTP_PASSWORD);
+}
+
+int validateCode(const char* answer, int expected){
+
+    if(atoi(answer) == expected){
+        return 0;
+    }
+
+    return -1;
+
 }

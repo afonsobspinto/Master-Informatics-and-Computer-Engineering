@@ -1,6 +1,8 @@
 #ifndef URL_H
 #define URL_H
 
+#define FTP_PORT 21
+
 typedef struct {
 	char* user; 
 	char* password;
