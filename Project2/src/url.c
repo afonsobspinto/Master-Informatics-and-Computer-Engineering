@@ -62,8 +62,8 @@ int processURL(const char* urlStr, URL* url){
     anonymousMode = (strcmp(token, tempUrl) == 0) ? 1 : 0;
 
     if(anonymousMode){
-        url->user = NULL;
-        url->password = NULL;
+        url->user = "anonymous";
+        url->password = "guest"; //TODO: Change this to email
         if(!(token = strtok(token, "/"))){
             error = TOKEN;
             return -1;

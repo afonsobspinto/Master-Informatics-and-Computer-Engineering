@@ -10,6 +10,7 @@ typedef enum{
     TOKEN,
     GETIP,
     CONNECT,
+    LOGIN,
     UNEXPECTED
 }ERROR;
 

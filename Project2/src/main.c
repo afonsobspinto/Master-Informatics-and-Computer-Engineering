@@ -2,8 +2,9 @@
 #include "url.h"
 #include "ftp.h"
 
+
 ERROR error = UNEXPECTED;
-const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Unexpected"};
+const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Login", "Unexpected"};
 
 int main(int argc, char* argv[]) {
   if (argc != 2){
