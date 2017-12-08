@@ -1,7 +1,7 @@
 var slideIndex = 0;
-slideDeck();
+slideShow();
 
-function slideDeck() {
+function slideShow() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
@@ -10,5 +10,5 @@ function slideDeck() {
     slideIndex++;
     if (slideIndex > x.length) {slideIndex = 1}
     x[slideIndex-1].style.display = "block";
-    setTimeout(slideDeck, 2000); // Change image every 2 seconds
+    setTimeout(slideShow, 2000); // Change image every 2 seconds
 }

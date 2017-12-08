@@ -10,22 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
-  <body>
+  <body id="header">
 
     <header>
       <div id="info">
         <img src="images/site/logo.svg">
         <h1><a href="index.php">To Do List</a></h1>
       </div>
-      <div id="user">
-        <form action="action_login.php" method="post">
-          <input type="text" placeholder="username" name="username">
-          <input type="password" placeholder="password" name="password">
-          <div>
-            <input type="submit" value="Login">
-            <a href="register.php">Register</a>
+      <div class="user">
+          <div class="screen">
+              <form class="form" action="action_login.php" method="post">
+                  <input type="text" placeholder="username" name="username">
+                  <input type="text" placeholder="password" name="password">
+                  <input type="submit" value="Login">
+                  <a href="register.php">Register</a>
+              </form>
           </div>
-        </form>
       </div>
     </header>
 
