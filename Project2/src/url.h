@@ -16,6 +16,7 @@ typedef struct {
 void initURL(URL* url);
 int parseURL(const char* urlStr, URL* url);
 int processURL(const char* urlStr, URL* url);
+int getIpByHost(URL* url);
 
 void showURL(URL* url);
 
