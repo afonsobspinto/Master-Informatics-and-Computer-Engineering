@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define MAX_SIZE 1024
+#define MAX_SIZE 2048
 
 typedef enum{
     REGCOMP,

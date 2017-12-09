@@ -7,8 +7,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-
-
 #include <stdio.h>
 
 int downloadLayer(const URL* url){
@@ -50,19 +48,16 @@ int connectSocket(const char* ip, int port){
 
     /*open an TCP socket*/
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        printf("Socket \n");
 		return -1;
     }
     
     /*connect to the server*/
 	if(connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0){
-        printf("Connect \n");
         return -1;
     }
 
     /*read answer from server*/
-    if(recvSocket(sockfd, command, sizeof(command)) <= 0){
-        printf("Recive \n");
+    if(recvSocket(sockfd, command, sizeof(command)) < 0){
         return -1;
     }
 
@@ -70,18 +65,17 @@ int connectSocket(const char* ip, int port){
 }
 
 int recvSocket(int sockfd, char* command, size_t size){
+	FILE* fp = fdopen(sockfd, "r");
 
-  int numbytes = 0;
+	do {
+		memset(command, 0, size);
+		if(!(command = fgets(command, size, fp))){
+            return -1;
+        }
+		printf("%s", command);
+	} while (!('1' <= command[0] && command[0] <= '5') || command[3] != ' ');
 
-  if ((numbytes = recv(sockfd, command, size - 1, 0)) == -1) {
-      return -1;
-  }
-
-  command[numbytes] = '\0';
-  
-  printf("%s\n", command);
-
-  return numbytes;
+	return 0;
 }
 
 int sendSocket(int sockfd, const char* command){
@@ -94,7 +88,7 @@ int sendSocket(int sockfd, const char* command){
 }
 
 int ftpValidateCode(const char* answer, int expected){
-
+            
     if(atoi(answer) == expected){
         return 0;
     }
@@ -111,19 +105,17 @@ int ftpLogin(int sockfd, const char* user, const char* password){
     /* User Command */
     sprintf(command, "USER %s\r\n", user);
     if (sendSocket(sockfd, command)) {
-        printf("Send Password \n");
 		return -1;
     }
     
-    if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
-        printf("Recive Answer \n");
+    if(recvSocket(sockfd, answer, sizeof(answer)) < 0){
         return -1;
     }
 
     if(ftpValidateCode(answer, FTP_USER) < 0){
-        printf("ValidCode \n");
         return -1;
     }    
+
 
     /* Cleaning buffers */
     memset(command, 0, sizeof(command));
@@ -133,32 +125,19 @@ int ftpLogin(int sockfd, const char* user, const char* password){
     /* Password Command */
     sprintf(command, "PASS %s\r\n", password);
     if (sendSocket(sockfd, command)) {
-        printf("Send Password \n");
 		return -1;
     }
-    
-    if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
-        printf("Recive Answer \n");
+
+
+    if(recvSocket(sockfd, answer, sizeof(answer)) < 0){
         return -1;
     }
+
+    printf("%s", answer);
 
     return ftpValidateCode(answer, FTP_PASSWORD);
 }
 
-/* int ftpCWD(int sockfd, const char* path) {
-	char command[1024];
-
-	sprintf(command, "CWD %s\r\n", path);
-	if (sendSocket(sockfd, command)) {
-		return -1;
-	}
-
-	if (recvSocket(sockfd, command, sizeof(command))) {
-		return -1;
-	}
-
-	return 0;
-} */
 
 int ftpPassiveMode(int sockfd){
 
@@ -169,16 +148,16 @@ int ftpPassiveMode(int sockfd){
 		return -1;
     }
 
-    if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
+    if(recvSocket(sockfd, answer, sizeof(answer)) < 0){
         return -1;
     }
+
 
     int tempIP[4];
     int tempPort[2];
 
     if (sscanf(answer, "227 Entering Passive Mode (%d, %d, %d, %d, %d, %d)", 
         &tempIP[0], &tempIP[1], &tempIP[2], &tempIP[3], &tempPort[0], &tempPort[1]) < 6){
-            printf("Scanf");
         return -1;
     }
 
@@ -186,7 +165,6 @@ int ftpPassiveMode(int sockfd){
     unsigned int port;
 
     if ((sprintf(ip, "%d.%d.%d.%d", tempIP[0], tempIP[1], tempIP[2], tempIP[3])) < 0){
-        printf("sprintf");
         return -1;
     } 
     port = tempPort[0] * 256 + tempPort[1];
