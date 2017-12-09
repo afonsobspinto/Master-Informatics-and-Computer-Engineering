@@ -21,7 +21,7 @@ extern const char* errorStr[];
 int printUsage(const char* programName);
 int errorMessage(const char* errorMessage);
 int validateEmail(const char* emailStr);
-char* getEmail();
+char getEmail();
 
 
 
