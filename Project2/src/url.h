@@ -9,7 +9,7 @@ typedef struct {
 	char* host; 
 	char* ip; 
 	char* path;
-	int port;
+	unsigned int port;
 } URL;
 
 void initURL(URL* url);

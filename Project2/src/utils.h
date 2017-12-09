@@ -10,6 +10,7 @@ typedef enum{
     GETIP,
     CONNECT,
     LOGIN,
+    PASSIVE_MODE,
     UNEXPECTED
 }ERROR;
 

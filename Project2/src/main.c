@@ -4,7 +4,7 @@
 
 
 ERROR error = UNEXPECTED;
-const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Login", "Unexpected"};
+const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Login", "PassiveMode", "Unexpected"};
 
 int main(int argc, char* argv[]) {
   if (argc != 2){

@@ -18,6 +18,8 @@ int sendSocket(int sockfd, const char* message);
 
 int ftpLogin(int sockfd, const char* user, const char* password);
 
-int validateCode(const char* answer, int expected);
+int ftpValidateCode(const char* answer, int expected);
+
+int ftpPassiveMode(int sockfd);
 
 #endif // !FTP_H

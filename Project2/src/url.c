@@ -25,7 +25,6 @@ ftp://speedtest.tele2.net/5MB.zip
 ftp://ftp.fe.up.pt/welcome.msg 
 */
 
-
 int parseURL(const char* urlStr, URL* url){
     const char* pattern = "ftp://(([A-Za-z0-9])*:([A-Za-z0-9])*@)?([A-Za-z0-9.~-])+/([A-Za-z0-9.~-])+";
     regex_t* regex = (regex_t*) malloc(strlen(urlStr));
