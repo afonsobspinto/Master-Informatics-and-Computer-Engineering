@@ -25,10 +25,14 @@ int downloadLayer(const URL* url){
         return -1;
     }
 
+    printf("Login Sucessfull! \n");
+
     if (ftpPassiveMode(sockfd) < 0) {
 		error = PASSIVE_MODE;
 		return -1;
 	}
+
+    printf("Passive Mode Sucessfull! \n");
 
     return 0;
 }
@@ -46,16 +50,19 @@ int connectSocket(const char* ip, int port){
 
     /*open an TCP socket*/
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("Socket \n");
 		return -1;
     }
     
     /*connect to the server*/
 	if(connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0){
+        printf("Connect \n");
         return -1;
     }
 
     /*read answer from server*/
     if(recvSocket(sockfd, command, sizeof(command)) <= 0){
+        printf("Recive \n");
         return -1;
     }
 
@@ -92,6 +99,7 @@ int ftpValidateCode(const char* answer, int expected){
         return 0;
     }
 
+    printf("%d =/= %d", atoi(answer), expected);
     return -1;
 }
 
@@ -103,14 +111,17 @@ int ftpLogin(int sockfd, const char* user, const char* password){
     /* User Command */
     sprintf(command, "USER %s\r\n", user);
     if (sendSocket(sockfd, command)) {
+        printf("Send Password \n");
 		return -1;
     }
     
     if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
+        printf("Recive Answer \n");
         return -1;
     }
 
     if(ftpValidateCode(answer, FTP_USER) < 0){
+        printf("ValidCode \n");
         return -1;
     }    
 
@@ -120,17 +131,34 @@ int ftpLogin(int sockfd, const char* user, const char* password){
 
 
     /* Password Command */
-    sprintf(command, "PASS %s\r\n", user);
+    sprintf(command, "PASS %s\r\n", password);
     if (sendSocket(sockfd, command)) {
+        printf("Send Password \n");
 		return -1;
     }
     
     if(recvSocket(sockfd, answer, sizeof(answer)) <= 0){
+        printf("Recive Answer \n");
         return -1;
     }
 
     return ftpValidateCode(answer, FTP_PASSWORD);
 }
+
+/* int ftpCWD(int sockfd, const char* path) {
+	char command[1024];
+
+	sprintf(command, "CWD %s\r\n", path);
+	if (sendSocket(sockfd, command)) {
+		return -1;
+	}
+
+	if (recvSocket(sockfd, command, sizeof(command))) {
+		return -1;
+	}
+
+	return 0;
+} */
 
 int ftpPassiveMode(int sockfd){
 

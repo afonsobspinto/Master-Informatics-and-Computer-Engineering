@@ -20,6 +20,8 @@ int ftpLogin(int sockfd, const char* user, const char* password);
 
 int ftpValidateCode(const char* answer, int expected);
 
+int ftpCWD(int sockfd, const char* path);
+
 int ftpPassiveMode(int sockfd);
 
 #endif // !FTP_H
