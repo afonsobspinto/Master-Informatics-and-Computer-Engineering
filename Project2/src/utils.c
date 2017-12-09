@@ -37,7 +37,7 @@ int validateEmail(const char* emailStr){
     return 0;
 }
 
-char* getEmail(){
+char getEmail(){
     char email[80];
     
 	printf ("Enter your email: \n");
