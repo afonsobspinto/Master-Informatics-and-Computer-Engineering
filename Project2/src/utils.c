@@ -40,7 +40,7 @@ int validateEmail(const char* emailStr){
 int getEmail(char* email){
     char buf[50];
     
-	printf ("Enter your email: \n");
+	printf ("Anonymous Mode. \nPlease enter your email as password: \n");
     scanf ("%s", buf);
 	if(validateEmail(buf) < 0){
 		printf("Invalid email\n");
