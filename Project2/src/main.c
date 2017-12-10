@@ -1,28 +1,30 @@
-#include "utils.h"
 #include "url.h"
 #include "ftp.h"
-
+#include "utils.h"
 
 ERROR error = UNEXPECTED;
-const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Login", "PassiveMode", "Unexpected"};
+const char* errorStr[] = {"Regcomp", "Regexec", "Token", "GetIP", "Connect", "Receive", "Login", "CWD", "PassiveMode", "Retrive", "Download", "Disconnect", "Unexpected"};
 
-int main(int argc, char* argv[]) {
+
+int main(int argc, char** argv) {
   if (argc != 2){
         printUsage(argv[0]);
         return -1;
     }
 
-    // URL MODULE
-    URL url;
+    // Url MODULE
+    Url url;
     initURL(&url);
 
+
     if(parseURL(argv[1], &url) < 0){
-        return errorMessage("Error parsing URL");
+        return errorMessage("Error parsing Url");
     }
 
-    // FTP MODULE
-    if(downloadLayer(&url) < 0){
+	// Ftp MODULE
+    if(downloadLayer(url) < 0){
         return errorMessage("Error downloading");
     }
-    return 0;
+	
+	return 0;
 }

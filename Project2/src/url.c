@@ -1,32 +1,27 @@
+
+#include <libgen.h>
 #include <stdlib.h> 
 #include <regex.h>
 #include <string.h>
 #include <stdio.h>
 #include <netdb.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
-
 #include "url.h"
 #include "utils.h"
 
-
-void initURL(URL* url){
+void initURL(Url* url) {
     url->user = calloc(MAX_SIZE, sizeof(char));
     url->password = calloc(MAX_SIZE, sizeof(char));
     url->host = calloc(MAX_SIZE, sizeof(char));
     url->path = calloc(MAX_SIZE, sizeof(char));
+	url->filename = calloc(MAX_SIZE, sizeof(char));
     url->port = FTP_PORT;
 }
 
-/* URL examples
-ftp://anonymous:1@speedtest.tele2.net/1MB.zip
-ftp://speedtest.tele2.net/5MB.zip
-ftp://ftp.fe.up.pt/welcome.msg 
-*/
 
-int parseURL(const char* urlStr, URL* url){
-    const char* pattern = "ftp://(([A-Za-z0-9])*:([A-Za-z0-9])*@)?([A-Za-z0-9.~-])+/([A-Za-z0-9.~-])+";
+int parseURL(const char* urlStr, Url* url) {
+	
+	const char* pattern = "ftp://(([A-Za-z0-9])*:([A-Za-z0-9])*@)?([A-Za-z0-9.~-])+/([A-Za-z0-9.~-])+";
     regex_t* regex = (regex_t*) malloc(strlen(urlStr));
 
     if(regcomp(regex, pattern, REG_EXTENDED) != 0){
@@ -43,10 +38,9 @@ int parseURL(const char* urlStr, URL* url){
     return processURL(urlStr, url);
 }
 
-// URL syntax ftp://[<user>:<password>@]<host>/<url-path>
 
-int processURL(const char* urlStr, URL* url){
-    int anonymousMode;
+int processURL(const char* urlStr, Url* url){
+	int anonymousMode;
     char* token = (char*) malloc(strlen(urlStr));
     char* tempUrl = (char*) malloc(strlen(urlStr));
 
@@ -88,7 +82,12 @@ int processURL(const char* urlStr, URL* url){
         return -1;
     }
     
-    strcpy(url->path, token);
+	size_t length = strlen(token);
+	char tempPath[length];
+	strcpy(tempPath, token);
+
+    strcpy(url->path, dirname(token));
+	strcpy(url->filename, basename(tempPath));
 
     getIpByHost(url);
 
@@ -97,7 +96,7 @@ int processURL(const char* urlStr, URL* url){
     return 0;
 }
 
-int getIpByHost(URL* url){
+int getIpByHost(Url* url) {
     struct hostent* h;
     if ((h = gethostbyname(url->host)) == NULL) {
 		return -1;
@@ -108,11 +107,14 @@ int getIpByHost(URL* url){
     return 0;
 }
 
-void showURL(URL* url){
+void showURL(Url* url){
+    printf("\n----------- URL PARSED -----------\n");
     printf("User: %s\n",url->user);
     printf("Password: %s\n",url->password);
     printf("Host: %s\n",url->host);
     printf("Ip: %s\n", url->ip);
     printf("Path: %s\n",url->path);
+	printf("Filename: %s\n",url->filename);
     printf("Port: %d\n",url->port);
+    printf("----------------------------------\n\n");
 }

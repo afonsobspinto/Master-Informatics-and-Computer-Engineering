@@ -1,7 +1,4 @@
-#ifndef URL_H
-#define URL_H
-
-#define FTP_PORT 21
+#pragma once
 
 typedef struct {
 	char* user; 
@@ -9,15 +6,13 @@ typedef struct {
 	char* host; 
 	char* ip; 
 	char* path;
+	char* filename;
 	unsigned int port;
-} URL;
-
-void initURL(URL* url);
-int parseURL(const char* urlStr, URL* url);
-int processURL(const char* urlStr, URL* url);
-int getIpByHost(URL* url);
-
-void showURL(URL* url);
+} Url;
 
 
-#endif
+void initURL(Url* url);
+int parseURL(const char* urlStr, Url* url);
+int processURL(const char* urlStr, Url* url);
+int getIpByHost(Url* url);
+void showURL(Url* url);
