@@ -13,8 +13,6 @@ typedef struct {
 
 void initURL(Url* url);
 int parseURL(const char* urlStr, Url* url);
-int validateEmail(const char* emailStr);
-int getEmail(char* email);
 int processURL(const char* urlStr, Url* url);
 int getIpByHost(Url* url);
 void showURL(Url* url);
