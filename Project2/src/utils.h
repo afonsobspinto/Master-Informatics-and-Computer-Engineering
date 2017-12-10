@@ -39,5 +39,4 @@ int errorMessage(const char* errorMessage);
 int validateEmail(const char* emailStr);
 char getEmail();
 
-
 #endif
