@@ -43,7 +43,7 @@ int downloadLayer(const Url url)
 		return -1;
 	}
 
-	if (ftpDownload(&ftp, url.filename) < 0)
+	if (socketDownload(&ftp, url.filename) < 0)
 	{
 		error = DOWNLOAD;
 		return -1;
@@ -235,15 +235,10 @@ int ftpRetrieve(Ftp *ftp, const char *filename)
 		return -1;
 	}
 
-	if (ftpValidateCode(answer, FTP_RETRIEVE) < 0)
-	{
-		return -1;
-	}
-
 	return 0;
 }
 
-int ftpDownload(Ftp *ftp, const char *filename)
+int socketDownload(Ftp *ftp, const char *filename)
 {
 	FILE *file;
 

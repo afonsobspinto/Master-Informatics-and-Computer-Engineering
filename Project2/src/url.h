@@ -10,6 +10,7 @@ typedef struct {
 	unsigned int port;
 } Url;
 
+
 void initURL(Url* url);
 int parseURL(const char* urlStr, Url* url);
 int processURL(const char* urlStr, Url* url);
