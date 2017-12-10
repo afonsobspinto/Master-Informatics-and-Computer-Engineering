@@ -1,5 +1,11 @@
 
-#include <stdio.h> 
+#include <libgen.h>
+#include <stdlib.h> 
+#include <regex.h>
+#include <string.h>
+#include <stdio.h>
+#include <netdb.h>
+#include <arpa/inet.h>
 #include "utils.h"
 
 
@@ -12,9 +18,9 @@ int errorMessage(const char* errorMessage){
     fprintf(stderr, "%s: %s\n", errorMessage, errorStr[error]);
     return -1;
 }
-/* 
+
 int validateEmail(const char* emailStr){
-    const char* pattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}";
+    const char* pattern = "[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+[A-Za-z0-9.]+.[A-Za-z]{2,4}";
     regex_t* regex = (regex_t*) malloc(strlen(emailStr));
 
     if(regcomp(regex, pattern, REG_EXTENDED) != 0){
@@ -31,15 +37,17 @@ int validateEmail(const char* emailStr){
     return 0;
 }
 
-char getEmail(){
-    char email[80];
+int getEmail(char* email){
+    char buf[50];
     
 	printf ("Enter your email: \n");
-    scanf ("%s", email);
-	if(validateEmail(email) < 0){
+    scanf ("%s", buf);
+	if(validateEmail(buf) < 0){
 		printf("Invalid email\n");
-		return getEmail();
+		return getEmail(email);
 	}
+	for(int i = 0; i < 50; ++i)
+        email[i] = buf[i];
     
-	return email;
-} */
+	return 0;
+}
