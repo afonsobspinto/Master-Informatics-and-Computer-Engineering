@@ -29,6 +29,7 @@ typedef enum{
     UNEXPECTED
 }ERROR;
 
+
 extern ERROR error;
 
 extern const char* errorStr[];
