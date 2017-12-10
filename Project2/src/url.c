@@ -38,44 +38,10 @@ int parseURL(const char* urlStr, Url* url) {
     return processURL(urlStr, url);
 }
 
-int validateEmail(const char* emailStr){
-    const char* pattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}";
-    regex_t* regex = (regex_t*) malloc(strlen(emailStr));
-
-    if(regcomp(regex, pattern, REG_EXTENDED) != 0){
-        error = REGCOMP;
-        return -1;
-    }
-    if(regexec(regex, emailStr, 0, NULL, REG_EXTENDED) != 0){
-        error = REGEXEC;
-        return -1;
-    }
-
-    free(regex);
-
-    return 0;
-}
-
-int getEmail(char* email){
-    char buf[50];
-    
-	printf ("Enter your email: \n");
-    scanf ("%s", buf);
-	if(validateEmail(buf) < 0){
-		printf("Invalid email\n");
-		return 0;
-	}
-	for(int i = 0; i < 50; ++i)
-        email[i] = buf[i];
-    
-	return 1;
-}
-
 int processURL(const char* urlStr, Url* url){
 	int anonymousMode;
     char* token = (char*) malloc(strlen(urlStr));
     char* tempUrl = (char*) malloc(strlen(urlStr));
-	char email[MAX_SIZE] = {0};
 
     strcpy(token, urlStr);
     strcpy(tempUrl, urlStr + 6);
@@ -89,8 +55,9 @@ int processURL(const char* urlStr, Url* url){
 
     if(anonymousMode){
         url->user = "anonymous";
+	    char email[MAX_SIZE] = {0};
 		getEmail(email);
-        url->password = email; //TODO: Change this to email
+        url->password = email; 
         if(!(token = strtok(token, "/"))){
             error = TOKEN;
             return -1;
