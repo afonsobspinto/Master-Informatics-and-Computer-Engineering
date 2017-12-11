@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/style.css">
-<style>
-    .mySlides {display:none;}
-</style>
-<body class="home">
-<!--
-<section>
-    <img class="mySlides" src="images/site/sports.png" style="width:100%">
-    <img class="mySlides" src="images/site/supermarket.jpg" style="width:100%">
-    <img class="mySlides" src="images/site/travels.jpg" style="width:100%">
+<head>
+    <title>To Do List</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <head>
+
+<body>
+
+<section id="home">
+    <h1>To Do List</h1>
+    <p>You wont forget it if you list it!</p>
+    <a href="#about">
+        <img src="images/site/button.png" alt="Pfeil">
+    </a>
 </section>
 
-<script src="javascript/slideDeck.js"></script>
--->
+<section id="help">
+    <h3>Help</h3>
+    <hr>
+    <img src="images/site/logo.svg" alt="Avatar">
+    <h4>Dave</h4>
+    <p>This is a website to create... </p>
+</section>
+
+<section id="about">
+    <h3>About Us</h3>
+    <hr>
+
+    <div id="projects">
+        <ul>
+            <li><a><img src="images/site/afonso.png" alt="Afonso Pinto"></a></li>
+            <li><a><img src="images/site/claudia.jpg" alt="Claudia Guedes"></a></li>
+            <li><a><img src="images/site/tomas.jpg" alt="Tomas Oliveira"></a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="contact">
+    <h3>Contact</h3>
+    <hr>
+
+    <form>
+        <input type="email" tabindex="1" placeholder="Write your email..."><br>
+        <input type="text" tabindex="2" placeholder="Write your title..."><br>
+        <textarea tabindex="3" placeholder="Write your message..."></textarea><br>
+        <input class="button" type="submit">
+    </form>
+</section>
+
 </body>
 </html>
+

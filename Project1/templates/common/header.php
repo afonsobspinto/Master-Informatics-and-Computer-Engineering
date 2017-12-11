@@ -12,20 +12,20 @@
 
   <body id="header">
 
-    <header>
-      <div id="info">
-        <img src="images/site/logo.svg">
-        <h1><a href="index.php">To Do List</a></h1>
+  <header>
+      <div id="logo">
+          <a href="#">
+              <img src="images/site/logo.svg" alt="Logo">
+          </a>
       </div>
-      <div class="user">
-          <div class="screen">
-              <form class="form" action="action_login.php" method="post">
-                  <input type="text" placeholder="Insert Username" name="username">
-                  <input type="text" placeholder="Insert Password" name="password">
-                  <input type="submit" value="Login">
-                  <a href="register.php">Register</a>
-              </form>
-          </div>
-      </div>
-    </header>
+
+      <nav id="main-nav">
+          <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#help">Help</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+          </ul>
+      </nav>
+  </header>
 

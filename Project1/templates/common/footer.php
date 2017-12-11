@@ -1,6 +1,6 @@
 <footer>
-    <div id="footer">
-    	Website made by Afonso Pinto, Claudia Guedes and Tomas Oliveira. &copy;
-    </div>
+    <p>
+        &copy; Made by: Afonso Pinto / Claudia Guedes / Tomas Oliveira
+    </p>
 </footer>
 </html>
