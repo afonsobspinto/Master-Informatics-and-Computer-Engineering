@@ -46,7 +46,8 @@ int getEmail(char* email){
 		printf("Invalid email\n");
 		return getEmail(email);
 	}
-	for(int i = 0; i < 50; ++i)
+	int i;
+	for(i = 0; i < 50; ++i)
         email[i] = buf[i];
     
 	return 0;
