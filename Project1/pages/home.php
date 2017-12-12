@@ -7,7 +7,7 @@
     <h1>FEUP To-Do</h1>
     <p>You wont forget it if you list it!</p>
     <a href="#about">
-        <img src="images/site/button.png" alt="Pfeil">
+        <img src="images/site/button.png" alt="Button">
     </a>
 </section>
 
