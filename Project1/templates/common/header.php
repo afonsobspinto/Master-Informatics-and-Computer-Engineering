@@ -17,7 +17,7 @@
   <header>
       <div id="info">
           <a href="#">
-              <img src="images/site/logo.svg" alt="Logo">
+              <div id="logo"><img src="images/site/logo.svg" alt="Logo"></div>
           </a>
       </div>
 

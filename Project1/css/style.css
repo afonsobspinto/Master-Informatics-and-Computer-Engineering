@@ -22,11 +22,6 @@ header {
   background: white;
 }
 
-header img{
-  display: block;
-  margin: auto;
-}
-
 #info {
   width: 140px;
   float: left;
@@ -38,9 +33,7 @@ header img{
 }
 
 #info img {
-  display: block;
-  margin: auto;
-  max-width: 30%;
+  width: 30%;
 }
 
 header nav {
