@@ -15,13 +15,11 @@ hr {width: 30px; height: 3px; background: #494949; border: 0; margin: 0 auto 40p
 
 header {
   width: 100%;
-  height: 65px;
+  height: 5%;
   position: fixed;
   top: 0;
   left: 0;
   background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  z-index: 1;
 }
 
 #info {
@@ -30,33 +28,23 @@ header {
   margin: 10px 0 0 50px;
 }
 
-#info a {
-  text-decoration: none;
-  color: black;
-}
-
-#info > a {
-  padding: 0 1em;
-  font-size: 1.5em;
-  align-self: flex-end;
-}
-
 #info:hover {
   opacity:0.5;
 }
 
 #info img {
-  width: 30%;
+  max-width: 30%;
 }
 
 header nav {
   float: right;
-  margin: 10px 50px 0 0;
+  margin: 0 50px 0 0;
 }
 
 header nav ul li{
   float: left;
   margin-right: 25px;
+  width: 10%;
 }
 
 header nav ul li a{
@@ -122,15 +110,12 @@ header nav ul li:hover{
 }
 
 #members ul li{
-  width: 33.3%;
-  float: left;
-  margin-bottom: 15px;
+  width: 33%;
+  display: inline-block;
 }
 
 #members img{
-  width: 280px;
   height: 170px;
-  border-radius: 5px;
 }
 
 #members img:hover {
@@ -141,6 +126,12 @@ header nav ul li:hover{
 #members #names p{
   display: inline;
   margin: auto 90px auto 90px;
+}
+
+@media only screen and (max-width: 500px) {
+  #members ul li{
+    width: 100%;
+  }
 }
 
 /*FOOTER **************/
@@ -158,5 +149,22 @@ footer p{
 }
 
 
+@media only screen and (max-width: 681px) {
 
+  header{
+    height: 35%;
+  }
+
+  #header nav ul li{
+    width: 100%;
+  }
+
+  #home h1 {
+    margin: 200px auto 0 auto;
+  }
+
+  #about p{
+    width: 300px;
+  }
+}
 
