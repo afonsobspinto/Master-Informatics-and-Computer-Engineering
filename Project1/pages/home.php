@@ -24,8 +24,8 @@
     <div id="members">
         <ul>
             <li><a><img src="images/site/afonso.png" alt="Afonso Pinto"></a></li>
-            <li><a><img src="images/site/claudia.jpg" alt="Claudia Guedes"></a></li>
-            <li><a><img src="images/site/tomas.jpg" alt="Tomas Oliveira"></a></li>
+            <li><a><img src="images/site/claudia.png" alt="Claudia Guedes"></a></li>
+            <li><a><img src="images/site/tomas.png" alt="Tomas Oliveira"></a></li>
             <div id="names">
                 <h4>Afonso Pinto</h4>
                 <h4>Claudia Guedes</h4>

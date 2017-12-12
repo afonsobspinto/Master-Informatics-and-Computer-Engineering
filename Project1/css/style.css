@@ -70,7 +70,7 @@ header nav ul li:hover{
 /* HOME ***********/
 
 #home {
-  background: url(../images/site/travels.jpg);
+  background: url(../images/site/travels.png);
   background-position: center top;
   background-size: cover;
   background-attachment: fixed;
@@ -92,12 +92,8 @@ header nav ul li:hover{
 
 /* ABOUT **********/
 
-#about img{
-  width: 240px;
-}
-
-#about img:hover {
-  transform: scale(1.1);
+#about{
+  min-height: 50%;
 }
 
 #about h4{
@@ -113,6 +109,7 @@ header nav ul li:hover{
 
 #team {
   background-color: #f0f0f0;
+  min-height: 70%;
 }
 
 #members {
