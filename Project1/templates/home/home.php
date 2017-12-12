@@ -18,38 +18,31 @@
     </a>
 </section>
 
-<section id="help">
-    <h3>Help</h3>
+<section id="about">
+    <h3>About</h3>
     <hr>
-    <img src="images/site/logo.svg" alt="Avatar">
-    <h4>Dave</h4>
-    <p>This is a website to create... </p>
+    <h4>FAQ's</h4>
+    <p>This is a website where its users can create, store and share to-do lists. Here you can create lists for groceries, travels, work, projects, among many other things. Each user has its own profile and can share their own to-do lists with the community. Personalize your lists and make sure you don't forget to complete it!</p>
 </section>
 
-<section id="about">
-    <h3>About Us</h3>
+<section id="team">
+    <h3>Team</h3>
     <hr>
 
-    <div id="projects">
+    <div id="members">
         <ul>
             <li><a><img src="images/site/afonso.png" alt="Afonso Pinto"></a></li>
             <li><a><img src="images/site/claudia.jpg" alt="Claudia Guedes"></a></li>
             <li><a><img src="images/site/tomas.jpg" alt="Tomas Oliveira"></a></li>
+            <div id="names">
+                <h4>Afonso Pinto</h4>
+                <h4>Claudia Guedes</h4>
+                <h4>Tomas Oliveira</h4>
+            </div>
         </ul>
     </div>
 </section>
 
-<section id="contact">
-    <h3>Contact</h3>
-    <hr>
-
-    <form>
-        <input type="email" tabindex="1" placeholder="Write your email..."><br>
-        <input type="text" tabindex="2" placeholder="Write your title..."><br>
-        <textarea tabindex="3" placeholder="Write your message..."></textarea><br>
-        <input class="button" type="submit">
-    </form>
-</section>
 
 </body>
 </html>
