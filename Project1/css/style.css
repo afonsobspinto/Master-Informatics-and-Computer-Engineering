@@ -4,7 +4,7 @@ a{text-decoration: none;}
 li{list-style-type:none;}
 
 h1, h2, h3, a{font-family: 'Roboto', sans-serif; font-weight: 500; color: black; text-transform: uppercase;}
-h2 {color: powderblue;}
+h2 {color: black;}
 h3{font-size: 40px; padding-top: 8%; margin-bottom: 5px;}
 h4, p {font-family: 'Roboto Slab', serif; color: #494949;}
 
@@ -22,6 +22,11 @@ header {
   background: white;
 }
 
+header img{
+  display: block;
+  margin: auto;
+}
+
 #info {
   width: 140px;
   float: left;
@@ -33,6 +38,8 @@ header {
 }
 
 #info img {
+  display: block;
+  margin: auto;
   max-width: 30%;
 }
 
@@ -161,6 +168,12 @@ footer p{
 
   #home h1 {
     margin: 200px auto 0 auto;
+    font-size: 50px;
+  }
+
+  #home p {
+    margin: 0 auto 0 auto;
+    font-size: 20px;
   }
 
   #about p{
