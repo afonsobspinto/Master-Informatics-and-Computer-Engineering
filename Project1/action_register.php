@@ -2,13 +2,11 @@
  if (!isset($_POST['username'])) die('username not set');
  if (!isset($_POST['password'])) die('password not set');
 
- include_once('database/connection.php'); // connects to the database
+ include_once(ROOT_PATH.'/database/connection.php');
+ include_once(ROOT_PATH.'/database/user.php');
+ include_once(ROOT_PATH.'/includes/init.php');
 
- include_once('database/user.php'); // loads the functions responsible for the users table
-  
- include_once('includes/init.php');
-
- if (!userExists($dbh,$_POST['username'])) // test if user exists
+ if (!userExists($dbh,$_POST['username']))
  {
      try {
          register($dbh, $_POST['username'], $_POST['password']);

@@ -138,7 +138,7 @@ header nav ul li:hover{
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-#names h4{
+#members #names p{
   display: inline;
   margin: auto 90px auto 90px;
 }
