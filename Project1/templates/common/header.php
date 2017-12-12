@@ -27,7 +27,7 @@
               <li><a href="#about">About</a></li>
               <li><a href="#team">Team</a></li>
               <li><a href="#">Login</a></li>
-              <li><a href="register.php">Register</a></li>
+              <li><a href="templates/users/register.php">Register</a></li>
           </ul>
       </nav>
   </header>

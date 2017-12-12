@@ -1,6 +1,6 @@
 <?php
-include_once(ROOT_PATH.'/includes/init.php');
-include_once(ROOT_PATH.'/database/user.php');
+include_once(ROOT_PATH . '/includes/init.php');
+include_once(ROOT_PATH . '/database/user.php');
 
 
   if (isLoginCorrect($_POST['username'], $_POST['password'])) {
