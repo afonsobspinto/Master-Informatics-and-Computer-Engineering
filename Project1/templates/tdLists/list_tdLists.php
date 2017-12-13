@@ -8,12 +8,14 @@
           </li>
       </div>
       <?php foreach ($tdLists as $tdList) { ?>
+      <div id="remove">
           <li>
               <a href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></a>
               <a href="#removeList">
                   <img src="images/site/delete.svg" alt="Delete">
               </a>
           </li>
+      </div>
       <?php } ?>
   </ul>
 </section>

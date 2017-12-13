@@ -8,12 +8,14 @@
             </li>
         </div>
         <?php foreach ($tasks as $task) { ?>
+        <div id="remove">
             <li>
                 <a class="description"><?=$task['tsk_description']?></a>
                 <a href="#removeTask">
                     <img src="images/site/delete.svg" alt="Delete">
                 </a>
             </li>
+        </div>
         <?php } ?>
     </ul>
 </section>

@@ -209,6 +209,26 @@ form input{
   height: auto;
 }
 
+/* TD LISTS *******************/
+
+#tdLists{
+    height: 50%;
+}
+
+#tdLists ul{
+  display: inline;
+}
+
+#tdLists ul a{
+    margin: auto 100px auto 100px;
+}
+
+#tdLists ul a img{
+  width: 3%;
+  height: auto;
+}
+
+/* ADD AND REMOVE *********/
 #add{
     margin: 0 auto 20px auto;
 }
@@ -227,18 +247,19 @@ form input{
     box-shadow: none;
 }
 
-/* TD LISTS *******************/
-#tdLists ul{
-  display: inline;
+#add li a img{
+    right: 120px;
+    position:absolute;
+
 }
 
-#tdLists ul a{
-    margin: auto 100px auto 100px;
+#remove{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-
-#tdLists ul a img{
-  width: 3%;
-  height: auto;
+#remove li a img{
+    right: 120px;
+    position:absolute;
 }
 
 /* Responsive for max-width 681px ******/
@@ -249,7 +270,7 @@ form input{
   }
 
   #header nav ul li{
-    width: 100%;
+    width: 30%;
   }
 
   #home h1 {
