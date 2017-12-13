@@ -27,12 +27,16 @@
     <ul>
         <?php foreach ($tasks as $task) { ?>
             <div id="remove">
+                <?php if ($task['tsk_status']) { ?>
                 <li>
                     <p class="description"><?=$task['tsk_description']?></p>
                     <a href="#removeTask">
                         <img src="images/site/delete.svg" alt="Delete">
                     </a>
                 </li>
+                <?php } else {
+                    echo ("No Completed Tasks");
+                } ?>
             </div>
         <?php } ?>
     </ul>
