@@ -11,7 +11,6 @@
                 <input type="password" placeholder="Write your password" name="password"><br>
                 <div>
                     <input class="button" type="submit" value="Login">
-                    <!--<a href="register.php">Register</a>-->
                 </div>
             </form>
         </section>

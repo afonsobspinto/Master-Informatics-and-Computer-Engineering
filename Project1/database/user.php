@@ -41,10 +41,6 @@ function getAllUserTDLists($username) {
     $stmt->execute(array($username));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt = $dbh->prepare('SELECT * FROM todoList WHERE usr_id = ?');
-    if(!$stmt){
-        print_r($dbh->errorInfo());
-        die("SQLITE ERROR");
-    }
     $stmt->execute(array($id['usr_id']));
     return $stmt->fetchAll();
 }
@@ -60,18 +56,12 @@ function getAllUserTasks($username) { /*so esta a mostrar um*/
     $stmt->execute(array($username));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt = $dbh->prepare('SELECT * FROM todoList WHERE usr_id = ?');
-    if(!$stmt){
-        print_r($dbh->errorInfo());
-        die("SQLITE ERROR");
-    }
+
     $stmt->execute(array($id['usr_id']));
-    $tdl = $stmt->fetch(PDO::FETCH_ASSOC);
+    $tdl = $stmt->fetchAll();
     $stmt = $dbh->prepare('SELECT * FROM task WHERE tdl_id = ?');
-    if(!$stmt){
-        print_r($dbh->errorInfo());
-        die("SQLITE ERROR");
-    }
-    $stmt->execute(array($tdl['tdl_id']));
+    print_r($tdl);
+    $stmt->execute(array(array($tdl['tdl_id'])));
     return $stmt->fetchAll();
 }
 

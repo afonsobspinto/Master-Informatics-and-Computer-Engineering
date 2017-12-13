@@ -23,6 +23,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
+                <li><a href="#"><?=$_SESSION['username']?></a></li>
                 <li><a href="action_logout.php">Logout</a></li>
             <?php } else { ?>
                 <li><a href="#about">About</a></li>
