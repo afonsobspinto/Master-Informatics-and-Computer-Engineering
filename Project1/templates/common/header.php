@@ -27,8 +27,8 @@
             <?php } else { ?>
                 <li><a href="#about">About</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="templates/common/login.php">Login</a></li>
-                <li><a href="templates/user/register.php">Register</a></li>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>
             <?php } ?>
         </ul>
     </nav>
