@@ -22,14 +22,22 @@ CREATE TABLE task (
 
 
 INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
-INSERT INTO user VALUES (12, 'tomas', 'asdf');
+INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
+INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
+INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
 
 INSERT INTO todoList VALUES (NULL, 'CollegeTDL', 'College', 1);
 INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 1);
-INSERT INTO todoList VALUES (NULL, 'TravelsTDL', 'Travels', 1);
-INSERT INTO todoList VALUES (NULL, 'GroceriesTDL', 'Supermarket', 1);
+INSERT INTO todoList VALUES (NULL, 'WorkTDL', 'Others', 2);
+INSERT INTO todoList VALUES (NULL, 'ComputersTDL', 'Others', 2);
+INSERT INTO todoList VALUES (NULL, 'DanceTDL', 'College', 3);
+INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 3);
 
-INSERT INTO task VALUES (NULL, 'Finish this website ', Null, Null, 1);
-INSERT INTO task VALUES (NULL, 'Finish this website2 ', Null, Null, 1);
-INSERT INTO task VALUES (NULL, 'Finish this website3 ', Null, Null, 1);
+
+INSERT INTO task VALUES (NULL, 'Finish this website ', Null, 0, 1);
+INSERT INTO task VALUES (NULL, 'Sleep ', Null, 0, 2);
+INSERT INTO task VALUES (NULL, 'Finish CSS ', Null, 0, 3);
+INSERT INTO task VALUES (NULL, 'Install Linux ', Null, 0, 4);
+INSERT INTO task VALUES (NULL, 'Dance Class ', Null, 0, 5);
+INSERT INTO task VALUES (NULL, 'Install Linux ', Null, 0, 6);
 

@@ -25,19 +25,20 @@
 <section id="tasks">
     <h2>Completed Tasks</h2>
     <ul>
-        <?php foreach ($tasks as $task) { ?>
+        <?php $counter = 0;
+        foreach ($tasks as $task) { ?>
             <div id="remove">
-                <?php if ($task['tsk_status']) { ?>
+                <?php if ($task['tsk_status']) { $counter++ ?>
                 <li>
                     <p class="description"><?=$task['tsk_description']?></p>
                     <a href="#removeTask">
                         <img src="images/site/delete.svg" alt="Delete">
                     </a>
                 </li>
-                <?php } else {
-                    echo ("No Completed Tasks");
-                } ?>
+                <?php } ?>
             </div>
         <?php } ?>
+
+        <?php if (!$counter) { echo ("No completed Tasks"); }?>
     </ul>
 </section>
