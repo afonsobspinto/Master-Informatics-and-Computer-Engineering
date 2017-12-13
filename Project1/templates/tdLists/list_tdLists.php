@@ -4,7 +4,7 @@
       <div id="add">
           <li>
               <input type="text" placeholder="Create a list..." id="list">
-              <button id="Button">
+              <button id="add2dl">
                   <img src="images/site/add.svg" alt="Add List">
                   <br>
               </button>
@@ -15,7 +15,7 @@
       <div id="remove">
           <li>
               <p href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></p>
-              <button id="Button" href="#removeList">
+              <button id="rem2dl">
                   <img src="images/site/delete.svg" alt="Remove List">
                   <br>
               </button>
