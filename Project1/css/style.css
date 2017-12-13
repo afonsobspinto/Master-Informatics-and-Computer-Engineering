@@ -81,7 +81,7 @@ header nav ul li:hover{
 /* ABOUT **********/
 
 #about{
-  min-height: 50%;
+  height: 50%;
 }
 
 #about h4{
@@ -89,7 +89,7 @@ header nav ul li:hover{
 }
 
 #about p{
-  width: 700px;
+  width: 900px;
   margin: 0 auto 0 auto;
 }
 
@@ -97,7 +97,7 @@ header nav ul li:hover{
 
 #team {
   background-color: #f0f0f0;
-  min-height: 70%;
+  height: 850px;
 }
 
 #members {
@@ -192,8 +192,9 @@ form input{
 /* TASKS AND TDLISTS ***************/
 
 #tasks{
-  margin-top: 100px;
+  margin: 100px 0 0 0;
   height: 40%;
+  width: 30%;
 }
 
 #tasks ul{
@@ -249,15 +250,25 @@ form input{
     position:absolute;
 }
 
+#addList img{
+  left: 320px;
+  position:absolute;
+}
+
+#deleteList img{
+  left: 320px;
+  position:absolute;
+}
+
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
 
   header{
-    height: 35%;
+    height: 25%;
   }
 
   #header nav ul li{
-    width: 30%;
+    width: 100%;
   }
 
   #home h1 {
