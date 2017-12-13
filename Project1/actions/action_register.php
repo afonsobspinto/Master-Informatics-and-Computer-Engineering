@@ -1,4 +1,6 @@
 <?php
+require_once (__DIR__."/../config.php");
+
  if (!isset($_POST['username'])) die('username not set');
  if (!isset($_POST['password'])) die('password not set');
 
