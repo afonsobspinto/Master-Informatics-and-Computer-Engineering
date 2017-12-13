@@ -10,7 +10,7 @@
         <?php foreach ($tasks as $task) { ?>
         <div id="remove">
             <li>
-                <a class="description"><?=$task['tsk_description']?></a>
+                <p class="description"><?=$task['tsk_description']?></p>
                 <a href="#removeTask">
                     <img src="images/site/delete.svg" alt="Delete">
                 </a>

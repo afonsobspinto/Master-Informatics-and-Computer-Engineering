@@ -189,7 +189,7 @@ form input{
   color: #f0f0f0;
 }
 
-/* TASKS ***************/
+/* TASKS AND TDLISTS ***************/
 
 #tasks{
   margin-top: 100px;
@@ -200,8 +200,10 @@ form input{
   display: inline;
 }
 
-#tasks ul a{
-  margin: auto 100px auto 100px;
+#tasks ul p{
+    font-family: "Georgia", serif;
+  margin: auto 50px auto 50px;
+
 }
 
 #tasks ul a img{
@@ -209,28 +211,9 @@ form input{
   height: auto;
 }
 
-/* TD LISTS *******************/
-
-#tdLists{
-    height: 50%;
-}
-
-#tdLists ul{
-  display: inline;
-}
-
-#tdLists ul a{
-    margin: auto 100px auto 100px;
-}
-
-#tdLists ul a img{
-  width: 3%;
-  height: auto;
-}
-
 /* ADD AND REMOVE *********/
 #add{
-    margin: 0 auto 20px auto;
+    margin: 0 auto 50px auto;
 }
 
 #add li input{
@@ -250,12 +233,16 @@ form input{
 #add li a img{
     right: 120px;
     position:absolute;
-
 }
 
-#remove{
-    margin-top: 20px;
-    margin-bottom: 20px;
+#remove {
+    margin: 20px 20px 20px 20px;
+}
+
+#remove p{
+    display: inline;
+    width: 60%;
+    height: 50px;
 }
 #remove li a img{
     right: 120px;

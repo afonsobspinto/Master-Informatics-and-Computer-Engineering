@@ -1,4 +1,4 @@
-<section id="tdLists">
+<section id="tasks">
   <h2>To Do Lists</h2>
   <ul>
       <div id="add">
@@ -10,7 +10,7 @@
       <?php foreach ($tdLists as $tdList) { ?>
       <div id="remove">
           <li>
-              <a href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></a>
+              <p href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></p>
               <a href="#removeList">
                   <img src="images/site/delete.svg" alt="Delete">
               </a>
