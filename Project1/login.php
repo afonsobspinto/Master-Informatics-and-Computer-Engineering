@@ -1,12 +1,6 @@
 <link rel="stylesheet" href="css/style.css">
 
 <div id="user">
-    <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
-        <form action="action_logout.php" method="post">
-            <a href="register.php"><?=$_SESSION['username']?></a>
-            <input type="submit" value="Logout">
-        </form>
-    <?php } else { ?>
         <!-- login -->
         <section id="login">
             <h3>Login</h3>
@@ -21,6 +15,5 @@
                 </div>
             </form>
         </section>
-    <?php } ?>
 </div>
 
