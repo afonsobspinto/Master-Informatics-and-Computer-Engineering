@@ -13,6 +13,8 @@
                 <p class="description"><?=$task['tsk_description']?></p>
                 <a href="#removeTask">
                     <img src="images/site/delete.svg" alt="Delete">
+                </a>
+                <a href="#completeTask">
                     <img src="images/site/accept.svg" alt="Accept">
                 </a>
             </li>
