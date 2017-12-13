@@ -23,13 +23,17 @@
     <h3>Team</h3>
 
     <div id="members">
-        <ul>
-            <li><a><img src="images/site/afonso.png" alt="Afonso Pinto"></a></li>
-            <li><a><img src="images/site/claudia.png" alt="Claudia Guedes"></a></li>
-            <li><a><img src="images/site/tomas.png" alt="Tomas Oliveira"></a></li>
-            <div id="names">
+        <div>
+            <div id="photo1">
+                <li><a><img src="images/site/afonso.png" alt="Afonso Pinto"></a></li>
                 <p>Afonso Pinto</p>
+            </div>
+            <div id="photo2">
+                <li><a><img src="images/site/claudia.png" alt="Afonso Pinto"></a></li>
                 <p>Claudia Guedes</p>
+            </div>
+            <div id="photo3">
+                <li><a><img src="images/site/tomas.png" alt="Afonso Pinto"></a></li>
                 <p>Tomas Oliveira</p>
             </div>
         </ul>

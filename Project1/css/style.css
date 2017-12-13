@@ -4,7 +4,7 @@ a{text-decoration: none;}
 li{list-style-type:none;}
 
 h1, h2, h3, a{font-family: 'Roboto', sans-serif; font-weight: 500; color: black; text-transform: uppercase;}
-h2 {color: powderblue;}
+h2 {color: black;}
 h3{font-size: 40px; padding-top: 8%; margin-bottom: 5px;}
 h4, p {font-family: 'Roboto Slab', serif; color: #494949;}
 
@@ -33,7 +33,7 @@ header {
 }
 
 #info img {
-  max-width: 30%;
+  width: 30%;
 }
 
 header nav {
@@ -101,7 +101,8 @@ header nav ul li:hover{
 }
 
 #members {
-  width: 900px;
+  display: inline-block;
+  width: 450px;
   margin: 0 auto 0 auto;
 }
 
@@ -111,7 +112,6 @@ header nav ul li:hover{
 
 #members ul li{
   width: 33%;
-  display: inline-block;
 }
 
 #members img{
@@ -123,16 +123,6 @@ header nav ul li:hover{
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-#members #names p{
-  display: inline;
-  margin: auto 90px auto 90px;
-}
-
-@media only screen and (max-width: 500px) {
-  #members ul li{
-    width: 100%;
-  }
-}
 
 /*FOOTER **************/
 
@@ -161,6 +151,12 @@ footer p{
 
   #home h1 {
     margin: 200px auto 0 auto;
+    font-size: 50px;
+  }
+
+  #home p {
+    margin: 0 auto 0 auto;
+    font-size: 20px;
   }
 
   #about p{
