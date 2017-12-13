@@ -1,5 +1,7 @@
 <?php
 
+    /*Login Register Module*/
+
    function isLoginCorrect($username, $password) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT usr_password FROM user WHERE usr_username = ?');
@@ -27,5 +29,6 @@
 
     return ($stmt->execute(array($username, $hash))) ? 0 : 1;
   }
+
 
 ?>

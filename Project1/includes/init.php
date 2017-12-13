@@ -1,4 +1,4 @@
 <?php
-include_once (ROOT_PATH.'/includes/session.php');
-include_once (ROOT_PATH.'/database/connection.php');
+include_once ('includes/session.php');
+include_once ('database/connection.php');
 ?>

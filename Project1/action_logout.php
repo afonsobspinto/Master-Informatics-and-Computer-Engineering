@@ -1,5 +1,5 @@
 <?php
-  include_once(ROOT_PATH . '/includes/init.php');
+  include_once('includes/init.php');
 
   session_destroy();
 

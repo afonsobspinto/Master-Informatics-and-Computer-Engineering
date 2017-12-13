@@ -1,7 +1,5 @@
 <?php
 
-define('ROOT_PATH', dirname(__DIR__) . '/Project1');
-
 include_once('includes/init.php');
 
 include_once('database/todoList.php');
