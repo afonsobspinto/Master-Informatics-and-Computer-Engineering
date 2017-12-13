@@ -7,8 +7,10 @@
                 <a href="#addTask"><img src="images/site/add.svg" alt="Add"></a>
             </li>
         </div>
-        <?php foreach ($tasks as $task) { ?>
+        <?php $counter = 0;
+        foreach ($tasks as $task) { ?>
         <div id="remove">
+            <?php if (!$task['tsk_status']) { $counter++ ?>
             <li>
                 <p class="description"><?=$task['tsk_description']?></p>
                 <a href="#removeTask">
@@ -18,8 +20,11 @@
                     <img src="images/site/accept.svg" alt="Accept">
                 </a>
             </li>
+            <?php } ?>
         </div>
         <?php } ?>
+
+        <?php if (!$counter) { echo ("Are you sure you have nothing to do?"); }?>
     </ul>
 </section>
 <section id="tasks">
