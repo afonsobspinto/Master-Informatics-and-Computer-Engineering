@@ -232,6 +232,17 @@ form input{
     box-shadow: none;
 }
 
+#add li button{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+#add li button img{
+    margin-bottom: -10px;
+}
+
 #remove {
     margin: 20px 20px 20px 20px;
 }
@@ -242,6 +253,16 @@ form input{
     height: 50px;
 }
 
+#remove li button{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+}
+
+#Button img {
+    height: 30px;
+    width: 30px;
+}
 
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
