@@ -4,7 +4,7 @@
       <div id="add">
           <li>
               <input type="text" placeholder="Create a list..." id="list">
-              <a id="addList"><img src="images/site/add.svg" alt="Add"></a>
+              <a href="#addList"><img src="images/site/add.svg" alt="Add"></a>
           </li>
       </div>
       <?php foreach ($tdLists as $tdList) { ?>

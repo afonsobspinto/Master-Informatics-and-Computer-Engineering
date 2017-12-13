@@ -233,11 +233,6 @@ form input{
     box-shadow: none;
 }
 
-#add li a img{
-    /*right: 120px;
-    position:absolute;*/
-}
-
 #remove {
     margin: 20px 20px 20px 20px;
 }
@@ -246,21 +241,7 @@ form input{
     display: inline;
     width: 60%;
     height: 50px;
-}/*
-#remove li a img{
-    right: 120px;
-    position:absolute;
 }
-
-#addList img{
-  left: 320px;
-  position:absolute;
-}
-
-#deleteList img{
-  left: 320px;
-  position:absolute;
-}*/
 
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
