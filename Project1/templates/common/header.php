@@ -27,7 +27,7 @@
             <?php } else { ?>
                 <li><a href="#about">About</a></li>
                 <li><a href="#team">Team</a></li>
-                <?php include_once('templates/common/login.php'); ?>
+                <li><a href="templates/common/login.php">Login</a></li>
                 <li><a href="templates/user/register.php">Register</a></li>
             <?php } ?>
         </ul>
