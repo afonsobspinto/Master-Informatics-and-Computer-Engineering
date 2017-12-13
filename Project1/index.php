@@ -5,11 +5,20 @@ include_once('includes/init.php');
 include_once('database/todoList.php');
 include_once('database/task.php');
 
-$tasks = getAllTasks();
-$tdLists = getAllTDLists();
-
 include_once('templates/common/header.php');
-include_once('templates/tdLists/list_tdLists.php');
-include_once('templates/tasks/list_tasks.php');
+
+if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
+    $tasks = getAllTasks();
+    $tdLists = getAllTDLists();
+
+    include_once('templates/tdLists/list_tdLists.php');
+    include_once('templates/tasks/list_tasks.php');
+
+}
+else{
+    include_once('templates/pages/home.php');
+}
+
 include_once('templates/common/footer.php');
+
 ?>

@@ -23,7 +23,6 @@ function register($db, $username, $password) {
 
     $options = ['cost' => 12];
     $hash = password_hash($password, PASSWORD_DEFAULT, $options);
-    //$hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
     $stmt = $db->prepare('INSERT INTO user(usr_username, usr_password) VALUES(?,?);');
 
