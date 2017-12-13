@@ -1,7 +1,12 @@
 <section id="tdLists">
   <h2>To Do Lists</h2>
   <ul>
-      <li><a href="#add"><img src="images/site/add.svg" alt="Add"></a></li>
+      <div id="#addList">
+          <li>
+              <input type="text" placeholder="Create a list..." id="list">
+              <a><img src="images/site/add.svg" alt="Add"></a>
+          </li>
+      </div>
       <?php foreach ($tdLists as $tdList) { ?>
           <li>
               <a href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></a>

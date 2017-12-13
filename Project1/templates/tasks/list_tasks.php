@@ -1,7 +1,12 @@
 <section id="tasks">
     <h2>Tasks</h2>
     <ul>
-        <li><a href="#add"><img src="images/site/add.svg" alt="Add"></a></li>
+        <div id="#addTask">
+            <li>
+                <input type="text" placeholder="Create a task..." id="item">
+                <a><img src="images/site/add.svg" alt="Add"></a>
+            </li>
+        </div>
         <?php foreach ($tasks as $task) { ?>
             <li>
                 <a class="description"><?=$task['tsk_description']?></a>
