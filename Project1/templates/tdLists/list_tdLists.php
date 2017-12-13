@@ -7,7 +7,8 @@
               <a href="#addList"><img src="images/site/add.svg" alt="Add"></a>
           </li>
       </div>
-      <?php foreach ($tdLists as $tdList) { ?>
+      <?php $counter = 0;
+      foreach ($tdLists as $tdList) {$counter++ ?>
       <div id="remove">
           <li>
               <p href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></p>
@@ -17,6 +18,8 @@
           </li>
       </div>
       <?php } ?>
+
+      <?php if (!$counter) { echo ("You don't have To Do Lists"); }?>
   </ul>
 </section>
 
