@@ -25,3 +25,4 @@
   </ul>
 </section>
 
+<script src="javascript/add_tdlist.js"></script>
