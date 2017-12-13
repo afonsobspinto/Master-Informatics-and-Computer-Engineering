@@ -22,9 +22,14 @@ CREATE TABLE task (
 
 
 INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
+INSERT INTO user VALUES (12, 'tomas', 'asdf');
 
 INSERT INTO todoList VALUES (NULL, 'CollegeTDL', 'College', 1);
 INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 1);
+INSERT INTO todoList VALUES (NULL, 'TravelsTDL', 'Travels', 1);
+INSERT INTO todoList VALUES (NULL, 'GroceriesTDL', 'Supermarket', 1);
 
 INSERT INTO task VALUES (NULL, 'Finish this website ', Null, Null, 1);
+INSERT INTO task VALUES (NULL, 'Finish this website2 ', Null, Null, 1);
+INSERT INTO task VALUES (NULL, 'Finish this website3 ', Null, Null, 1);
 

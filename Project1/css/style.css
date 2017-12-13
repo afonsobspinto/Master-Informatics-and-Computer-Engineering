@@ -211,5 +211,37 @@ form input{
   color: #f0f0f0;
 }
 
+#tasks{
+  margin-top: 100px;
+}
+
+#tasks ul{
+  display: inline;
+}
+
+#tasks ul a{
+  margin: 100px 100px 100px 100px;
+}
+
+#tasks ul a img{
+  width: 2%;
+  height: auto;
+}
+
+#tdLists ul{
+  display: inline;
+}
+
+#tdLists ul a{
+  margin: 100px 100px 100px 100px;
+}
+
+#tdLists ul a img{
+  width: 2%;
+  height: auto;
+}
+
+
+
 
 
