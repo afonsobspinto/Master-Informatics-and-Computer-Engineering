@@ -22,10 +22,14 @@
     <nav id="main-nav">
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="templates/common/login.php">Login</a></li>
-            <li><a href="templates/user/register.php">Register</a></li>
+            <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
+                <?php include_once('templates/common/login.php'); ?>
+            <?php } else { ?>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <?php include_once('templates/common/login.php'); ?>
+                <li><a href="templates/user/register.php">Register</a></li>
+            <?php } ?>
         </ul>
     </nav>
 
