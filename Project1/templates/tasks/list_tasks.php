@@ -4,7 +4,7 @@
         <div id="add">
             <li>
                 <input type="text" placeholder="Create a task..." id="item">
-                <a><img src="images/site/add.svg" alt="Add"></a>
+                <a href="#addTask"><img src="images/site/add.svg" alt="Add"></a>
             </li>
         </div>
         <?php foreach ($tasks as $task) { ?>
