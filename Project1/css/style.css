@@ -253,6 +253,13 @@ form input{
     height: 50px;
 }
 
+#remove li a{
+    font-family: "Georgia", serif;
+    margin: auto 50px auto 50px;
+    color: #494949;
+    text-transform: capitalize;
+}
+
 #remove li button{
     height: 33px;
     width: 33px;
