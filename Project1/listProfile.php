@@ -21,7 +21,7 @@ $info = getAllUserInfo($_SESSION['username']);
     <h1>Profile</h1>
     <img src="images/site/user_avatar.svg">
     <button id="edit">
-        <img src="images/site/edit.svg" alt="Edit Profile">
+        <a href="register.php"><img src="images/site/edit.svg" alt="Edit Profile"></a>
         <br>
     </button>
     <table align="center">
