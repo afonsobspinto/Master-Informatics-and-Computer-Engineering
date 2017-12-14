@@ -306,6 +306,11 @@ form input{
     margin-top: 100px;
 }
 
+/* PROFILE *******/
+#profile {
+    margin-top: 100px;
+}
+
 
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
