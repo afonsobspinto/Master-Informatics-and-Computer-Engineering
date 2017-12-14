@@ -19,14 +19,14 @@ function userExists($username){
     return false;
 }
 
-function register($db, $username, $password) {
+function register($db, $username, $password, $name, $email, $gender) {
 
     $options = ['cost' => 12];
     $hash = password_hash($password, PASSWORD_DEFAULT, $options);
 
-    $stmt = $db->prepare('INSERT INTO user(usr_username, usr_password) VALUES(?,?);');
+    $stmt = $db->prepare('INSERT INTO user(usr_username, usr_password, usr_name, usr_email, usr_gender) VALUES(?,?,?,?,?);');
 
-    return ($stmt->execute(array($username, $hash))) ? 0 : 1;
+    return ($stmt->execute(array($username, $hash, $name, $email, $gender))) ? 0 : 1;
 }
 
 

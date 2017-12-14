@@ -189,6 +189,18 @@ form input{
     color: #f0f0f0;
 }
 
+#user_register #myForm .label {
+    display: inline-block;
+    margin: 20px;
+    height: 35px;
+}
+
+#user_register #myForm .gender {
+    width: 15px;
+    height: 15px;
+
+}
+
 /* TASKS AND TDLISTS ***************/
 
 #tasks{
