@@ -29,6 +29,15 @@ function register($db, $username, $password) {
     return ($stmt->execute(array($username, $hash))) ? 0 : 1;
 }
 
+
+function getAllUserInfo($username){
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM user WHERE usr_username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+
+}
+
 function getAllUserTDLists($username) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
