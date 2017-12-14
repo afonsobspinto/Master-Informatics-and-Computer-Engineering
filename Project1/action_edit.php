@@ -7,9 +7,26 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/connection.p
 include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/user.php'); // loads the functions responsible for the users table
 include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
 
-echo
+$options = ['cost' => 12];
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
+$oldpassword = htmlspecialchars($_POST['password']);
+$password_hashed = password_hash($password, PASSWORD_DEFAULT, $options);
 
-//header('Location: ' . $_SERVER['HTTP_REFERER']);
-header('location:index.php');
+if(!isLoginCorrect($_SESSION['username'], $oldpassword)) die('invalid password');
+
+global $dbh;
+
+$stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
+$stmt->execute(array($_SESSION['username']));
+$id = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$stmt = $dbh->prepare('UPDATE user SET usr_username = ?,
+      usr_password = ? WHERE usr_id = ?');
+
+$stmt->execute(array($username,$password_hashed, $id['usr_id']));
+
+header("Location: index.php");
+
 
 ?>
