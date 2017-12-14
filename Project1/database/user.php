@@ -44,6 +44,11 @@ function getAllUserTDLists($username) {
 
 function getAllUserTasks($username) { /*so esta a mostrar um*/
     global $dbh;
+
+    $stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
+    $stmt->execute(array($username));
+    $id = $stmt->fetch(PDO::FETCH_ASSOC);
+
     $stmt = $dbh->prepare("SELECT *
                            FROM task JOIN
                                 todoList USING (tdl_id)
