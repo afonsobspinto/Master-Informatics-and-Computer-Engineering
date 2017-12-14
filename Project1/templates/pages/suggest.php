@@ -1,5 +1,6 @@
 <?php
-include_once('../../database/user.php');
+include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
+include_once('../../database/todoList.php');
 
 $tdls = getAllTDLists();
 
@@ -13,14 +14,15 @@ if($q !== ""){
     $q = strtolower($q);
     $len = strlen($q);
     foreach($tdls as $tdl){
-        if(stristr($q, substr($tdl, 0, $len))){
+        $name = $tdl['tdl_name'];
+        if(stristr($q, substr($name, 0, $len))){
             if($suggestion === ""){
-                $suggestion = $tdl;
+                $suggestion = $name;
             } else {
-                $suggestion .= ", $tdl";
+                $suggestion .= ", $name";
             }
         }
     }
 }
 
-echo $suggestion === "" ? "No Suggestion" : $suggestion;
+echo $suggestion === "" ? "No Lists Found" : $suggestion;

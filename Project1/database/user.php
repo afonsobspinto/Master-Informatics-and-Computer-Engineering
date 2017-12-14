@@ -29,13 +29,6 @@ function register($db, $username, $password) {
     return ($stmt->execute(array($username, $hash))) ? 0 : 1;
 }
 
-function getAllTDLists(){
-    global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM todoList');
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-
 function getAllUserTDLists($username) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
