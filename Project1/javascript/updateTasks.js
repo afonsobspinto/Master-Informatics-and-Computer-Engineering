@@ -1,4 +1,7 @@
-document.getElementById('comptask').addEventListener('click', postCompleteTask);
+var elementExists = document.getElementById('comptask')
+if(elementExists){
+    elementExists.addEventListener('click', postCompleteTask);
+}
 
 function postCompleteTask(e){
     e.preventDefault();

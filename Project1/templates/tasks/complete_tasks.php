@@ -11,4 +11,6 @@ if(isset($_POST['tsk_id'])){
     $stmt->execute(array($id));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    header("Location: ../../../index.php");
+
 }

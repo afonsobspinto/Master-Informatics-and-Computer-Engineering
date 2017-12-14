@@ -14,14 +14,14 @@
 
 <header>
     <div id="info">
-        <a href="#">
+        <a href="index.php">
             <img src="images/site/logo.svg" alt="Logo">
         </a>
     </div>
 
     <nav id="main-nav">
         <ul>
-            <li><a href="#home">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="../../../../FEUP-LTW/Project1/search.php">Search</a></li>
             <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
                 <li><a href="listProfile.php"><?=$_SESSION['username']?></a></li>
