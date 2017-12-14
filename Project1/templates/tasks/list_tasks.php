@@ -1,3 +1,4 @@
+
 <section id="tasks">
     <h2>TODO Tasks</h2>
     <ul>
@@ -11,9 +12,14 @@
             </li>
         </div>
         <?php $counter = 0;
-        foreach ($tasks as $task) { ?>
+        foreach ($tasks as $task) {
+            if(isset($_GET['tdl_id'])){
+
+            }else{
+            ?>
         <div id="remove">
             <?php if (!$task['tsk_status']) { $counter++ ?>
+
             <li>
                 <p class="description"><?=$task['tsk_description']?></p>
                 <button id="remtask">
@@ -25,7 +31,7 @@
                     <br>
                 </button>
             </li>
-            <?php } ?>
+            <?php }} ?>
         </div>
         <?php } ?>
 

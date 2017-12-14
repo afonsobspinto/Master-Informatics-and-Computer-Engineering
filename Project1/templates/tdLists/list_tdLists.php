@@ -14,7 +14,7 @@
       foreach ($tdLists as $tdList) {$counter++ ?>
       <div id="remove">
           <li>
-              <p href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></p>
+              <a href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></a>
               <button id="rem2dl">
                   <img src="images/site/delete.svg" alt="Remove List">
                   <br>
