@@ -27,8 +27,9 @@ function postList(e){
 function postRemList(e){
     e.preventDefault();
 
-    var name = document.getElementById('list').value;
-    var params = "name="+name;
+    var id = document.getElementById('list_id').value;
+    console.log(id);
+    var params = "id="+id;
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'templates/tdLists/rem_tdList.php', true);
