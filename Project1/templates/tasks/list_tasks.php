@@ -18,12 +18,12 @@
             <?php if (!$task['tsk_status'] && $task['tdl_id'] == $_GET['tdl_id']) { $counter++ ?>
             <li>
                 <p class="description""><?=$task['tsk_description']?></p>
-
+                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
                 <button id="remtask">
                     <img src="images/site/delete.svg" alt="Remove Task">
                     <br>
                 </button>
-                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
+
                 <button id="comptask">
                     <img src="images/site/accept.svg" alt="Complete Task">
                     <br>
@@ -36,6 +36,7 @@
 
             <li>
                 <p class="description"><?=$task['tsk_description']?></p>
+                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
                 <button id="remtask">
                     <img src="images/site/delete.svg" alt="Remove Task">
                     <br>
@@ -62,6 +63,7 @@
             <?php if ($task['tsk_status'] && $task['tdl_id'] == $_GET['tdl_id']) { $counter++ ?>
             <li>
                 <p class="description"><?=$task['tsk_description']?></p>
+                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
                 <button id="remcomptask">
                     <img src="images/site/delete.svg" alt="Delete Completed Task">
                     <br>
@@ -73,6 +75,7 @@
                 <?php if ($task['tsk_status']) { $counter++ ?>
                 <li>
                     <p class="description"><?=$task['tsk_description']?></p>
+                    <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
                     <button id="remcomptask">
                         <img src="images/site/delete.svg" alt="Delete Completed Task">
                         <br>
@@ -85,3 +88,5 @@
         <?php if (!$counter) { echo ("No completed Tasks"); }?>
     </ul>
 </section>
+
+<script src="javascript/updateTasks.js"></script>

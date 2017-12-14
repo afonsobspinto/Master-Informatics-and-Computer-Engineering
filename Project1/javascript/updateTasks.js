@@ -4,7 +4,6 @@ function postCompleteTask(e){
     e.preventDefault();
 
     var id = document.getElementById('tsk_id').value;
-    console.log(id);
     var params = "tsk_id="+id;
 
     var xhr = new XMLHttpRequest();
