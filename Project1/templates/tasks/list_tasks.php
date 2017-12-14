@@ -76,7 +76,7 @@
                 <li>
                     <p class="description"><?=$task['tsk_description']?></p>
                     <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
-                    <button id="remcomptask">
+                    <button id="remtask">
                         <img src="images/site/delete.svg" alt="Delete Completed Task">
                         <br>
                     </button>
