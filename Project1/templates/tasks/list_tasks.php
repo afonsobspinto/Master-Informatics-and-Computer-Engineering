@@ -13,9 +13,21 @@
         </div>
         <?php $counter = 0;
         foreach ($tasks as $task) {
-            if(isset($_GET['tdl_id'])){
-
-            }else{
+            if(isset($_GET['tdl_id'])){?>
+        <div id="remove">
+            <?php if (!$task['tsk_status'] && $task['tdl_id'] == $_GET['tdl_id']) { $counter++ ?>
+            <li>
+                <p class="description"><?=$task['tsk_description']?></p>
+                <button id="remtask">
+                    <img src="images/site/delete.svg" alt="Remove Task">
+                    <br>
+                </button>
+                <button id="comptask">
+                    <img src="images/site/accept.svg" alt="Complete Task">
+                    <br>
+                </button>
+            </li>
+            <?php }}else{
             ?>
         <div id="remove">
             <?php if (!$task['tsk_status']) { $counter++ ?>
