@@ -18,6 +18,8 @@
         <div id="password"></div><br>
         <input type='password' name="oldpassword" placeholder=" Write your old password" id="password1" onblur="validate('oldPassword', this.value)" required>
         <div id="password"></div><br>
+        <input type='email' name="email" placeholder=" Write your  email" id="email1" onblur="validate('email', this.value)" required>
+        <div id="email"></div><br>
         <input class="button" type="submit" value="Edit">
     </form>
 </section>
