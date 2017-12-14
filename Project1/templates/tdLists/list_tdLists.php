@@ -27,4 +27,4 @@
   </ul>
 </section>
 
-<script src="javascript/add_tdlist.js"></script>
+<script src="javascript/updateTDLists.js"></script>

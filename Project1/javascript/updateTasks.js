@@ -1,11 +1,11 @@
 var compTaskExists = document.getElementById("comptask");
-var remCompTaskExists = document.getElementById("remcomptask");
+var remTaskExists = document.getElementById("remtask");
 
 if(compTaskExists)
     document.getElementById('comptask').addEventListener('click', postCompleteTask);
 
-if(remCompTaskExists)
-    document.getElementById('remcomptask').addEventListener('click', postRemoveTask);
+if(remTaskExists)
+    document.getElementById('remtask').addEventListener('click', postRemoveTask);
 
 function postCompleteTask(e){
     e.preventDefault();
