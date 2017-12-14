@@ -15,5 +15,4 @@ if(isset($_POST['name'])){
     $stmt = $dbh->prepare('INSERT INTO todoList (tdl_name, tdl_cat, usr_id) VALUES (?,?,?)');
     $stmt->execute(array($name, "NONE_YET", $id['usr_id']));
 
-    echo 'Post: New ToDoList is '. $name;
 }
