@@ -2,15 +2,18 @@
 <section id="tasks">
     <h2>TODO Tasks</h2>
     <ul>
+        <?php if(isset($_GET['tdl_id'])){?>
         <div id="add">
             <li>
                 <input type="text" placeholder="Create a task..." id="item">
+                <input type="hidden" id="lst_id" value="<?php echo htmlspecialchars($_GET['tdl_id']); ?>">
                 <button id="addTask">
                     <img src="images/site/add.svg" alt="Add Task">
                     <br>
                 </button>
             </li>
         </div>
+        <?php } ?>
         <?php $counter = 0;
         foreach ($tasks as $task) {
             if(isset($_GET['tdl_id'])){?>
