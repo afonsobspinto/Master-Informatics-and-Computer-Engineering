@@ -257,9 +257,34 @@ form input{
     height: 33px;
     width: 33px;
     padding: 0;
+    padding-bottom: 10px;
 }
 
-#Button img {
+#remove li button img{
+    margin-bottom: -10px;
+}
+
+#add2dl img {
+    height: 30px;
+    width: 30px;
+}
+
+#rem2dl img {
+    height: 30px;
+    width: 30px;
+}
+
+#addtask img {
+    height: 30px;
+    width: 30px;
+}
+
+#remtask img {
+    height: 30px;
+    width: 30px;
+}
+
+#comptask img {
     height: 30px;
     width: 30px;
 }

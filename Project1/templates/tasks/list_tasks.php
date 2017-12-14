@@ -4,7 +4,7 @@
         <div id="add">
             <li>
                 <input type="text" placeholder="Create a task..." id="item">
-                <button id="Button">
+                <button id="addTask">
                     <img src="images/site/add.svg" alt="Add Task">
                     <br>
                 </button>
@@ -16,11 +16,11 @@
             <?php if (!$task['tsk_status']) { $counter++ ?>
             <li>
                 <p class="description"><?=$task['tsk_description']?></p>
-                <button id="Button" href="#removeTask">
+                <button id="remtask">
                     <img src="images/site/delete.svg" alt="Remove Task">
                     <br>
                 </button>
-                <button id="Button" href="#completeTask">
+                <button id="comptask">
                     <img src="images/site/accept.svg" alt="Complete Task">
                     <br>
                 </button>
