@@ -1,6 +1,6 @@
 <?php
-include_once('database/user.php');
-include_once('database/connection.php');
+include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/user.php');
+include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/connection.php');
 
 $value = $_GET['query'];
 $formfield = $_GET['field'];

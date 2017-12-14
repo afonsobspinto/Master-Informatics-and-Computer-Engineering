@@ -1,5 +1,5 @@
 <?php
-include_once('includes/init.php');
+include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
 
 session_destroy();
 

@@ -7,7 +7,7 @@ function postList(e){
     var params = "name="+name;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'add_tdList.php', true);
+    xhr.open('POST', 'templates/tdLists/add_tdList.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
