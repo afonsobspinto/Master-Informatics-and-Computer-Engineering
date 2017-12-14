@@ -34,7 +34,7 @@ function getAllUserInfo($username){
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM user WHERE usr_username = ?');
     $stmt->execute(array($username));
-    return $stmt->fetchAll();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 
 }
 
