@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search User</title>
+    <title>Search FEUP TODO</title>
     <script>
         function showSuggestion(str){
             if(str.length === 0){
@@ -21,12 +21,12 @@
     </script>
 </head>
 <body>
-<div class="container">
-    <h1>Search Users</h1>
+<div id="search">
+    <h1>Search</h1>
     <form>
-        Search User: <input type="text" class="form-control" onkeyup="showSuggestion(this.value)">
+        Search Lists from Users: <input type="text" class="form-control" onkeyup="showSuggestion(this.value)">
     </form>
-    <p>Suggestions: <span id="output" style="font-weight:bold"></span></p>
+    <p>Lists: <span id="output" style="font-weight:bold"></span></p>
 </div>
 </body>
 </html>
