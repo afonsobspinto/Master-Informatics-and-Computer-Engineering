@@ -4,8 +4,8 @@ CREATE TABLE user (
   usr_password  VARCHAR NOT NULL,
   usr_name      VARCHAR,
   usr_email     VARCHAR UNIQUE,
-  usr_gender    VARCHAR,
-  usr_birthdate VARCHAR
+  /*usr_birthdate VARCHAR,*/
+  usr_gender    VARCHAR
 );
 
 CREATE TABLE todoList (
@@ -25,10 +25,14 @@ CREATE TABLE task (
 
 
 
-INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Afonso', 'afonso@gmail.com', 'Male', '1997-01-12');
-INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Tomas', 'tomas@gmail.com', 'Male', '1997-04-15');
-INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Claudia', 'claudia@gmail.com', 'Female', '1997-12-19');
-INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Guest', 'guest@gmail.com', 'Male', '1997-07-22');
+/*INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Afonso', 'afonso@gmail.com', '1997-01-12', 'Male');
+INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Tomas', 'tomas@gmail.com', '1997-04-15', 'Male');
+INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Claudia', 'claudia@gmail.com', '1997-12-19', 'Female');
+INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Guest', 'guest@gmail.com', '1997-07-22', 'Male');*/
+INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Afonso', 'afonso@gmail.com', 'Male');
+INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Tomas', 'tomas@gmail.com', 'Male');
+INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Claudia', 'claudia@gmail.com', 'Female');
+INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Guest', 'guest@gmail.com', 'Male');
 
 INSERT INTO todoList VALUES (NULL, 'CollegeTDL', 'College', 1);
 INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 1);

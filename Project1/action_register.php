@@ -12,7 +12,7 @@ if (!userExists($_POST['username']))   // test if user exists
 {
     global $dbh;
     try{
-        register($dbh, $_POST['username'], $_POST['password']);
+        register($dbh, $_POST['username'], $_POST['password'], $_POST['name'], $_POST['email'], $_POST['gender']);
     }catch (PDOException $e) {
         die($e->getMessage());
     }
