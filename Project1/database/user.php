@@ -56,11 +56,11 @@ function getAllUserTasks($username) { /*so esta a mostrar um*/
     $stmt->execute(array($username));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $dbh->prepare("SELECT *
+    $stmt = $dbh->prepare("SELECT * FROM (SELECT *
                            FROM task JOIN
                                 todoList USING (tdl_id)
-                           ORDER BY tsk_id DESC");
-    $stmt->execute();
+                           ORDER BY tsk_id DESC) WHERE usr_id = ?");
+    $stmt->execute(array($id['usr_id']));
     return $stmt->fetchAll();
 }
 

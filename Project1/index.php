@@ -9,7 +9,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/head
 if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
 /*    $tasks = getAllUserTasks($_SESSION['username']);*/
 /*    $tdLists = getAllUserTDLists($_SESSION['username']);*/
-    $tasks = getAllTasks();
+    $tasks = getAllUserTasks($_SESSION['username']);
     $tdLists = getAllTDLists();
     include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/tdLists/list_tdLists.php');
     include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/tasks/list_tasks.php');
