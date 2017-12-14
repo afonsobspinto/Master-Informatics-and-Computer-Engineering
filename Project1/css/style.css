@@ -309,8 +309,42 @@ form input{
 /* PROFILE *******/
 #profile {
     margin-top: 100px;
+    height: 40%;
 }
 
+#profile img{
+    width: 10%;
+    border-radius: 50%;
+}
+
+#profile table{
+    position: absolute;
+    transform: translate(-50%,0%);
+    left: 50%;
+    border-collapse: collapse;
+}
+
+#profile table, td{
+    font-family: "Georgia", serif;
+    border: 2px solid;
+    padding:6px;
+}
+
+button#edit{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+    padding-left: 20px;
+}
+
+#edit img{
+    margin-left: -20px;
+}
+
+#edit img {
+    height: 30px;
+    width: 30px;
+}
 
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
@@ -348,6 +382,10 @@ form input{
     }
 
     #search{
+        margin-top: 200px;
+    }
+
+    #profile{
         margin-top: 200px;
     }
 }

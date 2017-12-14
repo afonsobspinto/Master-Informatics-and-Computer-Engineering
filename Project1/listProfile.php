@@ -3,7 +3,6 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
 include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/header.php');
 include_once('database/user.php');
 $info = getAllUserInfo($_SESSION['username']);
-print_r($info);
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +19,17 @@ print_r($info);
 <body>
 <section id="profile">
     <h1>Profile</h1>
-    <table>
+    <img src="images/site/user_avatar.svg">
+    <button id="edit">
+        <img src="images/site/edit.svg" alt="Edit Profile">
+        <br>
+    </button>
+    <table align="center">
         <tr><td> Username </td><td><?php echo $info['usr_username']; ?></td></tr>
+        <tr><td> Name </td><td><?php echo $info['usr_name']; ?></td></tr>
+        <tr><td> Email </td><td><?php echo $info['usr_email']; ?></td></tr>
+        <tr><td> Gender </td><td><?php echo $info['usr_gender']; ?></td></tr>
+        <tr><td> Birthday </td><td><?php echo $info['usr_birthdate']; ?></td></tr>
     </table>
 </section>
 </body>
