@@ -1,7 +1,11 @@
 CREATE TABLE user (
   usr_id        INTEGER PRIMARY KEY AUTOINCREMENT,
   usr_username  VARCHAR NOT NULL UNIQUE,
-  usr_password  VARCHAR NOT NULL
+  usr_password  VARCHAR NOT NULL,
+  usr_name      VARCHAR,
+  usr_email     VARCHAR UNIQUE,
+  usr_gender    VARCHAR,
+  usr_birthdate VARCHAR
 );
 
 CREATE TABLE todoList (
@@ -21,10 +25,10 @@ CREATE TABLE task (
 
 
 
-INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
-INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
-INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
-INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG');
+INSERT INTO user VALUES (Null, 'afonso', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Afonso', 'afonso@gmail.com', 'Male', '1997-01-12');
+INSERT INTO user VALUES (Null, 'tomas', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Tomas', 'tomas@gmail.com', 'Male', '1997-04-15');
+INSERT INTO user VALUES (Null, 'claudia', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Claudia', 'claudia@gmail.com', 'Female', '1997-12-19');
+INSERT INTO user VALUES (Null, 'guest', '$2y$12$kwSuelerXAgWimHRpJBf0eLCEZhVtb/xKgUsES4yuepI.qZvAF5wG', 'Guest', 'guest@gmail.com', 'Male', '1997-07-22');
 
 INSERT INTO todoList VALUES (NULL, 'CollegeTDL', 'College', 1);
 INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 1);
@@ -35,7 +39,7 @@ INSERT INTO todoList VALUES (NULL, 'OthersTDL', 'Others', 3);
 
 
 INSERT INTO task VALUES (NULL, 'Finish this website ', Null, 1, 1);
-INSERT INTO task VALUES (NULL, 'Sleep ', Null, 0, 2);
+INSERT INTO task VALUES (NULL, 'Sleep ', Null, 1, 2);
 INSERT INTO task VALUES (NULL, 'Finish CSS ', Null, 1, 3);
 INSERT INTO task VALUES (NULL, 'Install Linux ', Null, 1, 4);
 INSERT INTO task VALUES (NULL, 'Dance Class ', Null, 1, 5);

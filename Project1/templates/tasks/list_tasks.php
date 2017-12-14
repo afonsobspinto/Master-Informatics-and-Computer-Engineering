@@ -18,12 +18,12 @@
             <?php if (!$task['tsk_status'] && $task['tdl_id'] == $_GET['tdl_id']) { $counter++ ?>
             <li>
                 <p class="description""><?=$task['tsk_description']?></p>
-                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>"
-                >
+
                 <button id="remtask">
                     <img src="images/site/delete.svg" alt="Remove Task">
                     <br>
                 </button>
+                <input type="hidden" id="tsk_id" value="<?php echo htmlspecialchars($task['tsk_id']); ?>">
                 <button id="comptask">
                     <img src="images/site/accept.svg" alt="Complete Task">
                     <br>

@@ -12,7 +12,7 @@ function postList(e){
 
     xhr.onload = function(){
         console.log(this.responseText);
-    }
+    };
 
     xhr.send(params);
 }

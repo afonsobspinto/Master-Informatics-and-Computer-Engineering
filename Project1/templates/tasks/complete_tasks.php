@@ -1,7 +1,12 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: afonso
- * Date: 14-12-2017
- * Time: 3:20
- */
+
+include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
+
+if(isset($_POST['tsk_id'])){
+
+
+    $id = htmlspecialchars($_POST['tsk_id']);
+    echo 'Post: Your name is '. $_POST['tsk_id'];
+
+
+}
