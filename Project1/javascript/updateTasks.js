@@ -1,15 +1,12 @@
 var compTaskExists = document.getElementById("comptask");
 var remTaskExists = document.getElementById("remtask");
-var addTaskExists = document.getElementById("addTask");
+
 
 if(compTaskExists)
-    compTaskExists.addEventListener('click', postCompleteTask);
+    document.getElementById('comptask').addEventListener('click', postCompleteTask);
 
 if(remTaskExists)
-    remTaskExists.addEventListener('click', postRemoveTask);
-
-if(addTaskExists)
-    addTaskExists.addEventListener('click', postAddTask);
+    document.getElementById('remtask').addEventListener('click', postRemoveTask);
 
 function postCompleteTask(e){
     e.preventDefault();
@@ -22,7 +19,7 @@ function postCompleteTask(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        //console.log(this.responseText);
+        console.log(this.responseText);
     };
 
     xhr.send(params);
@@ -39,7 +36,7 @@ function postRemoveTask(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        //console.log(this.responseText);
+        console.log(this.responseText);
     };
 
     xhr.send(params);

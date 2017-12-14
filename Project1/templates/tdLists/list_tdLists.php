@@ -15,7 +15,7 @@
       <div id="remove">
           <li>
               <a href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></a>
-              <input type="hidden" id="list_id" value="<?php echo htmlspecialchars($tdList['tsk_id']); ?>">
+              <input type="hidden" id="list_id" value="<?php echo htmlspecialchars($tdList['tdl_id']); ?>">
               <button id="rem2dl">
                   <img src="images/site/delete.svg" alt="Remove List">
                   <br>

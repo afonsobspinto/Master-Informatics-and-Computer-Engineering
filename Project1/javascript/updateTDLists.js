@@ -28,6 +28,7 @@ function postRemList(e){
     e.preventDefault();
 
     var id = document.getElementById('list_id').value;
+    console.log(id);
     var params = "id="+id;
 
     var xhr = new XMLHttpRequest();
