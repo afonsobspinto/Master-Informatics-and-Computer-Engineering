@@ -47,9 +47,10 @@
                 <?php if ($task['tsk_status']) { $counter++ ?>
                 <li>
                     <p class="description"><?=$task['tsk_description']?></p>
-                    <a href="#removeTask">
-                        <img src="images/site/delete.svg" alt="Delete">
-                    </a>
+                    <button id="remcomptask">
+                        <img src="images/site/delete.svg" alt="Delete Completed Task">
+                        <br>
+                    </button>
                 </li>
                 <?php } ?>
             </div>
