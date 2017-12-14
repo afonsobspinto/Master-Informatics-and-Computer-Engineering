@@ -4,7 +4,7 @@
       <div id="add">
           <li>
               <input type="text" placeholder="Create a list..." id="list">
-              <button id="Button">
+              <button id="add2dl">
                   <img src="images/site/add.svg" alt="Add List">
                   <br>
               </button>
