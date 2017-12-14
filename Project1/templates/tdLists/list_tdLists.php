@@ -4,7 +4,10 @@
       <div id="add">
           <li>
               <input type="text" placeholder="Create a list..." id="list">
-              <a href="#addList"><img src="images/site/add.svg" alt="Add"></a>
+              <button id="add2dl">
+                  <img src="images/site/add.svg" alt="Add List">
+                  <br>
+              </button>
           </li>
       </div>
       <?php $counter = 0;
@@ -12,9 +15,10 @@
       <div id="remove">
           <li>
               <p href="index.php?tdl_id=<?=$tdList['tdl_id']?>"><?=$tdList['tdl_name']?></p>
-              <a id="deleteList" href="#removeList">
-                  <img src="images/site/delete.svg" alt="Delete">
-              </a>
+              <button id="rem2dl">
+                  <img src="images/site/delete.svg" alt="Remove List">
+                  <br>
+              </button>
           </li>
       </div>
       <?php } ?>
@@ -23,3 +27,4 @@
   </ul>
 </section>
 
+<script src="javascript/add_tdlist.js"></script>

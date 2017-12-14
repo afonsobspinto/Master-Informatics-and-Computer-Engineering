@@ -34,10 +34,6 @@ function register($db, $username, $password) {
 function getAllUserTDLists($username) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
-    if(!$stmt){
-        print_r($dbh->errorInfo());
-        die("SQLITE ERROR");
-    }
     $stmt->execute(array($username));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt = $dbh->prepare('SELECT * FROM todoList WHERE usr_id = ?');
@@ -47,22 +43,7 @@ function getAllUserTDLists($username) {
 
 
 function getAllUserTasks($username) { /*so esta a mostrar um*/
-    global $dbh;
-    $stmt = $dbh->prepare('SELECT usr_id FROM user WHERE usr_username = ?');
-    if(!$stmt){
-        print_r($dbh->errorInfo());
-        die("SQLITE ERROR");
-    }
-    $stmt->execute(array($username));
-    $id = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt = $dbh->prepare('SELECT * FROM todoList WHERE usr_id = ?');
-
-    $stmt->execute(array($id['usr_id']));
-    $tdl = $stmt->fetchAll();
-    $stmt = $dbh->prepare('SELECT * FROM task WHERE tdl_id = ?');
-    print_r($tdl);
-    $stmt->execute(array(array($tdl['tdl_id'])));
-    return $stmt->fetchAll();
+    return array();
 }
 
 
