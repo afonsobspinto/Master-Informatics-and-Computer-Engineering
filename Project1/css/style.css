@@ -292,11 +292,8 @@ form input{
 /* SEARCH ***********/
 #search{
     margin-top: 100px;
-    display: inline-block;
 }
 
-#search p{
-}
 
 /* Responsive for max-width 681px ******/
 @media only screen and (max-width: 681px) {
@@ -331,6 +328,10 @@ form input{
     #tasks ul a img{
         width: 5%;
         height: auto;
+    }
+
+    #search{
+        margin-top: 200px;
     }
 }
 
