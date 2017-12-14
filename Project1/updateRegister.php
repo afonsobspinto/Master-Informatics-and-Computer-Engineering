@@ -16,7 +16,7 @@
         <div id="username"></div></td>
         <input type='password' name="password" placeholder=" Write your new password" id="password1" onblur="validate('password', this.value)" required>
         <div id="password"></div><br>
-        <input type='password' name="password" placeholder=" Write your old password" id="password1" onblur="validate('password', this.value)" required>
+        <input type="password" placeholder="Write your old password" name="oldPassword">
         <div id="password"></div><br>
         <input class="button" type="submit" value="Edit">
     </form>
