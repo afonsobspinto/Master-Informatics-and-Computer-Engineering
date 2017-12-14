@@ -289,6 +289,11 @@ form input{
     width: 30px;
 }
 
+#remcomptask img {
+    height: 30px;
+    width: 30px;
+}
+
 /* SEARCH ***********/
 #search{
     margin-top: 100px;
