@@ -5,9 +5,9 @@ if (!isset($_POST['password'])) die('password not set');
 if (!isset($_POST['oldpassword'])) die('oldPassword not set');
 if (!isset($_POST['email'])) die('email not set');
 
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/connection.php'); // connects to the database
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/user.php'); // loads the functions responsible for the users table
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
+include_once(__DIR__ . '/database/connection.php'); // connects to the database
+include_once(__DIR__ . '/database/user.php'); // loads the functions responsible for the users table
+include_once(__DIR__ . '/includes/init.php');
 
 $options = ['cost' => 12];
 $username = htmlspecialchars($_POST['username']);
@@ -29,7 +29,13 @@ $stmt = $dbh->prepare('UPDATE user SET usr_username = ?,
 
 $stmt->execute(array($username,$password_hashed, $email, $id['usr_id']));
 
-header("Location: index.php");
+session_destroy();
+
+session_start();
+$_SESSION['success_messages'][] = "User logged out!";
+
+header('Location: ' . "index.php");
+
 
 
 ?>

@@ -1,7 +1,7 @@
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/header.php');
-include_once('database/user.php');
+include_once(__DIR__ . '/includes/init.php');
+include_once(__DIR__ . '/templates/common/header.php');
+include_once(__DIR__ . '/database/user.php');
 $info = getAllUserInfo($_SESSION['username']);
 ?>
 
@@ -35,5 +35,5 @@ $info = getAllUserInfo($_SESSION['username']);
 </body>
 </html>
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/footer.php');
+include_once(__DIR__.'/templates/common/footer.php');
 ?>

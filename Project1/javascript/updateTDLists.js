@@ -1,11 +1,13 @@
-var add2DLExists = document.getElementById("add2dl");
-var rem2DLExists = document.getElementById("rem2dl");
+var add2DL = Array.from(document.getElementsByClassName("add2dl"));
+var rem2DL = Array.from(document.getElementsByClassName("rem2dl"));
 
-if(add2DLExists)
-    document.getElementById('add2dl').addEventListener('click', postList);
+add2DL.forEach(function(item) {
+    item.addEventListener('click', postList);
+});
 
-if(rem2DLExists)
-    document.getElementById('rem2dl').addEventListener('click', postRemList);
+rem2DL.forEach(function(item) {
+    item.addEventListener('click', postRemList);
+});
 
 function postList(e){
     e.preventDefault();
@@ -18,17 +20,17 @@ function postList(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        console.log(this.responseText);
+        //console.log(this.responseText);
+        location.reload();
     };
 
-    xhr.send(params);
+    xhr.send(params); 
 }
 
 function postRemList(e){
     e.preventDefault();
 
-    var id = document.getElementById('list_id').value;
-    console.log(id);
+    var id = e.target.parentElement.parentElement.getElementsByClassName('list_id')[0].value;
     var params = "id="+id;
 
     var xhr = new XMLHttpRequest();
@@ -36,7 +38,8 @@ function postRemList(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        console.log(this.responseText);
+        //console.log(this.responseText);
+        location.replace("index.php");
     };
 
     xhr.send(params);

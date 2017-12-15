@@ -5,7 +5,7 @@
 
 <section id="home">
     <h1>FEUP To-Do</h1>
-    <p>You wont forget it if you list it!</p>
+    <p>You won't forget it if you list it!</p>
     <a href="#about">
         <img src="images/site/button.png" alt="Button">
     </a>

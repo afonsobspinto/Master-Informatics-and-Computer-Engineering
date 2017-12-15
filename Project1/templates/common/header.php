@@ -22,7 +22,7 @@
     <nav id="main-nav">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="../../../../FEUP-LTW/Project1/search.php">Search</a></li>
+            <li><a href="search.php">Search</a></li>
             <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
                 <li><a href="listProfile.php"><?=$_SESSION['username']?></a></li>
                 <li><a href="action_logout.php">Logout</a></li>

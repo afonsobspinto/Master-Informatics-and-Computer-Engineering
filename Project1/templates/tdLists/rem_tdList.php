@@ -1,12 +1,8 @@
 <?php
 
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
-
-echo 'Processing...';
+include_once(__DIR__ . '/../../includes/init.php');
 
 if(isset($_POST['id'])){
-    echo 'POST: Your id is '. $_POST['id'];
-
     $id = htmlspecialchars($_POST['id']);
     global $dbh;
 
@@ -17,7 +13,4 @@ if(isset($_POST['id'])){
     $stmt->execute(array($id));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-}
-else{
-    echo 'Shit...';
 }

@@ -1,17 +1,23 @@
-var compTaskExists = document.getElementById("comptask");
-var remTaskExists = document.getElementById("remtask");
+var compTask = Array.from(document.getElementsByClassName("comptask"));
+var remTask = Array.from(document.getElementsByClassName("remtask"));
+var addTask = document.getElementById("addTask");
 
+compTask.forEach(function(item) {
+    item.addEventListener('click', postCompleteTask);
+});
 
-if(compTaskExists)
-    document.getElementById('comptask').addEventListener('click', postCompleteTask);
+remTask.forEach(function(item) {
+    item.addEventListener('click', postRemoveTask);
+});
 
-if(remTaskExists)
-    document.getElementById('remtask').addEventListener('click', postRemoveTask);
+if(addTask)
+    document.getElementById('addTask').addEventListener('click', postAddTask);
 
 function postCompleteTask(e){
     e.preventDefault();
 
-    var id = document.getElementById('tsk_id').value;
+
+    var id = e.target.parentElement.parentElement.getElementsByClassName('tsk_id')[0].value;
     var params = "tsk_id="+id;
 
     var xhr = new XMLHttpRequest();
@@ -19,16 +25,17 @@ function postCompleteTask(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        console.log(this.responseText);
+        //console.log(this.responseText);
+        location.reload();
     };
 
-    xhr.send(params);
+    xhr.send(params); 
 }
 
 function postRemoveTask(e){
     e.preventDefault();
 
-    var id = document.getElementById('tsk_id').value;
+    var id = e.target.parentElement.parentElement.getElementsByClassName('tsk_id')[0].value;
     var params = "tsk_id="+id;
 
     var xhr = new XMLHttpRequest();
@@ -36,7 +43,8 @@ function postRemoveTask(e){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
-        console.log(this.responseText);
+        //console.log(this.responseText);
+        location.reload();
     };
 
     xhr.send(params);
@@ -47,9 +55,7 @@ function postAddTask(e){
 
     var name = document.getElementById('item').value;
     var id = document.getElementById('lst_id').value;
-    console.log(name);
-    console.log(id);
-    var params = "name="+name+"lst_id"+id;
+    var params = "name="+name+"&lst_id="+id;
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'templates/tasks/add_tasks.php', true);
@@ -57,6 +63,7 @@ function postAddTask(e){
 
     xhr.onload = function(){
         //console.log(this.responseText);
+        location.reload();
     };
 
     xhr.send(params);

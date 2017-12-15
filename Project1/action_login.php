@@ -1,6 +1,6 @@
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/database/user.php');
+include_once(__DIR__ . '/includes/init.php');
+include_once(__DIR__ . '/database/user.php');
 
 if (isLoginCorrect($_POST['username'], $_POST['password'])) {
     setCurrentUser($_POST['username']);

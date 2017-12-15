@@ -1,6 +1,6 @@
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/header.php');
+include_once(__DIR__ . '/includes/init.php');
+include_once(__DIR__ . '/templates/common/header.php');
 ?>
 
 <!DOCTYPE html>
@@ -41,5 +41,5 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/head
 </body>
 </html>
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/templates/common/footer.php');
+include_once(__DIR__ . '/templates/common/footer.php');
 ?>

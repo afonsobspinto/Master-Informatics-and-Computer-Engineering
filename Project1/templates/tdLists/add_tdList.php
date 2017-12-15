@@ -1,10 +1,8 @@
 <?php
 
-include_once($_SERVER["DOCUMENT_ROOT"].'/FEUP-LTW/Project1/includes/init.php');
+include_once(__DIR__ . '/../../includes/init.php');
 
-if(isset($_POST['name'])){
-
-
+if(!empty($_POST['name'])){
     $name = htmlspecialchars($_POST['name']);
 
     global $dbh;
@@ -14,5 +12,7 @@ if(isset($_POST['name'])){
 
     $stmt = $dbh->prepare('INSERT INTO todoList (tdl_name, tdl_cat, usr_id) VALUES (?,?,?)');
     $stmt->execute(array($name, "NONE_YET", $id['usr_id']));
-
+}
+else{
+	http_response_code(400);
 }
