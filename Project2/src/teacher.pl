@@ -1,4 +1,4 @@
-%Teacher [ID, Name, Category, Area, Preference]
+%Teacher [+ID, +Name, +Category, +Area, +Preference, -Classes]
 
 getTeacherID(Teacher, ID):-
     nth0(0, Teacher, ID).

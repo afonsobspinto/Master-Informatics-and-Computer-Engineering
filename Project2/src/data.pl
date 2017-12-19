@@ -1,4 +1,5 @@
 subjects([
+    %Subject[ID, Name, AreaID, Semester, [Hours Per Theoretical], [Hours Per Pratical]]
     [1, 'PLOG', 1, 1, [1, 1], [2, 2, 2, 2, 2, 2]],
     [2, 'LAIG', 2, 1, [2], [3, 3, 3, 3, 3, 3]],
     [3, 'ESOF', 3, 1, [2], [2, 2, 2, 2, 2, 2]],
@@ -12,6 +13,7 @@ subjects([
     ]).
 
 teachers([
+    %Teacher[ID, Name, Category, Area, Preference]
     [1, 'HLC', 'Assistant', 1, 0, _],
     [2, 'RCS', 'Associated', 1, 0, _],
     [3, 'DCS', 'Assistant', 1, 0, _],
