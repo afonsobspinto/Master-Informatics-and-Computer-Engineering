@@ -2,20 +2,20 @@ example(S,T):-
     exampleSubjects(S),
     exampleTeachers(T).
 
-%[Name, Area, Semester, HT, #TheoreticalClasses, HP, #PracticalClasses]
+%Subject[Name, Area, Semester, [Hours Per Theoretical], [Hours Per Pratical]]
 exampleSubjects(S):-
     S = [
-        ['PLOG', 'Programming', 1, 2, 2, 12, 6],
-        ['LAIG', 'Multimedia', 1, 2, 1, 18, 6],
-        ['ESOF', 'Engineering', 1, 2, 1, 12, 6],
-        ['LTW', 'Information', 1, 2, 1, 12, 6],
-        ['RCOM', 'Systems', 1, 2, 1, 14, 7],
+        ['PLOG', 'Programming', 1, [1, 1], [2, 2, 2, 2, 2, 2]],
+        ['LAIG', 'Multimedia', 1, [2], [3, 3, 3, 3, 3, 3]],
+        ['ESOF', 'Engineering', 1, [2], [2, 2, 2, 2, 2, 2]],
+        ['LTW', 'Information', 1, [2], [2, 2, 2, 2, 2, 2]],
+        ['RCOM', 'Systems', 1, [2], [2, 2, 2, 2, 2, 2, 2]],
 
-        ['LBAW', 'Information', 2, 2, 2, 18, 6],
-        ['IART', 'AI', 2, 3, 1, 6, 3],
-        ['COMP', 'Programming', 2, 3, 1, 6, 3],
-        ['SDIS', 'Systems', 2, 2, 1, 12, 6],
-        ['PPIN', 'Social', 2, 2, 1, 6, 3]
+        ['LBAW', 'Information', 2, [1, 1], [3, 3, 3, 3, 3, 3]],
+        ['IART', 'AI', 2, [3], [2, 2, 2]],
+        ['COMP', 'Programming', 2, [3, 1], [2, 2, 2]],
+        ['SDIS', 'Systems', 2, [2], [2, 2, 2, 2, 2, 2]],
+        ['PPIN', 'Social', 2, [2], [2, 2, 2]]
     ].
 
 %[Name, Category, Area, Preference]
