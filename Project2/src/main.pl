@@ -2,18 +2,15 @@
 :- use_module(library(lists)).
 :- consult('data.pl').
 
+:- include('classes.pl').
+
 
 main:-
 	subjects(Subjects), teachers(Teachers), scientificArea(Area),
-	makeVarList(Teachers, Classes),
-	write('Hello World'), nl, nl,
-	nth0(0, Subjects, Subject),
-	nth0(0, Teachers, Teacher),
-	printSubjectInfo(Subject),
-	nl, nl,
-	printTeacherInfo(Teacher),
-	nl, nl,
-	write(Classes).
+	makeVarList(Teachers, TeacherTheoreticalClasses),
+	write(TeacherTheoreticalClasses), nl, nl,
+	getAllClasses(Subjects, Classes),
+	write(Classes), nl, nl.
 
 
 makeVarList(List, Result):-
@@ -21,3 +18,4 @@ makeVarList(List, Result):-
 
 makeVarListAux([],TempResult,TempResult).
 makeVarListAux([[_,_,_,_,_, Var2List]|List],Temp,Var):-append(Temp,[Var2List],NewTemp),makeVarListAux(List,NewTemp,Var).
+
