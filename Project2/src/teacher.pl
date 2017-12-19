@@ -1,10 +1,13 @@
-%Teacher [Name, Category, Area, Preference]
+%Teacher [ID, Name, Category, Area, Preference]
+
+getTeacherID(Teacher, ID):-
+    nth0(0, Teacher, ID).
 
 getTeacherName(Teacher, Name):-
-    nth0(0, Teacher, Name).
+    nth0(1, Teacher, Name).
 
 getTeacherCategory(Teacher, Category):-
-    nth0(1, Teacher, Category).
+    nth0(2, Teacher, Category).
 
 getTeacherWorkload(Teacher, Workload):-
     getTeacherCategory(Teacher, Category),
@@ -16,19 +19,20 @@ getTeacherWorkload(Teacher, Workload):-
     ).
 
 getTeacherArea(Teacher, Area):-
-    nth0(2, Teacher, Area).
+    nth0(3, Teacher, Area).
 
 getTeacherPreference(Teacher, Preference):-
-    nth0(3, Teacher, Preference).
+    nth0(4, Teacher, Preference).
 
 printTeacherInfo(Teacher):-
+    getTeacherID(Teacher, ID),
     getTeacherName(Teacher, Name),
     getTeacherCategory(Teacher, Category),
     getTeacherWorkload(Teacher, Workload),
     getTeacherArea(Teacher, Area),
     getTeacherPreference(Teacher, Preference),
 
-    write(Name), write(' '), write(Area), nl,
+    write(ID), write(' - '), write(Name), write(' '), write(Area), nl,
     write('Category: '), write(Category), nl,
     write('Expected Workload: '), write(Workload), nl,
     write('Preference: '), write(Preference), nl.

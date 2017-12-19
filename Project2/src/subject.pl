@@ -1,30 +1,34 @@
-%Subject[Name, Area, Semester, [Hours Per Theoretical], [Hours Per Pratical]]
+%Subject[ID, Name, Area, Semester, [Hours Per Theoretical], [Hours Per Pratical]]
+
+getSubjectID(Subject, ID):-
+    nth0(0, Subject, ID).
 
 getSubjectName(Subject, Name):-
-    nth0(0, Subject, Name).
+    nth0(1, Subject, Name).
 
 getSubjectArea(Subject, Area):-
-    nth0(1, Subject, Area).
+    nth0(2, Subject, Area).
 
 getSubjectSemester(Subject, Semester):-
-    nth0(2, Subject, Semester).
+    nth0(3, Subject, Semester).
 
 getSubjectTheoreticalHours(Subject, HT):-
-    nth0(3, Subject, HT).
+    nth0(4, Subject, HT).
 
 getSubjectTotalTheoreticalHours(Subject, THours):-
-    nth0(3, Subject, HT),
+    nth0(4, Subject, HT),
     sumlist(HT, THours).
 
 getSubjectPraticalHours(Subject, HP):-
-    nth0(4, Subject, HP).
+    nth0(5, Subject, HP).
 
 getSubjectTotalPraticalHours(Subject, PHours):-
-    nth0(4, Subject, HP),
+    nth0(5, Subject, HP),
     sumlist(HP, PHours).
     
 
 printSubjectInfo(Subject):-
+    getSubjectID(Subject, ID),
     getSubjectName(Subject, Name),
     getSubjectArea(Subject, Area),
     getSubjectSemester(Subject, Semester),
@@ -33,7 +37,7 @@ printSubjectInfo(Subject):-
     getSubjectPraticalHours(Subject, HP),
     getSubjectTotalPraticalHours(Subject, TotalHP),
 
-    write(Name), write(' '), write(Area), nl, 
+    write(ID), write(' - '), write(Name), write(' '), write(Area), nl,
     write('Semester: '), write(Semester), nl,
     write('Theoretical Classes: '), write(HT), nl,
     write('Theoretical Hours Weekly: '), write(TotalHT), nl,
