@@ -1,4 +1,4 @@
-%Subject[Name, Area, Semester, HT, #TheoreticalClasses, HP, #PracticalClasses]
+%Subject[Name, Area, Semester, [Hours Per Theoretical], [Hours Per Pratical]]
 
 getSubjectName(Subject, Name):-
     nth0(0, Subject, Name).
@@ -9,47 +9,36 @@ getSubjectArea(Subject, Area):-
 getSubjectSemester(Subject, Semester):-
     nth0(2, Subject, Semester).
 
-getSubjectHT(Subject, HT):-
+getSubjectTheoreticalHours(Subject, HT):-
     nth0(3, Subject, HT).
 
-getSubjectNumberOfTheoreticalClasses(Subject, NumberOfTheoreticalClasses):-
-    nth0(4, Subject, NumberOfTheoreticalClasses).
-
-getSubjectHoursPerTheoreticalClass(Subject, Hours):-
+getSubjectTotalTheoreticalHours(Subject, THours):-
     nth0(3, Subject, HT),
-    nth0(4, Subject, NumberOfTheoreticalClasses),
-    Hours is HT / NumberOfTheoreticalClasses.
+    sumlist(HT, THours).
 
-getSubjectHP(Subject, HP):-
-    nth0(5, Subject, HP).
+getSubjectPraticalHours(Subject, HP):-
+    nth0(4, Subject, HP).
 
-getSubjectNumberOfPraticalClasses(Subject, NumberOfPraticalClasses):-
-    nth0(6, Subject, NumberOfPraticalClasses).
-
-getSubjectHoursPerPraticalClass(Subject, Hours):-
-    nth0(5, Subject, HP),
-    nth0(6, Subject, NumberOfPraticalClasses),
-    Hours is HP / NumberOfPraticalClasses.
+getSubjectTotalPraticalHours(Subject, PHours):-
+    nth0(4, Subject, HP),
+    sumlist(HP, PHours).
+    
 
 printSubjectInfo(Subject):-
     getSubjectName(Subject, Name),
     getSubjectArea(Subject, Area),
     getSubjectSemester(Subject, Semester),
-    getSubjectHT(Subject, HT),
-    getSubjectNumberOfTheoreticalClasses(Subject, NumberOfTheoreticalClasses),
-    getSubjectHoursPerTheoreticalClass(Subject, THours),
-    getSubjectHP(Subject, HP),
-    getSubjectNumberOfPraticalClasses(Subject, NumberOfPraticalClasses),
-    getSubjectHoursPerPraticalClass(Subject, PHours),
+    getSubjectTheoreticalHours(Subject, HT),
+    getSubjectTotalTheoreticalHours(Subject, TotalHT),
+    getSubjectPraticalHours(Subject, HP),
+    getSubjectTotalPraticalHours(Subject, TotalHP),
 
     write(Name), write(' '), write(Area), nl, 
     write('Semester: '), write(Semester), nl,
-    write('Theoretical Hours Weekly: '), write(HT), nl,
-    write('Number Of Theoretical Classes: '), write(NumberOfTheoreticalClasses), nl,
-    write('Hours Per Theoretical Class: '), write(THours), nl,
-    write('Pratical Hours Weekly: '), write(HP), nl,
-    write('Number Of Pratical Classes: '), write(NumberOfPraticalClasses), nl,
-    write('Hours Per Pratical Class: '), write(PHours), nl.
+    write('Theoretical Classes: '), write(HT), nl,
+    write('Theoretical Hours Weekly: '), write(TotalHT), nl,
+    write('Pratical Classes: '), write(HP), nl,
+    write('Pratical Hours Weekly: '), write(TotalHP), nl.
 
 
 
