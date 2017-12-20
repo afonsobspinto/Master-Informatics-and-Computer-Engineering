@@ -9,7 +9,14 @@ getAllClasses(Subjects, Classes):-
     addID(TempClasses, TempTempClasses),
     findall([ID, Name, Area, Duration, Type, Semester], member(ID-Name-Area-Duration-Type-Semester, TempTempClasses), Classes).
     
-    
+getAllFirstSTClasses(Subjects, FirstSTClasses):-
+    findall([ID, Name, Area, Duration, Type, 1], (getAllClasses(Subjects, Classes),
+                                                  member([ID, Name, Area, Duration, Type, 1], Classes)), FirstSTClasses).
+
+getAllSecondSTClasses(Subjects, SecondSTClasses):-
+    findall([ID, Name, Area, Duration, Type, 2], (getAllClasses(Subjects, Classes),
+                                                  member([ID, Name, Area, Duration, Type, 2], Classes)), SecondSTClasses).
+
 getClassID(Class,ID):-
     nth0(0, Class, ID).
 
