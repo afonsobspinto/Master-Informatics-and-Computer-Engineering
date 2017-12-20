@@ -24,6 +24,12 @@ getTeacherArea(Teacher, Area):-
 getTeacherPreference(Teacher, Preference):-
     nth0(4, Teacher, Preference).
 
+getAllTeachersFromArea(Teachers, Area, Result):-
+    findall(Teacher, (member(Teacher, Teachers), getTeacherArea(Teacher, Area)), Result).
+
+getTeacherTheoreticalClasses(Teacher, TheoreticalClasses):-
+    nth0(5,Teacher,TheoreticalClasses).
+
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
     getTeacherName(Teacher, Name),
