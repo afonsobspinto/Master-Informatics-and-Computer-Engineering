@@ -24,6 +24,14 @@ getTeacherArea(Teacher, Area):-
 getTeacherPreference(Teacher, Preference):-
     nth0(4, Teacher, Preference).
 
+getAllTeachersFromArea(Teachers, Area, Result):-
+    findall(Teacher, (member(Teacher, Teachers), getTeacherArea(Teacher, Area)), Result).
+
+getTeacherTheoreticalClasses(Teacher, TheoreticalClasses):-
+    nth0(5,Teacher,TheoreticalClasses).
+
+    
+
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
     getTeacherName(Teacher, Name),
@@ -31,8 +39,12 @@ printTeacherInfo(Teacher):-
     getTeacherWorkload(Teacher, Workload),
     getTeacherArea(Teacher, Area),
     getTeacherPreference(Teacher, Preference),
+    getTeacherTheoreticalClasses(Teacher, TheoreticalClasses),
 
     write(ID), write(' - '), write(Name), write(' '), write(Area), nl,
     write('Category: '), write(Category), nl,
     write('Expected Workload: '), write(Workload), nl,
-    write('Preference: '), write(Preference), nl.
+    write('Preference: '), write(Preference), nl,
+    write('Theoretical Classes:'), write(TheoreticalClasses), nl,
+    nl.
+    

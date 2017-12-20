@@ -3,19 +3,37 @@
 :- consult('data.pl').
 
 :- include('classes.pl').
+:- include('teacher.pl').
+:- include('subject.pl').
 
 
 main:-
-	subjects(Subjects), teachers(Teachers), scientificArea(Area),
-	makeVarList(Teachers, TeacherTheoreticalClasses),
-	write(TeacherTheoreticalClasses), nl, nl,
+	subjects(Subjects),
 	getAllClasses(Subjects, Classes),
-	write(Classes), nl, nl.
+	write(Classes).
+	/*restrictTheoretical.*/
+	
 
 
-makeVarList(List, Result):-
-	makeVarListAux(List, [], Result).
-
-makeVarListAux([],TempResult,TempResult).
-makeVarListAux([[_,_,_,_,_, Var2List]|List],Temp,Var):-append(Temp,[Var2List],NewTemp),makeVarListAux(List,NewTemp,Var).
+restrictTheoretical:-
+	nth0(TeacherIndex, Teachers, Teacher),
+	length(Teachers, TeachersSize),
+	TeachersMaxIndex is TeachersSize-1,
+	domain([TeacherIndex], 0, TeachersMaxIndex),
+	getTeacherArea(Teacher, TeacherArea),
+	subjects(Subjects), getAllClasses(Subjects, Classes),
+	nth0(ClassIndex, Classes, Class),
+	length(Classes, ClassesSize),
+	ClassesMaxIndex is ClassesSize-1,
+	domain([ClassIndex], 0, ClassesMaxIndex),
+	getClassArea(Class, ClassArea),
+	getClassType(Class, ClassType),
+	mapClassType(ClassType, MappedClassType),
+	MappedClassType #= 1,
+	ClassArea #= TeacherArea,
+	getTeacherTheoreticalClasses(Teacher,TheoreticalClass),
+	getClassID(Class, ID),
+	TheoreticalClass #= ID,
+	labeling([],[TeacherIndex, ClassIndex]),	
+	teachers(Teachers).
 
