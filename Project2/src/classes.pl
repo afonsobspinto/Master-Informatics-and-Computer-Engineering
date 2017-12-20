@@ -37,7 +37,7 @@ addIDAux([],_, ReversedClasses, Classes):-
     
 
 addIDAux([Name-Area-Duration-Type-Semester|Tail], ID, TempClasses, Classes):-
-    NewID is ID+1,
+    NewID is ID + 1,
     NewHead = [NewID-Name-Area-Duration-Type-Semester],
     append(NewHead,TempClasses,NewTempClasses),
     addIDAux(Tail, NewID, NewTempClasses, Classes).

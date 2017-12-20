@@ -30,7 +30,11 @@ getAllTeachersFromArea(Teachers, Area, Result):-
 getTeacherTheoreticalClasses(Teacher, TheoreticalClasses):-
     nth0(5,Teacher,TheoreticalClasses).
 
-    
+teacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
+    getTeacherWorkload(Teacher, Workload),
+    getTeacherPreference(Teacher, Preference),
+    FirstSemHours is Workload + (Workload * Preference),
+    SecondSemHours is (Workload * 2) - FirstSemHours.
 
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
