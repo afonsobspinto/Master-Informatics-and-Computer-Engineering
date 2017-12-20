@@ -9,13 +9,14 @@
 
 main:-
 	subjects(Subjects),
-	getAllClasses(Subjects, Classes),
+	getAllClasses(Subjects,Classes),
 	write(Classes).
-	/*restrictTheoretical.*/
+/* 	restrictTheoretical(Teachers),
+	write(Teachers). */
 	
 
 
-restrictTheoretical:-
+restrictTheoretical(Teachers):-
 	nth0(TeacherIndex, Teachers, Teacher),
 	length(Teachers, TeachersSize),
 	TeachersMaxIndex is TeachersSize-1,
