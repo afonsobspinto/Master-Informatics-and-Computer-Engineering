@@ -3,8 +3,10 @@
 getAllClasses(Subjects, Classes):-
 	findall(Name-Area-ListOfTheoreticalHours, (member(Subject, Subjects), getSubjectName(Subject, Name), getSubjectArea(Subject, Area), getSubjectTheoreticalHours(Subject, ListOfTheoreticalHours)), TempTheoreticalClasses),
     findall(Name-Area-TDuration-'Theoretical', (member(Name-Area-ListOfTheoreticalHours, TempTheoreticalClasses), member(TDuration, ListOfTheoreticalHours)), TheoreticalClasses),	
-    findall(Name-Area-ListOfPraticalHours, (member(Subject, Subjects),getSubjectName(Subject, Name), getSubjectArea(Subject, Area), getSubjectTheoreticalHours(Subject, ListOfPraticalHours)), TempPraticalClasses),
+    
+    findall(Name-Area-ListOfPraticalHours, (member(Subject, Subjects),getSubjectName(Subject, Name), getSubjectArea(Subject, Area), getSubjectPraticalHours(Subject, ListOfPraticalHours)), TempPraticalClasses),
 	findall(Name-Area-PDuration-'Pratical', (member(Name-Area-ListOfPraticalHours, TempPraticalClasses), member(PDuration, ListOfPraticalHours)), PraticalClasses),
+    
     append(TheoreticalClasses, PraticalClasses, TempClasses),
     addID(TempClasses, TempTempClasses),
     findall([ID, Name, Area, Duration, Type], member(ID-Name-Area-Duration-Type, TempTempClasses), Classes).

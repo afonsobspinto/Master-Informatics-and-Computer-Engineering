@@ -8,8 +8,12 @@
 
 
 main:-
-	restrictTheoretical.
+	subjects(Subjects),
+	getAllClasses(Subjects, Classes),
+	write(Classes).
+	/*restrictTheoretical.*/
 	
+
 
 restrictTheoretical:-
 	nth0(TeacherIndex, Teachers, Teacher),
