@@ -15,7 +15,9 @@
 main:-
  	subjects(Subjects),
 	teachers(Teachers),
+	findall(TeacherID, (member(Teacher, Teachers), getTeacherID(Teacher, TeacherID)), TeachersIDS),
 	getAllClasses(Subjects, Classes),
+	findall(ClassID, (member(Class, Classes), getClassID(Class, ClassID)), ClassesIDS),
 	startTimer,
 	length(Classes, Rows),
 	length(Teachers, Columns),
@@ -26,7 +28,7 @@ main:-
 	applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
 	printMatrix(Matrix, Columns),nl,nl,
 	labeling([], Matrix),
-	printMatrix(Matrix, Columns),nl,nl,
+	printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
 	stopTimer(TimeElapsed),
 	printTimer(TimeElapsed),
 	fd_statistics. 

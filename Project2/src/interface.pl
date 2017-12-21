@@ -1,7 +1,14 @@
-printMatrix(Matrix, Columns):-
+printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS):-
     getAllRows(Matrix, Columns, Rows),
-    printBorder(Columns),
-    printRows(Rows).
+    write('   '), printTeachersIDS(TeachersIDS),
+    write('  '),  printBorder(Columns),
+    printRows(Rows, ClassesIDS).
+
+printTeachersIDS([]):-
+    nl.
+printTeachersIDS([Head|Tail]):-
+    write(Head), write(' '),
+    printTeachersIDS(Tail).
 
 printBorder(0):-
     write('-'), nl.
@@ -11,13 +18,13 @@ printBorder(Size):-
     printBorder(NextSize).
 
 
-printRows([]).
-printRows([Head|Tail]):-
-    write('|'),
+printRows([],[]).
+printRows([Head|Tail], [CHead|CTail]):-
+    write(CHead), write(' |'),
     printRow(Head),
     length(Head, CollumSize),
-    printBorder(CollumSize),
-    printRows(Tail).
+    write('  '), printBorder(CollumSize),
+    printRows(Tail, CTail).
 
 printRow([]):-
     nl.
