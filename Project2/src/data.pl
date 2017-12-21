@@ -3,9 +3,9 @@ subjects([
     ]).
 
 teachers([
-    [1, 'HLC', 'Assistant', 1, 0, _],
-    [2, 'RCS', 'Associated', 1, 0, _],
-    [3, 'DCS', 'Assistant', 1, 0, _]
+    [1, 'HLC', 'Assistant', 1, 0],
+    [2, 'RCS', 'Associated', 1, 0],
+    [3, 'DCS', 'Assistant', 1, 0]
     ]).
 
 scientificArea([

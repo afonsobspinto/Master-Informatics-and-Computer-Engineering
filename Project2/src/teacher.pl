@@ -1,5 +1,13 @@
 %Teacher [+ID, +Name, +Category, +Area, +Preference, -Classes]
 
+findTeacherWithID(Teachers, ID, Teacher):-
+    findall(Elem, (member(Elem, Teachers), getTeacherID(Elem, ID)), List),
+    nth0(0, List, Teacher).
+
+findTeacherWorkloadWithID(Teachers, ID, Workload):-
+    findTeacherWithID(Teachers, ID, Teacher),
+    getTeacherWorkload(Teacher, Workload).
+
 getTeacherID(Teacher, ID):-
     nth0(0, Teacher, ID).
 
@@ -27,9 +35,6 @@ getTeacherPreference(Teacher, Preference):-
 getAllTeachersFromArea(Teachers, Area, Result):-
     findall(Teacher, (member(Teacher, Teachers), getTeacherArea(Teacher, Area)), Result).
 
-getTeacherTheoreticalClasses(Teacher, TheoreticalClasses):-
-    nth0(5,Teacher,TheoreticalClasses).
-
 teacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
     getTeacherWorkload(Teacher, Workload),
     getTeacherPreference(Teacher, Preference),
@@ -43,7 +48,6 @@ printTeacherInfo(Teacher):-
     getTeacherWorkload(Teacher, Workload),
     getTeacherArea(Teacher, Area),
     getTeacherPreference(Teacher, Preference),
-    getTeacherTheoreticalClasses(Teacher, TheoreticalClasses),
 
     write(ID), write(' - '), write(Name), write(' '), write(Area), nl,
     write('Category: '), write(Category), nl,

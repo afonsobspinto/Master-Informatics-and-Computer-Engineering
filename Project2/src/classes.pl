@@ -17,6 +17,9 @@ getAllSecondSTClasses(Subjects, SecondSTClasses):-
     findall([ID, Name, Area, Duration, Type, 2], (getAllClasses(Subjects, Classes),
                                                   member([ID, Name, Area, Duration, Type, 2], Classes)), SecondSTClasses).
 
+getClassDuration(Class, Duration):-
+    nth0(3, Class, Duration).
+
 getClassID(Class,ID):-
     nth0(0, Class, ID).
 
@@ -42,3 +45,10 @@ addIDAux([Name-Area-Duration-Type-Semester|Tail], ID, TempClasses, Classes):-
     append(NewHead,TempClasses,NewTempClasses),
     addIDAux(Tail, NewID, NewTempClasses, Classes).
 	
+findClassWithID(Classes, ID, Class):-
+    findall(Elem, (member(Elem, Classes), getClassID(Elem, ID)), List),
+    nth0(0, List, Teacher).
+
+findClassDurationWithID(Classes, ID, Duration):-
+    findClassWithID(Classes, ID, Classes),
+    getClassDuration(Class, Duration).
