@@ -23,7 +23,7 @@ main:-
 	length(Matrix, TotalSize),
 	domain(Matrix, 0, 1),
 	allClassesMustHaveATeacher(Matrix, Columns),
-	%applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
+	applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
 	printMatrix(Matrix, Columns),nl,nl,
 	labeling([], Matrix),
 	printMatrix(Matrix, Columns),nl,nl,
@@ -36,7 +36,7 @@ applyWorkload2Teachers(Matrix, Rows, Cols, Teachers, Classes):-
 	getAllColumns(Matrix, Rows, Cols, Columns),
 	applyWorkloadRestriction(Columns, 1, Teachers, Classes).
 
-applyWorkloadRestriction([],_,_).
+applyWorkloadRestriction([],_,_,_).
 
 applyWorkloadRestriction([Head|Tail], ID, Teachers, Classes):-
 	findTeacherWorkloadWithID(Teachers, ID, Workload),
