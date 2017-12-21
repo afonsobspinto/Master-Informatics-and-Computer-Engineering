@@ -11,7 +11,6 @@
 :- include('utilities.pl').
 
 
-
 main:-
    nl,
    subjects(Subjects),
