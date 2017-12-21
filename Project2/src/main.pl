@@ -26,7 +26,7 @@ main:-
 	domain(Matrix, 0, 1),
 	allClassesMustHaveATeacher(Matrix, Columns),
 	applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
-	printMatrix(Matrix, Columns),nl,nl,
+	printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
 	labeling([], Matrix),
 	printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
 	stopTimer(TimeElapsed),
