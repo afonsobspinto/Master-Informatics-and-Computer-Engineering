@@ -22,9 +22,12 @@ main:-
 	append(X, NewX),
 	write(NewX), nl,
 	allClassesMustHaveATeacher(NewX, 3). */
+	nl,
  	subjects(Subjects),
 	teachers(Teachers),
+	findall(TeacherID, (member(Teacher, Teachers), getTeacherID(Teacher, TeacherID)), TeachersIDS),
 	getAllClasses(Subjects, Classes),
+	findall(ClassID, (member(Class, Classes), getClassID(Class, ClassID)), ClassesIDS),
 	startTimer,
 	length(Classes, Rows),
 	length(Teachers, Columns),
@@ -33,7 +36,7 @@ main:-
 	domain(Matrix, 0, 1),
 	allClassesMustHaveATeacher(Matrix, Columns),
 	labeling([], Matrix),
-	printMatrix(Matrix, Columns),nl,nl,
+	printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
 	stopTimer(TimeElapsed),
 	printTimer(TimeElapsed),
 	fd_statistics.
