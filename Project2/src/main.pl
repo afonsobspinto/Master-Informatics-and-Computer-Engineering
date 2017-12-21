@@ -23,10 +23,10 @@ main:-
 	length(Matrix, TotalSize),
 	domain(Matrix, 0, 1),
 	allClassesMustHaveATeacher(Matrix, Columns),
-	applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
-	write(Matrix),nl,nl,
+	%applyWorkload2Teachers(Matrix, Rows, Columns, Teachers, Classes),
+	printMatrix(Matrix, Columns),nl,nl,
 	labeling([], Matrix),
-	write(Matrix),nl,nl,
+	printMatrix(Matrix, Columns),nl,nl,
 	stopTimer(TimeElapsed),
 	printTimer(TimeElapsed),
 	fd_statistics. 
@@ -89,7 +89,6 @@ getAllColumnsAux(Matrix, Col, RowSize, ColumnSize, Acc, Columns):-
 getAllRows(Matrix, Columns, Rows):-
 	getAllRowsAux(Matrix, Columns, Columns, [], [], ReversedRows),
 	reverse(ReversedRows, Rows).
-	
 
 getAllRowsAux(Matrix, Columns, 0, TempRows, Acc, Rows):-
 	append([TempRows], Acc, NewAcc),
