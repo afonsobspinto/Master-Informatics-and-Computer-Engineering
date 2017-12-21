@@ -23,12 +23,21 @@ getClassDuration(Class, Duration):-
 getClassID(Class,ID):-
     nth0(0, Class, ID).
 
+getClassName(Class, Name):-
+    nth0(1, Class, Name).
+
 getClassArea(Class, Area):-
     nth0(2, Class, Area).
 
+getClassDuration(Class, Duration):-
+    nth0(3, Class, Duration).
+
 getClassType(Class, Type):-
     nth0(4, Class, Type).
-    
+
+getClassSemester(Class, Semester):-
+    nth0(5, Class, Semester).
+
 mapClassType('Theoretical', 1).
 mapClassType('Pratical', 0).
 

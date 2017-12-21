@@ -15,9 +15,7 @@ main:-
    nl,
    subjects(Subjects),
    teachers(Teachers),
-   findall(TeacherID, (member(Teacher, Teachers), getTeacherID(Teacher, TeacherID)), TeachersIDS),
    getAllClasses(Subjects, Classes),
-   findall(ClassID, (member(Class, Classes), getClassID(Class, ClassID)), ClassesIDS),
    startTimer,
    length(Classes, Rows),
    length(Teachers, Columns),
@@ -26,9 +24,9 @@ main:-
    domain(Matrix, 0, 1),
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers),
-   printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
+   printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    labeling([], Matrix),
-   printMatrix(Matrix, Columns, TeachersIDS, ClassesIDS),nl,nl,
+   printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
@@ -64,9 +62,9 @@ getAllColumns(Matrix, Rows, Cols, Columns):-
 getAllColumnsAux(_,_, -1, _, _, _, Columns, Columns).
     
 getAllColumnsAux(Matrix, -1, Col, RowSize, ColumnSize, TempCols, Acc, Columns):-
-    NextCol is Col -1,
+    NextCol is Col - 1,
     append([TempCols], Acc, NewAcc),
-    RowMaxIndex is RowSize -1,
+    RowMaxIndex is RowSize - 1,
     getAllColumnsAux(Matrix, RowMaxIndex, NextCol, RowSize, ColumnSize, [], NewAcc, Columns).
     
 getAllColumnsAux(Matrix, Row, Col, RowSize, ColumnSize, TempCols, Acc, Columns):-
