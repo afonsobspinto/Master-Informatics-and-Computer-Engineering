@@ -12,7 +12,7 @@
 
 
 main:-
-/* 
+/*
 	X = [
 		[1,2,3],
 		[4,5,6],
@@ -31,33 +31,30 @@ main:-
 	TotalSize is Rows*Columns,
 	length(Matrix, TotalSize),
 	domain(Matrix, 0, 1),
-	write(Matrix),nl,nl,
 	allClassesMustHaveATeacher(Matrix, Columns),
 	labeling([], Matrix),
-	write(Matrix),nl,nl,
+	printMatrix(Matrix, Columns),nl,nl,
 	stopTimer(TimeElapsed),
 	printTimer(TimeElapsed),
 	fd_statistics.
-	
+
+print_matrix([]).
+print_matrix([Head|Tail]):-
+    write(Head), nl,
+    print_matrix(Tail).
+
 allClassesMustHaveATeacher(Matrix, Columns):-
 	getAllRows(Matrix, Columns, Rows),
 	applyRestriction(Rows).
 
 applyRestriction([]).
-
 applyRestriction([Head|Tail]):-
 	sum(Head, #=, 1),
 	applyRestriction(Tail).
-	
-	
-	
 
 getAllRows(Matrix, Columns, Rows):-
 	getAllRowsAux(Matrix, Columns, Columns, [], [], ReversedRows),
 	reverse(ReversedRows, Rows).
-	
-
-
 
 getAllRowsAux(Matrix, Columns, 0, TempRows, Acc, Rows):-
 	append([TempRows], Acc, NewAcc),

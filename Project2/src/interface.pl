@@ -1,20 +1,19 @@
-printMatrix(Matrix):-
-
-    nth0(0, Matrix, Elem),
-    length(Elem, CollumSize),
-    printBorder(CollumSize),
-    printRows(Matrix).
+printMatrix(Matrix, Columns):-
+    getAllRows(Matrix, Columns, Rows),
+    printBorder(Columns),
+    printRows(Rows).
 
 printBorder(0):-
-    nl.
+    write('-'), nl.
 printBorder(Size):-
     write('--'),
-    NextSize is Size-1,
+    NextSize is Size - 1,
     printBorder(NextSize).
 
 
 printRows([]).
 printRows([Head|Tail]):-
+    write('|'),
     printRow(Head),
     length(Head, CollumSize),
     printBorder(CollumSize),
