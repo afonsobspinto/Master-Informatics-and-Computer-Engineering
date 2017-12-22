@@ -4,11 +4,9 @@
 :- include('utilities.pl').
 
 test:-
-    A = [X, Y, Z],
-    domain(A, 1, 10),
-    scalar_product([1,2,3], A, #>=, 10),
-    labeling([], A),
-    write(A).
+    domain([A,B], 1, 10),
+    labeling([], [A,B]),
+    write(A), write(B).
 
     
 /*     X = [

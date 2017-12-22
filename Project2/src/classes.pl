@@ -8,7 +8,19 @@ getAllClasses(Subjects, Classes):-
     append(TheoreticalClasses, PraticalClasses, TempClasses),
     addID(TempClasses, TempTempClasses),
     findall([ID, Name, Area, Duration, Type, Semester], member(ID-Name-Area-Duration-Type-Semester, TempTempClasses), Classes).
-    
+
+findClassWithID(Classes, ID, Class):-
+    findall(Elem, (member(Elem, Classes), getClassID(Elem, ID)), List),
+    nth0(0, List, Class).
+
+findClassAreaWithID(Classes, ID, Area):-
+    findClassWithID(Classes, ID, Class),
+    getClassArea(Class, Area).
+
+findClassTypeWithID(Classes, ID, Type):-
+    findClassWithID(Classes, ID, Class),
+    getClassType(Class, Type).
+
 getClassID(Class,ID):-
     nth0(0, Class, ID).
 
