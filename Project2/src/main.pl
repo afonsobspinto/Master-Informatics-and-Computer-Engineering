@@ -23,25 +23,26 @@ main:-
    length(Matrix, TotalSize),
    domain(Matrix, 0, 1),
    allClassesMustHaveATeacher(Matrix, Columns),
-   workloadRestriction(Matrix, Rows, Columns, Teachers),
+   workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    labeling([], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
-
-workloadRestriction(Matrix, Rows, Cols, Teachers):-
+	
+workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
 	getAllColumns(Matrix, Rows, Cols, Columns),
-	workloadRestrictionAux(Columns, Teachers, 1).
+	getAllClassesDurations(Classes, ListDurations),
+	workloadRestrictionAux(Columns, Teachers, ListDurations, 1).
 
-workloadRestrictionAux([], _, _).
+workloadRestrictionAux([], _, _, _).
 
-workloadRestrictionAux([Head|Tail], Teachers, TeacherID):-
+workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID):-
 	findTeacherWorkloadWithID(Teachers, TeacherID, Workload),
-	sum(Head, #=<, Workload),
+	scalar_product(ListDurations, Head, #=<, Workload),
 	NextID is TeacherID + 1,
-	workloadRestrictionAux(Tail, Teachers, NextID).
+	workloadRestrictionAux(Tail, Teachers, ListDurations, NextID).
 
 
 allClassesMustHaveATeacher(Matrix, Columns):-

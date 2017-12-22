@@ -4,16 +4,24 @@
 :- include('utilities.pl').
 
 test:-
-    X = [
-		[1,2,3],
-		[4,5,6],
-		[7,8,9],
-		[10,11,12]
+    A = [X, Y, Z],
+    domain(A, 1, 10),
+    scalar_product([1,2,3], A, #>=, 10),
+    labeling([], A),
+    write(A).
+
+    
+/*     X = [
+		[1,0,0],
+		[0,1,0],
+		[0,0,1],
+		[0,1,0]
 	],
 	append(X, NewX),
     write(NewX), nl,
     getAllColumns(NewX, 4, 3, Columns),
-    write(Columns), nl.
+    write(Columns), nl,
+ */
 
 acc(List, Result):-
     accAux(List, [], Result).
@@ -43,6 +51,5 @@ getAllColumnsAux(Matrix, Row, Col, RowSize, ColumnSize, TempCols, Acc, Columns):
     getIndex(Row, Col, ColumnSize, Index),
     nth0(Index, Matrix, Elem),
     append([Elem], TempCols, NewTempCols),
-    write(NewTempCols), nl, nl,
     NextRow is Row - 1,
     getAllColumnsAux(Matrix, NextRow, Col, RowSize, ColumnSize, NewTempCols, Acc, Columns).
