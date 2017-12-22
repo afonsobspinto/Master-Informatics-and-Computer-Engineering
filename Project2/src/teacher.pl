@@ -8,6 +8,10 @@ findTeacherWorkloadWithID(Teachers, ID, Workload):-
     findTeacherWithID(Teachers, ID, Teacher),
     getTeacherWorkload(Teacher, Workload).
 
+findTeacherAreaWithID(Teachers, ID, Area):-
+    findTeacherWithID(Teachers, ID, Teacher),
+    getTeacherArea(Teacher, Area).
+
 getTeacherID(Teacher, ID):-
     nth0(0, Teacher, ID).
 

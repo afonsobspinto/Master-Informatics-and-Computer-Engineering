@@ -22,22 +22,35 @@ main:-
    TotalSize is Rows*Columns,
    length(Matrix, TotalSize),
    domain(Matrix, 0, 1),
+   /*classesAndTeachersSameArea(Matrix, Rows, Columns, Teachers, Classes),*/
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
-   printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    labeling([], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
-	
+
+classesAndTeachersSameArea(Matrix, Rows, Cols, Teachers, Classes):-
+	getAllColumns(Matrix, Rows, Cols, Columns),
+	applySameAreaAux(Columns, Teachers, Classes, 1).
+
+applySameAreaAux([], _, _, _).
+applySameAreaAux([Head|Tail], Teachers, Classes, TeacherID):-
+	findTeacherAreaWithID(Teachers, TeacherID, TeacherArea),
+	nth0(TeacherID, Classes, Class),
+	getClassArea(Class, ClassArea),
+	write(TeacherArea), write(' '), write(ClassArea), nl,
+    TeacherArea #= ClassArea,
+	NextID is TeacherID + 1,
+	applySameAreaAux(Tail, Teachers, ListDurations, NextID).
+
 workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
 	getAllColumns(Matrix, Rows, Cols, Columns),
 	getAllClassesDurations(Classes, ListDurations),
 	workloadRestrictionAux(Columns, Teachers, ListDurations, 1).
 
 workloadRestrictionAux([], _, _, _).
-
 workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID):-
 	findTeacherWorkloadWithID(Teachers, TeacherID, Workload),
 	scalar_product(ListDurations, Head, #=<, Workload),

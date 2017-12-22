@@ -6,7 +6,7 @@ subjects([
 
 teachers([
 %Teacher[ID, Name, Category, Area, Preference]
-[1, 'HLC', 'Assistant', 1, 0.5],
+[1, 'HLC', 'Assistant', 2, 0.5],
 [2, 'RCS', 'Associated', 1, 0],
 [3, 'DCS', 'Assistant', 1, 0],
 [4, 'AAS', 'Associated', 2, 0],
