@@ -38,6 +38,9 @@ getClassType(Class, Type):-
 getClassSemester(Class, Semester):-
     nth0(5, Class, Semester).
 
+getAllClassesDurations(Classes, DurationsList):-
+    findall(Duration, (member(Class, Classes), nth0(3, Class, Duration)), DurationsList).
+
 mapClassType('Theoretical', 1).
 mapClassType('Pratical', 0).
 
@@ -47,17 +50,9 @@ addID(TempClasses, Classes):-
 addIDAux([],_, ReversedClasses, Classes):-
     reverse(ReversedClasses, Classes).
     
-
 addIDAux([Name-Area-Duration-Type-Semester|Tail], ID, TempClasses, Classes):-
     NewID is ID + 1,
     NewHead = [NewID-Name-Area-Duration-Type-Semester],
     append(NewHead,TempClasses,NewTempClasses),
     addIDAux(Tail, NewID, NewTempClasses, Classes).
 	
-findClassWithID(Classes, ID, Class):-
-    findall(Elem, (member(Elem, Classes), getClassID(Elem, ID)), List),
-    nth0(0, List, Teacher).
-
-findClassDurationWithID(Classes, ID, Duration):-
-    findClassWithID(Classes, ID, Classes),
-    getClassDuration(Class, Duration).
