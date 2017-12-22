@@ -30,7 +30,7 @@ main:-
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
-	
+
 workloadRestriction(Matrix, Rows, Cols, Teachers):-
 	getAllColumns(Matrix, Rows, Cols, Columns),
 	workloadRestrictionAux(Columns, Teachers, 1).

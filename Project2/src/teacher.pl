@@ -35,11 +35,19 @@ getTeacherPreference(Teacher, Preference):-
 getAllTeachersFromArea(Teachers, Area, Result):-
     findall(Teacher, (member(Teacher, Teachers), getTeacherArea(Teacher, Area)), Result).
 
-teacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
+getTeacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
     getTeacherWorkload(Teacher, Workload),
     getTeacherPreference(Teacher, Preference),
     FirstSemHours is Workload + (Workload * Preference),
     SecondSemHours is (Workload * 2) - FirstSemHours.
+
+getTeacherWorkloadBySemester(Teacher, Semester, Workload):-
+    getTeacherSemesterHours(Teacher, First, Second),
+    (
+        Semester == 1 -> Workload is First;
+        Semester == 2 -> Workload is Second;
+        fail
+    ).
 
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
