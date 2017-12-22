@@ -45,6 +45,14 @@ getAllTeachersFromArea(Teachers, Area, Result):-
     FirstSemHours is Workload + (Workload * Preference),
     SecondSemHours is (Workload * 2) - FirstSemHours. */
 
+getTeacherWorkloadBySemester(Teacher, Semester, Workload):-
+    getTeacherSemesterHours(Teacher, First, Second),
+    (
+        Semester == 1 -> Workload is First;
+        Semester == 2 -> Workload is Second;
+        fail
+    ).
+
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
     getTeacherName(Teacher, Name),

@@ -22,6 +22,7 @@ main:-
    TotalSize is Rows*Columns,
    length(Matrix, TotalSize),
    domain(Matrix, 0, 1),
+   /*classesAndTeachersSameArea(Matrix, Rows, Columns, Teachers, Classes),*/
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
@@ -85,7 +86,6 @@ workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
 	workloadRestrictionAux(Columns, Teachers, ListDurations, 1).
 
 workloadRestrictionAux([], _, _, _).
-
 workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID):-
 	findTeacherWorkloadWithID(Teachers, TeacherID, Workload),
 	scalar_product(ListDurations, Head, #=<, Workload),
