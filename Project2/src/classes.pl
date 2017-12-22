@@ -9,17 +9,6 @@ getAllClasses(Subjects, Classes):-
     addID(TempClasses, TempTempClasses),
     findall([ID, Name, Area, Duration, Type, Semester], member(ID-Name-Area-Duration-Type-Semester, TempTempClasses), Classes).
     
-getAllFirstSTClasses(Subjects, FirstSTClasses):-
-    findall([ID, Name, Area, Duration, Type, 1], (getAllClasses(Subjects, Classes),
-                                                  member([ID, Name, Area, Duration, Type, 1], Classes)), FirstSTClasses).
-
-getAllSecondSTClasses(Subjects, SecondSTClasses):-
-    findall([ID, Name, Area, Duration, Type, 2], (getAllClasses(Subjects, Classes),
-                                                  member([ID, Name, Area, Duration, Type, 2], Classes)), SecondSTClasses).
-
-getClassDuration(Class, Duration):-
-    nth0(3, Class, Duration).
-
 getClassID(Class,ID):-
     nth0(0, Class, ID).
 
@@ -38,8 +27,30 @@ getClassType(Class, Type):-
 getClassSemester(Class, Semester):-
     nth0(5, Class, Semester).
 
+getAllClassesSemesters(Classes, SemestersList):-
+    findall(Semester, (member(Class, Classes), nth0(5, Class, Semester)), SemestersList).
+
+getAllFirstSemesterClassesDuration(Classes, ClassesList):-
+    getAllXSemesterClassesDurationAux(Classes, 1, [], ClassesList).
+
+getAllSecondSemesterClassesDuration(Classes, ClassesList):-
+    getAllXSemesterClassesDurationAux(Classes, 2, [], ClassesList).
+
+getAllXSemesterClassesDurationAux([], _, ClassesList, ClassesList).
+
+getAllXSemesterClassesDurationAux([Head|Tail], X, TempClasses, ClassesList):-
+    getClassSemester(Head, Semester),
+    (
+    (Semester == X) -> (getClassDuration(Head, Duration),  append(TempClasses, [Duration], NewTempClasses));
+    append(TempClasses, [0], NewTempClasses)
+    ),
+    getAllXSemesterClassesDurationAux(Tail, X, NewTempClasses, ClassesList).
+
+
 getAllClassesDurations(Classes, DurationsList):-
     findall(Duration, (member(Class, Classes), nth0(3, Class, Duration)), DurationsList).
+
+
 
 mapClassType('Theoretical', 1).
 mapClassType('Pratical', 0).

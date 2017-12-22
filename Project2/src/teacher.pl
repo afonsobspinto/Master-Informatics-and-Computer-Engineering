@@ -8,6 +8,10 @@ findTeacherWorkloadWithID(Teachers, ID, Workload):-
     findTeacherWithID(Teachers, ID, Teacher),
     getTeacherWorkload(Teacher, Workload).
 
+findTeacherPreferenceWithID(Teachers, ID, Preference):-
+    findTeacherWithID(Teachers, ID, Teacher),
+    getTeacherPreference(Teacher, Preference).
+
 getTeacherID(Teacher, ID):-
     nth0(0, Teacher, ID).
 
@@ -35,11 +39,11 @@ getTeacherPreference(Teacher, Preference):-
 getAllTeachersFromArea(Teachers, Area, Result):-
     findall(Teacher, (member(Teacher, Teachers), getTeacherArea(Teacher, Area)), Result).
 
-teacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
+/* teacherSemesterHours(Teacher, FirstSemHours, SecondSemHours):-
     getTeacherWorkload(Teacher, Workload),
     getTeacherPreference(Teacher, Preference),
     FirstSemHours is Workload + (Workload * Preference),
-    SecondSemHours is (Workload * 2) - FirstSemHours.
+    SecondSemHours is (Workload * 2) - FirstSemHours. */
 
 printTeacherInfo(Teacher):-
     getTeacherID(Teacher, ID),
@@ -53,6 +57,5 @@ printTeacherInfo(Teacher):-
     write('Category: '), write(Category), nl,
     write('Expected Workload: '), write(Workload), nl,
     write('Preference: '), write(Preference), nl,
-    write('Theoretical Classes:'), write(TheoreticalClasses), nl,
     nl.
     

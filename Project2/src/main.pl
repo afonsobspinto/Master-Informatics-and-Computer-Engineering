@@ -24,13 +24,61 @@ main:-
    domain(Matrix, 0, 1),
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
+   preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    labeling([], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
-	
+
+
+preferenceRestriction(Matrix, Rows, Cols, Teachers, Classes):-
+    getAllColumns(Matrix, Rows, Cols, Columns),
+    getAllFirstSemesterClassesDuration(Classes, FirstSemesterDurations),
+    getAllSecondSemesterClassesDuration(Classes, SecondSemesterDurations),
+	preferenceRestrictionAux(Columns, Teachers, FirstSemesterDurations, SecondSemesterDurations,  1).
+
+preferenceRestrictionAux([], _, _,_, _).
+
+preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
+    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
+    Preference == -1,
+    FirstSemesterWorkload #= 0,
+    scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
+	NextID is TeacherID + 1,
+	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
+
+preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
+    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
+    Preference == 1,
+    SecondSemesterWorkload #= 0,
+    scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
+	NextID is TeacherID + 1,
+	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
+
+preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
+    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
+    Preference > 0,
+    FirstSemesterWorkload #>= SecondSemesterWorkload,
+    scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
+    scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
+	NextID is TeacherID + 1,
+	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
+
+preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
+    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
+    Preference < 0,
+    FirstSemesterWorkload #=< SecondSemesterWorkload,
+    scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
+    scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
+	NextID is TeacherID + 1,
+	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
+
+preferenceRestrictionAux([_|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
+	NextID is TeacherID + 1,
+	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
+
 workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
 	getAllColumns(Matrix, Rows, Cols, Columns),
 	getAllClassesDurations(Classes, ListDurations),
