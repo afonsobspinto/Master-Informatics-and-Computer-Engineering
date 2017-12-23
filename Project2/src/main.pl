@@ -25,11 +25,11 @@ main:-
    domain(Matrix, 0, 1),
    theoreticalRestriction(Matrix, Columns, Teachers, Classes), !,
    allClassesMustHaveATeacher(Matrix, Columns),
-   workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
+   workloadRestriction(Matrix, Rows, Columns, Teachers, Classes, DiffHoursExpectedMinimize),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
    maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
-   labeling([maximize(PraticalMaximize)], Matrix),
+   labeling([maximize(PraticalMaximize), minimize(DiffHoursExpectedMinimize)], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
@@ -147,17 +147,19 @@ preferenceRestrictionAux([_|Tail], Teachers, FirstSemesterDurations, SecondSemes
 	NextID is TeacherID + 1,
 	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
 
-workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
+workloadRestriction(Matrix, Rows, Cols, Teachers, Classes, DiffHoursExpectedMinimize):-
     getAllColumns(Matrix, Rows, Cols, Columns),
     getAllClassesDurations(Classes, ListDurations),
-	workloadRestrictionAux(Columns, Teachers, ListDurations, 1).
+	workloadRestrictionAux(Columns, Teachers, ListDurations, 1, 0, DiffHoursExpectedMinimize).
 
-workloadRestrictionAux([], _, _, _).
-workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID):-
+workloadRestrictionAux([], _, _, _, Acc, Acc).
+workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID, TempAcc, Acc):-
 	findTeacherWorkloadWithID(Teachers, TeacherID, Workload),
-	scalar_product(ListDurations, Head, #=<, Workload),
+    scalar_product(ListDurations, Head, #=, RealWorkload),
+    Diff #= abs(RealWorkload - Workload),
+    NewTempAcc #= TempAcc + Diff,
 	NextID is TeacherID + 1,
-	workloadRestrictionAux(Tail, Teachers, ListDurations, NextID).
+	workloadRestrictionAux(Tail, Teachers, ListDurations, NextID, NewTempAcc, Acc).
 
 
 allClassesMustHaveATeacher(Matrix, Columns):-
