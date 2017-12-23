@@ -5,8 +5,8 @@
 
 test:-
     domain([A,B], 1, 10),
-    S #= A + B,
-    labeling([maximize(S)], [A,B]),
+    S #= A + B, !,
+    labeling([minimize(S)], [A,B]),
     write(S).
 
     

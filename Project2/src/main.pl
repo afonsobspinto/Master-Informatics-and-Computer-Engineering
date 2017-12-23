@@ -25,12 +25,12 @@ main:-
    theoreticalRestriction(Matrix, Columns, Teachers, Classes), !,
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes, DiffHoursExpectedMinimize),
-   preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
    maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize),
-   printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
-   labeling([maximize(PraticalMaximize), minimize(DiffHoursExpectedMinimize)], Matrix),
+   preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
+   labeling([maximize(PraticalMaximize), minimize(DiffHoursExpectedMinimize), time_out(2000,Flag)], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
+   write(Flag), nl,
    printTimer(TimeElapsed),
    fd_statistics.
 
@@ -110,7 +110,7 @@ preferenceRestrictionAux([], _, _,_, _).
 
 preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
     findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    (SecondSemesterWorkload - FirstSemesterWorkload) #= Preference,
+    abs(SecondSemesterWorkload - FirstSemesterWorkload) #=< Preference,
     scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
     scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
 	NextID is TeacherID + 1,
