@@ -22,9 +22,9 @@ main:-
    TotalSize is Rows*Columns,
    length(Matrix, TotalSize),
    domain(Matrix, 0, 1),
+   theoreticalRestriction(Matrix, Columns, Teachers, Classes), !,
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
-   theoreticalRestriction(Matrix, Columns, Teachers, Classes),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    labeling([], Matrix),
@@ -34,16 +34,18 @@ main:-
    fd_statistics.
 
 theoreticalRestriction(Matrix, Cols, Teachers, Classes):-
-	getAllRows(Matrix, Cols, Rows),
+    getAllRows(Matrix, Cols, Rows), !,
     theoreticalRestrictionAux(Rows, Teachers, Classes, 1).
 
 theoreticalRestrictionAux([], _, _,_).
 
 theoreticalRestrictionAux([Head|Tail], Teachers, Classes, ClassID):-
+
     findClassTypeWithID(Classes, ClassID, ClassType),
     ClassType == 'Theoretical',
     findClassAreaWithID(Classes, ClassID, ClassArea),
-    parseTeachers(Head, Teachers, ClassArea, 1),
+    parseTeachers(Head, Teachers, ClassArea, 1, 0, Success), !,
+    Success == 1,
     NextClassID is ClassID + 1,
     theoreticalRestrictionAux(Tail, Teachers, Classes, NextClassID).
 
@@ -51,45 +53,20 @@ theoreticalRestrictionAux([_|Tail], Teachers, Classes, ClassID):-
     NextClassID is ClassID + 1,
     theoreticalRestrictionAux(Tail, Teachers, Classes, NextClassID).
 
-parseTeachers([], _, _, _).
+parseTeachers([], _, _, _, Success, Success).
 
-parseTeachers([Head|Tail], Teachers, ClassArea, TeacherID):-
+parseTeachers([Head|Tail], Teachers, ClassArea, TeacherID, TempFlag, Success):-
     findTeacherAreaWithID(Teachers, TeacherID, TeacherArea),
     ClassArea \== TeacherArea,
     Head #= 0,
     NextTeacherID is TeacherID + 1,
-    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID).
+    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID, TempFlag, Success).
 
-parseTeachers([_|Tail], Teachers, ClassArea, TeacherID):-
+parseTeachers([_|Tail], Teachers, ClassArea, TeacherID, _, Success):-
+    write(TeacherID), write(' '), write(ClassArea), nl, nl,
     NextTeacherID is TeacherID + 1,
-    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID).
+    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID, 1, Success).
 
-/* theoreticalRestriction(Matrix, Rows, Cols, Teachers, Classes):-
-    getAllColumns(Matrix, Rows, Cols, Columns),
-    theoreticalRestrictionAux(Columns, Teachers, Classes, 1).
-
-theoreticalRestrictionAux([], _, _,_).
-
-theoreticalRestrictionAux([Head|Tail], Teachers, Classes, TeacherID):-
-    findTeacherAreaWithID(Teachers, TeacherID, TeacherArea),
-    parseClasses(Head, Classes, TeacherArea, 1),
-    NextTeacherID is TeacherID + 1,
-    theoreticalRestrictionAux(Tail, Teachers, Classes, NextTeacherID).
-
-
-parseClasses([], _, _, _).
-
-parseClasses([Head|Tail], Classes, TeacherArea, ClassID):-
-    findClassAreaWithID(Classes, ClassID, ClassArea),
-    ClassArea \== TeacherArea,
-    Head #= 0,
-    NextClassID is ClassID + 1,
-    parseClasses(Tail, Classes, TeacherArea, NextClassID).
-
-parseClasses([_|Tail], Classes, TeacherArea, ClassID):-
-    NextClassID is ClassID + 1,
-    parseClasses(Tail, Classes, TeacherArea, NextClassID).
- */
 
 preferenceRestriction(Matrix, Rows, Cols, Teachers, Classes):-
     getAllColumns(Matrix, Rows, Cols, Columns),
