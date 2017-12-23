@@ -16,6 +16,7 @@ main:-
    subjects(Subjects),
    teachers(Teachers),
    getAllClasses(Subjects, Classes),
+   write(Classes), nl, nl,
    startTimer,
    length(Classes, Rows),
    length(Teachers, Columns),
@@ -26,12 +27,45 @@ main:-
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
+   maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
-   labeling([], Matrix),
+   labeling([maximize(PraticalMaximize)], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
    fd_statistics.
+
+maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize):-
+    getAllRows(Matrix, Columns, Rows),
+    maximizePraticalRestrictionAux(Rows, Teachers, Classes, 1, 0, PraticalMaximize).
+
+maximizePraticalRestrictionAux([], _, _, _, PraticalMaximize, PraticalMaximize).
+
+maximizePraticalRestrictionAux([Head|Tail], Teachers, Classes, ClassID, Acc, PraticalMaximize):-
+    findClassTypeWithID(Classes, ClassID, ClassType),
+    ClassType == 'Pratical',
+    findClassAreaWithID(Classes, ClassID, ClassArea),
+    parseTeachersPratical(Head, Teachers, ClassArea, 1, 0, TempAcc),
+    NextClassID is ClassID + 1,
+    NewAcc #= Acc + TempAcc,
+    maximizePraticalRestrictionAux(Tail, Teachers, Classes, NextClassID, NewAcc, PraticalMaximize).
+
+maximizePraticalRestrictionAux([_|Tail], Teachers, Classes, ClassID, Acc, PraticalMaximize):-
+    NextClassID is ClassID + 1,
+    maximizePraticalRestrictionAux(Tail, Teachers, Classes, NextClassID, Acc, PraticalMaximize).
+
+parseTeachersPratical([], _, _, _, Acc, Acc).
+
+parseTeachersPratical([Head|Tail], Teachers, ClassArea, TeacherID, TempAcc, Acc):-
+    findTeacherAreaWithID(Teachers, TeacherID, TeacherArea),
+    ClassArea == TeacherArea,
+    NewTempAcc #= TempAcc + Head,
+    NextTeacherID is TeacherID + 1,
+    parseTeachersPratical(Tail, Teachers, ClassArea, NextTeacherID, NewTempAcc, Acc).
+
+parseTeachersPratical([_|Tail], Teachers, ClassArea, TeacherID, TempAcc, Acc):-
+    NextTeacherID is TeacherID + 1,
+    parseTeachersPratical(Tail, Teachers, ClassArea, NextTeacherID, TempAcc, Acc).
 
 theoreticalRestriction(Matrix, Cols, Teachers, Classes):-
     getAllRows(Matrix, Cols, Rows), !,
@@ -44,7 +78,7 @@ theoreticalRestrictionAux([Head|Tail], Teachers, Classes, ClassID):-
     findClassTypeWithID(Classes, ClassID, ClassType),
     ClassType == 'Theoretical',
     findClassAreaWithID(Classes, ClassID, ClassArea),
-    parseTeachers(Head, Teachers, ClassArea, 1, 0, Success), !,
+    parseTeachersTheoretical(Head, Teachers, ClassArea, 1, 0, Success), !,
     Success == 1,
     NextClassID is ClassID + 1,
     theoreticalRestrictionAux(Tail, Teachers, Classes, NextClassID).
@@ -53,19 +87,18 @@ theoreticalRestrictionAux([_|Tail], Teachers, Classes, ClassID):-
     NextClassID is ClassID + 1,
     theoreticalRestrictionAux(Tail, Teachers, Classes, NextClassID).
 
-parseTeachers([], _, _, _, Success, Success).
+parseTeachersTheoretical([], _, _, _, Success, Success).
 
-parseTeachers([Head|Tail], Teachers, ClassArea, TeacherID, TempFlag, Success):-
+parseTeachersTheoretical([Head|Tail], Teachers, ClassArea, TeacherID, TempFlag, Success):-
     findTeacherAreaWithID(Teachers, TeacherID, TeacherArea),
     ClassArea \== TeacherArea,
     Head #= 0,
     NextTeacherID is TeacherID + 1,
-    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID, TempFlag, Success).
+    parseTeachersTheoretical(Tail, Teachers, ClassArea, NextTeacherID, TempFlag, Success).
 
-parseTeachers([_|Tail], Teachers, ClassArea, TeacherID, _, Success):-
-    write(TeacherID), write(' '), write(ClassArea), nl, nl,
+parseTeachersTheoretical([_|Tail], Teachers, ClassArea, TeacherID, _, Success):-
     NextTeacherID is TeacherID + 1,
-    parseTeachers(Tail, Teachers, ClassArea, NextTeacherID, 1, Success).
+    parseTeachersTheoretical(Tail, Teachers, ClassArea, NextTeacherID, 1, Success).
 
 
 preferenceRestriction(Matrix, Rows, Cols, Teachers, Classes):-
@@ -115,8 +148,8 @@ preferenceRestrictionAux([_|Tail], Teachers, FirstSemesterDurations, SecondSemes
 	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
 
 workloadRestriction(Matrix, Rows, Cols, Teachers, Classes):-
-	getAllColumns(Matrix, Rows, Cols, Columns),
-	getAllClassesDurations(Classes, ListDurations),
+    getAllColumns(Matrix, Rows, Cols, Columns),
+    getAllClassesDurations(Classes, ListDurations),
 	workloadRestrictionAux(Columns, Teachers, ListDurations, 1).
 
 workloadRestrictionAux([], _, _, _).
