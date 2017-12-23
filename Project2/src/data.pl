@@ -8,11 +8,11 @@ subjects([
 
 teachers([
 %Teacher[ID, Name, Category, Area, Preference]
-[1, 'WWW', 'Assistant', 1, 0],
-[2, 'GGG', 'Assistant', 1, 0],
+[1, 'WWW', 'Assistant', 1, -4],
+[2, 'GGG', 'Assistant', 1, 4],
 [3, 'BBB', 'Professor', 1, 0],
 [4, 'QQQ', 'Associated', 2, 0],
-[5, 'TTT', 'Professor', 2, 0]
+[5, 'TTT', 'Professor', 2, 4]
 ]).
 
 scientificArea([

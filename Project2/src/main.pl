@@ -27,10 +27,10 @@ main:-
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes, DiffHoursExpectedMinimize),
    maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
-   labeling([maximize(PraticalMaximize), minimize(DiffHoursExpectedMinimize), time_out(2000,Flag)], Matrix),
+   Quotient #= PraticalMaximize/DiffHoursExpectedMinimize,
+   labeling([maximize(Quotient)], Matrix),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
-   write(Flag), nl,
    printTimer(TimeElapsed),
    fd_statistics.
 
