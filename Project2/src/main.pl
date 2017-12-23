@@ -34,6 +34,7 @@ main:-
       		Option = 2 -> labeling([minimize(DiffHoursExpectedMinimize)], Matrix);
       		Quotient #= PraticalMaximize/DiffHoursExpectedMinimize, labeling([maximize(Quotient)], Matrix)
       ),
+   clearConsole, nl, nl,
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),
