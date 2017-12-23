@@ -16,7 +16,6 @@ main:-
    subjects(Subjects),
    teachers(Teachers),
    getAllClasses(Subjects, Classes),
-   write(Classes), nl, nl,
    startTimer,
    length(Classes, Rows),
    length(Teachers, Columns),
@@ -111,33 +110,7 @@ preferenceRestrictionAux([], _, _,_, _).
 
 preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
     findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    Preference == -1,
-    FirstSemesterWorkload #= 0,
-    scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
-	NextID is TeacherID + 1,
-	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
-
-preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
-    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    Preference == 1,
-    SecondSemesterWorkload #= 0,
-    scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
-	NextID is TeacherID + 1,
-	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
-
-preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
-    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    Preference > 0,
-    FirstSemesterWorkload #>= SecondSemesterWorkload,
-    scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
-    scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
-	NextID is TeacherID + 1,
-	preferenceRestrictionAux(Tail, Teachers, FirstSemesterDurations, SecondSemesterDurations, NextID).
-
-preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
-    findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    Preference < 0,
-    FirstSemesterWorkload #=< SecondSemesterWorkload,
+    (SecondSemesterWorkload - FirstSemesterWorkload) #= Preference,
     scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
     scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
 	NextID is TeacherID + 1,
@@ -156,8 +129,7 @@ workloadRestrictionAux([], _, _, _, Acc, Acc).
 workloadRestrictionAux([Head|Tail], Teachers, ListDurations, TeacherID, TempAcc, Acc):-
 	findTeacherWorkloadWithID(Teachers, TeacherID, Workload),
     scalar_product(ListDurations, Head, #=, RealWorkload),
-    Diff #= abs(RealWorkload - Workload),
-    NewTempAcc #= TempAcc + Diff,
+    NewTempAcc #= TempAcc + abs(RealWorkload - Workload),
 	NextID is TeacherID + 1,
 	workloadRestrictionAux(Tail, Teachers, ListDurations, NextID, NewTempAcc, Acc).
 

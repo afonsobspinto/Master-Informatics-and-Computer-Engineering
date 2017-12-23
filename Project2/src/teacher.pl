@@ -1,4 +1,4 @@
-%Teacher [+ID, +Name, +Category, +Area, +Preference, -Classes]
+%Teacher [+ID, +Name, +Category, +Area, +Preference]
 
 findTeacherWithID(Teachers, ID, Teacher):-
     findall(Elem, (member(Elem, Teachers), getTeacherID(Elem, ID)), List),
