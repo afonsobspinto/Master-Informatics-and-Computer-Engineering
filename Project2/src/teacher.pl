@@ -28,7 +28,7 @@ getTeacherCategory(Teacher, Category):-
 getTeacherWorkload(Teacher, Workload):-
     getTeacherCategory(Teacher, Category),
     (
-        Category == 'Assistant' -> Workload is 7;
+        Category == 'Professor' -> Workload is 7;
         Category == 'Associated' -> Workload is 8;
         Category == 'Assistant' -> Workload is 9;
         fail
