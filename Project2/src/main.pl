@@ -22,13 +22,18 @@ main:-
    TotalSize is Rows*Columns,
    length(Matrix, TotalSize),
    domain(Matrix, 0, 1),
+   mainMenu(Option),
+   clearConsole,
    theoreticalRestriction(Matrix, Columns, Teachers, Classes), !,
    allClassesMustHaveATeacher(Matrix, Columns),
    workloadRestriction(Matrix, Rows, Columns, Teachers, Classes, DiffHoursExpectedMinimize),
    maximizePraticalRestriction(Matrix, Columns, Teachers, Classes, PraticalMaximize),
    preferenceRestriction(Matrix, Rows, Columns, Teachers, Classes),
-   Quotient #= PraticalMaximize/DiffHoursExpectedMinimize,
-   labeling([maximize(Quotient)], Matrix),
+   (
+      		Option = 1 -> labeling([maximize(PraticalMaximize)], Matrix);
+      		Option = 2 -> labeling([minimize(DiffHoursExpectedMinimize)], Matrix);
+      		Quotient #= PraticalMaximize/DiffHoursExpectedMinimize, labeling([maximize(Quotient)], Matrix)
+      ),
    printMatrix(Matrix, Columns, Teachers, Classes),nl,nl,
    stopTimer(TimeElapsed),
    printTimer(TimeElapsed),

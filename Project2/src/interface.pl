@@ -1,3 +1,33 @@
+mainMenu(Option):-
+  printMainMenu,
+  getChar(Char),
+  (
+		Char = '1' -> Option = 1;
+		Char = '2' -> Option = 2;
+		Char = '3' -> Option = 3;
+		Char = '4' -> halt;
+		nl,
+		write('Error: invalid input.'), nl,
+		pressEnterToContinue, nl,
+		mainMenu
+).
+
+printMainMenu:-
+  clearConsole,
+  write(' _____________________________________________ '),nl,
+  write('|                                             |'),nl,
+  write('|      Teacher Schedule Distribution          |'),nl,
+  write('|                                             |'),nl,
+  write('|                                             |'),nl,
+  write('| 1. Pratical Matching                        |'),nl,
+  write('| 2. Teachers Workload                        |'),nl,
+  write('| 3. Both                                     |'),nl,
+  write('| 4. Exit                                     |'),nl,
+  write('|                                             |'),nl,
+  write('| Choose an option:                           |'),nl,
+  write('|_____________________________________________|'),nl,
+  nl, nl.
+
 printMatrix(Matrix, Columns, Teachers, Classes):-
     getAllRows(Matrix, Columns, Rows),
     findall(TeacherID, (member(Teacher, Teachers), getTeacherID(Teacher, TeacherID)), TeachersIDS),
