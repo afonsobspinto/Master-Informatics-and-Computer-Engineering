@@ -115,7 +115,11 @@ preferenceRestrictionAux([], _, _,_, _).
 
 preferenceRestrictionAux([Head|Tail], Teachers, FirstSemesterDurations, SecondSemesterDurations, TeacherID):-
     findTeacherPreferenceWithID(Teachers, TeacherID, Preference),
-    SecondSemesterWorkload - FirstSemesterWorkload #=< Preference,
+    (
+        (Preference > 0) -> SecondSemesterWorkload - FirstSemesterWorkload #=< Preference;
+        (Preference < 0) -> SecondSemesterWorkload - FirstSemesterWorkload #>= Preference;
+        SecondSemesterWorkload #= FirstSemesterWorkload
+    ),
     scalar_product(FirstSemesterDurations, Head, #=, FirstSemesterWorkload),
     scalar_product(SecondSemesterDurations, Head, #=, SecondSemesterWorkload),
 	NextID is TeacherID + 1,
