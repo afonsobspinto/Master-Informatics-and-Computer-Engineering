@@ -5,25 +5,25 @@
  * Constructor of a Obj object.
  *
  * @constructor Obj
- * @param {CGFScene} scene 	Scene that will display this object
- * @param {String}	path 	Path to the .obj file
+ * @param scene 	Scene that will display this object
+ * @param path 	Path to the .obj file
  *
  */
 function Obj(scene, path) {
 
     this.scene = scene;
 
-    var rawFile = new XMLHttpRequest();
+    let rawFile = new XMLHttpRequest();
     rawFile.open("GET", path, false);
 
-    var self = this;
+    let self = this;
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
         {
-            if(rawFile.status === 200 || rawFile.status == 0)
+            if(rawFile.status === 200 || rawFile.status === 0)
             {
-                var allText = rawFile.responseText;
+                let allText = rawFile.responseText;
                 self.initBuffers(allText);
             }
         }
@@ -43,21 +43,21 @@ Obj.prototype.constructor = Obj;
  */
 Obj.prototype.initBuffers = function (info) {
 
-    var lines = info.split('\n');
+    let lines = info.split('\n');
 
     this.objects = [];
 
-    var info = [];
-    var objects = 0;
-    var lastVerticeNmbr = 0;
-    var vertices = 0;
+    info = [];
+    let objects = 0;
+    let lastVerticeNmbr = 0;
+    let vertices = 0;
 
     for (line in lines) {
-        var elements = lines[line].split(' ');
-        if (elements[0] == 'o') {
+        let elements = lines[line].split(' ');
+        if (elements[0] === 'o') {
 
             if (objects > 0) {
-                var obj = new Piece(this.scene, info, lastVerticeNmbr, vertices);
+                let obj = new MyPiece(this.scene, info, lastVerticeNmbr, vertices);
                 this.objects.push(obj);
                 lastVerticeNmbr += vertices;
                 vertices = 0;
@@ -65,18 +65,18 @@ Obj.prototype.initBuffers = function (info) {
             }
             objects++;
 
-        } else if (elements[0] == 'f' || elements[0] == 'v') {
+        } else if (elements[0] === 'f' || elements[0] === 'v') {
 
             info.push(lines[line]);
-            if (elements[0] == 'v') vertices++;
+            if (elements[0] === 'v') vertices++;
 
         }
 
     }
 
-    this.objects.push(new Piece(this.scene, info, lastVerticeNmbr,vertices));
+    this.objects.push(new MyPiece(this.scene, info, lastVerticeNmbr,vertices));
 
-}
+};
 
 /**
  * Displays the several .obj objects.
@@ -88,4 +88,4 @@ Obj.prototype.display = function () {
     for (i in this.objects)
         this.objects[i].display();
 
-}
+};
