@@ -24,6 +24,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
             'utils.js', 'animations/Animation.js', 'animations/LinearAnimation.js',
 			'animations/CircularAnimation.js', 'animations/BezierAnimation.js',
 			'animations/ComboAnimation.js', 'animations/AnimationManager.js',
+            'Objs/Obj.js', 'Objs/Piece.js', 'MyScene.js',
 
 main=function()
 {
