@@ -14,7 +14,7 @@ function MyScene(scene) {
  * Loads the objects
  */
 MyScene.prototype.init = function() {
-
+/*
     this.BlackKing = new Obj(this.scene, 'scenes/pieces/chessBlackKing.obj');
     this.BlackQueen = new Obj(this.scene, 'scenes/pieces/chessBlackQueen.obj');
     this.BlackBishop = new Obj(this.scene, 'scenes/pieces/chessBlackBishop.obj');
@@ -24,7 +24,7 @@ MyScene.prototype.init = function() {
     this.WhiteQueen = new Obj(this.scene, 'scenes/pieces/chessWhiteQueen.obj');
     this.WhiteBishop = new Obj(this.scene, 'scenes/pieces/chessWhiteBishop.obj');
     this.WhiteHorse = new Obj(this.scene, 'scenes/pieces/chessWhiteHorse.obj');
-    this.WhiteRook = new Obj(this.scene, 'scenes/pieces/chessWhiteRook.obj');
+    this.WhiteRook = new Obj(this.scene, 'scenes/pieces/chessWhiteRook.obj');*/
 };
 
 /**
@@ -35,7 +35,7 @@ MyScene.prototype.init = function() {
  */
 
 MyScene.prototype.display = function() {
-
+/*
     this.scene.pushMatrix();
         this.scene.scale(0.1, 0.1, 0.1);
         this.scene.rotate(-Math.PI / 2, 1, 0, 0);
@@ -110,5 +110,5 @@ MyScene.prototype.display = function() {
             this.WhiteHorse.display();
         this.scene.popMatrix();
     this.scene.popMatrix();
-
+*/
 };

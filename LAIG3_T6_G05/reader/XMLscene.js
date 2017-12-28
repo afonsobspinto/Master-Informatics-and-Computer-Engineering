@@ -35,7 +35,7 @@ XMLscene.prototype.init = function(application) {
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
     this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
 
-    this.myScene=new MyScene(this);
+    this.board=new Board(this);
 
     this.initCameras();
 
@@ -45,6 +45,12 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+
+    this.blackMaterial = new CGFappearance(this);
+    this.blackMaterial.setAmbient(0.8,0,0,1);
+    this.blackMaterial.setDiffuse(0.8,0,0,1);
+    this.blackMaterial.setSpecular(0.8,0,0,1);
+    this.blackMaterial.setShininess(20);
 
     this.setUpdatePeriod(10); //milliseconds
 
@@ -182,7 +188,7 @@ XMLscene.prototype.display = function() {
         this.axis.display();
     }
 
-    this.myScene.display();
+    this.board.display();
 
 
     this.popMatrix();
