@@ -12,10 +12,10 @@ function Cell(scene, x, y, type, colour){
     this.y = y;
     this.type = type;
     this.colour = colour;
-
     this.material = this.scene.blackMaterial;
-  /*  if (this.colour === 1)
-        this.material = this.scene.blackMaterial;*/
+
+    if (this.colour === 1)
+        this.material = this.scene.blackMaterial;
 
     if (type === 'king')
         this.piece = new Obj(this.scene, 'scenes/pieces/King.obj');
@@ -31,7 +31,9 @@ function Cell(scene, x, y, type, colour){
         this.piece = null;
 }
 
-
+/**
+ * Displays the cells
+ */
 Cell.prototype.display = function() {
     if(this.type !== null) {
         this.scene.pushMatrix();

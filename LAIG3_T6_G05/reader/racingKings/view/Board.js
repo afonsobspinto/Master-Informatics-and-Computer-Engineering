@@ -19,6 +19,9 @@ function Board(scene){
         this.setBoard();
 }
 
+/**
+ * Sets the board
+ */
 Board.prototype.setBoard = function(){
    /* this.blackKing = new Cell(this.scene, 55, -87.5, 'king', 1);
     this.blackQueen = new Cell(this.scene, 82.5, -87.5, 'queen', 1);
@@ -54,6 +57,9 @@ Board.prototype.setBoard = function(){
     this.board[7][7] = new Cell(this.scene, -95, -15, 'horse', 0);
 };
 
+/**
+ * Displays the board
+ */
 Board.prototype.display = function() {
         this.scene.pushMatrix();
         this.scene.scale(0.1, 0.1, 0.1);
