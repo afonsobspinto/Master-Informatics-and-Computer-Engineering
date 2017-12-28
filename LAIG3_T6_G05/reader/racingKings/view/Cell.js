@@ -11,13 +11,11 @@ function Cell(scene, x, y, type, colour){
     this.x = x;
     this.y = y;
     this.type = type;
-    this.colour = colour;
 
-    this.material = this.scene.blackMaterial;
-  /*  if (this.colour === 1)
-        this.material = this.scene.blackMaterial;*/
+    this.material = (colour == 1) ? this.scene.blackMaterial : this.scene.whiteMaterial;
 
-    if (type === 'king')
+    // TODO: Passar isto para um mapa para nao estar sempre a instanciar objetos
+    if (type === 'king') 
         this.piece = new Obj(this.scene, 'scenes/pieces/King.obj');
     else if (type === 'queen')
         this.piece = new Obj(this.scene, 'scenes/pieces/Queen.obj');
@@ -38,8 +36,10 @@ Cell.prototype.display = function() {
         if (this.type === 'horse')
             this.scene.rotate(Math.PI, 0, 0, 1);
         this.scene.translate(this.x, this.y, 0);
-        //this.material.apply();
+        this.material.apply();
         this.piece.display();
         this.scene.popMatrix();
     }
+
+    //TODO: Adicionar update cell
 };

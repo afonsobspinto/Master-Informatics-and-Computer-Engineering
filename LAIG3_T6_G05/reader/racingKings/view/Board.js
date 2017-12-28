@@ -20,14 +20,8 @@ function Board(scene){
 }
 
 Board.prototype.setBoard = function(){
-   /* this.blackKing = new Cell(this.scene, 55, -87.5, 'king', 1);
-    this.blackQueen = new Cell(this.scene, 82.5, -87.5, 'queen', 1);
-    this.blackRook1 = new Cell(this.scene, 55, -65, 'rook', 1);
-    this.blackRook2 = new Cell(this.scene, 80, -65, 'rook', 1);
-    this.blackBishop1 = new Cell(this.scene, 50, -41, 'bishop', 1);
-    this.blackBishop2 = new Cell(this.scene, 77.5, -41, 'bishop', 1);
-    this.blackHorse1 = new Cell(this.scene, -67.5, 10, 'horse', 1);
-    this.blackHorse2 = new Cell(this.scene, -95, 10, 'horse', 1);*/
+
+    //TODO: Apagar o console.log
 
     for(let i = 0; i<6; i++){
         for(let j = 0; j<8; j++){

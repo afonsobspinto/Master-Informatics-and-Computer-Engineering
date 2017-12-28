@@ -4,6 +4,7 @@
  */
 function MyScene(scene) {
 
+    //TODO: APagar isto?
     this.scene = scene;
 
     this.init();
