@@ -11,16 +11,30 @@ function XMLscene(interface) {
 
     this.lightValues = {};
 
-    this.selectedSelected = 0;
+    this.selectedCamera = 0;
     this.selectedScenario = 0;
 
+    this.selectedGameMode = 0;
+    this.selectedGameDifficulty = 0;
+    this.selectedTimeout = 30;
+    this.startGame = function(){
+        console.log("Hello. Game should start with: \n");
+        console.log("Mode: " + this.selectedGameMode + '\n');
+        console.log("Difficulty: " + this.selectedGameDifficulty + '\n');
+        console.log("Timeout: " + this.selectedTimeout + '\n');
+    }
 
-    //shaders
-    let start = new Date();
-    this.startingTime = start.getTime()/1000;
+    this.resume = function(){
+        console.log('Pause');
+    }
 
+    this.undo = function(){
+        console.log('Undo');
+    }
 
-
+    this.resign = function(){
+        console.log('Resign');
+    }
 }
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -89,7 +103,11 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+    this.cameras = [
+        new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0)),
+        new CGFcamera(1,1,500,vec3.fromValues(20, 20, 20),vec3.fromValues(0, 0, 0))
+    ];
+    this.camera = this.cameras[this.selectedCamera];
 };
 
 /* Handler called when the graph is finally loaded.
@@ -109,13 +127,14 @@ XMLscene.prototype.onGraphLoaded = function()
     this.initLights();
 
     // Adds lights group.
-    this.interface.addLightsGroup(this.graph.lights);
+    this.interface.addAmbientGroup(this.graph.lights);
 
-    // Adds selectable listBox.
-    this.interface.addSelectableListBox(this.graph.selectables);
+    // Adds GameConfigs group.
+    this.interface.addGameConfigGroup();
 
-    // Adds color listBox.
-    this.interface.addScenarioDropdown();
+    // Adds GameController group.
+    this.interface.addGameControllerGroup();
+
 };
 
 /**
@@ -123,6 +142,7 @@ XMLscene.prototype.onGraphLoaded = function()
  */
 XMLscene.prototype.display = function() {
     // ---- BEGIN Background, camera and axis setup
+    this.camera = this.cameras[this.selectedCamera]; //TODO: Add animation to camera 
 
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
@@ -161,16 +181,6 @@ XMLscene.prototype.display = function() {
             }
         }
 
-        // let currTime = new Date();
-
-        // currTime = currTime.getTime()/1000;
-
-        // if(this.startingTime == null){
-		// 	this.startingTime = currTime;
-		// }
-        // let delta = currTime - this.startingTime;
-        // this.updateShaders(delta);
-
         // Displays the scene.
         this.graph.displayScene();
 
@@ -204,20 +214,3 @@ XMLscene.prototype.update = function(currTime) {
     }
 
 }
-
-// XMLscene.prototype.updateShaders = function(delta){
-// 	this.shader.setUniformsValues({timeFactor: delta});
-    
-// 	switch (this.selectedColor){
-//         case '0':
-//             this.shader.setUniformsValues({red: 1.0, green: 0.0, blue: 0.0});
-//             break;
-//         case '1':
-//             this.shader.setUniformsValues({red: 0.0, green: 1.0, blue: 0.0});
-//             break;
-//         case '2':
-//         default:
-//             this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
-
-//     }
-// }
