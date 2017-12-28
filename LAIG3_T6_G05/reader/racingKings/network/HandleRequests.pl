@@ -1,4 +1,4 @@
-:- ensure_loaded('../racingKings/logic/Game.pl').
+:- ensure_loaded('../racingKings/model/Game.pl').
 
 %teste servidor
 parse_input(handshake, handshake).
