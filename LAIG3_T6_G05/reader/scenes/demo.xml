@@ -114,10 +114,33 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
+            <NODEREF id="scene1" />
+            <NODEREF id="scene2" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="scene2">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <LEAF  type="rectangle" args="0 2.5 2.5 0" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="scene1">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
             <NODEREF id="board" />
         </DESCENDANTS>
 
     </NODE>
+
 
     <!-- The board -->
         <NODE id="board">

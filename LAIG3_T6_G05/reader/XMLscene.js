@@ -12,7 +12,7 @@ function XMLscene(interface) {
     this.lightValues = {};
 
     this.selectedSelected = 0;
-    this.selectedColor = 2;
+    this.selectedScenario = 0;
 
 
     //shaders
@@ -115,7 +115,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.interface.addSelectableListBox(this.graph.selectables);
 
     // Adds color listBox.
-    this.interface.addColorDropdown();
+    this.interface.addScenarioDropdown();
 };
 
 /**
@@ -161,15 +161,15 @@ XMLscene.prototype.display = function() {
             }
         }
 
-        let currTime = new Date();
+        // let currTime = new Date();
 
-        currTime = currTime.getTime()/1000;
+        // currTime = currTime.getTime()/1000;
 
-        if(this.startingTime == null){
-			this.startingTime = currTime;
-		}
-        let delta = currTime - this.startingTime;
-        this.updateShaders(delta);
+        // if(this.startingTime == null){
+		// 	this.startingTime = currTime;
+		// }
+        // let delta = currTime - this.startingTime;
+        // this.updateShaders(delta);
 
         // Displays the scene.
         this.graph.displayScene();
@@ -205,19 +205,19 @@ XMLscene.prototype.update = function(currTime) {
 
 }
 
-XMLscene.prototype.updateShaders = function(delta){
-	this.shader.setUniformsValues({timeFactor: delta});
+// XMLscene.prototype.updateShaders = function(delta){
+// 	this.shader.setUniformsValues({timeFactor: delta});
     
-	switch (this.selectedColor){
-        case '0':
-            this.shader.setUniformsValues({red: 1.0, green: 0.0, blue: 0.0});
-            break;
-        case '1':
-            this.shader.setUniformsValues({red: 0.0, green: 1.0, blue: 0.0});
-            break;
-        case '2':
-        default:
-            this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
+// 	switch (this.selectedColor){
+//         case '0':
+//             this.shader.setUniformsValues({red: 1.0, green: 0.0, blue: 0.0});
+//             break;
+//         case '1':
+//             this.shader.setUniformsValues({red: 0.0, green: 1.0, blue: 0.0});
+//             break;
+//         case '2':
+//         default:
+//             this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
 
-    }
-}
+//     }
+// }
