@@ -44,25 +44,30 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
-    //TODO: Passar isto para initMaterials ou algo do género.
+    this.initMaterials();
 
-    this.whiteMaterial = new CGFappearance(this);
-    this.whiteMaterial.setAmbient(1,1,1,1);
-    this.whiteMaterial.setDiffuse(1,1,1,1);
-    this.whiteMaterial.setSpecular(1,1,1,1);
-    this.whiteMaterial.setShininess(20);
-
-    this.blackMaterial = new CGFappearance(this);
-    this.blackMaterial.setAmbient(0,0,0,1);
-    this.blackMaterial.setDiffuse(0,0,0,1);
-    this.blackMaterial.setSpecular(0,0,0,1);
-    this.blackMaterial.setShininess(20);
-
-    this.board= new Board(this); //TODO: Isto deve sair daqui e ir para dentro do game mas eu depois trato disso. O problema estava aqui btw. Apaga isto quando leres
+    this.board= new Board(this);
 
     this.setUpdatePeriod(10); //milliseconds
 
     this.axis = new CGFaxis(this);
+};
+
+/**
+ * Initializes the scene materials.
+ */
+XMLscene.prototype.initMaterials = function(){
+    this.whiteMaterial = new CGFappearance(this);
+    this.whiteMaterial.setAmbient(0.5,0.5,0.5,1);
+    this.whiteMaterial.setDiffuse(0.5,0.5,0.5,1);
+    this.whiteMaterial.setSpecular(0.5,0.5,0.5,1);
+    this.whiteMaterial.setShininess(2);
+
+    this.blackMaterial = new CGFappearance(this);
+    this.blackMaterial.setAmbient(0,0,0,1);
+    this.blackMaterial.setDiffuse(0.1,0.1,0.1,1);
+    this.blackMaterial.setSpecular(0,0,0,1);
+    this.blackMaterial.setShininess(20);
 };
 
 /**

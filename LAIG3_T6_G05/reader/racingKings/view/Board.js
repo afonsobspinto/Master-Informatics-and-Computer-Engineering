@@ -23,13 +23,8 @@ function Board(scene){
  * Sets the board
  */
 Board.prototype.setBoard = function(){
-
-    //TODO: Apagar o console.log
-
     for(let i = 0; i<6; i++){
         for(let j = 0; j<8; j++){
-            console.log(i);
-            console.log(j);
             this.board[i][j] = new Cell(this.scene, i*20, j*20, null, 0);
         }
     }
