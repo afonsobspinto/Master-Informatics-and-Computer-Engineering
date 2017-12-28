@@ -29,7 +29,9 @@ function Cell(scene, x, y, type, colour){
         this.piece = null;
 }
 
-
+/**
+ * Displays the cells
+ */
 Cell.prototype.display = function() {
     if(this.type !== null) {
         this.scene.pushMatrix();
