@@ -203,7 +203,7 @@ XMLscene.prototype.display = function() {
         // Displays the scene.
         this.graph.displayScene();
 
-        this.board.display(); //TODO: Isto aqui também estava errado, apaga quando leres
+        this.board.display();
 
     }
     else
