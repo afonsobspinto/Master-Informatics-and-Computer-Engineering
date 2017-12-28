@@ -49,8 +49,6 @@ XMLscene.prototype.init = function(application) {
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
     this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
 
-    this.myScene=new MyScene(this);
-
     this.initCameras();
 
     this.enableTextures(true);
@@ -60,9 +58,30 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
+    this.initMaterials();
+
+    this.board= new Board(this);
+
     this.setUpdatePeriod(10); //milliseconds
 
     this.axis = new CGFaxis(this);
+};
+
+/**
+ * Initializes the scene materials.
+ */
+XMLscene.prototype.initMaterials = function(){
+    this.whiteMaterial = new CGFappearance(this);
+    this.whiteMaterial.setAmbient(0.5,0.5,0.5,1);
+    this.whiteMaterial.setDiffuse(0.5,0.5,0.5,1);
+    this.whiteMaterial.setSpecular(0.5,0.5,0.5,1);
+    this.whiteMaterial.setShininess(2);
+
+    this.blackMaterial = new CGFappearance(this);
+    this.blackMaterial.setAmbient(0,0,0,1);
+    this.blackMaterial.setDiffuse(0.1,0.1,0.1,1);
+    this.blackMaterial.setSpecular(0,0,0,1);
+    this.blackMaterial.setShininess(20);
 };
 
 /**
@@ -184,6 +203,8 @@ XMLscene.prototype.display = function() {
         // Displays the scene.
         this.graph.displayScene();
 
+        this.board.display(); //TODO: Isto aqui também estava errado, apaga quando leres
+
     }
     else
     {
@@ -191,9 +212,6 @@ XMLscene.prototype.display = function() {
 
         this.axis.display();
     }
-
-    this.myScene.display();
-
 
     this.popMatrix();
 
