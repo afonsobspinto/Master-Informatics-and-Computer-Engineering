@@ -12,10 +12,12 @@ function Cell(scene, x, y, type, colour){
     this.y = y;
     this.type = type;
 
-    this.material = (colour == 1) ? this.scene.blackMaterial : this.scene.whiteMaterial;
+    this.material = (colour === 1) ? this.scene.blackMaterial : this.scene.whiteMaterial;
+
+    let types = new Map();
 
     // TODO: Passar isto para um mapa para nao estar sempre a instanciar objetos
-    if (type === 'king') 
+    if (type === 'king')
         this.piece = new Obj(this.scene, 'scenes/pieces/King.obj');
     else if (type === 'queen')
         this.piece = new Obj(this.scene, 'scenes/pieces/Queen.obj');
@@ -43,5 +45,14 @@ Cell.prototype.display = function() {
         this.scene.popMatrix();
     }
 
-    //TODO: Adicionar update cell
+};
+
+/**
+ * Updates the cell
+ * @param  time
+ */
+Cell.prototype.update = function(time){
+
+
+
 };
