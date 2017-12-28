@@ -33,8 +33,9 @@ XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
 
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
-    this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0}); 
+    this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
 
+    this.myScene=new MyScene(this);
 
     this.initCameras();
 
@@ -180,6 +181,8 @@ XMLscene.prototype.display = function() {
 
         this.axis.display();
     }
+
+    this.myScene.display();
 
 
     this.popMatrix();
