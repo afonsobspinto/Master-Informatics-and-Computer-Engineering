@@ -17,11 +17,9 @@ function XMLscene(interface) {
     this.selectedGameMode = 0;
     this.selectedGameDifficulty = 0;
     this.selectedTimeout = 30;
+
     this.startGame = function(){
-        console.log("Hello. Game should start with: \n");
-        console.log("Mode: " + this.selectedGameMode + '\n');
-        console.log("Difficulty: " + this.selectedGameDifficulty + '\n');
-        console.log("Timeout: " + this.selectedTimeout + '\n');
+        this.game = new Game(this, new GameConfig(this.selectedGameMode, this.selectedGameDifficulty, this.selectedTimeout));
     }
 
     this.resume = function(){
@@ -59,8 +57,6 @@ XMLscene.prototype.init = function(application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     this.initMaterials();
-
-    this.board= new Board(this);
 
     this.setUpdatePeriod(10); //milliseconds
 
@@ -203,7 +199,8 @@ XMLscene.prototype.display = function() {
         // Displays the scene.
         this.graph.displayScene();
 
-        this.board.display();
+        if(this.game)
+            this.game.display();
 
     }
     else
@@ -232,3 +229,4 @@ XMLscene.prototype.update = function(currTime) {
     }
 
 }
+

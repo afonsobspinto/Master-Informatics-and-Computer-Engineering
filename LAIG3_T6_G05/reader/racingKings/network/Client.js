@@ -1,6 +1,8 @@
 class Client {
     constructor() {
-        console.log("Starting Client");
+        this.getPrologRequest('handshake', function(data){
+            console.log(data.target.response);
+        });
     }
 
     getPrologRequest(requestString, onSuccess, onError, port) {
@@ -13,17 +15,5 @@ class Client {
     
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send();
-    }
-
-    makeRequest(){
-        // Get Parameter Values
-        var requestString = document.querySelector("#query_field").value;				
-        
-        // Make Request
-        getPrologRequest(requestString, handleReply);
-    }
-
-    handleReply(data){
-        document.querySelector("#query_result").innerHTML=data.target.response;
     }
   }
