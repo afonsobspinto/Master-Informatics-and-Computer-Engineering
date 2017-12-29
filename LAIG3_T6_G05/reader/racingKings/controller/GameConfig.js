@@ -16,4 +16,8 @@ class GameConfig {
     get getGameTimeout(){
         return this.gameTimeout;
     }
+
+    toString(){
+        return this.gameMode + "-" + this.gameDifficulty;
+    }
   }

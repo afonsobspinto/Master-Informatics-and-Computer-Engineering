@@ -20,6 +20,7 @@ function XMLscene(interface) {
 
     this.startGame = function(){
         this.game = new Game(this, new GameConfig(this.selectedGameMode, this.selectedGameDifficulty, this.selectedTimeout));
+        this.game.client.init();
     }
 
     this.resume = function(){
