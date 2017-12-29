@@ -14,9 +14,12 @@ function Score(scene){
     this.hundreds = new Obj(this.scene, 'scenes/pieces/0.obj');
 }
 
+Score.prototype = Object.create(CGFobject.prototype);
+Score.prototype.constructor = Score;
+
 /**
- * Updates the dozens and units counter
- * @param score amount of points to be added
+ * Updates the score
+ * @param score
  */
 Score.prototype.update = function(score) {
 
