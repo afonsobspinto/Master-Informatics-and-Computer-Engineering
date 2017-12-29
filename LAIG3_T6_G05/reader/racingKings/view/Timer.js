@@ -21,7 +21,6 @@ Timer.prototype.constructor = Timer;
 
 /**
  * Updates the timer
- * @param time
  */
 Timer.prototype.update = function() {
 
