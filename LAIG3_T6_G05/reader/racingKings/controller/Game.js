@@ -1,13 +1,22 @@
 class Game {
     constructor(scene, gameConfig) {
         this.scene = scene;
-        this.client = new Client();
-        this.board = new Board(scene);
         this.gameConfig = gameConfig;
         this.gameHistory = [];
+        this.client = new Client(this);
+        this.board = new Board(this.scene);
     }
 
-    display(){
-        this.board.display();
+    init() {
+        this.client.startGame();
     }
-  }
+
+    display() {
+        if(this.client.getCommunicationOK)
+            this.board.display();
+    }
+
+    get getGameConfig(){
+        return this.gameConfig;
+    }
+}
