@@ -26,18 +26,9 @@ class Board {
     updateBoard(serverBoard){
         let boardArray = JSON.parse(serverBoard);
         boardArray.reverse();
-        console.log(boardArray);
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
-                let arrayType = boardArray[row][col][0];
-                let type = null;
-                if(arrayType === 'King') type = Piece.KING;
-                else if(arrayType === 'Queen') type = Piece.QUEEN;
-                else if(arrayType === 'Bishop') type = Piece.BISHOP;
-                else if(arrayType === 'Knight') type = Piece.KNIGHT;
-                else if(arrayType === 'Rook') type = Piece.ROOK;
-                let color = boardArray[row][col][1] === 'White' ? Color.WHITE : Color.BLACK;
-                this.board[row][col] = new Cell(this.scene, row * -25, col * 25, type, color);
+                this.board[row][col].update(boardArray[row][col]);
             }
         }
     }

@@ -160,6 +160,7 @@
             <TEXTURE id="null" />
 
             <DESCENDANTS>
+                <NODEREF id="board" />
                 <NODEREF id="runningTrack" />
                 <NODEREF id="benches" />
                 <NODEREF id="finishLine" />
@@ -173,10 +174,31 @@
             <TEXTURE id="null" />
 
             <DESCENDANTS>
+                <NODEREF id="board" />
                 <NODEREF id="grass" />
                 <NODEREF id="castle" />
             </DESCENDANTS>
 
+        </NODE>
+
+
+        <!-- The board -->
+        <NODE id="board">
+            <MATERIAL id="null" />
+            <TEXTURE id="board" />
+
+            <DESCENDANTS>
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="10" yy="0" zz="-10" ww="1" />
+                        <CPOINT xx="10" yy="0" zz="10" ww="1" />
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="-10" yy="0" zz="-10" ww="1" />
+                        <CPOINT xx="-10" yy="0" zz="10" ww="1" />
+                    </CPLINE>
+                </LEAF>
+            </DESCENDANTS>
         </NODE>
 
         <!-- The Running Track -->
