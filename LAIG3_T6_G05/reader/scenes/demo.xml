@@ -95,6 +95,18 @@
             <file path="images/castleWall.jpg" />
             <amplif_factor s="13.0" t="13.0" />
         </TEXTURE>
+
+        <!-- Grass -->
+        <TEXTURE id="grass">
+            <file path="images/grass.jpg" />
+            <amplif_factor s="16.0" t="16.0" />
+        </TEXTURE>
+
+        <!-- Gate -->
+        <TEXTURE id="gate">
+            <file path="images/gate.jpg" />
+            <amplif_factor s="8.0" t="8.0" />
+        </TEXTURE>
     </TEXTURES>
 
 
@@ -129,44 +141,45 @@
     <!-- The nodes -->
     <NODES>
 
-    <ROOT id="root" />
+        <ROOT id="root" />
 
-    <!-- The root node -->
-    <NODE id="root">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="null" />
+        <!-- The root node -->
+        <NODE id="root">
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="null" />
 
-        <DESCENDANTS>
-            <NODEREF id="scene1" />
-            <NODEREF id="scene2" />
-        </DESCENDANTS>
+            <DESCENDANTS>
+                <NODEREF id="scene1" />
+                <NODEREF id="scene2" />
+            </DESCENDANTS>
 
-    </NODE>
+        </NODE>
 
-    <NODE id="scene1">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="null" />
+        <NODE id="scene1">
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="null" />
 
-        <DESCENDANTS>
-            <NODEREF id="board" />
-            <NODEREF id="runningTrack" />
-            <NODEREF id="benches" />
-            <NODEREF id="finishLine" />
-        </DESCENDANTS>
+            <DESCENDANTS>
+                <NODEREF id="board" />
+                <NODEREF id="runningTrack" />
+                <NODEREF id="benches" />
+                <NODEREF id="finishLine" />
+            </DESCENDANTS>
 
-    </NODE>
+        </NODE>
 
 
-    <NODE id="scene2">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="null" />
+        <NODE id="scene2">
+            <MATERIAL id="defaultMaterial" />
+            <TEXTURE id="null" />
 
-        <DESCENDANTS>
-            <NODEREF id="board" />
-            <NODEREF id="castle" />
-        </DESCENDANTS>
+            <DESCENDANTS>
+                <NODEREF id="board" />
+                <NODEREF id="grass" />
+                <NODEREF id="castle" />
+            </DESCENDANTS>
 
-    </NODE>
+        </NODE>
 
 
         <!-- The board -->
@@ -280,84 +293,161 @@
             </DESCENDANTS>
         </NODE>
 
+        <!-- The Grass -->
+        <NODE id="grass">
+            <MATERIAL id="null" />
+            <TEXTURE id="grass" />
+
+            <ROTATION axis="x" angle="-90" />
+            <SCALE sx="7" sy="7" sz="1" />
+            <TRANSLATION x="-8" y="-8" z="-33" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 16 16 0" />
+            </DESCENDANTS>
+        </NODE>
+
         <!-- The Castle -->
         <NODE id="castle">
             <MATERIAL id="null" />
             <TEXTURE id="castleWall" />
 
+            <TRANSLATION x="13" y="-33" z="-13" />
+
             <DESCENDANTS>
-                <NODEREF id="castleBuilding" />
+                <NODEREF id="castleBuilding1" />
+                <NODEREF id="castleBuilding2" />
+                <NODEREF id="castleBuilding3" />
+                <NODEREF id="castleBuilding4" />
+                <NODEREF id="castleGate" />
             </DESCENDANTS>
         </NODE>
 
-        <!-- The Building of the Castle -->
-        <NODE id="castleBuilding">
+        <!-- The First Building of the Castle -->
+        <NODE id="castleBuilding1">
             <MATERIAL id="null" />
-            <TEXTURE id="castleWall" />
-
-            <TRANSLATION x="13" y="-30" z="-13" />
+            <TEXTURE id="null" />
 
             <DESCENDANTS>
-                <NODEREF id="castleWall1" />
-                <NODEREF id="castleWall2" />
-                <NODEREF id="castleWall3" />
-                <NODEREF id="castleWall4" />
+                <NODEREF id="buildingWall1" />
+                <NODEREF id="buildingWall2" />
+                <NODEREF id="buildingWall3" />
+                <NODEREF id="buildingWall4" />
+                <NODEREF id="sideWall" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Second Building of the Castle -->
+        <NODE id="castleBuilding2">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="90" />
+            <TRANSLATION x="0" y="0" z="-26" />
+
+            <DESCENDANTS>
+                <NODEREF id="buildingWall1" />
+                <NODEREF id="buildingWall2" />
+                <NODEREF id="buildingWall3" />
+                <NODEREF id="buildingWall4" />
+                <NODEREF id="sideWall" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Third Building of the Castle -->
+        <NODE id="castleBuilding3">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="-90" />
+            <TRANSLATION x="26" y="0" z="0" />
+
+            <DESCENDANTS>
+                <NODEREF id="buildingWall1" />
+                <NODEREF id="buildingWall2" />
+                <NODEREF id="buildingWall3" />
+                <NODEREF id="buildingWall4" />
+                <NODEREF id="sideWall" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Fourth Building of the Castle -->
+        <NODE id="castleBuilding4">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="180" />
+            <TRANSLATION x="26" y="0" z="-26" />
+
+            <DESCENDANTS>
+                <NODEREF id="buildingWall1" />
+                <NODEREF id="buildingWall2" />
+                <NODEREF id="buildingWall3" />
+                <NODEREF id="buildingWall4" />
+                <NODEREF id="sideWall" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The First Wall of the Castle -->
-        <NODE id="castleWall1">
+        <NODE id="buildingWall1">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <SCALE sx="2" sy="3" sz="2" />
 
             <DESCENDANTS>
-                <NODEREF id="castleWallFront" />
-                <NODEREF id="castleWallBack" />
-                <NODEREF id="castleWallLeft" />
-                <NODEREF id="castleWallRight" />
-                <NODEREF id="castleWallTop" />
+                <NODEREF id="buildingWallFront" />
+                <NODEREF id="buildingWallBack" />
+                <NODEREF id="buildingWallLeft" />
+                <NODEREF id="buildingWallRight" />
+                <NODEREF id="buildingWallTop" />
+                <NODEREF id="castleBlocks" />
+                <NODEREF id="insideFloor" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Second Wall of the Castle -->
-        <NODE id="castleWall2">
+        <NODE id="buildingWall2">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <SCALE sx="2" sy="3" sz="2" />
-            <ROTATION axis="y" angle="90" />
-            <TRANSLATION x="0" y="0" z="2" />
+            <ROTATION axis="y" angle="-90" />
+            <TRANSLATION x="-13" y="0" z="0" />
 
             <DESCENDANTS>
-                <NODEREF id="castleWallFront" />
-                <NODEREF id="castleWallBack" />
-                <NODEREF id="castleWallLeft" />
-                <NODEREF id="castleWallRight" />
-                <NODEREF id="castleWallTop" />
+                <NODEREF id="buildingWallFront" />
+                <NODEREF id="buildingWallBack" />
+                <NODEREF id="buildingWallLeft" />
+                <NODEREF id="buildingWallRight" />
+                <NODEREF id="buildingWallTop" />
+                <NODEREF id="castleBlocks" />
+                <NODEREF id="insideFloor" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Third Wall of the Castle -->
-        <NODE id="castleWall3">
+        <NODE id="buildingWall3">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <SCALE sx="2" sy="3" sz="2" />
-            <TRANSLATION x="0" y="0" z="-11" />
+            <ROTATION axis="y" angle="180" />
+            <TRANSLATION x="-13" y="0" z="13" />
 
             <DESCENDANTS>
-                <NODEREF id="castleWallFront" />
-                <NODEREF id="castleWallBack" />
-                <NODEREF id="castleWallLeft" />
-                <NODEREF id="castleWallRight" />
-                <NODEREF id="castleWallTop" />
+                <NODEREF id="buildingWallFront" />
+                <NODEREF id="buildingWallBack" />
+                <NODEREF id="buildingWallLeft" />
+                <NODEREF id="buildingWallRight" />
+                <NODEREF id="buildingWallTop" />
+                <NODEREF id="castleBlocks" />
+                <NODEREF id="insideFloor" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Fourth Wall of the Castle -->
-        <NODE id="castleWall4">
+        <NODE id="buildingWall4">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
@@ -366,16 +456,36 @@
             <TRANSLATION x="0" y="0" z="13" />
 
             <DESCENDANTS>
-                <NODEREF id="castleWallFront" />
-                <NODEREF id="castleWallBack" />
-                <NODEREF id="castleWallLeft" />
-                <NODEREF id="castleWallRight" />
-                <NODEREF id="castleWallTop" />
+                <NODEREF id="buildingWallFront" />
+                <NODEREF id="buildingWallBack" />
+                <NODEREF id="buildingWallLeft" />
+                <NODEREF id="buildingWallRight" />
+                <NODEREF id="buildingWallTop" />
+                <NODEREF id="castleBlocks" />
+                <NODEREF id="insideFloor" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Side Wall of the Castle -->
+        <NODE id="sideWall">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="2" sy="2" sz="2" />
+            <TRANSLATION x="-13" y="0" z="-7" />
+
+            <DESCENDANTS>
+                <NODEREF id="buildingWallFront" />
+                <NODEREF id="buildingWallBack" />
+                <NODEREF id="buildingWallLeft" />
+                <NODEREF id="buildingWallRight" />
+                <NODEREF id="buildingWallTop" />
+                <NODEREF id="castleBlocks" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Front of the Wall of the Castle -->
-        <NODE id="castleWallFront">
+        <NODE id="buildingWallFront">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
@@ -385,7 +495,7 @@
         </NODE>
 
         <!-- The Back of the Wall of the Castle -->
-        <NODE id="castleWallBack">
+        <NODE id="buildingWallBack">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
@@ -398,45 +508,193 @@
         </NODE>
 
         <!-- The Left of the Wall of the Castle -->
-        <NODE id="castleWallLeft">
+        <NODE id="buildingWallLeft">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <ROTATION axis="y" angle="90" />
-            <SCALE sx="0.16" sy="1" sz="1" />
             <TRANSLATION x="0" y="0" z="13" />
 
             <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 13 13 0" />
+                <LEAF  type="rectangle" args="0 13 2 0" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Right of the Wall of the Castle -->
-        <NODE id="castleWallRight">
+        <NODE id="buildingWallRight">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <ROTATION axis="y" angle="-90" />
-            <SCALE sx="0.16" sy="1" sz="1" />
-            <TRANSLATION x="-13" y="0" z="0" />
+            <TRANSLATION x="-2" y="0" z="0" />
 
             <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 13 13 0" />
+                <LEAF  type="rectangle" args="0 13 2 0" />
             </DESCENDANTS>
         </NODE>
 
         <!-- The Top of the Wall of the Castle -->
-        <NODE id="castleWallTop">
+        <NODE id="buildingWallTop">
             <MATERIAL id="null" />
             <TEXTURE id="null" />
 
             <ROTATION axis="x" angle="-90" />
             <ROTATION axis="z" angle="90" />
-            <SCALE sx="0.16" sy="1" sz="1" />
             <TRANSLATION x="0" y="-13" z="13" />
 
             <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 13 13 0" />
+                <LEAF  type="rectangle" args="0 13 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Blocks of the Castle -->
+        <NODE id="castleBlocks">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="0" y="13" z="0" />
+            <SCALE sx="1" sy="0.5" sz="1" />
+
+            <DESCENDANTS>
+                <NODEREF id="castleBlock1" />
+                <NODEREF id="castleBlock2" />
+                <NODEREF id="castleBlock3" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- A Block of the Castle -->
+        <NODE id="castleBlock1">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <DESCENDANTS>
+                <NODEREF id="castleBlockFront" />
+                <NODEREF id="castleBlockBack" />
+                <NODEREF id="castleBlockLeft" />
+                <NODEREF id="castleBlockRight" />
+                <NODEREF id="castleBlockTop" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- A Block of the Castle -->
+        <NODE id="castleBlock2">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="3.75" y="0" z="0" />
+
+            <DESCENDANTS>
+                <NODEREF id="castleBlockFront" />
+                <NODEREF id="castleBlockBack" />
+                <NODEREF id="castleBlockLeft" />
+                <NODEREF id="castleBlockRight" />
+                <NODEREF id="castleBlockTop" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- A Block of the Castle -->
+        <NODE id="castleBlock3">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <TRANSLATION x="7.25" y="0" z="0" />
+
+            <DESCENDANTS>
+                <NODEREF id="castleBlockFront" />
+                <NODEREF id="castleBlockBack" />
+                <NODEREF id="castleBlockLeft" />
+                <NODEREF id="castleBlockRight" />
+                <NODEREF id="castleBlockTop" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Front of the Block of the Castle -->
+        <NODE id="castleBlockFront">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 2 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Back of the Block of the Castle -->
+        <NODE id="castleBlockBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="180" />
+            <TRANSLATION x="-2" y="0" z="2" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 2 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Left of the Block of the Castle -->
+        <NODE id="castleBlockLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="90" />
+            <TRANSLATION x="0" y="0" z="2" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 2 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Right of the Block of the Castle -->
+        <NODE id="castleBlockRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="-90" />
+            <TRANSLATION x="-2" y="0" z="0" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 2 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Top of the Block of the Castle -->
+        <NODE id="castleBlockTop">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="x" angle="-90" />
+            <ROTATION axis="z" angle="90" />
+            <TRANSLATION x="0" y="-2" z="2" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 2 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Inside Floor of the Wall of the Castle -->
+        <NODE id="insideFloor">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="x" angle="-90" />
+            <ROTATION axis="z" angle="90" />
+            <TRANSLATION x="2" y="-13" z="12" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 9 2 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Gate of the Castle -->
+        <NODE id="castleGate">
+            <MATERIAL id="null" />
+            <TEXTURE id="gate" />
+
+            <SCALE sx="2.5" sy="2.5" sz="1" />
+            <TRANSLATION x="-9" y="0" z="44.1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 8 8 0" />
             </DESCENDANTS>
         </NODE>
     </NODES>

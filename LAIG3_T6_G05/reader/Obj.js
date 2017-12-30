@@ -27,7 +27,7 @@ function Obj(scene, path) {
                 self.initBuffers(allText);
             }
         }
-    }
+    };
     rawFile.send(null);
 
 }
