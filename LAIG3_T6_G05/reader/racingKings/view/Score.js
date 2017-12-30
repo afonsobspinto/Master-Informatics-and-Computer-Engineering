@@ -48,6 +48,7 @@ Score.prototype.update = function(score) {
 Score.prototype.display = function() {
 
     this.scene.pushMatrix();
+        this.scene.whiteMaterial.apply();
         this.scene.scale(0.1, 0.1, 0.1);
         this.scene.pushMatrix();
             this.scene.translate(25, 100, -150);

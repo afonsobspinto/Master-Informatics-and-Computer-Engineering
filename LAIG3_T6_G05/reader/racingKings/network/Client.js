@@ -35,6 +35,7 @@ class Client {
     function(data){
         var [Board, GameState, GameMode] = data.target.response.split('-');
         client.game.board.updateBoard(Board);
+        client.game.timer1.update();
     });
     }
 }
