@@ -7,7 +7,7 @@ parse_input(quit, goodbye).
 %game commands
 parse_input(start-GameMode-GameDifficulty, Board-GameState-GameModeOut):-
     initialBoard(TempBoard),
-    matrix_to_json(TempBoard, Board),
+    matrixToJson(TempBoard, Board),
     GameState = whiteToMove,
     (
         (GameMode == 0) -> GameModeOut = pvp;
