@@ -1,9 +1,3 @@
-const GameState = {
-    WhiteToSelectPos: 0,
-    WhiteToSelectNewPos: 1,
-    BlackToSelectPos: 2,
-    BlackToSelectNewPos: 3
-}
 
 class Game {
     constructor(scene, gameConfig) {
@@ -12,7 +6,7 @@ class Game {
         this.gameHistory = [];
         this.client = new Client(this);
         this.board = new Board(this.scene);
-        this.gameState = GameState.WhiteToSelectPos;
+        this.gameState = new WhiteToMoveState(this, scene);
     }
 
     init() {
@@ -36,7 +30,7 @@ class Game {
                         var customId = this.scene.pickResults[i][1];
                         var pos = this.board._getPiecePosWithId(customId);
                         console.log("Picked object: " + obj + ", with pick id " + customId + " at pos " + pos.x + " " + pos.y);
-                        this.board.at(pos.x, pos.y).select();
+                        this.gameState.manageClick(pos);
                     }
                 }
                 this.scene.pickResults.splice(0, this.scene.pickResults.length);

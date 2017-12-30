@@ -27,7 +27,8 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
             'Obj.js', 'primitives/MyPiece.js', 'racingKings/network/Client.js',
             'racingKings/view/Board.js', 'racingKings/view/Cell.js',
             'racingKings/controller/Game.js', 'racingKings/controller/GameConfig.js',
-            'racingKings/view/PieceFactory.js',
+            'racingKings/controller/gameStates/GameState.js', 'racingKings/controller/gameStates/WhiteToMoveState.js',
+            'racingKings/view/PieceFactory.js', 
             'racingKings/view/Score.js', 'racingKings/view/Timer.js',
 
 main=function()

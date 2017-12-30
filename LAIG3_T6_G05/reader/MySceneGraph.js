@@ -1675,10 +1675,6 @@ MySceneGraph.prototype.dfsDisplay = function (node) {
     else
         this.texturesStack.push(node.textureID);
 
-    // if (node.nodeID == this.scene.selectedSelected) {
-    //     this.scene.setActiveShader(this.scene.shader);
-    // }
-
     for (var i = 0; i < node.children.length; i++) {
         this.dfsDisplay(this.nodes[node.children[i]]);
     }
@@ -1701,9 +1697,6 @@ MySceneGraph.prototype.dfsDisplay = function (node) {
         material.setTexture(null);
     }
 
-    // if (node.nodeID == this.scene.selectedSelected) {
-    //     this.scene.setActiveShader(this.scene.defaultShader);
-    // }
     this.materialsStack.pop();
     this.texturesStack.pop();
     this.scene.popMatrix();
