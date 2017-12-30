@@ -22,7 +22,7 @@ function Cell(scene, x, y, type, color){
 Cell.prototype.display = function() {
     if(this.type !== null) {
         this.scene.pushMatrix();
-        this.scene.translate(80, -87.5, 0);
+        this.scene.translate(77.5, -87.5, 0);
         this.scene.translate(this.x, this.y, 0);
         this.material.apply();
         this.piece.display();
