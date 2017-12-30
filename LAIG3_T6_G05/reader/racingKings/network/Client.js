@@ -29,7 +29,12 @@ class Client {
         return this.communicationOK;
     }
 
-    startGame(){
-        this._getPrologRequest("start-"+this.game.getGameConfig.toString());
+    startGame(){ //Todo: Just need Board? Change later
+        var client = this;
+        this._getPrologRequest("start-"+this.game.getGameConfig.toString(),
+    function(data){
+        var [Board, GameState, GameMode] = data.target.response.split('-');
+        client.game.board.updateBoard(Board);
+    });
     }
 }

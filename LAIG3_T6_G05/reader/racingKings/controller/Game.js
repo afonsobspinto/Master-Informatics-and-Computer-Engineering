@@ -4,11 +4,11 @@ class Game {
         this.gameConfig = gameConfig;
         this.gameHistory = [];
         this.client = new Client(this);
+        this.board = new Board(this.scene);
     }
 
     init() {
         this.client.startGame();
-        this.board = new Board(this.scene);
     }
 
     display() {

@@ -88,3 +88,16 @@ let calculateSurfaceNormal = function (vertex) {
     return normalizeVector(new Vector3(x, y, z));
 
 };
+
+const Piece = {
+    KING: 'King',
+    QUEEN: 'Queen',
+    BISHOP: 'Bishop',
+    KNIGHT: 'Knight',
+    ROOK: 'Rook',
+}
+
+const Color = {
+    WHITE: 0,
+    BLACK: 1
+}
