@@ -12,6 +12,10 @@ class Game {
         this.gameHistory = [];
         this.client = new Client(this);
         this.board = new Board(this.scene);
+        this.timer1 = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
+        this.timer2 = new Timer(this.scene,1,this.gameConfig.getGameTimeout);
+        this.score = new Score(this.scene);
+        this.timer1.update();
         this.gameState = GameState.WhiteToSelectPos;
     }
 
@@ -23,6 +27,9 @@ class Game {
         if(this.client.getCommunicationOK){
             this.manageClick();
             this.board.display();
+            this.timer1.display();
+            this.timer2.display();
+            this.score.display();
         }
     }
 
