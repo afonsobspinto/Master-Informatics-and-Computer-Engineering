@@ -17,7 +17,8 @@ class Board {
     _fillBoard() {
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
-                this.board[row][col] = new Cell(this.scene, row * -25, col * 25, null, null);
+                let cellMaterial = (row % 2 == col %2) ? this.scene.blackMaterial : this.scene.whiteMaterial;
+                this.board[row][col] = new Cell(this.scene, row * -25, col * 25, null, null, cellMaterial);
             }
         }
     }

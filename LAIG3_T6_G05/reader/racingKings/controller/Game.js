@@ -12,8 +12,10 @@ class Game {
     }
 
     display() {
-        if(this.client.getCommunicationOK)
+        if(this.client.getCommunicationOK){
+            this.board.logPicking();
             this.board.display();
+        }
     }
 
     get getGameConfig(){

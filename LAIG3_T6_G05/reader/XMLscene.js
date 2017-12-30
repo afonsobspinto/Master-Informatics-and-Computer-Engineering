@@ -18,20 +18,20 @@ function XMLscene(interface) {
     this.selectedGameDifficulty = 0;
     this.selectedTimeout = 30;
 
-    this.startGame = function(){
+    this.startGame = function () {
         this.game = new Game(this, new GameConfig(this.selectedGameMode, this.selectedGameDifficulty, this.selectedTimeout));
         this.game.client.init();
     }
 
-    this.resume = function(){
+    this.resume = function () {
         console.log('Pause');
     }
 
-    this.undo = function(){
+    this.undo = function () {
         console.log('Undo');
     }
 
-    this.resign = function(){
+    this.resign = function () {
         console.log('Resign');
     }
 }
@@ -42,11 +42,11 @@ XMLscene.prototype.constructor = XMLscene;
 /**
  * Initializes the scene, setting some WebGL defaults, initializing the camera and the axis.
  */
-XMLscene.prototype.init = function(application) {
+XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
-    this.shader.setUniformsValues({red: 0.0, green: 0.0, blue: 1.0});
+    this.shader.setUniformsValues({ red: 0.0, green: 0.0, blue: 1.0 });
 
     this.initCameras();
 
@@ -65,29 +65,31 @@ XMLscene.prototype.init = function(application) {
     this.setUpdatePeriod(10); //milliseconds
 
     this.axis = new CGFaxis(this);
+
+    this.setPickEnabled(true);
 };
 
 /**
  * Initializes the scene materials.
  */
-XMLscene.prototype.initMaterials = function(){
+XMLscene.prototype.initMaterials = function () {
     this.whiteMaterial = new CGFappearance(this);
-    this.whiteMaterial.setAmbient(0.5,0.5,0.5,1);
-    this.whiteMaterial.setDiffuse(0.5,0.5,0.5,1);
-    this.whiteMaterial.setSpecular(0.5,0.5,0.5,1);
+    this.whiteMaterial.setAmbient(0.5, 0.5, 0.5, 1);
+    this.whiteMaterial.setDiffuse(0.5, 0.5, 0.5, 1);
+    this.whiteMaterial.setSpecular(0.5, 0.5, 0.5, 1);
     this.whiteMaterial.setShininess(2);
 
     this.blackMaterial = new CGFappearance(this);
-    this.blackMaterial.setAmbient(0,0,0,1);
-    this.blackMaterial.setDiffuse(0.1,0.1,0.1,1);
-    this.blackMaterial.setSpecular(0,0,0,1);
+    this.blackMaterial.setAmbient(0, 0, 0, 1);
+    this.blackMaterial.setDiffuse(0.1, 0.1, 0.1, 1);
+    this.blackMaterial.setSpecular(0, 0, 0, 1);
     this.blackMaterial.setShininess(20);
 };
 
 /**
  * Initializes the scene lights with the values read from the LSX file.
  */
-XMLscene.prototype.initLights = function() {
+XMLscene.prototype.initLights = function () {
     var i = 0;
     // Lights index.
 
@@ -121,10 +123,10 @@ XMLscene.prototype.initLights = function() {
 /**
  * Initializes the scene cameras.
  */
-XMLscene.prototype.initCameras = function() {
+XMLscene.prototype.initCameras = function () {
     this.cameras = [
-        new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0)),
-        new CGFcamera(1,1,500,vec3.fromValues(20, 20, 20),vec3.fromValues(0, 0, 0))
+        new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
+        new CGFcamera(1, 1, 500, vec3.fromValues(20, 20, 20), vec3.fromValues(0, 0, 0))
     ];
     this.camera = this.cameras[this.selectedCamera];
 };
@@ -132,11 +134,10 @@ XMLscene.prototype.initCameras = function() {
 /* Handler called when the graph is finally loaded.
  * As loading is asynchronous, this may be called already after the application has started the run loop
  */
-XMLscene.prototype.onGraphLoaded = function()
-{
+XMLscene.prototype.onGraphLoaded = function () {
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
-    this.axis = new CGFaxis(this,this.graph.referenceLength);
+    this.axis = new CGFaxis(this, this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],
         this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
@@ -159,7 +160,9 @@ XMLscene.prototype.onGraphLoaded = function()
 /**
  * Displays the scene.
  */
-XMLscene.prototype.display = function() {
+XMLscene.prototype.display = function () {
+
+    this.clearPickRegistration();
     // ---- BEGIN Background, camera and axis setup
     this.camera = this.cameras[this.selectedCamera]; //TODO: Add animation to camera 
 
@@ -176,8 +179,7 @@ XMLscene.prototype.display = function() {
 
     this.pushMatrix();
 
-    if (this.graph.loadedOk)
-    {
+    if (this.graph.loadedOk) {
         // Applies initial transformations.
         this.multMatrix(this.graph.initialTransforms);
 
@@ -204,12 +206,11 @@ XMLscene.prototype.display = function() {
         this.graph.displayScene();
 
 
-        if(this.game)
+        if (this.game)
             this.game.display();
 
     }
-    else
-    {
+    else {
         // Draw axis
 
         this.axis.display();
@@ -228,10 +229,10 @@ XMLscene.prototype.display = function() {
 /**
  * Updates the scene.
  */
-XMLscene.prototype.update = function(currTime) {
+XMLscene.prototype.update = function (currTime) {
 
-    if(this.graph.loadedOk){
-        for(let animationID in this.graph.animations){
+    if (this.graph.loadedOk) {
+        for (let animationID in this.graph.animations) {
             this.graph.animations[animationID].update(currTime);
         }
     }
