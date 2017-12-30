@@ -49,27 +49,6 @@ class Board {
         this.scene.popMatrix();
     }
 
-    manageClick() {
-        if (this.scene.pickMode === false) {
-            var selection = 0;
-            if (this.scene.pickResults !== null && this.scene.pickResults.length > 0) {
-                for (var i = 0; i < this.scene.pickResults.length; i++) {
-                    var obj = this.scene.pickResults[i][0];
-                    if (obj) {
-                        var customId = this.scene.pickResults[i][1];
-                        var pos = this._getPiecePosWithId(customId);
-                        console.log("Picked object: " + obj + ", with pick id " + customId + " at pos " + pos.x + " " + pos.y);
-                        this.board[pos.x][pos.y].select();
-                    }
-                }
-                this.scene.pickResults.splice(0, this.scene.pickResults.length);
-            }
-        }
-
-        return 0;
-
-    }
-
     _getPiecePosWithId(id) {
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
@@ -80,6 +59,9 @@ class Board {
         return null;
     }
 
+    at(Row, Col){
+        return this.board[Row][Col];
+    }
 }
 
 

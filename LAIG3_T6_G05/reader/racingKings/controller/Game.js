@@ -21,9 +21,30 @@ class Game {
 
     display() {
         if(this.client.getCommunicationOK){
-            this.board.manageClick();
+            this.manageClick();
             this.board.display();
         }
+    }
+
+    manageClick() {
+        if (this.scene.pickMode === false) {
+            var selection = 0;
+            if (this.scene.pickResults !== null && this.scene.pickResults.length > 0) {
+                for (var i = 0; i < this.scene.pickResults.length; i++) {
+                    var obj = this.scene.pickResults[i][0];
+                    if (obj) {
+                        var customId = this.scene.pickResults[i][1];
+                        var pos = this.board._getPiecePosWithId(customId);
+                        console.log("Picked object: " + obj + ", with pick id " + customId + " at pos " + pos.x + " " + pos.y);
+                        this.board.at(pos.x, pos.y).select();
+                    }
+                }
+                this.scene.pickResults.splice(0, this.scene.pickResults.length);
+            }
+        }
+
+        return 0;
+
     }
 
     get getGameConfig(){
