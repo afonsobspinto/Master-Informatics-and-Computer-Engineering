@@ -17,13 +17,13 @@ class Board {
     _fillBoard() {
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
-                let cellMaterial = (row % 2 == col %2) ? this.scene.blackMaterial : this.scene.whiteMaterial;
+                let cellMaterial = (row % 2 == col % 2) ? this.scene.blackMaterial : this.scene.whiteMaterial;
                 this.board[row][col] = new Cell(this.scene, row * -25, col * 25, null, null, cellMaterial);
             }
         }
     }
 
-    updateBoard(serverBoard){
+    updateBoard(serverBoard) {
         let boardArray = JSON.parse(serverBoard);
         boardArray.reverse();
         for (let row = 0; row < 8; row++) {
@@ -49,7 +49,7 @@ class Board {
         this.scene.popMatrix();
     }
 
-    logPicking() {
+    manageClick() {
         if (this.scene.pickMode === false) {
             var selection = 0;
             if (this.scene.pickResults !== null && this.scene.pickResults.length > 0) {
@@ -57,8 +57,9 @@ class Board {
                     var obj = this.scene.pickResults[i][0];
                     if (obj) {
                         var customId = this.scene.pickResults[i][1];
-                        console.log("Picked object: " + obj + ", with pick id " + customId);
-
+                        var pos = this._getPiecePosWithId(customId);
+                        console.log("Picked object: " + obj + ", with pick id " + customId + " at pos " + pos.x + " " + pos.y);
+                        this.board[pos.x][pos.y].select();
                     }
                 }
                 this.scene.pickResults.splice(0, this.scene.pickResults.length);
@@ -68,5 +69,17 @@ class Board {
         return 0;
 
     }
+
+    _getPiecePosWithId(id) {
+        for (let row = 0; row < 8; row++) {
+            for (let col = 0; col < 8; col++) {
+                if (this.board[row][col].id == id)
+                    return new Vector2(row, col);
+            }
+        }
+        return null;
+    }
+
 }
+
 
