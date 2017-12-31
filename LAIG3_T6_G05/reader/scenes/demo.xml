@@ -118,6 +118,18 @@
             <file path="images/webgl.jpg" />
             <amplif_factor s="15.0" t="5.0" />
         </TEXTURE>
+
+        <!-- Wood -->
+        <TEXTURE id="wood">
+            <file path="images/wood.jpg" />
+            <amplif_factor s="7.0" t="7.0" />
+        </TEXTURE>
+
+        <!-- Portugal Flag -->
+        <TEXTURE id="portugalFlag">
+            <file path="images/portugalFlag.png" />
+            <amplif_factor s="7.0" t="7.0" />
+        </TEXTURE>
     </TEXTURES>
 
 
@@ -229,11 +241,14 @@
 
         <!-- The Benches -->
         <NODE id="benches">
-            <MATERIAL id="defaultMaterial" />
-            <TEXTURE id="null" />
+            <MATERIAL id="null" />
+            <TEXTURE id="wood" />
 
             <DESCENDANTS>
                 <NODEREF id="benchesFront" />
+                <NODEREF id="benchesBack" />
+                <NODEREF id="benchesLeft" />
+                <NODEREF id="benchesRight" />
             </DESCENDANTS>
         </NODE>
 
@@ -249,6 +264,49 @@
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 7 7 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Back of the Benches -->
+        <NODE id="benchesBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="-90" />
+            <SCALE sx="5" sy="3.6" sz="1" />
+            <TRANSLATION x="-3" y="0" z="46" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 7 7 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Left of the Benches -->
+        <NODE id="benchesLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="x" angle="90" />
+            <ROTATION axis="y" angle="90" />
+            <SCALE sx="5" sy="5" sz="5" />
+            <TRANSLATION x="0" y="4" z="-9.2" />
+
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="0 0 5 5 0 0 0 0 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Right of the Benches -->
+        <NODE id="benchesRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="x" angle="-90" />
+            <SCALE sx="5" sy="5" sz="5" />
+            <TRANSLATION x="-9.2" y="3" z="0" />
+
+            <DESCENDANTS>
+                <LEAF id="triangle1" type="triangle" args="0 0 5 5 0 0 0 0 0" />
             </DESCENDANTS>
         </NODE>
 
@@ -457,6 +515,8 @@
                 <NODEREF id="buildingWall3" />
                 <NODEREF id="buildingWall4" />
                 <NODEREF id="sideWall" />
+                <NODEREF id="flagSupport" />
+                <NODEREF id="flag" />
             </DESCENDANTS>
         </NODE>
 
@@ -819,6 +879,47 @@
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 8 8 0" />
             </DESCENDANTS>
+        </NODE>
+
+        <!-- The Support of the Flag -->
+        <NODE id="flagSupport">
+            <MATERIAL id="null" />
+            <TEXTURE id="wood" />
+
+            <TRANSLATION x="1.5" y="42" z="-1.5" />
+            <SCALE sx="0.2" sy="3" sz="0.2" />
+            <ROTATION axis="x" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF id="cylinder1" type="cylinder" args="4 1 1 20 20 1 1" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Flag -->
+        <NODE id="flag">
+            <MATERIAL id="null" />
+            <TEXTURE id="portugalFlag" />
+
+            <TRANSLATION x="1.5" y="48" z="-1.5" />
+
+            <DESCENDANTS>
+                <LEAF type="patch" args="20 20" >
+                    <CPLINE>
+                        <CPOINT xx="5" yy="0" zz="0" ww="1" />
+                        <CPOINT xx="2" yy="0" zz="-2" ww="1" />
+                        <CPOINT xx="1" yy="0" zz="2" ww="1" />
+                        <CPOINT xx="0" yy="0" zz="0" ww="1" />
+                    </CPLINE>
+                    <CPLINE>
+                        <CPOINT xx="5" yy="6.2" zz="0" ww="1" />
+                        <CPOINT xx="2" yy="6.2" zz="-2" ww="1" />
+                        <CPOINT xx="1" yy="6.2" zz="2" ww="1" />
+                        <CPOINT xx="0" yy="6.2" zz="0" ww="1" />
+                    </CPLINE>
+                </LEAF>
+
+            </DESCENDANTS>
+
         </NODE>
     </NODES>
 </SCENE>
