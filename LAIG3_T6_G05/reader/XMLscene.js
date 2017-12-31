@@ -74,10 +74,10 @@ XMLscene.prototype.init = function (application) {
  */
 XMLscene.prototype.initMaterials = function () {
     this.whiteMaterial = new CGFappearance(this);
-    this.whiteMaterial.setAmbient(0.5, 0.5, 0.5, 1);
-    this.whiteMaterial.setDiffuse(0.5, 0.5, 0.5, 1);
-    this.whiteMaterial.setSpecular(0.5, 0.5, 0.5, 1);
-    this.whiteMaterial.setShininess(2);
+    this.whiteMaterial.setAmbient(0, 0, 0, 1);
+    this.whiteMaterial.setDiffuse(0.82, 0.82, 0.82, 1);
+    this.whiteMaterial.setSpecular(0, 0, 0, 1);
+    this.whiteMaterial.setShininess(20);
 
     this.blackMaterial = new CGFappearance(this);
     this.blackMaterial.setAmbient(0, 0, 0, 1);
