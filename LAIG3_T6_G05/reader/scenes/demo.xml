@@ -68,7 +68,7 @@
 
         <!-- Board -->
         <TEXTURE id="board">
-            <file path="images/board.png" />
+            <file path="images/tissue.jpg" />
             <amplif_factor s="1.0" t="1.0" />
         </TEXTURE>
 
@@ -163,6 +163,8 @@
                 <NODEREF id="runningTrack" />
                 <NODEREF id="benches" />
                 <NODEREF id="finishLine" />
+                <NODEREF id="ghostBoard" />
+
             </DESCENDANTS>
 
         </NODE>
@@ -175,7 +177,28 @@
             <DESCENDANTS>
                 <NODEREF id="grass" />
                 <NODEREF id="castle" />
+                <NODEREF id="ghostBoard" />
+
             </DESCENDANTS>
+
+        </NODE>
+
+
+          <!-- The board -->
+        <NODE id="ghostBoard">
+            <MATERIAL id="null" />
+            <TEXTURE id="board" />
+
+            <ROTATION axis="x" angle="-90" />
+            <SCALE sx="2" sy="2" sz="1" />
+            <TRANSLATION x="-4" y="-12" z="-0.2" />
+
+
+             <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 7 7 0" />
+            </DESCENDANTS>   
+
+            
 
         </NODE>
 
