@@ -132,7 +132,7 @@ XMLscene.prototype.initCameras = function () {
         new CGFcamera(0.41, 0.1, 500, vec3.fromValues(-20, 15, 5), vec3.fromValues(0, 0, 0)),
         new CGFcamera(24*DEGREE_TO_RAD, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
     ];
-    this.camera = this.cameras[this.selectedCamera];
+    this.camera = new CGFcamera(0.41, 0.1, 500, vec3.fromValues(-20, 15, 5), vec3.fromValues(0, 0, 0));
 };
 
 /* Handler called when the graph is finally loaded.
