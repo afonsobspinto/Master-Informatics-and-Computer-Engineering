@@ -23,7 +23,8 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
             'primitives/MyPrimitivesFactory.js', 'primitives/MyPatch.js',
             'utils.js', 'animations/Animation.js', 'animations/LinearAnimation.js',
 			'animations/CircularAnimation.js', 'animations/BezierAnimation.js',
-			'animations/ComboAnimation.js', 'animations/AnimationManager.js',
+            'animations/ComboAnimation.js', 'animations/AnimationManager.js',
+            'animations/CameraAnimation.js',
             'Obj.js', 'primitives/MyPiece.js', 'racingKings/network/Client.js',
             'racingKings/view/Board.js', 'racingKings/view/Cell.js',
             'racingKings/controller/Game.js', 'racingKings/controller/GameConfig.js',
@@ -43,7 +44,7 @@ main=function()
     app.setScene(myScene);
     app.setInterface(myInterface);
 
-    myInterface.setActiveCamera(myScene.camera);
+    //myInterface.setActiveCamera(myScene.camera);
 
 	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
 	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)

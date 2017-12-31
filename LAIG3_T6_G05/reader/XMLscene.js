@@ -67,6 +67,10 @@ XMLscene.prototype.init = function (application) {
     this.axis = new CGFaxis(this);
 
     this.setPickEnabled(true);
+
+    this.previousCamera=0;
+    this.movingCamera = false;
+    this.CameraAnimation = null;
 };
 
 /**
@@ -125,8 +129,8 @@ XMLscene.prototype.initLights = function () {
  */
 XMLscene.prototype.initCameras = function () {
     this.cameras = [
-        new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
-        new CGFcamera(1, 1, 500, vec3.fromValues(20, 20, 20), vec3.fromValues(0, 0, 0))
+        new CGFcamera(0.41, 0.1, 500, vec3.fromValues(-20, 15, 5), vec3.fromValues(0, 0, 0)),
+        new CGFcamera(24*DEGREE_TO_RAD, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
     ];
     this.camera = this.cameras[this.selectedCamera];
 };
@@ -166,6 +170,7 @@ XMLscene.prototype.display = function () {
     // ---- BEGIN Background, camera and axis setup
 
     this._updateCamera();
+    this.camera = this.cameras[this.selectedCamera];
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -226,7 +231,22 @@ XMLscene.prototype.display = function () {
 }
 
 XMLscene.prototype._updateCamera = function () {
-    (this.camera !== this.cameras[this.selectedCamera]) ? console.log("Do Animation") : console.log("Same Camera");
+
+     if(this.selectedCamera !==  this.previousCamera){
+        if(this.previousCamera==0){
+              this.CameraAnimation = new CameraAnimation(this,this.cameras[0].position[0],this.cameras[0].position[1],this.cameras[0].position[2],
+                                this.cameras[1].position[0],this.cameras[1].position[1],this.cameras[1].position[2]);
+              this.movingCamera = true;
+              this.previousCamera=this.selectedCamera;      
+        }
+        else{
+            this.CameraAnimation = new CameraAnimation(this,this.cameras[1].position[0],this.cameras[1].position[1],this.cameras[1].position[2],
+                this.cameras[0].position[0],this.cameras[0].position[1],this.cameras[0].position[2]);        
+                    this.movingCamera=true;
+                    this.previousCamera = this.selectedCamera;
+        }
+
+     }
 }
 
 
@@ -234,6 +254,10 @@ XMLscene.prototype._updateCamera = function () {
  * Updates the scene.
  */
 XMLscene.prototype.update = function (currTime) {
+
+    if(this.movingCamera){
+        this.CameraAnimation.update(currTime);
+}
 
     if (this.graph.loadedOk) {
         for (let animationID in this.graph.animations) {
