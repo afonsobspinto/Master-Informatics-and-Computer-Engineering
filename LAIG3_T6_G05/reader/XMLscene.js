@@ -170,7 +170,6 @@ XMLscene.prototype.display = function () {
     // ---- BEGIN Background, camera and axis setup
 
     this._updateCamera();
-    this.camera = this.cameras[this.selectedCamera];
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
