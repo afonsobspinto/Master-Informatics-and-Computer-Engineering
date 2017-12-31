@@ -106,6 +106,18 @@
             <file path="images/gate.jpg" />
             <amplif_factor s="8.0" t="8.0" />
         </TEXTURE>
+
+        <!-- Feup Logo -->
+        <TEXTURE id="feup">
+            <file path="images/feup.jpg" />
+            <amplif_factor s="15.0" t="5.0" />
+        </TEXTURE>
+
+        <!-- WebGl Logo -->
+        <TEXTURE id="webgl">
+            <file path="images/webgl.jpg" />
+            <amplif_factor s="15.0" t="5.0" />
+        </TEXTURE>
     </TEXTURES>
 
 
@@ -162,6 +174,8 @@
                 <NODEREF id="runningTrack" />
                 <NODEREF id="benches" />
                 <NODEREF id="finishLine" />
+                <NODEREF id="board1" />
+                <NODEREF id="board2" />
 <!--                 <NODEREF id="ghostBoard" />
  -->
             </DESCENDANTS>
@@ -302,6 +316,117 @@
 
             <DESCENDANTS>
                 <LEAF  type="rectangle" args="0 16 16 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The First Advertising Boards -->
+        <NODE id="board1">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="1" sy="1" sz="1.3" />
+            <ROTATION axis="y" angle="90" />
+            <TRANSLATION x="-18" y="0" z="-20" />
+
+
+            <DESCENDANTS>
+                <NODEREF id="boardFront1" />
+                <NODEREF id="boardBack" />
+                <NODEREF id="boardLeft" />
+                <NODEREF id="boardRight" />
+                <NODEREF id="boardTop" /> -->
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Second Advertising Boards -->
+        <NODE id="board2">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <SCALE sx="1" sy="1" sz="1.3" />
+            <ROTATION axis="y" angle="90" />
+            <TRANSLATION x="-2" y="0" z="-20" />
+
+
+            <DESCENDANTS>
+                <NODEREF id="boardFront2" />
+                <NODEREF id="boardBack" />
+                <NODEREF id="boardLeft" />
+                <NODEREF id="boardRight" />
+                <NODEREF id="boardTop" /> -->
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Front of the First Advertising Board -->
+        <NODE id="boardFront1">
+            <MATERIAL id="null" />
+            <TEXTURE id="feup" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 5 15 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Front of the Second Advertising Board -->
+        <NODE id="boardFront2">
+            <MATERIAL id="null" />
+            <TEXTURE id="webgl" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 5 15 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Back of the Advertising Board -->
+        <NODE id="boardBack">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="180" />
+            <TRANSLATION x="-15" y="0" z="1" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 5 15 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Left of the Advertising Board -->
+        <NODE id="boardLeft">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="90" />
+            <TRANSLATION x="0" y="0" z="15" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 5 1 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Right of the Advertising Board -->
+        <NODE id="boardRight">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="y" angle="-90" />
+            <TRANSLATION x="-1" y="0" z="0" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 5 1 0" />
+            </DESCENDANTS>
+        </NODE>
+
+        <!-- The Top of the Advertising Board -->
+        <NODE id="boardTop">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+
+            <ROTATION axis="x" angle="-90" />
+            <ROTATION axis="z" angle="90" />
+            <TRANSLATION x="0" y="-15" z="5" />
+
+            <DESCENDANTS>
+                <LEAF  type="rectangle" args="0 15 1 0" />
             </DESCENDANTS>
         </NODE>
 
