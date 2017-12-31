@@ -56,9 +56,9 @@ class Cell{
         var pieceColor = pieceArray[1];
 
         switch (pieceColor) {
-            case 'White':
+            case 'white':
                 return this.scene.whiteMaterial;
-            case 'Black':
+            case 'black':
                 return this.scene.blackMaterial
             default:
                 return null;
@@ -68,15 +68,15 @@ class Cell{
     _getType(pieceArray){
         var pieceType = pieceArray[0];
         switch (pieceType) {
-            case 'King':
+            case 'king':
                 return Piece.KING;
-            case 'Queen':
+            case 'queen':
                 return Piece.QUEEN;
-            case 'Bishop':
+            case 'bishop':
                 return Piece.BISHOP;
-            case 'Knight':
+            case 'knight':
                 return Piece.KNIGHT;
-            case 'Rook':
+            case 'rook':
                 return Piece.ROOK;
             default:
                 return null;

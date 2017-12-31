@@ -120,8 +120,8 @@ showTurnBot(Game, ContinueGame):-
 printGameInfo(Game):-
 	getGameState(Game, GameState),
 	getBoard(Game, Board),
-	evaluatePosition('White', Board, WhiteValue), !,
-	evaluatePosition('Black', Board, BlackValue), !,
+	evaluatePosition('white', Board, WhiteValue), !,
+	evaluatePosition('black', Board, BlackValue), !,
 	(
 		GameState == whiteToMove ->
 			(write('# White Player Turn '), WhiteNewValue is (WhiteValue+10), nl, write('# Position strength: '), PositionStrength is (WhiteNewValue-BlackValue), write(PositionStrength), nl, nl);
@@ -163,8 +163,8 @@ somehowSmartBotTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
 	getGameState(Game, GameState),
 	(
-		GameState == whiteToMove -> getPiece(Board, SrcCol, SrcRow, 'King', 'White');
-		getPiece(Board, SrcCol, SrcRow, 'King', 'Black')
+		GameState == whiteToMove -> getPiece(Board, SrcCol, SrcRow, 'king', 'white');
+		getPiece(Board, SrcCol, SrcRow, 'king', 'black')
 	),
 	DestRow is SrcRow + 1,
 	random(0,3,Move),
@@ -254,12 +254,12 @@ validateOwnershipWrapper(Piece, GameState, Flag):-
 validateOwnership(Piece, GameState, _):-
 	GameState == whiteToMove,
 	getPieceColor(Piece, Color),
-	Color == 'White'.
+	Color == 'white'.
 
 validateOwnership(Piece, GameState, _):-
 	GameState == blackToMove,
 	getPieceColor(Piece, Color),
-	Color == 'Black'.
+	Color == 'black'.
 
 validateOwnership(_, _, Flag):-
 	Flag == 1,
@@ -307,31 +307,31 @@ invalidMove(_):-
 	fail.
 
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
 	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
 	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
 	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
-checkForJumping('Rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('rook', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
 	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -341,7 +341,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	HighCol is (SrcCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, DestRow, DestCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -351,7 +351,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	HighCol is (DestCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -361,7 +361,7 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	LowCol is (SrcCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
-checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -371,31 +371,31 @@ checkForJumping('Bishop', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows < 0, %Down
 	findPieceOnCol(SrcCol, DestRow, SrcRow, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcCol == DestCol,
 	DiffRows is (DestRow-SrcRow),
 	DiffRows > 0, %UP
 	findPieceOnCol(SrcCol, SrcRow, DestRow, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols > 0, %Right
 	findPieceOnRow(SrcRow, SrcCol, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	SrcRow == DestRow,
 	DiffCols is (DestCol-SrcCol),
 	DiffCols < 0, %Left
 	findPieceOnRow(SrcRow, DestCol, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -405,7 +405,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	HighCol is (SrcCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, DestRow, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -415,7 +415,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	HighCol is (DestCol-1),
 	findPieceOnDiagonalLeft(LowRow, HighCol, SrcRow, SrcCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows > 0, %UP
 	DiffCols is (DestCol-SrcCol),
@@ -425,7 +425,7 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	LowCol is (SrcCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, DestRow, DestCol, Board).
 
-checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
+checkForJumping('queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	DiffRows is (DestRow - SrcRow),
 	DiffRows < 0, %Down
 	DiffCols is (DestCol-SrcCol),
@@ -435,8 +435,8 @@ checkForJumping('Queen', SrcCol, SrcRow, DestCol, DestRow, Board, _):-
 	LowCol is (DestCol+1),
 	findPieceOnDiagonalRight(LowRow, LowCol, SrcRow, SrcCol, Board).
 
-checkForJumping('King', _, _, _, _, _, _).
-checkForJumping('Knight', _, _, _, _, _, _).
+checkForJumping('king', _, _, _, _, _, _).
+checkForJumping('knight', _, _, _, _, _, _).
 
 checkForJumping(_, _, _, _, _, _, Flag):-
 	invalidMove(Flag).
@@ -448,24 +448,24 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 	setPiece(TempTempBoard, DestCol, DestRow, Piece, TempBoard).
 
 checkForCheck(TempBoard, _):-
-	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'King', 'White'),
-	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'King', 'Black'),
-	\+(makePseudoMoves('Black', TempBoard, WhiteKingCol, WhiteKingRow)),
-	\+(makePseudoMoves('White', TempBoard, BlackKingCol, BlackKingRow)).
+	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'king', 'white'),
+	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'king', 'black'),
+	\+(makePseudoMoves('black', TempBoard, WhiteKingCol, WhiteKingRow)),
+	\+(makePseudoMoves('white', TempBoard, BlackKingCol, BlackKingRow)).
 
 checkForCheck(_ ,Flag ):-
 	invalidMove(Flag).
 
-makePseudoMoves('Black', TempBoard, DestCol, DestRow):-
+makePseudoMoves('black', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
-	PieceColor == 'Black',
+	PieceColor == 'black',
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
 
-makePseudoMoves('White', TempBoard, DestCol, DestRow):-
+makePseudoMoves('white', TempBoard, DestCol, DestRow):-
 	getPiece(TempBoard, Col, Row, PieceName, PieceColor),
-	PieceColor == 'White',
+	PieceColor == 'white',
 	validBasicMove(PieceName, Col, Row, DestCol, DestRow, 0),
 	checkForJumping(PieceName, Col, Row, DestCol, DestRow, TempBoard, 0).
 
@@ -479,7 +479,7 @@ updateGameState(Game, NextBoard, ContinueGame):-
 gameOver(Game, NextBoard, ContinueGame):-
 	getGameState(Game, GameState),
 	GameState == whiteToMove,
-	\+(canMoveAnyPiece('Black', NextBoard)),
+	\+(canMoveAnyPiece('black', NextBoard)),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
@@ -487,20 +487,20 @@ gameOver(Game, NextBoard, ContinueGame):-
 gameOver(Game, NextBoard, ContinueGame):-
 	getGameState(Game, GameState),
 	GameState == blackToMove,
-	\+(canMoveAnyPiece('White', NextBoard)),
+	\+(canMoveAnyPiece('white', NextBoard)),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
 %Tie
 gameOver(Game, NextBoard, ContinueGame):-
-	kingOnLastRow('White', NextBoard),
-	kingOnLastRow('Black', NextBoard),
+	kingOnLastRow('white', NextBoard),
+	kingOnLastRow('black', NextBoard),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, tie, GameMode],!.
 
 %WhiteWins black could have tied
 gameOver(Game, NextBoard, ContinueGame):-
-	kingOnLastRow('White', NextBoard),
+	kingOnLastRow('white', NextBoard),
 	bb_get(blackCanTieFlag, BlackCanTieFlag),
 	BlackCanTieFlag == 1,
 	getGameMode(Game, GameMode),
@@ -508,29 +508,29 @@ gameOver(Game, NextBoard, ContinueGame):-
 
 %WhiteWins Black can't tie
 gameOver(Game, NextBoard, ContinueGame):-
-	kingOnLastRow('White', NextBoard),
+	kingOnLastRow('white', NextBoard),
 	\+(blackCanTie(NextBoard)),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, whiteVictorious, GameMode], !.
 
 %BlackWins
 gameOver(Game, NextBoard, ContinueGame):-
-	kingOnLastRow('Black', NextBoard),
+	kingOnLastRow('black', NextBoard),
 	getGameMode(Game, GameMode),
 	ContinueGame = [NextBoard, blackVictorious, GameMode], !.
 
 kingOnLastRow(Color, Board):-
-	getPiece(Board, _, 8, 'King', Color).
+	getPiece(Board, _, 8, 'king', Color).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'King', 'Black'),
+	getPiece(Board, Col, 7, 'king', 'black'),
 	differentColors(Col, 7, Col, 8, Board, 0),
 	makeMove(Board, Col, 7, Col, 8, NextBoard),
 	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'King', 'Black'),
+	getPiece(Board, Col, 7, 'king', 'black'),
 	NextCol is Col+1,
 	differentColors(Col, 7, NextCol, 8, Board,0),
 	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
@@ -538,7 +538,7 @@ blackCanTie(Board):-
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'King', 'Black'),
+	getPiece(Board, Col, 7, 'king', 'black'),
 	LastCol is Col-1,
 	differentColors(Col, 7, LastCol, 8, Board,0),
 	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
@@ -610,7 +610,7 @@ evaluatePositionRows(Color, Board, Col, Row, InitialValue, Value):-
 	getPiece(Board, Col, Row, PieceName, PieceColor),
 	PieceColor == Color,
 	getPieceValue(PieceName, PieceValue),
-	(PieceName == 'King' -> (NextValue is InitialValue + PieceValue + 100 * Row); (NextValue is InitialValue + PieceValue)),
+	(PieceName == 'king' -> (NextValue is InitialValue + PieceValue + 100 * Row); (NextValue is InitialValue + PieceValue)),
 	NextRow is Row + 1,
 	evaluatePositionRows(Color, Board, Col, NextRow, NextValue, Value).
 

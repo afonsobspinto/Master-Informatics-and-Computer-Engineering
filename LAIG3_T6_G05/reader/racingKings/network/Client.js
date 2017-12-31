@@ -41,6 +41,9 @@ class Client {
     }
 
     makeMove(oldPos, newPos){
-        this._getPrologRequest('move-'+ oldPos.toString() + "-"+newPos.toString());
+        var client = this;
+        var changedBoard = client.game.prologData.board;
+        var replacedBoard = replaceAll(changedBoard, '"', '');
+        this._getPrologRequest('move-'+ replacedBoard + "-" + oldPos.toString() + "-"+newPos.toString());
     }
 }

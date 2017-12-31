@@ -100,14 +100,18 @@ let calculateSurfaceNormal = function (vertex) {
 };
 
 const Piece = {
-    KING: 'King',
-    QUEEN: 'Queen',
-    BISHOP: 'Bishop',
-    KNIGHT: 'Knight',
-    ROOK: 'Rook',
+    KING: 'king',
+    QUEEN: 'queen',
+    BISHOP: 'bishop',
+    KNIGHT: 'knight',
+    ROOK: 'rook',
 }
 
 const Color = {
     WHITE: 0,
     BLACK: 1
+}
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
 }
