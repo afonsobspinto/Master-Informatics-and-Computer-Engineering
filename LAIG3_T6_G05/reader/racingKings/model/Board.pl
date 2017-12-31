@@ -79,10 +79,9 @@ getBoard([Board|_], Board).
 
 
 getPiece(Board, Col, Row, Piece) :-
-	% convertToNumber(Col,ColNumber),
-	RowNumber is abs(Row-9),
-	nth1(RowNumber, Board, Line),
-  nth1(Col, Line, Piece).
+	RowNumber is abs(Row-7),
+	nth0(RowNumber, Board, Line),
+  	nth0(Col, Line, Piece).
 
 getPiece(Board, Col, Row, PieceName, PieceColor) :-
 	nth1(TempRow, Board, Line),

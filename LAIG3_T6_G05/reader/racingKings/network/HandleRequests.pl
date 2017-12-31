@@ -18,11 +18,10 @@ parse_input(start-GameMode-GameDifficulty, Board-GameState-GameModeOut):-
     ), !,
 	bb_put(blackCanTieFlag, 0).
 
-parse_input(move-Board-OldRow-OldCol-NewRow-NewCol, Board):-
-    nl, nl, write(Board), nl, write('"?!??!"'),
-    nl, nl,
-    nth0(7, Board, Row),
-    write(Row), nl, nl,
-    nth0(OldCol, Row, Elem),
-    write(Elem), nl, nl.
+parse_input(move-Board-GameState-GameMode-OldRow-OldCol-NewRow-NewCol, Board):-
+    getPiece(Board, OldCol, OldRow, Piece),
+    write(Piece), nl, nl,
+    write(GameState), nl,
+    validateOwnership(Piece, GameState, 0).
+
 

@@ -22,6 +22,6 @@ class PrologData{
     }
 
     toString(){
-        return this.board + "-" + this.gameState + "-" + this.gameMode;
+        return replaceAll(this.board, '"', '') + "-" + this.gameState + "-" + this.gameMode;
     }
 }
