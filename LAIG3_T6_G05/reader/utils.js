@@ -29,9 +29,19 @@ class Vector3{
  * @param x - The x-coordinate
  * @param y - The y-coordinate
  */
-let Vector2 = function (x, y) {
+class Vector2{
+ constructor (x, y) {
     this.x = x;
     this.y = y;
+ }
+
+ equals(vec2){
+     return this.x == vec2.x && this.y == vec2.y;
+ }
+
+ toString(){
+     return this.x + "-" + this.y;
+ }
 };
 
 /**

@@ -5,6 +5,7 @@ class Game {
         this.gameConfig = gameConfig;
         this.gameHistory = [];
         this.client = new Client(this);
+        this.prologData = new PrologData();
         this.board = new Board(this.scene);
         this.gameState = new WhiteToMoveState(this, scene);
         this.timer1 = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
@@ -14,7 +15,6 @@ class Game {
 
     init() {
         this.client.startGame();
-        
     }
 
     display() {
@@ -50,5 +50,9 @@ class Game {
 
     get getGameConfig(){
         return this.gameConfig;
+    }
+
+    get getPrologData(){
+        return this.prologData;
     }
 }

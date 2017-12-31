@@ -29,13 +29,18 @@ class Client {
         return this.communicationOK;
     }
 
-    startGame(){ //Todo: Just need Board? Change later
+    startGame(){
         var client = this;
         this._getPrologRequest("start-"+this.game.getGameConfig.toString(),
     function(data){
-        var [Board, GameState, GameMode] = data.target.response.split('-');
-        client.game.board.updateBoard(Board);
+        var [board, gameState, gameMode] = data.target.response.split('-');
+        client.game.prologData.update(board, gameState, gameMode);
+        client.game.board.updateBoard(board);
         client.game.timer1.update();
     });
+    }
+
+    makeMove(oldPos, newPos){
+        this._getPrologRequest('move-'+ oldPos.toString() + "-"+newPos.toString());
     }
 }

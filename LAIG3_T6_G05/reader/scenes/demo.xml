@@ -163,8 +163,8 @@
                 <NODEREF id="runningTrack" />
                 <NODEREF id="benches" />
                 <NODEREF id="finishLine" />
-                <NODEREF id="ghostBoard" />
-
+<!--                 <NODEREF id="ghostBoard" />
+ -->
             </DESCENDANTS>
 
         </NODE>
@@ -177,15 +177,15 @@
             <DESCENDANTS>
                 <NODEREF id="grass" />
                 <NODEREF id="castle" />
-                <NODEREF id="ghostBoard" />
-
+<!--                 <NODEREF id="ghostBoard" />
+ -->
             </DESCENDANTS>
 
         </NODE>
 
 
           <!-- The board -->
-        <NODE id="ghostBoard">
+       <!--  <NODE id="ghostBoard">
             <MATERIAL id="null" />
             <TEXTURE id="board" />
 
@@ -200,7 +200,7 @@
 
             
 
-        </NODE>
+        </NODE> -->
 
         <!-- The Running Track -->
         <NODE id="runningTrack">
