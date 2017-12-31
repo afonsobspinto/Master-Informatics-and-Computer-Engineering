@@ -164,8 +164,8 @@ XMLscene.prototype.display = function () {
 
     this.clearPickRegistration();
     // ---- BEGIN Background, camera and axis setup
-    this.camera = this.cameras[this.selectedCamera]; //TODO: Add animation to camera 
 
+    this._updateCamera();
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -223,6 +223,10 @@ XMLscene.prototype.display = function () {
 
     // ---- END Background, camera and axis setup
 
+}
+
+XMLscene.prototype._updateCamera = function () {
+    (this.camera !== this.cameras[this.selectedCamera]) ? console.log("Do Animation") : console.log("Same Camera");
 }
 
 
