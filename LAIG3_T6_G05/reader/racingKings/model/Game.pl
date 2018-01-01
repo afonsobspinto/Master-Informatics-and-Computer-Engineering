@@ -218,13 +218,13 @@ botTurn(Game, ContinueGame):-
 botTurn(Game, ContinueGame):-
 	getBoard(Game, Board),
 	repeat,
-	random(1, 9, SrcRow),
-	random(1, 9, SrcCol),
+	random(0, 8, SrcRow),
+	random(0, 8, SrcCol),
 	getPiece(Board, SrcCol, SrcRow, Piece),
 	getGameState(Game, GameState),
 	validateOwnershipWrapper(Piece, GameState, 0),
-	random(1, 9, DestRow),
-	random(1, 9, DestCol),
+	random(0, 8, DestRow),
+	random(0, 8, DestCol),
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0),
 	makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard),
 	updateGameState(Game, NextBoard, ContinueGame).
@@ -522,28 +522,28 @@ gameOver(Game, NextBoard, ContinueGame):-
 	ContinueGame = [NextBoard, blackVictorious, GameMode], !.
 
 kingOnLastRow(Color, Board):-
-	getPiece(Board, _, 8, 'king', Color).
+	getPiece(Board, _, 7, 'king', Color).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'king', 'black'),
-	differentColors(Col, 7, Col, 8, Board, 0),
-	makeMove(Board, Col, 7, Col, 8, NextBoard),
+	getPiece(Board, Col, 6, 'king', 'black'),
+	differentColors(Col, 6, Col, 7, Board, 0),
+	makeMove(Board, Col, 6, Col, 7, NextBoard),
 	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'king', 'black'),
+	getPiece(Board, Col, 6, 'king', 'black'),
 	NextCol is Col+1,
-	differentColors(Col, 7, NextCol, 8, Board,0),
-	makeMove(Board, Col, 7, NextCol, 8, NextBoard),
+	differentColors(Col, 6, NextCol, 7, Board,0),
+	makeMove(Board, Col, 6, NextCol, 7, NextBoard),
 	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
 blackCanTie(Board):-
-	getPiece(Board, Col, 7, 'king', 'black'),
+	getPiece(Board, Col, 6, 'king', 'black'),
 	LastCol is Col-1,
-	differentColors(Col, 7, LastCol, 8, Board,0),
-	makeMove(Board, Col, 7, LastCol, 8, NextBoard),
+	differentColors(Col, 6, LastCol, 7, Board,0),
+	makeMove(Board, Col, 6, LastCol, 7, NextBoard),
 	checkForCheck(NextBoard, 0),
 	bb_put(blackCanTieFlag, 1).
 
@@ -554,11 +554,11 @@ canMoveAnyPiece(Color, Board):-
 
 testAllCols(SrcCol, SrcRow, DestCol, Board):-
 	DestCol > 0,
-	DestCol < 9,
+	DestCol < 8,
 	testAllRows(SrcCol, SrcRow, DestCol, 1, Board).
 
 testAllCols(_, _, DestCol, _):-
-	DestCol == 9, !,
+	DestCol == 8, !,
 	fail.
 
 testAllCols(SrcCol, SrcRow, DestCol, Board):-
@@ -566,12 +566,12 @@ testAllCols(SrcCol, SrcRow, DestCol, Board):-
 	testAllCols(SrcCol, SrcRow, NextCol, Board).
 
 testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
-	DestRow > 0,
-	DestRow < 9,
+	DestRow > -1,
+	DestRow < 8,
 	validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, 0).
 
 testAllRows(_, _, _, DestRow, _):-
-	DestRow == 9, !,
+	DestRow == 8, !,
 	fail.
 
 testAllRows(SrcCol, SrcRow, DestCol, DestRow, Board):-
@@ -592,23 +592,23 @@ evaluatePosition(Color, Board, Value):-
 	evaluatePositionCols(Color, Board, 1, 0, Value).
 
 evaluatePositionCols(_, _, Col, InitialValue, Value):-
-	Col == 9,
+	Col == 8,
 	Value is InitialValue.
 
 evaluatePositionCols(Color, Board, Col, InitialValue, Value):-
-	Col > 0,
-	Col < 9,
+	Col > -1,
+	Col < 8,
 	evaluatePositionRows(Color, Board, Col, 1, InitialValue, TempValue),
 	NextCol is Col + 1,
 	evaluatePositionCols(Color, Board, NextCol, TempValue, Value).
 
 evaluatePositionRows(_, _, _, Row, InitialValue,  Value):-
-	Row == 9,
+	Row == 8,
 	Value is InitialValue.
 
 evaluatePositionRows(Color, Board, Col, Row, InitialValue, Value):-
-	Row > 0,
-	Row < 9,
+	Row > -1,
+	Row < 8,
 	getPiece(Board, Col, Row, PieceName, PieceColor),
 	PieceColor == Color,
 	getPieceValue(PieceName, PieceValue),

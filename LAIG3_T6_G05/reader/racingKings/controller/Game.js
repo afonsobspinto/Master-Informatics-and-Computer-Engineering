@@ -69,6 +69,7 @@ class Game {
         this.gameHistory.push(board);
         this.prologData.update(board, gameState, gameMode);
         this.board.updateBoard(board);
+        this._updateGameState(gameState);
         this._updateTimers(gameState);
     }
 
@@ -77,11 +78,20 @@ class Game {
             this.timerBlack.stop();
             this.timerWhite.update();
         } 
-        else{
+        else if (gameState == "blackToMove"){
             this.timerWhite.stop();
             this.timerBlack.update();
         }
+        else{
+            this.timerWhite.reset();
+            this.timerBlack.reset();
+        }
     }
+
+    _updateGameState(gameState){
+        console.log(gameState);      
+    }
+
     _resetSelectedPieces(pos) {
         this.board.at(pos.x, pos.y).select();
         this.board.at(this.pieceSelected.x, this.pieceSelected.y).select();
