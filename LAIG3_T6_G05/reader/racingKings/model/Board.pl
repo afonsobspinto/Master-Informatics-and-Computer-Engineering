@@ -90,25 +90,25 @@ getPiece(Board, Col, Row, PieceName, PieceColor) :-
 	getPieceColor(Value, PieceColorTemp),
 	PieceName = PieceNameTemp,
 	PieceColor = PieceColorTemp,
-	Row is abs(9-TempRow).
+	Row is abs(7-TempRow).
 
 setPiece(BoardIn, Col, Row, Piece, BoardOut) :-
-	RowDiff is abs(9-Row),
+	RowDiff is abs(7-Row),
 	setRow(RowDiff, BoardIn, Col, Piece, BoardOut).
 
-setRow(1, [Row|Tail], Col, Piece, [NewRow|Tail]):-
+setRow(0, [Row|Tail], Col, Piece, [NewRow|Tail]):-
 	setCol(Col, Row, Piece, NewRow).
 
 setRow(Pos, [Row|Tail], Col, Piece, [Row|NewTail]):-
-	Pos > 1,
-	Pos < 9,
+	Pos > 0,
+	Pos < 8,
 	Next is Pos-1,
 	setRow(Next, Tail, Col, Piece, NewTail).
 
-setCol(1, [_|Tail], Piece, [Piece|Tail]).
+setCol(0, [_|Tail], Piece, [Piece|Tail]).
 
 setCol(Pos, [Element|Tail], Piece, [Element|NewTail]):-
-	Pos > 1,
+	Pos > 0,
 	Next is Pos-1,
 	setCol(Next, Tail, Piece, NewTail).
 

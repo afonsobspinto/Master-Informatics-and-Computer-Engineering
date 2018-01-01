@@ -15,13 +15,24 @@ parse_input(start-GameMode-GameDifficulty, Board-GameState-GameModeOut):-
         (GameMode == 2) -> GameModeOut = cvcWhite;
         (GameMode == 1, GameDifficulty == 0) -> GameModeOut = pvcWhiteRandom;
         GameModeOut = pvcWhiteSmart
-    ), !,
-	bb_put(blackCanTieFlag, 0).
+    ), !.
 
-parse_input(move-Board-GameState-GameMode-OldRow-OldCol-NewRow-NewCol, Board):-
-    getPiece(Board, OldCol, OldRow, Piece),
-    write(Piece), nl, nl,
-    write(GameState), nl,
-    validateOwnership(Piece, GameState, 0).
+parse_input(move-Board-GameState-GameMode-SrcRow-SrcCol-DestRow-DestCol, NewBoard-NewGameState-NewGameMode):-
+    getPiece(Board, SrcCol, SrcRow, Piece),
+    validateOwnership(Piece, GameState, 0),
+    differentPositions(SrcCol, SrcRow, DestCol, DestRow, 0), !,
+    differentColors(SrcCol, SrcRow, DestCol, DestRow, Board, 0), !,
+    getPieceName(Piece, PieceName),
+    validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, 0), !,
+    checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, 0), !,
+    makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard), !,
+    checkForCheck(NextBoard, 0),
+    updateGameState([Board, GameState, GameMode], NextBoard, [TempNewBoard, NewGameState, NewGameMode]),
+    matrixToJson(TempNewBoard, NewBoard).
+
+
+
+
+
 
 

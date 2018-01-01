@@ -25,8 +25,8 @@ class WhiteToMoveState extends GameState {
         this.pieceSelected = null;
     }
 
-    _makeMove(oldPos) {
-        this.game.client.makeMove(this.pieceSelected, oldPos);
-        this._resetSelectedPieces(oldPos);
+    _makeMove(newPos) {
+        this.game.client.makeMove(this.pieceSelected, newPos);
+        this._resetSelectedPieces(newPos);
     }
 }

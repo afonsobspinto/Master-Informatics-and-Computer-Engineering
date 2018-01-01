@@ -282,7 +282,7 @@ validateMove(SrcCol, SrcRow, DestCol, DestRow, Board, Flag):-
 	checkForCheck(TempBoard, Flag).
 
 differentPositions(SrcCol, SrcRow, DestCol, DestRow, _):-
-	SrcRow =\= DestRow ; SrcCol =\= DestCol.
+	(SrcRow =\= DestRow ; SrcCol =\= DestCol).
 
 differentPositions(_, _, _, _, Flag):-
 	invalidMove(Flag).

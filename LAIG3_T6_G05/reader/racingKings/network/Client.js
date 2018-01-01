@@ -41,6 +41,18 @@ class Client {
     }
 
     makeMove(oldPos, newPos){
-        this._getPrologRequest('move-'+ this.game.getPrologData.toString() + "-" + oldPos.toString() + "-"+newPos.toString());
+        var client = this;
+        this._getPrologRequest('move-'+ this.game.getPrologData.toString() + "-" + oldPos.toString() + "-"+newPos.toString(),
+    function(data){
+        var response = data.target.response;
+        if(response == 'Bad Request'){
+            console.log("Invalid Move");
+        }
+        else{
+            var [board, gameState, gameMode] = data.target.response.split('-');
+            client.game.prologData.update(board, gameState, gameMode);
+            client.game.board.updateBoard(board);
+        }
+    });
     }
 }
