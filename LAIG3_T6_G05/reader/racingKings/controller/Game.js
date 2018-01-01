@@ -15,13 +15,11 @@ class Game {
     }
 
     _initGameMode() {
-        console.log(this.gameConfig.getGameMode);
         switch (this.gameConfig.getGameMode) {
             case 0:
                 this.gameMode = new PlayerVsPlayerMode(this);
                 break;
             case 1:
-                console.log("here");
                 this.gameMode = new PlayerVsBotMode(this);
                 break;
             default:
