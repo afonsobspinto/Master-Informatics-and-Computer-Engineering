@@ -8,8 +8,8 @@ class Game {
         this.prologData = new PrologData();
         this.board = new Board(this.scene);
         this.pieceSelected = null;
-        this.timer1 = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
-        this.timer2 = new Timer(this.scene,1,this.gameConfig.getGameTimeout);
+        this.timerWhite = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
+        this.timerBlack = new Timer(this.scene,1,this.gameConfig.getGameTimeout);
         this.score = new Score(this.scene);
     }
 
@@ -21,8 +21,8 @@ class Game {
         if(this.client.getCommunicationOK){
             this.manageClick();
             this.board.display();
-            this.timer1.display();
-            this.timer2.display();
+            this.timerWhite.display();
+            this.timerBlack.display();
             this.score.display();
         }
     }
@@ -65,6 +65,22 @@ class Game {
         }
     }
 
+    update(board, gameState, gameMode){
+        this.prologData.update(board, gameState, gameMode);
+        this.board.updateBoard(board);
+        this._updateTimers(gameState);
+    }
+
+    _updateTimers(gameState){
+        if(gameState == "whiteToMove"){
+            this.timerBlack.stop();
+            this.timerWhite.update();
+        } 
+        else{
+            this.timerWhite.stop();
+            this.timerBlack.update();
+        }
+    }
     _resetSelectedPieces(pos) {
         this.board.at(pos.x, pos.y).select();
         this.board.at(this.pieceSelected.x, this.pieceSelected.y).select();

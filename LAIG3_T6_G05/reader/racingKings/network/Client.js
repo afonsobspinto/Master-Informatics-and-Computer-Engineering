@@ -34,9 +34,7 @@ class Client {
         this._getPrologRequest("start-"+this.game.getGameConfig.toString(),
     function(data){
         var [board, gameState, gameMode] = data.target.response.split('-');
-        client.game.prologData.update(board, gameState, gameMode);
-        client.game.board.updateBoard(board);
-        client.game.timer1.update();
+        client.game.update(board, gameState, gameMode);
     });
     }
 
@@ -50,8 +48,7 @@ class Client {
         }
         else{
             var [board, gameState, gameMode] = data.target.response.split('-');
-            client.game.prologData.update(board, gameState, gameMode);
-            client.game.board.updateBoard(board);
+            client.game.update(board, gameState, gameMode);
         }
     });
     }
