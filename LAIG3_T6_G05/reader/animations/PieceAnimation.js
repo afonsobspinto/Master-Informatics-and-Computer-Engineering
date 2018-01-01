@@ -20,7 +20,7 @@ function PieceAnimation(scene,timeSpan, piece, x1, z1, x2, z2) {
  PieceAnimation.prototype.constructor = PieceAnimation;
  
  
- MyPieceAnimation.prototype.update = function(currentTime){
+ PieceAnimation.prototype.update = function(currentTime){
 
    this.accTime += (currentTime/1000);
  
