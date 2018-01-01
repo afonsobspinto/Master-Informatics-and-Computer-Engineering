@@ -24,7 +24,7 @@ function XMLscene(interface) {
     }
 
     this.resume = function () {
-        console.log('Pause');
+        this.game.resumeGame();
     }
 
     this.undo = function () {
