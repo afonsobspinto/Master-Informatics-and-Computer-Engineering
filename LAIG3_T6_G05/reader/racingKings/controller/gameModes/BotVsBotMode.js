@@ -5,10 +5,9 @@ class BotVsBotMode extends Mode{
     }
 
     update(board, gameState, gameMode){
+        this.game.board.updateBoard(board);
         this.game.gameHistory.push(board);
         this.game.prologData.update(board, gameState, gameMode);
-        this.game.board.updateBoard(board);
-        this.game.updateGameState(gameState);
         this.game.updateTimers(gameState);
         this.game.client.botMove();
     }

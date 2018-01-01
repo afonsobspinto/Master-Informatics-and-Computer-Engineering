@@ -1,5 +1,5 @@
 class Client {
-    constructor(game){
+    constructor(game) {
         this.game = game;
         this.communicationOK = false;
     }
@@ -25,61 +25,42 @@ class Client {
         request.send();
     }
 
-    get getCommunicationOK(){
+    get getCommunicationOK() {
         return this.communicationOK;
     }
 
-    startGame(){
+    startGame() {
         var client = this;
-        this._getPrologRequest("start-"+this.game.getGameConfig.toString(),
-    function(data){
-        var [board, gameState, gameMode] = data.target.response.split('-');
-        client.game.getGameMode.update(board, gameState, gameMode);
-    });
+        this._getPrologRequest("start-" + this.game.getGameConfig.toString(),
+            function (data) {
+                var [board, gameState, gameMode] = data.target.response.split('-');
+                client.game.getGameMode.update(board, gameState, gameMode);
+            });
     }
 
-    makeMove(oldPos, newPos){
+    makeMove(oldPos, newPos) {
         var client = this;
-        this._getPrologRequest('move-'+ this.game.getPrologData.toString() + "-" + oldPos.toString() + "-"+newPos.toString(),
-    function(data){
-        var response = data.target.response;
-        if(response == 'Bad Request'){
-            console.log("Invalid Move");
-        }
-        else{
-            var [board, gameState, gameMode] = data.target.response.split('-');
-            client.game.getGameMode.update(board, gameState, gameMode);
-        }
-    });
+        this._getPrologRequest('move-' + this.game.getPrologData.toString() + "-" + oldPos.toString() + "-" + newPos.toString(),
+            function (data) {
+                var response = data.target.response;
+                if (response == 'Bad Request') {
+                    window.alert("Invalid Move");
+                }
+                else {
+                    var [board, gameState, gameMode] = data.target.response.split('-');
+                    client.game.getGameMode.update(board, gameState, gameMode);
+                }
+            });
     }
 
-    botMove(){
+    botMove() {
         var client = this;
-        this._getPrologRequest('bot-'+ this.game.getPrologData.toString(),
-    function(data){
-        var response = data.target.response;
-        if(response == 'Bad Request'){
-            console.log("Invalid Move");
-        }
-        else{
-            var [board, gameState, gameMode] = data.target.response.split('-');
-            client.game.getGameMode.update(board, gameState, gameMode);
-        }
-    });
+        this._getPrologRequest('bot-' + this.game.getPrologData.toString(),
+            function (data) {
+                var [board, gameState, gameMode] = data.target.response.split('-');
+                client.game.getGameMode.update(board, gameState, gameMode);
+            }
+        );
     }
 
-    smartBotMove(){
-        var client = this;
-        this._getPrologRequest('smartBot-'+ this.game.getPrologData.toString(),
-    function(data){
-        var response = data.target.response;
-        if(response == 'Bad Request'){
-            console.log("Invalid Move");
-        }
-        else{
-            var [board, gameState, gameMode] = data.target.response.split('-');
-            client.game.getGameMode.update(board, gameState, gameMode);
-        }
-    });
-    }
 }

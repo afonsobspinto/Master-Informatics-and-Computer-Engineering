@@ -43,7 +43,9 @@ class Game {
             this.timerWhite.display();
             this.timerBlack.display();
             this.score.display();
+            return this._displayWinner();
         }
+        return false;
     }
 
     manageClick() {
@@ -99,8 +101,22 @@ class Game {
         }
     }
 
-    updateGameState(gameState) {
-        console.log(gameState);
+    _displayWinner() {
+        let gameState = this.prologData.getGameState;
+        switch (gameState) {
+            case 'tie':
+                window.alert("# Game over. We got a tie, good game!");
+                break;
+            case 'blackVictorious':
+                window.alert("# Game over. Black player won, congratulations!'");
+                break;
+            case 'whiteVictorious':
+                window.alert("# Game over. White player won, congratulations!");
+                break;
+            default:
+                return false;
+        }
+        return true;
     }
 
     _resetSelectedPieces(pos) {

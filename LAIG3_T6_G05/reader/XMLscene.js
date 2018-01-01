@@ -209,9 +209,11 @@ XMLscene.prototype.display = function () {
         // Displays the scene.
         this.graph.displayScene();
 
-
-        if (this.game)
-            this.game.display();
+        if (this.game) {
+            if(this.game.display()){
+                this.game = null;
+            }
+        }
 
     }
     else {
