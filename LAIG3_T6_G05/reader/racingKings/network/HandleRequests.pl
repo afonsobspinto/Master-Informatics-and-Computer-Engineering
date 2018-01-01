@@ -12,7 +12,8 @@ parse_input(start-GameMode-GameDifficulty, Board-GameState-GameModeOut):-
     GameState = whiteToMove,
     (
         (GameMode == 0) -> GameModeOut = pvp;
-        (GameMode == 2) -> GameModeOut = cvcWhite;
+        (GameMode == 2, GameDifficulty == 0) -> GameModeOut = cvcWhiteRandom;
+        (GameMode == 2, GameDifficulty == 1) -> GameModeOut = cvcWhiteSmart;
         (GameMode == 1, GameDifficulty == 0) -> GameModeOut = pvcWhiteRandom;
         GameModeOut = pvcWhiteSmart
     ), !,
@@ -33,13 +34,10 @@ parse_input(move-Board-GameState-GameMode-SrcRow-SrcCol-DestRow-DestCol, NewBoar
 
 parse_input(bot-Board-GameState-GameMode, NewBoard-NewGameState-NewGameMode):-
     (
-    (GameMode == pvcWhiteSmart) -> somehowSmartBotTurn([Board, GameState, GameMode],  [TempNewBoard, NewGameState, NewGameMode]);
+    (GameMode == pvcWhiteSmart; GameMode == cvcWhiteSmart) -> somehowSmartBotTurn([Board, GameState, GameMode],  [TempNewBoard, NewGameState, NewGameMode]);
     botTurn([Board, GameState, GameMode], [TempNewBoard, NewGameState, NewGameMode])
     ),
     matrixToJson(TempNewBoard, NewBoard).
-
-
-
 
 
 

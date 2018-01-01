@@ -22,6 +22,9 @@ class Game {
             case 1:
                 this.gameMode = new PlayerVsBotMode(this);
                 break;
+            case 2:
+                this.gameMode = new BotVsBotMode(this);
+                break;
             default:
                 this.gameMode = null;
                 break;

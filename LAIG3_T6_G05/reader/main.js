@@ -30,7 +30,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
             'racingKings/controller/Game.js', 'racingKings/controller/GameConfig.js',
             'racingKings/controller/PrologData.js', 'racingKings/controller/gameModes/Mode.js',
             'racingKings/controller/gameModes/PlayerVsPlayerMode.js', 'racingKings/controller/gameModes/PlayerVsBotMode.js',
-            'racingKings/view/PieceFactory.js', 
+            'racingKings/controller/gameModes/BotVsBotMode.js', 'racingKings/view/PieceFactory.js', 
             'racingKings/view/Score.js', 'racingKings/view/Timer.js',
 
 main=function()
