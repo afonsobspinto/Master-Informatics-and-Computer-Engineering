@@ -43,6 +43,7 @@ class Game {
             this.timerWhite.display();
             this.timerBlack.display();
             this.score.display();
+            this.checkTime();
             return this._displayWinner();
         }
         return false;
@@ -84,6 +85,13 @@ class Game {
                 this._resetSelectedPieces(pos);
             }
         }
+    }
+
+    checkTime() {
+        if(this.timerWhite.getCount() === 0)
+            this.prologData.gameState = 'whiteVictorious';
+        else if(this.timerBlack.getCount() === 0)
+            this.prologData.gameState = 'blackVictorious';
     }
 
     updateTimers(gameState) {
