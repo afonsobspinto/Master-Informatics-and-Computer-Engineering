@@ -7,7 +7,7 @@ class Game {
         this.client = new Client(this);
         this.prologData = new PrologData();
         this.board = new Board(this.scene);
-        this.gameState = new WhiteToMoveState(this, scene);
+        this.pieceSelected = null;
         this.timer1 = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
         this.timer2 = new Timer(this.scene,1,this.gameConfig.getGameTimeout);
         this.score = new Score(this.scene);
@@ -37,7 +37,7 @@ class Game {
                         var customId = this.scene.pickResults[i][1];
                         var pos = this.board._getPiecePosWithId(customId);
                         console.log("Picked object: " + obj + ", with pick id " + customId + " at pos " + pos.x + " " + pos.y);
-                        this.gameState.manageClick(pos);
+                        this._manageClickAux(pos);
                     }
                 }
                 this.scene.pickResults.splice(0, this.scene.pickResults.length);
@@ -47,6 +47,29 @@ class Game {
         return 0;
 
     }
+
+    _manageClickAux(pos){
+        this.board.at(pos.x, pos.y).select();
+
+        if (!this.pieceSelected) {
+            this.pieceSelected = pos
+        }
+        else {
+            if (this.pieceSelected.equals(pos)){
+                this.pieceSelected = null;
+            }
+            else {
+                this.client.makeMove(this.pieceSelected, pos);
+                this._resetSelectedPieces(pos);
+            }
+        }
+    }
+
+    _resetSelectedPieces(pos) {
+        this.board.at(pos.x, pos.y).select();
+        this.board.at(this.pieceSelected.x, this.pieceSelected.y).select();
+        this.pieceSelected = null;
+}
 
     get getGameConfig(){
         return this.gameConfig;
