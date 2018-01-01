@@ -3,6 +3,7 @@ class Game {
     constructor(scene, gameConfig) {
         this.scene = scene;
         this.gameConfig = gameConfig;
+        this._initGameMode();
         this.gameHistory = [];
         this.client = new Client(this);
         this.prologData = new PrologData();
@@ -13,6 +14,18 @@ class Game {
         this.score = new Score(this.scene);
     }
 
+    _initGameMode(){
+        console.log(this.gameConfig);
+        console.log(this.gameConfig.getGameMode);
+        switch (this.gameConfig.getGameMode) {
+            case 0:
+                this.gameMode = new PlayerVsPlayerMode(this);
+                break;
+            default:
+                this.gameMode = null;
+                break;
+        }
+    }
     init() {
         this.client.startGame();
     }
@@ -65,15 +78,7 @@ class Game {
         }
     }
 
-    update(board, gameState, gameMode){
-        this.gameHistory.push(board);
-        this.prologData.update(board, gameState, gameMode);
-        this.board.updateBoard(board);
-        this._updateGameState(gameState);
-        this._updateTimers(gameState);
-    }
-
-    _updateTimers(gameState){
+    updateTimers(gameState){
         if(gameState == "whiteToMove"){
             this.timerBlack.stop();
             this.timerWhite.update();
@@ -88,7 +93,7 @@ class Game {
         }
     }
 
-    _updateGameState(gameState){
+    updateGameState(gameState){
         console.log(gameState);      
     }
 
@@ -104,5 +109,9 @@ class Game {
 
     get getPrologData(){
         return this.prologData;
+    }
+
+    get getGameMode(){
+        return this.gameMode;
     }
 }

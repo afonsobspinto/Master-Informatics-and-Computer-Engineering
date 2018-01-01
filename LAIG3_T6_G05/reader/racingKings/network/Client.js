@@ -48,7 +48,7 @@ class Client {
         }
         else{
             var [board, gameState, gameMode] = data.target.response.split('-');
-            client.game.update(board, gameState, gameMode);
+            client.game.getGameMode.update(board, gameState, gameMode);
         }
     });
     }
