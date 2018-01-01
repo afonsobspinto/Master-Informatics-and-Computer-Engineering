@@ -66,6 +66,7 @@ class Game {
     }
 
     update(board, gameState, gameMode){
+        this.gameHistory.push(board);
         this.prologData.update(board, gameState, gameMode);
         this.board.updateBoard(board);
         this._updateTimers(gameState);
