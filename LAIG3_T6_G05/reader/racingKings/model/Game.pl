@@ -449,7 +449,9 @@ makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, TempBoard):-
 
 checkForCheck(TempBoard, _):-
 	getPiece(TempBoard, WhiteKingCol, WhiteKingRow, 'king', 'white'),
+	write(WhiteKingCol), write(WhiteKingRow), nl, nl,
 	getPiece(TempBoard, BlackKingCol, BlackKingRow, 'king', 'black'),
+	write(BlackKingCol), write(BlackKingRow), nl, nl,
 	\+(makePseudoMoves('black', TempBoard, WhiteKingCol, WhiteKingRow)),
 	\+(makePseudoMoves('white', TempBoard, BlackKingCol, BlackKingRow)).
 

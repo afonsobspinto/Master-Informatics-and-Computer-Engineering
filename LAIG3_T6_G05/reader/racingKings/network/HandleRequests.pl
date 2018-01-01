@@ -26,6 +26,7 @@ parse_input(move-Board-GameState-GameMode-SrcRow-SrcCol-DestRow-DestCol, NewBoar
     validBasicMove(PieceName, SrcCol, SrcRow, DestCol, DestRow, 0), !,
     checkForJumping(PieceName, SrcCol, SrcRow, DestCol, DestRow, Board, 0), !,
     makeMove(Board, SrcCol, SrcRow, DestCol, DestRow, NextBoard), !,
+    write(NextBoard), nl, nl,
     checkForCheck(NextBoard, 0),
     updateGameState([Board, GameState, GameMode], NextBoard, [TempNewBoard, NewGameState, NewGameMode]),
     matrixToJson(TempNewBoard, NewBoard).

@@ -84,8 +84,8 @@ getPiece(Board, Col, Row, Piece) :-
   	nth0(Col, Line, Piece).
 
 getPiece(Board, Col, Row, PieceName, PieceColor) :-
-	nth1(TempRow, Board, Line),
-    nth1(Col, Line, Value),
+	nth0(TempRow, Board, Line),
+    nth0(Col, Line, Value),
 	getPieceName(Value, PieceNameTemp),
 	getPieceColor(Value, PieceColorTemp),
 	PieceName = PieceNameTemp,
