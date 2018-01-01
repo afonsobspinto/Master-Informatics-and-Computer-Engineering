@@ -1,8 +1,8 @@
 class GameConfig {
     constructor(gameMode, gameDifficulty, gameTimeout) {
-        this.gameMode = gameMode;
-        this.gameDifficulty = gameDifficulty;
-        this.gameTimeout = gameTimeout
+        this.gameMode = parseInt(gameMode);
+        this.gameDifficulty = parseInt(gameDifficulty);
+        this.gameTimeout = parseInt(gameTimeout);
     }
 
     get getGameMode(){

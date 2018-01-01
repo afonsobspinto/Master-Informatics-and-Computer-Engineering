@@ -31,6 +31,12 @@ parse_input(move-Board-GameState-GameMode-SrcRow-SrcCol-DestRow-DestCol, NewBoar
     updateGameState([Board, GameState, GameMode], NextBoard, [TempNewBoard, NewGameState, NewGameMode]),
     matrixToJson(TempNewBoard, NewBoard).
 
+parse_input(bot-Board-GameState-GameMode, NewBoard-NewGameState-NewGameMode):-
+    (
+    (GameMode == pvcWhiteSmart) -> somehowSmartBotTurn([Board, GameState, GameMode],  [TempNewBoard, NewGameState, NewGameMode]);
+    botTurn([Board, GameState, GameMode], [TempNewBoard, NewGameState, NewGameMode])
+    ),
+    matrixToJson(TempNewBoard, NewBoard).
 
 
 

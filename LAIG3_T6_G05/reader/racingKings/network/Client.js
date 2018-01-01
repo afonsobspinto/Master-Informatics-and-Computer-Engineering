@@ -52,4 +52,19 @@ class Client {
         }
     });
     }
+
+    botMove(){
+        var client = this;
+        this._getPrologRequest('bot-'+ this.game.getPrologData.toString(),
+    function(data){
+        var response = data.target.response;
+        if(response == 'Bad Request'){
+            console.log("Invalid Move");
+        }
+        else{
+            var [board, gameState, gameMode] = data.target.response.split('-');
+            client.game.getGameMode.update(board, gameState, gameMode);
+        }
+    });
+    }
 }
