@@ -9,14 +9,12 @@ class Game {
         this.prologData = new PrologData();
         this.board = new Board(this.scene);
         this.pieceSelected = null;
-        this.timerWhite = new Timer(this.scene,0,this.gameConfig.getGameTimeout);
-        this.timerBlack = new Timer(this.scene,1,this.gameConfig.getGameTimeout);
+        this.timerWhite = new Timer(this.scene, 0, this.gameConfig.getGameTimeout);
+        this.timerBlack = new Timer(this.scene, 1, this.gameConfig.getGameTimeout);
         this.score = new Score(this.scene);
     }
 
-    _initGameMode(){
-        console.log(this.gameConfig);
-        console.log(this.gameConfig.getGameMode);
+    _initGameMode() {
         switch (this.gameConfig.getGameMode) {
             case 0:
                 this.gameMode = new PlayerVsPlayerMode(this);
@@ -31,8 +29,10 @@ class Game {
     }
 
     display() {
-        if(this.client.getCommunicationOK){
-            this.manageClick();
+        if (this.client.getCommunicationOK) {
+            if (this.humanTurn) {
+                this.manageClick();
+            }
             this.board.display();
             this.timerWhite.display();
             this.timerBlack.display();
@@ -61,14 +61,14 @@ class Game {
 
     }
 
-    _manageClickAux(pos){
+    _manageClickAux(pos) {
         this.board.at(pos.x, pos.y).select();
 
         if (!this.pieceSelected) {
             this.pieceSelected = pos
         }
         else {
-            if (this.pieceSelected.equals(pos)){
+            if (this.pieceSelected.equals(pos)) {
                 this.pieceSelected = null;
             }
             else {
@@ -78,40 +78,40 @@ class Game {
         }
     }
 
-    updateTimers(gameState){
-        if(gameState == "whiteToMove"){
+    updateTimers(gameState) {
+        if (gameState == "whiteToMove") {
             this.timerBlack.stop();
             this.timerWhite.update();
-        } 
-        else if (gameState == "blackToMove"){
+        }
+        else if (gameState == "blackToMove") {
             this.timerWhite.stop();
             this.timerBlack.update();
         }
-        else{
+        else {
             this.timerWhite.reset();
             this.timerBlack.reset();
         }
     }
 
-    updateGameState(gameState){
-        console.log(gameState);      
+    updateGameState(gameState) {
+        console.log(gameState);
     }
 
     _resetSelectedPieces(pos) {
         this.board.at(pos.x, pos.y).select();
         this.board.at(this.pieceSelected.x, this.pieceSelected.y).select();
         this.pieceSelected = null;
-}
+    }
 
-    get getGameConfig(){
+    get getGameConfig() {
         return this.gameConfig;
     }
 
-    get getPrologData(){
+    get getPrologData() {
         return this.prologData;
     }
 
-    get getGameMode(){
+    get getGameMode() {
         return this.gameMode;
     }
 }

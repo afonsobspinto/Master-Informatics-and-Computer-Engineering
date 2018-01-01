@@ -1,6 +1,7 @@
 class PlayerVsPlayerMode extends Mode{
     constructor(game){
         super(game);
+        this.game.humanTurn = true;
     }
 
     update(board, gameState, gameMode){
