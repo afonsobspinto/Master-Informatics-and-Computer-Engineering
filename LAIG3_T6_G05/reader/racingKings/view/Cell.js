@@ -53,7 +53,7 @@ class Cell {
 
     update(pieceArray, newPos) {
         if (newPos) {
-            this.animation = new PieceAnimation(3, this.x, this.y, newPos[0], newPos[1]);
+            this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1]);
         }
         else {
             this.type = this._getType(pieceArray);

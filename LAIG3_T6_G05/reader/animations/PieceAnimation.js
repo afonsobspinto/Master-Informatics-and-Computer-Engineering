@@ -1,13 +1,13 @@
 
-function PieceAnimation(timeSpan, x1, z1, x2, z2) {
+function PieceAnimation(timeSpan, x1, y1, x2, y2) {
 
   this.x1 = x1;
   this.x2 = x2;
-  this.z1 = z1;
-  this.z2 = z2;
+  this.y1 = y1;
+  this.y2 = y2;
 
-  this.deltaX = x1 - x2;
-  this.deltaZ = z1 - z2;
+  this.deltaX = x2 - x1;
+  this.deltaY = y2 - y1;
 
   this.timeSpan = timeSpan;
   this.accTime = 0
@@ -37,7 +37,7 @@ PieceAnimation.prototype.getAnimationMatrix = function (currentTime) {
 
   var delta = this.accTime / this.timeSpan;
 
-  mat4.translate(this.matrix, this.matrix, [this.deltaX * delta, 0, this.deltaZ * delta]);
+  mat4.translate(this.matrix, this.matrix, [this.deltaX * delta, this.deltaY * delta, 0]);
   return this.matrix;
 }
 
