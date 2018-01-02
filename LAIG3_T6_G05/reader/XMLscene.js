@@ -208,7 +208,6 @@ XMLscene.prototype.display = function () {
 
         if (this.game) {
             if (this.game.display()) {
-                console.log("end");
                 this.game = null;
             }
         }

@@ -14,6 +14,7 @@ class Game {
         this.score = new Score(this.scene);
         this.flagPaused = true;
         this.viewReplay = new ViewReplay(this.scene);
+        this.finished = false;
     }
 
     _initGameMode() {
@@ -40,9 +41,13 @@ class Game {
     display() {
         if (this.client.getCommunicationOK) {
             if (this.viewReplay.active) {
-                return(this.viewReplay.display());
+                this.viewReplay.display();
+                this.finished = true;
             }
             else {
+                if(this.finished){
+                    return this.finished;
+                }
                 if (this.humanTurn) {
                     this.manageClick();
                 }
