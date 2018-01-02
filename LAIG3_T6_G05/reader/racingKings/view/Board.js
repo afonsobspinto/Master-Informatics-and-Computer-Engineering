@@ -39,7 +39,7 @@ class Board {
             for (let col = 0; col < 8; col++) {
                 let cell = this.board[row][col];
                 if (!cell.equals(newBoard[row][col])) {
-                    (newBoard[row][col][0] == "none") ? oldPos = cell : newPos = [cell.x, cell.y];
+                    (newBoard[row][col][0] == "none") ? oldPos = cell : newPos = cell;
                 }
             }
         }

@@ -57,7 +57,7 @@ class Cell {
     }
 
     move(newPos) {
-        this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1]);
+        this.animation = new PieceAnimation(0.5, this.x, this.y, newPos.x, newPos.y);
     }
 
     update(pieceArray) {
