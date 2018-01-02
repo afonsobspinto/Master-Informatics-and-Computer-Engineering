@@ -6,8 +6,8 @@ class Game {
         this._initGameMode();
         this.client = new Client(this);
         this.prologData = new PrologData();
-        this.board = new Board(this.scene, 8);
-        this.sideBoard = new Board(this.scene, 4);
+        this.board = new Board(this.scene, 8, true, [0,0]);
+        this.sideBoard = new Board(this.scene, 4, false, [-53, -140]);
         this.pieceSelected = null;
         this.timerWhite = new Timer(this.scene, 0, this.gameConfig.getGameTimeout);
         this.timerBlack = new Timer(this.scene, 1, this.gameConfig.getGameTimeout);
@@ -51,8 +51,8 @@ class Game {
                 if (this.humanTurn) {
                     this.manageClick();
                 }
-                this.board.display(null);
-                this.sideBoard.display([-5.3, 0, 14]);
+                this.board.display();
+                this.sideBoard.display();
                 this.timerWhite.display();
                 this.timerBlack.display();
                 this.score.display();
@@ -127,14 +127,12 @@ class Game {
         let history = this.viewReplay.getBoards();
         if (history.length > 2) {
             if (this.prologData.getGameState === "blackToMove") {
-                console.log("White plays");
                 this.board.move(history[history.length - 2]);
                 this.prologData.setGameState("whiteToMove");
                 this.prologData.setBoard(history[history.length - 2]);
                 this.viewReplay.removeLastBoard();
             }
             else {
-                console.log("Black Plays");
                 this.board.move(history[history.length - 2]);
                 this.prologData.setGameState("blackToMove");
                 this.prologData.setBoard(history[history.length - 2]);
@@ -142,7 +140,7 @@ class Game {
             }
         }
         else
-            console.log("Nothing to undo");
+            alert("Nothing to undo");
 
     }
 

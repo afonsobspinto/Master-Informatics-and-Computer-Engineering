@@ -10,7 +10,7 @@
 var staticID = 0;
 
 class Cell {
-    constructor(scene, x, y, type, pieceMaterial, cellMaterial) {
+    constructor(scene, x, y, type, pieceMaterial, cellMaterial, selectable) {
         this.scene = scene;
         this.x = x;
         this.y = y;
@@ -21,7 +21,7 @@ class Cell {
         this.cellMaterial = cellMaterial;
         this.pieceMaterial = pieceMaterial;
         this.isSelected = false;
-
+        this.selectable = selectable;
         this.animation = null;
     }
 
@@ -35,7 +35,9 @@ class Cell {
         }
         this.scene.translate(-2.5, -12.5, 1);
         this.cellMaterial.apply();
-        this.scene.registerForPick(this.id, this.cell);
+        if (this.selectable) {
+            this.scene.registerForPick(this.id, this.cell);
+        }
         this.cell.display();
         this.scene.popMatrix();
         if (this.type) {

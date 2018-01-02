@@ -4,7 +4,7 @@ class ViewReplay {
         this.scene = scene;
         this.boards = [];
         this.active = false;
-        this.displayBoard = new Board(this.scene, 8);
+        this.displayBoard = new Board(this.scene, 8, false, [0,0]);
     }
 
     addBoard(board) {

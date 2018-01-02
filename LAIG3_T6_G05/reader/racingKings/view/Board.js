@@ -4,9 +4,11 @@
  */
 
 class Board {
-    constructor(scene, length) {
+    constructor(scene, length, selectable, translation) {
         this.scene = scene;
         this.length = length;
+        this.selectable = selectable;
+        this.translation = translation;
         this.board = new Array(this.length);
         for (let row = 0; row < this.length; row++) {
             this.board[row] = new Array(this.length);
@@ -20,7 +22,7 @@ class Board {
         for (let row = 0; row < this.length; row++) {
             for (let col = 0; col < this.length; col++) {
                 let cellMaterial = (row % 2 == col % 2) ? this.scene.blackMaterial : this.scene.whiteMaterial;
-                this.board[row][col] = new Cell(this.scene, row * -25, col * 25, null, null, cellMaterial);
+                this.board[row][col] = new Cell(this.scene, row * -25 + this.translation[0], col * 25 + this.translation[1], null, null, cellMaterial, this.selectable);
             }
         }
     }
@@ -43,15 +45,9 @@ class Board {
     }
 
     kill(piece){
-        console.log(piece);
         var destination = this._getDestination();
         this.index++;
-        console.log(destination);
         piece.move(destination);
-        var board = this;
-        setTimeout(function () {
-            destination = piece;
-        }, 510);
     }
 
     updateBoard(newBoard) {
@@ -82,11 +78,8 @@ class Board {
     * Displays the board
     */
 
-    display(translate) {
+    display() {
         this.scene.pushMatrix();
-        if(translate){
-            this.scene.translate(translate[0], translate[1], translate[2]);
-        }
         this.scene.scale(0.1, 0.1, 0.1);
         this.scene.rotate(-Math.PI / 2, 1, 0, 0);
         for (let row = 0; row < this.length; row++) {
