@@ -12,7 +12,7 @@ class Game {
         this.timerWhite = new Timer(this.scene, 0, this.gameConfig.getGameTimeout);
         this.timerBlack = new Timer(this.scene, 1, this.gameConfig.getGameTimeout);
         this.score = new Score(this.scene);
-        this.flagPaused = 0;
+        this.flagPaused = true;
     }
 
     _initGameMode() {
@@ -118,23 +118,23 @@ class Game {
     resumeGame() {
         let gameState = this.prologData.getGameState;
         if (gameState === "whiteToMove") {
-            if (this.flagPaused === 0) {
+            if (this.flagPaused === true) {
                 this.timerWhite.stop();
-                this.flagPaused = 1;
+                this.flagPaused = false;
             }
             else {
                 this.timerWhite.update();
-                this.flagPaused = 0;
+                this.flagPaused = true;
             }
         }
         else if (gameState === "blackToMove") {
-            if (this.flagPaused === 0) {
+            if (this.flagPaused === true) {
                 this.timerBlack.stop();
-                this.flagPaused = 1;
+                this.flagPaused = false;
             }
             else {
                 this.timerBlack.update();
-                this.flagPaused = 0;
+                this.flagPaused = true;
             }
         }
     }

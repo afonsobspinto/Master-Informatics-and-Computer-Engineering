@@ -4,7 +4,8 @@ class BotVsBotMode extends Mode{
         this.game.humanTurn = false;
     }
 
-    update(board, gameState, gameMode){
+    update(board, gameState, gameMode) {
+        if (this.game.getPausedFlag() === true) {
             this.game.move(board);
             this.game.gameHistory.push(board);
             this.game.prologData.update(board, gameState, gameMode);
@@ -12,4 +13,5 @@ class BotVsBotMode extends Mode{
             this.game.updateStrength();
             this.game.client.botMove();
         }
+    }
 }
