@@ -75,7 +75,7 @@ Timer.prototype.display = function() {
     this.scene.pushMatrix();
         this.scene.whiteMaterial.apply();
         this.scene.scale(0.1, 0.1, 0.1);
-        this.scene.translate(0, 150, -150);
+        this.scene.translate(0, 50, -150);
         this.scene.pushMatrix();
             if(this.player === 0) this.scene.translate(100, 0, 0);
             else this.scene.translate(-50, 0, 0);
