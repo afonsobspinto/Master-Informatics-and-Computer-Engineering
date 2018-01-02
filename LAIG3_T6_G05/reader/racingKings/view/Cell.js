@@ -40,7 +40,13 @@ class Cell {
         this.scene.popMatrix();
         if (this.type) {
             if (this.animation) {
-                (this.animation.finished) ? this.animation = null : this.scene.multMatrix(this.animation.getAnimationMatrix(this.scene.getCurrTime()));
+                if (this.animation.finished) {
+                    this.update(this.animation.pieceArray, null);
+                    this.animation = null;
+                }
+                else {
+                    this.scene.multMatrix(this.animation.getAnimationMatrix(this.scene.getCurrTime()));
+                }
             }
             this.pieceMaterial.apply();
             this.piece.display();
@@ -51,9 +57,10 @@ class Cell {
         this.scene.popMatrix();
     }
 
+
     update(pieceArray, newPos) {
         if (newPos) {
-            this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1]);
+            this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1], pieceArray);
         }
         else {
             this.type = this._getType(pieceArray);

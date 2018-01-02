@@ -1,10 +1,12 @@
 
-function PieceAnimation(timeSpan, x1, y1, x2, y2) {
+function PieceAnimation(timeSpan, x1, y1, x2, y2, pieceArray) {
 
   this.x1 = x1;
   this.x2 = x2;
   this.y1 = y1;
   this.y2 = y2;
+
+  this.pieceArray = pieceArray;
 
   this.deltaX = x2 - x1;
   this.deltaY = y2 - y1;
