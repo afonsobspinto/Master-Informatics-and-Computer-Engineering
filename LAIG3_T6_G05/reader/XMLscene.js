@@ -65,7 +65,7 @@ XMLscene.prototype.init = function (application) {
 
     this.setPickEnabled(true);
 
-    this.previousCamera=0;
+    this.previousCamera = 0;
     this.movingCamera = false;
     this.CameraAnimation = null;
 };
@@ -127,7 +127,7 @@ XMLscene.prototype.initLights = function () {
 XMLscene.prototype.initCameras = function () {
     this.cameras = [
         new CGFcamera(0.41, 0.1, 500, vec3.fromValues(-20, 15, 5), vec3.fromValues(0, 0, 0)),
-        new CGFcamera(24*DEGREE_TO_RAD, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
+        new CGFcamera(24 * DEGREE_TO_RAD, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0)),
     ];
     this.camera = new CGFcamera(0.41, 0.1, 500, vec3.fromValues(-20, 15, 5), vec3.fromValues(0, 0, 0));
 };
@@ -207,7 +207,8 @@ XMLscene.prototype.display = function () {
         this.graph.displayScene();
 
         if (this.game) {
-            if(this.game.display()){
+            if (this.game.display()) {
+                console.log("end");
                 this.game = null;
             }
         }
@@ -227,21 +228,21 @@ XMLscene.prototype.display = function () {
 
 XMLscene.prototype._updateCamera = function () {
 
-     if(this.selectedCamera !==  this.previousCamera){
-        if(this.previousCamera==0){
-              this.CameraAnimation = new CameraAnimation(this,this.cameras[0].position[0],this.cameras[0].position[1],this.cameras[0].position[2],
-                                this.cameras[1].position[0],this.cameras[1].position[1],this.cameras[1].position[2]);
-              this.movingCamera = true;
-              this.previousCamera=this.selectedCamera;      
+    if (this.selectedCamera !== this.previousCamera) {
+        if (this.previousCamera == 0) {
+            this.CameraAnimation = new CameraAnimation(this, this.cameras[0].position[0], this.cameras[0].position[1], this.cameras[0].position[2],
+                this.cameras[1].position[0], this.cameras[1].position[1], this.cameras[1].position[2]);
+            this.movingCamera = true;
+            this.previousCamera = this.selectedCamera;
         }
-        else{
-            this.CameraAnimation = new CameraAnimation(this,this.cameras[1].position[0],this.cameras[1].position[1],this.cameras[1].position[2],
-                this.cameras[0].position[0],this.cameras[0].position[1],this.cameras[0].position[2]);        
-                    this.movingCamera=true;
-                    this.previousCamera = this.selectedCamera;
+        else {
+            this.CameraAnimation = new CameraAnimation(this, this.cameras[1].position[0], this.cameras[1].position[1], this.cameras[1].position[2],
+                this.cameras[0].position[0], this.cameras[0].position[1], this.cameras[0].position[2]);
+            this.movingCamera = true;
+            this.previousCamera = this.selectedCamera;
         }
 
-     }
+    }
 }
 
 
@@ -250,13 +251,19 @@ XMLscene.prototype._updateCamera = function () {
  */
 XMLscene.prototype.update = function (currTime) {
 
-    if(this.movingCamera){
+    if (this.movingCamera) {
         this.CameraAnimation.update(currTime);
-}
+    }
 
     if (this.graph.loadedOk) {
         for (let animationID in this.graph.animations) {
             this.graph.animations[animationID].update(currTime);
+        }
+    }
+
+    if (this.game) {
+        if (this.game.viewReplay.active) {
+            this.game.viewReplay.update(currTime);
         }
     }
 

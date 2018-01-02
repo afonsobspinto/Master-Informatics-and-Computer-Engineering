@@ -24,6 +24,21 @@ class Board {
         }
     }
 
+    move(board){
+        let newBoard = JSON.parse(board).reverse();
+        var posArray = this.compareBoards(newBoard);
+        if (posArray[0]) {
+            posArray[0].move(posArray[1]);
+            var board = this;
+
+            setTimeout(function () {
+                board.updateBoard(newBoard);
+            }, 500);
+        }
+
+        else { this.updateBoard(newBoard); }
+    }
+
     updateBoard(newBoard) {
         
         for (let row = 0; row < this.length; row++) {

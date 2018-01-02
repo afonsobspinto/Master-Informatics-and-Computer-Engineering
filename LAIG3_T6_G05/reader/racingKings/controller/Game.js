@@ -4,7 +4,6 @@ class Game {
         this.scene = scene;
         this.gameConfig = gameConfig;
         this._initGameMode();
-        this.gameHistory = [];
         this.client = new Client(this);
         this.prologData = new PrologData();
         this.board = new Board(this.scene, 8);
@@ -14,6 +13,7 @@ class Game {
         this.timerBlack = new Timer(this.scene, 1, this.gameConfig.getGameTimeout);
         this.score = new Score(this.scene);
         this.flagPaused = true;
+        this.viewReplay = new ViewReplay(this.scene);
     }
 
     _initGameMode() {
@@ -39,16 +39,23 @@ class Game {
 
     display() {
         if (this.client.getCommunicationOK) {
-            if (this.humanTurn) {
-                this.manageClick();
+            if (this.viewReplay.active) {
+                return(this.viewReplay.display());
             }
-            this.board.display(null);
-            this.sideBoard.display([-5.3,0,14]);
-            this.timerWhite.display();
-            this.timerBlack.display();
-            this.score.display();
-            this.checkTime();
-            return this._displayWinner();
+            else {
+                if (this.humanTurn) {
+                    this.manageClick();
+                }
+                this.board.display(null);
+                this.sideBoard.display([-5.3, 0, 14]);
+                this.timerWhite.display();
+                this.timerBlack.display();
+                this.score.display();
+                this.checkTime();
+                if (this._displayWinner()) {
+                    this.viewReplay.activate();
+                }
+            }
         }
         return false;
     }
@@ -103,18 +110,7 @@ class Game {
     }
 
     move(board) {
-        let newBoard = JSON.parse(board).reverse();
-        var posArray = this.board.compareBoards(newBoard);
-        if (posArray[0]) {
-            posArray[0].move(posArray[1]);
-            var game = this;
-
-            setTimeout(function () {
-                game.board.updateBoard(newBoard);
-            }, 500);
-        }
-
-        else { this.board.updateBoard(newBoard); }
+        this.board.move(board);
     }
 
 
@@ -201,7 +197,7 @@ class Game {
         return this.score;
     }
 
-    get getGameHistory(){
+    get getGameHistory() {
         return this.gameHistory;
     }
 }
