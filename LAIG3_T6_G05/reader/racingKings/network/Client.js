@@ -63,4 +63,14 @@ class Client {
         );
     }
 
+    getStrength() {
+        var client = this;
+        this._getPrologRequest('strength-' + this.game.getPrologData.toString(),
+            function (data) {
+                var strength = data.target.response;
+                client.game.getScore.update(strength);
+            }
+        );
+    }
+
 }

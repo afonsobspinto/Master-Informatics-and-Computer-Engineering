@@ -95,6 +95,10 @@ class Game {
             this.prologData.gameState = 'blackVictorious';
     }
 
+    updateStrength(){
+        this.client.getStrength();
+    }
+
     resumeGame(){
         let gameState = this.prologData.getGameState;
         if (gameState === "whiteToMove") {
@@ -172,5 +176,9 @@ class Game {
 
     getPausedFlag() {
         return this.flagPaused;
+    }
+
+    get getScore(){
+        return this.score;
     }
 }

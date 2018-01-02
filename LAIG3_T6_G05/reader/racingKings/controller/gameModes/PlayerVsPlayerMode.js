@@ -10,6 +10,7 @@ class PlayerVsPlayerMode extends Mode{
             this.game.gameHistory.push(board);
             this.game.prologData.update(board, gameState, gameMode);
             this.game.updateTimers(gameState);
+            this.game.updateStrength();
         }
     }
 }
