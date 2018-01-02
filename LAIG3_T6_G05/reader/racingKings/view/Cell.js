@@ -9,8 +9,8 @@
 
 var staticID = 0;
 
-class Cell{
-    constructor(scene, x, y, type, pieceMaterial, cellMaterial){
+class Cell {
+    constructor(scene, x, y, type, pieceMaterial, cellMaterial) {
         this.scene = scene;
         this.x = x;
         this.y = y;
@@ -21,38 +21,48 @@ class Cell{
         this.cellMaterial = cellMaterial;
         this.pieceMaterial = pieceMaterial;
         this.isSelected = false;
+
+        this.animation = null;
     }
 
-    display(){
+    display() {
         this.scene.pushMatrix();
-            this.scene.translate(80, -87.5, 0);
-            this.scene.translate(this.x, this.y, 0);
-            this.scene.pushMatrix();
-                if(this.isSelected){
-                    this.scene.setActiveShader(this.scene.shader);
-                }
-                this.scene.translate(-2.5, -12.5, 1);
-                this.cellMaterial.apply();
-                this.scene.registerForPick(this.id, this.cell);
-                this.cell.display();
-            this.scene.popMatrix();
-            if (this.type) {
-                this.pieceMaterial.apply();
-                this.piece.display();
+        this.scene.translate(80, -87.5, 0);
+        this.scene.translate(this.x, this.y, 0);
+        this.scene.pushMatrix();
+        if (this.isSelected) {
+            this.scene.setActiveShader(this.scene.shader);
+        }
+        this.scene.translate(-2.5, -12.5, 1);
+        this.cellMaterial.apply();
+        this.scene.registerForPick(this.id, this.cell);
+        this.cell.display();
+        this.scene.popMatrix();
+        if (this.type) {
+            if (this.animation) {
+                (this.animation.finished) ? this.animation = null : this.scene.multMatrix(this.animation.getAnimationMatrix(this.scene.getCurrTime()));
             }
-            if(this.isSelected){
-                this.scene.setActiveShader(this.scene.defaultShader);
-            }
+            this.pieceMaterial.apply();
+            this.piece.display();
+        }
+        if (this.isSelected) {
+            this.scene.setActiveShader(this.scene.defaultShader);
+        }
         this.scene.popMatrix();
     }
 
-    update(pieceArray){
-        this.type = this._getType(pieceArray);
-        this.pieceMaterial = this._getPieceMaterial(pieceArray);
-        this.piece = makeView(this.scene, this.type);
+    update(pieceArray, newPos) {
+        if (newPos) {
+            this.animation = new PieceAnimation(3, this.x, this.y, newPos[0], newPos[1]);
+        }
+        else {
+            this.type = this._getType(pieceArray);
+            this.pieceMaterial = this._getPieceMaterial(pieceArray);
+            this.piece = makeView(this.scene, this.type);
+        }
     }
 
-    _getPieceMaterial(pieceArray){
+    _getPieceMaterial(pieceArray) {
         var pieceColor = pieceArray[1];
 
         switch (pieceColor) {
@@ -65,7 +75,7 @@ class Cell{
         }
     }
 
-    _getType(pieceArray){
+    _getType(pieceArray) {
         var pieceType = pieceArray[0];
         switch (pieceType) {
             case 'king':
@@ -83,7 +93,11 @@ class Cell{
         }
     }
 
-    select(){
+    select() {
         this.isSelected = !this.isSelected;
+    }
+
+    equals(pieceArray) {
+        return this.type == this._getType(pieceArray) && this.pieceMaterial == this._getPieceMaterial(pieceArray);
     }
 }

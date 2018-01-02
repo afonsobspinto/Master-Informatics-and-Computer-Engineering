@@ -266,5 +266,10 @@ XMLscene.prototype.update = function (currTime) {
         }
     }
 
+    this.currTime = currTime;
+
 }
 
+XMLscene.prototype.getCurrTime = function (currTime) {
+    return this.currTime;
+}
