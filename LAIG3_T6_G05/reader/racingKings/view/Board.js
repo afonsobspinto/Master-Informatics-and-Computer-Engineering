@@ -46,8 +46,9 @@ class Board {
 
     kill(piece){
         var destination = this._getDestination();
+        destination.set(piece);
         this.index++;
-        piece.move(destination);
+
     }
 
     updateBoard(newBoard) {

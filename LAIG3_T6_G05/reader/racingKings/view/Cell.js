@@ -68,6 +68,12 @@ class Cell {
         this.piece = makeView(this.scene, this.type);
     }
 
+    set(cell){
+        this.type = cell.type;
+        this.pieceMaterial = cell.pieceMaterial;
+        this.piece = makeView(this.scene, this.type);
+    }
+
     _getPieceMaterial(pieceArray) {
         var pieceColor = pieceArray[1];
 
