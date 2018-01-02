@@ -7,7 +7,8 @@ class Game {
         this.gameHistory = [];
         this.client = new Client(this);
         this.prologData = new PrologData();
-        this.board = new Board(this.scene);
+        this.board = new Board(this.scene, 8);
+        this.sideBoard = new Board(this.scene, 4);
         this.pieceSelected = null;
         this.timerWhite = new Timer(this.scene, 0, this.gameConfig.getGameTimeout);
         this.timerBlack = new Timer(this.scene, 1, this.gameConfig.getGameTimeout);
@@ -35,12 +36,14 @@ class Game {
         this.client.startGame();
     }
 
+
     display() {
         if (this.client.getCommunicationOK) {
             if (this.humanTurn) {
                 this.manageClick();
             }
-            this.board.display();
+            this.board.display(null);
+            this.sideBoard.display([-5.3,0,14]);
             this.timerWhite.display();
             this.timerBlack.display();
             this.score.display();
@@ -196,5 +199,9 @@ class Game {
 
     get getScore() {
         return this.score;
+    }
+
+    get getGameHistory(){
+        return this.gameHistory;
     }
 }

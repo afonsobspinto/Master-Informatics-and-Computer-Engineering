@@ -188,7 +188,6 @@
                 <NODEREF id="finishLine" />
                 <NODEREF id="board1" />
                 <NODEREF id="board2" />
-                <NODEREF id="sideBoard" />
 
             </DESCENDANTS>
 
@@ -202,26 +201,10 @@
             <DESCENDANTS>
                 <NODEREF id="grass" />
                 <NODEREF id="castle" />
-                <NODEREF id="sideBoard" />
             </DESCENDANTS>
 
         </NODE>
 
-
-        <!-- The Side Board -->
-        <NODE id="sideBoard">
-            <MATERIAL id="null" />
-            <TEXTURE id="sideBoard" />
-
-            <ROTATION axis="x" angle="-90" />
-            <SCALE sx="10" sy="10" sz="1" />
-            <TRANSLATION x="-0.5" y="-2.4" z="0" />
-
-            <DESCENDANTS>
-                <LEAF  type="rectangle" args="0 1 1 0" />
-            </DESCENDANTS>
-
-        </NODE>
 
         <!-- The Running Track -->
         <NODE id="runningTrack">
