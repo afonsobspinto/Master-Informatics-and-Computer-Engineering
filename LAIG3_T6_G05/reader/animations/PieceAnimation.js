@@ -1,12 +1,10 @@
 
-function PieceAnimation(timeSpan, x1, y1, x2, y2, pieceArray) {
+function PieceAnimation(timeSpan, x1, y1, x2, y2) {
 
   this.x1 = x1;
   this.x2 = x2;
   this.y1 = y1;
   this.y2 = y2;
-
-  this.pieceArray = pieceArray;
 
   this.deltaX = x2 - x1;
   this.deltaY = y2 - y1;
@@ -32,7 +30,6 @@ PieceAnimation.prototype.getAnimationMatrix = function (currentTime) {
   this.matrix = mat4.create();
 
   if (this.accTime >= this.timeSpan) {
-    console.log("finished");
     this.finished = true;
     return;
   }

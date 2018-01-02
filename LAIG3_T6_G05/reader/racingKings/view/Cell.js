@@ -41,7 +41,6 @@ class Cell {
         if (this.type) {
             if (this.animation) {
                 if (this.animation.finished) {
-                    this.update(this.animation.pieceArray, null);
                     this.animation = null;
                 }
                 else {
@@ -57,16 +56,14 @@ class Cell {
         this.scene.popMatrix();
     }
 
+    move(newPos) {
+        this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1]);
+    }
 
-    update(pieceArray, newPos) {
-        if (newPos) {
-            this.animation = new PieceAnimation(0.5, this.x, this.y, newPos[0], newPos[1], pieceArray);
-        }
-        else {
-            this.type = this._getType(pieceArray);
-            this.pieceMaterial = this._getPieceMaterial(pieceArray);
-            this.piece = makeView(this.scene, this.type);
-        }
+    update(pieceArray) {
+        this.type = this._getType(pieceArray);
+        this.pieceMaterial = this._getPieceMaterial(pieceArray);
+        this.piece = makeView(this.scene, this.type);
     }
 
     _getPieceMaterial(pieceArray) {

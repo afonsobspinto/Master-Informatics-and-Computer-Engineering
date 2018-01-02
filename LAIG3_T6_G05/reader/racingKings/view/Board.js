@@ -23,34 +23,23 @@ class Board {
         }
     }
 
-    updateBoard(serverBoard) {
-
-        let newBoard = JSON.parse(serverBoard).reverse();
-        var posArray = this._compareBoards(newBoard);
+    updateBoard(newBoard) {
         
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
-                let cell = this.board[row][col]; 
-                let cellArray = [cell.x, cell.y];
-                if(JSON.stringify(cellArray) == JSON.stringify(posArray[0])){
-                    cell.update(newBoard[row][col], posArray[1]);
-                }
-                else{
-                    cell.update(newBoard[row][col], null);
-                }
-
+                this.board[row][col].update(newBoard[row][col]);
             }
         }
     }
 
-    _compareBoards(newBoard){
+    compareBoards(newBoard){
         var newPos;
         var oldPos;
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {
                 let cell = this.board[row][col];
                 if (!cell.equals(newBoard[row][col])) {
-                    (newBoard[row][col][0] == "none") ? oldPos = [cell.x, cell.y] : newPos = [cell.x, cell.y];
+                    (newBoard[row][col][0] == "none") ? oldPos = cell : newPos = [cell.x, cell.y];
                 }
             }
         }

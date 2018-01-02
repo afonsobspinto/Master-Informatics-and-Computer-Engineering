@@ -89,34 +89,50 @@ class Game {
     }
 
     checkTime() {
-        if(this.timerWhite.getCount() === 0)
+        if (this.timerWhite.getCount() === 0)
             this.prologData.gameState = 'whiteVictorious';
-        else if(this.timerBlack.getCount() === 0)
+        else if (this.timerBlack.getCount() === 0)
             this.prologData.gameState = 'blackVictorious';
     }
 
-    updateStrength(){
+    updateStrength() {
         this.client.getStrength();
     }
 
-    resumeGame(){
+    move(board) {
+        let newBoard = JSON.parse(board).reverse();
+        var posArray = this.board.compareBoards(newBoard);
+        if (posArray[0]) {
+            posArray[0].move(posArray[1]);
+            var game = this;
+
+            setTimeout(function () {
+                game.board.updateBoard(newBoard);
+            }, 500);
+        }
+
+        else { this.board.updateBoard(newBoard); }
+    }
+
+
+    resumeGame() {
         let gameState = this.prologData.getGameState;
         if (gameState === "whiteToMove") {
-            if(this.flagPaused === 0) {
+            if (this.flagPaused === 0) {
                 this.timerWhite.stop();
                 this.flagPaused = 1;
             }
-            else{
+            else {
                 this.timerWhite.update();
                 this.flagPaused = 0;
             }
         }
         else if (gameState === "blackToMove") {
-            if(this.flagPaused === 0) {
+            if (this.flagPaused === 0) {
                 this.timerBlack.stop();
                 this.flagPaused = 1;
             }
-            else{
+            else {
                 this.timerBlack.update();
                 this.flagPaused = 0;
             }
@@ -178,7 +194,7 @@ class Game {
         return this.flagPaused;
     }
 
-    get getScore(){
+    get getScore() {
         return this.score;
     }
 }
