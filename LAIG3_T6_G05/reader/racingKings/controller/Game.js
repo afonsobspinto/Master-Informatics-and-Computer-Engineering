@@ -90,9 +90,9 @@ class Game {
 
     checkTime() {
         if (this.timerWhite.getCount() === 0)
-            this.prologData.gameState = 'whiteVictorious';
-        else if (this.timerBlack.getCount() === 0)
             this.prologData.gameState = 'blackVictorious';
+        else if (this.timerBlack.getCount() === 0)
+            this.prologData.gameState = 'whiteVictorious';
     }
 
     updateStrength() {
