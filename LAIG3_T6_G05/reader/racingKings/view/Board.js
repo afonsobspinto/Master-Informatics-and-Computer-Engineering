@@ -106,7 +106,7 @@ class Board {
     }
 
     _getDestination(){
-        return this.board[this.index % this.length][this.index / this.length];
+        return this.board[this.index % this.length][Math.floor(this.index / this.length)];
     }
 }
 
