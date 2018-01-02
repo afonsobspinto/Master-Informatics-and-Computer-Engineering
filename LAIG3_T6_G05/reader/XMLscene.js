@@ -28,7 +28,7 @@ function XMLscene(interface) {
     }
 
     this.undo = function () {
-        console.log('Undo');
+        this.game.undo();
     }
 
     this.resign = function () {

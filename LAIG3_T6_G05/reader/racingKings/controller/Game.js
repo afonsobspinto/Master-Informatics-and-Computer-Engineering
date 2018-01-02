@@ -113,6 +113,28 @@ class Game {
         this.board.move(board);
     }
 
+    undo(){
+        let history = this.viewReplay.getBoards();
+        if(history.length > 2){
+            if (this.prologData.getGameState === "blackToMove") {
+                console.log("White plays");
+                this.board.move( history[history.length-2]);
+                this.prologData.setGameState("whiteToMove");
+                this.prologData.setBoard(history[history.length-2]);
+                this.viewReplay.removeLastBoard();
+            }
+            else{
+                console.log("Black Plays");
+                this.board.move( history[history.length-2]);
+                this.prologData.setGameState("blackToMove");
+                this.prologData.setBoard(history[history.length-2]);
+                this.viewReplay.removeLastBoard();
+            }
+        }
+        else
+            console.log("Nothing to undo");
+
+    }
 
     resumeGame() {
         let gameState = this.prologData.getGameState;
