@@ -39,5 +39,11 @@ parse_input(bot-Board-GameState-GameMode, NewBoard-NewGameState-NewGameMode):-
     ),
     matrixToJson(TempNewBoard, NewBoard).
 
-
+parse_input(strength-Board-GameState-GameMode, Strength):-
+    evaluatePosition('white', Board, WhiteValue), !,
+    evaluatePosition('black', Board, BlackValue), !,
+	(GameState == whiteToMove ->
+	        WhiteNewValue is (WhiteValue + 10), Strength is (WhiteNewValue - BlackValue) ;
+	        BlackNewValue is (BlackValue + 10),	Strength is (WhiteValue - BlackNewValue)
+	).
 

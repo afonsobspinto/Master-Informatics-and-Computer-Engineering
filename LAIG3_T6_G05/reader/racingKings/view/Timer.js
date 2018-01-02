@@ -13,7 +13,7 @@ function Timer(scene, player, timer){
 
     this.unitsCounter = this.timer % 10;
     this.dozensCounter = Math.floor((this.timer/10) % 10);
-    this.hundredsCounter = Math.floor((this.timer/100) % 100);
+    this.hundredsCounter = Math.floor((this.timer/100) % 10);
 
     this.units = new Obj(this.scene, 'scenes/pieces/' + Math.floor(this.unitsCounter) + '.obj');
     this.dozens = new Obj(this.scene, 'scenes/pieces/' + Math.floor(this.dozensCounter) + '.obj');
@@ -75,7 +75,7 @@ Timer.prototype.display = function() {
     this.scene.pushMatrix();
         this.scene.whiteMaterial.apply();
         this.scene.scale(0.1, 0.1, 0.1);
-        this.scene.translate(0, 150, -150);
+        this.scene.translate(0, 100, -150);
         this.scene.pushMatrix();
             if(this.player === 0) this.scene.translate(100, 0, 0);
             else this.scene.translate(-50, 0, 0);
@@ -93,4 +93,8 @@ Timer.prototype.display = function() {
         this.scene.popMatrix();
     this.scene.popMatrix();
 
+};
+
+Timer.prototype.getCount = function(){
+    return this.count;
 };
