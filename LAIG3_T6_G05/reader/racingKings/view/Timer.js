@@ -97,4 +97,4 @@ Timer.prototype.display = function() {
 
 Timer.prototype.getCount = function(){
     return this.count;
-}
+};
