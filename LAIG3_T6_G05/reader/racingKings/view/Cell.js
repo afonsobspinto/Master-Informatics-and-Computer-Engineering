@@ -58,8 +58,8 @@ class Cell {
         this.scene.popMatrix();
     }
 
-    move(newPos) {
-        this.animation = new PieceAnimation(0.5, this.x, this.y, newPos.x, newPos.y);
+    move(newPos, time) {
+        this.animation = new PieceAnimation(time, this.x, this.y, newPos.x, newPos.y);
     }
 
     update(pieceArray) {
@@ -111,5 +111,10 @@ class Cell {
 
     equals(pieceArray) {
         return this.type == this._getType(pieceArray) && this.pieceMaterial == this._getPieceMaterial(pieceArray);
+    }
+
+    clone(){
+        return new Cell(this.scene, this.x, this.y,this.type, this.pieceMaterial, this.cellMaterial, this.selectable);
+
     }
 }

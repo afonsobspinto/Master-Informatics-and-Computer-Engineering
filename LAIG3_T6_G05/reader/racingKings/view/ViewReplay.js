@@ -23,7 +23,7 @@ class ViewReplay {
                 replay.active = false;
             }
             else {
-                replay.displayBoard.move(replay.boards[replay.replayIndex]);
+                replay.displayBoard.move(replay.boards[replay.replayIndex], 0.5);
                 replay.replayIndex++;
             }}, 1000);
         this.replayIndex = 0;

@@ -31,11 +31,11 @@ class Board {
         let newBoard = JSON.parse(board).reverse();
         var posArray = this.compareBoards(newBoard);
         if (posArray[0]) {
-            posArray[0].move(posArray[1]);
+            posArray[0].move(posArray[1], 0.5);
             var board = this;
             setTimeout(function () {
                 board.updateBoard(newBoard);
-            }, 510);
+            }, 500);
             return posArray[1];
         }
 
@@ -45,8 +45,14 @@ class Board {
     }
 
     kill(piece){
+        let pieceClone = piece.clone();
         var destination = this._getDestination();
-        destination.set(piece);
+        piece.move(destination, 0.4);
+        var board = this;
+        setTimeout(function () {
+            destination.set(pieceClone);
+        }, 500);
+    
         this.index++;
 
     }
