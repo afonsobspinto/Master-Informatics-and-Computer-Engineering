@@ -59,9 +59,6 @@ XMLscene.prototype.init = function (application) {
 
     this.initMaterials();
 
-    this.timer = new Timer(this);
-    this.score = new Score(this);
-
     this.setUpdatePeriod(10); //milliseconds
 
     this.axis = new CGFaxis(this);
@@ -221,9 +218,6 @@ XMLscene.prototype.display = function () {
 
         this.axis.display();
     }
-
-    this.timer.display();
-    this.score.display();
 
     this.popMatrix();
 
