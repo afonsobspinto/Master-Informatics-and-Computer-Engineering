@@ -63,8 +63,8 @@ MyInterface.prototype.addAmbientGroup = function (lights) {
     * Adds a dropDown containing Scenarios;
     */
     group.add(this.scene, 'selectedScenario', {
-        "Scene1": 0,
-        "Scene2": 1,
+        "Running Track": 0,
+        "Castle": 1,
     }).name('Scenarios');
 };
 
