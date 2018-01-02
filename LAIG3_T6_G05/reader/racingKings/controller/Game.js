@@ -122,6 +122,9 @@ class Game {
                 this.viewReplay.addPiece(piece.clone());
                 this.sideBoard.kill(piece);
             }
+            else{
+                this.viewReplay.addPiece(null);
+            }
         }
         else{
             this.viewReplay.addPiece(null);
