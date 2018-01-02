@@ -11,24 +11,21 @@ class ViewReplay {
         this.boards.push(board);
     }
 
-    update(currTime) {
-        if (this.replayIndex > this.boards.length - 1) {
-            this.active = false;
-            this.scene.setUpdatePeriod(10);
-        }
-        else {
-            this.displayBoard.move(this.boards[this.replayIndex]);
-            this.replayIndex++;
-        }
-    }
-
     display() {
         this.displayBoard.display(null);
     }
 
     activate() {
         this.active = true;
-        this.scene.setUpdatePeriod(1000);
+        var replay = this;
+        setInterval(function(){
+            if (replay.replayIndex > replay.boards.length - 1) {
+                replay.active = false;
+            }
+            else {
+                replay.displayBoard.move(replay.boards[replay.replayIndex]);
+                replay.replayIndex++;
+            }}, 1000);
         this.replayIndex = 0;
     }
 

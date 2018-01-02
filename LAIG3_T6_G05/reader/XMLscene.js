@@ -260,12 +260,6 @@ XMLscene.prototype.update = function (currTime) {
         }
     }
 
-    if (this.game) {
-        if (this.game.viewReplay.active) {
-            this.game.viewReplay.update(currTime);
-        }
-    }
-
     this.currTime = currTime;
 
 }
