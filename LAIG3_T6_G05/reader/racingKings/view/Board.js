@@ -27,7 +27,7 @@ class Board {
         }
     }
 
-    move(board){
+    move(board) {
         let newBoard = JSON.parse(board).reverse();
         var posArray = this.compareBoards(newBoard);
         if (posArray[0]) {
@@ -44,21 +44,23 @@ class Board {
         return null;
     }
 
-    kill(piece){
-        let pieceClone = piece.clone();
-        var destination = this._getDestination();
-        piece.move(destination, 0.4);
-        var board = this;
-        setTimeout(function () {
-            destination.set(pieceClone);
-        }, 500);
-    
-        this.index++;
+    kill(piece) {
+        if (piece) {
+            let pieceClone = piece.clone();
+            var destination = this._getDestination();
+            piece.move(destination, 0.4);
+            var board = this;
+            setTimeout(function () {
+                destination.set(pieceClone);
+            }, 500);
+
+            this.index++;
+        }
 
     }
 
     updateBoard(newBoard) {
-        
+
         for (let row = 0; row < this.length; row++) {
             for (let col = 0; col < this.length; col++) {
                 this.board[row][col].update(newBoard[row][col]);
@@ -66,7 +68,7 @@ class Board {
         }
     }
 
-    compareBoards(newBoard){
+    compareBoards(newBoard) {
         var newPos;
         var oldPos;
         for (let row = 0; row < this.length; row++) {
@@ -111,7 +113,7 @@ class Board {
         return this.board[Row][Col];
     }
 
-    _getDestination(){
+    _getDestination() {
         return this.board[this.index % this.length][Math.floor(this.index / this.length)];
     }
 }

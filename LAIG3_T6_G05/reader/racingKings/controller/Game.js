@@ -116,10 +116,15 @@ class Game {
 
     move(board) {
         let piece = this.board.move(board);
+
         if (piece) {
             if (piece.type) {
+                this.viewReplay.addPiece(piece.clone());
                 this.sideBoard.kill(piece);
             }
+        }
+        else{
+            this.viewReplay.addPiece(null);
         }
     }
 
