@@ -493,7 +493,7 @@
             <MATERIAL id="null" />
             <TEXTURE id="castleWall" />
 
-            <TRANSLATION x="13" y="-33" z="-13" />
+            <TRANSLATION x="13" y="-40" z="-13" />
 
             <DESCENDANTS>
                 <NODEREF id="castleBuilding1" />
