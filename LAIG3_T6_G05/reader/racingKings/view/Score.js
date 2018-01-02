@@ -51,15 +51,15 @@ Score.prototype.display = function() {
         this.scene.whiteMaterial.apply();
         this.scene.scale(0.1, 0.1, 0.1);
         this.scene.pushMatrix();
-            this.scene.translate(25, 100, -150);
+            this.scene.translate(100, 50, -150);
             this.units.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
-            this.scene.translate(0, 100, -150);
+            this.scene.translate(75, 50, -150);
             this.dozens.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
-            this.scene.translate(-25, 100, -150);
+            this.scene.translate(50, 50, -150);
             this.hundreds.display();
         this.scene.popMatrix();
     this.scene.popMatrix();
