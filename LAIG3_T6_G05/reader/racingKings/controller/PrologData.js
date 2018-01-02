@@ -15,6 +15,14 @@ class PrologData{
         return this.gameMode;
     }
 
+    setGameState(game){
+        this.gameState = game;
+    }
+
+    setBoard(board){
+        this.board = board;
+    }
+
     update(board, gameState, gameMode){
         this.board = board;
         this.gameState = gameState;

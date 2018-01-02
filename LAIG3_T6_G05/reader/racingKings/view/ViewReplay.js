@@ -31,4 +31,13 @@ class ViewReplay {
         this.scene.setUpdatePeriod(1000);
         this.replayIndex = 0;
     }
+
+    getBoards(){
+        return this.boards;
+    }
+
+    removeLastBoard(){
+        let index = this.boards.length - 1;
+        this.boards.splice(index, 1);
+    }
 }
