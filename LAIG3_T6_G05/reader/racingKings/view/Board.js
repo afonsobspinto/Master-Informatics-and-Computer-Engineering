@@ -12,6 +12,7 @@ class Board {
             this.board[row] = new Array(this.length);
         }
         this._fillBoard();
+        this.index = 0;
 
     }
 
@@ -30,13 +31,27 @@ class Board {
         if (posArray[0]) {
             posArray[0].move(posArray[1]);
             var board = this;
-
             setTimeout(function () {
                 board.updateBoard(newBoard);
-            }, 500);
+            }, 510);
+            return posArray[1];
         }
 
         else { this.updateBoard(newBoard); }
+
+        return null;
+    }
+
+    kill(piece){
+        console.log(piece);
+        var destination = this._getDestination();
+        this.index++;
+        console.log(destination);
+        piece.move(destination);
+        var board = this;
+        setTimeout(function () {
+            destination = piece;
+        }, 510);
     }
 
     updateBoard(newBoard) {
@@ -94,6 +109,10 @@ class Board {
 
     at(Row, Col) {
         return this.board[Row][Col];
+    }
+
+    _getDestination(){
+        return this.board[this.index % this.length][this.index / this.length];
     }
 }
 
