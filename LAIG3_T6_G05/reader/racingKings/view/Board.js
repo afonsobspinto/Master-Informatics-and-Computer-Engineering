@@ -117,10 +117,12 @@ class Board {
         return this.board[this.index % this.length][Math.floor(this.index / this.length)];
     }
 
-    deleteLastPiece(){
-        this.index--;
-        this._getDestination().type = null;
-        this.display();
+    deleteLastPiece() {
+        if (this.index > 0) {
+            this.index--;
+            this._getDestination().type = null;
+            this.display();
+        }
     }
 }
 

@@ -133,21 +133,13 @@ class Game {
 
     undo() {
         let history = this.viewReplay.getBoards();
-        if (history.length > 2) {
-            if (this.prologData.getGameState === "blackToMove") {
-                this.board.move(history[history.length - 2]);
-                this.sideBoard.deleteLastPiece();
-                this.prologData.setGameState("whiteToMove");
-                this.prologData.setBoard(history[history.length - 2]);
-                this.viewReplay.removeLastBoard();
-            }
-            else {
-                this.board.move(history[history.length - 2]);
-                this.sideBoard.deleteLastPiece();
-                this.prologData.setGameState("blackToMove");
-                this.prologData.setBoard(history[history.length - 2]);
-                this.viewReplay.removeLastBoard();
-            }
+        if (history.length > 1) {
+            ((this.prologData.getGameState) === "blackToMove") ? this.prologData.setGameState("whiteToMove"): this.prologData.setGameState("blackToMove");
+            this.board.move(history[history.length - 2]);
+            this.sideBoard.deleteLastPiece();
+            this.prologData.setBoard(history[history.length - 2]);
+            this.viewReplay.removeLastBoard();
+            this.updateTimers(this.prologData.getGameState);
         }
         else
             alert("Nothing to undo");
