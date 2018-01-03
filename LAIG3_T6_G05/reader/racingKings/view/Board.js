@@ -116,6 +116,12 @@ class Board {
     _getDestination() {
         return this.board[this.index % this.length][Math.floor(this.index / this.length)];
     }
+
+    deleteLastPiece(){
+        this.index--;
+        this._getDestination().type = null;
+        this.display();
+    }
 }
 
 

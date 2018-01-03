@@ -136,12 +136,14 @@ class Game {
         if (history.length > 2) {
             if (this.prologData.getGameState === "blackToMove") {
                 this.board.move(history[history.length - 2]);
+                this.sideBoard.deleteLastPiece();
                 this.prologData.setGameState("whiteToMove");
                 this.prologData.setBoard(history[history.length - 2]);
                 this.viewReplay.removeLastBoard();
             }
             else {
                 this.board.move(history[history.length - 2]);
+                this.sideBoard.deleteLastPiece();
                 this.prologData.setGameState("blackToMove");
                 this.prologData.setBoard(history[history.length - 2]);
                 this.viewReplay.removeLastBoard();

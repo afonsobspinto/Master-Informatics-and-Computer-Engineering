@@ -25,7 +25,6 @@ class ViewReplay {
     activate() {
         this.active = true;
         var replay = this;
-        console.log(this.deadPieces);
         setInterval(function(){
             if (replay.replayIndex > replay.boards.length - 1) {
                 replay.active = false;
@@ -42,8 +41,14 @@ class ViewReplay {
         return this.boards;
     }
 
+    get getDeadPieces(){
+        return this.deadPieces;
+    }
+
     removeLastBoard(){
         let index = this.boards.length - 1;
         this.boards.splice(index, 1);
+        this.deadPieces.splice(index,1);
     }
+
 }
