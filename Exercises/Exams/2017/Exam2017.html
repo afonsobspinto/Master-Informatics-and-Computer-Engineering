@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Exam2017.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="Exam2017.js"></script>
+    <title>Exame 2017</title>
+</head>
+
+<body>
+    <h1>Exame 2017</h1>
+    <h2> Part 1 </h2>
+    <ol>
+        <li>C.</li>
+        <p>In order for two inputs with type radio to be considered in the same group, they must have the same name attribute:
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male
+                <br>
+                <input type="radio" name="gender" value="female"> Female
+                <br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+        </p>
+
+        <li>D.</li>
+        <section>
+            <article class="featured">
+                <h2> 1st Featured</h2>
+            </article>
+            <article class="notfeatured">
+                <h2>Not Featured</h2>
+            </article>
+            <article class="featured">
+                <h2> 2nd Featured</h2>
+            </article>
+        </section>
+
+        <li>B.</li>
+        <p>A Session Hijacking attack is done by Obtaining a session cookie that was sent insecurely.</p>
+
+
+        <li>A.</li>
+        <p>
+            <a href="https://crypto.stackexchange.com/questions/45377/why-cant-we-reverse-hashes">Hashes Are Irreversible</a>
+        </p>
+
+        <li>A.</li>
+        <p>When browsing a web site whose URL starts with https:// we can always be sure the communication is encrypted.</p>
+
+        <li>C.</li>
+        <p>Strict > Loose</p>
+
+        <li>B.</li>
+        <p>In JavaScript every function is actually a Function object.</p>
+
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/XPath/Axes/child">D.</a>
+        </li>
+    </ol>
+
+    <h2> Part 2 </h2>
+    <ol>
+        <li>
+            <div class="widget">
+                <ul id="todo">
+                    <li>Buy Bread</li>
+                    <li>Learn Guitar </li>
+                    <li class="important">Pay Bills</li>
+                    <li class="postponed">Wash Car</li>
+                </ul>
+            </div>
+
+            <p>
+                <table border="1">
+                    <tr>
+                        <th>R1</th>
+                        <th>R2</th>
+                        <th>R3</th>
+                        <th>R4</th>
+                        <th>R5</th>
+                        <th>R6</th>
+                    </tr>
+                    <tr>
+                        <td colspan="6" align="center">r(Inline Style, ID, Class / Attribute, Element)</td>
+                    </tr>
+                    <tr>
+                        <td>r(0,1,0,1)</td>
+                        <!--#4 -->
+                        <td>r(0,1,1,2)</td>
+                        <!--#6 -->
+                        <td>r(0,1,1,1)</td>
+                        <!--#2 -->
+
+                        <td>r(0,1,1,2)</td>
+                        <!--#1 -->
+                        <td>r(0,1,0,2)</td>
+                        <!--#3 -->
+                        <td>r(0,0,0,3)</td>
+                        <!--#5 -->
+                    </tr>
+                </table>
+            </p>
+
+            <p>
+                <table border="1">
+                    <tr>
+                        <th>Buy Bread</th>
+                        <th>Learn Guitar</th>
+                        <th>Pay Bills</th>
+                        <th>Wash Car</th>
+                    </tr>
+                    <tr>
+                        <td class="Cyan">Cyan</td>
+                        <td class="Magenta">Magenta</td>
+                        <td class="Magenta">Magenta</td>
+                        <td class="Magenta">Magenta</td>
+                    </tr>
+                </table>
+            </p>
+
+            <p>
+                <table border="1">
+                    <tr>
+                        <th>Buy Bread</th>
+                        <th>Learn Guitar</th>
+                        <th>Pay Bills</th>
+                        <th>Wash Car</th>
+                    </tr>
+                    <tr>
+                        <td class="Cyan">Cyan</td>
+                        <td class="Blue">Blue</td>
+                        <td class="Red">Red</td>
+                        <td class="Red">Red</td>
+                    </tr>
+                </table>
+            </p>
+
+        </li>
+
+        <li id="regex">
+            <p>Washing the washing machine while watching the washing machine washing washing</p>
+
+            <input type="text" id="regexVal" placeholder="regex" required>
+            <input type="text" id="answer" placeholder="answer" required>
+            <button type="button" onclick="getRegexExpression()">Submit</button>
+
+            <br>
+
+        </li>
+
+        <li>
+            <br>
+            <div id="photos">
+                <img class="large" src="large/dog.png">
+                <ul>
+                    <li>
+                        <img src="dog.png">
+                    </li>
+                    <li>
+                        <img src="cat.png">
+                    </li>
+                    <li>
+                        <img src="duck.png">
+                    </li>
+                </ul>
+                <a href="#" class="load">Load More</a>
+            </div>
+        </li>
+        <br>
+
+        <li>
+            <section id="XML">
+                    <input type="text" id="xpathAnswer" placeholder="xpathAnswer" required>
+                    <button type="button" onclick="getXpathValue()">Submit</button>
+            </section>
+
+        </li>
+    </ol>
+</body>
+
+</html>

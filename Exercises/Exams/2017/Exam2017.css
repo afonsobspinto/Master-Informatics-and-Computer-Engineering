@@ -1,0 +1,29 @@
+
+a{
+    text-decoration: none;
+}
+
+article.featured:first-child h2{
+    color: blue
+}
+
+div.widget ul#todo { color : green } 
+li + li + li { color : purple} 
+#todo li { color : magenta }
+#todo li ~ li { color : blue } 
+#todo li:first-child { color : cyan } 
+#todo li:nth-child(2) ~ li { color : red }
+
+
+.Cyan:hover{
+    color: cyan;
+}
+.Magenta:hover{
+    color: magenta
+}
+.Blue:hover{
+    color: blue;
+}
+.Red:hover{
+    color: red;
+}
