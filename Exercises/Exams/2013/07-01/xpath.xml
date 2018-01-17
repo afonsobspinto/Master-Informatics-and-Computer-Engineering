@@ -1,0 +1,26 @@
+<List xmlns="urn:list.products">
+	<product>
+		<name> A </name>
+		<parts>
+			<part count="3"> X3 </part>
+			<part count="1"> Y2 </part>
+			<part count="2"> Z6 </part>
+		</parts>
+	</product>
+	<product>
+		<name> B </name>
+		<parts>
+			<part count="1"> G3 </part>
+			<part count="2"> Y6 </part>
+		</parts>
+	</product>
+	<product>
+		<name> C </name>
+		<parts>
+			<part count="6"> K9 </part>
+			<part count="3"> Y6 </part>
+		</parts>
+	</product>
+</List>
+
+/List/product/parts/part[@count > 5]/../../name
