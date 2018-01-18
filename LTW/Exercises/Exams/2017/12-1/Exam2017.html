@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Exam2017.css">
+
+    <title>Exam 2017</title>
+</head>
+
+<body>
+
+    <h1> Exam 2017 </h1>
+
+    <h2> Part 1</h2>
+    <ol>
+        <li>B.</li>
+        <li>C.</li>
+        <li>D.</li>
+        <li>
+            <a href="https://stackoverflow.com/questions/22454609/should-i-hash-via-php-or-javascript">C.</a>
+        </li>
+        <li>B.</li>
+        <li>D.</li>
+        <li>C.</li>
+        <li>A.</li>
+
+    </ol>
+
+    <h2> Part 2 </h2>
+
+    <ol>
+        <li>
+            <div class="widget">
+                <ul id="todo">
+                    <li>Buy Bread</li>
+                    <li>Learn Guitar </li>
+                    <li class="important">Pay Bills</li>
+                    <li class="postponed">Wash Car</li>
+                </ul>
+            </div>
+            <br>
+
+            <table border="1">
+                <tr>
+                    <th>R1</th>
+                    <th>R2</th>
+                    <th>R3</th>
+                    <th>R4</th>
+                    <th>R5</th>
+                    <th>R6</th>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">r(Inline Style, ID, Class / Attribute, Element)</td>
+                </tr>
+                <tr>
+                    <td>R(0,0,1,1)</td>
+                    <!-- 4 -->
+                    <td>R(0,0,0,2)</td>
+                    <!-- 6 -->
+                    <td>R(0,1,1,2)</td>
+                    <!-- 7 -->
+                    <td>R(0,1,1,2)</td>
+                    <!-- 1 -->
+                    <td>R(0,0,1,2)</td>
+                    <!-- 3 -->
+                    <td>R(0,0,0,3)</td>
+                    <!-- 5 -->
+                </tr>
+            </table>
+
+            <br>
+            <table border="1">
+                <tr>
+                    <th>Buy Bread</th>
+                    <th>Learn Guitar</th>
+                    <th>Pay Bills</th>
+                    <th>Wash Car</th>
+                </tr>
+
+                <tr>
+                    <td>Blue</td>
+                    <td>Red</td>
+                    <td>Red</td>
+                    <td>Red</td>
+                </tr>
+            </table>
+
+            <br>
+            <table border="1">
+                <tr>
+                    <th>Buy Bread</th>
+                    <th>Learn Guitar</th>
+                    <th>Pay Bills</th>
+                    <th>Wash Car</th>
+                </tr>
+
+                <tr>
+                    <td>Blue</td>
+                    <td>Red</td>
+                    <td>Green</td>
+                    <td>Cyan</td>
+                </tr>
+            </table>
+
+        </li>
+
+
+        <li>
+            <p>Washing the washing machine while watching the washing machine washing washing</p>
+
+            <ol>
+                <li>/wa.*ing/:
+                    <p>Washing the
+                        <u>washing machine while watching the washing machine washing washing</u>
+                    </p>
+                </li>
+                <li>[a-z]{3}\b:
+                    <p>Wash
+                        <u>ing</u> the washing machine while watching the washing machine washing washing</p>
+                </li>
+                <li>(ing).*?\1:
+                    <p>Wash
+                        <u>ing the washing</u> machine while watching the washing machine washing washing</p>
+                </li>
+                <li>/^.{3}/:
+                    <p>
+                        <u>Was</u>hing the washing machine while watching the washing machine washing washing</p>
+                </li>
+                <li>(sh|ch)(?!ing):
+                    <p>Washing the washing ma
+                        <u>ch</u>ine while watching the washing machine washing washing</p>
+                </li>
+                <li>/(.+?).*?\1/:
+                    <p>W
+                        <u>ashing the wa</u>shing machine while watching the washing machine washing washing</p>
+                </li>
+            </ol>
+        </li>
+
+        <br>
+
+        <li>
+
+            <div id="products">
+                <ul>
+                    <li>Apple:
+                        <span class="qty">3</span>
+                        <a href="#">+</a>
+                    </li>
+                    <li>Banana:
+                        <span class="qty">5</span>
+                        <a href="#">+</a>
+                    </li>
+                    <li>Pear:
+                        <span class="qty">6</span>
+                        <a href="#">+</a>
+                    </li>
+                </ul>
+                <a href="#" class="buy">Buy</a>
+                <p class="total">0</p>
+            </div>
+
+
+        </li>
+    </ol>
+
+    <script src="Exam2017.js"></script>
+</body>
+
+</html>

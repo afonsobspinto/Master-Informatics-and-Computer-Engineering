@@ -1,0 +1,7 @@
+#first  div {color:  blue;}          
+div .header {color:  magenta ;}            
+p + p + div  :first-child {color:  red;} 
+
+h1 {color:  green ;}                         
+div + p {color:  cyan;}                
+p {color:  yellow ;}         

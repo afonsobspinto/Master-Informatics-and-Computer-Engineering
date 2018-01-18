@@ -1,0 +1,6 @@
+.selected {color:  blue;}                     
+li + li {color:  green;}                     
+#selection .other  li {color:  yellow ;}     
+ul :first-child {color:  magenta ;}          
+#selection p {color:  red;}                  
+#selection  li:first-child {color:  cyan;} 

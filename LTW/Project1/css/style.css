@@ -1,0 +1,405 @@
+html, body {margin: 0; padding: 0; height: 100%; text-align: center;}
+section {height: 100%;}
+a{text-decoration: none;}
+li{list-style-type:none;}
+
+h1, h2, h3, a{font-family: 'Roboto', sans-serif; font-weight: 500; color: black; text-transform: uppercase;}
+h2 {color: black;}
+h3{font-size: 40px; padding-top: 8%; margin-bottom: 5px;}
+h4, p {font-family: 'Roboto Slab', serif; color: #494949;}
+
+hr {width: 30px; height: 3px; background: #494949; border: 0; margin: 0 auto 40px auto;}
+#logo, li, img .button {transition: all 300ms;}
+
+/* HEADER *******/
+header {
+    width: 100%;
+    height: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+}
+
+#info {
+    width: 140px;
+    float: left;
+    margin: 10px 0 0 50px;
+}
+
+#info:hover {
+    opacity:0.5;
+}
+
+#info img {
+    width: 30%;
+}
+
+header nav {
+    float: right;
+    margin: 0 50px 0 0;
+}
+
+header nav ul li{
+    float: left;
+    margin-right: 25px;
+}
+
+header nav ul li a{
+    font-size: 16px;
+}
+
+header nav ul li:hover{
+    padding-top: 5px;
+}
+
+/* HOME ***********/
+
+#home {
+    background: url(../images/site/travels.png);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#home h1 {
+    margin: 60px auto 0 auto;
+    font-size: 110px;
+}
+
+#home p {
+    margin: 0 auto 0 auto;
+    font-size: 25px;
+}
+
+#home img{
+    margin: 200px auto 0 auto;
+}
+
+/* ABOUT **********/
+
+#about{
+    height: 50%;
+}
+
+#about h4{
+    font-size: 25px;
+}
+
+#about p{
+    width: 900px;
+    margin: 0 auto 0 auto;
+}
+
+/* TEAM **********************/
+
+#team {
+    background-color: #f0f0f0;
+    height: 850px;
+}
+
+#members {
+    display: inline-block;
+    width: 450px;
+    margin: 0 auto 0 auto;
+}
+
+#members ul {
+    padding: 0;
+}
+
+#members ul li{
+    width: 33%;
+}
+
+#members img{
+    height: 170px;
+}
+
+#members img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/*FOOTER **************/
+
+footer {
+    width: 100%;
+    height: 30px;
+    background-color: #3f3f3f;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p{
+    font-size: 12px;
+    color: #f0f0f0;
+}
+
+/*LOGIN **************/
+
+/*REGISTER **************/
+#user_register {
+    background-color: #fff;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 10%;
+    border-radius: 50%;
+}
+
+form input {
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: #494949;
+    outline: none;
+
+}
+
+form input:first-child{
+    margin-top: 10px;
+}
+
+form input{
+    width: 552px;
+    height: 30px;
+}
+
+.button {
+    background-color: #f0f0f0;
+    color: #494949;
+    width: 556px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #494949;
+    color: #f0f0f0;
+}
+
+#user_register #myForm .label {
+    display: inline-block;
+    margin: 20px;
+    height: 35px;
+}
+
+#user_register #myForm .gender {
+    width: 15px;
+    height: 15px;
+
+}
+
+/* TASKS AND TDLISTS ***************/
+
+#tasks{
+    float: left;
+    margin-top: 100px;
+    height: 70%;
+    width: 33%;
+}
+
+#tasks ul{
+    display: inline;
+}
+
+#tasks ul p{
+    font-family: "Georgia", serif;
+    margin: auto 50px auto 50px;
+
+}
+
+#tasks ul a img{
+    width: 10%;
+    height: auto;
+}
+
+/* ADD AND REMOVE *********/
+#add{
+    margin: 0 auto 50px auto;
+}
+
+#add li input{
+    display: inline;
+    width: 60%;
+    height: 50px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    text-indent: 18px;
+    padding: 0 60px 0 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: none;
+}
+
+#add li button{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+#add li button img{
+    margin-bottom: -10px;
+}
+
+#remove {
+    margin: 20px 20px 20px 20px;
+}
+
+#remove p{
+    display: inline;
+    width: 60%;
+    height: 50px;
+}
+
+#remove li a{
+    font-family: "Georgia", serif;
+    margin: auto 50px auto 50px;
+    color: #494949;
+    text-transform: capitalize;
+}
+
+#remove li button{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+#remove li button img{
+    margin-bottom: -10px;
+}
+
+#add2dl img {
+    height: 30px;
+    width: 30px;
+}
+
+#rem2dl img {
+    height: 30px;
+    width: 30px;
+}
+
+#addtask img {
+    height: 30px;
+    width: 30px;
+}
+
+#remtask img {
+    height: 30px;
+    width: 30px;
+}
+
+#comptask img {
+    height: 30px;
+    width: 30px;
+}
+
+#remcomptask img {
+    height: 30px;
+    width: 30px;
+}
+
+/* SEARCH ***********/
+#search{
+    margin-top: 100px;
+}
+
+/* PROFILE *******/
+#profile {
+    margin-top: 100px;
+    height: 40%;
+}
+
+#profile img{
+    width: 10%;
+    border-radius: 50%;
+}
+
+#profile table{
+    position: absolute;
+    transform: translate(-50%,0%);
+    left: 50%;
+    border-collapse: collapse;
+}
+
+#profile table, td{
+    font-family: "Georgia", serif;
+    border: 2px solid;
+    padding:6px;
+}
+
+button#edit{
+    height: 33px;
+    width: 33px;
+    padding: 0;
+    padding-left: 20px;
+}
+
+#edit img{
+    margin-left: -20px;
+}
+
+#edit img {
+    height: 30px;
+    width: 30px;
+}
+
+/* Responsive for max-width 681px ******/
+@media only screen and (max-width: 681px) {
+
+    header{
+        height: 25%;
+    }
+
+    #header nav ul li{
+        width: 100%;
+    }
+
+    #home h1 {
+        margin: 200px auto 0 auto;
+        font-size: 50px;
+    }
+
+    #home p {
+        margin: 0 auto 0 auto;
+        font-size: 20px;
+    }
+
+    #about p{
+        width: 300px;
+    }
+
+    #tasks{
+        margin-top: 200px;
+        width: 100%;
+    }
+
+    #tasks ul a img{
+        width: 5%;
+        height: auto;
+    }
+
+    #search{
+        margin-top: 200px;
+    }
+
+    #profile{
+        margin-top: 200px;
+    }
+}
+
+
+
