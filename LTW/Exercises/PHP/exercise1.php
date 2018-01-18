@@ -1,1 +1,0 @@
-<?php echo "<h1>Instala Linux!</h1>"?>
