@@ -1,7 +1,0 @@
-li:first-child {color:  blue}               /* R */
-div li {color:  red}                          /* R */
-div.widget  ul#todo {color:  cyan}          /* R */
-
-div > ul#todo .important {color:  green} /* R */
- ul li.postponed {color:  inherit}          /* R */
-li + li + li {color:  magenta}             /* R  
