@@ -17,7 +17,7 @@
 
 A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
-## Installation Procedure
+### Installation Procedure
 
  Setup - Project:
     Install the following pieces of software:
@@ -71,7 +71,7 @@ Tomás Oliveira - 40% - Helping integrate Libgdx, Logic, GUI, Tests
 
 It's safe to say that each one of us worked on the other partner's tasks and vice-versa.
 
-## User Manual
+### User Manual
 
 On the Menu, you can see three Buttons. SinglePlayer, MultiPlayer and Options.
 
