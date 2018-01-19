@@ -1,6 +1,6 @@
 # FEUP
 
-### AEDA/APlaceInTheSun
+### [AEDA/APlaceInTheSun](https://github.com/afonsobspinto/FEUP/tree/master/AEDA/APlaceInTheSun)
 The company "A place in the Sun" is dedicated to making reservations for accommodation in hotels, apartments, bednbreakfast, flats, and rooms in sharedhouses.
 
 ### [CAL/Supermarket At Home](https://github.com/afonsobspinto/FEUP/tree/master/CAL/Supermarket%20At%20Home)
@@ -11,7 +11,7 @@ Also, both Exact search, as well as approximate search, of the strings identifyi
 ### [BDAD/Online Shopping Center](https://github.com/afonsobspinto/FEUP/tree/master/BDAD/Online%20Shopping%20Center)
 The purpose of this project was to implement and interrogate a database. To do this, we created the conceptual model, configured this model for a relational system, deployed that schema to the SQLite database, entered data, and finally interrogated the database.
 
-### [CGRA/Final Project](https://github.com/afonsobspinto/FEUP/tree/master/CGRA/FinalProject)
+### CGRA/Final Project
 3D Computer Graphics project using WebGL 1.0
 
 ### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
@@ -41,7 +41,7 @@ Modeling a popular chess variant, [Racing Kings](https://lichess.org/variant/rac
 ### [PLOG/Optimization](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/Optimization)
 Modeling a teaching service distribution as a optimization problem using constraint logic programming.
 
-### PROG/Supermaket++ 
+### [PROG/Supermaket++](https://github.com/afonsobspinto/FEUP/tree/master/PROG/Supermaket++)
 Supermarket Management System
 	
 ### [RCOM/File Transfer](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/File%20Transfer)
