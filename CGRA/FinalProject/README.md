@@ -1,5 +1,4 @@
-## [CGRA-FEUP] Projeto Final - Yellow Submarine
-
+## Yellow Submarine
 
 An 3D Computer Graphics project using WebGL 1.0
 
