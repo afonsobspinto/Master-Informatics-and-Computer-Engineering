@@ -23,7 +23,7 @@ The graphical interface for the game developed in [Plog - Racing Kings](https://
 ### [LAIG/SnookerScene](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/SnookerScene)
 An application with a small 3D engine, capable of producing images of any scene through a text file that respects the XML format used.
 
-### LCOM/ChessProject
+### [LCOM/ChessProject](https://github.com/afonsobspinto/FEUP/tree/master/LCOM)
  ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
 
 ### [LPOO/Dungeon Keep](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/Dungeon%20Keep) 
