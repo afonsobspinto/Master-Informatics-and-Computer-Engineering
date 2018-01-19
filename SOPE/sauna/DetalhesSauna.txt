@@ -1,0 +1,14 @@
+Comando de invocação:
+  sauna <n. lugares>
+
+Saída Padrão:
+  standard output - Mensagens de Controlo e Estatísticas Finais;
+  standard error - Mensagens de Erro (seguido do termino do programa com retorno 1);
+
+Registos:
+
+  /tmp/bal.pid
+
+Outros:
+  Comunica com o Gerador através de pipes com nome.
+  Deve ser executado apenas após o Gerador.
