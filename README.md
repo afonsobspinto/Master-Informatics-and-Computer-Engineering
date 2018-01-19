@@ -3,18 +3,18 @@
 ### AEDA/APlaceInTheSun
 The company "A place in the Sun" is dedicated to making reservations for accommodation in hotels, apartments, bednbreakfast, flats, and rooms in sharedhouses.
 
-### CAL/Supermarket At Home/
+### [CAL/Supermarket At Home](https://github.com/afonsobspinto/FEUP/tree/master/CAL/Supermarket%20At%20Home)
 A supermarket chain wants to innovate and let its customers purchase over the Internet. 
 To monetize the service, the supermarket tries to group the largest number of purchases in a single trip.
 Also, both Exact search, as well as approximate search, of the strings identifying the names of the Streets and supermarkets are implemented.
 
-### BDAD/Online Shopping Center
+### [BDAD/Online Shopping Center](https://github.com/afonsobspinto/FEUP/tree/master/BDAD/Online%20Shopping%20Center)
 The purpose of this project was to implement and interrogate a database. To do this, we created the conceptual model, configured this model for a relational system, deployed that schema to the SQLite database, entered data, and finally interrogated the database.
 
-### CGRA/Final Project
+### [CGRA/Final Project](https://github.com/afonsobspinto/FEUP/tree/master/CGRA/FinalProject)
 3D Computer Graphics project using WebGL 1.0
 
-### FPRO/Poker 
+### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
 Poker Game - Five-card draw 
 
 ### [LAIG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/RacingKings)
