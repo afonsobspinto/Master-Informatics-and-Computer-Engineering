@@ -1,0 +1,27 @@
+enable
+8nortel
+configure terminal
+vlan 30
+
+interface fastethernet 0/1
+switchport mode access
+switchport access vlan 30
+
+interface fastethernet 0/4
+switchport mode access
+switchport access vlan 30
+
+vlan 31
+interface fastethernet 0/2
+switchport mode access
+switchport access vlan 31
+
+interface fastethernet 0/3
+switchport mode access
+switchport access vlan 31
+
+interface fastethernet 0/5
+switchport mode access
+switchport access vlan 31
+
+end
