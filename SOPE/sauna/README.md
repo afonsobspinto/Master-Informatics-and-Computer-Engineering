@@ -1,2 +1,6 @@
-# SOPE1617_T1G3
-Simulação de acesso a recurso partilhado: Gestor de Saunas
+# Sauna
+Simulation of access to shared resources: Saunas Manager
+
+## Authors
+* Afonso Pinto – [@afonsobspinto](https://github.com/afonsobspinto)
+* Tomás Oliveira – [@Toliveira97](https://github.com/Toliveira97)
