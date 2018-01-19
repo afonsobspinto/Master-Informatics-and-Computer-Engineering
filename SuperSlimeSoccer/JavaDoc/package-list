@@ -1,0 +1,14 @@
+com.feup.superslimefootball
+com.feup.superslimefootball.controller
+com.feup.superslimefootball.controller.entities
+com.feup.superslimefootball.controller.entities.GdxAI
+com.feup.superslimefootball.controller.entities.SlimeBodyBehaviours
+com.feup.superslimefootball.model
+com.feup.superslimefootball.model.entities
+com.feup.superslimefootball.network
+com.feup.superslimefootball.tests
+com.feup.superslimefootball.view
+com.feup.superslimefootball.view.entities
+com.feup.superslimefootball.view.scenes
+com.feup.superslimefootball.view.states
+com.feup.superslimefootball.view.utilities
