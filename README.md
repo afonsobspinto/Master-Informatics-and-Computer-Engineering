@@ -26,10 +26,10 @@ An application with a small 3D engine, capable of producing images of any scene 
 ### LCOM/ChessProject
  ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
 
-### LPOO/Dungeon Keep 
+### [LPOO/Dungeon Keep](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/Dungeon%20Keep) 
 "Unfairly captured by the tyrant ruler of your Realm, you have been thrown into a dark, damp and ghastly dungeon, left there to rot into forgetfulness... You keep yelling for the Guard, but he seems oblivious to your calls...You need to escape...wait...but...in the midst of all the fuss that was your capture, they forgot to lock your cell door...there is hope...but the task is not simple...will you have it in you to elude your jailers and make your way back to freedom?"
 
-### LPOO/SuperSlimeFootball
+### [LPOO/SuperSlimeFootball](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/SuperSlimeSoccer)
 A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ### [LTW/ToDoFeup](https://github.com/afonsobspinto/FEUP/tree/master/LTW/ToDoFeup)

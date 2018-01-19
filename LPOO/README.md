@@ -1,8 +1,23 @@
-# SuperSlimeFootball
+# LPOO
+
+## Dungeon Keep
+
+"Unfairly captured by the tyrant ruler of your Realm, you have been thrown into a dark, damp and ghastly dungeon, left there to rot into forgetfulness... You keep yelling for the Guard, but he seems oblivious to your calls...You need to escape...wait...but...in the midst of all the fuss that was your capture, they forgot to lock your cell door...there is hope...but the task is not simple...will you have it in you to elude your jailers and make your way back to freedom?"
+
+
+![menu preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LPOO/Dungeon%20Keep/src/gui/res/menuPreview.png?raw=true)
+
+
+![game preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LPOO/Dungeon%20Keep/src/gui/res/gamePreview.png?raw=true)
+
+
+![custom preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LPOO/Dungeon%20Keep/src/gui/res/customPreview.png?raw=true)
+
+## SuperSlimeFootball
 
 A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
-## Installation Procedure
+### Installation Procedure
 
  Setup - Project:
     Install the following pieces of software:
@@ -56,7 +71,7 @@ Tomás Oliveira - 40% - Helping integrate Libgdx, Logic, GUI, Tests
 
 It's safe to say that each one of us worked on the other partner's tasks and vice-versa.
 
-## User Manual
+### User Manual
 
 On the Menu, you can see three Buttons. SinglePlayer, MultiPlayer and Options.
 
