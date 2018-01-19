@@ -136,7 +136,11 @@ public class GameLogic implements Serializable {
 						|| hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; } }
 			else{ if(hero.isSymbolNearby(board, hero.position, '*')){ action = Action.CRAZYOGRE; }
 				else if(hero.isOgreNearby(board, crazyOgres)){ action = Action.STUNNED; } } 	}
-        switch (action) {
+        readActions(action);
+	}
+	
+	public void readActions(Action action){
+		switch (action) {
 		case NOACTION: break;
 		case GUARD: this.won = false; gameOn = false; break;
 		case CRAZYOGRE: this.won = false; gameOn = false; break;
@@ -147,7 +151,6 @@ public class GameLogic implements Serializable {
 		case STUNNED: break;
 		default: break; }
 	}
-	
 	/**
 	 * Returns true if the user won the game.
 	 * 

@@ -244,21 +244,7 @@ public class GamePanel extends JPanel {
 		for(int i = 0; i < game.getBoard().getRows(); i++){
 			for(int j = 0; j < game.getBoard().getColumns(); j++){
 				
-				if(game.getBoard().getBoardAt(i, j) == 'X')
-					drawCharacter(wall, g2d, i,j);	
-				
-				else if(game.getBoard().getBoardAt(i, j) == 'I')
-					drawCharacter(door, g2d, i,j);	
-								
-				else if(game.getBoard().getBoardAt(i, j) == 'S')
-					drawCharacter(openDoor, g2d, i,j);	
-				
-				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever() && game.isTriggeredLever())
-					drawCharacter(leverActivated, g2d, i,j); 
-				else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
-					drawCharacter(lever, g2d, i,j); 
-				else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
-					drawCharacter(key, g2d, i,j);
+				readBoard(i,j,g2d);
 			}
 		}
 		
@@ -340,14 +326,7 @@ public class GamePanel extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) { if(customMap){
 				if(SwingUtilities.isLeftMouseButton(e)){ if(mouseCell.getY() == game.getBoard().getColumns())
-						switch (mouseCell.getX()) { 
-						case 0: if(!haveHero) charSelected = 'H'; break;
-						case 1: if(!haveGuard && ogres==0) charSelected = 'G'; break; 
-						case 2: if(!haveGuard) charSelected = 'O'; break;
-						case 3: charSelected = 'X'; break;
-						case 4: if(levers==0) charSelected = 'k'; break;
-						case 5: if(keys == 0) charSelected = 'L'; break; 
-						case 6: charSelected = 'I'; break; default: break; 	} }
+						readMouseCell(); }
 				else if(SwingUtilities.isRightMouseButton(e)){ if(mouseCell.equals(game.getHero().getPosition())){
 						game.getHero().setPosition(new Coord(-2, -2)); haveHero = false; }
 					else if(mouseCell.equals(game.getGuard().getPosition())){ game.getGuard().setPosition(new Coord(-2, -2));
@@ -393,6 +372,17 @@ public class GamePanel extends JPanel {
 			updateMouse(e);
 		}
 
+	}
+	
+	private void readMouseCell(){
+		switch (mouseCell.getX()) { 
+		case 0: if(!haveHero) charSelected = 'H'; break;
+		case 1: if(!haveGuard && ogres==0) charSelected = 'G'; break; 
+		case 2: if(!haveGuard) charSelected = 'O'; break;
+		case 3: charSelected = 'X'; break;
+		case 4: if(levers==0) charSelected = 'k'; break;
+		case 5: if(keys == 0) charSelected = 'L'; break; 
+		case 6: charSelected = 'I'; break; default: break; 	}
 	}
 
 	/**
@@ -500,6 +490,24 @@ public class GamePanel extends JPanel {
 
 		}
 		
+	}
+	
+	private void readBoard(int i, int j, Graphics g2d){
+		if(game.getBoard().getBoardAt(i, j) == 'X')
+			drawCharacter(wall, g2d, i,j);	
+		
+		else if(game.getBoard().getBoardAt(i, j) == 'I')
+			drawCharacter(door, g2d, i,j);	
+						
+		else if(game.getBoard().getBoardAt(i, j) == 'S')
+			drawCharacter(openDoor, g2d, i,j);	
+		
+		else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever() && game.isTriggeredLever())
+			drawCharacter(leverActivated, g2d, i,j); 
+		else if (game.getBoard().getBoardAt(i, j) == 'k' && game.getLevel().isHaveLever())
+			drawCharacter(lever, g2d, i,j); 
+		else if (game.getBoard().getBoardAt(i, j) == 'k') //In this case is key
+			drawCharacter(key, g2d, i,j);
 	}
 	
 }
