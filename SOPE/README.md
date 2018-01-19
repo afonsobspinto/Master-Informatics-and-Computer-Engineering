@@ -1,4 +1,9 @@
-# Sfind
+# SOPE
+
+## Sauna
+Simulation of access to shared resources: Saunas Manager
+
+## Sfind
 Simplified version of find command
 
 ## Authors
