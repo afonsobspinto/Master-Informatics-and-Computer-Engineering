@@ -283,6 +283,13 @@ int isPieceSelected (int flag){
 }
 
 int mouseInside(int x1, int y1, int x2, int y2){
+//	printf("\n\n");
+//	printf("x1: %d \n", x1);
+//	printf("x: %d \n", getMouse()->x- CORRECTION);
+//	printf("x2: %d \n", x2);
+//	printf("y1: %d \n", y1);
+//	printf("y: %d \n", getMouse()->y - CORRECTION);
+//	printf("y2: %d \n", y2);
 
 	return x1<= getMouse()->x - CORRECTION && getMouse()->x - CORRECTION <=x2
 			&& y1<= getMouse()->y - CORRECTION && getMouse()->y - CORRECTION <= y2;
