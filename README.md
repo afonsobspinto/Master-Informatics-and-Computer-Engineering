@@ -50,10 +50,10 @@ Implementation of a communication protocol for transmitting files through the se
 ### [RCOM/FTP Client](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/FTP%20Client)
 Development of an FTP download application.
 
-### SOPE/sfind 
+### [SOPE/sfind](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sfind)
 Simplified version of find command
 
-### SOPE/sauna 
+### [SOPE/sauna](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sauna) 
 Simulation of access to shared resources: Saunas Manager
 
 
