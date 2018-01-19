@@ -44,6 +44,12 @@ Modeling a teaching service distribution as a optimization problem using constra
 ### PROG/Supermaket++ 
 Supermarket Management System
 	
+### [RCOM/File Transfer](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/File%20Transfer)
+Implementation of a communication protocol for transmitting files through the serial port RS-232.
+
+### [RCOM/FTP Client](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/FTP%20Client)
+Development of an FTP download application.
+
 ### SOPE/sfind 
 Simplified version of find command
 
