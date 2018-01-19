@@ -573,7 +573,9 @@ string SuperMarketChain::getApprString(string r, bool roads) {
 
 	  using namespace std::chrono;
 
-	  cout << "Data Size: " << roadWSNames->size() << endl;
+	  cout << allNodes->size() << " ";
+
+	  cout << roadWSNames->size() << " ";
 
 	  steady_clock::time_point t1 = steady_clock::now();
 
@@ -595,7 +597,14 @@ string SuperMarketChain::getApprString(string r, bool roads) {
 
 	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
-	std::cout << "It took me " << time_span.count() << " seconds." << endl;
+	std::cout << time_span.count() << " ";
+
+
+
+
+
+
+
 
 	if(scores[0].first==0){
 		return r;
