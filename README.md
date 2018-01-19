@@ -18,7 +18,7 @@ The purpose of this project was to implement and interrogate a database. To do t
 Poker Game - Five-card draw 
 
 ### [LAIG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/RacingKings)
-The graphical interface for the game developed in Plog - Racing Kings, using JavaScript and WebGL technology.
+The graphical interface for the game developed in [Plog](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings) - Racing Kings, using JavaScript and WebGL technology.
 
 ### [LAIG/SnookerScene](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/SnookerScene)
 An application with a small 3D engine, capable of producing images of any scene through a text file that respects the XML format used.
@@ -34,6 +34,12 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ### [LTW/ToDoFeup](https://github.com/afonsobspinto/FEUP/tree/master/LTW/ToDoFeup)
 A web application where users can store and manage to-do lists.
+
+### [PLOG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings)
+Modeling a popular chess variant, [Racing Kings](https://lichess.org/variant/racingKings), using logical programming.
+
+### [PLOG/Optimization](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/Optimization)
+Modeling a teaching service distribution as a optimization problem using constraint logic programming.
 
 ### PROG/Supermaket++ 
 Supermarket Management System
