@@ -1,7 +1,0 @@
-Elementos do Grupo:
-up201503316 - Afonso Pinto
-up201504746 - Tomas Oliveira
-
-Race Conditions:
-Para evitar situações de acesso a elementos partilhados (mais concretamente aos 'atributos' da sauna) por diferentes threads, recorreu-se a um mutex global, 
-juntamente com uma variável de condição (de modo a permitir notificar a thread principal quando houvesse um lugar disponível).
