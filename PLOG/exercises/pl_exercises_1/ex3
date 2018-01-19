@@ -1,0 +1,11 @@
+% --- a) Maias Writter? --- %
+
+wrote(X,'Os Maias').
+
+
+% --- b) Portuguese Writter of Novels --- %
+
+isFromNationality(X,'Portugues'), wrote(X, Y), isFromGender(Y,'Romance').
+
+% --- c) Fiction Authors and more genders  --- %
+wrote(X,Y), isFromGender(Y,F), F = 'Ficcao', wrote(X,Z), isFromGender(Y,W), \+(F=W).

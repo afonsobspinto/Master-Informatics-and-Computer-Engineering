@@ -1,0 +1,17 @@
+% --- a) porto winner --- %
+
+winner(X,'Porto').
+
+
+% --- b) winner team porto --- %
+
+teamWon(X,'Porto').
+
+% --- c) more than 1 circuit won --- %
+winner(X,C1), winner(X,C2), \+(C1=C2).
+
+% --- d) more than 8 gates --- %
+gates(X, G), G > 8.
+
+% --- e) not Edge540 --- %
+hasPlane(X, Y), \+(Y='Edge540').

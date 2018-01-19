@@ -1,0 +1,13 @@
+% --- a) students from teacher X --- %
+
+isStudentOf(A,X).
+
+
+% --- b) people from college --- %
+
+isPersonOn(P,X).
+
+
+% --- c) colleagues --- %
+
+isColleagueOf(C,X).
