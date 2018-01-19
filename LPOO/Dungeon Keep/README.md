@@ -10,3 +10,9 @@
 
 
 ![custom preview](https://github.com/FooWalksIntoABar/FEUP/blob/master/LPOO/Dungeon%20Keep/src/gui/res/customPreview.png?raw=true)
+
+
+## Authors
+* Afonso Pinto – [@afonsobspinto](https://github.com/afonsobspinto)
+* Tomás Oliveira – [@Toliveira97](https://github.com/Toliveira97)
+
