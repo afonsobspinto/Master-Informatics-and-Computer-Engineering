@@ -11,7 +11,7 @@ Also, both Exact search, as well as approximate search, of the strings identifyi
 ### [BDAD/Online Shopping Center](https://github.com/afonsobspinto/FEUP/tree/master/BDAD/Online%20Shopping%20Center)
 The purpose of this project was to implement and interrogate a database. To do this, we created the conceptual model, configured this model for a relational system, deployed that schema to the SQLite database, entered data, and finally interrogated the database.
 
-### CGRA/Final Project
+### [CGRA/Final Project](https://github.com/afonsobspinto/FEUP/tree/master/CGRA/FinalProject)
 3D Computer Graphics project using WebGL 1.0
 
 ### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
