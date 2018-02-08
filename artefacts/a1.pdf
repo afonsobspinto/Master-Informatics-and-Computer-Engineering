@@ -1,0 +1,19 @@
+## A1. BidBay
+
+This project intends to specify and develop an information system with a web interface to support an online auction service, that allows users to auction and bid on a wide variety of goods and services worldwide.
+
+BidBay is essential, not only because there is a need for a marketplace, where users can do all of their shopping (new, second hand, handcrafted or miscellaneous items) where the seller is another user like them, but also because it can offer small businesses a storefront for their products.
+
+Main Features:
+ * Auctions in this system have a description and can be seen by any user, registered or not.
+ * Auctions and registered users can be searched by any user.
+ * Registered Users can create auctions, bid on them and send messages to other registered users about the auction.
+ * Users can be rated by other registered users.
+ * Auctions can be canceled by the creator or administrator.
+
+Users of this system can be separated into three groups with different permissions:
+ * Administrator: which can cancel auctions from the “User” group and block or delete their accounts.
+ * User: which can create auctions on the system, bid on them, manage their auctions (cancel, close, etc) and manage their accounts (delete, update, etc). 
+ * Visitor: which can view auctions in the system.
+
+Any visitor to the website can create a “User” account, while an administrator account can only be created by other administrators.
