@@ -11,9 +11,9 @@ public class Server {
     private DatagramSocket socket;
 
 
-    Server(int portNumber) throws SocketException {
-        this.licensPlates = new HashMap<>();
-        this.portNumber = portNumber;
+    Server(String[] args) throws SocketException {
+    	parseInputs(args);
+    	System.out.println(this.portNumber);
         this.socket = new DatagramSocket(this.portNumber);
 
     }
@@ -32,9 +32,8 @@ public class Server {
 
 
     public static void main(String[] args) throws IOException {
-        int portNumber = parseInput(args);
-        if(portNumber > 0){
-            Server server = new Server(portNumber);
+        if(args.length == 1){
+            Server server = new Server(args);
             while (true){
                 server.receive();
             }
@@ -45,19 +44,13 @@ public class Server {
 
     }
 
-    private static int parseInput(String[] args){
-        if (args.length != 1) {
-            return -1;
-        }
+    private void parseInputs(String[] args){
 
-        int portNumber = -1;
         String possibleNumber = args[0];
         boolean isNumber = Pattern.matches("[0-9]+", possibleNumber);
         if(isNumber){
-            portNumber = Integer.parseInt(possibleNumber);
+            this.portNumber = Integer.parseInt(possibleNumber);
         }
-
-        return portNumber;
 
     }
 }
