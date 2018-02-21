@@ -12,8 +12,7 @@ public class Server {
 
 
     Server(String[] args) throws SocketException {
-    	parseInputs(args);
-    	System.out.println(this.portNumber);
+        this.portNumber = Integer.parseInt(args[0]);
         this.socket = new DatagramSocket(this.portNumber);
 
     }
@@ -25,32 +24,28 @@ public class Server {
         receivePacket = new DatagramPacket(buffer, buffer.length);
         socket.receive(receivePacket);
 
-        String received = new String(receivePacket.getData());
-        System.out.println("Echoed Message: " + received);
+        String received = new String(receivePacket.getData(), 0, receivePacket.getLength());
+        System.out.println("Message received: " + received);
 
     }
 
 
     public static void main(String[] args) throws IOException {
-        if(args.length == 1){
-            Server server = new Server(args);
-            while (true){
-                server.receive();
+        if (args.length == 1) {
+            if (parseInputs(args)) {
+                Server server = new Server(args);
+                System.out.println("Started Server on port " + args[0]);
+                while (true) {
+                    server.receive();
+                }
+                //return;
             }
         }
-        else{
-            System.out.println("Usage: java Server <port_number>");
-        }
+        System.out.println("Usage: java Server <portNumber>");
 
     }
 
-    private void parseInputs(String[] args){
-
-        String possibleNumber = args[0];
-        boolean isNumber = Pattern.matches("[0-9]+", possibleNumber);
-        if(isNumber){
-            this.portNumber = Integer.parseInt(possibleNumber);
-        }
-
+    private static boolean parseInputs(String[] args) {
+        return Pattern.matches("[0-9]+", args[0]);
     }
 }

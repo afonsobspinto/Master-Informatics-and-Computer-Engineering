@@ -13,7 +13,9 @@ public class Client {
     private String data;
 
     Client(String[] args) throws SocketException {
-        parseInputs(args);
+        this.hostname = args[0];
+        this.portNumber = Integer.parseInt(args[1]);
+        this.data = args[2].toUpperCase().equals("REGISTER") ? args[2] + args[3] + args[4] : args[2] + args[3];
         socket = new DatagramSocket();
 
     }
@@ -25,33 +27,35 @@ public class Client {
         socket.send(sendPacket);
     }
 
-    //TODO: Make it crash when args are not correct
-    private void parseInputs(String[] args){
-        this.hostname = args[0];
-        String possibleNumber = args[1];
-        boolean isNumber = Pattern.matches("[0-9]+", possibleNumber);
-        if(isNumber){
-            this.portNumber = Integer.parseInt(possibleNumber);
-        }
-        this.data = args[2];
 
-        String possiblePlateNumber = args[3];
-        boolean isPlate = Pattern.matches("^(\\w{2}-?\\w{2}-?\\w{2})$", possiblePlateNumber);
-        if(isPlate){
-            this.data += possiblePlateNumber;
+
+    public static void main(String[] args) throws IOException {
+        if (args.length == 4 || args.length == 5) {
+            if(parseInputs(args)){
+                Client client = new Client(args);
+                client.sendRequest();
+                return;
+            }
+
         }
-        this.data += this.data.equals("register") ? args[4] : "";
+
+        System.out.println("Usage: java Client <hostname> <portNumber> <oper> <opnd>");
 
 
     }
 
-    public static void main(String[] args) throws SocketException {
-        if (!(args.length == 4 || args.length == 5)) {
-            System.out.println("Usage: java Echo <hostname> <port_number> <oper> <opnd>");
-            return;
+    private static boolean parseInputs(String[] args){
+        boolean isNumber = Pattern.matches("[0-9]+", args[1]);
+        boolean isPlate = Pattern.matches("^(\\w{2}-?\\w{2}-?\\w{2})$", args[3]);
+        String oper = args[2].toUpperCase();
+        boolean isValidOper = oper.equals("REGISTER") || oper.equals("LOOKUP");
+        boolean isValidOpnd = true;
+        if(oper.equals("REGISTER")){
+             if(args.length<5){
+                 isValidOpnd = false;
+             }
         }
-
-        Client client = new Client(args);
+        return isNumber && isPlate && isValidOper && isValidOpnd;
 
     }
 }
