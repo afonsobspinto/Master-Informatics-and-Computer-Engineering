@@ -35,7 +35,7 @@
                 </ul>
                 <ul class="nav navbar-nav ml-auto justify-content-end" id="authentication-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link border-right" href="#">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Register</a>
@@ -44,19 +44,62 @@
             </div>
         </nav>
 
-        <!-- serach header -->
-        <nav class="navbar navbar-dark bg-primary">
-            <form>
-                <div class="form-row">
-                    <input class="form-control mr-sm-2 col" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                    <button class="btn btn-light" type="submit">Search</button>
-                </div>
-            </form>
-        </nav>
         
-
+        
         <div class="container">
-            <h1>Hello, world!</h1>
+            
+            <!-- serach header -->
+            <nav class="container-fluid bg-primary mt-0">
+                <form>
+                    <div class="d-flex p-2 py-3">
+                        <input class="form-control col rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                        <button class="btn btn-light rounded-0" type="submit">Search</button>
+                    </div>
+                </form>
+            </nav>
+
+            <!-- auctions carousel -->
+            <div id="carouselAuctions" class="carousel slide mt-3" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <!-- carousel items here, change <img> tag with data and <a> tag with link to auction -->
+                        <a href="#">
+                            <img class="d-block w-100" src="https://placeimg.com/640/480/tech" alt="First slide">
+                        </a>
+                        <div class="carousel-caption  d-md-block">
+                            <h3>Auction Title</h3>
+                            <p>15$, 5 bids</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#">
+                            <img class="d-block w-100" src="https://placeimg.com/640/480/arch" alt="Second slide">
+                        </a>
+                        <div class="carousel-caption  d-md-block">
+                            <h3>Auction Title</h3>
+                            <p>15$, 5 bids</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#">
+                            <img class="d-block w-100" src="https://placeimg.com/640/480/nature" alt="Third slide">
+                        </a>
+                        <div class="carousel-caption  d-md-block">
+                            <h3>Auction Title</h3>
+                            <p>15$, 5 bids</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselAuctions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselAuctions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
         </div>
     </body>
 </html>
