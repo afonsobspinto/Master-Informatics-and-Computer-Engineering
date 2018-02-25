@@ -39,7 +39,7 @@
                 </ul>
                 <ul class="nav navbar-nav ml-auto justify-content-end" id="authentication-nav">
                     <li class="nav-item">
-                        <a class="nav-link border-right" href="#">Login</a>
+                        <a class="nav-link" href="#">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Register</a>
@@ -112,79 +112,90 @@
             </div>
 
             <!-- Recent Auctions Grid -->
-            <!-- can be the 4 most recent -->
+            <!-- can be the 6 most recent -->
             <div class="container mt-5 auction-grid">
                 <h3 class="border-bottom pb-1 mb-2">Most Recent Auctions: </h3>
-                <div class="row">
-                    <div class="col-md mt-3">
-                        <div class="row">
-                             <!-- recent auction item, place data here, generate these items  -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/tech" alt="auction image">
-                                </a>
+                <div class="card-columns">
+                    <!-- reference to auction here -->
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <!-- place auction data here -->
+                            <!-- images can be any size -->
+                            <img class="card-img-top" src="https://placeimg.com/640/640/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-md mt-3">
-                        <div class="row">
-                            <!-- item 2 -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/arch" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/960/480/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md mt-3">
-                        <div class="row">
-                            <!-- recent auction item, place data here, generate these items  -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/nature" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/640/nature" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-md mt-3">
-                        <div class="row">
-                            <!-- item 2 -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/any" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/480/arch" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
+                        </a>
+                    </div>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/300/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/640/arch" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -193,76 +204,87 @@
             <!-- can be 4 that are ending soon -->
             <div class="container mt-5 auction-grid">
                 <h3 class="border-bottom pb-1 mb-2">Ending Soon: </h3>
-                <div class="row">
-                    <div class="col-md mt-3">
-                        <div class="row">
-                                <!-- recent auction item, place data here, generate these items  -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/tech" alt="auction image">
-                                </a>
+                <div class="card-columns">
+                    <!-- reference to auction here -->
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <!-- place auction data here -->
+                            <!-- images can be any size -->
+                            <img class="card-img-top" src="https://placeimg.com/640/640/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-md mt-3">
-                        <div class="row">
-                            <!-- item 2 -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/arch" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/960/480/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md mt-3">
-                        <div class="row">
-                                <!-- recent auction item, place data here, generate these items  -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/nature" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/640/nature" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-md mt-3">
-                        <div class="row">
-                            <!-- item 2 -->
-                            <div class="col">
-                                <a href="#">
-                                    <img class="w-100" src="https://placeimg.com/480/480/any" alt="auction image">
-                                </a>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/480/arch" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                            <div class="col">
-                                <a href="#" >
-                                    <h5>Auction Title</h5>
-                                    <p class="d-none d-sm-block d-xs-block">Description: maybe the first 10 or 20 words ... </p>
-                                    <p class="text-secondary">10$, 5 bids</p>
-                                </a>   
+                        </a>
+                    </div>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/300/tech" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+                    <div class="card mb-3 mt-2">
+                        <a href="#">
+                            <img class="card-img-top" src="https://placeimg.com/480/640/arch" alt="auction image">
+                            <div class="card-body">
+                                <h3 class="card-title">Auction Title</h3>
+                                <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                                <p class="card-text text-secondary"> 10$, 5 bids</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Submitted 5 mins ago</small>
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
