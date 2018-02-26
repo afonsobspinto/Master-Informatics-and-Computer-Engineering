@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Landing Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+    <!-- awesome fonts -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- bootswatch flatly theme -->
+    <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- links -->
+    <link rel="stylesheet" href="css/new.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+</head>
+<body>
+
+<main>
+    <!-- header -->
+    <!-- header -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light ">
+        <a class="navbar-brand" href="#">BidBay</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto justify-content-end" id="authentication-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+                <div class="format">
+                    <span class="sidebar-title">Look for</span>
+                    <button type="button" class="btn-seeall btn btn-outline-dark"> see all</button>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> All listings </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">Auction </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">Buy It Now</label>
+                </div>
+                </div>
+
+                <div class="price">
+                   <h5> Price </h5>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                        <input class="col-md-5" type="number" min="0"  placeholder="Max">
+                    </div>
+                </div>
+
+            <div class="category">
+                <h5> Categories </h5>
+                <li>
+                    <a href="#">Technology</a>
+                </li>
+                <li>
+                    <a href="#">Clothes</a>
+                </li>
+                <li>
+                    <a href="#">Automobiles</a>
+                </li>
+            </div>
+
+            <div class="location">
+                <h5> Item Location </h5>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> BidBay </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> Asia </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">Africa </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">America</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">Europe</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio">Australia</label>
+                </div>
+            </div>
+
+            <div class="condition">
+                <h5> Condition </h5>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> New </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> Used </label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio"> Not Specified </label>
+                </div>
+            </div>
+
+        </ul>
+    </div>
+
+    <div class="container" id="page-content-wrapper">
+
+        <!-- serach bar -->
+        <nav class="container-fluid bg-secondary mt-0 sticky-top">
+            <form>
+                <div class="d-flex px-lg-2 py-3">
+                    <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                    <select class="form-control rounded-0 col-2 d-none d-sm-block d-xs-block">
+                        <option selected> All Categories </option>
+                        <option>Technology</option>
+                        <option>Automobiles</option>
+                        <option>Clothes</option>
+                    </select>
+                    <button class="btn btn-light rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </nav>
+
+
+        <div class="container-fluid" id="main">
+                <div class="col-md-12">
+                    <ul>
+                        <li id="1res">
+                            <div class="row">
+                                <div>
+                                    <img src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="250" height="150">
+                                </div>
+                                <div class="col align-self-center">
+                                    <h4>
+                                        <a href="/cenas">Computador para minar Bitcoins</a>
+                                    </h4>
+                                    <div class="row padding-product-info">
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Sub Categoria</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>N de Bids</p>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Time</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>Autor</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="2res">
+                            <div class="row">
+                                <div>
+                                    <img src="http://d26lpennugtm8s.cloudfront.net/stores/485/599/products/tenis-nike-air-pernix-branco-loja-hdr-lojahdr-com-441-6e4814cc2c28839f4f15050750878402-640-0.jpg" alt="result 1" width="250" height="150">
+                                </div>
+                                <div class="col align-self-center">
+                                    <h4>
+                                        <a href="/cenas">Sapatilha do Chinês Kim Ung Dos</a>
+                                    </h4>
+                                    <div class="row padding-product-info">
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Sub Categoria</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>N de Bids</p>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Time</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>Autor</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="3res">
+                            <div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <img src="https://www.renaultretail.co.uk/assets/rr/images/vehicle/new-renault/vehicle-images/cars/renault-clio/range/06-renault-clio-titanium-grey.png" alt="result 1" width="250" height="150">
+                                </div>
+                                <div class="col align-self-center">
+                                    <h4>
+                                        <a href="/cenas">Carro em 12º mão</a>
+                                    </h4>
+                                    <div class="row padding-product-info">
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Sub Categoria</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>N de Bids</p>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <p>Time</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>Autor</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <!-- footer -->
+        <nav class="navbar text-white bg-dark mt-5 sticky-bottom">
+            <ul class="nav navbar-nav mx-auto">
+                Website created by group 64 for LBAW
+            </ul>
+        </nav>
+    </div>
+</main>
+</body>
+</html>
