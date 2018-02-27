@@ -15,7 +15,7 @@ public class Client {
     Client(String[] args) throws SocketException {
         this.hostname = args[0];
         this.portNumber = Integer.parseInt(args[1]);
-        this.data = args[2].toUpperCase().equals("REGISTER") ? args[2] + args[3] + args[4] : args[2] + args[3];
+        this.data = args[2].toUpperCase().equals("REGISTER") ? args[2] + " " + args[3] + " " + args[4] : args[2] + " " + args[3];
         socket = new DatagramSocket();
 
     }
