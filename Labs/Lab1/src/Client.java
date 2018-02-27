@@ -11,8 +11,9 @@ public class Client {
     private int portNumber;
     private DatagramSocket socket;
     private String data;
+    private final static int SOCKET_TIMEOUT = 3000;
 
-    Client(String[] args) throws SocketException {
+    private Client(String[] args) throws SocketException {
         this.hostname = args[0];
         this.portNumber = Integer.parseInt(args[1]);
         this.data = args[2].toUpperCase().equals("REGISTER") ? args[2] + " " + args[3] + " " + args[4] : args[2] + " " + args[3];
@@ -20,11 +21,29 @@ public class Client {
 
     }
 
-    public void sendRequest() throws IOException {
+    private void sendRequest() throws IOException {
         byte[] buffer = this.data.getBytes();
         InetAddress address = InetAddress.getByName(this.hostname);
         DatagramPacket sendPacket = new DatagramPacket(buffer, buffer.length, address, this.portNumber);
         socket.send(sendPacket);
+        receive();
+    }
+
+    private void receive() throws IOException {
+        byte[] buffer = new byte[256];
+        DatagramPacket receivePacket;
+
+        receivePacket = new DatagramPacket(buffer, buffer.length);
+        this.socket.setSoTimeout(this.SOCKET_TIMEOUT);
+        try {
+            socket.receive(receivePacket);
+        }catch (IOException e){
+            sendRequest();
+        }
+
+        String received = new String(receivePacket.getData(), 0, receivePacket.getLength());
+        System.out.println("Echoed Message: " + received);
+
     }
 
 
