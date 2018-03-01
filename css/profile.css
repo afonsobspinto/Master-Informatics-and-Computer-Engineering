@@ -1,4 +1,5 @@
-.monospaced { font-family: 'Ubuntu Mono', monospaced ; }
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced, serif ; }
 
 .bid .btn-qty {
     width: 46px;
