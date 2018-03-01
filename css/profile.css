@@ -7,6 +7,27 @@
 
 .bid .btn { border-radius: 0; }
 
+#product-section{
+    margin-top: 20px;
+}
+
+#product-section > div > div:nth-child(1) > img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+#product-section > div > div:nth-child(1) > img:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
 #product-section > div > ul{
     margin-top: 50px;
+    margin-right: 500px;
+    margin-bottom: 20px;
+}
+
+#main > div > ul > li{
+    padding-left: 20px;
 }

@@ -31,7 +31,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -43,7 +43,17 @@
         </ul>
         <ul class="nav navbar-nav ml-auto justify-content-end" id="authentication-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <div class="dropdown show">
+                    <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hi JohnDoe39012
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a class="dropdown-item" href="#">View Messages</a>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -54,7 +64,7 @@
     <div class="row">
         <div class="col-md-6">
             <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg"
-                 alt="Picture" style="width:30%">
+                 alt="Picture" style="width:50%">
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -91,7 +101,81 @@
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi aspernatur aut cumque doloremque fugit, illo ipsam laudantium minus, mollitia nostrum nulla, numquam porro possimus quas sed ullam vero? Laboriosam!</div>
-            <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="items-tab">...</div>
+            <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="items-tab">
+                <div class="container-fluid" id="main">
+                    <div class="col-md-12">
+                        <ul>
+                            <li id="1res">
+                                <div class="row">
+                                    <div>
+                                        <img src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="/cenas">Computador para minar Bitcoins</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>Sub Categoria</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Time</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="2res">
+                                <div class="row">
+                                    <div>
+                                        <img src="http://d26lpennugtm8s.cloudfront.net/stores/485/599/products/tenis-nike-air-pernix-branco-loja-hdr-lojahdr-com-441-6e4814cc2c28839f4f15050750878402-640-0.jpg" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="/cenas">Sapatilha do Chinês Kim Ung Dos</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>Sub Categoria</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Time</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="3res">
+                                <div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <img src="https://www.renaultretail.co.uk/assets/rr/images/vehicle/new-renault/vehicle-images/cars/renault-clio/range/06-renault-clio-titanium-grey.png" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="/cenas">Carro em 12º mão</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>Sub Categoria</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Time</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
