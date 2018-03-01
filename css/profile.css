@@ -1,0 +1,12 @@
+.monospaced { font-family: 'Ubuntu Mono', monospaced ; }
+
+.bid .btn-qty {
+    width: 46px;
+    height: 40px;
+}
+
+.bid .btn { border-radius: 0; }
+
+#product-section > div > ul{
+    margin-top: 50px;
+}
