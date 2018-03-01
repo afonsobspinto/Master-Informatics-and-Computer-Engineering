@@ -20,37 +20,26 @@
     </head>
     <body>
         <!-- header -->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light ">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light d-flex ">
             <a class="navbar-brand" href="#">BidBay</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <nav class="container-fluid bg-secondary mt-0 sticky-top">
-                    <form>
-                        <div class="d-flex px-lg-2 py-3">
-                            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                            <select class="form-control rounded-0 col-2 d-none d-sm-block d-xs-block">
-                                <option selected> All Categories </option>
-                                <option>Technology</option>
-                                <option>Automobiles</option>
-                                <option>Clothes</option>
-                            </select>
-                            <button class="btn btn-light rounded-0 " type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
-                </nav>
+            
+                <form class="w-50">
+                    <div class="d-flex px-lg-2">
+                        <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                        <select class="form-control rounded-0 col-2 d-none d-sm-block d-xs-block">
+                            <option selected> All Categories </option>
+                            <option>Technology</option>
+                            <option>Automobiles</option>
+                            <option>Clothes</option>
+                        </select>
+                        <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav ml-auto justify-content-end" id="authentication-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Login</a>
@@ -66,7 +55,7 @@
         
         <div class="container">
             
-            <!-- serach bar -->
+            <!-- search bar -->
 
             <!-- auctions carousel -->
             <!-- these could be just random auctions in the system -->
@@ -294,10 +283,10 @@
         </div>
 
         <!-- footer -->
-        <nav class="navbar navbar-light bg-dark mt-5" id="footer">
+        <nav class="navbar navbar-light bg-dark" id="footer">
             <ul class="nav">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="#">Home </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">About</a>
@@ -307,7 +296,7 @@
                 </li>
                 
             </ul>
-            <ul class="nav navbar-nav ml-auto justify-content-end d-none d-sm-block d-xs-block" id="authentication-nav">
+            <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
                 <li class="nav-item">
                     <span class="align-middle text-white">Website created by group 64 for LBAW</span>
                 </li>
