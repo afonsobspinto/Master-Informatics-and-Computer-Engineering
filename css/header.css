@@ -7,6 +7,16 @@
     flex-grow: 0;
 }
 
+.special-elipse {
+    display: none;
+}
+
+@media (max-width: 625px) {
+    #search-categories {
+        display: none;
+    }
+}
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     #search-bar {
@@ -25,4 +35,27 @@
     #search-bar {
         max-width: 60%;
     }
+
+    #header .navbar-brand {
+        margin-right: 0;    
+    }
  }
+
+ /* when user is logged in */
+ @media (max-width: 768px) {
+
+    #authenticated-dropdown {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .extra-hide {
+        display: none;
+    }
+
+    .special-elipse {
+        display: inline;
+    }
+}
