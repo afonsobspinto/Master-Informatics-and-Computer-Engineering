@@ -2,3 +2,9 @@
     color: inherit;
     text-decoration: none;
 }
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
