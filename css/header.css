@@ -11,6 +11,12 @@
     display: none;
 }
 
+.dropdown-menu a {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 @media (max-width: 625px) {
     #search-categories {
         display: none;
@@ -51,6 +57,10 @@
 }
 
 @media (max-width: 500px) {
+    #authentication {
+        flex-grow: 1;
+    }
+    
     .extra-hide {
         display: none;
     }
@@ -58,4 +68,18 @@
     .special-elipse {
         display: inline;
     }
+
 }
+
+@media (max-width: 900px) {
+    .dropdown-menu {
+        width: 120px;
+        min-width: 0;
+    }
+
+    .dropdown-menu a {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+}
+ 

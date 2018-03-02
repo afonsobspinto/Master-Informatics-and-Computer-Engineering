@@ -23,7 +23,7 @@
         <!-- header -->
         <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
                 <!-- logo -->
-                <a href="#" class="navbar-brand">BidBay</a>
+                <a href="#" class="navbar-brand extra-hide">BidBay</a>
                 <!-- search bar -->
                 <form class="px-2" id="search-bar">
                     <div class="d-flex">
@@ -38,13 +38,12 @@
                     </div>
                 </form>
                 <!-- authentication links -->
-                <div class="nav justify-content-end" id="authentication">
-                    <a class="dropdown-toggle nav-link text-right" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropdown" id="authentication">
+                    <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-                         JohnD<span class="extra-hide" >oe39012</span> <span class="special-elipse">&#8230;</span>
+                         JohnDoe39012
                     </a>
-                    
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
                         <a class="dropdown-item" href="#">View Profile</a>
                         <a class="dropdown-item" href="#">View Messages</a>
                         <a class="dropdown-item" href="#">Log out</a>
