@@ -23,7 +23,7 @@
     <body>
 
         <!-- header -->
-        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-between">
+        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
             <!-- logo -->
             <a href="#" class="navbar-brand">BidBay</a>
             <!-- search bar -->
@@ -58,39 +58,29 @@
         </nav>
         
         <div class="container">
+
             <!-- auctions carousel -->
             <!-- these could be just random auctions in the system -->
-            <div id="carouselAuctions" class="carousel slide mt-3" data-ride="carousel">
+            <div id="carouselAuctions" class="carousel slide mt-4 mx-auto" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <!-- carousel items here, change <img> <a> and the subtitle <h3> and <p> with appropriate data -->
                         <a href="#">
                             <img class="d-block w-100" src="https://placeimg.com/640/480/tech" alt="First slide">
+                            <div class="carousel-caption d-md-block">
+                                <h2>Auction Title</h2>
+                                <p>15$, 5 bids</p>
+                            </div>
                         </a>
-                        <div class="carousel-caption d-md-block">
-                            <h2>Auction Title</h2>
-                            <p>15$, 5 bids</p>
-                        </div>
-
-
                     </div>
                     <div class="carousel-item">
                         <a href="#">
                             <img class="d-block w-100" src="https://placeimg.com/640/480/arch" alt="Second slide">
+                            <div class="carousel-caption d-md-block">
+                                <h2>Auction Title</h2>
+                                <p>15$, 5 bids</p>
+                            </div>
                         </a>
-                        <div class="carousel-caption d-md-block">
-                            <h2>Auction Title</h2>
-                            <p>15$, 5 bids</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#">
-                            <img class="d-block w-100" src="https://placeimg.com/640/480/nature" alt="Third slide">
-                        </a>
-                        <div class="carousel-caption d-md-block">
-                            <h2>Auction Title</h2>
-                            <p>15$, 5 bids</p>
-                        </div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselAuctions" role="button" data-slide="prev">
@@ -284,7 +274,7 @@
         </div>
 
         <!-- footer -->
-        <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+        <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0 mt-5" id="footer">
             <ul class="nav d-flex justify-content-center">
                 <li class="nav-item active">
                     <a class="nav-link text-white" href="#">Home </a>

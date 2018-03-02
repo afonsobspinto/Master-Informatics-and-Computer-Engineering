@@ -10,7 +10,7 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     #search-bar {
-        max-width: 65%;
+        max-width: 80%;
     }
 }
 
