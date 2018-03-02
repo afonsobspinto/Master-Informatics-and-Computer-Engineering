@@ -1,20 +1,28 @@
-#page-header {
-    flex-wrap: no-wrap;
-}
-
-#branding {
-    flex-grow: 1;
-}
 
 #search-bar {
     flex-grow: 1;
 }
 
-#search-bar form {
-    flex-grow: 4;
+#authentication{
+    flex-grow: 0;
 }
 
-#collapsingNavbar3 {
-    flex-grow: 1;
-    /* width: 3rem; */
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #search-bar {
+        max-width: 65%;
+    }
 }
+
+@media (min-width: 576px) and (max-width: 992px) {
+    #search-bar {
+        max-width: 70%;
+    }
+}
+
+ /* Small devices (landscape phones, less than 768px) */
+@media (max-width: 575.98px) { 
+    #search-bar {
+        max-width: 60%;
+    }
+ }
