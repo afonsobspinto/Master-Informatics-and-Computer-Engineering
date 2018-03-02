@@ -1,0 +1,20 @@
+#page-header {
+    flex-wrap: no-wrap;
+}
+
+#branding {
+    flex-grow: 1;
+}
+
+#search-bar {
+    flex-grow: 1;
+}
+
+#search-bar form {
+    flex-grow: 4;
+}
+
+#collapsingNavbar3 {
+    flex-grow: 1;
+    /* width: 3rem; */
+}

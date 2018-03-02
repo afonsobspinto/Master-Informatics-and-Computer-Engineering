@@ -17,17 +17,20 @@
         <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
         <!-- links -->
         <link rel="stylesheet" href="css/landing_page.css">
+        <link rel="stylesheet" href="css/header.css">
     </head>
     <body>
+
         <!-- header -->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light d-flex ">
-            <a class="navbar-brand" href="#">BidBay</a>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top justify-content-center" id="pge-header">
+            <a class="navbar-brand" href="#" class="mr-auto" id="branding"> BidBay</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-                <form class="w-50">
-                    <div class="d-flex px-lg-2">
+
+            <!-- search bar -->
+                <form class="mx-auto justify-content-center">
+                    <div class="d-flex">
                         <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
                         <select class="form-control rounded-0 col-2 d-none d-sm-block d-xs-block">
                             <option selected> All Categories </option>
@@ -49,14 +52,45 @@
                     </li>
                 </ul>
             </div>
+
         </nav>
 
-        
+        <!--  -->
+        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-md" id="page-header">
+            <a href="#" class="navbar-brand">BidBay</a>
+            <div class="nav justify-content-between" id="search-bar">
+                    <form class="mx-auto ">
+                            <div class="d-flex px-lg-2">
+                                <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                                <select class="form-control rounded-0 col-2 d-none d-sm-block d-xs-block">
+                                    <option selected> All Categories </option>
+                                    <option>Technology</option>
+                                    <option>Automobiles</option>
+                                    <option>Clothes</option>
+                                </select>
+                                <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                    <!-- </div> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="navbar-collapse collapse justify-content-end" id="collapsingNavbar3">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                </ul>
+            </div>  
+
+            </div>
+        </nav>
+        <!--  -->
         
         <div class="container">
-            
-            <!-- search bar -->
-
             <!-- auctions carousel -->
             <!-- these could be just random auctions in the system -->
             <div id="carouselAuctions" class="carousel slide mt-3" data-ride="carousel">
