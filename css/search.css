@@ -82,8 +82,8 @@
 }
 
 .location, .condition, .category, .format, .price{
-    margin-left: 25px;
-    margin-top: 30px;
+    margin-left: 30px;
+    margin-top: 16px;
 }
 
 #sidebar-wrapper h5{
