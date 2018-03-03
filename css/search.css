@@ -144,3 +144,8 @@ ul {
 .table{
     margin-top: 1.5%;
 }
+
+.priceResult{
+    font-size: 17px;
+    font-weight: bold;
+}
