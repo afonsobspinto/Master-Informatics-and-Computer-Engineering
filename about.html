@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+            <!-- awesome fonts -->
+            <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+            <!-- bootswatch flatly theme -->
+            <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
+            <!-- links -->
+            <link rel="stylesheet" href="css/header.css">
+            <link rel="stylesheet" href="css/footer.css">
+        </head>
+<body>
+<!-- header -->
+<nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+    <!-- logo -->
+    <a href="#" class="navbar-brand extra-hide">BidBay</a>
+    <!-- search bar -->
+    <form class="px-2" id="search-bar">
+        <div class="d-flex">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <label for="search-categories"></label><select class="form-control rounded-0 col-2 " id="search-categories">
+                <option selected> All Categories </option>
+                <option>Technology</option>
+                <option>Automobiles</option>
+                <option>Clothes</option>
+            </select>
+            <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <!-- authentication links -->
+    <div class="dropdown" id="authentication">
+        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
+            JohnDoe39012
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
+            <a class="dropdown-item" href="#">View Profile</a>
+            <a class="dropdown-item" href="#">View Messages</a>
+            <a class="dropdown-item" href="#">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <video width="1000" height="600" autoplay>
+        <source src="media/commercial.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <h3 class="border-bottom pb-1 mb-4">About BidBay </h3>
+    <p>BidBay is a website where users can do all of their shopping (new, second hand, handcrafted or miscellaneous items) where the seller is another user like them. Do you have something you want to sell? Want something from our users? Start your selling and shopping here, at BidBay! </p>
+
+    <h4 class="border-bottom pb-1 mb-4 mt-5">About the Team </h4>
+    <p>Afonso Pinto</p>
+    <p>Cristiana Ribeiro</p>
+    <p>Rostyslav Khoptiy</p>
+    <p>Tomás Oliveira</p>
+
+
+</div>
+<!-- footer -->
+<!-- class fixed-bottom is placed is 'stickied' to bottom of screen -->
+<nav class="navbar text-white bg-dark mt-5">
+    <ul class="nav navbar-nav mx-auto">
+        Website created by group 64 for LBAW
+    </ul>
+</nav>
+</body>
+</html>

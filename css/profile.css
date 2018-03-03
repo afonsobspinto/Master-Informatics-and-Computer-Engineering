@@ -1,0 +1,42 @@
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced, serif ; }
+
+.bid .btn-qty {
+    width: 46px;
+    height: 40px;
+}
+
+.bid .btn { border-radius: 0; }
+
+#product-section{
+    margin-top: 20px;
+}
+
+
+#product-section > div > div:nth-child(2) > img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+#product-section > div > div:nth-child(2) > img:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+#product-section > div > div:nth-child(3) > div:nth-child(5) {
+    margin-top: 10px;
+}
+
+#product-section > div > div:nth-child(3) > div:nth-child(6){
+    margin-top: 20px;
+}
+
+#product-section > div > div.row > h3{
+    margin: 50px;
+    margin-right: 500px;
+}
+
+#main > div > ul > li{
+    padding-left: 20px;
+}
