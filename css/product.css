@@ -1,8 +1,4 @@
-.monospaced { font-family: 'Ubuntu Mono', monospaced ; }
-
-.bid .btn-qty {
-    width: 46px;
-    height: 40px;
+.img-review{
+    max-height: 50px;
+    max-width: 50px;
 }
-
-.bid .btn { border-radius: 0; }
