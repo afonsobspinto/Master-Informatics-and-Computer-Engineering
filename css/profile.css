@@ -37,6 +37,17 @@
     margin-right: 500px;
 }
 
+#product-section > div > ul{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
 #main > div > ul > li{
     padding-left: 20px;
 }
+
+div > img{
+    margin-bottom: 50px;
+}
+

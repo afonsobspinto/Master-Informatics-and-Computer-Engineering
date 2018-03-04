@@ -30,12 +30,12 @@
     <form class="px-2" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
-            <select class="form-control rounded-0 col-2 " id="search-categories">
-                <option selected> All Categories </option>
-                <option>Technology</option>
-                <option>Automobiles</option>
-                <option>Clothes</option>
-            </select>
+            <label for="search-categories"></label><select class="form-control rounded-0 col-2 " id="search-categories">
+            <option selected> All Categories </option>
+            <option>Technology</option>
+            <option>Automobiles</option>
+            <option>Clothes</option>
+        </select>
             <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
         </div>
     </form>
@@ -52,7 +52,6 @@
         </div>
     </div>
 </nav>
-
 <!-- profile -->
 <div class="container" id="product-section">
     <div class="row">
@@ -84,9 +83,6 @@
             </div>
             <div class="row">
                 <a href="#">Read Feedback</a>
-            </div>
-            <div class="row">
-                <button type="button">Edit Profile</button>
             </div>
         </div>
 
@@ -178,9 +174,22 @@
 
 
 <!-- footer -->
-<nav class="navbar text-white bg-dark mt-5">
-    <ul class="nav navbar-nav mx-auto">
-        Website created by group 64 for LBAW
+<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+    <ul class="nav d-flex justify-content-center">
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="landing_page.html">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="FAQ.html">FAQ</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
+        <li class="nav-item">
+            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
+        </li>
     </ul>
 </nav>
 </body>
