@@ -9,6 +9,19 @@
 
 }
 
+#carouselAuctions {
+    background-color: black;
+}
+
+#carouselAuctions img {
+    width: auto;
+    height: 30rem;
+    max-height: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
 @media (min-width: 576px) and (max-width: 992px) {
     .card-columns {
         column-count: 2;
@@ -17,6 +30,6 @@
 
 @media (min-width: 768px) {
     #carouselAuctions {
-        width: 75%;
+        /* height: 20rem; */
     }
 }
