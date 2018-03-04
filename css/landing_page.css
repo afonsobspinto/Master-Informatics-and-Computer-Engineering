@@ -6,21 +6,100 @@
 .carousel-caption {
     background-color: rgba(128, 128, 128, 0.6);
     border-radius: 10px;
-
 }
 
 #carouselAuctions {
     background-color: black;
 }
 
+
 #carouselAuctions img {
     width: auto;
-    height: 30rem;
-    max-height: 30rem;
     margin-left: auto;
     margin-right: auto;
-  }
+}
 
+/* carousel images are fixed to a 16:9 aspect ratio */
+  /* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) { 
+    #carouselAuctions img {
+        height: 11.25rem;
+        max-height: 11.25rem;
+    }
+
+    #carouselAuctions {
+        width: 20rem;
+    }
+
+    .carousel-caption {
+        font-size: 12px;
+        padding-top: 0.5rem;
+        padding-bottom: 0;
+    }
+
+    .carousel-caption h3 {
+        font-size: 20px;
+    }
+    
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) { 
+    #carouselAuctions img {
+        height: 16.875rem;
+        max-height: 16.875rem;
+    }
+
+    #carouselAuctions {
+        width: 30rem;
+    }
+
+    .carousel-caption {
+        font-size: 10px;
+        padding-top: 0.5rem;
+        padding-bottom: 0;
+    }
+
+    .carousel-caption h3 {
+        font-size: 16px;
+    }
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) { 
+    #carouselAuctions img {
+        height: 22.5rem;
+        max-height: 22.5rem;
+    }
+
+    #carouselAuctions {
+        width: 40rem;
+    }
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) { 
+    #carouselAuctions img {
+        height: 30rem;
+        max-height: 30rem;
+    }
+
+    #carouselAuctions {
+        width: 52rem;
+    }
+ }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    #carouselAuctions img {
+        height: 39.375rem;
+        max-height: 39.375rem;
+    }
+
+    #carouselAuctions {
+        width: 70rem;
+    }
+ }
 
 @media (min-width: 576px) and (max-width: 992px) {
     .card-columns {
