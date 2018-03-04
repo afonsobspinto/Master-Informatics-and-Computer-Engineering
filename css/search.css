@@ -1,0 +1,149 @@
+#sidebar-wrapper {
+    z-index: 1000;
+    position: absolute;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    background: #ecf0f1;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background: #95a5a6;
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+    height: 100px;
+    font-size: 18px;
+    line-height: 60px;
+    padding-top: 35px;
+    padding-left: 10px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0;
+    }
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #sidebar-wrapper {
+        width: 250px;
+        background-color: #ecf0f1;
+    }
+    #page-content-wrapper {
+        position: relative;
+        margin-left: 250px;
+    }
+
+}
+
+.btn-seeall{
+    padding: 0px;
+    inline-size:57px;
+    border-color: black;
+}
+
+.location, .condition, .category, .format, .price{
+    margin-left: 30px;
+    margin-top: 16px;
+}
+
+#sidebar-wrapper h5{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#sidebar-wrapper h4{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.container-fluid{
+    position: relative;
+}
+
+
+#main li{
+    margin-top: 30px;
+    margin-left: 30px;
+    border-top-color: #ddd;
+    border-style: solid;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.sidebar-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 5%;
+}
+
+.padding-product-info {
+    padding-top: 20px;
+}
+
+#main1{
+    margin-top: 30px;
+}
+
+#sendmsg{
+    background-color: #464242;
+}
+
+.choose-msg{
+    margin-top: 200px;
+    font-weight: bold;
+   /* padding-left: 50px;*/
+}
+
+.table{
+    margin-top: 1.5%;
+}
+
+.priceResult{
+    font-size: 17px;
+    font-weight: bold;
+}
