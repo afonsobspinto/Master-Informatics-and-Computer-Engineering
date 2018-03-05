@@ -1,8 +1,3 @@
-.img-review{
-    max-height: 50px;
-    max-width: 50px;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -11,4 +6,8 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
+}
+
+.form-check{
+    margin-right:5px;
 }
