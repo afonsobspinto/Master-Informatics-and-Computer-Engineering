@@ -64,7 +64,7 @@
 
 <div class="container" id="sell-section">
 
-    <h1 class="border-bottom pb-1 mb-4 h2">Create your listing</h1>
+    <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
 
     <form>
         <h2 class="border-bottom pb-1 mb-4 h4">Product details</h2>
@@ -123,7 +123,7 @@
                     <span class="input-group-text">€</span>
                 </div>
                 <input class="form-control" type="number" placeholder="Starting price"
-                       aria-label="Amount (to the nearest euro)" id="price-input" required>
+                       aria-label="Amount (to the nearest euro)" id="price-input" required disab>
                 <div class="input-group-append">
                     <span class="input-group-text">.00</span>
                 </div>
@@ -143,7 +143,7 @@
             <div class="col-9 input-group" id="payment-input">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="atmPayment" id="atmPayment" value="atmPayment"
-                           disabled checked>
+                           checked>
                     <label class="form-check-label" for="atmPayment">
                         ATM Reference
                     </label>
@@ -208,7 +208,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-7 collapse" id='refuse_hide'>
-                    <div class="card card-body">
+                    <div class="card border-warning mb-3">
                         The item could still be returned if it doesn't match the listing's description.
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping" value="domesticShipping">
                     <label class="form-check-label" for="domesticShipping">
-                        Domestic Shipping
+                        Domestic shipping
                     </label>
                 </div>
                 <div class="form-check">
@@ -234,9 +234,63 @@
                         International Shipping
                     </label>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
+                           value="localPickup">
+                    <label class="form-check-label" for="localPickup">
+                        No shipping: Local pickup only
+                    </label>
+                </div>
             </div>
         </div>
+
+        <div class="form-group row">
+            <label for="title-input" class="col-3 col-form-label">Shipping mode</label>
+            <div class="col-9">
+                <select class="form-control">
+                    <option>Flat: same cost to all buyers</option>
+                    <option  data-toggle="collapse" data-target='#calculated_option'>Calculated: cost varies by buyer location</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label for="shippingPrice-input" class="col-3 col-form-label">Cost</label>
+            <div class="col-9 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">€</span>
+                </div>
+                <input class="form-control" type="number" placeholder="Shipping cost"
+                       aria-label="Amount (to the nearest euro)" id="shippingPrice-input">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+                <div class="form-group collapse col-12" id='calculated_option'>
+                    <div class="card border">
+                        Please insert the price per kg. We will use it as well with the item location to calculate the shipping cost.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="location-input" class="col-3 col-form-label">Item location</label>
+            <div class="col-9">
+                <input class="form-control" type="text" placeholder="Item location" id="location-input" required>
+            </div>
+        </div>
+
     </form>
+
+    <div class="text-right mb-3 mt-3">
+        <button type="button" class="btn btn-primary">List auction</button>
+        <button type="button" class="btn btn-secondary">Preview</button>
+        <button type="button" class="btn btn-secondary">Save and continue later</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+    </div>
+
 
 </div><!-- end container -->
 
