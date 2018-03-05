@@ -143,3 +143,12 @@ ul {
     font-size: 17px;
     font-weight: bold;
 }
+
+#closebtn{
+    background-color: #464242;
+}
+
+#sendbtn{
+    background-color: #18bc9c;
+    color: #464242;
+}
