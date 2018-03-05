@@ -93,12 +93,59 @@
         </div>
 
         <!-- Nav tabs -->
-        <div class="row">
-            <h3>Items for Sale</h3>
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a class="nav-link active" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="true">Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
+            </li>
+        </ul>
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="items-tab">
+            <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Smithers</a></div>
+                            <div class="review-block-date">March 01, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">Excellent seller, quick shipping A++++++</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Homer Simpson</a></div>
+                            <div class="review-block-date">March 02, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">Some of the donuts were already eaten</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="itemsForSale" role="tabpanel" aria-labelledby="itemsForSale-tab">
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
@@ -171,7 +218,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

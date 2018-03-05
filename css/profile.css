@@ -12,6 +12,9 @@
     margin-top: 20px;
 }
 
+#product-section > div > div:nth-child(2){
+    margin-bottom: 50px;
+}
 
 #product-section > div > div:nth-child(2) > img{
     border: 1px solid #ddd;
@@ -45,7 +48,10 @@ div > div > ul > li{
     padding-left: 20px;
 }
 
-div > img{
-    margin-bottom: 50px;
+#feedback > div {
+    margin-bottom: 40px;
 }
 
+#feedback > div > div > div.col-sm-3 > div{
+    margin-left: 30px;
+}
