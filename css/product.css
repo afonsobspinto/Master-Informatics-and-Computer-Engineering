@@ -16,3 +16,35 @@ input[type=number] {
 .fa-circle {
     color: green;
 }
+
+@media (max-width: 767px) {
+    .card-img-top, .report, .nav-tabs, #reviews{
+        display: none;
+    }
+    #product-section, .bid{
+        display: flex;
+        flex-direction: column;
+    }
+    .tab-pane {
+        display: block !important;
+        opacity: 1;
+    }
+    .card{
+        border:none;
+    }
+
+    #footer{
+        margin-top: 2em;
+    }
+
+    #button-bid{order: 2}
+    #input-bid{order: 1}
+
+    .title{
+        font-size: 2rem;
+    }
+
+    .card-title{
+        font-size: 150%;
+    }
+}
