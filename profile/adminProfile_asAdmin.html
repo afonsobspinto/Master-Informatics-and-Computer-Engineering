@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+    <!-- awesome fonts -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- bootswatch flatly theme -->
+    <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- links -->
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+<!-- header -->
+<nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+    <!-- logo -->
+    <a href="#" class="navbar-brand extra-hide">BidBay</a>
+    <!-- search bar -->
+    <form class="px-2" id="search-bar">
+        <div class="d-flex">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <label for="search-categories"></label><select class="form-control rounded-0 col-2 " id="search-categories">
+            <option selected> All Categories </option>
+            <option>Technology</option>
+            <option>Automobiles</option>
+            <option>Clothes</option>
+        </select>
+            <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <!-- authentication links -->
+    <div class="dropdown" id="authentication">
+        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
+            Administrator
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
+            <a class="dropdown-item" href="#">View Profile</a>
+            <a class="dropdown-item" href="#">View Messages</a>
+            <a class="dropdown-item" href="#">Log out</a>
+        </div>
+    </div>
+</nav>
+<!-- profile -->
+<div class="container" id="product-section">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+            <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg"
+                 alt="Picture" style="width:100%">
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <h1>Smithers</h1>
+            </div>
+            <div class="row">
+                <p>United States</p>
+            </div>
+            <div class="row">
+                <p class="email">smithers@bidbay.com</p>
+            </div>
+            <div class="row">
+                <span class="sr-only">Three out of Five Stars</span>
+                <span class="fas fa-star" aria-hidden="true"></span>
+                <span class="fas fa-star" aria-hidden="true"></span>
+                <span class="fas fa-star" aria-hidden="true"></span>
+                <span class="far fa-star" aria-hidden="true"></span>
+                <span class="far fa-star" aria-hidden="true"></span>
+                <span class="badge badge-success">45</span>
+            </div>
+            <div class="row">
+                <a href="#" class="btn btn-danger ">Vote to demote Admin</a>
+            </div>
+        </div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a class="nav-link active" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="true">Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Mr Burns</a></div>
+                            <div class="review-block-date">March 01, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">I would give 5/5 if it was free</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Homer Simpson</a></div>
+                            <div class="review-block-date">March 02, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">Meh</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="itemsForSale" role="tabpanel" aria-labelledby="itemsForSale-tab">
+                <div class="container-fluid">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>
+                                <div class="row">
+                                    <div>
+                                        <img src="https://http2.mlstatic.com/quadro-pug-pop-art-cachorro-pet-rrs2-decoracao-sala-paspatur-D_NQ_NP_761901-MLB20437861082_102015-F.jpg" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="#">Dog Painting</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>Accessories</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Time Left:</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div>
+                                        <img src="https://rukminim1.flixcart.com/image/832/832/book/1/5/9/a-game-of-thrones-the-story-continues-the-complete-box-set-of-7-books-original-imadfgzztg4ahyhk.jpeg?q=70" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="#">Game of Thrones Books Colection</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>Books</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Time Left:</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- footer -->
+<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+    <ul class="nav d-flex justify-content-center">
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="../home/landing_page.html">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="../about.html">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
+        <li class="nav-item">
+            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
