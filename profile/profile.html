@@ -17,9 +17,9 @@
             <!-- bootswatch flatly theme -->
             <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
             <!-- links -->
-            <link rel="stylesheet" href="css/profile.css">
-            <link rel="stylesheet" href="css/header.css">
-            <link rel="stylesheet" href="css/footer.css">
+            <link rel="stylesheet" href="../css/profile.css">
+            <link rel="stylesheet" href="../css/header.css">
+            <link rel="stylesheet" href="../css/footer.css">
         </head>
 <body>
 <!-- header -->
@@ -82,63 +82,110 @@
                     <span class="badge badge-success">61</span>
             </div>
             <div class="row">
-                <a href="#">Read Feedback</a>
+                <a href="#" class="badge badge-light">Report User</a>
             </div>
         </div>
 
         <!-- Nav tabs -->
-        <div class="row">
-            <h3>Items for Sale</h3>
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a class="nav-link active" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="true">Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
+            </li>
+        </ul>
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="items-tab">
-                <div class="container-fluid" id="main">
+            <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Smithers</a></div>
+                            <div class="review-block-date">March 01, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">Excellent seller, quick shipping A++++++</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
+                            <div class="review-block-name"><a>Homer Simpson</a></div>
+                            <div class="review-block-date">March 02, 2018</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            </div>
+                            <div class="review-block">Some of the donuts were already eaten</div>
+                            <a href="#" class="badge badge-light">Report Abuse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="itemsForSale" role="tabpanel" aria-labelledby="itemsForSale-tab">
+                <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
-                            <li id="1res">
+                            <li>
                                 <div class="row">
                                     <div>
                                         <img src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="250" height="150">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">Computador para minar Bitcoins</a>
+                                            <a href="#">Computer with Keyboard and Mouse</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Sub Categoria</p>
+                                                <p>Technology</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time</p>
+                                                <p>Time Left:</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li id="2res">
+                            <li>
                                 <div class="row">
                                     <div>
                                         <img src="http://d26lpennugtm8s.cloudfront.net/stores/485/599/products/tenis-nike-air-pernix-branco-loja-hdr-lojahdr-com-441-6e4814cc2c28839f4f15050750878402-640-0.jpg" alt="result 1" width="250" height="150">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">Sapatilha do Chinês Kim Ung Dos</a>
+                                            <a href="#">Chinese Shoes</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Sub Categoria</p>
+                                                <p>Clothing</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time</p>
+                                                <p>Time Left:</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li id="3res">
+                            <li>
                                 <div>
                                 </div>
                                 <div class="row">
@@ -147,15 +194,15 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">Carro em 12º mão</a>
+                                            <a href="#">2º hand car</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Sub Categoria</p>
+                                                <p>Cars</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time</p>
+                                                <p>Time Left:</p>
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +212,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -173,17 +219,18 @@
 </div>
 
 
+
 <!-- footer -->
 <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
     <ul class="nav d-flex justify-content-center">
         <li class="nav-item active">
-            <a class="nav-link text-white" href="landing_page.html">Home </a>
+            <a class="nav-link text-white" href="../landing_page.html">Home </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="about.html">About</a>
+            <a class="nav-link text-white" href="../about.html">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="FAQ.html">FAQ</a>
+            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
