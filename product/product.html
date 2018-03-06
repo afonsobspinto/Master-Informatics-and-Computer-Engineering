@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="../css/product.css">
 
 
-
 </head>
 <body class="website-body">
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
@@ -36,9 +35,10 @@
     <!-- search bar -->
     <form action="../search.html" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search"
+                   id="search-input">
             <select class="form-control rounded-0 col-2 " id="search-categories">
-                <option selected> All Categories </option>
+                <option selected> All Categories</option>
                 <option>Technology</option>
                 <option>Automobiles</option>
                 <option>Clothes</option>
@@ -48,7 +48,8 @@
     </form>
     <!-- authentication links -->
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
             JohnDoe39012
         </a>
@@ -101,7 +102,7 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <span class="display-4">Dell XPS 15</span>
+                    <span class="display-4 title">Dell XPS 15</span>
                     <span class="badge badge-primary">Tech</span>
                     <span class="badge badge-info">New</span>
                 </div>
@@ -125,10 +126,12 @@
                         cupiditate dicta doloremque eligendi</p>
                     <span>
                         <a href="#" class="btn btn-primary ">Contact</a>
-                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
+                        <button class="btn btn-primary report" type="button" data-toggle="modal"
+                                data-target="#exampleModal">
                             Report Account
                           </button>
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                               aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -143,13 +146,15 @@
                                           <div>
                                                 <h5 style="color:brown"> Motive</h5>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="behaviour"> Abusive behaviour </label>
+                                                    <label><input type="radio"
+                                                                  name="behaviour"> Abusive behaviour </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label><input type="radio" name="content">Inappropriate content in profile </label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="optradio">Didn't receive an item</label>
+                                                    <label><input type="radio"
+                                                                  name="optradio">Didn't receive an item</label>
                                                 </div>
                                             </div>
                                         <label for="recipient-name" class="col-form-label">Other:</label>
@@ -162,8 +167,9 @@
                                       </form>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary">Report</button>
+                                      <button type="button" class="btn btn-secondary"
+                                              data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary report">Report</button>
                                     </div>
                                   </div>
                                 </div>
@@ -193,47 +199,51 @@
                    aria-selected="true">Seller Reviews</a>
             </li>
         </ul>
-        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal1"> Report Item </button>
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+        <button type="button" class="btn btn-danger btn-sm report" data-toggle="modal" data-target="#exampleModal1">
+            Report Item
+        </button>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"> Report Name's Item</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                        <h5 class="modal-title" id="exampleModalLabel"> Report Name's Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <div class="form-group">
-                        <div>
-                            <h5 style="color:brown"> Motive</h5>
-                            <div class="radio">
-                                <label><input type="radio" name="behaviour"> Received a counterfeit or fake item</label>
+                        <form>
+                            <div class="form-group">
+                                <div>
+                                    <h5 style="color:brown"> Motive</h5>
+                                    <div class="radio">
+                                        <label><input type="radio" name="behaviour"> Received a counterfeit or fake item</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="content">This item is illegal</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio">Received item is not in the original
+                                            condition</label>
+                                    </div>
+                                </div>
+                                <label for="recipient-name" class="col-form-label">Other:</label>
+                                <input type="text" class="form-control" id="recipient-name">
                             </div>
-                            <div class="radio">
-                                <label><input type="radio" name="content">This item is illegal</label>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
                             </div>
-                            <div class="radio">
-                                <label><input type="radio" name="optradio">Received item is not in the original condition</label>
-                            </div>
-                        </div>
-                          <label for="recipient-name" class="col-form-label">Other:</label>
-                          <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                          <label for="message-text" class="col-form-label">Message:</label>
-                          <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                      </form>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
     </nav>
     <!-- Tab panes -->
     <div class="tab-content" id="myTabContent">
@@ -250,10 +260,11 @@
                     Gaming graphics Card.
                 </dd>
 
-                <dt class="col-sm-3">
+                <dt class="col-sm-3 bid" id="button-bid">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary">Place Bid</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
@@ -261,12 +272,12 @@
                         </div>
                     </div>
                 </dt>
-                <dd class="col-sm-3">
+                <dd class="col-sm-3 bid" id="input-bid">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest euro)">
+                        <input type="number" class="form-control"  aria-label="Amount (to the nearest euro)">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -318,8 +329,9 @@
             <div class="review-block">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg" class="img-review img-fluid">
-                        <div class="review-block-name"><a href="../profile/profile.html">MrBurns</a></div>
+                        <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg"
+                             class="img-review img-fluid">
+                        <div class="review-block-name"><a href="../profile_page.html">MrBurns</a></div>
                         <div class="review-block-date">March 01, 2018</div>
                     </div>
                     <div class="col-sm-9">
@@ -331,7 +343,7 @@
                             <span class="far fa-star" aria-hidden="true"></span>
                         </div>
                         <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                        <a href="#" class="badge badge-light">Report Abuse</a>
+                        <a href="#" class="badge badge-light report">Report Abuse</a>
                     </div>
                 </div>
             </div>

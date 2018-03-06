@@ -1,0 +1,6 @@
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) {
+    #qAndA > button{
+        width: 100%;
+    }
+}
