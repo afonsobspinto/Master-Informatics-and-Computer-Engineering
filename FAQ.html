@@ -25,7 +25,7 @@
                 <!-- logo -->
                 <a href="home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
                 <!-- search bar -->
-                <form action="search.html" method="get" class="px-2" id="search-bar">
+                <form action="search.html" method="get" class="" id="search-bar">
                     <div class="d-flex">
                         <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
                         <select class="form-control rounded-0 col-2 " id="search-categories">
@@ -38,7 +38,10 @@
                     </div>
                 </form>
                 <!-- authentication links -->
-                <a id="mail-icon" class="far fa-envelope fixed-size mx-auto" href="#"></a>
+                <a class="fa-stack fa-3x" id="mail-icon" href="#">
+                    <i class="far fa-envelope fa-stack-2x"></i>
+                    <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">27</strong>
+                </a>
                 <div class="dropdown" id="authentication">
                     <a class="dropdown-toggle nav-link" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
@@ -46,8 +49,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown" role="menu">
                         <a class="dropdown-item" href="profile_page.html">New Auction</a>
-                        <a class="dropdown-item" href="profile_page.html">View Profile</a>
-                        <a class="dropdown-item" href="chat.html">View Messages</a>
+                        <a class="dropdown-item" href="profile_page.html">Profile</a>
+                        <a class="dropdown-item" href="chat.html" id="messages-dropdown-item">Messages      <strong class="got-messages">27</strong>
+                        </a>
                         <a class="dropdown-item" href="#">Log out</a>
                     </div>
                 </div>  
