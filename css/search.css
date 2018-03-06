@@ -152,3 +152,8 @@ ul {
     background-color: #18bc9c;
     color: #464242;
 }
+
+.btn-outline-danger{
+    background-color: #E74C3C;
+    color: white;
+}
