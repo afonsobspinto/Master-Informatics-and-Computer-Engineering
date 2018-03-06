@@ -126,12 +126,49 @@
                         cupiditate dicta doloremque eligendi</p>
                     <span>
                         <a href="#" class="btn btn-primary ">Contact</a>
-                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More Options
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Report Account</a>
-                          </div>
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
+                                Report Account
+                </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Report Seller Name's Account </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                <div class="form-group">
+                                    <div>
+                                        <h5 style="color:brown"> Motive</h5>
+                                        <div class="radio">
+                                            <label><input type="radio" name="behaviour"> Abusive behaviour </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="content">Inappropriate content in profile </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio">Didn't receive an item</label>
+                                        </div>
+                                    </div>
+                                <label for="recipient-name" class="col-form-label">Other:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Report</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </span>
                 </div>
             </div>
@@ -158,9 +195,47 @@
             </li>
         </ul>
 
-        <span class="navbar-text">
-          <a href="#" class="badge badge-light">Report Item</a>
-        </span>
+        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal1"> Report Item </button>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"> Report Name's Item</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                        <div>
+                            <h5 style="color:brown"> Motive</h5>
+                            <div class="radio">
+                                <label><input type="radio" name="behaviour"> Received a counterfeit or fake item</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="content">This item is illegal</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio">Received item is not in the original condition</label>
+                            </div>
+                        </div>
+                          <label for="recipient-name" class="col-form-label">Other:</label>
+                          <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
     </nav>
     <!-- Tab panes -->
     <div class="tab-content" id="myTabContent">
