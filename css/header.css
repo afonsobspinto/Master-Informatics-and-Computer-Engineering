@@ -3,7 +3,7 @@
     flex-grow: 1;
 }
 
-#authentication{
+.fixed-size, #authentication {
     flex-grow: 0;
 }
 
@@ -16,6 +16,58 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  #authentication .dropdown-menu a {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    text-align: right;
+}
+
+#authentication .dropdown-menu {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#authentication > a {
+    width: auto;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+
+#mail-icon {
+    
+    text-align: right;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#mail-icon i {
+    /* color: black; */
+}
+
+
+
+.got-messages {
+    color: white;
+    background-color: red;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 30px;
+    padding: 2px;
+}
+
+.mail-icon-number {
+    position: absolute;
+    left: 10px;
+    bottom: 7px;
+    line-height: 23px;
+    width: 23px;
+    padding: 0;
+}
+
+#messages-dropdown-item {
+    display: none;
+}
 
 @media (max-width: 625px) {
     #search-categories {
@@ -36,10 +88,9 @@
     }
 }
 
- /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 575.98px) { 
     #search-bar {
-        max-width: 60%;
+        max-width: 50%;
     }
 
     #header .navbar-brand {
@@ -56,13 +107,24 @@
     }
 }
 
+#header form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
 @media (max-width: 500px) {
-    #authentication {
+    .fixed-size {
         flex-grow: 1;
     }
     
     .extra-hide {
         display: none;
+    }
+
+    #header form {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .special-elipse {
@@ -71,15 +133,26 @@
 
 }
 
-@media (max-width: 900px) {
-    .dropdown-menu {
-        width: 120px;
-        min-width: 0;
+#header .dropdown-menu {
+    width: 150px;
+    min-width: 0;
+}
+
+
+
+
+@media (max-width: 400px) {
+    #mail-icon {
+        display: none;
     }
 
-    .dropdown-menu a {
-        padding-left: 0.5em;
-        padding-right: 0.5em;
+    #messages-dropdown-item {
+        display: initial;
+    }
+
+    #header {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
  
