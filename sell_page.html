@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Page</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!-- fonts awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sell_page.css">
+
+
+</head>
+<body class="website-body">
+<nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+    <!-- logo -->
+    <a href="landing_page.html" class="navbar-brand extra-hide">BidBay</a>
+    <!-- search bar -->
+    <form action="search.html" method="get" class="px-3" id="search-bar">
+        <div class="d-flex">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search"
+                   id="search-input">
+            <select class="form-control rounded-0 col-3 " id="search-categories">
+                <option selected> All Categories</option>
+                <option>Technology</option>
+                <option>Automobiles</option>
+                <option>Clothes</option>
+            </select>
+            <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <!-- authentication links -->
+    <div class="dropdown" id="authentication">
+        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
+            JohnDoe39012
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
+            <a class="dropdown-item" href="#">Sell</a>
+            <a class="dropdown-item" href="#">View Profile</a>
+            <a class="dropdown-item" href="#">View Messages</a>
+            <a class="dropdown-item" href="#">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="sell-section">
+
+    <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
+
+    <form>
+        <h2 class="border-bottom pb-1 mb-4 h4">Product details</h2>
+
+        <div class="form-group row">
+            <label for="title-input" class="col-3 col-form-label">Title</label>
+            <div class="col-9">
+                <input class="form-control" type="text" placeholder="Title" id="title-input" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="category-input" class="col-3 col-form-label">Category</label>
+            <div class="col-9">
+                <select multiple class="form-control" id="category-input" required>
+                    <option>Technology</option>
+                    <option>Automobiles</option>
+                    <option>Clothes</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description-input" class="col-3 col-form-label">Description</label>
+            <div class="col-9">
+                <input class="form-control" type="text" placeholder="Description" id="description-input" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="condition-input" class="col-3 col-form-label">Condition</label>
+            <div class="col-9">
+                <select class="form-control" id="condition-input">
+                    <option hidden> -</option>
+                    <option>New</option>
+                    <option>Used</option>
+                    <option>Not Working</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="photos-input" class="col-3 col-form-label">Photos</label>
+            <div class="col-9">
+                <input type="file" class="form-control-file" id="photos-input" multiple required>
+            </div>
+        </div>
+    </form>
+
+    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
+    <form>
+        <div class="form-group row">
+            <label for="price-input" class="col-3 col-form-label">Starting price</label>
+            <div class="col-9 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">€</span>
+                </div>
+                <input class="form-control" type="number" placeholder="Starting price"
+                       aria-label="Amount (to the nearest euro)" id="price-input" required disab>
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="duration-input" class="col-3 col-form-label">End of auction</label>
+            <div class="col-9 input-group">
+                <input class="form-control" type="datetime-local" placeholder="mm/dd/yyyy, --:-- --"
+                       id="duration-input" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="payment-input" class="col-3 col-form-label">Payment options</label>
+            <div class="col-9 input-group" id="payment-input">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="atmPayment" id="atmPayment" value="atmPayment"
+                           checked>
+                    <label class="form-check-label" for="atmPayment">
+                        ATM Reference
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="paypalPayment" id="paypalPayment"
+                           value="paypalPayment">
+                    <label class="form-check-label" for="paypalPayment">
+                        Paypal
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="visaMastercardPayment" id="visaMastercardPayment"
+                           value="visaMastercardPayment">
+                    <label class="form-check-label" for="visaMastercardPayment">
+                        Visa/Mastercard
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="discover" id="discover"
+                           value="discover">
+                    <label class="form-check-label" for="discover">
+                        Discover
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="americanExpress" id="americanExpress"
+                           value="americanExpress">
+                    <label class="form-check-label" for="americanExpress">
+                        American Express
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="returns-input" class="col-3 col-form-label">Return options</label>
+            <div class="col-9 input-group" id="returns-input">
+                <div class="form-check">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="collapseCheckbox" id="accept">
+                    <label class="form-check-label" for="accept">
+                        Returns accepted
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="collapseCheckbox" id="refuse">
+                    <label class="form-check-label" for="refuse">
+                        No returns accepted
+                    </label>
+                </div>
+                <div class="form-group col-md-4 collapse" id='accept_hide'>
+                    <label for="returnDays">After receiving the item, your buyer should contact you within:</label>
+                    <select id="returnDays" class="form-control">
+                        <option>14 Days</option>
+                        <option selected>30 Days</option>
+                        <option>60 Days</option>
+                    </select>
+                    <label for="returnShipping">Return shipping will be paid by:</label>
+                    <select id="returnShipping" class="form-control">
+                        <option selected>Buyer</option>
+                        <option>Seller</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-7 collapse" id='refuse_hide'>
+                    <div class="card border-warning mb-3">
+                        The item could still be returned if it doesn't match the listing's description.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
+    <form>
+        <div class="form-group row">
+            <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
+            <div class="col-9 input-group" id="shipping-input">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping" value="domesticShipping">
+                    <label class="form-check-label" for="domesticShipping">
+                        Domestic shipping
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="internationalShipping" id="internationalShipping"
+                           value="internationalShipping">
+                    <label class="form-check-label" for="internationalShipping">
+                        International Shipping
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
+                           value="localPickup">
+                    <label class="form-check-label" for="localPickup">
+                        No shipping: Local pickup only
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="title-input" class="col-3 col-form-label">Shipping mode</label>
+            <div class="col-9">
+                <select class="form-control">
+                    <option>Flat: same cost to all buyers</option>
+                    <option  data-toggle="collapse" data-target='#calculated_option'>Calculated: cost varies by buyer location</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label for="shippingPrice-input" class="col-3 col-form-label">Cost</label>
+            <div class="col-9 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">€</span>
+                </div>
+                <input class="form-control" type="number" placeholder="Shipping cost"
+                       aria-label="Amount (to the nearest euro)" id="shippingPrice-input">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+                <div class="form-group collapse col-12" id='calculated_option'>
+                    <div class="card border">
+                        Please insert the price per kg. We will use it as well with the item location to calculate the shipping cost.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="location-input" class="col-3 col-form-label">Item location</label>
+            <div class="col-9">
+                <input class="form-control" type="text" placeholder="Item location" id="location-input" required>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="text-right mb-3 mt-3">
+        <button type="button" class="btn btn-primary">List auction</button>
+        <button type="button" class="btn btn-secondary">Preview</button>
+        <button type="button" class="btn btn-secondary">Save and continue later</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+    </div>
+
+
+</div><!-- end container -->
+
+<!-- footer -->
+<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+    <ul class="nav d-flex justify-content-center">
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="landing_page.html">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="FAQ.html">FAQ</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
+        <li class="nav-item">
+            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
