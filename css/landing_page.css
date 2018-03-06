@@ -19,6 +19,11 @@
     margin-right: auto;
 }
 
+.notification-circle{
+    color: red;
+    size: 2px;
+}
+
 /* carousel images are fixed to a 16:9 aspect ratio */
   /* // Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) { 
