@@ -15,9 +15,9 @@
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+}
 
-  #authentication .dropdown-menu a {
+#authentication .dropdown-menu a {
     padding-left: 0.5rem;
     padding-right: 1rem;
     text-align: right;
@@ -35,7 +35,7 @@
 }
 
 #mail-icon {
-    
+
     text-align: right;
     font-size: 14px;
     text-decoration: none;
@@ -88,18 +88,18 @@
     }
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
     #search-bar {
         max-width: 50%;
     }
 
     #header .navbar-brand {
-        margin-right: 0;    
+        margin-right: 0;
     }
- }
+}
 
- /* when user is logged in */
- @media (max-width: 768px) {
+/* when user is logged in */
+@media (max-width: 768px) {
 
     #authenticated-dropdown {
         padding-left: 0;
@@ -117,7 +117,7 @@
     .fixed-size {
         flex-grow: 1;
     }
-    
+
     .extra-hide {
         display: none;
     }
