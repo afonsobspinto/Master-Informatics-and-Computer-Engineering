@@ -1,0 +1,15 @@
+@media (max-width: 576px) {
+    #footer ul:first-child {
+        width: 100%;
+    }
+}
+
+/* sticks footer to bottom */
+#footer {
+    margin-top: auto;
+}
+.website-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
