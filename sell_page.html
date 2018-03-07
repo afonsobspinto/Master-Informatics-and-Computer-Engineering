@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sell Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Product Page</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -29,15 +30,16 @@
 
 </head>
 <body class="website-body">
+<!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
     <a href="home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
     <!-- search bar -->
-    <form action="search.html" method="get" class="px-3" id="search-bar">
+    <form action="search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
-            <select class="form-control rounded-0 col-3 " id="search-categories">
+            <select class="form-control rounded-0 col-2 " id="search-categories">
                 <option selected> All Categories</option>
                 <option>Technology</option>
                 <option>Automobiles</option>
@@ -47,21 +49,29 @@
         </div>
     </form>
     <!-- authentication links -->
+    <a class="fa-stack fa-3x" id="mail-icon" href="chat.html">
+        <i class="far fa-envelope fa-stack-2x"></i>
+        <!-- place numbers of messages here -->
+        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            27
+        </strong>
+    </a>
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            JohnDoe39012
+            MrBurns001
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
-            <a class="dropdown-item" href="#">Sell</a>
-            <a class="dropdown-item" href="#">View Profile</a>
-            <a class="dropdown-item" href="#">View Messages</a>
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
+             role="menu">
+            <a class="dropdown-item" href="sell_page.html">New Auction</a>
+            <a class="dropdown-item" href="profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong>
+            </a>
             <a class="dropdown-item" href="#">Log out</a>
         </div>
     </div>
 </nav>
-
 <div class="container" id="sell-section">
 
     <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
