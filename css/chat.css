@@ -5,7 +5,6 @@
     }
 }
 
-
 #closebtn{
     background-color: #464242;
 }
@@ -17,4 +16,11 @@
 
 #sendmsg{
     background-color: #464242;
+}
+
+@media (max-width: 767.98px) {
+    .table th, .table td {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
 }
