@@ -1,0 +1,30 @@
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) {
+    #qAndA > button{
+        width: 100%;
+    }
+}
+
+#closebtn{
+    background-color: #464242;
+}
+
+#sendbtn{
+    background-color: #18bc9c;
+    color: #464242;
+}
+
+#sendmsg{
+    background-color: #464242;
+}
+
+.table tbody th input, .table tbody th a:nth-child(2) {
+    margin-right: 1rem;
+} 
+
+@media (max-width: 767.98px) {
+    .table th, .table td {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
