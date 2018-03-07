@@ -1,32 +1,33 @@
 package src;
 
+import sun.security.x509.IPAddressName;
+
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 import java.util.regex.Pattern;
 
 public class Client {
 
-    private String hostname;
-    private int portNumber;
     private DatagramSocket socket;
+    private MulticastSocket mcastSocket;
     private String data;
+    private InetAddress srvcAddress;
+    private int srvcPort;
     private final static int SOCKET_TIMEOUT = 3000;
 
-    private Client(String[] args) throws SocketException {
-        this.hostname = args[0];
-        this.portNumber = Integer.parseInt(args[1]);
+    private Client(String[] args) throws IOException {
+        InetAddress mcastAddress = InetAddress.getByName(args[0]);
+        int mcastPort = Integer.parseInt(args[1]);
         this.data = args[2].toUpperCase().equals("REGISTER") ? args[2] + " " + args[3] + " " + args[4] : args[2] + " " + args[3];
-        socket = new DatagramSocket();
+        this.socket = new DatagramSocket();
+        this.mcastSocket = new MulticastSocket(mcastPort);
+        this.mcastSocket.joinGroup(mcastAddress);
 
     }
 
     private void sendRequest() throws IOException {
         byte[] buffer = this.data.getBytes();
-        InetAddress address = InetAddress.getByName(this.hostname);
-        DatagramPacket sendPacket = new DatagramPacket(buffer, buffer.length, address, this.portNumber);
+        DatagramPacket sendPacket = new DatagramPacket(buffer, buffer.length, this.srvcAddress, this.srvcPort);
         socket.send(sendPacket);
         receive();
     }
@@ -36,7 +37,7 @@ public class Client {
         DatagramPacket receivePacket;
 
         receivePacket = new DatagramPacket(buffer, buffer.length);
-        this.socket.setSoTimeout(this.SOCKET_TIMEOUT);
+        this.socket.setSoTimeout(SOCKET_TIMEOUT);
         try {
             socket.receive(receivePacket);
         }catch (IOException e){
@@ -48,20 +49,31 @@ public class Client {
 
     }
 
+    private void getServerInfo() throws IOException {
+        byte[] buffer = new byte[256];
+        DatagramPacket multicastPacket = new DatagramPacket(buffer, buffer.length);
+        System.out.println("Asking for server info.");
+        this.mcastSocket.receive(multicastPacket);
+        this.srvcAddress = multicastPacket.getAddress();
+        String receivedMulticast = new String(multicastPacket.getData(), 0, multicastPacket.getLength()).trim();
+        this.srvcPort = Integer.parseInt(receivedMulticast);
+        System.out.println("Response: "+ receivedMulticast);
+    }
+
 
 
     public static void main(String[] args) throws IOException {
         if (args.length == 4 || args.length == 5) {
             if(parseInputs(args)){
                 Client client = new Client(args);
+                client.getServerInfo();
                 client.sendRequest();
                 return;
             }
 
         }
 
-        System.out.println("Usage: java Client <hostname> <portNumber> <oper> <opnd>");
-
+        System.out.println("Usage: java Client <mcast_addr> <mcast_port> <oper> <opnd> *");
 
     }
 
