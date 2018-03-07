@@ -1,35 +1,39 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Chat Page</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <!-- awesome fonts -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- bootswatch flatly theme -->
     <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
     <!-- links -->
-    <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/chat.css">
 
 </head>
+
 <body class="website-body">
-    
-        <!-- header -->
-       <!-- header -->
-       <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+
+    <!-- header -->
+    <!-- header -->
+    <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
         <!-- logo -->
         <a href="home/landing_page.html" class="navbar-brand">BidBay</a>
         <!-- search bar -->
@@ -42,7 +46,9 @@
                     <option>Automobiles</option>
                     <option>Clothes</option>
                 </select>
-                <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+                <button class="btn btn-dark rounded-0 " type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </form>
         <!-- mobile authentication button -->
@@ -59,192 +65,297 @@
                     <a class="nav-link text-right" href="register.html">Register</a>
                 </li>
             </ul>
-        </div>  
+        </div>
     </nav>
-    
-        <!-- header -->       
-        
-        <div class="container-fluid">
-            <div class="mt-4">
-                <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: #18bc9cd1">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="col-10">
-                            <div class="navbar-nav ro">
-                                    <a class="nav-item nav-link active" href="#">Inbox <span class="sr-only">(current)</span></a>
-                                    <a class="nav-item nav-link" href="#">Sent</a>
-                                    <a class="nav-item nav-link" href="#">Spam</a>
-                                </div>
-                        </div>
 
-                        <div class="col-2">
-                                <button id="sendmsg" type="button" class="btn btn-outline-success d-inline-block align-right"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> New Message</button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+    <!-- header -->
+
+    <div class="container-fluid">
+        <div class="mt-4">
+            <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: #18bc9cd1">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="col-10">
+                        <div class="navbar-nav ro">
+                            <a class="nav-item nav-link active" href="#">Inbox
+                                <span class="sr-only">(current)</span>
+                            </a>
+                            <a class="nav-item nav-link" href="#">Sent</a>
+                            <a class="nav-item nav-link" href="#">Spam</a>
+                        </div>
+                    </div>
+
+
+                    <div class="col-2">
+                        <button id="sendmsg" type="button" class="btn btn-outline-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@getbootstrap"> New Message</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">New message</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="form-control-label">To:</label>
-                                            <input type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="form-control-label">To:</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="item-name" class="form-control-label">#Item:</label>
                                                 <input type="text" class="form-control" id="item-name">
                                             </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="form-control-label">Message:</label>
-                                            <textarea class="form-control" id="message-text"></textarea>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="form-control-label">Message:</label>
+                                                <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
                                         <button type="button" id="sendbtn" class="btn btn-outline-success">Send message</button>
                                     </div>
-                                    </div>
                                 </div>
-                                </div>
+                            </div>
                         </div>
-                    </div>                            
-                </nav>
-            </div>
-          
-            <table class="table  table-hover">
-                <thead class="thead-inverse " style="color:#18bc9c; background-color:#464242">
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">From</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Item</th>
-                        <th scope="col">Date
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>
-                        <td> BidBay </td>  
-                        <td>You win!</td>
-                        <td>#Renault Clio Car</td>
-                        <td>27/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row" href="message.html"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                    
-                        <td> John </td> 
-                        <td>Payment</td> 
-                        <td>#Tenis nike</td>
-                        <td>21/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                    
-                        <td> Roger </td> 
-                        <td> Meet me</td>
-                        <td>#computer231</td>
-                        <td>20/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                    
-                        <td> Sandra </td> 
-                        <td>Payment</td>
-                        <td>#Renault Clio Car</td>
-                        <td>19/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                   
-                        <td> Jose </td> 
-                        <td>Payment</td>
-                        <td>#Tenis nike</td>
-                        <td>18/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                   
-                        <td> Theresa </td> 
-                        <td>Payment</td>
-                        <td>#computer231</td>
-                        <td>15/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                    
-                        <td> Anthony </td> 
-                        <td>Payment</td>
-                        <td>#Renault Clio Car</td>
-                        <td>27/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                   
-                        <td> John </td> 
-                        <td>Doubt</td>
-                        <td>#Tenis nike</td>
-                        <td>21/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                  
-                        <td> Mary </td> 
-                        <td>Payment</td>
-                        <td>#computer231</td>
-                        <td>20/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                    
-                        <td> BidBay </td> 
-                        <td>You win!</td>
-                        <td>#Renault Clio Car</td>
-                        <td>19/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                 
-                        <td> Peter </td> 
-                        <td>Payment</td>
-                        <td>#Tenis nike</td>
-                        <td>18/02</td>
-                    </tr>
-                    <tr class="clickable-row" data-href="message.html">
-                        <th scope="row"> <input type="checkbox" class="marcar"> &nbsp; &nbsp; &nbsp; <a href="#"><i class="far fa-star"></i></a>  &nbsp; &nbsp; &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></th>                 
-                        <td> BidBay </td> 
-                        <td> You win! </td>
-                        <td>#computer231</td>
-                        <td>15/02</td>
-                    </tr>
-                </tbody>
-            </table>          
-    </div>    
-            
-            
-  <!-- footer -->
-  <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
-    <ul class="nav d-flex justify-content-center">
-        <li class="nav-item active">
-            <a class="nav-link text-white" href="home/landing_page.html">Home </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="FAQ.html">FAQ</a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
-        <li class="nav-item">
-            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
-        </li>
-    </ul>
-</nav>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- messages -->
+    <div class="container-fluid">
+        <table class="table  table-hover">
+            <thead class="thead-inverse " style="color:#18bc9c; background-color:#464242">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">From</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> BidBay </td>
+                    <td>You win!</td>
+                    <td>#Renault Clio Car</td>
+                    <td>27/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row" href="message.html">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> John </td>
+                    <td>Payment</td>
+                    <td>#Tenis nike</td>
+                    <td>21/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Roger </td>
+                    <td> Meet me</td>
+                    <td>#computer231</td>
+                    <td>20/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Sandra </td>
+                    <td>Payment</td>
+                    <td>#Renault Clio Car</td>
+                    <td>19/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Jose </td>
+                    <td>Payment</td>
+                    <td>#Tenis nike</td>
+                    <td>18/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Theresa </td>
+                    <td>Payment</td>
+                    <td>#computer231</td>
+                    <td>15/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Anthony </td>
+                    <td>Payment</td>
+                    <td>#Renault Clio Car</td>
+                    <td>27/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> John </td>
+                    <td>Doubt</td>
+                    <td>#Tenis nike</td>
+                    <td>21/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Mary </td>
+                    <td>Payment</td>
+                    <td>#computer231</td>
+                    <td>20/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> BidBay </td>
+                    <td>You win!</td>
+                    <td>#Renault Clio Car</td>
+                    <td>19/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> Peter </td>
+                    <td>Payment</td>
+                    <td>#Tenis nike</td>
+                    <td>18/02</td>
+                </tr>
+                <tr class="clickable-row" data-href="message.html">
+                    <th scope="row">
+                        <input type="checkbox" class="marcar"> 
+                        <a href="#">
+                            <i class="far fa-star"></i>
+                        </a> 
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                    <td> BidBay </td>
+                    <td> You win! </td>
+                    <td>#computer231</td>
+                    <td>15/02</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- footer -->
+    <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+        <ul class="nav d-flex justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="home/landing_page.html">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="FAQ.html">FAQ</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
+            <li class="nav-item">
+                <span class="align-middle text-white">Website created by group 64 for LBAW</span>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 <script type="text/javascript">
-$(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.document.location = $(this).data("href");
+    $(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
     });
-});
 </script>
+
 </html>
