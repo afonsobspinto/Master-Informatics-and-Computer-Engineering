@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Landing Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
+            defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"
+            defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
+            defer></script>
+    <!-- awesome fonts -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- bootswatch flatly theme -->
+    <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- links -->
+    <link rel="stylesheet" href="../css/landing_page.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body class="website-body">
+
+<body class="website-body">
+<!-- header -->
+<nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+    <!-- logo -->
+    <a href="landing_page_user.html" class="navbar-brand extra-hide">BidBay</a>
+    <!-- search bar -->
+    <form action="search.html" method="get" class="" id="search-bar">
+        <div class="d-flex">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <select class="form-control rounded-0 col-2 " id="search-categories">
+                <option selected> All Categories </option>
+                <option>Technology</option>
+                <option>Automobiles</option>
+                <option>Clothes</option>
+            </select>
+            <button class="btn btn-dark rounded-0 " type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <!-- authentication links -->
+    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
+        <i class="far fa-envelope fa-stack-2x"></i>
+        <!-- place numbers of messages here -->
+        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            12
+        </strong>
+    </a>
+    <div class="dropdown" id="authentication">
+        <a class="dropdown-toggle nav-link" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
+            Administrator
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown" role="menu">
+            <a class="dropdown-item" href="../report.html">View Account Reports</a>
+            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages      <strong class="got-messages">27</strong>
+            </a>
+            <a class="dropdown-item" href="landing_page.html">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mb-5">
+
+    <!-- auctions carousel -->
+    <!-- these could be just random auctions in the system -->
+    <div id="carouselAuctions" class="carousel slide mt-4 mx-auto" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- carousel items here, change <img> <a> and the subtitle <h3> and <p> with appropriate data -->
+                <a href="../product.html">
+                    <img class="d-block " src="https://placeimg.com/1600/900/tech" alt="First slide">
+                    <div class="carousel-caption d-md-block">
+                        <h3>Some Item</h3>
+                        <p>15$, 5 bids</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="../product.html">
+                    <img class="d-block " src="https://placeimg.com/480/480/arch" alt="Second slide">
+                    <div class="carousel-caption d-md-block">
+                        <h3>Another Newish Item</h3>
+                        <p>15$, 5 bids</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="../product.html">
+                    <img class="d-block " src="https://placeimg.com/400/300/arch" alt="Second slide">
+                    <div class="carousel-caption d-md-block">
+                        <h3>Another Newish Item</h3>
+                        <p>15$, 5 bids</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselAuctions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselAuctions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- Recent Auctions Grid -->
+    <!-- can be the 6 most recent -->
+    <div class="container mt-5 auction-grid">
+        <h3 class="border-bottom mb-3">Most Recent Auctions: </h3>
+        <div class="card-columns">
+            <!-- reference to auction here -->
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <!-- place auction data here -->
+                    <!-- images can be any size -->
+                    <img class="card-img-top" src="https://placeimg.com/640/640/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">Red Toyota car</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">The fastest car around, the 10 year old toyota legend which still holds
+                            numerous records ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/960/480/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">Grey Camera</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/640/nature" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">Samsung Tablet</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/480/arch" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">Pixel X2 4GB</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/300/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">toyota motorcycle</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/640/arch" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some other new item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Submitted 5 mins ago</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ending soon Auctions Grid -->
+    <!-- can be 4 that are ending soon -->
+    <div class="container mt-5 auction-grid">
+        <h3 class="border-bottom mb-3">Ending Soon: </h3>
+        <div class="card-columns">
+            <!-- reference to auction here -->
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <!-- place auction data here -->
+                    <!-- images can be any size -->
+                    <img class="card-img-top" src="https://placeimg.com/640/640/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">brand new headphones</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">A brand new headphone, only for the low low price of 5001$</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/960/480/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/640/nature" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/480/arch" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/300/tech" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="card mb-3 mt-2 border-info">
+                <a href="../product.html">
+                    <img class="card-img-top" src="https://placeimg.com/480/640/arch" alt="auction image">
+                    <div class="card-body">
+                        <h3 class="card-title">some item</h3>
+                        <p class="card-subtitle mb-2 text-muted"> 10$, 5 bids</p>
+                        <p class="card-text">Description: maybe the first 10 or 20 words ...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Ending in 15 mins</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- footer -->
+<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
+    <ul class="nav d-flex justify-content-center">
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="landing_page.html">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="../about.html">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
+        <li class="nav-item">
+            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>

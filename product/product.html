@@ -310,7 +310,7 @@
 
                 <dt class="col-sm-3 bid" id="button-bid">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Place Bid</button>
+                        <a type="button" class="btn btn-primary" data-toggle="collapse" href="#collapseAlert">Place Bid</a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
@@ -332,6 +332,11 @@
                     </div>
                 </dd>
             </dl>
+            <div class="collapse" id="collapseAlert">
+                <div class="alert alert-success" role="alert">
+                    <strong>Well done!</strong> You successfully submitted a bid.
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
             <dl class="row">
