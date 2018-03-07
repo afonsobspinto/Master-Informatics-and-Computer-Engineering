@@ -157,3 +157,9 @@ ul {
     background-color: #E74C3C;
     color: white;
 }
+
+@media (max-width: 767px) {
+    #qAndA > button{
+        width: 100%;
+    }
+}

@@ -1,0 +1,20 @@
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) {
+    #qAndA > button{
+        width: 100%;
+    }
+}
+
+
+#closebtn{
+    background-color: #464242;
+}
+
+#sendbtn{
+    background-color: #18bc9c;
+    color: #464242;
+}
+
+#sendmsg{
+    background-color: #464242;
+}
