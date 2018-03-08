@@ -11,7 +11,7 @@
     display: none;
 }
 
-.dropdown-menu a {
+.dropdown-menu a, #authentication > a:first-child {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -44,8 +44,11 @@
     padding-right: 1rem;
 }
 
-#header .dropdown-menu, #authentication > a:first-child {
+
+
+#header .dropdown-menu {
     width: 150px;
+    max-width: 150px;
     min-width: 0;
 }
 
