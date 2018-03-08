@@ -1,5 +1,4 @@
 
-
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 767px) {
     #commercial{
@@ -10,6 +9,15 @@
     #creators > div{
         height: 80%;
     }
+
+    #creators > div.col-6.col-md-3{
+        padding: 0;
+    }
+
+    #creators > div.col-3{
+        padding-left: 0;
+    }
+
 }
 
 
