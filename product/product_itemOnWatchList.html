@@ -35,11 +35,12 @@
     <!-- logo -->
     <a href="../home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
     <!-- search bar -->
-    <form action="../search.html" method="get" class="px-2" id="search-bar">
+    <form action="../search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search"
+                   id="search-input">
             <select class="form-control rounded-0 col-2 " id="search-categories">
-                <option selected> All Categories </option>
+                <option selected> All Categories</option>
                 <option>Technology</option>
                 <option>Automobiles</option>
                 <option>Clothes</option>
@@ -48,15 +49,26 @@
         </div>
     </form>
     <!-- authentication links -->
+    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
+        <i class="far fa-envelope fa-stack-2x"></i>
+        <!-- place numbers of messages here -->
+        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            27
+        </strong>
+    </a>
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            JohnDoe39012
+            MrBurns001
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
-            <a class="dropdown-item" href="#">View Profile</a>
-            <a class="dropdown-item" href="#">View Messages</a>
-            <a class="dropdown-item" href="#">Log out</a>
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
+             role="menu">
+            <a class="dropdown-item" href="../sell_page.html">New Auction</a>
+            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong>
+            </a>
+            <a class="dropdown-item" href="../home/landing_page.html">Log out</a>
         </div>
     </div>
 </nav>
@@ -126,10 +138,50 @@
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
                         cupiditate dicta doloremque eligendi</p>
                     <span>
-                        <a href="#" class="btn btn-primary ">Contact</a>
-                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
-                                Report Account
-                </button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"
+        data-whatever="@getbootstrap"> Contact</button>
+                                <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="contactModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="contactModalLabel">New message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">To:</label>
+                                            <input type="text" class="form-control" id="dest-name">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="item-name" class="form-control-label">#Item:</label>
+                                                <input type="text" class="form-control" id="item-name">
+                                            </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="contact-text"></textarea>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="closebtn" class="btn btn-outline-success"
+                                                data-dismiss="modal">Close</button>
+                                        <button type="button" id="sendbtn"
+                                                class="btn btn-outline-success">Send message</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More Options
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" data-toggle="modal"
+                               data-target="#exampleModal">Report Account</a>
+                          </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -255,7 +307,7 @@
 
                 <dt class="col-sm-3">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Place Bid</button>
+                        <a type="button" class="btn btn-primary" data-toggle="collapse" href="#collapseAlert">Place Bid</a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -276,6 +328,11 @@
                     </div>
                 </dd>
             </dl>
+            <div class="collapse" id="collapseAlert">
+                <div class="alert alert-success" role="alert">
+                    <strong>Well done!</strong> You successfully submitted a bid.
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
             <dl class="row">
@@ -334,7 +391,8 @@
                             <span class="far fa-star" aria-hidden="true"></span>
                         </div>
                         <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                        <a href="#" class="badge badge-light">Report Abuse</a>
+                        <button class="badge badge-light report" type="button" data-toggle="modal"
+                                data-target="#exampleModal"> Report Abuse </button>
                     </div>
                 </div>
             </div>
