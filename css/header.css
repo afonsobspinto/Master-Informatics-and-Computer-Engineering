@@ -11,22 +11,32 @@
     display: none;
 }
 
-.dropdown-menu a {
+.dropdown-menu a, #authentication > a:first-child {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+#header form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* authentication */
 #authentication .dropdown-menu a {
     padding-left: 0.5rem;
     padding-right: 1rem;
     text-align: right;
+    margin-right: 0;
+    margin-left: auto;
 }
 
 #authentication .dropdown-menu {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
 }
+
+
 
 #authentication > a {
     width: auto;
@@ -34,18 +44,21 @@
     padding-right: 1rem;
 }
 
+
+
+#header .dropdown-menu {
+    width: 150px;
+    max-width: 150px;
+    min-width: 0;
+}
+
+/* mail icon */
 #mail-icon {
 
     text-align: right;
     font-size: 14px;
     text-decoration: none;
 }
-
-#mail-icon i {
-    /* color: black; */
-}
-
-
 
 .got-messages {
     color: white;
@@ -68,6 +81,8 @@
 #messages-dropdown-item {
     display: none;
 }
+/*  */
+
 
 @media (max-width: 625px) {
     #search-categories {
@@ -107,10 +122,7 @@
     }
 }
 
-#header form {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+
 
 
 @media (max-width: 500px) {
@@ -133,10 +145,7 @@
 
 }
 
-#header .dropdown-menu {
-    width: 150px;
-    min-width: 0;
-}
+
 
 
 

@@ -85,6 +85,10 @@ div > div > ul > li{
     margin-bottom: 5px;
 }
 
+#myTabContent ul li {
+    list-style-type: none;
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 767px) {
     img{
