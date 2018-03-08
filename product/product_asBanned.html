@@ -32,11 +32,12 @@
     <!-- logo -->
     <a href="../home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
     <!-- search bar -->
-    <form action="../search.html" method="get" class="px-2" id="search-bar">
+    <form action="../search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search" id="search-input">
+            <input class="form-control rounded-0" type="search" placeholder="Search" aria-label="Search"
+                   id="search-input">
             <select class="form-control rounded-0 col-2 " id="search-categories">
-                <option selected> All Categories </option>
+                <option selected> All Categories</option>
                 <option>Technology</option>
                 <option>Automobiles</option>
                 <option>Clothes</option>
@@ -45,15 +46,24 @@
         </div>
     </form>
     <!-- authentication links -->
+    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
+        <i class="far fa-envelope fa-stack-2x"></i>
+        <!-- place numbers of messages here -->
+        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            27
+        </strong>
+    </a>
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button" id="authenticated-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            JohnDoe39012
+            Mr.Trollolol
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authenticated-dropdown" role="menu">
-            <a class="dropdown-item" href="#">View Profile</a>
-            <a class="dropdown-item" href="#">View Messages</a>
-            <a class="dropdown-item" href="#">Log out</a>
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
+             role="menu">
+            <a class="dropdown-item" href="../profile/profile_asBanned.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong></a>
+            <a class="dropdown-item" href="../home/landing_page.html">Log out</a>
         </div>
     </div>
 </nav>
@@ -121,15 +131,6 @@
                     <span class="badge badge-success">61</span>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
                         cupiditate dicta doloremque eligendi</p>
-                    <span>
-                        <a href="#" class="btn btn-primary ">Contact</a>
-                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More Options
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Report Account</a>
-                          </div>
-                    </span>
                 </div>
             </div>
         </div>
@@ -155,9 +156,6 @@
             </li>
         </ul>
 
-        <span class="navbar-text">
-          <a href="#" class="badge badge-light">Report Item</a>
-        </span>
     </nav>
     <!-- Tab panes -->
     <div class="tab-content" id="myTabContent">
@@ -206,13 +204,6 @@
                 </dt>
                 <dd class="col-sm-6">Yes we can delivery with Portuguese keyboard layout.</dd>
             </dl>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Place your question"
-                       aria-label="Place your question" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Ask</button>
-                </div>
-            </div>
         </div>
 
         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -232,7 +223,6 @@
                             <span class="far fa-star" aria-hidden="true"></span>
                         </div>
                         <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                        <a href="#" class="badge badge-light">Report Abuse</a>
                     </div>
                 </div>
             </div>
