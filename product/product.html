@@ -118,7 +118,7 @@
                     <span class="display-4 title">Dell XPS 15</span>
                     <span class="badge badge-primary">Tech</span>
                     <span class="badge badge-info">New</span>
-                    <a href="product_itemOnWatchList.html" class="far fa-star text-warning " aria-hidden="true"></a>
+                    <a href="product_itemOnWatchList.html" class="far fa-star text-warning " aria-hidden="true" title="Add to Watchlist"></a>
                 </div>
             </div><!-- end row-->
         </div>
@@ -130,7 +130,7 @@
 
 
                 <div class="card-block mb-3">
-                    <h4 class="card-title"><a href="#">Seller Name</a></h4>
+                    <h4 class="card-title"><a href="../profile/profile.html">Seller Name</a></h4>
                     <span class="sr-only">Four out of Five Stars</span>
                     <span class="fas fa-star" aria-hidden="true"></span>
                     <span class="fas fa-star" aria-hidden="true"></span>
@@ -310,8 +310,9 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
             <dl class="row">
-                <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid</dt>
+                <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid <i class="fas fa-circle collapse collapseAlert"  title="You are currently the winner bid"></i></dt>
                 <dd class="col-sm-10">1600.00€</dd>
+
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>
                 <dd class="col-sm-10">4d 05h Wednesday, 9:15PM</dd>
@@ -331,14 +332,17 @@
                 </dt>
                 <dd class="col-sm-3 bid" id="button-bid">
                     <div class="btn-group">
-                        <a type="button" class="btn" data-toggle="collapse" href="#collapseAlert" id="button-bid-color">Place
+                        <a type="button" class="btn" data-toggle="collapse" href="product_asBidder.html" data-target=".collapseAlert" id="button-bid-color">Place
                             Bid</a>
                     </div>
                 </dd>
             </dl>
-            <div class="collapse" id="collapseAlert">
+            <div class="collapse collapseAlert">
                 <div class="alert alert-success" role="alert">
                     <strong>Well done!</strong> You successfully submitted a bid.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -377,7 +381,16 @@
                 <input type="text" class="form-control" placeholder="Place your question"
                        aria-label="Place your question" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Ask</button>
+                    <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseAlertAsk">Ask</button>
+                </div>
+
+            </div>
+            <div class="collapse" id="collapseAlertAsk">
+                <div class="alert alert-success" role="alert">
+                    <strong>Well done!</strong> You successfully submitted a question.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
         </div>
