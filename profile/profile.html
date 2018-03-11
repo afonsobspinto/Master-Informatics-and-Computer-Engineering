@@ -29,32 +29,39 @@
     <!-- search bar -->
     <form action="../search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search" id="search-input">
-            <label for="search-categories"></label><select class="form-control rounded-1 col-2 " id="search-categories">
-            <option selected> All Categories </option>
-            <option>Technology</option>
-            <option>Automobiles</option>
-            <option>Clothes</option>
-        </select>
+            <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
+                   id="search-input">
+            <select class="form-control rounded-1 col-2 " id="search-categories">
+                <option selected> All Categories</option>
+                <option>Technology</option>
+                <option>Automobiles</option>
+                <option>Clothes</option>
+            </select>
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
         </div>
     </form>
     <!-- authentication links -->
-    <a class="fa-stack fa-3x" id="mail-icon" href="#">
+    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
         <i class="far fa-envelope fa-stack-2x"></i>
-        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">27</strong>
+        <!-- place numbers of messages here -->
+        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            27
+        </strong>
     </a>
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
             JohnDoe39012
         </a>
-        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown" role="menu">
-            <a class="dropdown-item" href="../product/product_asSeller.html">New Auction</a>
-            <a class="dropdown-item" href="profile_asUser.html">Profile</a>
-            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages      <strong class="got-messages">27</strong>
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
+             role="menu">
+            <a class="dropdown-item" href="../sell_page.html">New Auction</a>
+            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
+                    class="got-messages">27</strong>
             </a>
-            <a class="dropdown-item" href="#">Log out</a>
+            <a class="dropdown-item" href="../home/landing_page.html">Log out</a>
         </div>
     </div>
 </nav>
@@ -88,7 +95,10 @@
                     <span class="badge badge-success">61</span>
             </div>
             <div class="row">
-                <a href="#" class="badge badge-light">Report User</a>
+                <a class="badge badge-light report" type="button" data-toggle="modal"
+                   href="#exampleModal">
+                    Report abuse
+                </a>
             </div>
         </div>
 
@@ -108,7 +118,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg" class="img-review img-fluid">
-                            <div class="review-block-name"><a>Smithers</a></div>
+                            <div class="review-block-name"><a href="profile.html">Smithers</a></div>
                             <div class="review-block-date">March 01, 2018</div>
                         </div>
                         <div class="col-sm-9">
@@ -120,7 +130,10 @@
                                 <span class="fas fa-star" aria-hidden="true"></span>
                             </div>
                             <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                            <a href="#" class="badge badge-light">Report Abuse</a>
+                            <a class="badge badge-light report" type="button" data-toggle="modal"
+                               href="#exampleModal">
+                                Report abuse
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +141,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
-                            <div class="review-block-name"><a>Homer Simpson</a></div>
+                            <div class="review-block-name"><a href="profile.html">Homer Simpson</a></div>
                             <div class="review-block-date">March 02, 2018</div>
                         </div>
                         <div class="col-sm-9">
@@ -140,7 +153,56 @@
                                 <span class="far fa-star" aria-hidden="true"></span>
                             </div>
                             <div class="review-block">Some of the donuts were already eaten</div>
-                            <a href="#" class="badge badge-light">Report Abuse</a>
+                            <a class="badge badge-light report" type="button" data-toggle="modal"
+                               href="#exampleModal">
+                                Report abuse
+                            </a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <h5 style="color:brown"> Motive</h5>
+                                                        <div class="radio">
+                                                            <label><input type="radio"
+                                                                          name="behaviour"> Abusive behaviour </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="content">Inappropriate content in
+                                                                profile </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio"
+                                                                          name="optradio">Didn't receive an item</label>
+                                                        </div>
+                                                    </div>
+                                                    <label for="recipient-name" class="col-form-label">Other:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Message:</label>
+                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary report">Report</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,7 +218,7 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">Computer with Keyboard and Mouse</a>
+                                            <a href="../product/product.html">Computer with Keyboard and Mouse</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
@@ -164,7 +226,7 @@
                                                 <p>Technology</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time Left:</p>
+                                                <p>Time Left: 18 minutes</p>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +239,7 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">Chinese Shoes</a>
+                                            <a href="../product/product.html">Chinese Shoes</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
@@ -185,7 +247,7 @@
                                                 <p>Clothing</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time Left:</p>
+                                                <p>Time Left: 9 hours</p>
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +262,7 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="#">2º hand car</a>
+                                            <a href="../product/product.html">2º hand car</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
@@ -208,7 +270,7 @@
                                                 <p>Cars</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time Left:</p>
+                                                <p>Time Left: 5 days</p>
                                             </div>
                                         </div>
                                     </div>

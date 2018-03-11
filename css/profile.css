@@ -89,6 +89,10 @@ div > div > ul > li{
     list-style-type: none;
 }
 
+#voteDemote {
+    margin-left: 5px;
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 767px) {
     img{
