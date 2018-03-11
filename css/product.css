@@ -13,11 +13,37 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
-.fa-circle {
+.fa-circle{
     color: green;
 }
 
+
+
+#button-bid-color {
+    background-color: #00509d;
+    color: white;
+}
+
+.text-align-center{
+    text-align: center;
+}
+
+@media (min-width: 768px){
+    .card{
+        height: 418px;
+    }
+
+    .card-img-top {
+        height: 218px;
+        width: auto;
+    }
+}
+
 @media (max-width: 767px) {
+
+    .mobile-text-center{
+        text-align: left;
+    }
     .card-img-top, .report, .nav-tabs, #reviews{
         display: none;
     }
@@ -28,6 +54,9 @@ input[type=number] {
     .tab-pane {
         display: block !important;
         opacity: 1;
+    }
+    .text-center{
+        text-align: left;
     }
     .card{
         border:none;

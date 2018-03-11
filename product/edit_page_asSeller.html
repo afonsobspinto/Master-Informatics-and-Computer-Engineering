@@ -23,9 +23,9 @@
 
     <link href="https://bootswatch.com/4/flatly/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/sell_page.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/sell_page.css">
 
 
 </head>
@@ -33,9 +33,9 @@
 <!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
-    <a href="home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
+    <a href="../home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
     <!-- search bar -->
-    <form action="search.html" method="get" class="" id="search-bar">
+    <form action="../search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
@@ -49,7 +49,7 @@
         </div>
     </form>
     <!-- authentication links -->
-    <a class="fa-stack fa-3x" id="mail-icon" href="chat.html">
+    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
         <i class="far fa-envelope fa-stack-2x"></i>
         <!-- place numbers of messages here -->
         <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
@@ -64,17 +64,17 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            <a class="dropdown-item" href="sell_page.html">New Auction</a>
-            <a class="dropdown-item" href="profile/profile_asUser.html">Profile</a>
-            <a class="dropdown-item" href="chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong>
+            <a class="dropdown-item" href="../sell_page.html">New Auction</a>
+            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong>
             </a>
-            <a class="dropdown-item" href="#">Log out</a>
+            <a class="dropdown-item" href="../home/landing_page.html">Log out</a>
         </div>
     </div>
 </nav>
 <div class="container mt-4" id="sell-section">
 
-    <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
+    <h1 class="border-bottom pb-1 mb-4 h2">Edit Seller Name's auction</h1>
 
     <form>
         <h2 class="border-bottom pb-1 mb-4 h4">Product details</h2>
@@ -82,7 +82,7 @@
         <div class="form-group row">
             <label for="title-input" class="col-3 col-form-label">Title</label>
             <div class="col-9">
-                <input class="form-control" type="text" placeholder="Title" id="title-input" required>
+                <input class="form-control" type="text" value="Dell XPS 15" id="title-input" required>
             </div>
         </div>
 
@@ -91,17 +91,16 @@
             <div class="col-9">
                 <select class="form-control" id="category-input">
                     <option hidden> -</option>
-                    <option>Technology</option>
+                    <option selected>Technology</option>
                     <option>Automobiles</option>
                     <option>Clothes</option>
                 </select>
             </div>
         </div>
-
         <div class="form-group row">
             <label for="description-input" class="col-3 col-form-label">Description</label>
             <div class="col-9">
-                <input class="form-control" type="text" placeholder="Description" id="description-input" required>
+                <input class="form-control" type="text" value="Ultrabook with the powerful Intel i7-7700HQ Quad Core CPU with NVIDIA GTX 1050 Gaming graphics Card. " id="description-input" required>
             </div>
         </div>
 
@@ -110,7 +109,7 @@
             <div class="col-9">
                 <select class="form-control" id="condition-input">
                     <option hidden> -</option>
-                    <option>New</option>
+                    <option selected>New</option>
                     <option>Used</option>
                     <option>Not Working</option>
                 </select>
@@ -118,11 +117,34 @@
         </div>
 
         <div class="form-group row">
-            <label for="photos-input" class="col-3 col-form-label">Photos</label>
-            <div class="col-9">
-                <input type="file" class="form-control-file" id="photos-input" multiple required>
-            </div>
+            <label class="col-3 col-form-label">Photos</label>
+
+           <div class="photos col-8">
+               <div class="d-inline" id="img1">
+               <img class="img-fluid d-inline col-3"
+                    src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                    alt="First slide">
+                   <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img1' ).remove();"></a>
+               </div>
+               <div class="d-inline" id="img2">
+                   <img class="img-fluid d-inline col-3"
+                        src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                        alt="First slide"
+                        >
+                   <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img2' ).remove();"></a>
+               </div>
+               <div class="d-inline" id="img3">
+                   <img class="img-fluid d-inline col-3"
+                        src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                        alt="First slide">
+               <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img3' ).remove();"></a>
+               </div>
+               <div class="d-inline ">
+                   <input type="file" class="form-control-file mt-3" id="photos-input" multiple required>
+               </div>
+           </div>
         </div>
+
     </form>
 
     <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
@@ -130,13 +152,10 @@
         <div class="form-group row">
             <label for="price-input" class="col-3 col-form-label">Starting price</label>
             <div class="col-9 input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">€</span>
-                </div>
-                <input class="form-control" type="number" placeholder="Starting price"
+                <input class="form-control" type="number" value="1600.00"
                        aria-label="Amount (to the nearest euro)" id="price-input" required disab>
                 <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
+                    <span class="input-group-text">€</span>
                 </div>
             </div>
         </div>
@@ -144,7 +163,7 @@
         <div class="form-group row">
             <label for="duration-input" class="col-3 col-form-label">End of auction</label>
             <div class="col-9 input-group">
-                <input class="form-control" type="datetime-local" placeholder="mm/dd/yyyy, --:-- --"
+                <input class="form-control" type="datetime-local" value="03/16/2018, 00:31 AM"
                        id="duration-input" required>
             </div>
         </div>
@@ -161,14 +180,14 @@
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="paypalPayment" id="paypalPayment"
-                           value="paypalPayment">
+                           value="paypalPayment" checked>
                     <label class="form-check-label" for="paypalPayment">
                         Paypal
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="visaMastercardPayment" id="visaMastercardPayment"
-                           value="visaMastercardPayment">
+                           value="visaMastercardPayment" checked>
                     <label class="form-check-label" for="visaMastercardPayment">
                         Visa/Mastercard
                     </label>
@@ -194,18 +213,18 @@
             <label for="returns-input" class="col-3 col-form-label">Return options</label>
             <div class="col-9 input-group" id="returns-input">
                 <div class="form-check">
-                    <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="accept_hide" id="accept">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="collapseCheckbox" id="accept" checked>
                     <label class="form-check-label" for="accept">
                         Returns accepted
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="refuse_hide" id="refuse">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="collapseCheckbox" id="refuse">
                     <label class="form-check-label" for="refuse">
                         No returns accepted
                     </label>
                 </div>
-                
+
                 <div class="form-group col-md-4 collapse" id='accept_hide'>
                     <label for="returnDays">After receiving the item, your buyer should contact you within:</label>
                     <select id="returnDays" class="form-control">
@@ -241,7 +260,7 @@
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="internationalShipping" id="internationalShipping"
-                           value="internationalShipping">
+                           value="internationalShipping" checked>
                     <label class="form-check-label" for="internationalShipping">
                         International Shipping
                     </label>
@@ -260,7 +279,7 @@
             <label for="title-input" class="col-3 col-form-label">Shipping mode</label>
             <div class="col-9">
                 <select class="form-control">
-                    <option>Flat: same cost to all buyers</option>
+                    <option selected>Flat: same cost to all buyers</option>
                     <option  data-toggle="collapse" data-target='#calculated_option'>Calculated: cost varies by buyer location</option>
                 </select>
             </div>
@@ -271,13 +290,10 @@
         <div class="form-group row">
             <label for="shippingPrice-input" class="col-3 col-form-label">Cost</label>
             <div class="col-9 input-group">
+                <input class="form-control" type="number" value="0"
+                       aria-label="Amount (to the nearest euro)" id="shippingPrice-input">
                 <div class="input-group-prepend">
                     <span class="input-group-text">€</span>
-                </div>
-                <input class="form-control" type="number" placeholder="Shipping cost"
-                       aria-label="Amount (to the nearest euro)" id="shippingPrice-input">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
                 </div>
                 <div class="form-group collapse col-12" id='calculated_option'>
                     <div class="card border">
@@ -290,33 +306,45 @@
         <div class="form-group row">
             <label for="location-input" class="col-3 col-form-label">Item location</label>
             <div class="col-9">
-                <input class="form-control" type="text" placeholder="Item location" id="location-input" required>
+                <input class="form-control" type="text" value="Henan, China" id="location-input" required>
             </div>
         </div>
 
     </form>
 
+    <form>
+        <h2 class="border-bottom pb-1 mb-4 h4">Q&A</h2>
+
+        <div class="form-group row">
+            <dt class="col-sm-4 text-align-center mobile-text-center">Does it come with a fingerprint reader?</dt>
+            <input class="col-sm-8 form-control" type="text" value="Nope :-)">
+        </div>
+        <div class="form-group row">
+            <dt class="col-sm-4 text-align-center mobile-text-center">Are you able to deliver this with portuguese keyboard layout?</dt>
+            <input class="col-sm-8 form-control" type="text" value="Yes we can delivery with Portuguese keyboard layout.">
+        </div>
+    </form>
+
     <div class="text-right mb-3 mt-3">
-        <button type="button" class="btn btn-primary">List auction</button>
-        <a type="button" class="btn btn-secondary" href="product/product_preview.html">Preview</a>
-        <a type="button" class="btn btn-secondary" href="home/landing_page.html">Save and continue later</a>
-        <a type="button" class="btn btn-danger" href="home/landing_page.html">Cancel</a>
+        <a type="button" class="btn btn-primary" href="../product/product_asSeller.html">Save</a>
+        <a type="button" class="btn btn-secondary" href="../product/product_asSeller.html">Cancel</a>
     </div>
 
 
 </div><!-- end container -->
 
+
 <!-- footer -->
 <nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
     <ul class="nav d-flex justify-content-center">
         <li class="nav-item active">
-            <a class="nav-link text-white" href="home/landing_page.html">Home </a>
+            <a class="nav-link text-white" href="../home/landing_page.html">Home </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="about.html">About</a>
+            <a class="nav-link text-white" href="../about.html">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="FAQ.html">FAQ</a>
+            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
@@ -326,19 +354,4 @@
     </ul>
 </nav>
 </body>
-
-<script type="text/javascript">
-    $(document).ready(function ($) {
-        $("#accept").click(function () {
-            $("#refuse_hide").collapse("hide")
-            $('#accept_hide').collapse("show")
-        });
-
-        $("#refuse").click(function () {
-            $('#accept_hide').collapse("hide")
-            $("#refuse_hide").collapse("show")
-        });
-
-    });
-</script>
 </html>
