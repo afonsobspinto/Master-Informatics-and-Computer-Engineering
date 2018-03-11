@@ -17,10 +17,7 @@ input[type=number] {
     color: green;
 }
 
-.card-img-top {
-    height: 218px;
-    width: auto;
-}
+
 
 #button-bid-color {
     background-color: #00509d;
@@ -29,6 +26,17 @@ input[type=number] {
 
 .text-align-center{
     text-align: center;
+}
+
+@media (min-width: 768px){
+    .card{
+        height: 418px;
+    }
+
+    .card-img-top {
+        height: 218px;
+        width: auto;
+    }
 }
 
 @media (max-width: 767px) {
