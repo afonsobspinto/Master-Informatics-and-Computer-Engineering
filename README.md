@@ -1,5 +1,4 @@
-# FEUP-IART
-## A repository to host IART projects @FEUP 
+# FEUP-IART - A repository to host IART projects @FEUP 
 
 
 ### E2: Aplicação de ID3 ou C4.5 à identificação de Pulsars
