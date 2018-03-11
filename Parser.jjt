@@ -1,0 +1,67 @@
+PARSER_BEGIN(Parser)
+// Java Code to invoke the parser
+public class Parser {
+public static void main(String args[]) throws ParseException {
+// Read standard input
+	Parser parser = new Parser(System.in);
+	parser.Aritm();
+}
+}
+PARSER_END(Parser)
+SKIP :
+{
+" "
+| "\t"
+| "\n"
+| "\r"
+| <"//" (~["\n","\r"])* ("\n" | "\r" | "\r\n")>
+| <"/*" (~["*"])* "*" ("*" | ~["*","/"] (~["*"])* "*")* "/">
+}
+
+// reserved words (Terminals)
+TOKEN :
+{
+<RELA_OP: ">" | "<" | "<=" | ">=" | "==" | "!=">
+| <ADDSUB_OP: "+" | "-">
+| <ARITH_OP: "*" | "/" | "<<" | ">>" | ">>>">
+| <BITWISE_OP: "&" | "|" | "^">
+| <NOT_OP: "!">
+| <WHILE: "while">
+| <IF: "if">
+| <ELSE: "else">
+| <ASSIGN: "=">
+| <ASPA: "\"">
+| <LPAR: "(">
+| <RPAR: ")">
+| <VIRG: ",">
+| <PVIRG: ";">
+| <LCHAVETA: "{">
+| <RCHAVETA: "}">
+| <FUNCTION: "function">
+| <MODULE: "module">
+| <SIZE: "size">
+}
+
+TOKEN :
+{
+<INTEGER: (<DIGIT>)+>
+| <ID: <LETTER> (<LETTER> | <DIGIT>)*>
+| <#LETTER: ["$","A"-"Z","_","a"-"z"]>
+| <#DIGIT: ["0"-"9"]>
+| <STRING: "\"" (["a"-"z","A"-"Z","0"-"9",":"," ","="])+ "\"">
+}
+
+// Production Definition (Non - Terminals)
+void Aritm() : {Token t1, t2, t3;}
+{
+    t1=<INTEGER> {
+		System.out.println("Integer = "+t1.image);
+	}
+	t2=<ADDSUB_OP> {
+		System.out.println("CHAR = "+t2.image);
+	}
+	(t3=<INTEGER> {
+		System.out.println("Integer = "+t3.image);
+	}
+)?
+}
