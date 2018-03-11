@@ -24,6 +24,10 @@
     size: 2px;
 }
 
+.card {
+    margin-top: 2rem;
+}
+
 /* carousel images are fixed to a 16:9 aspect ratio */
   /* // Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) { 
