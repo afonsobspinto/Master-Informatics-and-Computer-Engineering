@@ -33,11 +33,6 @@ input[type=number] {
 
 @media (max-width: 767px) {
 
-    .fa-circle {
-        color: green;
-        display: inline;
-    }
-
     .mobile-text-center{
         text-align: left;
     }
