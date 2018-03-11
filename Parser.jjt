@@ -4,7 +4,7 @@ public class Parser {
 public static void main(String args[]) throws ParseException {
 // Read standard input
 	Parser parser = new Parser(System.in);
-	parser.Aritm();
+	SimpleNode root = parser.Start();
 }
 }
 PARSER_END(Parser)
@@ -52,7 +52,14 @@ TOKEN :
 }
 
 // Production Definition (Non - Terminals)
-void Aritm() : {Token t1, t2, t3;}
+SimpleNode Start() : { }
+{
+  Module()
+  {return jjtThis;}
+}
+
+
+void Module() : {Token t1, t2, t3;}
 {
     t1=<INTEGER> {
 		System.out.println("Integer = "+t1.image);
