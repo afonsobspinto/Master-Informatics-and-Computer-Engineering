@@ -87,7 +87,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="condition-input" class="col-3 col-form-label">Condition</label>
+            <label for="condition-input" class="col-3 col-form-label">Category</label>
             <div class="col-9">
                 <select class="form-control" id="condition-input">
                     <option hidden> -</option>
@@ -194,13 +194,13 @@
             <label for="returns-input" class="col-3 col-form-label">Return options</label>
             <div class="col-9 input-group" id="returns-input">
                 <div class="form-check">
-                    <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="collapseCheckbox" id="accept">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="accept_hide" id="accept">
                     <label class="form-check-label" for="accept">
                         Returns accepted
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="collapseCheckbox" id="refuse">
+                    <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="refuse_hide" id="refuse">
                     <label class="form-check-label" for="refuse">
                         No returns accepted
                     </label>
@@ -326,4 +326,19 @@
     </ul>
 </nav>
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        $("#accept").click(function () {
+            $("#refuse_hide").collapse("hide")
+            $('#accept_hide').collapse("show")
+        });
+
+        $("#refuse").click(function () {
+            $('#accept_hide').collapse("hide")
+            $("#refuse_hide").collapse("show")
+        });
+
+    });
+</script>
 </html>

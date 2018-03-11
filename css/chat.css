@@ -9,13 +9,15 @@
     background-color: #464242;
 }
 
-#sendbtn{
+#sendmsg{
     background-color: #18bc9c;
     color: #464242;
 }
 
-#sendmsg{
-    background-color: #464242;
+#delete{
+    background-color: #000242;
+    border-color: white;
+    color: white;
 }
 
 .table tbody th input, .table tbody th a:nth-child(2) {

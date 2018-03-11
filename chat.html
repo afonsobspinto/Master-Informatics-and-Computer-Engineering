@@ -72,13 +72,13 @@
 
     <div class="container">
         <div class="mt-4">
-            <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: #18bc9cd1">
+            <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: #18bc9cbd">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="col-10">
+                    <div class="col-9">
                         <div class="navbar-nav ro">
                             <a class="nav-item nav-link active" href="#">Inbox
                                 <span class="sr-only">(current)</span>
@@ -89,9 +89,12 @@
                     </div>
 
 
-                    <div class="col-2">
+                    <div class="col-3">
                         <button id="sendmsg" type="button" class="btn btn-outline-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
-                            data-whatever="@getbootstrap"> New Message</button>
+                            data-whatever="@getbootstrap"> New Message  &nbsp; <a href="#"></a></button>
+                        <button id="delete" type="button" class="btn btn-outline-danger d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
+                                
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -139,8 +142,8 @@
                     <th scope="col">From</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Item</th>
-                    <th scope="col">Date
-                    </th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -150,14 +153,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> BidBay </td>
                     <td>You win!</td>
                     <td>#Renault Clio Car</td>
                     <td>27/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row" href="message.html">
@@ -165,14 +166,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> John </td>
                     <td>Payment</td>
                     <td>#Tenis nike</td>
                     <td>21/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -180,14 +179,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Roger </td>
                     <td> Meet me</td>
                     <td>#computer231</td>
                     <td>20/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -195,14 +192,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Sandra </td>
                     <td>Payment</td>
                     <td>#Renault Clio Car</td>
                     <td>19/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -210,14 +205,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Jose </td>
                     <td>Payment</td>
                     <td>#Tenis nike</td>
                     <td>18/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -225,14 +218,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Theresa </td>
                     <td>Payment</td>
                     <td>#computer231</td>
                     <td>15/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -240,14 +231,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Anthony </td>
                     <td>Payment</td>
                     <td>#Renault Clio Car</td>
                     <td>27/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -255,14 +244,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> John </td>
                     <td>Doubt</td>
                     <td>#Tenis nike</td>
                     <td>21/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -270,14 +257,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Mary </td>
                     <td>Payment</td>
                     <td>#computer231</td>
                     <td>20/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -285,14 +270,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> BidBay </td>
                     <td>You win!</td>
                     <td>#Renault Clio Car</td>
                     <td>19/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -300,14 +283,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> Peter </td>
                     <td>Payment</td>
                     <td>#Tenis nike</td>
                     <td>18/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="clickable-row" data-href="message.html">
                     <th scope="row">
@@ -315,14 +296,12 @@
                         <a href="#">
                             <i class="far fa-star"></i>
                         </a> 
-                        <a href="#">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                     </th>
                     <td> BidBay </td>
                     <td> You win! </td>
                     <td>#computer231</td>
                     <td>15/02</td>
+                    <td> <a href="#"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
             </tbody>
         </table>
