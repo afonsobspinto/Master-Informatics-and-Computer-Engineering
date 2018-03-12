@@ -1,11 +1,32 @@
+options
+{
+  LOOKAHEAD = 1;
+}
+
 PARSER_BEGIN(Parser)
 // Java Code to invoke the parser
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.regex.Pattern;
+
 public class Parser {
-public static void main(String args[]) throws ParseException {
-// Read standard input
-	Parser parser = new Parser(System.in);
-	SimpleNode root = parser.Start();
-}
+    public static void main(String args[]) throws ParseException, FileNotFoundException {
+
+        if(args.length != 1 || !Pattern.matches(".*\\.yal$", args[0])){
+            System.out.println("Usage: java Parser <file.yal>");
+            System.exit(-1);
+        }
+
+        Parser parser = new Parser(new FileInputStream(args[0]));
+        try{
+            SimpleNode root = parser.Start();
+            }
+        catch (Exception e){
+            e.printStackTrace(System.out);
+        }
+    }
 }
 PARSER_END(Parser)
 SKIP :
@@ -59,16 +80,154 @@ SimpleNode Start() : { }
 }
 
 
-void Module() : {Token t1, t2, t3;}
+void Module() : {Token t;}
 {
-    t1=<INTEGER> {
-		System.out.println("Integer = "+t1.image);
-	}
-	t2=<ADDSUB_OP> {
-		System.out.println("CHAR = "+t2.image);
-	}
-	(t3=<INTEGER> {
-		System.out.println("Integer = "+t3.image);
-	}
-)?
+     <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+}
+
+void Declaration() : {}
+{
+  (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
+}
+
+void Element() : {}
+{
+ <ID> (ArrayElement())?
+}
+
+void ArrayElement() : {}
+{
+  "[" "]"
+}
+
+void ScalarDeclaration() : {}
+{
+  (<ADDSUB_OP>)? <INTEGER>
+}
+
+void ArrayDeclaration() : {}
+{
+  ( "[" ArraySize() "]" )
+}
+
+void Function() : {}
+{
+  <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
+}
+
+
+void FunctionAssign() : {}
+{
+    (ArrayElement())? <ASSIGN> <ID>
+}
+
+void FunctionDeclaration() : {}
+{
+   <LPAR> (Varlist())? <RPAR>
+
+}
+
+void FunctionContent():{}
+{
+    <LCHAVETA> Stmtlst() <RCHAVETA>
+}
+
+void Varlist() : {}
+{
+  (Element()) (<VIRG> (Element()))*
+}
+
+void Stmtlst() : {}
+{
+  (Stmt())*
+}
+
+void Stmt() : {}
+{
+  (While() | If() | (<ID> AssignOrCall())) <PVIRG>
+}
+
+void AssignOrCall() : {}
+{
+ (ArrayAccess() Assign())  | Call() | ("." (<ID> Call()) | <SIZE> Assign() )?
+}
+
+void Assign() : {}
+{
+  <ASSIGN> Rhs() <PVIRG>
+}
+
+void Lhs() : {}
+{
+    Access()
+}
+
+void Rhs() : {}
+{
+    ( Term() ( ( <ARITH_OP> | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
+}
+
+void ArrayAccess() : {}
+{
+  "[" Index() "]"
+}
+
+void ScalarAccess() : {}
+{
+  <ID> ("." <SIZE>)?
+}
+
+void Access() : {}
+{
+   <ID> (("[" Index() "]") | ("." <SIZE>)?)
+}
+
+void Index() : {}
+{
+    <ID> | <INTEGER>
+}
+
+void Term() : {}
+{
+    (<ADDSUB_OP>)? (<INTEGER> |  (<ID> CallOrAccess()))
+}
+
+void ArraySize(): {}
+{
+    ScalarAccess() | <INTEGER>
+}
+
+void CallOrAccess():{}
+{
+  ArrayAccess() | Call() | ("." (<ID> Call()) | <SIZE> )?
+}
+
+void Call():{}
+{
+ <LPAR> (ArgumentList())? <RPAR>
+}
+
+void ArgumentList():{}
+{
+  Argument() (<VIRG> Argument())*
+}
+
+void Argument():{}
+{
+    ( <ID> | <STRING> | <INTEGER> )
+}
+
+void While():{}
+{
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA>
+}
+
+void Exprtest():{}
+{
+  <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
+}
+
+void If():{}
+{
+  <IF> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA> (<ELSE> <LCHAVETA> Stmtlst() <RCHAVETA>)?
 }
