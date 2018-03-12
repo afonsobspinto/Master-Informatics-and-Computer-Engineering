@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Product Page</title>
+    <title>Auction Page</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -17,6 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
     <!-- fonts awesome -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -25,14 +26,16 @@
 
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/auction.css">
+
+
 </head>
 <body class="website-body">
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
-    <a href="../home/landing_page.html" class="navbar-brand extra-hide">BidBay</a>
+    <a href="../home/landing_page_user.html" class="navbar-brand extra-hide">BidBay</a>
     <!-- search bar -->
-    <form action="../search.html" method="get" class="" id="search-bar">
+    <form action="../advanced_search.html" method="get" class="" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
@@ -50,25 +53,28 @@
         <i class="far fa-envelope fa-stack-2x"></i>
         <!-- place numbers of messages here -->
         <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
-            27
+            12
         </strong>
     </a>
     <div class="dropdown" id="authentication">
         <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
             <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            Mr.Trollolol
+            Administrator
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            <a class="dropdown-item" href="../profile/profile_asBanned.html">Profile</a>
-            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong class="got-messages">27</strong></a>
+            <a class="dropdown-item" href="../report.html">Reports</a>
+            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
+                    class="got-messages">27</strong>
+            </a>
             <a class="dropdown-item" href="../home/landing_page.html">Log out</a>
         </div>
     </div>
 </nav>
 
-<div class="container mt-4" id="product-section">
+<div class="container mt-4" id="auction-section">
     <div class="row">
         <div class="col-md-9">
             <div class="row">
@@ -116,12 +122,13 @@
             </div><!-- end row-->
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 ">
             <div class="card text-align-center mobile-text-center" style="width: 20rem;">
                 <img class="card-img-top img-fluid" src="https://ir.ebaystatic.com/pictures/aw/social/avatar.png"
-                     alt="Seller Image">
+                     alt="Auctioneer Image">
+
                 <div class="card-block mb-3">
-                    <h4 class="card-title"><a href="#">Seller Name</a></h4>
+                    <h4 class="card-title"><a href="#">Auctioneer Name</a></h4>
                     <span class="sr-only">Four out of Five Stars</span>
                     <span class="fas fa-star" aria-hidden="true"></span>
                     <span class="fas fa-star" aria-hidden="true"></span>
@@ -131,6 +138,55 @@
                     <span class="badge badge-success">61</span>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
                         cupiditate dicta doloremque eligendi</p>
+                    <span>
+                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"
+                                 data-whatever="@getbootstrap"> Contact</button>
+                                <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="contactModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="contactModalLabel">New message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">To:</label>
+                                            <input type="text" class="form-control" id="dest-name">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="item-name" class="form-control-label">#Item:</label>
+                                                <input type="text" class="form-control" id="item-name">
+                                            </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="contact-text"></textarea>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button type="button" id="closebtn" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        <button type="button" id="sendbtn"
+                                                class="btn btn-primary">Send message</button>
+
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More Options
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="../report.html">User reports</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#banModal">Ban account</a>
+                          </div>
+                    </span>
                 </div>
             </div>
         </div>
@@ -152,9 +208,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="review-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                   aria-selected="true">Seller Reviews</a>
+                   aria-selected="true">Auctioneer Reviews</a>
             </li>
         </ul>
+
+        <span>
+        <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#removeModal">Cancel Auction</a>
+        <a href="edit_page_asAdmin.html" class="badge badge-warning">Edit Auction</a>
+            </span>
 
     </nav>
     <!-- Tab panes -->
@@ -205,6 +266,24 @@
                 </dt>
                 <dd class="col-sm-8">Yes we can delivery with Portuguese keyboard layout.</dd>
             </dl>
+            <div class="input-group mb-3 col-sm-10">
+                <input type="text" class="form-control" placeholder="Place your question"
+                       aria-label="Place your question" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" data-toggle="collapse"
+                            data-target="#collapseAlertAsk">Ask
+                    </button>
+                </div>
+
+            </div>
+            <div class="collapse" id="collapseAlertAsk">
+                <div class="alert alert-success" role="alert">
+                    <strong>Well done!</strong> You successfully submitted a question.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -224,17 +303,138 @@
                             <span class="fas fa-star" aria-hidden="true"></span>
                             <span class="far fa-star" aria-hidden="true"></span>
                         </div>
-                        <div class="review-block">Excellent seller, quick shipping A++++++</div>
+                        <div class="review-block">Excellent Auctioneer, quick shipping A++++++</div>
+                        <a href="#" class="badge badge-danger remove" data-toggle="modal" data-target="#removeModal">Remove
+                            Content</a>
+                        <a href="#edit_modal" data-toggle="modal" class="badge badge-warning">Edit Content</a>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="alert alert-danger" role="alert">
-            <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022.
-        </div>
 
     </div>
 
+    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"
+         aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeModalLabel">Remove Content </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div>
+                                <h5 style="color:brown"> Motive</h5>
+                                <div class="radio">
+                                    <label><input type="radio"
+                                                  name="behaviour"> Abusive behaviour </label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="content"> Spam </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <label for="admin-pass" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="admin-pass">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close
+                    </button>
+                    <button type="button" class="btn btn-danger report">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="banModal" tabindex="-1" role="dialog"
+         aria-labelledby="banModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="banModalLabel">Ban Account </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div>
+                                <h5 style="color:brown"> Motive</h5>
+                                <div class="radio">
+                                    <label><input type="radio"
+                                                  name="behaviour">Abusive behaviour</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="content">Spam</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="content">Troll</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                            <span>
+                                <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                </span>
+
+                            <span class="radio">
+                                    <label><input type="radio" name="duration">Permanent</label>
+                            </span>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text_ban" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text_ban"></textarea>
+                        </div>
+                        <label for="admin-pass_ban" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="admin-pass_ban">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger report">Ban Account</button>
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" value="Excellent Auctioneer, quick shipping A++++++">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div><!-- end container -->
 
