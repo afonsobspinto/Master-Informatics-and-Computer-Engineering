@@ -352,7 +352,7 @@ void FunctionContent():{/*@bgen(jjtree) FunctionContent */
 {/*@bgen(jjtree) FunctionContent */
     try {
 /*@egen*/
-    <LCHAVETA> Stmtlst() <RCHAVETA>/*@bgen(jjtree)*/
+    <LCHAVETA> Stmtlst()/*@bgen(jjtree)*/
     } catch (Throwable jjte000) {
       if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
@@ -414,7 +414,7 @@ void Stmtlst() : {/*@bgen(jjtree) Stmtlst */
 {/*@bgen(jjtree) Stmtlst */
   try {
 /*@egen*/
-  (Stmt())*/*@bgen(jjtree)*/
+  (Stmt())* <RCHAVETA>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -806,7 +806,7 @@ void While():{/*@bgen(jjtree) While */
 {/*@bgen(jjtree) While */
   try {
 /*@egen*/
-  <WHILE> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA>/*@bgen(jjtree)*/
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst()/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -859,7 +859,7 @@ void Exprtest():{/*@bgen(jjtree) Exprtest */
   }
 /*@egen*/
 }
-  
+
 void If():{/*@bgen(jjtree) If */
   SimpleNode jjtn000 = new SimpleNode(JJTIF);
   boolean jjtc000 = true;
@@ -868,7 +868,7 @@ void If():{/*@bgen(jjtree) If */
 {/*@bgen(jjtree) If */
   try {
 /*@egen*/
-  <IF> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA> (<ELSE> <LCHAVETA> Stmtlst() <RCHAVETA>)?/*@bgen(jjtree)*/
+  <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);

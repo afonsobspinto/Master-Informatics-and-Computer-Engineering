@@ -364,7 +364,6 @@ if (jjtc000) {
     try {
       jj_consume_token(LCHAVETA);
       Stmtlst();
-      jj_consume_token(RCHAVETA);
     } catch (Throwable jjte000) {
 if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
@@ -447,6 +446,7 @@ if (jjtc000) {
         }
         Stmt();
       }
+      jj_consume_token(RCHAVETA);
     } catch (Throwable jjte000) {
 if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -1003,7 +1003,6 @@ if (jjtc000) {
       Exprtest();
       jj_consume_token(LCHAVETA);
       Stmtlst();
-      jj_consume_token(RCHAVETA);
     } catch (Throwable jjte000) {
 if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -1065,13 +1064,11 @@ if (jjtc000) {
       Exprtest();
       jj_consume_token(LCHAVETA);
       Stmtlst();
-      jj_consume_token(RCHAVETA);
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
       case ELSE:{
         jj_consume_token(ELSE);
         jj_consume_token(LCHAVETA);
         Stmtlst();
-        jj_consume_token(RCHAVETA);
         break;
         }
       default:

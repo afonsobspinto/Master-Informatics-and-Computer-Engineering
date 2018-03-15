@@ -131,7 +131,7 @@ void FunctionDeclaration() : {}
 
 void FunctionContent():{}
 {
-    <LCHAVETA> Stmtlst() <RCHAVETA>
+    <LCHAVETA> Stmtlst()
 }
 
 void Varlist() : {}
@@ -141,7 +141,7 @@ void Varlist() : {}
 
 void Stmtlst() : {}
 {
-  (Stmt())*
+  (Stmt())* <RCHAVETA>
 }
 
 void Stmt() : {}
@@ -211,15 +211,15 @@ void Argument():{}
 
 void While():{}
 {
-  <WHILE> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA>
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst()
 }
 
 void Exprtest():{}
 {
   <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
 }
-  
+
 void If():{}
 {
-  <IF> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA> (<ELSE> <LCHAVETA> Stmtlst() <RCHAVETA>)?
+  <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?
 }
