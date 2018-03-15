@@ -1,6 +1,7 @@
 options
 {
   LOOKAHEAD = 1;
+  DEBUG_PARSER = false;
 }
 
 PARSER_BEGIN(Parser)
@@ -21,11 +22,13 @@ public class Parser {
 
         Parser parser = new Parser(new FileInputStream(args[0]));
         try{
-            SimpleNode root = parser.Start();
+            SimpleNode root = parser.Module();
             }
         catch (Exception e){
             e.printStackTrace(System.out);
         }
+
+        System.out.println(".yal file parsed successfully");
     }
 }
 PARSER_END(Parser)
@@ -72,17 +75,13 @@ TOKEN :
 | <STRING: "\"" (["a"-"z","A"-"Z","0"-"9",":"," ","="])+ "\"">
 }
 
+
 // Production Definition (Non - Terminals)
-SimpleNode Start() : { }
-{
-  Module()
-  {return jjtThis;}
-}
 
-
-void Module() : {Token t;}
+SimpleNode Module() : {Token t;}
 {
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+     { return jjtThis; }
 }
 
 void Declaration() : {}
@@ -109,6 +108,9 @@ void ArrayDeclaration() : {}
 {
   ( "[" ArraySize() "]" )
 }
+
+
+//É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
 
 void Function() : {}
 {
@@ -144,17 +146,12 @@ void Stmtlst() : {}
 
 void Stmt() : {}
 {
-  (While() | If() | (<ID> AssignOrCall())) <PVIRG>
-}
-
-void AssignOrCall() : {}
-{
- (ArrayAccess() Assign())  | Call() | ("." (<ID> Call()) | <SIZE> Assign() )?
+  While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
 }
 
 void Assign() : {}
 {
-  <ASSIGN> Rhs() <PVIRG>
+  Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
 void Lhs() : {}
@@ -189,7 +186,7 @@ void Index() : {}
 
 void Term() : {}
 {
-    (<ADDSUB_OP>)? (<INTEGER> |  (<ID> CallOrAccess()))
+    (<ADDSUB_OP>)? (<INTEGER> |  LOOKAHEAD(3) Call() | Access())
 }
 
 void ArraySize(): {}
@@ -197,14 +194,9 @@ void ArraySize(): {}
     ScalarAccess() | <INTEGER>
 }
 
-void CallOrAccess():{}
-{
-  ArrayAccess() | Call() | ("." (<ID> Call()) | <SIZE> )?
-}
-
 void Call():{}
 {
- <LPAR> (ArgumentList())? <RPAR>
+  <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
 }
 
 void ArgumentList():{}
@@ -226,7 +218,7 @@ void Exprtest():{}
 {
   <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
 }
-
+  
 void If():{}
 {
   <IF> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA> (<ELSE> <LCHAVETA> Stmtlst() <RCHAVETA>)?

@@ -1,5 +1,0 @@
-module first_program {
-	function main() {
-		io.print("Hello World");
-	}
-}
