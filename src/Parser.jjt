@@ -142,7 +142,14 @@ void Function() : {}
 {
   <FUNCTION>
   <ID>
-   (FunctionAssign())? FunctionDeclaration() FunctionContent()
+   (FunctionAssign())?
+    try{
+        FunctionDeclaration()
+    }
+    catch(ParseException e){
+        error_skipto(LCHAVETA, "Function");
+    }
+   FunctionContent()
 }
 
 
