@@ -2,52 +2,39 @@
 public interface ParserTreeConstants
 {
   public int JJTERROR_SKIPTO = 0;
-  public int JJTMODULE = 1;
+  public int JJTMOD = 1;
   public int JJTDECLARATION = 2;
   public int JJTELEMENT = 3;
   public int JJTARR_ELEM = 4;
-  public int JJTSCAL_DECL = 5;
+  public int JJTVOID = 5;
   public int JJTARR_DECL = 6;
-  public int JJTFUNCT = 7;
-  public int JJTFUNCT_ASSI = 8;
-  public int JJTFUNCT_DECL = 9;
-  public int JJTFUNCT_CONT = 10;
-  public int JJTVAR_LIST = 11;
-  public int JJTSTMT_LIST = 12;
-  public int JJTSTMT = 13;
-  public int JJTASSI = 14;
-  public int JJTVOID = 15;
-  public int JJTARR_ACC = 16;
-  public int JJTSCA_ACC = 17;
-  public int JJTACC = 18;
-  public int JJTIND = 19;
-  public int JJTTERM = 20;
-  public int JJTARR_SIZE = 21;
-  public int JJTCALL = 22;
-  public int JJTARG_LIST = 23;
-  public int JJTARG = 24;
-  public int JJTWHILE = 25;
-  public int JJTEXPR_TEST = 26;
-  public int JJTIF = 27;
+  public int JJTFUNCTION = 7;
+  public int JJTFUNCTIONASSIGN = 8;
+  public int JJTRHS = 9;
+  public int JJTARR_ACC = 10;
+  public int JJTSCA_ACC = 11;
+  public int JJTACC = 12;
+  public int JJTIND = 13;
+  public int JJTTERM = 14;
+  public int JJTARR_SIZE = 15;
+  public int JJTCALL = 16;
+  public int JJTARG = 17;
+  public int JJTWHILE = 18;
+  public int JJTEXPR_TEST = 19;
+  public int JJTIF = 20;
 
 
   public String[] jjtNodeName = {
     "error_skipto",
-    "MODULE",
+    "MOD",
     "Declaration",
     "ELEMENT",
     "ARR_ELEM",
-    "SCAL_DECL",
-    "ARR_DECL",
-    "FUNCT",
-    "FUNCT_ASSI",
-    "FUNCT_DECL",
-    "FUNCT_CONT",
-    "VAR_LIST",
-    "STMT_LIST",
-    "STMT",
-    "ASSI",
     "void",
+    "ARR_DECL",
+    "FUNCTION",
+    "FunctionAssign",
+    "RHS",
     "ARR_ACC",
     "SCA_ACC",
     "ACC",
@@ -55,11 +42,10 @@ public interface ParserTreeConstants
     "TERM",
     "ARR_SIZE",
     "CALL",
-    "ARG_LIST",
     "ARG",
     "WHILE",
     "EXPR_TEST",
     "IF",
   };
 }
-/* JavaCC - OriginalChecksum=2b64fde66b4b76dccc94976ebd3734f6 (do not edit this line) */
+/* JavaCC - OriginalChecksum=5afcd7a493575d8cbacf8daee18d2c45 (do not edit this line) */

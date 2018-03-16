@@ -130,15 +130,15 @@ void ArrayDeclaration() #ARR_DECL: {}
 
 //É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
 
-void Function() #void: {}
+void Function() #FUNCTION: {Token t1, t2;}
 {
-  <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
+  t1 = <FUNCTION> {jjtThis.value = t1.image;} t2 = <ID> {jjtThis.value = t2.image;} (FunctionAssign())? FunctionDeclaration() FunctionContent()
 }
 
 
-void FunctionAssign() #void: {}
+void FunctionAssign() #FunctionAssign: {Token t1, t2;}
 {
-    (ArrayElement())? <ASSIGN> <ID>
+    (ArrayElement())? t1 = <ASSIGN> {jjtThis.value = t1.image;} t2 = <ID> {jjtThis.value = t2.image;}
 }
 
 void FunctionDeclaration() #void: {}
@@ -179,7 +179,7 @@ void Lhs() #void: {}
 
 void Rhs() #void: {}
 {
-    ( Term() ( ( <ARITH_OP> | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
+    ( Term() ( ( <ARITH_OP>  | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
 }
 
 void ArrayAccess() #ARR_ACC: {}
@@ -192,14 +192,14 @@ void ScalarAccess() #SCA_ACC: {}
   <ID> ("." <SIZE>)?
 }
 
-void Access() #ACC: {Token t;}
+void Access() #ACC: {Token t1, t2;}
 {
-  t = <ID> {jjtThis.value = t.image;} (("[" Index() "]") | ("." <SIZE>)?)
+  t1 = <ID> {jjtThis.value = t1.image;} (("[" Index() "]") | ("." <SIZE>)?)
 }
 
-void Index() #IND: {}
+void Index() #IND: {Token t1, t2;}
 {
-    <ID> | <INTEGER>
+    t1 = <ID> {jjtThis.value = t1.image;} | t2 = <INTEGER> {jjtThis.value = t2.image;}
 }
 
 void Term() #TERM: {Token t1, t2;}
@@ -232,9 +232,9 @@ void While() #WHILE:{}
   <WHILE> Exprtest() <LCHAVETA> Stmtlst()
 }
 
-void Exprtest() #EXPR_TEST:{}
+void Exprtest() #EXPR_TEST:{Token t1;}
 {
-  <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
+  <LPAR> Lhs() t1 = <RELA_OP> {jjtThis.value = t1.image;} Rhs() <RPAR>
 }
 
 void If() #IF:{}
