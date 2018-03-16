@@ -11,7 +11,7 @@ module array4_err
    a=[N];
 
 
-   i=0;       2
+   i=0;
    while(i < N < 2)  // error 3
    {
    	a[i] = i;
