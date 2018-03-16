@@ -1,0 +1,23 @@
+module aval2_err
+{
+
+function c=f(a, b) {
+    if(a == b) {
+         c = 2;
+    } else c=3; // error 1
+}
+
+function main1()
+{
+ c=f(2,12);
+ io.println1(c); // result = 2
+
+ c=f(4,2);
+ io.println(c); // result = 2
+
+ c=3.5; // error 2
+ c=f2(4,2);
+ io.println(c); // result = 3
+}
+
+}

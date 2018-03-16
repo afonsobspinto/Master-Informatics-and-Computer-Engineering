@@ -1,0 +1,19 @@
+
+module aval4_err
+{
+
+function c = f(a, b) {
+    while1(a < b) { // error 1
+			c = io.read() // error 2
+			a = io.read();
+			a = a+c;
+    }
+}
+
+function main()
+{
+ c=f(5;6); // error 3
+ io.println(c+2); // error 4
+}
+
+}

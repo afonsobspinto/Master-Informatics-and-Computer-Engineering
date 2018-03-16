@@ -1,4 +1,5 @@
 ./idea
 *.iml
-*.sh
 *.class
+*.java
+*.jj
