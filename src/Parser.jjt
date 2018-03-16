@@ -23,6 +23,7 @@ public class Parser {
         Parser parser = new Parser(new FileInputStream(args[0]));
         try{
             SimpleNode root = parser.Module();
+            root.dump("");
             }
         catch (Exception e){
             e.printStackTrace(System.out);
@@ -89,7 +90,7 @@ void error_skipto(int kind, String msg) {
 }
 
 
-SimpleNode Module() : {Token t;}
+SimpleNode Module() #MODULE : {Token t;}
 {
     try{
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
@@ -100,27 +101,27 @@ SimpleNode Module() : {Token t;}
      { return jjtThis; }
 }
 
-void Declaration() : {}
+void Declaration(): {}
 {
   (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
 }
 
-void Element() : {}
+void Element() #ELEM: {}
 {
  <ID> (ArrayElement())?
 }
 
-void ArrayElement() : {}
+void ArrayElement() #ARR_ELEM: {}
 {
   "[" "]"
 }
 
-void ScalarDeclaration() : {}
+void ScalarDeclaration() #SCAL_DECL: {}
 {
   (<ADDSUB_OP>)? <INTEGER>
 }
 
-void ArrayDeclaration() : {}
+void ArrayDeclaration() #ARR_DECL: {}
 {
   ( "[" ArraySize() "]" )
 }
@@ -128,114 +129,114 @@ void ArrayDeclaration() : {}
 
 //É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
 
-void Function() : {}
+void Function() #FUNCT: {}
 {
   <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
 }
 
 
-void FunctionAssign() : {}
+void FunctionAssign() #FUNCT_ASSI: {}
 {
     (ArrayElement())? <ASSIGN> <ID>
 }
 
-void FunctionDeclaration() : {}
+void FunctionDeclaration() #FUNCT_DECL: {}
 {
      <LPAR> (Varlist())? <RPAR>
 
 }
 
-void FunctionContent():{}
+void FunctionContent() #FUNCT_CONT:{}
 {
     <LCHAVETA> Stmtlst()
 }
 
-void Varlist() : {}
+void Varlist() #VAR_LIST: {}
 {
   (Element()) (<VIRG> (Element()))*
 }
 
-void Stmtlst() : {}
+void Stmtlst() #STMT_LIST: {}
 {
   (Stmt())* <RCHAVETA>
 }
 
-void Stmt() : {}
+void Stmt() #STMT: {}
 {
   While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
 }
 
-void Assign() : {}
+void Assign() #ASSI: {}
 {
   Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
-void Lhs() : {}
+void Lhs() #LHS: {}
 {
     Access()
 }
 
-void Rhs() : {}
+void Rhs() #RHS: {}
 {
     ( Term() ( ( <ARITH_OP> | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
 }
 
-void ArrayAccess() : {}
+void ArrayAccess() #ARR_ACC: {}
 {
   "[" Index() "]"
 }
 
-void ScalarAccess() : {}
+void ScalarAccess() #SCA_ACC: {}
 {
   <ID> ("." <SIZE>)?
 }
 
-void Access() : {}
+void Access() #ACC: {}
 {
    <ID> (("[" Index() "]") | ("." <SIZE>)?)
 }
 
-void Index() : {}
+void Index() #IND: {}
 {
     <ID> | <INTEGER>
 }
 
-void Term() : {}
+void Term() #TERM: {}
 {
     (<ADDSUB_OP>)? (<INTEGER> |  LOOKAHEAD(3) Call() | Access())
 }
 
-void ArraySize(): {}
+void ArraySize() #ARR_SIZE: {}
 {
     ScalarAccess() | <INTEGER>
 }
 
-void Call():{}
+void Call() #CALL:{}
 {
   <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
 }
 
-void ArgumentList():{}
+void ArgumentList() #ARG_LIST:{}
 {
   Argument() (<VIRG> Argument())*
 }
 
-void Argument():{}
+void Argument() #ARG:{}
 {
     ( <ID> | <STRING> | <INTEGER> )
 }
 
-void While():{}
+void While() #WHILE:{}
 {
   <WHILE> Exprtest() <LCHAVETA> Stmtlst()
 }
 
-void Exprtest():{}
+void Exprtest() #EXPR_TEST:{}
 {
   <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
 }
 
-void If():{}
+void If() #IF:{}
 {
   <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?
 }
