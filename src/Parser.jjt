@@ -106,7 +106,7 @@ void Declaration(): {}
   (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
 }
 
-void Element() #ELEM: {}
+void Element() #void: {}
 {
  <ID> (ArrayElement())?
 }
@@ -171,12 +171,12 @@ void Assign() #ASSI: {}
   Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
-void Lhs() #LHS: {}
+void Lhs() #void: {}
 {
     Access()
 }
 
-void Rhs() #RHS: {}
+void Rhs() #void: {}
 {
     ( Term() ( ( <ARITH_OP> | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
 }
