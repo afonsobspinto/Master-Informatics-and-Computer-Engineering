@@ -2,68 +2,50 @@
 public interface ParserTreeConstants
 {
   public int JJTERROR_SKIPTO = 0;
-  public int JJTERROR_SKIPTO_ANDEAT = 1;
-  public int JJTMODULE = 2;
-  public int JJTDECLARATION = 3;
-  public int JJTELEMENT = 4;
-  public int JJTARRAYELEMENT = 5;
-  public int JJTSCALARDECLARATION = 6;
-  public int JJTARRAYDECLARATION = 7;
-  public int JJTFUNCTION = 8;
-  public int JJTFUNCTIONASSIGN = 9;
-  public int JJTFUNCTIONDECLARATION = 10;
-  public int JJTFUNCTIONCONTENT = 11;
-  public int JJTVARLIST = 12;
-  public int JJTSTMTLST = 13;
-  public int JJTSTMT = 14;
-  public int JJTASSIGN = 15;
-  public int JJTLHS = 16;
-  public int JJTRHS = 17;
-  public int JJTARRAYACCESS = 18;
-  public int JJTSCALARACCESS = 19;
-  public int JJTACCESS = 20;
-  public int JJTINDEX = 21;
-  public int JJTTERM = 22;
-  public int JJTARRAYSIZE = 23;
-  public int JJTCALL = 24;
-  public int JJTARGUMENTLIST = 25;
-  public int JJTARGUMENT = 26;
-  public int JJTWHILE = 27;
-  public int JJTEXPRTEST = 28;
-  public int JJTIF = 29;
+  public int JJTMOD = 1;
+  public int JJTDECLARATION = 2;
+  public int JJTELEMENT = 3;
+  public int JJTARR_ELEM = 4;
+  public int JJTVOID = 5;
+  public int JJTARR_DECL = 6;
+  public int JJTFUNCTION = 7;
+  public int JJTFUNCTIONASSIGN = 8;
+  public int JJTRHS = 9;
+  public int JJTARR_ACC = 10;
+  public int JJTSCA_ACC = 11;
+  public int JJTACC = 12;
+  public int JJTIND = 13;
+  public int JJTTERM = 14;
+  public int JJTARR_SIZE = 15;
+  public int JJTCALL = 16;
+  public int JJTARG = 17;
+  public int JJTWHILE = 18;
+  public int JJTEXPR_TEST = 19;
+  public int JJTIF = 20;
 
 
   public String[] jjtNodeName = {
     "error_skipto",
-    "error_skipto_andEat",
-    "Module",
+    "MOD",
     "Declaration",
-    "Element",
-    "ArrayElement",
-    "ScalarDeclaration",
-    "ArrayDeclaration",
-    "Function",
+    "ELEMENT",
+    "ARR_ELEM",
+    "void",
+    "ARR_DECL",
+    "FUNCTION",
     "FunctionAssign",
-    "FunctionDeclaration",
-    "FunctionContent",
-    "Varlist",
-    "Stmtlst",
-    "Stmt",
-    "Assign",
-    "Lhs",
-    "Rhs",
-    "ArrayAccess",
-    "ScalarAccess",
-    "Access",
-    "Index",
-    "Term",
-    "ArraySize",
-    "Call",
-    "ArgumentList",
-    "Argument",
-    "While",
-    "Exprtest",
-    "If",
+    "RHS",
+    "ARR_ACC",
+    "SCA_ACC",
+    "ACC",
+    "IND",
+    "TERM",
+    "ARR_SIZE",
+    "CALL",
+    "ARG",
+    "WHILE",
+    "EXPR_TEST",
+    "IF",
   };
 }
-/* JavaCC - OriginalChecksum=9ab7e60efdaf824f745957e5117e2d24 (do not edit this line) */
+/* JavaCC - OriginalChecksum=5afcd7a493575d8cbacf8daee18d2c45 (do not edit this line) */

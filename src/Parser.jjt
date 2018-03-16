@@ -13,9 +13,6 @@ import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
 
 public class Parser {
-
-    static int errors = 0;
-
     public static void main(String args[]) throws ParseException, FileNotFoundException {
 
         if(args.length != 1 || !Pattern.matches(".*\\.yal$", args[0])){
@@ -31,7 +28,7 @@ public class Parser {
             e.printStackTrace(System.out);
         }
 
-        System.out.println(".yal file parsed with " + errors + " errors");
+        System.out.println(".yal file parsed successfully");
     }
 }
 PARSER_END(Parser)
@@ -82,55 +79,30 @@ TOKEN :
 // Production Definition (Non - Terminals)
 
 JAVACODE
-
-//funcao que nao consome o caracter passado por argumento
 void error_skipto(int kind, String msg) {
   ParseException e = generateParseException();  // generate the exception object.
   System.out.println(msg + " - " + e.toString());  // print the error message
-  errors++;
-  Token t;
-  while(true)
-  {
-    t = getToken(1);
-    if(t.kind == kind | t.kind == EOF){
-        return;}
-    getNextToken();
-  }
-}
-
-JAVACODE
-//funcao que consome o carater passado por argumento
-void error_skipto_andEat(int kind, String msg) {
-  ParseException e = generateParseException();  // generate the exception object.
-  System.out.println(msg + " - " + e.toString());  // print the error message
-  errors++;
   Token t;
   do {
     t = getNextToken();
   } while (t.kind != kind);
 }
 
+
 SimpleNode Module() : {Token t;}
 {
     try{
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
      }
-      catch(ParseException e){
-         error_skipto(RCHAVETA, "MODULE");
-        }
+     catch(ParseException e){
+        error_skipto(RCHAVETA, "Module");
+     }
      { return jjtThis; }
 }
 
 void Declaration() : {}
 {
-  try{
-    (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
-  }
-  catch(ParseException e){
-    error_skipto(PVIRG, "Declaration");
-   }
-   <PVIRG>
-
+  (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
 }
 
 void Element() : {}
@@ -145,7 +117,7 @@ void ArrayElement() : {}
 
 void ScalarDeclaration() : {}
 {
-    (<ADDSUB_OP>)? <INTEGER>
+  (<ADDSUB_OP>)? <INTEGER>
 }
 
 void ArrayDeclaration() : {}
@@ -154,24 +126,11 @@ void ArrayDeclaration() : {}
 }
 
 
+//É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
+
 void Function() : {}
 {
-  <FUNCTION>
-   try{
-       <ID>
-      }
-      catch(ParseException e){
-          error_skipto(LPAR, "FunctionID");
-      }
-
-   (FunctionAssign())?
-    try{
-        FunctionDeclaration()
-    }
-    catch(ParseException e){
-        error_skipto(LCHAVETA, "Function");
-    }
-   FunctionContent()
+  <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
 }
 
 
@@ -182,8 +141,7 @@ void FunctionAssign() : {}
 
 void FunctionDeclaration() : {}
 {
-     <LPAR>
-     (Varlist())? <RPAR>
+     <LPAR> (Varlist())? <RPAR>
 
 }
 
@@ -204,29 +162,12 @@ void Stmtlst() : {}
 
 void Stmt() : {}
 {
-    While() | If() | LOOKAHEAD(3) Assign() | 
-    
-    try
-    {
-        Call() 
-    }
-    catch(ParseException e)
-    {   
-        error_skipto(PVIRG, "Stmt");
-    }
-    
-    <PVIRG>
+  While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
 }
 
 void Assign() : {}
 {
-  Lhs() <ASSIGN> Rhs()
-    try{
-      <PVIRG>
-    }
-    catch(ParseException e){
-      error_skipto_andEat(PVIRG, "Assign");
-     }
+  Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
 void Lhs() : {}
@@ -251,7 +192,6 @@ void ScalarAccess() : {}
 
 void Access() : {}
 {
-
    <ID> (("[" Index() "]") | ("." <SIZE>)?)
 }
 
@@ -272,7 +212,6 @@ void ArraySize(): {}
 
 void Call():{}
 {
-
   <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
 }
 
@@ -288,38 +227,15 @@ void Argument():{}
 
 void While():{}
 {
-    <WHILE> Exprtest()
-     <LCHAVETA> Stmtlst()
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst()
 }
 
 void Exprtest():{}
 {
-  <LPAR>
-  try{
-    Lhs() <RELA_OP> Rhs()
-  }
-  catch(ParseException e){
-    error_skipto(RPAR, "Exprtest");
-   }
-  try{
-   <RPAR>
-   }
-   catch(ParseException e){
-     error_skipto_andEat(RPAR, "Exprtest");
-   }
-
+  <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
 }
 
 void If():{}
 {
-  <IF> Exprtest() <LCHAVETA> Stmtlst()
-
-  try
-  {
-      (<ELSE> <LCHAVETA> Stmtlst())?
-  }
-  catch(ParseException e)
-  {
-      error_skipto(RCHAVETA, "If");
-  }
+  <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?
 }
