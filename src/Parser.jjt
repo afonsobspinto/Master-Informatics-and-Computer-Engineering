@@ -78,9 +78,25 @@ TOKEN :
 
 // Production Definition (Non - Terminals)
 
+JAVACODE
+void error_skipto(int kind, String msg) {
+  ParseException e = generateParseException();  // generate the exception object.
+  System.out.println(msg + " - " + e.toString());  // print the error message
+  Token t;
+  do {
+    t = getNextToken();
+  } while (t.kind != kind);
+}
+
+
 SimpleNode Module() : {Token t;}
 {
+    try{
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+     }
+     catch(ParseException e){
+        error_skipto(RCHAVETA, "Module");
+     }
      { return jjtThis; }
 }
 
@@ -125,7 +141,7 @@ void FunctionAssign() : {}
 
 void FunctionDeclaration() : {}
 {
-   <LPAR> (Varlist())? <RPAR>
+     <LPAR> (Varlist())? <RPAR>
 
 }
 
