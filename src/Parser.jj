@@ -149,14 +149,14 @@ SimpleNode Module()         : {/*@bgen(jjtree) MODULE */
 }
 
 void Declaration(): {/*@bgen(jjtree) Declaration */
-  ASTDeclaration jjtn000 = new ASTDeclaration(JJTDECLARATION);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                     ASTDeclaration jjtn000 = new ASTDeclaration(JJTDECLARATION);
+                     boolean jjtc000 = true;
+                     jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t;}
 {/*@bgen(jjtree) Declaration */
   try {
 /*@egen*/
-  (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>/*@bgen(jjtree)*/
+  (Element()) (t = <ASSIGN> {jjtn000.value = t.image;} ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -228,19 +228,14 @@ void ArrayElement()          : {/*@bgen(jjtree) ARR_ELEM */
 }
 
 void ScalarDeclaration()           : {/*@bgen(jjtree) SCAL_DECL */
-                                      ASTSCAL_DECL jjtn000 = new ASTSCAL_DECL(JJTSCAL_DECL);
-                                      boolean jjtc000 = true;
-                                      jjtree.openNodeScope(jjtn000);
-/*@egen*/Token t;}
+  ASTSCAL_DECL jjtn000 = new ASTSCAL_DECL(JJTSCAL_DECL);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+/*@egen*/}
 {/*@bgen(jjtree) SCAL_DECL */
   try {
 /*@egen*/
   (<ADDSUB_OP>)? <INTEGER>/*@bgen(jjtree)*/
-                           {
-                             jjtree.closeNodeScope(jjtn000, true);
-                             jjtc000 = false;
-                           }
-/*@egen*/ {jjtn000.value = t.image;}/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
@@ -592,33 +587,33 @@ void ScalarAccess()         : {/*@bgen(jjtree) SCA_ACC */
 }
 
 void Access()     : {/*@bgen(jjtree) ACC */
-  ASTACC jjtn000 = new ASTACC(JJTACC);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                     ASTACC jjtn000 = new ASTACC(JJTACC);
+                     boolean jjtc000 = true;
+                     jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t;}
 {/*@bgen(jjtree) ACC */
-   try {
+  try {
 /*@egen*/
-   <ID> (("[" Index() "]") | ("." <SIZE>)?)/*@bgen(jjtree)*/
-   } catch (Throwable jjte000) {
-     if (jjtc000) {
-       jjtree.clearNodeScope(jjtn000);
-       jjtc000 = false;
-     } else {
-       jjtree.popNode();
-     }
-     if (jjte000 instanceof RuntimeException) {
-       throw (RuntimeException)jjte000;
-     }
-     if (jjte000 instanceof ParseException) {
-       throw (ParseException)jjte000;
-     }
-     throw (Error)jjte000;
-   } finally {
-     if (jjtc000) {
-       jjtree.closeNodeScope(jjtn000, true);
-     }
-   }
+  t = <ID> {jjtn000.value = t.image;} (("[" Index() "]") | ("." <SIZE>)?)/*@bgen(jjtree)*/
+  } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      throw (RuntimeException)jjte000;
+    }
+    if (jjte000 instanceof ParseException) {
+      throw (ParseException)jjte000;
+    }
+    throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+    }
+  }
 /*@egen*/
 }
 
@@ -640,14 +635,19 @@ void Index()     : {/*@bgen(jjtree) IND */
 }
 
 void Term()      : {/*@bgen(jjtree) TERM */
-  ASTTERM jjtn000 = new ASTTERM(JJTTERM);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                    ASTTERM jjtn000 = new ASTTERM(JJTTERM);
+                    boolean jjtc000 = true;
+                    jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t1, t2;}
 {/*@bgen(jjtree) TERM */
     try {
 /*@egen*/
-    (<ADDSUB_OP>)? (<INTEGER> |  LOOKAHEAD(3) Call() | Access())/*@bgen(jjtree)*/
+    (t1 = <ADDSUB_OP> {jjtn000.value = t1.image;})? (t2 = <INTEGER>/*@bgen(jjtree)*/
+                                                                    {
+                                                                      jjtree.closeNodeScope(jjtn000, true);
+                                                                      jjtc000 = false;
+                                                                    }
+/*@egen*/ {jjtn000.value = t2.image;} |  LOOKAHEAD(3) Call() | Access())/*@bgen(jjtree)*/
     } catch (Throwable jjte000) {
       if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
@@ -671,14 +671,19 @@ void Term()      : {/*@bgen(jjtree) TERM */
 }
 
 void ArraySize()          : {/*@bgen(jjtree) ARR_SIZE */
-  ASTARR_SIZE jjtn000 = new ASTARR_SIZE(JJTARR_SIZE);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                             ASTARR_SIZE jjtn000 = new ASTARR_SIZE(JJTARR_SIZE);
+                             boolean jjtc000 = true;
+                             jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t;}
 {/*@bgen(jjtree) ARR_SIZE */
     try {
 /*@egen*/
-    ScalarAccess() | <INTEGER>/*@bgen(jjtree)*/
+    ScalarAccess() | t = <INTEGER>/*@bgen(jjtree)*/
+                                   {
+                                     jjtree.closeNodeScope(jjtn000, true);
+                                     jjtc000 = false;
+                                   }
+/*@egen*/ {jjtn000.value = t.image;}/*@bgen(jjtree)*/
     } catch (Throwable jjte000) {
       if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
@@ -702,14 +707,14 @@ void ArraySize()          : {/*@bgen(jjtree) ARR_SIZE */
 }
 
 void Call()      :{/*@bgen(jjtree) CALL */
-  ASTCALL jjtn000 = new ASTCALL(JJTCALL);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                   ASTCALL jjtn000 = new ASTCALL(JJTCALL);
+                   boolean jjtc000 = true;
+                   jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t1, t2;}
 {/*@bgen(jjtree) CALL */
   try {
 /*@egen*/
-  <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>/*@bgen(jjtree)*/
+  t1 = <ID> {jjtn000.value = t1.image;} ("." t2 = <ID> {jjtn000.value = t2.image;})? <LPAR> (ArgumentList())? <RPAR>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -764,14 +769,29 @@ void ArgumentList()          :{/*@bgen(jjtree) ARG_LIST */
 }
 
 void Argument()     :{/*@bgen(jjtree) ARG */
-  ASTARG jjtn000 = new ASTARG(JJTARG);
-  boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
-/*@egen*/}
+                      ASTARG jjtn000 = new ASTARG(JJTARG);
+                      boolean jjtc000 = true;
+                      jjtree.openNodeScope(jjtn000);
+/*@egen*/Token t1, t2, t3;}
 {/*@bgen(jjtree) ARG */
     try {
 /*@egen*/
-    ( <ID> | <STRING> | <INTEGER> )/*@bgen(jjtree)*/
+    ( t1 = <ID>/*@bgen(jjtree)*/
+                {
+                  jjtree.closeNodeScope(jjtn000, true);
+                  jjtc000 = false;
+                }
+/*@egen*/ {jjtn000.value = t1.image;}| t2 = <STRING>/*@bgen(jjtree)*/
+                                                           {
+                                                             jjtree.closeNodeScope(jjtn000, true);
+                                                             jjtc000 = false;
+                                                           }
+/*@egen*/ {jjtn000.value = t2.image;} | t3 = <INTEGER>/*@bgen(jjtree)*/
+                                                                                                        {
+                                                                                                          jjtree.closeNodeScope(jjtn000, true);
+                                                                                                          jjtc000 = false;
+                                                                                                        }
+/*@egen*/ {jjtn000.value = t3.image;} )/*@bgen(jjtree)*/
     } finally {
       if (jjtc000) {
         jjtree.closeNodeScope(jjtn000, true);

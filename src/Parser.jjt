@@ -102,9 +102,9 @@ SimpleNode Module() #MODULE : {Token t;}
      { return jjtThis; }
 }
 
-void Declaration(): {}
+void Declaration(): {Token t;}
 {
-  (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
+  (Element()) (t = <ASSIGN> {jjtThis.value = t.image;} ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
 }
 
 void Element() #ELEMENT: {Token t1;}
@@ -117,9 +117,9 @@ void ArrayElement() #ARR_ELEM: {}
   "[" "]"
 }
 
-void ScalarDeclaration() #SCAL_DECL: {Token t;}
+void ScalarDeclaration() #SCAL_DECL: {}
 {
-  t = (<ADDSUB_OP>)? <INTEGER> {jjtThis.value = t.image;}
+  (<ADDSUB_OP>)? <INTEGER>
 }
 
 void ArrayDeclaration() #ARR_DECL: {}
@@ -192,9 +192,9 @@ void ScalarAccess() #SCA_ACC: {}
   <ID> ("." <SIZE>)?
 }
 
-void Access() #ACC: {}
+void Access() #ACC: {Token t;}
 {
-   <ID> (("[" Index() "]") | ("." <SIZE>)?)
+  t = <ID> {jjtThis.value = t.image;} (("[" Index() "]") | ("." <SIZE>)?)
 }
 
 void Index() #IND: {}
@@ -202,19 +202,19 @@ void Index() #IND: {}
     <ID> | <INTEGER>
 }
 
-void Term() #TERM: {}
+void Term() #TERM: {Token t1, t2;}
 {
-    (<ADDSUB_OP>)? (<INTEGER> |  LOOKAHEAD(3) Call() | Access())
+    (t1 = <ADDSUB_OP> {jjtThis.value = t1.image;})? (t2 = <INTEGER> {jjtThis.value = t2.image;} |  LOOKAHEAD(3) Call() | Access())
 }
 
-void ArraySize() #ARR_SIZE: {}
+void ArraySize() #ARR_SIZE: {Token t;}
 {
-    ScalarAccess() | <INTEGER>
+    ScalarAccess() | t = <INTEGER> {jjtThis.value = t.image;}
 }
 
-void Call() #CALL:{}
+void Call() #CALL:{Token t1, t2;}
 {
-  <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
+  t1 = <ID> {jjtThis.value = t1.image;} ("." t2 = <ID> {jjtThis.value = t2.image;})? <LPAR> (ArgumentList())? <RPAR>
 }
 
 void ArgumentList() #ARG_LIST:{}
@@ -222,9 +222,9 @@ void ArgumentList() #ARG_LIST:{}
   Argument() (<VIRG> Argument())*
 }
 
-void Argument() #ARG:{}
+void Argument() #ARG:{Token t1, t2, t3;}
 {
-    ( <ID> | <STRING> | <INTEGER> )
+    ( t1 = <ID> {jjtThis.value = t1.image;}| t2 = <STRING> {jjtThis.value = t2.image;} | t3 = <INTEGER> {jjtThis.value = t3.image;} )
 }
 
 void While() #WHILE:{}
