@@ -82,20 +82,42 @@ TOKEN :
 // Production Definition (Non - Terminals)
 
 JAVACODE
-void error_skipto(int kind, String msg) {
+
+//funcao que nao consome o caracter passado por argumento
+void error_skipto_no_consume(int kind, String msg) {
   ParseException e = generateParseException();  // generate the exception object.
   System.out.println(msg + " - " + e.toString());  // print the error message
   {errors++;}
   Token t;
-  while(true)
-  {
-    t = getToken(1);
-    if(t.kind == kind | t.kind == EOF){
-        return;
-        }
-    getNextToken();
-  }
+    while(true)
+    {
+        t = getToken(1);
+        if(t.kind == kind | t.kind == EOF){
+            return;
+            }
+        getNextToken();
+    }
 }
+
+JAVACODE
+
+//funcao que consome o carater passado por argumento
+void error_skipto_consume(int kind) {
+    {errors++;}
+  Token t;
+  do {
+    t = getNextToken();
+  } while (t.kind != kind);
+}
+
+//void consumeSkip(int kind) {
+ // ParseException e = generateParseException();  // generate the exception object.
+//  System.out.println(e.toString());  // print the error message
+ // Token t;
+//  do {
+//    t = getNextToken();
+ // } while (t.kind != kind);
+//}
 
 
 SimpleNode Module() : {Token t;}
@@ -111,7 +133,7 @@ void Declaration() : {}
     (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
   }
   catch(ParseException e){
-    error_skipto(PVIRG, "Declaration");
+    error_skipto_no_consume(PVIRG, "Declaration");
    }
    <PVIRG>
 
@@ -147,7 +169,7 @@ void Function() : {}
         FunctionDeclaration()
     }
     catch(ParseException e){
-        error_skipto(LCHAVETA, "Function");
+        error_skipto_no_consume(LCHAVETA, "Function");
     }
    FunctionContent()
 }
@@ -189,8 +211,8 @@ void Stmt() : {}
         Call() 
     }
     catch(ParseException e)
-    {
-        error_skipto(PVIRG, "Stmt");
+    {   
+        error_skipto_no_consume(PVIRG, "Stmt");
     }
     
     <PVIRG>
@@ -198,7 +220,16 @@ void Stmt() : {}
 
 void Assign() : {}
 {
-  Lhs() <ASSIGN> Rhs() <PVIRG>
+ 
+  
+  try
+  {
+       Lhs() <ASSIGN> Rhs() <PVIRG>
+       }
+  catch(ParseException e)
+  {
+      error_skipto_consume(PVIRG);
+  } 
 }
 
 void Lhs() : {}
@@ -271,7 +302,7 @@ void Exprtest():{}
     Lhs() <RELA_OP> Rhs()
   }
   catch(ParseException e){
-    error_skipto(RPAR, "Exprtest");
+    error_skipto_no_consume(RPAR, "Exprtest");
    }
    <RPAR>
 
@@ -279,5 +310,14 @@ void Exprtest():{}
 
 void If():{}
 {
-  <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?
+  <IF> Exprtest() <LCHAVETA> Stmtlst()
+
+  try
+  {
+      (<ELSE> <LCHAVETA> Stmtlst())?
+  }
+  catch(ParseException e)
+  {
+      error_skipto_no_consume(RCHAVETA, "If");
+  }
 }

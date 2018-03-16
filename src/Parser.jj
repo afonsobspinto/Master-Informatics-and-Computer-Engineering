@@ -86,8 +86,10 @@ TOKEN :
 // Production Definition (Non - Terminals)
 
 JAVACODE
-void error_skipto(int kind, String msg) {/*@bgen(jjtree) error_skipto */
-SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO);
+
+//funcao que nao consome o caracter passado por argumento
+void error_skipto_no_consume(int kind, String msg) {/*@bgen(jjtree) error_skipto_no_consume */
+SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO_NO_CONSUME);
 boolean jjtc000 = true;
 jjtree.openNodeScope(jjtn000);
 try {
@@ -96,14 +98,14 @@ try {
   System.out.println(msg + " - " + e.toString());  // print the error message
   {errors++;}
   Token t;
-  while(true)
-  {
-    t = getToken(1);
-    if(t.kind == kind | t.kind == EOF){
-        return;
-        }
-    getNextToken();
-  }/*@bgen(jjtree)*/
+    while(true)
+    {
+        t = getToken(1);
+        if(t.kind == kind | t.kind == EOF){
+            return;
+            }
+        getNextToken();
+    }/*@bgen(jjtree)*/
 } finally {
   if (jjtc000) {
     jjtree.closeNodeScope(jjtn000, true);
@@ -111,6 +113,37 @@ try {
 }
 /*@egen*/
 }
+
+JAVACODE
+
+//funcao que consome o carater passado por argumento
+void error_skipto_consume(int kind) {/*@bgen(jjtree) error_skipto_consume */
+ SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO_CONSUME);
+ boolean jjtc000 = true;
+ jjtree.openNodeScope(jjtn000);
+ try {
+/*@egen*/
+    {errors++;}
+  Token t;
+  do {
+    t = getNextToken();
+  } while (t.kind != kind);/*@bgen(jjtree)*/
+ } finally {
+   if (jjtc000) {
+     jjtree.closeNodeScope(jjtn000, true);
+   }
+ }
+/*@egen*/
+}
+
+//void consumeSkip(int kind) {
+ // ParseException e = generateParseException();  // generate the exception object.
+//  System.out.println(e.toString());  // print the error message
+ // Token t;
+//  do {
+//    t = getNextToken();
+ // } while (t.kind != kind);
+//}
 
 
 SimpleNode Module() : {/*@bgen(jjtree) Module */
@@ -163,7 +196,7 @@ void Declaration() : {/*@bgen(jjtree) Declaration */
     (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
   }
   catch(ParseException e){
-    error_skipto(PVIRG, "Declaration");
+    error_skipto_no_consume(PVIRG, "Declaration");
    }
    <PVIRG>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
@@ -301,7 +334,7 @@ void Function() : {/*@bgen(jjtree) Function */
         FunctionDeclaration()
     }
     catch(ParseException e){
-        error_skipto(LCHAVETA, "Function");
+        error_skipto_no_consume(LCHAVETA, "Function");
     }
    FunctionContent()/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
@@ -499,8 +532,8 @@ void Stmt() : {/*@bgen(jjtree) Stmt */
         Call() 
     }
     catch(ParseException e)
-    {
-        error_skipto(PVIRG, "Stmt");
+    {   
+        error_skipto_no_consume(PVIRG, "Stmt");
     }
     
     <PVIRG>/*@bgen(jjtree)*/
@@ -534,7 +567,16 @@ void Assign() : {/*@bgen(jjtree) Assign */
 {/*@bgen(jjtree) Assign */
   try {
 /*@egen*/
-  Lhs() <ASSIGN> Rhs() <PVIRG>/*@bgen(jjtree)*/
+ 
+  
+  try
+  {
+       Lhs() <ASSIGN> Rhs() <PVIRG>
+       }
+  catch(ParseException e)
+  {
+      error_skipto_consume(PVIRG);
+  }/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -554,7 +596,7 @@ void Assign() : {/*@bgen(jjtree) Assign */
       jjtree.closeNodeScope(jjtn000, true);
     }
   }
-/*@egen*/
+/*@egen*/ 
 }
 
 void Lhs() : {/*@bgen(jjtree) Lhs */
@@ -903,7 +945,7 @@ void Exprtest():{/*@bgen(jjtree) Exprtest */
     Lhs() <RELA_OP> Rhs()
   }
   catch(ParseException e){
-    error_skipto(RPAR, "Exprtest");
+    error_skipto_no_consume(RPAR, "Exprtest");
    }
    <RPAR>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
@@ -937,7 +979,16 @@ void If():{/*@bgen(jjtree) If */
 {/*@bgen(jjtree) If */
   try {
 /*@egen*/
-  <IF> Exprtest() <LCHAVETA> Stmtlst() (<ELSE> <LCHAVETA> Stmtlst())?/*@bgen(jjtree)*/
+  <IF> Exprtest() <LCHAVETA> Stmtlst()
+
+  try
+  {
+      (<ELSE> <LCHAVETA> Stmtlst())?
+  }
+  catch(ParseException e)
+  {
+      error_skipto_no_consume(RCHAVETA, "If");
+  }/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
