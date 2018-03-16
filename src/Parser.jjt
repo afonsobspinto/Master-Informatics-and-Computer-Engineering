@@ -182,12 +182,22 @@ void Stmtlst() : {}
 
 void Stmt() : {}
 {
-    While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
+    While() | If() | LOOKAHEAD(3) Assign() | 
+    
+    try
+    {
+        Call() 
+    }
+    catch(ParseException e)
+    {
+        error_skipto(PVIRG, "Stmt");
+    }
+    
+    <PVIRG>
 }
 
 void Assign() : {}
 {
-
   Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
