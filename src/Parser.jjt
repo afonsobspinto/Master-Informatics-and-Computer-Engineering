@@ -1,7 +1,7 @@
 options
 {
   LOOKAHEAD = 1;
-  DEBUG_PARSER = true;
+  DEBUG_PARSER = false;
 }
 
 PARSER_BEGIN(Parser)
@@ -107,7 +107,13 @@ SimpleNode Module() : {Token t;}
 
 void Declaration() : {}
 {
-    (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
+  try{
+    (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
+  }
+  catch(ParseException e){
+    error_skipto(PVIRG, "Declaration");
+   }
+   <PVIRG>
 
 }
 
@@ -174,6 +180,7 @@ void Stmt() : {}
 
 void Assign() : {}
 {
+
   Lhs() <ASSIGN> Rhs() <PVIRG>
 }
 
@@ -245,10 +252,11 @@ void Exprtest():{}
   <LPAR>
   try{
     Lhs() <RELA_OP> Rhs()
-    }
-     catch(ParseException e){
-        error_skipto(RPAR, "Exprtest");
-     }<RPAR>
+  }
+  catch(ParseException e){
+    error_skipto(RPAR, "Exprtest");
+   }
+   <RPAR>
 
 }
 
