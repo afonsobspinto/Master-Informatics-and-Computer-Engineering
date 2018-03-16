@@ -1,7 +1,7 @@
 options
 {
   LOOKAHEAD = 1;
-  DEBUG_PARSER = false;
+  DEBUG_PARSER = true;
 }
 
 PARSER_BEGIN(Parser)
@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
 
 public class Parser {
+
+    static int errors = 0;
+
     public static void main(String args[]) throws ParseException, FileNotFoundException {
 
         if(args.length != 1 || !Pattern.matches(".*\\.yal$", args[0])){
@@ -28,7 +31,7 @@ public class Parser {
             e.printStackTrace(System.out);
         }
 
-        System.out.println(".yal file parsed successfully");
+        System.out.println(".yal file parsed with " + errors + " errors");
     }
 }
 PARSER_END(Parser)
@@ -82,27 +85,30 @@ JAVACODE
 void error_skipto(int kind, String msg) {
   ParseException e = generateParseException();  // generate the exception object.
   System.out.println(msg + " - " + e.toString());  // print the error message
+  {errors++;}
   Token t;
-  do {
-    t = getNextToken();
-  } while (t.kind != kind);
+  while(true)
+  {
+    t = getToken(1);
+    if(t.kind == kind | t.kind == EOF){
+        return;
+        }
+    getNextToken();
+  }
 }
 
 
 SimpleNode Module() : {Token t;}
 {
-    try{
+
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
-     }
-     catch(ParseException e){
-        error_skipto(RCHAVETA, "Module");
-     }
      { return jjtThis; }
 }
 
 void Declaration() : {}
 {
-  (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
+    (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
+
 }
 
 void Element() : {}
@@ -117,7 +123,7 @@ void ArrayElement() : {}
 
 void ScalarDeclaration() : {}
 {
-  (<ADDSUB_OP>)? <INTEGER>
+    (<ADDSUB_OP>)? <INTEGER>
 }
 
 void ArrayDeclaration() : {}
@@ -126,11 +132,11 @@ void ArrayDeclaration() : {}
 }
 
 
-//É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
-
 void Function() : {}
 {
-  <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
+  <FUNCTION>
+  <ID>
+   (FunctionAssign())? FunctionDeclaration() FunctionContent()
 }
 
 
@@ -141,7 +147,8 @@ void FunctionAssign() : {}
 
 void FunctionDeclaration() : {}
 {
-     <LPAR> (Varlist())? <RPAR>
+     <LPAR>
+     (Varlist())? <RPAR>
 
 }
 
@@ -162,7 +169,7 @@ void Stmtlst() : {}
 
 void Stmt() : {}
 {
-  While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
+    While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
 }
 
 void Assign() : {}
@@ -192,6 +199,7 @@ void ScalarAccess() : {}
 
 void Access() : {}
 {
+
    <ID> (("[" Index() "]") | ("." <SIZE>)?)
 }
 
@@ -212,6 +220,7 @@ void ArraySize(): {}
 
 void Call():{}
 {
+
   <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
 }
 
@@ -227,12 +236,20 @@ void Argument():{}
 
 void While():{}
 {
-  <WHILE> Exprtest() <LCHAVETA> Stmtlst()
+    <WHILE> Exprtest()
+     <LCHAVETA> Stmtlst()
 }
 
 void Exprtest():{}
 {
-  <LPAR> Lhs() <RELA_OP> Rhs() <RPAR>
+  <LPAR>
+  try{
+    Lhs() <RELA_OP> Rhs()
+    }
+     catch(ParseException e){
+        error_skipto(RPAR, "Exprtest");
+     }<RPAR>
+
 }
 
 void If():{}
