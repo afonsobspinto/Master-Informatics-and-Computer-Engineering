@@ -91,7 +91,7 @@ void error_skipto(int kind, String msg) {
 }
 
 
-SimpleNode Module() #MODULE : {Token t;}
+SimpleNode Module() #MOD : {Token t;}
 {
     try{
      <MODULE> t = <ID> {jjtThis.value = t.image;} <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
@@ -117,7 +117,7 @@ void ArrayElement() #ARR_ELEM: {}
   "[" "]"
 }
 
-void ScalarDeclaration() #SCAL_DECL: {}
+void ScalarDeclaration() #void: {}
 {
   (<ADDSUB_OP>)? <INTEGER>
 }
@@ -130,44 +130,44 @@ void ArrayDeclaration() #ARR_DECL: {}
 
 //É melhor arranjar a Function(), pk ficou mto partida e depois a AST pode ficar um bocado má
 
-void Function() #FUNCT: {}
+void Function() #void: {}
 {
   <FUNCTION> <ID> (FunctionAssign())? FunctionDeclaration() FunctionContent()
 }
 
 
-void FunctionAssign() #FUNCT_ASSI: {}
+void FunctionAssign() #void: {}
 {
     (ArrayElement())? <ASSIGN> <ID>
 }
 
-void FunctionDeclaration() #FUNCT_DECL: {}
+void FunctionDeclaration() #void: {}
 {
      <LPAR> (Varlist())? <RPAR>
 
 }
 
-void FunctionContent() #FUNCT_CONT:{}
+void FunctionContent() #void:{}
 {
     <LCHAVETA> Stmtlst()
 }
 
-void Varlist() #VAR_LIST: {}
+void Varlist() #void: {}
 {
   (Element()) (<VIRG> (Element()))*
 }
 
-void Stmtlst() #STMT_LIST: {}
+void Stmtlst() #void: {}
 {
   (Stmt())* <RCHAVETA>
 }
 
-void Stmt() #STMT: {}
+void Stmt() #void: {}
 {
   While() | If() | LOOKAHEAD(3) Assign() | Call() <PVIRG>
 }
 
-void Assign() #ASSI: {}
+void Assign() #void: {}
 {
   Lhs() <ASSIGN> Rhs() <PVIRG>
 }
@@ -217,7 +217,7 @@ void Call() #CALL:{Token t1, t2;}
   t1 = <ID> {jjtThis.value = t1.image;} ("." t2 = <ID> {jjtThis.value = t2.image;})? <LPAR> (ArgumentList())? <RPAR>
 }
 
-void ArgumentList() #ARG_LIST:{}
+void ArgumentList() #void:{}
 {
   Argument() (<VIRG> Argument())*
 }
