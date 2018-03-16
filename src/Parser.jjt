@@ -136,7 +136,7 @@ void Function() #FUNCTION: {Token t1, t2;}
 }
 
 
-void FunctionAssign() #FunctionAssign: {Token t1, t2;}
+void FunctionAssign() #FUNCT_ASSIGN: {Token t1, t2;}
 {
     (ArrayElement())? t1 = <ASSIGN> {jjtThis.value = t1.image;} t2 = <ID> {jjtThis.value = t2.image;}
 }
