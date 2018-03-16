@@ -30,22 +30,21 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
     }
 
 //funcao que nao consome o caracter passado por argumento
-  static void error_skipto_no_consume(int kind, String msg) throws ParseException {/*@bgen(jjtree) error_skipto_no_consume */
-SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO_NO_CONSUME);
+  static void error_skipto(int kind, String msg) throws ParseException {/*@bgen(jjtree) error_skipto */
+SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO);
 boolean jjtc000 = true;
 jjtree.openNodeScope(jjtn000);
 try {ParseException e = generateParseException();  // generate the exception object.
   System.out.println(msg + " - " + e.toString());  // print the error message
-  {errors++;}
+  errors++;
   Token t;
-    while(true)
-    {
-        t = getToken(1);
-        if(t.kind == kind | t.kind == EOF){
-            return;
-            }
-        getNextToken();
-    }/*@bgen(jjtree)*/
+  while(true)
+  {
+    t = getToken(1);
+    if(t.kind == kind | t.kind == EOF){
+        return;}
+    getNextToken();
+  }/*@bgen(jjtree)*/
 } finally {
   if (jjtc000) {
     jjtree.closeNodeScope(jjtn000, true);
@@ -54,88 +53,84 @@ try {ParseException e = generateParseException();  // generate the exception obj
   }
 
 //funcao que consome o carater passado por argumento
-  static void error_skipto_consume(int kind) throws ParseException {/*@bgen(jjtree) error_skipto_consume */
- SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO_CONSUME);
- boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);
- try {{errors++;}
+  static void error_skipto_andEat(int kind, String msg) throws ParseException {/*@bgen(jjtree) error_skipto_andEat */
+SimpleNode jjtn000 = new SimpleNode(JJTERROR_SKIPTO_ANDEAT);
+boolean jjtc000 = true;
+jjtree.openNodeScope(jjtn000);
+try {ParseException e = generateParseException();  // generate the exception object.
+  System.out.println(msg + " - " + e.toString());  // print the error message
+  errors++;
   Token t;
   do {
     t = getNextToken();
   } while (t.kind != kind);/*@bgen(jjtree)*/
- } finally {
-   if (jjtc000) {
-     jjtree.closeNodeScope(jjtn000, true);
-   }
- }
+} finally {
+  if (jjtc000) {
+    jjtree.closeNodeScope(jjtn000, true);
+  }
+}
   }
 
-//void consumeSkip(int kind) {
- // ParseException e = generateParseException();  // generate the exception object.
-//  System.out.println(e.toString());  // print the error message
- // Token t;
-//  do {
-//    t = getNextToken();
- // } while (t.kind != kind);
-//}
-  static final public 
-
-SimpleNode Module() throws ParseException {/*@bgen(jjtree) Module */
+  static final public SimpleNode Module() throws ParseException {/*@bgen(jjtree) Module */
                        SimpleNode jjtn000 = new SimpleNode(JJTMODULE);
                        boolean jjtc000 = true;
                        jjtree.openNodeScope(jjtn000);Token t;
     try {
-      jj_consume_token(MODULE);
-      t = jj_consume_token(ID);
-      jj_consume_token(LCHAVETA);
-      label_1:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-        case ID:{
-          ;
-          break;
+      try {
+        jj_consume_token(MODULE);
+        t = jj_consume_token(ID);
+        jj_consume_token(LCHAVETA);
+        label_1:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+          case ID:{
+            ;
+            break;
+            }
+          default:
+            jj_la1[0] = jj_gen;
+            break label_1;
           }
-        default:
-          jj_la1[0] = jj_gen;
-          break label_1;
+          Declaration();
         }
-        Declaration();
-      }
-      label_2:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-        case FUNCTION:{
-          ;
-          break;
+        label_2:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+          case FUNCTION:{
+            ;
+            break;
+            }
+          default:
+            jj_la1[1] = jj_gen;
+            break label_2;
           }
-        default:
-          jj_la1[1] = jj_gen;
-          break label_2;
+          Function();
         }
-        Function();
+        jj_consume_token(RCHAVETA);
+      } catch (ParseException e) {
+error_skipto(RCHAVETA, "MODULE");
       }
-      jj_consume_token(RCHAVETA);
 jjtree.closeNodeScope(jjtn000, true);
        jjtc000 = false;
 {if ("" != null) return jjtn000;}
     } catch (Throwable jjte000) {
 if (jjtc000) {
-         jjtree.clearNodeScope(jjtn000);
-         jjtc000 = false;
-       } else {
-         jjtree.popNode();
-       }
-       if (jjte000 instanceof RuntimeException) {
-         {if (true) throw (RuntimeException)jjte000;}
-       }
-       if (jjte000 instanceof ParseException) {
-         {if (true) throw (ParseException)jjte000;}
-       }
-       {if (true) throw (Error)jjte000;}
+        jjtree.clearNodeScope(jjtn000);
+        jjtc000 = false;
+      } else {
+        jjtree.popNode();
+      }
+      if (jjte000 instanceof RuntimeException) {
+        {if (true) throw (RuntimeException)jjte000;}
+      }
+      if (jjte000 instanceof ParseException) {
+        {if (true) throw (ParseException)jjte000;}
+      }
+      {if (true) throw (Error)jjte000;}
     } finally {
 if (jjtc000) {
-         jjtree.closeNodeScope(jjtn000, true);
-       }
+        jjtree.closeNodeScope(jjtn000, true);
+      }
     }
     throw new Error("Missing return statement in function");
   }
@@ -172,7 +167,7 @@ if (jjtc000) {
           ;
         }
       } catch (ParseException e) {
-error_skipto_no_consume(PVIRG, "Declaration");
+error_skipto(PVIRG, "Declaration");
       }
       jj_consume_token(PVIRG);
     } catch (Throwable jjte000) {
@@ -303,7 +298,11 @@ if (jjtc000) {
   jjtree.openNodeScope(jjtn000);
     try {
       jj_consume_token(FUNCTION);
-      jj_consume_token(ID);
+      try {
+        jj_consume_token(ID);
+      } catch (ParseException e) {
+error_skipto(LPAR, "FunctionID");
+      }
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
       case ASSIGN:
       case 31:{
@@ -317,7 +316,7 @@ if (jjtc000) {
       try {
         FunctionDeclaration();
       } catch (ParseException e) {
-error_skipto_no_consume(LCHAVETA, "Function");
+error_skipto(LCHAVETA, "Function");
       }
       FunctionContent();
     } catch (Throwable jjte000) {
@@ -550,7 +549,7 @@ if (jjtc000) {
             try {
               Call();
             } catch (ParseException e) {
-error_skipto_no_consume(PVIRG, "Stmt");
+error_skipto(PVIRG, "Stmt");
             }
             jj_consume_token(PVIRG);
             break;
@@ -588,13 +587,13 @@ if (jjtc000) {
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
+      Lhs();
+      jj_consume_token(ASSIGN);
+      Rhs();
       try {
-        Lhs();
-        jj_consume_token(ASSIGN);
-        Rhs();
         jj_consume_token(PVIRG);
       } catch (ParseException e) {
-error_skipto_consume(PVIRG);
+error_skipto_andEat(PVIRG, "Assign");
       }
     } catch (Throwable jjte000) {
 if (jjtc000) {
@@ -1101,9 +1100,13 @@ if (jjtc000) {
         jj_consume_token(RELA_OP);
         Rhs();
       } catch (ParseException e) {
-error_skipto_no_consume(RPAR, "Exprtest");
+error_skipto(RPAR, "Exprtest");
       }
-      jj_consume_token(RPAR);
+      try {
+        jj_consume_token(RPAR);
+      } catch (ParseException e) {
+error_skipto_andEat(RPAR, "Exprtest");
+      }
     } catch (Throwable jjte000) {
 if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -1147,7 +1150,7 @@ if (jjtc000) {
           ;
         }
       } catch (ParseException e) {
-error_skipto_no_consume(RCHAVETA, "If");
+error_skipto(RCHAVETA, "If");
       }
     } catch (Throwable jjte000) {
 if (jjtc000) {
@@ -1199,15 +1202,15 @@ if (jjtc000) {
     return false;
   }
 
-  static private boolean jj_3R_22()
- {
-    if (jj_3R_12()) return true;
-    return false;
-  }
-
   static private boolean jj_3_1()
  {
     if (jj_3R_6()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_22()
+ {
+    if (jj_3R_12()) return true;
     return false;
   }
 

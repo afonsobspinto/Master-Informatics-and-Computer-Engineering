@@ -84,46 +84,40 @@ TOKEN :
 JAVACODE
 
 //funcao que nao consome o caracter passado por argumento
-void error_skipto_no_consume(int kind, String msg) {
+void error_skipto(int kind, String msg) {
   ParseException e = generateParseException();  // generate the exception object.
   System.out.println(msg + " - " + e.toString());  // print the error message
-  {errors++;}
+  errors++;
   Token t;
-    while(true)
-    {
-        t = getToken(1);
-        if(t.kind == kind | t.kind == EOF){
-            return;
-            }
-        getNextToken();
-    }
+  while(true)
+  {
+    t = getToken(1);
+    if(t.kind == kind | t.kind == EOF){
+        return;}
+    getNextToken();
+  }
 }
 
 JAVACODE
-
 //funcao que consome o carater passado por argumento
-void error_skipto_consume(int kind) {
-    {errors++;}
+void error_skipto_andEat(int kind, String msg) {
+  ParseException e = generateParseException();  // generate the exception object.
+  System.out.println(msg + " - " + e.toString());  // print the error message
+  errors++;
   Token t;
   do {
     t = getNextToken();
   } while (t.kind != kind);
 }
 
-//void consumeSkip(int kind) {
- // ParseException e = generateParseException();  // generate the exception object.
-//  System.out.println(e.toString());  // print the error message
- // Token t;
-//  do {
-//    t = getNextToken();
- // } while (t.kind != kind);
-//}
-
-
 SimpleNode Module() : {Token t;}
 {
-
+    try{
      <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+     }
+      catch(ParseException e){
+         error_skipto(RCHAVETA, "MODULE");
+        }
      { return jjtThis; }
 }
 
@@ -133,7 +127,7 @@ void Declaration() : {}
     (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
   }
   catch(ParseException e){
-    error_skipto_no_consume(PVIRG, "Declaration");
+    error_skipto(PVIRG, "Declaration");
    }
    <PVIRG>
 
@@ -163,13 +157,19 @@ void ArrayDeclaration() : {}
 void Function() : {}
 {
   <FUNCTION>
-  <ID>
+   try{
+       <ID>
+      }
+      catch(ParseException e){
+          error_skipto(LPAR, "FunctionID");
+      }
+
    (FunctionAssign())?
     try{
         FunctionDeclaration()
     }
     catch(ParseException e){
-        error_skipto_no_consume(LCHAVETA, "Function");
+        error_skipto(LCHAVETA, "Function");
     }
    FunctionContent()
 }
@@ -212,7 +212,7 @@ void Stmt() : {}
     }
     catch(ParseException e)
     {   
-        error_skipto_no_consume(PVIRG, "Stmt");
+        error_skipto(PVIRG, "Stmt");
     }
     
     <PVIRG>
@@ -220,16 +220,13 @@ void Stmt() : {}
 
 void Assign() : {}
 {
- 
-  
-  try
-  {
-       Lhs() <ASSIGN> Rhs() <PVIRG>
-       }
-  catch(ParseException e)
-  {
-      error_skipto_consume(PVIRG);
-  } 
+  Lhs() <ASSIGN> Rhs()
+    try{
+      <PVIRG>
+    }
+    catch(ParseException e){
+      error_skipto_andEat(PVIRG, "Assign");
+     }
 }
 
 void Lhs() : {}
@@ -302,9 +299,14 @@ void Exprtest():{}
     Lhs() <RELA_OP> Rhs()
   }
   catch(ParseException e){
-    error_skipto_no_consume(RPAR, "Exprtest");
+    error_skipto(RPAR, "Exprtest");
    }
+  try{
    <RPAR>
+   }
+   catch(ParseException e){
+     error_skipto_andEat(RPAR, "Exprtest");
+   }
 
 }
 
@@ -318,6 +320,6 @@ void If():{}
   }
   catch(ParseException e)
   {
-      error_skipto_no_consume(RCHAVETA, "If");
+      error_skipto(RCHAVETA, "If");
   }
 }
