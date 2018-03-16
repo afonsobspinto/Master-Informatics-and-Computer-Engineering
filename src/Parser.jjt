@@ -2,6 +2,7 @@ options
 {
   LOOKAHEAD = 1;
   DEBUG_PARSER = false;
+  MULTI = true;
 }
 
 PARSER_BEGIN(Parser)
@@ -93,7 +94,7 @@ void error_skipto(int kind, String msg) {
 SimpleNode Module() #MODULE : {Token t;}
 {
     try{
-     <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+     <MODULE> t = <ID> {jjtThis.value = t.image;} <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
      }
      catch(ParseException e){
         error_skipto(RCHAVETA, "Module");
@@ -106,9 +107,9 @@ void Declaration(): {}
   (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))? <PVIRG>
 }
 
-void Element() #void: {}
+void Element() #ELEMENT: {Token t1;}
 {
- <ID> (ArrayElement())?
+  t1 = <ID> {jjtThis.value = t1.image;} (ArrayElement())?
 }
 
 void ArrayElement() #ARR_ELEM: {}
@@ -116,14 +117,14 @@ void ArrayElement() #ARR_ELEM: {}
   "[" "]"
 }
 
-void ScalarDeclaration() #SCAL_DECL: {}
+void ScalarDeclaration() #SCAL_DECL: {Token t;}
 {
-  (<ADDSUB_OP>)? <INTEGER>
+  t = (<ADDSUB_OP>)? <INTEGER> {jjtThis.value = t.image;}
 }
 
 void ArrayDeclaration() #ARR_DECL: {}
 {
-  ( "[" ArraySize() "]" )
+  ( "[" ArraySize() "]" ) 
 }
 
 
