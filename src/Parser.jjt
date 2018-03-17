@@ -27,7 +27,7 @@ public class Parser {
         Parser parser = new Parser(new FileInputStream(args[0]));
         try{
             SimpleNode root = parser.Module();
-            //root.dump("");
+            root.dump("");
             }
         catch (Exception e){
             e.printStackTrace(System.out);
