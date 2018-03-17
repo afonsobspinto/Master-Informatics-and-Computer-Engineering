@@ -2,6 +2,7 @@ options
 {
   LOOKAHEAD = 1;
   DEBUG_PARSER = false;
+  MULTI = true;
 }
 
 PARSER_BEGIN(Parser)
@@ -26,6 +27,7 @@ public class Parser {
         Parser parser = new Parser(new FileInputStream(args[0]));
         try{
             SimpleNode root = parser.Module();
+            //root.dump("");
             }
         catch (Exception e){
             e.printStackTrace(System.out);
@@ -110,10 +112,11 @@ void error_skipto_andEat(int kind, String msg) {
   } while (t.kind != kind);
 }
 
-SimpleNode Module() : {Token t;}
+
+SimpleNode Module() #MODULE : {Token t;}
 {
     try{
-     <MODULE> t = <ID> <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
+     <MODULE> t = <ID> {jjtThis.value = t.image;} <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
      }
       catch(ParseException e){
          error_skipto(RCHAVETA, "MODULE");
@@ -121,40 +124,40 @@ SimpleNode Module() : {Token t;}
      { return jjtThis; }
 }
 
-void Declaration() : {}
+void Declaration(): {Token t;}
 {
   try{
-    (Element()) (<ASSIGN> ( ArrayDeclaration() | ScalarDeclaration()))?
+    (Element()) (t = <ASSIGN> {jjtThis.value = t.image;} ( ArrayDeclaration() | ScalarDeclaration()))?
   }
   catch(ParseException e){
     error_skipto(PVIRG, "Declaration");
    }
    <PVIRG>
-
 }
 
-void Element() : {}
+void Element() #ELEMENT: {Token t1;}
 {
- <ID> (ArrayElement())?
+  t1 = <ID> {jjtThis.value = t1.image;} (ArrayElement())?
 }
 
-void ArrayElement() : {}
+void ArrayElement() #ARR_ELEM: {}
 {
   "[" "]"
 }
 
-void ScalarDeclaration() : {}
+void ScalarDeclaration() #SCAL_DECL: {}
 {
     (<ADDSUB_OP>)? <INTEGER>
 }
 
-void ArrayDeclaration() : {}
+void ArrayDeclaration() #ARR_DECL: {}
 {
-  ( "[" ArraySize() "]" )
+  ( "[" ArraySize() "]" ) 
 }
 
 
-void Function() : {}
+
+void Function() #FUNCT: {}
 {
   <FUNCTION>
    try{
@@ -175,34 +178,34 @@ void Function() : {}
 }
 
 
-void FunctionAssign() : {}
+void FunctionAssign() #FUNCT_ASSI: {}
 {
     (ArrayElement())? <ASSIGN> <ID>
 }
 
-void FunctionDeclaration() : {}
+void FunctionDeclaration() #FUNCT_DECL: {}
 {
      <LPAR>
      (Varlist())? <RPAR>
 
 }
 
-void FunctionContent():{}
+void FunctionContent() #FUNCT_CONT:{}
 {
     <LCHAVETA> Stmtlst()
 }
 
-void Varlist() : {}
+void Varlist() #VAR_LIST: {}
 {
   (Element()) (<VIRG> (Element()))*
 }
 
-void Stmtlst() : {}
+void Stmtlst() #STMT_LIST: {}
 {
   (Stmt())* <RCHAVETA>
 }
 
-void Stmt() : {}
+void Stmt() #STMT: {}
 {
     While() | If() | LOOKAHEAD(3) Assign() | 
     
@@ -218,7 +221,7 @@ void Stmt() : {}
     <PVIRG>
 }
 
-void Assign() : {}
+void Assign() #ASSI: {}
 {
   Lhs() <ASSIGN> Rhs()
     try{
@@ -229,70 +232,68 @@ void Assign() : {}
      }
 }
 
-void Lhs() : {}
+void Lhs() #void: {}
 {
     Access()
 }
 
-void Rhs() : {}
+void Rhs() #void: {}
 {
     ( Term() ( ( <ARITH_OP> | <BITWISE_OP> | <ADDSUB_OP> ) Term() )? ) | "[" ArraySize() "]"
 }
 
-void ArrayAccess() : {}
+void ArrayAccess() #ARR_ACC: {}
 {
   "[" Index() "]"
 }
 
-void ScalarAccess() : {}
+void ScalarAccess() #SCA_ACC: {}
 {
   <ID> ("." <SIZE>)?
 }
 
-void Access() : {}
+void Access() #ACC: {Token t;}
 {
-
-   <ID> (("[" Index() "]") | ("." <SIZE>)?)
+  t = <ID> {jjtThis.value = t.image;} (("[" Index() "]") | ("." <SIZE>)?)
 }
 
-void Index() : {}
+void Index() #IND: {}
 {
     <ID> | <INTEGER>
 }
 
-void Term() : {}
+void Term() #TERM: {Token t1, t2;}
 {
-    (<ADDSUB_OP>)? (<INTEGER> |  LOOKAHEAD(3) Call() | Access())
+    (t1 = <ADDSUB_OP> {jjtThis.value = t1.image;})? (t2 = <INTEGER> {jjtThis.value = t2.image;} |  LOOKAHEAD(3) Call() | Access())
 }
 
-void ArraySize(): {}
+void ArraySize() #ARR_SIZE: {Token t;}
 {
-    ScalarAccess() | <INTEGER>
+    ScalarAccess() | t = <INTEGER> {jjtThis.value = t.image;}
 }
 
-void Call():{}
+void Call() #CALL:{Token t1, t2;}
 {
-
-  <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
+  t1 = <ID> {jjtThis.value = t1.image;} ("." t2 = <ID> {jjtThis.value = t2.image;})? <LPAR> (ArgumentList())? <RPAR>
 }
 
-void ArgumentList():{}
+void ArgumentList() #ARG_LIST:{}
 {
   Argument() (<VIRG> Argument())*
 }
 
-void Argument():{}
+void Argument() #ARG:{Token t1, t2, t3;}
 {
-    ( <ID> | <STRING> | <INTEGER> )
+    ( t1 = <ID> {jjtThis.value = t1.image;}| t2 = <STRING> {jjtThis.value = t2.image;} | t3 = <INTEGER> {jjtThis.value = t3.image;} )
 }
 
-void While():{}
+void While() #WHILE:{}
 {
     <WHILE> Exprtest()
      <LCHAVETA> Stmtlst()
 }
 
-void Exprtest():{}
+void Exprtest() #EXPR_TEST:{}
 {
   <LPAR>
   try{
@@ -310,7 +311,7 @@ void Exprtest():{}
 
 }
 
-void If():{}
+void If() #IF:{}
 {
   <IF> Exprtest() <LCHAVETA> Stmtlst()
 
