@@ -223,7 +223,17 @@ void Stmt() #STMT: {}
 
 void Assign() #ASSI: {}
 {
-  Lhs() <ASSIGN> Rhs()
+  Lhs() <ASSIGN>
+
+    try
+    {
+        Rhs()
+    }
+    catch(ParseException e)
+    {
+        error_skipto(PVIRG, "Assign");
+    }
+
     try{
       <PVIRG>
     }
