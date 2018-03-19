@@ -31,7 +31,7 @@ CREATE TABLE report (
 
 CREATE TABLE review (
     id_auction integer NOT NULL,
-    rating integer NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) OR (rating <= 5)))
+    rating integer NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) OR (rating <= 5))),
     description text NOT NULL
 );
 
