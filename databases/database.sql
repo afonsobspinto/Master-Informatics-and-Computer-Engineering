@@ -22,7 +22,7 @@ CREATE TABLE auction (
     publicationDate date DEFAULT Today NOT NULL,
     endDate date NOT NULL CONSTRAINT endDate _ck CHECK (endDate > publicationDate),
     paymentType character(25) NOT NULL,
-    shippingOptions" character(25) NOT NULL,
+    shippingOptions character(25) NOT NULL,
     shippingCost real CONSTRAINT shippingCost_ck CHECK (shippingCost >0.0),
     imagesFolder path,
     auction_owner character(25) NOT NULL,
