@@ -19,29 +19,29 @@ CREATE TABLE auction (
     startingPrice real NOT NULL CONSTRAINT startingPrice_ck CHECK (startingPrice >0.0),
     currentPrice real DEFAULT null,
     condition character(25) NOT NULL,
-    publicationDate date DEFAULT Today NOT NULL,
-    endDate date NOT NULL CONSTRAINT endDate_ck CHECK (endDate > publicationDate),
+    "publicationDate" date DEFAULT ('now'::text)::date NOT NULL,
+    endDate date NOT NULL CONSTRAINT endDate_ck CHECK (endDate > "publicationDate"),
     paymentType character(25) NOT NULL,
     shippingOptions character(25) NOT NULL,
     shippingCost real CONSTRAINT shippingCost_ck CHECK (shippingCost >0.0),
     imagesFolder path,
     auction_owner character(25) NOT NULL,
     category_name character(25) NOT NULL,
-    itemLocation character(25) NOT NULL
+    itemLocation integer NOT NULL
 );
 
 CREATE TABLE ban (
     id_ban integer NOT NULL,
     banned_user character(25) NOT NULL,
     admin character(25) NOT NULL,
-    banStartDate date DEFAULT Today,
-    banExpirationDate date CONSTRAINT banExpiration_ck CHECK (banExpiration>banStartDate),
+    "banStartDate" date DEFAULT ('now'::text)::date NOT NULL,
+    banExpirationDate date CONSTRAINT banExpiration_ck CHECK (banExpirationDate>"banStartDate"),
     banReason text NOT NULL
 );
 
 CREATE TABLE bid (
     id_auction integer NOT NULL,
-    bidder_username character(25) CONSTRAINT bidder_username_ck CHECK (bidder_username <> id_auction.auction_owner),
+    bidder_username character(25), --CONSTRAINT bidder_username_ck CHECK (bidder_username <> id_auction.auction_owner),
     bidAmount integer NOT NULL
 );
 
@@ -67,12 +67,13 @@ CREATE TABLE "user" (
     email character(25) NOT NULL,
     zip_code character(25),
     address character(25),
-    registrationDate date DEFAULT Today NOT NULL,
+    "registrationDate" date DEFAULT ('now'::text)::date NOT NULL,
     profilePicturePath path,
-    location character(1),
+    location integer,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
     is_administrator boolean DEFAULT false
 );
+
 CREATE TABLE closed_auction (
     id_auction integer NOT NULL
 );
@@ -80,8 +81,8 @@ CREATE TABLE closed_auction (
 CREATE TABLE email (
     id_message integer NOT NULL,
     "hasBeenOpened" boolean DEFAULT false NOT NULL,
-    receiver character(25)[] NOT NULL,
-    sender character(25)[] NOT NULL
+    receiver character(25) NOT NULL,
+    sender character(25) NOT NULL
 );
 
 CREATE TABLE message (
@@ -96,7 +97,7 @@ CREATE TABLE qa (
     question text NOT NULL,
     answer text,
     id_auction integer NOT NULL,
-    questioner_username character(25)[] NOT NULL
+    questioner_username character(25) NOT NULL
 );
 
 CREATE TABLE report (
@@ -111,14 +112,14 @@ CREATE TABLE review (
 
 CREATE TABLE wishlist (
     auction_id integer NOT NULL,
-    username character(25)[] NOT NULL
+    username character(25) NOT NULL
 );
 
 CREATE TABLE won_auction (
     id_auction integer NOT NULL,
     "isSuccessfulTransaction" boolean DEFAULT false NOT NULL,
     "hasWinnerComplained" boolean DEFAULT false NOT NULL,
-    auction_winner character(25)[] NOT NULL
+    auction_winner character(25) NOT NULL
 );
 
 
@@ -137,7 +138,7 @@ ALTER TABLE ONLY category
 	ADD CONSTRAINT category_pkey PRIMARY KEY (name);
 
 ALTER TABLE ONLY city 
-	ADD CONSTRAINT city_pkey PRIMARY KEY (username);
+	ADD CONSTRAINT city_pkey PRIMARY KEY (id_city);
 
 ALTER TABLE ONLY country 
 	ADD CONSTRAINT country_pkey PRIMARY KEY (country);
