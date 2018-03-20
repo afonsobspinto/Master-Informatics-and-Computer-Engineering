@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS ban CASCADE;
 DROP TABLE IF EXISTS bid CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS city CASCADE;
-DROP TABLE IF EXISTS user CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS closed_auction CASCADE;
 DROP TABLE IF EXISTS email CASCADE;
 DROP TABLE IF EXISTS message CASCADE;
@@ -16,11 +16,11 @@ DROP TABLE IF EXISTS won_auction CASCADE;
 CREATE TABLE auction (
     id_auction integer NOT NULL,
     itemName character(25) NOT NULL,
-    startingPrice real NOT NULL CONSTRAINT startingPrice _ck CHECK (startingPrice >0.0),
+    startingPrice real NOT NULL CONSTRAINT startingPrice_ck CHECK (startingPrice >0.0),
     currentPrice real DEFAULT null,
     condition character(25) NOT NULL,
     publicationDate date DEFAULT Today NOT NULL,
-    endDate date NOT NULL CONSTRAINT endDate _ck CHECK (endDate > publicationDate),
+    endDate date NOT NULL CONSTRAINT endDate_ck CHECK (endDate > publicationDate),
     paymentType character(25) NOT NULL,
     shippingOptions character(25) NOT NULL,
     shippingCost real CONSTRAINT shippingCost_ck CHECK (shippingCost >0.0),
@@ -39,13 +39,11 @@ CREATE TABLE ban (
     banReason text NOT NULL
 );
 
-
 CREATE TABLE bid (
     id_auction integer NOT NULL,
-    bidder_username character(25) CONSTRAINT bidder_username_ck CHECK (bidder_username < > id_auction.auction_owner),
+    bidder_username character(25) CONSTRAINT bidder_username_ck CHECK (bidder_username <> id_auction.auction_owner),
     bidAmount integer NOT NULL
 );
-
 
 CREATE TABLE category (
     name character(25)
@@ -61,13 +59,13 @@ CREATE TABLE country (
     country character(25)
 );
 
-CREATE TABLE user (
+CREATE TABLE "user" (
     username character(25),
     firstName character(25),
     lastName character(25),
     password character(25) NOT NULL,
     email character(25) NOT NULL,
-    zip-code character(25),
+    zip_code character(25),
     address character(25),
     registrationDate date DEFAULT Today NOT NULL,
     profilePicturePath path,
@@ -144,10 +142,10 @@ ALTER TABLE ONLY city
 ALTER TABLE ONLY country 
 	ADD CONSTRAINT country_pkey PRIMARY KEY (country);
 
-ALTER TABLE ONLY user
+ALTER TABLE ONLY "user"
     ADD CONSTRAINT user_email_key UNIQUE (email);
 
-ALTER TABLE ONLY user
+ALTER TABLE ONLY "user"
 	ADD CONSTRAINT user_pkey PRIMARY KEY (username);
 
 ALTER TABLE ONLY closed_auction
@@ -174,41 +172,35 @@ ALTER TABLE ONLY won_auction
 
 -- Foreign Keys
 
-ALTER TABLE ONLY user
+ALTER TABLE ONLY "user"
 	ADD CONSTRAINT user_location_fk FOREIGN KEY (location) REFERENCES city(id_city) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY city
 	ADD CONSTRAINT city_country_name_fk FOREIGN KEY (country_name) REFERENCES country(country) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY ban
-	ADD CONSTRAINT ban_banned_user_fk FOREIGN KEY (banned_user) REFERENCES user(username) ON UPDATE CASCADE;
+	ADD CONSTRAINT ban_banned_user_fk FOREIGN KEY (banned_user) REFERENCES "user"(username) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY ban
-	ADD CONSTRAINT ban_admin_fk FOREIGN KEY (admin) 
-REFERENCES user(username) ON UPDATE CASCADE;
+	ADD CONSTRAINT ban_admin_fk FOREIGN KEY (admin) REFERENCES "user"(username) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY auction
-	ADD CONSTRAINT auction_auction_owner_fk FOREIGN KEY (auction_owner) 
-REFERENCES user(username) ON UPDATE CASCADE;
+	ADD CONSTRAINT auction_auction_owner_fk FOREIGN KEY (auction_owner) REFERENCES "user"(username) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY auction
-	ADD CONSTRAINT auction_category_name_fk FOREIGN KEY (category_name) 
-REFERENCES category(name) ON UPDATE CASCADE;
+	ADD CONSTRAINT auction_category_name_fk FOREIGN KEY (category_name) REFERENCES category(name) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY auction
-	ADD CONSTRAINT auction_itemLocation_fk FOREIGN KEY (itemLocation) 
-REFERENCES city(id_city) ON UPDATE CASCADE;
+	ADD CONSTRAINT auction_itemLocation_fk FOREIGN KEY (itemLocation) REFERENCES city(id_city) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY bid
-	ADD CONSTRAINT bid_id_auction_fk FOREIGN KEY (id_auction) 
-REFERENCES auction(id_auction) ON UPDATE CASCADE;
+	ADD CONSTRAINT bid_id_auction_fk FOREIGN KEY (id_auction) REFERENCES auction(id_auction) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY bid
-	ADD CONSTRAINT bid_bidder_username_fk FOREIGN KEY (bidder_username) 
-REFERENCES user(username) ON UPDATE CASCADE;
+	ADD CONSTRAINT bid_bidder_username_fk FOREIGN KEY (bidder_username) REFERENCES "user"(username) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY qa
-    ADD CONSTRAINT qa_questioner_username_fk FOREIGN KEY (questioner_username) REFERENCES user(username) ON UPDATE CASCADE;
+    ADD CONSTRAINT qa_questioner_username_fk FOREIGN KEY (questioner_username) REFERENCES "user"(username) ON UPDATE CASCADE;
  
 ALTER TABLE ONLY qa
     ADD CONSTRAINT qa_id_auction_fk FOREIGN KEY (id_auction) REFERENCES auction(id_auction) ON UPDATE CASCADE;
@@ -220,7 +212,7 @@ ALTER TABLE ONLY won_auction
     ADD CONSTRAINT won_auction_id_auction_fk FOREIGN KEY (id_auction) REFERENCES auction(id_auction) ON UPDATE CASCADE;   
 
 ALTER TABLE ONLY won_auction
-    ADD CONSTRAINT won_auction_auction_winner_fk FOREIGN KEY (auction_winner) REFERENCES user(username) ON UPDATE CASCADE; 
+    ADD CONSTRAINT won_auction_auction_winner_fk FOREIGN KEY (auction_winner) REFERENCES "user"(username) ON UPDATE CASCADE; 
 
 ALTER TABLE ONLY review
     ADD CONSTRAINT review_id_auction_fk FOREIGN KEY (id_auction) REFERENCES auction(id_auction) ON UPDATE CASCADE;
@@ -232,13 +224,13 @@ ALTER TABLE ONLY email
     ADD CONSTRAINT email_id_message_fk FOREIGN KEY (id_message) REFERENCES message(id_message) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY email
-    ADD CONSTRAINT email_receiver_fk FOREIGN KEY (receiver) REFERENCES user(username) ON UPDATE CASCADE; 
+    ADD CONSTRAINT email_receiver_fk FOREIGN KEY (receiver) REFERENCES "user"(username) ON UPDATE CASCADE; 
 
 ALTER TABLE ONLY email
-    ADD CONSTRAINT email_sender_fk FOREIGN KEY (sender) REFERENCES user(username) ON UPDATE CASCADE; 
+    ADD CONSTRAINT email_sender_fk FOREIGN KEY (sender) REFERENCES "user"(username) ON UPDATE CASCADE; 
 
 ALTER TABLE ONLY wishlist
     ADD CONSTRAINT wishlist_auction_id_fk FOREIGN KEY (auction_id) REFERENCES auction(id_auction) ON UPDATE CASCADE;
  
 ALTER TABLE ONLY wishlist
-    ADD CONSTRAINT wishlist_username_fk FOREIGN KEY (username) REFERENCES user(username) ON UPDATE CASCADE; 
+    ADD CONSTRAINT wishlist_username_fk FOREIGN KEY (username) REFERENCES "user"(username) ON UPDATE CASCADE; 
