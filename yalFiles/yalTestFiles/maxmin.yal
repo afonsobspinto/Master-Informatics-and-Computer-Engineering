@@ -1,0 +1,26 @@
+module maxmin
+{
+
+function a=maxmin() {
+    a=io.read();
+
+    if(a < 0) {
+	while(a < 0) {
+	   a = a+1;
+	}
+    } else {
+	while(a > 0) {
+	   a = a-1;
+	}
+    }
+    io.println("a",a);
+}
+
+function main()
+{
+ a=maxmin();
+ io.println("a=",a);
+}
+
+}
+
