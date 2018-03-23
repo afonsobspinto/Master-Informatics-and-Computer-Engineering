@@ -1,0 +1,18 @@
+CHECKPOINT 1 FEEDBACK
+=====================
+Class 5 - Group 51
+
+These notes are based on an analysis of commit 9e6436be3292c8b552117bfa934373b88ce77919.
+If you believe this is an error, contact your class teacher.
+=====================
+
+High-priority:
+	- Error Recovery is incomplete: see aval4_err.yal
+	- Tree Annotation is incomplete:
+		- For instance, the <ID>s of Function() and FunctionAssign() are not stored.
+
+Low-priority:
+	- Use packages, instead of Java's default package
+	- Stop after the first 10 parser errors
+	- Consider outputting "prettier" (i.e., cleaner and more informative) error messages.
+	- Consider rewriting the grammar to avoid use of LOOKAHEADs.
