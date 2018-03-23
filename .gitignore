@@ -1,6 +1,6 @@
 ./idea
 *.iml
 *.class
-!SimpleNode.class
 *.jj
-../out
+out/*
+!out/SimpleNode.class
