@@ -20,11 +20,13 @@ CREATE TABLE auctions (
     description text,
     starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >0.0),
     current_price real DEFAULT null,
-    condition character(25) NOT NULL,
-    "publication_date" date DEFAULT ('now'::text)::date NOT NULL,
+    condition character(50) NOT NULL,
+    "publication_date" date DEFAULT CURRENT_TIMESTAMP,
     end_date date NOT NULL CONSTRAINT end_date_ck CHECK (end_date > "publication_date"),
-    payment_type character(25) NOT NULL,
-    shipping_options character(25) NOT NULL,
+    TYPE character(25) NOT NULL,
+    OPTION character(25) NOT NULL,
+    CONSTRAINT payment_type CHECK ((TYPE = ANY (ARRAY['PayPal'::text, 'Credit Card'::text, 'Bank Transfer'::text, 'Other'::text]))),
+    CONSTRAINT shipping_options CHECK ((OPTION = ANY (ARRAY['Domestic Shipping'::text, 'International Shipping'::text, 'No shipping'::text]))),
     shipping_cost real CONSTRAINT shipping_cost_ck CHECK (shipping_cost >0.0),
     images_folder path,
     owner_id integer NOT NULL,
@@ -36,7 +38,7 @@ CREATE TABLE bans (
     id serial PRIMARY KEY,
     banned_id integer NOT NULL,
     admin integer NOT NULL,
-    "ban_start_date" date DEFAULT ('now'::text)::date NOT NULL,
+    "ban_start_date" date DEFAULT CURRENT_TIMESTAMP,
     ban_expiration_date date CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
     ban_reason text NOT NULL
 );
@@ -50,7 +52,7 @@ CREATE TABLE bids (
 
 CREATE TABLE categories (
 id integer NOT NULL PRIMARY KEY,
-name character(25)
+name character(50)
 );
 
 CREATE TABLE cities (
@@ -66,14 +68,14 @@ CREATE TABLE countries (
 
 CREATE TABLE "users" (
     id integer NOT NULL PRIMARY KEY,
-    username character(25),
-    first_name character(25),
-    last_name character(25),
-    password character(25) NOT NULL,
-    email character(25) NOT NULL UNIQUE,
+    username character(50),
+    first_name character(50),
+    last_name character(50),
+    password character(50) NOT NULL,
+    email character(50) NOT NULL UNIQUE,
     zip_code character(25),
-    address character(25),
-    "registration_date" date DEFAULT ('now'::text)::date NOT NULL,
+    address character(50),
+    "registration_date" date DEFAULT CURRENT_TIMESTAMP,
     profile_picture_path path,
     location integer,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
@@ -95,7 +97,7 @@ CREATE TABLE messages (
     id serial PRIMARY KEY,
     subject text NOT NULL,
     message text NOT NULL,
-    "send_date" date DEFAULT ('now'::text)::date NOT NULL
+    "send_date" date DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE qas (
