@@ -21,8 +21,8 @@ CREATE TABLE auctions (
     starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >0.0),
     current_price real DEFAULT null,
     condition character(50) NOT NULL,
-    "publication_date" date DEFAULT CURRENT_TIMESTAMP,
-    end_date date NOT NULL CONSTRAINT end_date_ck CHECK (end_date > "publication_date"),
+    "publication_date" timestamp DEFAULT CURRENT_TIMESTAMP,
+    end_date timestamp NOT NULL CONSTRAINT end_date_ck CHECK (end_date > "publication_date"),
     TYPE character(25) NOT NULL,
     OPTION character(25) NOT NULL,
     CONSTRAINT payment_type CHECK ((TYPE = ANY (ARRAY['PayPal'::text, 'Credit Card'::text, 'Bank Transfer'::text, 'Other'::text]))),
@@ -39,8 +39,8 @@ CREATE TABLE bans (
     id serial PRIMARY KEY,
     banned_id integer NOT NULL,
     admin integer NOT NULL,
-    "ban_start_date" date DEFAULT CURRENT_TIMESTAMP,
-    ban_expiration_date date CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
+    "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP,
+    ban_expiration_date timestamp CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
     ban_reason text NOT NULL
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE "users" (
     email character(50) NOT NULL UNIQUE,
     zip_code character(25),
     address character(50),
-    "registration_date" date DEFAULT CURRENT_TIMESTAMP,
+    "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     profile_picture_path path,
     location integer,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
@@ -98,7 +98,7 @@ CREATE TABLE messages (
     id serial PRIMARY KEY,
     subject text NOT NULL,
     message text NOT NULL,
-    "send_date" date DEFAULT CURRENT_TIMESTAMP
+    "send_date" timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE qas (
