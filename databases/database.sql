@@ -31,7 +31,8 @@ CREATE TABLE auctions (
     images_folder path,
     owner_id integer NOT NULL,
     category_id integer NOT NULL,
-    city_id integer NOT NULL
+    city_id integer NOT NULL,
+    search tsvector
 );
 
 CREATE TABLE bans (
@@ -57,13 +58,13 @@ name character(50)
 
 CREATE TABLE cities (
     id integer NOT NULL PRIMARY KEY,
-    city character(25) NOT NULL,
+    city character(50) NOT NULL,
     country_id integer NOT NULL
 );
 
 CREATE TABLE countries (
     id integer NOT NULL PRIMARY KEY,
-    country character(25)
+    country character(50)
 );
 
 CREATE TABLE "users" (
