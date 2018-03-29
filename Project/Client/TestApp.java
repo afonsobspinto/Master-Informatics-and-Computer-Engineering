@@ -1,5 +1,8 @@
 package Client;
 
+import Server.Message.Message;
+import Server.Message.MessageType;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,7 +13,7 @@ public class TestApp {
     public static void main(String[] args) {
         if (args.length == 2 || args.length == 3 || args.length == 4){
             if(parseInputs(args)){
-                System.out.println("Hello World");
+                new Message(MessageType.PUTCHUNK, new String[] {"1.0","1","qualquerCena", "42", "9"});
                 return;
             }
         }
@@ -29,7 +32,8 @@ public class TestApp {
             }
             boolean isValidFile = new File(args[2]).exists();
             if(oper.equals("BACKUP") && args.length > 3){
-                boolean isNumberReplication = Pattern.matches("[0-9]+", args[3]);
+                boolean isNumberReplication = Pattern.matches("[0-9]", args[3]);
+
                 return isNumberPeer && isValidOperation && isValidFile && isNumberReplication;
             }
             return isNumberPeer && isValidOperation && isValidFile;

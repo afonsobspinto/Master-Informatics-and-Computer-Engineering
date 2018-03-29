@@ -6,14 +6,13 @@ import Server.Channel.MDB;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 
 public class Peer {
 
     private float protocolVersion;
     private int serverID;
-    private int serverAccessPoint;
+    private int serverAccessPoint; //TODO: you should use as access point the name of the remote object providing the "testing" service.
     private InetAddress MC_IP, MDB_IP, MDR_IP;
     private int MCport, MDBport, MDRport;
     Channel MC, MDB, MDR;
