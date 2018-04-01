@@ -86,7 +86,7 @@ public class Backup {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }while (peer.getCurrentReplicationDegree(new Pair<>(message.getFileID(), message.getChunKNo())) < desiredReplicationDegree && attempts++ < maxNumTries);
+        }while (peer.getCurrentReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo())) < desiredReplicationDegree && attempts++ < maxNumTries);
 
         if(attempts == maxNumTries){
             System.out.println("Desired replication degree not achieved");
@@ -100,7 +100,7 @@ public class Backup {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Message(new String[]{MessageType.STORED.toString(), String.valueOf(peer.getProtocolVersion()), message.getFileID(), String.valueOf(message.getChunKNo())}).send(this.peer.getMC());
+        new Message(new String[]{MessageType.STORED.toString(), String.valueOf(peer.getProtocolVersion()), message.getFileID(), String.valueOf(message.getChunkNo())}).send(this.peer.getMC());
 
     }
 
@@ -109,7 +109,7 @@ public class Backup {
         Integer bodyLength = message.getBodyLength();
         if(availableSpace > bodyLength){
             FileOutputStream outputStream;
-            String path = Peer.getBaseDir() + peer.getServerID() + "/" + message.getFileID() + "/" + message.getChunKNo();
+            String path = Peer.getBaseDir() + peer.getServerID() + "/" + message.getFileID() + "/" + message.getChunkNo();
             try {
 
                 File targetFile = new File(path);
@@ -132,7 +132,7 @@ public class Backup {
 
             outputStream.write(message.getBody(), 0, bodyLength);
             peer.addUsedSpace(bodyLength);
-            peer.addChunkToStorage(new Pair<>(message.getFileID(), message.getChunKNo()), message.getReplicationDegree());
+            peer.addChunkToStorage(new Pair<>(message.getFileID(), message.getChunkNo()), message.getReplicationDegree());
             outputStream.close();
             sendStored(message);
         }

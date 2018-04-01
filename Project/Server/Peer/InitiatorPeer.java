@@ -1,20 +1,24 @@
 package Server.Peer;
 
-import java.io.IOException;
+import java.rmi.Naming;
 import java.util.regex.Pattern;
 
 public class InitiatorPeer {
 
-    Peer peer;
+    private InitiatorPeer(String[] args) {
+        System.out.println("Initializing Peer...");
+        try {
+            Naming.rebind(args[2], new Peer(args));
+        }catch (Exception e){
+            System.out.println("Error occurred on peer initialization.\n"+e.toString());
+        }
 
-    private InitiatorPeer(String[] args) throws IOException{
-        peer = new Peer(args);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if (args.length == 9){
             if(parseInputs(args)){
-                InitiatorPeer initiatorPeer = new InitiatorPeer(args);
+                new InitiatorPeer(args);
                 return;
             }
         }
@@ -22,7 +26,9 @@ public class InitiatorPeer {
     }
 
     private static boolean parseInputs(String[] args) {
-        return Pattern.matches("[0-9]+((\\.)[0-9])?", args[0]) && isNumber(args[1]) && isIP4Address(args[3]) && isNumber(args[4]) && isIP4Address(args[5]) && isNumber(args[6]) && isIP4Address(args[7]) && isNumber(args[8]);
+        return Pattern.matches("[0-9]+((\\.)[0-9])?", args[0]) && isNumber(args[1])
+                && Pattern.matches("^//((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/.+$", args[2])
+                && isIP4Address(args[3]) && isNumber(args[4]) && isIP4Address(args[5]) && isNumber(args[6]) && isIP4Address(args[7]) && isNumber(args[8]);
     }
 
     private static boolean isNumber(String arg){

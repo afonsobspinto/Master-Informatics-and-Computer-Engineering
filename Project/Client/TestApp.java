@@ -2,18 +2,79 @@ package Client;
 
 import Server.Message.Message;
 import Server.Message.MessageType;
+import Server.Peer.PeerInterface;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class TestApp {
-    public static void main(String[] args) throws IllegalAccessException {
+    private PeerInterface testingPeer;
+    private String operation;
+    private Integer diskSpace = null;
+    private String filename = null;
+    private Integer replicationDegree = null;
+
+    private TestApp(String[] args) {
+        System.out.println("Starting TestApp");
+        operation = args[1].toUpperCase();
+
+        if(args.length > 2){
+            if(operation.equals("RECLAIM")) {
+                diskSpace = Integer.valueOf(args[2]);
+            }
+            else {
+                filename = args[2];
+                if (operation.equals("BACKUP")) {
+                    replicationDegree = Integer.valueOf(args[3]);
+                }
+            }
+        }
+        try {
+            testingPeer = (PeerInterface) Naming.lookup("rmi:" + args[0]);
+        }catch (Exception e){
+            System.out.println("Test app failed to start.\n"+e);
+            System.out.println("Check if both server and register server are correctly running.\n");
+            System.exit(0);
+        }
+
+    }
+
+    private void test() throws IllegalAccessException, NoSuchAlgorithmException, IOException {
+        switch (operation){
+            case "BACKUP":
+                testingPeer.backup(filename, replicationDegree);
+                break;
+            case "RESTORE":
+                testingPeer.restore(filename);
+                break;
+            case "DELETE":
+                testingPeer.delete(filename);
+                break;
+            case "RECLAIM":
+                testingPeer.reclaim(diskSpace);
+                break;
+            case "STATE":
+                testingPeer.state(filename);
+        }
+    }
+
+    public static void main(String[] args) throws IOException, IllegalAccessException, NoSuchAlgorithmException, NotBoundException {
         if (args.length == 2 || args.length == 3 || args.length == 4){
             if(parseInputs(args)){
-                Message message = new Message(new String[] {"Delete","1.0","1", "qualquerCena"});
+                new TestApp(args).test();
                 return;
             }
         }
@@ -22,22 +83,22 @@ public class TestApp {
 
     private static boolean parseInputs(String[] args) {
         Set<String> operationsAvailable = new HashSet<>(Arrays.asList("BACKUP", "RESTORE", "DELETE", "RECLAIM", "STATE"));
-        boolean isNumberPeer = Pattern.matches("[0-9]+", args[0]);
+        boolean isValidRMI = Pattern.matches("^//((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/.+$", args[0]);
         String oper = args[1].toUpperCase();
         boolean isValidOperation = operationsAvailable.contains(oper);
         if(args.length > 2){
             if(oper.equals("RECLAIM")) {
                 boolean isNumberDiskSpace = Pattern.matches("[0-9]+", args[0]);
-                return isNumberPeer && isValidOperation && isNumberDiskSpace;
+                return isValidRMI && isValidOperation && isNumberDiskSpace;
             }
             boolean isValidFile = new File(args[2]).exists();
             if(oper.equals("BACKUP") && args.length > 3){
                 boolean isNumberReplication = Pattern.matches("[0-9]", args[3]);
 
-                return isNumberPeer && isValidOperation && isValidFile && isNumberReplication;
+                return isValidRMI && isValidOperation && isValidFile && isNumberReplication;
             }
-            return isNumberPeer && isValidOperation && isValidFile;
+            return isValidRMI && isValidOperation && isValidFile;
         }
-        return isNumberPeer && isValidOperation;
+        return isValidRMI && isValidOperation;
     }
 }

@@ -186,7 +186,7 @@ public class Message {
         return body;
     }
 
-    public Integer getChunKNo(){
+    public Integer getChunkNo(){
         return this.header.getChuckNo();
 
     }

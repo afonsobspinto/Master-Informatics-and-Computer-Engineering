@@ -7,22 +7,19 @@ import Server.Message.Message;
 import Server.Peer.Subprotocols.*;
 import Server.Peer.Utilities.Pair;
 
+import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.InetAddress;
-import java.nio.file.Path;
+import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 
-public class Peer implements PeerInterface {
+public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     private Float protocolVersion;
     private Integer serverID;
-    private Integer serverAccessPoint; //TODO: you should use as access point the name of the remote object providing the "testing" service.
+    private String serverAccessPoint; //TODO: you should use as access point the name of the remote object providing the "testing" service.
     private InetAddress MC_IP, MDB_IP, MDR_IP;
     private Integer MCport, MDBport, MDRport;
     private Channel MC, MDB, MDR;
@@ -30,9 +27,10 @@ public class Peer implements PeerInterface {
     private Delete deleteProtocol;
     private Reclaim reclaimProtocol;
     private Restore restoreProtocol;
-    private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)).intValue()); // 64GB ~ also the max size of a file available;
     private Long usedSpace = 0L;
-    private static final String baseDir = "Storage/";
+
+    private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)).intValue()); // 64GB ~ also the max size of a file available;
+    private final static String baseDir = "Storage/";
 
     /**
      * Chunk
@@ -50,7 +48,7 @@ public class Peer implements PeerInterface {
     public Peer(String[] args) throws IOException {
         protocolVersion = Float.parseFloat(args[0]);
         serverID = Integer.parseInt(args[1]);
-        serverAccessPoint = Integer.parseInt(args[2]);
+        serverAccessPoint = args[2];
         MC_IP = InetAddress.getByName(args[3]);
         MCport = Integer.parseInt(args[4]);
         MDB_IP = InetAddress.getByName(args[5]);
@@ -58,8 +56,19 @@ public class Peer implements PeerInterface {
         MDR_IP = InetAddress.getByName(args[7]);
         MDRport = Integer.parseInt(args[8]);
 
+        System.out.println("New Peer created...");
+
         subscribeChannels();
         subscribeSubProtocols();
+
+        createStorage();
+
+
+    }
+
+    private void createStorage() {
+        File baseDir = new File(getBaseDir()+this.serverID);
+        baseDir.mkdirs();
     }
 
     private void subscribeSubProtocols() {
@@ -86,7 +95,7 @@ public class Peer implements PeerInterface {
         return serverID;
     }
 
-    public int getServerAccessPoint() {
+    public String getServerAccessPoint() {
         return serverAccessPoint;
     }
 
@@ -108,7 +117,7 @@ public class Peer implements PeerInterface {
     }
 
     public void receiveStored(Message message) {
-        increaseReplicationDegree(new Pair<>(message.getFileID(), message.getChunKNo()));
+        increaseReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo()));
 
     }
 
