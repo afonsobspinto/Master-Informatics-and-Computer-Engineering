@@ -1,19 +1,11 @@
 package Client;
 
-import Server.Message.Message;
-import Server.Message.MessageType;
 import Server.Peer.PeerInterface;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashSet;
