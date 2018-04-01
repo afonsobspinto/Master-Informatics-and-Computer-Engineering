@@ -10,10 +10,10 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 public class TestApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         if (args.length == 2 || args.length == 3 || args.length == 4){
             if(parseInputs(args)){
-                new Message(MessageType.PUTCHUNK, new String[] {"1.0","1","qualquerCena", "42", "9"});
+                Message message = new Message(new String[] {"Delete","1.0","1", "qualquerCena"});
                 return;
             }
         }
