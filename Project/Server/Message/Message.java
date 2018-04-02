@@ -18,11 +18,13 @@ public class Message {
     private byte[] body;
     private Thread thread;
     private Peer peer;
+    private Integer bodyLength;
 
     public Message(String[] headerArgs, Peer peer) throws IllegalAccessException {
         this.peer = peer;
         this.header = new Header(headerArgs);
         body = null;
+        this.thread = new Thread(new SenderRunnable());
         System.out.println("New Message Created:");
         System.out.println(new String(this.header.getHeaderProtocol()));
     }
@@ -65,7 +67,8 @@ public class Message {
             return;
         }
         if (messageType == MessageType.PUTCHUNK || messageType == MessageType.CHUNK) {
-            this.body = new byte[packet.getLength() - headerBuilder.length() - 4]; // 4 -> <crlf> <crlf>
+            this.bodyLength = packet.getLength() - headerBuilder.length() - 4;
+            this.body = new byte[this.bodyLength]; // 4 -> <crlf> <crlf>
             if (message.read(body) == -1) {
                 System.out.println("Invalid Body");
             }
@@ -137,8 +140,10 @@ public class Message {
                     peer.receiveStored(_message);
                     break;
                 case GETCHUNK:
+                    peer.receiveGetChunk(_message);
                     break;
                 case CHUNK:
+                    peer.receiveChunk(_message);
                     break;
                 case DELETE:
                     break;
@@ -156,22 +161,9 @@ public class Message {
                 case PUTCHUNK:
                     peer.sendPutChunk(_message);
                     break;
-                case STORED:
-                    try {
-                        peer.sendStored(_message);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case GETCHUNK:
-                    break;
                 case CHUNK:
+                    peer.sendChunk(_message);
                     break;
-                case DELETE:
-                    break;
-                case REMOVED:
-                    break;
-
             }
         }
     }
@@ -191,8 +183,8 @@ public class Message {
         return this.header.getFileID();
     }
 
-    public Integer getBodySpace() { // I don't know why it's 8 but it's the only value which makes sense;
-        return body.length * 8;
+    public Integer getBodySpace() {
+        return this.bodyLength;
     }
 
     public byte[] getBody() {

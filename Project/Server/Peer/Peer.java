@@ -10,9 +10,11 @@ import Server.Peer.Utilities.Pair;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,19 +35,29 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     private Long usedSpace = 0L;
 
     private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)));; // 64GB ~ also the max size of a file available;
-    private final static String baseDir = "Storage/";
+    private final static String baseStorageDir = "Storage/";
+
+
+    private final static String baseRestoreDir = "Restore/";
+
 
     /**
      * Chunk
      * List of Peers which stored ~ length = current replication degree
      */
     private ConcurrentHashMap<Pair<String,Integer>, HashSet<Integer>> chunksReplicationDegree = new ConcurrentHashMap<>();
+
     /**
      * Chunk
      * Desired replication degree
      */
     private ConcurrentHashMap<Pair<String,Integer>, Integer> storedChunks = new ConcurrentHashMap<>();
 
+    /**
+     * Chunk
+     */
+
+    private Set<Pair<String,Integer>> chunksBroadcasted = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
 
 
@@ -72,7 +84,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     }
 
     private void createStorage() {
-        File baseDir = new File(getBaseDir()+this.serverID);
+        File baseDir = new File(getBaseStorageDir()+this.serverID);
         baseDir.mkdirs();
         System.out.println("Storage created");
 
@@ -120,10 +132,6 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         this.backupProtocol.sendPutChunk(message);
     }
 
-    public void sendStored(Message message) throws IllegalAccessException {
-        this.backupProtocol.sendStored(message);
-    }
-
     public void receivePutChunk(Message message) throws IOException, IllegalAccessException {
         this.backupProtocol.receivePutChunk(message);
     }
@@ -133,12 +141,26 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         increaseReplicationDegree(message.getSenderID(), new Pair<>(message.getFileID(), message.getChunkNo()));
         System.out.println("Received Stored Successfully");
 
-
     }
+
 
     @Override
     public void restore(String filepath) {
+        restoreProtocol = new Restore(filepath, this);
+        restoreProtocol.restore();
 
+    }
+
+    public void receiveGetChunk(Message message) {
+        this.restoreProtocol.checkForChunk(message);
+    }
+
+    public void receiveChunk(Message message) {
+        this.restoreProtocol.restoreChunk(message.getChunkNo(), message.getBody());
+    }
+
+    public void sendChunk(Message message) {
+        this.restoreProtocol.sendChunk(message);
     }
 
     @Override
@@ -190,20 +212,43 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     private synchronized void increaseReplicationDegree(Integer senderID, Pair<String,Integer> key){
         HashSet<Integer> peers = chunksReplicationDegree.get(key);
-        if(peers!=null) {
-            if (!peers.contains(senderID)) {
-                peers.add(senderID);
-            }
-        }
-        else{
+        if(peers==null) {
             peers = new HashSet<>();
-            peers.add(senderID);
         }
+        peers.add(senderID);
+
         chunksReplicationDegree.put(key, peers);
     }
 
-    public static String getBaseDir() {
-        return baseDir;
+    public synchronized boolean hasChunk(Pair<String,Integer> key){
+        return storedChunks.get(key) != null;
     }
+
+    public boolean hasReceivedChunks(Pair<String,Integer> key) {
+        return chunksBroadcasted.contains(key);
+    }
+
+    public byte[] getChunk(Pair<String,Integer> key){
+        byte[] chunk = null;
+        String path = Peer.getBaseStorageDir() + this.getServerID() + "/" + key.getLeft() + "/" + key.getRight();
+        try {
+            chunk = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return chunk;
+    }
+
+    public static String getBaseStorageDir() {
+        return baseStorageDir;
+    }
+
+
+    public static String getBaseRestoreDir() {
+        return baseRestoreDir;
+    }
+
+
 
 }

@@ -1,7 +1,5 @@
 package src;
 
-import sun.security.x509.IPAddressName;
-
 import java.io.IOException;
 import java.net.*;
 import java.util.regex.Pattern;
@@ -22,6 +20,7 @@ public class Client {
         this.socket = new DatagramSocket();
         this.mcastSocket = new MulticastSocket(mcastPort);
         this.mcastSocket.joinGroup(mcastAddress);
+        System.out.println(this.mcastSocket.getPort());
 
     }
 

@@ -48,10 +48,13 @@ public class TestApp {
     private void test() throws IllegalAccessException, NoSuchAlgorithmException, IOException {
         switch (operation){
             case "BACKUP":
+                System.out.println("Starting Backup of " + filename + " with desired replication degree of " + replicationDegree);
                 testingPeer.backup(filename, replicationDegree);
                 break;
             case "RESTORE":
+                System.out.println("Starting RESTORE of " + filename);
                 testingPeer.restore(filename);
+
                 break;
             case "DELETE":
                 testingPeer.delete(filename);
@@ -64,7 +67,7 @@ public class TestApp {
         }
     }
 
-    public static void main(String[] args) throws IOException, IllegalAccessException, NoSuchAlgorithmException, NotBoundException {
+    public static void main(String[] args) throws IOException, IllegalAccessException, NoSuchAlgorithmException {
         if (args.length == 2 || args.length == 3 || args.length == 4){
             if(parseInputs(args)){
                 new TestApp(args).test();
