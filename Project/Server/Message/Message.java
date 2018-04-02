@@ -143,6 +143,7 @@ public class Message {
                     peer.receiveChunk(_message);
                     break;
                 case DELETE:
+                    peer.receiveDelete(_message);
                     break;
                 case REMOVED:
                     break;

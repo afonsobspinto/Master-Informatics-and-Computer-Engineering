@@ -54,9 +54,9 @@ public class TestApp {
             case "RESTORE":
                 System.out.println("Starting RESTORE of " + filename);
                 testingPeer.restore(filename);
-
                 break;
             case "DELETE":
+                System.out.println("Starting DELETE of " + filename);
                 testingPeer.delete(filename);
                 break;
             case "RECLAIM":

@@ -16,6 +16,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,7 +25,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     private Float protocolVersion;
     private Integer serverID;
-    private String serverAccessPoint; //TODO: you should use as access point the name of the remote object providing the "testing" service.
+    private String serverAccessPoint;
     private InetAddress MC_IP, MDB_IP, MDR_IP;
     private Integer MCport, MDBport, MDRport;
     private Channel MC, MDB, MDR;
@@ -34,7 +35,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     private Restore restoreProtocol;
     private Long usedSpace = 0L;
 
-    private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)));; // 64GB ~ also the max size of a file available;
+    private final static Long diskSpace = (long) (64 * Math.pow(10, 9));; // 64GB ~ also the max size of a file available;
     private final static String baseStorageDir = "Storage/";
 
 
@@ -43,7 +44,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     /**
      * Chunk
-     * List of Peers which stored ~ length = current replication degree
+     * Set of Peers which stored ~ length = current replication degree
      */
     private ConcurrentHashMap<Pair<String,Integer>, HashSet<Integer>> chunksReplicationDegree = new ConcurrentHashMap<>();
 
@@ -165,7 +166,13 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     @Override
     public void delete(String filepath) {
+        this.deleteProtocol = new Delete(filepath, this);
+        this.deleteProtocol.delete();
 
+    }
+
+    public void receiveDelete(Message message) {
+        this.deleteProtocol.deleteChunks(message.getFileID());
     }
 
     @Override
@@ -198,6 +205,10 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         this.usedSpace += newFileSize;
     }
 
+    public void removeUsedSpace(Integer newFileSize) {
+        this.usedSpace -= newFileSize;
+    }
+
     public synchronized Integer getCurrentReplicationDegree(Pair<String,Integer> key) {
 
         Set<Integer> peers = chunksReplicationDegree.get(key);
@@ -218,6 +229,16 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         peers.add(senderID);
 
         chunksReplicationDegree.put(key, peers);
+    }
+    public void updateMaps(String fileID) {
+        for (Map.Entry entry : chunksReplicationDegree.entrySet()) {
+            Pair key = (Pair) entry.getKey();
+            String keyFileID = (String) key.getLeft();
+                if(fileID.equals(keyFileID)){
+                    chunksReplicationDegree.remove(key);
+                    storedChunks.remove(key);
+                }
+            }
     }
 
     public synchronized boolean hasChunk(Pair<String,Integer> key){
