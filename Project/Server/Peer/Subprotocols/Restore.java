@@ -19,7 +19,6 @@ public class Restore {
     private Peer peer;
     private String filepath;
     private String fileID;
-    private Integer totalChunks;
     private Integer restoredChunks = 0;
 
     private static final Integer maxChunkSize = 64000;
@@ -52,7 +51,7 @@ public class Restore {
 
     public void restore(){
         File file = new File(filepath);
-        this.totalChunks = (int) Math.floor(file.length() / maxChunkSize) + 1;
+        Integer totalChunks = (int) Math.floor(file.length() / maxChunkSize) + 1;
         try {
             this.fileID = generateFileId(file);
         } catch (IOException | NoSuchAlgorithmException e) {
@@ -78,7 +77,7 @@ public class Restore {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }while (restoredChunks<totalChunks && attempts++ < maxNumTries);
+        }while (restoredChunks< totalChunks && attempts++ < maxNumTries);
 
         if(attempts >= maxNumTries){
             System.out.println("Couldn't Restore All Chunks");
@@ -127,17 +126,13 @@ public class Restore {
     public void checkForChunk(Message message) {
         System.out.println("Received GetChunk");
         Pair<String,Integer> key = new Pair<>(message.getFileID(), message.getChunkNo());
-        System.out.println(key.getLeft());
-        System.out.println(key.getRight());
         if(peer.hasChunk(key)){
-            System.out.println("I have That Chunk");
             try {
                 Thread.sleep((long) (Math.random() * maxRandomDelay));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             if(!peer.hasReceivedChunks(key)){
-                System.out.println("Well seems like I'm the fastest");
                 byte[] chunk = peer.getChunk(key);
                 if(chunk!=null) {
                     try {

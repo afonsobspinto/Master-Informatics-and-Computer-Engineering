@@ -97,20 +97,17 @@ public class Message {
     public void send(Channel channel) {
         System.out.println("Sending message");
         new Thread(() -> {
-            DatagramSocket socket = null;
+            DatagramSocket socket;
             try {
                 socket = new DatagramSocket();
             } catch (SocketException e) {
                 e.printStackTrace();
+                return;
             }
-            byte[] buffer = new byte[0];
+            byte[] buffer;
             try {
                 buffer = _message.getBytes();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            DatagramPacket sendPacket = new DatagramPacket(buffer, buffer.length, channel.getAddress(), channel.getPort());
-            try {
+                DatagramPacket sendPacket = new DatagramPacket(buffer, buffer.length, channel.getAddress(), channel.getPort());
                 socket.send(sendPacket);
             } catch (IOException e) {
                 e.printStackTrace();

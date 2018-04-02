@@ -46,16 +46,17 @@ public class Backup {
             return;
         }
 
+        Long fileToRead = file.length();
         int chunkNo = 0;
-        int bytesRead;
+        int bytesRead = 0;
         int lastBytesRead = 0;
-        byte[] chunk = new byte[maxChunkSize];
-
-        while ((bytesRead = inputStream.read(chunk)) != -1){
+        do {
+            byte[] chunk = new byte[(int) Math.min(fileToRead, maxChunkSize)];
+            bytesRead = inputStream.read(chunk);
             sendChunk(chunk, chunkNo++);
-            chunk = new byte[maxChunkSize];
+            fileToRead -= bytesRead;
             lastBytesRead = bytesRead;
-        }
+        }while (fileToRead > 0);
 
         inputStream.close();
 
@@ -117,7 +118,7 @@ public class Backup {
             if(outputStream==null){
                 return;
             }
-            outputStream.write(message.getBody(), 0, bodyLength/8);
+            outputStream.write(message.getBody(), 0, bodyLength);
             peer.addUsedSpace(bodyLength);
             peer.addChunkToStorage(new Pair<>(message.getFileID(), message.getChunkNo()), message.getReplicationDegree());
             outputStream.close();
