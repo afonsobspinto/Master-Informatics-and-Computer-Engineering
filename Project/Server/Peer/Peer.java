@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -29,19 +32,21 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     private Restore restoreProtocol;
     private Long usedSpace = 0L;
 
-    private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)).intValue()); // 64GB ~ also the max size of a file available;
+    private final static Long diskSpace = (long) (64 * new Double(Math.pow(10, 9)));; // 64GB ~ also the max size of a file available;
     private final static String baseDir = "Storage/";
 
     /**
      * Chunk
-     * Current replication degree
+     * List of Peers which stored ~ length = current replication degree
      */
-    private ConcurrentHashMap<Pair<String,Integer>, Integer> chunksReplicationDegree = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Pair<String,Integer>, HashSet<Integer>> chunksReplicationDegree = new ConcurrentHashMap<>();
     /**
      * Chunk
      * Desired replication degree
      */
     private ConcurrentHashMap<Pair<String,Integer>, Integer> storedChunks = new ConcurrentHashMap<>();
+
+
 
 
     //  <protocolVersion> <serverID> <serverAccessPoint> <MC_IP> <MC_Port> <MDB_IP> <MDB_Port> <MDR_IP> <MDR_Port>
@@ -69,6 +74,8 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     private void createStorage() {
         File baseDir = new File(getBaseDir()+this.serverID);
         baseDir.mkdirs();
+        System.out.println("Storage created");
+
     }
 
     private void subscribeSubProtocols() {
@@ -76,6 +83,9 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         deleteProtocol = new Delete(this);
         restoreProtocol = new Restore(this);
         reclaimProtocol = new Reclaim(this);
+
+        System.out.println("Protocols Subscribed");
+
     }
 
     private void subscribeChannels() throws IOException {
@@ -85,6 +95,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         MDB.listen();
         MDR = new MDB(MDR_IP, MDRport,this);
         MDR.listen();
+        System.out.println("Channels Subscribed");
     }
 
     public float getProtocolVersion() {
@@ -108,6 +119,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     public void sendPutChunk(Message message) {
         this.backupProtocol.sendPutChunk(message);
     }
+
     public void sendStored(Message message) throws IllegalAccessException {
         this.backupProtocol.sendStored(message);
     }
@@ -117,7 +129,10 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     }
 
     public void receiveStored(Message message) {
-        increaseReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo()));
+        System.out.println("Received Stored");
+        increaseReplicationDegree(message.getSenderID(), new Pair<>(message.getFileID(), message.getChunkNo()));
+        System.out.println("Received Stored Successfully");
+
 
     }
 
@@ -163,24 +178,28 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     public synchronized Integer getCurrentReplicationDegree(Pair<String,Integer> key) {
 
-        Integer value = chunksReplicationDegree.get(key);
+        Set<Integer> peers = chunksReplicationDegree.get(key);
 
-        return value != null ? value : 0;
+        return peers != null ? peers.size() : 0;
     }
 
     public synchronized void addChunkToStorage(Pair<String,Integer> key, Integer value) {
         this.storedChunks.putIfAbsent(key, value);
-        increaseReplicationDegree(key);
+        increaseReplicationDegree(this.serverID, key);
     }
 
-    private synchronized void increaseReplicationDegree(Pair<String,Integer> key){
-        Integer currentReplicationDegree = chunksReplicationDegree.get(key);
-        if(currentReplicationDegree == null){
-            chunksReplicationDegree.put(key,1);
+    private synchronized void increaseReplicationDegree(Integer senderID, Pair<String,Integer> key){
+        HashSet<Integer> peers = chunksReplicationDegree.get(key);
+        if(peers!=null) {
+            if (!peers.contains(senderID)) {
+                peers.add(senderID);
+            }
         }
         else{
-            chunksReplicationDegree.put(key, ++currentReplicationDegree);
+            peers = new HashSet<>();
+            peers.add(senderID);
         }
+        chunksReplicationDegree.put(key, peers);
     }
 
     public static String getBaseDir() {

@@ -13,10 +13,16 @@ public abstract class Channel {
     private MulticastSocket mcastSocket;
     private Thread thread;
     private Peer peer;
+    private Integer port;
+    private InetAddress address;
 
     Channel(InetAddress address, int port, Peer peer) throws IOException {
+        this.port = port;
+        this.address = address;
         this.mcastSocket = new MulticastSocket(port);
         this.mcastSocket.joinGroup(address);
+        this.mcastSocket.getPort();
+
         this.thread = new Thread(new ChannelRunnable());
         this.peer = peer;
     }
@@ -44,10 +50,10 @@ public abstract class Channel {
         receivePacket = new DatagramPacket(buffer, buffer.length);
         this.mcastSocket.receive(receivePacket);
 
-        InetAddress receiveAddress = receivePacket.getAddress();
+  /*      InetAddress receiveAddress = receivePacket.getAddress();
         int receivePort = receivePacket.getPort();
         String request = new String(receivePacket.getData(), 0, receivePacket.getLength());
-        System.out.println("Received Request: " + request);
+        System.out.println("Received Request: " + request);*/
 
         handleRequest(receivePacket);
     }
@@ -58,11 +64,11 @@ public abstract class Channel {
     }
 
     public int getPort(){
-        return this.mcastSocket.getPort();
+        return port;
     }
 
     public InetAddress getAddress(){
-        return this.mcastSocket.getInetAddress();
+        return address;
     }
 
 }

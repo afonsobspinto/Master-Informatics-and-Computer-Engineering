@@ -36,6 +36,7 @@ public class Backup {
         this.file = new File(filepath);
         this.fileId = generateFileId(file);
         this.replicationDegree = replicationDegree;
+        System.out.println("New Backup Protocol Started");
     }
 
 
@@ -66,15 +67,16 @@ public class Backup {
             sendChunk(new byte[0], chunkNo);
         }
 
+        System.out.println("Chucks Successfully Read");
+
     }
 
     private void sendChunk(byte[] chunk, int chunkNo) throws IllegalAccessException {
-        Message message = new Message(new String[]{MessageType.PUTCHUNK.toString(), String.valueOf(peer.getProtocolVersion()), String.valueOf(peer.getServerID()), fileId, String.valueOf(chunkNo), String.valueOf(replicationDegree)}, chunk);
-        message.start();
-
+        new Message(new String[]{MessageType.PUTCHUNK.toString(), String.valueOf(peer.getProtocolVersion()), String.valueOf(peer.getServerID()), fileId, String.valueOf(chunkNo), String.valueOf(replicationDegree)}, chunk, this.peer).start();
     }
 
     public void sendPutChunk(Message message) {
+        System.out.println("Sending PutChunk");
 
         int desiredReplicationDegree = message.getReplicationDegree();
         int attempts = 0;
@@ -82,36 +84,41 @@ public class Backup {
         do {
             message.send(this.peer.getMDB());
             try {
+                System.out.println("waiting");
                 Thread.sleep((long) sleepTime * 2 ^ attempts);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }while (peer.getCurrentReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo())) < desiredReplicationDegree && attempts++ < maxNumTries);
 
-        if(attempts == maxNumTries){
+        if(attempts >= maxNumTries){
             System.out.println("Desired replication degree not achieved");
+        }
+        else{
+            System.out.println("Desired replication degree achieved");
         }
 
     }
 
     public void sendStored(Message message) throws IllegalAccessException {
+        System.out.println("Sending Stored");
         try {
             Thread.sleep((long) (Math.random() * maxRandomDelay));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Message(new String[]{MessageType.STORED.toString(), String.valueOf(peer.getProtocolVersion()), message.getFileID(), String.valueOf(message.getChunkNo())}).send(this.peer.getMC());
-
+        new Message(new String[]{MessageType.STORED.toString(), String.valueOf(peer.getProtocolVersion()), String.valueOf(peer.getServerID()), message.getFileID(), String.valueOf(message.getChunkNo())}, this.peer).send(this.peer.getMC());
     }
 
     public void receivePutChunk(Message message) throws IOException, IllegalAccessException {
+        System.out.println("Received PutChuck");
+
         Long availableSpace = peer.getAvailableSpace();
-        Integer bodyLength = message.getBodyLength();
+        Integer bodyLength = message.getBodySpace();
         if(availableSpace > bodyLength){
             FileOutputStream outputStream;
             String path = Peer.getBaseDir() + peer.getServerID() + "/" + message.getFileID() + "/" + message.getChunkNo();
             try {
-
                 File targetFile = new File(path);
                 File parent = targetFile.getParentFile();
                 try {
@@ -130,11 +137,15 @@ public class Backup {
                 return;
             }
 
-            outputStream.write(message.getBody(), 0, bodyLength);
+            outputStream.write(message.getBody(), 0, bodyLength/8);
             peer.addUsedSpace(bodyLength);
             peer.addChunkToStorage(new Pair<>(message.getFileID(), message.getChunkNo()), message.getReplicationDegree());
             outputStream.close();
+            System.out.println("Received PutChunk successfully");
             sendStored(message);
+        }
+        else {
+            System.out.println("Not enough space");
         }
     }
 

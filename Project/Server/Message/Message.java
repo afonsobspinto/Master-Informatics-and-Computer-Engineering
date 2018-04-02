@@ -19,25 +19,32 @@ public class Message {
     private Thread thread;
     private Peer peer;
 
-    public Message(String[] headerArgs) throws IllegalAccessException {
+    public Message(String[] headerArgs, Peer peer) throws IllegalAccessException {
+        this.peer = peer;
         this.header = new Header(headerArgs);
         body = null;
+        System.out.println("New Message Created:");
         System.out.println(new String(this.header.getHeaderProtocol()));
     }
 
-    public Message(String[] headerArgs, byte[] body) throws IllegalAccessException {
+    public Message(String[] headerArgs, byte[] body, Peer peer) throws IllegalAccessException {
+        this.peer = peer;
         header = new Header(headerArgs);
         this.body = body;
         this.thread = new Thread(new SenderRunnable());
+        System.out.println("New Message Created + Body:");
+        System.out.println(new String(this.header.getHeaderProtocol()));
     }
 
     public Message(DatagramPacket packet, Peer peer) throws IOException, IllegalAccessException {
         readPacket(packet);
         this.peer = peer;
         this.thread = new Thread(new ReceiverRunnable());
+
     }
 
     private void readPacket(DatagramPacket packet) throws IOException, IllegalAccessException {
+        System.out.println("Reading Packet");
         ByteArrayInputStream message = new ByteArrayInputStream(packet.getData());
         StringBuilder headerBuilder = new StringBuilder();
         byte character;
@@ -63,6 +70,8 @@ public class Message {
                 System.out.println("Invalid Body");
             }
         }
+        System.out.println("Message Read from DataPacket:");
+        System.out.println(new String(this.header.getHeaderProtocol()));
 
         message.close();
     }
@@ -77,11 +86,13 @@ public class Message {
     }
 
 
-    public void start() {
+    public void start()
+    {
         this.thread.start();
     }
 
     public void send(Channel channel) {
+        System.out.println("Sending message");
         new Thread(() -> {
             DatagramSocket socket = null;
             try {
@@ -101,6 +112,7 @@ public class Message {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println("Message Sent.");
         }).start();
 
     }
@@ -110,6 +122,7 @@ public class Message {
         @Override
         public void run() {
             if (_message.getSenderID().equals(peer.getServerID())) { //A peer must never store the chunks of its own files.
+                System.out.println("Ignored");
                 return;
             }
             switch (_message.getMessageType()) {
@@ -163,7 +176,7 @@ public class Message {
         }
     }
 
-    private Integer getSenderID() {
+    public Integer getSenderID() {
         return header.getSenderID();
     }
 
@@ -178,8 +191,8 @@ public class Message {
         return this.header.getFileID();
     }
 
-    public Integer getBodyLength() {
-        return body.length;
+    public Integer getBodySpace() { // I don't know why it's 8 but it's the only value which makes sense;
+        return body.length * 8;
     }
 
     public byte[] getBody() {

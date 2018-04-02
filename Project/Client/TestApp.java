@@ -29,6 +29,7 @@ public class TestApp {
             }
             else {
                 filename = args[2];
+                System.out.println(filename);
                 if (operation.equals("BACKUP")) {
                     replicationDegree = Integer.valueOf(args[3]);
                 }
