@@ -51,7 +51,9 @@ public class Backup {
         int bytesRead = 0;
         int lastBytesRead = 0;
         do {
-            byte[] chunk = new byte[(int) Math.min(fileToRead, maxChunkSize)];
+            Integer chunkSize = (int) Math.min(fileToRead, maxChunkSize);
+            System.out.println(chunkSize);
+            byte[] chunk = new byte[chunkSize];
             bytesRead = inputStream.read(chunk);
             sendChunk(chunk, chunkNo++);
             fileToRead -= bytesRead;

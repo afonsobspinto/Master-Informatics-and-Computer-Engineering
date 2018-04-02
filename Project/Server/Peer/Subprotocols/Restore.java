@@ -99,6 +99,9 @@ public class Restore {
         }
         for(int chunkNo = 0; chunkNo < chunks.size(); chunkNo++){
             try {
+                if(chunks.get(chunkNo)!=null){
+                    System.out.println("Writing chunk " + chunkNo + chunks.get(chunkNo).length);
+                }
                 outputStream.write(chunks.get(chunkNo));
             } catch (IOException e) {
                 e.printStackTrace();

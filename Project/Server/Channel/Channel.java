@@ -15,6 +15,8 @@ public abstract class Channel {
     private Peer peer;
     private Integer port;
     private InetAddress address;
+    private static final Integer bufferSize = 64000 + 1000;
+
 
     Channel(InetAddress address, int port, Peer peer) throws IOException {
         this.port = port;
@@ -44,7 +46,7 @@ public abstract class Channel {
     }
 
     private void receivePacket() throws IOException, IllegalAccessException {
-        byte[] buffer = new byte[8192]; //TODO:  Decrease to 64KByte?
+        byte[] buffer = new byte[bufferSize];
         DatagramPacket receivePacket;
 
         receivePacket = new DatagramPacket(buffer, buffer.length);
