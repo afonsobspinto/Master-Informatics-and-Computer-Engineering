@@ -8,6 +8,9 @@ import Server.Peer.Utilities.Pair;
 import java.io.File;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Reclaim {
     private Peer peer;
@@ -133,9 +136,11 @@ public class Reclaim {
 
     private void initiateBackupSubprotocol(Pair<String,Integer> key, Integer desiredReplicationDegree){
 
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
         peer.resetReceivedPutChunks(key);
         try {
-            Thread.sleep((long) (Math.random() * maxRandomDelay));
+            executor.awaitTermination((long) (Math.random() * maxRandomDelay), TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

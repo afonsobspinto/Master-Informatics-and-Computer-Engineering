@@ -112,8 +112,9 @@ public class Backup {
 
     public void sendStored(Message message) throws IllegalAccessException {
         System.out.println("Sending Stored");
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         try {
-            Thread.sleep((long) (Math.random() * maxRandomDelay));
+            executor.awaitTermination((long) (Math.random() * maxRandomDelay), TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

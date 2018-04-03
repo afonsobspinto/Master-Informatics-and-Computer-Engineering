@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static Server.Peer.Utilities.Utilities.createFile;
 import static Server.Peer.Utilities.Utilities.generateFileId;
@@ -69,10 +72,13 @@ public class Restore {
             }
         }
 
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
         int attempts = 0;
         do {
             try {
-                Thread.sleep((long) minSleepTime * 2 ^ attempts);
+                executor.awaitTermination((long) minSleepTime * 2 ^ attempts, TimeUnit.SECONDS);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -125,9 +131,11 @@ public class Restore {
     public void checkForChunk(Message message) {
         System.out.println("Received GetChunk");
         Pair<String,Integer> key = new Pair<>(message.getFileID(), message.getChunkNo());
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
         if(peer.hasChunk(key)){
             try {
-                Thread.sleep((long) (Math.random() * maxRandomDelay));
+                executor.awaitTermination((long) (Math.random() * maxRandomDelay), TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
