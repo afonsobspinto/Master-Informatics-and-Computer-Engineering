@@ -64,4 +64,4 @@ END
 $$ LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER add_new_user AFTER INSERT ON users FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
+CREATE TRIGGER update_current_price AFTER INSERT ON users FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
