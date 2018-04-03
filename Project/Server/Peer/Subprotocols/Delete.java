@@ -7,9 +7,6 @@ import Server.Peer.Peer;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import static Server.Peer.Utilities.Utilities.generateFileId;
 
@@ -35,8 +32,6 @@ public class Delete {
     }
 
     public void delete() {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-
         File file = new File(filepath);
         try {
             this.fileID = generateFileId(file);
@@ -52,7 +47,7 @@ public class Delete {
                 e.printStackTrace();
             }
             try {
-                executor.awaitTermination((long) sleepTime, TimeUnit.SECONDS);
+                Thread.sleep((long) sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
