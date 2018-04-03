@@ -83,3 +83,22 @@ $$ LANGUAGE 'plpgsql';
 
 
 CREATE TRIGGER check_if_is_admin BEFORE INSERT ON bans FOR EACH ROW EXECUTE PROCEDURE fn_check_if_is_admin();
+
+
+-- check if who is bidding is not an admin
+
+DROP TRIGGER IF EXISTS fn_add_bid_only_if_not_admin_banned ON bids;
+CREATE OR REPLACE FUNCTION fn_add_bid_only_if_not_admin_banned() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    IF NEW.bidder_id IN (SELECT users.id FROM users, bids WHERE users.id= NEW.bidder_id AND users.is_administrator = true) THEN
+    RAISE EXCEPTION 'You are an administrator! You cant bid';
+    END IF;
+  END IF;
+  RETURN NEW;
+END
+
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER fn_add_bid_only_if_not_admin_banned BEFORE INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_add_bid_only_if_not_admin_banned();
