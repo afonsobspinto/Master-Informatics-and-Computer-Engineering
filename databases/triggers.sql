@@ -48,7 +48,7 @@ $$ LANGUAGE 'plpgsql';
 CREATE TRIGGER add_new_user BEFORE INSERT OR UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE fn_add_new_user();
 
 
--- check if new user has not null fields
+-- update current price on auctions after insert on bids
 
 DROP TRIGGER IF EXISTS update_current_price ON bids;
 CREATE OR REPLACE FUNCTION fn_update_current_price() RETURNS TRIGGER AS $$
