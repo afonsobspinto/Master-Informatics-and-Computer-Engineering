@@ -7,6 +7,9 @@ import Server.Peer.Utilities.Pair;
 
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static Server.Peer.Utilities.Utilities.createFile;
 import static Server.Peer.Utilities.Utilities.generateFileId;
@@ -84,6 +87,7 @@ public class Backup {
 
     public void sendPutChunk(Message message) {
         System.out.println("Sending PutChunk");
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
         int desiredReplicationDegree = message.getReplicationDegree();
         int attempts = 0;
@@ -91,7 +95,7 @@ public class Backup {
         do {
             message.send(this.peer.getMDB());
             try {
-                Thread.sleep((long) minSleepTime * 2 ^ attempts);
+                executor.awaitTermination((long) minSleepTime * 2 ^ attempts, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
