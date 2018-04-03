@@ -64,4 +64,22 @@ END
 $$ LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER update_current_price AFTER INSERT ON users FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
+CREATE TRIGGER update_current_price AFTER INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
+
+
+-- check if is admin who is banning 
+
+DROP TRIGGER IF EXISTS check_if_is_admin ON bans;
+CREATE OR REPLACE FUNCTION fn_check_if_is_admin() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+       IF NEW.admin IN (SELECT users.id FROM users, bans WHERE users.id=bans.admin AND users.is_administrator is FALSE) THEN
+          RAISE EXCEPTION 'You are not administrator! You dont have permissions to ban!';
+       END IF; 
+  END IF;
+  RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER check_if_is_admin BEFORE INSERT ON bans FOR EACH ROW EXECUTE PROCEDURE fn_check_if_is_admin();
