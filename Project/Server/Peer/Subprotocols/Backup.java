@@ -24,6 +24,7 @@ public class Backup {
     private static final Integer maxNumTries = 5;
     private static final Integer minSleepTime = 1000;
     private static final Integer maxRandomDelay = 400;
+    private static final Integer enhancementTime = 2000;
 
 
     public Backup(Peer peer) {
@@ -38,8 +39,8 @@ public class Backup {
         System.out.println("New Backup Protocol Started");
     }
 
-    public Backup(Peer peer, String fileID, Integer replicationDegree){
-        this.peer= peer;
+    public Backup(Peer peer, String fileID, Integer replicationDegree) {
+        this.peer = peer;
         this.fileId = fileID;
         this.replicationDegree = replicationDegree;
         System.out.println("New Backup Protocol Started");
@@ -69,11 +70,11 @@ public class Backup {
             sendChunk(chunk, chunkNo++);
             fileToRead -= bytesRead;
             lastBytesRead = bytesRead;
-        }while (fileToRead > 0);
+        } while (fileToRead > 0);
 
         inputStream.close();
 
-        if(lastBytesRead==maxChunkSize){
+        if (lastBytesRead == maxChunkSize) {
             sendChunk(new byte[0], chunkNo);
         }
 
@@ -99,12 +100,12 @@ public class Backup {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }while (peer.getCurrentReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo())) < desiredReplicationDegree && attempts++ < maxNumTries);
-
-        if(attempts >= maxNumTries){
-            System.out.println("Desired replication degree not achieved");
         }
-        else{
+        while (peer.getCurrentReplicationDegree(new Pair<>(message.getFileID(), message.getChunkNo())) < desiredReplicationDegree && attempts++ < maxNumTries);
+
+        if (attempts >= maxNumTries) {
+            System.out.println("Desired replication degree not achieved");
+        } else {
             System.out.println("Desired replication degree achieved");
         }
 
@@ -126,10 +127,10 @@ public class Backup {
 
         Long availableSpace = peer.getAvailableSpace();
         Integer bodyLength = message.getBodySpace();
-        if(availableSpace > bodyLength){
+        if (availableSpace > bodyLength) {
             String path = Peer.getBaseStorageDir() + peer.getServerID() + "/" + message.getFileID() + "/" + message.getChunkNo();
             FileOutputStream outputStream = createFile(path);
-            if(outputStream==null){
+            if (outputStream == null) {
                 return;
             }
             outputStream.write(message.getBody(), 0, bodyLength);
@@ -138,17 +139,30 @@ public class Backup {
             outputStream.close();
             System.out.println("Received PutChunk successfully");
             sendStored(message);
-        }
-        else {
+        } else {
             System.out.println("Not enough space");
         }
     }
 
 
-
-
-
-
-
-
+    public void receivePutChunkEnhancement(Message message) {
+        Pair<String, Integer> key = new Pair<>(message.getFileID(), message.getChunkNo());
+        if (!peer.hasChunk(key)) {
+            int oldCurrentReplicationDegree = peer.getCurrentReplicationDegree(key);
+            try {
+                Thread.sleep((long) (Math.random() * enhancementTime));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            int desiredReplicationDegree = message.getReplicationDegree();
+            int currentReplicationDegree = peer.getCurrentReplicationDegree(key);
+            if (currentReplicationDegree < desiredReplicationDegree && currentReplicationDegree == oldCurrentReplicationDegree) {
+                try {
+                    receivePutChunk(message);
+                } catch (IOException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

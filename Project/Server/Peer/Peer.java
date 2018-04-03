@@ -136,7 +136,12 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     }
 
     public void receivePutChunk(Message message) throws IOException, IllegalAccessException {
-        this.backupProtocol.receivePutChunk(message);
+        if(message.getVersion() == 1.0){
+            this.backupProtocol.receivePutChunk(message);
+        }
+        else{
+            this.backupProtocol.receivePutChunkEnhancement(message);
+        }
         this.putChunksBroadcasted.add(new Pair<>(message.getFileID(), message.getChunkNo()));
     }
 

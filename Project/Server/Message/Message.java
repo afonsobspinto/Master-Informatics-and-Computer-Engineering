@@ -186,6 +186,10 @@ public class Message {
         return this.bodyLength;
     }
 
+    public Float getVersion(){
+        return this.header.getVersion();
+    }
+
     public byte[] getBody() {
         return body;
     }
