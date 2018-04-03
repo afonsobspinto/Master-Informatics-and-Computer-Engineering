@@ -24,6 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     private Float protocolVersion;
+
+
     private Integer serverID;
     private String serverAccessPoint;
     private InetAddress MC_IP, MDB_IP, MDR_IP;
@@ -35,31 +37,31 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     private Restore restoreProtocol;
     private Long usedSpace = 0L;
 
-    private final static Long diskSpace = (long) (64 * Math.pow(10, 9));; // 64GB ~ also the max size of a file available;
-    private final static String baseStorageDir = "Storage/";
+    private final static Long diskSpace = (long) (64 * Math.pow(10, 9));// 64GB ~ also the max size of a file available;
 
+    private final static String baseStorageDir = "Storage/";
 
     private final static String baseRestoreDir = "Restore/";
 
 
     /**
      * Chunk
-     * Set of Peers which stored ~ length = current replication degree
+     * Set of Peers which stored the chunk ~ length = current replication degree
      */
-    private ConcurrentHashMap<Pair<String,Integer>, HashSet<Integer>> chunksReplicationDegree = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Pair<String, Integer>, HashSet<Integer>> chunksReplicationDegree = new ConcurrentHashMap<>();
 
     /**
      * Chunk
      * Desired replication degree
      */
-    private ConcurrentHashMap<Pair<String,Integer>, Integer> storedChunks = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Pair<String, Integer>, Integer> storedChunks = new ConcurrentHashMap<>();
 
     /**
      * Chunk
      */
 
-    private Set<Pair<String,Integer>> chunksBroadcasted = Collections.newSetFromMap(new ConcurrentHashMap<>());
-
+    private Set<Pair<String, Integer>> chunksBroadcasted = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private Set<Pair<String, Integer>> putChunksBroadcasted = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
 
     //  <protocolVersion> <serverID> <serverAccessPoint> <MC_IP> <MC_Port> <MDB_IP> <MDB_Port> <MDR_IP> <MDR_Port>
@@ -85,7 +87,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     }
 
     private void createStorage() {
-        File baseDir = new File(getBaseStorageDir()+this.serverID);
+        File baseDir = new File(getBaseStorageDir() + this.serverID);
         baseDir.mkdirs();
         System.out.println("Storage created");
 
@@ -106,7 +108,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         MC.listen();
         MDB = new MDB(MDB_IP, MDBport, this);
         MDB.listen();
-        MDR = new MDB(MDR_IP, MDRport,this);
+        MDR = new MDB(MDR_IP, MDRport, this);
         MDR.listen();
         System.out.println("Channels Subscribed");
     }
@@ -135,6 +137,7 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
 
     public void receivePutChunk(Message message) throws IOException, IllegalAccessException {
         this.backupProtocol.receivePutChunk(message);
+        this.putChunksBroadcasted.add(new Pair<>(message.getFileID(), message.getChunkNo()));
     }
 
     public void receiveStored(Message message) {
@@ -176,8 +179,14 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     }
 
     @Override
-    public void reclaim(Integer size) {
+    public void reclaim(Long size) {
+        this.reclaimProtocol = new Reclaim(size, this);
+        this.reclaimProtocol.reclaim();
+    }
 
+
+    public void receiveRemoved(Message message) {
+        this.reclaimProtocol.updateReplicationDegree(message);
     }
 
     @Override
@@ -197,59 +206,103 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
         return MDR;
     }
 
+    public static Long getDiskSpace() {
+        return diskSpace;
+    }
+
     public Long getAvailableSpace() {
-        return diskSpace-this.usedSpace;
+        return diskSpace - this.usedSpace;
     }
 
-    public void addUsedSpace(Integer newFileSize) {
+    public void addUsedSpace(Long newFileSize) {
         this.usedSpace += newFileSize;
+        if(usedSpace>diskSpace)
+            usedSpace=diskSpace;
     }
 
-    public void removeUsedSpace(Integer newFileSize) {
+    public void removeUsedSpace(Long newFileSize) {
         this.usedSpace -= newFileSize;
+        if(usedSpace<0)
+            usedSpace = 0L;
     }
 
-    public synchronized Integer getCurrentReplicationDegree(Pair<String,Integer> key) {
+
+    public void setUsedSpace(Long usedSpace) {
+        if(usedSpace>0)
+            this.usedSpace = usedSpace;
+    }
+
+    public Integer getCurrentReplicationDegree(Pair<String, Integer> key) {
 
         Set<Integer> peers = chunksReplicationDegree.get(key);
 
         return peers != null ? peers.size() : 0;
     }
 
-    public synchronized void addChunkToStorage(Pair<String,Integer> key, Integer value) {
+    public Integer getDesiredReplicationDegree(Pair<String, Integer> key) {
+
+        Integer value = storedChunks.get(key);
+
+        return value != null ? value : 0;
+    }
+
+    public ConcurrentHashMap<Pair<String, Integer>, Integer> getStoredChunks() {
+        return storedChunks;
+    }
+
+    public void addChunkToStorage(Pair<String, Integer> key, Integer value) {
         this.storedChunks.putIfAbsent(key, value);
         increaseReplicationDegree(this.serverID, key);
     }
 
-    private synchronized void increaseReplicationDegree(Integer senderID, Pair<String,Integer> key){
+    private void increaseReplicationDegree(Integer senderID, Pair<String, Integer> key) {
         HashSet<Integer> peers = chunksReplicationDegree.get(key);
-        if(peers==null) {
+        if (peers == null) {
             peers = new HashSet<>();
         }
         peers.add(senderID);
 
         chunksReplicationDegree.put(key, peers);
     }
+
+    public void decreaseReplicationDegree(Pair<String, Integer> key) {
+        HashSet<Integer> peers = chunksReplicationDegree.get(key);
+        peers.remove(this.getServerID());
+        chunksReplicationDegree.put(key, peers);
+    }
+
     public void updateMaps(String fileID) {
         for (Map.Entry entry : chunksReplicationDegree.entrySet()) {
             Pair key = (Pair) entry.getKey();
             String keyFileID = (String) key.getLeft();
-                if(fileID.equals(keyFileID)){
-                    chunksReplicationDegree.remove(key);
-                    storedChunks.remove(key);
-                }
+            if (fileID.equals(keyFileID)) {
+                chunksReplicationDegree.remove(key);
+                storedChunks.remove(key);
             }
+        }
     }
 
-    public synchronized boolean hasChunk(Pair<String,Integer> key){
+    public void removeChunk(Pair<String, Integer> key) {
+        storedChunks.remove(key);
+    }
+
+    public boolean hasChunk(Pair<String, Integer> key) {
         return storedChunks.get(key) != null;
     }
 
-    public boolean hasReceivedChunks(Pair<String,Integer> key) {
+    public boolean hasReceivedChunks(Pair<String, Integer> key) {
         return chunksBroadcasted.contains(key);
     }
 
-    public byte[] getChunk(Pair<String,Integer> key){
+    public boolean hasReceivedPutChunks(Pair<String, Integer> key) {
+        return putChunksBroadcasted.contains(key);
+    }
+
+    public void resetReceivedPutChunks(Pair<String, Integer> key){
+        this.putChunksBroadcasted.remove(key);
+    }
+
+    public byte[] getChunk(Pair<String, Integer> key) {
         byte[] chunk = null;
         String path = Peer.getBaseStorageDir() + this.getServerID() + "/" + key.getLeft() + "/" + key.getRight();
         try {
@@ -269,7 +322,6 @@ public class Peer extends UnicastRemoteObject implements PeerInterface {
     public static String getBaseRestoreDir() {
         return baseRestoreDir;
     }
-
 
 
 }

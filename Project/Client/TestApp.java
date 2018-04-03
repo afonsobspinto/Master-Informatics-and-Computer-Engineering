@@ -5,7 +5,6 @@ import Server.Peer.PeerInterface;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,7 +14,7 @@ import java.util.regex.Pattern;
 public class TestApp {
     private PeerInterface testingPeer;
     private String operation;
-    private Integer diskSpace = null;
+    private Long diskSpace = null;
     private String filename = null;
     private Integer replicationDegree = null;
 
@@ -25,7 +24,7 @@ public class TestApp {
 
         if(args.length > 2){
             if(operation.equals("RECLAIM")) {
-                diskSpace = Integer.valueOf(args[2]);
+                diskSpace = Long.valueOf(args[2]);
             }
             else {
                 filename = args[2];
@@ -60,6 +59,7 @@ public class TestApp {
                 testingPeer.delete(filename);
                 break;
             case "RECLAIM":
+                System.out.println("Starting RECLAIM of " + diskSpace);
                 testingPeer.reclaim(diskSpace);
                 break;
             case "STATE":
@@ -84,7 +84,7 @@ public class TestApp {
         boolean isValidOperation = operationsAvailable.contains(oper);
         if(args.length > 2){
             if(oper.equals("RECLAIM")) {
-                boolean isNumberDiskSpace = Pattern.matches("[0-9]+", args[0]);
+                boolean isNumberDiskSpace = Pattern.matches("[0-9]+", args[2]);
                 return isValidRMI && isValidOperation && isNumberDiskSpace;
             }
             boolean isValidFile = new File(args[2]).exists();

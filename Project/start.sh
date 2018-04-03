@@ -11,10 +11,14 @@ konsole -title peer1 -e java Server.Peer.InitiatorPeer 1.0 1 //127.0.0.1/Peer1 2
 konsole -title peer2 -e java Server.Peer.InitiatorPeer 1.0 2 //127.0.0.1/Peer2 224.0.0.1 4446 224.0.0.2 4447 224.0.0.3 4448  &
 konsole -title peer3 -e java Server.Peer.InitiatorPeer 1.0 3 //127.0.0.1/Peer3 224.0.0.1 4446 224.0.0.2 4447 224.0.0.3 4448  &
 sleep 1
-konsole -title testApp --noclose  -e java Client.TestApp //127.0.0.1/Peer1 BACKUP ../TestFiles/cv.pdf 2 & # Corre o testeApp no rmi Object Peer1 para backup ...
+java Client.TestApp //127.0.0.1/Peer1 BACKUP ../TestFiles/cv.pdf 2 & # Corre o testeApp no rmi Object Peer1 para backup ...
+java Client.TestApp //127.0.0.1/Peer1 BACKUP ../TestFiles/afonso.jpg 2 &
+java Client.TestApp //127.0.0.1/Peer1 BACKUP ../TestFiles/test.txt 2 &
 read -n 1 -s
-konsole -title testApp --noclose  -e java Client.TestApp //127.0.0.1/Peer1 RESTORE ../TestFiles/cv.pdf &
+java Client.TestApp //127.0.0.1/Peer1 RESTORE ../TestFiles/cv.pdf &
 read -n 1 -s
-konsole -title testApp --noclose  -e java Client.TestApp //127.0.0.1/Peer1 DELETE ../TestFiles/cv.pdf
+java Client.TestApp //127.0.0.1/Peer1 DELETE ../TestFiles/cv.pdf &
+read -n 1 -s
+java Client.TestApp //127.0.0.1/Peer2 RECLAIM 63999995289
 
 

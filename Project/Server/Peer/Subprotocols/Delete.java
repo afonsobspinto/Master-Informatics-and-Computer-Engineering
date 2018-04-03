@@ -47,7 +47,6 @@ public class Delete {
                 e.printStackTrace();
             }
             try {
-                System.out.println("Waiting");
                 Thread.sleep((long) sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -72,14 +71,12 @@ public class Delete {
 
     private void deleteFolder(File folder){
         File[] files = folder.listFiles();
-        System.out.println(folder.getAbsolutePath());
         if(files!=null) {
             for(File f: files) {
                 if(f.isDirectory()) {
                     deleteFolder(f);
                 } else {
-                    System.out.println("Deleting "+ f.getName() + "with " + f.length());
-                    peer.removeUsedSpace((int) f.length());
+                    peer.removeUsedSpace(f.length());
                     f.delete();
                 }
             }

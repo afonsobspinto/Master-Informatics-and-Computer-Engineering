@@ -35,6 +35,14 @@ public class Backup {
         System.out.println("New Backup Protocol Started");
     }
 
+    public Backup(Peer peer, String fileID, Integer replicationDegree){
+        this.peer= peer;
+        this.fileId = fileID;
+        this.replicationDegree = replicationDegree;
+        System.out.println("New Backup Protocol Started");
+
+    }
+
 
     public void readChunks() throws IOException, IllegalAccessException {
 
@@ -70,7 +78,7 @@ public class Backup {
 
     }
 
-    private void sendChunk(byte[] chunk, int chunkNo) throws IllegalAccessException {
+    public void sendChunk(byte[] chunk, int chunkNo) throws IllegalAccessException {
         new Message(new String[]{MessageType.PUTCHUNK.toString(), String.valueOf(peer.getProtocolVersion()), String.valueOf(peer.getServerID()), fileId, String.valueOf(chunkNo), String.valueOf(replicationDegree)}, chunk, this.peer).start();
     }
 
@@ -83,7 +91,6 @@ public class Backup {
         do {
             message.send(this.peer.getMDB());
             try {
-                System.out.println("waiting");
                 Thread.sleep((long) minSleepTime * 2 ^ attempts);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -121,7 +128,7 @@ public class Backup {
                 return;
             }
             outputStream.write(message.getBody(), 0, bodyLength);
-            peer.addUsedSpace(bodyLength);
+            peer.addUsedSpace(Long.valueOf(bodyLength));
             peer.addChunkToStorage(new Pair<>(message.getFileID(), message.getChunkNo()), message.getReplicationDegree());
             outputStream.close();
             System.out.println("Received PutChunk successfully");

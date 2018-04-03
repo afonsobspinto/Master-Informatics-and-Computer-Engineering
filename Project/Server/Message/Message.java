@@ -146,6 +146,7 @@ public class Message {
                     peer.receiveDelete(_message);
                     break;
                 case REMOVED:
+                    peer.receiveRemoved(_message);
                     break;
 
             }

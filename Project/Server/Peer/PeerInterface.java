@@ -10,7 +10,7 @@ public interface PeerInterface extends Remote {
     void backup (String filename, Integer replicationDegree) throws IOException, NoSuchAlgorithmException, IllegalAccessException, RemoteException;
     void restore (String filename) throws RemoteException;
     void delete (String filename) throws RemoteException;
-    void reclaim (Integer size) throws  RemoteException;
+    void reclaim (Long size) throws  RemoteException;
     void state (String filename) throws RemoteException;
 
 }
