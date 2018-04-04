@@ -285,6 +285,17 @@ void ArraySize() #ARR_SIZE: {Token t;}
 void Call() #CALL:{Token t1, t2;}
 {
   t1 = <ID> {jjtThis.value = t1.image;} ("." t2 = <ID> {jjtThis.value = t2.image;})? <LPAR> (ArgumentList())? <RPAR>
+
+  //t1 = <ID> {jjtThis.value = t1.image;} ("." t2 = <ID> {jjtThis.value = t2.image;})? <LPAR> (ArgumentList())? 
+
+  //try
+  //{
+  //    <RPAR>
+  //}
+  //catch(ParseException e)
+  //{
+  //    error_skipto_andEat(RPAR, "Call");
+  //}
 }
 
 void ArgumentList() #ARG_LIST:{}
