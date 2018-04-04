@@ -102,3 +102,42 @@ $$ LANGUAGE 'plpgsql';
 
 
 CREATE TRIGGER fn_add_bid_only_if_not_admin_banned BEFORE INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_add_bid_only_if_not_admin_banned();
+
+
+-- check if who is bidding is not the auctioneer
+
+DROP TRIGGER IF EXISTS fn_check_if_bidder_is_not_auctioneer ON bids;
+CREATE OR REPLACE FUNCTION fn_check_if_bidder_is_not_auctioneer() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+       IF NEW.bidder_id = (SELECT owner_id FROM auctions WHERE id = NEW.id) THEN
+          RAISE EXCEPTION 'You cannot bid your own product!';
+       END IF;   
+  END IF;
+  RETURN NEW;
+END
+
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER check_if_bidder_is_not_auctioneer BEFORE INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_check_if_bidder_is_not_auctioneer();
+
+
+-- update users rating after insert a review
+
+DROP TRIGGER IF EXISTS fn_update_user_rating_after_review ON reviews;
+CREATE OR REPLACE FUNCTION fn_update_user_rating_after_review() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    UPDATE users
+    SET rating = (SELECT avg(reviews.rating) FROM reviews WHERE id in (
+SELECT id FROM auctions WHERE owner_id = (SELECT owner_id FROM auctions WHERE auctions.id = NEW.id)))
+    WHERE id = (SELECT owner_id from auctions WHERE id = NEW.id);
+  END IF;
+  RETURN NEW;
+END
+
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER update_user_rating_after_review AFTER INSERT ON reviews FOR EACH ROW EXECUTE PROCEDURE fn_update_user_rating_after_review();
