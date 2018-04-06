@@ -21,3 +21,6 @@ CREATE INDEX owner_auction_idx ON auctions USING hash(owner_id);
 
 DROP INDEX IF EXISTS bannee_bans_idx;
 CREATE INDEX bannee_bans_idx ON bans USING hash(banned_id);
+
+DROP INDEX IF EXISTS date_messages_idx;
+CREATE INDEX date_messages_idx ON messages USING btree(send_date);
