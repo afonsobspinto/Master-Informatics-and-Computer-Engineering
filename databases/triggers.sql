@@ -54,9 +54,11 @@ DROP TRIGGER IF EXISTS update_current_price ON bids;
 CREATE OR REPLACE FUNCTION fn_update_current_price() RETURNS TRIGGER AS $$
 BEGIN
   IF TG_OP = 'INSERT' THEN
-    UPDATE auctions
-    SET current_price = NEW.bid_amount
-    WHERE id = NEW.id;
+      IF NEW.bid_amount> (SELECT current_price FROM auctions WHERE id=NEW.id) THEN
+         UPDATE auctions
+         SET current_price = NEW.bid_amount
+         WHERE id = NEW.id;
+     END IF;
   END IF;
   RETURN NEW;
 END
@@ -141,3 +143,23 @@ $$ LANGUAGE 'plpgsql';
 
 
 CREATE TRIGGER update_user_rating_after_review AFTER INSERT ON reviews FOR EACH ROW EXECUTE PROCEDURE fn_update_user_rating_after_review();
+
+
+-- update users rating after delete a review
+DROP TRIGGER IF EXISTS update_user_rating_after_delete_review ON reviews;
+CREATE OR REPLACE FUNCTION fn_update_user_rating_after_delete_review() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'DELETE' THEN
+    UPDATE users
+    SET rating = (SELECT avg(reviews.rating) FROM reviews WHERE id in (
+SELECT id FROM auctions WHERE owner_id = (SELECT owner_id FROM auctions WHERE auctions.id = OLD.id)))
+    WHERE id = (SELECT owner_id from auctions WHERE id = OLD.id);
+  END IF;
+  RETURN OLD;
+END
+
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER update_user_rating_after_delete_review AFTER DELETE ON reviews FOR EACH ROW EXECUTE PROCEDURE fn_update_user_rating_after_delete_review();
+
