@@ -5,17 +5,22 @@ import weka.core.converters.ConverterUtils;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
 
-
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
+
     public DecisionTree(String filePath) {
         try {
+            Random random = new Random(Double.doubleToLongBits(Math.random()));
+
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes()-1);
+            dataset.randomize(random);
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
@@ -61,11 +66,13 @@ public class DecisionTree {
         tv.fitToScreen();
     }
 
-    public static void main(String[] args) {
-        if (args.length == 1){
+    public static void main(String[] args) throws IOException{
+        if (args.length == 1 && getFileExtension(args[0]).equals("arff")){
             if(parseInputs(args)){
+
                 DecisionTree decisionTree = new DecisionTree(args[0]);
                 decisionTree.displayTree();
+
                 return;
             }
         }
@@ -75,10 +82,15 @@ public class DecisionTree {
     private static boolean parseInputs(String[] args) {
         return new File(args[0]).exists();
     }
+
+    private static String getFileExtension(String filepath) {
+        String[] tokens = filepath.split("\\.");
+
+        return tokens[tokens.length-1];
+    }
 }
 /*
 //TODO:
-Shuffle
 Random Split + Cross Validation  / Random Split
 Fit
 Predict
