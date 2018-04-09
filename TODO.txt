@@ -1,0 +1,25 @@
+Complete error recovery
+Complete Tree Anotation (For instance, the <ID>s of Function() and FunctionAssign() are not stored)
+
+Create Symbol Tables (with the following details): 
+	- todas as variáveis globais
+	- todas as funcoes declaradas e quantos argumentos têm
+
+	- 1º parsing para as variáveis globais
+	- 2º parsing para as variaveis locais
+
+	- Criar class Symbol Table -> hashmap (String, Descriptor[Type, scope])
+	- 2 Tipos -> Integer e Array
+
+Do the Semantic Analysis (Run the tree and compare it to the Symbol Tables to do this analysis)
+
+Generate JVM code accepted by jasmin correspopnding to the invocation of functions in yal
+Generate JVM code accepted by jasmin for arithmetic expressions
+
+
+Low Priority:
+
+Use packages, instead of Java's default package
+Stop after the first 10 parser errors
+Consider outputting "prettier" (i.e., cleaner and more informative) error messages.
+Consider rewriting the grammar to avoid use of LOOKAHEADs.
