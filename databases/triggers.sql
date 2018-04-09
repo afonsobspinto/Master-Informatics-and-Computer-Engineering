@@ -18,35 +18,6 @@ $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER auctions_search_tsvector BEFORE INSERT OR UPDATE ON auctions FOR EACH ROW EXECUTE PROCEDURE auctions_search_update();
 
--- check if new user has not null fields
-
-DROP TRIGGER IF EXISTS add_new_user ON users;
-CREATE OR REPLACE FUNCTION fn_add_new_user() RETURNS TRIGGER AS $$
-BEGIN
-  IF TG_OP = 'INSERT' THEN
-       IF NEW.username IS NULL THEN
-          RAISE EXCEPTION 'username cannot be null';
-       END IF;
-       IF NEW.first_name IS NULL THEN
-          RAISE EXCEPTION 'first_name cannot be null';
-       END IF;
-       IF NEW.last_name IS NULL THEN
-          RAISE EXCEPTION 'last_name  cannot be null';
-       END IF;
-       IF NEW.zip_code IS NULL THEN
-          RAISE EXCEPTION 'zip_code cannot be null';
-       END IF;
-       IF NEW.address IS NULL THEN
-          RAISE EXCEPTION 'address cannot be null';
-       END IF;
-  END IF;
-  RETURN NEW;
-END
-$$ LANGUAGE 'plpgsql';
-
-
-CREATE TRIGGER add_new_user BEFORE INSERT OR UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE fn_add_new_user();
-
 
 -- update current price on auctions after insert on bids
 
@@ -122,6 +93,7 @@ END
 $$ LANGUAGE 'plpgsql';
 
 
+DROP TRIGGER IF EXISTS check_if_bidder_is_not_auctioneer ON bids;
 CREATE TRIGGER check_if_bidder_is_not_auctioneer BEFORE INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_check_if_bidder_is_not_auctioneer();
 
 
@@ -142,6 +114,7 @@ END
 $$ LANGUAGE 'plpgsql';
 
 
+DROP TRIGGER IF EXISTS update_user_rating_after_review ON reviews;
 CREATE TRIGGER update_user_rating_after_review AFTER INSERT ON reviews FOR EACH ROW EXECUTE PROCEDURE fn_update_user_rating_after_review();
 
 
