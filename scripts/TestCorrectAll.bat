@@ -1,7 +1,9 @@
 @ECHO OFF
 
+cd ../out
+ 
 ECHO Testing "array1.yal"
-java Parser ../yalFiles/array1.yal
+java Parser /yalFiles/array1.yal
 
 ECHO Testing "array2.yal"
 java Parser ../yalFiles/array2.yal

@@ -1,5 +1,7 @@
 @ECHO OFF
 
+cd ../out
+
 ECHO Testing "array2_err.yal"
 java Parser ../yalErrorFiles/array2_err.yal
 PAUSE
