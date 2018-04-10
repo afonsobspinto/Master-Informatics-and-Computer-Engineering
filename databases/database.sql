@@ -14,8 +14,41 @@ DROP TABLE IF EXISTS reviews CASCADE;
 DROP TABLE IF EXISTS wishlists CASCADE;
 DROP TABLE IF EXISTS won_auctions CASCADE;
 
+CREATE TABLE categories (
+    id integer NOT NULL PRIMARY KEY,
+    name character(50)
+);
+
+CREATE TABLE countries (
+    id integer NOT NULL PRIMARY KEY,
+    country character(50)
+);
+
+CREATE TABLE cities (
+    id integer NOT NULL PRIMARY KEY,
+    city character(50) NOT NULL,
+    country_id integer NOT NULL REFERENCES countries(id) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE "users" (
+    id integer NOT NULL PRIMARY KEY,
+    username character(50),
+    first_name character(50),
+    last_name character(50),
+    password character(50) NOT NULL,
+    email character(50) NOT NULL UNIQUE,
+    zip_code character(25),
+    address character(50),
+    "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
+    profile_picture_path path,
+    location integer REFERENCES cities(id) ON UPDATE CASCADE,
+    rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
+    is_administrator boolean DEFAULT false
+);
+
 CREATE TABLE auctions (
-    id serial PRIMARY KEY,
+    id serial PRIMARY KEY REFERENCES cities(id) ON UPDATE CASCADE,
     item_name text NOT NULL,
     description text,
     starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >0.0),
@@ -30,16 +63,19 @@ CREATE TABLE auctions (
     CONSTRAINT shipping_options CHECK ((shipping_options = ANY (ARRAY['Domestic Shipping'::text, 'International Shipping'::text, 'No shipping'::text]))),
     shipping_cost real CONSTRAINT shipping_cost_ck CHECK (shipping_cost >0.0),
     images_folder path,
-    owner_id integer NOT NULL,
-    category_id integer NOT NULL,
+    owner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    category_id integer NOT NULL REFERENCES categories(id) ON UPDATE CASCADE,
     city_id integer NOT NULL,
     search tsvector
 );
 
+
+
+
 CREATE TABLE bans (
     id serial PRIMARY KEY,
-    banned_id integer NOT NULL,
-    admin integer NOT NULL,
+    banned_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    admin integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
     "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     ban_expiration_date timestamp CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
     ban_reason text NOT NULL
@@ -47,53 +83,12 @@ CREATE TABLE bans (
 
 
 CREATE TABLE bids (
-    id integer NOT NULL PRIMARY KEY,
-    bidder_id integer, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    bidder_id integer REFERENCES "users"(id) ON UPDATE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
     bid_amount integer NOT NULL
 );
 
-CREATE TABLE categories (
-id integer NOT NULL PRIMARY KEY,
-name character(50)
-);
 
-CREATE TABLE cities (
-    id integer NOT NULL PRIMARY KEY,
-    city character(50) NOT NULL,
-    country_id integer NOT NULL
-);
-
-CREATE TABLE countries (
-    id integer NOT NULL PRIMARY KEY,
-    country character(50)
-);
-
-CREATE TABLE "users" (
-    id integer NOT NULL PRIMARY KEY,
-    username character(50),
-    first_name character(50),
-    last_name character(50),
-    password character(50) NOT NULL,
-    email character(50) NOT NULL UNIQUE,
-    zip_code character(25),
-    address character(50),
-    "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
-    profile_picture_path path,
-    location integer,
-    rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
-    is_administrator boolean DEFAULT false
-);
-
-CREATE TABLE closed_auctions (
-    id integer NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE emails (
-    id integer NOT NULL PRIMARY KEY,
-    "has_been_opened" boolean DEFAULT false NOT NULL,
-    receiver_id integer NOT NULL,
-    sender_id integer NOT NULL
-);
 
 CREATE TABLE messages (
     id serial PRIMARY KEY,
@@ -102,110 +97,48 @@ CREATE TABLE messages (
     "send_date" timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
+
+CREATE TABLE closed_auctions (
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE
+);
+
+CREATE TABLE emails (
+    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE,
+    "has_been_opened" boolean DEFAULT false NOT NULL,
+    receiver_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    sender_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
+);
+
+
+
 CREATE TABLE qas (
-    id serial PRIMARY KEY,
+    id serial PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
     question text NOT NULL,
     answer text,
     auction_id integer NOT NULL,
-    questioner_id integer NOT NULL
+    questioner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE reports (
-    id integer NOT NULL PRIMARY KEY
+    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE reviews (
-    id integer NOT NULL PRIMARY KEY,
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
     rating integer NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) OR (rating <= 5))),
     description text NOT NULL
 );
 
 CREATE TABLE wishlists (
-    auction_id integer NOT NULL PRIMARY KEY,
-    id integer NOT NULL
+    auction_id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE won_auctions (
-    id integer NOT NULL PRIMARY KEY,
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
     "is_successful_transaction" boolean DEFAULT false NOT NULL,
     "has_winner_complained" boolean DEFAULT false NOT NULL,
-    winner_id integer NOT NULL
+    winner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
 );
 
 
-
-
-
-
-
-
-
-
-
-
-
--- Foreign Keys
-
-ALTER TABLE ONLY "users"
-    ADD CONSTRAINT user_location_fk FOREIGN KEY (location) REFERENCES cities(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY cities
-    ADD CONSTRAINT city_country_name_fk FOREIGN KEY (country_id) REFERENCES countries(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY bans
-    ADD CONSTRAINT ban_banned_id_fk FOREIGN KEY (banned_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY bans
-    ADD CONSTRAINT ban_admin_fk FOREIGN KEY (admin) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY auctions
-    ADD CONSTRAINT auction_auction_owner_fk FOREIGN KEY (owner_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY auctions
-    ADD CONSTRAINT auction_category_name_fk FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY auctions
-    ADD CONSTRAINT auction_item_location_fk FOREIGN KEY (city_id) REFERENCES cities(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY bids
-    ADD CONSTRAINT bid_id_fk FOREIGN KEY (id) REFERENCES auctions(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY bids
-    ADD CONSTRAINT bid_bidder_id_fk FOREIGN KEY (bidder_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY qas
-    ADD CONSTRAINT qa_questioner_id_fk FOREIGN KEY (questioner_id) REFERENCES "users"(id) ON UPDATE CASCADE;
- 
-ALTER TABLE ONLY qas
-    ADD CONSTRAINT qa_id_fk FOREIGN KEY (id) REFERENCES auctions(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY closed_auctions
-    ADD CONSTRAINT closed_auction_id_fk FOREIGN KEY (id) REFERENCES auctions(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY won_auctions
-    ADD CONSTRAINT won_auction_id_fk FOREIGN KEY (id) REFERENCES auctions(id) ON UPDATE CASCADE;   
-
-ALTER TABLE ONLY won_auctions
-    ADD CONSTRAINT won_auction_auction_winner_fk FOREIGN KEY (winner_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY reviews
-    ADD CONSTRAINT review_id_fk FOREIGN KEY (id) REFERENCES auctions(id) ON UPDATE CASCADE;
- 
-ALTER TABLE ONLY reports
-    ADD CONSTRAINT report_id_message_fk FOREIGN KEY (id) REFERENCES messages(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY emails
-    ADD CONSTRAINT email_id_message_fk FOREIGN KEY (id) REFERENCES messages(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY emails
-    ADD CONSTRAINT email_receiver_fk FOREIGN KEY (receiver_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY emails
-    ADD CONSTRAINT email_sender_fk FOREIGN KEY (sender_id) REFERENCES "users"(id) ON UPDATE CASCADE;
-
-ALTER TABLE ONLY wishlists
-    ADD CONSTRAINT wishlist_auction_id_fk FOREIGN KEY (auction_id) REFERENCES auctions(id) ON UPDATE CASCADE;
- 
-ALTER TABLE ONLY wishlists
-    ADD CONSTRAINT wishlist_username_fk FOREIGN KEY (id) REFERENCES "users"(id) ON UPDATE CASCADE;
-    
