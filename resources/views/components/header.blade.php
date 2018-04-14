@@ -17,7 +17,7 @@
         </div>
     </form>
     @if(Auth::check())
-    {{--basic normal logged in user--}}
+    {{--logged in user--}}
     <!-- authentication links -->
     <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
         <i class="far fa-envelope fa-stack-2x"></i>
@@ -34,35 +34,17 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
+            @if(false)
+            {{-- TODO check if user is admin HERE--}}
+            <a class="dropdown-item" href="../report.html">User Reports</a>
+            @else(false)
             <a class="dropdown-item" href="../sell_page.html">New Auction</a>
+            @endif
             <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>
-            <a class="dropdown-item" href="{{ url('/landing_page') }}">Log out</a>
-        </div>
-    </div>
-    @elseif(false)
-    {{-- TODO check if user is admin HERE--}}
-    <!-- authentication links -->
-    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
-        <i class="far fa-envelope fa-stack-2x"></i>
-        <!-- place numbers of messages here -->
-        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
-            12
-        </strong>
-    </a>
-    <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            Administrator
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown" role="menu">
-            <a class="dropdown-item" href="../report.html">User Reports</a>
-            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
-            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages      <strong class="got-messages">27</strong>
-            </a>
-            <a class="dropdown-item" href="{{ url('/landing_page') }}">Log out</a>
+            <a class="dropdown-item" href="logout action">Log out</a>
         </div>
     </div>
     @else

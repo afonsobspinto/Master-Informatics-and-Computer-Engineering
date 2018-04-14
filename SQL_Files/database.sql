@@ -52,7 +52,7 @@ CREATE TABLE auctions (
     item_name text NOT NULL,
     description text,
     starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >0.0),
-    current_price real DEFAULT null,
+    current_price real DEFAULT 0.0,
     condition character(50) NOT NULL,
     CONSTRAINT condition CHECK ((condition = ANY (ARRAY['New'::text, 'Used'::text, 'Not Working'::text]))),
     "publication_date" timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -85,7 +85,7 @@ CREATE TABLE bans (
 CREATE TABLE bids (
     id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
     bidder_id integer REFERENCES "users"(id) ON UPDATE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
-    bid_amount integer NOT NULL
+    bid_amount real NOT NULL
 );
 
 
@@ -135,7 +135,7 @@ CREATE TABLE wishlists (
 );
 
 CREATE TABLE won_auctions (
-    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL PRIMARY KEY REFERENCES closed_auctions(id) ON UPDATE CASCADE,
     "is_successful_transaction" boolean DEFAULT false NOT NULL,
     "has_winner_complained" boolean DEFAULT false NOT NULL,
     winner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE

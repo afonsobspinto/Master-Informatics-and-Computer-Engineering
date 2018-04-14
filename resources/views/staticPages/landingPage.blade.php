@@ -8,51 +8,7 @@
 @endsection
 
 @section('content')
-    <!-- auctions carousel -->
-    <!-- these could be just random auctions in the system -->
-    <div id="carouselAuctions" class="carousel slide mt-4 mx-auto" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <!-- carousel items here, change <img> <a> and the subtitle <h3> and <p> with appropriate data -->
-                <a href="../auction/auction.html">
-                    <img class="d-block " src="https://placeimg.com/1600/900/tech" alt="First slide">
-                    <div class="carousel-caption d-md-block">
-                        <h3>Another Newish Item</h3>
-                        <h4><strong class="display-4">15€</strong></h4>
-                        <h5>5 bids</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="../auction/auction.html">
-                    <img class="d-block " src="https://placeimg.com/480/480/arch" alt="Second slide">
-                    <div class="carousel-caption d-md-block">
-                        <h3>Another Newish Item</h3>
-                        <h4><strong class="display-4">15€</strong></h4>
-                        <h5>5 bids</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="../auction/auction.html">
-                    <img class="d-block " src="https://placeimg.com/400/300/arch" alt="Second slide">
-                    <div class="carousel-caption d-md-block">
-                        <h3>Another Newish Item</h3>
-                        <h4><strong class="display-4">15€</strong></h4>
-                        <h5>5 bids</h5>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselAuctions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselAuctions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+    @include('auctions.carousel', ['displayAuctions' => $displayAuctions])
 
     <!-- Recent Auctions Grid -->
     <!-- can be the 6 most recent -->
