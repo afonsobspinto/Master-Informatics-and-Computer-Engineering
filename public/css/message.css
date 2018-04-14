@@ -1,0 +1,16 @@
+.navbar-nav a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background: #0df1d1;
+   
+}
+
+.navbar-nav {
+    font-size: large;
+    font-weight: bold;
+}
+
+#sendmsg{
+    background-color:black;
+    color:powderblue;
+}
