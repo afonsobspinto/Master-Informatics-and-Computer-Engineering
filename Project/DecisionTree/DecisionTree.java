@@ -2,6 +2,8 @@
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Normalize;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
 
@@ -13,6 +15,7 @@ import java.util.Random;
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
+    private Normalize filterNorm = new Normalize();
 
     public DecisionTree(String filePath) {
         try {
@@ -21,6 +24,8 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes()-1);
             dataset.randomize(random);
+            filterNorm.setInputFormat(dataset);
+            dataset = Filter.useFilter(dataset, filterNorm);
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
