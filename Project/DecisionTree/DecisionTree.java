@@ -18,7 +18,11 @@ public class DecisionTree {
     private Normalize filterNorm = new Normalize();
 
     public DecisionTree(String filePath) {
+
         try {
+            //String[] options = {new String("-O")};
+            //tree.setOptions(options);                 //TODO: Set tree options
+
             Random random = new Random(Double.doubleToLongBits(Math.random()));
 
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
