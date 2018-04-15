@@ -41,7 +41,6 @@ CREATE TABLE "users" (
     zip_code character(25),
     address character(50),
     "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
-    profile_picture_path character(250),
     location integer REFERENCES cities(id) ON UPDATE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
     is_administrator boolean DEFAULT false
@@ -62,7 +61,6 @@ CREATE TABLE auctions (
     CONSTRAINT payment_type CHECK ((payment_type = ANY (ARRAY['PayPal'::text, 'Credit Card'::text, 'Bank Transfer'::text, 'Other'::text]))),
     CONSTRAINT shipping_options CHECK ((shipping_options = ANY (ARRAY['Domestic Shipping'::text, 'International Shipping'::text, 'No shipping'::text]))),
     shipping_cost real CONSTRAINT shipping_cost_ck CHECK (shipping_cost >0.0),
-    images_folder character(250),
     owner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
     category_id integer NOT NULL REFERENCES categories(id) ON UPDATE CASCADE,
     city_id integer NOT NULL REFERENCES cities(id) ON UPDATE CASCADE,
