@@ -50,7 +50,7 @@ CREATE TABLE auctions (
     id serial PRIMARY KEY,
     item_name text NOT NULL,
     description text,
-    starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >0.0),
+    starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >= 0.0) DEFAULT 0.0,
     current_price real DEFAULT 0.0,
     condition character(50) NOT NULL,
     CONSTRAINT condition CHECK ((condition = ANY (ARRAY['New'::text, 'Used'::text, 'Not Working'::text]))),
