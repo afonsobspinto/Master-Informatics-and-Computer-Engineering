@@ -10,10 +10,10 @@
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
             <select class="form-control rounded-1 col-2 " id="search-categories">
-                <option selected> All Categories</option>
-                <option>Technology</option>
-                <option>Automobiles</option>
-                <option>Clothes</option>
+                <option selected value=""> All Categories</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                @endforeach
             </select>
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
         </div>

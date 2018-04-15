@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['categories' => $categories])
 
 @section('title', 'Home')
 
@@ -14,5 +14,4 @@
 
     @include('auctions.cards', ['auctions' => $endingSoonAuctions, 'recent' => false])
 
-    </div>
 @endsection

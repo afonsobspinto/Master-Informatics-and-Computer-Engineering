@@ -11,7 +11,6 @@ class Auction extends Model
 {
     protected $table = 'auctions';
     public $timestamps = false;
-    protected $primaryKey = 'id';
 
 
     public function numBids() {
@@ -48,5 +47,10 @@ class Auction extends Model
     public function getSubmittedTimeString() {
         $pubDate = new Carbon($this->publication_date);
         return Carbon::now()->diffForHumans($pubDate, true);
+    }
+
+    public static function getOpenAuctionsCollection() {
+        return Auction::leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
+            ->where('closed_auctions.id', '=', null)->where('end_date', '>', 'now()')->select('*', 'auctions.id as id');
     }
 }
