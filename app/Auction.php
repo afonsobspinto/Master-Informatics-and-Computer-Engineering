@@ -17,7 +17,17 @@ class Auction extends Model
     }
 
     public function getDisplayPictureURL() {
-        return url('/images/placeholder.png');
-//        TODO
+
+        $imagesFolder = public_path() . "/images/auctions/" . $this->id;
+        $images = \File::glob($imagesFolder . "/0.*");
+
+        if($images === false || sizeof($images) === 0)
+            return url('/images/placeholder.png');
+        else {
+            preg_match('/images.*/', $images[0], $matches);
+            $imagePath = $matches[0];
+            $url = asset($imagePath);
+            return $url;
+        }
     }
 }
