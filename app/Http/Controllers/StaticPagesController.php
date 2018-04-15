@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StaticPagesController extends Controller
 {
+//need to add this to the about page: <div>Logo made with <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo</a></div>
 
     const NUM_CAROUSEL_ITEMS = 3;
     const NUM_CARDS = 6;

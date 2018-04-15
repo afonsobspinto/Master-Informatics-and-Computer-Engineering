@@ -1,8 +1,8 @@
 <!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
-    <a href="{{ url('/landing_page') }}" class="navbar-brand">
-        BidBay
+    <a id="logo-link" href="{{ url('/landing_page') }}" class="navbar-brand">
+        <img id="logo" src="{{ asset('/images/logo.png') }}">
     </a>
     <!-- search bar -->
     <form action="../advanced_ <foch.html" method="get" class="px-2" id="search-bar">
