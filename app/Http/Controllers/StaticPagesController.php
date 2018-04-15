@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
-use App\Card;
+
+use App\Auction;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +14,8 @@ class StaticPagesController extends Controller
 
 
     public function showLandingPage(Request $request) {
-        $openAuctions = DB::table('auctions')->leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
-            ->where('closed_auctions.id', '=', null);
+        $openAuctions = \App\Auction::leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
+            ->where('closed_auctions.id', '=', null)->select('*', 'auctions.id as id');
 
         $displayAuctions = $openAuctions->inRandomOrder()->take(5)->get();
 

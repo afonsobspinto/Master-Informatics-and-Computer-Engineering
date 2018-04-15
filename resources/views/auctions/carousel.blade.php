@@ -6,7 +6,7 @@
         @foreach($displayAuctions as $auction)
         <div class="carousel-item {{ $activeItem }}">
             <a href="../auction/auction.html">
-                <img class="d-block " src="https://placeimg.com/480/480/arch" alt="Second slide">
+                <img class="d-block " src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
                 <div class="carousel-caption d-md-block">
                     <h3>{{ $auction->item_name }}</h3>
                     <h4><strong class="display-4">
@@ -17,7 +17,7 @@
                             @endif
                             €
                         </strong></h4>
-                    <h5>5 bids</h5>
+                    <h5>{{ $auction->numBids() }} bids</h5>
                 </div>
             </a>
         </div>

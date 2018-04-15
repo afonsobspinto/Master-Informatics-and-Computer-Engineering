@@ -366,7 +366,7 @@ INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (2,7,3.2);
  
  
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,8,0.2);
-
+INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,6,1.2);
 
 
  
