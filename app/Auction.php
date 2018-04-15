@@ -32,11 +32,11 @@ class Auction extends Model
         }
     }
 
-    public function currentPriceString() {
+    public function currentPriceEuros() {
         if($this->current_price == null)
-            return $this->starting_price . "€";
+            return $this->starting_price;
         else
-            return ($this->starting_price > $this->current_price ? $this->starting_price : $this->current_price) . "€";
+            return ($this->starting_price > $this->current_price) ? $this->starting_price : $this->current_price;
     }
 
     public function getTimeLeftString() {

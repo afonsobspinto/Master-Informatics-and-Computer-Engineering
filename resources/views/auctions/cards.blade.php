@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ $auction->item_name }}</h3>
                     <p class="card-subtitle mb-2 text-muted">
-                        <strong class="display-4">{{ $auction->currentPriceString() }} </strong>
+                        <strong class="display-4">{{ $auction->currentPriceEuros() }}€ </strong>
                         {{ $auction->numBids() }} bids</p>
                     <p class="card-text">{{ str_limit($auction->description, 300, ' ...') }}</p>
                     <p class="card-text">

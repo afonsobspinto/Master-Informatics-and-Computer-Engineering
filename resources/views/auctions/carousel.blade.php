@@ -12,7 +12,7 @@
                         {{ str_limit($auction->item_name, 100, ' ...') }}
                     </h3>
                     <h4><strong class="display-4">
-                            {{ $auction->currentPriceString() }}
+                            {{ $auction->currentPriceEuros() }}€
                         </strong></h4>
                     <h5>{{ $auction->numBids() }} bids</h5>
                 </div>
