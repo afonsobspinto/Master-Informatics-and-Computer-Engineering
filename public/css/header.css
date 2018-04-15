@@ -160,6 +160,14 @@
 
 
 @media (max-width: 400px) {
+    #logo {
+        width: 4.5rem;
+    }
+
+    #search-bar {
+        max-width: 40%;
+    }
+
     #mail-icon {
         display: none;
     }
@@ -169,8 +177,8 @@
     }
 
     #header {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
     }
 }
  
