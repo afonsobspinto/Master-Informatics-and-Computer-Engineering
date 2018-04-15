@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use File;
 
 class Auction extends Model
 {
@@ -19,7 +21,7 @@ class Auction extends Model
     public function getDisplayPictureURL() {
 
         $imagesFolder = public_path() . "/images/auctions/" . $this->id;
-        $images = \File::glob($imagesFolder . "/0.*");
+        $images = File::glob($imagesFolder . "/0.*");
 
         if($images === false || sizeof($images) === 0)
             return url('/images/placeholder.png');
@@ -29,5 +31,22 @@ class Auction extends Model
             $url = asset($imagePath);
             return $url;
         }
+    }
+
+    public function currentPriceString() {
+        if($this->current_price == null)
+            return "0€";
+        else
+            return $this->current_price . "€";
+    }
+
+    public function getTimeLeftString() {
+        $endDate = new Carbon($this->end_date);
+        return $endDate->diffForHumans(Carbon::now(), true);
+    }
+
+    public function getSubmittedTimeString() {
+        $pubDate = new Carbon($this->publication_date);
+        return Carbon::now()->diffForHumans($pubDate, true);
     }
 }

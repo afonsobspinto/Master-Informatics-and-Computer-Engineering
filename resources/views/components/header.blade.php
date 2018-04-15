@@ -1,9 +1,11 @@
 <!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
-    <a href="{{ url('/landing_page') }}" class="navbar-brand">BidBay</a>
+    <a href="{{ url('/landing_page') }}" class="navbar-brand">
+        BidBay
+    </a>
     <!-- search bar -->
-    <form action="../advanced_search.html" method="get" class="px-2" id="search-bar">
+    <form action="../advanced_ <foch.html" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
