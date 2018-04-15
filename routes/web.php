@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('landing_page');
 });
+
+// static pages
+Route::get('landing_page', 'StaticPagesController@showLandingPage');
+
 
 // Cards
 Route::get('cards', 'CardController@list');

@@ -1,0 +1,51 @@
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) {
+    #qAndA > button{
+        width: 100%;
+    }
+}
+
+#closebtn{
+    background-color: #464242;
+}
+
+#sendmsg{
+    background-color: #000000;
+    color: white;
+    border-color: white;
+}
+
+#delete{
+    background-color: #010333;
+    border-color: white;
+    color: white;
+}
+
+.table tbody th input, .table tbody th a:nth-child(2) {
+    margin-right: 1rem;
+} 
+
+.navbar-nav a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background: #0df1d1;
+   
+}
+
+.navbar-nav {
+    font-size: large;
+    font-weight: bold;
+}
+
+#sendbtn{
+    background-color: #18bc9c;
+    color: #464242;
+}
+
+
+@media (max-width: 767.98px) {
+    .table th, .table td {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}

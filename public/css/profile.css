@@ -1,0 +1,110 @@
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced, serif ; }
+
+.bid .btn-qty {
+    width: 46px;
+    height: 40px;
+}
+
+.bid .btn { border-radius: 0; }
+
+#product-section{
+    margin-top: 20px;
+}
+
+#product-section > div > div:nth-child(3){
+    margin-bottom: 50px;
+}
+
+#product-section > div > div:nth-child(2) > img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+#product-section > div > div:nth-child(2) > img:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+#product-section > div > div > div > a{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#product-section > div > div.row > h3{
+    margin: 50px;
+    margin-right: 500px;
+}
+
+#product-section > div > ul{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+div > div > ul > li{
+    padding-left: 20px;
+}
+
+#myTabContent > div > div > div > ul > li:not(:last-child){
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #999999;
+    padding-bottom: 10px;
+}
+
+#myTabContent > div > div > div > ul > li:not(:first-child){
+    padding-top: 10px;
+}
+
+#feedback > div {
+    margin-bottom: 40px;
+}
+
+#feedback > div:not(:last-child){
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #999999;
+    padding-bottom: 10px;
+}
+
+#feedback > div > div > div.col-sm-3 > div{
+    margin-left: 30px;
+}
+
+#watchList > div > div > ul > li > div > div.col.align-self-center > div:nth-child(3){
+    margin-left: 1px;
+}
+
+#purchaseHistory > div > div > ul > li > div > div.col.align-self-center > div:nth-child(3){
+    margin-left: 1px;
+}
+
+#purchaseHistory > div > div > ul > li:nth-child(1) > div > div.col.align-self-center > div:nth-child(3) > div{
+    margin-bottom: 5px;
+}
+
+#myTabContent ul li {
+    list-style-type: none;
+}
+
+#voteDemote {
+    margin-left: 5px;
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) {
+    img{
+        width: 50%;
+        height: 75%;
+    }
+
+    #product-section > div > div:nth-child(3){
+        margin-left: 20px;
+    }
+
+    #feedback > div{
+        margin-left: 20px;
+    }
+}

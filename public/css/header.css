@@ -1,0 +1,167 @@
+
+#search-bar {
+    flex-grow: 1;
+}
+
+.fixed-size, #authentication {
+    flex-grow: 0;
+}
+
+.special-elipse {
+    display: none;
+}
+
+.dropdown-menu a, #authentication > a:first-child {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#header form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* authentication */
+#authentication .dropdown-menu a {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    text-align: right;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+#authentication .dropdown-menu {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+
+
+#authentication > a {
+    width: auto;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+
+
+
+#header .dropdown-menu {
+    width: 150px;
+    max-width: 150px;
+    min-width: 0;
+}
+
+/* mail icon */
+#mail-icon {
+
+    text-align: right;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.got-messages {
+    color: white;
+    background-color: red;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 30px;
+    padding: 2px;
+}
+
+.mail-icon-number {
+    position: absolute;
+    left: 10px;
+    bottom: 7px;
+    line-height: 23px;
+    width: 23px;
+    padding: 0;
+}
+
+#messages-dropdown-item {
+    display: none;
+}
+/*  */
+
+
+@media (max-width: 625px) {
+    #search-categories {
+        display: none;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #search-bar {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    #search-bar {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #search-bar {
+        max-width: 50%;
+    }
+
+    #header .navbar-brand {
+        margin-right: 0;
+    }
+}
+
+/* when user is logged in */
+@media (max-width: 768px) {
+
+    #authenticated-dropdown {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+
+
+@media (max-width: 500px) {
+    .fixed-size {
+        flex-grow: 1;
+    }
+
+    .extra-hide {
+        display: none;
+    }
+
+    #header form {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .special-elipse {
+        display: inline;
+    }
+
+}
+
+
+
+
+
+
+@media (max-width: 400px) {
+    #mail-icon {
+        display: none;
+    }
+
+    #messages-dropdown-item {
+        display: initial;
+    }
+
+    #header {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+ 
