@@ -19,7 +19,8 @@
 
     <h3 class="border-bottom pb-1 mb-4">About BidBay </h3>
     <p>BidBay is a website where users can do all of their shopping (new, second hand, handcrafted or miscellaneous items) where the seller is another user like them. Do you have something you want to sell? Want something from our users? Start your selling and shopping here, at BidBay! </p>
-
+    <br>
+    <div>Logo made with <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo</a></div>
     <h4 class="border-bottom pb-1 mb-4 mt-5">Contact the Team </h4>
     <div class="container-fluid">
         <div class="row" id="creators">
