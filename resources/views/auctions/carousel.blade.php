@@ -8,14 +8,11 @@
             <a href="../auction/auction.html">
                 <img class="d-block " src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
                 <div class="carousel-caption d-md-block">
-                    <h3>{{ $auction->item_name }}</h3>
+                    <h3>
+                        {{ str_limit($auction->item_name, 100, ' ...') }}
+                    </h3>
                     <h4><strong class="display-4">
-                            @if($auction->current_price === null)
-                                0
-                            @else
-                            {{ $auction->current_price }}
-                            @endif
-                            €
+                            {{ $auction->currentPriceEuros() }}€
                         </strong></h4>
                     <h5>{{ $auction->numBids() }} bids</h5>
                 </div>

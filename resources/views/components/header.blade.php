@@ -1,17 +1,19 @@
 <!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
-    <a href="{{ url('/landing_page') }}" class="navbar-brand">BidBay</a>
+    <a id="logo-link" href="{{ url('/landing_page') }}" class="navbar-brand">
+        <img id="logo" src="{{ asset('/images/logo.png') }}">
+    </a>
     <!-- search bar -->
-    <form action="../advanced_search.html" method="get" class="px-2" id="search-bar">
+    <form action="../advanced_ <foch.html" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
             <select class="form-control rounded-1 col-2 " id="search-categories">
-                <option selected> All Categories</option>
-                <option>Technology</option>
-                <option>Automobiles</option>
-                <option>Clothes</option>
+                <option selected value=""> All Categories</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                @endforeach
             </select>
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
         </div>
