@@ -113,7 +113,7 @@ void error_skipto_andEat(int kind, String msg) {
 }
 
 
-SimpleNode Module() #MODULE : {Token t;}
+SimpleNode Module() #MOD : {Token t;}
 {
     try{
      <MODULE> t = <ID> {jjtThis.value = t.image;} <LCHAVETA> (Declaration())* (Function())* <RCHAVETA>
@@ -145,9 +145,9 @@ void ArrayElement() #ARR_ELEM: {}
   "[" "]"
 }
 
-void ScalarDeclaration() #SCAL_DECL: {}
+void ScalarDeclaration() #void: {}
 {
-    (<ADDSUB_OP>)? <INTEGER>
+  (<ADDSUB_OP>)? <INTEGER>
 }
 
 void ArrayDeclaration() #ARR_DECL: {}
@@ -157,11 +157,11 @@ void ArrayDeclaration() #ARR_DECL: {}
 
 
 
-void Function() #FUNCT: {}
+void Function() #FUNCTION: {Token t1, t2;}
 {
-  <FUNCTION>
+  t1 = <FUNCTION> {jjtThis.value = t1.image;}
    try{
-       <ID>
+       t2 = <ID> {jjtThis.value = t2.image;}
       }
       catch(ParseException e){
           error_skipto(LPAR, "FunctionID");
@@ -178,34 +178,33 @@ void Function() #FUNCT: {}
 }
 
 
-void FunctionAssign() #FUNCT_ASSI: {}
+void FunctionAssign() #FUNCT_ASSIGN: {Token t1, t2;}
 {
-    (ArrayElement())? <ASSIGN> <ID>
+    (ArrayElement())? t1 = <ASSIGN> {jjtThis.value = t1.image;} t2 = <ID> {jjtThis.value = t2.image;}
 }
 
-void FunctionDeclaration() #FUNCT_DECL: {}
+void FunctionDeclaration() #void: {}
 {
-     <LPAR>
-     (Varlist())? <RPAR>
+     <LPAR> (Varlist())? <RPAR>
 
 }
 
-void FunctionContent() #FUNCT_CONT:{}
+void FunctionContent() #void:{}
 {
     <LCHAVETA> Stmtlst()
 }
 
-void Varlist() #VAR_LIST: {}
+void Varlist() #void: {}
 {
   (Element()) (<VIRG> (Element()))*
 }
 
-void Stmtlst() #STMT_LIST: {}
+void Stmtlst() #void: {}
 {
   (Stmt())* <RCHAVETA>
 }
 
-void Stmt() #STMT: {}
+void Stmt() #void: {}
 {
     While() | If() | LOOKAHEAD(3) Assign() | 
     
@@ -221,7 +220,7 @@ void Stmt() #STMT: {}
     <PVIRG>
 }
 
-void Assign() #ASSI: {}
+void Assign() #void: {}
 {
   Lhs() <ASSIGN>
 
@@ -262,14 +261,14 @@ void ScalarAccess() #SCA_ACC: {}
   <ID> ("." <SIZE>)?
 }
 
-void Access() #ACC: {Token t;}
+void Access() #ACC: {Token t1;}
 {
-  t = <ID> {jjtThis.value = t.image;} (("[" Index() "]") | ("." <SIZE>)?)
+  t1 = <ID> {jjtThis.value = t1.image;} (("[" Index() "]") | ("." <SIZE>)?)
 }
 
-void Index() #IND: {}
+void Index() #IND: {Token t1, t2;}
 {
-    <ID> | <INTEGER>
+   t1 = <ID> {jjtThis.value = t1.image;} | t2 = <INTEGER> {jjtThis.value = t2.image;}
 }
 
 void Term() #TERM: {Token t1, t2;}
@@ -298,27 +297,26 @@ void Call() #CALL:{Token t1, t2;}
   //}
 }
 
-void ArgumentList() #ARG_LIST:{}
+void ArgumentList() #void:{}
 {
   Argument() (<VIRG> Argument())*
 }
 
 void Argument() #ARG:{Token t1, t2, t3;}
 {
-    ( t1 = <ID> {jjtThis.value = t1.image;}| t2 = <STRING> {jjtThis.value = t2.image;} | t3 = <INTEGER> {jjtThis.value = t3.image;} )
+  ( t1 = <ID> {jjtThis.value = t1.image;}| t2 = <STRING> {jjtThis.value = t2.image;} | t3 = <INTEGER> {jjtThis.value = t3.image;} )
 }
 
 void While() #WHILE:{}
 {
-    <WHILE> Exprtest()
-     <LCHAVETA> Stmtlst()
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst()
 }
 
-void Exprtest() #EXPR_TEST:{}
+void Exprtest() #EXPR_TEST:{Token t1;}
 {
   <LPAR>
   try{
-    Lhs() <RELA_OP> Rhs()
+    Lhs() t1 = <RELA_OP> {jjtThis.value = t1.image;} Rhs()
   }
   catch(ParseException e){
     error_skipto(RPAR, "Exprtest");
