@@ -32,4 +32,38 @@ class StaticPagesController extends Controller
             ]);
     }
 
+    public function showAbout(Request $request) {
+
+
+        $displayAuctions = Auction::getOpenAuctionsCollection()->inRandomOrder()->take(self::NUM_CAROUSEL_ITEMS)->get();
+        $recentAuctions = Auction::getOpenAuctionsCollection()->orderBy('publication_date', 'desc')->take(self::NUM_CARDS)->get();
+        $endingSoonAuctions = Auction::getOpenAuctionsCollection()->orderBy('end_date', 'asc')->take(self::NUM_CARDS)->get();
+
+        $categories = Category::all();
+
+        return view('staticPages.about', [
+            'displayAuctions' => $displayAuctions,
+            'recentAuctions' => $recentAuctions,
+            'endingSoonAuctions' => $endingSoonAuctions,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function showFAQ(Request $request) {
+
+
+        $displayAuctions = Auction::getOpenAuctionsCollection()->inRandomOrder()->take(self::NUM_CAROUSEL_ITEMS)->get();
+        $recentAuctions = Auction::getOpenAuctionsCollection()->orderBy('publication_date', 'desc')->take(self::NUM_CARDS)->get();
+        $endingSoonAuctions = Auction::getOpenAuctionsCollection()->orderBy('end_date', 'asc')->take(self::NUM_CARDS)->get();
+
+        $categories = Category::all();
+
+        return view('staticPages.faq', [
+            'displayAuctions' => $displayAuctions,
+            'recentAuctions' => $recentAuctions,
+            'endingSoonAuctions' => $endingSoonAuctions,
+            'categories' => $categories,
+        ]);
+    }
+
 }

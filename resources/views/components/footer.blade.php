@@ -5,10 +5,10 @@
             <a class="nav-link text-white" href="{{ url('/landing_page') }}">Home </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="../about.html">About</a>
+            <a class="nav-link text-white" href="{{ url('/about') }}">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
+            <a class="nav-link text-white" href="{{ url('/faq') }}">FAQs</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">

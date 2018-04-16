@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 // static pages
 Route::get('landing_page', 'StaticPagesController@showLandingPage');
-
+Route::get('about', 'StaticPagesController@showAbout');
+Route::get('faq', 'StaticPagesController@showFAQ');
 
 // Cards
 Route::get('cards', 'CardController@list');
