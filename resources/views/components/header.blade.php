@@ -29,10 +29,8 @@
         </strong>
     </a>
     <div class="dropdown" id="authentication">
-        <a class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-           aria-expanded="false">
-            <!-- place class extra-hide after a 5 characters if name too big to fit on smartphones -->
-            M1dwaijaowdjo
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+            {{ Auth::user()->email }} <span class="caret"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
@@ -46,7 +44,15 @@
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>
-            <a class="dropdown-item" href="logout action">Log out</a>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         </div>
     </div>
     @else

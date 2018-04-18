@@ -11,7 +11,7 @@
     <form class="mt-5 d-flex flex-column mx-auto p-4 bg-light" id="register" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <h1 class="mx-auto pt-3 mb-5 font-weight-bold"> Register</h1>
-        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} control-label">
+        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} control-label">
             <label for="name">Username:</label>
             <div>
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -44,33 +44,33 @@
         <div class="form-row">
             <div class="form-group col-6">
                 <label for="first-name">First Name:</label>
-                <input type="text" class="form-control" id="first-name" aria-describedby="first-name" required>
+                <input type="text" class="form-control" id="first-name" name="first_name"aria-describedby="first-name" required>
             </div>
             <div class="form-group col-6">
                 <label for="last-name">Last Name:</label>
-                <input type="text" class="form-control" id="last-name" aria-describedby="last-name" required>
+                <input type="text" class="form-control" id="last-name" name="last_name" aria-describedby="last-name" required>
             </div>
         </div>
 
         <div class="form-group">
             <label for="address">Address:</label>
-            <input type="text" class="form-control" id="address" aria-describedby="address" required>
+            <input type="text" class="form-control" id="address" name="address" aria-describedby="address" required>
         </div>
 
         <div class="form-row">
             <div class="form-group col-6 col-md-4">
                 <label for="country">Country:</label>
-                <input type="text" class="form-control" id="country" aria-describedby="Country" required>
+                <input type="text" class="form-control" id="country" name="country" aria-describedby="Country" required>
             </div>
 
             <div class="form-group col-6 col-md-4">
                 <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" aria-describedby="City" required>
+                <input type="text" class="form-control" id="city" name="city" aria-describedby="City" required>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="zip-code">Zip-code:</label>
-                <input type="text" class="form-control" id="zip-code" aria-describedby="Zip-Code" required>
+                <label for="zip_code">Zip-code:</label>
+                <input type="text" class="form-control" id="zip_code" name="zip_code" aria-describedby="zip_code" required>
             </div>
 
         </div>
