@@ -15,6 +15,7 @@ Route::get('/', function () {
     return redirect('landing_page');
 });
 
+
 // static pages
 Route::get('landing_page', 'StaticPagesController@showLandingPage');
 Route::get('about', 'StaticPagesController@showAbout');
