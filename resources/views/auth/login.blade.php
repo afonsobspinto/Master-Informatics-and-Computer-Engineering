@@ -2,6 +2,7 @@
 
 @section('resources')
 @parent
+
 <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
 @endsection
 
