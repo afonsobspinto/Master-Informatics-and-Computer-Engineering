@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS wishlists CASCADE;
 DROP TABLE IF EXISTS won_auctions CASCADE;
 
 CREATE TABLE categories (
-    id integer NOT NULL PRIMARY KEY,
+    id serial NOT NULL PRIMARY KEY,
     name character(50)
 );
 
@@ -32,11 +32,11 @@ CREATE TABLE cities (
 
 
 CREATE TABLE "users" (
-    id integer NOT NULL PRIMARY KEY,
+    id serial NOT NULL PRIMARY KEY,
     username character(50),
     first_name character(50),
     last_name character(50),
-    password character(50) NOT NULL,
+    password text NOT NULL,
     email character(50) NOT NULL UNIQUE,
     zip_code character(25),
     address character(50),
