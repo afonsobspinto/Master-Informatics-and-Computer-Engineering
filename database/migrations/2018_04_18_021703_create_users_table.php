@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->nullable();
+            $table->string('username')->nullable()->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
@@ -43,7 +43,6 @@ class CreateUsersTable extends Migration
             $table->float('rating', 2, 1)->nullable();
             $table->boolean('is_administrator')->default(false)->nullable();
             $table->rememberToken();
-            $table->timestamps();
         });
 
         Schema::table('users', function($table) {
