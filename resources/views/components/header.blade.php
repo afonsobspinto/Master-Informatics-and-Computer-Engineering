@@ -34,7 +34,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            @if(false)
+            @if(Auth::user()->is_administrator)
             {{-- TODO check if user is admin HERE--}}
             <a class="dropdown-item" href="../report.html">User Reports</a>
             @else(false)
