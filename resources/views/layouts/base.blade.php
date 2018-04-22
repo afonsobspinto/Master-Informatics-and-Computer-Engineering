@@ -22,7 +22,7 @@
 
         @include('components.header', ['categories' => $categories])
 
-        <div class="container mb-5">
+        <div class="container mb-5" id="auction-section">
             @yield('content')
 
         </div>

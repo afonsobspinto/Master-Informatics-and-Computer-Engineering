@@ -26,7 +26,7 @@ class StaticPagesController extends Controller
 
         $categories = Category::all();
 
-        return view('staticPages.landingPage', [
+        return view('pages.landingPage', [
                 'displayAuctions' => $displayAuctions,
                 'recentAuctions' => $recentAuctions,
                 'endingSoonAuctions' => $endingSoonAuctions,
@@ -43,7 +43,7 @@ class StaticPagesController extends Controller
 
         $categories = Category::all();
 
-        return view('staticPages.about', [
+        return view('pages.about', [
             'displayAuctions' => $displayAuctions,
             'recentAuctions' => $recentAuctions,
             'endingSoonAuctions' => $endingSoonAuctions,
@@ -60,7 +60,7 @@ class StaticPagesController extends Controller
 
         $categories = Category::all();
 
-        return view('staticPages.faq', [
+        return view('pages.faq', [
             'displayAuctions' => $displayAuctions,
             'recentAuctions' => $recentAuctions,
             'endingSoonAuctions' => $endingSoonAuctions,

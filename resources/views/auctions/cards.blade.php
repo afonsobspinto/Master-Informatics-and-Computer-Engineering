@@ -10,7 +10,7 @@
     <div class="card-columns">
         @foreach($auctions as $auction)
         <div class="card border-info">
-            <a href="../auction/auction.html">
+            <a href="{{ url("auctions/{$auction->id}") }}">
                 <!-- place auction data here -->
                 <!-- images can be any size -->
                 <img class="card-img-top" src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">

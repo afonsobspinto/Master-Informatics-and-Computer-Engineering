@@ -21,6 +21,9 @@ Route::get('landing_page', 'StaticPagesController@showLandingPage');
 Route::get('about', 'StaticPagesController@showAbout');
 Route::get('faq', 'StaticPagesController@showFAQ');
 
+// auctions
+Route::get('auctions/{auction_id}', 'AuctionController@showAuctionPage');
+
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
