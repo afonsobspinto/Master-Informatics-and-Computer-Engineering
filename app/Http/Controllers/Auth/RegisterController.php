@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Category;
+use App\Country;
+use App\City;
 
 class RegisterController extends Controller
 {
@@ -50,8 +52,12 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $categories = Category::all();
+        $countries = Country::all();
+        $cities = City::all();
         return view('auth.register', [
             'categories' => $categories,
+            'countries' => $countries,
+            'cities' => $cities,
         ]);
     }
 
