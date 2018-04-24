@@ -74,29 +74,6 @@ public class DecisionTree {
         jf.setVisible(true);
         tv.fitToScreen();
     }
-
-    public static void main(String[] args) throws IOException{
-        if (args.length == 1 && getFileExtension(args[0]).equals("arff")){
-            if(parseInputs(args)){
-
-                DecisionTree decisionTree = new DecisionTree(args[0]);
-                decisionTree.displayTree();
-
-                return;
-            }
-        }
-        System.out.println("Usage: java DecisionTree <dataSetFilePath>");
-    }
-
-    private static boolean parseInputs(String[] args) {
-        return new File(args[0]).exists();
-    }
-
-    private static String getFileExtension(String filepath) {
-        String[] tokens = filepath.split("\\.");
-
-        return tokens[tokens.length-1];
-    }
 }
 /*
 //TODO:
@@ -105,7 +82,6 @@ Fit
 Predict
 Score
 Graphviz
-GUI
 Tree Options
 DataSet Formats
 

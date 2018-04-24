@@ -10,18 +10,39 @@ public class GUI {
     private JButton showTrainingStatsButton;
     private JButton loadFileButton;
     private JLabel label1;
+    static private String filePath;
     static JFrame frame = new JFrame("GUI");
     final JFileChooser fc = new JFileChooser();
 
     public GUI() {
+        viewTreeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(getFileExtension(filePath).equals("arff")) {
+                    DecisionTree decisionTree = new DecisionTree(filePath);
+                    decisionTree.displayTree();
+                }
+            }
+        });
+
+        classifyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setContentPane(new Classify().getPanel1());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
         loadFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fc.showOpenDialog(panel1);
                 File file = fc.getSelectedFile();
-                System.out.println(file.getPath());
-
-                loadFileButton.setText(file.getPath());
+                if(file.exists()) {
+                    filePath = file.getPath();
+                    loadFileButton.setText(filePath);
+                }
 
                 frame.pack();
             }
@@ -36,5 +57,15 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public JPanel getPanel1() {
+        return panel1;
+    }
+
+    private static String getFileExtension(String filepath) {
+        String[] tokens = filepath.split("\\.");
+
+        return tokens[tokens.length-1];
     }
 }
