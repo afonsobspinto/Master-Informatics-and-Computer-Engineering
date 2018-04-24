@@ -43,7 +43,8 @@ CREATE TABLE "users" (
     "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     location integer REFERENCES cities(id) ON UPDATE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
-    is_administrator boolean DEFAULT false
+    is_administrator boolean DEFAULT false,
+    remember_token text -- used by laravel
 );
 
 CREATE TABLE auctions (
@@ -81,7 +82,7 @@ CREATE TABLE bans (
 
 
 CREATE TABLE bids (
-    id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     bidder_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
     bid_amount real NOT NULL,
     PRIMARY KEY(id, bidder_id)
@@ -98,7 +99,7 @@ CREATE TABLE messages (
 
 
 CREATE TABLE closed_auctions (
-    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE emails (
@@ -111,7 +112,7 @@ CREATE TABLE emails (
 
 
 CREATE TABLE qas (
-    id serial PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    id serial PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     question text NOT NULL,
     answer text,
     auction_id integer NOT NULL,
@@ -123,18 +124,18 @@ CREATE TABLE reports (
 );
 
 CREATE TABLE reviews (
-    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     rating integer NOT NULL CONSTRAINT rating_ck CHECK (((rating >= 0) OR (rating <= 5))),
     description text NOT NULL
 );
 
 CREATE TABLE wishlists (
-    auction_id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE,
+    auction_id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE won_auctions (
-    id integer NOT NULL PRIMARY KEY REFERENCES closed_auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL PRIMARY KEY REFERENCES closed_auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     "is_successful_transaction" boolean DEFAULT false NOT NULL,
     "has_winner_complained" boolean DEFAULT false NOT NULL,
     winner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE

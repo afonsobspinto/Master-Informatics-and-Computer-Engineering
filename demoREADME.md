@@ -210,7 +210,7 @@ compiled into the public CSS file:
 
 ### 7) Javascript
 
-To add Javascript into your project, just edit the file found at *public/js/app.js*.
+To add Javascript into your project, just edit the file found at *public/js/common.js*.
 
 ## Publishing your image
 

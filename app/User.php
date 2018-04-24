@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -30,12 +32,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The cards this user owns.
-     */
-     public function cards() {
-      return $this->hasMany('App\Card');
+    public function isAuctionOwner($auction) {
+        $currUserID = Auth::id();
+        $auctionOwnerID = $auction->owner_id;
+        return $currUserID == $auctionOwnerID;
     }
 
+    public function checkPassword($password) {
+        return Hash::check($password, $this->password);
+    }
 
 }

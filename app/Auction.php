@@ -32,6 +32,15 @@ class Auction extends Model
         }
     }
 
+    public function getImagesURLs() {
+        //TODO
+        return [$this->getDisplayPictureURL()];
+    }
+
+    public function getNumImages() {
+        return sizeof($this->getImagesURLs());
+    }
+
     public function currentPriceEuros() {
         if($this->current_price == null)
             return $this->starting_price;

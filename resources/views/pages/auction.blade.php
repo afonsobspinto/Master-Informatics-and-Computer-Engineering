@@ -4,38 +4,37 @@
 
 @section('resources')
     @parent
-    <link rel="stylesheet" href="{{ asset('css/landing_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auction.css') }}">
+    <script src="{{ asset('js/auction.js') }}" defer></script>
 @endsection
 
 @section('content')
     <div class="row mt-5">
+
+
         <div class="col-md-9">
             <div class="row">
             </div>
             <div class="row">
                 <div class="col-md-12 text-align-center mobile-text-center">
+
+                    {{-- images carousel --}}
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            @php ($activeItem = "active")
+                            @for($i = 0; $i < $auction->getNumImages(); $i++)
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{{ $activeItem }}"></li>
+                            @php ($activeItem = "")
+                            @endfor
                         </ol>
                         <div class="carousel-inner">
+                        @foreach($auction->getImagesURLs() as $imageURL)
                             <div class="carousel-item active">
                                 <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="First slide">
+                                     src="{{ $imageURL }}"
+                                     alt="image slide">
                             </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="Third slide">
-                            </div>
+                        @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                            data-slide="prev">
@@ -48,14 +47,16 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+
                     <span class="display-4 title">{{ $auction->item_name }}</span>
                     <span class="badge badge-primary">Tech</span>
                     <span class="badge badge-info">New</span>
                     <a href="auction_itemOnWatchList.html" class="far fa-star text-warning " aria-hidden="true" title="Add to Watchlist"></a>
                 </div>
-            </div><!-- end row-->
+            </div>
         </div>
 
+        {{-- auction owner 'card' --}}
         <div class="col-md-3 ">
             <div class="card text-align-center mobile-text-center" style="width: 20rem;">
                 <img class="card-img-top img-fluid" src="https://ir.ebaystatic.com/pictures/aw/social/avatar.png"
@@ -73,106 +74,139 @@
                     <span class="badge badge-success">61</span>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
                         cupiditate dicta doloremque eligendi</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"
-                            data-whatever="@getbootstrap"> Contact
-                    </button>
-                    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
-                         aria-labelledby="contactModal" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="contactModalLabel">New message</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="form-control-label">To:</label>
-                                            <input type="text" class="form-control" id="dest-name">
+
+                    @if(Auth::check())
+                        @if(Auth::user()->isAuctionOwner($auction))
+                            <a href="edit_page_asAuctioneer.html" class="btn btn-primary ">Edit Auction</a>
+                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">Remove Auction</a>
+                            {{-- delete auction modal --}}
+                            <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="removeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="removeModalLabel">Remove Auction </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="item-name" class="form-control-label">#Item:</label>
-                                            <input type="text" class="form-control" id="item-name">
+                                        <div class="modal-body">
+                                            <form>
+                                                <label for="user-pass" class="col-form-label">Password:</label>
+                                                <input type="password" class="form-control" id="user-pass" name="password">
+                                            </form>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="form-control-label">Message:</label>
-                                            <textarea class="form-control" id="contact-text"></textarea>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button id="remove-auction-btn" type="button" class="btn btn-danger report" data-dismiss="modal">Remove</button>
                                         </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="closebtn" class="btn btn-secondary"
-                                            data-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" id="sendbtn"
-                                            class="btn btn-primary">Send message
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        More Options
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" data-toggle="modal"
-                           data-target="#exampleModal">Report Account</a>
-                    </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                        @else
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"
+                                    data-whatever="@getbootstrap"> Contact
+                            </button>
+                            <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="contactModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="contactModalLabel">New message</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="form-control-label">To:</label>
+                                                    <input type="text" class="form-control" id="dest-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="item-name" class="form-control-label">#Item:</label>
+                                                    <input type="text" class="form-control" id="item-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="form-control-label">Message:</label>
+                                                    <textarea class="form-control" id="contact-text"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="closebtn" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="button" id="sendbtn"
+                                                    class="btn btn-primary">Send message
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <div>
-                                                <h5 style="color:brown"> Motive</h5>
-                                                <div class="radio">
-                                                    <label><input type="radio"
-                                                                  name="behaviour"> Abusive behaviour </label>
+                            </div>
+
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                More Options
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" data-toggle="modal"
+                                   data-target="#exampleModal">Report Account</a>
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <div>
+                                                    <h5 style="color:brown"> Motive</h5>
+                                                    <div class="radio">
+                                                        <label><input type="radio"
+                                                                      name="behaviour"> Abusive behaviour </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="content">Inappropriate content in
+                                                            profile </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input type="radio"
+                                                                      name="optradio">Didn't receive an item</label>
+                                                    </div>
                                                 </div>
-                                                <div class="radio">
-                                                    <label><input type="radio" name="content">Inappropriate content in
-                                                        profile </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input type="radio"
-                                                                  name="optradio">Didn't receive an item</label>
-                                                </div>
+                                                <label for="recipient-name" class="col-form-label">Other:</label>
+                                                <input type="text" class="form-control" id="recipient-name">
                                             </div>
-                                            <label for="recipient-name" class="col-form-label">Other:</label>
-                                            <input type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Message:</label>
-                                            <textarea class="form-control" id="message-text"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary report">Report</button>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary report">Report</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
+                            </div>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
-    </div><!-- end row -->
+    </div>
 
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <ul class="nav nav-tabs">

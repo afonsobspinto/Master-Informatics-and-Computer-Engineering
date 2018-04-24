@@ -22,7 +22,10 @@ Route::get('about', 'StaticPagesController@showAbout');
 Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
-Route::get('auctions/{auction_id}', 'AuctionController@showAuctionPage');
+Route::get('auctions/{auction_id}', 'AuctionController@show');
+Route::delete('auctions/{auction_id}', 'AuctionController@delete');
+
+Route::get('auctions/{auction_id}/delete', 'AuctionController@delete');
 
 // Cards
 Route::get('cards', 'CardController@list');

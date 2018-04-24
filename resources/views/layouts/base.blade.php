@@ -12,8 +12,12 @@
 
         @include('components.bootstrap')
 
+        {{-- jquery --}}
+
+
         <!-- links -->
         @section('resources')
+            <script src="{{ asset('js/common.js') }}" async></script>
             <link rel="stylesheet" href="{{ asset('css/header.css') }}">
             <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
         @show
