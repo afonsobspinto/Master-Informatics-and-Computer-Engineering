@@ -1,5 +1,7 @@
 @extends('layouts.base', ['categories' => $categories])
 
+@extends('layouts.base', ['countries' => $countries])
+
 @section('resources')
     @parent
     <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
@@ -60,7 +62,12 @@
             <div class="form-row">
                 <div class="form-group col-6 col-md-4">
                     <label for="country">Country:</label>
-                    <input type="text" class="form-control" id="country" name="country" aria-describedby="Country" required>
+                    <select class="form-control" id="country" name="country" aria-describedby="Country" required>
+                        <option selected value="">All Countries</option>
+                        @foreach($countries as $country)
+                            <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group col-6 col-md-4">
