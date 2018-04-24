@@ -1,4 +1,4 @@
-// This is loaded ASYNC
+// This is load•••ed ASYNC
 "use strict";
 
 

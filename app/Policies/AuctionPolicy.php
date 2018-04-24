@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\User;
 use App\Auction;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\DB;
 
 class AuctionPolicy
 {
@@ -21,6 +22,10 @@ class AuctionPolicy
     }
 
     public function delete(User $user, Auction $auction) {
-        return $user->isAuctionOwner($auction);
+        $isOwner = $user->isAuctionOwner($auction);
+        $auctionID = $auction->id;
+        $noBids = DB::table('bids')->where('id', '=', $auctionID)->doesntExist();
+        $noQAs = DB::table('qas')->where('id', '=', $auctionID)->doesntExist();
+        return $isOwner && $noBids && $noQAs;
     }
 }
