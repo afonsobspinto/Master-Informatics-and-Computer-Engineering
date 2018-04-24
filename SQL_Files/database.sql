@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS wishlists CASCADE;
 DROP TABLE IF EXISTS won_auctions CASCADE;
 
 CREATE TABLE categories (
-    id integer NOT NULL PRIMARY KEY,
+    id serial NOT NULL PRIMARY KEY,
     name character(50)
 );
 
@@ -32,18 +32,21 @@ CREATE TABLE cities (
 
 
 CREATE TABLE "users" (
-    id integer NOT NULL PRIMARY KEY,
+    id serial NOT NULL PRIMARY KEY,
     username character(50),
     first_name character(50),
     last_name character(50),
-    password character(50) NOT NULL,
+    password text NOT NULL,
     email character(50) NOT NULL UNIQUE,
     zip_code character(25),
     address character(50),
     "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     location integer REFERENCES cities(id) ON UPDATE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
-    is_administrator boolean DEFAULT false
+    is_administrator boolean DEFAULT false,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
 );
 
 CREATE TABLE auctions (

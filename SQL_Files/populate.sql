@@ -23,12 +23,13 @@ INSERT INTO "public"."categories" ("id","name") VALUES (5,'motorcycle');
 INSERT INTO "public"."categories" ("id","name") VALUES (6,'computer');
 INSERT INTO "public"."categories" ("id","name") VALUES (7,'monitor');
 INSERT INTO "public"."categories" ("id","name") VALUES (8,'television');
+
 INSERT INTO "public"."countries" ("id","country") VALUES (1,'Kiribati');
 INSERT INTO "public"."countries" ("id","country") VALUES (2,'French Southern Territories');
 INSERT INTO "public"."countries" ("id","country") VALUES (3,'Ghana');
 INSERT INTO "public"."countries" ("id","country") VALUES (4,'Belize');
 INSERT INTO "public"."countries" ("id","country") VALUES (5,'Ethiopia');
-INSERT INTO "public"."countries" ("id","country") VALUES (6,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (6,'Hungary');
 INSERT INTO "public"."countries" ("id","country") VALUES (7,'United Arab Emirates');
 INSERT INTO "public"."countries" ("id","country") VALUES (8,'Nigeria');
 INSERT INTO "public"."countries" ("id","country") VALUES (9,'Suriname');
@@ -45,21 +46,21 @@ INSERT INTO "public"."countries" ("id","country") VALUES (19,'Mozambique');
 INSERT INTO "public"."countries" ("id","country") VALUES (20,'Heard and McDonald Islands');
 INSERT INTO "public"."countries" ("id","country") VALUES (21,'Brazil');
 INSERT INTO "public"."countries" ("id","country") VALUES (22,'Egypt');
-INSERT INTO "public"."countries" ("id","country") VALUES (23,NULL);
-INSERT INTO "public"."countries" ("id","country") VALUES (24,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (23,'United States of America');
+INSERT INTO "public"."countries" ("id","country") VALUES (24,'France');
 INSERT INTO "public"."countries" ("id","country") VALUES (25,'Monaco');
 INSERT INTO "public"."countries" ("id","country") VALUES (26,'French Southern Territories');
 INSERT INTO "public"."countries" ("id","country") VALUES (27,'United Arab Emirates');
 INSERT INTO "public"."countries" ("id","country") VALUES (28,'Syria');
-INSERT INTO "public"."countries" ("id","country") VALUES (29,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (29,'Germany');
 INSERT INTO "public"."countries" ("id","country") VALUES (30,'Nicaragua');
-INSERT INTO "public"."countries" ("id","country") VALUES (31,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (31,'France');
 INSERT INTO "public"."countries" ("id","country") VALUES (32,'US Minor Outlying Islands');
-INSERT INTO "public"."countries" ("id","country") VALUES (33,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (33,'Russia');
 INSERT INTO "public"."countries" ("id","country") VALUES (34,'Mali');
-INSERT INTO "public"."countries" ("id","country") VALUES (35,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (35,'China');
 INSERT INTO "public"."countries" ("id","country") VALUES (36,'Finland');
-INSERT INTO "public"."countries" ("id","country") VALUES (37,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (37,'Japan');
 INSERT INTO "public"."countries" ("id","country") VALUES (38,'Cameroon');
 INSERT INTO "public"."countries" ("id","country") VALUES (39,'Virgin Islands (U.S.)');
 INSERT INTO "public"."countries" ("id","country") VALUES (40,'Russian Federation');
@@ -71,8 +72,8 @@ INSERT INTO "public"."countries" ("id","country") VALUES (45,'Zimbabwe');
 INSERT INTO "public"."countries" ("id","country") VALUES (46,'Cote D''Ivoire (Ivory Coast)');
 INSERT INTO "public"."countries" ("id","country") VALUES (47,'Bahrain');
 INSERT INTO "public"."countries" ("id","country") VALUES (48,'Guatemala');
-INSERT INTO "public"."countries" ("id","country") VALUES (49,NULL);
-INSERT INTO "public"."countries" ("id","country") VALUES (50,NULL);
+INSERT INTO "public"."countries" ("id","country") VALUES (49,'Canada');
+INSERT INTO "public"."countries" ("id","country") VALUES (50,'Italia');
 
 
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (1,'Qj8aixfPmTeMcNnAN1' ,'Another messahgedwa wdwa ','11/26/2000 10:21:00');
@@ -106,20 +107,22 @@ INSERT INTO "public"."cities" ("id","city","country_id") VALUES (9,'Kunming',5);
 INSERT INTO "public"."cities" ("id","city","country_id") VALUES (10,'BUDAPEST',6);
 
 
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (1,'Frederik804','Ross',NULL,'BSS8Q1EBkaFYrQdhWOtudgYeVTeFpWW1qnfPhaD','E.Young@libero.cn','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (2,'Mads9','Marie','Katsekes','KoXWfF0CzM6UzCuKOA8p8GbH','Mick.Byrnes5@telfort.cc','42767','8 Brooke Valley Drive','06/25/2013 03:26:00', 1,1.1,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (3,'Richard889',NULL,'Morton','h2CwXXCEBU8KHcBrnsf0DvPLRwCqkuqGQGQrKZczLwmTG','Dave.Petterson@dolfijn.dk','84063',NULL,NULL, 1,4.01,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (4,'Dave3','Isabel','Bloom','uIzryBfxvW0I4QGAZjU3Qba5tx5JLa','JohanDepew@libero.be','39927','4235 Serang Place','12/04/2006 00:22:00', 2,3.73,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (5,'Magnus420','Olivia','Stewart','wgD3eJPKOWH4B6fev32IW2q1gWTckCT0YCzug3','E.King3@dolfijn.fr','73108','20 Devonshire Rd','12/06/2016 06:23:00', 2,3.21,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (6,'Sophia812','Olivia','Swaine','btF7nhhTFQ47Ky6UfGaOqsIIFe','YLamere@excite.us',NULL,'0 Melrose Ave',NULL, 3,1.22,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (7,'Tim16',NULL,'Bernstein','AntqmXxP126y7GdcM','Trees.King@hotmail.gov','94588','991 East MacArthur','11/29/2006 04:42:00', 3,4.91,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (8,'Louise00','Nahay', 'Pelosi','AVICgUWfmHgEI0z8Yj0UBsFtieg8qya5ZL1rwAulDrlcQsQzm','LindsyBrown@weboffice.no','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (9,'Henk241','Oscar','Poissant','6deWU7sUNR','E.Cramer@dolfijn.us',NULL,'8 N. Jackson Road','08/09/2003 10:01:00', 4,2.21,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (10,NULL,'Peggy',NULL,'6BbknOftvtVyJWWCNu3zMCQY1ORPcfiT7IvJrFW75vzcY','JohanTudisco5@dolfijn.com',NULL,'0 W. Broadway','01/29/2014 04:25:00', 5,1.78,False);
+-- ALL passwords are '123456'
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (9,'afonso','afonso', 'pinto','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','afonso@gmail.com','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (1,'a','Ross',NULL,'$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','a@a.a','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (2,'Mads9','Marie','Katsekes','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Mick.Byrnes5@telfort.cc','42767','8 Brooke Valley Drive','06/25/2013 03:26:00', 1,1.1,FALSE);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (3,'Richard889',NULL,'Morton','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Dave.Petterson@dolfijn.dk','84063',NULL,NULL, 1,4.01,True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (4,'Dave3','Isabel','Bloom','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','JohanDepew@libero.be','39927','4235 Serang Place','12/04/2006 00:22:00', 2,3.73,True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (5,'Magnus420','Olivia','Stewart','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','E.King3@dolfijn.fr','73108','20 Devonshire Rd','12/06/2016 06:23:00', 2,3.21,True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (6,'Sophia812','Olivia','Swaine','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','YLamere@excite.us',NULL,'0 Melrose Ave',NULL, 3,1.22,FALSE);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (7,'Tim16',NULL,'Bernstein','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Trees.King@hotmail.gov','94588','991 East MacArthur','11/29/2006 04:42:00', 3,4.91,FALSE);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (8,'Louise00','Nahay', 'Pelosi','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','LindsyBrown@weboffice.no','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False);
 
+ALTER SEQUENCE users_id_seq RESTART WITH 10;
 
 INSERT INTO "public"."bans" ("id","banned_id","admin","ban_start_date","ban_expiration_date","ban_reason") VALUES (1, 1, 5,'07/02/2001 04:15:00','07/11/2016 09:14:00','6LgRbEbX3RBWeGZsNIhVgaA1bXEdcfTVaNrgkjzYo3wnu8DhLgWSy4faOWd1Y8IuGLCQ2BmbfNdqZNIjwV3DyhvnkPZRlMZXfUykHWN1wY33Eb7zE86hASKPo2tIX0Cpugm1kgarlD3wvr');
 INSERT INTO "public"."bans" ("id","banned_id","admin","ban_start_date","ban_expiration_date","ban_reason") VALUES (2, 1, 5,'06/05/2012 06:13:00',NULL,'bxIYx5OjvL5V6rR4AAKxxDsRuj2hB6wCe11uwNwPgwKo');
+
 
 
 INSERT INTO "public"."emails" ("id","has_been_opened","receiver_id","sender_id") VALUES (6,False, 1, 2);
@@ -129,9 +132,9 @@ INSERT INTO "public"."emails" ("id","has_been_opened","receiver_id","sender_id")
 INSERT INTO "public"."emails" ("id","has_been_opened","receiver_id","sender_id") VALUES (10,True, 5, 1);
 
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (1,'Orange Volkswagen Polo','The Volkswagen Polo is a car produced by the German manufacturer Volkswagen since 1975. It is sold in Europe and other markets worldwide in hatchback, sedan and estate variants. The Polo has been produced in six generations. Related Volkswagen Group models include the Škoda Fabia, SEAT Ibiza and Audi A1.',0,0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '2 days','PayPal','No shipping',494.59,1, 1,1);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Orange Volkswagen Polo','The Volkswagen Polo is a car produced by the German manufacturer Volkswagen since 1975. It is sold in Europe and other markets worldwide in hatchback, sedan and estate variants. The Polo has been produced in six generations. Related Volkswagen Group models include the Škoda Fabia, SEAT Ibiza and Audi A1.',0,0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '2 days','PayPal','No shipping',494.59,1, 1,1);
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (2,'HP Spectre x360 - 15t Touch Laptop','
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('HP Spectre x360 - 15t Touch Laptop','
 Imagination meets the height of performance. This sleek laptop was engineered to deliver incredible graphics and speed to empower you when inspiration strikes. Reinvent your creative process with four unique modes and bring your vision to life with a laptop designed around you.
 The pinnacle of performance
 Whether it''s photo or video editing, rewrite the meaning of speed with unquestionable performance. With a quad-core processor[3] and dedicated graphics. Power through your most demanding days with long-lasting battery life[4] and HP Fast Charge.[5]
@@ -141,13 +144,13 @@ Smart technology. Designed around you.
 We’ve designed this PC around you, with four unique modes that convert from a powerful laptop to get things done to a beautiful canvas in tablet mode. We then added an IR camera and fingerprint reader for easy and secure login.
 ',0,0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '10 hours','PayPal','No shipping',4.63, 1, 2,2);
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (3,'Samsung S8',NULL,0,0,'Used','02/19/2018 10:06:00',CURRENT_TIMESTAMP + '2 months','PayPal','No shipping',269.93, 2, 3,3);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Samsung S8',NULL,0,0,'Used','02/19/2018 10:06:00',CURRENT_TIMESTAMP + '2 months','PayPal','No shipping',269.93, 2, 3,3);
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (4, 'Blue Senheiser heaphones', 'Description number 7219436',0,0,'Used','05/07/2015 08:47:00','08/20/2016 10:51:00','PayPal','No shipping',95704.75, 3, 1,1);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ( 'Blue Senheiser heaphones', 'Description number 7219436',0,0,'Used','05/07/2015 08:47:00','08/20/2016 10:51:00','PayPal','No shipping',95704.75, 3, 1,1);
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (5,'HP 24 inch monitor','FullHD monitor, 24 inches. LCD display',6.37,0,'Used','1/20/2018 01:06:00',CURRENT_TIMESTAMP + '1 month, 10 hours','PayPal','No shipping',NULL, 2, 7,2);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('HP 24 inch monitor','FullHD monitor, 24 inches. LCD display',6.37,0,'Used','1/20/2018 01:06:00',CURRENT_TIMESTAMP + '1 month, 10 hours','PayPal','No shipping',NULL, 2, 7,2);
 
-INSERT INTO "public"."auctions" ("id","item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES (6,'Zo2lhsYyEMylLoYwhrtspCAkN5GSDNbAFZW5yylNX1FUnAJ54LVq8mIii5aKJqa6hfpt68FDkBfygZeaAE666lIMZ7XGQwjOQjzFTD8j1oeOywGOQbiibWJjOJF3ybiwo7hbh1It5dVByUMwFqXcQrCHqJRdfhn6cViVYKsMQjF5K8tnOjxjyQk4ynnOHm5edPpuWkY43RscZCySIWhksrmcmp7fKxB3MSW','This is a description 8815846',0, 0,'Used', '1/16/2018 10:07:00','3/16/2018 10:07:00','PayPal','No shipping',0.15, 4, 3,3);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Zo2lhsYyEMylLoYwhrtspCAkN5GSDNbAFZW5yylNX1FUnAJ54LVq8mIii5aKJqa6hfpt68FDkBfygZeaAE666lIMZ7XGQwjOQjzFTD8j1oeOywGOQbiibWJjOJF3ybiwo7hbh1It5dVByUMwFqXcQrCHqJRdfhn6cViVYKsMQjF5K8tnOjxjyQk4ynnOHm5edPpuWkY43RscZCySIWhksrmcmp7fKxB3MSW','This is a description 8815846',0, 0,'Used', '1/16/2018 10:07:00','3/16/2018 10:07:00','PayPal','No shipping',0.15, 4, 3,3);
 
 
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (1 ,6,123);
