@@ -7,6 +7,7 @@ use App\Auction;
 use App\Category;
 use App\City;
 use Carbon\Carbon;
+use Auth;
 
 
 class AuctionController extends Controller
@@ -77,10 +78,18 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
 
-        return view('pages.auction', [
+        //if(Auth::user()->id == $id){
+        return view('auctions.show_owner', [
             'categories' => $categories,
             'auction' => $auction
         ]);
+        //}
+/*        else{
+            return view('auctions.show', [
+                'categories' => $categories,
+                'auction' => $auction
+            ]);
+        }*/
     }
 
     /**
@@ -91,7 +100,13 @@ class AuctionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $auction = Auction::findOrFail($id);
+
+        return view('auctions.edit', [
+            'categories' => $categories,
+            'auction' => $auction
+        ]);
     }
 
     /**
@@ -103,8 +118,24 @@ class AuctionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate($request, [
+            'title-input' => 'required'
+        ]);
+
+        $auction = Auction::findOrFail($id);;
+        $auction->item_name =  $request->input('title-input');
+        $auction->description = 'The Volkswagen Polo is a car produced by the German manufacturer Volkswagen since 1975. It is sold in Europe and other markets worldwide in hatchback, sedan and estate variants. The Polo has been produced in six generations. Related Volkswagen Group models include the Škoda Fabia, SEAT Ibiza and Audi A1.';
+        $auction->condition = 'Used';
+        $auction->end_date = Carbon::tomorrow();
+        $auction->payment_type ='PayPal';
+        $auction->shipping_options =   'No shipping';
+        $auction->shipping_cost =    494.59;
+        $auction->owner_id =   1;
+        $auction->category_id =  1;
+        $auction->city_id =   1;
+        $auction->save();
+
+        return redirect('/');    }
 
     /**
      * Remove the specified resource from storage.
