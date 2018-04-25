@@ -48,18 +48,20 @@ class AuctionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title-input' => 'required'
+            'title-input' => 'required',
+            'description-input' => 'required'
         ]);
 
         $auction = new Auction;
         $auction->item_name =  $request->input('title-input');
-        $auction->description = 'The Volkswagen Polo is a car produced by the German manufacturer Volkswagen since 1975. It is sold in Europe and other markets worldwide in hatchback, sedan and estate variants. The Polo has been produced in six generations. Related Volkswagen Group models include the Škoda Fabia, SEAT Ibiza and Audi A1.';
-        $auction->condition = 'Used';
+        $auction->description = $request->input('description-input');
+        $auction->condition = $request->input('condition-input');
+        $auction->starting_price = $request->input('price-input');
         $auction->end_date = Carbon::tomorrow();
         $auction->payment_type ='PayPal';
         $auction->shipping_options =   'No shipping';
-        $auction->shipping_cost =    494.59;
-        $auction->owner_id =   1;
+        $auction->shipping_cost = $request->input('shippingPrice-input');
+        $auction->owner_id = Auth::user()->id;
         $auction->category_id =  1;
         $auction->city_id =   1;
         $auction->save();

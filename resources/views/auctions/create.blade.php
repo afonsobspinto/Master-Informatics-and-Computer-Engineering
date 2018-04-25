@@ -34,7 +34,7 @@
                         <option>Clothes</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
 
             <div class="form-group row">
                 <label for="description-input" class="col-3 col-form-label">Description</label>
@@ -55,16 +55,16 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label for="photos-input" class="col-3 col-form-label">Photos</label>
-                <div class="col-9">
-                    <input type="file" class="form-control-file" id="photos-input" name="photos-input" multiple required>
-                </div>
-            </div>
-        </form>
+            {{--<div class="form-group row">
+               <label for="photos-input" class="col-3 col-form-label">Photos</label>
+               <div class="col-9">
+                   <input type="file" class="form-control-file" id="photos-input" name="photos-input" multiple required>
+               </div>
+           </div>
+       </form>
 
-        <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
-        <form>
+       <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
+       <form>--}}
             <div class="form-group row">
                 <label for="price-input" class="col-3 col-form-label">Starting price</label>
                 <div class="col-9 input-group">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            {{--<div class="form-group row">
                 <label for="duration-input" class="col-3 col-form-label">End of auction</label>
                 <div class="col-9 input-group">
                     <input class="form-control" type="datetime-local" placeholder="mm/dd/yyyy, --:-- --"
@@ -128,9 +128,9 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div>--}}
 
-            <div class="form-group row">
+            {{--<div class="form-group row">
                 <label for="returns-input" class="col-3 col-form-label">Return options</label>
                 <div class="col-9 input-group" id="returns-input">
                     <div class="form-check">
@@ -169,38 +169,37 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </form>
-        <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
-        <form>
-            <div class="form-group row">
-                <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
-                <div class="col-9 input-group" id="shipping-input">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping"
-                               value="domesticShipping">
-                        <label class="form-check-label" for="domesticShipping">
-                            Domestic shipping
-                        </label>
+            {{--</form>
+            <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
+            <form>
+                <div class="form-group row">
+                    <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
+                    <div class="col-9 input-group" id="shipping-input">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping"
+                                   value="domesticShipping">
+                            <label class="form-check-label" for="domesticShipping">
+                                Domestic shipping
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="internationalShipping"
+                                   id="internationalShipping"
+                                   value="internationalShipping">
+                            <label class="form-check-label" for="internationalShipping">
+                                International Shipping
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
+                                   value="localPickup">
+                            <label class="form-check-label" for="localPickup">
+                                No shipping: Local pickup only
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="internationalShipping"
-                               id="internationalShipping"
-                               value="internationalShipping">
-                        <label class="form-check-label" for="internationalShipping">
-                            International Shipping
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
-                               value="localPickup">
-                        <label class="form-check-label" for="localPickup">
-                            No shipping: Local pickup only
-                        </label>
-                    </div>
-                </div>
-            </div>
+                </div>--}}
 
 
             <div class="form-group row">
@@ -223,7 +222,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            {{--<div class="form-group row">
                 <label for="location-input" class="col-3 col-form-label">Item location</label>
                 <div class="col-9 input-group">
                     <select class="form-control" type="text" placeholder="Item location" id="location-input" name="location-input" required>
