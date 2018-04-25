@@ -8,10 +8,6 @@
 @endsection
 
 @section('content')
-<!doctype html>
-<html lang="en">
-
-<div class="container">
 
     <!--  <video width="1000" height="600" autoplay id="commercial">
           <source src="../../../public/media/commercial.mp4" type="video/mp4">
@@ -42,8 +38,4 @@
           </div>
       </div>
 
-  </div>
-
-
-
-  @endsection
+@endsection

@@ -8,10 +8,6 @@
 @endsection
 
 @section('content')
-<!doctype html>
-<html lang="en">
-
-<div class="container">
 
     <h3 class="border-bottom pb-1 mb-5 mt-5">Frequently Asked Questions (FAQ): </h3>
 
@@ -128,11 +124,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
-</div>
 
 @endsection

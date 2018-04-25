@@ -108,7 +108,6 @@ INSERT INTO "public"."cities" ("id","city","country_id") VALUES (10,'BUDAPEST',6
 
 
 -- ALL passwords are '123456'
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (9,'afonso','afonso', 'pinto','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','afonso@gmail.com','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True);
 INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (1,'a','Ross',NULL,'$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','a@a.a','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True);
 INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (2,'Mads9','Marie','Katsekes','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Mick.Byrnes5@telfort.cc','42767','8 Brooke Valley Drive','06/25/2013 03:26:00', 1,1.1,FALSE);
 INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (3,'Richard889',NULL,'Morton','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Dave.Petterson@dolfijn.dk','84063',NULL,NULL, 1,4.01,True);
@@ -118,11 +117,8 @@ INSERT INTO "public"."users" ("id","username","first_name","last_name","password
 INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (7,'Tim16',NULL,'Bernstein','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Trees.King@hotmail.gov','94588','991 East MacArthur','11/29/2006 04:42:00', 3,4.91,FALSE);
 INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (8,'Louise00','Nahay', 'Pelosi','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','LindsyBrown@weboffice.no','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False);
 
-ALTER SEQUENCE users_id_seq RESTART WITH 10;
-
 INSERT INTO "public"."bans" ("id","banned_id","admin","ban_start_date","ban_expiration_date","ban_reason") VALUES (1, 1, 5,'07/02/2001 04:15:00','07/11/2016 09:14:00','6LgRbEbX3RBWeGZsNIhVgaA1bXEdcfTVaNrgkjzYo3wnu8DhLgWSy4faOWd1Y8IuGLCQ2BmbfNdqZNIjwV3DyhvnkPZRlMZXfUykHWN1wY33Eb7zE86hASKPo2tIX0Cpugm1kgarlD3wvr');
 INSERT INTO "public"."bans" ("id","banned_id","admin","ban_start_date","ban_expiration_date","ban_reason") VALUES (2, 1, 5,'06/05/2012 06:13:00',NULL,'bxIYx5OjvL5V6rR4AAKxxDsRuj2hB6wCe11uwNwPgwKo');
-
 
 
 INSERT INTO "public"."emails" ("id","has_been_opened","receiver_id","sender_id") VALUES (6,False, 1, 2);

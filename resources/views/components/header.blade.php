@@ -30,11 +30,11 @@
     </a>
     <div class="dropdown" id="authentication">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-            {{ Auth::user()->email }} <span class="caret"></span>
+            {{ Auth::user()->username }} <span class="caret"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            @if(false)
+            @if(Auth::user()->is_administrator)
             {{-- TODO check if user is admin HERE--}}
             <a class="dropdown-item" href="../report.html">User Reports</a>
             @else(false)

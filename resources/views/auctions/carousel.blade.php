@@ -5,7 +5,7 @@
         @php ($activeItem = "active")
         @foreach($displayAuctions as $auction)
         <div class="carousel-item {{ $activeItem }}">
-            <a href="../auction/auction.html">
+            <a href="{{ url("auctions/{$auction->id}") }}">
                 <img class="d-block " src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
                 <div class="carousel-caption d-md-block">
                     <h3>
