@@ -38,7 +38,7 @@
             {{-- TODO check if user is admin HERE--}}
             <a class="dropdown-item" href="../report.html">User Reports</a>
             @else(false)
-            <a class="dropdown-item" href="../sell_page.html">New Auction</a>
+            <a class="dropdown-item" href="../auctions/create">New Auction</a>
             @endif
             <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
