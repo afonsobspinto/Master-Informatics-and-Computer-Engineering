@@ -77,7 +77,7 @@
 
                     @if(Auth::check())
                         @if(Auth::user()->isAuctionOwner($auction))
-                            <a href="edit_page_asAuctioneer.html" class="btn btn-primary ">Edit Auction</a>
+                            <a href="/auctions/{{$auction->id}}/edit" class="btn btn-primary ">Edit Auction</a>
                             <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">Remove Auction</a>
                             {{-- delete auction modal --}}
                             <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"

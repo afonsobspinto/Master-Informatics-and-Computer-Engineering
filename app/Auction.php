@@ -62,4 +62,10 @@ class Auction extends Model
         return Auction::leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
             ->where('closed_auctions.id', '=', null)->where('end_date', '>', 'now()')->select('*', 'auctions.id as id');
     }
+
+    public static function create(array $data) {
+        DB::table('auctions')->insert(
+            $data
+        );
+    }
 }
