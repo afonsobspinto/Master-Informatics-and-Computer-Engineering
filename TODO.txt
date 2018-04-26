@@ -10,7 +10,7 @@ Create Symbol Tables (with the following details):
 
 	- Criar class Symbol Table -> hashmap (String, Descriptor[Type, scope]) 
 
-	---- Um colega meu deu-me sugestão: hashmap([type, name], [type, name, variavel inicializada ou nao]). Para as funcoes, cria-se uma symbol tale -> hashmap (FunctionName, FunctionObject). FunctionObject-> hashmap de todas as variaveis (hashmap igual ao primeiro). ----
+	---- Um colega meu deu-me sugestão: hashmap(name, [type, name, variavel inicializada ou nao]). Para as funcoes, cria-se uma symbol tale -> hashmap (FunctionName, FunctionObject). FunctionObject-> hashmap de todas as variaveis (hashmap igual ao primeiro). ----
 
 	- 2 Tipos -> Integer e Array
 

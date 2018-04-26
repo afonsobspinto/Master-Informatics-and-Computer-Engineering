@@ -12,10 +12,15 @@ PARSER_BEGIN(Parser)
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
+import java.util.LinkedHashMap;
 
 public class Parser {
 
     static int errors = 0;
+   
+    public static final LinkedHashMap<String, Descriptor> globals = new LinkedHashMap<String, Descriptor>();
+    public static final LinkedHashMap<String, FunctionObject> functions = new LinkedHashMap<String, FunctionObject>();
+    //É PRECISO CRIAR UMA CLASSE FUNCTION, QUE TEM UM HASHMAP DE HASHMAPS, E QUE TBM TEM O RETURN DA FUNCTION.
 
     public static void main(String args[]) throws ParseException, FileNotFoundException {
 
