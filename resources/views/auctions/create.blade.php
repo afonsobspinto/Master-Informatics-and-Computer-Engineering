@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            <div class="form-group row">
                 <label for="duration-input" class="col-3 col-form-label">End of auction</label>
                 <div class="col-9 input-group">
                     <input class="form-control" type="datetime-local" placeholder="mm/dd/yyyy, --:-- --"
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            {{--<div class="form-group row">
                 <label for="payment-input" class="col-3 col-form-label">Payment options</label>
                 <div class="col-9 input-group" id="payment-input" name="payment-input">
                     <div class="form-check">
