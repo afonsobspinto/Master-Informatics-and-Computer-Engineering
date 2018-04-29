@@ -3,6 +3,7 @@
 jjtree ../src/Parser.jjt
 javacc Parser.jj
 javac  -d ../out *.java
-mv *.java ../out
-mv *.jj ../out
-cp ../src/*.java ../out
+mv -f *.java ../out
+mv -f *.jj ../out
+/bin/cp -rf ../src/*.java ../out
+/bin/cp -rf ../src/*.class ../out
