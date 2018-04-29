@@ -5,4 +5,4 @@ javacc Parser.jj
 javac  -d ../out *.java
 mv *.java ../out
 mv *.jj ../out
-cp ../src/SimpleNode.java ../out
+cp ../src/*.java ../out
