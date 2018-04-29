@@ -20,7 +20,7 @@ public class Parser {
    
     public static final LinkedHashMap<String, Descriptor> globals = new LinkedHashMap<String, Descriptor>();
     public static final LinkedHashMap<String, FunctionObject> functions = new LinkedHashMap<String, FunctionObject>();
-    //É PRECISO CRIAR UMA CLASSE FUNCTION, QUE TEM UM HASHMAP DE HASHMAPS, E QUE TBM TEM O RETURN DA FUNCTION.
+    //TODO: É PRECISO CRIAR UMA CLASSE FUNCTION, QUE TEM UM HASHMAP DE HASHMAPS, E QUE TBM TEM O RETURN DA FUNCTION.
 
     public static void main(String args[]) throws ParseException, FileNotFoundException {
 

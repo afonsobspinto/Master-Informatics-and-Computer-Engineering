@@ -1,4 +1,4 @@
-package src;
+package src.symboltable;
 
 public class SymbolTableConstructor {
 
