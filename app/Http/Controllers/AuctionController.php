@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Auction;
-
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Access\AuthorizationException;
-
-
 use App\Category;
 use App\City;
 use Carbon\Carbon;
+use Auth;
 
 
 class AuctionController extends Controller
@@ -54,22 +49,29 @@ class AuctionController extends Controller
     {
         $this->validate($request, [
             'title-input' => 'required',
-            'description-input' => 'required'
+            'condition-input' => 'required',
+            'price-input' => 'required',
+            'duration-input' => 'required'
         ]);
 
-        $auction = new Auction;
-        $auction->item_name =  $request->input('title-input');
-        $auction->description = $request->input('description-input');
-        $auction->condition = $request->input('condition-input');
-        $auction->starting_price = $request->input('price-input');
-        $auction->end_date = Carbon::tomorrow();
-        $auction->payment_type ='PayPal';
-        $auction->shipping_options =   'No shipping';
-        $auction->shipping_cost = $request->input('shippingPrice-input');
-        $auction->owner_id = Auth::user()->id;
-        $auction->category_id =  1;
-        $auction->city_id =   1;
-        $auction->save();
+        try {
+            $auction = new Auction;
+            $auction->item_name = $request->input('title-input');
+            $auction->description = $request->input('description-input');
+            $auction->condition = $request->input('condition-input');
+            $auction->starting_price = $request->input('price-input');
+            $auction->end_date = $request->input('duration-input');
+            $auction->payment_type = 'PayPal';
+            $auction->shipping_options = 'No shipping';
+            $auction->shipping_cost = $request->input('shippingPrice-input');
+            $auction->owner_id = Auth::user()->id;
+            $auction->category_id = 1;
+            $auction->city_id = 1;
+            $auction->save();
+        }
+        catch (\Exception $e){
+            return response()->json('Invalid Store', 400);
+        }
 
         return redirect('/');
     }
@@ -121,21 +123,26 @@ class AuctionController extends Controller
             'title-input' => 'required'
         ]);
 
-        $auction = Auction::findOrFail($id);
-        $auction->item_name =  $request->input('title-input');
-        $auction->description = 'The Volkswagen Polo is a car produced by the German manufacturer Volkswagen since 1975. It is sold in Europe and other markets worldwide in hatchback, sedan and estate variants. The Polo has been produced in six generations. Related Volkswagen Group models include the Škoda Fabia, SEAT Ibiza and Audi A1.';
-        $auction->condition = 'Used';
-        $auction->end_date = Carbon::tomorrow();
-        $auction->payment_type ='PayPal';
-        $auction->shipping_options =   'No shipping';
-        $auction->shipping_cost =    494.59;
-        $auction->owner_id =   1;
-        $auction->category_id =  1;
-        $auction->city_id =   1;
-        $auction->save();
+        try {
+            $auction = Auction::findOrFail($id);;
+            $auction->item_name = $request->input('title-input');
+            $auction->description = $request->input('description-input');
+            $auction->condition = $request->input('condition-input');
+            $auction->starting_price = $request->input('price-input');
+            $auction->end_date = Carbon::tomorrow();
+            $auction->payment_type = 'PayPal';
+            $auction->shipping_options = 'No shipping';
+            $auction->shipping_cost = $request->input('shippingPrice-input');
+            $auction->owner_id = Auth::user()->id;;
+            $auction->category_id = 1;
+            $auction->city_id = 1;
+            $auction->save();
+        }
+        catch (\Exception $e){
+            return response()->json('Invalid Update', 400);
+        }
 
-        return redirect('/');
-    }
+        return redirect('/');    }
 
     /**
      * Remove the specified resource from storage.
