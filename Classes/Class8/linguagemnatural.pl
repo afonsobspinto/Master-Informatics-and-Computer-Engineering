@@ -26,7 +26,7 @@ nome(p-m, gatos) --> [gatos].
 nome(s-m, cao) --> [cao].
 nome(s-m, gato) --> [gato].
 nome(s-m, futebol) --> [futebol].
-nome(p-m, morangos) --> [morangos].
+nome(p-m, morango) --> [morangos].
 nome(p-m, amendoins) --> [amendoins].
 nome(p-m, bolachas) --> [bolachas].
 nome(p-m, humanos) --> [humanos].
@@ -67,7 +67,8 @@ gostar(gato, bolacha).
 
 comer(elefante, amendoim).
 
-ser(rui, rapaz).
+ser(rui, rapazes).
+ser(luis, rapazes).
 ser(X, humano) :- humano(X).
 
 
@@ -100,9 +101,23 @@ concorda_frase(A, S, Ob):-
 
 
 %8.2
-frase_i(Q, A, At, Ob) --> si(N, Q, At), sv(N,A,Ob,_).
-si(N, Q, At) --> pron_inter(N-G, Q), sni(N-G, At).
-si(N, Q, _) --> pron_inter(N-_, Q).
+frase_i(Q,A,At,Ob) --> si(N,Q,At), sv(N,A,Ob,_).
+si(N,Q,At) --> pron_inter(N-G,Q), sni(N-G,At).
+si(N,Q,_) --> pron_inter(N-_,Q).
 
-sni(N-G, At) --> determinante(N-G), nome(N-G,At), [que].
-sni(N-G, At) --> nome(N-G,At).
+sni(N-G,At) --> determinante(N-G), nome(N-G,At), [que].
+sni(N-G,At) --> nome(N-G,At).
+
+responde(Q,A,At,Ob):-
+				var(At),
+				P =.. [A,S,Ob],
+				findall(S,P,L),
+				(Q=ql,!,write(L);
+					length(L,N),write(N)).
+
+responde(Q,A,At,Ob):-
+				nonvar(At),
+				P =.. [A,S,Ob],
+				findall(S, (P,ser(S, At)), L),
+				(Q=ql,!,write(L);
+					length(L,N),write(N)).
