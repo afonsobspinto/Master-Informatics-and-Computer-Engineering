@@ -25,6 +25,12 @@
                 </div>
             </div>
 
+            <div class="text-right mb-3 mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a type="button" class="btn btn-secondary" href="auction_asAuctioneer.html">Cancel</a>
+            </div>
+
+        </form>
             {{--<div class="form-group row">
                 <label for="category-input" class="col-3 col-form-label">Category</label>
                 <div class="col-9">
@@ -35,18 +41,18 @@
                         <option>Clothes</option>
                     </select>
                 </div>
-            </div>--}}
+            </div>
             <div class="form-group row">
                 <label for="description-input" class="col-3 col-form-label">Description</label>
                 <div class="col-9">
-                    <input class="form-control" type="text" value="{{$auction->description}} " name="description-input" id="description-input" required>
+                    <input class="form-control" type="text" value="Ultrabook with the powerful Intel i7-7700HQ Quad Core CPU with NVIDIA GTX 1050 Gaming graphics Card. " id="description-input" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="condition-input" class="col-3 col-form-label">Condition</label>
                 <div class="col-9">
-                    <select class="form-control" name="condition-input" id="condition-input">
+                    <select class="form-control" id="condition-input">
                         <option hidden> -</option>
                         <option selected>New</option>
                         <option>Used</option>
@@ -55,7 +61,7 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            <div class="form-group row">
                 <label class="col-3 col-form-label">Photos</label>
 
                 <div class="photos col-8">
@@ -82,23 +88,27 @@
                         <input type="file" class="form-control-file mt-3" id="photos-input" multiple required>
                     </div>
                 </div>
-            </div>--}}
+            </div>
 
+        </form>
+
+        <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
+        <form>
             <div class="form-group row">
                 <label for="price-input" class="col-3 col-form-label">Starting price</label>
                 <div class="col-9 input-group">
-                    <input class="form-control" type="number" value="{{$auction->starting_price}}"
-                           aria-label="Amount (to the nearest euro)" name="price-input" id="price-input" required disab>
+                    <input class="form-control" type="number" value="1600.00"
+                           aria-label="Amount (to the nearest euro)" id="price-input" required disab>
                     <div class="input-group-append">
                         <span class="input-group-text">€</span>
                     </div>
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            <div class="form-group row">
                 <label for="duration-input" class="col-3 col-form-label">End of auction</label>
                 <div class="col-9 input-group">
-                    <input class="form-control" type="datetime-local" value="{{$auction->duration}}"
+                    <input class="form-control" type="datetime-local" value="03/16/2018, 00:31 AM"
                            id="duration-input" required>
                 </div>
             </div>
@@ -180,8 +190,10 @@
                     </div>
                 </div>
 
-            </div> --}}
-
+            </div>
+        </form>
+        <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
+        <form>
             <div class="form-group row">
                 <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
                 <div class="col-9 input-group" id="shipping-input">
@@ -212,8 +224,8 @@
             <div class="form-group row">
                 <label for="shippingPrice-input" class="col-3 col-form-label">Cost</label>
                 <div class="col-9 input-group">
-                    <input class="form-control" type="number" value="{{$auction->shipping_cost}}"
-                           aria-label="Amount (to the nearest euro)" name="shippingPrice-input" id="shippingPrice-input">
+                    <input class="form-control" type="number" value="0"
+                           aria-label="Amount (to the nearest euro)" id="shippingPrice-input">
                     <div class="input-group-prepend">
                         <span class="input-group-text">€</span>
                     </div>
@@ -225,48 +237,28 @@
                 </div>
             </div>
 
-            <div class="text-right mb-3 mt-3">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a type="button" class="btn btn-secondary" href="auction_asAuctioneer.html">Cancel</a>
+            <div class="form-group row">
+                <label for="location-input" class="col-3 col-form-label">Item location</label>
+                <div class="col-9">
+                    <input class="form-control" type="text" value="Henan, China" id="location-input" required>
+                </div>
             </div>
-
 
         </form>
-        {{--
 
+        <form>
+            <h2 class="border-bottom pb-1 mb-4 h4">Q&A</h2>
 
-    </form>
-
-    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
-    <form>
-
-
-    </form>
-    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
-    <form>
-
-        <div class="form-group row">
-            <label for="location-input" class="col-3 col-form-label">Item location</label>
-            <div class="col-9">
-                <input class="form-control" type="text" value="Henan, China" id="location-input" required>
+            <div class="form-group row">
+                <dt class="col-sm-4 text-align-center mobile-text-center">Does it come with a fingerprint reader?</dt>
+                <input class="col-sm-8 form-control" type="text" value="Nope :-)">
             </div>
-        </div>
-
-    </form>
-
-    <form>
-        <h2 class="border-bottom pb-1 mb-4 h4">Q&A</h2>
-
-        <div class="form-group row">
-            <dt class="col-sm-4 text-align-center mobile-text-center">Does it come with a fingerprint reader?</dt>
-            <input class="col-sm-8 form-control" type="text" value="Nope :-)">
-        </div>
-        <div class="form-group row">
-            <dt class="col-sm-4 text-align-center mobile-text-center">Are you able to deliver this with portuguese keyboard layout?</dt>
-            <input class="col-sm-8 form-control" type="text" value="Yes we can delivery with Portuguese keyboard layout.">
-        </div>
-    </form>
-    --}}
+            <div class="form-group row">
+                <dt class="col-sm-4 text-align-center mobile-text-center">Are you able to deliver this with portuguese keyboard layout?</dt>
+                <input class="col-sm-8 form-control" type="text" value="Yes we can delivery with Portuguese keyboard layout.">
+            </div>
+        </form>
+--}}
 
 
     </div><!-- end container -->
