@@ -17,24 +17,28 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-align-center mobile-text-center">
-
-                    {{-- images carousel --}}
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @php ($activeItem = "active")
-                            @for($i = 0; $i < $auction->getNumImages(); $i++)
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{{ $activeItem }}"></li>
-                            @php ($activeItem = "")
-                            @endfor
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                        @foreach($auction->getImagesURLs() as $imageURL)
                             <div class="carousel-item active">
                                 <img class="d-block w-100"
-                                     src="{{ $imageURL }}"
-                                     alt="image slide">
+                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                                     alt="First slide">
                             </div>
-                        @endforeach
+                            <div class="carousel-item">
+                                <img class="d-block w-100"
+                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                                     alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100"
+                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
+                                     alt="Third slide">
+                            </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                            data-slide="prev">
@@ -47,13 +51,12 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-
                     <span class="display-4 title">{{ $auction->item_name }}</span>
                     <span class="badge badge-primary">Tech</span>
                     <span class="badge badge-info">New</span>
                     <a href="auction_itemOnWatchList.html" class="far fa-star text-warning " aria-hidden="true" title="Add to Watchlist"></a>
                 </div>
-            </div>
+            </div><!-- end row-->
         </div>
 
         {{-- auction owner 'card' --}}
@@ -156,50 +159,50 @@
                                    data-target="#exampleModal">Report Account</a>
                             </div>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <div>
-                                                    <h5 style="color:brown"> Motive</h5>
-                                                    <div class="radio">
-                                                        <label><input type="radio"
-                                                                      name="behaviour"> Abusive behaviour </label>
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <h5 style="color:brown"> Motive</h5>
+                                                        <div class="radio">
+                                                            <label><input type="radio"
+                                                                          name="behaviour"> Abusive behaviour </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="content">Inappropriate content in
+                                                                profile </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio"
+                                                                          name="optradio">Didn't receive an item</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="radio">
-                                                        <label><input type="radio" name="content">Inappropriate content in
-                                                            profile </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label><input type="radio"
-                                                                      name="optradio">Didn't receive an item</label>
-                                                    </div>
+                                                    <label for="recipient-name" class="col-form-label">Other:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
                                                 </div>
-                                                <label for="recipient-name" class="col-form-label">Other:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Message:</label>
-                                                <textarea class="form-control" id="message-text"></textarea>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close
-                                        </button>
-                                        <button type="button" class="btn btn-primary report">Report</button>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Message:</label>
+                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary report">Report</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         @endif
                     @endif
