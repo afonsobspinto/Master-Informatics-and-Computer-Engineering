@@ -12,7 +12,7 @@ A repository to host COMP project
 ## Checkpoint 2
 
 4. Change grammar to work only with LL(1).
-5. Include error treatment and recovery mechanisms -> Deep Error Recovery (aborted by teacher suggestion due to time management problems).
+5. Include error treatment and recovery mechanisms -> Deep Error Recovery. (aborted by teacher suggestion due to time management problems)
 6. Improve AST.
 7. Create a symbol table using the Visitor Pattern.
 8. Add fully Semantic Analysis.
