@@ -2,6 +2,7 @@
 module array1
 {
 
+t=1;
 
   function print_array(N)
   {

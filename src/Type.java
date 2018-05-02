@@ -1,4 +1,3 @@
-package src.symboltable.utilities;
 
 import java.util.HashMap;
 
