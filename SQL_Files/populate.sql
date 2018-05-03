@@ -95,16 +95,20 @@ INSERT INTO "public"."reports" ("id") VALUES (4);
 INSERT INTO "public"."reports" ("id") VALUES (5);
 
 
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (1,'Nizhny Novgorod', 1);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (2,'Weifang', 1);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (3,'Taiyuan',2);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (4,'Dallas (TX)',3);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (5,'TEHRAN',4);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (6,'Pueblade Zaragoza',4);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (7,'Quezon City',5);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (8,'Fulin',5);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (9,'Kunming',5);
-INSERT INTO "public"."cities" ("id","city","country_id") VALUES (10,'BUDAPEST',6);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Nizhny Novgorod', 1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Weifang', 1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Taiyuan',2);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Dallas (TX)',3);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('TEHRAN',4);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Pueblade Zaragoza',4);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Quezon City',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Fulin',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Kunming',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('BUDAPEST',6);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Lisbon',14);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Faro',14);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Porto',14);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Braga',14);
 
 
 -- ALL passwords are '123456'
