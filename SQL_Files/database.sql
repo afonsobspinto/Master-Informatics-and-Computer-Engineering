@@ -36,7 +36,7 @@ CREATE TABLE "users" (
     username varchar(50),
     first_name varchar(50),
     last_name varchar(50),
-    password text NOT NULL,
+    password varchar(256) NOT NULL,
     email varchar(50) NOT NULL UNIQUE,
     zip_code varchar(25),
     address varchar(200),
@@ -75,8 +75,8 @@ CREATE TABLE bans (
     id serial PRIMARY KEY,
     banned_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
     admin integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP,
-    ban_expiration_date timestamp CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
+    "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL ,
+    ban_expiration_date timestamp  NOT NULL CONSTRAINT banExpiration_ck CHECK (ban_expiration_date > "ban_start_date"),
     ban_reason text NOT NULL
 );
 

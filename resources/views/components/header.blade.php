@@ -18,7 +18,7 @@
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
         </div>
     </form>
-    @if(Auth::check())
+    @auth
     {{--logged in user--}}
     <!-- authentication links -->
     <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
@@ -34,10 +34,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            @if(Auth::user()->is_administrator)
-            {{-- TODO check if user is admin HERE--}}
+            @if(Auth::user()->isAdmin())
             <a class="dropdown-item" href="../report.html">User Reports</a>
-            @else(false)
+            @elseif(Auth::user()->isRegular())
             <a class="dropdown-item" href="../auctions/create">New Auction</a>
             @endif
             <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
@@ -45,8 +44,7 @@
                         class="got-messages">27</strong>
             </a>
             <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
             </a>
 
@@ -55,7 +53,8 @@
             </form>
         </div>
     </div>
-    @else
+    @endauth
+    @guest
     {{--not logged in user--}}
     <!-- mobile authentication button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#authentication">
@@ -72,5 +71,5 @@
             </li>
         </ul>
     </div>
-    @endif
+    @endauth
 </nav>
