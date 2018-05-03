@@ -76,7 +76,8 @@ class RegisterController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'zip_code' => 'required|string',
-            'address' => 'required|string'
+            'address' => 'required|string',
+            'city' => 'required|integer',
         ]);
     }
 
@@ -96,6 +97,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'zip_code' => $data['zip_code'],
             'address' => $data['address'],
+            'location' => $data['city'],
         ]);
     }
 }

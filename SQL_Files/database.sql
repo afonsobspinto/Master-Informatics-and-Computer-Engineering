@@ -44,9 +44,7 @@ CREATE TABLE "users" (
     location integer REFERENCES cities(id) ON UPDATE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
     is_administrator boolean DEFAULT false,
-    remember_token character varying(100),
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    remember_token character varying(100)
 );
 
 CREATE TABLE auctions (
