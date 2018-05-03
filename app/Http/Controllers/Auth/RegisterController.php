@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'zip_code' => 'required|string',
+            'zip_code' => 'required|string|regex:/^[\da-zA-Z]+([ -][\da-zA-Z]+)?$/', //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes
             'address' => 'required|string',
             'city' => 'required|integer',
         ]);
@@ -95,7 +95,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'zip_code' => $data['zip_code'],
+            'zip_code' => strtoupper($data['zip_code']),
             'address' => $data['address'],
             'location' => $data['city'],
         ]);

@@ -81,6 +81,11 @@
                 <div class="form-group col-md-4">
                     <label for="zip_code">Zip-code:</label>
                     <input type="text" class="form-control" id="zip_code" name="zip_code" aria-describedby="zip_code" required>
+                    @if ($errors->has('zip_code'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('zip_code') }}</strong>
+                    </span>
+                    @endif
                 </div>
 
             </div>
