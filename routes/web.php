@@ -29,6 +29,8 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 
 Route::resource('auctions', 'AuctionController');
 
+//
+Route::resource('messages', 'MessageController');
 
 
 
@@ -42,4 +44,4 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
