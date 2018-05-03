@@ -30,7 +30,8 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 Route::resource('auctions', 'AuctionController');
 
 
-
+// profile
+Route::resource('profile', 'ProfileController');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -42,4 +43,4 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
