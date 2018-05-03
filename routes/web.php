@@ -24,6 +24,9 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 // auctions
 Route::resource('auctions', 'AuctionController');
 
+//profile
+Route::resource('profile', 'ProfileController');
+
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -33,6 +36,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
 
 //other API
 Route::get('country/{id}/cities', 'CountryController@getCities')->where('id', '[0-9]+');

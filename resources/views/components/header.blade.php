@@ -39,7 +39,7 @@
             @elseif(Auth::user()->isRegular())
             <a class="dropdown-item" href="../auctions/create">New Auction</a>
             @endif
-            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            <a class="dropdown-item" href="{{ url('/profile') }}">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>
