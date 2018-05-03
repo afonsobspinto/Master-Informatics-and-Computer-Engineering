@@ -2,6 +2,7 @@
 
 @section('resources')
     @parent
+    <script src="{{ asset('js/profile_edit.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
 @endsection
 
@@ -61,7 +62,7 @@
                 <div class="form-group col-6 col-md-4">
                     <label for="country">Country:</label>
                     <select class="form-control" id="country" name="country" aria-describedby="Country" required>
-                        <option selected value="">All Countries</option>
+                        <option value="" selected>All Countries</option>
                         @foreach($countries as $country)
                             <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
                         @endforeach
@@ -71,10 +72,6 @@
                 <div class="form-group col-6 col-md-4">
                     <label for="city">City:</label>
                     <select class="form-control" id="city" name="city" aria-describedby="City" required>
-                        <option selected value="">All Cities</option>
-                        @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ ucfirst($city->city) }}</option>
-                        @endforeach
                     </select>
                 </div>
 

@@ -52,12 +52,11 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $categories = Category::all();
-        $countries = Country::all();
+        $countries = Country::allOrderedCountries();
         $cities = City::all();
         return view('auth.register', [
             'categories' => $categories,
             'countries' => $countries,
-            'cities' => $cities,
         ]);
     }
 

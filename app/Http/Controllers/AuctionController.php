@@ -143,7 +143,8 @@ class AuctionController extends Controller
             return response()->json('Invalid Update', 400);
         }
 
-        return redirect('/');    }
+        return redirect('/');
+    }
 
     /**
      * Remove the specified resource from storage.

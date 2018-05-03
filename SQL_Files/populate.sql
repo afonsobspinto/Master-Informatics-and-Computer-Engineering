@@ -24,56 +24,36 @@ INSERT INTO "public"."categories" ("id","name") VALUES (6,'computer');
 INSERT INTO "public"."categories" ("id","name") VALUES (7,'monitor');
 INSERT INTO "public"."categories" ("id","name") VALUES (8,'television');
 
-INSERT INTO "public"."countries" ("id","country") VALUES (1,'Kiribati');
-INSERT INTO "public"."countries" ("id","country") VALUES (2,'French Southern Territories');
-INSERT INTO "public"."countries" ("id","country") VALUES (3,'Ghana');
-INSERT INTO "public"."countries" ("id","country") VALUES (4,'Belize');
-INSERT INTO "public"."countries" ("id","country") VALUES (5,'Ethiopia');
-INSERT INTO "public"."countries" ("id","country") VALUES (6,'Hungary');
-INSERT INTO "public"."countries" ("id","country") VALUES (7,'United Arab Emirates');
-INSERT INTO "public"."countries" ("id","country") VALUES (8,'Nigeria');
-INSERT INTO "public"."countries" ("id","country") VALUES (9,'Suriname');
-INSERT INTO "public"."countries" ("id","country") VALUES (10,'S. Georgia and S. Sandwich Isls.');
-INSERT INTO "public"."countries" ("id","country") VALUES (11,'Iran');
-INSERT INTO "public"."countries" ("id","country") VALUES (12,'Malta');
-INSERT INTO "public"."countries" ("id","country") VALUES (13,'Gambia');
-INSERT INTO "public"."countries" ("id","country") VALUES (14,'Portugal');
-INSERT INTO "public"."countries" ("id","country") VALUES (15,'Lebanon');
-INSERT INTO "public"."countries" ("id","country") VALUES (16,'Netherlands');
-INSERT INTO "public"."countries" ("id","country") VALUES (17,'Kiribati');
-INSERT INTO "public"."countries" ("id","country") VALUES (18,'Italy');
-INSERT INTO "public"."countries" ("id","country") VALUES (19,'Mozambique');
-INSERT INTO "public"."countries" ("id","country") VALUES (20,'Heard and McDonald Islands');
-INSERT INTO "public"."countries" ("id","country") VALUES (21,'Brazil');
-INSERT INTO "public"."countries" ("id","country") VALUES (22,'Egypt');
-INSERT INTO "public"."countries" ("id","country") VALUES (23,'United States of America');
-INSERT INTO "public"."countries" ("id","country") VALUES (24,'France');
-INSERT INTO "public"."countries" ("id","country") VALUES (25,'Monaco');
-INSERT INTO "public"."countries" ("id","country") VALUES (26,'French Southern Territories');
-INSERT INTO "public"."countries" ("id","country") VALUES (27,'United Arab Emirates');
-INSERT INTO "public"."countries" ("id","country") VALUES (28,'Syria');
-INSERT INTO "public"."countries" ("id","country") VALUES (29,'Germany');
-INSERT INTO "public"."countries" ("id","country") VALUES (30,'Nicaragua');
-INSERT INTO "public"."countries" ("id","country") VALUES (31,'France');
-INSERT INTO "public"."countries" ("id","country") VALUES (32,'US Minor Outlying Islands');
-INSERT INTO "public"."countries" ("id","country") VALUES (33,'Russia');
-INSERT INTO "public"."countries" ("id","country") VALUES (34,'Mali');
-INSERT INTO "public"."countries" ("id","country") VALUES (35,'China');
-INSERT INTO "public"."countries" ("id","country") VALUES (36,'Finland');
-INSERT INTO "public"."countries" ("id","country") VALUES (37,'Japan');
-INSERT INTO "public"."countries" ("id","country") VALUES (38,'Cameroon');
-INSERT INTO "public"."countries" ("id","country") VALUES (39,'Virgin Islands (U.S.)');
-INSERT INTO "public"."countries" ("id","country") VALUES (40,'Russian Federation');
-INSERT INTO "public"."countries" ("id","country") VALUES (41,'Ghana');
-INSERT INTO "public"."countries" ("id","country") VALUES (42,'Honduras');
-INSERT INTO "public"."countries" ("id","country") VALUES (43,'Aruba');
-INSERT INTO "public"."countries" ("id","country") VALUES (44,'Botswana');
-INSERT INTO "public"."countries" ("id","country") VALUES (45,'Zimbabwe');
-INSERT INTO "public"."countries" ("id","country") VALUES (46,'Cote D''Ivoire (Ivory Coast)');
-INSERT INTO "public"."countries" ("id","country") VALUES (47,'Bahrain');
-INSERT INTO "public"."countries" ("id","country") VALUES (48,'Guatemala');
-INSERT INTO "public"."countries" ("id","country") VALUES (49,'Canada');
-INSERT INTO "public"."countries" ("id","country") VALUES (50,'Italia');
+
+INSERT INTO "public"."countries" ("country") VALUES ('Portugal');
+INSERT INTO "public"."countries" ("country") VALUES ('United States');
+INSERT INTO "public"."countries" ("country") VALUES ('Brazil');
+INSERT INTO "public"."countries" ("country") VALUES ('United Arab Emirates');
+INSERT INTO "public"."countries" ("country") VALUES ('Syria');
+INSERT INTO "public"."countries" ("country") VALUES ('Germany');
+INSERT INTO "public"."countries" ("country") VALUES ('France');
+INSERT INTO "public"."countries" ("country") VALUES ('Russia');
+INSERT INTO "public"."countries" ("country") VALUES ('Mali');
+INSERT INTO "public"."countries" ("country") VALUES ('China');
+INSERT INTO "public"."countries" ("country") VALUES ('Finland');
+INSERT INTO "public"."countries" ("country") VALUES ('Japan');
+INSERT INTO "public"."countries" ("country") VALUES ('Russian Federation');
+INSERT INTO "public"."countries" ("country") VALUES ('Canada');
+
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Lisbon',1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Faro',1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Porto',1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Braga',1);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Nizhny Novgorod', 2);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Weifang', 2);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Taiyuan',2);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Dallas (TX)',3);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('TEHRAN',4);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Pueblade Zaragoza',4);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Quezon City',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Fulin',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('Kunming',5);
+INSERT INTO "public"."cities" ("city","country_id") VALUES ('BUDAPEST',6);
 
 
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (1,'Qj8aixfPmTeMcNnAN1' ,'Another messahgedwa wdwa ','11/26/2000 10:21:00');
@@ -95,20 +75,6 @@ INSERT INTO "public"."reports" ("id") VALUES (4);
 INSERT INTO "public"."reports" ("id") VALUES (5);
 
 
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Nizhny Novgorod', 1);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Weifang', 1);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Taiyuan',2);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Dallas (TX)',3);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('TEHRAN',4);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Pueblade Zaragoza',4);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Quezon City',5);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Fulin',5);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Kunming',5);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('BUDAPEST',6);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Lisbon',14);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Faro',14);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Porto',14);
-INSERT INTO "public"."cities" ("city","country_id") VALUES ('Braga',14);
 
 
 -- ALL passwords are '123456'
