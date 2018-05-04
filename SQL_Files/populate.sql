@@ -14,6 +14,7 @@ DELETE FROM reviews;
 DELETE FROM wishlists;
 DELETE FROM won_auctions;
 
+-- reset serial
 ALTER SEQUENCE countries_id_seq RESTART WITH 1;
 ALTER SEQUENCE cities_id_seq RESTART WITH 1;
 ALTER SEQUENCE auctions_id_seq RESTART WITH 1;
