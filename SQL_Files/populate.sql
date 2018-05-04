@@ -1,18 +1,22 @@
-DELETE FROM won_auctions;
-DELETE FROM closed_auctions;
-DELETE FROM wishlists;
-DELETE FROM qas;
-DELETE FROM reviews;
-DELETE FROM bids;
 DELETE FROM auctions;
-DELETE FROM emails;
 DELETE FROM bans;
+DELETE FROM bids;
+DELETE FROM categories;
+DELETE FROM emails;
 DELETE FROM users;
 DELETE FROM cities;
+DELETE FROM countries;
+DELETE FROM closed_auctions;
 DELETE FROM reports;
 DELETE FROM messages;
-DELETE FROM countries;
-DELETE FROM categories;
+DELETE FROM qas;
+DELETE FROM reviews;
+DELETE FROM wishlists;
+DELETE FROM won_auctions;
+
+ALTER SEQUENCE countries_id_seq RESTART WITH 1;
+ALTER SEQUENCE cities_id_seq RESTART WITH 1;
+ALTER SEQUENCE auctions_id_seq RESTART WITH 1;
 
 
 INSERT INTO "public"."categories" ("id","name") VALUES (1,'car');

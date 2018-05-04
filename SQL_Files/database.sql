@@ -83,7 +83,7 @@ CREATE TABLE bans (
 
 CREATE TABLE bids (
     id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    bidder_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
+    bidder_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
     bid_amount real NOT NULL,
     PRIMARY KEY(id, bidder_id)
 );
