@@ -10,7 +10,7 @@ $('#country').change(function() {
     if(country_id == null || country_id == "" || country_id == "NONE")
         return;
 
-    const url = `../country/${country_id}/cities`;
+    const url = `/country/${country_id}/cities`;
     $.ajax(url, {
         type: 'GET',
         success: function(data) {
@@ -20,7 +20,7 @@ $('#country').change(function() {
             }
         },
         error: function (data) {
-            showErrorAlert(data);
+            showErrorAlert(data.responseJSON);
         }
     });
 });

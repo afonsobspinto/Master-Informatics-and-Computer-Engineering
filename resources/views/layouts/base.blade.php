@@ -12,9 +12,6 @@
 
         @include('components.bootstrap')
 
-        {{-- jquery --}}
-
-
         <!-- links -->
         @section('resources')
             <script src="{{ asset('js/common.js') }}" async></script>

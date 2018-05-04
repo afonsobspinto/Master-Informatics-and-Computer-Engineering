@@ -62,4 +62,7 @@ class User extends Authenticatable
         return ! $this->isAdmin() && ! $this->isBanned();
     }
 
+    public static $nullUser = array(
+       "username" => "",
+    );
 }
