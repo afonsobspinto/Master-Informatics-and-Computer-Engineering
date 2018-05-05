@@ -1,0 +1,103 @@
+
+@import "common/bootstrap-values";
+
+@caption-background-color: fade(grey, 50%);
+
+.auction-grid a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.notification-circle{
+    color: red;
+    size: 2px;
+}
+
+.card {
+    margin-top: 2rem;
+}
+
+.carousel-caption {
+    background-color: @caption-background-color;
+    border-radius: 10px;
+    margin-bottom: 2em;
+
+    @media @d-sm {
+        font-size: 12px;
+        padding-top: 0.5rem;
+        padding-bottom: 0;
+
+        h3 {
+            font-size: 20px;
+        }
+    }
+
+    @media @d-sm {
+        font-size: 10px;
+        padding-top: 0.5rem;
+        padding-bottom: 0;
+        h3 {
+            font-size: 16px;
+        }
+    }
+}
+
+.card-columns {
+    @media @d-sm, @d-md {
+        column-count: 2;
+    }
+}
+
+
+@ratio: 16.0 / 9.0;
+#carouselAuctions {
+    @media @d-xs {
+        @w: 20rem;
+        width: @w;
+        img {
+            height: @w / @ratio;
+            max-height: @w / @ratio;
+        }
+    }
+
+    @media @d-sm {
+        @w: 30rem;
+        width: @w;
+        img {
+            height: @w / @ratio;
+            max-height: @w / @ratio;
+        }
+    }
+
+    @media @d-md {
+        @w: 40rem;
+        width: @w;
+        img {
+            height: @w / @ratio;
+            max-height: @w / @ratio;
+        }
+    }
+
+    @media @d-lg {
+        @w: 52rem;
+        width: @w;
+        img {
+            height: @w / @ratio;
+            max-height: @w / @ratio;
+        }
+    }
+
+    @media @d-xl {
+
+        @w: 70rem;
+        width: @w;
+        img {
+            height: @w / @ratio;
+            max-height: @w / @ratio;
+        }
+    }
+}
+
+
+

@@ -1,5 +1,8 @@
 #!/bin/bash
 
-while true; do 
-  php vendor/bin/lessc -w resources/assets/less/app.less public/css/app.css
+for filename in resources/assets/less/*.less; do
+    name=$(basename "$filename" .less)
+    echo $filename
+    php vendor/bin/lessc -w resources/assets/less/$name.less public/css/$name.css
 done
+

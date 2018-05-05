@@ -6,7 +6,7 @@
         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
             <a href="{{ url("auctions/{$auction->id}") }}">
                 <img class="d-block " src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
-                <div class="carousel-caption d-md-block">
+                <div class="carousel-caption d-md-block ">
                     <h3>
                         {{ str_limit($auction->item_name, 100, ' ...') }}
                     </h3>

@@ -5,6 +5,7 @@
 @section('resources')
     @parent
     <link rel="stylesheet" href="{{ asset('css/landing_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 @endsection
 
 @section('content')
