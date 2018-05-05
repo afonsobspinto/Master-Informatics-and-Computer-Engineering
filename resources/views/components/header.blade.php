@@ -39,7 +39,8 @@
             @elseif(Auth::user()->isRegular())
             <a class="dropdown-item" href="../auctions/create">New Auction</a>
             @endif
-            <a class="dropdown-item" href="{{ url('profile', [Auth::user()->id]) }}">Profile</a>
+            {{-- TODO direct profile to actual profile --}}
+            <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id . '/edit') }}">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>

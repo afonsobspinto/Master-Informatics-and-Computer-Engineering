@@ -7,12 +7,6 @@
 @section('form-url', url('register'))
 
 @section('countries')
-    {{--<option value="" selected>All Countries</option>--}}
-    {{--@foreach($countries as $country)--}}
-        {{--<option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>--}}
-    {{--@endforeach--}}
-    {{-- TODO remember country + city --}}
-
     <option value="" {{ old('country') ? '' : 'selected' }}>All Countries</option>
     @foreach($countries as $country)
         <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : '' }}>{{ ucfirst($country->country) }}</option>
