@@ -24,5 +24,20 @@
 @endsection
 
 @section('form-bottom')
+    @include('profile.components.new_password_inputs', [ 'name_prefix' => 'new_password', 'pretty_name' => 'New Password', 'required' => false ])
+
+    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }} mt-5 control-label">
+        <label for="password">Password:</label>
+        <div>
+            <input id="password" type="password" class="form-control" name="password" required>
+
+            @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary mx-auto w-50 mb-3 mt-4">Update</button>
 @endsection

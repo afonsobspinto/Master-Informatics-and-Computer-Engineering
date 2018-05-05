@@ -86,25 +86,6 @@
 
             </div>
 
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} mt-4 control-label">
-                <label for="password">Password:</label>
-                <div>
-                    <input id="password" type="password" class="form-control" name="password" required>
-
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="password-confirm" class="control-label">Confirm Password</label>
-                <div>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                </div>
-            </div>
             @yield('form-bottom')
         </form>
     </div>

@@ -9,6 +9,7 @@ use App\Auction;
 use App\Country;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 use Illuminate\Validation\Rule;
@@ -70,10 +71,15 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
+
         $this->validate($request, [
-            'username' => [ 'required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required' , 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id) ],
-            'password' =>  $this->password_rule . '|confirmed',
+            'username' => $this->buildUsernameRule(Rule::unique('users')->ignore($user->id)),
+            'email' => $this->buildEmailRule(Rule::unique('users')->ignore($user->id)),
+            'password' =>  $this->buildPasswordRule(
+                function($attribute, $value, $fail) {
+                    if (! Auth::user()->checkPassword($value))
+                        return $fail('Wrong password.');
+                }),
             'first_name' => $this->name_rule,
             'last_name' => $this->name_rule,
             'zip_code' => $this->zip_code_rule,
@@ -81,13 +87,20 @@ class ProfileController extends Controller
             'city' => $this->id_rule,
         ]);
 
+        $bChangePass = $request->input('new_password') != null && $request->input('new_password') != '';
+        if($bChangePass)
+            $this->validate($request, [
+                'new_password' =>  $this->buildPasswordRule('confirmed'),
+            ]);
+
 
         try {
 
             $user->username = $request->input('username');
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
-            $user->password = $request->input('password');
+            if($bChangePass)
+                $user->password = Hash::make($request->input('new_password'));
             $user->email = $request->input('email');
             $user->zip_code = $request->input('zip_code');
             $user->address = $request->input('address');
