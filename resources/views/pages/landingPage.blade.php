@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    @include('auctions.carousel', ['displayAuctions' => $displayAuctions])
+    @include('auctions.components.display_carousel', ['displayAuctions' => $displayAuctions])
 
     @include('auctions.cards', ['auctions' => $recentAuctions, 'recent' => true])
 

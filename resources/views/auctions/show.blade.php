@@ -17,40 +17,43 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-align-center mobile-text-center">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                     src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                                     alt="Third slide">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                           data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                           data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+
+                    @include('auctions.components.auction_carousel', ['imageURLs' => $auction->getImagesURLs()])
+                    {{--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">--}}
+                        {{--<ol class="carousel-indicators">--}}
+                            {{--<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>--}}
+                            {{--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--}}
+                            {{--<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--}}
+                        {{--</ol>--}}
+                        {{--<div class="carousel-inner">--}}
+                            {{--<div class="carousel-item active">--}}
+                                {{--<img class="d-block w-100"--}}
+                                     {{--src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"--}}
+                                     {{--alt="First slide">--}}
+                            {{--</div>--}}
+                            {{--<div class="carousel-item">--}}
+                                {{--<img class="d-block w-100"--}}
+                                     {{--src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"--}}
+                                     {{--alt="Second slide">--}}
+                            {{--</div>--}}
+                            {{--<div class="carousel-item">--}}
+                                {{--<img class="d-block w-100"--}}
+                                     {{--src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"--}}
+                                     {{--alt="Third slide">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"--}}
+                           {{--data-slide="prev">--}}
+                            {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                            {{--<span class="sr-only">Previous</span>--}}
+                        {{--</a>--}}
+                        {{--<a class="carousel-control-next" href="#carouselExampleIndicators" role="button"--}}
+                           {{--data-slide="next">--}}
+                            {{--<span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+                            {{--<span class="sr-only">Next</span>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+
                     <span class="display-4 title">{{ $auction->item_name }}</span>
                     <span class="badge badge-primary">Tech</span>
                     <span class="badge badge-info">New</span>
