@@ -49,10 +49,12 @@ class ProfileController extends Controller
 
         $categories = Category::all();
         $countries = Country::allOrderedCountries();
+        $cities = $user->getCountry()->getAllCities();
 
         return view('profile.edit', [
             'categories' => $categories,
             'countries' => $countries,
+            'cities' => $cities,
             'user' => $user,
         ]);
     }

@@ -62,7 +62,21 @@ class User extends Authenticatable
         return ! $this->isAdmin() && ! $this->isBanned();
     }
 
-    public static $nullUser = array(
-       "username" => "",
-    );
+    public function getCity() {
+        $city = City::where('id', '=', $this->location)->get();
+
+        return count($city) != 0 ? $city[0] : null;
+    }
+
+    public function getCountry() {
+        $city = $this->getCity();
+        if($city == null)
+            return null;
+
+        return $city->getCountry();
+    }
+
+    public function getCountryID() {
+        return $this->getCity()->country_id;
+    }
 }

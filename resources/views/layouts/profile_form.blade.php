@@ -63,16 +63,14 @@
                 <div class="form-group col-6 col-md-4">
                     <label for="country">Country:</label>
                     <select class="form-control" id="country" name="country" aria-describedby="Country" required>
-                        <option value="" selected>All Countries</option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
-                        @endforeach
+                        @yield('countries')
                     </select>
                 </div>
 
                 <div class="form-group col-6 col-md-4">
                     <label for="city">City:</label>
                     <select class="form-control" id="city" name="city" aria-describedby="City" required>
+                        @yield('cities')
                     </select>
                 </div>
 

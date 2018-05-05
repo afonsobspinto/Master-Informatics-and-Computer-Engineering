@@ -1,4 +1,4 @@
-@extends('layouts.profile_form', ['categories' => $categories, 'user' => $user])
+@extends('layouts.profile_form', ['categories' => $categories, 'countries' => $countries, 'user' => $user])
 
 @section('title', 'Edit Profile')
 
@@ -8,6 +8,19 @@
 
 @section('form-type')
     <input name="_method" type="hidden" value="PUT">
+@endsection
+
+@section('countries')
+    <option value="" {{ old('country') ? '' : 'selected' }}>All Countries</option>
+    @foreach($countries as $country)
+        <option value="{{ $country->id }}" {{ ( old('country') ?? $user->getCountryID() ) == $country->id ? 'selected' : '' }}>{{ ucfirst($country->country) }}</option>
+    @endforeach
+@endsection
+
+@section('cities')
+    @foreach($cities as $city)
+        <option value="{{ $city->id }}" {{ ( old('city') ?? $user->location ) == $city->id ? 'selected' : '' }}>{{ ucfirst($city->city) }}</option>
+    @endforeach
 @endsection
 
 @section('form-bottom')
