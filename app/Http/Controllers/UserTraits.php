@@ -7,7 +7,7 @@
  */
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 
 trait UserTraits
 {
@@ -23,6 +23,14 @@ trait UserTraits
     protected function buildPasswordRule() {
         $rulesArr = func_get_args();
         return array_merge([ 'required', 'string', 'min:6' ], $rulesArr);
+    }
+
+    protected function buildCheckedPasswordRule() {
+        return $this->buildPasswordRule(
+            function($attribute, $value, $fail) {
+                if (! Auth::user()->checkPassword($value))
+                    return $fail('Wrong password.');
+            });
     }
 
     protected $zip_code_rule =  'required|string|regex:/^[\da-zA-Z]+([ -][\da-zA-Z]+)?$/'; //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes

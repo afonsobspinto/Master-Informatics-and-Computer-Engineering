@@ -75,11 +75,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'username' => $this->buildUsernameRule(Rule::unique('users')->ignore($user->id)),
             'email' => $this->buildEmailRule(Rule::unique('users')->ignore($user->id)),
-            'password' =>  $this->buildPasswordRule(
-                function($attribute, $value, $fail) {
-                    if (! Auth::user()->checkPassword($value))
-                        return $fail('Wrong password.');
-                }),
+            'password' =>  $this->buildCheckedPasswordRule(),
             'first_name' => $this->name_rule,
             'last_name' => $this->name_rule,
             'zip_code' => $this->zip_code_rule,
@@ -87,7 +83,9 @@ class ProfileController extends Controller
             'city' => $this->id_rule,
         ]);
 
-        $bChangePass = $request->input('new_password') != null && $request->input('new_password') != '';
+        $newPass = $request->input('new_password');
+        $bChangePass = $newPass != null && $newPass != '';
+
         if($bChangePass)
             $this->validate($request, [
                 'new_password' =>  $this->buildPasswordRule('confirmed'),
@@ -100,7 +98,7 @@ class ProfileController extends Controller
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
             if($bChangePass)
-                $user->password = Hash::make($request->input('new_password'));
+                $user->password = Hash::make($newPass);
             $user->email = $request->input('email');
             $user->zip_code = $request->input('zip_code');
             $user->address = $request->input('address');
