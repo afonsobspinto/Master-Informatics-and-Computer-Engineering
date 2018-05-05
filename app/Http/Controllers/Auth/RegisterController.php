@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\UserTraits;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,8 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    use UserTraits;
 
     /**
      * Where to redirect users after registration.
@@ -70,12 +73,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'zip_code' => 'required|string|regex:/^[\da-zA-Z]+([ -][\da-zA-Z]+)?$/', //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes
-            'address' => 'required|string',
-            'city' => 'required|integer',
+            'password' =>  $this->password_rule . '|confirmed',
+            'first_name' => $this->name_rule,
+            'last_name' => $this->name_rule,
+            'zip_code' => $this->zip_code_rule,
+            'address' => $this->address_rule,
+            'city' => $this->id_rule,
         ]);
     }
 
