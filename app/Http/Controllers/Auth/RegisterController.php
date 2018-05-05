@@ -58,7 +58,8 @@ class RegisterController extends Controller
 
         return view('auth.register', [
             'categories' => $categories,
-            'countries' => $countries
+            'countries' => $countries,
+            'zip_code_regex' => $this->zip_code_regex,
         ]);
     }
 
@@ -76,7 +77,7 @@ class RegisterController extends Controller
             'password' =>  $this->buildPasswordRule('confirmed'),
             'first_name' => $this->name_rule,
             'last_name' => $this->name_rule,
-            'zip_code' => $this->zip_code_rule,
+            'zip_code' => $this->getZipCodeRule(),
             'address' => $this->address_rule,
             'city' => $this->id_rule,
         ]);

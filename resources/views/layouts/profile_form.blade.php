@@ -17,11 +17,7 @@
                 <label for="username">Username:</label>
                 <div>
                     <input id="username" type="text" class="form-control" name="username" value="{{ old('username') ?? $user->username ?? '' }}" required autofocus>
-                    @if ($errors->has('username'))
-                        <span class="help-block">
-                    <strong>{{ $errors->first('username') }}</strong>
-                </span>
-                    @endif
+                    @include('components.form_error_msg', ['errorName' => 'username'])
                 </div>
             </div>
 
@@ -30,11 +26,7 @@
                 <div>
                     <input id="email" type="email" class="form-control control-label" name="email" value="{{ old('email') ?? $user->email ?? '' }}" required>
 
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                    @endif
+                    @include('components.form_error_msg', ['errorName' => 'email'])
                 </div>
             </div>
 
@@ -76,12 +68,8 @@
 
                 <div class="form-group col-md-4">
                     <label for="zip_code">Zip-code:</label>
-                    <input type="text" class="form-control" id="zip_code" name="zip_code" aria-describedby="zip_code" value="{{ old('zip_code') ?? $user->zip_code ?? '' }}" pattern="^[\da-zA-Z]+([ -][\da-zA-Z]+)?$" title="Please enter an alphanumeric sequence possibly separated by a space or dash" required>
-                    @if ($errors->has('zip_code'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('zip_code') }}</strong>
-                    </span>
-                    @endif
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" aria-describedby="zip_code" value="{{ old('zip_code') ?? $user->zip_code ?? '' }}" pattern="{{ $zip_code_regex }}" title="Please enter an alphanumeric sequence possibly separated by a space or dash" required>
+                    @include('components.form_error_msg', ['errorName' => 'zip_code'])
                 </div>
 
             </div>

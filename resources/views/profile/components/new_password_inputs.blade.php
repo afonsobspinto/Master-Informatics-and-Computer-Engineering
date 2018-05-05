@@ -3,11 +3,7 @@
     <div>
         <input id="{{ $name_prefix }}" type="password" class="form-control" name="{{ $name_prefix }}" {{ $required ? 'required' : '' }}>
 
-        @if ($errors->has($name_prefix))
-            <span class="help-block">
-                    <strong>{{ $errors->first($name_prefix) }}</strong>
-                </span>
-        @endif
+        @include('components.form_error_msg', [ 'errorName' => $name_prefix])
     </div>
 </div>
 @php($confirmPass = $name_prefix . '-confirm')

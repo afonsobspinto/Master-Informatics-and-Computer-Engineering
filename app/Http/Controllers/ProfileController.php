@@ -40,7 +40,7 @@ class ProfileController extends Controller
         $categories = Category::all();
 
         return view('profile.show', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -61,6 +61,7 @@ class ProfileController extends Controller
             'countries' => $countries,
             'cities' => $cities,
             'user' => $user,
+            'zip_code_regex' => $this->zip_code_regex,
         ]);
     }
 
@@ -78,7 +79,7 @@ class ProfileController extends Controller
             'password' =>  $this->buildCheckedPasswordRule(),
             'first_name' => $this->name_rule,
             'last_name' => $this->name_rule,
-            'zip_code' => $this->zip_code_rule,
+            'zip_code' => $this->getZipCodeRule(),
             'address' => $this->address_rule,
             'city' => $this->id_rule,
         ]);

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 trait UserTraits
 {
+
+
     protected function buildUsernameRule() {
         $rulesArr = func_get_args();
         return array_merge([ 'required', 'string', 'max:255' ], $rulesArr);
@@ -22,7 +24,7 @@ trait UserTraits
     }
     protected function buildPasswordRule() {
         $rulesArr = func_get_args();
-        return array_merge([ 'required', 'string', 'min:6' ], $rulesArr);
+        return array_merge([ 'required', 'string', 'min:6', 'max:255' ], $rulesArr);
     }
 
     protected function buildCheckedPasswordRule() {
@@ -33,7 +35,10 @@ trait UserTraits
             });
     }
 
-    protected $zip_code_rule =  'required|string|regex:/^[\da-zA-Z]+([ -][\da-zA-Z]+)?$/'; //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes
+    protected $zip_code_regex = '^[\da-zA-Z]+([ -][\da-zA-Z]+)?$'; //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes
+    protected function getZipCodeRule() {
+        return 'required|string|regex:/' . $this->zip_code_regex . '/';
+    }
 
     protected $name_rule = "required|string";
     protected $address_rule = "required|string";
