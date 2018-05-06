@@ -80,6 +80,8 @@ class AuctionController extends Controller
         }
 
         $files = $request->file('photos-input');
+        $this->trySaveAuctionImages($files, $auction->id);
+
 
         return redirect('/');
     }
