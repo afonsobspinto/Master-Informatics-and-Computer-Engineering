@@ -27,6 +27,8 @@ Route::resource('auctions', 'AuctionController');
 //profile
 Route::resource('profile', 'ProfileController');
 
+// search
+Route::get('search', 'SearchController@showSearch');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

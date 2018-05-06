@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\ImageFileTraits;
 use App\Http\Controllers\UserTraits;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -27,6 +28,7 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     use UserTraits;
+    use ImageFileTraits;
 
     /**
      * Where to redirect users after registration.
@@ -80,6 +82,7 @@ class RegisterController extends Controller
             'zip_code' => $this->getZipCodeRule(),
             'address' => $this->address_rule,
             'city' => $this->id_rule,
+            'picture' => $this->image_rule,
         ]);
     }
 
@@ -91,7 +94,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -101,5 +104,10 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'location' => $data['city'],
         ]);
+
+        if(array_key_exists('picture', $data))
+            $this->tryStoreProfilePicture($data['picture'], $user->id);
+
+        return $user;
     }
 }

@@ -14,10 +14,12 @@ use App\User;
 
 use Illuminate\Validation\Rule;
 
+
 class ProfileController extends Controller
 {
 
     use UserTraits;
+    use ImageFileTraits;
 
     /**
      * Display a listing of the resource.
@@ -65,12 +67,15 @@ class ProfileController extends Controller
         ]);
     }
 
+
+
     public function update(Request $request, $id) {
 
         if(!Auth::check() || Auth::id() != $id)
             return response("stop right there baddie", Response::HTTP_FORBIDDEN);
 
         $user = Auth::user();
+
 
 
         $this->validate($request, [
@@ -82,6 +87,7 @@ class ProfileController extends Controller
             'zip_code' => $this->getZipCodeRule(),
             'address' => $this->address_rule,
             'city' => $this->id_rule,
+            'picture' => $this->image_rule,
         ]);
 
         $newPass = $request->input('new_password');
@@ -91,6 +97,7 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'new_password' =>  $this->buildPasswordRule('confirmed'),
             ]);
+
 
 
         try {
@@ -109,6 +116,9 @@ class ProfileController extends Controller
         catch (\Exception $e){
             return response('Invalid Update', Response::HTTP_FORBIDDEN);
         }
+
+        $file = $request->file('picture');
+        $this->tryStoreProfilePicture($file, Auth::id());
 
         return redirect( url('/') );
 

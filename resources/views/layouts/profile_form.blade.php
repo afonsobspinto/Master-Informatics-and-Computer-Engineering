@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="container pb-5">
-        <form class="mt-5 d-flex flex-column mx-auto p-4 bg-light" id="register" method="POST" action="@yield('form-url')">
+        <form class="mt-5 d-flex flex-column mx-auto p-4 bg-light" id="register" method="POST" enctype="multipart/form-data" action="@yield('form-url')">
             @yield('form-type')
             {{ csrf_field() }}
             <h1 class="mx-auto pt-3 mb-5 font-weight-bold"> @yield('form-title') </h1>
@@ -30,9 +30,11 @@
                 </div>
             </div>
 
+            {{-- profile picture --}}
             <div class="form-group mt-4">
                 <label for="profile-picture">Profile Picture:</label>
-                <input type="file" class="form-control-file" id="profile-picture">
+                <input type="file" class="form-control-file" id="profile-picture" accept="image/*" name="picture">
+                @include('components.form_error_msg', ['errorName' => 'picture'])
             </div>
 
             <div class="form-row">
