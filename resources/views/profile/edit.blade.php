@@ -10,6 +10,7 @@
     <input name="_method" type="hidden" value="PUT">
 @endsection
 
+
 @section('countries')
     <option value="" {{ old('country') ? '' : 'selected' }}>All Countries</option>
     @foreach($countries as $country)

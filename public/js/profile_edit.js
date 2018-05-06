@@ -24,3 +24,9 @@ $('#country').change(function() {
         }
     });
 });
+
+$('#profile-picture').change(function () {
+
+    setImgToLocal(this, $('#profile-avatar'));
+
+})

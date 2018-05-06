@@ -57,6 +57,7 @@ class ProfileController extends Controller
         $categories = Category::all();
         $countries = Country::allOrderedCountries();
         $cities = $user->getCountry()->getAllCities();
+        $profilePic = $this->getProfilePictureURL();
 
         return view('profile.edit', [
             'categories' => $categories,
@@ -64,6 +65,7 @@ class ProfileController extends Controller
             'cities' => $cities,
             'user' => $user,
             'zip_code_regex' => $this->zip_code_regex,
+            'profile_picture' => $profilePic,
         ]);
     }
 

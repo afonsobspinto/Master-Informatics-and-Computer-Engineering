@@ -57,11 +57,13 @@ class RegisterController extends Controller
     {
         $categories = Category::all();
         $countries = Country::allOrderedCountries();
+        $profilePic = $this->getUserPlaceholderURL();
 
         return view('auth.register', [
             'categories' => $categories,
             'countries' => $countries,
             'zip_code_regex' => $this->zip_code_regex,
+            'profile_picture' => $profilePic,
         ]);
     }
 
