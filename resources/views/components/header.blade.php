@@ -37,7 +37,7 @@
             @if(Auth::user()->isAdmin())
             <a class="dropdown-item" href="../report.html">User Reports</a>
             @elseif(Auth::user()->isRegular())
-            <a class="dropdown-item" href="../auctions/create">New Auction</a>
+            <a class="dropdown-item" href="{{ url('/auctions/create') }}">New Auction</a>
             @endif
             {{-- TODO direct profile to actual profile --}}
             <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id . '/edit') }}">Profile</a>

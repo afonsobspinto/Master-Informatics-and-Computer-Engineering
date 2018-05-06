@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\ImageFileTraits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -9,6 +10,8 @@ use File;
 
 class Auction extends Model
 {
+    use ImageFileTraits;
+
     protected $table = 'auctions';
     public $timestamps = false;
 
@@ -19,22 +22,11 @@ class Auction extends Model
 
     public function getDisplayPictureURL() {
 
-        $imagesFolder = public_path() . "/images/auctions/" . $this->id;
-        $images = File::glob($imagesFolder . "/0.*");
-
-        if($images === false || sizeof($images) === 0)
-            return url('/images/placeholder.png');
-        else {
-            preg_match('/images.*/', $images[0], $matches);
-            $imagePath = $matches[0];
-            $url = asset($imagePath);
-            return $url;
-        }
+        return $this->getAuctionPicturesURLs($this->id)[0];
     }
 
     public function getImagesURLs() {
-        //TODO
-        return [$this->getDisplayPictureURL()];
+        return $this->getAuctionPicturesURLs($this->id);
     }
 
     public function getNumImages() {

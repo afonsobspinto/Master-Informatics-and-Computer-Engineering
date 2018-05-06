@@ -12,7 +12,8 @@
 
         <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
 
-        <form method="POST" action="{{action('AuctionController@store')}}">
+        {{-- MODIFIED: enctype --}}
+        <form method="POST" enctype="multipart/form-data" action="{{action('AuctionController@store')}}">
             <h2 class="border-bottom pb-1 mb-4 h4">Product details</h2>
 
             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -55,12 +56,18 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            {{-- MODIFIED --}}
+            {{-- Pictures --}}
+            <div class="form-group row">
                <label for="photos-input" class="col-3 col-form-label">Photos</label>
                <div class="col-9">
-                   <input type="file" class="form-control-file" id="photos-input" name="photos-input" multiple required>
+                   <input type="file" class="form-control-file" id="photos-input" name="photos-input[]" accept="image/*" multiple>
                </div>
-           </div>
+                @include('components.form_error_msg', ['errorName' => 'photos-input'])
+            </div>
+            {{-- /MODIFIED --}}
+
+        {{--
        </form>
 
        <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>

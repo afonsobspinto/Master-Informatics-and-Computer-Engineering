@@ -14,6 +14,8 @@ use Illuminate\Http\Response;
 
 class AuctionController extends Controller
 {
+    use ImageFileTraits;
+
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +55,9 @@ class AuctionController extends Controller
             'title-input' => 'required',
             'condition-input' => 'required',
             'price-input' => 'required',
-            'duration-input' => 'required'
+            'duration-input' => 'required',
+            'photos-input[].*' => $this->image_rule,
+
         ]);
 
         try {
@@ -74,6 +78,8 @@ class AuctionController extends Controller
         catch (\Exception $e){
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
+
+        $files = $request->file('photos-input');
 
         return redirect('/');
     }
@@ -122,7 +128,8 @@ class AuctionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title-input' => 'required'
+            'title-input' => 'required',
+            'photos-input[].*' => $this->image_rule,
         ]);
 
         try {
@@ -143,6 +150,9 @@ class AuctionController extends Controller
         catch (\Exception $e){
             return response()->json('Invalid Update', Response::HTTP_FORBIDDEN);
         }
+
+        $files = $request->file('photos-input');
+        $this->trySaveAuctionImages($files, $auction->id);
 
         return redirect('/');
     }
