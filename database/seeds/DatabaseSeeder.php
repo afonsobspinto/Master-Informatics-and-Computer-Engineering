@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
          $path = 'SQL_Files/populate.sql';
          DB::unprepared(file_get_contents($path));
 
+        exec('./reset_pictures.sh');
+
          $this->command->info('Database seeded!');
      }
 }
