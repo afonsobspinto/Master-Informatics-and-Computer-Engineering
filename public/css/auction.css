@@ -47,7 +47,7 @@ input[type=number] {
     .card-img-top, .report, .nav-tabs, #reviews{
         display: none;
     }
-    #auction-section, .bid{
+    #page-body-section, .bid{
         display: flex;
         flex-direction: column;
     }

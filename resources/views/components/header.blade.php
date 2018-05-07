@@ -5,7 +5,7 @@
         <img id="logo" src="{{ asset('/images/logo.png') }}">
     </a>
     <!-- search bar -->
-    <form action="{{ url('search') }}" method="get" class="px-2" id="search-bar">
+    <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
             <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">

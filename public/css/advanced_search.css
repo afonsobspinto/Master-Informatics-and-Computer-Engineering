@@ -1,59 +1,50 @@
 #sidebar {
-    background-color: #ecf0f1;
+  background-color: #ecf0f1;
 }
-
 .sidebar-nav {
-    list-style: none;
+  list-style: none;
 }
-
 .sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #333;
+  display: block;
+  text-decoration: none;
+  color: #333;
 }
-
 .sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #ffffff;
-    background: #95a5a6;
+  text-decoration: none;
+  color: #ffffff;
+  background: #95a5a6;
 }
-
-.sidebar-nav li a:active, .sidebar-nav li a:focus {
-    text-decoration: none;
+.sidebar-nav h5 {
+  font-weight: bold;
+  font-size: 110%;
 }
-
-.location, .condition, .category, .format, .price {
-    margin-top: 5%;
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
 }
-.sidebar-nav h5{
-    font-weight: bold;
-    font-size: 110%;
-
+.location,
+.condition,
+.category,
+.format,
+.price {
+  margin-top: 5%;
 }
-
-#main li{
-    margin-top: 2%;
-    border-top-color: #ddd;
-    border-style: solid;
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-left-color: transparent;
+#main li {
+  margin-top: 2%;
+  border: solid transparent;
+  border-top-color: #ddd;
 }
-
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
-
-#img{
-    margin-left: 10%;
+#img {
+  margin-left: 10%;
 }
-
 @media (max-width: 500px) {
-    #qAndA > button{
-        width: 100%;
-    }
+  #page-body-section > button {
+    width: 100%;
+  }
 }
-
-.priceResult{
-    font-weight: bold;
+.priceResult {
+  font-weight: bold;
 }
