@@ -182,7 +182,10 @@ class AuctionController extends Controller
             return response()->json('Auction not empty', Response::HTTP_FORBIDDEN);
         }
 
+        $this->deleteAuctionFolder($auction->id);
         $auction->delete();
+
+
         return response()->json('', Response::HTTP_OK);
     }
 }

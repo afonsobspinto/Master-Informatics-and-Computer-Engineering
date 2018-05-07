@@ -77,6 +77,16 @@ trait ImageFileTraits
             $image->store($picDir, 'public');
     }
 
+    protected function deleteUserFolder($userID) {
+        $picDir = $this->getUserDir($userID);
+        $this->deleteFolder($picDir);
+    }
+
+    protected function deleteAuctionFolder($auctionID) {
+        $picDir = $this->getAuctionDir($auctionID);
+        $this->deleteFolder($picDir);
+    }
+
     protected function getAuctionPicturesURLs($auctionID) {
         $picDir = 'public/' . $this->getAuctionDir($auctionID);
 
