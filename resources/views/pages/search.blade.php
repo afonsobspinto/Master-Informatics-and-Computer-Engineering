@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="{{ asset('css/advanced_search.css') }}">
 @endsection
 
-@section('body-class', 'container-fluid row')
+@section('body-class', 'd-flex')
 
 @section('content')
     {{-- Sidebar --}}
-    <div class="col-sm-3" id="sidebar">
+    <div id="sidebar">
         <ul class="sidebar-nav ">
             <div class="format">
                 <h5> Look for </h5>
@@ -89,7 +89,7 @@
     </div>
 
     {{-- page contents --}}
-    <div class="col-sm-9" id="main">
+    <div id="main">
         <ul>
         @foreach($auctions as $auction)
         <li class="auction-item">

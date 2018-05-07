@@ -1,6 +1,11 @@
 #sidebar {
   background-color: #ecf0f1;
 }
+@media (max-width: 576px), (min-width: 576px) and (max-width: 768px) {
+  #sidebar {
+    display: none;
+  }
+}
 .sidebar-nav {
   list-style: none;
 }
