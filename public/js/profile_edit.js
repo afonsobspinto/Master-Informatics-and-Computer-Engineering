@@ -25,6 +25,16 @@ $('#country').change(function() {
     });
 });
 
+function setImgToLocal(input, img) {
+    let reader = new FileReader();
+
+    reader.onload = function (e) {
+        img.attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+}
+
 $('#profile-picture').change(function () {
 
     setImgToLocal(this, $('#profile-avatar'));

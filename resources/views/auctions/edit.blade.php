@@ -4,7 +4,8 @@
 
 @section('resources')
     @parent
-    <link rel="stylesheet" href="{{ asset('css/landing_page.css') }}">
+    <script src="{{ asset('js/auction_form.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/auction_form.css') }}">
 @endsection
 
 @section('content')
@@ -80,13 +81,7 @@
                     </div>--}}
             {{-- MODIFIED --}}
             {{-- Pictures --}}
-            <div class="form-group row">
-                <label for="photos-input" class="col-3 col-form-label">Photos</label>
-                <div class="col-9">
-                    <input type="file" class="form-control-file" id="photos-input" name="photos-input[]" accept="image/*" multiple>
-                </div>
-                @include('components.form_error_msg', ['errorName' => 'photos-input'])
-            </div>
+            @include('auctions.components.form_images', ['images' => $images ])
             {{-- /MODIFIED --}}
             {{--
                 </div>

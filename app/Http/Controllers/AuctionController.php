@@ -35,11 +35,12 @@ class AuctionController extends Controller
     {
         $categories = Category::all();
         $cities = City::all();
-
+        $images = [$this->getAuctionPlaceholderURL()];
 
         return view('auctions.create', [
             'categories' => $categories,
             'cities' => $cities,
+            'images' => $images,
         ]);
     }
 
@@ -56,7 +57,7 @@ class AuctionController extends Controller
             'condition-input' => 'required',
             'price-input' => 'required',
             'duration-input' => 'required',
-            'photos-input[].*' => $this->image_rule,
+            'photos-input.*' => $this->image_rule,
 
         ]);
 
@@ -113,10 +114,12 @@ class AuctionController extends Controller
     {
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
+        $images = $auction->getImagesURLs();
 
         return view('auctions.edit', [
             'categories' => $categories,
-            'auction' => $auction
+            'auction' => $auction,
+            'images' => $images,
         ]);
     }
 
@@ -131,7 +134,7 @@ class AuctionController extends Controller
     {
         $this->validate($request, [
             'title-input' => 'required',
-            'photos-input[].*' => $this->image_rule,
+            'photos-input.*' => $this->image_rule,
         ]);
 
         try {

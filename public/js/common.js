@@ -22,12 +22,3 @@ function showErrorAlert(errorMsg) {
     $('#header').after(errorBootstrapAlert);
 }
 
-function setImgToLocal(input, img) {
-    let reader = new FileReader();
-
-    reader.onload = function (e) {
-        img.attr('src', e.target.result);
-    }
-
-    reader.readAsDataURL(input.files[0]);
-}
