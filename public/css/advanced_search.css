@@ -49,18 +49,38 @@
   margin-bottom: 0.5rem;
 }
 .auction-item .auction-image {
-  width: 10rem;
+  width: 20vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .auction-item .auction-text {
   margin-left: 3rem;
-  width: 100%;
+  width: 90%;
   padding-right: 2rem;
 }
-.priceResult {
-  font-weight: bold;
+@media (max-width: 576px) {
+  .auction-item a {
+    flex-direction: column;
+  }
+  .auction-item .auction-text {
+    margin-left: 0rem;
+    padding-right: 0rem;
+  }
+  .auction-item .auction-image {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 80%;
+  }
 }
 .auction-item:first-child {
   border: none;
+}
+.auction-item:last-child {
+  margin-bottom: 7rem;
+}
+.priceResult {
+  font-weight: bold;
 }
 ul {
   list-style-type: none;
