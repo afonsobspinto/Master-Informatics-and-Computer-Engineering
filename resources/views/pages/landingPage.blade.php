@@ -11,8 +11,8 @@
 @section('content')
     @include('auctions.components.display_carousel', ['displayAuctions' => $displayAuctions])
 
-    @include('auctions.cards', ['auctions' => $recentAuctions, 'recent' => true])
+    @include('pages.components.cards', ['auctions' => $recentAuctions, 'recent' => true])
 
-    @include('auctions.cards', ['auctions' => $endingSoonAuctions, 'recent' => false])
+    @include('pages.components.cards', ['auctions' => $endingSoonAuctions, 'recent' => false])
 
 @endsection

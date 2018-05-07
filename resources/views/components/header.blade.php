@@ -7,10 +7,10 @@
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
+            <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search"
                    id="search-input">
-            <select class="form-control rounded-1 col-2 " id="search-categories">
-                <option selected value=""> All Categories</option>
+            <select class="form-control rounded-1 col-2" name="category" id="search-categories">
+                <option selected value="ALL"> All Categories</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
                 @endforeach

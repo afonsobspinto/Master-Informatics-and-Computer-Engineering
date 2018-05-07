@@ -18,6 +18,8 @@ DELETE FROM won_auctions;
 ALTER SEQUENCE countries_id_seq RESTART WITH 1;
 ALTER SEQUENCE cities_id_seq RESTART WITH 1;
 ALTER SEQUENCE auctions_id_seq RESTART WITH 1;
+ALTER SEQUENCE categories_id_seq RESTART WITH 1;
+ALTER SEQUENCE users_id_seq RESTART WITH 1;
 
 
 INSERT INTO "public"."categories" ("id","name") VALUES (1,'car');
@@ -121,7 +123,7 @@ INSERT INTO "public"."auctions" ("item_name","description","starting_price","cur
 
 INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ( 'Blue Senheiser heaphones', 'Description number 7219436',0,0,'Used','05/07/2015 08:47:00','08/20/2016 10:51:00','PayPal','No shipping',95704.75, 3, 1,1);
 
-INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('HP 24 inch monitor','FullHD monitor, 24 inches. LCD display',6.37,0,'Used','1/20/2018 01:06:00',CURRENT_TIMESTAMP + '1 month, 10 hours','PayPal','No shipping',NULL, 2, 7,2);
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('HP 24 inch monitor','FullHD monitor, 24 inches. LCD display',6.37,0,'Used','1/20/2018 01:06:00',CURRENT_TIMESTAMP + '1 month, 10 hours','PayPal','No shipping',0.2, 2, 7,2);
 
 INSERT INTO "public"."auctions" ("item_name","description","starting_price","current_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Zo2lhsYyEMylLoYwhrtspCAkN5GSDNbAFZW5yylNX1FUnAJ54LVq8mIii5aKJqa6hfpt68FDkBfygZeaAE666lIMZ7XGQwjOQjzFTD8j1oeOywGOQbiibWJjOJF3ybiwo7hbh1It5dVByUMwFqXcQrCHqJRdfhn6cViVYKsMQjF5K8tnOjxjyQk4ynnOHm5edPpuWkY43RscZCySIWhksrmcmp7fKxB3MSW','This is a description 8815846',0, 0,'Used', '1/16/2018 10:07:00','3/16/2018 10:07:00','PayPal','No shipping',0.15, 4, 3,3);
 

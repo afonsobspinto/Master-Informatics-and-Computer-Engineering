@@ -90,86 +90,28 @@
 
     {{-- page contents --}}
     <div class="col-sm-9" id="main">
-            <ul>
-                <li id="1res">
-                    <div class="row">
-                        <div class="col">
-                            <div class="container">
-                                <p></p>
-                                <h4> <a href="auction/auction.html">Computador para minar Bitcoins</a> </h4>
-                                <p></p>
-                                <img id="img" src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="40%">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                            <p class="priceResult">EUR 20.000</p>
-                            <p>15 Bids</p>
-                            <p> 3d 21h left (wednesday, 2PM)</p>
-                            <p>From Portugal</p>
-                        </div>
-                    </div>
-                </li>
-                <li id="2res">
-                    <div class="row">
-                        <div class="col">
-                            <div class="container">
-                                <p></p>
-                                <h4> <a href="auction/auction.html">Computador para minar Bitcoins</a> </h4>
-                                <img id="img" src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="40%">
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                            <p class="priceResult">EUR 20.000</p>
-                            <p>15 Bids</p>
-                            <p> 3d 21h left (wednesday, 2PM)</p>
-                            <p>From Portugal</p>
-                        </div>
-                    </div>
-                </li>
-                <li id="3res">
-                    <div class="row">
-                        <div class="col">
-                            <div class="container">
-                                <p></p>
-                                <h4> <a href="auction/auction.html">Computador para minar Bitcoins</a> </h4>
-                                <p></p>
-                                <img id="img" src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="40%">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                            <p class="priceResult">EUR 20.000</p>
-                            <p>15 Bids</p>
-                            <p> 3d 21h left (wednesday, 2PM)</p>
-                            <p>From Portugal</p>
-                        </div>
-                    </div>
-                </li>
-                <li id="3res">
-                    <div class="row">
-                        <div class="col">
-                            <div class="container">
-                                <p></p>
-                                <h4> <a href="auction/auction.html">Computador para minar Bitcoins</a> </h4>
-                                <img id="img" src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="40%">
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                            <p class="priceResult">EUR 20.000</p>
-                            <p>15 Bids</p>
-                            <p> 3d 21h left (wednesday, 2PM)</p>
-                            <p>From Portugal</p>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-
-        </div>
+        <ul>
+        @foreach($auctions as $auction)
+        <li class="auction-item">
+            <a href="{{ url("auctions/{$auction->id}") }}" class="d-flex">
+                <div>
+                    <img class="auction-image" src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
+                </div>
+                <div class="auction-text">
+                    <h4> {{ $auction->item_name }} </h4>
+                    <p class="d-flex justify-content-between">
+                        <span>
+                            <b>EUR {{ $auction->currentPriceEuros() }},</b>
+                            <span class="text-muted">{{ $auction->numBids() }} Bids </span>
+                        </span>
+                        <span class="text-muted"> {{ $auction->getTimeLeftString() }} left </span>
+                    </p>
+                    <p>{{ str_limit($auction->description, 150, ' ...') }}</p>
+                </div>
+            </a>
+        </li>
+        @endforeach
+        </ul>
+    </div>
 
 @endsection
