@@ -3,8 +3,13 @@
 
 #sidebar {
     background-color: #ecf0f1;
+    padding-left: 2rem;
+
     @media @d-xs, @d-sm {
         display: none;
+    }
+    > div {
+        margin-top: 2rem;
     }
 
 }
@@ -41,7 +46,10 @@
     margin-top: 5%;
 }
 
-
+.radio {
+    display: flex;
+    flex-direction: column;
+}
 
 .auction-item  {
     padding-top: 1rem;

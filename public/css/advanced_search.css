@@ -1,10 +1,14 @@
 #sidebar {
   background-color: #ecf0f1;
+  padding-left: 2rem;
 }
 @media (max-width: 576px), (min-width: 576px) and (max-width: 768px) {
   #sidebar {
     display: none;
   }
+}
+#sidebar > div {
+  margin-top: 2rem;
 }
 .sidebar-nav {
   list-style: none;
@@ -33,6 +37,10 @@
 .format,
 .price {
   margin-top: 5%;
+}
+.radio {
+  display: flex;
+  flex-direction: column;
 }
 .auction-item {
   padding-top: 1rem;
