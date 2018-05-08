@@ -4,6 +4,8 @@
 #sidebar {
     background-color: #ecf0f1;
     padding-left: 2rem;
+    min-height: 88vh;
+
 
     @media @d-xs, @d-sm {
         display: none;
@@ -46,9 +48,14 @@
     margin-top: 5%;
 }
 
-.radio {
+.radio, .price {
     display: flex;
     flex-direction: column;
+}
+
+.price > input {
+    margin-right: 1rem;
+    max-width: 7rem;
 }
 
 .auction-item  {

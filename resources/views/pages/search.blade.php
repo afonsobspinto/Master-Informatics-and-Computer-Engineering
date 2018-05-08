@@ -31,13 +31,11 @@
         </div>
 
         <div class="price">
-            <h5>   Price <i class="fas fa-euro-sign"></i>   </h5>
-            <div>
-                <input class="col-xs-1" type="number" min="0"  placeholder="Min">
-                <br>
-                <input class="col-xs-1" type="number" min="0"  placeholder="Max">
+            <h5> Price (EUR)   </h5>
+            <div class="price">
+                <input type="number" min="0"  placeholder="Min">
+                <input type="number" min="0"  placeholder="Max">
             </div>
-
         </div>
 
         <div class="location">
