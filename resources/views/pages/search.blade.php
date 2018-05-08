@@ -1,4 +1,4 @@
-@extends('layouts.base', ['categories' => $categories])
+@extends('layouts.base', ['categories' => $categories, 'searchString' => $searchString, 'categoryID' => $categoryID])
 
 @section('title', 'Search')
 
@@ -28,7 +28,7 @@
             </div>
 
             <div class="price">
-                <h5>   Price &nbsp;   <i class="fas fa-euro-sign"></i>   </h5>
+                <h5>   Price <i class="fas fa-euro-sign"></i>   </h5>
                 <div>
                     <input class="col-xs-2" type="number" min="0"  placeholder="Min">
                     <br>

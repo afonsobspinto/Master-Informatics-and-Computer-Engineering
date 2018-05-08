@@ -35,6 +35,8 @@ class SearchController extends Controller
         return view('pages.search', [
             'categories' => $categories,
             'auctions' => $auctions,
+            'searchString' => $searchString,
+            'categoryID' => $categoryID,
         ]);
     }
 }

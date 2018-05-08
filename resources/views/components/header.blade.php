@@ -7,12 +7,11 @@
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search"
-                   id="search-input">
+            <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search" value="{{ $searchString ?? "" }}" id="search-input">
             <select class="form-control rounded-1 col-2" name="category" id="search-categories">
-                <option selected value="ALL"> All Categories</option>
+                <option value="ALL" @if(! isset($categoryID)) selected @endif> All Categories</option>
                 @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
                 @endforeach
             </select>
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
