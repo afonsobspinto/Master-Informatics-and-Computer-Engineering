@@ -91,13 +91,15 @@ public class DecisionTree {
 }
 /*
 //TODO:
-Random Split + Cross Validation  / Random Split
-Fit
-Predict
-Score
-Graphviz
-GUI
-Tree Options
-DataSet Formats
+Random Split + Cross Validation  / Random Split         @Afonso
+Fit                                                     @Afonso
+Predict                                                 @Afonso
+Score                                                   @Afonso
+Graphviz                                                 @Tomas
+GUI                                                      @Bruno
+Tree Options                                             @Bruno
+DataSet Formats                                          @Tomas
+Normalizar os dados                                      @Bruno
+Arranjar forma de evitar problemas por termos mais casos negativos que positivos. @Tomas
 
 */
