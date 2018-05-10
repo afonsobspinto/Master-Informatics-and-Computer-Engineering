@@ -39,10 +39,19 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
+        $user = User::findOrFail($id);
         $categories = Category::all();
+        $countries = Country::allOrderedCountries();
+        $cities = $user->getCountry()->getAllCities();
+        $profilePic = $this->getProfilePictureURL();
 
         return view('profile.show', [
             'categories' => $categories,
+            'countries' => $countries,
+            'cities' => $cities,
+            'user' => $user,
+            'zip_code_regex' => $this->zip_code_regex,
+            'profile_picture' => $profilePic,
         ]);
     }
 

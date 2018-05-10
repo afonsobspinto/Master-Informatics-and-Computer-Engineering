@@ -1,3 +1,5 @@
+@extends('layouts.base', ['categories' => $categories, 'countries' => $countries, 'user' => $user])
+
 @section('resources')
     @parent
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
@@ -17,13 +19,13 @@
         </div>
         <div class="col-md-3">
             <div class="row">
-                <h1>Mr. Burns</h1>
+                <h1>{{ $user->username }}</h1>
             </div>
             <div class="row">
-                <p>United States</p>
+                <p>{{ $user->getCountryID() }}</p>
             </div>
             <div class="row">
-                <p class="email">mburns@bidbay.com</p>
+                <p class="email">{{ $user->email }}</p>
             </div>
             <div class="row">
                 <span class="sr-only">Four out of Five Stars</span>
@@ -35,7 +37,7 @@
                 <span class="badge badge-success">61</span>
             </div>
             <div class="row">
-                <a href="edit_profile.html" class="btn btn-primary ">Edit Profile</a>
+                <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
             </div>
             <div class="row">
                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
@@ -549,26 +551,5 @@
         </div>
     </div>
 </div>
-
-
-<!-- footer -->
-<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
-    <ul class="nav d-flex justify-content-center">
-        <li class="nav-item active">
-            <a class="nav-link text-white" href="../home/landing_page.html">Home </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="../about.html">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
-        <li class="nav-item">
-            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
-        </li>
-    </ul>
-</nav>
 
 @endsection

@@ -39,7 +39,7 @@
             <a class="dropdown-item" href="{{ url('/auctions/create') }}">New Auction</a>
             @endif
             {{-- TODO direct profile to actual profile --}}
-            <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id . '/edit') }}">Profile</a>
+            <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id) }}">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>
