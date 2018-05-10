@@ -36,12 +36,23 @@
                 <span class="far fa-star" aria-hidden="true"></span>
                 <span class="badge badge-success">61</span>
             </div>
-            <div class="row">
-                <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
-            </div>
-            <div class="row">
-                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
-            </div>
+            @if(Auth::check())
+                @if(Auth::user()->isProfileOwner($user))
+                    <div class="row">
+                        <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
+                    </div>
+                    <div class="row">
+                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
+                    </div>
+                @else
+                    <div class="row">
+                        <a class="badge badge-light report" type="button" data-toggle="modal"
+                           href="#exampleModal">
+                            Report abuse
+                        </a>
+                    </div>
+                @endif
+            @endif
         </div>
 
         <!-- Nav tabs -->

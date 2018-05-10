@@ -39,6 +39,12 @@ class User extends Authenticatable
         return $currUserID == $auctionOwnerID;
     }
 
+    public function isProfileOwner($user) {
+        $currUserID = Auth::id();
+        $userID = $user->id;
+        return $currUserID == $userID;
+    }
+
     public function checkPassword($password) {
         return Hash::check($password, $this->password);
     }
