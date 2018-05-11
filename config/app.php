@@ -13,8 +13,7 @@ return [
     |
     */
 
-//    'name' => env('APP_NAME', 'Laravel'),
-    'name' => 'BidBay',
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------

@@ -9,10 +9,13 @@ use App\Category;
 use App\City;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Http\Response;
 
 
 class AuctionController extends Controller
 {
+    use ImageFileTraits;
+
     /**
      * Display a listing of the resource.
      *
@@ -32,11 +35,12 @@ class AuctionController extends Controller
     {
         $categories = Category::all();
         $cities = City::all();
-
+        $images = [$this->getAuctionPlaceholderURL()];
 
         return view('auctions.create', [
             'categories' => $categories,
             'cities' => $cities,
+            'images' => $images,
         ]);
     }
 
@@ -52,7 +56,9 @@ class AuctionController extends Controller
             'title-input' => 'required',
             'condition-input' => 'required',
             'price-input' => 'required',
-            'duration-input' => 'required'
+            'duration-input' => 'required',
+            'photos-input.*' => $this->image_rule,
+
         ]);
 
         try {
@@ -71,8 +77,12 @@ class AuctionController extends Controller
             $auction->save();
         }
         catch (\Exception $e){
-            return response()->json('Invalid Store', 400);
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
+
+        $files = $request->file('photos-input');
+        $this->trySaveAuctionImages($files, $auction->id);
+
 
         return redirect('/');
     }
@@ -104,10 +114,12 @@ class AuctionController extends Controller
     {
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
+        $images = $auction->getImagesURLs();
 
         return view('auctions.edit', [
             'categories' => $categories,
-            'auction' => $auction
+            'auction' => $auction,
+            'images' => $images,
         ]);
     }
 
@@ -121,7 +133,8 @@ class AuctionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title-input' => 'required'
+            'title-input' => 'required',
+            'photos-input.*' => $this->image_rule,
         ]);
 
         try {
@@ -140,10 +153,14 @@ class AuctionController extends Controller
             $auction->save();
         }
         catch (\Exception $e){
-            return response()->json('Invalid Update', 400);
+            return response()->json('Invalid Update', Response::HTTP_FORBIDDEN);
         }
 
-        return redirect('/');    }
+        $files = $request->file('photos-input');
+        $this->trySaveAuctionImages($files, $auction->id);
+
+        return redirect('/');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -157,16 +174,19 @@ class AuctionController extends Controller
 
         $password = $request->input('password');
         if(! Auth::user()->checkPassword($password))
-            return response()->json('Invalid password', 400);
+            return response()->json('Invalid password', Response::HTTP_FORBIDDEN);
 
         try {
             $this->authorize('delete', $auction);
         } catch (AuthorizationException $e) {
-            return response()->json('Auction not empty', 400);
+            return response()->json('Auction not empty', Response::HTTP_FORBIDDEN);
         }
 
+        $this->deleteAuctionFolder($auction->id);
         $auction->delete();
-        return response()->json('', 200);
+
+
+        return response()->json('', Response::HTTP_OK);
     }
 }
 

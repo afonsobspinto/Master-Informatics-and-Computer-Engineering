@@ -22,17 +22,16 @@ Route::get('about', 'StaticPagesController@showAbout');
 Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
-//Route::get('auctions/{auction_id}', 'AuctionController@show');
-//Route::delete('auctions/{auction_id}', 'AuctionController@delete');
-//
-//Route::get('auctions/{auction_id}/delete', 'AuctionController@delete');
-
 Route::resource('auctions', 'AuctionController');
 
-//
+//messages
 Route::resource('messages', 'MessageController');
 
+//profile
+Route::resource('profile', 'ProfileController');
 
+// search
+Route::get('search', 'SearchController@showSearch');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -45,3 +44,5 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
+//other API
+Route::get('country/{id}/cities', 'CountryController@getCities')->where('id', '[0-9]+');

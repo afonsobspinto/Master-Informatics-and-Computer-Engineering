@@ -5,20 +5,19 @@
         <img id="logo" src="{{ asset('/images/logo.png') }}">
     </a>
     <!-- search bar -->
-    <form action="../advanced_ <foch.html" method="get" class="px-2" id="search-bar">
+    <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
         <div class="d-flex">
-            <input class="form-control rounded-1" type="search" placeholder="Search" aria-label="Search"
-                   id="search-input">
-            <select class="form-control rounded-1 col-2 " id="search-categories">
-                <option selected value=""> All Categories</option>
+            <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search" value="{{ $searchString ?? "" }}" id="search-input">
+            <select class="form-control rounded-1 col-2" name="category" id="search-categories">
+                <option value="ALL" @if(! isset($categoryID)) selected @endif> All Categories</option>
                 @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
                 @endforeach
             </select>
             <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
         </div>
     </form>
-    @if(Auth::check())
+    @auth
     {{--logged in user--}}
     <!-- authentication links -->
     <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
@@ -34,19 +33,18 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
-            @if(Auth::user()->is_administrator)
-            {{-- TODO check if user is admin HERE--}}
+            @if(Auth::user()->isAdmin())
             <a class="dropdown-item" href="../report.html">User Reports</a>
-            @else(false)
-            <a class="dropdown-item" href="../auctions/create">New Auction</a>
+            @elseif(Auth::user()->isRegular())
+            <a class="dropdown-item" href="{{ url('/auctions/create') }}">New Auction</a>
             @endif
-            <a class="dropdown-item" href="../profile/profile_asUser.html">Profile</a>
+            {{-- TODO direct profile to actual profile --}}
+            <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id . '/edit') }}">Profile</a>
             <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
                         class="got-messages">27</strong>
             </a>
             <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
             </a>
 
@@ -55,7 +53,8 @@
             </form>
         </div>
     </div>
-    @else
+    @endauth
+    @guest
     {{--not logged in user--}}
     <!-- mobile authentication button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#authentication">
@@ -72,5 +71,5 @@
             </li>
         </ul>
     </div>
-    @endif
+    @endauth
 </nav>

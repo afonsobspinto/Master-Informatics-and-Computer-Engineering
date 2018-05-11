@@ -5,13 +5,14 @@
 @section('resources')
     @parent
     <link rel="stylesheet" href="{{ asset('css/landing_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 @endsection
 
 @section('content')
-    @include('auctions.carousel', ['displayAuctions' => $displayAuctions])
+    @include('auctions.components.display_carousel', ['displayAuctions' => $displayAuctions])
 
-    @include('auctions.cards', ['auctions' => $recentAuctions, 'recent' => true])
+    @include('pages.components.cards', ['auctions' => $recentAuctions, 'recent' => true])
 
-    @include('auctions.cards', ['auctions' => $endingSoonAuctions, 'recent' => false])
+    @include('pages.components.cards', ['auctions' => $endingSoonAuctions, 'recent' => false])
 
 @endsection

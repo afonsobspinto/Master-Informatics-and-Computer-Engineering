@@ -12,9 +12,6 @@
 
         @include('components.bootstrap')
 
-        {{-- jquery --}}
-
-
         <!-- links -->
         @section('resources')
             <script src="{{ asset('js/common.js') }}" async></script>
@@ -26,7 +23,7 @@
 
         @include('components.header', ['categories' => $categories])
 
-        <div class="container mb-5" id="auction-section">
+        <div class="@yield('body-class', 'container mb-5 ')" id="page-body-section">
             @yield('content')
 
         </div>

@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,40 @@ class User extends Authenticatable
         return Hash::check($password, $this->password);
     }
 
+    public function isAdmin() {
+        return $this->is_administrator;
+    }
+
+    public function isBanned() {
+        $userID = $this->id;
+        $bans = DB::table('bans')->where([
+            ['banned_id', '=', $userID],
+            ['ban_expiration_date', '>=', 'now()'],
+            ['ban_start_date', '<', 'now()']
+        ])->get();
+        $isBanned = count($bans) != 0;
+        return $isBanned; //TODO
+    }
+
+    public function isRegular() {
+        return ! $this->isAdmin() && ! $this->isBanned();
+    }
+
+    public function getCity() {
+        $city = City::where('id', '=', $this->location)->get();
+
+        return count($city) != 0 ? $city[0] : null;
+    }
+
+    public function getCountry() {
+        $city = $this->getCity();
+        if($city == null)
+            return null;
+
+        return $city->getCountry();
+    }
+
+    public function getCountryID() {
+        return $this->getCity()->country_id;
+    }
 }

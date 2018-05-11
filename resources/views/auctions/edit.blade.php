@@ -4,7 +4,8 @@
 
 @section('resources')
     @parent
-    <link rel="stylesheet" href="{{ asset('css/landing_page.css') }}">
+    <script src="{{ asset('js/auction_form.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/auction_form.css') }}">
 @endsection
 
 @section('content')
@@ -12,7 +13,7 @@
 
         <h1 class="border-bottom pb-1 mb-4 h2">Edit Auctioneer Name's auction</h1>
 
-        <form method="POST" action="{{action('AuctionController@update', [$auction->id])}}">
+        <form method="POST" enctype="multipart/form-data" action="{{action('AuctionController@update', [$auction->id])}}">
             <h2 class="border-bottom pb-1 mb-4 h4">Auction details</h2>
 
             <input type="hidden" name="_method" value="PUT">
@@ -77,10 +78,12 @@
                              src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
                              alt="First slide">
                         <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img3' ).remove();"></a>
-                    </div>
-                    <div class="d-inline ">
-                        <input type="file" class="form-control-file mt-3" id="photos-input" multiple required>
-                    </div>
+                    </div>--}}
+            {{-- MODIFIED --}}
+            {{-- Pictures --}}
+            @include('auctions.components.form_images', ['images' => $images ])
+            {{-- /MODIFIED --}}
+            {{--
                 </div>
             </div>--}}
 

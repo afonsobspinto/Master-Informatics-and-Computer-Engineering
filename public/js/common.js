@@ -21,3 +21,4 @@ function showErrorAlert(errorMsg) {
 
     $('#header').after(errorBootstrapAlert);
 }
+

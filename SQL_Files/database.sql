@@ -16,37 +16,35 @@ DROP TABLE IF EXISTS won_auctions CASCADE;
 
 CREATE TABLE categories (
     id serial NOT NULL PRIMARY KEY,
-    name character(50)
+    name varchar(50)
 );
 
 CREATE TABLE countries (
-    id integer NOT NULL PRIMARY KEY,
-    country character(50)
+    id serial NOT NULL PRIMARY KEY,
+    country varchar(50)
 );
 
 CREATE TABLE cities (
-    id integer NOT NULL PRIMARY KEY,
-    city character(50) NOT NULL,
+    id serial NOT NULL PRIMARY KEY,
+    city varchar(50) NOT NULL,
     country_id integer NOT NULL REFERENCES countries(id) ON UPDATE CASCADE
 );
 
 
 CREATE TABLE "users" (
     id serial NOT NULL PRIMARY KEY,
-    username character(50),
-    first_name character(50),
-    last_name character(50),
-    password text NOT NULL,
-    email character(50) NOT NULL UNIQUE,
-    zip_code character(25),
-    address character(50),
+    username varchar(50),
+    first_name varchar(50),
+    last_name varchar(50),
+    password varchar(256) NOT NULL,
+    email varchar(50) NOT NULL UNIQUE,
+    zip_code varchar(25),
+    address varchar(200),
     "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     location integer REFERENCES cities(id) ON UPDATE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
     is_administrator boolean DEFAULT false,
-    remember_token character varying(100),
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    remember_token character varying(100)
 );
 
 CREATE TABLE auctions (
@@ -55,12 +53,12 @@ CREATE TABLE auctions (
     description text,
     starting_price real NOT NULL CONSTRAINT starting_price_ck CHECK (starting_price >= 0.0) DEFAULT 0.0,
     current_price real DEFAULT 0.0,
-    condition character(50) NOT NULL,
+    condition varchar(50) NOT NULL,
     CONSTRAINT condition CHECK ((condition = ANY (ARRAY['New'::text, 'Used'::text, 'Not Working'::text]))),
     "publication_date" timestamp DEFAULT CURRENT_TIMESTAMP,
     end_date timestamp NOT NULL CONSTRAINT end_date_ck CHECK (end_date > "publication_date"),
-    payment_type character(25) NOT NULL,
-    shipping_options character(25) NOT NULL,
+    payment_type varchar(25) NOT NULL,
+    shipping_options varchar(25) NOT NULL,
     CONSTRAINT payment_type CHECK ((payment_type = ANY (ARRAY['PayPal'::text, 'Credit Card'::text, 'Bank Transfer'::text, 'Other'::text]))),
     CONSTRAINT shipping_options CHECK ((shipping_options = ANY (ARRAY['Domestic Shipping'::text, 'International Shipping'::text, 'No shipping'::text]))),
     shipping_cost real CONSTRAINT shipping_cost_ck CHECK (shipping_cost >=0.0),
@@ -77,15 +75,15 @@ CREATE TABLE bans (
     id serial PRIMARY KEY,
     banned_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
     admin integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP,
-    ban_expiration_date timestamp CONSTRAINT banExpiration_ck CHECK (ban_expiration_date>"ban_start_date"),
+    "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL ,
+    ban_expiration_date timestamp  NOT NULL CONSTRAINT banExpiration_ck CHECK (ban_expiration_date > "ban_start_date"),
     ban_reason text NOT NULL
 );
 
 
 CREATE TABLE bids (
     id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    bidder_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
+    bidder_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE, --CONSTRAINT bidder_id_ck CHECK (bidder_id <> id.owner_id),
     bid_amount real NOT NULL,
     PRIMARY KEY(id, bidder_id)
 );

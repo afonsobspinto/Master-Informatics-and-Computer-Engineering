@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\ImageFileTraits;
+use App\Http\Controllers\UserTraits;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -9,7 +11,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
-use App\City;
 
 class RegisterController extends Controller
 {
@@ -25,6 +26,9 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    use UserTraits;
+    use ImageFileTraits;
 
     /**
      * Where to redirect users after registration.
@@ -52,12 +56,14 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $categories = Category::all();
-        $countries = Country::all();
-        $cities = City::all();
+        $countries = Country::allOrderedCountries();
+        $profilePic = $this->getUserPlaceholderURL();
+
         return view('auth.register', [
             'categories' => $categories,
             'countries' => $countries,
-            'cities' => $cities,
+            'zip_code_regex' => $this->zip_code_regex,
+            'profile_picture' => $profilePic,
         ]);
     }
 
@@ -70,13 +76,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'zip_code' => 'required|string',
-            'address' => 'required|string'
+            'username' => $this->buildUsernameRule('unique:users'),
+            'email' => $this->buildEmailRule('unique:users'),
+            'password' =>  $this->buildPasswordRule('confirmed'),
+            'first_name' => $this->name_rule,
+            'last_name' => $this->name_rule,
+            'zip_code' => $this->getZipCodeRule(),
+            'address' => $this->address_rule,
+            'city' => $this->id_rule,
+            'picture' => $this->image_rule,
         ]);
     }
 
@@ -88,14 +96,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'zip_code' => $data['zip_code'],
+            'zip_code' => strtoupper($data['zip_code']),
             'address' => $data['address'],
+            'location' => $data['city'],
         ]);
+
+        if(array_key_exists('picture', $data))
+            $this->tryStoreProfilePicture($data['picture'], $user->id);
+
+        return $user;
     }
 }

@@ -1,5 +1,7 @@
 @extends('layouts.base', ['categories' => $categories])
 
+@section('title', 'Login')
+
 @section('resources')
 @parent
 
