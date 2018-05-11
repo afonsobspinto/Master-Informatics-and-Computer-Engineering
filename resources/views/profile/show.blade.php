@@ -63,18 +63,22 @@
             <li class="nav-item">
                 <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="biddingItems-tab" data-toggle="tab" href="#biddingItems" role="tab" aria-controls="biddingItems" aria-selected="true">Items I'm bidding</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="purchaseHistory-tab" data-toggle="tab" href="#purchaseHistory" role="tab" aria-controls="purchaseHistory" aria-selected="true">
-                    Purchase History
-                    <i class="fas fa-exclamation" aria-hidden="true" title="Item(s) waiting for Feedback"></i>
-                </a>
-            </li>
+            @if(Auth::check())
+                @if(Auth::user()->isProfileOwner($user))
+                    <li class="nav-item">
+                        <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="biddingItems-tab" data-toggle="tab" href="#biddingItems" role="tab" aria-controls="biddingItems" aria-selected="true">Items I'm bidding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="purchaseHistory-tab" data-toggle="tab" href="#purchaseHistory" role="tab" aria-controls="purchaseHistory" aria-selected="true">
+                            Purchase History
+                            <i class="fas fa-exclamation" aria-hidden="true" title="Item(s) waiting for Feedback"></i>
+                        </a>
+                    </li>
+                @endif
+            @endif
         </ul>
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
