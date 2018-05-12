@@ -109,4 +109,11 @@ class User extends Authenticatable
     public function getItemsForSale() {
         return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
     }
+
+    public function getWishlist() {
+        return DB::table('auctions')
+                ->join('wishlists', 'auctions.id', '=', 'wishlists.auction_id')
+                ->where('owner_id', '=', $this->id)
+                ->get();
+    }
 }

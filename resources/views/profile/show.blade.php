@@ -280,7 +280,30 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @foreach($wishlist as $item)
                             <li>
+                                <div class="row">
+                                    <div>
+                                        <img src="http://cdn1.shopmania.biz/files/s4/452423870/p/l/9/cofre-alta-seguranca-digital-map20ea~5089.jpg" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>{{ $item->description }}</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Current Bid: {{ $item->current_price }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="collapse collapseAlert">
                                         <div class="alert alert-success" role="alert">
@@ -291,54 +314,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="http://cdn1.shopmania.biz/files/s4/452423870/p/l/9/cofre-alta-seguranca-digital-map20ea~5089.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Steel Lock</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Accessories</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 58 minutes</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://d11fk7pxhipp6v.cloudfront.net/products/esprit-17871-538-black-56-sunglass-with-graduated--2094664968.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Espirit Sunglasses</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Accessories</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 23 hours</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
+                            @endforeach
                         </ul>
                     </div>
                 </div>
