@@ -53,6 +53,10 @@ class User extends Authenticatable
         return $this->is_administrator;
     }
 
+    public function isUserAdmin($user) {
+        return $user->is_administrator;
+    }
+
     public function isBanned() {
         $userID = $this->id;
         $bans = DB::table('bans')->where([
@@ -62,6 +66,17 @@ class User extends Authenticatable
         ])->get();
         $isBanned = count($bans) != 0;
         return $isBanned; //TODO
+    }
+
+    public function isUserBanned($user) {
+        $userID = $user->id;
+        $bans = DB::table('bans')->where([
+            ['banned_id', '=', $userID],
+            ['ban_expiration_date', '>=', 'now()'],
+            ['ban_start_date', '<', 'now()']
+        ])->get();
+        $isBanned = count($bans) != 0;
+        return $isBanned;
     }
 
     public function isRegular() {

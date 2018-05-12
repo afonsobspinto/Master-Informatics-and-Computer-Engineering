@@ -27,34 +27,121 @@
             <div class="row">
                 <p class="email">{{ $user->email }}</p>
             </div>
-            <div class="row">
-                <span class="sr-only">Four out of Five Stars</span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="far fa-star" aria-hidden="true"></span>
-                <span class="badge badge-success">61</span>
-            </div>
-            @if(Auth::check())
-                @if(Auth::user()->isProfileOwner($user))
+            @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+            @elseif(Auth::check())
+                <div class="row">
+                    <span class="sr-only">Four out of Five Stars</span>
+                    <span class="fas fa-star" aria-hidden="true"></span>
+                    <span class="fas fa-star" aria-hidden="true"></span>
+                    <span class="fas fa-star" aria-hidden="true"></span>
+                    <span class="fas fa-star" aria-hidden="true"></span>
+                    <span class="far fa-star" aria-hidden="true"></span>
+                    <span class="badge badge-success">61</span>
+                </div>
+                    @if(Auth::user()->isProfileOwner($user))
+                        <div class="row">
+                            <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
+                        </div>
+                        <div class="row">
+                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
+                        </div>
+                    @elseif(Auth::user()->isAdmin() && Auth::user()->isUserAdmin($user))
+                    <div class="row" id="voteDemote">
+                        <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Vote to demote Admin</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You voted to demote this Admin
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    @elseif(Auth::user()->isAdmin())
                     <div class="row">
-                        <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
+                        <a href="#" class="btn btn-primary " data-toggle="collapse" data-target=".collapseAlert">Promote to Admin</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You promoted this user to Admin
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="row">
-                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
+                        <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#banModal">Ban User</a>
                     </div>
-                @else
-                    <div class="row">
-                        <a class="badge badge-light report" type="button" data-toggle="modal"
-                           href="#exampleModal">
-                            Report abuse
-                        </a>
+                    <div class="modal fade" id="banModal" tabindex="-1" role="dialog"
+                         aria-labelledby="banModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="banModalLabel">Ban Account </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <div>
+                                                <h5 style="color:brown"> Motive</h5>
+                                                <div class="radio">
+                                                    <label><input type="radio"
+                                                                  name="behaviour">Abusive behaviour</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="content">Spam</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="content">Troll</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                            <span>
+                                <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                </span>
+
+                                            <span class="radio">
+                                    <label><input type="radio" name="duration">Permanent</label>
+                            </span>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text_ban" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text_ban"></textarea>
+                                        </div>
+                                        <label for="admin-pass_ban" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="admin-pass_ban">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger report">Ban Account</button>
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                @endif
+                    @else
+                        <div class="row">
+                            <a class="badge badge-light report" type="button" data-toggle="modal"
+                               href="#exampleModal">
+                                Report abuse
+                            </a>
+                        </div>
+                    @endif
             @endif
         </div>
 
+        @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+        @elseif(Auth::check())
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="active">
@@ -63,7 +150,6 @@
             <li class="nav-item">
                 <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
             </li>
-            @if(Auth::check())
                 @if(Auth::user()->isProfileOwner($user))
                     <li class="nav-item">
                         <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
@@ -80,32 +166,12 @@
                 @endif
             @endif
         </ul>
+
+        @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+        @else
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
-                <div class="review-block">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg" class="img-review img-fluid">
-                            <div class="review-block-name"><a href="profile.html">Smithers</a></div>
-                            <div class="review-block-date">March 01, 2018</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="review-block-rate">
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                            </div>
-                            <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                            <a class="badge badge-light report" type="button" data-toggle="modal"
-                               href="#exampleModal">
-                                Report abuse
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
@@ -122,10 +188,13 @@
                                 <span class="far fa-star" aria-hidden="true"></span>
                             </div>
                             <div class="review-block">Some of the donuts were already eaten</div>
+                            @if(Auth::user()->isAdmin())
+                            @else
                             <a class="badge badge-light report" type="button" data-toggle="modal"
                                href="#exampleModal">
                                 Report abuse
                             </a>
+                            @endif
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -495,6 +564,7 @@
                 </div>
             </div>
         </div>
+            @endif
     </div>
 
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
