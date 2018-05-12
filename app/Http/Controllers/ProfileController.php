@@ -44,6 +44,7 @@ class ProfileController extends Controller
         $countries = Country::allOrderedCountries();
         $cities = $user->getCountry()->getAllCities();
         $profilePic = $this->getProfilePictureURL();
+        $itemsForSale = $user->getItemsForSale();
 
         return view('profile.show', [
             'categories' => $categories,
@@ -52,6 +53,7 @@ class ProfileController extends Controller
             'user' => $user,
             'zip_code_regex' => $this->zip_code_regex,
             'profile_picture' => $profilePic,
+            'itemsForSale' => $itemsForSale,
         ]);
     }
 

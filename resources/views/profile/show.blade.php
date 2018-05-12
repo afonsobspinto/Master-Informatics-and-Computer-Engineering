@@ -22,7 +22,7 @@
                 <h1>{{ $user->username }}</h1>
             </div>
             <div class="row">
-                <p>{{ $user->getCountryID() }}</p>
+                <p>{{ $user->getCountryName() }}</p>
             </div>
             <div class="row">
                 <p class="email">{{ $user->email }}</p>
@@ -180,6 +180,7 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @foreach($itemsForSale as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -187,65 +188,21 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Computer with Keyboard and Mouse</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Technology</p>
+                                            <div class="col-md-10">
+                                                <p>{{ $item->description }}</p>
                                             </div>
-                                            <div class="col">
-                                                <p>Time Left: 18 minutes</p>
+                                            <div class="col-md-10">
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="http://d26lpennugtm8s.cloudfront.net/stores/485/599/products/tenis-nike-air-pernix-branco-loja-hdr-lojahdr-com-441-6e4814cc2c28839f4f15050750878402-640-0.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Chinese Shoes</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Clothing</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 9 hours</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://www.renaultretail.co.uk/assets/rr/images/vehicle/new-renault/vehicle-images/cars/renault-clio/range/06-renault-clio-titanium-grey.png" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">2º hand car</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Cars</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 5 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

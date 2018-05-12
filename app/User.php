@@ -85,4 +85,13 @@ class User extends Authenticatable
     public function getCountryID() {
         return $this->getCity()->country_id;
     }
+
+    public function getCountryName() {
+        $countryID = $this->getCountryID();
+        return Country::select('id', 'country')->where('id', '=', $countryID)->value('country');
+    }
+
+    public function getItemsForSale() {
+        return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
+    }
 }
