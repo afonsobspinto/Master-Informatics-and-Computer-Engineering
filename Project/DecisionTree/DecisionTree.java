@@ -1,9 +1,8 @@
 
+import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.Normalize;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
 
@@ -15,10 +14,8 @@ import java.util.Random;
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
-    private Normalize filterNorm = new Normalize();
 
     public DecisionTree(String filePath) {
-
         try {
             String[] options = {new String("-M 4")};
             tree.setOptions(options);
@@ -28,13 +25,13 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes()-1);
             dataset.randomize(random);
-            filterNorm.setInputFormat(dataset);
-            dataset = Filter.useFilter(dataset, filterNorm);
+            tree.setUnpruned(true); //TODO: Make this an option WHY THE FUCK?
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
         }
         loadTree();
+        score();
     }
 
     private void loadTree() {
@@ -74,15 +71,41 @@ public class DecisionTree {
         jf.setVisible(true);
         tv.fitToScreen();
     }
-}
-/*
-//TODO:
-Random Split + Cross Validation  / Random Split
-Fit
-Predict
-Score
-Graphviz
-Tree Options
-DataSet Formats
 
-*/
+    public static void main(String[] args) throws IOException{
+        if (args.length == 1 && getFileExtension(args[0]).equals("arff")){
+            if(parseInputs(args)){
+
+                DecisionTree decisionTree = new DecisionTree(args[0]);
+                decisionTree.displayTree();
+
+                return;
+            }
+        }
+        System.out.println("Usage: java DecisionTree <dataSetFilePath>");
+    }
+
+    private static boolean parseInputs(String[] args) {
+        return new File(args[0]).exists();
+    }
+
+    private static String getFileExtension(String filepath) {
+        String[] tokens = filepath.split("\\.");
+
+        return tokens[tokens.length-1];
+    }
+
+    public void score(){
+        Evaluation eval = null;
+        try {
+            eval = new Evaluation(dataset);
+            eval.crossValidateModel(tree, dataset, 10, new Random(1));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(eval.toSummaryString());
+
+    }
+}
