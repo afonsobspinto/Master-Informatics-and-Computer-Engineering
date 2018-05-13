@@ -1,4 +1,5 @@
 
+import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
@@ -21,11 +22,13 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes()-1);
             dataset.randomize(random);
+            tree.setUnpruned(true); //TODO: Make this an option
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
         }
         loadTree();
+        score();
     }
 
     private void loadTree() {
@@ -87,6 +90,20 @@ public class DecisionTree {
         String[] tokens = filepath.split("\\.");
 
         return tokens[tokens.length-1];
+    }
+
+    public void score(){
+        Evaluation eval = null;
+        try {
+            eval = new Evaluation(dataset);
+            eval.crossValidateModel(tree, dataset, 10, new Random(1));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(eval.toSummaryString());
+
     }
 }
 /*
