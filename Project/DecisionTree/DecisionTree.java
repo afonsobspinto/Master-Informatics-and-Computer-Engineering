@@ -20,8 +20,8 @@ public class DecisionTree {
     public DecisionTree(String filePath) {
 
         try {
-            //String[] options = {new String("-O")};
-            //tree.setOptions(options);                 //TODO: Set tree options
+            String[] options = {new String("-M 4")};
+            tree.setOptions(options);
 
             Random random = new Random(Double.doubleToLongBits(Math.random()));
 
