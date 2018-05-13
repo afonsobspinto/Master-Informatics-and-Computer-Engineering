@@ -10,11 +10,14 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 
 class Messages extends  Model
 {
     protected $table = 'messages';
 
+    /*
     public function getSender() {
         $sender = DB::table('emails')
             ->where('id', '=', $this->id)
@@ -54,6 +57,18 @@ class Messages extends  Model
             ->get('send_date');
 
         return $date;
+    }
+    */
+
+    public function getMessagesId(int $id){
+        $messages = DB::table('emails')
+          ->join('messages', 'messages.id', '=', 'emails.id')
+            ->join('users', 'users.id', '=', 'emails.sender_id')
+            ->select('emails.*', 'messages.*', 'users.username')
+            ->where('receiver_id', '=', $id)
+            ->get();
+
+        return $messages;
     }
 
 }

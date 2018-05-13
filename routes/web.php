@@ -25,7 +25,7 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 Route::resource('auctions', 'AuctionController');
 
 //messages
-Route::resource('messages', 'MessageController');
+Route::resource('messages', 'MessagesController');
 
 //profile
 Route::resource('profile', 'ProfileController');
@@ -46,3 +46,5 @@ Route::post('register', 'Auth\RegisterController@register');
 //Route::get('/home', 'HomeController@index')->name('home');
 //other API
 Route::get('country/{id}/cities', 'CountryController@getCities')->where('id', '[0-9]+');
+
+//Route::get('/messages', 'MessagesController@index');

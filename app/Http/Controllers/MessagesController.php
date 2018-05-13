@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Messages;
+use Auth;
 
-class MessageController extends Controller
+
+class MessagesController extends Controller
 {
+
+    protected $messageService;
+
+    public function __construct(Messages $messages) {
+        $this->messageService = $messages;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +23,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('messages');
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+       // $messages = $this->messageService->getMessagesId($userId);
+        $messages = $this->messageService->getMessagesId(5);
+
+        return view('messages.show', [
+            'categories' => $categories,
+            'messages' => $messages
+        ]);
     }
 
     /**
@@ -23,7 +42,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return 123;
+        //
     }
 
     /**
