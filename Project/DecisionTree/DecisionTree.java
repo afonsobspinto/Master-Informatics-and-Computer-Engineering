@@ -8,16 +8,15 @@ import weka.gui.treevisualizer.TreeVisualizer;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
 
-    public DecisionTree(String filePath) {
+    DecisionTree(String filePath) {
         try {
-            String[] options = {"-M","4"};
+            String[] options = {"-M", "4"};
             tree.setOptions(options);
 
             Random random = new Random(Double.doubleToLongBits(Math.random()));
@@ -49,7 +48,7 @@ public class DecisionTree {
                 new javax.swing.JFrame("Weka Classifier Tree Visualizer: J48");
         jf.setSize(500,400);
         jf.getContentPane().setLayout(new BorderLayout());
-        TreeVisualizer tv = null;
+        TreeVisualizer tv;
         try {
             tv = new TreeVisualizer(null,
                     tree.graph(),
@@ -70,7 +69,7 @@ public class DecisionTree {
         tv.fitToScreen();
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) {
         if (args.length == 1 && getFileExtension(args[0]).equals("arff")){
             if(parseInputs(args)){
 
@@ -103,7 +102,9 @@ public class DecisionTree {
             e.printStackTrace();
         }
 
+        assert eval != null;
         return eval.toSummaryString();
 
     }
+
 }
