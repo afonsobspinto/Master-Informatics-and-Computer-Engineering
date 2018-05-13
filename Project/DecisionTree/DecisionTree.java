@@ -25,7 +25,6 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes()-1);
             dataset.randomize(random);
-            tree.setUnpruned(true); //TODO: Make this an option WHY THE FUCK?
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
