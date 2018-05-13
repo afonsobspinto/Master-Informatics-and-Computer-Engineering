@@ -60,7 +60,7 @@ class Messages extends  Model
     }
     */
 
-    public function getMessagesId(int $id){
+    public function getUserMessages(int $id){
         $messages = DB::table('emails')
           ->join('messages', 'messages.id', '=', 'emails.id')
             ->join('users', 'users.id', '=', 'emails.sender_id')
@@ -69,6 +69,18 @@ class Messages extends  Model
             ->get();
 
         return $messages;
+    }
+
+    public function getUserMessageById(int $userId, int $messageId) {
+       $message =  DB::table('emails')
+           ->join('messages', 'messages.id', '=', 'emails.id')
+            ->join('users', 'users.id', '=', 'emails.sender_id')
+           ->select('emails.*', 'messages.*', 'users.username')
+           ->where('receiver_id', '=', $userId)
+           ->where('messages.id', '=', $messageId)
+           ->first();
+
+       return $message;
     }
 
 }

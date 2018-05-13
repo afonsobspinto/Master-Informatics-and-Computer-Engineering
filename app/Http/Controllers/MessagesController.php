@@ -27,9 +27,9 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
        // $messages = $this->messageService->getMessagesId($userId);
-        $messages = $this->messageService->getMessagesId(5);
+        $messages = $this->messageService->getUserMessages(5);
 
-        return view('messages.show', [
+        return view('messages.index', [
             'categories' => $categories,
             'messages' => $messages
         ]);
@@ -62,9 +62,16 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+        $message = $this->messageService->getUserMessageById(5, $id);
+
+        return view('messages.show', [
+            'categories' => $categories,
+            'message' => $message
+        ]);
     }
 
     /**
