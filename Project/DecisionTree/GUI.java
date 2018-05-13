@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class GUI {
@@ -9,42 +7,50 @@ public class GUI {
     private JButton classifyButton;
     private JButton showTrainingStatsButton;
     private JButton loadFileButton;
-    private JLabel label1;
     static private String filePath;
     static JFrame frame = new JFrame("GUI");
-    final JFileChooser fc = new JFileChooser();
+    private static JFrame tsFrame = new JFrame("Training Stats");
+    private static JFrame classisfyFrame = new JFrame("Classify");
+    private final JFileChooser fc = new JFileChooser();
 
     public GUI() {
-        viewTreeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(getFileExtension(filePath).equals("arff")) {
-                    DecisionTree decisionTree = new DecisionTree(filePath);
-                    decisionTree.displayTree();
-                }
+        viewTreeButton.addActionListener(e -> {
+
+            if(filePath != null && getFileExtension(filePath).equals("arff")) {
+                DecisionTree decisionTree = new DecisionTree(filePath);
+                decisionTree.displayTree();
             }
         });
 
-        classifyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new Classify().getPanel1());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
-            }
+        classifyButton.addActionListener(e -> {
+            classisfyFrame.setContentPane(new Classify().getPanel1());
+            classisfyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            classisfyFrame.pack();
+            classisfyFrame.setVisible(true);
         });
-        loadFileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fc.showOpenDialog(panel1);
-                File file = fc.getSelectedFile();
-                if(file.exists()) {
-                    filePath = file.getPath();
-                    loadFileButton.setText(filePath);
-                }
+        loadFileButton.addActionListener(e -> {
+            fc.showOpenDialog(panel1);
+            File file = fc.getSelectedFile();
+            if(file != null && file.exists()) {
+                filePath = file.getPath();
+                loadFileButton.setText(filePath);
+            }
 
-                frame.pack();
+            frame.pack();
+        });
+
+        this.showTrainingStatsButton.addActionListener(e -> {
+
+            if(filePath != null && getFileExtension(filePath).equals("arff")) {
+                TrainingStats trainingStats = new TrainingStats();
+                tsFrame.setContentPane(trainingStats.getPanel1());
+                tsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                DecisionTree decisionTree = new DecisionTree(filePath);
+                String stats = decisionTree.score();
+
+                trainingStats.setTextArea1(stats);
+                tsFrame.pack();
+                tsFrame.setVisible(true);
             }
         });
 
@@ -53,8 +59,9 @@ public class GUI {
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-        frame.setContentPane(new GUI().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GUI gui = new GUI();
+        frame.setContentPane(gui.panel1);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }

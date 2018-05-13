@@ -17,7 +17,7 @@ public class DecisionTree {
 
     public DecisionTree(String filePath) {
         try {
-            String[] options = {new String("-M 4")};
+            String[] options = {"-M","4"};
             tree.setOptions(options);
 
             Random random = new Random(Double.doubleToLongBits(Math.random()));
@@ -30,14 +30,13 @@ public class DecisionTree {
             e.printStackTrace();
         }
         loadTree();
-        score();
     }
 
     private void loadTree() {
         try {
             tree.buildClassifier(dataset);
-            System.out.println(tree.getCapabilities().toString());
-            System.out.println(tree.graph());
+            //System.out.println(tree.getCapabilities().toString());
+            //System.out.println(tree.graph());
         } catch (Exception e) {
             System.out.println("Couldn't load tree");
             e.printStackTrace();
@@ -94,7 +93,7 @@ public class DecisionTree {
         return tokens[tokens.length-1];
     }
 
-    public void score(){
+    public String score(){
         Evaluation eval = null;
         try {
             eval = new Evaluation(dataset);
@@ -104,7 +103,7 @@ public class DecisionTree {
             e.printStackTrace();
         }
 
-        System.out.println(eval.toSummaryString());
+        return eval.toSummaryString();
 
     }
 }
