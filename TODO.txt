@@ -1,38 +1,28 @@
 Complete error recovery
 Complete Tree Anotation (For instance, the <ID>s of Function() and FunctionAssign() are not stored)
 
-Create Symbol Tables (with the following details): 
-	- todas as variáveis globais
-	- todas as funcoes declaradas e quantos argumentos têm
-
-	- 1º parsing para as variáveis globais
-	- 2º parsing para as variaveis locais
-
-	- Criar class Symbol Table -> hashmap (String, Descriptor[Type, scope]) 
-
-	---- Um colega meu deu-me sugestão: hashmap(name, [type, name, variavel inicializada ou nao]). Para as funcoes, cria-se uma symbol tale -> hashmap (FunctionName, FunctionObject). FunctionObject-> hashmap de todas as variaveis (hashmap igual ao primeiro). ----
-
-	- 2 Tipos -> Integer e Array
-
 Do the Semantic Analysis (Run the tree and compare it to the Symbol Tables to do this analysis)
-	- verificar se a variavel foi inicializada
-
+	- verificar se a variavel foi inicializada	
 	- ter um set dessas variaveis 
-	- 
-ver se os tipos fazem sentidos para as operacoes a serem feitas
-	- 
-em a.size  -> a e array
-	- 
-em a+b -> a e inteiro
-	- 
-se nao for verdade da erro
+	- ver se os tipos fazem sentidos para as operacoes a serem feitas
+	- em a.size  -> a e array
+	- em a+b -> a e inteiro
+	- se nao for verdade da erro
 
 	- quando aceder uma variavel o funcao, ela tem de existir
-	- 
-uma variavel e funcao podem ter o mesmo nome(edited)
+	- uma variavel e funcao podem ter o mesmo nome(edited)
 
 Generate JVM code accepted by jasmin correspopnding to the invocation of functions in yal
+
 Generate JVM code accepted by jasmin for arithmetic expressions
+
+Generate JVM code accepted by jasmin for conditional instructions (if and if-else)
+
+Generate JVM code accepted by jasmin for loops
+
+Generate JVM code accepted by jasmin to deal with arrays
+
+Complete the compiler and test it using a set of yal modules.
 
 
 Low Priority:
@@ -40,4 +30,3 @@ Low Priority:
 Use packages, instead of Java's default package
 Stop after the first 10 parser errors
 Consider outputting "prettier" (i.e., cleaner and more informative) error messages.
-Consider rewriting the grammar to avoid use of LOOKAHEADs.
