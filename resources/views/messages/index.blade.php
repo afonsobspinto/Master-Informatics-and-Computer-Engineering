@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+
 <div class="container">
     <div class="mt-4">
         <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
@@ -26,12 +27,45 @@
                     <button id="delete" type="button" class="btn btn-outline-danger d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
                             data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
 
-                    @yield('modal')
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{route('messages.store')}}" method="post">
+                                    {{csrf_field() }}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-control-label">To:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="item-name" class="form-control-label">#Item:</label>
+                                        <input type="text" class="form-control" id="item-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="form-control-label">Message:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="sendbtn" class="btn btn-outline-success">Send message</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </div>
 </div>
+
 <!-- messages -->
 <div class="container">
     <table class="table mt-2  table-hover">
