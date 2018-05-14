@@ -324,6 +324,7 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @foreach($biddingItems as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -331,65 +332,21 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Dog Painting</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Accessories</p>
+                                                <p>{{ $item->description }}</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time Left: 17 hours</p>
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://rukminim1.flixcart.com/image/832/832/book/1/5/9/a-game-of-thrones-the-story-continues-the-complete-box-set-of-7-books-original-imadfgzztg4ahyhk.jpeg?q=70" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Game of Thrones Books Colection</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Books</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 2 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://www.console-deals.com/advice/wp-content/uploads/2017/10/xxpro.png.pagespeed.ic.HIrMrwzGC5.webp" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">PS4 with Controloer</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Technology</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 4 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

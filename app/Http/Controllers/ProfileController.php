@@ -46,6 +46,7 @@ class ProfileController extends Controller
         $profilePic = $this->getProfilePictureURL();
         $itemsForSale = $user->getItemsForSale();
         $wishlist = $user->getWishlist();
+        $biddingItems = $user->getBiddingItems();
 
         return view('profile.show', [
             'categories' => $categories,
@@ -56,6 +57,7 @@ class ProfileController extends Controller
             'profile_picture' => $profilePic,
             'itemsForSale' => $itemsForSale,
             'wishlist' => $wishlist,
+            'biddingItems' => $biddingItems,
         ]);
     }
 

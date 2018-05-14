@@ -116,4 +116,12 @@ class User extends Authenticatable
                 ->where('owner_id', '=', $this->id)
                 ->get();
     }
+
+    public function getBiddingItems() {
+        return DB::table('auctions')
+            ->join('bids', 'auctions.id', '=', 'bids.id')
+            ->where('bids.bidder_id', '=', $this->id)
+            ->where('owner_id', '=', $this->id)
+            ->get();
+    }
 }
