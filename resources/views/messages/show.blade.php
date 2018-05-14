@@ -40,7 +40,7 @@
                     <p class="text-justify">{{ $message->message }}</p>
                 </div>
 
-                <div class="form-group">
+                <div class="form">
                     <textarea class="form-control" id="message-text" placeholder="Write your message!"></textarea>
                 </div>
                 <div class="row">

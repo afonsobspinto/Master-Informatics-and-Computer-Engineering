@@ -42,7 +42,15 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        //
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+        // $messages = $this->messageService->getMessagesId($userId);
+        $messages = $this->messageService->getUserMessages(5);
+
+        return view('messages.create', [
+            'categories' => $categories,
+            'messages' => $messages
+        ]);
     }
 
     /**
@@ -106,5 +114,9 @@ class MessagesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createSpecificMessage($message){
+
     }
 }
