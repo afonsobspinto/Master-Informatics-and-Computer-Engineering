@@ -355,6 +355,7 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @foreach($purchaseHistory as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -362,15 +363,15 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Office Desk</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Accessories</p>
+                                                <p>{{ $item->description }}</p>
                                             </div>
                                             <div class="col">
-                                                <p>Purchased March, 4th</p>
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                         <div class="row padding-product-info">
@@ -472,27 +473,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://img2.insania.com/imagens/30000/3026/02.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Dog Collar with Chip</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Animals</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Purchased March, 1st</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

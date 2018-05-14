@@ -124,4 +124,8 @@ class User extends Authenticatable
             ->where('owner_id', '=', $this->id)
             ->get();
     }
+
+    public function getPurchaseHistory() { //TODO
+        return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
+    }
 }

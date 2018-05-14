@@ -47,6 +47,7 @@ class ProfileController extends Controller
         $itemsForSale = $user->getItemsForSale();
         $wishlist = $user->getWishlist();
         $biddingItems = $user->getBiddingItems();
+        $purchaseHistory = $user->getPurchaseHistory();
 
         return view('profile.show', [
             'categories' => $categories,
@@ -58,6 +59,7 @@ class ProfileController extends Controller
             'itemsForSale' => $itemsForSale,
             'wishlist' => $wishlist,
             'biddingItems' => $biddingItems,
+            'purchaseHistory' => $purchaseHistory,
         ]);
     }
 
