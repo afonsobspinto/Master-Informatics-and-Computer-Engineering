@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 class Messages extends  Model
 {
     protected $table = 'messages';
+    public $timestamps = false;
+    protected $fillable = ['subject', 'message', 'send_date'];
 
     /*
     public function getSender() {
@@ -60,6 +62,12 @@ class Messages extends  Model
     }
     */
 
+    public static function create(array $data) {
+        DB::table('messages')->insert(
+            $data
+        );
+    }
+
     public function getUserMessages(int $id){
         $messages = DB::table('emails')
           ->join('messages', 'messages.id', '=', 'emails.id')
@@ -81,6 +89,14 @@ class Messages extends  Model
            ->first();
 
        return $message;
+    }
+
+    public function getNextMessageID()
+    {
+
+        $statement = DB::select("show table status like 'messages'");
+
+        return response()->json(['id' => $statement[0]]);
     }
 
 }

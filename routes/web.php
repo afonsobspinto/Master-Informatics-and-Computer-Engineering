@@ -26,7 +26,7 @@ Route::resource('auctions', 'AuctionController');
 
 //messages
 Route::resource('messages', 'MessagesController');
-Route::get('messages/{message}/create, MessagesController@createSpecificMessage');
+//Route::post('message, MessagesController@store');
 
 //profile
 Route::resource('profile', 'ProfileController');

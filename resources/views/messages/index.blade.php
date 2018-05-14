@@ -36,34 +36,36 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{route('messages.store')}}" method="post">
+                                <!--{!! Form::open(['action'=> 'MessagesController@store', 'method'=>'POST']) !!} -->
+                                <form action="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
                                     {{csrf_field() }}
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">To:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label label for="recipient-name" class="form-control-label">To:</label>
+                                            <input type="text" class="form-control" id="recipient-name" name="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="item-name" class="form-control-label">Subject:</label>
+                                            <input type="text" class="form-control" id="item-name" name="item-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="message-text" name="message-text"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="item-name" class="form-control-label">#Item:</label>
-                                        <input type="text" class="form-control" id="item-name">
+                                    <div class="modal-footer">
+                                        <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="sendbtn" class="btn btn-outline-success">Send message</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="sendbtn" class="btn btn-outline-success">Send message</button>
-                                </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+                                <!--   {!! Form::close() !!} -->
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </nav>
+   </div>
 </div>
 
 <!-- messages -->
@@ -107,6 +109,29 @@
         $(".clickable-row").click(function () {
             window.document.location = $(this).data("href");
         });
+    });
+</script>
+
+<script>
+    $("#sendbtn").click(function(e){
+        e.preventDefault()
+        var $form = $("#userForm");
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function (data) {
+                if(data.error){
+                    return;
+                }
+                alert(data.success); // THis is success message
+                $('#exampleModal').modal('hide');  // Your modal Id
+            },
+            error: function (result) {
+
+            }
+        });
+
     });
 </script>
 @endsection
