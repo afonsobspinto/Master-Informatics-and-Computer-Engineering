@@ -96,7 +96,7 @@ class Messages extends  Model
 
         $statement = DB::select("show table status like 'messages'");
 
-        return response()->json(['id' => $statement[0]]);
+        return response()->json(['id' => $statement[0]->Auto_increment]);
     }
 
 }

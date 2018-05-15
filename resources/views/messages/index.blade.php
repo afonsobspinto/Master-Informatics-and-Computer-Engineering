@@ -128,10 +128,8 @@
                 $('#exampleModal').modal('hide');  // Your modal Id
             },
             error: function (result) {
-
             }
         });
-
     });
 </script>
 @endsection

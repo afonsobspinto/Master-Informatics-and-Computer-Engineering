@@ -74,21 +74,22 @@ class MessagesController extends Controller
 
 
         try {
+
             $message = new Messages();
-            $message ->subject = $request->input('recipient-name');
-    //        $message ->message = $request->input('message-text');                   FIX THIS, NOT AN INPUT
+            $message ->subject = $request->input('item-name');
+            $message ->message = $request->get('message-text');                //   FIX THIS, NOT AN INPUT
             $message ->send_date = Carbon::now();
+
             $message ->save();
 
+            error_log($message->id);
             $emails = new Emails();
-           // $idmsg = getNextMessageID();
-            $emails->id = 50;
+            $emails->id = $message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id = $request->input(recipient-name);
+            $emails->receiver_id = $request->input('recipient-name');
             $emails->sender_id = $userId;
             $emails->save();
         }
-
         catch (\Exception $e){
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
