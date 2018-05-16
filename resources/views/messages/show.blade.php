@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <form action="{{route('messages.storeMessage')}}" method="POST" id="userForm" class=="userForm">
+    <form route="{{route('messages.storeMessage')}}" method="POST" id="userForm" class="userForm">
         {{csrf_field() }}
         <div class="mt-2">
             <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
@@ -42,13 +42,13 @@
                         <p class="text-justify">{{ $message->message }}</p>
                     </div>
 
-                    <input type="hidden" value={{$message->sender_id}} name="receiver" id="receiver" class="form-control"/>
+                    <input type="hidden" value="{{$message->sender_id}}" name="receiver" id="receiver" class="form-control"/>
                     <input type="hidden" value="" name="id" id="id" class="form-control"/>
-                    <textarea class="form-control" id="message-text" name="message-text" placeholder="Write your message!"></textarea>
+                    <textarea class="form-control" id="article-ckeditor" name="message-text" placeholder="Write your message!"></textarea>
                     <div class="row">
                         <div class="col-5"></div>
                         <div class="col-2">
-                            <button id="sendmsg" type="submit" class="btn btn-outline-success d-inline-block"> Send Message</button>
+                            <button id="bew" class="btn btn-outline-success d-inline-block"> Send Message</button>
                         </div>
                         <div class="col-5"></div>
                     </div>
@@ -64,19 +64,27 @@
     </div>
     </form>
 </div>
+
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 
-
-    $("#sendmsg").click(function(e){
+<script>
+    $("#bew").click(function(e){
         e.preventDefault();
 
         var url = window.location.href;
-        $("#id").val(url.split("/").pop());
+
+        var iden =  url.split("/").pop();
+        var receiver = $("#receiver").val();
+        var content = document.getElementById("article-ckeditor").value;
+        console.log(content);
         var $form = $("#userForm");
         $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
+            type: 'POST',
+            url: $form.attr('route'),
+            data: {id: iden, rec:receiver, con:'teste'},
             success: function (data) {
                 if(data.error){
                     return;
@@ -88,4 +96,6 @@
         });
     });
 </script>
+
+
 @endsection

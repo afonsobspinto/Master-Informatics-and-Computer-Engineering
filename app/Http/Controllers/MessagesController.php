@@ -101,23 +101,26 @@ class MessagesController extends Controller
     public function storeSpecificMessage(Request $request)
     {
         $this->validate($request, [
-            'message-text' => 'required',
+            'con' => 'required',
+            'rec' => 'required'
         ]);
 
         $userId = Auth::user()->id;
-        $id = $request->get('id');
+        $array = $request->toArray();
+        $id = $request->input('id');
+
         $msg = $this->messageService->getUserMessageById(5,  $id);
 
        try {
             $message = new Messages();
-            $message ->subject = $msg->subject;
-            $message ->message = $request->get('message-text');
+            $message ->subject = $request->input('rec');
+            $message ->message = $request->input('con');
             $message ->save();
 
             $emails = new Emails();
-            $emails->id = $message->id;
+            $emails->id = $msg->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id = $request->get('receiver');
+            $emails->receiver_id =  array_values($array)[1];
             $emails->sender_id = $userId;
             $emails->save();
 
