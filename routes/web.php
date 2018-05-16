@@ -26,7 +26,8 @@ Route::resource('auctions', 'AuctionController');
 
 //messages
 Route::resource('messages', 'MessagesController');
-//Route::post('message, MessagesController@store');
+Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');
+Route::post('messages', 'MessagesController@store')->name('messages.store');
 
 //profile
 Route::resource('profile', 'ProfileController');

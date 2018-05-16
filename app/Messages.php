@@ -83,13 +83,24 @@ class Messages extends  Model
        $message =  DB::table('emails')
            ->join('messages', 'messages.id', '=', 'emails.id')
             ->join('users', 'users.id', '=', 'emails.sender_id')
-           ->select('emails.*', 'messages.*', 'users.username')
+           ->select('emails.*', 'messages.*', 'users.*')
            ->where('receiver_id', '=', $userId)
            ->where('messages.id', '=', $messageId)
            ->first();
 
        return $message;
     }
+
+    public function getMessageReceiverId(string $username) {
+        $message =  DB::table('messages')
+            ->select('*')
+            ->where('messages.id', '=', $messageId)
+            ->first();
+
+        return $message;
+    }
+
+
 
     public function getNextMessageID()
     {

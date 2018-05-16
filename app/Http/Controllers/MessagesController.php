@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Emails;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
@@ -77,12 +78,10 @@ class MessagesController extends Controller
 
             $message = new Messages();
             $message ->subject = $request->input('item-name');
-            $message ->message = $request->get('message-text');                //   FIX THIS, NOT AN INPUT
+            $message ->message = $request->get('message-text');
             $message ->send_date = Carbon::now();
-
             $message ->save();
 
-            error_log($message->id);
             $emails = new Emails();
             $emails->id = $message->id;
             $emails->has_been_opened = false;
@@ -99,6 +98,40 @@ class MessagesController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function storeSpecificMessage(Request $request)
+    {
+        $this->validate($request, [
+            'message-text' => 'required',
+        ]);
+
+        $userId = Auth::user()->id;
+        $id = $request->get('id');
+        $msg = $this->messageService->getUserMessageById(5,  $id);
+
+       try {
+            $message = new Messages();
+            $message ->subject = $msg->subject;
+            $message ->message = $request->get('message-text');
+            $message ->save();
+
+            $emails = new Emails();
+            $emails->id = $message->id;
+            $emails->has_been_opened = false;
+            $emails->receiver_id = $request->get('receiver');
+            $emails->sender_id = $userId;
+            $emails->save();
+
+        }
+        catch (\Exception $e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return response()->json([
+            'success' => 'Message send successfully',
+        ], Response::HTTP_OK);
+
+
+    }
 
     /**
      * Display the specified resource.
@@ -110,11 +143,14 @@ class MessagesController extends Controller
     {
         $userId = Auth::user()->id;
         $categories = Category::all();
+       // $users = Users::all();
         $message = $this->messageService->getUserMessageById(5, $id);
+        //error_log($users);
 
         return view('messages.show', [
             'categories' => $categories,
-            'message' => $message
+            'message' => $message,
+          //  'users' => $users
         ]);
     }
 
