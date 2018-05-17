@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Auction;
 use Illuminate\Support\Facades\DB;
+use View;
+
 
 class SearchController extends Controller
 {
+    private $MAX_NUM_RETURN_ITEMS = 1;
 
     protected function searchAuctions($rawSearchString, $offset, $maxNumItems, $categoryID) {
         $searchString = DB::getPdo()->quote($rawSearchString); //sanitize string for raw statements
@@ -25,11 +28,28 @@ class SearchController extends Controller
         return $auctions->get();
     }
 
+    public function getSearchAuctions(Request $request) {
+        $searchString = $request->input('search-input');
+        $categoryID = $request->input('category');
+        $offset = $request->input('offset');
+
+        $auctions = $this->searchAuctions($searchString, $offset, $this->MAX_NUM_RETURN_ITEMS, $categoryID);
+
+
+        $auctionViews = $auctions->map(
+            function($auction)
+            {
+                return View::make('pages.components.auction', ['auction' => $auction ])->render();
+            });
+
+        return $auctionViews;
+    }
+
     public function showSearch(Request $request) {
         $searchString = $request->input('search-input');
         $categoryID = $request->input('category');
 
-        $auctions = $this->searchAuctions($searchString, 0, 5, $categoryID);
+        $auctions = $this->searchAuctions($searchString, 0, $this->MAX_NUM_RETURN_ITEMS, $categoryID);
         $categories = Category::all();
 
         return view('pages.search', [
