@@ -66,9 +66,9 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'recipient-name' => 'required',
-            'item-name' => 'required',
-            'message-text' => 'required',
+            'msg' => 'required',
+            'sub' => 'required',
+            'id' => 'required',
         ]);
 
         $userId = Auth::user()->id;
@@ -77,15 +77,15 @@ class MessagesController extends Controller
         try {
 
             $message = new Messages();
-            $message ->subject = $request->input('item-name');
-            $message ->message = $request->get('message-text');
+            $message ->subject = $request->input('sub');
+            $message ->message = $request->get('msg');
             $message ->send_date = Carbon::now();
             $message ->save();
 
             $emails = new Emails();
             $emails->id = $message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id = $request->input('recipient-name');
+            $emails->receiver_id = $request->input('id');
             $emails->sender_id = $userId;
             $emails->save();
         }

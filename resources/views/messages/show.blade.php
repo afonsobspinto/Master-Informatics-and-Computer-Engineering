@@ -82,7 +82,7 @@
         var subject = $("#sub").val();
 
         var content = editor.getData();
-        console.log(content);
+
         var $form = $("#userForm");
         $.ajax({
             type: $form.attr('method'),

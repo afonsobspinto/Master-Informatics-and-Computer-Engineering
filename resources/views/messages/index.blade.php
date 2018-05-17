@@ -28,7 +28,7 @@
                             data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
@@ -37,7 +37,7 @@
                                     </button>
                                 </div>
                                 <!--{!! Form::open(['action'=> 'MessagesController@store', 'method'=>'POST']) !!} -->
-                                <form action="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
+                                <form route="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
                                     {{csrf_field() }}
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="sendbtn" class="btn btn-outline-success">Send message</button>
+                                        <button  id="bew" class="btn btn-outline-success">Send message</button>
                                     </div>
                                 </form>
                                 <!--   {!! Form::close() !!} -->
@@ -112,14 +112,26 @@
     });
 </script>
 
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script>
-    $("#sendbtn").click(function(e){
-        e.preventDefault()
+    var editor = CKEDITOR.replace( 'message-text' );
+</script>
+
+<script>
+    $("#bew").click(function(e){
+        e.preventDefault();
         var $form = $("#userForm");
+
+        var message = editor.getData();
+        console.log("message" , message);
+        var subject = $("#item-name").val();
+        console.log("sub" , subject);
+        var receiver_id = $("#recipient-name").val();
+        console.log("id" , receiver_id);
         $.ajax({
             type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
+            url: $form.attr('route'),
+            data: {msg: message, sub:subject, id:receiver_id},
             success: function (data) {
                 if(data.error){
                     return;
