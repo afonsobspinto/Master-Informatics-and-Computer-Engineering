@@ -48,6 +48,7 @@ class ProfileController extends Controller
         $wishlist = $user->getWishlist();
         $biddingItems = $user->getBiddingItems();
         $purchaseHistory = $user->getPurchaseHistory();
+        $feedback = $user->getFeedback();
 
         return view('profile.show', [
             'categories' => $categories,
@@ -60,6 +61,7 @@ class ProfileController extends Controller
             'wishlist' => $wishlist,
             'biddingItems' => $biddingItems,
             'purchaseHistory' => $purchaseHistory,
+            'feedback' => $feedback,
         ]);
     }
 

@@ -112,9 +112,9 @@ class User extends Authenticatable
 
     public function getWishlist() {
         return DB::table('auctions')
-                ->join('wishlists', 'auctions.id', '=', 'wishlists.auction_id')
-                ->where('owner_id', '=', $this->id)
-                ->get();
+            ->join('wishlists', 'auctions.id', '=', 'wishlists.auction_id')
+            ->where('wishlists.id', '=', $this->id)
+            ->get();
     }
 
     public function getBiddingItems() {
@@ -127,5 +127,12 @@ class User extends Authenticatable
 
     public function getPurchaseHistory() { //TODO
         return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
+    }
+
+    public function getFeedback() {
+        return DB::table('reviews')
+            ->join('auctions', 'reviews.id', '=', 'auctions.id')
+            ->where('auctions.owner_id', '=', $this->id)
+            ->get();
     }
 }

@@ -172,22 +172,45 @@
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                @if(count($feedback) == 0)
+                    <p>No one reviewed this user's amazing work yet!</p>
+                @else
+                @foreach($feedback as $review)
                 <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
                             <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
                             <div class="review-block-name"><a href="profile.html">Homer Simpson</a></div>
-                            <div class="review-block-date">March 02, 2018</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="review-block-rate">
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
+                                @if($review->rating > 0.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 1.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 2.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 3.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 4.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
                             </div>
-                            <div class="review-block">Some of the donuts were already eaten</div>
+                            <div class="review-block">{{ $review->review_text }}</div>
                             @if(Auth::user()->isAdmin())
                             @else
                             <a class="badge badge-light report" type="button" data-toggle="modal"
@@ -244,11 +267,16 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
+                @endif
             </div>
             <div class="tab-pane fade" id="itemsForSale" role="tabpanel" aria-labelledby="itemsForSale-tab">
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>This user isn't selling any item.</p>
+                            @else
                             @foreach($itemsForSale as $item)
                             <li>
                                 <div class="row">
@@ -272,6 +300,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -280,6 +309,9 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>Add something to your wishlist!</p>
+                            @else
                             @foreach($wishlist as $item)
                             <li>
                                 <div class="row">
@@ -316,6 +348,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -324,6 +357,9 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($biddingItems) == 0)
+                                <p>You're not bidding any item right now! What are you waiting for?</p>
+                            @else
                             @foreach($biddingItems as $item)
                             <li>
                                 <div class="row">
@@ -347,6 +383,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -355,6 +392,9 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>You haven't purchased anything yet...</p>
+                            @else
                             @foreach($purchaseHistory as $item)
                             <li>
                                 <div class="row">
@@ -474,6 +514,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
