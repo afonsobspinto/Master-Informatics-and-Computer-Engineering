@@ -46,7 +46,10 @@ public class DecisionTree {
         // display classifier
         final javax.swing.JFrame jf =
                 new javax.swing.JFrame("Weka Classifier Tree Visualizer: J48");
-        jf.setSize(500,400);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
+        jf.setSize(width*2, height);
         jf.getContentPane().setLayout(new BorderLayout());
         TreeVisualizer tv;
         try {
