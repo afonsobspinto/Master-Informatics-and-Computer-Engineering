@@ -186,7 +186,12 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $email = Emails::find($id);
+        $email->delete();
+        $msg = Messages::find($id);
+        $msg->delete();
+        return redirect ('/messages')->with('success', 'All messages deleted');
+
     }
 
     public function deleteAllMessages(){

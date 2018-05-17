@@ -37,8 +37,8 @@
                                 </div>
                                 {!! Form::open(['action' => 'MessagesController@deleteAllMessages', 'method'=>'POST']) !!}
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">OK</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">OK</button>
                                     </div>
                                 {{Form::hidden('_method', 'DELETE')}}
                               <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->

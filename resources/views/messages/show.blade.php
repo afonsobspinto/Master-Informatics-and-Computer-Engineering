@@ -20,12 +20,11 @@
                     </div>
             </nav>
         </div>
-
-
         <div class="container-fluid mt-2 mb-2 d-flex flex-column p-4 bg-light">
 
             <div class="row">
-                <h4 class="mx-auto pt-3 pb-3 mb-4 font-weight-bold" id="subject" name="subject">{{ $message->subject }}</h4> <a href="#"><i class="fas fa-trash"></i></a>
+                <h4 class="mx-auto pt-3 pb-3 mb-4 font-weight-bold" id="subject" name="subject">{{ $message->subject }}</h4>
+
             </div>
             <div class="media row">
                 <div class="media-right col-3 d-flex d-none d-sm-block d-sm-block d-xs-block">
@@ -55,7 +54,29 @@
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-1">
+                </div>
+                <div class="col-1">
+                    {!! Form::open(['action' => ['MessagesController@destroy',$message->id ], 'method'=>'POST']) !!}
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#alert">Delete  </button>
+                    <div class="modal fade" id="alert">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure, you want to delete this message?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger">OK</button>
+                                </div>
+                                {{Form::hidden('_method', 'DELETE')}}
+                                <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->
+                                {!! Form::close() !!}
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                 </div>
 
 
