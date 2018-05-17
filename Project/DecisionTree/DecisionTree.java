@@ -12,24 +12,21 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
+    private static String[] treeOptions = {"-M", "4"};
 
     DecisionTree(String filePath) {
         try {
-            String[] options = {"-M", "4"};
-            tree.setOptions(options);
-
             Random random = new Random(Double.doubleToLongBits(Math.random()));
-
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
             dataset.randomize(random);
+
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
@@ -37,10 +34,12 @@ public class DecisionTree {
         loadTree();
         classify(new double[]{99.3671875, 41.57220208, 1.547196967, 4.154106043, 27.55518395, 61.71901588, 2.20880796, 3.662680136}); //TODO: Delete this, make it come from gui
         classify("Project/DataSet/HTRU_2_unlabeled.arff"); //TODO: Add this feature to gui.
+        System.out.println(score());
     }
 
     private void loadTree() {
         try {
+            tree.setOptions(treeOptions);
             tree.buildClassifier(dataset);
             //System.out.println(tree.getCapabilities().toString());
             //System.out.println(tree.graph());
@@ -146,8 +145,8 @@ public class DecisionTree {
                             new FileReader(filePath))); //TODO: Make CSV Compatible
             unlabeled.setClassIndex(unlabeled.numAttributes()-1);
             for (int i = 0; i < unlabeled.numInstances(); i++) {
-                double clsLabel = tree.classifyInstance(unlabeled.instance(i));
-                System.out.println(clsLabel); //TODO: Change the output to something prettier
+                double[] clsLabel = tree.distributionForInstance(unlabeled.instance(i));
+                System.out.println(Arrays.toString(clsLabel)); //TODO: Change the output to explain
             }
         } catch (Exception e) {
             e.printStackTrace();
