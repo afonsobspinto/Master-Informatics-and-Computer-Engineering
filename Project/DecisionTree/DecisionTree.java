@@ -19,17 +19,15 @@ import java.util.Random;
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
+    private static String[] treeOptions = {"-M", "4"};
 
     DecisionTree(String filePath) {
         try {
-            String[] options = {"-M", "4"};
-            tree.setOptions(options);
-
             Random random = new Random(Double.doubleToLongBits(Math.random()));
-
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
             dataset.randomize(random);
+
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
@@ -39,9 +37,8 @@ public class DecisionTree {
 
     private void loadTree() {
         try {
+            tree.setOptions(treeOptions);
             tree.buildClassifier(dataset);
-            //System.out.println(tree.getCapabilities().toString());
-            //System.out.println(tree.graph());
         } catch (Exception e) {
             System.out.println("Couldn't load tree");
             e.printStackTrace();
