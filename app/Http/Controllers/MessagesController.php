@@ -31,11 +31,16 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
        // $messages = $this->messageService->getMessagesId($userId);
+        $unreadMessages = Messages::countUnreadMessages($userId);
         $messages = $this->messageService->getUserMessages(5);
+
+        $count = $this->messageService->countUnreadMessages(5);
+        error_log("unread ".$count);
 
         return view('messages.index', [
             'categories' => $categories,
-            'messages' => $messages
+            'messages' => $messages,
+            'unreadMessages' => $unreadMessages
         ]);
     }
 
@@ -46,15 +51,6 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        $userId = Auth::user()->id;
-        $categories = Category::all();
-        // $messages = $this->messageService->getMessagesId($userId);
-        $messages = $this->messageService->getUserMessages(9);
-
-        return view('messages.create', [
-            'categories' => $categories,
-            'messages' => $messages
-        ]);
     }
 
     /**
@@ -72,7 +68,10 @@ class MessagesController extends Controller
         ]);
 
         $userId = Auth::user()->id;
-
+        $username = $request->input('id');
+        $receiver_user = $this->messageService->getMessageReceiverId($username);
+        $my = $this->messageService->getuser(5);
+        error_log("REC user ".$my->username);
 
         try {
 
@@ -85,7 +84,7 @@ class MessagesController extends Controller
             $emails = new Emails();
             $emails->id = $message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id = $request->input('id');
+            $emails->receiver_id = $receiver_user->id;
             $emails->sender_id = $userId;
             $emails->save();
         }
@@ -113,6 +112,7 @@ class MessagesController extends Controller
             $message = new Messages();
             $message ->subject = $request->input('sub');
             $message ->message = $request->input('con');
+            $message ->send_date = Carbon::now();
             $message ->save();
 
             $emails = new Emails();
@@ -130,8 +130,6 @@ class MessagesController extends Controller
         return response()->json([
             'success' => 'Message send successfully',
         ], Response::HTTP_OK);
-
-
     }
 
     /**
@@ -144,14 +142,19 @@ class MessagesController extends Controller
     {
         $userId = Auth::user()->id;
         $categories = Category::all();
-       // $users = Users::all();
+        $unreadMessages = Messages::countUnreadMessages($userId);
         $message = $this->messageService->getUserMessageById(5, $id);
-        //error_log($users);
+
+        if( $message->has_been_opened == false) {
+
+         //   update message has opened to true
+            $this->messageService->updateMessageHasBeenOpened($id);
+        }
 
         return view('messages.show', [
             'categories' => $categories,
             'message' => $message,
-          //  'users' => $users
+            'unreadMessages' => $unreadMessages,
         ]);
     }
 
@@ -205,11 +208,8 @@ class MessagesController extends Controller
             $msg->delete();
 
         }
-        return redirect ('/messages')->with('success', 'All messages deleted');
+        return redirect ('/messages');
 
     }
 
-    public function createSpecificMessage($message){
-
-    }
 }

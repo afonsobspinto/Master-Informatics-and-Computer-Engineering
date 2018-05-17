@@ -74,6 +74,7 @@ class Messages extends  Model
             ->join('users', 'users.id', '=', 'emails.sender_id')
             ->select('emails.*', 'messages.*', 'users.username')
             ->where('receiver_id', '=', $id)
+            ->orderByRaw('send_date DESC')
             ->get();
 
         return $messages;
@@ -92,22 +93,29 @@ class Messages extends  Model
     }
 
     public function getMessageReceiverId(string $username) {
-        $message =  DB::table('messages')
-            ->select('*')
-            ->where('messages.id', '=', $messageId)
-            ->first();
+        $user = DB::table('users')->where('username', $username)->first();
 
-        return $message;
+        return $user;
     }
 
+    public function getuser(string $id) {
+        $user = DB::table('users')->where('id', $id)->first();
+        return $user;
+    }
 
+    public function updateMessageHasBeenOpened(int $messageId) {
+        DB::table('emails')
+            ->where('id', $messageId)
+            ->update(['has_been_opened' => true]);
+    }
 
-    public function getNextMessageID()
-    {
+    public static function countUnreadMessages($userId){
+        $count = DB::table('emails')
+            ->where('has_been_opened', false)
+            ->where('receiver_id', $userId)
+            ->count();
 
-        $statement = DB::select("show table status like 'messages'");
-
-        return response()->json(['id' => $statement[0]->Auto_increment]);
+        return $count;
     }
 
 }

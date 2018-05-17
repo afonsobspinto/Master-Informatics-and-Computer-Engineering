@@ -1,6 +1,12 @@
 @extends('layouts.base')
 
+@section('resources')
+@parent
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+@endsection
+
 @section('content')
+
 
 <div class="container">
     <div class="mt-4">
@@ -12,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="col-9">
                     <div class="navbar-nav row">
-                        <a class="nav-item nav-link active" href="#">Inbox
+                        <a class="nav-item nav-link active" href="/messages">Inbox
                             <span class="sr-only">(current)</span>
                         </a>
                         <a class="nav-item nav-link" href="#">Sent</a>
@@ -22,9 +28,9 @@
 
 
                 <div class="col-3">
-                    <button id="sendmsg" type="button" class="btn btn-outline-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
+                    <button id="sendmsg" type="button" class="btn btn-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
                             data-whatever="@getbootstrap"> New Message  &nbsp; <a href="#"></a></button>
-                    <button id="delete" type="button" class="btn btn-outline-danger d-inline-block align-right" data-toggle="modal" data-target="#alert"
+                    <button id="delete" type="button" class="btn btn-danger d-inline-block align-right" data-toggle="modal" data-target="#alert"
                             data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
 
                     <div class="modal fade" id="alert">
@@ -41,11 +47,11 @@
                                         <button type="submit" class="btn btn-danger">OK</button>
                                     </div>
                                 {{Form::hidden('_method', 'DELETE')}}
-                              <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->
                                 {!! Form::close() !!}
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
+
 
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -57,7 +63,6 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <!--{!! Form::open(['action'=> 'MessagesController@store', 'method'=>'POST']) !!} -->
                                 <form route="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
                                     {{csrf_field() }}
                                     <div class="modal-body">
@@ -75,11 +80,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="closebtn" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                                        <button  id="bew" class="btn btn-outline-success">Send message</button>
+                                        <button type="button" id="closebtn" class="btn btn-success" data-dismiss="modal">Close</button>
+                                        <button  id="bew" class="btn btn-success">Send message</button>
                                     </div>
                                 </form>
-                                <!--   {!! Form::close() !!} -->
                            </div>
                        </div>
                    </div>
@@ -91,7 +95,7 @@
 
 <!-- messages -->
 <div class="container">
-    <table class="table mt-2  table-hover">
+    <table id = "table" class="table mt-2  table-hover">
         <thead class="thead-inverse " style="color:#18bc9c; background-color:#464242">
         <tr>
             <th scope="col"></th>
@@ -102,22 +106,22 @@
         </tr>
         </thead>
         <tbody>
-        {{ $messages }}
         @foreach($messages as $message)
-        <tr class="clickable-row" data-href="/messages/{{ $message->id }}">
+        <tr class="{{ $message->has_been_opened ? '' : 'openedMessage'}}">
             <th scope="row">
                 <input type="checkbox" class="marcar">
                 <a href="#">
                     <i class="far fa-star"></i>
                 </a>
             </th>
-            <td>{{ $message->username }}</td>
-            <td>{{ $message->subject }}</td>
-            <td>{{ $message->send_date }}</td>
+            <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->username }}</td>
+            <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->subject }}</td>
+            <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->send_date }}</td>
             <td>
-                <a href="#">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
+                {!! Form::open(['action' => ['MessagesController@destroy',  $message->id ], 'method'=>'POST']) !!}
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                {{Form::hidden('_method', 'DELETE')}}
+                {!! Form::close() !!}
             </td>
         </tr>
         @endforeach
@@ -127,7 +131,7 @@
 
 <script type="text/javascript">
     $(document).ready(function ($) {
-        $(".clickable-row").click(function () {
+        $('.clickable-row').click(function () {
             window.document.location = $(this).data("href");
         });
     });
@@ -159,6 +163,7 @@
                 }
                 alert(data.success); // THis is success message
                 $('#exampleModal').modal('hide');  // Your modal Id
+                window.location.reload(true);
             },
             error: function (result) {
             }

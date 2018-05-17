@@ -40,7 +40,7 @@
                         <p align="right">{{ $message->send_date }}</p>
                         <p class="text-justify">{!! $message->message !!}</p>
                     </div>
-
+                    <br>
                     <input type="hidden" value="{{$message->receiver_id}}" name="receiver" id="receiver" class="form-control"/>
                     <input type="hidden" value="" name="id" id="id" class="form-control"/>
                     <input type="hidden" value="{{ $message->subject }}" name="sub" id="sub" class="form-control"/>
@@ -48,7 +48,9 @@
                     <div class="row" id="trackingDiv">
                         <div class="col-5"></div>
                         <div class="col-2">
-                            <button id="bew" class="btn btn-outline-success d-inline-block"> Send Message</button>
+                            <br>
+                            <br>
+                            <button id="bew" class="btn btn-success d-inline-block"> Send Message</button>
                         </div>
                         <div class="col-5"></div>
                     </div>
@@ -114,6 +116,7 @@
                     return;
                 }
                 alert(data.success); // THis is success message
+                window.location.pathname = '/messages';
             },
             error: function (result) {
             }
