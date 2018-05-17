@@ -11,14 +11,17 @@ use View;
 
 class SearchController extends Controller
 {
-    private $MAX_NUM_RETURN_ITEMS = 1;
+    private $MAX_NUM_RETURN_ITEMS = 10;
 
     protected function searchAuctions($rawSearchString, $offset, $maxNumItems, $categoryID) {
         $searchString = DB::getPdo()->quote($rawSearchString); //sanitize string for raw statements
 
-        $auctions = Auction::getOpenAuctionsCollection()->
-            whereRaw("search @@ plainto_tsquery('english', $searchString)")->
+        $auctions = Auction::getOpenAuctionsCollection();
+
+        if($rawSearchString != null && trim($rawSearchString) != '') {
+            $auctions = $auctions->whereRaw("search @@ plainto_tsquery('english', $searchString)")->
             orderByRaw("ts_rank(search, plainto_tsquery('english', $searchString)) DESC");
+        }
 
         if(is_numeric($categoryID))
             $auctions = $auctions->where('category_id', '=', $categoryID);
