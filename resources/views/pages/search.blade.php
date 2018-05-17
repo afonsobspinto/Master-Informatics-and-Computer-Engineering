@@ -4,6 +4,7 @@
 
 @section('resources')
     @parent
+    <script src="{{ asset('js/search.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/advanced_search.css') }}">
 @endsection
 
@@ -53,28 +54,16 @@
 
     {{-- page contents --}}
     <div id="main">
-        <ul>
+        <ul id="search-auctions-container">
         @foreach($auctions as $auction)
-        <li class="auction-item">
-            <a href="{{ url("auctions/{$auction->id}") }}" class="d-flex">
-                <div>
-                    <img class="auction-image" src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
-                </div>
-                <div class="auction-text">
-                    <h4> {{ $auction->item_name }} </h4>
-                    <p class="d-flex justify-content-between">
-                        <span>
-                            <b>EUR {{ $auction->currentPriceEuros() }},</b>
-                            <span class="text-muted">{{ $auction->numBids() }} Bids </span>
-                        </span>
-                        <span class="text-muted"> {{ $auction->getTimeLeftString() }} left </span>
-                    </p>
-                    <p>{{ str_limit($auction->description, 150, ' ...') }}</p>
-                </div>
-            </a>
-        </li>
+            @include('pages.components.auction', ['auction' => $auction])
         @endforeach
         </ul>
+
+        <div id="load-more-div">
+            <button id="load-more" type="button" class="btn btn-outline-primary">Load More</button>
+            <p id="no-more-auctions" class="text-danger">No more auctions found. </p>
+        </div>
     </div>
 
 @endsection
