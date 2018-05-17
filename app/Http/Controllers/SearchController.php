@@ -34,9 +34,9 @@ class SearchController extends Controller
         if(is_numeric($maxPrice))
             $auctions = $auctions->where('current_price', '<=', $maxPrice);
 
-        if($countryID) {
-            $auctions = $auctions->join('cities', 'auctions.city_id', '=', 'cities.country_id');
-            $auctions = $auctions->where('');
+        if(is_numeric($countryID)) {
+            $auctions = $auctions->join('cities', 'auctions.city_id', '=', 'cities.country_id')->select('auctions.*');
+            $auctions = $auctions->where('country_id', '=', $countryID)->distinct();
         }
 
         $auction = $auctions->skip($offset)->take($maxNumItems);

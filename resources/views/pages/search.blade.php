@@ -44,7 +44,7 @@
             <select class="form-control" name="country" aria-describedby="Country">
                 <option value="ANY" selected> All Countries </option>
                 @foreach($countries as $country)
-                    <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : '' }}>{{ ucfirst($country->country) }}</option>
+                    <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
                 @endforeach
             </select>
         </div>
