@@ -1,6 +1,8 @@
 
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
+import weka.core.DenseInstance;
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 import weka.gui.treevisualizer.PlaceNode2;
@@ -8,6 +10,7 @@ import weka.gui.treevisualizer.TreeVisualizer;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Random;
 
 public class DecisionTree {
@@ -22,13 +25,14 @@ public class DecisionTree {
             Random random = new Random(Double.doubleToLongBits(Math.random()));
 
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
-            dataset.setClassIndex(dataset.numAttributes()-1);
+            dataset.setClassIndex(dataset.numAttributes() - 1);
             dataset.randomize(random);
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
         }
         loadTree();
+        classify(new double[]{99.3671875,41.57220208,1.547196967,4.154106043,27.55518395,61.71901588,2.20880796,3.662680136}); //TODO: Delete this, make it come from gui
     }
 
     private void loadTree() {
@@ -42,11 +46,11 @@ public class DecisionTree {
         }
     }
 
-    public void displayTree(){
+    public void displayTree() {
         // display classifier
         final javax.swing.JFrame jf =
                 new javax.swing.JFrame("Weka Classifier Tree Visualizer: J48");
-        jf.setSize(500,400);
+        jf.setSize(500, 400);
         jf.getContentPane().setLayout(new BorderLayout());
         TreeVisualizer tv;
         try {
@@ -70,8 +74,8 @@ public class DecisionTree {
     }
 
     public static void main(String[] args) {
-        if (args.length == 1 && getFileExtension(args[0]).equals("arff")){
-            if(parseInputs(args)){
+        if (args.length == 1 && getFileExtension(args[0]).equals("arff")) {
+            if (parseInputs(args)) {
 
                 DecisionTree decisionTree = new DecisionTree(args[0]);
                 decisionTree.displayTree();
@@ -89,10 +93,10 @@ public class DecisionTree {
     private static String getFileExtension(String filepath) {
         String[] tokens = filepath.split("\\.");
 
-        return tokens[tokens.length-1];
+        return tokens[tokens.length - 1];
     }
 
-    public String score(){
+    public String score() {
         Evaluation eval = null;
         try {
             eval = new Evaluation(dataset);
@@ -106,5 +110,31 @@ public class DecisionTree {
         return eval.toSummaryString();
 
     }
+
+    public void classify(double[] values) {
+        int valuesSize = dataset.numAttributes() - 1;
+        if (values.length != valuesSize)
+            return;
+
+        Instances unlabeled = new Instances(dataset, 0);
+        unlabeled.setClassIndex(unlabeled.numAttributes() - 1);
+
+        Instance newInstance  = new DenseInstance(valuesSize);
+        for(int i = 0 ; i < valuesSize ; i++){
+            newInstance.setValue(i , values[i]);
+
+        }
+        unlabeled.add(newInstance);
+        try {
+            double[] fDistribution = tree.distributionForInstance(unlabeled.firstInstance());
+            System.out.println(Arrays.toString(fDistribution)); //TODO: Change the output to explain
+                                                                // fDistribution[0] is the probability of being negative
+                                                                // fDistribution[1] is the probability of being positive
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
