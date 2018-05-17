@@ -27,18 +27,131 @@
             <div class="row">
                 <p class="email">{{ $user->email }}</p>
             </div>
-            @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+            @if(((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+            || Auth::user()->isUserBanned($user) || Auth::user()->isUserAdmin($user))
             @elseif(Auth::check())
                 <div class="row">
-                    <span class="sr-only">Four out of Five Stars</span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="far fa-star" aria-hidden="true"></span>
-                    <span class="badge badge-success">61</span>
+                    @if($user->rating > 0.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 1.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 2.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 3.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 4.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    <span class="badge badge-success">{{ $user->rating * 100 / 5 }}</span>
                 </div>
-                    @if(Auth::user()->isProfileOwner($user))
+            @endif
+            @if(Auth::check())
+                    @if(Auth::user()->isBanned() && Auth::user()->isProfileOwner($user))
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#appealModal"
+                                data-whatever="@getbootstrap"> Appeal Ban
+                        </button>
+                    </div>
+                    <div class="modal fade" id="appealModal" tabindex="-1" role="dialog"
+                         aria-labelledby="appealModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactModalLabel">Appeal Ban</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="appeal-text"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" id="sendbtn"
+                                            class="btn btn-primary">Send message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <p>14 days until ban ends</p>
+                    </div>
+                    @elseif(Auth::user()->isAdmin() && Auth::user()->isUserBanned($user))
+                    <div class="row">
+                        <a href="#" class="btn btn-primary " data-toggle="collapse" data-target=".collapseAlert" >Unban User</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You successfully unbanned this user!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeModal"
+                                data-whatever="@getbootstrap"> Change Ban Duration
+                        </button>
+                    </div>
+                    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog"
+                         aria-labelledby="changeModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactModalLabel">Change Ban Duration</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                            <span>
+                                        <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                    </span>
+                                            <span class="radio">
+                                        <label><input type="radio" name="duration">Permanent</label>
+                                    </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" id="sendbtn"
+                                            class="btn btn-primary">Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif(Auth::user()->isUserBanned($user))
+                    @elseif(Auth::user()->isProfileOwner($user))
                         <div class="row">
                             <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
                         </div>
@@ -129,7 +242,7 @@
                             </div>
                         </div>
                     </div>
-                    @else
+                    @elseif(!Auth::user()->isBanned())
                         <div class="row">
                             <a class="badge badge-light report" type="button" data-toggle="modal"
                                href="#exampleModal">
@@ -137,10 +250,17 @@
                             </a>
                         </div>
                     @endif
+                        <p></p>
+            @if((Auth::user()->isUserAdmin($user)) && (!Auth::user()->isProfileOwner($user)))
+                <p style="color:red;">This user is an administrator!</p>
+            @elseif((Auth::user()->isUserBanned($user)) && (!Auth::user()->isProfileOwner($user)))
+                <p style="color:red;">This user is banned!</p>
+            @endif
             @endif
         </div>
 
-        @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
         @elseif(Auth::check())
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
@@ -167,7 +287,8 @@
             @endif
         </ul>
 
-        @if(Auth::user()->isAdmin() && Auth::user()->isProfileOwner($user))
+        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
         @else
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
@@ -211,7 +332,7 @@
                                 @endif
                             </div>
                             <div class="review-block">{{ $review->review_text }}</div>
-                            @if(Auth::user()->isAdmin())
+                            @if((Auth::user()->isAdmin()) || (Auth::user()->isBanned()))
                             @else
                             <a class="badge badge-light report" type="button" data-toggle="modal"
                                href="#exampleModal">
