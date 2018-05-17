@@ -53,8 +53,12 @@ public class DecisionTree {
         // display classifier
         final javax.swing.JFrame jf =
                 new javax.swing.JFrame("Weka Classifier Tree Visualizer: J48");
-        jf.setSize(500, 400);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) (screenSize.getWidth() * 1.1);
+        int height = (int) screenSize.getHeight();
+        jf.setSize(width, height);
         jf.getContentPane().setLayout(new BorderLayout());
+        jf.setExtendedState(jf.MAXIMIZED_BOTH);
         TreeVisualizer tv;
         try {
             tv = new TreeVisualizer(null,
@@ -73,6 +77,8 @@ public class DecisionTree {
         });
 
         jf.setVisible(true);
+        Font font = new Font("Trebuchet MS", Font.PLAIN, 9);
+        tv.setFont(font);
         tv.fitToScreen();
     }
 
