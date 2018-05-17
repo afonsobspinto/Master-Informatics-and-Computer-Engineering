@@ -189,6 +189,21 @@ class MessagesController extends Controller
         //
     }
 
+    public function deleteAllMessages(){
+        $user = Auth::user()->id;
+        $message = $this->messageService->getUserMessages( 5);
+        foreach ($message as $value) {
+            error_log($value->id);
+            $email = Emails::find($value->id);
+            $email->delete();
+            $msg = Messages::find($value->id);
+            $msg->delete();
+
+        }
+        return redirect ('/messages')->with('success', 'All messages deleted');
+
+    }
+
     public function createSpecificMessage($message){
 
     }

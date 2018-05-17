@@ -24,8 +24,29 @@
                 <div class="col-3">
                     <button id="sendmsg" type="button" class="btn btn-outline-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
                             data-whatever="@getbootstrap"> New Message  &nbsp; <a href="#"></a></button>
-                    <button id="delete" type="button" class="btn btn-outline-danger d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
+                    <button id="delete" type="button" class="btn btn-outline-danger d-inline-block align-right" data-toggle="modal" data-target="#alert"
                             data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
+
+                    <div class="modal fade" id="alert">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure, you want to delete all messages?</p>
+                                </div>
+                                {!! Form::open(['action' => 'MessagesController@deleteAllMessages', 'method'=>'POST']) !!}
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">OK</button>
+                                    </div>
+                                {{Form::hidden('_method', 'DELETE')}}
+                              <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->
+                                {!! Form::close() !!}
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
