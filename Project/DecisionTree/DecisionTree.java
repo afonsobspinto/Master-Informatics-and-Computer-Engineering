@@ -143,7 +143,7 @@ public class DecisionTree {
         try {
             Instances unlabeled = new Instances(
                     new BufferedReader(
-                            new FileReader(filePath)));
+                            new FileReader(filePath))); //TODO: Make CSV Compatible
             unlabeled.setClassIndex(unlabeled.numAttributes()-1);
             for (int i = 0; i < unlabeled.numInstances(); i++) {
                 double clsLabel = tree.classifyInstance(unlabeled.instance(i));
