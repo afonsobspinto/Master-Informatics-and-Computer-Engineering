@@ -134,9 +134,9 @@ INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,8,0.2);
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,6,1.2);
 
 
-INSERT INTO "public"."reviews" ("id","rating","description") VALUES (5,2,'Description number 3028653');
-INSERT INTO "public"."reviews" ("id","rating","description") VALUES (6,3,'Description number 3261390');
-INSERT INTO "public"."reviews" ("id","rating","description") VALUES (1,4,'This is a description 7010386');
+INSERT INTO "public"."reviews" ("id","rating","review_text") VALUES (5,2,'Description number 3028653');
+INSERT INTO "public"."reviews" ("id","rating","review_text") VALUES (6,3,'Description number 3261390');
+INSERT INTO "public"."reviews" ("id","rating","review_text") VALUES (1,4,'This is a description 7010386');
 
 
 INSERT INTO "public"."closed_auctions" ("id") VALUES (4);
