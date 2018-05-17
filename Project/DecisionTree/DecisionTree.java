@@ -9,7 +9,10 @@ import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -32,7 +35,8 @@ public class DecisionTree {
             e.printStackTrace();
         }
         loadTree();
-        classify(new double[]{99.3671875,41.57220208,1.547196967,4.154106043,27.55518395,61.71901588,2.20880796,3.662680136}); //TODO: Delete this, make it come from gui
+        classify(new double[]{99.3671875, 41.57220208, 1.547196967, 4.154106043, 27.55518395, 61.71901588, 2.20880796, 3.662680136}); //TODO: Delete this, make it come from gui
+        classify("Project/DataSet/HTRU_2_unlabeled.arff"); //TODO: Add this feature to gui.
     }
 
     private void loadTree() {
@@ -119,22 +123,38 @@ public class DecisionTree {
         Instances unlabeled = new Instances(dataset, 0);
         unlabeled.setClassIndex(unlabeled.numAttributes() - 1);
 
-        Instance newInstance  = new DenseInstance(valuesSize);
-        for(int i = 0 ; i < valuesSize ; i++){
-            newInstance.setValue(i , values[i]);
+        Instance newInstance = new DenseInstance(valuesSize);
+        for (int i = 0; i < valuesSize; i++) {
+            newInstance.setValue(i, values[i]);
 
         }
         unlabeled.add(newInstance);
         try {
             double[] fDistribution = tree.distributionForInstance(unlabeled.firstInstance());
             System.out.println(Arrays.toString(fDistribution)); //TODO: Change the output to explain
-                                                                // fDistribution[0] is the probability of being negative
-                                                                // fDistribution[1] is the probability of being positive
+            // fDistribution[0] is the probability of being negative
+            // fDistribution[1] is the probability of being positive
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void classify(String filePath) {
+        try {
+            Instances unlabeled = new Instances(
+                    new BufferedReader(
+                            new FileReader(filePath)));
+            unlabeled.setClassIndex(unlabeled.numAttributes()-1);
+            for (int i = 0; i < unlabeled.numInstances(); i++) {
+                double clsLabel = tree.classifyInstance(unlabeled.instance(i));
+                System.out.println(clsLabel); //TODO: Change the output to something prettier
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 }
