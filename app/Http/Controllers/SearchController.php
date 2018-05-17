@@ -7,13 +7,14 @@ use App\Category;
 use App\Auction;
 use Illuminate\Support\Facades\DB;
 use View;
+use App\Country;
 
 
 class SearchController extends Controller
 {
-    private $MAX_NUM_RETURN_ITEMS = 10;
+    private $MAX_NUM_RETURN_ITEMS = 2;
 
-    protected function searchAuctions($rawSearchString, $offset, $maxNumItems, $categoryID) {
+    protected function searchAuctions($rawSearchString, $offset, $maxNumItems, $categoryID, $minPrice, $maxPrice, $countryID) {
         $searchString = DB::getPdo()->quote($rawSearchString); //sanitize string for raw statements
 
         $auctions = Auction::getOpenAuctionsCollection();
@@ -27,17 +28,34 @@ class SearchController extends Controller
             $auctions = $auctions->where('category_id', '=', $categoryID);
 
 
+        if(is_numeric($minPrice))
+            $auctions = $auctions->where('current_price', '>=', $minPrice);
+
+        if(is_numeric($maxPrice))
+            $auctions = $auctions->where('current_price', '<=', $maxPrice);
+
+        if($countryID) {
+            $auctions = $auctions->join('cities', 'auctions.city_id', '=', 'cities.country_id');
+            $auctions = $auctions->where('');
+        }
+
         $auction = $auctions->skip($offset)->take($maxNumItems);
         return $auctions->get();
     }
 
-    public function getSearchAuctions(Request $request) {
+    protected function getAuctions(Request $request) {
         $searchString = $request->input('search-input');
         $categoryID = $request->input('category');
         $offset = $request->input('offset');
+        $minPrice = $request->input('min-price');
+        $maxPrice = $request->input('max-price');
+        $countryID = $request->input('country');
 
-        $auctions = $this->searchAuctions($searchString, $offset, $this->MAX_NUM_RETURN_ITEMS, $categoryID);
+        return $this->searchAuctions($searchString, $offset, $this->MAX_NUM_RETURN_ITEMS, $categoryID, $minPrice, $maxPrice, $countryID);
+    }
 
+    public function getSearchAuctions(Request $request) {
+        $auctions = $this->getAuctions($request);
 
         $auctionViews = $auctions->map(
             function($auction)
@@ -49,17 +67,18 @@ class SearchController extends Controller
     }
 
     public function showSearch(Request $request) {
+        $auctions = $this->getAuctions($request);
+        $categories = Category::all();
+
         $searchString = $request->input('search-input');
         $categoryID = $request->input('category');
-
-        $auctions = $this->searchAuctions($searchString, 0, $this->MAX_NUM_RETURN_ITEMS, $categoryID);
-        $categories = Category::all();
 
         return view('pages.search', [
             'categories' => $categories,
             'auctions' => $auctions,
             'searchString' => $searchString,
             'categoryID' => $categoryID,
+            'countries' => Country::allOrderedCountries(),
         ]);
     }
 }

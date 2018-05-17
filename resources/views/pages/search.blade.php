@@ -13,43 +13,42 @@
 @section('content')
     {{-- Sidebar --}}
     <form id="sidebar" class="sidebar-nav ">
-        <div class="format">
-            <h5> Look for </h5>
-            <div class="radio">
-                <label><input type="radio" name="buy-type">All listings </label>
-                <label><input type="radio" name="buy-type">Auction </label>
-                <label><input type="radio" name="buy-type">Buy It Now</label>
-            </div>
-        </div>
+        {{--<div class="format">--}}
+            {{--<h5> Look for </h5>--}}
+            {{--<div class="radio">--}}
+                {{--<label><input type="radio" name="buy-type" value="all">All listings </label>--}}
+                {{--<label><input type="radio" name="buy-type">Auction </label>--}}
+                {{--<label><input type="radio" name="buy-type">Buy It Now</label>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
-        <div class="condition">
-            <h5> Condition </h5>
-            <div class="radio">
-                <label><input type="radio" name="condition"> New </label>
-                <label><input type="radio" name="condition"> Used </label>
-                <label><input type="radio" name="condition"> Not Specified </label>
-            </div>
-        </div>
+        {{--<div class="condition">--}}
+            {{--<h5> Condition </h5>--}}
+            {{--<div class="radio">--}}
+                {{--<label><input type="radio" name="item-condition" checked="checked" value="ALL"> Not Specified </label>--}}
+                {{--<label><input type="radio" name="item-condition"> New </label>--}}
+                {{--<label><input type="radio" name="item-condition"> Used </label>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="price">
             <h5> Price (EUR)   </h5>
             <div class="price">
-                <input type="number" min="0"  placeholder="Min">
-                <input type="number" min="0"  placeholder="Max">
+                <input type="number" min="0"  placeholder="Min" name="min-price">
+                <input type="number" min="0"  placeholder="Max" name="max-price">
             </div>
         </div>
 
         <div class="location">
             <h5> Item Location </h5>
-            <div class="radio">
-                <label><input type="radio" name="country"> BidBay </label>
-                <label><input type="radio" name="country"> Asia </label>
-                <label><input type="radio" name="country">Africa </label>
-                <label><input type="radio" name="country">America</label>
-                <label><input type="radio" name="country">Europe</label>
-                <label><input type="radio" name="country">Australia</label>
-            </div>
+            <select class="form-control" name="country" aria-describedby="Country">
+                <option value="ANY" selected> All Countries </option>
+                @foreach($countries as $country)
+                    <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : '' }}>{{ ucfirst($country->country) }}</option>
+                @endforeach
+            </select>
         </div>
+
     </form>
 
     {{-- page contents --}}
