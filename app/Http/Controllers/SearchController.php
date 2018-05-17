@@ -12,7 +12,7 @@ use App\Country;
 
 class SearchController extends Controller
 {
-    private $MAX_NUM_RETURN_ITEMS = 2;
+    private $MAX_NUM_RETURN_ITEMS = 5;
 
     protected function searchAuctions($rawSearchString, $offset, $maxNumItems, $categoryID, $minPrice, $maxPrice, $countryID) {
         $searchString = DB::getPdo()->quote($rawSearchString); //sanitize string for raw statements
