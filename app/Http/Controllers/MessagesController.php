@@ -49,7 +49,7 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
         // $messages = $this->messageService->getMessagesId($userId);
-        $messages = $this->messageService->getUserMessages(5);
+        $messages = $this->messageService->getUserMessages(9);
 
         return view('messages.create', [
             'categories' => $categories,
@@ -106,21 +106,19 @@ class MessagesController extends Controller
         ]);
 
         $userId = Auth::user()->id;
-        $array = $request->toArray();
-        $id = $request->input('id');
 
-        $msg = $this->messageService->getUserMessageById(5,  $id);
+
 
        try {
             $message = new Messages();
-            $message ->subject = $request->input('rec');
+            $message ->subject = $request->input('sub');
             $message ->message = $request->input('con');
             $message ->save();
 
             $emails = new Emails();
-            $emails->id = $msg->id;
+            $emails->id =$message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id =  array_values($array)[1];
+            $emails->receiver_id =  $request->input('rec');
             $emails->sender_id = $userId;
             $emails->save();
 
