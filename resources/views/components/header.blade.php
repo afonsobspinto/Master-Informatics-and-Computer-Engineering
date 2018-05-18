@@ -24,7 +24,6 @@
         <i class="far fa-envelope fa-stack-2x"></i>
         <!-- place numbers of messages here -->
         <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
-          <!--  {{ $unreadMessages }}  -->
             10
         </strong>
     </a>
