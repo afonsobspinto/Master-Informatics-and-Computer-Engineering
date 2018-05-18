@@ -22,7 +22,7 @@ public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
-    ClassBalancer cb = new ClassBalancer();
+    private ClassBalancer cb = new ClassBalancer();
 
     DecisionTree(String filePath) {
         try {
@@ -31,11 +31,6 @@ public class DecisionTree {
 
             cb = new ClassBalancer();
             cb.setInputFormat(dataset);
-
-            String[] options = {"-M", "4"};
-
-            tree = new J48();
-            tree.setOptions(options);
 
             Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset.randomize(random);
