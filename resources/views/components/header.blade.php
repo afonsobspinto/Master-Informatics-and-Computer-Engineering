@@ -20,11 +20,12 @@
     @auth
     {{--logged in user--}}
     <!-- authentication links -->
-    <a class="fa-stack fa-3x" id="mail-icon" href="../chat.html">
+    <a class="fa-stack fa-3x" id="mail-icon" href="/messages">
         <i class="far fa-envelope fa-stack-2x"></i>
         <!-- place numbers of messages here -->
         <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
-            27
+          <!--  {{ $unreadMessages }}  -->
+            10
         </strong>
     </a>
     <div class="dropdown" id="authentication">

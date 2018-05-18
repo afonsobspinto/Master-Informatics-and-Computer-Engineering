@@ -24,6 +24,12 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 // auctions
 Route::resource('auctions', 'AuctionController');
 
+//messages
+Route::resource('messages', 'MessagesController');
+Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');
+Route::post('messages', 'MessagesController@store')->name('messages.store');
+Route::delete('messages', 'MessagesController@deleteAllMessages')->name('messages.delete');
+
 //profile
 Route::resource('profile', 'ProfileController');
 
@@ -42,5 +48,6 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
+//Route::get('/home', 'HomeController@index')->name('home');
 //other API
 Route::get('country/{id}/cities', 'CountryController@getCities')->where('id', '[0-9]+');
