@@ -7,6 +7,8 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Normalize;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +22,7 @@ public class DecisionTree {
     private static String[] treeOptions = {"-M", "4"};
     private SMOTE smote = new SMOTE();
     private FilteredClassifier filteredClassifier = new FilteredClassifier();
+    private Normalize filterNorm = new Normalize();
 
     DecisionTree(String filePath) {
         try {
@@ -30,7 +33,8 @@ public class DecisionTree {
             smote.setInputFormat(dataset);
             Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset.randomize(random);
-
+            filterNorm.setInputFormat(dataset);
+            dataset = Filter.useFilter(dataset, filterNorm);
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
