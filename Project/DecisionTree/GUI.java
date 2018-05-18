@@ -10,7 +10,7 @@ public class GUI {
     static private String filePath;
     static JFrame frame = new JFrame("GUI");
     private static JFrame tsFrame = new JFrame("Training Stats");
-    private static JFrame classisfyFrame = new JFrame("Classify");
+    static JFrame classisfyFrame = new JFrame("Classify");
     private final JFileChooser fc = new JFileChooser();
 
     public GUI() {
@@ -23,11 +23,14 @@ public class GUI {
         });
 
         classifyButton.addActionListener(e -> {
-            classisfyFrame.setContentPane(new Classify().getPanel1());
-            classisfyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            classisfyFrame.pack();
-            classisfyFrame.setVisible(true);
+            if(filePath != null && getFileExtension(filePath).equals("arff")) {
+                classisfyFrame.setContentPane(new Classify().getPanel1());
+                classisfyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                classisfyFrame.pack();
+                classisfyFrame.setVisible(true);
+            }
         });
+
         loadFileButton.addActionListener(e -> {
             fc.showOpenDialog(panel1);
             File file = fc.getSelectedFile();
@@ -66,11 +69,11 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    public JPanel getPanel1() {
-        return panel1;
+    public static String getFilePath() {
+        return filePath;
     }
 
-    private static String getFileExtension(String filepath) {
+    static String getFileExtension(String filepath) {
         String[] tokens = filepath.split("\\.");
 
         return tokens[tokens.length-1];

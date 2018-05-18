@@ -1,6 +1,6 @@
 
+import javafx.util.Pair;
 import weka.classifiers.Evaluation;
-import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
 import weka.core.DenseInstance;
 import weka.core.Instance;
@@ -8,34 +8,21 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
-import weka.filters.supervised.instance.Resample;
 
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
-    Resample cb = new Resample();
 
     DecisionTree(String filePath) {
         try {
-            dataset = new ConverterUtils.DataSource(filePath).getDataSet();
-            dataset.setClassIndex(dataset.numAttributes() - 1);
-
-            cb = new Resample();
-            cb.setInputFormat(dataset);
-
-            String[] options = {"-M", "4"};
-
-            tree = new J48();
-            tree.setOptions(options);
-
             Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
@@ -46,17 +33,12 @@ public class DecisionTree {
             e.printStackTrace();
         }
         loadTree();
-        classify(new double[]{99.3671875, 41.57220208, 1.547196967, 4.154106043, 27.55518395, 61.71901588, 2.20880796, 3.662680136}); //TODO: Delete this, make it come from gui
-        classify("Project/DataSet/HTRU_2_unlabeled.arff"); //TODO: Add this feature to gui.
-        System.out.println(score());
     }
 
     private void loadTree() {
         try {
             tree.setOptions(treeOptions);
             tree.buildClassifier(dataset);
-            //System.out.println(tree.getCapabilities().toString());
-            //System.out.println(tree.graph());
         } catch (Exception e) {
             System.out.println("Couldn't load tree");
             e.printStackTrace();
@@ -72,7 +54,7 @@ public class DecisionTree {
         int height = (int) screenSize.getHeight();
         jf.setSize(width, height);
         jf.getContentPane().setLayout(new BorderLayout());
-        jf.setExtendedState(jf.MAXIMIZED_BOTH);
+        jf.setExtendedState(Frame.MAXIMIZED_BOTH);
         TreeVisualizer tv;
         try {
             tv = new TreeVisualizer(null,
@@ -122,12 +104,8 @@ public class DecisionTree {
     public String score() {
         Evaluation eval = null;
         try {
-            FilteredClassifier fc = new FilteredClassifier();
-            fc.setClassifier(tree);
-            fc.setFilter(cb);
-
             eval = new Evaluation(dataset);
-            eval.crossValidateModel(fc, dataset, 10, new Random(1));
+            eval.crossValidateModel(tree, dataset, 10, new Random(1));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,10 +116,12 @@ public class DecisionTree {
 
     }
 
-    public void classify(double[] values) {
+    public double[] classify(ClassifyData classifyData) {
+        double[] values = classifyData.getValues();
+
         int valuesSize = dataset.numAttributes() - 1;
         if (values.length != valuesSize)
-            return;
+            return values;
 
         Instances unlabeled = new Instances(dataset, 0);
         unlabeled.setClassIndex(unlabeled.numAttributes() - 1);
@@ -153,30 +133,34 @@ public class DecisionTree {
         }
         unlabeled.add(newInstance);
         try {
-            double[] fDistribution = tree.distributionForInstance(unlabeled.firstInstance());
-            System.out.println(Arrays.toString(fDistribution)); //TODO: Change the output to explain
-            // fDistribution[0] is the probability of being negative
-            // fDistribution[1] is the probability of being positive
+            return tree.distributionForInstance(unlabeled.firstInstance());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return new double[]{0.0,0.0};
     }
 
-    public void classify(String filePath) {
+    public ArrayList<Pair<Double, Double>> classify(String filePath) {
+        ArrayList<Pair<Double, Double>> ret = new ArrayList<>();
+
         try {
             Instances unlabeled = new Instances(
                     new BufferedReader(
-                            new FileReader(filePath))); //TODO: Make CSV Compatible
+                            new FileReader(filePath)));
             unlabeled.setClassIndex(unlabeled.numAttributes()-1);
             for (int i = 0; i < unlabeled.numInstances(); i++) {
                 double[] clsLabel = tree.distributionForInstance(unlabeled.instance(i));
-                System.out.println(Arrays.toString(clsLabel)); //TODO: Change the output to explain
+                Pair<Double,Double> pair;
+                pair = new Pair<>(clsLabel[0], clsLabel[1]);
+                ret.add(pair);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
+        return ret;
     }
 
 
