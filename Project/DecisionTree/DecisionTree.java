@@ -1,6 +1,7 @@
 
 import javafx.util.Pair;
 import weka.classifiers.Evaluation;
+import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
 import weka.core.DenseInstance;
 import weka.core.Instance;
@@ -8,6 +9,7 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
+import weka.filters.supervised.instance.ClassBalancer;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -20,12 +22,22 @@ public class DecisionTree {
     private Instances dataset;
     private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
+    ClassBalancer cb = new ClassBalancer();
 
     DecisionTree(String filePath) {
         try {
-            Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
+
+            cb = new ClassBalancer();
+            cb.setInputFormat(dataset);
+
+            String[] options = {"-M", "4"};
+
+            tree = new J48();
+            tree.setOptions(options);
+
+            Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset.randomize(random);
 
         } catch (Exception e) {
@@ -104,9 +116,12 @@ public class DecisionTree {
     public String score() {
         Evaluation eval = null;
         try {
+            FilteredClassifier fc = new FilteredClassifier();
+            fc.setClassifier(tree);
+            fc.setFilter(cb);
+
             eval = new Evaluation(dataset);
             eval.crossValidateModel(tree, dataset, 10, new Random(1));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
