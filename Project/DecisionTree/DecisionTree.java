@@ -24,6 +24,7 @@ public class DecisionTree {
     private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
     private ClassBalancer cb = new ClassBalancer();
+    private FilteredClassifier filteredClassifier = new FilteredClassifier();
 
     DecisionTree(String filePath) {
         try {
@@ -48,7 +49,9 @@ public class DecisionTree {
     private void loadTree() {
         try {
             tree.setOptions(treeOptions);
-            tree.buildClassifier(dataset);
+            filteredClassifier.setFilter(cb);
+            filteredClassifier.setClassifier(tree);
+            filteredClassifier.buildClassifier(dataset);
         } catch (Exception e) {
             System.out.println("Couldn't load tree");
             e.printStackTrace();
@@ -114,12 +117,9 @@ public class DecisionTree {
     public String score() {
         Evaluation eval = null;
         try {
-            FilteredClassifier fc = new FilteredClassifier();
-            fc.setClassifier(tree);
-            fc.setFilter(cb);
 
             eval = new Evaluation(dataset);
-            eval.crossValidateModel(fc, dataset, 10, new Random(1));
+            eval.crossValidateModel(filteredClassifier, dataset, 10, new Random(1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -146,7 +146,7 @@ public class DecisionTree {
         }
         unlabeled.add(newInstance);
         try {
-            return tree.distributionForInstance(unlabeled.firstInstance());
+            return filteredClassifier.distributionForInstance(unlabeled.firstInstance());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +163,7 @@ public class DecisionTree {
                             new FileReader(filePath)));
             unlabeled.setClassIndex(unlabeled.numAttributes()-1);
             for (int i = 0; i < unlabeled.numInstances(); i++) {
-                double[] clsLabel = tree.distributionForInstance(unlabeled.instance(i));
+                double[] clsLabel = filteredClassifier.distributionForInstance(unlabeled.instance(i));
                 Pair<Double,Double> pair;
                 pair = new Pair<>(clsLabel[0], clsLabel[1]);
                 ret.add(pair);
