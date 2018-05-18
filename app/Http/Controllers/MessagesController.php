@@ -32,7 +32,7 @@ class MessagesController extends Controller
         $categories = Category::all();
        // $messages = $this->messageService->getMessagesId($userId);
         $unreadMessages = Messages::countUnreadMessages($userId);
-        $messages = $this->messageService->getUserMessages(5);
+        $messages = $this->messageService->getUserMessages($userId);
 
         $count = $this->messageService->countUnreadMessages(5);
         error_log("unread ".$count);
@@ -101,13 +101,12 @@ class MessagesController extends Controller
     {
         $this->validate($request, [
             'con' => 'required',
-            'rec' => 'required'
+            'rec' => 'required',
         ]);
 
         $userId = Auth::user()->id;
 
-
-
+        error_log("a tua mae". $userId);
        try {
             $message = new Messages();
             $message ->subject = $request->input('sub');
@@ -116,9 +115,9 @@ class MessagesController extends Controller
             $message ->save();
 
             $emails = new Emails();
-            $emails->id =$message->id;
+            $emails-> id =  $message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id =  $request->input('rec');
+            $emails->receiver_id = $request->input('rec');
             $emails->sender_id = $userId;
             $emails->save();
 
@@ -143,7 +142,7 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
         $unreadMessages = Messages::countUnreadMessages($userId);
-        $message = $this->messageService->getUserMessageById(5, $id);
+        $message = $this->messageService->getUserMessageById($userId, $id);
 
         if( $message->has_been_opened == false) {
 
@@ -199,7 +198,7 @@ class MessagesController extends Controller
 
     public function deleteAllMessages(){
         $user = Auth::user()->id;
-        $message = $this->messageService->getUserMessages( 5);
+        $message = $this->messageService->getUserMessages($user);
         foreach ($message as $value) {
             error_log($value->id);
             $email = Emails::find($value->id);

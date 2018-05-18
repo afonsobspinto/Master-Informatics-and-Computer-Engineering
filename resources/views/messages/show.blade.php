@@ -46,8 +46,9 @@
                         <p class="text-justify">{!! $message->message !!}</p>
                     </div>
                     <br>
-                    <input type="hidden" value="{{$message->receiver_id}}" name="receiver" id="receiver" class="form-control"/>
+                    <input type="hidden" value="{{$message->id}}" name="receiver" id="receiver" class="form-control"/>
                     <input type="hidden" value="" name="id" id="id" class="form-control"/>
+
                     <input type="hidden" value="{{ $message->subject }}" name="sub" id="sub" class="form-control"/>
                     <textarea class="form-control" id="article-ckeditor" name="message-text" placeholder="Write your message!"></textarea>
                     <div class="row" id="trackingDiv">
@@ -115,7 +116,7 @@
         $.ajax({
             type: $form.attr('method'),
             url: $form.attr('route'),
-            data:   {id: iden, rec: receiver, con:content, sub:subject},
+            data:   {id: iden, rec: receiver, con: content, sub: subject},
             success: function (data) {
                 if(data.error){
                     return;
