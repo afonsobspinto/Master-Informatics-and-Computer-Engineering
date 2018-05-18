@@ -116,7 +116,7 @@ public class DecisionTree {
             fc.setFilter(cb);
 
             eval = new Evaluation(dataset);
-            eval.crossValidateModel(tree, dataset, 10, new Random(1));
+            eval.crossValidateModel(fc, dataset, 10, new Random(1));
         } catch (Exception e) {
             e.printStackTrace();
         }
