@@ -7,6 +7,7 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
+import weka.filters.Filter;
 import weka.gui.treevisualizer.PlaceNode2;
 import weka.gui.treevisualizer.TreeVisualizer;
 import weka.filters.supervised.instance.ClassBalancer;
@@ -26,14 +27,16 @@ public class DecisionTree {
 
     DecisionTree(String filePath) {
         try {
-            dataset = new ConverterUtils.DataSource(filePath).getDataSet();
-            dataset.setClassIndex(dataset.numAttributes() - 1);
+            Instances tempDataset;
+            tempDataset = new ConverterUtils.DataSource(filePath).getDataSet();
+            tempDataset.setClassIndex(tempDataset.numAttributes() - 1);
 
             cb = new ClassBalancer();
-            cb.setInputFormat(dataset);
+            cb.setInputFormat(tempDataset);
 
             Random random = new Random(Double.doubleToLongBits(Math.random()));
-            dataset.randomize(random);
+            tempDataset.randomize(random);
+            dataset = Filter.useFilter(tempDataset, cb);
 
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
