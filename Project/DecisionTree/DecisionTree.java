@@ -28,22 +28,20 @@ public class DecisionTree {
 
     DecisionTree(String filePath) {
         try {
-            Instances tempDataset;
-            tempDataset = new ConverterUtils.DataSource(filePath).getDataSet();
-            tempDataset.setClassIndex(tempDataset.numAttributes() - 1);
+            dataset = new ConverterUtils.DataSource(filePath).getDataSet();
+            dataset.setClassIndex(dataset.numAttributes() - 1);
 
             cb = new ClassBalancer();
-            cb.setInputFormat(tempDataset);
-
+            cb.setInputFormat(dataset);
             Random random = new Random(Double.doubleToLongBits(Math.random()));
-            tempDataset.randomize(random);
-            dataset = Filter.useFilter(tempDataset, cb);
+            dataset.randomize(random);
 
         } catch (Exception e) {
             System.out.println("Couldn't load data set");
             e.printStackTrace();
         }
         loadTree();
+        System.out.println(score());
     }
 
     private void loadTree() {
