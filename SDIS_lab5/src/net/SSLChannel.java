@@ -2,6 +2,7 @@ package net;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -9,16 +10,20 @@ import java.util.Arrays;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
 public class SSLChannel {
 	
-	private SSLServerSocket serverSocket;
-	private SSLSocket socket;
+	private ServerSocket serverSocket;
+	private Socket socket;
 	private InetAddress ip;
 	private int port;
 	private final static int buffer_size = 64000; 
 	
 	public SSLChannel(String ip, int port){
+		System.setProperty("javax.net.ssl.keyStore", "client.keys");
+		System.setProperty("javax.net.ssl.trustStore", "truststore");
+		System.setProperty("javax.net.ssl.keyStorePassword", "123456");
 		try {
 			this.ip = InetAddress.getByName(ip);
 			this.port = port;
@@ -28,11 +33,12 @@ public class SSLChannel {
 	}
 	
 	public SSLChannel(int port){
-		SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
+		System.setProperty("javax.net.ssl.keyStore", "server.keys");
+		System.setProperty("javax.net.ssl.trustStore", "truststore");
+		System.setProperty("javax.net.ssl.keyStorePassword", "123456");
 		
 		try {
-			serverSocket = (SSLServerSocket) ssf.createServerSocket(port);
-			serverSocket.setNeedClientAuth(true);
+			serverSocket = ((SSLServerSocketFactory) SSLServerSocketFactory.getDefault()).createServerSocket(port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,7 +46,7 @@ public class SSLChannel {
 	
 	public boolean accept_connection(){
 		try {
-			socket = (SSLSocket) serverSocket.accept();
+			socket = serverSocket.accept();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
@@ -51,8 +57,8 @@ public class SSLChannel {
 	
 	public boolean connect(){
 		try {
-			socket = (SSLSocket) new Socket(ip, port);
-			socket.startHandshake();
+			socket = ((SSLSocketFactory) SSLSocketFactory.getDefault()).createSocket(ip, port);
+			((SSLSocket)socket).startHandshake();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
