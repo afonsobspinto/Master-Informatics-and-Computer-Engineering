@@ -7,12 +7,7 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.filters.Filter;
-import weka.gui.treevisualizer.PlaceNode2;
-import weka.gui.treevisualizer.TreeVisualizer;
-import weka.filters.supervised.instance.ClassBalancer;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,7 +18,7 @@ public class DecisionTree {
     private Instances dataset;
     static private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
-    private SMOTE cb = new SMOTE();
+    private SMOTE smote = new SMOTE();
     private FilteredClassifier filteredClassifier = new FilteredClassifier();
 
     DecisionTree(String filePath) {
@@ -31,8 +26,8 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
 
-            cb = new SMOTE();
-            cb.setInputFormat(dataset);
+            smote = new SMOTE();
+            smote.setInputFormat(dataset);
             Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset.randomize(random);
 
@@ -41,7 +36,6 @@ public class DecisionTree {
             e.printStackTrace();
         }
         loadTree();
-        System.out.println(score());
     }
 
     J48 getTree(){
@@ -51,7 +45,7 @@ public class DecisionTree {
     private void loadTree() {
         try {
             tree.setOptions(treeOptions);
-            filteredClassifier.setFilter(cb);
+            filteredClassifier.setFilter(smote);
             filteredClassifier.setClassifier(tree);
             filteredClassifier.buildClassifier(dataset);
         } catch (Exception e) {
