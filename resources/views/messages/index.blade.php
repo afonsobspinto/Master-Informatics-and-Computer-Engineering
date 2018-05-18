@@ -16,7 +16,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="col-9">
+                <div class="col-8">
                     <div class="navbar-nav row">
                         <a class="nav-item nav-link active" href="/messages">Inbox
                             <span class="sr-only">(current)</span>
@@ -27,11 +27,12 @@
                 </div>
 
 
-                <div class="col-3">
-                    <button id="sendmsg" type="button" class="btn btn-success d-inline-block align-right" data-toggle="modal" data-target="#exampleModal"
-                            data-whatever="@getbootstrap"> New Message  &nbsp; <a href="#"></a></button>
-                    <button id="delete" type="button" class="btn btn-danger d-inline-block align-right" data-toggle="modal" data-target="#alert"
-                            data-whatever="@getbootstrap"> Delete All &nbsp; <a href="#"><i class="fas fa-trash-alt"></i></a></button>
+                <div class="col-4">
+                    <button id="sendmsg" type="button" class="btn btn-success d-inline-block" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@getbootstrap"> New Message  &nbsp; </button> &nbsp; &nbsp;
+
+                    <button id="delete" type="button" class="btn btn-danger d-inline-block" data-toggle="modal" data-target="#alert"
+                            data-whatever="@getbootstrap"> Delete All &nbsp; &nbsp; &nbsp; <i class="fas fa-trash-alt"></i></button>
 
                     <div class="modal fade" id="alert">
                         <div class="modal-dialog">

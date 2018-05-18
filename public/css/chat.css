@@ -10,15 +10,14 @@
 }
 
 #sendmsg{
-    background-color: #000000;
-    color: white;
-    border-color: white;
+    background-color: #18bc9c;
+    color:  #464242;
+    border-color:  #464242;
 }
 
 #delete{
-    background-color: #010333;
-    border-color: white;
-    color: white;
+    border-color:  #464242;
+    color:  whitesmoke;
 }
 
 .table tbody th input, .table tbody th a:nth-child(2) {
