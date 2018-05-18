@@ -126,7 +126,7 @@ CREATE TABLE reports (
 CREATE TABLE reviews (
     id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     rating integer NOT NULL CONSTRAINT rating_ck CHECK (((rating >= 0) OR (rating <= 5))),
-    description text NOT NULL
+    review_text text NOT NULL
 );
 
 CREATE TABLE wishlists (

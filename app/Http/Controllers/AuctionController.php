@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Auction;
 use App\Category;
 use App\City;
+use App\Messages;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Response;
@@ -33,7 +34,9 @@ class AuctionController extends Controller
      */
     public function create()
     {
+        $userId = Auth::user()->id;
         $categories = Category::all();
+        $unreadMessages = Messages::countUnreadMessages($userId);
         $cities = City::all();
         $images = [$this->getAuctionPlaceholderURL()];
 
@@ -41,6 +44,7 @@ class AuctionController extends Controller
             'categories' => $categories,
             'cities' => $cities,
             'images' => $images,
+            'unreadMessages' => $unreadMessages
         ]);
     }
 

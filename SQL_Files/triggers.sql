@@ -19,6 +19,21 @@ $$ LANGUAGE 'plpgsql';
 CREATE TRIGGER auctions_search_tsvector BEFORE INSERT OR UPDATE ON auctions FOR EACH ROW EXECUTE PROCEDURE auctions_search_update();
 
 
+-- starting price
+
+DROP TRIGGER IF EXISTS auctions_starting_price_tsvector ON auctions;
+CREATE OR REPLACE FUNCTION auctions_start_price() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    NEW.current_price = NEW.starting_price;
+  END IF;
+  RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER auctions_starting_price_tsvector BEFORE INSERT ON auctions FOR EACH ROW EXECUTE PROCEDURE auctions_start_price();
+
+
 -- update current price on auctions after insert on bids
 
 DROP TRIGGER IF EXISTS update_current_price ON bids;

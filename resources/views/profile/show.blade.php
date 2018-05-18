@@ -1,3 +1,5 @@
+@extends('layouts.base', ['categories' => $categories, 'countries' => $countries, 'user' => $user])
+
 @section('resources')
     @parent
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
@@ -17,31 +19,249 @@
         </div>
         <div class="col-md-3">
             <div class="row">
-                <h1>Mr. Burns</h1>
+                <h1>{{ $user->username }}</h1>
             </div>
             <div class="row">
-                <p>United States</p>
+                <p>{{ $user->getCountryName() }}</p>
             </div>
             <div class="row">
-                <p class="email">mburns@bidbay.com</p>
+                <p class="email">{{ $user->email }}</p>
             </div>
-            <div class="row">
-                <span class="sr-only">Four out of Five Stars</span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="fas fa-star" aria-hidden="true"></span>
-                <span class="far fa-star" aria-hidden="true"></span>
-                <span class="badge badge-success">61</span>
-            </div>
-            <div class="row">
-                <a href="edit_profile.html" class="btn btn-primary ">Edit Profile</a>
-            </div>
-            <div class="row">
-                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
-            </div>
+            @if(((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+            || Auth::user()->isUserBanned($user) || Auth::user()->isUserAdmin($user))
+            @elseif(Auth::check())
+                <div class="row">
+                    @if($user->rating > 0.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 1.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 2.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 3.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($user->rating > 4.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    <span class="badge badge-success">{{ $user->rating * 100 / 5 }}</span>
+                </div>
+            @endif
+            @if(Auth::check())
+                    @if(Auth::user()->isBanned() && Auth::user()->isProfileOwner($user))
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#appealModal"
+                                data-whatever="@getbootstrap"> Appeal Ban
+                        </button>
+                    </div>
+                    <div class="modal fade" id="appealModal" tabindex="-1" role="dialog"
+                         aria-labelledby="appealModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactModalLabel">Appeal Ban</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="appeal-text"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" id="sendbtn"
+                                            class="btn btn-primary">Send message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <p>14 days until ban ends</p>
+                    </div>
+                    @elseif(Auth::user()->isAdmin() && Auth::user()->isUserBanned($user))
+                    <div class="row">
+                        <a href="#" class="btn btn-primary " data-toggle="collapse" data-target=".collapseAlert" >Unban User</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You successfully unbanned this user!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeModal"
+                                data-whatever="@getbootstrap"> Change Ban Duration
+                        </button>
+                    </div>
+                    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog"
+                         aria-labelledby="changeModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactModalLabel">Change Ban Duration</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                            <span>
+                                        <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                    </span>
+                                            <span class="radio">
+                                        <label><input type="radio" name="duration">Permanent</label>
+                                    </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" id="sendbtn"
+                                            class="btn btn-primary">Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif(Auth::user()->isUserBanned($user))
+                    @elseif(Auth::user()->isProfileOwner($user))
+                        <div class="row">
+                            <a href="{{ url('profile/' . Auth::user()->id . '/edit')  }}" class="btn btn-primary ">Edit Profile</a>
+                        </div>
+                        <div class="row">
+                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel Account</a>
+                        </div>
+                    @elseif(Auth::user()->isAdmin() && Auth::user()->isUserAdmin($user))
+                    <div class="row" id="voteDemote">
+                        <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Vote to demote Admin</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You voted to demote this Admin
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    @elseif(Auth::user()->isAdmin())
+                    <div class="row">
+                        <a href="#" class="btn btn-primary " data-toggle="collapse" data-target=".collapseAlert">Promote to Admin</a>
+                    </div>
+                    <div class="collapse collapseAlert">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Done!</strong> You promoted this user to Admin
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#banModal">Ban User</a>
+                    </div>
+                    <div class="modal fade" id="banModal" tabindex="-1" role="dialog"
+                         aria-labelledby="banModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="banModalLabel">Ban Account </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <div>
+                                                <h5 style="color:brown"> Motive</h5>
+                                                <div class="radio">
+                                                    <label><input type="radio"
+                                                                  name="behaviour">Abusive behaviour</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="content">Spam</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="content">Troll</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                            <span>
+                                <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                </span>
+
+                                            <span class="radio">
+                                    <label><input type="radio" name="duration">Permanent</label>
+                            </span>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text_ban" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text_ban"></textarea>
+                                        </div>
+                                        <label for="admin-pass_ban" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="admin-pass_ban">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger report">Ban Account</button>
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif(!Auth::user()->isBanned())
+                        <div class="row">
+                            <a class="badge badge-light report" type="button" data-toggle="modal"
+                               href="#exampleModal">
+                                Report abuse
+                            </a>
+                        </div>
+                    @endif
+                        <p></p>
+            @if((Auth::user()->isUserAdmin($user)) && (!Auth::user()->isProfileOwner($user)))
+                <p style="color:red;">This user is an administrator!</p>
+            @elseif((Auth::user()->isUserBanned($user)) && (!Auth::user()->isProfileOwner($user)))
+                <p style="color:red;">This user is banned!</p>
+            @endif
+            @endif
         </div>
 
+        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
+        @elseif(Auth::check())
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="active">
@@ -50,65 +270,75 @@
             <li class="nav-item">
                 <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="biddingItems-tab" data-toggle="tab" href="#biddingItems" role="tab" aria-controls="biddingItems" aria-selected="true">Items I'm bidding</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="purchaseHistory-tab" data-toggle="tab" href="#purchaseHistory" role="tab" aria-controls="purchaseHistory" aria-selected="true">
-                    Purchase History
-                    <i class="fas fa-exclamation" aria-hidden="true" title="Item(s) waiting for Feedback"></i>
-                </a>
-            </li>
+                @if(Auth::user()->isProfileOwner($user))
+                    <li class="nav-item">
+                        <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="biddingItems-tab" data-toggle="tab" href="#biddingItems" role="tab" aria-controls="biddingItems" aria-selected="true">Items I'm bidding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="purchaseHistory-tab" data-toggle="tab" href="#purchaseHistory" role="tab" aria-controls="purchaseHistory" aria-selected="true">
+                            Purchase History
+                            <i class="fas fa-exclamation" aria-hidden="true" title="Item(s) waiting for Feedback"></i>
+                        </a>
+                    </li>
+                @endif
+            @endif
         </ul>
+
+        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
+        @else
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
-                <div class="review-block">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://eikonline.com/wp-content/uploads/2015/09/Mr-Smithers-696x490.jpeg" class="img-review img-fluid">
-                            <div class="review-block-name"><a href="profile.html">Smithers</a></div>
-                            <div class="review-block-date">March 01, 2018</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="review-block-rate">
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                            </div>
-                            <div class="review-block">Excellent seller, quick shipping A++++++</div>
-                            <a class="badge badge-light report" type="button" data-toggle="modal"
-                               href="#exampleModal">
-                                Report abuse
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @if(count($feedback) == 0)
+                    <p>No one reviewed this user's amazing work yet!</p>
+                @else
+                @foreach($feedback as $review)
                 <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
                             <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
                             <div class="review-block-name"><a href="profile.html">Homer Simpson</a></div>
-                            <div class="review-block-date">March 02, 2018</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="review-block-rate">
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="fas fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
-                                <span class="far fa-star" aria-hidden="true"></span>
+                                @if($review->rating > 0.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 1.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 2.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 3.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
+                                @if($review->rating > 4.5)
+                                    <span class="fas fa-star" aria-hidden="true"></span>
+                                @else
+                                    <span class="far fa-star" aria-hidden="true"></span>
+                                @endif
                             </div>
-                            <div class="review-block">Some of the donuts were already eaten</div>
+                            <div class="review-block">{{ $review->review_text }}</div>
+                            @if((Auth::user()->isAdmin()) || (Auth::user()->isBanned()))
+                            @else
                             <a class="badge badge-light report" type="button" data-toggle="modal"
                                href="#exampleModal">
                                 Report abuse
                             </a>
+                            @endif
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -158,11 +388,17 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
+                @endif
             </div>
             <div class="tab-pane fade" id="itemsForSale" role="tabpanel" aria-labelledby="itemsForSale-tab">
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>This user isn't selling any item.</p>
+                            @else
+                            @foreach($itemsForSale as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -170,65 +406,22 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Computer with Keyboard and Mouse</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Technology</p>
+                                            <div class="col-md-10">
+                                                <p>{{ $item->description }}</p>
                                             </div>
-                                            <div class="col">
-                                                <p>Time Left: 18 minutes</p>
+                                            <div class="col-md-10">
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="http://d26lpennugtm8s.cloudfront.net/stores/485/599/products/tenis-nike-air-pernix-branco-loja-hdr-lojahdr-com-441-6e4814cc2c28839f4f15050750878402-640-0.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Chinese Shoes</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Clothing</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 9 hours</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://www.renaultretail.co.uk/assets/rr/images/vehicle/new-renault/vehicle-images/cars/renault-clio/range/06-renault-clio-titanium-grey.png" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">2º hand car</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Cars</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 5 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -237,7 +430,33 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>Add something to your wishlist!</p>
+                            @else
+                            @foreach($wishlist as $item)
                             <li>
+                                <div class="row">
+                                    <div>
+                                        <img src="http://cdn1.shopmania.biz/files/s4/452423870/p/l/9/cofre-alta-seguranca-digital-map20ea~5089.jpg" alt="result 1" width="250" height="150">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
+                                        </h4>
+                                        <div class="row padding-product-info">
+                                            <div class="w-100"></div>
+                                            <div class="col">
+                                                <p>{{ $item->description }}</p>
+                                            </div>
+                                            <div class="col">
+                                                <p>Current Bid: {{ $item->current_price }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="collapse collapseAlert">
                                         <div class="alert alert-success" role="alert">
@@ -248,54 +467,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="http://cdn1.shopmania.biz/files/s4/452423870/p/l/9/cofre-alta-seguranca-digital-map20ea~5089.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Steel Lock</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Accessories</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 58 minutes</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://d11fk7pxhipp6v.cloudfront.net/products/esprit-17871-538-black-56-sunglass-with-graduated--2094664968.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Espirit Sunglasses</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Accessories</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 23 hours</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <a href="#" class="btn btn-danger " data-toggle="collapse" data-target=".collapseAlert">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -304,6 +478,10 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($biddingItems) == 0)
+                                <p>You're not bidding any item right now! What are you waiting for?</p>
+                            @else
+                            @foreach($biddingItems as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -311,65 +489,22 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Dog Painting</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Accessories</p>
+                                                <p>{{ $item->description }}</p>
                                             </div>
                                             <div class="col">
-                                                <p>Time Left: 17 hours</p>
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://rukminim1.flixcart.com/image/832/832/book/1/5/9/a-game-of-thrones-the-story-continues-the-complete-box-set-of-7-books-original-imadfgzztg4ahyhk.jpeg?q=70" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Game of Thrones Books Colection</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Books</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 2 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://www.console-deals.com/advice/wp-content/uploads/2017/10/xxpro.png.pagespeed.ic.HIrMrwzGC5.webp" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">PS4 with Controloer</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Technology</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Time Left: 4 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -378,6 +513,10 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
+                            @if(count($itemsForSale) == 0)
+                                <p>You haven't purchased anything yet...</p>
+                            @else
+                            @foreach($purchaseHistory as $item)
                             <li>
                                 <div class="row">
                                     <div>
@@ -385,15 +524,15 @@
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="../auction/auction.html">Office Desk</a>
+                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
                                             <div class="col">
-                                                <p>Accessories</p>
+                                                <p>{{ $item->description }}</p>
                                             </div>
                                             <div class="col">
-                                                <p>Purchased March, 4th</p>
+                                                <p>Current Bid: {{ $item->current_price }}</p>
                                             </div>
                                         </div>
                                         <div class="row padding-product-info">
@@ -495,32 +634,14 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div>
-                                        <img src="https://img2.insania.com/imagens/30000/3026/02.jpg" alt="result 1" width="250" height="150">
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <h4>
-                                            <a href="../auction/auction.html">Dog Collar with Chip</a>
-                                        </h4>
-                                        <div class="row padding-product-info">
-                                            <div class="w-100"></div>
-                                            <div class="col">
-                                                <p>Animals</p>
-                                            </div>
-                                            <div class="col">
-                                                <p>Purchased March, 1st</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+            @endif
     </div>
 
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
@@ -549,26 +670,5 @@
         </div>
     </div>
 </div>
-
-
-<!-- footer -->
-<nav class="navbar navbar-light bg-dark d-flex justify-content-between py-0" id="footer">
-    <ul class="nav d-flex justify-content-center">
-        <li class="nav-item active">
-            <a class="nav-link text-white" href="../home/landing_page.html">Home </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="../about.html">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="../FAQ.html">FAQ</a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav ml-auto justify-content-end mr-3 d-none d-sm-block d-xs-block" id="authentication-nav">
-        <li class="nav-item">
-            <span class="align-middle text-white">Website created by group 64 for LBAW</span>
-        </li>
-    </ul>
-</nav>
 
 @endsection
