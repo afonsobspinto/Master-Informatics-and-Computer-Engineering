@@ -1,5 +1,10 @@
 @extends('layouts.base')
 
+@section('resources')
+@parent
+<link rel="stylesheet" href="{{ asset('css/message.css') }}">
+@endsection
+
 @section('content')
 
 <div class="container-fluid">
@@ -50,7 +55,7 @@
                         <div class="col-2">
                             <br>
                             <br>
-                            <button id="bew" class="btn btn-success d-inline-block"> Send Message</button>
+                            <button id="bew" class="btn btn-success d-inline-block sendmsg" > Send Message</button>
                         </div>
                         <div class="col-5"></div>
                     </div>
@@ -60,7 +65,7 @@
                 </div>
                 <div class="col-1">
                     {!! Form::open(['action' => ['MessagesController@destroy',$message->id ], 'method'=>'POST']) !!}
-                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#alert">Delete  </button>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#alert" id="delete">Delete  </button>
                     <div class="modal fade" id="alert">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -70,7 +75,7 @@
                                     <p>Are you sure, you want to delete this message?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="closebtn">Cancel</button>
                                     <button type="submit" class="btn btn-danger">OK</button>
                                 </div>
                                 {{Form::hidden('_method', 'DELETE')}}

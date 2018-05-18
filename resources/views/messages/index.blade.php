@@ -44,8 +44,8 @@
                                 </div>
                                 {!! Form::open(['action' => 'MessagesController@deleteAllMessages', 'method'=>'POST']) !!}
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger">OK</button>
+                                        <button type="button" class="btn btn-primary" id="closebtn" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger" id ="danger">OK</button>
                                     </div>
                                 {{Form::hidden('_method', 'DELETE')}}
                                 {!! Form::close() !!}
@@ -104,23 +104,23 @@
             <th scope="col">Subject</th>
             <th scope="col">Date</th>
             <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         @foreach($messages as $message)
         <tr class="{{ $message->has_been_opened ? '' : 'openedMessage'}}">
             <th scope="row">
-                <input type="checkbox" class="marcar">
-                <a href="#">
-                    <i class="far fa-star"></i>
-                </a>
             </th>
             <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->username }}</td>
             <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->subject }}</td>
             <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->send_date }}</td>
+            <td></td>
+            <td></td>
             <td>
                 {!! Form::open(['action' => ['MessagesController@destroy',  $message->id ], 'method'=>'POST']) !!}
-                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    <button class="btn btn-danger btn-sm" id ="delete" type="submit">Delete</button>
                 {{Form::hidden('_method', 'DELETE')}}
                 {!! Form::close() !!}
             </td>

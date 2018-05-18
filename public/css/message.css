@@ -10,7 +10,19 @@
     font-weight: bold;
 }
 
-#sendmsg{
-    background-color:black;
-    color:powderblue;
+
+
+#closebtn{
+    background-color: #464242;
+}
+
+.sendmsg{
+    background-color: #18bc9c;
+    color:  whitesmoke;
+    border-color:  #464242;
+}
+
+#delete{
+    border-color:  #464242;
+    color:  whitesmoke;
 }
