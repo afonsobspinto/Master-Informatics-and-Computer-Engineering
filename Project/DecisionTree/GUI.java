@@ -18,7 +18,7 @@ public class GUI {
 
             if(filePath != null && getFileExtension(filePath).equals("arff")) {
                 DecisionTree decisionTree = new DecisionTree(filePath);
-                decisionTree.displayTree();
+                DisplayTree dp = new DisplayTree(decisionTree.getTree());
             }
         });
 

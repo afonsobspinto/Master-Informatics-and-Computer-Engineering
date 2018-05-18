@@ -21,9 +21,9 @@ import java.util.Random;
 
 public class DecisionTree {
     private Instances dataset;
-    private J48 tree = new J48();
+    static private J48 tree = new J48();
     private static String[] treeOptions = {"-M", "4"};
-    private ClassBalancer cb = new ClassBalancer();
+    private SMOTE cb = new SMOTE();
     private FilteredClassifier filteredClassifier = new FilteredClassifier();
 
     DecisionTree(String filePath) {
@@ -31,7 +31,7 @@ public class DecisionTree {
             dataset = new ConverterUtils.DataSource(filePath).getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
 
-            cb = new ClassBalancer();
+            cb = new SMOTE();
             cb.setInputFormat(dataset);
             Random random = new Random(Double.doubleToLongBits(Math.random()));
             dataset.randomize(random);
@@ -42,6 +42,10 @@ public class DecisionTree {
         }
         loadTree();
         System.out.println(score());
+    }
+
+    J48 getTree(){
+        return tree;
     }
 
     private void loadTree() {
@@ -56,45 +60,12 @@ public class DecisionTree {
         }
     }
 
-    public void displayTree() {
-        // display classifier
-        final javax.swing.JFrame jf =
-                new javax.swing.JFrame("Weka Classifier Tree Visualizer: J48");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int) (screenSize.getWidth() * 1.1);
-        int height = (int) screenSize.getHeight();
-        jf.setSize(width, height);
-        jf.getContentPane().setLayout(new BorderLayout());
-        jf.setExtendedState(Frame.MAXIMIZED_BOTH);
-        TreeVisualizer tv;
-        try {
-            tv = new TreeVisualizer(null,
-                    tree.graph(),
-                    new PlaceNode2());
-        } catch (Exception e) {
-            System.out.println("Couldn't instantiate treeVisualizer");
-            e.printStackTrace();
-            return;
-        }
-        jf.getContentPane().add(tv, BorderLayout.CENTER);
-        jf.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                jf.dispose();
-            }
-        });
-
-        jf.setVisible(true);
-        Font font = new Font("Trebuchet MS", Font.PLAIN, 9);
-        tv.setFont(font);
-        tv.fitToScreen();
-    }
-
     public static void main(String[] args) {
         if (args.length == 1 && getFileExtension(args[0]).equals("arff")) {
             if (parseInputs(args)) {
 
                 DecisionTree decisionTree = new DecisionTree(args[0]);
-                decisionTree.displayTree();
+                DisplayTree dp = new DisplayTree(tree);
 
                 return;
             }
