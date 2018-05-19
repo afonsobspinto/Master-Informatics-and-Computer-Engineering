@@ -6,8 +6,6 @@
 @endsection
 
 @section('content')
-
-
 <div class="container">
     <div class="mt-4">
         <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
@@ -128,6 +126,14 @@
         @endforeach
         </tbody>
     </table>
+</div>
+
+<div class="row">
+    <div class="col-5">
+    </div>
+    <div class="col-7">
+        {{ $messages->links("pagination::bootstrap-4") }}
+    </div>
 </div>
 
 <script type="text/javascript">

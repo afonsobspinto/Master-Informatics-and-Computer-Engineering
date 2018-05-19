@@ -42,7 +42,8 @@
 }
 
 .openedMessage {
-    background-color: #56525233;
+    background-color: #f2f4f4;
+    font-weight: bold;
 }
 
 
@@ -52,3 +53,4 @@
         padding-right: 6px;
     }
 }
+

@@ -68,7 +68,7 @@ class Messages extends  Model
         );
     }
 
-    public function getUserMessages(int $id){
+    public static function getUserMessages(int $id){
         $messages = DB::table('emails')
           ->join('messages', 'messages.id', '=', 'emails.id')
             ->join('users', 'users.id', '=', 'emails.sender_id')
@@ -76,6 +76,18 @@ class Messages extends  Model
             ->where('receiver_id', '=', $id)
             ->orderByRaw('send_date DESC')
             ->get();
+
+        return $messages;
+    }
+
+    public static function getUserMessagesPaginate(int $id){
+        $messages = DB::table('emails')
+            ->join('messages', 'messages.id', '=', 'emails.id')
+            ->join('users', 'users.id', '=', 'emails.sender_id')
+            ->select('emails.*', 'messages.*', 'users.username')
+            ->where('receiver_id', '=', $id)
+            ->orderByRaw('send_date DESC')
+            ->paginate(10);
 
         return $messages;
     }

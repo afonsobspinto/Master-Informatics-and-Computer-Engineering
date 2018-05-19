@@ -32,7 +32,7 @@ class MessagesController extends Controller
         $categories = Category::all();
        // $messages = $this->messageService->getMessagesId($userId);
         $unreadMessages = Messages::countUnreadMessages($userId);
-        $messages = $this->messageService->getUserMessages($userId);
+        $messages = $this->messageService->getUserMessagesPaginate($userId);
 
         $count = $this->messageService->countUnreadMessages(5);
         error_log("unread ".$count);
@@ -143,7 +143,6 @@ class MessagesController extends Controller
         $categories = Category::all();
         $unreadMessages = Messages::countUnreadMessages($userId);
         $message = $this->messageService->getUserMessageById($userId, $id);
-
         if( $message->has_been_opened == false) {
 
          //   update message has opened to true
