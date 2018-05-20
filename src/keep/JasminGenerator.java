@@ -57,6 +57,7 @@ public class JasminGenerator {
             return;
         writer.print(".field static " + field.getName() + " ");
         writer.print((field.getType() == Type.INTEGER)? "I" : "[I");
+        System.out.println(field.toString());
         if(field.getType() == Type.INTEGER && field.getValue() != null){
             writer.print(" = ");
             writer.println(field.getValue());
