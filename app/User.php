@@ -121,12 +121,14 @@ class User extends Authenticatable
         return DB::table('auctions')
             ->join('bids', 'auctions.id', '=', 'bids.id')
             ->where('bids.bidder_id', '=', $this->id)
-            ->where('owner_id', '=', $this->id)
             ->get();
     }
 
     public function getPurchaseHistory() { //TODO
-        return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
+        return DB::table('auctions')
+            ->join('won_auctions', 'auctions.id', '=', 'won_auctions.id')
+            ->where('won_auctions.winner_id', '=', $this->id)
+            ->get();
     }
 
     public function getFeedback() {
