@@ -124,7 +124,7 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function getPurchaseHistory() { //TODO
+    public function getPurchaseHistory() {
         return DB::table('auctions')
             ->join('won_auctions', 'auctions.id', '=', 'won_auctions.id')
             ->where('won_auctions.winner_id', '=', $this->id)
@@ -136,5 +136,10 @@ class User extends Authenticatable
             ->join('auctions', 'reviews.id', '=', 'auctions.id')
             ->where('auctions.owner_id', '=', $this->id)
             ->get();
+    }
+
+    public function getProfilePictureURL() {
+
+        return $this->getProfilePictureURL($this->id);
     }
 }

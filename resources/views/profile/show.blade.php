@@ -14,7 +14,7 @@
 
         </div>
         <div class="col-md-3">
-            <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg"
+            <img src="{{ $profile_picture }}"
                  alt="Picture" style="width:100%">
         </div>
         <div class="col-md-3">

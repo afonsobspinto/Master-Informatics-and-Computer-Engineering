@@ -42,12 +42,9 @@ trait ImageFileTraits
         $image->store($picDir, 'public');
     }
 
-    protected function getProfilePictureURL() {
-        if(! Auth::check())
-            return null;
+    protected function getProfilePictureURL($userID) {
 
-        $id = Auth::id();
-        $picDir = 'public/' . $this->getUserDir($id);
+        $picDir = 'public/' . $this->getUserDir($userID);
 
         $files = Storage::files($picDir);
         if(count($files) == 0)
