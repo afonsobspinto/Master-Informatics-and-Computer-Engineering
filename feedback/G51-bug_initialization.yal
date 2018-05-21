@@ -1,0 +1,10 @@
+module bug {
+	function f(a) {
+		if (a > 0) {
+			c = 2;
+		} else {
+			c = 3;
+		}
+		d = c;
+	}
+}

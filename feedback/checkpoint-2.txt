@@ -1,0 +1,22 @@
+CHECKPOINT 2 FEEDBACK
+=====================
+Class 5 - Group 51
+
+These notes are based on an analysis of commit 874766a2189e136c608d6fb4228e97ee0518a5ba.
+If you believe this is an error, contact your class teacher.
+=====================
+
+High-priority:
+	- Incorrect behavior in "G51-bug_initialization.yal". This should not cause a semantic
+error.
+	- In "G51-bug_return.yal", the compiler complains that "f must return a value!", but f
+*does* return a value.
+	- In general, semantic analysis of uninitialized variables appears to be incomplete.
+	- "array + array" should trigger a semantic error.
+	- "g()", where g does not exist, should trigger a semantic error.
+	- The only part of code generation that appears to have been started is global variable
+support. Functions are not generated.
+
+Low-priority:
+	- Improve README.md file
+	- Use packages, instead of Java's default package

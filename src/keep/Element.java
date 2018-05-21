@@ -82,7 +82,8 @@ public class Element {
 	public String toString() {
 
 		String string = "[" + name + ", " + getTypeStr() + ", ";
-		string += (isInitialized ?  "Initialized":"Not Initialized") + "]";
+		string += (isInitialized ?  "Initialized":"Not Initialized") + ", ";
+		string += ((value==null) ?  "Null": (String) value) + "]";
 		return string;
 
 	}
