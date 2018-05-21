@@ -20,6 +20,8 @@ public class JasminGenerator {
 
     private String filepath;
 
+    private Integer lineNumber = 0;
+
     public String getFilepath() {
         return filepath;
     }
@@ -43,7 +45,18 @@ public class JasminGenerator {
     public void writeModule(String name){
         writer.print(".class public ");
         writer.println(name);
+        lineNumber++;
         writer.println(".super java/lang/Object");
+        lineNumber++;
+    }
+
+    private void writeStackAndLocals(int stack, int locals){
+        writer.print(".limit stack ");
+        writer.println(Integer.toString(stack));
+        lineNumber++;
+        writer.print(".limit locals ");
+        writer.println(Integer.toString(locals));
+        lineNumber++;
     }
 
     public void writeFields(LinkedList<Element> fields){
@@ -57,12 +70,19 @@ public class JasminGenerator {
             return;
         writer.print(".field static " + field.getName() + " ");
         writer.print((field.getType() == Type.INTEGER)? "I" : "[I");
-        System.out.println(field.toString());
         if(field.getType() == Type.INTEGER && field.getValue() != null){
             writer.print(" = ");
             writer.println(field.getValue());
+            lineNumber++;
         }else{
             writer.print("\n");
         }
+    }
+
+    public void writeEndMethod(){
+        writer.println("return");
+        lineNumber++;
+        writer.println(".end method");
+        lineNumber++;
     }
 }
