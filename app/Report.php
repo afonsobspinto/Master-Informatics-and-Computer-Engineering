@@ -10,7 +10,7 @@ class Report extends Model
 {
     protected $table = 'reports';
     public $timestamps = false;
-
+    protected $fillable = ['id'];
 
     public static function create(array $data)
     {

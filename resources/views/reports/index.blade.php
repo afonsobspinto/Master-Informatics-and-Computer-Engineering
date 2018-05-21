@@ -18,9 +18,10 @@
             <div class="card-header" id="heading1" style="background-color:#ecf0f1; border-color:#e74c3c">
                 <div class="row">
                     <div class="col-9">
-                        <a href="profile/profile.html"> {{$report-> id}} </a>&nbsp;
+                        <a href="profile/ {{explode(';;;;', $report->message)[1]}}"> {{$report-> id}} </a>&nbsp;
                         <a class="btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                            <span style="color:black">  said:</span> <h4 class="dropdown-toggle"> {{$report->subject}} </h4>   about <a href="profile/profile_asUser.html">Pedro Santos 	&nbsp; </a>
+                            <input type="hidden" id="message_complete" value="{{$report->message}}">
+                            <span style="color:black">  said:</span> <h4 class="dropdown-toggle">   {{$report->subject}}  </h4> about <a href="auctions/ {{explode(';;;', $report->message)[1]}}">Pedro Santos 	&nbsp; </a>
                         </a>
                     </div>
                     <div class="col-3">
@@ -32,7 +33,7 @@
                     <div class="col-4">
                     </div>
                         <div class="col-12">
-                            {{$report->message}}
+                            {{explode(';;;', $report->message)[0]}}
                             <br>
                             <br>
                             <div class="form-group row">
@@ -43,7 +44,11 @@
                             <div class="col-10>  <textarea class="form-control" id="article-ckeditor" name="message-text" placeholder="Write your message!"></textarea> </div>
                             <div class="col-1"></div>
                             <br>
-                            <button type="button" class="btn btn-sm" style="background-color: #464242; color:white"> Send Answer </button>
+                    <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-7">
+                        <button id = "sendbtn" type="button" class="btn btn-success ""> Send Answer </button></div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -65,5 +70,8 @@
 <script>
     var editor = CKEDITOR.replace( 'article-ckeditor' );
 </script>
+
+
+
 
 @endsection
