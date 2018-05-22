@@ -132,7 +132,7 @@
     <div class="col-5">
     </div>
     <div class="col-7">
-        {{ $messages->links("pagination::bootstrap-4") }}
+       <!-- {{ $messages->links("pagination::bootstrap-4") }} -->
     </div>
 </div>
 
