@@ -11,3 +11,4 @@ npm-debug.log
 yarn-error.log
 docker-compose.yaml
 lbaw1764.iml
+composer.lock
