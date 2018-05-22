@@ -158,4 +158,12 @@ class User extends Authenticatable
             ->where('auctions.id', '=', $reviewID)
             ->value('username');
     }
+
+    public function itemOnWishlist($auction) {
+        $isOnList = DB::table('wishlists')->where('id', '=', $this->id)->where('auction_id', '=', $auction->id)->count();
+        if($isOnList > 0)
+            return true;
+        else
+            return false;
+    }
 }
