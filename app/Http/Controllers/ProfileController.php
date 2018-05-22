@@ -43,7 +43,7 @@ class ProfileController extends Controller
         $categories = Category::all();
         $countries = Country::allOrderedCountries();
         $cities = $user->getCountry()->getAllCities();
-        $profilePic = $this->getProfilePictureURL();
+        $profilePic = $this->getProfilePictureURL($id);
         $itemsForSale = $user->getItemsForSale();
         $wishlist = $user->getWishlist();
         $biddingItems = $user->getBiddingItems();
@@ -76,7 +76,7 @@ class ProfileController extends Controller
         $categories = Category::all();
         $countries = Country::allOrderedCountries();
         $cities = $user->getCountry()->getAllCities();
-        $profilePic = $this->getProfilePictureURL();
+        $profilePic = $this->getProfilePictureURL($id);
 
         return view('profile.edit', [
             'categories' => $categories,

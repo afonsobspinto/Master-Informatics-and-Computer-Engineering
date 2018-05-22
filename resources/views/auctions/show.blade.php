@@ -36,16 +36,34 @@
 
 
                 <div class="card-block mb-3">
-                    <h4 class="card-title"><a href="../profile/profile.html">Auctioneer Name</a></h4>
-                    <span class="sr-only">Four out of Five Stars</span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="far fa-star" aria-hidden="true"></span>
-                    <span class="badge badge-success">61</span>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
-                        cupiditate dicta doloremque eligendi</p>
+                    <h4 class="card-title"><a href="{{ url('profile/' . $auction->owner_id)  }}">{{ $auction->getAuctionOwner() }}</a></h4>
+                    @if($auction->getAuctionOwnerRating() > 0.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 1.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 2.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 3.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 4.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    <span class="badge badge-success">{{ $auction->getAuctionOwnerRating() * 100 / 5 }}</span>
+                    <p class="card-text">{{ $auction->getAuctionOwnerEmail() }}</p>
 
                     @if(Auth::check())
                         @if(Auth::user()->isAuctionOwner($auction))
@@ -251,16 +269,14 @@
         <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
             <dl class="row">
                 <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid <i class="fas fa-circle collapse collapseAlert"  title="You are currently the winner bid"></i></dt>
-                <dd class="col-sm-10">1600.00€</dd>
+                <dd class="col-sm-10">{{ $auction->currentPriceEuros()}}€</dd>
 
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>
-                <dd class="col-sm-10">4d 05h Wednesday, 9:15PM</dd>
+                <dd class="col-sm-10">Ending in {{ $auction->getTimeLeftString() }}</dd>
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Description</dt>
-                <dd class="col-sm-10">Ultrabook with the powerful Intel i7-7700HQ Quad Core CPU with NVIDIA GTX 1050
-                    Gaming graphics Card.
-                </dd>
+                <dd class="col-sm-10">{{ $auction->description }}</dd>
 
                 <dt class="col-sm-2 bid text-align-center mobile-text-center" id="input-bid">
                     <div class="input-group mb-3">
@@ -289,19 +305,16 @@
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
             <dl class="row">
                 <dt class="col-sm-2 text-align-center mobile-text-center">Shipping</dt>
-                <dd class="col-sm-10">FREE Economy International Shipping</dd>
+                <dd class="col-sm-10">{{ $auction->shipping_options }}</dd>
+
+                <dt class="col-sm-2 text-align-center mobile-text-center">Shipping Cost</dt>
+                <dd class="col-sm-10">{{ $auction->shipping_cost }}€</dd>
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Item location</dt>
-                <dd class="col-sm-10"> Henan, China</dd>
-
-                <dt class="col-sm-2 text-align-center mobile-text-center">Ships to</dt>
-                <dd class="col-sm-10"> Worldwide</dd>
-
-                <dt class="col-sm-2 text-align-center mobile-text-center">Delivery</dt>
-                <dd class="col-sm-10"> Estimated between Fri. Mar. 23 and Tue. May. 15</dd>
+                <dd class="col-sm-10">{{ $auction->getCityName() }}</dd>
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Payments</dt>
-                <dd class="col-sm-10"> Paypal | Visa | Mastercard</dd>
+                <dd class="col-sm-10">{{ $auction->payment_type }}</dd>
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Returns</dt>
                 <dd class="col-sm-10">30 day returns. Buyer pays for return shipping</dd>
