@@ -19,14 +19,6 @@ class Report extends Model
         );
     }
 
-    public function user(){
-        return $this->belongsTo('App\User','user_id');
-    }
-
-    public function auction(){
-        return $this->belongsTo('App\Auction','auction_id');
-    }
-
     public static function getReports(){
 
         $reports = DB::table('reports')
@@ -50,6 +42,4 @@ class Report extends Model
 
         return $message;
     }
-
-
 }

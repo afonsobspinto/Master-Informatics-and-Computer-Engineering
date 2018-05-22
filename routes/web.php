@@ -35,6 +35,9 @@ Route::post('message', 'MessagesController@storeSpecificMessage')->name('message
 Route::post('messages', 'MessagesController@store')->name('messages.store');
 Route::delete('messages', 'MessagesController@deleteAllMessages')->name('messages.delete');
 
+//reports
+Route::resource('reports', 'ReportsController');
+
 //profile
 Route::resource('profile', 'ProfileController');
 

@@ -55,10 +55,9 @@ class ReportsController extends Controller
     {
         $this->validate($request, [
             'msg' => 'required',
-            'sub' => 'required',
         ]);
 
-        try {
+       try {
 
             $message = new Messages();
             $message ->subject = $request->input('sub');
@@ -74,8 +73,6 @@ class ReportsController extends Controller
             $report->is_user = $request->input('is_user');
 
             $report->save();
-
-
 
         }
         catch (\Exception $e){

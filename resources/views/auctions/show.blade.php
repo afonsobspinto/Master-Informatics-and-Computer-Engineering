@@ -63,7 +63,6 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <label for="user-pass" class="col-form-label">Password:</label>
                                 <input type="password" class="form-control" id="user-pass" name="password">
 
@@ -92,7 +91,6 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">To:</label>
                                     <input type="text" class="form-control" id="dest-name">
@@ -139,7 +137,6 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-
                                     <div class="form-group">
                                         <div>
                                             <h5 style="color:brown"> Motive</h5>
@@ -446,7 +443,7 @@
                 $('#exampleModal').modal('hide');  // Your modal Id
                 window.location.reload(true);
             },
-            error: function () {
+            error: function (result) {
             }
         });
     });
