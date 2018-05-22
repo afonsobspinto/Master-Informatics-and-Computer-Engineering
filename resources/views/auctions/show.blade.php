@@ -36,16 +36,34 @@
 
 
                 <div class="card-block mb-3">
-                    <h4 class="card-title"><a href="../profile/profile.html">Auctioneer Name</a></h4>
-                    <span class="sr-only">Four out of Five Stars</span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="fas fa-star" aria-hidden="true"></span>
-                    <span class="far fa-star" aria-hidden="true"></span>
-                    <span class="badge badge-success">61</span>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, consequatur
-                        cupiditate dicta doloremque eligendi</p>
+                    <h4 class="card-title"><a href="{{ url('profile/' . $auction->owner_id)  }}">{{ $auction->getAuctionOwner() }}</a></h4>
+                    @if($auction->getAuctionOwnerRating() > 0.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 1.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 2.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 3.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    @if($auction->getAuctionOwnerRating() > 4.5)
+                        <span class="fas fa-star" aria-hidden="true"></span>
+                    @else
+                        <span class="far fa-star" aria-hidden="true"></span>
+                    @endif
+                    <span class="badge badge-success">{{ $auction->getAuctionOwnerRating() * 100 / 5 }}</span>
+                    <p class="card-text">{{ $auction->getAuctionOwnerEmail() }}</p>
 
                     @if(Auth::check())
                         @if(Auth::user()->isAuctionOwner($auction))

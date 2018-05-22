@@ -430,7 +430,7 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
-                            @if(count($itemsForSale) == 0)
+                            @if(count($wishlist) == 0)
                                 <p>Add something to your wishlist!</p>
                             @else
                             @foreach($wishlist as $item)
@@ -513,7 +513,7 @@
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <ul>
-                            @if(count($itemsForSale) == 0)
+                            @if(count($purchaseHistory) == 0)
                                 <p>You haven't purchased anything yet...</p>
                             @else
                             @foreach($purchaseHistory as $item)

@@ -60,4 +60,19 @@ class Auction extends Model
             $data
         );
     }
+
+    public function getAuctionOwner(){
+        $userID = $this->owner_id;
+        return User::select('id', 'username')->where('id', '=', $userID)->value('username');
+    }
+
+    public function getAuctionOwnerRating(){
+        $userID = $this->owner_id;
+        return User::select('id', 'rating')->where('id', '=', $userID)->value('rating');
+    }
+
+    public function getAuctionOwnerEmail(){
+        $userID = $this->owner_id;
+        return User::select('id', 'email')->where('id', '=', $userID)->value('email');
+    }
 }
