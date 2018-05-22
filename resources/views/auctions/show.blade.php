@@ -21,8 +21,8 @@
 
                     @include('auctions.components.auction_carousel', ['imageURLs' => $auction->getImagesURLs()])
                     <span class="display-4 title">{{ $auction->item_name }}</span>
-                    <span class="badge badge-primary">Tech</span>
-                    <span class="badge badge-info">New</span>
+                    <span class="badge badge-primary">{{ $auction->getCategoryName() }}</span>
+                    <span class="badge badge-info">{{ $auction->condition }}</span>
                     <a href="auction_itemOnWatchList.html" class="far fa-star text-warning " aria-hidden="true" title="Add to Watchlist"></a>
                 </div>
             </div><!-- end row-->
@@ -31,7 +31,7 @@
         {{-- auction owner 'card' --}}
         <div class="col-md-3 ">
             <div class="card text-align-center mobile-text-center" style="width: 20rem;">
-                <img class="card-img-top img-fluid" src="https://ir.ebaystatic.com/pictures/aw/social/avatar.png"
+                <img class="card-img-top img-fluid" src="{{ $auction->getAuctionOwnerPicture() }}"
                      alt="Auctioneer Image">
 
 
@@ -315,20 +315,14 @@
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Payments</dt>
                 <dd class="col-sm-10">{{ $auction->payment_type }}</dd>
-
-                <dt class="col-sm-2 text-align-center mobile-text-center">Returns</dt>
-                <dd class="col-sm-10">30 day returns. Buyer pays for return shipping</dd>
             </dl>
         </div>
         <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
             <dl class="row">
-                <dt class="col-sm-4 text-align-center mobile-text-center">Does it come with a fingerprint reader?</dt>
-                <dd class="col-sm-8">Nope :-)</dd>
-
-                <dt class="col-sm-4 text-align-center mobile-text-center">
-                    Are you able to deliver this with portuguese keyboard layout?
-                </dt>
-                <dd class="col-sm-8">Yes we can delivery with Portuguese keyboard layout.</dd>
+                @foreach($qas as $qa)
+                <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->question }}</dt>
+                <dd class="col-sm-8">{{ $qa->answer }}</dd>
+                @endforeach
             </dl>
             <div class="input-group mb-3 col-sm-10">
                 <input type="text" class="form-control" placeholder="Place your question"

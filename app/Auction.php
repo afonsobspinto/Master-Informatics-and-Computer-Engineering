@@ -80,4 +80,21 @@ class Auction extends Model
         $cityID = $this->city_id;
         return City::select('id', 'city')->where('id', '=', $cityID)->value('city');
     }
+
+    public function getAuctionOwnerPicture(){
+        $userID = $this->owner_id;
+        return $this->getProfilePictureURL($userID);
+    }
+
+    public function getCategoryName(){
+        $categoryID = $this->category_id;
+        return Category::select('id', 'name')->where('id', '=', $categoryID)->value('name');
+    }
+
+    public function getQAs() {
+        return DB::table('qas')
+            ->join('auctions', 'qas.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $this->id)
+            ->get();
+    }
 }
