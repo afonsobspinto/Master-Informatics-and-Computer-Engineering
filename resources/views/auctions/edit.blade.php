@@ -11,7 +11,7 @@
 @section('content')
     <div class="container mt-4" id="sell-section">
 
-        <h1 class="border-bottom pb-1 mb-4 h2">Edit Auctioneer Name's auction</h1>
+        <h1 class="border-bottom pb-1 mb-4 h2">Edit {{ $auction->getAuctionOwner() }}'s auction</h1>
 
         <form method="POST" enctype="multipart/form-data" action="{{action('AuctionController@update', [$auction->id])}}">
             <h2 class="border-bottom pb-1 mb-4 h4">Auction details</h2>
@@ -26,17 +26,18 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            <div class="form-group row">
                 <label for="category-input" class="col-3 col-form-label">Category</label>
                 <div class="col-9">
-                    <select class="form-control" id="category-input">
-                        <option hidden> -</option>
-                        <option selected>Technology</option>
-                        <option>Automobiles</option>
-                        <option>Clothes</option>
+                    <select class="form-control" id="category-input" name="category" aria-describedby="Category" required>
+                        <option value="" {{ old('category') ? '' : 'selected' }}>All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ ucfirst($category->name) }}</option>
+                        @endforeach
                     </select>
                 </div>
-            </div>--}}
+            </div>
+
             <div class="form-group row">
                 <label for="description-input" class="col-3 col-form-label">Description</label>
                 <div class="col-9">
@@ -48,8 +49,8 @@
                 <label for="condition-input" class="col-3 col-form-label">Condition</label>
                 <div class="col-9">
                     <select class="form-control" name="condition-input" id="condition-input">
-                        <option hidden> -</option>
-                        <option selected>New</option>
+                        <option selected hidden>{{ $auction->condition }}</option>
+                        <option>New</option>
                         <option>Used</option>
                         <option>Not Working</option>
                     </select>

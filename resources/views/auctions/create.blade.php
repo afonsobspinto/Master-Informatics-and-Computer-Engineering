@@ -27,17 +27,17 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
+            <div class="form-group row">
                 <label for="category-input" class="col-3 col-form-label">Category</label>
                 <div class="col-9">
-                    <select class="form-control" id="category-input">
-                        <option hidden> -</option>
-                        <option>Technology</option>
-                        <option>Automobiles</option>
-                        <option>Clothes</option>
+                    <select class="form-control" id="category-input" name="category" aria-describedby="Category" required>
+                        <option value="" {{ old('category') ? '' : 'selected' }}>All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ ucfirst($category->name) }}</option>
+                        @endforeach
                     </select>
                 </div>
-            </div>--}}
+            </div>
 
             <div class="form-group row">
                 <label for="description-input" class="col-3 col-form-label">Description</label>

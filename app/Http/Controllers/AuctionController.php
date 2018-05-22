@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Auction;
 use App\Category;
 use App\City;
+use App\Country;
 use App\Messages;
 use Carbon\Carbon;
 use Auth;
@@ -38,13 +39,15 @@ class AuctionController extends Controller
         $categories = Category::all();
         $unreadMessages = Messages::countUnreadMessages($userId);
         $cities = City::all();
+        $countries = Country::all();
         $images = [$this->getAuctionPlaceholderURL()];
 
         return view('auctions.create', [
             'categories' => $categories,
             'cities' => $cities,
             'images' => $images,
-            'unreadMessages' => $unreadMessages
+            'unreadMessages' => $unreadMessages,
+            'countries' => $countries
         ]);
     }
 
@@ -76,7 +79,7 @@ class AuctionController extends Controller
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;
-            $auction->category_id = 1;
+            $auction->category_id = $request->input('category');
             $auction->city_id = 1;
             $auction->save();
         }
@@ -156,7 +159,7 @@ class AuctionController extends Controller
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;;
-            $auction->category_id = 1;
+            $auction->category_id = $request->input('category');
             $auction->city_id = 1;
             $auction->save();
         }

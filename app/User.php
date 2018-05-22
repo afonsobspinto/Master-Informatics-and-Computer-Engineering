@@ -50,6 +50,8 @@ class User extends Authenticatable
     }
 
     public function isAdmin() {
+        if($this->is_administrator === NULL)
+            return false;
         return $this->is_administrator;
     }
 
