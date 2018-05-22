@@ -120,7 +120,11 @@ CREATE TABLE qas (
 );
 
 CREATE TABLE reports (
-    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE
+    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE,
+    user_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    reported_user integer REFERENCES "users"(id) ON UPDATE CASCADE,
+    auction_id integer  REFERENCES auctions(id) ON UPDATE CASCADE,
+    is_user boolean DEFAULT false
 );
 
 CREATE TABLE reviews (

@@ -34,7 +34,7 @@
         <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
              role="menu">
             @if(Auth::user()->isAdmin())
-            <a class="dropdown-item" href="../report.html">User Reports</a>
+            <a class="dropdown-item" href="/reports">User Reports</a>
             @elseif(Auth::user()->isRegular())
             <a class="dropdown-item" href="{{ url('/auctions/create') }}">New Auction</a>
             @endif

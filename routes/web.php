@@ -24,6 +24,11 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 // auctions
 Route::resource('auctions', 'AuctionController');
 
+//Reports
+Route::resource('reports', 'ReportsController');
+Route::post('report', 'ReportsController@storeUserReport')->name('reports.storeReport');
+Route::post('reports', 'ReportsController@store')->name('reports.store');
+
 //messages
 Route::resource('messages', 'MessagesController');
 Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');
