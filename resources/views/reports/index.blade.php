@@ -18,7 +18,7 @@
             <div class="card-header" id="heading1" style="background-color:#ecf0f1; border-color:#e74c3c">
                 <div class="row">
                     <div class="col-9">
-                        <a href="profile/ {{$report->id}}"> {{$report-> username}} </a>&nbsp;
+                        <a href="profile/ {{$report->user_id}}"> {{$report-> username}} </a>&nbsp;
                         <a class="btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                             <input type="hidden" id="message_complete" value="{{$report->message}}">
                             <span style="color:black">  said:</span> <h4 class="dropdown-toggle">   {{$report->subject}}  </h4> about <a href="auctions/{{$report->auction_id}} "> {{$report->item_name}} 	&nbsp; </a>
@@ -33,7 +33,7 @@
                     <div class="col-4">
                     </div>
                     <div class="col-12">
-                        {
+                        {{$report->message}}
                         <br>
                         <br>
                         <div class="form-group row">

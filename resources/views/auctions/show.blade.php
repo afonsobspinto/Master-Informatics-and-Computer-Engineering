@@ -427,7 +427,7 @@
 
         var message = $("#message-text").val();
         var url = window.location.href;
-        var reportedUser = 9;                                                         /7MUDAR ISTO
+        var reportedUser = 9;                                                         //MUDAR ISTO
 
         var userId = $("#reporter").val();
 
