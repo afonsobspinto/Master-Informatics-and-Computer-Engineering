@@ -75,4 +75,9 @@ class Auction extends Model
         $userID = $this->owner_id;
         return User::select('id', 'email')->where('id', '=', $userID)->value('email');
     }
+
+    public function getCityName(){
+        $cityID = $this->city_id;
+        return City::select('id', 'city')->where('id', '=', $cityID)->value('city');
+    }
 }
