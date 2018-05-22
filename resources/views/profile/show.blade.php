@@ -301,7 +301,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
-                            <div class="review-block-name"><a href="profile.html">Homer Simpson</a></div>
+                            <div class="review-block-name"><a href="{{ url('profile/' . $user->getAuctionWinner($review->id))  }}">{{ $user->getAuctionWinnerName($review->id) }}</a></div>
                         </div>
                         <div class="col-sm-9">
                             <div class="review-block-rate">

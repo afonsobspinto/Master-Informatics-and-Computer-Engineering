@@ -81,8 +81,7 @@ class Auction extends Model
         return City::select('id', 'city')->where('id', '=', $cityID)->value('city');
     }
 
-    public function getAuctionOwnerPicture(){
-        $userID = $this->owner_id;
+    public function getUserPicture($userID){
         return $this->getProfilePictureURL($userID);
     }
 
@@ -96,5 +95,30 @@ class Auction extends Model
             ->join('auctions', 'qas.id', '=', 'auctions.id')
             ->where('auctions.id', '=', $this->id)
             ->get();
+    }
+
+    public function getAuctionOwnerReviews(){
+        $ownerID = $this->owner_id;
+        return DB::table('reviews')
+            ->join('auctions', 'reviews.id', '=', 'auctions.id')
+            ->where('auctions.owner_id', '=', $ownerID)
+            ->get();
+    }
+
+    public function getAuctionWinner($reviewID) {
+        return DB::table('users')
+            ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
+            ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $reviewID)
+            ->value('users.id');
+
+    }
+
+    public function getAuctionWinnerName($reviewID) {
+        return DB::table('users')
+            ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
+            ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $reviewID)
+            ->value('username');
     }
 }

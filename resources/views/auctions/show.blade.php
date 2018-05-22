@@ -31,7 +31,7 @@
         {{-- auction owner 'card' --}}
         <div class="col-md-3 ">
             <div class="card text-align-center mobile-text-center" style="width: 20rem;">
-                <img class="card-img-top img-fluid" src="{{ $auction->getAuctionOwnerPicture() }}"
+                <img class="card-img-top img-fluid" src="{{ $auction->getUserPicture($auction->owner_id) }}"
                      alt="Auctioneer Image">
 
 
@@ -344,22 +344,42 @@
 
         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
             <div class="review-block">
+                @foreach($reviews as $review)
                 <div class="row">
                     <div class="col-sm-2 text-align-center mobile-text-center">
-                        <img src="https://vignette.wikia.nocookie.net/antagonist/images/8/8b/Mr._Burns.jpg"
+                        <img src="{{ $auction->getUserPicture($auction->getAuctionWinner($review->id)) }}"
                              class="img-review img-fluid">
-                        <div class="review-block-name"><a href="../profile/profile_asUser.html">MrBurns</a></div>
-                        <div class="review-block-date">March 01, 2018</div>
+                        <div class="review-block-name"><a href="{{ url('profile/' . $auction->getAuctionWinner($review->id))  }}">{{ $auction->getAuctionWinnerName($review->id) }}</a></div>
                     </div>
                     <div class="col-sm-10 ">
                         <div class="review-block-rate">
-                            <span class="fas fa-star" aria-hidden="true"></span>
-                            <span class="fas fa-star" aria-hidden="true"></span>
-                            <span class="fas fa-star" aria-hidden="true"></span>
-                            <span class="fas fa-star" aria-hidden="true"></span>
-                            <span class="far fa-star" aria-hidden="true"></span>
+                            @if($review->rating > 0.5)
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            @else
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            @endif
+                            @if($review->rating > 1.5)
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            @else
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            @endif
+                            @if($review->rating > 2.5)
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            @else
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            @endif
+                            @if($review->rating > 3.5)
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            @else
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            @endif
+                            @if($review->rating > 4.5)
+                                <span class="fas fa-star" aria-hidden="true"></span>
+                            @else
+                                <span class="far fa-star" aria-hidden="true"></span>
+                            @endif
                         </div>
-                        <div class="review-block">Excellent Auctioneer, quick shipping A++++++</div>
+                        <div class="review-block">{{ $review->review_text }}</div>
                         <a class="badge badge-light report" type="button" data-toggle="modal"
                            href="#exampleModal">
                             Report abuse
@@ -367,6 +387,7 @@
 
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
 

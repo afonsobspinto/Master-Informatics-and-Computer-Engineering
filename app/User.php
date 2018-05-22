@@ -142,4 +142,20 @@ class User extends Authenticatable
 
         return $this->getProfilePictureURL($this->id);
     }
+
+    public function getAuctionWinner($reviewID) {
+        return DB::table('users')
+            ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
+            ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $reviewID)
+            ->value('users.id');
+    }
+
+    public function getAuctionWinnerName($reviewID) {
+        return DB::table('users')
+            ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
+            ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $reviewID)
+            ->value('username');
+    }
 }

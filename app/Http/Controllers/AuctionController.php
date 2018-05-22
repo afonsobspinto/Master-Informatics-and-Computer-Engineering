@@ -102,11 +102,13 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
         $qas = $auction->getQAs();
+        $reviews = $auction->getAuctionOwnerReviews();
 
         return view('auctions.show', [
             'categories' => $categories,
             'auction' => $auction,
-            'qas' => $qas
+            'qas' => $qas,
+            'reviews' => $reviews
         ]);
     }
 
