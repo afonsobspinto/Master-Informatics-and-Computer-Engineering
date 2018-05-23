@@ -393,6 +393,9 @@
 
         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
             <div class="review-block">
+                @if(count($reviews) == 0)
+                    <p>This auctioneer has no reviews yet!</p>
+                @else
                 @foreach($reviews as $review)
                 <div class="row">
                     <div class="col-sm-2 text-align-center mobile-text-center">
@@ -439,6 +442,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
         <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"

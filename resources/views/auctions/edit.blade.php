@@ -229,6 +229,18 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="city-input" class="col-3 col-form-label">City</label>
+                <div class="col-9">
+                    <select class="form-control" id="city-input" name="city" aria-describedby="City" required>
+                        <option value="" {{ old('city') ? '' : 'selected' }}>All Cities</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}" {{ old('city') == $city->id ? 'selected' : '' }}>{{ ucfirst($city->city) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="text-right mb-3 mt-3">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <a type="button" class="btn btn-secondary" href="auction_asAuctioneer.html">Cancel</a>

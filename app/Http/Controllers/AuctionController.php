@@ -39,7 +39,7 @@ class AuctionController extends Controller
         $categories = Category::all();
         $unreadMessages = Messages::countUnreadMessages($userId);
         $cities = City::all();
-        $countries = Country::all();
+        $countries = Country::allOrderedCountries();
         $images = [$this->getAuctionPlaceholderURL()];
 
         return view('auctions.create', [
@@ -75,12 +75,12 @@ class AuctionController extends Controller
             $auction->condition = $request->input('condition-input');
             $auction->starting_price = $request->input('price-input');
             $auction->end_date = $request->input('duration-input');
-            $auction->payment_type = 'PayPal';
+            $auction->payment_type = 'Credit Card';
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;
             $auction->category_id = $request->input('category');
-            $auction->city_id = 1;
+            $auction->city_id = $request->input('city');;
             $auction->save();
         }
         catch (\Exception $e){
@@ -126,11 +126,13 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
         $images = $auction->getImagesURLs();
+        $cities = City::all();
 
         return view('auctions.edit', [
             'categories' => $categories,
             'auction' => $auction,
             'images' => $images,
+            'cities' => $cities
         ]);
     }
 
@@ -155,12 +157,12 @@ class AuctionController extends Controller
             $auction->condition = $request->input('condition-input');
             $auction->starting_price = $request->input('price-input');
             $auction->end_date = Carbon::tomorrow();
-            $auction->payment_type = 'PayPal';
+            $auction->payment_type = $request->input('payment-input');
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;;
             $auction->category_id = $request->input('category');
-            $auction->city_id = 1;
+            $auction->city_id = $request->input('city');
             $auction->save();
         }
         catch (\Exception $e){
@@ -198,6 +200,11 @@ class AuctionController extends Controller
 
 
         return response()->json('', Response::HTTP_OK);
+    }
+
+    public function addToWishlist($auctionID){
+        $userID = Auth::user()->id;
+        DB::table('wishlists')->insert($auctionID, $userID);
     }
 }
 

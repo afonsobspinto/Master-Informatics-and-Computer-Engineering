@@ -63,11 +63,8 @@
             @include('auctions.components.form_images', ['images' => $images ])
             {{-- /MODIFIED --}}
 
-        {{--
-       </form>
+            <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
 
-       <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
-       <form>--}}
             <div class="form-group row">
                 <label for="price-input" class="col-3 col-form-label">Starting price</label>
                 <div class="col-9 input-group">
@@ -95,8 +92,7 @@
                 <div class="col-9 input-group" id="payment-input" name="payment-input">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="atmPayment" id="atmPayment"
-                               value="atmPayment"
-                               checked>
+                               value="atmPayment" checked>
                         <label class="form-check-label" for="atmPayment">
                             ATM Reference
                         </label>
@@ -133,49 +129,9 @@
                 </div>
             </div>--}}
 
-            {{--<div class="form-group row">
-                <label for="returns-input" class="col-3 col-form-label">Return options</label>
-                <div class="col-9 input-group" id="returns-input">
-                    <div class="form-check">
-                        <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio"
-                               name="return" value="accept" aria-expanded="false" aria-controls="accept_hide"
-                               id="accept">
-                        <label class="form-check-label" for="accept">
-                            Returns accepted
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio"
-                               name="return" value="refuse" aria-expanded="false" aria-controls="refuse_hide"
-                               id="refuse">
-                        <label class="form-check-label" for="refuse">
-                            No returns accepted
-                        </label>
-                    </div>
 
-                    <div class="form-group col-md-4 collapse" id='accept_hide'>
-                        <label for="returnDays">After receiving the item, your buyer should contact you within:</label>
-                        <select id="returnDays" name="returnDays" class="form-control">
-                            <option>14 Days</option>
-                            <option selected>30 Days</option>
-                            <option>60 Days</option>
-                        </select>
-                        <label for="returnShipping">Return shipping will be paid by:</label>
-                        <select id="returnShipping" name="returnShipping" class="form-control">
-                            <option selected>Buyer</option>
-                            <option>Seller</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-7 collapse" id='refuse_hide'>
-                        <div class="card border-warning mb-3">
-                            The item could still be returned if it doesn't match the listing's description.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{--</form>
             <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
-            <form>
+            {{--<form>
                 <div class="form-group row">
                     <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
                     <div class="col-9 input-group" id="shipping-input">
@@ -204,7 +160,6 @@
                     </div>
                 </div>--}}
 
-
             <div class="form-group row">
                 <label for="shippingPrice-input" class="col-3 col-form-label">Shipping Cost</label>
                 <div class="col-9 input-group">
@@ -225,17 +180,17 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
-                <label for="location-input" class="col-3 col-form-label">Item location</label>
-                <div class="col-9 input-group">
-                    <select class="form-control" type="text" placeholder="Item location" id="location-input" name="location-input" required>
-                        <option selected value="">All Cities</option>
+            <div class="form-group row">
+                <label for="city-input" class="col-3 col-form-label">Item Location</label>
+                <div class="col-9">
+                    <select class="form-control" id="city-input" name="city" aria-describedby="City" required>
+                        <option value="" {{ old('city') ? '' : 'selected' }}>All Cities</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ ucfirst($city->city) }}</option>
+                            <option value="{{ $city->id }}" {{ old('city') == $city->id ? 'selected' : '' }}>{{ ucfirst($city->city) }}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>--}}
+            </div>
 
             <div class="text-right mb-3 mt-3">
                 <button type="submit" class="btn btn-primary sm-mb-3">List auction</button>
