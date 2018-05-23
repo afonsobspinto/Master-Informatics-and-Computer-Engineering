@@ -19,27 +19,16 @@ class Report extends Model
         );
     }
 
-    public static function getReports(){
-
-        $reports = DB::table('reports')
-            ->join('messages', 'messages.id', '=', 'reports.id')
-            ->select('reports.*', 'messages.*')
-            ->orderByRaw('send_date DESC')
-            ->paginate(4);
-
-        return $reports;
-    }
-
-    public static function getReportsJoin() {
+    public static function getReportsJoinIsUser() {
 
         $message =  DB::table('reports')
             ->join('messages', 'messages.id', '=', 'reports.id')
             ->join('users', 'users.id', '=', 'reports.user_id')
-            ->join('auctions', 'auctions.id', '=', 'reports.auction_id')
-            ->select('reports.*', 'messages.*', 'users.*', 'auctions.*')
+            ->select('reports.*', 'messages.*', 'users.*')
             ->orderByRaw('messages.send_date DESC')
-            ->paginate(4);
+            ->get();
 
         return $message;
     }
+
 }

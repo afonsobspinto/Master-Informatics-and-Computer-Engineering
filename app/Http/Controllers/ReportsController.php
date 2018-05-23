@@ -21,13 +21,12 @@ class ReportsController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $reports = Report::getReports();
-        $rep = Report::getReportsJoin(); //faz join com o user que fez o report //
+        $report1 = Report::getReportsJoinIsUser();
+
 
         return view('reports.index', [
             'categories' => $categories,
-            'reports' => $reports,
-            'rep' => $rep,
+            'rep' => $report1,
         ]);
     }
 
@@ -41,8 +40,37 @@ class ReportsController extends Controller
         //
     }
 
+    //{msg: message, sub:value, user_id: userId, reported_user: reportedUser, is_user: true, },
     public function storeUserReport(Request $request){
-        return 123;
+        $this->validate($request, [
+            'msg' => 'required',
+        ]);
+
+        try {
+            $message = new Messages();
+            $message ->subject = $request->input('sub');
+            $message ->message = $request->input('msg');
+            $message ->send_date = Carbon::now();
+            $message ->save();
+
+            // ['id', 'user_id','auction_id', 'is_user'];
+            $report = new Report();
+            $report->id = $message->id;
+            $report->user_id = $request->input('user_id');
+            $report->reported_user = $request->input('reported_user');
+            $report->is_user = $request->input('is_user');
+
+            $report->save();
+
+        }
+        catch (\Exception $e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return response()->json([
+            'success' => 'Message send successfully',
+        ], Response::HTTP_OK);
+
     }
 
     /**
@@ -58,7 +86,6 @@ class ReportsController extends Controller
         ]);
 
        try {
-
             $message = new Messages();
             $message ->subject = $request->input('sub');
             $message ->message = $request->input('msg');
