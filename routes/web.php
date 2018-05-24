@@ -23,7 +23,7 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
 Route::resource('auctions', 'AuctionController');
-
+Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
 //messages
 Route::resource('messages', 'MessagesController');
 Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');

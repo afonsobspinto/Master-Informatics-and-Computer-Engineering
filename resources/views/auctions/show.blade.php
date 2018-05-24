@@ -27,6 +27,7 @@
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <a href="#" class="fas fa-star text-warning " aria-hidden="true" title="Remove from Wishlist"></a>
                     @else
+                        <input value="{{ $auction->id }}" type="hidden" hidden>
                         <a href="#" id="add-wishlist" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></a>
                     @endif
                 </div>
