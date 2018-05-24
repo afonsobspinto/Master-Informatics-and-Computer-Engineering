@@ -25,9 +25,9 @@
                     <span class="badge badge-info">{{ $auction->condition }}</span>
                     @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
                     @elseif(Auth::user()->itemOnWishlist($auction))
-                        <a href="" class="fas fa-star text-warning " aria-hidden="true" title="Remove from Wishlist"></a>
+                        <a href="#" class="fas fa-star text-warning " aria-hidden="true" title="Remove from Wishlist"></a>
                     @else
-                        <a href="" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></a>
+                        <a href="#" id="add-wishlist" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></a>
                     @endif
                 </div>
             </div><!-- end row-->
