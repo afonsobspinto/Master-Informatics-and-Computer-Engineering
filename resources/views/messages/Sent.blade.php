@@ -2,7 +2,7 @@
 
 @section('resources')
 @parent
-    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 @endsection
 
 @section('content')
@@ -40,10 +40,10 @@
                                     <p>Are you sure, you want to delete all messages?</p>
                                 </div>
                                 {!! Form::open(['action' => 'MessagesController@deleteAllMessages', 'method'=>'POST']) !!}
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="closebtn" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger" id ="danger">OK</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="closebtn" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger" id ="danger">OK</button>
+                                </div>
                                 {{Form::hidden('_method', 'DELETE')}}
                                 {!! Form::close() !!}
                             </div><!-- /.modal-content -->
@@ -53,42 +53,42 @@
 
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form route="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
+                                {{csrf_field() }}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label label for="recipient-name" class="form-control-label">To:</label>
+                                        <input type="text" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item-name" class="form-control-label">Subject:</label>
+                                        <input type="text" class="form-control" id="item-name" name="item-name" maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="form-control-label">Message:</label>
+                                        <textarea class="form-control" id="message-text" name="message-text"></textarea>
+                                    </div>
                                 </div>
-                                <form route="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
-                                    {{csrf_field() }}
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label label for="recipient-name" class="form-control-label">To:</label>
-                                            <input type="text" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="item-name" class="form-control-label">Subject:</label>
-                                            <input type="text" class="form-control" id="item-name" name="item-name" maxlength="50">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="form-control-label">Message:</label>
-                                            <textarea class="form-control" id="message-text" name="message-text"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" id="closebtn" class="btn btn-success" data-dismiss="modal">Close</button>
-                                        <button  id="bew" class="btn btn-success">Send message</button>
-                                    </div>
-                                </form>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </nav>
-   </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closebtn" class="btn btn-success" data-dismiss="modal">Close</button>
+                                    <button  id="bew" class="btn btn-success">Send message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </nav>
+</div>
 </div>
 
 <!-- messages -->
@@ -97,7 +97,7 @@
         <thead class="thead-inverse " style="color:#18bc9c; background-color:#464242">
         <tr>
             <th scope="col"></th>
-            <th scope="col">From</th>
+            <th scope="col">To</th>
             <th scope="col">Subject</th>
             <th scope="col">Date</th>
             <th scope="col"></th>
@@ -117,7 +117,7 @@
             <td></td>
             <td>
                 {!! Form::open(['action' => ['MessagesController@destroy',  $message->id ], 'method'=>'POST']) !!}
-                    <button class="btn btn-danger btn-sm" id ="delete" type="submit">Delete</button>
+                <button class="btn btn-danger btn-sm" id ="delete" type="submit">Delete</button>
                 {{Form::hidden('_method', 'DELETE')}}
                 {!! Form::close() !!}
             </td>

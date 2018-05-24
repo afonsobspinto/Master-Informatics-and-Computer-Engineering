@@ -34,6 +34,7 @@ Route::resource('messages', 'MessagesController');
 Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');
 Route::post('messages', 'MessagesController@store')->name('messages.store');
 Route::delete('messages', 'MessagesController@deleteAllMessages')->name('messages.delete');
+Route::get('messages/sendMessage/{userName}/{subject}', 'MessagesController@sendMessage')->name('messages.sendMessage');
 
 //reports
 Route::resource('reports', 'ReportsController');

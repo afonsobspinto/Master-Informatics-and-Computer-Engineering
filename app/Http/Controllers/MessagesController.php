@@ -45,6 +45,28 @@ class MessagesController extends Controller
         ]);
     }
 
+    public function sendMessage($userName, $subject) {
+        $toUserName = $userName;
+        $subject = $subject;
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+        $unreadMessages = Messages::countUnreadMessages($userId);
+        $messages = $this->messageService->getUserMessagesPaginate($userId);
+
+        $count = $this->messageService->countUnreadMessages(5);
+        error_log("unread ".$count);
+
+        return view('messages.sendmessage', [
+            'categories' => $categories,
+            'messages' => $messages,
+            'unreadMessages' => $unreadMessages,
+            'toUserName' => $toUserName,
+            'subjectMsg' => $subject
+        ]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

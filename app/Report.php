@@ -26,7 +26,7 @@ class Report extends Model
             ->join('users', 'users.id', '=', 'reports.user_id')
             ->select('reports.*', 'messages.*', 'users.*')
             ->orderByRaw('messages.send_date DESC')
-            ->get();
+            ->paginate(5);
 
         return $message;
     }
