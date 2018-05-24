@@ -50,6 +50,18 @@ class Messages extends  Model
         return $messages;
     }
 
+    public static function getUserSentMessagesPaginate(int $id){
+        $messages = DB::table('emails')
+            ->join('messages', 'messages.id', '=', 'emails.id')
+            ->join('users', 'users.id', '=', 'emails.sender_id')
+            ->select('emails.*', 'messages.*', 'users.username')
+            ->where('sender_id', '=', $id)
+            ->orderByRaw('send_date DESC')
+            ->paginate(10);
+
+        return $messages;
+    }
+
     public function getUserMessageById(int $userId, int $messageId) {
        $message =  DB::table('emails')
            ->join('messages', 'messages.id', '=', 'emails.id')

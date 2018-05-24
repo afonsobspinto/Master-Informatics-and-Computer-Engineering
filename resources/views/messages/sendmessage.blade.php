@@ -175,6 +175,7 @@
                 }
                 alert(data.success); // THis is success message
                 $('#exampleModal').modal('hide');  // Your modal Id
+                window.location.replace("/reports");
             },
             error: function (result) {
             }

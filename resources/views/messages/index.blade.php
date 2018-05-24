@@ -19,7 +19,7 @@
                         <a class="nav-item nav-link active" href="/messages">Inbox
                             <span class="sr-only">(current)</span>
                         </a>
-                        <a class="nav-item nav-link" href="#">Sent</a>
+                        <a class="nav-item nav-link" href="/messages_sent">Sent</a>
                     </div>
                 </div>
 

@@ -45,6 +45,20 @@ class MessagesController extends Controller
         ]);
     }
 
+    public function index_sent()
+    {
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+
+        $messages = $this->messageService->getUserSentMessagesPaginate($userId);
+
+        return view('messages.Sent', [
+            'categories' => $categories,
+            'messages' => $messages
+        ]);
+    }
+
     public function sendMessage($userName, $subject) {
         $toUserName = $userName;
         $subject = $subject;

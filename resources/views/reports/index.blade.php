@@ -16,12 +16,11 @@
                     <div class="row">
                         <div class="col-9">
                             <a href="profile/ {{$report->user_id}}"> {{App\User::find($report->user_id)->username}} </a>&nbsp;
-                            <a class="btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                 <input type="hidden" id="message_complete" value="{{$report->message}}">
                                 @if($report->is_user)
-                                <span style="color:black">  said:</span> <h4 class="dropdown-toggle">   {{$report->subject}}  </h4> about <a href="profile/{{$report->reported_user}} "> {{App\User::find($report->reported_user)->username}}  	&nbsp; </a>
+                                <span style="color:black">  said:</span> <h4>   {{$report->subject}}  </h4> about <a href="profile/{{$report->reported_user}} "> {{App\User::find($report->reported_user)->username}}  	&nbsp; </a>
                                 @else
-                                <span style="color:black">  said:</span> <h4 class="dropdown-toggle">   {{$report->subject}}  </h4> about <a href="auctions/{{$report->auction_id}}"> {{App\Auction::find($report->auction_id)->item_name}}  	&nbsp; </a>
+                                <span style="color:black">  said:</span> <h4>   {{$report->subject}}  </h4> about <a href="auctions/{{$report->auction_id}}"> {{App\Auction::find($report->auction_id)->item_name}}  	&nbsp; </a>
                                 @endif
                             </a>
                         </div>
