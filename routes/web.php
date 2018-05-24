@@ -24,11 +24,23 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 // auctions
 Route::resource('auctions', 'AuctionController');
 Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
+
+
+//Reports
+Route::resource('reports', 'ReportsController');
+Route::post('report', 'ReportsController@storeUserReport')->name('reports.storeReport');
+Route::post('reports', 'ReportsController@store')->name('reports.store');
+
 //messages
 Route::resource('messages', 'MessagesController');
 Route::post('message', 'MessagesController@storeSpecificMessage')->name('messages.storeMessage');
 Route::post('messages', 'MessagesController@store')->name('messages.store');
 Route::delete('messages', 'MessagesController@deleteAllMessages')->name('messages.delete');
+Route::get('messages/sendMessage/{userName}/{subject}', 'MessagesController@sendMessage')->name('messages.sendMessage');
+Route::get('messages_sent', 'MessagesController@index_sent');
+
+//reports
+Route::resource('reports', 'ReportsController');
 
 //profile
 Route::resource('profile', 'ProfileController');

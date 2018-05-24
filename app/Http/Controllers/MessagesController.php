@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Emails;
+use App\Report;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -42,6 +43,42 @@ class MessagesController extends Controller
             'messages' => $messages,
             'unreadMessages' => $unreadMessages
         ]);
+    }
+
+    public function index_sent()
+    {
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+
+        $messages = $this->messageService->getUserSentMessagesPaginate($userId);
+
+        return view('messages.Sent', [
+            'categories' => $categories,
+            'messages' => $messages
+        ]);
+    }
+
+    public function sendMessage($userName, $subject) {
+        $toUserName = $userName;
+        $subject = $subject;
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+        $unreadMessages = Messages::countUnreadMessages($userId);
+        $messages = $this->messageService->getUserMessagesPaginate($userId);
+
+        $count = $this->messageService->countUnreadMessages(5);
+        error_log("unread ".$count);
+
+        return view('messages.sendmessage', [
+            'categories' => $categories,
+            'messages' => $messages,
+            'unreadMessages' => $unreadMessages,
+            'toUserName' => $toUserName,
+            'subjectMsg' => $subject
+        ]);
+
     }
 
     /**
@@ -101,35 +138,30 @@ class MessagesController extends Controller
     {
         $this->validate($request, [
             'con' => 'required',
-            'rec' => 'required',
+            'rec' => 'required'
         ]);
-
         $userId = Auth::user()->id;
-
-        error_log("a tua mae". $userId);
-       try {
+        try {
             $message = new Messages();
             $message ->subject = $request->input('sub');
             $message ->message = $request->input('con');
             $message ->send_date = Carbon::now();
             $message ->save();
-
             $emails = new Emails();
-            $emails-> id =  $message->id;
+            $emails->id =$message->id;
             $emails->has_been_opened = false;
-            $emails->receiver_id = $request->input('rec');
+            $emails->receiver_id =  $request->input('rec');
             $emails->sender_id = $userId;
             $emails->save();
-
         }
         catch (\Exception $e){
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
-
         return response()->json([
             'success' => 'Message send successfully',
         ], Response::HTTP_OK);
     }
+
 
     /**
      * Display the specified resource.

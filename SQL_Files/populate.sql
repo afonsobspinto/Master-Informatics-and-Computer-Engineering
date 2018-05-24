@@ -75,12 +75,6 @@ INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (9
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (10,'ywlD5byLg0nJVjs3eZs5GNzjdTsGQuP3Cw','Some message , ttuut', '08/24/2007 02:48:00');
 
 
-INSERT INTO "public"."reports" ("id") VALUES (1);
-INSERT INTO "public"."reports" ("id") VALUES (2);
-INSERT INTO "public"."reports" ("id") VALUES (3);
-INSERT INTO "public"."reports" ("id") VALUES (4);
-INSERT INTO "public"."reports" ("id") VALUES (5);
-
 
 
 

@@ -2,7 +2,7 @@
 
 @section('resources')
 @parent
-    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 @endsection
 
 @section('content')
@@ -19,13 +19,13 @@
                         <a class="nav-item nav-link active" href="/messages">Inbox
                             <span class="sr-only">(current)</span>
                         </a>
-                        <a class="nav-item nav-link" href="/messages_sent">Sent</a>
+                        <a class="nav-item nav-link" href="#">Sent</a>
                     </div>
                 </div>
 
 
                 <div class="col-4">
-                    <button id="sendmsg" type="button" class="btn btn-success d-inline-block" data-toggle="modal" data-target="#exampleModal"
+                    <button id="sendmsg" type="button" class="btn btn-success d-inline-block" data-toggle="modal" data-target="#sendMessageModal"
                             data-whatever="@getbootstrap"> New Message  &nbsp; </button> &nbsp; &nbsp;
 
                     <button id="delete" type="button" class="btn btn-danger d-inline-block" data-toggle="modal" data-target="#alert"
@@ -40,10 +40,10 @@
                                     <p>Are you sure, you want to delete all messages?</p>
                                 </div>
                                 {!! Form::open(['action' => 'MessagesController@deleteAllMessages', 'method'=>'POST']) !!}
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="closebtn" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger" id ="danger">OK</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="closebtn" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger" id ="danger">OK</button>
+                                </div>
                                 {{Form::hidden('_method', 'DELETE')}}
                                 {!! Form::close() !!}
                             </div><!-- /.modal-content -->
@@ -52,11 +52,11 @@
 
 
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                    <h5 class="modal-title" id="sendMessageModalLabel">New message</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -66,11 +66,11 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label label for="recipient-name" class="form-control-label">To:</label>
-                                            <input type="text" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
+                                            <input type="text" value="{{$toUserName}}" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
                                         </div>
                                         <div class="form-group">
                                             <label for="item-name" class="form-control-label">Subject:</label>
-                                            <input type="text" class="form-control" id="item-name" name="item-name" maxlength="50">
+                                            <input type="text" value="{{$subjectMsg}}" class="form-control" id="item-name" name="item-name" maxlength="50">
                                         </div>
                                         <div class="form-group">
                                             <label for="message-text" class="form-control-label">Message:</label>
@@ -82,13 +82,13 @@
                                         <button  id="bew" class="btn btn-success">Send message</button>
                                     </div>
                                 </form>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </nav>
-   </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 </div>
 
 <!-- messages -->
@@ -117,7 +117,7 @@
             <td></td>
             <td>
                 {!! Form::open(['action' => ['MessagesController@destroy',  $message->id ], 'method'=>'POST']) !!}
-                    <button class="btn btn-danger btn-sm" id ="delete" type="submit">Delete</button>
+                <button class="btn btn-danger btn-sm" id ="delete" type="submit">Delete</button>
                 {{Form::hidden('_method', 'DELETE')}}
                 {!! Form::close() !!}
             </td>
@@ -148,6 +148,12 @@
     var editor = CKEDITOR.replace( 'message-text' );
 </script>
 
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+</script>
+
 <script>
     $("#bew").click(function(e){
         e.preventDefault();
@@ -169,7 +175,7 @@
                 }
                 alert(data.success); // THis is success message
                 $('#exampleModal').modal('hide');  // Your modal Id
-                window.location.reload(true);
+                window.location.replace("/reports");
             },
             error: function (result) {
             }
