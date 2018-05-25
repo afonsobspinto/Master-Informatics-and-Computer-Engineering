@@ -1,6 +1,6 @@
-package dbs.raft;
+package raft;
 
-import dbs.net.ssl.SSLChannel;
+import raft.net.ssl.SSLChannel;
 
 class RaftChannel implements Runnable {
 	private Raft server;

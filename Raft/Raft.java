@@ -1,6 +1,6 @@
-package dbs.raft;
+package raft;
 
-import dbs.net.ssl.SSLChannel;
+import raft.net.ssl.SSLChannel;
 
 import java.io.IOException;
 import java.net.InetAddress;
