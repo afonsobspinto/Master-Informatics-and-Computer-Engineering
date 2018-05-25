@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Auction;
 use App\Category;
 use App\City;
+use App\Bid;
 use App\Country;
 use App\Messages;
 use Carbon\Carbon;
@@ -105,12 +106,14 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
         $qas = $auction->getQAs();
+        $bids = $auction->getBids();
         $reviews = $auction->getAuctionOwnerReviews();
 
         return view('auctions.show', [
             'categories' => $categories,
             'auction' => $auction,
             'qas' => $qas,
+            'bids' => $bids,
             'reviews' => $reviews
         ]);
     }
@@ -206,5 +209,29 @@ class AuctionController extends Controller
         $userID = Auth::user()->id;
         DB::table('wishlists')->insert($auctionID, $userID);
     }
+
+    public function storeBid(Request $request, $auctionID)
+    {
+        $this->validate($request, [
+            'bid_amount' => 'required',
+        ]);
+
+        try {
+            $bid = new Bid;
+            $bid->id = Auction::findOrFail($auctionID);
+            $bid->bidder_id = Auth::user()->id;
+            $bid->bid_amount = $request->input('bid-amount');
+            $bid->save();
+        }
+
+        catch (\Exception$e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return response()->json([
+            'success' => 'You successfully placed a bid',
+        ], Response::HTTP_OK);
+    }
+
 }
 

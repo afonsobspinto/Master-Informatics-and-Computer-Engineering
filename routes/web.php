@@ -25,6 +25,8 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 Route::resource('auctions', 'AuctionController');
 Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
 
+// bids
+Route::post('auctions/{id}', 'AuctionController@storeBid');
 
 //Reports
 Route::resource('reports', 'ReportsController');

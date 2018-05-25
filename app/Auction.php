@@ -121,4 +121,8 @@ class Auction extends Model
             ->where('auctions.id', '=', $reviewID)
             ->value('username');
     }
+
+    public function getBids(){
+        return DB::table('bids')->get();
+    }
 }
