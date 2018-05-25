@@ -103,9 +103,7 @@
                     </div>
                 </div>
                 @else
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"
-                        data-whatever="@getbootstrap"> Contact
-                </button>
+                <a href="/messages/sendMessage/{{ App\User::find($auction->owner_id)->username}}" id = "sendbtn" type="button" class="btn btn-success ""> Contact </a>
                 <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
                      aria-labelledby="contactModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">

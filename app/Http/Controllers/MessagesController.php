@@ -81,6 +81,26 @@ class MessagesController extends Controller
 
     }
 
+    public function contact($userName) {
+        $toUserName = $userName;
+
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+        $unreadMessages = Messages::countUnreadMessages($userId);
+        $messages = $this->messageService->getUserMessagesPaginate($userId);
+
+        $count = $this->messageService->countUnreadMessages(5);
+        error_log("unread ".$count);
+
+        return view('messages.contact', [
+            'categories' => $categories,
+            'messages' => $messages,
+            'unreadMessages' => $unreadMessages,
+            'toUserName' => $toUserName
+        ]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
