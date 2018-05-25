@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="col-8">
                     <div class="navbar-nav row">
-                        <a class="nav-item nav-link active" href="/messages">Inbox
+                        <a class="nav-item nav-link " href="/messages">Inbox
                             <span class="sr-only">(current)</span>
                         </a>
                         <a class="nav-item nav-link" href="#">Sent</a>
@@ -107,7 +107,7 @@
         </thead>
         <tbody>
         @foreach($messages as $message)
-        <tr class="{{ $message->has_been_opened ? '' : 'openedMessage'}}">
+        <tr>
             <th scope="row">
             </th>
             <td class="clickable-row" data-href="/messages/{{ $message->id }}">{{ $message->username }}</td>
