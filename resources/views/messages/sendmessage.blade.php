@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
     <div class="mt-4">
-        <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
+        <nav class="navbar navbar-expand-sm navbar-light bg-faded">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="col-8">
                     <div class="navbar-nav row">
-                        <a class="nav-item nav-link active" href="/messages">Inbox
-                            <span class="sr-only">(current)</span>
-                        </a>
-                        <a class="nav-item nav-link" href="#">Sent</a>
+                        <a class="nav-item nav-link active" href="/messages">Inbox</a>
+                        <a class="nav-item nav-link" href="/messages_sent">Sent</a>
                     </div>
                 </div>
 

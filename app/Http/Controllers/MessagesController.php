@@ -208,6 +208,20 @@ class MessagesController extends Controller
         ]);
     }
 
+
+    public function show_sent(int $id)
+    {
+        $userId = Auth::user()->id;
+        $categories = Category::all();
+
+        error_log("ESTOU AQUI");
+        $message = $this->messageService->getUserSentMessageById($userId, $id);
+
+        return view('messages.show_sent', [
+            'categories' => $categories,
+            'message' => $message,
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *

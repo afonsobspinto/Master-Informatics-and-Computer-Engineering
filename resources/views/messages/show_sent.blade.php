@@ -49,13 +49,9 @@
                     <input type="hidden" value="" name="id" id="id" class="form-control"/>
 
                     <input type="hidden" value="{{ $message->subject }}" name="sub" id="sub" class="form-control"/>
-                    <textarea class="form-control" id="article-ckeditor" name="message-text" placeholder="Write your message!"></textarea>
                     <div class="row" id="trackingDiv">
                         <div class="col-5"></div>
                         <div class="col-2">
-                            <br>
-                            <br>
-                            <button id="bew" class="btn btn-success d-inline-block sendmsg" > Send Message</button>
                         </div>
                         <div class="col-5"></div>
                     </div>
@@ -90,44 +86,8 @@
             </div>
 
         </div>
-    </div>
-    </form>
 </div>
-
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-   var editor = CKEDITOR.replace( 'article-ckeditor' );
-</script>
-
-<script>
-    $("#bew").click(function(e){
-        e.preventDefault();
-
-        var url = window.location.href;
-
-        var iden =  url.split("/").pop();
-        var receiver = $("#receiver").val();
-        var subject = $("#sub").val();
-
-        var content = editor.getData();
-
-        var $form = $("#userForm");
-        $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('route'),
-            data:   {id: iden, rec: receiver, con: content, sub: subject},
-            success: function (data) {
-                if(data.error){
-                    return;
-                }
-                alert(data.success); // THis is success message
-                window.location.pathname = '/messages';
-            },
-            error: function (result) {
-            }
-        });
-    });
-</script>
-
+</form>
+</div>
 
 @endsection
