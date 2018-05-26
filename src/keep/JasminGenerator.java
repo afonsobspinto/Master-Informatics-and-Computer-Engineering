@@ -6,11 +6,7 @@ public class JasminGenerator {
 
     private PrintWriter writer;
 
-    private SymbolTable symbolTable;
-
-    public SymbolTable getSymbolTable() {
-        return symbolTable;
-    }
+    private SymbolTableContextManager symbolTableContextManager;
 
     private JasminVisitor jasminVisitor;
 
@@ -27,7 +23,7 @@ public class JasminGenerator {
     }
 
     public JasminGenerator(String fileName, SymbolTable symbolTable){
-        this.symbolTable = symbolTable;
+        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
         this.filepath = fileName.replace(".yal", "_generated.j");
         try {
             writer = new PrintWriter(this.filepath);
@@ -35,7 +31,7 @@ public class JasminGenerator {
             e.printStackTrace();
         }
 
-        this.jasminVisitor = new JasminVisitor(this);
+        this.jasminVisitor = new JasminVisitor(this, symbolTable);
     }
 
     public void close(){
@@ -44,25 +40,25 @@ public class JasminGenerator {
 
     public void writeModule(String name){
         writer.print(".class public ");
-        writer.println(name);
-        lineNumber++;
-        writer.println(".super java/lang/Object");
-        lineNumber++;
+        println(name);
+        println(".super java/lang/Object");
     }
 
     private void writeStackAndLocals(int stack, int locals){
         writer.print(".limit stack ");
-        writer.println(Integer.toString(stack));
-        lineNumber++;
+        println(Integer.toString(stack));
         writer.print(".limit locals ");
-        writer.println(Integer.toString(locals));
-        lineNumber++;
+        println(Integer.toString(locals));
     }
 
-    public void writeFields(LinkedList<Element> fields){
+    public int writeFields(LinkedList<Element> fields){
+        int fieldsCounter = 0;
         for(Element field : fields){
             writeField(field);
+            Type fieldType = field.getType();
+            fieldsCounter += (fieldType == Type.INTEGER || fieldType == Type.ARRAY)? 1:0;
         }
+        return fieldsCounter;
     }
 
     private void writeField(Element field){
@@ -72,17 +68,53 @@ public class JasminGenerator {
         writer.print((field.getType() == Type.INTEGER)? "I" : "[I");
         if(field.getType() == Type.INTEGER && field.getValue() != null){
             writer.print(" = ");
-            writer.println(field.getValue());
-            lineNumber++;
+            println(field.getValue());
         }else{
             writer.print("\n");
         }
     }
 
+
+    public void writeInitMethod(){
+        println(".method static public <clinit>()V");
+    }
+
     public void writeEndMethod(){
-        writer.println("return");
+        println("return");
+        println(".end method");
+    }
+
+    public void writeWhile(ASTConditionalOperation conditionNode ,ASTStatements statementNode ,ParserVisitor visitor){
+        String beginLoopLabel = "ll_" + lineNumber;
+        String endLoopLabel = "el_" + lineNumber;
+
+        writer.print(beginLoopLabel);
+        println(" :");
+
+        //writeWhileVariables();
+
+        String condition = (String)conditionNode.jjtGetValue();
+        writer.print(Utils.conditionalsHashMap.get(condition) + " ");
+        println(endLoopLabel);
+
+        SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+        this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
+        statementNode.jjtAccept(visitor, null);
+        this.symbolTableContextManager.popFront();
+
+        writer.print("goto ");
+        println(beginLoopLabel);
+        writer.print(endLoopLabel);
+        println(" :");
+
+    }
+
+    private void println(String line){
+        writer.println(line);
         lineNumber++;
-        writer.println(".end method");
-        lineNumber++;
+    }
+
+    private void println(Object object){
+        println(object.toString());
     }
 }
