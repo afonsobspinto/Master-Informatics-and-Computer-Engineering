@@ -10,20 +10,22 @@
 <div class="container-fluid">
     <form route="{{route('messages.storeMessage')}}" method="POST" id="userForm" class="userForm">
         {{csrf_field() }}
-        <div class="mt-2">
-            <nav class="navbar navbar-expand-sm navbar-light bg-faded">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="col-10">
-                        <div class="row">
-                            <a class="nav-item nav-link active" href="/messages">Inbox</a>
-                            <a class="nav-item nav-link" href="/messages_sent">Sent</a>
-                        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="col-8">
+                    <div class="navbar-nav row">
+                        <a class="nav-item nav-link active" href="/messages">Inbox</a>
+                        <a class="nav-item nav-link" href="/messages_sent">Sent</a>
                     </div>
-            </nav>
-        </div>
+                </div>
+            </div>
+        </nav>
+
         <div class="container-fluid mt-2 mb-2 d-flex flex-column p-4 bg-light">
 
             <div class="row">

@@ -81,7 +81,7 @@ class MessagesController extends Controller
 
     }
 
-    public function contact($userName) {
+    public function contact($userName, $auctionID) {
         $toUserName = $userName;
 
         $userId = Auth::user()->id;
@@ -96,7 +96,8 @@ class MessagesController extends Controller
             'categories' => $categories,
             'messages' => $messages,
             'unreadMessages' => $unreadMessages,
-            'toUserName' => $toUserName
+            'toUserName' => $toUserName,
+            'auction'=> $auctionID
         ]);
 
     }

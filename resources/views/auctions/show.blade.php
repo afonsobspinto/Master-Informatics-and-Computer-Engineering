@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 @else
-                <a href="/messages/sendMessage/{{ App\User::find($auction->owner_id)->username}}" id = "sendbtn" type="button" class="btn btn-success ""> Contact </a>
+                <a href="/contact/{{ App\User::find($auction->owner_id)->username}}/{{$auction->id}}" id = "sendbtn" type="button" class="btn btn-success ""> Contact </a>
                 <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
                      aria-labelledby="contactModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">

@@ -37,9 +37,9 @@ Route::post('message', 'MessagesController@storeSpecificMessage')->name('message
 Route::post('messages', 'MessagesController@store')->name('messages.store');
 Route::delete('messages', 'MessagesController@deleteAllMessages')->name('messages.delete');
 Route::get('messages/sendMessage/{userName}/{subject}', 'MessagesController@sendMessage')->name('messages.sendMessage');
-Route::get('messages/sendMessage/{userName}', 'MessagesController@contact')->name('messages.contact');
+Route::get('contact/{userName}/{auctionID}', 'MessagesController@contact')->name('messages.contact');
 Route::get('messages_sent', 'MessagesController@index_sent');
-Route::get('messages_sent/{id}', 'MessagesController@show_sent')->name('messages.show_sent');;
+Route::get('messages_sent/{id}', 'MessagesController@show_sent')->name('messages.show_sent');
 
 //reports
 Route::resource('reports', 'ReportsController');

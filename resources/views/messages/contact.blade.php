@@ -65,6 +65,7 @@
                                         <div class="form-group">
                                             <label label for="recipient-name" class="form-control-label">To:</label>
                                             <input type="text" value="{{$toUserName}}" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
+                                            <input type="hidden" value="{{$auction}}" name="auction" id="auction" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="item-name" class="form-control-label">Subject:</label>
@@ -163,6 +164,8 @@
         console.log("sub" , subject);
         var receiver_id = $("#recipient-name").val();
         console.log("id" , receiver_id);
+        var auction = $("#auction").val();
+        var url = "/auctions/"+auction;
         $.ajax({
             type: $form.attr('method'),
             url: $form.attr('route'),
@@ -173,7 +176,7 @@
                 }
                 alert(data.success); // THis is success message
                 $('#exampleModal').modal('hide');  // Your modal Id
-                window.location.replace("/reports");
+                window.location.replace(url);
             },
             error: function (result) {
             }

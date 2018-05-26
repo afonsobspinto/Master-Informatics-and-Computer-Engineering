@@ -10,21 +10,22 @@
 <div class="container-fluid">
     <form route="{{route('messages.storeMessage')}}" method="POST" id="userForm" class="userForm">
         {{csrf_field() }}
-        <div class="mt-2">
-            <nav class="navbar navbar-expand-sm navbar-light bg-faded">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="mt-4">
+            <nav class="navbar navbar-expand-sm navbar-light bg-faded" style="background-color: powderblue">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="col-10">
-                        <div class="row">
+                    <div class="col-8">
+                        <div class="navbar-nav row">
                             <a class="nav-item nav-link active" href="/messages">Inbox</a>
                             <a class="nav-item nav-link" href="/messages_sent">Sent</a>
                         </div>
                     </div>
+                </div>
             </nav>
-        </div>
-        <div class="container-fluid mt-2 mb-2 d-flex flex-column p-4 bg-light">
+            <div class="container-fluid mt-2 mb-2 d-flex flex-column p-4 bg-light">
 
             <div class="row">
                 <h4 class="mx-auto pt-3 pb-3 mb-4 font-weight-bold" id="subject" name="subject">{{ $message->subject }}</h4>
@@ -58,28 +59,6 @@
                 </div>
 
                 <div class="col-1">
-                </div>
-                <div class="col-1">
-                    {!! Form::open(['action' => ['MessagesController@destroy',$message->id ], 'method'=>'POST']) !!}
-                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#alert" id="delete">Delete  </button>
-                    <div class="modal fade" id="alert">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure, you want to delete this message?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="closebtn">Cancel</button>
-                                    <button type="submit" class="btn btn-danger">OK</button>
-                                </div>
-                                {{Form::hidden('_method', 'DELETE')}}
-                                <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->
-                                {!! Form::close() !!}
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
                 </div>
 
 
