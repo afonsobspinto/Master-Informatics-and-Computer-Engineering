@@ -230,8 +230,8 @@ class AuctionController extends Controller
         ]);
 
         try {
-            $bid = new Bid;
-            $bid->id = Auction::findOrFail($id);
+            $bid = new Bid();
+            $bid->id = $id;
             $bid->bidder_id = Auth::user()->id;
             $bid->bid_amount = $request->input('bid-amount');
             $bid->save();
