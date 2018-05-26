@@ -9,7 +9,7 @@ public class Element {
 
     private LinkedList<Element> arguments = null;
     private Element returnValue;
-    private int jasminLine = 0;
+    private int jasminLine = -1;
 
     public Element(String name, Type type) {
         this.name = name;
@@ -66,7 +66,10 @@ public class Element {
             return "[I";
         }
 
-        return "I";
+        if (type == Type.INTEGER)
+            return "I";
+
+        return "Unknown";
     }
 
     public Object getValue() {
@@ -116,9 +119,9 @@ public class Element {
     @Override
     public String toString() {
 
-        String string = "[" + name + ", " + getTypeStr() + ", " + jasminLine + ", ";
+        String string = "[" + name + ", " + getTypeStr() + ", ";
         string += (isInitialized ? "Initialized" : "Not Initialized") + ", ";
-        string += ((value == null) ? "Null" : (String) value) + "]";
+        string += ((value == null) ? "null" : (String) value) + "]";
         return string;
 
     }

@@ -62,8 +62,8 @@ public class SymbolTable{
 
 
 	public LinkedList<Element> getParameters(){
-	//	return this.symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
-        return new LinkedList<Element>(parameters.values());
+		return this.symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
+        //return new LinkedList<Element>(parameters.values());
 	}
 
 	public LinkedList<Element> getElements(){

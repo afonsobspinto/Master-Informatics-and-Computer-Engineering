@@ -8,10 +8,6 @@ public class JasminGenerator {
 
     private SymbolTableContextManager symbolTableContextManager;
 
-    public SymbolTableContextManager getSymbolTableContextManager() {
-        return symbolTableContextManager;
-    }
-
     private JasminVisitor jasminVisitor;
 
     public JasminVisitor getJasminVisitor() {
@@ -62,7 +58,7 @@ public class JasminGenerator {
         for(Element field : fields){
             writeField(field);
             Type fieldType = field.getType();
-            fieldsCounter += (fieldType == Type.INTEGER || fieldType == Type.ARRAY)? 1:0;
+            fieldsCounter += (fieldType == Type.INTEGER || fieldType == Type.ARRAY)? 1 : 0;
         }
         return fieldsCounter;
     }
@@ -106,29 +102,80 @@ public class JasminGenerator {
         writer.print(beginLoopLabel);
         println(" :");
 
-        //writeWhileVariables();
+        writeWhileVariables(conditionNode, visitor);
 
         String condition = (String)conditionNode.jjtGetValue();
         writer.print(Utils.conditionalsHashMap.get(condition) + " ");
         println(endLoopLabel);
 
-        //SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
-        //this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
-        //statementNode.jjtAccept(visitor, null);
-       //this.symbolTableContextManager.popFront();
+        SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+        this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
+        statementNode.jjtAccept(visitor, null);
+        this.symbolTableContextManager.popFront();
 
         writer.print("goto ");
         println(beginLoopLabel);
         writer.print(endLoopLabel);
         println(" :");
-
     }
 
-/*    public void putstatic(Element element){
+    private void writeWhileVariables(ASTConditionalOperation conditionNode, ParserVisitor visitor){
+/*        ASTAccess leftNode = (ASTAccess)conditionNode.jjtGetChild(0);
+        SimpleNode rightNode = (SimpleNode)conditionNode.jjtGetChild(1);*/
+    }
+
+    public void writePutstatic(Element element){
         writer.print("putstatic" + moduleName + "/" + element.getName() + " ");
         println(element.getJasminType());
 
-    }*/
+    }
+
+    public void writeGetStatic(Element element){
+        writer.print("getstatic" + moduleName + "/" + element.getName() + " ");
+        println(element.getJasminType());
+    }
+
+    public void writeScalar(String scalar){
+        println("ldc " + scalar);
+    }
+
+    public void writeArray(){
+        println("newarray int");
+    }
+
+    public void writeArraySize(){
+        println("arraylength");
+    }
+
+    public void writeLoadElement(Element element){
+        int elementJasminLine = element.getJasminLine();
+        if(element.getType() == Type.ARRAY){
+            if(elementJasminLine != -1) {
+                writeAload(elementJasminLine);
+                return;
+            }
+        }
+        if(element.getType() == Type.INTEGER){
+            if(elementJasminLine != -1){
+                writeIload(elementJasminLine);
+                return;
+            }
+        }
+        writeGetStatic(element);
+
+    }
+
+    private void writeAload(int lineNumber){
+        println("aload " + lineNumber);
+    }
+
+    private void writeIload(int lineNumber){
+        println("iload " + lineNumber);
+    }
+
+    public void writeIaload(){
+        println("iaload");
+    }
 
     private void println(String line){
         writer.println(line);
@@ -137,5 +184,21 @@ public class JasminGenerator {
 
     private void println(Object object){
         println(object.toString());
+    }
+
+    public SymbolTable getCurrentSymbolTable(){
+        return this.symbolTableContextManager.getCurrentSymbolTable();
+    }
+
+    public SymbolTable getRootSymbolTable(){
+        return this.symbolTableContextManager.getRootSymbolTable();
+    }
+
+    public void pushFront(SymbolTable symbolTable){
+        this.symbolTableContextManager.pushFront(symbolTable);
+    }
+
+    public void popFront(){
+        this.symbolTableContextManager.popFront();
     }
 }

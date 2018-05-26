@@ -30,15 +30,19 @@ public class JasminVisitor implements ParserVisitor {
 
         this.jasminGenerator.writeModule(moduleName);
 
-        LinkedList<Element> elements = this.jasminGenerator.getSymbolTableContextManager().getRootSymbolTable().getElements();
+        LinkedList<Element> elements = this.jasminGenerator.getRootSymbolTable().getElements();
 
         int fields = this.jasminGenerator.writeFields(elements);
+        System.out.println(fields);
 
-        boolean first = true;
-
+        if( fields > 0)
+        {
+            System.out.println("Escrevi");
+            this.jasminGenerator.writeInitMethod();
+        }
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            if (node.jjtGetChild(i).jjtAccept(this, data) == null && first) {
-                first = false;
+            node.jjtGetChild(i).jjtAccept(this, data);
+            if (i == fields-1) {
                 this.jasminGenerator.writeEndMethod();
             }
         }
@@ -47,10 +51,12 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTDeclaration node, Object data) {
-        Element leftSide = (Element) node.jjtGetChild(0).jjtAccept(this, true);
+        Element leftNode = (Element) node.jjtGetChild(0).jjtAccept(this, true);
+        if(leftNode.getType() != Type.ARRAY)
+            return null;
         node.jjtGetChild(1).jjtAccept(this, false);
-        this.jasminGenerator.writeInitMethod();
-        return "Declaration";
+        this.jasminGenerator.writePutstatic(leftNode);
+        return null;
     }
 
     public Object visit(ASTScalarDeclaration node, Object data) {
@@ -62,17 +68,25 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTScalar node, Object data) {
+        this.jasminGenerator.writeScalar((String)node.jjtGetValue());
         return null;
     }
 
     public Object visit(ASTArrayDeclaration node, Object data) {
+        node.jjtGetChild(0).jjtAccept(this,false);
+        this.jasminGenerator.writeArray();
         return null;
     }
 
     public Object visit(ASTFunction node, Object data) {
+        SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();
+        this.jasminGenerator.pushFront(currentSymbolTable.popChild());
+        this.jasminGenerator.writeBeginMethod(this.jasminGenerator.getCurrentSymbolTable());
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
             node.jjtGetChild(i).jjtAccept(this, data);
         }
+        this.jasminGenerator.writeEndMethod();
+        this.jasminGenerator.popFront();
         return null;
     }
 
@@ -85,6 +99,12 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTVariable node, Object data) {
+        Element element = this.jasminGenerator.getCurrentSymbolTable().getElement((String)node.value);
+
+        if((boolean) data)
+            return element;
+
+        this.jasminGenerator.writeLoadElement(element);
         return null;
     }
 
@@ -108,6 +128,28 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTAccess node, Object data) {
+        SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();
+        Element element = currentSymbolTable.getElement((String) node.value);
+
+        if((boolean) data){
+            return element;
+        }
+
+        this.jasminGenerator.writeLoadElement(element);
+
+        if(element.getType() != Type.ARRAY)
+            return null;
+
+        Object object = node.jjtGetChild(0).jjtAccept(this, false);
+        if(object!= null){
+            if(object instanceof Boolean){
+                if(!(Boolean)object)
+                    return null;
+            }
+        }
+
+        this.jasminGenerator.writeIaload();
+
         return null;
     }
 
@@ -124,7 +166,9 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTSize node, Object data) {
-        return null;
+        this.jasminGenerator.writeArraySize();
+
+        return Boolean.FALSE;
     }
 
     public Object visit(ASTConditionalOperation node, Object data) {
