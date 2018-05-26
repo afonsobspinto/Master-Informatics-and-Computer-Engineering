@@ -1,8 +1,10 @@
+
 import java.util.LinkedList;
 
 public class JasminVisitor implements ParserVisitor {
 
     private JasminGenerator jasminGenerator;
+    private Integer storeType = null;
 
     public JasminVisitor(JasminGenerator jasminGenerator) {
         this.jasminGenerator = jasminGenerator;
@@ -67,8 +69,8 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTScalar node, Object data) {
-        this.jasminGenerator.writeScalar((String)node.jjtGetValue());
-        return null;
+        this.jasminGenerator.writeSingleWord((String)node.jjtGetValue());
+        return "I";
     }
 
     public Object visit(ASTArrayDeclaration node, Object data) {
@@ -104,7 +106,7 @@ public class JasminVisitor implements ParserVisitor {
             return element;
 
         this.jasminGenerator.writeLoadElement(element);
-        return null;
+        return element.getJasminType();
     }
 
     public Object visit(ASTArrayElement node, Object data) {
@@ -119,9 +121,11 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTAssign node, Object data) {
+        storeType = -1;
         Element element = (Element) node.jjtGetChild(0).jjtAccept(this, true);
         node.jjtGetChild(1).jjtAccept(this, false);
-        this.jasminGenerator.writeStoreElement(element);
+        this.jasminGenerator.writeStoreElement(element, storeType == 2);
+
         return null;
     }
 
@@ -139,6 +143,16 @@ public class JasminVisitor implements ParserVisitor {
         Element element = currentSymbolTable.getElement((String) node.value);
 
         if((boolean) data){
+            if(element.getType() == Type.ARRAY){
+                if(node.jjtGetNumChildren() == 0){
+                    storeType = 1;
+                }
+                else{
+                    this.jasminGenerator.writeLoadElement(element);
+                    node.jjtGetChild(0).jjtAccept(this,false);
+                    storeType = 2;
+                }
+            }
             return element;
         }
 
@@ -161,19 +175,44 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTTerm node, Object data) {
-        node.jjtGetChild(0).jjtAccept(this, false);
+
         if(node.jjtGetNumChildren() == 2){
+            String sign = (String)node.jjtGetChild(0).jjtAccept(this, true);
             node.jjtGetChild(1).jjtAccept(this, false);
+            if(sign.equals("-")){
+                this.jasminGenerator.writeIneg();
+            }
+        }
+        else{
+            node.jjtGetChild(0).jjtAccept(this, false);
         }
         return null;
     }
 
+/*    public Object visit(ASTInteger node, Object data) {
+        this.jasminGenerator.writeSingleWord((String)node.jjtGetValue());
+        return null;
+    }*/
+
     public Object visit(ASTCall node, Object data) {
+        SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();
+
+        String types = (String)node.jjtGetChild(node.jjtGetNumChildren()-1).jjtAccept(this,false);
+        String moduleName = (String)node.value;
+        if(node.jjtGetNumChildren()==1){
+            Element element = currentSymbolTable.getElement(moduleName);
+            this.jasminGenerator.writeInvokeStatic(element);
+        }
+        else{
+            String methodName = (String)node.jjtGetChild(0).jjtAccept(this,false);
+            String returnValue = "V";
+            this.jasminGenerator.writeInvokeStatic(moduleName, methodName, types, returnValue);
+        }
         return null;
     }
 
     public Object visit(ASTFunctionName node, Object data) {
-        return null;
+        return node.value;
     }
 
     public Object visit(ASTSize node, Object data) {
@@ -197,14 +236,25 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTIf node, Object data) {
+        ASTConditionalOperation conditionNode = (ASTConditionalOperation)node.jjtGetChild(0);
+        ASTStatements ifNode = (ASTStatements)node.jjtGetChild(1);
+        ASTStatements elseNode = null;
+        if(node.jjtGetNumChildren() > 2){
+            elseNode = (ASTStatements)node.jjtGetChild(2);
+        }
         return null;
     }
 
     public Object visit(ASTArgumentList node, Object data) {
-        return null;
-    }
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i =0; i < node.jjtGetNumChildren(); i++){
+            stringBuilder.append(node.jjtGetChild(i).jjtAccept(this,false));
+        }
+        return stringBuilder.toString();
+        }
 
     public Object visit(ASTString node, Object data) {
-        return null;
+        this.jasminGenerator.writeSingleWord((String)node.value);
+        return "Ljava/lang/String;";
     }
 }

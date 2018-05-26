@@ -2,204 +2,213 @@ import java.util.LinkedList;
 
 public class SemanticVisitor implements ParserVisitor {
 
-	SymbolTableContextManager symbolTableContextManager;
+    SymbolTableContextManager symbolTableContextManager;
 
-	public SemanticVisitor(SymbolTable symbolTable){
-		this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SemanticVisitor(SymbolTable symbolTable) {
+        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
 
-	}
+    }
 
-	public Object visit(ASTerror_skipto node, Object data){return null;}
-	public Object visit(ASTerror_skipto_andEat node, Object data){return null;}
+    public Object visit(ASTerror_skipto node, Object data) {
+        return null;
+    }
 
-	public Object visit(SimpleNode node, Object data) {
-		return null;
-	}
+    public Object visit(ASTerror_skipto_andEat node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTStart node, Object data) {
+    public Object visit(SimpleNode node, Object data) {
+        return null;
+    }
 
-		node.jjtGetChild(0).jjtAccept(this, data);
+    public Object visit(ASTStart node, Object data) {
 
-		return null;
-	}
+        node.jjtGetChild(0).jjtAccept(this, data);
 
-	public Object visit(ASTModule node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTModule node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTDeclaration node, Object data) {
-		return null;
-	}
+        return null;
+    }
 
-	public Object visit(ASTScalarDeclaration node, Object data) {
-		return null;
-	}
+    public Object visit(ASTDeclaration node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTSign node, Object data) {
-		return null;
-	}
+    public Object visit(ASTScalarDeclaration node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTScalar node, Object data) {
-		return null;
-	}
+    public Object visit(ASTSign node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTArrayDeclaration node, Object data) {
-		return null;
-	}
+    public Object visit(ASTScalar node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTFunction node, Object data) {
+    public Object visit(ASTArrayDeclaration node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTFunction node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTReturn node, Object data) {
-		return null;
-	}
+        return null;
+    }
 
-	public Object visit(ASTParameters node, Object data) {
-		return null;
-	}
+    public Object visit(ASTReturn node, Object data) {
+        return null;
+    }
 
-	public Object visit(ASTVariable node, Object data) {
+    public Object visit(ASTParameters node, Object data) {
+        return null;
+    }
 
-		return (Element)this.symbolTableContextManager.getCurrentSymbolTable().getElement((String)node.jjtGetValue());
-	}
+    public Object visit(ASTVariable node, Object data) {
 
-	public Object visit(ASTArrayElement node, Object data) {
-		return null;
-	}
+        return (Element) this.symbolTableContextManager.getCurrentSymbolTable().getElement((String) node.jjtGetValue());
+    }
 
-	public Object visit(ASTStatements node, Object data) {
+    public Object visit(ASTArrayElement node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTStatements node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTAssign node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTAssign node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTOperation node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTOperation node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTAccess node, Object data) {
-		return null;
-	}
+        return null;
+    }
 
-	public Object visit(ASTTerm node, Object data) {
+    public Object visit(ASTAccess node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTTerm node, Object data) {
 
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-	public Object visit(ASTFunctionName node, Object data) {
-		return null;
-	}
+        return null;
+    }
 
-	public Object visit(ASTSize node, Object data) {
-		return null;
-	}
+/*    public Object visit(ASTInteger node, Object data) {
+        return null;
+    }*/
 
-	public Object visit(ASTConditionalOperation node, Object data) {
+    public Object visit(ASTFunctionName node, Object data) {
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+    public Object visit(ASTSize node, Object data) {
+        return null;
+    }
 
-		return null;
-	}
+    public Object visit(ASTConditionalOperation node, Object data) {
 
-	public Object visit(ASTWhile node, Object data) {
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+        return null;
+    }
 
-		return null;
-	}
+    public Object visit(ASTWhile node, Object data) {
 
-	public Object visit(ASTIf node, Object data) {
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			node.jjtGetChild(i).jjtAccept(this, data);
-		}
+        return null;
+    }
 
-		return null;
-	}
+    public Object visit(ASTIf node, Object data) {
 
-	public Object visit(ASTCall node, Object data) {
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
 
-		if (node.jjtGetNumChildren() == 1) {
+        return null;
+    }
 
-			Element function = this.symbolTableContextManager.getRootSymbolTable().getElement((String)node.jjtGetValue());
+    public Object visit(ASTCall node, Object data) {
 
-			LinkedList<Element> parameters = (LinkedList<Element>)node.jjtGetChild(0).jjtAccept(this, data);
+        if (node.jjtGetNumChildren() == 1) {
 
-			LinkedList<Element> args = function.getArguments();
+            Element function = this.symbolTableContextManager.getRootSymbolTable().getElement((String) node.jjtGetValue());
 
-			int aux = args.size();
+            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
 
-			if(parameters.size() != args.size()){
+            LinkedList<Element> args = function.getArguments();
 
-				SemanticManager.addError(node.line, "Illegal number of arguments on " + node.jjtGetValue() + " Should be " + args.size() + " argument(s).");
+            int aux = args.size();
 
-				if(aux > parameters.size()){
-					aux = parameters.size();
-				}
-			}
+            if (parameters.size() != args.size()) {
 
-			for(int i = 0; i < aux; i++){
+                SemanticManager.addError(node.line, "Illegal number of arguments on " + node.jjtGetValue() + " Should be " + args.size() + " argument(s).");
 
-				if(parameters.get(i) != args.get(i)){
-					SemanticManager.addError(node.line,
-							"Argument " + parameters.get(i).getName()
-									+ " type error! Expected "
-									+ args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
-				}
-			}
-		}
+                if (aux > parameters.size()) {
+                    aux = parameters.size();
+                }
+            }
 
-		return null;
-	}
+            for (int i = 0; i < aux; i++) {
 
-	public Object visit(ASTArgumentList node, Object data) {
+                if (parameters.get(i) != args.get(i)) {
+                    SemanticManager.addError(node.line,
+                            "Argument " + parameters.get(i).getName()
+                                    + " type error! Expected "
+                                    + args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
+                }
+            }
+        }
 
-		LinkedList<Element> vars = new LinkedList<Element>();
+        return null;
+    }
 
-		for(int i = 0; i < node.jjtGetNumChildren(); i++){
-			vars.add((Element)node.jjtGetChild(i).jjtAccept(this, data));
-		}
+    public Object visit(ASTArgumentList node, Object data) {
 
-		return vars;
-	}
+        LinkedList<Element> vars = new LinkedList<Element>();
 
-	public Object visit(ASTString node, Object data) {
-		return null;
-	}
+        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
+            vars.add((Element) node.jjtGetChild(i).jjtAccept(this, data));
+        }
+
+        return vars;
+    }
+
+    public Object visit(ASTString node, Object data) {
+        return null;
+    }
 }

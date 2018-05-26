@@ -325,6 +325,7 @@ public class SymbolTableVisitor implements ParserVisitor {
 
     }
 
+
     public Object visit(ASTFunctionName node, Object data) {
         return null;
     }

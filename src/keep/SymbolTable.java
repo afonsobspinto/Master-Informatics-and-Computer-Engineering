@@ -98,7 +98,7 @@ public class SymbolTable{
     }
 
     public String getJasminReturnType(){
-	    if(returnValue == null)
+	    if(returnValue == null || returnValue.getName() == null)
 	        return "V";
 	    else
 	        return returnValue.getJasminType();
@@ -127,11 +127,11 @@ public class SymbolTable{
 	    if(getDepth() == 1){
 	        LinkedList<Element> arguments = symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
 	        for(Element element: arguments){
-	            element.setJasminLine(line++);
+	            element.setVarnum(line++);
             }
         }
         for(Element element: elements.values()){
-            element.setJasminLine(line++);
+            element.setVarnum(line++);
         }
 
         for(SymbolTable child: children){

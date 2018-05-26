@@ -9,7 +9,7 @@ public class Element {
 
     private LinkedList<Element> arguments = null;
     private Element returnValue;
-    private int jasminLine = -1;
+    private int varnum = -1;
 
     public Element(String name, Type type) {
         this.name = name;
@@ -17,7 +17,6 @@ public class Element {
         if (type == Type.FUNCTION)
             arguments = new LinkedList<Element>();
     }
-
 
     public Element(String name, Type type, boolean isInitialized) {
         this.name = name;
@@ -53,6 +52,7 @@ public class Element {
         return type;
     }
 
+
     public String getTypeStr() {
         return Type.getTypeStr(type);
     }
@@ -60,6 +60,15 @@ public class Element {
     public boolean isInitialized() {
         return isInitialized;
     }
+
+    public String getJasminTypes() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Element element : arguments) {
+            stringBuilder.append(element.getJasminType());
+        }
+        return stringBuilder.toString();
+    }
+
 
     public String getJasminType() {
         if (type == Type.ARRAY) {
@@ -76,17 +85,24 @@ public class Element {
         return value;
     }
 
-    public int getJasminLine() {
-        return jasminLine;
+    public int getVarnum() {
+        return varnum;
     }
 
-    public void setJasminLine(int jasminLine) {
-        this.jasminLine = jasminLine;
+    public void setVarnum(int varnum) {
+        this.varnum = varnum;
     }
 
 
     public void setValue(Object value) {
         this.value = value;
+    }
+
+    public String getJasminReturnValueType(){
+        if(returnValue == null || returnValue.name == null){
+            return "V";
+        }
+        return returnValue.getJasminType();
     }
 
     public Element getReturn() {
