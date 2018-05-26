@@ -7,8 +7,11 @@ public class SymbolTable{
 
 	private SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor(this);
 	private SemanticVisitor semanticVisitor = new SemanticVisitor(this);
+	private SymbolTableContextManager symbolTableContextManager = new SymbolTableContextManager(this);
 
-	private String name;
+
+
+    private String name;
 	private boolean isFunction = false;
 	private boolean isConditional = false;
 
@@ -20,7 +23,8 @@ public class SymbolTable{
 
 	private LinkedList<SymbolTable> children = new LinkedList<SymbolTable>();
 
-	public SymbolTable(){ }
+	public SymbolTable(){
+    }
 	public SymbolTable(String name, boolean isConditional){
 		this.name = name;
 		this.isConditional = isConditional;
@@ -57,6 +61,11 @@ public class SymbolTable{
 	}
 
 
+	public LinkedList<Element> getParameters(){
+	//	return this.symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
+        return new LinkedList<Element>(parameters.values());
+	}
+
 	public LinkedList<Element> getElements(){
 		return new LinkedList<Element>(elements.values());
 	}
@@ -78,6 +87,22 @@ public class SymbolTable{
 		return parent.getElement(name);
 	}
 
+	private int getDepth(){
+	    if(parent == null)
+	        return 0;
+	    return 1+parent.getDepth();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getJasminReturnType(){
+	    if(returnValue == null)
+	        return "V";
+	    else
+	        return returnValue.getJasminType();
+    }
 	public SymbolTableVisitor getSymbolTableVisitor() {
 		return symbolTableVisitor;
 	}
@@ -93,6 +118,28 @@ public class SymbolTable{
 		this.name = name;
 	}
 
+    public void setLineNumbers(){
+	    for(SymbolTable symbolTable: children){
+	        symbolTable.setLineNumbers(0);
+        }
+    }
+    private int setLineNumbers(int line){
+	    if(getDepth() == 1){
+	        LinkedList<Element> arguments = symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
+	        for(Element element: arguments){
+	            element.setJasminLine(line++);
+            }
+        }
+        for(Element element: elements.values()){
+            element.setJasminLine(line++);
+        }
+
+        for(SymbolTable child: children){
+	        line = child.setLineNumbers(line);
+        }
+
+        return line;
+    }
 
 	private String MapToString(String name, HashMap<String, Element> map){
         StringBuilder stringBuilder = new StringBuilder();

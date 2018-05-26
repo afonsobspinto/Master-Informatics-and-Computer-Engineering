@@ -51,7 +51,9 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTDeclaration node, Object data) {
-
+        Element leftSide = (Element) node.jjtGetChild(0).jjtAccept(this, true);
+        node.jjtGetChild(1).jjtAccept(this, false);
+        this.jasminGenerator.writeInitMethod();
         return null;
     }
 
@@ -135,8 +137,8 @@ public class JasminVisitor implements ParserVisitor {
 
     public Object visit(ASTWhile node, Object data) {
 
-        ASTConditionalOperation conditionNode = (ASTConditionalOperation)node.jjtGetChild(0);
-        ASTStatements statementNode = (ASTStatements)node.jjtGetChild(1);
+        ASTConditionalOperation conditionNode = (ASTConditionalOperation) node.jjtGetChild(0);
+        ASTStatements statementNode = (ASTStatements) node.jjtGetChild(1);
 
         this.jasminGenerator.writeWhile(conditionNode, statementNode, this);
 

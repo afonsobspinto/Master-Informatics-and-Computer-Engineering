@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
 public class Utils {
-    private static HashMap<String,String> conditionalsHashMap= new HashMap<String,String>();
-    private static HashMap<String,String> operationsHashMap= new HashMap<String,String>();
+    public static HashMap<String,String> conditionalsHashMap= new HashMap<String,String>();
+    public static HashMap<String,String> operationsHashMap= new HashMap<String,String>();
 
     static {
         conditionalsHashMap.put(">", "if_icmpgt");

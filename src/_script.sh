@@ -9,6 +9,7 @@
 /bin/cp -rf Type.java keep/
 /bin/cp -rf JasminVisitor.java keep/
 /bin/cp -rf JasminGenerator.java keep/
+/bin/cp -rf Utils.java keep/
 jjtree Parser.jjt
 javacc Parser.jj
 javac *.java

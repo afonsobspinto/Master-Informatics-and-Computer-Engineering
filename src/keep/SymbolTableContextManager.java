@@ -22,4 +22,5 @@ public class SymbolTableContextManager {
     public SymbolTable getRootSymbolTable(){
         return this.contextSwitcher.getLast();
     }
+
 }

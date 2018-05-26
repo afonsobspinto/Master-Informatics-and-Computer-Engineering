@@ -31,6 +31,7 @@ public class Parser
 
           SymbolTable symbolTable = new SymbolTable();
           root.jjtAccept(symbolTable.getSymbolTableVisitor(),null);
+          symbolTable.setLineNumbers();
           System.out.println("//////////////////////////////");
           System.out.println("//// Abstract Syntax Tree ////");
           System.out.println("//////////////////////////////");

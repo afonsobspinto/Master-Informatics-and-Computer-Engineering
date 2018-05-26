@@ -16,7 +16,8 @@ public class JasminGenerator {
 
     private String filepath;
 
-    private Integer lineNumber = 0;
+    private Integer lineNumber = 1;
+    private String moduleName;
 
     public String getFilepath() {
         return filepath;
@@ -39,6 +40,7 @@ public class JasminGenerator {
     }
 
     public void writeModule(String name){
+        this.moduleName = name;
         writer.print(".class public ");
         println(name);
         println(".super java/lang/Object");
@@ -79,6 +81,15 @@ public class JasminGenerator {
         println(".method static public <clinit>()V");
     }
 
+    public void writeBeginMethod(SymbolTable symbolTable){
+        writer.print(".method public static " + symbolTable.getName() + "(");
+        LinkedList<Element> parameters = symbolTable.getParameters();
+        for (Element element : parameters){
+            writer.print(element.getJasminType());
+        }
+        writer.print(")");
+        println(symbolTable.getJasminReturnType());
+    }
     public void writeEndMethod(){
         println("return");
         println(".end method");
@@ -108,6 +119,12 @@ public class JasminGenerator {
         println(" :");
 
     }
+
+/*    public void putstatic(Element element){
+        writer.print("putstatic" + moduleName + "/" + element.getName() + " ");
+        println(element.getJasminType());
+
+    }*/
 
     private void println(String line){
         writer.println(line);
