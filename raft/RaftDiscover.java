@@ -16,6 +16,19 @@ class RaftDiscover implements Runnable {
 		this.explorer = explorer;
 	}
 
+	/*
+		RaftDiscover, explorer = true
+		discover\n
+		<port>\n
+
+		RaftDiscover, explorer = false
+		discover\n
+		<address:port_1>\n
+		<address:port_2>\n
+		...
+		<address:port_N>\n
+	*/
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void run() {
