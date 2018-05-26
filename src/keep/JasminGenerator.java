@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 public class JasminGenerator {
 
+
     private PrintWriter writer;
 
     private SymbolTableContextManager symbolTableContextManager;
@@ -17,7 +18,10 @@ public class JasminGenerator {
     private String filepath;
 
     private Integer lineNumber = 1;
+
     private String moduleName;
+
+    private Integer scope = -1;
 
     public String getFilepath() {
         return filepath;
@@ -56,7 +60,6 @@ public class JasminGenerator {
     public int writeFields(LinkedList<Element> fields){
         int fieldsCounter = 0;
         for(Element field : fields){
-            System.out.println(field.toString());
             writeField(field);
             Type fieldType = field.getType();
             fieldsCounter += (fieldType == Type.INTEGER || fieldType == Type.ARRAY)? 1 : 0;
@@ -166,6 +169,30 @@ public class JasminGenerator {
 
     }
 
+    public void writeStoreElement(Element element){
+        if(element.getType() == Type.INTEGER){
+            if(element.getJasminLine() != -1){
+                writeIstore(element.getJasminLine());
+                return;
+            }
+        }
+        if(element.getType() == Type.ARRAY){
+            if(element.getJasminLine() != -1){
+                writeIastore();
+                return;
+            }
+        }
+        writePutstatic(element);
+    }
+
+    private void writeIstore(int value){
+        println("istore "+ value);
+    }
+
+    private void writeIastore(){
+        writer.print("iastore ");
+    }
+
     private void writeAload(int lineNumber){
         println("aload " + lineNumber);
     }
@@ -176,6 +203,10 @@ public class JasminGenerator {
 
     public void writeIaload(){
         println("iaload");
+    }
+
+    public void writeSign(String sign){
+        println(Utils.operationsHashMap.get(sign));
     }
 
     private void println(String line){
@@ -202,4 +233,7 @@ public class JasminGenerator {
     public void popFront(){
         this.symbolTableContextManager.popFront();
     }
+
+
+
 }

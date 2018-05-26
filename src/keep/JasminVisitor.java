@@ -33,11 +33,9 @@ public class JasminVisitor implements ParserVisitor {
         LinkedList<Element> elements = this.jasminGenerator.getRootSymbolTable().getElements();
 
         int fields = this.jasminGenerator.writeFields(elements);
-        System.out.println(fields);
 
         if( fields > 0)
         {
-            System.out.println("Escrevi");
             this.jasminGenerator.writeInitMethod();
         }
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
@@ -64,7 +62,8 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTSign node, Object data) {
-        return null;
+
+        return (String)node.jjtGetValue();
     }
 
     public Object visit(ASTScalar node, Object data) {
@@ -120,10 +119,18 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTAssign node, Object data) {
+        Element element = (Element) node.jjtGetChild(0).jjtAccept(this, true);
+        node.jjtGetChild(1).jjtAccept(this, false);
+        this.jasminGenerator.writeStoreElement(element);
         return null;
     }
 
     public Object visit(ASTOperation node, Object data) {
+        node.jjtGetChild(0).jjtAccept(this, false);
+        node.jjtGetChild(1).jjtAccept(this, false);
+
+        this.jasminGenerator.writeSign((String) node.value);
+
         return null;
     }
 
@@ -154,6 +161,10 @@ public class JasminVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTTerm node, Object data) {
+        node.jjtGetChild(0).jjtAccept(this, false);
+        if(node.jjtGetNumChildren() == 2){
+            node.jjtGetChild(1).jjtAccept(this, false);
+        }
         return null;
     }
 

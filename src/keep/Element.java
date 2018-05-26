@@ -84,6 +84,7 @@ public class Element {
         this.jasminLine = jasminLine;
     }
 
+
     public void setValue(Object value) {
         this.value = value;
     }
@@ -137,6 +138,5 @@ public class Element {
         Element pairo = (Element) o;
         return this.name.equals(pairo.getName()) && Type.getTypeStr(type).equals(pairo.getTypeStr());
     }
-
 
 }
