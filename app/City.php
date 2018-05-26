@@ -16,4 +16,8 @@ class City extends Model
         return count($country) != 0 ? $country[0] : null;
     }
 
+    public static function allOrderedCities() {
+        return City::orderBy('city')->get();
+    }
+
 }

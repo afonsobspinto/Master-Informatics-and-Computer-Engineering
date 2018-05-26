@@ -15,7 +15,6 @@ Route::get('/', function () {
     return redirect('landing_page');
 });
 
-
 // static pages
 Route::get('landing_page', 'StaticPagesController@showLandingPage');
 Route::get('about', 'StaticPagesController@showAbout');
@@ -23,10 +22,10 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
 Route::resource('auctions', 'AuctionController');
-Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
+Route::post('auctions/{id}', 'AuctionController@addToWishlist');
 
 // bids
-Route::post('auctions/{id}', 'AuctionController@storeBid');
+Route::post('auctions/{id}', 'AuctionController@storeBid')->name('auctions.storeBid');
 
 //Reports
 Route::resource('reports', 'ReportsController');

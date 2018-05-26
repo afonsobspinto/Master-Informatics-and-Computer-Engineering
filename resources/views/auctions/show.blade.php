@@ -304,7 +304,25 @@
 
                 @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
                 @else
-                    <dt class="col-sm-2 bid text-align-center mobile-text-center" id="input-bid">
+                    <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
+                        <dt class="col-sm-8 bid text-align-center mobile-text-center" id="input-bid">
+                        <div class="input-group mb-3">
+                            <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
+                            <input type="number" class="form-control" id="bid-amount" name="bid-amount">
+                            <div class="input-group-append">
+                                <span class="input-group-text">€</span>
+                            </div>
+                        </div>
+                        </dt>
+                        <dd class="col-sm-3 bid" id="button-bid">
+                            <div class="btn-group">
+                                <input type="submit" name="submit" value="Place Bid">
+                                {{--<a type="submit" value="submit" class="btn" data-toggle="collapse" href="" data-target=".collapseAlert" id="button-bid">
+                                    Place Bid</a>--}}
+                            </div>
+                        </dd>
+                    </form>
+                    {{--<dt class="col-sm-2 bid text-align-center mobile-text-center" id="input-bid">
                         <div class="input-group mb-3">
                             <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
                                 <input type="number" class="form-control" aria-label="Amount (to the nearest euro)" id="bid-amount" name="bid-amount">
@@ -319,7 +337,7 @@
                             <a type="button" class="btn" data-toggle="collapse" href="auction_asBidder.html" data-target=".collapseAlert" id="button-bid-color">Place
                                 Bid</a>
                         </div>
-                    </dd>
+                    </dd>--}}
                 @endif
             </dl>
             <div class="collapse collapseAlert">
@@ -348,12 +366,12 @@
         </div>
         <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
             <dl class="row">
-                @if(count($qas) == 0)
+                @if(count($bids) == 0)
                     <p>No questions yet, ask something!</p>
                 @else
-                    @foreach($qas as $qa)
-                        <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->question }}</dt>
-                        @if($qa->answer === NULL)
+                    @foreach($bids as $qa)
+                        <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->bid_amount }}</dt>
+                        @if($qa->bidder_id === NULL)
                             <dd class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Place your answer"
@@ -372,7 +390,7 @@
                                 </div>
                             </div>
                         @else
-                            <dd class="col-sm-8">{{ $qa->answer }}</dd>
+                            <dd class="col-sm-8">{{ $qa->bidder_id }}</dd>
                         @endif
                     @endforeach
                 @endif
