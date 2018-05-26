@@ -2,12 +2,10 @@ import java.util.LinkedList;
 
 public class JasminVisitor implements ParserVisitor {
 
-    private SymbolTableContextManager symbolTableContextManager;
     private JasminGenerator jasminGenerator;
 
-    public JasminVisitor(JasminGenerator jasminGenerator, SymbolTable symbolTable) {
+    public JasminVisitor(JasminGenerator jasminGenerator) {
         this.jasminGenerator = jasminGenerator;
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
     }
 
     public Object visit(SimpleNode node, Object data) {
@@ -32,17 +30,15 @@ public class JasminVisitor implements ParserVisitor {
 
         this.jasminGenerator.writeModule(moduleName);
 
-        LinkedList<Element> elements = this.symbolTableContextManager.getRootSymbolTable().getElements();
+        LinkedList<Element> elements = this.jasminGenerator.getSymbolTableContextManager().getRootSymbolTable().getElements();
 
         int fields = this.jasminGenerator.writeFields(elements);
 
-        if (fields > 0) {
-            this.jasminGenerator.writeInitMethod();
-        }
+        boolean first = true;
 
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-            if (i == fields - 1) {
+            if (node.jjtGetChild(i).jjtAccept(this, data) == null && first) {
+                first = false;
                 this.jasminGenerator.writeEndMethod();
             }
         }
@@ -54,7 +50,7 @@ public class JasminVisitor implements ParserVisitor {
         Element leftSide = (Element) node.jjtGetChild(0).jjtAccept(this, true);
         node.jjtGetChild(1).jjtAccept(this, false);
         this.jasminGenerator.writeInitMethod();
-        return null;
+        return "Declaration";
     }
 
     public Object visit(ASTScalarDeclaration node, Object data) {

@@ -8,6 +8,10 @@ public class JasminGenerator {
 
     private SymbolTableContextManager symbolTableContextManager;
 
+    public SymbolTableContextManager getSymbolTableContextManager() {
+        return symbolTableContextManager;
+    }
+
     private JasminVisitor jasminVisitor;
 
     public JasminVisitor getJasminVisitor() {
@@ -32,7 +36,7 @@ public class JasminGenerator {
             e.printStackTrace();
         }
 
-        this.jasminVisitor = new JasminVisitor(this, symbolTable);
+        this.jasminVisitor = new JasminVisitor(this);
     }
 
     public void close(){
@@ -108,10 +112,10 @@ public class JasminGenerator {
         writer.print(Utils.conditionalsHashMap.get(condition) + " ");
         println(endLoopLabel);
 
-        SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
-        this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
-        statementNode.jjtAccept(visitor, null);
-        this.symbolTableContextManager.popFront();
+        //SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+        //this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
+        //statementNode.jjtAccept(visitor, null);
+       //this.symbolTableContextManager.popFront();
 
         writer.print("goto ");
         println(beginLoopLabel);
