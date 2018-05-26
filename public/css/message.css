@@ -2,15 +2,12 @@
     text-decoration: none;
     color: #ffffff;
     background: #0df1d1;
-   
+
 }
 
-.navbar-nav {
-    font-size: large;
+.active{
     font-weight: bold;
 }
-
-
 
 #closebtn{
     background-color: #464242;

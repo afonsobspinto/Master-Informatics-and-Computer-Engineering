@@ -16,8 +16,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="col-8">
                     <div class="navbar-nav row">
-                        <a class="nav-item nav-link active" href="/messages">Inbox</a>
-                        <a class="nav-item nav-link" href="/messages_sent">Sent</a>
+                        <a class="nav-item nav-link" href="/messages">Inbox</a>
+                        <a class="nav-item nav-link active" href="/messages_sent">Sent</a>
                     </div>
                 </div>
 
