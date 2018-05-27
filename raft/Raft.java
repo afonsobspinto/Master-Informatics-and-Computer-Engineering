@@ -5,7 +5,7 @@ import raft.States.FollowerState;
 import raft.States.State;
 import raft.net.ssl.SSLChannel;
 
-import java.io.Serializable;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.Random;
 import java.util.Timer;
@@ -31,7 +31,7 @@ public class Raft<T extends Serializable> {
 	Integer port;
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
 	private AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
-	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
     private TimerTask timerTask = new TimerTask() {
         @Override

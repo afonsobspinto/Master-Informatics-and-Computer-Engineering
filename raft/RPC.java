@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import raft.util.GenericArrays;
-
 class RPC { // Remote Procedure Calls
 	static final String appendEntriesRPC = "AppendEntriesRPC";
 	static final String discoverNodesRPC = "DiscoverNodesRPC"; 

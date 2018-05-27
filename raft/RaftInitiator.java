@@ -8,7 +8,7 @@ public class RaftInitiator {
 			Raft<Integer> raft = new Raft<>(Integer.valueOf(args[0]), new InetSocketAddress(args[1], Integer.valueOf(args[2])));
 		} else {
 			Raft<Integer> raft = new Raft<>(Integer.valueOf(args[0]));
-			raft.start();
+			raft.run();
 		}
 	}
 }

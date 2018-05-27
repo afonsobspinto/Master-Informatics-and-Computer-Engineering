@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class RaftCommunication implements Runnable { // Despite the name, this class actually models a connection with another server, and not the server itself, even though we keep track of some information regarding it
+class RaftCommunication implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
 
