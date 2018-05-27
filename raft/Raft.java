@@ -2,6 +2,7 @@ package raft;
 
 import raft.net.ssl.SSLChannel;
 
+import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Raft<T> { // Stuff is package-private because I hate getters/setters
+public class Raft<T extends Serializable> { // Stuff is package-private because I hate getters/setters
 	UUID ID = UUID.randomUUID();
 	Integer port;
 	ConcurrentHashMap<UUID, RaftServer> cluster = new ConcurrentHashMap<>();
@@ -17,13 +18,13 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
 	enum ServerState {
-		INITIALIZING, PASSIVE, ACTIVE, TERMINATING;
+		INITIALIZING, WAITING, RUNNING, TERMINATING;
 	}
 	enum ClusterState {
 		INITIALIZING, RUNNING, TERMINATING;
 	}
 
-	//	Persistent state
+	//	Persistent state (save this to stable storage)
 	Long currentTerm = 0L;
 	UUID votedFor;
 	RaftLog<T>[] log;
@@ -32,9 +33,11 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 	Long commitIndex = 0L;
 	Long lastApplied = 0L;
 
-	//	Leader state
-	Long[] nextIndex;
-	Long[] matchIndex;
+	//	Leader state (this is in RaftServer now)
+/*	Long[] nextIndex;
+	Long[] matchIndex; */
+
+	// TODO Create class (runnable) to redirect client requests (RaftForward? RaftRedirect?) Also create RPC for that (because why the hell not)
 
 	public Raft(Integer port, InetSocketAddress cluster) {
 		this.port = port;
@@ -46,7 +49,7 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 				this.executor.execute(new RaftDiscover(this, channel, true));
 			} else {
 				System.out.println("Connection failed!"); // DEBUG
-				return; // Maybe show error message
+				return; // Show better error message
 			}
 		}
 
@@ -75,7 +78,7 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 		});
 	}
 
-	public void start() {
+	public void run() {
 
 	}
 }
