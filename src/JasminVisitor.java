@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class JasminVisitor implements ParserVisitor {
 
     private JasminGenerator jasminGenerator;
-    private Integer storeType = null;
+    private Type storeType = Type.UNDEFINED;
 
     public JasminVisitor(JasminGenerator jasminGenerator) {
         this.jasminGenerator = jasminGenerator;
@@ -83,10 +83,11 @@ public class JasminVisitor implements ParserVisitor {
         SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();
         this.jasminGenerator.pushFront(currentSymbolTable.popChild());
         this.jasminGenerator.writeBeginMethod(this.jasminGenerator.getCurrentSymbolTable());
+        this.jasminGenerator.writeStackAndLocals(20, this.jasminGenerator.getCurrentSymbolTable().getLocals());
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
             node.jjtGetChild(i).jjtAccept(this, data);
         }
-        this.jasminGenerator.writeEndMethod();
+        this.jasminGenerator.writeEndMethod(this.jasminGenerator.getCurrentSymbolTable().getReturnValue());
         this.jasminGenerator.popFront();
         return null;
     }
@@ -115,16 +116,17 @@ public class JasminVisitor implements ParserVisitor {
 
     public Object visit(ASTStatements node, Object data) {
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+            node.jjtGetChild(i).jjtAccept(this, true);
         }
         return null;
     }
 
     public Object visit(ASTAssign node, Object data) {
-        storeType = -1;
+        storeType = Type.UNDEFINED;
         Element element = (Element) node.jjtGetChild(0).jjtAccept(this, true);
         node.jjtGetChild(1).jjtAccept(this, false);
-        this.jasminGenerator.writeStoreElement(element, storeType == 2);
+        this.jasminGenerator.writeStoreElement(element, storeType == Type.INTEGER);
+        storeType = Type.UNDEFINED;
 
         return null;
     }
@@ -145,13 +147,16 @@ public class JasminVisitor implements ParserVisitor {
         if((boolean) data){
             if(element.getType() == Type.ARRAY){
                 if(node.jjtGetNumChildren() == 0){
-                    storeType = 1;
+                    storeType = Type.ARRAY;
                 }
                 else{
                     this.jasminGenerator.writeLoadElement(element);
                     node.jjtGetChild(0).jjtAccept(this,false);
-                    storeType = 2;
+                    storeType = Type.INTEGER;
                 }
+            }
+            else {
+                storeType = Type.INTEGER;
             }
             return element;
         }
@@ -191,18 +196,31 @@ public class JasminVisitor implements ParserVisitor {
 
 
     public Object visit(ASTCall node, Object data) {
-        SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();
+        SymbolTable rootSymbolTable = this.jasminGenerator.getRootSymbolTable();
 
         String types = (String)node.jjtGetChild(node.jjtGetNumChildren()-1).jjtAccept(this,false);
         String moduleName = (String)node.value;
+        boolean pop = false;
         if(node.jjtGetNumChildren()==1){
-            Element element = currentSymbolTable.getElement(moduleName);
+            Element element = rootSymbolTable.getElement(moduleName);
             this.jasminGenerator.writeInvokeStatic(element);
+            pop=element.getReturn().getName() != null;
         }
         else{
             String methodName = (String)node.jjtGetChild(0).jjtAccept(this,false);
-            String returnValue = "V";
+            String returnValue;
+            if(storeType == Type.ARRAY){
+                returnValue = "[I";
+            }
+            else if(storeType == Type.INTEGER){
+                returnValue = "I";
+            }
+            else
+                returnValue = "V";
             this.jasminGenerator.writeInvokeStatic(moduleName, methodName, types, returnValue);
+        }
+        if(pop && (boolean)data){
+            this.jasminGenerator.writePop();
         }
         return null;
     }

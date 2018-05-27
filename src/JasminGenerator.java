@@ -49,7 +49,7 @@ public class JasminGenerator {
         println(".super java/lang/Object");
     }
 
-    private void writeStackAndLocals(int stack, int locals) {
+    public void writeStackAndLocals(int stack, int locals) {
         writer.print(".limit stack ");
         println(Integer.toString(stack));
         writer.print(".limit locals ");
@@ -104,7 +104,27 @@ public class JasminGenerator {
     }
 
     public void writeEndMethod() {
+
         println("return");
+        println(".end method");
+    }
+
+    public void writeEndMethod(Element element) {
+
+        if(element!=null && element.getName()!=null && element.getType() != Type.UNDEFINED){
+            writeLoadElement(element);
+        }
+        else {
+            writeEndMethod();
+            return;
+        }
+        if(element.getType() == Type.INTEGER){
+            println("ireturn");
+        }
+        else if(element.getType() == Type.ARRAY){
+            println("areturn");
+        }
+
         println(".end method");
     }
 
@@ -138,15 +158,18 @@ public class JasminGenerator {
             println(elseLabel);
             this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
             ifNode.jjtAccept(visitor, null);
+            this.symbolTableContextManager.popFront();
             writer.println("goto " + endIfLabel);
             writer.println(elseLabel + ":");
+            this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
             elseNode.jjtAccept(visitor, null);
+            this.symbolTableContextManager.popFront();
+
         }
         else {
             this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
             ifNode.jjtAccept(visitor, null);
         }
-        this.symbolTableContextManager.popFront();
         writer.println(endIfLabel + ":");
 
     }
@@ -258,6 +281,10 @@ public class JasminGenerator {
 
     public void writeIneg() {
         println("ineg");
+    }
+
+    public void writePop(){
+        println("pop");
     }
 
     private void println(String line) {
