@@ -13,7 +13,7 @@ class RaftCommunication implements Runnable { // Despite the name, this class ac
 	Raft.ServerState state;
 	InetSocketAddress address;
 
-	// Volatile state
+	// Volatile serverState
 	Long nextIndex;
 	Long matchIndex = 0L;
 
