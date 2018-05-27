@@ -2,10 +2,7 @@ package raft;
 
 import raft.net.ssl.SSLChannel;
 
-import java.net.InetSocketAddress;
-import java.util.Base64;
-
-class RaftChannel implements Runnable {
+class RaftChannel implements Runnable { // This is probably gonna be erased
 	private Raft server;
 	private SSLChannel channel;
 
@@ -20,7 +17,7 @@ class RaftChannel implements Runnable {
 	public void run() {
 	/*	while (true) {
 			switch (server.state) {
-				case STARTING:
+				case INITIALIZING:
 					String msg1 = new String(Base64.getEncoder().encode("hi".getBytes())).concat("\n");
 					String msg2 = new String(Base64.getEncoder().encode("there".getBytes())).concat("\n");
 					System.out.println(msg1);
@@ -38,7 +35,7 @@ class RaftChannel implements Runnable {
 					msg = new String(Base64.getDecoder().decode(msg.split("\n")[0].getBytes()));
 					System.out.println(msg);
 					break;
-				case STOPPING:
+				case TERMINATING:
 
 					break;
 			}

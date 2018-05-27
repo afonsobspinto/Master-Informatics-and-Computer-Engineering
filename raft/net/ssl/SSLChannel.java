@@ -25,7 +25,7 @@ public class SSLChannel {
 		this.address = address;
 	}
 	
-	public SSLChannel(int port){
+	public SSLChannel(Integer port){
 		System.setProperty("javax.net.ssl.keyStore", "raft/net/ssl/keystore/server.keys");
 		System.setProperty("javax.net.ssl.trustStore", "raft/net/ssl/truststore");
 		System.setProperty("javax.net.ssl.keyStorePassword", "123456");
@@ -33,6 +33,7 @@ public class SSLChannel {
 		try {
 			serverSocket = SSLServerSocketFactory.getDefault().createServerSocket(port);
 		} catch (Exception e) {
+		//  This one really shouldn't happen
 			e.printStackTrace();
 		}
 	}
@@ -43,7 +44,7 @@ public class SSLChannel {
 		//	((SSLSocket) socket).startHandshake();
 			BUFFER_SIZE = socket.getReceiveBufferSize();
 		} catch (Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 			return false;
 		}
 
@@ -56,7 +57,7 @@ public class SSLChannel {
 			((SSLSocket) socket).startHandshake();
 			BUFFER_SIZE = socket.getReceiveBufferSize();
 		} catch (Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 			return false;
 		}
 
@@ -67,7 +68,7 @@ public class SSLChannel {
 		try {
 			socket.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 			return false;
 		}
 
@@ -79,7 +80,7 @@ public class SSLChannel {
 		try {
 			socket.getOutputStream().write(data);
 		} catch (Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 			return false;
 		}
 		
@@ -94,7 +95,7 @@ public class SSLChannel {
 			try {
 				bytes_read = socket.getInputStream().read(data);
 			} catch (Exception e) {
-				e.printStackTrace();
+			//	e.printStackTrace();
 			} finally {
 				if (bytes_read == -1) {
 					return null;

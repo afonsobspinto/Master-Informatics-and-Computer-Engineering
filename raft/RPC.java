@@ -8,7 +8,7 @@ import java.util.UUID;
 class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
-		StringBuilder message = new StringBuilder("AppendEntries\n")
+		StringBuilder message = new StringBuilder("AppendEntriesRPC\n")
 				.append(server.currentTerm).append("\n")
 				.append(server.ID).append("\n"); // TODO
 		return message.toString();
@@ -27,21 +27,36 @@ class RPC { // Remote Procedure Calls
 		return null;
 	}
 
+/*
+	callDiscoverNodes, for RaftDiscover with explorer = true
+	DiscoverNodes\n
+	<UUID/port>\n
+
+	retDiscoverNodes, for RaftDiscover with explorer = false
+	DiscoverNodes\n
+	<UUID/port>\n
+	<UUID/address:port 1>\n
+	<UUID/address:port 2>\n
+	...
+	<UUID/address:port N>\n
+*/
 	@SuppressWarnings("unchecked")
 	static String callDiscoverNodes(Raft server) {
-		return "DiscoverNodes\n"
+		return "DiscoverNodesRPC\n"
 				.concat(server.ID.toString()).concat("/")
 				.concat(server.port.toString()).concat("\n");
 	}
 	@SuppressWarnings("unchecked")
-	static String retDiscoverNodes(Raft server) {
-		StringBuilder message = new StringBuilder("DiscoverNodes\n")
+	static String retDiscoverNodes(Raft server, UUID ID) {
+		StringBuilder message = new StringBuilder("DiscoverNodesRPC\n")
 				.append(server.ID).append("/")
 				.append(server.port).append("\n");
-		for (Map.Entry<UUID, InetSocketAddress> address : (Set<Map.Entry<UUID, InetSocketAddress>>) server.cluster.entrySet()) {
-			message.append(address.getKey()).append("/")
-			       .append(address.getValue().getAddress().getHostAddress()).append(":")
-			       .append(address.getValue().getPort()).append("\n");
+		if (!server.ID.equals(ID)) {
+			for (Map.Entry<UUID, RaftServer> data : (Set<Map.Entry<UUID, RaftServer>>) server.cluster.entrySet()) {
+				message.append(data.getKey()).append("/")
+				       .append(data.getValue().address.getAddress().getHostAddress()).append(":")
+				       .append(data.getValue().address.getPort()).append("\n");
+			}
 		}
 		return message.toString();
 	}

@@ -11,10 +11,16 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Raft<T> { // Stuff is package-private because I hate getters/setters
 	UUID ID = UUID.randomUUID();
-	Short port;
+	Integer port;
+	ConcurrentHashMap<UUID, RaftServer> cluster = new ConcurrentHashMap<>();
+	AtomicReference<ServerState> state = new AtomicReference<>(ServerState.INITIALIZING);
+	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-	enum State { // Adjust this
-		STARTING, RUNNING, STOPPING;
+	enum ServerState {
+		INITIALIZING, PASSIVE, ACTIVE, TERMINATING;
+	}
+	enum ClusterState {
+		INITIALIZING, RUNNING, TERMINATING;
 	}
 
 	//	Persistent state
@@ -30,14 +36,7 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 	Long[] nextIndex;
 	Long[] matchIndex;
 
-	//	Required variables
-	//Set<InetSocketAddress> cluster = ConcurrentHashMap.newKeySet();
-	ConcurrentHashMap<UUID, InetSocketAddress> cluster = new ConcurrentHashMap<>();
-	AtomicReference<State> state = new AtomicReference<>(State.STARTING);
-	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-
-
-	public Raft(Short port, InetSocketAddress cluster) {
+	public Raft(Integer port, InetSocketAddress cluster) {
 		this.port = port;
 
 		// Connect to known cluster
@@ -46,13 +45,14 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 			if (channel.connect()) {
 				this.executor.execute(new RaftDiscover(this, channel, true));
 			} else {
+				System.out.println("Connection failed!"); // DEBUG
 				return; // Maybe show error message
 			}
 		}
 
 		// Listen for new connections
 		this.executor.execute(() -> {
-			while (state.get() != State.STOPPING) {
+			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
 					executor.execute(new RaftDiscover(this, channel, false));
@@ -61,12 +61,12 @@ public class Raft<T> { // Stuff is package-private because I hate getters/setter
 		});
 	}
 
-	public Raft(Short port) {
+	public Raft(Integer port) {
 		this.port = port;
 
 		// Listen for new connections
 		this.executor.execute(() -> {
-			while (state.get() != State.STOPPING) {
+			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
 					executor.execute(new RaftDiscover(this, channel, false));
