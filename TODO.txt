@@ -12,18 +12,6 @@ Do the Semantic Analysis (Run the tree and compare it to the Symbol Tables to do
 	- quando aceder uma variavel o funcao, ela tem de existir
 	- uma variavel e funcao podem ter o mesmo nome(edited)
 
-Generate JVM code accepted by jasmin correspopnding to the invocation of functions in yal
-
-Generate JVM code accepted by jasmin for arithmetic expressions
-
-Generate JVM code accepted by jasmin for conditional instructions (if and if-else)
-
-Generate JVM code accepted by jasmin for loops
-
-Generate JVM code accepted by jasmin to deal with arrays
-
-Complete the compiler and test it using a set of yal modules.
-
 
 Low Priority:
 
