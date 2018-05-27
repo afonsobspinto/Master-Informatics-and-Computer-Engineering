@@ -6,6 +6,11 @@ public class CandidateState extends State {
     }
 
     @Override
+    public void receiveMessage(StateID stateID, String msg){
+
+    }
+
+    @Override
     public void handleLeaderHeartBeat() {
 
     }

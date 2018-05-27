@@ -56,7 +56,7 @@ class RaftCommunication implements Runnable { // Despite the name, this class ac
 	public void receiveMessage(RaftCommunication anotherServer, String message){
 		//
 		if(anotherServer.getRaft().getLeaderID() != null){ // If Leader
-			if(message == "AppendEntriesRPC")
+			if(message == RFC.appendEntriesRPC)
 				anotherServer.getChannel().send(RPC.retDiscoverNodes(anotherServer.getRaft(),
 																	 anotherServer.getRaft().getState().getStateID()));
 

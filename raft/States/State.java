@@ -11,6 +11,8 @@ public abstract class State {
         return stateID;
     }
 
+    public abstract void receiveMessage(StateID stateID, String msg);
+
     public abstract void handleLeaderHeartBeat();
 }
 
