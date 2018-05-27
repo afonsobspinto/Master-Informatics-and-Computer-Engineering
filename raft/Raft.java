@@ -5,6 +5,7 @@ import raft.util.Serialization;
 
 import java.io.*;
 import java.net.InetSocketAddress;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -82,14 +83,10 @@ public class Raft<T extends Serializable> {
 		timer.schedule(leaderTimeout, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
 	}
 
-/*    public void setState(State state) {
-        this.state.set(state);
-    }*/
-
 	//	Persistent state (save this to stable storage)
 	AtomicLong currentTerm = new AtomicLong(0L);
-	UUID votedFor;
-	RaftLog<T>[] log;
+	UUID votedFor = null;
+	LinkedList<RaftLog<T>> log = new LinkedList<>();
 
 	//	Volatile state
 	UUID leaderID;
@@ -173,22 +170,6 @@ public class Raft<T extends Serializable> {
 		});
 	}
 
-	public boolean set(T var) {
-		SSLChannel channel = connectToLeader();
-
-		if(channel == null) {
-			return false;
-		}
-
-		String serObj = new String(Serialization.serialize(var));
-
-		channel.send(RPC.callSetValue(serObj));
-
-		String message = channel.receiveString();
-
-		return message.equals(RPC.retSetValue(true));
-	}
-
 	public T get() {
 		SSLChannel channel = connectToLeader();
 
@@ -203,6 +184,22 @@ public class Raft<T extends Serializable> {
 		T obj = Serialization.deserialize(message.split("\n")[1].getBytes());
 
 		return obj;
+	}
+
+	public boolean set(T var) {
+		SSLChannel channel = connectToLeader();
+
+		if(channel == null) {
+			return false;
+		}
+
+		String serObj = new String(Serialization.serialize(var));
+
+		channel.send(RPC.callSetValue(serObj));
+
+		String message = channel.receiveString();
+
+		return message.equals(RPC.retSetValue(true));
 	}
 
 	public boolean delete() {
@@ -244,15 +241,15 @@ public class Raft<T extends Serializable> {
 		return channel;
 	}
 
+	T getValue() {
+		return null;
+	}
+
 	boolean setValue(T object) {
 		return true;
 	}
 
 	boolean deleteValue() {
 		return true;
-	}
-
-	T getValue() {
-		return null;
 	}
 }
