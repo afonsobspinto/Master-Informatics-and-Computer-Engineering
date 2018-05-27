@@ -10,6 +10,7 @@ class RPC { // Remote Procedure Calls
 	static final String setValueRPC = "SetValueRPC";
 	static final String getValueRPC = "GetValueRPC";
 	static final String deleteValueRPC = "DeleteValueRPC";
+	static final String requestVoteRPC = "RequestVoteRPC";
 	
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
@@ -24,12 +25,23 @@ class RPC { // Remote Procedure Calls
 	}
 
 	@SuppressWarnings("unchecked")
-	static String callRequestVote() {
-		return null;
+	static String callRequestVote(Raft server) {
+		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
+				.append(server.currentTerm).append("\n")
+				.append(server.ID).append("\n")
+				.append(server.log.length-1).append("\n")
+				.append(server.log[server.log.length-1].term).append("\n");
+		
+		return message.toString();
 	}
+	
 	@SuppressWarnings("unchecked")
-	static String retRequestVote() {
-		return null;
+	static String retRequestVote(Raft server, boolean voteGranted) {
+		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
+				.append(server.currentTerm).append("\n")
+				.append(voteGranted).append("\n");
+		
+		return message.toString();
 	}
 
 /*
