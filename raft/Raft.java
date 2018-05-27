@@ -16,6 +16,8 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 	ConcurrentHashMap<UUID, RaftServer> cluster = new ConcurrentHashMap<>();
 	AtomicReference<ServerState> state = new AtomicReference<>(ServerState.INITIALIZING);
 	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+	
+	UUID leaderID;
 
 	enum ServerState {
 		INITIALIZING, WAITING, RUNNING, TERMINATING;
@@ -80,5 +82,40 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 
 	public void run() {
 		executor.execute(new RaftCore(this));
+	}
+	
+	public boolean set(T var) {
+		SSLChannel channel = connectToLeader();
+		
+		if(channel == null) {
+			return false;
+		}
+		
+		channel.send("something");
+		
+		//TODO
+		
+		return true;
+	}
+	
+	private SSLChannel connectToLeader() {
+		if(leaderID == null) {
+			return null;
+		}
+		
+		RaftServer leader = this.cluster.get(this.leaderID);
+		
+		if(leader == null) {
+			return null;
+		}
+		
+		SSLChannel channel = new SSLChannel(leader.address);
+		
+		if (!channel.connect()) {
+			System.out.println("Connection failed!"); // DEBUG
+			return null; // Show better error message
+		}
+		
+		return channel;
 	}
 }
