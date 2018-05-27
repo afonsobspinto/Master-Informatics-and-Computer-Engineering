@@ -2,10 +2,11 @@ package raft;
 
 import raft.net.ssl.SSLChannel;
 
+import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.util.UUID;
 
-class RaftServer implements Runnable {
+class RaftServer<T extends Serializable> implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
 
@@ -20,7 +21,7 @@ class RaftServer implements Runnable {
 		
 		switch(message[0]) {
 		case "SetValueRPC":
-			raft.executor.execute(new RaftRedirect<>(raft, channel, message[1], RaftCommand.SET));
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
 			break;
 		
 		}

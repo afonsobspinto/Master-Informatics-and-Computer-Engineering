@@ -27,7 +27,7 @@ class RaftDiscover implements Runnable {
 
 		if (!raft.ID.equals(ID)) {
 			raft.cluster.put(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1])));
-			raft.executor.execute((RaftCommunication) raft.cluster.get(ID));
+			raft.pool.execute((RaftCommunication) raft.cluster.get(ID));
 			System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
 		} else { // This should practically NEVER happen
 			raft.ID = UUID.randomUUID();
@@ -36,7 +36,7 @@ class RaftDiscover implements Runnable {
 				server.stop();
 			}
 			raft.cluster.clear();
-			raft.executor.execute(new RaftDiscover(this.raft, this.channel));
+			raft.pool.execute(new RaftDiscover(this.raft, this.channel));
 		}
 
 		for (int n = 2; n < message.length; ++n) {
@@ -46,7 +46,7 @@ class RaftDiscover implements Runnable {
 			if (raft.cluster.putIfAbsent(ID, new RaftCommunication()) == null) {
 				SSLChannel channel = new SSLChannel(new InetSocketAddress(address[1], Integer.valueOf(address[2])));
 				if (channel.connect()) {
-					raft.executor.execute(new RaftDiscover(this.raft, channel));
+					raft.pool.execute(new RaftDiscover(this.raft, channel));
 				} else {
 					// It's important we allow other RaftDiscover instances to insert a value associated with this server, seeing as the reason why this connection failed may have been erroneous information by one of the servers
 					// (servers have some inertia regarding updating information about each other after initialization, but we'll design something to fix that later, namely, a way to recognize new connections as maybe not new: distinguish between DiscoverNodesRPCs and other RPCs in explorer == false)

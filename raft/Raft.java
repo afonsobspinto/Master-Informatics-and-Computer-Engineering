@@ -9,7 +9,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,7 +17,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 	Integer port;
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
 	AtomicReference<ServerState> state = new AtomicReference<>(ServerState.INITIALIZING);
-	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 	
 	UUID leaderID;
 
@@ -52,7 +51,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		{
 			SSLChannel channel = new SSLChannel(cluster);
 			if (channel.connect()) {
-				this.executor.execute(new RaftDiscover(this, channel));
+				this.pool.execute(new RaftDiscover(this, channel));
 			} else {
 				System.out.println("Connection failed!"); // DEBUG
 				return; // Show better error message
@@ -60,11 +59,11 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		}
 
 		// Listen for new connections
-		this.executor.execute(() -> {
+		this.pool.execute(() -> {
 			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
-					executor.execute(new RaftServer(this, channel));
+					pool.execute(new RaftServer<T>(this, channel));
 				}
 			}
 		});
@@ -74,18 +73,18 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		this.port = port;
 
 		// Listen for new connections
-		this.executor.execute(() -> {
+		this.pool.execute(() -> {
 			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
-					executor.execute(new RaftServer(this, channel));
+					pool.execute(new RaftServer<T>(this, channel));
 				}
 			}
 		});
 	}
 
 	public void run() {
-		executor.execute(() -> {
+		pool.execute(() -> {
 
 		});
 	}
