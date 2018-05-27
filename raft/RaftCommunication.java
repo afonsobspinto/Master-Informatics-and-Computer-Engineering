@@ -1,5 +1,6 @@
 package raft;
 
+import raft.Raft.ServerState;
 import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
@@ -39,7 +40,8 @@ class RaftCommunication implements Runnable {
 
 	@Override
 	public void run() {
-
+		while (raft.serverState.get() != ServerState.TERMINATING) {
+		}
 	}
 
 	public void stop() {

@@ -30,7 +30,7 @@ public class Raft<T extends Serializable> {
 	UUID ID = UUID.randomUUID();
 	Integer port;
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
-	private AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
+	AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
 	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
     private TimerTask timerTask = new TimerTask() {
@@ -45,7 +45,7 @@ public class Raft<T extends Serializable> {
         this.state.set(state);
     }
 
-    private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
+    AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
     private boolean isTimeout = false;
 
 	UUID leaderID;
