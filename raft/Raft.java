@@ -4,6 +4,7 @@ import raft.net.ssl.SSLChannel;
 
 import java.io.*;
 import java.net.InetSocketAddress;
+import java.util.Base64;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -93,7 +94,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		     ObjectOutputStream oos = new ObjectOutputStream(baos)){
 			oos.writeObject(variable);
-			return baos.toByteArray();
+			return Base64.getEncoder().encode(baos.toByteArray());
 		} catch (Exception e) {
 		//  e.printStackTrace();
 		}
@@ -102,7 +103,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 
 	@SuppressWarnings("unchecked")
 	static <T extends Serializable> T deserialize(byte[] buffer) {
-		try (ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+		try (ByteArrayInputStream bais = new ByteArrayInputStream(Base64.getDecoder().decode(buffer));
 		     ObjectInputStream ois = new ObjectInputStream(bais)) {
 			return (T) ois.readObject();
 		} catch (Exception e) {
