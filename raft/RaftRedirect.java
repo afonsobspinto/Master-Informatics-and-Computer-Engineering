@@ -5,12 +5,12 @@ import java.io.Serializable;
 import raft.net.ssl.SSLChannel;
 
 public class RaftRedirect<T extends Serializable> implements Runnable{ //this class is used by the leader when a client requests an action
-	private Raft raft;
+	private Raft<T> raft;
 	private SSLChannel channel;
 	private String obj;
 	private RaftCommand command;
 	
-	public RaftRedirect(Raft raft, SSLChannel channel, String obj, RaftCommand command) {
+	public RaftRedirect(Raft<T> raft, SSLChannel channel, String obj, RaftCommand command) {
 		this.raft = raft;
 		this.channel = channel;
 		this.obj = obj;
@@ -19,17 +19,16 @@ public class RaftRedirect<T extends Serializable> implements Runnable{ //this cl
 
 	@Override
 	public void run() {
-		T object = Raft.deserialize(obj.getBytes());
-		
 		switch(command) {
 		case SET:
-			channel.send(RPC.retSetValue(true));
+			T object = Raft.deserialize(obj.getBytes());
+			channel.send(RPC.retSetValue(raft.setValue(object)));
 			break;
 		case DELETE:
 			channel.send(RPC.retDeleteValue(true));
 			break;
 		case GET:
-			channel.send(RPC.retGetValue(true));
+			//channel.send(RPC.retGetValue(object));
 			break;
 		}
 		

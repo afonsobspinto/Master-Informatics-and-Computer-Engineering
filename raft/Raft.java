@@ -124,43 +124,35 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		
 		String message = channel.receiveString();
 		
-		//TODO
-		
 		return message.equals(RPC.retSetValue(true));
 	}
 	
-	public boolean get(T var) {
+	public T get() {
 		SSLChannel channel = connectToLeader();
 		
 		if(channel == null) {
-			return false;
+			return null;
 		}
 		
-		byte[] serObj = serialize(var);
-		
-		channel.send(RPC.callGetValue(new String(serObj)));
+		channel.send(RPC.callGetValue());
 		
 		String message = channel.receiveString();
 		
-		//TODO
+		T obj = deserialize(message.split("\n")[1].getBytes());
 		
-		return message.equals(RPC.retGetValue(true));
+		return obj;
 	}
 	
-	public boolean delete(T var) {
+	public boolean delete() {
 		SSLChannel channel = connectToLeader();
 		
 		if(channel == null) {
 			return false;
 		}
 		
-		byte[] serObj = serialize(var);
-		
-		channel.send(RPC.callDeleteValue(new String(serObj)));
+		channel.send(RPC.callDeleteValue());
 		
 		String message = channel.receiveString();
-		
-		//TODO
 		
 		return message.equals(RPC.retDeleteValue(true));
 	}
@@ -186,5 +178,9 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		}
 		
 		return channel;
+	}
+	
+	public boolean setValue(T object) {
+		return true;
 	}
 }

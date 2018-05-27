@@ -7,10 +7,10 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 class RaftServer<T extends Serializable> implements Runnable {
-	private Raft raft;
+	private Raft<T> raft;
 	private SSLChannel channel;
 
-	RaftServer(Raft raft, SSLChannel channel) {
+	RaftServer(Raft<T> raft, SSLChannel channel) {
 		this.raft = raft;
 		this.channel = channel;
 	}
@@ -24,10 +24,10 @@ class RaftServer<T extends Serializable> implements Runnable {
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
 			break;
 		case RPC.getValueRPC:
-			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.GET));
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.GET));
 			break;
 		case RPC.deleteValueRPC:
-			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.DELETE));
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.DELETE));
 			break;
 		case RPC.discoverNodesRPC:
 			String[] address = message[1].split("/");

@@ -74,13 +74,13 @@ class RPC { // Remote Procedure Calls
 	}
 	
 	@SuppressWarnings("unchecked")
-	static String callGetValue(String obj) {
-		 return getValueRPC.concat("\n").concat(obj).concat("\n");
+	static String callGetValue() {
+		 return getValueRPC.concat("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
-	static String callDeleteValue(String obj) {
-		 return deleteValueRPC.concat("\n").concat(obj).concat("\n");
+	static String callDeleteValue() {
+		 return deleteValueRPC.concat("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -89,8 +89,8 @@ class RPC { // Remote Procedure Calls
 	}
 	
 	@SuppressWarnings("unchecked")
-	static String retGetValue(boolean success) {
-		return success ? (getValueRPC + "\ntrue\n") : (getValueRPC + "\nfalse\n");
+	static String retGetValue(String obj) {
+		return getValueRPC.concat("\n").concat(obj).concat("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
