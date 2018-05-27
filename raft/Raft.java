@@ -1,5 +1,6 @@
 package raft;
 
+import raft.States.CandidateState;
 import raft.States.FollowerState;
 import raft.States.State;
 import raft.net.ssl.SSLChannel;
@@ -7,6 +8,8 @@ import raft.net.ssl.SSLChannel;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -25,8 +28,21 @@ public class Raft<T extends Serializable> {
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
 	private AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
 	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-    private State state = new FollowerState();
+    private Timer timer = new Timer();
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            System.out.println("Timeout");
+            state.get().handleLeaderHeartBeatFailure();
+        }
+    };
+
+    public void setState(State state) {
+        this.state.set(state);
+    }
+
+    private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
+    private boolean isTimeout = false;
 
 
 
@@ -89,8 +105,8 @@ public class Raft<T extends Serializable> {
 	}
 
     public void scheduleTimeout() {
-        int delay = new Random().nextInt(RaftProtocol.maxRandomDelay-RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay;
-        System.out.println(delay);
-        scheduledExecutorService.schedule(this::scheduleTimeout, delay, TimeUnit.MILLISECONDS);
+	    timer.schedule(timerTask, new Random().nextInt(RaftProtocol.maxRandomDelay-RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
     }
+
+
 }
