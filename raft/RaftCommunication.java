@@ -10,12 +10,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 class RaftCommunication implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
+	InetSocketAddress address;
 
 	private RaftReader reader;
 	private RaftWriter writer;
-
-	Raft.ServerState state;
-	InetSocketAddress address;
 
 	Raft.ServerState state;
 

@@ -5,10 +5,7 @@ import raft.util.Serialization;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,7 +24,7 @@ public class Raft<T extends Serializable> {
     }
 
 	AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
-//	private AtomicReference<ClusterState> clusterState = new AtomicReference<>(ClusterState.INITIALIZING);
+//	AtomicReference<ClusterState> clusterState = new AtomicReference<>(ClusterState.INITIALIZING);
 
 	UUID ID = UUID.randomUUID();
 	Integer port;
@@ -86,7 +83,7 @@ public class Raft<T extends Serializable> {
 	//	Persistent state (save this to stable storage)
 	AtomicLong currentTerm = new AtomicLong(0L);
 	UUID votedFor = null;
-	LinkedList<RaftLog<T>> log = new LinkedList<>();
+	ArrayList<RaftLog<T>> log = new ArrayList<>();
 
 	//	Volatile state
 	UUID leaderID;

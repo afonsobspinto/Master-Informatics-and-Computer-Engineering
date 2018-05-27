@@ -29,8 +29,8 @@ class RPC { // Remote Procedure Calls
 		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
 				.append(server.currentTerm).append("\n")
 				.append(server.ID).append("\n")
-				.append(server.log.length-1).append("\n")
-				.append(server.log[server.log.length-1].term).append("\n");
+				.append(server.log.size()-1).append("\n")
+				.append(((RaftLog) server.log.get(server.log.size()-1)).term).append("\n");
 		
 		return message.toString();
 	}
