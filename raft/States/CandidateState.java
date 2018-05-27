@@ -1,8 +1,11 @@
 package raft.States;
 
+import raft.Raft;
+
 public class CandidateState extends State {
-    CandidateState() {
-        super(StateID.CANDIDATE);
+    public CandidateState(Raft raft) {
+        super(StateID.CANDIDATE, raft);
+        System.out.println("Candidate Created");
     }
 
     @Override
@@ -12,6 +15,11 @@ public class CandidateState extends State {
 
     @Override
     public void handleLeaderHeartBeat() {
+
+    }
+
+    @Override
+    public void handleLeaderHeartBeatFailure() {
 
     }
 }

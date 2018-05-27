@@ -1,10 +1,13 @@
 package raft.States;
 
-public abstract class State {
+import raft.Raft;
 
-    private StateID stateID;
-    State(StateID stateID){
+public abstract class State {
+    protected StateID stateID;
+    protected Raft raft;
+    State(StateID stateID, Raft raft){
         this.stateID = stateID;
+        this.raft = raft;
     }
 
     public StateID getStateID() {
@@ -14,5 +17,5 @@ public abstract class State {
     public abstract void receiveMessage(StateID stateID, String msg);
 
     public abstract void handleLeaderHeartBeat();
+    public abstract void handleLeaderHeartBeatFailure();
 }
-

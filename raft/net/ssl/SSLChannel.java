@@ -3,6 +3,7 @@ package raft.net.ssl;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.SocketTimeoutException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.LinkedList;
@@ -15,7 +16,8 @@ public class SSLChannel {
 	private Socket socket;
 	private InetSocketAddress address;
 	private LinkedList<String> received = new LinkedList<>();
-
+	
+	private byte[] data;
 	private int BUFFER_SIZE;
 	
 	public SSLChannel(InetSocketAddress address){
@@ -43,6 +45,7 @@ public class SSLChannel {
 			socket = serverSocket.accept();
 		//	((SSLSocket) socket).startHandshake();
 			BUFFER_SIZE = socket.getReceiveBufferSize();
+			data = new byte[BUFFER_SIZE];
 		} catch (Exception e) {
 		//	e.printStackTrace();
 			return false;
@@ -56,6 +59,7 @@ public class SSLChannel {
 			socket = SSLSocketFactory.getDefault().createSocket(address.getHostString(), address.getPort());
 			((SSLSocket) socket).startHandshake();
 			BUFFER_SIZE = socket.getReceiveBufferSize();
+			data = new byte[BUFFER_SIZE];
 		} catch (Exception e) {
 		//	e.printStackTrace();
 			return false;
@@ -76,7 +80,12 @@ public class SSLChannel {
 	}
 	
 	public boolean send(String message) {
-		byte[] data = new String(Base64.getEncoder().encode(message.getBytes())).concat("\n").getBytes();
+		return send(message.getBytes());
+	}
+
+	public boolean send(byte[] message) {
+		byte[] data = new String(Base64.getEncoder().encode(message)).concat("\n").getBytes();
+		
 		try {
 			socket.getOutputStream().write(data);
 		} catch (Exception e) {
@@ -86,10 +95,31 @@ public class SSLChannel {
 		
 		return true;
 	}
+
+	public String receiveString(int timeout) {
+		byte[] data = receive(timeout);
+		return data != null ? new String(data) : null;
+	}
+
+	public String receiveString() {
+		byte[] data = receive();
+		return data != null ? new String(data) : null;
+	}
+
+	public byte[] receive(int timeout) {
+		byte[] data = null;
+		try {
+			socket.setSoTimeout(timeout); // Milliseconds
+			data = receive();
+			socket.setSoTimeout(0);
+		} catch (Exception e) {
+		//  e.printStackTrace();
+		}
+		return data;
+	}
 	
-	public String receive() {
+	public byte[] receive() {
 		if (received.size() == 0) {
-			byte[] data = new byte[BUFFER_SIZE];
 			int bytes_read = 0;
 
 			try {
@@ -97,14 +127,15 @@ public class SSLChannel {
 			} catch (Exception e) {
 			//	e.printStackTrace();
 			} finally {
-				if (bytes_read == -1) {
+				if (bytes_read < 1) {
 					return null;
 				}
 			}
 
 			received = new LinkedList<>(Arrays.asList(new String(data, 0, bytes_read).split("\n")));
 		}
-		return new String(Base64.getDecoder().decode(received.removeFirst().getBytes()));
+		
+		return Base64.getDecoder().decode(received.removeFirst().getBytes());
 	}
 
 	public InetSocketAddress getRemoteAddress() {

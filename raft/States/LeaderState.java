@@ -1,8 +1,10 @@
 package raft.States;
 
+import raft.Raft;
+
 public class LeaderState extends State {
-    LeaderState() {
-        super(StateID.LEADER);
+    LeaderState(Raft raft) {
+        super(StateID.LEADER, raft);
     }
 
     @Override
@@ -23,5 +25,9 @@ public class LeaderState extends State {
     @Override
     public void handleLeaderHeartBeat() {
 
+    }
+
+    @Override
+    public void handleLeaderHeartBeatFailure() {
     }
 }
