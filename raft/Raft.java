@@ -2,12 +2,13 @@ package raft;
 
 import raft.net.ssl.SSLChannel;
 
-import java.io.Serializable;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -36,6 +37,8 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 
 	// TODO we need more locks!!! (or maybe not)
 	ReentrantLock lock = new ReentrantLock();
+
+	// AtomicBoolean
 
 	// TODO Create class (runnable) to redirect client requests (RaftForward? RaftRedirect?) Also create RPC for that (because why the hell not)
 
@@ -79,6 +82,30 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 	}
 
 	public void run() {
-		executor.execute(new RaftCore(this));
+		executor.execute(() -> {
+
+		});
+	}
+
+	static <T extends Serializable> byte[] serialize(T variable) {
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		     ObjectOutputStream oos = new ObjectOutputStream(baos)){
+			oos.writeObject(variable);
+			return baos.toByteArray();
+		} catch (Exception e) {
+		//  e.printStackTrace();
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	static <T extends Serializable> T deserialize(byte[] buffer) {
+		try (ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+		     ObjectInputStream ois = new ObjectInputStream(bais)) {
+			return (T) ois.readObject();
+		} catch (Exception e) {
+		//  e.printStackTrace();
+		}
+		return null;
 	}
 }
