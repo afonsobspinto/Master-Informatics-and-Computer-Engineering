@@ -41,7 +41,7 @@ class RaftCommunication implements Runnable {
 		return this.raft;
 	}
 
-	public SLLChannel getChannel(){
+	public SSLChannel getChannel(){
 		return this.channel;
 	}
 	@Override
@@ -53,22 +53,11 @@ class RaftCommunication implements Runnable {
 		// Shutdown server
 	}
 
-	public void receiveMessage(RaftCommunication anotherServer, String message){
+	public void receiveMessage(RaftCommunication anotherServer, String message) {
 		//
-		if(anotherServer.getRaft().getLeaderID() != null){ // If Leader
-			if(message == RFC.appendEntriesRPC)
-				anotherServer.getChannel().send(RPC.retDiscoverNodes(anotherServer.getRaft(),
-																	 anotherServer.getRaft().getState().getStateID()));
+	}
 
-		}
-		else if(){ // If Candidate
-
-		}
-		else{ // If Follower
-
-		}
-
-	public void sendMessage(RaftCommunication anotherServer, string message){
+	public void sendMessage(RaftCommunication anotherServer, String message){
 		anotherServer.getChannel().send(message);
 	}
 }

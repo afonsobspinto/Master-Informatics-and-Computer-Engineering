@@ -111,10 +111,6 @@ public class Raft<T extends Serializable> {
 		});
 	}
 
-	public State getState() {
-		return state;
-	}
-
 	static <T extends Serializable> byte[] serialize(T variable) {
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		     ObjectOutputStream oos = new ObjectOutputStream(baos)){

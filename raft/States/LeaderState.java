@@ -10,8 +10,6 @@ public class LeaderState extends State {
     @Override
     public void receiveMessage(StateID stateID, String msg){
         if(stateID == StateID.LEADER){
-            if(msg == "heartbeat")
-                stateID.sendMessage(this.stateID, "ok");
         }
         else if(stateID == StateID.CANDIDATE){
 
