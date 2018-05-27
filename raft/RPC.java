@@ -59,4 +59,19 @@ class RPC { // Remote Procedure Calls
 		}
 		return message.toString();
 	}
+	
+	@SuppressWarnings("unchecked")
+	static String callSet() {
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	static String failure() {
+		return "false";
+	}
+	
+	@SuppressWarnings("unchecked")
+	static String success() {
+		return "true";
+	}
 }
