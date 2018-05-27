@@ -180,7 +180,15 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		return channel;
 	}
 	
-	public boolean setValue(T object) {
+	boolean setValue(T object) {
 		return true;
+	}
+	
+	boolean deleteValue() {
+		return true;
+	}
+	
+	T getValue() {
+		return null;
 	}
 }

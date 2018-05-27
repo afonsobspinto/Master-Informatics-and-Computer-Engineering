@@ -19,16 +19,21 @@ public class RaftRedirect<T extends Serializable> implements Runnable{ //this cl
 
 	@Override
 	public void run() {
+		T object;
+		
 		switch(command) {
 		case SET:
-			T object = Raft.deserialize(obj.getBytes());
+			object = Raft.deserialize(obj.getBytes());
 			channel.send(RPC.retSetValue(raft.setValue(object)));
 			break;
 		case DELETE:
-			channel.send(RPC.retDeleteValue(true));
+			channel.send(RPC.retDeleteValue(raft.deleteValue()));
 			break;
 		case GET:
-			//channel.send(RPC.retGetValue(object));
+			object = raft.getValue();
+			byte[] obj_bytes = Raft.serialize(object);
+			
+			channel.send(RPC.retGetValue(new String(obj_bytes)));
 			break;
 		}
 		
