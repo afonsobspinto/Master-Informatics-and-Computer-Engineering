@@ -13,8 +13,10 @@ public class RaftRedirect implements Runnable{ //this class is used by the leade
 
 	@Override
 	public void run() {
-		String message = channel.receiveString();
+		byte[] message = channel.receive();
 		
 		//TODO
+		
+		channel.send(RPC.success());
 	}
 }
