@@ -6,14 +6,15 @@ import java.util.Set;
 import java.util.UUID;
 
 public class RPC { // Remote Procedure Calls
-    public static final String appendEntriesRPC = "AppendEntriesRPC";
-    public static final String discoverNodesRPC = "DiscoverNodesRPC";
-    public static final String setValueRPC = "SetValueRPC";
-    public static final String getValueRPC = "GetValueRPC";
-    public static final String deleteValueRPC = "DeleteValueRPC";
+    static final String appendEntriesRPC = "AppendEntriesRPC";
+    static final String discoverNodesRPC = "DiscoverNodesRPC";
+    static final String setValueRPC = "SetValueRPC";
+    static final String getValueRPC = "GetValueRPC";
+    static final String deleteValueRPC = "DeleteValueRPC";
+
 
     @SuppressWarnings("unchecked")
-    public static String callAppendEntries(Raft server) {
+    private static String callAppendEntries(Raft server) {
         StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
                 .append(server.currentTerm).append("\n")
                 .append(server.ID).append("\n")
@@ -22,6 +23,7 @@ public class RPC { // Remote Procedure Calls
                 .append(server.leaderID);
         return message.toString();
     }
+
     @SuppressWarnings("unchecked")
     static String retAppendEntries() {
         return null;
