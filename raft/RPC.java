@@ -1,6 +1,5 @@
 package raft;
 
-import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -52,7 +51,7 @@ class RPC { // Remote Procedure Calls
 				.append(server.ID).append("/")
 				.append(server.port).append("\n");
 		if (!server.ID.equals(ID)) {
-			for (Map.Entry<UUID, RaftServer> data : (Set<Map.Entry<UUID, RaftServer>>) server.cluster.entrySet()) {
+			for (Map.Entry<UUID, RaftCommunication> data : (Set<Map.Entry<UUID, RaftCommunication>>) server.cluster.entrySet()) {
 				message.append(data.getKey()).append("/")
 				       .append(data.getValue().address.getAddress().getHostAddress()).append(":")
 				       .append(data.getValue().address.getPort()).append("\n");

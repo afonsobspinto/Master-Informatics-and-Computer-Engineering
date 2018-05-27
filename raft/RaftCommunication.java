@@ -6,14 +6,14 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class RaftServer implements Runnable { // Despite the name, this class actually models a connection with another server, and not the server itself, even though we keep track of some information regarding it
+class RaftCommunication implements Runnable { // Despite the name, this class actually models a connection with another server, and not the server itself, even though we keep track of some information regarding it
 	private Raft raft;
 	private SSLChannel channel;
 
 	Raft.ServerState state;
 	InetSocketAddress address;
 
-	// Volatile state
+	// Volatile serverState
 	Long nextIndex;
 	Long matchIndex = 0L;
 
@@ -22,11 +22,11 @@ class RaftServer implements Runnable { // Despite the name, this class actually 
 	CompletableFuture<String> retRPC;
 	AtomicBoolean retflag;
 
-	RaftServer() {
+	RaftCommunication() {
 		// Placeholder constructor
 	}
 
-	RaftServer(Raft raft, SSLChannel channel, String addr, Integer port) {
+	RaftCommunication(Raft raft, SSLChannel channel, String addr, Integer port) {
 		this.raft = raft;
 		this.channel = channel;
 		state = Raft.ServerState.INITIALIZING;

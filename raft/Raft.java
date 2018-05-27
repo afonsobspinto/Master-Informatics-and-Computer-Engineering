@@ -1,5 +1,7 @@
 package raft;
 
+import raft.States.FollowerState;
+import raft.States.State;
 import raft.net.ssl.SSLChannel;
 
 import java.io.Serializable;
@@ -7,15 +9,17 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Raft<T extends Serializable> { // Stuff is package-private because I hate getters/setters
 	UUID ID = UUID.randomUUID();
 	Integer port;
-	ConcurrentHashMap<UUID, RaftServer> cluster = new ConcurrentHashMap<>();
-	AtomicReference<ServerState> state = new AtomicReference<>(ServerState.INITIALIZING);
-	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
+	AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
+    ScheduledExecutorService executor = (ScheduledExecutorService) Executors.newCachedThreadPool();
+	State state = new FollowerState();
 
 	enum ServerState {
 		INITIALIZING, WAITING, RUNNING, TERMINATING;
@@ -24,16 +28,16 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		INITIALIZING, RUNNING, TERMINATING;
 	}
 
-	//	Persistent state (save this to stable storage)
+	//	Persistent serverState (save this to stable storage)
 	Long currentTerm = 0L;
 	UUID votedFor;
 	RaftLog<T>[] log;
 
-	//	Volatile state
+	//	Volatile serverState
 	Long commitIndex = 0L;
 	Long lastApplied = 0L;
 
-	//	Leader state (this is in RaftServer now)
+	//	Leader serverState (this is in RaftCommunication now)
 /*	Long[] nextIndex;
 	Long[] matchIndex; */
 
@@ -55,7 +59,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 
 		// Listen for new connections
 		this.executor.execute(() -> {
-			while (state.get() != ServerState.TERMINATING) {
+			while (serverState.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
 					executor.execute(new RaftDiscover(this, channel, false));
@@ -69,7 +73,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 
 		// Listen for new connections
 		this.executor.execute(() -> {
-			while (state.get() != ServerState.TERMINATING) {
+			while (serverState.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
 					executor.execute(new RaftDiscover(this, channel, false));
@@ -78,7 +82,14 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		});
 	}
 
-	public void run() {
-		executor.execute(new RaftCore(this));
+	public void start() {
+        scheduleTimeout();
 	}
+
+	private void scheduleTimeout(){
+
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+
+    }
 }
