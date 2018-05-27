@@ -189,10 +189,6 @@ public class JasminVisitor implements ParserVisitor {
         return null;
     }
 
-/*    public Object visit(ASTInteger node, Object data) {
-        this.jasminGenerator.writeSingleWord((String)node.jjtGetValue());
-        return null;
-    }*/
 
     public Object visit(ASTCall node, Object data) {
         SymbolTable currentSymbolTable = this.jasminGenerator.getCurrentSymbolTable();

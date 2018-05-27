@@ -48,15 +48,19 @@ public class Parser
           System.out.println("/////// Semantic Analyses ////////");
           System.out.println("//////////////////////////////");
           System.out.println("");
-          System.out.println(SemanticManager.getString());
 
           if(SemanticManager.getErrorCount() > 0 || errors > 0){
+             System.out.println(SemanticManager.getString());
+
             if(errors == 0){
                  System.out.print("Semantic ");
 
             }
             System.out.println("Errors Found! Aborting...");
             System.exit(-1);
+          }
+          else{
+            System.out.println("All Right! You Are Good To Go.");
           }
 
 
@@ -68,7 +72,8 @@ public class Parser
           JasminGenerator jasminGenerator = new JasminGenerator(args[0], symbolTable);
           root.jjtAccept(jasminGenerator.getJasminVisitor(), null);
           jasminGenerator.close();
-          System.out.println(".jasmin file generated on " + jasminGenerator.getFilepath() + " with " + errors + " errors");
+          System.out.println(".jasmin File Generated On " + jasminGenerator.getFilepath() + " With " + errors + " Errors");
+          System.out.println("");
 
 
         }catch (FileNotFoundException e){

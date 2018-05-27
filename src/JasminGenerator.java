@@ -109,8 +109,8 @@ public class JasminGenerator {
     }
 
     public void writeWhile(ASTConditionalOperation conditionNode, ASTStatements statementNode, ParserVisitor visitor) {
-        String beginLoopLabel = "ll_" + lineNumber;
-        String endLoopLabel = "el_" + lineNumber;
+        String beginLoopLabel = "loop" + lineNumber;
+        String endLoopLabel = beginLoopLabel + "_end";
 
         writer.print(beginLoopLabel);
         println(" :");
@@ -131,8 +131,8 @@ public class JasminGenerator {
     }
 
     public void writeIf(ASTConditionalOperation conditionNode, ASTStatements statementNode, ParserVisitor visitor) {
-        String beginLoopLabel = "ll_" + lineNumber;
-        String endLoopLabel = "el_" + lineNumber;
+        String beginLoopLabel = "loop" + lineNumber;
+        String endLoopLabel = beginLoopLabel + "_end";
 
         writer.print(beginLoopLabel);
         println(" :");

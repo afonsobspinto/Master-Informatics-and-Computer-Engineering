@@ -123,10 +123,6 @@ public class SemanticVisitor implements ParserVisitor {
         return null;
     }
 
-/*    public Object visit(ASTInteger node, Object data) {
-        return null;
-    }*/
-
     public Object visit(ASTFunctionName node, Object data) {
         return null;
     }
