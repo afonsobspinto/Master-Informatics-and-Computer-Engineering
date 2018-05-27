@@ -9,6 +9,6 @@ class RaftCore implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 	}
 }

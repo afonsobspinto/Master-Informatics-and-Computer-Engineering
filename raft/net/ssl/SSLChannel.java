@@ -3,6 +3,7 @@ package raft.net.ssl;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.SocketTimeoutException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.LinkedList;
@@ -81,7 +82,7 @@ public class SSLChannel {
 	public boolean send(String message) {
 		return send(message.getBytes());
 	}
-	
+
 	public boolean send(byte[] message) {
 		byte[] data = new String(Base64.getEncoder().encode(message)).concat("\n").getBytes();
 		
@@ -94,24 +95,27 @@ public class SSLChannel {
 		
 		return true;
 	}
-	
+
+	public String receiveString(int timeout) {
+		byte[] data = receive(timeout);
+		return data != null ? new String(data) : null;
+	}
+
 	public String receiveString() {
-		if (received.size() == 0) {
-			int bytes_read = 0;
+		byte[] data = receive();
+		return data != null ? new String(data) : null;
+	}
 
-			try {
-				bytes_read = socket.getInputStream().read(data);
-			} catch (Exception e) {
-			//	e.printStackTrace();
-			} finally {
-				if (bytes_read == -1) {
-					return null;
-				}
-			}
-
-			received = new LinkedList<>(Arrays.asList(new String(data, 0, bytes_read).split("\n")));
+	public byte[] receive(int timeout) {
+		byte[] data = null;
+		try {
+			socket.setSoTimeout(timeout); // Milliseconds
+			data = receive();
+			socket.setSoTimeout(0);
+		} catch (Exception e) {
+		//  e.printStackTrace();
 		}
-		return new String(Base64.getDecoder().decode(received.removeFirst().getBytes()));
+		return data;
 	}
 	
 	public byte[] receive() {
@@ -123,7 +127,7 @@ public class SSLChannel {
 			} catch (Exception e) {
 			//	e.printStackTrace();
 			} finally {
-				if (bytes_read == -1) {
+				if (bytes_read < 1) {
 					return null;
 				}
 			}

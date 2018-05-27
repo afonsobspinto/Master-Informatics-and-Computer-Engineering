@@ -26,7 +26,7 @@ class RaftDiscover implements Runnable {
 		if (explorer) {
 			channel.send(RPC.callDiscoverNodes(raft));
 
-			String[] message = channel.receive().split("\n");
+			String[] message = channel.receiveString().split("\n");
 			String[] address = message[1].split("/");
 			UUID ID = UUID.fromString(address[0]);
 
@@ -61,7 +61,7 @@ class RaftDiscover implements Runnable {
 				}
 			}
 		} else {
-			String[] message = channel.receive().split("\n");
+			String[] message = channel.receiveString().split("\n");
 			String[] address = message[1].split("/");
 			UUID ID = UUID.fromString(address[0]);
 
