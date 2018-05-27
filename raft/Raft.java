@@ -35,49 +35,56 @@ public class Raft<T extends Serializable> {
 
 	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
-    private TimerTask followerTimerTask = new TimerTask() {
-        @Override
-        public void run() {
-            lock.lock();
-            if (state.compareAndSet(RaftState.FOLLOWER, RaftState.CANDIDATE)) {
-            	currentTerm.getAndAdd(1);
-            	votes.getAndAdd(1);
-            }
-            condition.signal();
-            lock.unlock();
-        }
-    };
-	private TimerTask candidateTimerTask = new TimerTask() {
-		@Override
-		public void run() {
-			lock.lock();
-			if (state.get() == RaftState.CANDIDATE) {
-				currentTerm.getAndAdd(1);
+    private TimerTask followerTimerTask() {
+    	return new TimerTask() {
+		    @Override
+		    public void run() {
+			    lock.lock();
+			    if (state.compareAndSet(RaftState.FOLLOWER, RaftState.CANDIDATE)) {
+				    currentTerm.getAndAdd(1);
+				    votes.getAndAdd(1);
+				 //   System.out.println("Heartbeat");
+			    }
+			    condition.signal();
+			    lock.unlock();
+		    }
+	    };
+    }
+	private TimerTask candidateTimerTask() {
+		return new TimerTask() {
+			@Override
+			public void run() {
+				lock.lock();
+				if (state.get() == RaftState.CANDIDATE) {
+					currentTerm.getAndAdd(1);
+				}
+				condition.signal();
+				lock.unlock();
 			}
-			condition.signal();
-			lock.unlock();
-		}
-	};
-	private TimerTask leaderTimeout = new TimerTask() { // TODO
-		@Override
-		public void run() {
-			lock.lock();
-			/*if (state.get() == RaftState.CANDIDATE) {
-				currentTerm.getAndAdd(1);
-			}*/
-			condition.signal();
-			lock.unlock();
-		}
-	};
+		};
+	}
+	private TimerTask leaderTimerTask() {
+		return new TimerTask() { // TODO
+			@Override
+			public void run() {
+				lock.lock();
+				/*if (state.get() == RaftState.CANDIDATE) {
+					currentTerm.getAndAdd(1);
+				}*/
+				condition.signal();
+				lock.unlock();
+			}
+		};
+	}
 
 	private void followerTimeout() {
-		timer.schedule(followerTimerTask, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+		timer.schedule(followerTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
 	}
 	void candidateTimeout() {
-		timer.schedule(candidateTimerTask, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+		timer.schedule(candidateTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
 	}
 	void leaderTimeout() { // TODO
-		timer.schedule(leaderTimeout, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+		timer.schedule(leaderTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
 	}
 
 	//	Persistent state (save this to stable storage)
