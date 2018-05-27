@@ -119,13 +119,15 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 			return false;
 		}
 		
-		channel.send(RPC.callSet());
+		byte[] serObj = serialize(var);
+		
+		channel.send(RPC.callSetValue(new String(serObj)));
 		
 		String message = channel.receiveString();
 		
 		//TODO
 		
-		return message.equals(RPC.success());
+		return message.equals(RPC.retSetValue(true));
 	}
 	
 	private SSLChannel connectToLeader() {

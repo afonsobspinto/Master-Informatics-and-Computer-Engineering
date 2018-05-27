@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import raft.util.GenericArrays;
+
 class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
@@ -61,17 +63,12 @@ class RPC { // Remote Procedure Calls
 	}
 	
 	@SuppressWarnings("unchecked")
-	static String callSet() {
-		return null;
+	static String callSetValue(String obj) {
+		 return "SetValueRPC\n".concat(obj).concat("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
-	static String failure() {
-		return "false";
-	}
-	
-	@SuppressWarnings("unchecked")
-	static String success() {
-		return "true";
+	static String retSetValue(boolean success) {
+		return success ? "SetValueRPC\ntrue\n" : "SetValueRPC\nfalse\n";
 	}
 }

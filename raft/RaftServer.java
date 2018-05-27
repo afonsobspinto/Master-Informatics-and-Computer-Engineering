@@ -17,6 +17,14 @@ class RaftServer implements Runnable {
 	@Override
 	public void run() {
 		String[] message = channel.receiveString().split("\n");
+		
+		switch(message[0]) {
+		case "SetValueRPC":
+			raft.executor.execute(new RaftRedirect<>(raft, channel, message[1], RaftCommand.SET));
+			break;
+		
+		}
+		
 		String[] address = message[1].split("/");
 		UUID ID = UUID.fromString(address[0]);
 
