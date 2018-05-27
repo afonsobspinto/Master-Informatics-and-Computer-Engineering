@@ -9,6 +9,7 @@ public class RaftInitiator {
 		}
 		else {
 			Raft<Integer> raft = new Raft<>(Integer.valueOf(args[0]));
+			raft.start();
 		}
 	}
 }

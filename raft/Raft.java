@@ -6,27 +6,29 @@ import raft.net.ssl.SSLChannel;
 
 import java.io.Serializable;
 import java.net.InetSocketAddress;
+import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Raft<T extends Serializable> { // Stuff is package-private because I hate getters/setters
+public class Raft<T extends Serializable> {
+
+    enum ServerState {
+        INITIALIZING, WAITING, RUNNING, TERMINATING;
+    }
+    enum ClusterState {
+        INITIALIZING, RUNNING, TERMINATING;
+    }
+
 	UUID ID = UUID.randomUUID();
 	Integer port;
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
-	AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
-    ScheduledExecutorService executor = (ScheduledExecutorService) Executors.newCachedThreadPool();
-	State state = new FollowerState();
+	private AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
+	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+    private State state = new FollowerState();
 
-	enum ServerState {
-		INITIALIZING, WAITING, RUNNING, TERMINATING;
-	}
-	enum ClusterState {
-		INITIALIZING, RUNNING, TERMINATING;
-	}
+
 
 	//	Persistent serverState (save this to stable storage)
 	Long currentTerm = 0L;
@@ -90,10 +92,9 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
         scheduleTimeout();
 	}
 
-	private void scheduleTimeout(){
-
-        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-
-
+    public void scheduleTimeout() {
+        int delay = new Random().nextInt(RaftProtocol.maxRandomDelay-RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay;
+        System.out.println(delay);
+        scheduledExecutorService.schedule(this::scheduleTimeout, delay, TimeUnit.MILLISECONDS);
     }
 }
