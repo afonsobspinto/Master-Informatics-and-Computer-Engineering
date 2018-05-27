@@ -3,12 +3,14 @@ package raft;
 import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 class RaftDiscover implements Runnable {
 	private Raft server;
 	private SSLChannel channel;
 	private boolean explorer;
+	private static ReentrantLock lock = new ReentrantLock();
 
 	RaftDiscover(Raft server, SSLChannel channel, boolean explorer) {
 		this.server = server;
@@ -18,58 +20,57 @@ class RaftDiscover implements Runnable {
 
 	/*
 		RaftDiscover, explorer = true
-		discover\n
-		<port>\n
+		DiscoverNodes\n
+		<UUID/port>\n
 
 		RaftDiscover, explorer = false
-		discover\n
-		<address:port_1>\n
-		<address:port_2>\n
+		DiscoverNodes\n
+		<UUID/port>\n
+		<UUID/address:port 1>\n
+		<UUID/address:port 2>\n
 		...
-		<address:port_N>\n
+		<UUID/address:port N>\n
 	*/
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void run() {
 		if (explorer) {
-			LinkedList<InetSocketAddress> cluster = new LinkedList<>();
-			channel.send("discover\n".concat(server.port.toString()).concat("\n"));
+			channel.send(RemoteProcedureCall.invokeDiscoverNodes(server));
 
 			String[] message = channel.receive().split("\n");
-		/*	if (!message[0].equals("discover")) {
-				return;
-			} */
-			for (int n = 1; n < message.length; ++n) {
-				String[] address = message[n].split(":");
-				if (this.server.cluster.add(new InetSocketAddress(address[0], Integer.valueOf(address[1])))) {
-					cluster.add(new InetSocketAddress(address[0], Integer.valueOf(address[1])));
+
+			String[] node = message[1].split("/");
+			UUID ID = UUID.fromString(node[0]);
+			if (!server.ID.equals(ID)) { // Do something if same ID; (generate new ID and resend discover to other nodes)
+				if (server.cluster.putIfAbsent(ID, new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(node[1]))) == null) {
+					System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(node[1]))); // DEBUG
 				}
 			}
-
-			if (cluster.size() > 0) {
-				for (InetSocketAddress address : cluster) {
-					System.out.println(address); // DEBUG
-					SSLChannel channel = new SSLChannel(address);
+			for (int n = 2; n < message.length; ++n) {
+				node = message[n].split("[/:]");
+				ID = UUID.fromString(node[0]);
+				if (!server.cluster.containsKey(ID) && !server.ID.equals(ID)) {
+					SSLChannel channel = new SSLChannel(new InetSocketAddress(node[1], Integer.valueOf(node[2])));
 					if (channel.connect()) {
 						server.executor.execute(new RaftDiscover(server, channel, true));
 					}
 				}
 			}
-		}
-		else {
-			String[] message_receive = channel.receive().split("\n");
+		} else {
+			lock.lock();
+			String[] message = channel.receive().split("\n");
 
-			StringBuilder message_send = new StringBuilder("discover\n");
-			Iterable<InetSocketAddress> cluster = server.cluster;
-			for (InetSocketAddress address : cluster) {
-				message_send.append(address.getHostString()).append(":").append(address.getPort()).append("\n");
+			channel.send(RemoteProcedureCall.returnDiscoverNodes(server));
+
+			String[] node = message[1].split("/");
+			UUID ID = UUID.fromString(node[0]);
+			if (!server.ID.equals(ID)) {
+				if (server.cluster.putIfAbsent(ID, new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(node[1]))) == null) {
+					System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(node[1]))); // DEBUG
+				}
 			}
-			channel.send(message_send.toString());
-
-			InetSocketAddress address = new InetSocketAddress(channel.getRemoteAddress().getHostString(), Integer.valueOf(message_receive[1]));
-			server.cluster.add(address);
-			System.out.println(address); // DEBUG
+			lock.unlock();
 		}
 	}
 }

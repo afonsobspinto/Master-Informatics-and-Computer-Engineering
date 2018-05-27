@@ -4,47 +4,45 @@ import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Raft<T> {
-	public enum State{
+public class Raft<T> { // Stuff is package-private because I hate getters/setters
+	UUID ID = UUID.randomUUID();
+	Short port;
+
+	enum State { // Adjust this
 		STARTING, RUNNING, STOPPING;
 	}
 
-	private class Log {
-		private T entry;
-		private Long term = 0L;
-	}
-
 	//	Persistent state
-	private Long currentTerm = 0L;
-	//	private ID votedFor;
-	private Log[] log;
+	Long currentTerm = 0L;
+	UUID votedFor;
+	RaftLog<T>[] log;
 
 	//	Volatile state
-	private Long commitIndex = 0L;
-	private Long lastApplied = 0L;
+	Long commitIndex = 0L;
+	Long lastApplied = 0L;
 
 	//	Leader state
-	private Long[] nextIndex;
-	private Long[] matchIndex;
+	Long[] nextIndex;
+	Long[] matchIndex;
 
 	//	Required variables
-	Set<InetSocketAddress> cluster = ConcurrentHashMap.newKeySet();
+	//Set<InetSocketAddress> cluster = ConcurrentHashMap.newKeySet();
+	ConcurrentHashMap<UUID, InetSocketAddress> cluster = new ConcurrentHashMap<>();
 	AtomicReference<State> state = new AtomicReference<>(State.STARTING);
 	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-	Integer port;
 
-	public Raft(Integer port, InetSocketAddress cluster) {
+
+	public Raft(Short port, InetSocketAddress cluster) {
 		this.port = port;
 
 		// Connect to known cluster
-		this.cluster.add(cluster);
 		{
-			System.out.println(cluster); // DEBUG
 			SSLChannel channel = new SSLChannel(cluster);
 			if (channel.connect()) {
 				this.executor.execute(new RaftDiscover(this, channel, true));
@@ -64,7 +62,7 @@ public class Raft<T> {
 		});
 	}
 
-	public Raft(Integer port) {
+	public Raft(Short port) {
 		this.port = port;
 
 		// Listen for new connections

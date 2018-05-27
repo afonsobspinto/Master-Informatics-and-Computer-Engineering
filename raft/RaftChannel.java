@@ -44,8 +44,4 @@ class RaftChannel implements Runnable {
 			}
 		} */
 	}
-
-	public static void main(String[] args) {
-		Raft<Integer> raft = new Raft<>(8001, new InetSocketAddress("192.168.1.3", 8000));
-	}
 }
