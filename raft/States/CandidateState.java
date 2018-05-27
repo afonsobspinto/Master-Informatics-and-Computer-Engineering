@@ -9,7 +9,12 @@ public class CandidateState extends State {
     }
 
     @Override
-    public void receiveMessage(StateID stateID, String msg){
+    public void receiveMessage(){
+
+    }
+
+    @Override
+    public void handleHeartbeats(Raft raft) {
 
     }
 

@@ -1,21 +1,25 @@
 package raft;
 
+import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-class RPC { // Remote Procedure Calls
-    static final String appendEntriesRPC = "AppendEntriesRPC";
-    static final String discoverNodesRPC = "DiscoverNodesRPC";
-    static final String setValueRPC = "SetValueRPC";
-    static final String getValueRPC = "GetValueRPC";
-    static final String deleteValueRPC = "DeleteValueRPC";
+public class RPC { // Remote Procedure Calls
+    public static final String appendEntriesRPC = "AppendEntriesRPC";
+    public static final String discoverNodesRPC = "DiscoverNodesRPC";
+    public static final String setValueRPC = "SetValueRPC";
+    public static final String getValueRPC = "GetValueRPC";
+    public static final String deleteValueRPC = "DeleteValueRPC";
 
     @SuppressWarnings("unchecked")
-    static String callAppendEntries(Raft server) {
+    public static String callAppendEntries(Raft server) {
         StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
                 .append(server.currentTerm).append("\n")
-                .append(server.ID).append("\n"); // TODO
+                .append(server.ID).append("\n")
+                .append(server.log.length-1)
+                .append(server.log[server.log.length-1])
+                .append(server.leaderID);
         return message.toString();
     }
     @SuppressWarnings("unchecked")

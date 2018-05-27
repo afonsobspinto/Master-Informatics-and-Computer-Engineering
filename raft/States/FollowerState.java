@@ -1,6 +1,8 @@
 package raft.States;
 
+import raft.RPC;
 import raft.Raft;
+import raft.net.ssl.SSLChannel;
 
 public class FollowerState extends State {
 
@@ -9,7 +11,11 @@ public class FollowerState extends State {
     }
 
     @Override
-    public void receiveMessage(StateID stateID, String msg){
+    public void receiveMessage(){
+    }
+
+    @Override
+    public void handleHeartbeats(Raft raft) {
 
     }
 

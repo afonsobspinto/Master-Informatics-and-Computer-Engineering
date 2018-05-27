@@ -14,7 +14,8 @@ public abstract class State {
         return stateID;
     }
 
-    public abstract void receiveMessage(StateID stateID, String msg);
+    public abstract void receiveMessage();
+    public abstract void handleHeartbeats(Raft raft);
 
     public abstract void handleLeaderHeartBeat();
     public abstract void handleLeaderHeartBeatFailure();

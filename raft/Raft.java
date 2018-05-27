@@ -54,6 +54,7 @@ public class Raft<T extends Serializable> {
 	Long currentTerm = 0L;
 	UUID votedFor;
 	RaftLog<T>[] log;
+	RaftLog<T>[] entries;
 
 	//	Volatile serverState
 	Long commitIndex = 0L;

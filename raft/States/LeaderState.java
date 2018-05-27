@@ -1,6 +1,8 @@
 package raft.States;
 
 import raft.Raft;
+import raft.RPC;
+import raft.net.ssl.SSLChannel;
 
 public class LeaderState extends State {
     LeaderState(Raft raft) {
@@ -8,15 +10,12 @@ public class LeaderState extends State {
     }
 
     @Override
-    public void receiveMessage(StateID stateID, String msg){
-        if(stateID == StateID.LEADER){
-        }
-        else if(stateID == StateID.CANDIDATE){
+    public void receiveMessage(){
+    }
 
-        }
-        else{
-
-        }
+    @Override
+    public void handleHeartbeats(Raft raft) {
+        //channel.send(RPC.callAppendEntries(this.raft)); TODO
 
     }
 
