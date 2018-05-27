@@ -1,7 +1,6 @@
 package raft;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import raft.net.ssl.SSLChannel;
 

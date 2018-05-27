@@ -19,7 +19,7 @@ class RaftServer implements Runnable {
 		String[] message = channel.receiveString().split("\n");
 		
 		switch(message[0]) {
-		case "SetValueRPC":
+		case RPC.setValueRPC:
 			raft.executor.execute(new RaftRedirect<>(raft, channel, message[1], RaftCommand.SET));
 			break;
 		

@@ -7,9 +7,13 @@ import java.util.UUID;
 import raft.util.GenericArrays;
 
 class RPC { // Remote Procedure Calls
+	static final String appendEntriesRPC = "AppendEntriesRPC";
+	static final String discoverNodesRPC = "DiscoverNodesRPC"; 
+	static final String setValueRPC = "SetValueRPC";
+	
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
-		StringBuilder message = new StringBuilder("AppendEntriesRPC\n")
+		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
 				.append(server.currentTerm).append("\n")
 				.append(server.ID).append("\n"); // TODO
 		return message.toString();
@@ -43,13 +47,13 @@ class RPC { // Remote Procedure Calls
 */
 	@SuppressWarnings("unchecked")
 	static String callDiscoverNodes(Raft server) {
-		return "DiscoverNodesRPC\n"
+		return discoverNodesRPC.concat("\n")
 				.concat(server.ID.toString()).concat("/")
 				.concat(server.port.toString()).concat("\n");
 	}
 	@SuppressWarnings("unchecked")
 	static String retDiscoverNodes(Raft server, UUID ID) {
-		StringBuilder message = new StringBuilder("DiscoverNodesRPC\n")
+		StringBuilder message = new StringBuilder(discoverNodesRPC).append("\n")
 				.append(server.ID).append("/")
 				.append(server.port).append("\n");
 		if (!server.ID.equals(ID)) {
@@ -64,11 +68,11 @@ class RPC { // Remote Procedure Calls
 	
 	@SuppressWarnings("unchecked")
 	static String callSetValue(String obj) {
-		 return "SetValueRPC\n".concat(obj).concat("\n");
+		 return setValueRPC.concat("\n").concat(obj).concat("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
 	static String retSetValue(boolean success) {
-		return success ? "SetValueRPC\ntrue\n" : "SetValueRPC\nfalse\n";
+		return success ? (setValueRPC + "\ntrue\n") : (setValueRPC + "\nfalse\n");
 	}
 }
