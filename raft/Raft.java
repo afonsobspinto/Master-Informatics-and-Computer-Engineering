@@ -3,7 +3,6 @@ package raft;
 import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;

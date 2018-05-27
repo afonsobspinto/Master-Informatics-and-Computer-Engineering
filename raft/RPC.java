@@ -5,36 +5,36 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-class RemoteProcedureCall {
+class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
-	static String invokeAppendEntries(Raft server) {
+	static String callAppendEntries(Raft server) {
 		StringBuilder message = new StringBuilder("AppendEntries\n")
 				.append(server.currentTerm).append("\n")
 				.append(server.ID).append("\n"); // TODO
 		return message.toString();
 	}
 	@SuppressWarnings("unchecked")
-	static String returnAppendEntries() {
+	static String retAppendEntries() {
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
-	static String invokeRequestVote() {
+	static String callRequestVote() {
 		return null;
 	}
 	@SuppressWarnings("unchecked")
-	static String returnRequestVote() {
+	static String retRequestVote() {
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
-	static String invokeDiscoverNodes(Raft server) {
+	static String callDiscoverNodes(Raft server) {
 		return "DiscoverNodes\n"
 				.concat(server.ID.toString()).concat("/")
 				.concat(server.port.toString()).concat("\n");
 	}
 	@SuppressWarnings("unchecked")
-	static String returnDiscoverNodes(Raft server) {
+	static String retDiscoverNodes(Raft server) {
 		StringBuilder message = new StringBuilder("DiscoverNodes\n")
 				.append(server.ID).append("/")
 				.append(server.port).append("\n");

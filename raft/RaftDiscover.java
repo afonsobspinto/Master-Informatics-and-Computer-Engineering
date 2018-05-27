@@ -36,7 +36,7 @@ class RaftDiscover implements Runnable {
 	@SuppressWarnings("unchecked")
 	public void run() {
 		if (explorer) {
-			channel.send(RemoteProcedureCall.invokeDiscoverNodes(server));
+			channel.send(RPC.callDiscoverNodes(server));
 
 			String[] message = channel.receive().split("\n");
 
@@ -58,10 +58,10 @@ class RaftDiscover implements Runnable {
 				}
 			}
 		} else {
-			lock.lock();
 			String[] message = channel.receive().split("\n");
 
-			channel.send(RemoteProcedureCall.returnDiscoverNodes(server));
+			lock.lock();
+			channel.send(RPC.retDiscoverNodes(server));
 
 			String[] node = message[1].split("/");
 			UUID ID = UUID.fromString(node[0]);
