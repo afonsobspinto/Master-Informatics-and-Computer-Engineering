@@ -79,6 +79,6 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 	}
 
 	public void run() {
-
+		executor.execute(new RaftCore(this));
 	}
 }

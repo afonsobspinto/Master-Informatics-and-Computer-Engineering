@@ -12,7 +12,7 @@ class RaftDiscover implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
 	private boolean explorer;
-	private static ReentrantLock lock = new ReentrantLock();
+	private static ReentrantLock lock = new ReentrantLock(); // We probably need more locks
 
 	RaftDiscover(Raft raft, SSLChannel channel, boolean explorer) {
 		this.raft = raft;
