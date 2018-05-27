@@ -37,7 +37,8 @@ class RaftServer<T extends Serializable> implements Runnable {
 			channel.send(RPC.retDiscoverNodes(raft, ID));
 			if (!raft.ID.equals(ID)) {
 				// We use putIfAbsent because there may be a conflict of IDs with other servers, so we don't want to erase our probably correct information
-				if (raft.cluster.putIfAbsent(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))) == null) {
+				if (raft.cluster.putIfAbsent(ID, new RaftCommunication(raft, channel, new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1])))) == null) {
+					raft.pool.execute(raft.cluster.get(ID));
 					System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
 				}
 			}

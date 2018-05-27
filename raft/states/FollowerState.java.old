@@ -1,22 +1,12 @@
-package raft.States;
+package raft.states;
 
-import raft.RPC;
 import raft.Raft;
-import raft.net.ssl.SSLChannel;
+import raft.RaftState;
 
 public class FollowerState extends State {
 
     public FollowerState(Raft raft) {
-        super(StateID.FOLLOWER, raft);
-    }
-
-    @Override
-    public void receiveMessage(){
-    }
-
-    @Override
-    public void handleHeartbeats(Raft raft) {
-
+        super(raft);
     }
 
     @Override
@@ -30,4 +20,11 @@ public class FollowerState extends State {
         this.raft.setState(new CandidateState(raft));
 
     }
+
+    @Override
+    public RaftState getStateID() {
+        return RaftState.FOLLOWER;
+    }
+
+
 }

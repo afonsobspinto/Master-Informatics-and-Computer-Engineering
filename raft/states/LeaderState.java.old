@@ -1,0 +1,24 @@
+package raft.states;
+
+import raft.Raft;
+import raft.RaftState;
+
+public class LeaderState extends State {
+    LeaderState(Raft raft) {
+        super(raft);
+    }
+
+    @Override
+    public void handleLeaderHeartBeat() {
+
+    }
+
+    @Override
+    public void handleLeaderHeartBeatFailure() {
+    }
+
+    @Override
+    public RaftState getStateID() {
+        return RaftState.LEADER;
+    }
+}
