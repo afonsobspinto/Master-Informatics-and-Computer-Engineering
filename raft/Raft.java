@@ -9,11 +9,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Raft<T extends Serializable> { // Stuff is package-private because I hate getters/setters
 	UUID ID = UUID.randomUUID();
 	Integer port;
-	ConcurrentHashMap<UUID, RaftServer> cluster = new ConcurrentHashMap<>();
+	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
 	AtomicReference<ServerState> state = new AtomicReference<>(ServerState.INITIALIZING);
 	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
@@ -33,9 +34,8 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 	Long commitIndex = 0L;
 	Long lastApplied = 0L;
 
-	//	Leader state (this is in RaftServer now)
-/*	Long[] nextIndex;
-	Long[] matchIndex; */
+	// TODO we need more locks!!! (or maybe not)
+	ReentrantLock lock = new ReentrantLock();
 
 	// TODO Create class (runnable) to redirect client requests (RaftForward? RaftRedirect?) Also create RPC for that (because why the hell not)
 
@@ -46,7 +46,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		{
 			SSLChannel channel = new SSLChannel(cluster);
 			if (channel.connect()) {
-				this.executor.execute(new RaftDiscover(this, channel, true));
+				this.executor.execute(new RaftDiscover(this, channel));
 			} else {
 				System.out.println("Connection failed!"); // DEBUG
 				return; // Show better error message
@@ -58,7 +58,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
-					executor.execute(new RaftDiscover(this, channel, false));
+					executor.execute(new RaftServer(this, channel));
 				}
 			}
 		});
@@ -72,7 +72,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 			while (state.get() != ServerState.TERMINATING) {
 				SSLChannel channel = new SSLChannel(port);
 				if (channel.accept()) {
-					executor.execute(new RaftDiscover(this, channel, false));
+					executor.execute(new RaftServer(this, channel));
 				}
 			}
 		});

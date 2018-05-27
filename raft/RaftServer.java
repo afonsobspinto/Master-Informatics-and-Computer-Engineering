@@ -3,46 +3,31 @@ package raft;
 import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.UUID;
 
-class RaftServer implements Runnable { // Despite the name, this class actually models a connection with another server, and not the server itself, even though we keep track of some information regarding it
+class RaftServer implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
 
-	Raft.ServerState state;
-	InetSocketAddress address;
-
-	// Volatile state
-	Long nextIndex;
-	Long matchIndex = 0L;
-
-	CompletableFuture<String> callRPC; // This is what I probably need
-	AtomicBoolean callflag; // Combined with this (use this as atomic flag)
-	CompletableFuture<String> retRPC;
-	AtomicBoolean retflag;
-
-	RaftServer() {
-		// Placeholder constructor
-	}
-
-	RaftServer(Raft raft, SSLChannel channel, String addr, Integer port) {
+	RaftServer(Raft raft, SSLChannel channel) {
 		this.raft = raft;
 		this.channel = channel;
-		state = Raft.ServerState.INITIALIZING;
-		address = new InetSocketAddress(addr, port);
-		this.callRPC = new CompletableFuture<>();
-		this.callflag = new AtomicBoolean(true);
-		this.retRPC = new CompletableFuture<>();
-		this.retflag = new AtomicBoolean(false);
 	}
 
 	@Override
 	public void run() {
+		String[] message = channel.receiveString().split("\n");
+		String[] address = message[1].split("/");
+		UUID ID = UUID.fromString(address[0]);
 
-	}
-
-	public void stop() {
-		// Shutdown server
+		raft.lock.lock();
+		channel.send(RPC.retDiscoverNodes(raft, ID));
+		if (!raft.ID.equals(ID)) {
+			// We use putIfAbsent because there may be a conflict of IDs with other servers, so we don't want to erase our probably correct information
+			if (raft.cluster.putIfAbsent(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))) == null) {
+				System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
+			}
+		}
+		raft.lock.unlock();
 	}
 }
