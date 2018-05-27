@@ -49,7 +49,7 @@ public class Parser
           System.out.println("//////////////////////////////");
           System.out.println("");
 
-          if(SemanticManager.getErrorCount() > 0 || errors > 0){
+         /* if(SemanticManager.getErrorCount() > 0 || errors > 0){
              System.out.println(SemanticManager.getString());
 
             if(errors == 0){
@@ -61,7 +61,7 @@ public class Parser
           }
           else{
             System.out.println("All Right! You Are Good To Go.");
-          }
+          }*/
 
 
           System.out.println("");

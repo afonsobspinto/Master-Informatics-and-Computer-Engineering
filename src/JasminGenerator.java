@@ -112,8 +112,7 @@ public class JasminGenerator {
         String beginLoopLabel = "loop" + lineNumber;
         String endLoopLabel = beginLoopLabel + "_end";
 
-        writer.print(beginLoopLabel);
-        println(" :");
+        println(beginLoopLabel + ":");
 
         writeCondition(conditionNode, visitor);
 
@@ -124,37 +123,36 @@ public class JasminGenerator {
         statementNode.jjtAccept(visitor, null);
         this.symbolTableContextManager.popFront();
 
-        writer.print("goto ");
-        println(beginLoopLabel);
-        writer.print(endLoopLabel);
-        println(" :");
+        writer.println("goto " + beginLoopLabel);
+        writer.println(endLoopLabel + ":");
     }
 
-    public void writeIf(ASTConditionalOperation conditionNode, ASTStatements statementNode, ParserVisitor visitor) {
-        String beginLoopLabel = "loop" + lineNumber;
-        String endLoopLabel = beginLoopLabel + "_end";
-
-        writer.print(beginLoopLabel);
-        println(" :");
+    public void writeIf(ASTConditionalOperation conditionNode, ASTStatements ifNode, ASTStatements elseNode, ParserVisitor visitor) {
+        String elseLabel = "else_" + lineNumber;
+        String endIfLabel = "if_" + lineNumber + "_end";
+        SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
 
         writeCondition(conditionNode, visitor);
 
-        SymbolTable currentSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
-        this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
-        //statementNode.jjtAccept(visitor, null);
+        if(elseNode != null){
+            println(elseLabel);
+            this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
+            ifNode.jjtAccept(visitor, null);
+            writer.println("goto " + endIfLabel);
+            writer.println(elseLabel + ":");
+            elseNode.jjtAccept(visitor, null);
+        }
+        else {
+            this.symbolTableContextManager.pushFront(currentSymbolTable.popChild());
+            ifNode.jjtAccept(visitor, null);
+        }
         this.symbolTableContextManager.popFront();
+        writer.println(endIfLabel + ":");
 
-        writer.print("goto ");
-        println(beginLoopLabel);
-        writer.print(endLoopLabel);
-        println(" :");
     }
 
     private void writeCondition(ASTConditionalOperation conditionNode, ParserVisitor visitor) {
-        ASTAccess leftNode = (ASTAccess) conditionNode.jjtGetChild(0);
-        leftNode.jjtAccept(visitor, false);
-        SimpleNode rightNode = (SimpleNode) conditionNode.jjtGetChild(1);
-        rightNode.jjtAccept(visitor, false);
+        conditionNode.jjtAccept(visitor, null);
         String condition = (String) conditionNode.jjtGetValue();
         writer.print(Utils.conditionalsHashMap.get(condition) + " ");
     }
