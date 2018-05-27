@@ -26,7 +26,7 @@ class RaftDiscover implements Runnable {
 		UUID ID = UUID.fromString(address[0]);
 
 		if (!raft.ID.equals(ID)) {
-			raft.cluster.put(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1])));
+			raft.cluster.put(ID, new RaftCommunication(raft, channel, new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))));
 			raft.pool.execute((RaftCommunication) raft.cluster.get(ID));
 			System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
 		} else { // This should practically NEVER happen

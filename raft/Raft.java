@@ -1,25 +1,23 @@
 package raft;
 
-import raft.States.CandidateState;
-import raft.States.FollowerState;
-import raft.States.State;
 import raft.net.ssl.SSLChannel;
+import raft.util.Serialization;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Base64;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Raft<T extends Serializable> {
-
     enum ServerState {
         INITIALIZING, WAITING, RUNNING, TERMINATING;
     }
@@ -27,44 +25,88 @@ public class Raft<T extends Serializable> {
         INITIALIZING, RUNNING, TERMINATING;
     }
 
+	AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
+//	private AtomicReference<ClusterState> clusterState = new AtomicReference<>(ClusterState.INITIALIZING);
+
 	UUID ID = UUID.randomUUID();
 	Integer port;
+
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
-	private AtomicReference<ServerState> serverState = new AtomicReference<>(ServerState.INITIALIZING);
+//  private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
+	AtomicReference<RaftState> state = new AtomicReference<>(RaftState.FOLLOWER);
+
 	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
-    private TimerTask timerTask = new TimerTask() {
+    private TimerTask followerTimerTask = new TimerTask() {
         @Override
         public void run() {
-            System.out.println("Timeout");
-            state.get().handleLeaderHeartBeatFailure();
+            lock.lock();
+            if (state.compareAndSet(RaftState.FOLLOWER, RaftState.CANDIDATE)) {
+            	currentTerm.getAndAdd(1);
+            	votes.getAndAdd(1);
+            }
+            condition.signal();
+            lock.unlock();
         }
     };
+	private TimerTask candidateTimerTask = new TimerTask() {
+		@Override
+		public void run() {
+			lock.lock();
+			if (state.get() == RaftState.CANDIDATE) {
+				currentTerm.getAndAdd(1);
+			}
+			condition.signal();
+			lock.unlock();
+		}
+	};
+	private TimerTask leaderTimeout = new TimerTask() { // TODO
+		@Override
+		public void run() {
+			lock.lock();
+			/*if (state.get() == RaftState.CANDIDATE) {
+				currentTerm.getAndAdd(1);
+			}*/
+			condition.signal();
+			lock.unlock();
+		}
+	};
 
-    public void setState(State state) {
+	private void followerTimeout() {
+		timer.schedule(followerTimerTask, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+	}
+	void candidateTimeout() {
+		timer.schedule(candidateTimerTask, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+	}
+	void leaderTimeout() { // TODO
+		timer.schedule(leaderTimeout, ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+	}
+
+/*    public void setState(State state) {
         this.state.set(state);
-    }
+    }*/
 
-    private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
-    private boolean isTimeout = false;
-
-	UUID leaderID;
-
-	//	Persistent serverState (save this to stable storage)
-	Long currentTerm = 0L;
+	//	Persistent state (save this to stable storage)
+	AtomicLong currentTerm = new AtomicLong(0L);
 	UUID votedFor;
 	RaftLog<T>[] log;
 
-	//	Volatile serverState
+	//	Volatile state
+	UUID leaderID;
+	AtomicLong votes = new AtomicLong(0L);
 	Long commitIndex = 0L;
 	Long lastApplied = 0L;
 
+
 	// TODO we need more locks!!! (or maybe not)
+	ReentrantLock cluster_lock = new ReentrantLock();
+
 	ReentrantLock lock = new ReentrantLock();
+	Condition condition = lock.newCondition();
 
-	// AtomicBoolean
-
-	// TODO Create class (runnable) to redirect client requests (RaftForward? RaftRedirect?) Also create RPC for that (because why the hell not)
+	/*
+		Constructors
+	 */
 
 	public Raft(Integer port, InetSocketAddress cluster) {
 		this.port = port;
@@ -105,32 +147,30 @@ public class Raft<T extends Serializable> {
 		});
 	}
 
+	/*
+		Public methods
+	 */
+
 	public void run() {
 		pool.execute(() -> {
-			scheduleTimeout(); // TODO
+			lock.lock();
+			while (serverState.get() != ServerState.TERMINATING) {
+				switch (state.get()) {
+					case FOLLOWER:
+						followerTimeout();
+						break;
+					case CANDIDATE:
+						// TODO Issue requestVotes
+						candidateTimeout();
+						break;
+					case LEADER:
+					//	leaderTimeout();
+						// TODO logic to handle client requests
+						break;
+				}
+				condition.awaitUninterruptibly();
+			}
 		});
-	}
-
-	static <T extends Serializable> byte[] serialize(T variable) {
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		     ObjectOutputStream oos = new ObjectOutputStream(baos)){
-			oos.writeObject(variable);
-			return Base64.getEncoder().encode(baos.toByteArray());
-		} catch (Exception e) {
-		//  e.printStackTrace();
-		}
-		return null;
-	}
-
-	@SuppressWarnings("unchecked")
-	static <T extends Serializable> T deserialize(byte[] buffer) {
-		try (ByteArrayInputStream bais = new ByteArrayInputStream(Base64.getDecoder().decode(buffer));
-		     ObjectInputStream ois = new ObjectInputStream(bais)) {
-			return (T) ois.readObject();
-		} catch (Exception e) {
-		//  e.printStackTrace();
-		}
-		return null;
 	}
 
 	public boolean set(T var) {
@@ -140,9 +180,9 @@ public class Raft<T extends Serializable> {
 			return false;
 		}
 
-		byte[] serObj = serialize(var);
+		String serObj = new String(Serialization.serialize(var));
 
-		channel.send(RPC.callSetValue(new String(serObj)));
+		channel.send(RPC.callSetValue(serObj));
 
 		String message = channel.receiveString();
 
@@ -160,7 +200,7 @@ public class Raft<T extends Serializable> {
 
 		String message = channel.receiveString();
 
-		T obj = deserialize(message.split("\n")[1].getBytes());
+		T obj = Serialization.deserialize(message.split("\n")[1].getBytes());
 
 		return obj;
 	}
@@ -179,9 +219,11 @@ public class Raft<T extends Serializable> {
 		return message.equals(RPC.retDeleteValue(true));
 	}
 
+	/*
+		Private methods
+	 */
 
-
-	private SSLChannel connectToLeader() {
+	SSLChannel connectToLeader() {
 		if(this.leaderID == null) {
 			return null;
 		}
@@ -213,10 +255,4 @@ public class Raft<T extends Serializable> {
 	T getValue() {
 		return null;
 	}
-
-    public void scheduleTimeout() {
-	    timer.schedule(timerTask, new Random().nextInt(RaftProtocol.maxRandomDelay-RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
-    }
-
-
 }

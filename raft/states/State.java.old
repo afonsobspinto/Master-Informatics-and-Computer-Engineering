@@ -1,0 +1,16 @@
+package raft.states;
+
+import raft.Raft;
+import raft.RaftState;
+
+public abstract class State {
+    protected Raft raft;
+    State(Raft raft){
+        this.raft = raft;
+    }
+
+    public abstract void handleLeaderHeartBeat();
+    public abstract void handleLeaderHeartBeatFailure();
+    public abstract RaftState getStateID();
+}
+

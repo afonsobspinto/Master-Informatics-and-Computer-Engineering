@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 class RaftCommunication implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
+	InetSocketAddress address;
 
 	Raft.ServerState state;
-	InetSocketAddress address;
 
 	// Volatile serverState
 	Long nextIndex;
@@ -26,11 +26,11 @@ class RaftCommunication implements Runnable {
 		// Placeholder constructor
 	}
 
-	RaftCommunication(Raft raft, SSLChannel channel, String addr, Integer port) {
+	RaftCommunication(Raft raft, SSLChannel channel, InetSocketAddress address) {
 		this.raft = raft;
 		this.channel = channel;
+		this.address = address;
 		state = Raft.ServerState.INITIALIZING;
-		address = new InetSocketAddress(addr, port);
 		this.callRPC = new CompletableFuture<>();
 		this.callflag = new AtomicBoolean(true);
 		this.retRPC = new CompletableFuture<>();
