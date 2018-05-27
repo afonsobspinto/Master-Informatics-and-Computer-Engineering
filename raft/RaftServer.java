@@ -23,20 +23,26 @@ class RaftServer<T extends Serializable> implements Runnable {
 		case RPC.setValueRPC:
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
 			break;
-		
-		}
-		
-		String[] address = message[1].split("/");
-		UUID ID = UUID.fromString(address[0]);
+		case RPC.getValueRPC:
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.GET));
+			break;
+		case RPC.deleteValueRPC:
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.DELETE));
+			break;
+		case RPC.discoverNodesRPC:
+			String[] address = message[1].split("/");
+			UUID ID = UUID.fromString(address[0]);
 
-		raft.lock.lock();
-		channel.send(RPC.retDiscoverNodes(raft, ID));
-		if (!raft.ID.equals(ID)) {
-			// We use putIfAbsent because there may be a conflict of IDs with other servers, so we don't want to erase our probably correct information
-			if (raft.cluster.putIfAbsent(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))) == null) {
-				System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
+			raft.lock.lock();
+			channel.send(RPC.retDiscoverNodes(raft, ID));
+			if (!raft.ID.equals(ID)) {
+				// We use putIfAbsent because there may be a conflict of IDs with other servers, so we don't want to erase our probably correct information
+				if (raft.cluster.putIfAbsent(ID, new RaftCommunication(raft, channel, channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))) == null) {
+					System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
+				}
 			}
+			raft.lock.unlock();
+			break;
 		}
-		raft.lock.unlock();
 	}
 }

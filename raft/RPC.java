@@ -10,6 +10,8 @@ class RPC { // Remote Procedure Calls
 	static final String appendEntriesRPC = "AppendEntriesRPC";
 	static final String discoverNodesRPC = "DiscoverNodesRPC"; 
 	static final String setValueRPC = "SetValueRPC";
+	static final String getValueRPC = "GetValueRPC";
+	static final String deleteValueRPC = "DeleteValueRPC";
 	
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
@@ -72,7 +74,27 @@ class RPC { // Remote Procedure Calls
 	}
 	
 	@SuppressWarnings("unchecked")
+	static String callGetValue(String obj) {
+		 return getValueRPC.concat("\n").concat(obj).concat("\n");
+	}
+	
+	@SuppressWarnings("unchecked")
+	static String callDeleteValue(String obj) {
+		 return deleteValueRPC.concat("\n").concat(obj).concat("\n");
+	}
+	
+	@SuppressWarnings("unchecked")
 	static String retSetValue(boolean success) {
 		return success ? (setValueRPC + "\ntrue\n") : (setValueRPC + "\nfalse\n");
+	}
+	
+	@SuppressWarnings("unchecked")
+	static String retGetValue(boolean success) {
+		return success ? (getValueRPC + "\ntrue\n") : (getValueRPC + "\nfalse\n");
+	}
+	
+	@SuppressWarnings("unchecked")
+	static String retDeleteValue(boolean success) {
+		return success ? (deleteValueRPC + "\ntrue\n") : (deleteValueRPC + "\nfalse\n");
 	}
 }
