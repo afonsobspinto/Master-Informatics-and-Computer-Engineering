@@ -10,6 +10,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 class RaftCommunication implements Runnable {
 	private Raft raft;
 	private SSLChannel channel;
+	
+	private RaftReader reader;
+	private RaftWriter writer;
 
 	Raft.ServerState state;
 	InetSocketAddress address;
@@ -36,12 +39,15 @@ class RaftCommunication implements Runnable {
 		this.callflag = new AtomicBoolean(true);
 		this.retRPC = new CompletableFuture<>();
 		this.retflag = new AtomicBoolean(false);
+		
+		this.reader = new RaftReader(this);
+		this.writer = new RaftWriter(this);
 	}
 
 	@Override
 	public void run() {
-		while (raft.serverState.get() != ServerState.TERMINATING) {
-		}
+		this.raft.pool.execute(this.reader);
+		this.raft.pool.execute(this.writer);
 	}
 
 	public void stop() {
