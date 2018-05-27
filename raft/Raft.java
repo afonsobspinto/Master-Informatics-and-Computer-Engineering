@@ -82,6 +82,10 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 		});
 	}
 
+	public State getState() {
+		return state;
+	}
+
 	public void start() {
         scheduleTimeout();
 	}

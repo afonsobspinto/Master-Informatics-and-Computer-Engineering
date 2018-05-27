@@ -37,6 +37,13 @@ class RaftCommunication implements Runnable { // Despite the name, this class ac
 		this.retflag = new AtomicBoolean(false);
 	}
 
+	public Raft getRaft() {
+		return this.raft;
+	}
+
+	public SLLChannel getChannel(){
+		return this.channel;
+	}
 	@Override
 	public void run() {
 
@@ -44,5 +51,24 @@ class RaftCommunication implements Runnable { // Despite the name, this class ac
 
 	public void stop() {
 		// Shutdown server
+	}
+
+	public void receiveMessage(RaftCommunication anotherServer, String message){
+		//
+		if(anotherServer.getRaft().getLeaderID() != null){ // If Leader
+			if(message == "AppendEntriesRPC")
+				anotherServer.getChannel().send(RPC.retDiscoverNodes(anotherServer.getRaft(),
+																	 anotherServer.getRaft().getState().getStateID()));
+
+		}
+		else if(){ // If Candidate
+
+		}
+		else{ // If Follower
+
+		}
+
+	public void sendMessage(RaftCommunication anotherServer, string message){
+		anotherServer.getChannel().send(message);
 	}
 }

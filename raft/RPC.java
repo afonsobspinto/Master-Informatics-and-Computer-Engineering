@@ -16,7 +16,7 @@ class RPC { // Remote Procedure Calls
 	static String retAppendEntries() {
 		return null;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	static String callRequestVote() {
 		return null;
@@ -26,19 +26,19 @@ class RPC { // Remote Procedure Calls
 		return null;
 	}
 
-/*
-	callDiscoverNodes, for RaftDiscover with explorer = true
-	DiscoverNodes\n
-	<UUID/port>\n
+	/*
+        callDiscoverNodes, for RaftDiscover with explorer = true
+        DiscoverNodes\n
+        <UUID/port>\n
 
-	retDiscoverNodes, for RaftDiscover with explorer = false
-	DiscoverNodes\n
-	<UUID/port>\n
-	<UUID/address:port 1>\n
-	<UUID/address:port 2>\n
-	...
-	<UUID/address:port N>\n
-*/
+        retDiscoverNodes, for RaftDiscover with explorer = false
+        DiscoverNodes\n
+        <UUID/port>\n
+        <UUID/address:port 1>\n
+        <UUID/address:port 2>\n
+        ...
+        <UUID/address:port N>\n
+    */
 	@SuppressWarnings("unchecked")
 	static String callDiscoverNodes(Raft server) {
 		return "DiscoverNodesRPC\n"
@@ -53,10 +53,25 @@ class RPC { // Remote Procedure Calls
 		if (!server.ID.equals(ID)) {
 			for (Map.Entry<UUID, RaftCommunication> data : (Set<Map.Entry<UUID, RaftCommunication>>) server.cluster.entrySet()) {
 				message.append(data.getKey()).append("/")
-				       .append(data.getValue().address.getAddress().getHostAddress()).append(":")
-				       .append(data.getValue().address.getPort()).append("\n");
+						.append(data.getValue().address.getAddress().getHostAddress()).append(":")
+						.append(data.getValue().address.getPort()).append("\n");
 			}
 		}
 		return message.toString();
+	}
+
+	@SuppressWarnings("unchecked")
+	static String callSet() {
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	static String failure() {
+		return "false";
+	}
+
+	@SuppressWarnings("unchecked")
+	static String success() {
+		return "true";
 	}
 }
