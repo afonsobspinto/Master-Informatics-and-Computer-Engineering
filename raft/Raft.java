@@ -132,7 +132,7 @@ public class Raft<T extends Serializable> { // Stuff is package-private because 
 			return null;
 		}
 		
-		RaftServer leader = this.cluster.get(this.leaderID);
+		RaftCommunication leader = this.cluster.get(this.leaderID);
 		
 		if(leader == null) {
 			return null;
