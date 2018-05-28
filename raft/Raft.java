@@ -6,11 +6,8 @@ import raft.util.Serialization;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -32,6 +29,8 @@ public class Raft<T extends Serializable> {
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
 //  private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
 	AtomicReference<RaftState> state = new AtomicReference<>(RaftState.FOLLOWER);
+
+	LinkedTransferQueue<RaftLog<T>> clientRequests = new LinkedTransferQueue<>();
 
 	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
@@ -88,15 +87,15 @@ public class Raft<T extends Serializable> {
 	}
 
 	//	Persistent state (save this to stable storage)
-	AtomicLong currentTerm = new AtomicLong(0L);
+	AtomicInteger currentTerm = new AtomicInteger(0);
 	UUID votedFor = null;
 	ArrayList<RaftLog<T>> log = new ArrayList<>();
 
 	//	Volatile state
 	UUID leaderID;
-	AtomicLong votes = new AtomicLong(0L);
-	Long commitIndex = 0L;
-	Long lastApplied = 0L;
+	AtomicInteger votes = new AtomicInteger(0);
+	Integer commitIndex = 0;
+	Integer lastApplied = 0;
 
 
 	// TODO we need more locks!!! (or maybe not)
@@ -165,7 +164,7 @@ public class Raft<T extends Serializable> {
 						candidateTimeout();
 						break;
 					case LEADER:
-					//	leaderTimeout();
+						leaderTimeout();
 						// TODO logic to handle client requests
 						break;
 				}
@@ -246,14 +245,18 @@ public class Raft<T extends Serializable> {
 	}
 
 	T getValue() {
-		return null;
+		return log.get((int) (commitIndex - 1)).entry;
 	}
 
 	boolean setValue(T object) {
-		return true;
+		RaftLog<T> result = new RaftLog<>(object, currentTerm.get());
+		clientRequests.put(result);
+		return result.get();
 	}
 
 	boolean deleteValue() {
-		return true;
+		RaftLog<T> result = new RaftLog<>(null, currentTerm.get());
+		clientRequests.put(result);
+		return result.get();
 	}
 }

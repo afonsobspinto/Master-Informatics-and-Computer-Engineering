@@ -37,7 +37,5 @@ public class RaftRedirect<T extends Serializable> implements Runnable{ //this cl
 			channel.send(RPC.retGetValue(new String(obj_bytes)));
 			break;
 		}
-		
-		
 	}
 }
