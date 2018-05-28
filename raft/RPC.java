@@ -19,13 +19,16 @@ class RPC { // Remote Procedure Calls
 				.append(server.ID).append("\n")
 				.append(server.log.size() - 1).append("\n")
 				.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n")
-				.append(server.leaderID);
+				.append(server.leaderID); //TODO
 		return message.toString();
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	static String retAppendEntries() {
-		return null;
+	static String retAppendEntries(Raft server, boolean success) {
+		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
+				.append(server.currentTerm).append("\n")
+				.append(success).append("\n");
+		return message.toString();
 	}
 
 	@SuppressWarnings("unchecked")
