@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 class RaftCommunication implements Runnable {
 	Raft raft;
-	private SSLChannel channel;
+	SSLChannel channel;
 	InetSocketAddress address;
 
 	private RaftReader reader;
@@ -38,6 +38,13 @@ class RaftCommunication implements Runnable {
 		this.writer = new RaftWriter(this);
 	}
 
+	public Raft getRaft() {
+		return this.raft;
+	}
+
+	public SSLChannel getChannel(){
+		return this.channel;
+	}
 	@Override
 	public void run() {
 		this.raft.pool.execute(this.reader);
@@ -46,5 +53,13 @@ class RaftCommunication implements Runnable {
 
 	public void stop() {
 		// Shutdown server
+	}
+
+	public void receiveMessage(RaftCommunication anotherServer, String message) {
+		//
+	}
+
+	public void sendMessage(RaftCommunication anotherServer, String message){
+		anotherServer.getChannel().send(message);
 	}
 }

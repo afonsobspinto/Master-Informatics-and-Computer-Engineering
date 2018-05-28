@@ -1,7 +1,8 @@
 package raft;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.LinkedTransferQueue;
+import java.util.concurrent.TimeUnit;
+
+import raft.Raft.ServerState;
 
 public class RaftWriter implements Runnable{
 	private RaftCommunication raftComm;
@@ -13,6 +14,22 @@ public class RaftWriter implements Runnable{
 	
 	@Override
 	public void run() {
+		while (raftComm.raft.serverState.get() != ServerState.TERMINATING) {
+			String message = null;
+			
+			try {
+				message = raftComm.queue.poll(500, TimeUnit.MILLISECONDS);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if(message == null) {
+				continue;
+			}
+		
+			raftComm.channel.send(message);
+		}
 	}
 
 }
