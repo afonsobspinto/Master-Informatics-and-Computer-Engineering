@@ -111,6 +111,7 @@ public class RaftReader implements Runnable{
 				if (raftComm.raft.votes.get() > (raftComm.raft.cluster.size() + 1) / 2) {
 					raftComm.raft.candidateTimerTask.cancel();
 					raftComm.raft.state.set(RaftState.LEADER);
+                    System.out.println("Change state to Leader ");
 					raftComm.raft.leaderID = raftComm.raft.ID;
 					raftComm.raft.synchronize.set(true);
 					for (RaftCommunication node : (Collection<RaftCommunication>) raftComm.raft.cluster.values()) {

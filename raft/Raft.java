@@ -44,7 +44,9 @@ public class Raft<T extends Serializable> {
 			@Override
 			public void run() {
 				lock.lock();
+                System.out.println("Follower Timetout");
 				state.set(RaftState.CANDIDATE);
+                System.out.println("Changing State to Candidate");
 				votedFor = ID;
 				currentTerm.getAndAdd(1);
 				votes.set(1);
@@ -61,6 +63,9 @@ public class Raft<T extends Serializable> {
 				if (votes.get() > (cluster.size() + 1) / 2) {
 					currentTerm.getAndAdd(1);
 					votes.set(1);
+                    state.set(RaftState.LEADER);
+                    System.out.println("Change state to Leader ");
+                    leaderID = ID;
 				}
 				condition.signal();
 				lock.unlock();
@@ -80,6 +85,7 @@ public class Raft<T extends Serializable> {
 
 	private void followerTimeout() {
 		timer.schedule(followerTimerTask = followerTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
+
 	}
 	private void candidateTimeout() {
 		timer.schedule(candidateTimerTask = candidateTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
@@ -164,7 +170,8 @@ public class Raft<T extends Serializable> {
 						break;
 					case CANDIDATE:
 						synchronize.set(true);
-						for (RaftCommunication node : cluster.values()) {
+
+                        for (RaftCommunication node : cluster.values()) {
 							node.queue.put(RPC.callRequestVoteRPC);
 						}
 						synchronize.set(false);
