@@ -357,10 +357,10 @@
                     @foreach($qas as $qa)
                         <dt class="col-sm-8 mobile-text-center">{{ $qa->question }}?</dt>
                        @if($qa->answer === NULL)
+                           @if(Auth::user()->isAuctionOwner($auction))
                             <dd class="col-sm-8">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Place your question"
-                                           aria-label="Place your question" aria-describedby="basic-addon2" id="question">
+                                    <input type="text" class="form-control" placeholder="Place your answer" id="answer">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseAlertAnswer">Answer</button>
                                     </div>
@@ -374,6 +374,7 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
                         @else
                             <dd class="col-sm-8">{{ $qa->answer }}</dd>
                         @endif

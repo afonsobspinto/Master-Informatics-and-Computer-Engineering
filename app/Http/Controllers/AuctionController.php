@@ -228,18 +228,15 @@ class AuctionController extends Controller
 
         try {
             $qa = new QA();
-            $qa->id = $id;
             $qa->question = $request->input('question-input');
             $qa->answer = NULL;
             $qa->auction_id = $id;
             $qa->questioner_id = Auth::user()->id;
             $qa->save();
         }
-
-        catch (\Exception$e){
+        catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
-
 
         return redirect('auctions/' . $id);
     }

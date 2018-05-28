@@ -112,7 +112,7 @@ CREATE TABLE emails (
 
 
 CREATE TABLE qas (
-    id serial PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id serial NOT NULL PRIMARY KEY,
     question text NOT NULL,
     answer text,
     auction_id integer NOT NULL,
