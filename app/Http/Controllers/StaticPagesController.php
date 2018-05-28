@@ -48,7 +48,7 @@ class StaticPagesController extends Controller
     public function showFAQ(Request $request) {
 
         Mail::to('liandtow@gmail.com')->send(new Administration());
-//        Auth::user()
+
 
         $categories = Category::all();
 

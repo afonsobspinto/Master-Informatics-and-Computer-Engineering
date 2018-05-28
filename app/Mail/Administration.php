@@ -18,7 +18,7 @@ class Administration extends Mailable
      */
     public function __construct()
     {
-        //
+
     }
 
     private static $ADMIN_NO_REPLY_EMAIL = "dontreply@bidbay";
@@ -31,6 +31,10 @@ class Administration extends Mailable
     public function build()
     {
         return $this->from(Administration::$ADMIN_NO_REPLY_EMAIL)
-            ->view('mail.account-creation');
+            ->view('mail.account-creation')
+//            ->with([
+//                'user' => $this->user,
+//            ])
+            ;
     }
 }

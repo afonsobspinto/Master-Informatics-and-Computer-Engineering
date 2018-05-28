@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -75,6 +76,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'username' => $this->buildUsernameRule('unique:users'),
             'email' => $this->buildEmailRule('unique:users'),
@@ -86,6 +88,9 @@ class RegisterController extends Controller
             'city' => $this->id_rule,
             'picture' => $this->image_rule,
         ]);
+
+
+
     }
 
     /**
