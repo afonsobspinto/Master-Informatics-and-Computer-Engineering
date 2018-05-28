@@ -18,10 +18,13 @@ class Administration extends Mailable
      */
     public function __construct()
     {
+        $this->adminEmail = env("MAIL_USERNAME");
 
+        if(!$this->adminEmail)
+            throw new \Exception("System email not configure");
     }
 
-    private static $ADMIN_NO_REPLY_EMAIL = "dontreply@bidbay";
+    private $adminEmail;
 
     /**
      * Build the message.
@@ -30,11 +33,8 @@ class Administration extends Mailable
      */
     public function build()
     {
-        return $this->from(Administration::$ADMIN_NO_REPLY_EMAIL)
+        return $this->from($this->adminEmail)
             ->view('mail.account-creation')
-//            ->with([
-//                'user' => $this->user,
-//            ])
-            ;
+            ->subject('Email Confirmation');
     }
 }
