@@ -25,7 +25,7 @@ public class RaftReader implements Runnable{
 			long term;
 			
 			switch(messageArray[0]) {
-			case RPC.appendEntriesRPC:
+			case RPC.callAppendEntriesRPC:
 				//1
 				term = Long.parseLong(messageArray[1]);
 				
@@ -50,7 +50,7 @@ public class RaftReader implements Runnable{
 				//3
 				//TODO
 				break;
-			case RPC.requestVoteRPC:
+			case RPC.callRequestVoteRPC:
 				//1
 				term = Long.parseLong(messageArray[1]);
 				

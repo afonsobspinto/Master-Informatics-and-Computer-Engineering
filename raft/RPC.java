@@ -5,16 +5,23 @@ import java.util.Set;
 import java.util.UUID;
 
 class RPC { // Remote Procedure Calls
-	static final String appendEntriesRPC = "AppendEntriesRPC";
-	static final String discoverNodesRPC = "DiscoverNodesRPC";
-	static final String setValueRPC = "SetValueRPC";
-	static final String getValueRPC = "GetValueRPC";
-	static final String deleteValueRPC = "DeleteValueRPC";
-	static final String requestVoteRPC = "RequestVoteRPC";
+	static final String callAppendEntriesRPC = "CallAppendEntriesRPC";
+	static final String callDiscoverNodesRPC = "CallDiscoverNodesRPC";
+	static final String callSetValueRPC = "CallSetValueRPC";
+	static final String callGetValueRPC = "CallGetValueRPC";
+	static final String callDeleteValueRPC = "CallDeleteValueRPC";
+	static final String callRequestVoteRPC = "CallRequestVoteRPC";
+	
+	static final String retAppendEntriesRPC = "RetAppendEntriesRPC";
+	static final String retDiscoverNodesRPC = "RetDiscoverNodesRPC";
+	static final String retSetValueRPC = "RetSetValueRPC";
+	static final String retGetValueRPC = "RetGetValueRPC";
+	static final String retDeleteValueRPC = "RetDeleteValueRPC";
+	static final String retRequestVoteRPC = "RetRequestVoteRPC";
 
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
-		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
+		StringBuilder message = new StringBuilder(callAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(server.ID.toString()).append("\n")
 				.append(server.log.size() - 1).append("\n")
@@ -25,7 +32,7 @@ class RPC { // Remote Procedure Calls
 	
 	@SuppressWarnings("unchecked")
 	static String retAppendEntries(Raft server, boolean success) {
-		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
+		StringBuilder message = new StringBuilder(retAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(success).append("\n");
 		return message.toString();
@@ -33,7 +40,7 @@ class RPC { // Remote Procedure Calls
 
 	@SuppressWarnings("unchecked")
 	static String callRequestVote(Raft server) {
-		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
+		StringBuilder message = new StringBuilder(callRequestVoteRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(server.ID.toString()).append("\n")
 				.append(server.log.size()-1).append("\n")
@@ -44,7 +51,7 @@ class RPC { // Remote Procedure Calls
 
 	@SuppressWarnings("unchecked")
 	static String retRequestVote(Raft server, boolean voteGranted) {
-		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
+		StringBuilder message = new StringBuilder(retRequestVoteRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(voteGranted).append("\n");
 
@@ -66,13 +73,13 @@ class RPC { // Remote Procedure Calls
     */
 	@SuppressWarnings("unchecked")
 	static String callDiscoverNodes(Raft server) {
-		return discoverNodesRPC.concat("\n")
+		return callDiscoverNodesRPC.concat("\n")
 				.concat(server.ID.toString()).concat("/")
 				.concat(server.port.toString()).concat("\n");
 	}
 	@SuppressWarnings("unchecked")
 	static String retDiscoverNodes(Raft server, UUID ID) {
-		StringBuilder message = new StringBuilder(discoverNodesRPC).append("\n")
+		StringBuilder message = new StringBuilder(retDiscoverNodesRPC).append("\n")
 				.append(server.ID.toString()).append("/")
 				.append(server.port).append("\n");
 		if (!server.ID.equals(ID)) {
@@ -87,31 +94,31 @@ class RPC { // Remote Procedure Calls
 
 	@SuppressWarnings("unchecked")
 	static String callSetValue(String obj) {
-		return setValueRPC.concat("\n").concat(obj).concat("\n");
+		return callSetValueRPC.concat("\n").concat(obj).concat("\n");
 	}
 
 	@SuppressWarnings("unchecked")
 	static String callGetValue() {
-		return getValueRPC.concat("\n");
+		return callGetValueRPC.concat("\n");
 	}
 
 	@SuppressWarnings("unchecked")
 	static String callDeleteValue() {
-		return deleteValueRPC.concat("\n");
+		return callDeleteValueRPC.concat("\n");
 	}
 
 	@SuppressWarnings("unchecked")
 	static String retSetValue(boolean success) {
-		return success ? (setValueRPC + "\ntrue\n") : (setValueRPC + "\nfalse\n");
+		return success ? (retSetValueRPC + "\ntrue\n") : (retSetValueRPC + "\nfalse\n");
 	}
 
 	@SuppressWarnings("unchecked")
 	static String retGetValue(String obj) {
-		return getValueRPC.concat("\n").concat(obj).concat("\n");
+		return retGetValueRPC.concat("\n").concat(obj).concat("\n");
 	}
 
 	@SuppressWarnings("unchecked")
 	static String retDeleteValue(boolean success) {
-		return success ? (deleteValueRPC + "\ntrue\n") : (deleteValueRPC + "\nfalse\n");
+		return success ? (retDeleteValueRPC + "\ntrue\n") : (retDeleteValueRPC + "\nfalse\n");
 	}
 }
