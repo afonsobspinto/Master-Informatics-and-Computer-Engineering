@@ -29,7 +29,7 @@ public class RaftReader implements Runnable{
 			switch(messageArray[0]) {
 			case RPC.callAppendEntriesRPC:
 
-                System.out.println("Receive Append Entry " + message );
+                System.out.println("Receive Append Entry: \n " + message );
 
                 //1
 				term = Integer.parseInt(messageArray[1]);
@@ -67,11 +67,14 @@ public class RaftReader implements Runnable{
 				//1
 				term = Integer.parseInt(messageArray[1]);
 
+                System.out.println("Receive Request Vote: \n " + message );
+
 
 
                 if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retRequestVote(raftComm.raft, false);
-					break;
+
+                    break;
 				}
 
 				UUID candidateID = UUID.fromString(messageArray[2]);
@@ -79,7 +82,13 @@ public class RaftReader implements Runnable{
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
 				int lastLogTerm = Integer.parseInt(messageArray[4]);
 
-				//2
+                //TODO: @Shinuzi a aceder ao voteFor Exception in thread "pool-1-thread-5" java.lang.NullPointerException
+                //	at raft.RaftReader.run(RaftReader.java:87)
+                //	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                //	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                //	at java.lang.Thread.run(Thread.java:748)
+
+                //2
 				if (raftComm.raft.votedFor.get() == null || raftComm.raft.votedFor.get() == candidateID) {
 					int lastReceiverLogTerm = ((RaftLog) raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
 
@@ -96,26 +105,26 @@ public class RaftReader implements Runnable{
 						break;
 					}
 
-                    System.out.println(raftComm.raft.log.size()-1);
-                    System.out.println(lastLogIndex);
 					if(raftComm.raft.log.size()-1 <= lastLogIndex) {
 						raftComm.raft.votedFor.set(candidateID);
 						reply = RPC.retRequestVote(raftComm.raft, true);
 						break;
 					}
 				}
-                System.out.println("Nada");
-				reply = RPC.retRequestVote(raftComm.raft, false);
 
+				reply = RPC.retRequestVote(raftComm.raft, false);
 				break;
+
 			case RPC.retAppendEntriesRPC:
-			    reply = " ";
+                System.out.println("Receive Append Entry Reply: \n " + message );
 				break;
 			case RPC.retRequestVoteRPC:
 				term = Integer.parseInt(messageArray[1]);
 				boolean gotAVote = Boolean.parseBoolean(messageArray[2]);
-				
-				if (term > raftComm.raft.currentTerm.get()) {
+                System.out.println("Receive Request Vote Reply: \n " + message );
+
+
+                if (term > raftComm.raft.currentTerm.get()) {
 					raftComm.raft.candidateTimerTask.cancel();
 					raftComm.raft.state.set(RaftState.FOLLOWER);
                     System.out.println("Change State to Follower");
@@ -128,9 +137,7 @@ public class RaftReader implements Runnable{
 				
 				if (raftComm.raft.votes.get() > (raftComm.raft.cluster.size() + 1) / 2) {
 					raftComm.raft.candidateTimerTask.cancel();
-					raftComm.raft.state.set(RaftState.LEADER);
-                    System.out.println("Change state to Leader ");
-					raftComm.raft.leaderID = raftComm.raft.ID;
+					raftComm.raft.changeStateToLeader();
 					raftComm.raft.synchronize.set(true);
 					for (RaftCommunication node : (Collection<RaftCommunication>) raftComm.raft.cluster.values()) {
 						node.nextIndex = raftComm.raft.log.size();
@@ -144,7 +151,7 @@ public class RaftReader implements Runnable{
 			}
 			
 			if(reply != null) {
-				raftComm.raft.followerTimerTask.cancel(); // TODO temporary
+                raftComm.raft.restartTimeout();
 				raftComm.queue.put(reply);
 			}
 		}

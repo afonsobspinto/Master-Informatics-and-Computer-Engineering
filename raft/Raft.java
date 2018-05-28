@@ -44,12 +44,7 @@ public class Raft<T extends Serializable> {
 			@Override
 			public void run() {
 				lock.lock();
-                System.out.println("Follower Timetout");
-				state.set(RaftState.CANDIDATE);
-                System.out.println("Changing State to Candidate");
-				votedFor.set(ID);
-				currentTerm.getAndAdd(1);
-				votes.set(1);
+				changeStateToCandidate();
 				condition.signal();
 				lock.unlock();
 			}
@@ -61,17 +56,33 @@ public class Raft<T extends Serializable> {
 			public void run() {
 				lock.lock();
 				if (votes.get() > (cluster.size() + 1) / 2) {
-					currentTerm.getAndAdd(1);
-					votes.set(1);
-                    state.set(RaftState.LEADER);
-                    System.out.println("Change state to Leader ");
-                    leaderID = ID;
+                    changeStateToLeader();
 				}
 				condition.signal();
 				lock.unlock();
 			}
 		};
 	}
+
+    private void changeStateToCandidate(){
+        System.out.println("Follower Timetout");
+        state.set(RaftState.CANDIDATE);
+        System.out.println("Changing State to Candidate");
+        votedFor.set(ID);
+        currentTerm.getAndAdd(1);
+        votes.set(1);
+        printState();
+    }
+
+	public void changeStateToLeader(){
+        System.out.println("Change state to Leader ");
+        votes.set(0);
+        state.set(RaftState.LEADER);
+        printState();
+        leaderID = ID;
+        votedFor = null;
+    }
+
 	private TimerTask leaderTimerTask() {
 		return new TimerTask() {
 			@Override
@@ -82,6 +93,12 @@ public class Raft<T extends Serializable> {
 			}
 		};
 	}
+
+	public void restartTimeout(){
+        System.out.println("Restart Timeout");
+        followerTimerTask.cancel();
+        followerTimeout(); //TODO: @Shinuzi isto é preciso?
+    }
 
 	private void followerTimeout() {
 	    int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
@@ -141,6 +158,8 @@ public class Raft<T extends Serializable> {
 				}
 			}
 		});
+
+        printState();
 	}
 
 	public Raft(Integer port) {
@@ -157,6 +176,8 @@ public class Raft<T extends Serializable> {
 				}
 			}
 		});
+
+		printState();
 	}
 
 	/*
@@ -187,8 +208,11 @@ public class Raft<T extends Serializable> {
 						condition.awaitUninterruptibly();
 						break;
 					case LEADER:
+                        System.out.println("Leader");
 						synchronize.set(true);
+                        System.out.println("Prepare to Send");
 						for (RaftCommunication node : cluster.values()) {
+                            System.out.println("Sending HeartBeat"); //TODO: Não está a a mandar
 							node.queue.put(RPC.callAppendEntriesRPC);
 						}
 						synchronize.set(false);
@@ -303,5 +327,32 @@ public class Raft<T extends Serializable> {
 		RaftLog<T> result = new RaftLog<>(null, currentTerm.get());
 		clientRequests.put(result);
 		return result.get();
+	}
+
+	public void printState(){
+        System.out.println("\n");
+		if(this.state.get() == RaftState.FOLLOWER){
+            System.out.println("Follower State");
+        }
+        if(this.state.get() == RaftState.CANDIDATE){
+            System.out.println("Candidate State");
+        }
+        if(this.state.get() == RaftState.LEADER){
+            System.out.println("Leader State");
+        }
+
+        System.out.println("Term: " + currentTerm);
+        System.out.println("VotedFor: " + votedFor);
+        System.out.println("Votes: " + votes);
+        System.out.println("Log Index: " + Integer.toString(log.size()-1));
+        if(log.size()-1 != 0)
+            System.out.println("Last Log Term: " + log.get(log.size()-1));
+        else
+            System.out.println("Last Log Term: " + 0);
+        System.out.println("Old Logs");
+        for(RaftLog entry: log){
+            System.out.print(entry.term + " ");
+        }
+        System.out.println("\n");
 	}
 }

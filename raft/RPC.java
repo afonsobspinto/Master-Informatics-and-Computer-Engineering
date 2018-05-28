@@ -36,7 +36,6 @@ class RPC { // Remote Procedure Calls
 
 				message.append(server.commitIndex.toString()).append("\n");
 
-        System.out.println("Append Entry: " + message.toString());
 
 		return message.toString();
 	}
@@ -46,8 +45,6 @@ class RPC { // Remote Procedure Calls
 		StringBuilder message = new StringBuilder(retAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(success).append("\n");
-
-        System.out.println("Append Entry Reply: " + message.toString());
 
         return message.toString();
 	}
@@ -60,8 +57,6 @@ class RPC { // Remote Procedure Calls
 				.append(server.log.size()-1).append("\n")
 				.append(((RaftLog) server.log.get(server.log.size()-1)).term).append("\n");
 
-        System.out.println("Request Vote: " + message.toString());
-
         return message.toString();
 	}
 
@@ -70,8 +65,6 @@ class RPC { // Remote Procedure Calls
 		StringBuilder message = new StringBuilder(retRequestVoteRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(voteGranted).append("\n");
-
-        System.out.println("Request Vote Reply: " + message.toString());
 
         return message.toString();
 	}
