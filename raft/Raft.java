@@ -76,7 +76,6 @@ public class Raft<T extends Serializable> {
             System.out.println("Staying Follower");
         }
         printState();
-        restartFollowerTimeout(); //TODO: Timeout not working after leader leave
     }
 
     private void changeStateToCandidate() {
@@ -126,6 +125,7 @@ public class Raft<T extends Serializable> {
     }
 
     private void followerTimeout() {
+        System.out.println("Starting Timeout");
         int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
         System.out.println(delay);
         timer.schedule(followerTimerTask = followerTimerTask(), delay);

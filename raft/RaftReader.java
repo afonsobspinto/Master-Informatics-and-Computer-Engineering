@@ -33,7 +33,7 @@ public class RaftReader implements Runnable{
 
                 //1
 				term = Integer.parseInt(messageArray[1]);
-                raftComm.raft.followerTimerTask.cancel();
+                raftComm.raft.restartFollowerTimeout();
 
 				if(term > raftComm.raft.currentTerm.get()){
 				    if(raftComm.raft.state.get()!= RaftState.FOLLOWER) {
