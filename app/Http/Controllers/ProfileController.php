@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Messages;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Category;
@@ -145,5 +146,14 @@ class ProfileController extends Controller
 
 //        TODO when done
 //        return redirect( url('profile', [Auth::id()] ) );
+    }
+
+    public function getNumMessages() {
+        if(!Auth::check())
+            return response("stop right there baddie", Response::HTTP_FORBIDDEN);
+
+        $numMessages = Messages::countUnreadMessages(Auth::id());
+
+        return response()->json($numMessages);
     }
 }

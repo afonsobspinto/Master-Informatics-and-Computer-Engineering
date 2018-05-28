@@ -271,8 +271,8 @@
                                         </div>
                                         <label for="reason" class="col-form-label">Other:</label>
                                         <input type="text" class="form-control" id="reason">
-                                        <input type = "hidden" value={{$auction->id}} id="auction">
-                                        <input type = "hidden" value={{Auth::user()->id}} id="reporter">
+                                        <input type = "hidden" value="{{$auction->id}}" id="auction">
+                                        <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
                                     </div>
                                     <div class="form-group">
                                         <label for="message" class="col-form-label">Message:</label>
@@ -300,7 +300,7 @@
                 @else
                     <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid </dt>
                 @endif
-                <dd class="col-sm-10">{{ $auction->currentPriceEuros()}}€</dd>
+                <dd class="col-sm-10" id="current-auction-price">{{ $auction->currentPriceEuros()}}€</dd>
 
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>

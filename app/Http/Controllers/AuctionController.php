@@ -270,5 +270,10 @@ class AuctionController extends Controller
         $auction->deleteBids(Auth::user());
     }
 
+    public function getCurrentPrice($auctionID) {
+        $auction = Auction::findOrFail($auctionID);
+
+        return response()->json($auction->currentPriceEuros());
+    }
 }
 
