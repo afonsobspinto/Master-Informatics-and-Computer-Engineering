@@ -25,7 +25,7 @@ Route::resource('auctions', 'AuctionController');
 Route::post('auctions/{id}', 'AuctionController@addToWishlist');
 
 // bids
-Route::post('auctions/{id}', 'AuctionController@storeBid')->name('auctions.storeBid');
+Route::post('auctions/{id}/storeBid', 'AuctionController@storeBid')->name('auctions.storeBid');
 
 //Reports
 Route::resource('reports', 'ReportsController');

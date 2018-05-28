@@ -234,6 +234,8 @@ class AuctionController extends Controller
             $bid->id = $id;
             $bid->bidder_id = Auth::user()->id;
             $bid->bid_amount = $request->input('bid-amount');
+            if(!$bid->isBidBigger($bid->bid_amount, $id))
+                return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
             $bid->save();
         }
 
@@ -241,9 +243,8 @@ class AuctionController extends Controller
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
-        return response()->json([
-            'success' => 'You successfully placed a bid',
-        ], Response::HTTP_OK);
+
+        return redirect('auctions/' . $id);
     }
 
 }

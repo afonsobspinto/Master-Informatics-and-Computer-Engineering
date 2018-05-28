@@ -15,4 +15,12 @@ class Bid extends Model
             $data
         );
     }
+
+    public static function isBidBigger($bid, $auctionID){
+        $auction = Auction::findOrFail($auctionID);
+        if($bid < $auction->current_price)
+            return false;
+        return true;
+    }
+
 }
