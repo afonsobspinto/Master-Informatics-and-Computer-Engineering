@@ -154,7 +154,7 @@ public class RaftReader implements Runnable{
 			}
 			
 			if(reply != null) {
-                raftComm.raft.restartTimeout();
+                raftComm.raft.restartFollowerTimeout();
 				raftComm.queue.put(reply);
 			}
 		}

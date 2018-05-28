@@ -76,6 +76,7 @@ public class Raft<T extends Serializable> {
             System.out.println("Staying Follower");
         }
         printState();
+        restartFollowerTimeout(); //TODO: Timeout not working after leader leave
     }
 
     private void changeStateToCandidate() {
@@ -89,12 +90,16 @@ public class Raft<T extends Serializable> {
     }
 
     public void changeStateToLeader() {
-        System.out.println("Change state to Leader ");
-        votes.set(0);
-        votedFor.set(null);
-        state.set(RaftState.LEADER);
-        printState();
-        leaderID = ID;
+        if (RaftState.LEADER != state.get()) {
+            System.out.println("Change state to Leader ");
+            votes.set(0);
+            votedFor.set(null);
+            state.set(RaftState.LEADER);
+            leaderID = ID;
+            printState();
+            cancelCandidateTimeout();
+
+        }
     }
 
     private TimerTask leaderTimerTask() {
@@ -108,7 +113,13 @@ public class Raft<T extends Serializable> {
         };
     }
 
-    public void restartTimeout() {
+    private void cancelCandidateTimeout() {
+        System.out.println("Cancel Candidate Timeout\n");
+        candidateTimerTask.cancel();
+        leaderTimeout(); //TODO: @Shinuzi isto é preciso?
+    }
+
+    void restartFollowerTimeout() {
         System.out.println("Restart Timeout");
         followerTimerTask.cancel();
         followerTimeout(); //TODO: @Shinuzi isto é preciso?
@@ -208,6 +219,7 @@ public class Raft<T extends Serializable> {
 				condition.awaitUninterruptibly();
 			} */
             serverState.set(ServerState.RUNNING);
+
             while (serverState.get() != ServerState.TERMINATING) {
                 switch (state.get()) {
                     case FOLLOWER:
@@ -216,6 +228,7 @@ public class Raft<T extends Serializable> {
                         break;
                     case CANDIDATE:
                         synchronize.set(true);
+                        System.out.println("Send Vote Requests{");
                         for (RaftCommunication node : cluster.values()) {
                             node.queue.put(RPC.callRequestVoteRPC);
                         }
@@ -224,11 +237,9 @@ public class Raft<T extends Serializable> {
                         condition.awaitUninterruptibly();
                         break;
                     case LEADER:
-                        System.out.println("Leader");
                         synchronize.set(true);
-                        System.out.println("Prepare to Send");
+                        System.out.println("Send HeartBeats{");
                         for (RaftCommunication node : cluster.values()) {
-                            System.out.println("Sending HeartBeat"); //TODO: Não está a a mandar
                             node.queue.put(RPC.callAppendEntriesRPC);
                         }
                         synchronize.set(false);
