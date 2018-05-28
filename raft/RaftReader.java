@@ -65,6 +65,7 @@ public class RaftReader implements Runnable{
 					break;
 				}
 				
+				//TODO
 				UUID candidateID = UUID.fromString(messageArray[2]);
 				
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
