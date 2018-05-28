@@ -1,7 +1,6 @@
 'use strict';
 
 const idInput = $('#header-user-id');
-
 if(idInput.length)
 {
     const userID = idInput.val();

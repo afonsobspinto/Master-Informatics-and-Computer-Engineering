@@ -23,6 +23,7 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 // auctions
 Route::resource('auctions', 'AuctionController');
 Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
+Route::get('auctions/{id}/price', 'AuctionController@getCurrentPrice');
 
 // bids
 Route::post('auctions/{id}/storeBid', 'AuctionController@storeBid')->name('auctions.storeBid');
