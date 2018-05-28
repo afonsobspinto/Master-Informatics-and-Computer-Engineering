@@ -168,4 +168,16 @@ class User extends Authenticatable
         else
             return false;
     }
+
+    public function isHighestBidder($auction){
+        $current_bid = $auction->current_price;
+        $user_bid = DB::table('bids')
+            ->where('id', '=', $auction->id)
+            ->where('bidder_id', '=', $this->id)
+            ->value('bid_amount');
+        if($current_bid == $user_bid){
+            return true;
+        }
+        return false;
+    }
 }

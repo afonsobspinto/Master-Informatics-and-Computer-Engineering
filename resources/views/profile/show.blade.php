@@ -656,7 +656,7 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label for="admin-pass" class="col-form-label">Password:</label>
+                        <label for="user-pass" class="col-form-label">Password:</label>
                         <input type="password" class="form-control" id="admin-pass">
                     </form>
                 </div>
@@ -664,7 +664,7 @@
                     <button type="button" class="btn btn-secondary"
                             data-dismiss="modal">Close
                     </button>
-                    <button type="button" class="btn btn-danger report">Submit</button>
+                    <button id="remove-btn" type="button" class="btn btn-danger report" data-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>

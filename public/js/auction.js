@@ -18,3 +18,20 @@ $('#remove-auction-btn').click(function() {
         }
     });
 });
+/*
+// add item to wishlist
+$('#add-wishlist').click(function(){
+    console.log('response');
+    const input = $('#add-wishlist');
+    $.ajax({
+        type: 'POST',
+        url: '/wishlist',
+        data: input,
+        success: function(data) {
+            window.location.replace("");
+        },
+        error: function (data) {
+            showErrorAlert("error");
+        }
+    });
+});*/

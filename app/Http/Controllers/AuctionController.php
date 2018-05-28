@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Wishlist;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Auction;
 use App\Category;
 use App\City;
+use App\Bid;
 use App\Country;
 use App\Messages;
 use Carbon\Carbon;
@@ -38,7 +40,7 @@ class AuctionController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
         $unreadMessages = Messages::countUnreadMessages($userId);
-        $cities = City::all();
+        $cities = City::allOrderedCities();
         $countries = Country::allOrderedCountries();
         $images = [$this->getAuctionPlaceholderURL()];
 
@@ -105,12 +107,14 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
         $qas = $auction->getQAs();
+        $bids = $auction->getBids();
         $reviews = $auction->getAuctionOwnerReviews();
 
         return view('auctions.show', [
             'categories' => $categories,
             'auction' => $auction,
             'qas' => $qas,
+            'bids' => $bids,
             'reviews' => $reviews
         ]);
     }
@@ -202,9 +206,46 @@ class AuctionController extends Controller
         return response()->json('', Response::HTTP_OK);
     }
 
-    public function addToWishlist($auctionID){
-        $userID = Auth::user()->id;
-        DB::table('wishlists')->insert($auctionID, $userID);
+    public function addToWishlist($id){
+
+        try {
+            $wishlist = new Wishlist();
+            $wishlist->auction_id = Auction::findOrFail($id);
+            $wishlist->id = Auth::user()->id;
+            $wishlist->save();
+        }
+        catch (\Exception$e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return response()->json([
+            'success' => 'You added this item to your wishlist',
+        ], Response::HTTP_OK);
     }
+
+    public function storeBid(Request $request, $id)
+    {
+        $this->validate($request, [
+            'bid-amount' => 'required',
+        ]);
+
+        try {
+            $bid = new Bid();
+            $bid->id = $id;
+            $bid->bidder_id = Auth::user()->id;
+            $bid->bid_amount = $request->input('bid-amount');
+            if(!$bid->isBidBigger($bid->bid_amount, $id))
+                return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+            $bid->save();
+        }
+
+        catch (\Exception$e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+
+        return redirect('auctions/' . $id);
+    }
+
 }
 
