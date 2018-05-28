@@ -23,14 +23,15 @@ class RPC { // Remote Procedure Calls
 	static String callAppendEntries(Raft server) {
 		StringBuilder message = new StringBuilder(callAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
-				.append(server.ID.toString()).append("\n")
-				.append(server.log.size() - 1).append("\n");
+				.append(server.ID.toString()).append("\n");
 		
 				if(server.log.size() == 0) {
-					message.append(1).append("\n");
+					message.append(0).append("\n")
+							.append(1).append("\n");
 				}
 				else {
-					message.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n");
+					message.append(server.log.size() - 1).append("\n")
+							.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n");
 				}
 				
 				message.append(server.leaderID.toString()).append("\n"); //TODO
