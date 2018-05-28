@@ -18,22 +18,26 @@ public class RaftWriter implements Runnable{
 			
 			try {
 				message = raftComm.queue.poll(500, TimeUnit.MILLISECONDS);
-				switch (message) {
-					case RPC.appendEntriesRPC:
-						message = RPC.callAppendEntries(raftComm.raft);
-						break;
-				}
 
 				while (raftComm.raft.synchronize.get());
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			if(message == null) {
 				continue;
 			}
-		
+
+			switch (message) {
+			case RPC.callAppendEntriesRPC:
+				message = RPC.callAppendEntries(raftComm.raft);
+				break;
+			case RPC.callRequestVoteRPC:
+				message = RPC.callAppendEntries(raftComm.raft);
+				break;
+			}
+
 			raftComm.channel.send(message);
 		}
 	}
