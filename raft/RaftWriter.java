@@ -18,6 +18,14 @@ public class RaftWriter implements Runnable{
 			
 			try {
 				message = raftComm.queue.poll(500, TimeUnit.MILLISECONDS);
+				if (message != null) {
+					switch (message) {
+						case RPC.callAppendEntriesRPC:
+							message = RPC.callAppendEntries(raftComm.raft);
+							break;
+
+					}
+				}
 
 				while (raftComm.raft.synchronize.get());
 			} 

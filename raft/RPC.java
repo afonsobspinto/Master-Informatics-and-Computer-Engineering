@@ -24,7 +24,7 @@ class RPC { // Remote Procedure Calls
 		StringBuilder message = new StringBuilder(callAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(server.ID.toString()).append("\n");
-		
+
 				if(server.log.size() == 0) {
 					message.append(0).append("\n")
 							.append(0).append("\n");
@@ -33,10 +33,11 @@ class RPC { // Remote Procedure Calls
 					message.append(server.log.size() - 1).append("\n")
 							.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n");
 				}
-				
+
 				message.append(server.commitIndex.toString()).append("\n");
 
         System.out.println("Append Entry: " + message.toString());
+
 		return message.toString();
 	}
 	
