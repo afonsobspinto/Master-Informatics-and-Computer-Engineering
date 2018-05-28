@@ -27,8 +27,11 @@
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <a href="#" class="fas fa-star text-warning " aria-hidden="true" title="Remove from Wishlist"></a>
                     @else
-                        <input value="{{ $auction->id }}" type="hidden" hidden>
-                        <a href="#" id="add-wishlist" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></a>
+                        <form method="POST" action="{{action('AuctionController@addToWishlist', [$auction->id])}}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            <submit href="" id="add-wishlist" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></submit>
+                        </form>
                     @endif
                 </div>
             </div><!-- end row-->
@@ -322,8 +325,6 @@
                         <div class="col-sm-3 bid" id="button-bid">
                             <div class="btn-group">
                                 <input type="submit" name="submit" value="Place Bid" class="btn" data-toggle="collapse" data-target=".collapseAlert" id="button-bid">
-                                {{--<a type="submit" value="submit" class="btn" data-toggle="collapse" href="" data-target=".collapseAlert" id="button-bid">
-                                    Place Bid</a>--}}
                             </div>
                         </div>
                         </div>
@@ -358,12 +359,12 @@
         </div>
         <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
             <dl class="row">
-                @if(count($qas) == 0)
+                @if(count($wishlists) == 0)
                     <p>No questions yet, ask something!</p>
                 @else
-                    @foreach($qas as $qa)
-                        <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->question }}</dt>
-                        @if($qa->answer === NULL)
+                    @foreach($wishlists as $qa)
+                        <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->auction_id }}</dt>
+                        @if($qa->id === NULL)
                             <dd class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Place your answer"
@@ -382,7 +383,7 @@
                                 </div>
                             </div>
                         @else
-                            <dd class="col-sm-8">{{ $qa->answer }}</dd>
+                            <dd class="col-sm-8">{{ $qa->id }}</dd>
                         @endif
                     @endforeach
                 @endif

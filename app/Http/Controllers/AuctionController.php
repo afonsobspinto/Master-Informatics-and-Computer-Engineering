@@ -107,14 +107,14 @@ class AuctionController extends Controller
         $categories = Category::all();
         $auction = Auction::findOrFail($id);
         $qas = $auction->getQAs();
-        $bids = $auction->getBids();
+        $wishlists = $auction->getBids();
         $reviews = $auction->getAuctionOwnerReviews();
 
         return view('auctions.show', [
             'categories' => $categories,
             'auction' => $auction,
+            'wishlists' => $wishlists,
             'qas' => $qas,
-            'bids' => $bids,
             'reviews' => $reviews
         ]);
     }
@@ -210,17 +210,14 @@ class AuctionController extends Controller
 
         try {
             $wishlist = new Wishlist();
-            $wishlist->auction_id = Auction::findOrFail($id);
+            $wishlist->auction_id = $id;
             $wishlist->id = Auth::user()->id;
             $wishlist->save();
         }
-        catch (\Exception$e){
+        catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
-
-        return response()->json([
-            'success' => 'You added this item to your wishlist',
-        ], Response::HTTP_OK);
+        return redirect('auctions/' . $id);
     }
 
     public function storeBid(Request $request, $id)
@@ -236,8 +233,8 @@ class AuctionController extends Controller
             $bid->bid_amount = $request->input('bid-amount');
             if(!$bid->isBidBigger($bid->bid_amount, $id))
                 return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+            $this->destroyPreviousBid(Auction::findOrFail($id));
             $bid->save();
-            $this->destroyBids(Auction::findOrFail($id));
         }
 
         catch (\Exception$e){
@@ -248,8 +245,8 @@ class AuctionController extends Controller
         return redirect('auctions/' . $id);
     }
 
-    public function destroyBids($auction){
-        $auction->deleteBids();
+    public function destroyPreviousBid($auction){
+        $auction->deleteBids(Auth::user());
     }
 
 }

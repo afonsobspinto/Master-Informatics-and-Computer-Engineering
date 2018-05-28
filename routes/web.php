@@ -22,7 +22,7 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
 Route::resource('auctions', 'AuctionController');
-Route::post('auctions/{id}', 'AuctionController@addToWishlist');
+Route::post('auctions/{id}/wishlist', 'AuctionController@addToWishlist');
 
 // bids
 Route::post('auctions/{id}/storeBid', 'AuctionController@storeBid')->name('auctions.storeBid');

@@ -123,13 +123,14 @@ class Auction extends Model
     }
 
     public function getBids(){
-        return DB::table('bids')->get();
+        return DB::table('wishlists')->get();
     }
 
-    public function deleteBids(){
+    public function deleteBids($user){
         $current_bid = $this->current_price;
         DB::table('bids')
             ->where('id', '=', $this->id)
+            ->where('bidder_id', '=', $user->id)
             ->where('bid_amount', '<', $current_bid)
             ->delete();
     }
