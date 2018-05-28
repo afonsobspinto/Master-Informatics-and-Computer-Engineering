@@ -298,10 +298,10 @@ public class Raft<T extends Serializable> {
         String request = RPC.callSetValue(serObj);
         System.out.println((char)27 + "[31m"+ "Sending Request: " + request + (char)27 + "[0m");
         channel.send(request);
-        System.out.println("Request sent");
 
-        System.out.println("Reading Reply:"); //TODO: Stuck here
+        System.out.println("RECEIVING!");
         String message = channel.receiveString();
+        System.out.println("Hello"); //TODO: not printing?
         System.out.println((char)27 + "[31m"+ "Message Received from Channel " + message + (char)27 + "[0m");
 
 

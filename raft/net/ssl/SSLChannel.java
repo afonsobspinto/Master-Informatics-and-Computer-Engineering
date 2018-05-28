@@ -89,7 +89,7 @@ public class SSLChannel {
 		try {
 			socket.getOutputStream().write(data);
 		} catch (Exception e) {
-			//System.out.println("Failed to send");
+		//	e.printStackTrace();
 			return false;
 		}
 		
@@ -103,7 +103,16 @@ public class SSLChannel {
 
 	public String receiveString() {
 		byte[] data = receive();
-		return data != null ? new String(data) : null;
+		if(data==null){
+            System.out.println("NULL");
+            return null;
+        }
+        else {
+		    String ret = new String(data);
+            System.out.println("Data: " + ret);
+            return ret;
+        }
+
 	}
 
 	public byte[] receive(int timeout) {
@@ -121,7 +130,6 @@ public class SSLChannel {
 	public byte[] receive() {
 		if (received.size() == 0) {
 			int bytes_read = 0;
-
 			try {
 				bytes_read = socket.getInputStream().read(data);
 			} catch (Exception e) {
