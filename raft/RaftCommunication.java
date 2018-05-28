@@ -21,8 +21,8 @@ class RaftCommunication implements Runnable {
 	Raft.ServerState state;
 
 	// Volatile serverState
-	Long nextIndex;
-	Long matchIndex = 0L;
+	Integer nextIndex;
+	Integer matchIndex = 0;
 
 	RaftCommunication() {
 		// Placeholder constructor

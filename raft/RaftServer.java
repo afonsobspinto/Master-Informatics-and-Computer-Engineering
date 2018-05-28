@@ -20,11 +20,11 @@ class RaftServer<T extends Serializable> implements Runnable {
 		String[] message = channel.receiveString().split("\n");
 		
 		switch(message[0]) {
-		case RPC.setValueRPC:
-			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
-			break;
 		case RPC.getValueRPC:
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.GET));
+			break;
+		case RPC.setValueRPC:
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
 			break;
 		case RPC.deleteValueRPC:
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.DELETE));
@@ -33,7 +33,7 @@ class RaftServer<T extends Serializable> implements Runnable {
 			String[] address = message[1].split("/");
 			UUID ID = UUID.fromString(address[0]);
 
-			raft.lock.lock();
+			raft.clusterLock.lock();
 			channel.send(RPC.retDiscoverNodes(raft, ID));
 			if (!raft.ID.equals(ID)) {
 				// We use putIfAbsent because there may be a conflict of IDs with other servers, so we don't want to erase our probably correct information
@@ -42,7 +42,7 @@ class RaftServer<T extends Serializable> implements Runnable {
 					System.out.println(new InetSocketAddress(channel.getRemoteAddress().getAddress().getHostAddress(), Integer.valueOf(address[1]))); // DEBUG
 				}
 			}
-			raft.lock.unlock();
+			raft.clusterLock.unlock();
 			break;
 		}
 	}

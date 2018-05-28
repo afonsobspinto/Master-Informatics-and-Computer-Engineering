@@ -42,7 +42,7 @@ class RaftDiscover implements Runnable {
 		for (int n = 2; n < message.length; ++n) {
 			address = message[n].split("[/:]");
 			ID = UUID.fromString(address[0]);
-			// If the other server detected same ID, it won't send us the list of known addresses, thus we only need to check above
+			// If the other server detected same ID, it won't synchronize us the list of known addresses, thus we only need to check above
 			if (raft.cluster.putIfAbsent(ID, new RaftCommunication()) == null) {
 				SSLChannel channel = new SSLChannel(new InetSocketAddress(address[1], Integer.valueOf(address[2])));
 				if (channel.connect()) {

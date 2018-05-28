@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Condition;
@@ -27,35 +28,46 @@ public class Raft<T extends Serializable> {
 	Integer port;
 
 	ConcurrentHashMap<UUID, RaftCommunication> cluster = new ConcurrentHashMap<>();
-//  private AtomicReference<State> state = new AtomicReference<>(new FollowerState(this));
+	ReentrantLock clusterLock = new ReentrantLock();
 	AtomicReference<RaftState> state = new AtomicReference<>(RaftState.FOLLOWER);
 
 	LinkedTransferQueue<RaftLog<T>> clientRequests = new LinkedTransferQueue<>();
 
 	ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     private Timer timer = new Timer();
-    private TimerTask followerTimerTask() {
-    	return new TimerTask() {
-		    @Override
-		    public void run() {
-			    lock.lock();
-			    if (state.compareAndSet(RaftState.FOLLOWER, RaftState.CANDIDATE)) {
-				    currentTerm.getAndAdd(1);
-				    votes.getAndAdd(1);
-				 //   System.out.println("Heartbeat");
-			    }
-			    condition.signal();
-			    lock.unlock();
-		    }
-	    };
-    }
+    TimerTask followerTimerTask;
+	TimerTask candidateTimerTask;
+	TimerTask leaderTimerTask;
+
+	private TimerTask followerTimerTask() {
+		return new TimerTask() {
+			@Override
+			public void run() {
+				lock.lock();
+				state.set(RaftState.CANDIDATE);
+				currentTerm.getAndAdd(1);
+				votedFor = ID;
+				votes.set(1);
+				condition.signal();
+				lock.unlock();
+			}
+		};
+	}
 	private TimerTask candidateTimerTask() {
 		return new TimerTask() {
 			@Override
 			public void run() {
 				lock.lock();
-				if (state.get() == RaftState.CANDIDATE) {
+				if (votes.get() > (cluster.size() + 1) / 2) {
+					if (state.compareAndSet(RaftState.CANDIDATE, RaftState.LEADER)) {
+						for (RaftCommunication node : cluster.values()) {
+							node.nextIndex = log.size();
+							node.matchIndex = 0;
+						}
+					}
+				} else {
 					currentTerm.getAndAdd(1);
+					votes.set(1);
 				}
 				condition.signal();
 				lock.unlock();
@@ -63,13 +75,10 @@ public class Raft<T extends Serializable> {
 		};
 	}
 	private TimerTask leaderTimerTask() {
-		return new TimerTask() { // TODO
+		return new TimerTask() {
 			@Override
 			public void run() {
 				lock.lock();
-				/*if (state.get() == RaftState.CANDIDATE) {
-					currentTerm.getAndAdd(1);
-				}*/
 				condition.signal();
 				lock.unlock();
 			}
@@ -77,29 +86,29 @@ public class Raft<T extends Serializable> {
 	}
 
 	private void followerTimeout() {
-		timer.schedule(followerTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+		timer.schedule(followerTimerTask = followerTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
 	}
-	void candidateTimeout() {
-		timer.schedule(candidateTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+	private void candidateTimeout() {
+		timer.schedule(candidateTimerTask = candidateTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
 	}
-	void leaderTimeout() { // TODO
-		timer.schedule(leaderTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxRandomDelay - RaftProtocol.minRandomDelay) + RaftProtocol.minRandomDelay);
+	private void leaderTimeout() {
+		timer.schedule(leaderTimerTask = leaderTimerTask(), RaftProtocol.HeartbeatPeriod);
 	}
 
 	//	Persistent state (save this to stable storage)
 	AtomicInteger currentTerm = new AtomicInteger(0);
 	UUID votedFor = null;
+	AtomicInteger votes = new AtomicInteger(0);
 	ArrayList<RaftLog<T>> log = new ArrayList<>();
 
 	//	Volatile state
 	UUID leaderID;
-	AtomicInteger votes = new AtomicInteger(0);
+//	Integer prevLogIndex = 0;
+//	Integer prevLogTerm = 0;
 	Integer commitIndex = 0;
 	Integer lastApplied = 0;
 
-
-	// TODO we need more locks!!! (or maybe not)
-	ReentrantLock cluster_lock = new ReentrantLock();
+	AtomicBoolean synchronize = new AtomicBoolean(false);
 
 	ReentrantLock lock = new ReentrantLock();
 	Condition condition = lock.newCondition();
@@ -158,17 +167,36 @@ public class Raft<T extends Serializable> {
 				switch (state.get()) {
 					case FOLLOWER:
 						followerTimeout();
+						condition.awaitUninterruptibly();
 						break;
 					case CANDIDATE:
-						// TODO Issue requestVotes
+						synchronize.set(true);
+						for (RaftCommunication node : cluster.values()) {
+							node.queue.put(RPC.requestVoteRPC);
+						}
+						synchronize.set(false);
 						candidateTimeout();
+						condition.awaitUninterruptibly();
 						break;
 					case LEADER:
+						synchronize.set(true);
+						for (RaftCommunication node : cluster.values()) {
+							node.queue.put(RPC.appendEntriesRPC);
+						}
+						synchronize.set(false);
 						leaderTimeout();
-						// TODO logic to handle client requests
+						condition.awaitUninterruptibly();
+						RaftLog<T> request = null;
+						try {
+							request = clientRequests.poll();
+						} catch (Exception e) {
+							// e.printStackTrace();
+						}
+						if (request != null) {
+							log.add(request);
+						}
 						break;
 				}
-				condition.awaitUninterruptibly();
 			}
 		});
 	}

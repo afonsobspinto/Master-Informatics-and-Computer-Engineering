@@ -10,8 +10,7 @@ public class RaftWriter implements Runnable{
 	public RaftWriter(RaftCommunication raftComm) {
 		this.raftComm = raftComm;
 	}
-	
-	
+
 	@Override
 	public void run() {
 		while (raftComm.raft.serverState.get() != ServerState.TERMINATING) {
@@ -19,6 +18,13 @@ public class RaftWriter implements Runnable{
 			
 			try {
 				message = raftComm.queue.poll(500, TimeUnit.MILLISECONDS);
+				switch (message) {
+					case RPC.appendEntriesRPC:
+						message = RPC.callAppendEntries(raftComm.raft);
+						break;
+				}
+
+				while (raftComm.raft.synchronize.get());
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
