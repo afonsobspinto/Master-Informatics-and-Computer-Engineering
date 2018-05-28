@@ -29,7 +29,7 @@ public class RaftReader implements Runnable{
 			switch(messageArray[0]) {
 			case RPC.callAppendEntriesRPC:
 
-                System.out.println("Receive Append Entry: \n " + message );
+                System.out.println("Receive Append Entry: \n" + message );
 
                 //1
 				term = Integer.parseInt(messageArray[1]);
@@ -67,7 +67,7 @@ public class RaftReader implements Runnable{
 				//1
 				term = Integer.parseInt(messageArray[1]);
 
-                System.out.println("Receive Request Vote: \n " + message );
+                System.out.println("Receive Request Vote: \n" + message );
 
 
 
@@ -82,11 +82,6 @@ public class RaftReader implements Runnable{
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
 				int lastLogTerm = Integer.parseInt(messageArray[4]);
 
-                //TODO: @Shinuzi a aceder ao voteFor Exception in thread "pool-1-thread-5" java.lang.NullPointerException
-                //	at raft.RaftReader.run(RaftReader.java:87)
-                //	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-                //	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-                //	at java.lang.Thread.run(Thread.java:748)
 
                 //2
 				if (raftComm.raft.votedFor.get() == null || raftComm.raft.votedFor.get() == candidateID) {
@@ -96,7 +91,12 @@ public class RaftReader implements Runnable{
 					if(lastReceiverLogTerm != lastLogTerm) {
 						if(lastReceiverLogTerm < lastLogTerm){
 							raftComm.raft.votedFor.set(candidateID);
-							reply = RPC.retRequestVote(raftComm.raft, true);
+							raftComm.raft.changeStateToFollower();
+                            System.out.println("Because my last term is less then candidate last term");
+                            System.out.println(lastReceiverLogTerm + " vs " + lastLogTerm);
+
+                            reply = RPC.retRequestVote(raftComm.raft, true);
+
 						}
 						else {
 							reply = RPC.retRequestVote(raftComm.raft, false);
@@ -107,7 +107,10 @@ public class RaftReader implements Runnable{
 
 					if(raftComm.raft.log.size()-1 <= lastLogIndex) {
 						raftComm.raft.votedFor.set(candidateID);
-						reply = RPC.retRequestVote(raftComm.raft, true);
+                        raftComm.raft.changeStateToFollower();
+                        System.out.println("Because my log index is less or equal then candidate log index");
+                        System.out.println(raftComm.raft.log.size()-1 + " vs " + lastLogIndex);
+                        reply = RPC.retRequestVote(raftComm.raft, true);
 						break;
 					}
 				}
@@ -116,12 +119,12 @@ public class RaftReader implements Runnable{
 				break;
 
 			case RPC.retAppendEntriesRPC:
-                System.out.println("Receive Append Entry Reply: \n " + message );
+                System.out.println("Receive Append Entry Reply: \n" + message );
 				break;
 			case RPC.retRequestVoteRPC:
 				term = Integer.parseInt(messageArray[1]);
 				boolean gotAVote = Boolean.parseBoolean(messageArray[2]);
-                System.out.println("Receive Request Vote Reply: \n " + message );
+                System.out.println("Receive Request Vote Reply: \n" + message );
 
 
                 if (term > raftComm.raft.currentTerm.get()) {
