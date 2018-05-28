@@ -22,12 +22,12 @@ public class RaftReader implements Runnable{
 			
 			String[] messageArray = message.split("\n");
 			String reply = null;
-			long term;
+			int term;
 			
 			switch(messageArray[0]) {
 			case RPC.callAppendEntriesRPC:
 				//1
-				term = Long.parseLong(messageArray[1]);
+				term = Integer.parseInt(messageArray[1]);
 				
 				if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retAppendEntries(raftComm.raft, false);
@@ -52,7 +52,7 @@ public class RaftReader implements Runnable{
 				break;
 			case RPC.callRequestVoteRPC:
 				//1
-				term = Long.parseLong(messageArray[1]);
+				term = Integer.parseInt(messageArray[1]);
 				
 				if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retRequestVote(raftComm.raft, false);
@@ -94,6 +94,26 @@ public class RaftReader implements Runnable{
 			case RPC.retAppendEntriesRPC:
 				break;
 			case RPC.retRequestVoteRPC:
+				term = Integer.parseInt(messageArray[1]);
+				boolean gotAVote = Boolean.parseBoolean(messageArray[2]);
+				
+				if(term > raftComm.raft.currentTerm.get()) {
+					raftComm.raft.state.set(RaftState.FOLLOWER);
+					raftComm.raft.candidateTimerTask.cancel();
+					break;
+				}
+				
+				if(gotAVote) {
+					raftComm.raft.votes.incrementAndGet();
+				}
+				
+				if(raftComm.raft.votes.get() > (raftComm.raft.cluster.size() + 1)/2) {
+					raftComm.raft.state.set(RaftState.LEADER);
+					raftComm.raft.leaderID = raftComm.raft.ID;
+					raftComm.raft.candidateTimerTask.cancel();
+					break;
+				}
+				
 				break;
 			}
 			
