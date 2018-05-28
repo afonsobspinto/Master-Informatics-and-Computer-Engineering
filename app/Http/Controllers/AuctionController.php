@@ -237,6 +237,7 @@ class AuctionController extends Controller
             if(!$bid->isBidBigger($bid->bid_amount, $id))
                 return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
             $bid->save();
+            $this->destroyBids(Auction::findOrFail($id));
         }
 
         catch (\Exception$e){
@@ -245,6 +246,10 @@ class AuctionController extends Controller
 
 
         return redirect('auctions/' . $id);
+    }
+
+    public function destroyBids($auction){
+        $auction->deleteBids();
     }
 
 }
