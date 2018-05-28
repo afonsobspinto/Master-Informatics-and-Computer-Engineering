@@ -47,6 +47,7 @@ Route::resource('reports', 'ReportsController');
 
 //profile
 Route::resource('profile', 'ProfileController');
+Route::get('profile/{id}/unread-messages', 'ProfileController@getNumMessages');
 
 // search
 Route::get('search', 'SearchController@showSearch');

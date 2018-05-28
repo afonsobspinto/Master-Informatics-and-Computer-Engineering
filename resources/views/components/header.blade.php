@@ -23,9 +23,10 @@
     <a class="fa-stack fa-3x" id="mail-icon" href="/messages">
         <i class="far fa-envelope fa-stack-2x"></i>
         <!-- place numbers of messages here -->
-        <strong class="fa-stack-1x calendar-text got-messages mail-icon-number">
-            10
+        <strong id="num-messages" class="fa-stack-1x calendar-text got-messages mail-icon-number">
+            0
         </strong>
+        <input type="hidden" id="header-user-id" value="{{ Auth::id() }}">
     </a>
     <div class="dropdown" id="authentication">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
