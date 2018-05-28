@@ -24,8 +24,8 @@ class RPC { // Remote Procedure Calls
 		StringBuilder message = new StringBuilder(callAppendEntriesRPC).append("\n")
 				.append(server.currentTerm.get()).append("\n")
 				.append(server.ID.toString()).append("\n")
-				.append(server.log.size() - 1).append("\n")
-				.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n")
+				.append(server.log.size() + (server.log.size() == 0 ? 0 : 1)).append("\n")
+				.append(server.log.size() == 0 ? 0 : ((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n")
 				.append(server.leaderID.toString()); //TODO
 		return message.toString();
 	}

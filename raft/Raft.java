@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Raft<T extends Serializable> {
     enum ServerState {
-        INITIALIZING, WAITING, RUNNING, TERMINATING;
+        INITIALIZING, READYING, RUNNING, TERMINATING;
     }
     enum ClusterState {
         INITIALIZING, RUNNING, TERMINATING;
@@ -89,15 +89,13 @@ public class Raft<T extends Serializable> {
 	}
 
 	//	Persistent state (save this to stable storage)
-	AtomicInteger currentTerm = new AtomicInteger(0);
+	AtomicInteger currentTerm = new AtomicInteger(1);
 	UUID votedFor = null;
 	AtomicInteger votes = new AtomicInteger(0);
 	ArrayList<RaftLog<T>> log = new ArrayList<>();
 
 	//	Volatile state
 	UUID leaderID;
-//	Integer prevLogIndex = 0;
-//	Integer prevLogTerm = 0;
 	Integer commitIndex = 0;
 	Integer lastApplied = 0;
 
@@ -137,6 +135,7 @@ public class Raft<T extends Serializable> {
 
 	public Raft(Integer port) {
 		this.port = port;
+		leaderID = ID;
 
 		// Listen for new connections
 		this.pool.execute(() -> {
@@ -156,6 +155,11 @@ public class Raft<T extends Serializable> {
 	public void run() {
 		pool.execute(() -> {
 			lock.lock();
+			if (leaderID == null) {
+				serverState.set(ServerState.READYING);
+				condition.awaitUninterruptibly();
+			}
+			serverState.set(ServerState.RUNNING);
 			while (serverState.get() != ServerState.TERMINATING) {
 				switch (state.get()) {
 					case FOLLOWER:
@@ -193,6 +197,10 @@ public class Raft<T extends Serializable> {
 			}
 			lock.unlock();
 		});
+	}
+
+	public void stop() {
+		serverState.set(ServerState.TERMINATING);
 	}
 
 	public T get() {

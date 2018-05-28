@@ -59,24 +59,25 @@ public class RaftReader implements Runnable{
 					reply = RPC.retRequestVote(raftComm.raft, false);
 					break;
 				}
-				
-				//2
-				if(raftComm.raft.votedFor == null) {
-					reply = RPC.retRequestVote(raftComm.raft, true);
-					break;
-				}
-				
-				//TODO
+
 				UUID candidateID = UUID.fromString(messageArray[2]);
-				
+
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
-				long lastLogTerm = Long.parseLong(messageArray[4]);
-				
-				long lastReceiverLogTerm = ((RaftLog)raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
-				
+				int lastLogTerm = Integer.parseInt(messageArray[4]);
+				//2
+				//if ((raftComm.raft.votedFor == null || raftComm.raft.votedFor == candidateID) &&
+				//		) {
+					reply = RPC.retRequestVote(raftComm.raft, true);
+					raftComm.raft.votedFor = candidateID;
+					break;
+				//}
+
+			//	int lastReceiverLogTerm = ((RaftLog) raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
+			/*
 				if(lastReceiverLogTerm != lastLogTerm) {
 					if(lastReceiverLogTerm < lastLogTerm){
 						reply = RPC.retRequestVote(raftComm.raft, true);
+						raftComm.raft.votedFor = candidateID;
 					}
 					else {
 						reply = RPC.retRequestVote(raftComm.raft, false);
@@ -90,8 +91,8 @@ public class RaftReader implements Runnable{
 					break;
 				}
 				
-				reply = RPC.retRequestVote(raftComm.raft, false);
-				break;
+				reply = RPC.retRequestVote(raftComm.raft, false); */ // TODO
+				//break;
 			case RPC.retAppendEntriesRPC:
 				break;
 			case RPC.retRequestVoteRPC:
