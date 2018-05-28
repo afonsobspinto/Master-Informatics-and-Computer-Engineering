@@ -27,7 +27,7 @@ class RPC { // Remote Procedure Calls
 		
 				if(server.log.size() == 0) {
 					message.append(0).append("\n")
-							.append(1).append("\n");
+							.append(0).append("\n");
 				}
 				else {
 					message.append(server.log.size() - 1).append("\n")
