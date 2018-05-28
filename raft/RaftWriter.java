@@ -1,5 +1,8 @@
 package raft;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.LinkedTransferQueue;
+
 public class RaftWriter implements Runnable{
 	private RaftCommunication raftComm;
 	
@@ -10,7 +13,6 @@ public class RaftWriter implements Runnable{
 	
 	@Override
 	public void run() {
-		
 	}
 
 }

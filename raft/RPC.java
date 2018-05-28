@@ -45,11 +45,11 @@ class RPC { // Remote Procedure Calls
 	}
 
 /*
-	callDiscoverNodes, for RaftDiscover with explorer = true
+	callDiscoverNodes, for RaftDiscover
 	DiscoverNodes\n
 	<UUID/port>\n
 
-	retDiscoverNodes, for RaftDiscover with explorer = false
+	retDiscoverNodes, for RaftServer
 	DiscoverNodes\n
 	<UUID/port>\n
 	<UUID/address:port 1>\n
