@@ -66,8 +66,10 @@ public class RaftReader implements Runnable{
 			case RPC.callRequestVoteRPC:
 				//1
 				term = Integer.parseInt(messageArray[1]);
-				
-				if(term < raftComm.raft.currentTerm.get()) {
+
+
+
+                if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retRequestVote(raftComm.raft, false);
 					break;
 				}
@@ -76,9 +78,11 @@ public class RaftReader implements Runnable{
 
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
 				int lastLogTerm = Integer.parseInt(messageArray[4]);
+
 				//2
-				if ((raftComm.raft.votedFor == null || raftComm.raft.votedFor.get() == candidateID)) {
+				if (raftComm.raft.votedFor.get() == null || raftComm.raft.votedFor.get() == candidateID) {
 					int lastReceiverLogTerm = ((RaftLog) raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
+
 
 					if(lastReceiverLogTerm != lastLogTerm) {
 						if(lastReceiverLogTerm < lastLogTerm){
@@ -92,12 +96,15 @@ public class RaftReader implements Runnable{
 						break;
 					}
 
-					if(raftComm.raft.log.size() <= lastLogIndex) {
+                    System.out.println(raftComm.raft.log.size()-1);
+                    System.out.println(lastLogIndex);
+					if(raftComm.raft.log.size()-1 <= lastLogIndex) {
 						raftComm.raft.votedFor.set(candidateID);
 						reply = RPC.retRequestVote(raftComm.raft, true);
 						break;
 					}
 				}
+                System.out.println("Nada");
 				reply = RPC.retRequestVote(raftComm.raft, false);
 
 				break;
