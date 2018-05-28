@@ -1,5 +1,7 @@
 package raft;
 
+import java.util.UUID;
+
 import raft.Raft.ServerState;
 
 public class RaftReader implements Runnable{
@@ -20,11 +22,12 @@ public class RaftReader implements Runnable{
 			
 			String[] messageArray = message.split("\n");
 			String reply = null;
+			long term;
 			
 			switch(messageArray[0]) {
 			case RPC.appendEntriesRPC:
 				//1
-				long term = Long.parseLong(messageArray[1]);
+				term = Long.parseLong(messageArray[1]);
 				
 				if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retAppendEntries(raftComm.raft, false);
@@ -48,6 +51,36 @@ public class RaftReader implements Runnable{
 				//TODO
 				break;
 			case RPC.requestVoteRPC:
+				//1
+				term = Long.parseLong(messageArray[1]);
+				
+				if(term < raftComm.raft.currentTerm.get()) {
+					reply = RPC.retRequestVote(raftComm.raft, false);
+					break;
+				}
+				
+				//2
+				if(raftComm.raft.votedFor == null) {
+					reply = RPC.retRequestVote(raftComm.raft, true);
+					break;
+				}
+				
+				UUID candidateID = UUID.fromString(messageArray[2]);
+				
+				int lastLogIndex = Integer.parseInt(messageArray[3]);
+				long lastLogTerm = Long.parseLong(messageArray[4]);
+				
+				if(lastLogIndex >= raftComm.raft.log.size()) {
+					reply = RPC.retRequestVote(raftComm.raft, false);
+					break;
+				}
+				
+				if(((RaftLog)raftComm.raft.log.get(lastLogIndex)).term != lastLogTerm) {
+					reply = RPC.retRequestVote(raftComm.raft, false);
+					break;
+				}
+				
+				reply = RPC.retRequestVote(raftComm.raft, true);
 				break;
 			}
 			
