@@ -5,15 +5,18 @@ import raft.net.ssl.SSLChannel;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 class RaftCommunication implements Runnable {
-	private Raft raft;
-	private SSLChannel channel;
+	Raft raft;
+	SSLChannel channel;
 	InetSocketAddress address;
 
 	private RaftReader reader;
 	private RaftWriter writer;
+	
+	LinkedTransferQueue<String> queue;
 
 	Raft.ServerState state;
 
