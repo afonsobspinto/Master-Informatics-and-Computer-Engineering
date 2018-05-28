@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\QA;
 use App\Wishlist;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -217,6 +218,29 @@ class AuctionController extends Controller
         catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
+        return redirect('auctions/' . $id);
+    }
+
+    public function storeQuestion(Request $request, $id){
+        $this->validate($request, [
+            'question-input' => 'required',
+        ]);
+
+        try {
+            $qa = new QA();
+            $qa->id = $id;
+            $qa->question = $request->input('question-input');
+            $qa->answer = NULL;
+            $qa->auction_id = $id;
+            $qa->questioner_id = Auth::user()->id;
+            $qa->save();
+        }
+
+        catch (\Exception$e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+
         return redirect('auctions/' . $id);
     }
 

@@ -109,26 +109,23 @@ class User extends Authenticatable
     }
 
     public function getItemsForSale() {
-        return DB::table('auctions')->where('owner_id', '=', $this->id)->get();
+        return Auction::where('owner_id', '=', $this->id)->get();
     }
 
     public function getWishlist() {
-        return DB::table('auctions')
-            ->join('wishlists', 'auctions.id', '=', 'wishlists.auction_id')
+        return Auction::join('wishlists', 'auctions.id', '=', 'wishlists.auction_id')
             ->where('wishlists.id', '=', $this->id)
             ->get();
     }
 
     public function getBiddingItems() {
-        return DB::table('auctions')
-            ->join('bids', 'auctions.id', '=', 'bids.id')
+        return Auction::join('bids', 'auctions.id', '=', 'bids.id')
             ->where('bids.bidder_id', '=', $this->id)
             ->get();
     }
 
     public function getPurchaseHistory() {
-        return DB::table('auctions')
-            ->join('won_auctions', 'auctions.id', '=', 'won_auctions.id')
+        return Auction::join('won_auctions', 'auctions.id', '=', 'won_auctions.id')
             ->where('won_auctions.winner_id', '=', $this->id)
             ->get();
     }

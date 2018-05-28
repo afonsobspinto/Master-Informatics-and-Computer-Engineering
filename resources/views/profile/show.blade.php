@@ -402,7 +402,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img src="http://www.bbxuk.com/wp-content/uploads/2015/05/computer-05.jpg" alt="result 1" width="250" height="150">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -437,7 +437,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img src="http://cdn1.shopmania.biz/files/s4/452423870/p/l/9/cofre-alta-seguranca-digital-map20ea~5089.jpg" alt="result 1" width="250" height="150">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -485,7 +485,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img src="https://http2.mlstatic.com/quadro-pug-pop-art-cachorro-pet-rrs2-decoracao-sala-paspatur-D_NQ_NP_761901-MLB20437861082_102015-F.jpg" alt="result 1" width="250" height="150">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -520,7 +520,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img src="https://www.directofficesupply.co.uk/components/com_virtuemart/shop_image/product/a6a464b6cccdfdef717e6eb5a0838fa3.jpg" alt="result 1" width="250" height="150">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
