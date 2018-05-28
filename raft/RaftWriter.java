@@ -32,11 +32,20 @@ public class RaftWriter implements Runnable{
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			if(message == null) {
 				continue;
 			}
-		
+
+			switch (message) {
+			case RPC.callAppendEntriesRPC:
+				message = RPC.callAppendEntries(raftComm.raft);
+				break;
+			case RPC.callRequestVoteRPC:
+				message = RPC.callAppendEntries(raftComm.raft);
+				break;
+			}
+
 			raftComm.channel.send(message);
 		}
 	}
