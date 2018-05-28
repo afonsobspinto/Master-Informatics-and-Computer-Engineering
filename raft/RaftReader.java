@@ -122,6 +122,7 @@ public class RaftReader implements Runnable{
 			}
 			
 			if(reply != null) {
+				raftComm.raft.followerTimerTask.cancel(); // TODO temporary
 				raftComm.queue.put(reply);
 			}
 		}

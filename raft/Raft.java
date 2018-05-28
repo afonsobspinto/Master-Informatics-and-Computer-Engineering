@@ -162,10 +162,10 @@ public class Raft<T extends Serializable> {
 	public void run() {
 		pool.execute(() -> {
 			lock.lock();
-			if (leaderID == null) {
+			/*if (leaderID == null) {
 				serverState.set(ServerState.READYING);
 				condition.awaitUninterruptibly();
-			}
+			} */
 			serverState.set(ServerState.RUNNING);
 			while (serverState.get() != ServerState.TERMINATING) {
 				switch (state.get()) {
