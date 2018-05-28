@@ -20,16 +20,16 @@ class RaftServer<T extends Serializable> implements Runnable {
 		String[] message = channel.receiveString().split("\n");
 		
 		switch(message[0]) {
-		case RPC.getValueRPC:
-			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.GET));
-			break;
-		case RPC.setValueRPC:
+		case RPC.callSetValueRPC:
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, message[1], RaftCommand.SET));
 			break;
-		case RPC.deleteValueRPC:
+		case RPC.callGetValueRPC:
+			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.GET));
+			break;
+		case RPC.callDeleteValueRPC:
 			raft.pool.execute(new RaftRedirect<T>(raft, channel, null, RaftCommand.DELETE));
 			break;
-		case RPC.discoverNodesRPC:
+		case RPC.callDiscoverNodesRPC:
 			String[] address = message[1].split("/");
 			UUID ID = UUID.fromString(address[0]);
 
