@@ -20,3 +20,11 @@ services:
       - "5050:5050"
     depends_on:
       - postgres
+
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: "none"
+    ports:
+      - 8025:8025
+      - 1025:1025

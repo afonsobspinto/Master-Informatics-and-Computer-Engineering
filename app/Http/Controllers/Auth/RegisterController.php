@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\ImageFileTraits;
 use App\Http\Controllers\UserTraits;
+use App\Mail\VerifyEmail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
+
 
 class RegisterController extends Controller
 {
@@ -29,6 +31,7 @@ class RegisterController extends Controller
 
     use UserTraits;
     use ImageFileTraits;
+
 
     /**
      * Where to redirect users after registration.
@@ -75,6 +78,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'username' => $this->buildUsernameRule('unique:users'),
             'email' => $this->buildEmailRule('unique:users'),
@@ -86,6 +90,9 @@ class RegisterController extends Controller
             'city' => $this->id_rule,
             'picture' => $this->image_rule,
         ]);
+
+
+
     }
 
     /**

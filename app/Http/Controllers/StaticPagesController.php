@@ -6,14 +6,18 @@ namespace App\Http\Controllers;
 use App\Auction;
 
 use App\Category;
+use App\Mail\Administration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Mail;
 
 
 class StaticPagesController extends Controller
 {
+
+    use VerifyEmail;
 
     const NUM_CAROUSEL_ITEMS = 3;
     const NUM_CARDS = 6;
