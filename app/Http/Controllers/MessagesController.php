@@ -16,6 +16,8 @@ use Auth;
 class MessagesController extends Controller
 {
 
+    use ImageFileTraits;
+
     protected $messageService;
 
     public function __construct(Messages $messages) {
@@ -197,15 +199,17 @@ class MessagesController extends Controller
         $unreadMessages = Messages::countUnreadMessages($userId);
         $message = $this->messageService->getUserMessageById($userId, $id);
         if( $message->has_been_opened == false) {
-
          //   update message has opened to true
             $this->messageService->updateMessageHasBeenOpened($id);
         }
+
+        $profilePic = $this->getProfilePictureURL($message->sender_id);
 
         return view('messages.show', [
             'categories' => $categories,
             'message' => $message,
             'unreadMessages' => $unreadMessages,
+            'photo' => $profilePic,
         ]);
     }
 
@@ -218,9 +222,12 @@ class MessagesController extends Controller
         error_log("ESTOU AQUI");
         $message = $this->messageService->getUserSentMessageById($userId, $id);
 
+        $profilePic = $this->getProfilePictureURL($message->receiver_id);
+
         return view('messages.show_sent', [
             'categories' => $categories,
             'message' => $message,
+            'photo' => $profilePic,
         ]);
     }
     /**
