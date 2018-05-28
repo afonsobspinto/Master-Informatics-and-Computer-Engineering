@@ -1,5 +1,6 @@
 package raft;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import raft.Raft.ServerState;
@@ -97,9 +98,9 @@ public class RaftReader implements Runnable{
 				term = Integer.parseInt(messageArray[1]);
 				boolean gotAVote = Boolean.parseBoolean(messageArray[2]);
 				
-				if(term > raftComm.raft.currentTerm.get()) {
-					raftComm.raft.state.set(RaftState.FOLLOWER);
+				if (term > raftComm.raft.currentTerm.get()) {
 					raftComm.raft.candidateTimerTask.cancel();
+					raftComm.raft.state.set(RaftState.FOLLOWER);
 					break;
 				}
 				
@@ -107,10 +108,16 @@ public class RaftReader implements Runnable{
 					raftComm.raft.votes.incrementAndGet();
 				}
 				
-				if(raftComm.raft.votes.get() > (raftComm.raft.cluster.size() + 1)/2) {
+				if (raftComm.raft.votes.get() > (raftComm.raft.cluster.size() + 1) / 2) {
+					raftComm.raft.candidateTimerTask.cancel();
 					raftComm.raft.state.set(RaftState.LEADER);
 					raftComm.raft.leaderID = raftComm.raft.ID;
-					raftComm.raft.candidateTimerTask.cancel();
+					raftComm.raft.synchronize.set(true);
+					for (RaftCommunication node : (Collection<RaftCommunication>) raftComm.raft.cluster.values()) {
+						node.nextIndex = raftComm.raft.log.size();
+						node.matchIndex = 0;
+					}
+					raftComm.raft.synchronize.set(false);
 					break;
 				}
 				

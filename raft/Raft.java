@@ -45,8 +45,8 @@ public class Raft<T extends Serializable> {
 			public void run() {
 				lock.lock();
 				state.set(RaftState.CANDIDATE);
-				currentTerm.getAndAdd(1);
 				votedFor = ID;
+				currentTerm.getAndAdd(1);
 				votes.set(1);
 				condition.signal();
 				lock.unlock();
@@ -59,13 +59,6 @@ public class Raft<T extends Serializable> {
 			public void run() {
 				lock.lock();
 				if (votes.get() > (cluster.size() + 1) / 2) {
-					if (state.compareAndSet(RaftState.CANDIDATE, RaftState.LEADER)) {
-						for (RaftCommunication node : cluster.values()) {
-							node.nextIndex = log.size();
-							node.matchIndex = 0;
-						}
-					}
-				} else {
 					currentTerm.getAndAdd(1);
 					votes.set(1);
 				}
@@ -172,7 +165,7 @@ public class Raft<T extends Serializable> {
 					case CANDIDATE:
 						synchronize.set(true);
 						for (RaftCommunication node : cluster.values()) {
-							node.queue.put(RPC.requestVoteRPC);
+							node.queue.put(RPC.callRequestVoteRPC);
 						}
 						synchronize.set(false);
 						candidateTimeout();
@@ -181,7 +174,7 @@ public class Raft<T extends Serializable> {
 					case LEADER:
 						synchronize.set(true);
 						for (RaftCommunication node : cluster.values()) {
-							node.queue.put(RPC.appendEntriesRPC);
+							node.queue.put(RPC.callAppendEntriesRPC);
 						}
 						synchronize.set(false);
 						leaderTimeout();
@@ -198,22 +191,27 @@ public class Raft<T extends Serializable> {
 						break;
 				}
 			}
+			lock.unlock();
 		});
 	}
 
 	public T get() {
-		SSLChannel channel = connectToLeader();
+		T obj;
+		if (state.get() != RaftState.LEADER) {
+			SSLChannel channel = connectToLeader();
 
-		if(channel == null) {
-			return null;
+			if (channel == null) {
+				return null;
+			}
+
+			channel.send(RPC.callGetValue());
+
+			String message = channel.receiveString();
+
+			obj = Serialization.deserialize(message.split("\n")[1].getBytes());
+		} else {
+			obj = getValue();
 		}
-
-		channel.send(RPC.callGetValue());
-
-		String message = channel.receiveString();
-
-		T obj = Serialization.deserialize(message.split("\n")[1].getBytes());
-
 		return obj;
 	}
 
