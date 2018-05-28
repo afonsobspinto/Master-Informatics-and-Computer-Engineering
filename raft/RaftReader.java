@@ -15,7 +15,7 @@ public class RaftReader implements Runnable{
 	@Override
 	public void run() {
 		while (raftComm.raft.serverState.get() != ServerState.TERMINATING) {
-			String message = raftComm.channel.receiveString(500);
+			String message = raftComm.channel.receiveString();
 			
 			if(message == null) {
 				continue;
@@ -29,7 +29,13 @@ public class RaftReader implements Runnable{
 			case RPC.callAppendEntriesRPC:
 				//1
 				term = Integer.parseInt(messageArray[1]);
-				
+
+				if(term > raftComm.raft.currentTerm.get()){
+				    if(raftComm.raft.state.get()!= RaftState.FOLLOWER) {
+                        raftComm.raft.state.set(RaftState.FOLLOWER);
+                        System.out.println("Change State to Follower");
+                    }
+                }
 				if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retAppendEntries(raftComm.raft, false);
 					break;
@@ -48,6 +54,7 @@ public class RaftReader implements Runnable{
 					reply = RPC.retAppendEntries(raftComm.raft, false);
 					break;
 				}
+
 				//3
 				//TODO
 				break;
@@ -97,6 +104,7 @@ public class RaftReader implements Runnable{
 				if (term > raftComm.raft.currentTerm.get()) {
 					raftComm.raft.candidateTimerTask.cancel();
 					raftComm.raft.state.set(RaftState.FOLLOWER);
+                    System.out.println("Change State to Follower");
 					break;
 				}
 				

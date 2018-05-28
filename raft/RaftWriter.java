@@ -17,16 +17,7 @@ public class RaftWriter implements Runnable{
 			String message = null;
 			
 			try {
-				message = raftComm.queue.poll(500, TimeUnit.MILLISECONDS);
-				if (message != null) {
-					switch (message) {
-						case RPC.callAppendEntriesRPC:
-							message = RPC.callAppendEntries(raftComm.raft);
-							break;
-
-					}
-				}
-
+				message = raftComm.queue.take();
 				while (raftComm.raft.synchronize.get());
 			} 
 			catch (InterruptedException e) {
@@ -42,7 +33,7 @@ public class RaftWriter implements Runnable{
 				message = RPC.callAppendEntries(raftComm.raft);
 				break;
 			case RPC.callRequestVoteRPC:
-				message = RPC.callAppendEntries(raftComm.raft);
+				message = RPC.callRequestVote(raftComm.raft);
 				break;
 			}
 
