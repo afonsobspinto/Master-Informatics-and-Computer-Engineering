@@ -115,6 +115,7 @@ public class Raft<T extends Serializable> {
 
 	public Raft(Integer port, InetSocketAddress cluster) {
 		this.port = port;
+        log.add(new RaftLog<T>(null, 0));
 
 		// Connect to known cluster
 		{
@@ -141,6 +142,7 @@ public class Raft<T extends Serializable> {
 	public Raft(Integer port) {
 		this.port = port;
 		leaderID = ID;
+		log.add(new RaftLog<T>(null, 0));
 
 		// Listen for new connections
 		this.pool.execute(() -> {
@@ -168,7 +170,7 @@ public class Raft<T extends Serializable> {
 			while (serverState.get() != ServerState.TERMINATING) {
 				switch (state.get()) {
 					case FOLLOWER:
-						followerTimeout();
+                        followerTimeout();
 						condition.awaitUninterruptibly();
 						break;
 					case CANDIDATE:
