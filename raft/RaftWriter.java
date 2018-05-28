@@ -31,25 +31,25 @@ public class RaftWriter implements Runnable{
 			switch (message) {
                 case RPC.callAppendEntriesRPC:
                     message = RPC.callAppendEntries(raftComm.raft);
-                    System.out.println("Send Append Entries: ");
+                    System.out.println("{" + raftComm.raft.ID + "} "+ "Send Append Entries: ");
                     break;
                 case RPC.callRequestVoteRPC:
                     message = RPC.callRequestVote(raftComm.raft);
-                    System.out.println("Send Request Vote: ");
+                    System.out.println("{" + raftComm.raft.ID + "} "+"Send Request Vote: ");
                     break;
                 case RPC.retRequestVoteRPC:
-                    System.out.println("Send Request Vote Reply: ");
+                    System.out.println("{" + raftComm.raft.ID + "} "+"Send Request Vote Reply: ");
                     break;
                 case RPC.retAppendEntriesRPC:
-                    System.out.println("Send Append Entries Reply: ");
+                    System.out.println("{" + raftComm.raft.ID + "} "+"Send Append Entries Reply: ");
                     break;
                 default:
                     switch (message.split("\n")[0]){
                         case RPC.retRequestVoteRPC:
-                            System.out.println("Send Request Vote Reply: ");
+                            System.out.println("{" + raftComm.raft.ID + "} "+"Send Request Vote Reply: ");
                             break;
                         case RPC.retAppendEntriesRPC:
-                            System.out.println("Send Append Entries Reply: ");
+                            System.out.println("{" + raftComm.raft.ID + "} "+"Send Append Entries Reply: ");
                             break;
                         default:
                             //System.out.println("Send Reply Something: ");

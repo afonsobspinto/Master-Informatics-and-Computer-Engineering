@@ -25,21 +25,23 @@ public class RaftReader implements Runnable{
 			String[] messageArray = message.split("\n");
 			String reply = null;
 			int term;
+
 			
 			switch(messageArray[0]) {
 			case RPC.callAppendEntriesRPC:
 
-                System.out.println("Receive Append Entry: \n" + message );
+                System.out.println("{" + raftComm.raft.ID + "} "+"Receive Append Entry: \n" + message );
+                term = Integer.parseInt(messageArray[1]);
+                UUID leaderID = UUID.fromString(messageArray[2]);
+                this.raftComm.raft.leaderID = leaderID;
+                System.out.println("{" + raftComm.raft.ID + "} "+ "Set up leader id: " + leaderID.toString());
 
-                //1
-				term = Integer.parseInt(messageArray[1]);
                 raftComm.raft.restartFollowerTimeout();
+//1
 
 				if(term > raftComm.raft.currentTerm.get()){
-				    if(raftComm.raft.state.get()!= RaftState.FOLLOWER) {
-                        raftComm.raft.state.set(RaftState.FOLLOWER);
-                        System.out.println("Change State to Follower");
-                    }
+				    raftComm.raft.changeStateToFollower();
+
                 }
 				if(term < raftComm.raft.currentTerm.get()) {
 					reply = RPC.retAppendEntries(raftComm.raft, false);
@@ -67,7 +69,7 @@ public class RaftReader implements Runnable{
 				//1
 				term = Integer.parseInt(messageArray[1]);
 
-                System.out.println("Receive Request Vote: \n" + message );
+                System.out.println("{" + raftComm.raft.ID + "} "+"Receive Request Vote: \n" + message );
 
 
 
@@ -92,8 +94,8 @@ public class RaftReader implements Runnable{
 						if(lastReceiverLogTerm < lastLogTerm){
 							raftComm.raft.votedFor.set(candidateID);
 							raftComm.raft.changeStateToFollower();
-                            System.out.println("Because my last term is less then candidate last term");
-                            System.out.println(lastReceiverLogTerm + " vs " + lastLogTerm);
+/*                            System.out.println("{" + raftComm.raft.ID + "} "+"Because my last term is less than candidate last term");
+                            System.out.println(lastReceiverLogTerm + " vs " + lastLogTerm);*/
 
                             reply = RPC.retRequestVote(raftComm.raft, true);
 
@@ -108,8 +110,8 @@ public class RaftReader implements Runnable{
 					if(raftComm.raft.log.size()-1 <= lastLogIndex) {
 						raftComm.raft.votedFor.set(candidateID);
                         raftComm.raft.changeStateToFollower();
-                        System.out.println("Because my log index is less or equal then candidate log index");
-                        System.out.println(raftComm.raft.log.size()-1 + " vs " + lastLogIndex);
+/*                        System.out.println("{" + raftComm.raft.ID + "} "+"Because my log index is less or equal than candidate log index");
+                        System.out.println(raftComm.raft.log.size()-1 + " vs " + lastLogIndex);*/
                         reply = RPC.retRequestVote(raftComm.raft, true);
 						break;
 					}
@@ -119,18 +121,18 @@ public class RaftReader implements Runnable{
 				break;
 
 			case RPC.retAppendEntriesRPC:
-                System.out.println("Receive Append Entry Reply: \n" + message );
+                System.out.println("{" + raftComm.raft.ID + "} "+"Receive Append Entry Reply: \n" + message );
 				break;
 			case RPC.retRequestVoteRPC:
 				term = Integer.parseInt(messageArray[1]);
 				boolean gotAVote = Boolean.parseBoolean(messageArray[2]);
-                System.out.println("Receive Request Vote Reply: \n" + message );
+                System.out.println("{" + raftComm.raft.ID + "} "+"Receive Request Vote Reply: \n" + message );
 
 
                 if (term > raftComm.raft.currentTerm.get()) {
 					raftComm.raft.candidateTimerTask.cancel();
 					raftComm.raft.state.set(RaftState.FOLLOWER);
-                    System.out.println("Change State to Follower");
+                    System.out.println("{" + raftComm.raft.ID + "} "+"Change State to Follower");
 					break;
 				}
 				

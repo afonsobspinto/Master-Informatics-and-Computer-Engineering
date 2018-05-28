@@ -89,7 +89,7 @@ public class SSLChannel {
 		try {
 			socket.getOutputStream().write(data);
 		} catch (Exception e) {
-		//	e.printStackTrace();
+			//System.out.println("Failed to send");
 			return false;
 		}
 		

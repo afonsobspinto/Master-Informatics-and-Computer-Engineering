@@ -58,7 +58,7 @@ public class Raft<T extends Serializable> {
             public void run() {
                 lock.lock();
                 if (votes.get() > (cluster.size() + 1) / 2) {
-                    changeStateToLeader();
+                    //changeStateToLeader();
                 }
                 condition.signal();
                 lock.unlock();
@@ -70,18 +70,18 @@ public class Raft<T extends Serializable> {
     public void changeStateToFollower() {
         if (RaftState.FOLLOWER != state.get()) {
             state.set(RaftState.FOLLOWER);
-            System.out.println("Changing State to Follower");
+            System.out.println("{" + ID + "} "+"Changing State to Follower");
         }
         else {
-            System.out.println("Staying Follower");
+            System.out.println("{" + ID + "} "+"Staying Follower");
         }
         printState();
     }
 
     private void changeStateToCandidate() {
-        System.out.println("Follower Timetout");
+        System.out.println("{" + ID + "} "+"Follower Timetout");
         state.set(RaftState.CANDIDATE);
-        System.out.println("Changing State to Candidate");
+        System.out.println("{" + ID + "} "+"Changing State to Candidate");
         votedFor.set(ID);
         currentTerm.getAndAdd(1);
         votes.set(1);
@@ -90,10 +90,10 @@ public class Raft<T extends Serializable> {
 
     public void changeStateToLeader() {
         if (RaftState.LEADER != state.get()) {
-            System.out.println("Change state to Leader ");
+            state.set(RaftState.LEADER);
+            System.out.println("{" + ID + "} "+"Change state to Leader ");
             votes.set(0);
             votedFor.set(null);
-            state.set(RaftState.LEADER);
             leaderID = ID;
             printState();
             cancelCandidateTimeout();
@@ -113,19 +113,19 @@ public class Raft<T extends Serializable> {
     }
 
     private void cancelCandidateTimeout() {
-        System.out.println("Cancel Candidate Timeout\n");
+        System.out.println("{" + ID + "} "+"Cancel Candidate Timeout\n");
         candidateTimerTask.cancel();
-        leaderTimeout(); //TODO: @Shinuzi isto é preciso?
+        leaderTimeout();
     }
 
     void restartFollowerTimeout() {
-        System.out.println("Restart Timeout");
+        System.out.println("{" + ID + "} "+"Restart Timeout");
         followerTimerTask.cancel();
         followerTimeout(); //TODO: @Shinuzi isto é preciso?
     }
 
     private void followerTimeout() {
-        System.out.println("Starting Timeout");
+        System.out.println("{" + ID + "} "+"Starting Timeout");
         int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
         System.out.println(delay);
         timer.schedule(followerTimerTask = followerTimerTask(), delay);
@@ -228,7 +228,7 @@ public class Raft<T extends Serializable> {
                         break;
                     case CANDIDATE:
                         synchronize.set(true);
-                        System.out.println("Send Vote Requests{");
+                        System.out.println("{" + ID + "} "+"Send Vote Requests{");
                         for (RaftCommunication node : cluster.values()) {
                             node.queue.put(RPC.callRequestVoteRPC);
                         }
@@ -238,7 +238,7 @@ public class Raft<T extends Serializable> {
                         break;
                     case LEADER:
                         synchronize.set(true);
-                        System.out.println("Send HeartBeats{");
+                        System.out.println("{" + ID + "} "+"Send HeartBeats{");
                         for (RaftCommunication node : cluster.values()) {
                             node.queue.put(RPC.callAppendEntriesRPC);
                         }
@@ -287,16 +287,23 @@ public class Raft<T extends Serializable> {
 
     public boolean set(T var) {
         SSLChannel channel = connectToLeader();
-
+        System.out.println((char)27 + "[31mSET" + (char)27 + "[0m");
         if (channel == null) {
+            System.out.println("Could not connect to Leader");
             return false;
         }
 
         String serObj = new String(Serialization.serialize(var));
 
-        channel.send(RPC.callSetValue(serObj));
+        String request = RPC.callSetValue(serObj);
+        System.out.println((char)27 + "[31m"+ "Sending Request: " + request + (char)27 + "[0m");
+        channel.send(request);
+        System.out.println("Request sent");
 
+        System.out.println("Reading Reply:"); //TODO: Stuck here
         String message = channel.receiveString();
+        System.out.println((char)27 + "[31m"+ "Message Received from Channel " + message + (char)27 + "[0m");
+
 
         return message.equals(RPC.retSetValue(true));
     }
@@ -320,16 +327,22 @@ public class Raft<T extends Serializable> {
 	 */
 
     SSLChannel connectToLeader() {
+        System.out.println();
+        System.out.println();
         if (this.leaderID == null) {
+            System.out.println("{" + ID + "} "+ "Leader ID: " + null);
             return null;
         }
 
         RaftCommunication leader = this.cluster.get(this.leaderID);
 
         if (leader == null) {
+            System.out.println("{" + ID + "} "+ "Leader ID: " + leaderID + " not found in cluster: ");
+
             return null;
         }
-
+        System.out.println();
+        System.out.println();
         SSLChannel channel = new SSLChannel(leader.address);
 
         if (!channel.connect()) {
@@ -359,24 +372,26 @@ public class Raft<T extends Serializable> {
     public void printState() {
         System.out.println("\n");
         if (this.state.get() == RaftState.FOLLOWER) {
-            System.out.println("Follower State");
+            System.out.println("{" + ID + "} " + "Follower State");
         }
         if (this.state.get() == RaftState.CANDIDATE) {
-            System.out.println("Candidate State");
+            System.out.println("{" + ID + "} " + "Candidate State");
         }
         if (this.state.get() == RaftState.LEADER) {
-            System.out.println("Leader State");
+            System.out.println( "{" + ID + "} "+ "Leader State");
         }
 
-        System.out.println("Term: " + currentTerm);
-        System.out.println("VotedFor: " + votedFor);
-        System.out.println("Votes: " + votes);
-        System.out.println("Log Index: " + Integer.toString(log.size() - 1));
+
+        System.out.println("{" + ID + "} "+ "Leader ID: " + leaderID);
+        System.out.println("{" + ID + "} "+ "Term: " + currentTerm);
+        System.out.println("{" + ID + "} "+"VotedFor: " + votedFor);
+        System.out.println("{" + ID + "} "+"Votes: " + votes);
+        System.out.println("{" + ID + "} "+"Log Index: " + Integer.toString(log.size() - 1));
         if (log.size() - 1 != 0)
-            System.out.println("Last Log Term: " + log.get(log.size() - 1));
+            System.out.println("{" + ID + "} "+"Last Log Term: " + log.get(log.size() - 1));
         else
-            System.out.println("Last Log Term: " + 0);
-        System.out.println("Old Logs");
+            System.out.println("{" + ID + "} "+"Last Log Term: " + 0);
+        System.out.println("{" + ID + "} "+"Old Logs");
         for (RaftLog entry : log) {
             System.out.print(entry.term + " ");
         }
