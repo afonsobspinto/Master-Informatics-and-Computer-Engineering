@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3ced6ba5ff1b5c4fba5d9f1c6dfad71",
+    "content-hash": "872d5f69dbbc42a9ef5377c858aee7b9",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -626,6 +626,45 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hbattat/verifyemail",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hbattat/verifyEmail.git",
+                "reference": "4ec9ae613aee2be33239b9b7efb8de5383ae0c98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hbattat/verifyEmail/zipball/4ec9ae613aee2be33239b9b7efb8de5383ae0c98",
+                "reference": "4ec9ae613aee2be33239b9b7efb8de5383ae0c98",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.27"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "hbattat\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Battat",
+                    "email": "hbattat@msn.com"
+                }
+            ],
+            "description": "PHP class that can be easily used to verify an email address and make sure it is valid and does exist on the mail server.",
+            "time": "2017-10-28T09:39:30+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

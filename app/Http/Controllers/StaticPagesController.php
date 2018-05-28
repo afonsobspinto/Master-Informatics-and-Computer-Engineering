@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Mail;
 class StaticPagesController extends Controller
 {
 
+    use VerifyEmail;
+
     const NUM_CAROUSEL_ITEMS = 3;
     const NUM_CARDS = 6;
     public function showLandingPage(Request $request) {
@@ -46,9 +48,6 @@ class StaticPagesController extends Controller
     }
 
     public function showFAQ(Request $request) {
-
-        Mail::to('liandtow@gmail.com')->send(new Administration());
-
 
         $categories = Category::all();
 

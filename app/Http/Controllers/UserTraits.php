@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 trait UserTraits
 {
-
+    use VerifyEmail;
 
     protected function buildUsernameRule() {
         $rulesArr = func_get_args();
@@ -41,9 +41,8 @@ trait UserTraits
     protected function buildCheckEmailRule() {
         return
             function($attribute, $value, $fail) {
-                Mail::to($value)->send(new Administration());
 
-                if (Mail::failures())
+                if (! $this->checkEmail($value))
                     return $fail('Email doesn\'t exist');
             };
     }

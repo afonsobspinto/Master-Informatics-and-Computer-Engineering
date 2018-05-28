@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\ImageFileTraits;
 use App\Http\Controllers\UserTraits;
+use App\Mail\VerifyEmail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -30,6 +31,7 @@ class RegisterController extends Controller
 
     use UserTraits;
     use ImageFileTraits;
+
 
     /**
      * Where to redirect users after registration.
