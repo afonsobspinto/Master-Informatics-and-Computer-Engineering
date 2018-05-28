@@ -45,7 +45,7 @@ public class Raft<T extends Serializable> {
 			public void run() {
 				lock.lock();
 				state.set(RaftState.CANDIDATE);
-				votedFor = ID;
+				votedFor.set(ID);
 				currentTerm.getAndAdd(1);
 				votes.set(1);
 				condition.signal();
@@ -90,7 +90,7 @@ public class Raft<T extends Serializable> {
 
 	//	Persistent state (save this to stable storage)
 	AtomicInteger currentTerm = new AtomicInteger(1);
-	UUID votedFor = null;
+	AtomicReference<UUID> votedFor = new AtomicReference<>(null);
 	AtomicInteger votes = new AtomicInteger(0);
 	ArrayList<RaftLog<T>> log = new ArrayList<>();
 

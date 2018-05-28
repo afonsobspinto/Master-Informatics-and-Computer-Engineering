@@ -65,34 +65,29 @@ public class RaftReader implements Runnable{
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
 				int lastLogTerm = Integer.parseInt(messageArray[4]);
 				//2
-				//if ((raftComm.raft.votedFor == null || raftComm.raft.votedFor == candidateID) &&
-				//		) {
-					reply = RPC.retRequestVote(raftComm.raft, true);
-					raftComm.raft.votedFor = candidateID;
-					break;
-				//}
+				if ((raftComm.raft.votedFor == null || raftComm.raft.votedFor.get() == candidateID)) {
+					int lastReceiverLogTerm = ((RaftLog) raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
 
-			//	int lastReceiverLogTerm = ((RaftLog) raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
-			/*
-				if(lastReceiverLogTerm != lastLogTerm) {
-					if(lastReceiverLogTerm < lastLogTerm){
+					if(lastReceiverLogTerm != lastLogTerm) {
+						if(lastReceiverLogTerm < lastLogTerm){
+							raftComm.raft.votedFor.set(candidateID);
+							reply = RPC.retRequestVote(raftComm.raft, true);
+						}
+						else {
+							reply = RPC.retRequestVote(raftComm.raft, false);
+						}
+
+						break;
+					}
+
+					if(raftComm.raft.log.size() <= lastLogIndex) {
+						raftComm.raft.votedFor.set(candidateID);
 						reply = RPC.retRequestVote(raftComm.raft, true);
-						raftComm.raft.votedFor = candidateID;
+						break;
 					}
-					else {
-						reply = RPC.retRequestVote(raftComm.raft, false);
-					}
-					
-					break;
 				}
-				
-				if(raftComm.raft.log.size() <= lastLogIndex) {
-					reply = RPC.retRequestVote(raftComm.raft, true);
-					break;
-				}
-				
-				reply = RPC.retRequestVote(raftComm.raft, false); */ // TODO
-				//break;
+				reply = RPC.retRequestVote(raftComm.raft, false);
+				break;
 			case RPC.retAppendEntriesRPC:
 				break;
 			case RPC.retRequestVoteRPC:
