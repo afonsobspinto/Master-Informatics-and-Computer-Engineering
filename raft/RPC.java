@@ -15,18 +15,18 @@ class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String callAppendEntries(Raft server) {
 		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
-				.append(server.currentTerm).append("\n")
-				.append(server.ID).append("\n")
+				.append(server.currentTerm.get()).append("\n")
+				.append(server.ID.toString()).append("\n")
 				.append(server.log.size() - 1).append("\n")
 				.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n")
-				.append(server.leaderID); //TODO
+				.append(server.leaderID.toString()); //TODO
 		return message.toString();
 	}
 	
 	@SuppressWarnings("unchecked")
 	static String retAppendEntries(Raft server, boolean success) {
 		StringBuilder message = new StringBuilder(appendEntriesRPC).append("\n")
-				.append(server.currentTerm).append("\n")
+				.append(server.currentTerm.get()).append("\n")
 				.append(success).append("\n");
 		return message.toString();
 	}
@@ -34,8 +34,8 @@ class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String callRequestVote(Raft server) {
 		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
-				.append(server.currentTerm).append("\n")
-				.append(server.ID).append("\n")
+				.append(server.currentTerm.get()).append("\n")
+				.append(server.ID.toString()).append("\n")
 				.append(server.log.size()-1).append("\n")
 				.append(((RaftLog) server.log.get(server.log.size()-1)).term).append("\n");
 
@@ -45,7 +45,7 @@ class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String retRequestVote(Raft server, boolean voteGranted) {
 		StringBuilder message = new StringBuilder(requestVoteRPC).append("\n")
-				.append(server.currentTerm).append("\n")
+				.append(server.currentTerm.get()).append("\n")
 				.append(voteGranted).append("\n");
 
 		return message.toString();
@@ -73,11 +73,11 @@ class RPC { // Remote Procedure Calls
 	@SuppressWarnings("unchecked")
 	static String retDiscoverNodes(Raft server, UUID ID) {
 		StringBuilder message = new StringBuilder(discoverNodesRPC).append("\n")
-				.append(server.ID).append("/")
+				.append(server.ID.toString()).append("/")
 				.append(server.port).append("\n");
 		if (!server.ID.equals(ID)) {
 			for (Map.Entry<UUID, RaftCommunication> data : (Set<Map.Entry<UUID, RaftCommunication>>) server.cluster.entrySet()) {
-				message.append(data.getKey()).append("/")
+				message.append(data.getKey().toString()).append("/")
 						.append(data.getValue().address.getAddress().getHostAddress()).append(":")
 						.append(data.getValue().address.getPort()).append("\n");
 			}
