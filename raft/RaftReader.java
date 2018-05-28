@@ -20,15 +20,20 @@ public class RaftReader implements Runnable{
 			if(message == null) {
 				continue;
 			}
-			
+
+
 			String[] messageArray = message.split("\n");
 			String reply = null;
 			int term;
 			
 			switch(messageArray[0]) {
 			case RPC.callAppendEntriesRPC:
-				//1
+
+                System.out.println("Receive Append Entry " + message );
+
+                //1
 				term = Integer.parseInt(messageArray[1]);
+                raftComm.raft.followerTimerTask.cancel();
 
 				if(term > raftComm.raft.currentTerm.get()){
 				    if(raftComm.raft.state.get()!= RaftState.FOLLOWER) {
@@ -94,8 +99,10 @@ public class RaftReader implements Runnable{
 					}
 				}
 				reply = RPC.retRequestVote(raftComm.raft, false);
+
 				break;
 			case RPC.retAppendEntriesRPC:
+			    reply = " ";
 				break;
 			case RPC.retRequestVoteRPC:
 				term = Integer.parseInt(messageArray[1]);

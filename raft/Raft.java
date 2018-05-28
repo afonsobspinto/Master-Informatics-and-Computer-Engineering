@@ -84,10 +84,14 @@ public class Raft<T extends Serializable> {
 	}
 
 	private void followerTimeout() {
-		timer.schedule(followerTimerTask = followerTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
+	    int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
+        System.out.println(delay);
+		timer.schedule(followerTimerTask = followerTimerTask(), delay);
 	}
 	private void candidateTimeout() {
-		timer.schedule(candidateTimerTask = candidateTimerTask(), ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout);
+        int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
+        System.out.println(delay);
+		timer.schedule(candidateTimerTask = candidateTimerTask(),delay);
 	}
 	private void leaderTimeout() {
 		timer.schedule(leaderTimerTask = leaderTimerTask(), RaftProtocol.HeartbeatPeriod);

@@ -18,7 +18,7 @@ public class RaftWriter implements Runnable{
 			
 			try {
 				message = raftComm.queue.take();
-				while (raftComm.raft.synchronize.get());
+				//while (raftComm.raft.synchronize.get());
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
