@@ -71,17 +71,29 @@ public class RaftReader implements Runnable{
 				int lastLogIndex = Integer.parseInt(messageArray[3]);
 				long lastLogTerm = Long.parseLong(messageArray[4]);
 				
-				if(lastLogIndex >= raftComm.raft.log.size()) {
-					reply = RPC.retRequestVote(raftComm.raft, false);
+				long lastReceiverLogTerm = ((RaftLog)raftComm.raft.log.get(raftComm.raft.log.size() - 1)).term;
+				
+				if(lastReceiverLogTerm != lastLogTerm) {
+					if(lastReceiverLogTerm < lastLogTerm){
+						reply = RPC.retRequestVote(raftComm.raft, true);
+					}
+					else {
+						reply = RPC.retRequestVote(raftComm.raft, false);
+					}
+					
 					break;
 				}
 				
-				if(((RaftLog)raftComm.raft.log.get(lastLogIndex)).term != lastLogTerm) {
-					reply = RPC.retRequestVote(raftComm.raft, false);
+				if(raftComm.raft.log.size() <= lastLogIndex) {
+					reply = RPC.retRequestVote(raftComm.raft, true);
 					break;
 				}
 				
-				reply = RPC.retRequestVote(raftComm.raft, true);
+				reply = RPC.retRequestVote(raftComm.raft, false);
+				break;
+			case RPC.retAppendEntriesRPC:
+				break;
+			case RPC.retRequestVoteRPC:
 				break;
 			}
 			
