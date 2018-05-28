@@ -92,8 +92,8 @@ class Auction extends Model
 
     public function getQAs() {
         return DB::table('qas')
-            ->join('auctions', 'qas.id', '=', 'auctions.id')
-            ->where('auctions.id', '=', $this->id)
+            /*->join('auctions', 'qas.id', '=', 'auctions.id')
+            ->where('auctions.id', '=', $this->id)*/
             ->get();
     }
 

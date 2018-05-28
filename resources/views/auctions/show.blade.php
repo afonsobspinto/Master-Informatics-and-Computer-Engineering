@@ -318,13 +318,13 @@
                             @if(Auth::user()->isHighestBidder($auction))
                             @else
                             <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
-                            <input type="number" class="form-control" id="bid-amount" name="bid-amount">
+                            <input type="number" class="form-control" id="bid-amount" name="bid-amount" required>
                             <div class="input-group-append">
                                 <span class="input-group-text">€</span>
                             </div>
                         <div class="col-sm-3 bid" id="button-bid">
                             <div class="btn-group">
-                                <input type="submit" name="submit" value="Place Bid" class="btn" data-toggle="collapse" data-target=".collapseAlert" id="button-bid">
+                                <input type="submit" name="submit" value="Place Bid" class="btn" id="button-bid">
                             </div>
                         </div>
                         </div>
@@ -333,14 +333,6 @@
                     </form>
                 @endif
             </dl>
-            <div class="collapse collapseAlert">
-                <div class="alert alert-success" role="alert">
-                    <strong>Well done!</strong> You successfully submitted a bid.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
         </div>
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
             <dl class="row">
@@ -359,16 +351,16 @@
         </div>
         <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
             <dl class="row">
-                @if(count($wishlists) == 0)
+                @if(count($qas) == 0)
                     <p>No questions yet, ask something!</p>
                 @else
-                    @foreach($wishlists as $qa)
-                        <dt class="col-sm-4 text-align-center mobile-text-center">{{ $qa->auction_id }}</dt>
-                        @if($qa->id === NULL)
+                    @foreach($qas as $qa)
+                        <dt class="col-sm-8 mobile-text-center">{{ $qa->question }}?</dt>
+                       @if($qa->answer === NULL)
                             <dd class="col-sm-8">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Place your answer"
-                                           aria-label="Place your question" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control" placeholder="Place your question"
+                                           aria-label="Place your question" aria-describedby="basic-addon2" id="question">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseAlertAnswer">Answer</button>
                                     </div>
@@ -383,29 +375,24 @@
                                 </div>
                             </div>
                         @else
-                            <dd class="col-sm-8">{{ $qa->id }}</dd>
+                            <dd class="col-sm-8">{{ $qa->answer }}</dd>
                         @endif
                     @endforeach
                 @endif
             </dl>
             @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
             @else
+                <form method="POST" action="{{action('AuctionController@storeQuestion', [$auction->id])}}">
+                    {{ csrf_field() }}
                 <div class="input-group mb-3 col-sm-10">
-                    <input type="text" class="form-control" placeholder="Place your question"
-                           aria-label="Place your question" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseAlertAsk">Ask</button>
+                    <label for="question-input" class="col-3 col-form-label" hidden>Question</label>
+                    <input type="text" class="form-control" placeholder="Place your question" id="question-input" name="question-input" required>
+                    <div class="input-group-append" id="question-id">
+                        <input type="submit" name="submit" value="Ask" class="btn btn-outline-secondary" id="question-id">
                     </div>
 
                 </div>
-                <div class="collapse" id="collapseAlertAsk">
-                    <div class="alert alert-success" role="alert">
-                        <strong>Well done!</strong> You successfully submitted a question.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
+                </form>
             @endif
         </div>
 

@@ -27,7 +27,7 @@ if(auctionID.length)
     const userID = auctionID.val();
     const url = `/auctions/${userID}/price`;
 
-    const setNumMessagesCallback = (price) => $('#num-messages').text(price);
+    const setNumMessagesCallback = (price) => $('#current-auction-price').text(price + '€');
     infinitePollingApiJson(url, setNumMessagesCallback, 1000);
 }
 
