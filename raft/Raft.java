@@ -47,7 +47,6 @@ public class Raft<T extends Serializable> {
                 System.out.println("Follower Timetout");
 				state.set(RaftState.CANDIDATE);
                 System.out.println("Changing State to Candidate");
-				votedFor = ID;
 				votedFor.set(ID);
 				currentTerm.getAndAdd(1);
 				votes.set(1);
