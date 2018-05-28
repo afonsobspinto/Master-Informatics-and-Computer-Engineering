@@ -34,7 +34,7 @@ class RPC { // Remote Procedure Calls
 							.append(((RaftLog) server.log.get(server.log.size() - 1)).term).append("\n");
 				}
 				
-				message.append(server.leaderID.toString()).append("\n"); //TODO
+				message.append(server.commitIndex.toString()).append("\n");
 				
 		return message.toString();
 	}
