@@ -57,36 +57,8 @@
                 </div>
             </div>
 
-            {{--<div class="form-group row">
-                <label class="col-3 col-form-label">Photos</label>
-
-                <div class="photos col-8">
-                    <div class="d-inline" id="img1">
-                        <img class="img-fluid d-inline col-3"
-                             src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                             alt="First slide">
-                        <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img1' ).remove();"></a>
-                    </div>
-                    <div class="d-inline" id="img2">
-                        <img class="img-fluid d-inline col-3"
-                             src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                             alt="First slide"
-                        >
-                        <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img2' ).remove();"></a>
-                    </div>
-                    <div class="d-inline" id="img3">
-                        <img class="img-fluid d-inline col-3"
-                             src="https://s-media-cache-ak0.pinimg.com/originals/ef/60/11/ef60116e7e4bf72ed1014afe9e784867.jpg"
-                             alt="First slide">
-                        <a href="#" class="fas fa-trash-alt text-danger" onclick="$( '#img3' ).remove();"></a>
-                    </div>--}}
-            {{-- MODIFIED --}}
-            {{-- Pictures --}}
             @include('auctions.components.form_images', ['images' => $images ])
-            {{-- /MODIFIED --}}
-            {{--
-                </div>
-            </div>--}}
+
 
             <div class="form-group row">
                 <label for="price-input" class="col-3 col-form-label">Starting price</label>
