@@ -22,9 +22,9 @@ class Auction extends Model
         return DB::table('bids')->where('id', '=', $this->id)->count();
     }
 
-    public function getDisplayPictureURL() {
+    public function getDisplayPictureURL($id) {
 
-        return $this->getAuctionPicturesURLs($this->id)[0];
+        return $this->getAuctionPicturesURLs($id)[0];
     }
 
     public function getImagesURLs() {

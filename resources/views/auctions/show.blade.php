@@ -27,6 +27,7 @@
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
+                            <label for="wishlist-button" class="col-form-label">Wishlist:</label>
                             <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
                         </form>
                     @else
