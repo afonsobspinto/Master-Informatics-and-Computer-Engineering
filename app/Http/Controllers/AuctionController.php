@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ClosedAuction;
 use App\QA;
 use App\Wishlist;
+use App\WonAuction;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Auction;
@@ -309,6 +311,56 @@ class AuctionController extends Controller
         $auction = Auction::findOrFail($auctionID);
 
         return response()->json($auction->currentPriceEuros());
+    }
+
+    public function closeAuctions(){
+
+        $auctionsToClose = Auction::getAuctionsToClose();
+        foreach ($auctionsToClose as $auction){
+            echo Auction::getAuctionWinner($auction->id) . " \n";
+            $this->closeAuction($auction);
+        }
+
+    }
+
+    private function closeAuction($auction){
+        $this->storeClosed($auction->id);
+        if($auction->starting_price	< $auction->current_price){
+            $winnerID = $auction->getAuctionWinner($auction->id);
+            $this->storeWon($auction->id, $winnerID);
+        }
+    }
+
+    private function storeClosed($auctionID){
+
+        try {
+            $closedAuction = new ClosedAuction();
+            $closedAuction->id = $auctionID;
+            $closedAuction->save();
+        }
+        catch (\Exception$e) {
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return true;
+    }
+
+    private function storeWon($auctionID, $winnerID){
+
+        try {
+            $wonAuction = new WonAuction();
+            $wonAuction->id = $auctionID;
+            $wonAuction->is_successful_transaction = true;
+            $wonAuction->has_winner_complained = false;
+            $wonAuction->winner_id = $winnerID;
+            $wonAuction->save();
+        }
+        catch (\Exception$e) {
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+        return true;
+
     }
 }
 

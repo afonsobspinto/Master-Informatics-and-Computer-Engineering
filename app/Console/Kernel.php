@@ -25,12 +25,8 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule){
-        $schedule->call(function () {
-            $auctionsToClose = Auction::getAuctionsToClose();
-            foreach ($auctionsToClose as $auction){
-                echo $auction->id . " \n";
-            }
-        })->everyMinute()->appendOutputTo("laravel.log");
+
+        $schedule->call('App\Http\Controllers\AuctionController@closeAuctions')->everyMinute()->appendOutputTo("laravel.log");
     }
 
 

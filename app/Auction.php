@@ -112,13 +112,19 @@ class Auction extends Model
             ->get();
     }
 
-    public function getAuctionWinner($reviewID) {
+    public function getAuctionWinnerGivenReviewID($reviewID) {
         return DB::table('users')
             ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
             ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
             ->where('auctions.id', '=', $reviewID)
             ->value('users.id');
+    }
 
+    public static function getAuctionWinner($auctionID) {
+        $maxBid = DB::table('bids')
+            ->where('id', '=', $auctionID)->max('bid_amount');
+        return DB::table('bids')
+            ->where('id', '=', $auctionID)->where('bid_amount', '=', $maxBid)->value('bidder_id');
     }
 
     public function getAuctionWinnerName($reviewID) {
