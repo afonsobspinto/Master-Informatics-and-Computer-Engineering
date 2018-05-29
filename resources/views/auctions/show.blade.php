@@ -358,22 +358,18 @@
                         <dt class="col-sm-8 mobile-text-center">{{ $qa->question }}?</dt>
                        @if($qa->answer === NULL)
                            @if(Auth::user()->isAuctionOwner($auction))
-                            <dd class="col-sm-8">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Place your answer" id="answer">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseAlertAnswer">Answer</button>
+                                <form method="POST" action="{{action('AuctionController@storeAnswer', [$auction->id, $qa->id])}}">
+                                    {{ csrf_field() }}
+                                    <div class="input-group mb-3 col-sm-16">
+                                        <label for="answer-input" class="col-3 col-form-label" hidden>Answer</label>
+                                        <input type="text" class="form-control" placeholder="Place your answer" id="answer-input" name="answer-input" required>
+                                        <div class="input-group-append" id="answer-id">
+                                            <input type="submit" name="submit" value="Answer" class="btn btn-outline-secondary" id="answer-id">
+                                        </div>
                                     </div>
-                                </div>
-                            </dd>
-                            <div class="collapse" id="collapseAlertAnswer">
-                                <div class="alert alert-success" role="alert">
-                                    <strong>Well done!</strong> You successfully submitted an answer.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
+                                </form>
+                            @else
+                               <font color="red">This question hasn't been answer yet!</font>
                             @endif
                         @else
                             <dd class="col-sm-8">{{ $qa->answer }}</dd>

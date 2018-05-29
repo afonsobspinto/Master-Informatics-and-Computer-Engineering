@@ -3,10 +3,12 @@
 namespace App;
 
 use App\Http\Controllers\ImageFileTraits;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use File;
+use Auth;
 
 class Auction extends Model
 {
@@ -92,8 +94,7 @@ class Auction extends Model
 
     public function getQAs() {
         return DB::table('qas')
-            ->join('auctions', 'qas.auction_id', '=', 'auctions.id')
-            ->where('auctions.id', '=', $this->id)
+            ->where('qas.auction_id', '=', $this->id)
             ->get();
     }
 
@@ -133,5 +134,14 @@ class Auction extends Model
             ->where('bidder_id', '=', $user->id)
             ->where('bid_amount', '<', $current_bid)
             ->delete();
+    }
+
+    public function answerQA($auction, $qa_id, $answer){
+        if(Auth::user()->id == $auction->owner_id){
+            DB::table('qas')
+                ->where('id', '=', $qa_id)
+                ->where('auction_id', '=', $auction->id)
+                ->update(['answer' => $answer]);
+        }
     }
 }
