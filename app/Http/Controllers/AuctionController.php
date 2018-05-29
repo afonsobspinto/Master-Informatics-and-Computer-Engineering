@@ -221,22 +221,29 @@ class AuctionController extends Controller
         return redirect('auctions/' . $id);
     }
 
+    public function removeFromWishlist($auction_id){
+            $auction = Auction::findOrFail($auction_id);
+            $auction->removeWishlist(Auth::user());
+
+        return redirect('auctions/' . $auction_id);
+    }
+
     public function storeQuestion(Request $request, $id){
         $this->validate($request, [
             'question-input' => 'required',
         ]);
 
-        /*/try {*/
+        try {
             $qa = new QA();
             $qa->question = $request->input('question-input');
             $qa->answer = NULL;
             $qa->auction_id = $id;
             $qa->questioner_id = Auth::user()->id;
             $qa->save();
-        /*}
+        }
         catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
-        }*/
+        }
 
         return redirect('auctions/' . $id);
     }
@@ -246,9 +253,15 @@ class AuctionController extends Controller
             'answer-input' => 'required',
         ]);
 
-        $answer = $request->input('answer-input');
-        $auction = Auction::findOrFail($auction_id);
-        $auction->answerQA($auction, $qa_id, $answer);
+        try {
+            $answer = $request->input('answer-input');
+            $auction = Auction::findOrFail($auction_id);
+            $auction->answerQA($auction, $qa_id, $answer);
+        }
+
+        catch (\Exception$e) {
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
 
         return redirect('auctions/' . $auction_id);
 
@@ -280,7 +293,16 @@ class AuctionController extends Controller
     }
 
     public function destroyPreviousBid($auction){
-        $auction->deleteBids(Auth::user());
+        try{
+            $auction->deleteBids(Auth::user());
+
+        }
+        catch (\Exception$e){
+            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+        }
+
+
+        return redirect('auctions/' . $auction->id);
     }
 
     public function getCurrentPrice($auctionID) {

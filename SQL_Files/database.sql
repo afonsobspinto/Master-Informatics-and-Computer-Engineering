@@ -115,7 +115,7 @@ CREATE TABLE qas (
     id serial NOT NULL PRIMARY KEY,
     question text NOT NULL,
     answer text,
-    auction_id integer NOT NULL,
+    auction_id integer NOT NULL REFERENCES "auctions"(id) ON UPDATE CASCADE,
     questioner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE reports (
     id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE,
     user_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
     reported_user integer REFERENCES "users"(id) ON UPDATE CASCADE,
-    auction_id integer  REFERENCES auctions(id) ON UPDATE CASCADE,
+    auction_id integer REFERENCES auctions(id) ON UPDATE CASCADE,
     is_user boolean DEFAULT false
 );
 
@@ -134,8 +134,9 @@ CREATE TABLE reviews (
 );
 
 CREATE TABLE wishlists (
-    auction_id integer NOT NULL PRIMARY KEY REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
+    auction_id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    PRIMARY KEY(auction_id, id)
 );
 
 CREATE TABLE won_auctions (

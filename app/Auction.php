@@ -133,7 +133,6 @@ class Auction extends Model
         return DB::table('wishlists')->get();
     }
 
-
     public function deleteBids($user){
         $current_bid = $this->current_price;
         DB::table('bids')
@@ -152,5 +151,10 @@ class Auction extends Model
         }
     }
 
-
+    public function removeWishlist($user){
+            DB::table('wishlists')
+                ->where('auction_id', '=', $this->id)
+                ->where('id', '=', $user->id)
+                ->delete();
+    }
 }

@@ -272,7 +272,7 @@
             </li>
                 @if(Auth::user()->isProfileOwner($user))
                     <li class="nav-item">
-                        <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Watch List</a>
+                        <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Wishlist</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="biddingItems-tab" data-toggle="tab" href="#biddingItems" role="tab" aria-controls="biddingItems" aria-selected="true">Items I'm bidding</a>
@@ -463,7 +463,7 @@
                                 <div class="row">
                                     <div class="collapse collapseAlert">
                                         <div class="alert alert-success" role="alert">
-                                            <strong>Done!</strong> You removed this item from your WatchList
+                                            <strong>Done!</strong> You removed this item from your Wishlist
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
