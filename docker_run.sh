@@ -8,4 +8,5 @@ php artisan migrate:refresh
 php artisan db:seed
 rm public/storage -f
 ln -s /var/www/storage/app/public /var/www/public/storage
+cron
 nginx -g "daemon off;"

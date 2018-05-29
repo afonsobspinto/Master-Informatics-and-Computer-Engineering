@@ -15,5 +15,11 @@ COPY .env_production /var/www/.env
 COPY docker_run.sh /docker_run.sh
 RUN mkdir /var/run/php
 
+# Install crontab and cron job
+RUN apt-get install -y --no-install-recommends cron
+RUN touch /var/log/laravel-cron.log
+RUN echo "* * * * * /usr/bin/php /var/www/artisan schedule:run >> /var/log/laravel-cron.log 2>&1" >> mycron
+RUN crontab mycron
+
 # Start command
 CMD sh /docker_run.sh
