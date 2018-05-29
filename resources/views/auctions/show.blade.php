@@ -27,13 +27,19 @@
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <label for="wishlist-button" class="col-form-label"></label>
-                            <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
+                            <fieldset>
+                                <legend hidden>Add to Wishlist</legend>
+                                <label for="wishlist-button" class="col-form-label"></label>
+                                <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
+                                </fieldset>
                         </form>
                     @else
                         <form method="POST" action="{{action('AuctionController@addToWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <button type="submit" id="wishlist-button" class="far fa-star text-warning " style="border:none;" title="Add to Wishlist"></button>
+                            <fieldset>
+                                <legend hidden>Remove from Wishlist</legend>
+                                <button type="submit" id="wishlist-button" class="far fa-star text-warning " style="border:none;" title="Add to Wishlist"></button>
+                            </fieldset>
                         </form>
 
                     @endif
@@ -96,8 +102,11 @@
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <label for="user-pass" class="col-form-label">Password:</label>
-                                    <input type="password" class="form-control" id="user-pass" name="password">
+                                    <fieldset>
+                                        <legend hidden>Password</legend>
+                                        <label for="user-pass" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="user-pass" name="password">
+                                    </fieldset>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -123,18 +132,21 @@
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">To:</label>
-                                        <input type="text" class="form-control" id="dest-name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="item-name" class="form-control-label">#Item:</label>
-                                        <input type="text" class="form-control" id="item-name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contact-text" class="form-control-label">Message:</label>
-                                        <textarea class="form-control" id="contact-text"></textarea>
-                                    </div>
+                                    <fieldset>
+                                        <legend hidden>Contact</legend>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">To:</label>
+                                            <input type="text" class="form-control" id="dest-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="item-name" class="form-control-label">#Item:</label>
+                                            <input type="text" class="form-control" id="item-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-text" class="form-control-label">Message:</label>
+                                            <textarea class="form-control" id="contact-text"></textarea>
+                                        </div>
+                                    </fieldset>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -164,50 +176,53 @@
                                 </div>
                                 <form action="{{route('reports.storeReport')}}" method="POST" id="userReport" class="userReport">
                                     {{csrf_field() }}
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <div>
-                                                            <h5 style="color:brown"> Motive</h5>
-                                                            <div class="radio">
-                                                                <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
+                                    <fieldset>
+                                        <legend hidden>Report</legend>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <div>
+                                                                <h5 style="color:brown"> Motive</h5>
+                                                                <div class="radio">
+                                                                    <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
+                                                                </div>
                                                             </div>
-                                                            <div class="radio">
-                                                                <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
-                                                            </div>
-                                                            <div class="radio">
-                                                                <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
-                                                            </div>
-                                                            <div class="radio">
-                                                                <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
-                                                            </div>
+                                                            <label for="reason1" class="col-form-label">Other:</label>
+                                                            <input type="text" class="form-control" id="reason1">
                                                         </div>
-                                                        <label for="reason1" class="col-form-label">Other:</label>
-                                                        <input type="text" class="form-control" id="reason1">
+                                                        <div class="form-group">
+                                                            <label for="message-text" class="col-form-label">Message:</label>
+                                                            <textarea class="form-control" id="message-text"></textarea>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="message-text" class="col-form-label">Message:</label>
-                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="submit" id="report" class="btn btn-primary report">Report</button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close
-                                                    </button>
-                                                    <button type="submit" id="report" class="btn btn-primary report">Report</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </fieldset>
                                 </form>
                             @endif
                         @endif
@@ -247,50 +262,56 @@
             </button>
             <form action="{{route('reports.store')}}" method="POST" id="userForm" class="userForm">
                 {{csrf_field() }}
-                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> Report Name's Item</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <div>
-                                            <h5 style="color:brown"> Motive</h5>
-                                            <label><input id="1" type="radio" name="radio" value="Received a counterfeit or fake item"> Received a counterfeit or fake item</label>
-                                            <div class="radio">
-                                                <label><input id="2" type="radio" name="radio" value="This item is illegal"> This item is illegal</label>
+                <fieldset>
+                    <legend hidden> Report Item</legend>
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"> Report Name's Item</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <fieldset>
+                                            <legend hidden>Motive</legend>
+                                            <div class="form-group">
+                                                <div>
+                                                    <h5 style="color:brown"> Motive</h5>
+                                                    <label><input id="1" type="radio" name="radio" value="Received a counterfeit or fake item"> Received a counterfeit or fake item</label>
+                                                    <div class="radio">
+                                                        <label><input id="2" type="radio" name="radio" value="This item is illegal"> This item is illegal</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input id="3" type="radio" name="radio" value="Received item is not in the original condition">Received item is not in the original condition</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input id="4" type="radio" name="radio" value="FUCK OFF">Other</label>
+                                                    </div>
+                                                </div>
+                                                <label for="reason" class="col-form-label">Other:</label>
+                                                <input type="text" class="form-control" id="reason">
+                                                <input type = "hidden" value="{{$auction->id}}" id="auction">
+                                                <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
                                             </div>
-                                            <div class="radio">
-                                                <label><input id="3" type="radio" name="radio" value="Received item is not in the original condition">Received item is not in the original condition</label>
+                                            <div class="form-group">
+                                                <label for="message" class="col-form-label">Message:</label>
+                                                <textarea class="form-control" id="message"></textarea>
                                             </div>
-                                            <div class="radio">
-                                                <label><input id="4" type="radio" name="radio" value="FUCK OFF">Other</label>
-                                            </div>
-                                        </div>
-                                        <label for="reason" class="col-form-label">Other:</label>
-                                        <input type="text" class="form-control" id="reason">
-                                        <input type = "hidden" value="{{$auction->id}}" id="auction">
-                                        <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" id= "sub" class="btn btn-primary">Send message</button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id= "sub" class="btn btn-primary">Send message</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         @endif
     </nav>
@@ -331,26 +352,29 @@
                     @else
                         <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <dt class="col-sm-8 bid text-align-center mobile-text-center" id="input-bid">
-                                <div class="input-group mb-3">
-                                    @if(Auth::user()->isHighestBidder($auction))
-                                    @else
-                                        <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
-                                        <input type="number" class="form-control" id="bid-amount" name="bid-amount"
-                                               required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">€</span>
-                                        </div>
-                                        <div class="col-sm-3 bid" id="button-bid">
-                                            <div class="btn-group">
-                                                <label for="button-bid" hidden>Bid amount</label>
-                                                <input type="submit" name="submit" value="Place Bid" class="btn"
-                                                       id="button-bid">
+                            <fieldset>
+                                <legend hidden>Bid</legend>
+                                <dt class="col-sm-8 bid text-align-center mobile-text-center" id="input-bid">
+                                    <div class="input-group mb-3">
+                                        @if(Auth::user()->isHighestBidder($auction))
+                                        @else
+                                            <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
+                                            <input type="number" class="form-control" id="bid-amount" name="bid-amount"
+                                                   required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">€</span>
                                             </div>
-                                        </div>
-                                </div>
-                            </dt>
-                            @endif
+                                            <div class="col-sm-3 bid" id="button-bid">
+                                                <div class="btn-group">
+                                                    <label for="button-bid" hidden>Bid amount</label>
+                                                    <input type="submit" name="submit" value="Place Bid" class="btn"
+                                                           id="button-bid">
+                                                </div>
+                                            </div>
+                                    </div>
+                                </dt>
+                                @endif
+                            </fieldset>
                         </form>
                     @endif
             </dl>
@@ -381,13 +405,16 @@
                            @if(Auth::user()->isAuctionOwner($auction))
                                 <form method="POST" action="{{action('AuctionController@storeAnswer', [$auction->id, $qa->id])}}">
                                     {{ csrf_field() }}
-                                    <div class="input-group mb-3 col-sm-16">
-                                        <label for="answer-input" class="col-3 col-form-label" hidden>Answer</label>
-                                        <input type="text" class="form-control" placeholder="Place your answer" id="answer-input" name="answer-input" required>
-                                        <div class="input-group-append" id="answer-id">
-                                            <input type="submit" name="submit" value="Answer" class="btn btn-outline-secondary" id="answer-id">
+                                    <fieldset>
+                                        <legend hidden>Answer</legend>
+                                        <div class="input-group mb-3 col-sm-16">
+                                            <label for="answer-input" class="col-3 col-form-label" hidden>Answer</label>
+                                            <input type="text" class="form-control" placeholder="Place your answer" id="answer-input" name="answer-input" required>
+                                            <div class="input-group-append" id="answer-id">
+                                                <input type="submit" name="submit" value="Answer" class="btn btn-outline-secondary" id="answer-id">
+                                            </div>
                                         </div>
-                                    </div>
+                                    </fieldset>
                                 </form>
                             @else
                                <font color="red">This question hasn't been answer yet!</font>
@@ -402,14 +429,17 @@
             @else
                 <form method="POST" action="{{action('AuctionController@storeQuestion', [$auction->id])}}">
                     {{ csrf_field() }}
-                <div class="input-group mb-3 col-sm-10">
-                    <label for="question-input" class="col-3 col-form-label" hidden>Question</label>
-                    <input type="text" class="form-control" placeholder="Place your question" id="question-input" name="question-input" required>
-                    <div class="input-group-append" id="question-id">
-                        <input type="submit" name="submit" value="Ask" class="btn btn-outline-secondary" id="question-id">
-                    </div>
+                    <fieldset>
+                        <legend hidden>Question</legend>
+                        <div class="input-group mb-3 col-sm-10">
+                            <label for="question-input" class="col-3 col-form-label" hidden>Question</label>
+                            <input type="text" class="form-control" placeholder="Place your question" id="question-input" name="question-input" required>
+                            <div class="input-group-append" id="question-id">
+                                <input type="submit" name="submit" value="Ask" class="btn btn-outline-secondary" id="question-id">
+                            </div>
 
-                </div>
+                        </div>
+                    </fieldset>
                 </form>
             @endif
         </div>
@@ -480,24 +510,27 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <div>
-                                    <h5 style="color:brown"> Motive</h5>
-                                    <div class="radio">
-                                        <label><input type="radio"
-                                                      name="behaviour"> Abusive behaviour </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="content"> Spam </label>
+                            <fieldset>
+                                <legend hidden>Motive</legend>
+                                <div class="form-group">
+                                    <div>
+                                        <h5 style="color:brown"> Motive</h5>
+                                        <div class="radio">
+                                            <label><input type="radio"
+                                                          name="behaviour"> Abusive behaviour </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="content"> Spam </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                            <label for="admin-pass" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="admin-pass">
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                <label for="admin-pass" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="admin-pass">
+                            </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -521,39 +554,42 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <div>
-                                    <h5 style="color:brown"> Motive</h5>
-                                    <div class="radio">
-                                        <label><input type="radio"
-                                                      name="behaviour">Abusive behaviour</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="content">Spam</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="content">Troll</label>
+                            <fieldset>
+                                <legend hidden>Motive</legend>
+                                <div class="form-group">
+                                    <div>
+                                        <h5 style="color:brown"> Motive</h5>
+                                        <div class="radio">
+                                            <label><input type="radio"
+                                                          name="behaviour">Abusive behaviour</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="content">Spam</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="content">Troll</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="ban_duration" class="col-form-label">Ban Duration:</label>
-                                <span>
-                                <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                <div class="form-group">
+                                    <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                    <span>
+                                    <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                    </span>
+
+                                    <span class="radio">
+                                        <label><input type="radio" name="duration">Permanent</label>
                                 </span>
 
-                                <span class="radio">
-                                    <label><input type="radio" name="duration">Permanent</label>
-                            </span>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text_ban" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text_ban"></textarea>
-                            </div>
-                            <label for="admin-pass_ban" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="admin-pass_ban">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text_ban" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text_ban"></textarea>
+                                </div>
+                                <label for="admin-pass_ban" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="admin-pass_ban">
+                            </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">

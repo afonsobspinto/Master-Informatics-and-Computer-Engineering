@@ -6,18 +6,21 @@
     </a>
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
-        <div class="d-flex">
-            <label for="search-input" hidden>Search:</label>
-            <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search" value="{{ $searchString ?? "" }}" id="search-input">
-            <label for="search-categories" hidden>Search Categories:</label>
-            <select class="form-control rounded-1 col-2" name="category" id="search-categories">
-                <option value="ALL" @if(! isset($categoryID)) selected @endif> All Categories</option>
-                @foreach($categories as $category)
-                <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
-                @endforeach
-            </select>
-            <button class="btn btn-dark rounded-1 " type="submit" title="Search"><i class="fas fa-search"></i></button>
-        </div>
+        <fieldset>
+            <legend hidden>Search</legend>
+            <div class="d-flex">
+                <label for="search-input" hidden>Search:</label>
+                <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search" value="{{ $searchString ?? "" }}" id="search-input">
+                <label for="search-categories" hidden>Search Categories:</label>
+                <select class="form-control rounded-1 col-2" name="category" id="search-categories">
+                    <option value="ALL" @if(! isset($categoryID)) selected @endif> All Categories</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-dark rounded-1 " type="submit" title="Search"><i class="fas fa-search"></i></button>
+            </div>
+        </fieldset>
     </form>
     @auth
     {{--logged in user--}}
@@ -53,6 +56,9 @@
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
+                <fieldset>
+                    <legend hidden>Logout</legend>
+                </fieldset>
             </form>
         </div>
     </div>

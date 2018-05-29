@@ -78,10 +78,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-group">
-                                            <label for="appeal-text" class="form-control-label">Message:</label>
-                                            <textarea class="form-control" id="appeal-text"></textarea>
-                                        </div>
+                                        <fieldset>
+                                            <legend hidden>Message</legend>
+                                            <div class="form-group">
+                                                <label for="appeal-text" class="form-control-label">Message:</label>
+                                                <textarea class="form-control" id="appeal-text"></textarea>
+                                            </div>
+                                        </fieldset>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -128,15 +131,18 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-group">
-                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
-                                            <span>
-                                        <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
-                                    </span>
-                                            <span class="radio">
-                                        <label><input type="radio" name="duration">Permanent</label>
-                                    </span>
-                                        </div>
+                                        <fieldset>
+                                            <legend hidden>Ban</legend>
+                                            <div class="form-group">
+                                                <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                                <span>
+                                            <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                        </span>
+                                                <span class="radio">
+                                            <label><input type="radio" name="duration">Permanent</label>
+                                        </span>
+                                            </div>
+                                        </fieldset>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -197,39 +203,42 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-group">
-                                            <div>
-                                                <h5 style="color:brown"> Motive</h5>
-                                                <div class="radio">
-                                                    <label><input type="radio"
-                                                                  name="behaviour">Abusive behaviour</label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input type="radio" name="content">Spam</label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input type="radio" name="content">Troll</label>
+                                        <fieldset>
+                                            <legend hidden>Motive</legend>
+                                            <div class="form-group">
+                                                <div>
+                                                    <h5 style="color:brown"> Motive</h5>
+                                                    <div class="radio">
+                                                        <label><input type="radio"
+                                                                      name="behaviour">Abusive behaviour</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="content">Spam</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="content">Troll</label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="ban_duration" class="col-form-label">Ban Duration:</label>
-                                            <span>
-                                <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                            <div class="form-group">
+                                                <label for="ban_duration" class="col-form-label">Ban Duration:</label>
+                                                <span>
+                                    <input type="date" class="form-control mb-2" name="duration" id="ban_duration">
+                                    </span>
+
+                                                <span class="radio">
+                                        <label><input type="radio" name="duration">Permanent</label>
                                 </span>
 
-                                            <span class="radio">
-                                    <label><input type="radio" name="duration">Permanent</label>
-                            </span>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text_ban" class="col-form-label">Message:</label>
-                                            <textarea class="form-control" id="message-text_ban"></textarea>
-                                        </div>
-                                        <label for="admin-pass_ban" class="col-form-label">Password:</label>
-                                        <input type="password" class="form-control" id="admin-pass_ban">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text_ban" class="col-form-label">Message:</label>
+                                                <textarea class="form-control" id="message-text_ban"></textarea>
+                                            </div>
+                                            <label for="admin-pass_ban" class="col-form-label">Password:</label>
+                                            <input type="password" class="form-control" id="admin-pass_ban">
+                                        </fieldset>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -342,50 +351,53 @@
 
                             <form action="{{route('reports.storeReport')}}" method="POST" id="userReport" class="userReport">
                                 {{csrf_field() }}
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <div>
-                                                        <h5 style="color:brown"> Motive</h5>
-                                                        <div class="radio">
-                                                            <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
+                                <fieldset>
+                                    <legend hidden>Report</legend>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <h5 style="color:brown"> Motive</h5>
+                                                            <div class="radio">
+                                                                <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
+                                                            </div>
                                                         </div>
-                                                        <div class="radio">
-                                                            <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
-                                                        </div>
+                                                        <label for="reason1" class="col-form-label">Other:</label>
+                                                        <input type="text" class="form-control" id="reason1">
                                                     </div>
-                                                    <label for="reason1" class="col-form-label">Other:</label>
-                                                    <input type="text" class="form-control" id="reason1">
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label">Message:</label>
-                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" id="report" class="btn btn-primary report">Report</button>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" id="report" class="btn btn-primary report">Report</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </fieldset>
                             </form>
 
                         </div>
@@ -556,19 +568,22 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <form>
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Rate the Auction:</label>
-                                                                    <span class="sr-only">Four out of Five Stars</span>
-                                                                    <span class="far fa-star" aria-hidden="true"></span>
-                                                                    <span class="far fa-star" aria-hidden="true"></span>
-                                                                    <span class="far fa-star" aria-hidden="true"></span>
-                                                                    <span class="far fa-star" aria-hidden="true"></span>
-                                                                    <span class="far fa-star" aria-hidden="true"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="appeal-text" class="form-control-label">Feedback:</label>
-                                                                    <label for="appeal-text"></label><textarea class="form-control" id="appeal-text"></textarea>
-                                                                </div>
+                                                                <fieldset>
+                                                                    <legend hidden>Rate</legend>
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">Rate the Auction:</label>
+                                                                        <span class="sr-only">Four out of Five Stars</span>
+                                                                        <span class="far fa-star" aria-hidden="true"></span>
+                                                                        <span class="far fa-star" aria-hidden="true"></span>
+                                                                        <span class="far fa-star" aria-hidden="true"></span>
+                                                                        <span class="far fa-star" aria-hidden="true"></span>
+                                                                        <span class="far fa-star" aria-hidden="true"></span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="appeal-text" class="form-control-label">Feedback:</label>
+                                                                        <label for="appeal-text"></label><textarea class="form-control" id="appeal-text"></textarea>
+                                                                    </div>
+                                                                </fieldset>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
@@ -599,31 +614,34 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <form>
-                                                                <div class="form-group">
-                                                                    <div>
-                                                                        <h5 style="color:brown"> Motive</h5>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="behaviour"> Received a counterfeit or fake item</label>
+                                                                <fieldset>
+                                                                    <legend hidden>Motive</legend>
+                                                                    <div class="form-group">
+                                                                        <div>
+                                                                            <h5 style="color:brown"> Motive</h5>
+                                                                            <div class="radio">
+                                                                                <label><input type="radio" name="behaviour"> Received a counterfeit or fake item</label>
+                                                                            </div>
+                                                                            <div class="radio">
+                                                                                <label><input type="radio" name="content">This item is illegal</label>
+                                                                            </div>
+                                                                            <div class="radio">
+                                                                                <label><input type="radio" name="optradio">Received item is not in the original
+                                                                                    condition</label>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="content">This item is illegal</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Received item is not in the original
-                                                                                condition</label>
-                                                                        </div>
+                                                                        <label for="recipient-name" class="col-form-label">Other:</label>
+                                                                        <label>
+                                                                            <input id="recipient-name" type="text" class="form-control">
+                                                                        </label>
                                                                     </div>
-                                                                    <label for="recipient-name" class="col-form-label">Other:</label>
-                                                                    <label>
-                                                                        <input id="recipient-name" type="text" class="form-control">
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="message-text" class="col-form-label">Message:</label>
-                                                                    <label>
-                                                                        <textarea class="form-control" id="message-text"></textarea>
-                                                                    </label>
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                                        <label>
+                                                                            <textarea class="form-control" id="message-text"></textarea>
+                                                                        </label>
+                                                                    </div>
+                                                                </fieldset>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
@@ -662,8 +680,11 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label for="user-pass" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="user-pass">
+                        <fieldset>
+                            <legend hidden>Password</legend>
+                            <label for="user-pass" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="user-pass">
+                        </fieldset>
                     </form>
                 </div>
                 <div class="modal-footer">

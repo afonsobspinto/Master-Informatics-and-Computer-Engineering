@@ -13,45 +13,47 @@
 @section('content')
     {{-- Sidebar --}}
     <form id="sidebar" class="sidebar-nav ">
-        {{--<div class="format">--}}
-            {{--<h5> Look for </h5>--}}
-            {{--<div class="radio">--}}
-                {{--<label><input type="radio" name="buy-type" value="all">All listings </label>--}}
-                {{--<label><input type="radio" name="buy-type">Auction </label>--}}
-                {{--<label><input type="radio" name="buy-type">Buy It Now</label>--}}
+        <fieldset>
+            <legend hidden>Search</legend>
+            {{--<div class="format">--}}
+                {{--<h5> Look for </h5>--}}
+                {{--<div class="radio">--}}
+                    {{--<label><input type="radio" name="buy-type" value="all">All listings </label>--}}
+                    {{--<label><input type="radio" name="buy-type">Auction </label>--}}
+                    {{--<label><input type="radio" name="buy-type">Buy It Now</label>--}}
+                {{--</div>--}}
             {{--</div>--}}
-        {{--</div>--}}
 
-        {{--<div class="condition">--}}
-            {{--<h5> Condition </h5>--}}
-            {{--<div class="radio">--}}
-                {{--<label><input type="radio" name="item-condition" checked="checked" value="ALL"> Not Specified </label>--}}
-                {{--<label><input type="radio" name="item-condition"> New </label>--}}
-                {{--<label><input type="radio" name="item-condition"> Used </label>--}}
+            {{--<div class="condition">--}}
+                {{--<h5> Condition </h5>--}}
+                {{--<div class="radio">--}}
+                    {{--<label><input type="radio" name="item-condition" checked="checked" value="ALL"> Not Specified </label>--}}
+                    {{--<label><input type="radio" name="item-condition"> New </label>--}}
+                    {{--<label><input type="radio" name="item-condition"> Used </label>--}}
+                {{--</div>--}}
             {{--</div>--}}
-        {{--</div>--}}
 
-        <div class="price">
-            <h5> Price (EUR)   </h5>
             <div class="price">
-                <label for="min-price" hidden>Min Price:</label>
-                <input id="min-price" type="number" min="0"  placeholder="Min" name="min-price">
-                <label for="max-price" hidden>Max Price:</label>
-                <input type="number" min="0"  placeholder="Max" name="max-price">
+                <h5> Price (EUR)   </h5>
+                <div class="price">
+                    <label for="min-price" hidden>Min Price:</label>
+                    <input id="min-price" type="number" min="0"  placeholder="Min" name="min-price">
+                    <label for="max-price" hidden>Max Price:</label>
+                    <input type="number" min="0"  placeholder="Max" name="max-price">
+                </div>
             </div>
-        </div>
 
-        <div class="location">
-            <h5> Item Location </h5>
-            <label for="country">Country:</label>
-            <select class="form-control" id="country" name="country" aria-describedby="Country">
-                <option value="ANY" selected> All Countries </option>
-                @foreach($countries as $country)
-                    <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
-                @endforeach
-            </select>
-        </div>
-
+            <div class="location">
+                <h5> Item Location </h5>
+                <label for="country">Country:</label>
+                <select class="form-control" id="country" name="country" aria-describedby="Country">
+                    <option value="ANY" selected> All Countries </option>
+                    @foreach($countries as $country)
+                        <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </fieldset>
     </form>
 
     {{-- page contents --}}
