@@ -57,6 +57,12 @@ class Auction extends Model
             ->where('closed_auctions.id', '=', null)->where('end_date', '>', 'now()')->select('*', 'auctions.id as id');
     }
 
+    public static function getAuctionsToClose(){
+
+        return Auction::leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
+            ->where('closed_auctions.id', '=', null)->where('end_date', '<=', 'now()')->select('*', 'auctions.id as id')->get();
+    }
+
     public static function create(array $data) {
         DB::table('auctions')->insert(
             $data
@@ -127,6 +133,7 @@ class Auction extends Model
         return DB::table('wishlists')->get();
     }
 
+
     public function deleteBids($user){
         $current_bid = $this->current_price;
         DB::table('bids')
@@ -144,4 +151,6 @@ class Auction extends Model
                 ->update(['answer' => $answer]);
         }
     }
+
+
 }

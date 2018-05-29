@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Auction;
 
 class Kernel extends ConsoleKernel
 {
@@ -23,10 +25,14 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule){
-        $schedule->exec('echo "Hello World"')
-            ->everyMinute()
-            ->appendOutputTo("/tmp/laravel.log");
+        $schedule->call(function () {
+            $auctionsToClose = Auction::getAuctionsToClose();
+            foreach ($auctionsToClose as $auction){
+                echo $auction->id . " \n";
+            }
+        })->everyMinute()->appendOutputTo("laravel.log");
     }
+
 
     /**
      * Register the commands for the application.
