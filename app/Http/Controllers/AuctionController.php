@@ -226,22 +226,32 @@ class AuctionController extends Controller
             'question-input' => 'required',
         ]);
 
-        try {
+        /*/try {*/
             $qa = new QA();
-            $qa->id = $id;
             $qa->question = $request->input('question-input');
             $qa->answer = NULL;
             $qa->auction_id = $id;
             $qa->questioner_id = Auth::user()->id;
             $qa->save();
-        }
-
-        catch (\Exception$e){
+        /*}
+        catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
-        }
-
+        }*/
 
         return redirect('auctions/' . $id);
+    }
+
+    public function storeAnswer(Request $request, $auction_id, $qa_id){
+        $this->validate($request, [
+            'answer-input' => 'required',
+        ]);
+
+        $answer = $request->input('answer-input');
+        $auction = Auction::findOrFail($auction_id);
+        $auction->answerQA($auction, $qa_id, $answer);
+
+        return redirect('auctions/' . $auction_id);
+
     }
 
     public function storeBid(Request $request, $id)
@@ -273,5 +283,10 @@ class AuctionController extends Controller
         $auction->deleteBids(Auth::user());
     }
 
+    public function getCurrentPrice($auctionID) {
+        $auction = Auction::findOrFail($auctionID);
+
+        return response()->json($auction->currentPriceEuros());
+    }
 }
 

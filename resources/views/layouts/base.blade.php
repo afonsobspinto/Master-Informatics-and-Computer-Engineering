@@ -15,6 +15,8 @@
         <!-- links -->
         @section('resources')
             <script src="{{ asset('js/common.js') }}" async></script>
+            <script src="{{ asset('js/polling.js') }}" defer></script>
+            <script src="{{ asset('js/header.js') }}" defer></script>
             <link rel="stylesheet" href="{{ asset('css/header.css') }}">
             <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
         @show
