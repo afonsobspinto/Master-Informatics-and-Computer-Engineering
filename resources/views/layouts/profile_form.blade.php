@@ -34,7 +34,7 @@
             <div class="form-group mt-4">
                 <label for="profile-picture">Profile Picture:</label>
                 <div>
-                    <img id="profile-avatar" class="form-picture" src="{{ $profile_picture }}" alt="Profile Picture">
+                    <img id="profile-avatar" class="form-picture" src="{{ $profile_picture }}" alt="Profile Picture" title="Your Picture">
                 </div>
                 <input type="file" class="form-control-file" id="profile-picture" accept="image/*" name="picture">
                 @include('components.form_error_msg', ['errorName' => 'picture'])

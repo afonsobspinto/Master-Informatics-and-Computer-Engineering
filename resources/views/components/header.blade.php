@@ -2,7 +2,7 @@
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
     <a id="logo-link" href="{{ url('/landing_page') }}" class="navbar-brand">
-        <img id="logo" src="{{ asset('/images/logo.png') }}" alt="Logo">
+        <img id="logo" src="{{ asset('/images/logo.png') }}" alt="Logo" title="Logo">
     </a>
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
@@ -14,7 +14,7 @@
                 <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
                 @endforeach
             </select>
-            <button class="btn btn-dark rounded-1 " type="submit"><i class="fas fa-search"></i></button>
+            <button class="btn btn-dark rounded-1 " type="submit" title="Search"><i class="fas fa-search"></i></button>
         </div>
     </form>
     @auth
