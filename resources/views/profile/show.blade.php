@@ -339,52 +339,55 @@
                                 Report abuse
                             </a>
                             @endif
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
+
+                            <form action="{{route('reports.storeReport')}}" method="POST" id="userReport" class="userReport">
+                                {{csrf_field() }}
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
                                                 <div class="form-group">
                                                     <div>
                                                         <h5 style="color:brown"> Motive</h5>
                                                         <div class="radio">
-                                                            <label><input type="radio"
-                                                                          name="behaviour"> Abusive behaviour </label>
+                                                            <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
                                                         </div>
                                                         <div class="radio">
-                                                            <label><input type="radio" name="content">Inappropriate content in
-                                                                profile </label>
+                                                            <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
                                                         </div>
                                                         <div class="radio">
-                                                            <label><input type="radio"
-                                                                          name="optradio">Didn't receive an item</label>
+                                                            <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
                                                         </div>
                                                     </div>
-                                                    <label for="recipient-name" class="col-form-label">Other:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
+                                                    <label for="reason" class="col-form-label">Other:</label>
+                                                    <input type="text" class="form-control" id="reason1">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Message:</label>
                                                     <textarea class="form-control" id="message-text"></textarea>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close
-                                            </button>
-                                            <button type="button" class="btn btn-primary report">Report</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" id="report" class="btn btn-primary report">Report</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -644,6 +647,7 @@
             @endif
     </div>
 
+    <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
          aria-labelledby="cancelModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -671,4 +675,40 @@
     </div>
 </div>
 
+<script>
+    $("#report").click(function(e){
+        e.preventDefault();
+        var $form = $("#userReport");
+        if (document.getElementById("5").checked) {
+            var value = document.getElementById("5").value;
+        } else if (document.getElementById("6").checked){
+            var value = document.getElementById("6").value;
+        } else if(document.getElementById("7").checked) {
+            var value = document.getElementById("7").value;
+        } else if (document.getElementById("8").checked){
+            var value = $("#reason1").val();
+        }
+        var message = $("#message-text").val();
+
+        var url = window.location.href;
+        var userid=url.split("/").pop();
+        var reportedUser = userid;                                                         //MUDAR ISTO
+        var userId = $("#reporter").val();
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: {msg: message, sub:value, user_id: userId, reported_user: reportedUser, is_user: true, },
+            success: function (data) {
+                if(data.error){
+                    return;
+                }
+                alert(data.success); // THis is success message
+                $('#exampleModal').modal('hide');  // Your modal Id
+                window.location.reload(true);
+            },
+            error: function (result) {
+            }
+        });
+    });
+</script>
 @endsection
