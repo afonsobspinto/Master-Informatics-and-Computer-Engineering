@@ -79,7 +79,7 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group">
-                                            <label class="form-control-label">Message:</label>
+                                            <label for="appeal-text" class="form-control-label">Message:</label>
                                             <textarea class="form-control" id="appeal-text"></textarea>
                                         </div>
                                     </form>
@@ -369,7 +369,7 @@
                                                             <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
                                                         </div>
                                                     </div>
-                                                    <label for="reason" class="col-form-label">Other:</label>
+                                                    <label for="reason1" class="col-form-label">Other:</label>
                                                     <input type="text" class="form-control" id="reason1">
                                                 </div>
                                                 <div class="form-group">
@@ -566,7 +566,7 @@
                                                                     <span class="far fa-star" aria-hidden="true"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="form-control-label">Feedback:</label>
+                                                                    <label for="appeal-text" class="form-control-label">Feedback:</label>
                                                                     <label for="appeal-text"></label><textarea class="form-control" id="appeal-text"></textarea>
                                                                 </div>
                                                             </form>
@@ -615,13 +615,13 @@
                                                                     </div>
                                                                     <label for="recipient-name" class="col-form-label">Other:</label>
                                                                     <label>
-                                                                        <input type="text" class="form-control">
+                                                                        <input id="recipient-name" type="text" class="form-control">
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="message-text" class="col-form-label">Message:</label>
                                                                     <label>
-                                                                        <textarea class="form-control"></textarea>
+                                                                        <textarea class="form-control" id="message-text"></textarea>
                                                                     </label>
                                                                 </div>
                                                             </form>
@@ -663,7 +663,7 @@
                 <div class="modal-body">
                     <form>
                         <label for="user-pass" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="admin-pass">
+                        <input type="password" class="form-control" id="user-pass">
                     </form>
                 </div>
                 <div class="modal-footer">

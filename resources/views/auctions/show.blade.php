@@ -132,7 +132,7 @@
                                         <input type="text" class="form-control" id="item-name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="message-text" class="form-control-label">Message:</label>
+                                        <label for="contact-text" class="form-control-label">Message:</label>
                                         <textarea class="form-control" id="contact-text"></textarea>
                                     </div>
                                 </form>
@@ -191,7 +191,7 @@
                                                                 <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
                                                             </div>
                                                         </div>
-                                                        <label for="reason" class="col-form-label">Other:</label>
+                                                        <label for="reason1" class="col-form-label">Other:</label>
                                                         <input type="text" class="form-control" id="reason1">
                                                     </div>
                                                     <div class="form-group">
@@ -343,6 +343,7 @@
                                         </div>
                                         <div class="col-sm-3 bid" id="button-bid">
                                             <div class="btn-group">
+                                                <label for="button-bid" hidden>Bid amount</label>
                                                 <input type="submit" name="submit" value="Place Bid" class="btn"
                                                        id="button-bid">
                                             </div>

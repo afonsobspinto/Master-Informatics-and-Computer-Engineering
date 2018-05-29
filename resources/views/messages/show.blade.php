@@ -51,6 +51,7 @@
                     <input type="hidden" value="" name="id" id="id" class="form-control"/>
 
                     <input type="hidden" value="{{ $message->subject }}" name="sub" id="sub" class="form-control"/>
+                    <label for="article-ckeditor" hidden>Write your message:</label>
                     <textarea class="form-control" id="article-ckeditor" name="message-text" placeholder="Write your message!"></textarea>
                     <div class="row" id="trackingDiv">
                         <div class="col-5"></div>

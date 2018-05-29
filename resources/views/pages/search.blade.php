@@ -34,14 +34,17 @@
         <div class="price">
             <h5> Price (EUR)   </h5>
             <div class="price">
-                <input type="number" min="0"  placeholder="Min" name="min-price">
+                <label for="min-price" hidden>Min Price:</label>
+                <input id="min-price" type="number" min="0"  placeholder="Min" name="min-price">
+                <label for="max-price" hidden>Max Price:</label>
                 <input type="number" min="0"  placeholder="Max" name="max-price">
             </div>
         </div>
 
         <div class="location">
             <h5> Item Location </h5>
-            <select class="form-control" name="country" aria-describedby="Country">
+            <label for="country">Country:</label>
+            <select class="form-control" id="country" name="country" aria-describedby="Country">
                 <option value="ANY" selected> All Countries </option>
                 @foreach($countries as $country)
                     <option value="{{ $country->id }}">{{ ucfirst($country->country) }}</option>
