@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-3">
             <img src="{{ $profile_picture }}"
-                 alt="Profile Picture" style="width:100%">
+                 alt="Profile Picture" style="width:100%" title="{{ $user->username }}">
         </div>
         <div class="col-md-3">
             <div class="row">
@@ -300,7 +300,7 @@
                 <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid" alt="Auction Winner Review">
+                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid" alt="Auction Winner Review" title="{{ $user->getAuctionWinnerName($review->id) }}">
                             <div class="review-block-name"><a href="{{ url('profile/' . $user->getAuctionWinner($review->id))  }}">{{ $user->getAuctionWinnerName($review->id) }}</a></div>
                         </div>
                         <div class="col-sm-9">
@@ -405,7 +405,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image" title="{{ $item->item_name }}">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -440,7 +440,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->auction_id) }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->auction_id) }}" alt="auction image" title="{{ $item->item_name }}">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -488,7 +488,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image" title="{{ $item->item_name }}">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -523,7 +523,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image" title="{{ $item->item_name }}">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>

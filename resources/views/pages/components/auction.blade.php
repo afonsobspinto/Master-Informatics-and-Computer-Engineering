@@ -1,7 +1,7 @@
 <li class="auction-item">
     <a href="{{ url("auctions/{$auction->id}") }}" class="d-flex">
         <div>
-            <img class="auction-image" src="{{ $auction->getDisplayPictureURL($auction->id) }}" alt="auction image">
+            <img class="auction-image" src="{{ $auction->getDisplayPictureURL($auction->id) }}" alt="auction image" title="{{ $auction->item_name }}">
         </div>
         <div class="auction-text">
             <h4> {{ $auction->item_name }} </h4>

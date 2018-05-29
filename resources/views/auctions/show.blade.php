@@ -45,7 +45,7 @@
         <div class="col-md-3 ">
             <div class="card text-align-center mobile-text-center" style="width: 20rem;">
                 <img class="card-img-top img-fluid" src="{{ $auction->getUserPicture($auction->owner_id) }}"
-                     alt="Auctioneer Image">
+                     alt="Auctioneer Image" title="{{ $auction->getAuctionOwner() }}">
 
 
                 <div class="card-block mb-3">
@@ -422,7 +422,7 @@
                         <div class="row">
                             <div class="col-sm-2 text-align-center mobile-text-center">
                                 <img src="{{ $auction->getUserPicture($auction->getAuctionWinner($review->id)) }} "
-                                     class="img-review img-fluid" alt="Auction Winner">
+                                     class="img-review img-fluid" alt="Auction Winner" title="{{ $auction->getAuctionWinnerName($review->id) }}">
                                 <div class="review-block-name"><a href="{{ url('profile/' . $auction->getAuctionWinner($review->id))  }}">{{ $auction->getAuctionWinnerName($review->id) }}</a></div>
                             </div>
                             <div class="col-sm-10 ">
