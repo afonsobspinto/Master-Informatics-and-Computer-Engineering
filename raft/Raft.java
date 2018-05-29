@@ -299,9 +299,7 @@ public class Raft<T extends Serializable> {
         System.out.println((char)27 + "[31m"+ "Sending Request: " + request + (char)27 + "[0m");
         channel.send(request);
 
-        System.out.println("RECEIVING!");
         String message = channel.receiveString();
-        System.out.println("Hello"); //TODO: not printing?
         System.out.println((char)27 + "[31m"+ "Message Received from Channel " + message + (char)27 + "[0m");
 
 
@@ -360,7 +358,7 @@ public class Raft<T extends Serializable> {
     boolean setValue(T object) {
         RaftLog<T> result = new RaftLog<>(object, currentTerm.get());
         clientRequests.put(result);
-        return result.get();
+        return true; //TODO: result.get()?
     }
 
     boolean deleteValue() {

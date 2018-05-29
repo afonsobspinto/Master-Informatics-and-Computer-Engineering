@@ -104,12 +104,10 @@ public class SSLChannel {
 	public String receiveString() {
 		byte[] data = receive();
 		if(data==null){
-            System.out.println("NULL");
             return null;
         }
         else {
 		    String ret = new String(data);
-            System.out.println("Data: " + ret);
             return ret;
         }
 
