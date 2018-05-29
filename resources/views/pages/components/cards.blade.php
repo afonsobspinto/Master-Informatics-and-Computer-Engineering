@@ -13,7 +13,7 @@
             <a href="{{ url("auctions/{$auction->id}") }}">
                 <!-- place auction data here -->
                 <!-- images can be any size -->
-                <img class="card-img-top" src="{{ $auction->getDisplayPictureURL() }}" alt="auction image">
+                <img class="card-img-top" src="{{ $auction->getDisplayPictureURL($auction->id) }}" alt="auction image">
                 <div class="card-body">
                     <h3 class="card-title">{{ $auction->item_name }}</h3>
                     <p class="card-subtitle mb-2 text-muted">
