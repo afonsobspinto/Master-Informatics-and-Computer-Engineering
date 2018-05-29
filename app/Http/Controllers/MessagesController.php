@@ -157,6 +157,30 @@ class MessagesController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public static function systemStore($receiverID, $data)
+    {
+        echo "System Store";
+        try {
+            $message = new Messages();
+            $message->subject = $data['subject'];
+            $message->message = $data['message'];
+            $message->send_date = Carbon::now();
+            $message->save();
+
+            $emails = new Emails();
+            $emails->id = $message->id;
+            $emails->has_been_opened = false;
+            $emails->receiver_id = $receiverID;
+            $emails->sender_id = $data['id'];
+            $emails->save();
+        }
+        catch (\Exception $e){
+            return false;
+        }
+
+        return true;
+    }
+
     public function storeSpecificMessage(Request $request)
     {
         $this->validate($request, [
@@ -219,7 +243,6 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $categories = Category::all();
 
-        error_log("ESTOU AQUI");
         $message = $this->messageService->getUserSentMessageById($userId, $id);
 
         $profilePic = $this->getProfilePictureURL($message->receiver_id);
