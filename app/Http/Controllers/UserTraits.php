@@ -23,7 +23,9 @@ trait UserTraits
 
     protected function buildEmailRule() {
         $rulesArr = func_get_args();
-        return array_merge([ 'required' , 'string', 'email', 'max:255', $this->buildCheckEmailRule() ], $rulesArr);
+        return array_merge([ 'required' , 'string', 'email', 'max:255',
+//            $this->buildCheckEmailRule()
+        ], $rulesArr);
     }
     protected function buildPasswordRule() {
         $rulesArr = func_get_args();
