@@ -315,9 +315,9 @@ class AuctionController extends Controller
 
     public function closeAuctions(){
 
+        echo "You don't pay me enough to do this every minute.";
         $auctionsToClose = Auction::getAuctionsToClose();
         foreach ($auctionsToClose as $auction){
-            echo Auction::getAuctionWinnerGivenID($auction->id) . " \n";
             $this->closeAuction($auction);
         }
 
@@ -328,9 +328,25 @@ class AuctionController extends Controller
         if($auction->starting_price	< $auction->current_price){
             $winnerID = $auction->getAuctionWinnerGivenID($auction->id);
             $this->storeWon($auction->id, $winnerID);
+            $this->notify($auction, $winnerID);
+
         }
     }
 
+    private function notify($auction, $winner){
+        $messageToOwner =array("id"=>$winner, "subject"=>"Item " . $auction->item_name . "adquirido.",
+            "message"=>"Olá. O teu item " . $auction->item_name . " foi adquirido por " . $auction->current_price .
+            "€. Deves agora entrar em contacto com o comprador. 
+            Esta mensagem foi enviada automaticamente pelo sistema. Beep!");
+
+        $messageToWinner =array("id"=>$auction->owner_id, "subject"=>"Item " . $auction->item_name . "adquirido.",
+            "message"=>"Olá. Acabaste de adquirir o item  " . $auction->item_name . " por " . $auction->current_price .
+                "€. Deves agora entrar em contacto com o vendedor. 
+            Esta mensagem foi enviada automaticamente pelo sistema. Beep!");
+
+        MessagesController::systemStore($auction->owner_id, $messageToOwner);
+        MessagesController::systemStore($winner, $messageToWinner);
+    }
     private function storeClosed($auctionID){
 
         try {
