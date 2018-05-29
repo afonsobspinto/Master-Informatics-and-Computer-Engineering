@@ -417,7 +417,7 @@
                                     </fieldset>
                                 </form>
                             @else
-                               <font color="red">This question hasn't been answer yet!</font>
+                               <font color="red">This question hasn't been answer yet! <i class="fas fa-clock"></i></font>
                             @endif
                         @else
                             <dd class="col-sm-8">{{ $qa->answer }}</dd>
@@ -604,11 +604,11 @@
         </div>
         @if(!Auth::check())
             <div class="alert alert-danger" role="alert">
-                <strong>Hey you! </strong> Regist in our website to enjoy our full experience!
+                <strong>Hey you! </strong> Regist in our website to enjoy our full experience <i class="fas fa-exclamation"></i>
             </div>
         @elseif(Auth::user()->isBanned())
             <div class="alert alert-danger" role="alert">
-                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022.
+                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022 <i class="fas fa-exclamation"></i>
             </div>
         @endif
     </div>
