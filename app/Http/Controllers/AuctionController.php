@@ -317,7 +317,7 @@ class AuctionController extends Controller
 
         $auctionsToClose = Auction::getAuctionsToClose();
         foreach ($auctionsToClose as $auction){
-            echo Auction::getAuctionWinner($auction->id) . " \n";
+            echo Auction::getAuctionWinnerGivenID($auction->id) . " \n";
             $this->closeAuction($auction);
         }
 
@@ -326,7 +326,7 @@ class AuctionController extends Controller
     private function closeAuction($auction){
         $this->storeClosed($auction->id);
         if($auction->starting_price	< $auction->current_price){
-            $winnerID = $auction->getAuctionWinner($auction->id);
+            $winnerID = $auction->getAuctionWinnerGivenID($auction->id);
             $this->storeWon($auction->id, $winnerID);
         }
     }

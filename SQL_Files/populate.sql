@@ -126,7 +126,7 @@ INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (1 ,6,123);
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (2,7,3.2);
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,8,0.2);
 INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (3,6,1.2);
-INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (5,6,1.2);
+INSERT INTO "public"."bids" ("id","bidder_id","bid_amount") VALUES (5,6,10);
 
 
 INSERT INTO "public"."reviews" ("id","rating","review_text") VALUES (5,2,'Description number 3028653');

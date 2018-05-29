@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pg!fcp
     ports:
-      - "5432:5432"
+      - "5433:5433"
 
   pgadmin:
     image: thajeztah/pgadmin4

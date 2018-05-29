@@ -23,17 +23,19 @@
                     <span class="display-4 title">{{ $auction->item_name }}</span>
                     <span class="badge badge-primary">{{ $auction->getCategoryName() }}</span>
                     <span class="badge badge-info">{{ $auction->condition }}</span>
-                    @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
+                    @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
                             <label for="wishlist-button" class="col-form-label">Wishlist:</label>
-                            <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
+                            <button type="submit" id="wishlist-button" class="fas fa-star text-warning "
+                                    style="border:none;" title="Remove from Wishlist"></button>
                         </form>
                     @else
                         <form method="POST" action="{{action('AuctionController@addToWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <button type="submit" id="wishlist-button" class="far fa-star text-warning " style="border:none;" title="Add to Wishlist"></button>
+                            <button type="submit" id="wishlist-button" class="far fa-star text-warning "
+                                    style="border:none;" title="Add to Wishlist"></button>
                         </form>
 
                     @endif
@@ -49,7 +51,9 @@
 
 
                 <div class="card-block mb-3">
-                    <h4 class="card-title"><a href="{{ url('profile/' . $auction->owner_id)  }}">{{ $auction->getAuctionOwner() }}</a></h4>
+                    <h4 class="card-title"><a
+                                href="{{ url('profile/' . $auction->owner_id)  }}">{{ $auction->getAuctionOwner() }}</a>
+                    </h4>
                     @if($auction->getAuctionOwnerRating() > 0.5)
                         <span class="fas fa-star" aria-hidden="true"></span>
                     @else
@@ -78,76 +82,82 @@
                     <span class="badge badge-success">{{ $auction->getAuctionOwnerRating() * 100 / 5 }}</span>
                     <p class="card-text">{{ $auction->getAuctionOwnerEmail() }}</p>
 
-                @if(Auth::check())
-                @if(Auth::user()->isBanned())
-                @elseif(Auth::user()->isAuctionOwner($auction))
-                <a href="/auctions/{{$auction->id}}/edit" class="btn btn-primary ">Edit Auction</a>
-                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">Remove Auction</a>
-                {{-- delete auction modal --}}
-                <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"
-                     aria-labelledby="removeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="removeModalLabel">Remove Auction </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <label for="user-pass" class="col-form-label">Password:</label>
-                                    <input type="password" class="form-control" id="user-pass" name="password">
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close
-                                </button>
-                                <button id="remove-auction-btn" type="button" class="btn btn-danger report" data-dismiss="modal">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @else
-                <a href="/contact/{{ App\User::find($auction->owner_id)->username}}/{{$auction->id}}" id = "sendbtn" type="button" class="btn btn-success "> Contact </a>
-                <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
-                     aria-labelledby="contactModal" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="contactModalLabel">New message</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">To:</label>
-                                        <input type="text" class="form-control" id="dest-name">
+                    @if(Auth::check())
+                        @if(Auth::user()->isBanned())
+                        @elseif(Auth::user()->isAuctionOwner($auction))
+                            <a href="/auctions/{{$auction->id}}/edit" class="btn btn-primary ">Edit Auction</a>
+                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">Remove
+                                Auction</a>
+                            {{-- delete auction modal --}}
+                            <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="removeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="removeModalLabel">Remove Auction </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <label for="user-pass" class="col-form-label">Password:</label>
+                                                <input type="password" class="form-control" id="user-pass"
+                                                       name="password">
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button id="remove-auction-btn" type="button" class="btn btn-danger report"
+                                                    data-dismiss="modal">Remove
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="item-name" class="form-control-label">#Item:</label>
-                                        <input type="text" class="form-control" id="item-name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label">Message:</label>
-                                        <textarea class="form-control" id="contact-text"></textarea>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" id="closebtn" class="btn btn-secondary"
-                                        data-dismiss="modal">Close
-                                </button>
-                                <button type="button" id="sendbtn"
-                                        class="btn btn-primary">Send message
-                                </button>
+                        @else
+                            <a href="/contact/{{ App\User::find($auction->owner_id)->username}}/{{$auction->id}}"
+                               id="sendbtn" type="button" class="btn btn-success "> Contact </a>
+                            <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="contactModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="contactModalLabel">New message</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="form-control-label">To:</label>
+                                                    <input type="text" class="form-control" id="dest-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="item-name" class="form-control-label">#Item:</label>
+                                                    <input type="text" class="form-control" id="item-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text"
+                                                           class="form-control-label">Message:</label>
+                                                    <textarea class="form-control" id="contact-text"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="closebtn" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="button" id="sendbtn"
+                                                    class="btn btn-primary">Send message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -162,15 +172,18 @@
                                     <a class="dropdown-item" data-toggle="modal"
                                        data-target="#exampleModal">Report Account</a>
                                 </div>
-                                <form action="{{route('reports.storeReport')}}" method="POST" id="userReport" class="userReport">
+                                <form action="{{route('reports.storeReport')}}" method="POST" id="userReport"
+                                      class="userReport">
                                     {{csrf_field() }}
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Report User Name's Account </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Report User Name's
+                                                        Account </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -179,23 +192,31 @@
                                                         <div>
                                                             <h5 style="color:brown"> Motive</h5>
                                                             <div class="radio">
-                                                                <label><input id="5" type="radio" name="radio1" value="Abusive behaviour"> Abusive behaviour </label>
+                                                                <label><input id="5" type="radio" name="radio1"
+                                                                              value="Abusive behaviour"> Abusive
+                                                                    behaviour </label>
                                                             </div>
                                                             <div class="radio">
-                                                                <label><input id="6" type="radio" name="radio1" value="Inappropriate content in profile">Inappropriate content in profile </label>
+                                                                <label><input id="6" type="radio" name="radio1"
+                                                                              value="Inappropriate content in profile">Inappropriate
+                                                                    content in profile </label>
                                                             </div>
                                                             <div class="radio">
-                                                                <label><input id="7" type="radio" name="radio1" value="Didn't receive an item">Didn't receive an item</label>
+                                                                <label><input id="7" type="radio" name="radio1"
+                                                                              value="Didn't receive an item">Didn't
+                                                                    receive an item</label>
                                                             </div>
                                                             <div class="radio">
-                                                                <label><input id="8" type="radio" name="radio1" value="FUCK OFF">Other</label>
+                                                                <label><input id="8" type="radio" name="radio1"
+                                                                              value="FUCK OFF">Other</label>
                                                             </div>
                                                         </div>
                                                         <label for="reason" class="col-form-label">Other:</label>
                                                         <input type="text" class="form-control" id="reason1">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <label for="message-text"
+                                                               class="col-form-label">Message:</label>
                                                         <textarea class="form-control" id="message-text"></textarea>
                                                     </div>
                                                 </div>
@@ -203,7 +224,9 @@
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close
                                                     </button>
-                                                    <button type="submit" id="report" class="btn btn-primary report">Report</button>
+                                                    <button type="submit" id="report" class="btn btn-primary report">
+                                                        Report
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,7 +270,8 @@
             </button>
             <form action="{{route('reports.store')}}" method="POST" id="userForm" class="userForm">
                 {{csrf_field() }}
-                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -262,21 +286,27 @@
                                     <div class="form-group">
                                         <div>
                                             <h5 style="color:brown"> Motive</h5>
-                                            <label><input id="1" type="radio" name="radio" value="Received a counterfeit or fake item"> Received a counterfeit or fake item</label>
+                                            <label><input id="1" type="radio" name="radio"
+                                                          value="Received a counterfeit or fake item"> Received a
+                                                counterfeit or fake item</label>
                                             <div class="radio">
-                                                <label><input id="2" type="radio" name="radio" value="This item is illegal"> This item is illegal</label>
+                                                <label><input id="2" type="radio" name="radio"
+                                                              value="This item is illegal"> This item is illegal</label>
                                             </div>
                                             <div class="radio">
-                                                <label><input id="3" type="radio" name="radio" value="Received item is not in the original condition">Received item is not in the original condition</label>
+                                                <label><input id="3" type="radio" name="radio"
+                                                              value="Received item is not in the original condition">Received
+                                                    item is not in the original condition</label>
                                             </div>
                                             <div class="radio">
-                                                <label><input id="4" type="radio" name="radio" value="FUCK OFF">Other</label>
+                                                <label><input id="4" type="radio" name="radio"
+                                                              value="FUCK OFF">Other</label>
                                             </div>
                                         </div>
                                         <label for="reason" class="col-form-label">Other:</label>
                                         <input type="text" class="form-control" id="reason">
-                                        <input type = "hidden" value="{{$auction->id}}" id="auction">
-                                        <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
+                                        <input type="hidden" value="{{$auction->id}}" id="auction">
+                                        <input type="hidden" value="{{Auth::user()->id}}" id="reporter">
                                     </div>
                                     <div class="form-group">
                                         <label for="message" class="col-form-label">Message:</label>
@@ -286,7 +316,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" id= "sub" class="btn btn-primary">Send message</button>
+                                <button type="submit" id="sub" class="btn btn-primary">Send message</button>
                             </div>
                         </div>
                     </div>
@@ -300,42 +330,56 @@
         <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
             <dl class="row">
                 @if(Auth::user()->isHighestBidder($auction))
-                    <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid <i class="fas fa-circle"  title="You are currently the winner bid"></i></dt>
+                    <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid <i class="fas fa-circle"
+                                                                                             title="You are currently the winner bid"></i>
+                    </dt>
                 @else
-                    <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid </dt>
+                    <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid</dt>
                 @endif
-                <dd class="col-sm-10" id="current-auction-price">{{ $auction->currentPriceEuros()}}€</dd>
-
-
-                <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>
-                <dd class="col-sm-10">Ending in {{ $auction->getTimeLeftString() }}</dd>
-
-                <dt class="col-sm-2 text-align-center mobile-text-center">Description</dt>
-                <dd class="col-sm-10">{{ $auction->description }}</dd>
-
-                @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
+                @if($auction->isWon())
+                    <dd class="col-sm-10" id="current-auction-price-won">{{ $auction->currentPriceEuros()}}€ (Won
+                        by <a href="../profile/{{$auction->getAuctionWinner($auction->id)}}">{{ $auction->getAuctionWinnerName($auction->id) }} </a> )</dd>
                 @else
-                    <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
-                        {{ csrf_field() }}
-                        <dt class="col-sm-8 bid text-align-center mobile-text-center" id="input-bid">
-                        <div class="input-group mb-3">
-                            @if(Auth::user()->isHighestBidder($auction))
-                            @else
-                            <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
-                            <input type="number" class="form-control" id="bid-amount" name="bid-amount" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text">€</span>
-                            </div>
-                        <div class="col-sm-3 bid" id="button-bid">
-                            <div class="btn-group">
-                                <input type="submit" name="submit" value="Place Bid" class="btn" id="button-bid">
-                            </div>
-                        </div>
-                        </div>
-                        </dt>
-                        @endif
-                    </form>
+                    <dd class="col-sm-10" id="current-auction-price">{{ $auction->currentPriceEuros()}}€ </dd>
                 @endif
+
+
+
+                    <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>
+                    @if(!$auction->isClosed())
+                        <dd class="col-sm-10">Ending in {{ $auction->getTimeLeftString() }}</dd>
+                    @else
+                        <dd class="col-sm-10">Auction Closed</dd>
+                    @endif
+
+                    <dt class="col-sm-2 text-align-center mobile-text-center">Description</dt>
+                    <dd class="col-sm-10">{{ $auction->description }}</dd>
+
+                    @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
+                    @else
+                        <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
+                            {{ csrf_field() }}
+                            <dt class="col-sm-8 bid text-align-center mobile-text-center" id="input-bid">
+                                <div class="input-group mb-3">
+                                    @if(Auth::user()->isHighestBidder($auction))
+                                    @else
+                                        <label for="bid-amount" class="col-3 col-form-label" hidden>Bid amount</label>
+                                        <input type="number" class="form-control" id="bid-amount" name="bid-amount"
+                                               required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">€</span>
+                                        </div>
+                                        <div class="col-sm-3 bid" id="button-bid">
+                                            <div class="btn-group">
+                                                <input type="submit" name="submit" value="Place Bid" class="btn"
+                                                       id="button-bid">
+                                            </div>
+                                        </div>
+                                </div>
+                            </dt>
+                            @endif
+                        </form>
+                    @endif
             </dl>
         </div>
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
@@ -360,20 +404,23 @@
                 @else
                     @foreach($qas as $qa)
                         <dt class="col-sm-8 mobile-text-center">{{ $qa->question }}?</dt>
-                       @if($qa->answer === NULL)
-                           @if(Auth::user()->isAuctionOwner($auction))
-                                <form method="POST" action="{{action('AuctionController@storeAnswer', [$auction->id, $qa->id])}}">
+                        @if($qa->answer === NULL)
+                            @if(Auth::user()->isAuctionOwner($auction))
+                                <form method="POST"
+                                      action="{{action('AuctionController@storeAnswer', [$auction->id, $qa->id])}}">
                                     {{ csrf_field() }}
                                     <div class="input-group mb-3 col-sm-16">
                                         <label for="answer-input" class="col-3 col-form-label" hidden>Answer</label>
-                                        <input type="text" class="form-control" placeholder="Place your answer" id="answer-input" name="answer-input" required>
+                                        <input type="text" class="form-control" placeholder="Place your answer"
+                                               id="answer-input" name="answer-input" required>
                                         <div class="input-group-append" id="answer-id">
-                                            <input type="submit" name="submit" value="Answer" class="btn btn-outline-secondary" id="answer-id">
+                                            <input type="submit" name="submit" value="Answer"
+                                                   class="btn btn-outline-secondary" id="answer-id">
                                         </div>
                                     </div>
                                 </form>
                             @else
-                               <font color="red">This question hasn't been answer yet!</font>
+                                <font color="red">This question hasn't been answer yet!</font>
                             @endif
                         @else
                             <dd class="col-sm-8">{{ $qa->answer }}</dd>
@@ -381,18 +428,20 @@
                     @endforeach
                 @endif
             </dl>
-            @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
+            @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
             @else
                 <form method="POST" action="{{action('AuctionController@storeQuestion', [$auction->id])}}">
                     {{ csrf_field() }}
-                <div class="input-group mb-3 col-sm-10">
-                    <label for="question-input" class="col-3 col-form-label" hidden>Question</label>
-                    <input type="text" class="form-control" placeholder="Place your question" id="question-input" name="question-input" required>
-                    <div class="input-group-append" id="question-id">
-                        <input type="submit" name="submit" value="Ask" class="btn btn-outline-secondary" id="question-id">
-                    </div>
+                    <div class="input-group mb-3 col-sm-10">
+                        <label for="question-input" class="col-3 col-form-label" hidden>Question</label>
+                        <input type="text" class="form-control" placeholder="Place your question" id="question-input"
+                               name="question-input" required>
+                        <div class="input-group-append" id="question-id">
+                            <input type="submit" name="submit" value="Ask" class="btn btn-outline-secondary"
+                                   id="question-id">
+                        </div>
 
-                </div>
+                    </div>
                 </form>
             @endif
         </div>
@@ -407,7 +456,9 @@
                             <div class="col-sm-2 text-align-center mobile-text-center">
                                 <img src="{{ $auction->getUserPicture($auction->getAuctionWinner($review->id)) }}"
                                      class="img-review img-fluid">
-                                <div class="review-block-name"><a href="{{ url('profile/' . $auction->getAuctionWinner($review->id))  }}">{{ $auction->getAuctionWinnerName($review->id) }}</a></div>
+                                <div class="review-block-name"><a
+                                            href="{{ url('profile/' . $auction->getAuctionWinner($review->id))  }}">{{ $auction->getAuctionWinnerName($review->id) }}</a>
+                                </div>
                             </div>
                             <div class="col-sm-10 ">
                                 <div class="review-block-rate">
@@ -551,35 +602,36 @@
         </div>
         @if(Auth::user()->isBanned())
             <div class="alert alert-danger" role="alert">
-                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022.
+                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until
+                6 March 2022.
             </div>
         @endif
     </div>
 
     <script>
-        $("#sub").click(function(e){
+        $("#sub").click(function (e) {
             e.preventDefault();
             var $form = $("#userForm");
-            console.log ("NAO GOSTO DISTO " );
+            console.log("NAO GOSTO DISTO ");
             if (document.getElementById("1").checked) {
                 var rate_value = document.getElementById("1").value;
-            } else if (document.getElementById("2").checked){
+            } else if (document.getElementById("2").checked) {
                 var rate_value = document.getElementById("2").value;
-            } else if(document.getElementById("3").checked) {
+            } else if (document.getElementById("3").checked) {
                 var rate_value = document.getElementById("3").value;
-            } else if (document.getElementById("4").checked){
+            } else if (document.getElementById("4").checked) {
                 var rate_value = $("#reason").val();
             }
             var message = $("#message").val();
             var url = window.location.href;
-            var auctionID=url.split("/").pop();
+            var auctionID = url.split("/").pop();
             var userId = $("#reporter").val();
             $.ajax({
                 type: $form.attr('method'),
                 url: $form.attr('action'),
-                data: {msg: message, sub:rate_value, user_id: userId, auction_id: auctionID, is_user: false, },
+                data: {msg: message, sub: rate_value, user_id: userId, auction_id: auctionID, is_user: false,},
                 success: function (data) {
-                    if(data.error){
+                    if (data.error) {
                         return;
                     }
                     alert(data.success); // THis is success message
@@ -595,16 +647,16 @@
 
 
     <script>
-        $("#report").click(function(e){
+        $("#report").click(function (e) {
             e.preventDefault();
             var $form = $("#userReport");
             if (document.getElementById("5").checked) {
                 var value = document.getElementById("5").value;
-            } else if (document.getElementById("6").checked){
+            } else if (document.getElementById("6").checked) {
                 var value = document.getElementById("6").value;
-            } else if(document.getElementById("7").checked) {
+            } else if (document.getElementById("7").checked) {
                 var value = document.getElementById("7").value;
-            } else if (document.getElementById("8").checked){
+            } else if (document.getElementById("8").checked) {
                 var value = $("#reason1").val();
             }
             var message = $("#message-text").val();
@@ -614,9 +666,9 @@
             $.ajax({
                 type: $form.attr('method'),
                 url: $form.attr('action'),
-                data: {msg: message, sub:value, user_id: userId, reported_user: reportedUser, is_user: true, },
+                data: {msg: message, sub: value, user_id: userId, reported_user: reportedUser, is_user: true,},
                 success: function (data) {
-                    if(data.error){
+                    if (data.error) {
                         return;
                     }
                     alert(data.success); // THis is success message

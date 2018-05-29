@@ -112,7 +112,7 @@ class Auction extends Model
             ->get();
     }
 
-    public function getAuctionWinnerGivenReviewID($reviewID) {
+    public function getAuctionWinner($reviewID) {
         return DB::table('users')
             ->join('won_auctions', 'users.id', '=', 'won_auctions.winner_id')
             ->join('auctions', 'won_auctions.id', '=', 'auctions.id')
@@ -120,7 +120,7 @@ class Auction extends Model
             ->value('users.id');
     }
 
-    public static function getAuctionWinner($auctionID) {
+    public static function getAuctionWinnerGivenID($auctionID) {
         $maxBid = DB::table('bids')
             ->where('id', '=', $auctionID)->max('bid_amount');
         return DB::table('bids')
@@ -134,6 +134,7 @@ class Auction extends Model
             ->where('auctions.id', '=', $reviewID)
             ->value('username');
     }
+
 
     public function getBids(){
         return DB::table('wishlists')->get();
@@ -162,5 +163,22 @@ class Auction extends Model
                 ->where('auction_id', '=', $this->id)
                 ->where('id', '=', $user->id)
                 ->delete();
+    }
+
+    public function isClosed(){
+        $closedAuction = DB::table('closed_auctions')->where('id', '=', $this->id)->get();
+        if(count($closedAuction) > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public function isWon(){
+
+        $wonAuction = DB::table('won_auctions')->where('id', '=', $this->id)->get();
+        if(count($wonAuction) > 0){
+            return true;
+        }
+        return false;
     }
 }
