@@ -25,13 +25,16 @@
                     <span class="badge badge-info">{{ $auction->condition }}</span>
                     @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
                     @elseif(Auth::user()->itemOnWishlist($auction))
-                        <a href="#" class="fas fa-star text-warning " aria-hidden="true" title="Remove from Wishlist"></a>
+                        <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
+                            {{ csrf_field() }}
+                            <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
+                        </form>
                     @else
                         <form method="POST" action="{{action('AuctionController@addToWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                            <submit href="" id="add-wishlist" class="far fa-star text-warning " aria-hidden="true" title="Add to Wishlist"></submit>
+                            <button type="submit" id="wishlist-button" class="far fa-star text-warning " style="border:none;" title="Add to Wishlist"></button>
                         </form>
+
                     @endif
                 </div>
             </div><!-- end row-->

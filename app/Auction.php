@@ -144,4 +144,11 @@ class Auction extends Model
                 ->update(['answer' => $answer]);
         }
     }
+
+    public function removeWishlist($user){
+            DB::table('wishlists')
+                ->where('auction_id', '=', $this->id)
+                ->where('id', '=', $user->id)
+                ->delete();
+    }
 }
