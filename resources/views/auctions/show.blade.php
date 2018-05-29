@@ -23,7 +23,7 @@
                     <span class="display-4 title">{{ $auction->item_name }}</span>
                     <span class="badge badge-primary">{{ $auction->getCategoryName() }}</span>
                     <span class="badge badge-info">{{ $auction->condition }}</span>
-                    @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
+                    @if(!Auth::check() || Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
@@ -236,7 +236,7 @@
                    aria-selected="true">Auctioneer Reviews</a>
             </li>
         </ul>
-        @if(Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
+        @if(!Auth::check() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
         @elseif(Auth::user()->isAdmin())
             <span>
         <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#cancelModal">Cancel Auction</a>
@@ -299,7 +299,9 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
             <dl class="row">
-                @if(Auth::user()->isHighestBidder($auction))
+                @if(!Auth::check())
+                    <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid</dt>
+                @elseif(Auth::user()->isHighestBidder($auction))
                     <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid <i class="fas fa-circle"
                                                                                              title="You are currently the winner bid"></i>
                     </dt>
@@ -325,7 +327,7 @@
                     <dt class="col-sm-2 text-align-center mobile-text-center">Description</dt>
                     <dd class="col-sm-10">{{ $auction->description }}</dd>
 
-                    @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
+                    @if(!Auth::check() || Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
                     @else
                         <form method="POST" action="{{action('AuctionController@storeBid', [$auction->id])}}">
                             {{ csrf_field() }}
@@ -395,7 +397,7 @@
                     @endforeach
                 @endif
             </dl>
-            @if(Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
+            @if(!Auth::check() || Auth::user()->isAdmin() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction) || $auction->isClosed())
             @else
                 <form method="POST" action="{{action('AuctionController@storeQuestion', [$auction->id])}}">
                     {{ csrf_field() }}
@@ -452,7 +454,7 @@
                                     @endif
                                 </div>
                                 <div class="review-block">{{ $review->review_text }}</div>
-                                @if(Auth::user()->isAdmin() || Auth::user()->isBanned())
+                                @if(!Auth::check() || Auth::user()->isAdmin() || Auth::user()->isBanned())
                                 @else
                                     <a class="badge badge-light report" type="button" data-toggle="modal"
                                        href="#exampleModal">
@@ -563,7 +565,11 @@
                 </div>
             </div>
         </div>
-        @if(Auth::user()->isBanned())
+        @if(!Auth::check())
+            <div class="alert alert-danger" role="alert">
+                <strong>Hey you! </strong> Regist in our website to enjoy our full experience!
+            </div>
+        @elseif(Auth::user()->isBanned())
             <div class="alert alert-danger" role="alert">
                 <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022.
             </div>

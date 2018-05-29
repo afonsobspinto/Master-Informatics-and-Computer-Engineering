@@ -27,9 +27,9 @@
             <div class="row">
                 <p class="email">{{ $user->email }}</p>
             </div>
-            @if(((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
-            || Auth::user()->isUserBanned($user) || Auth::user()->isUserAdmin($user))
-            @elseif(Auth::check())
+            @if(!Auth::check() || !(((Auth::user()->isAdmin()
+            || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
+            || Auth::user()->isUserBanned($user) || Auth::user()->isUserAdmin($user)))
                 <div class="row">
                     @if($user->rating > 0.5)
                         <span class="fas fa-star" aria-hidden="true"></span>
@@ -259,9 +259,8 @@
             @endif
         </div>
 
-        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
-        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
-        @elseif(Auth::check())
+        @if(!Auth::check() || !((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user)
+            || (Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user))))
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="active">
@@ -270,7 +269,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="itemsForSale-tab" data-toggle="tab" href="#itemsForSale" role="tab" aria-controls="itemsForSale" aria-selected="true">Items for Sale</a>
             </li>
-                @if(Auth::user()->isProfileOwner($user))
+                @if(!Auth::check())
+
+                @elseif(Auth::user()->isProfileOwner($user))
                     <li class="nav-item">
                         <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab" aria-controls="watchList" aria-selected="true">Wishlist</a>
                     </li>
@@ -284,12 +285,11 @@
                         </a>
                     </li>
                 @endif
-            @endif
         </ul>
+        @endif
 
-        @if((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user))
-        @elseif((Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user)))
-        @else
+    @if(!Auth::check() || !((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user)
+        || (Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user))))
         <!-- Tab panes -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
@@ -332,7 +332,7 @@
                                 @endif
                             </div>
                             <div class="review-block">{{ $review->review_text }}</div>
-                            @if((Auth::user()->isAdmin()) || (Auth::user()->isBanned()))
+                            @if(!Auth::check() || (Auth::user()->isAdmin()) || (Auth::user()->isBanned()))
                             @else
                             <a class="badge badge-light report" type="button" data-toggle="modal"
                                href="#exampleModal">
@@ -647,6 +647,8 @@
             @endif
     </div>
 
+    @if(!Auth::check())
+    @else
     <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
          aria-labelledby="cancelModalLabel" aria-hidden="true">
@@ -673,6 +675,7 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 
 <script>
