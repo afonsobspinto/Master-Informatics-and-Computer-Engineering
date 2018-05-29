@@ -405,7 +405,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -440,11 +440,11 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->auction_id) }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
-                                            <a href="{{ url('auctions/' . $item->id)  }}">{{ $item->item_name }}</a>
+                                            <a href="{{ url('auctions/' . $item->auction_id)  }}">{{ $item->item_name }}</a>
                                         </h4>
                                         <div class="row padding-product-info">
                                             <div class="w-100"></div>
@@ -488,7 +488,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
@@ -523,7 +523,7 @@
                             <li>
                                 <div class="row">
                                     <div>
-                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL() }}" alt="auction image">
+                                        <img height="200" class="d-block " src="{{ $item->getDisplayPictureURL($item->id) }}" alt="auction image">
                                     </div>
                                     <div class="col align-self-center">
                                         <h4>
