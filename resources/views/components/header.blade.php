@@ -2,7 +2,7 @@
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
     <!-- logo -->
     <a id="logo-link" href="{{ url('/landing_page') }}" class="navbar-brand">
-        <img id="logo" src="{{ asset('/images/logo.png') }}">
+        <img id="logo" src="{{ asset('/images/logo.png') }}" alt="Logo">
     </a>
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">

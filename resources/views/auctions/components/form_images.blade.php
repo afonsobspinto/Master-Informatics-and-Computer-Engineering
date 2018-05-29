@@ -3,7 +3,7 @@
     <div class="col-3"></div>
     <div class="col-9" id="images-container">
     @foreach($images as $image)
-        <img class="form-picture" src="{{ $image }}">
+        <img class="form-picture" src="{{ $image }}" alt="Auction Image">
     @endforeach
     </div>
 </div>

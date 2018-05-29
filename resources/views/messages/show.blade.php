@@ -35,7 +35,7 @@
             <div class="media row">
                 <div class="media-right col-3 d-flex d-none d-sm-block d-sm-block d-xs-block">
                     <a href="profile_page.html">
-                        <img class="media-object center-block" src="{{ $photo }}" width="75%">
+                        <img class="media-object center-block" src="{{ $photo }}" width="75%" alt="Username Picture">
                     </a>
                     <h4 class="media-heading d-none d-sm-block d-sm-block d-xs-block" align="left">{{ $message->username }}</h4>
                 </div>
@@ -92,8 +92,9 @@
             </div>
 
         </div>
-    </div>
     </form>
+    </div>
+
 </div>
 
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>

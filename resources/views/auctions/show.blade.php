@@ -27,7 +27,7 @@
                     @elseif(Auth::user()->itemOnWishlist($auction))
                         <form method="POST" action="{{action('AuctionController@removeFromWishlist', [$auction->id])}}">
                             {{ csrf_field() }}
-                            <label for="wishlist-button" class="col-form-label">Wishlist:</label>
+                            <label for="wishlist-button" class="col-form-label"></label>
                             <button type="submit" id="wishlist-button" class="fas fa-star text-warning " style="border:none;" title="Remove from Wishlist"></button>
                         </form>
                     @else
@@ -405,8 +405,8 @@
                     @foreach($reviews as $review)
                         <div class="row">
                             <div class="col-sm-2 text-align-center mobile-text-center">
-                                <img src="{{ $auction->getUserPicture($auction->getAuctionWinner($review->id)) }}"
-                                     class="img-review img-fluid">
+                                <img src="{{ $auction->getUserPicture($auction->getAuctionWinner($review->id)) }} "
+                                     class="img-review img-fluid" alt="Auction Winner">
                                 <div class="review-block-name"><a href="{{ url('profile/' . $auction->getAuctionWinner($review->id))  }}">{{ $auction->getAuctionWinnerName($review->id) }}</a></div>
                             </div>
                             <div class="col-sm-10 ">

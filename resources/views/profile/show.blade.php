@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-3">
             <img src="{{ $profile_picture }}"
-                 alt="Picture" style="width:100%">
+                 alt="Profile Picture" style="width:100%">
         </div>
         <div class="col-md-3">
             <div class="row">
@@ -300,7 +300,7 @@
                 <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid">
+                            <img src="http://interactive.nydailynews.com/2016/05/simpsons-quiz/img/simp1.jpg" class="img-review img-fluid" alt="Auction Winner Review">
                             <div class="review-block-name"><a href="{{ url('profile/' . $user->getAuctionWinner($review->id))  }}">{{ $user->getAuctionWinnerName($review->id) }}</a></div>
                         </div>
                         <div class="col-sm-9">
