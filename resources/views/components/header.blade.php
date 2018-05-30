@@ -1,5 +1,20 @@
 <!-- header -->
 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm justify-content-around" id="header">
+    <nav aria-label="breadcrumb" hidden>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/landing') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/about') }}">About</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/faq') }}">FAQ's</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/search') }}">Search</a></li>
+            @if(Auth::check())
+                <li class="breadcrumb-item"><a href="{{ url('profile/' . Auth::user()->id) }}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/messages') }}">Messages</a></li>
+            @endif
+            @if(Auth::check() && Auth::user()->isAdmin())
+                <li class="breadcrumb-item"><a href="{{ url('/reports') }}">Reports</a></li>
+            @endif
+        </ol>
+    </nav>
     <!-- logo -->
     <a id="logo-link" href="{{ url('/landing_page') }}" class="navbar-brand">
         <img id="logo" src="{{ asset('/images/logo.png') }}" alt="Logo" title="Logo">

@@ -14,7 +14,7 @@
     {{-- Sidebar --}}
     <form id="sidebar" class="sidebar-nav ">
         <fieldset>
-            <legend hidden>Search</legend>
+            <legend>Search</legend>
             {{--<div class="format">--}}
                 {{--<h5> Look for </h5>--}}
                 {{--<div class="radio">--}}
