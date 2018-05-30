@@ -73,93 +73,6 @@
                     </div>
                 </div>
 
-                {{--<div class="form-group row">
-                    <label for="duration-input" class="col-3 col-form-label">End of auction</label>
-                    <div class="col-9 input-group">
-                        <input class="form-control" type="datetime-local" value="{{$auction->duration}}"
-                               id="duration-input" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="payment-input" class="col-3 col-form-label">Payment options</label>
-                    <div class="col-9 input-group" id="payment-input">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="atmPayment" id="atmPayment" value="atmPayment"
-                                   checked>
-                            <label class="form-check-label" for="atmPayment">
-                                ATM Reference
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="paypalPayment" id="paypalPayment"
-                                   value="paypalPayment" checked>
-                            <label class="form-check-label" for="paypalPayment">
-                                Paypal
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="visaMastercardPayment" id="visaMastercardPayment"
-                                   value="visaMastercardPayment" checked>
-                            <label class="form-check-label" for="visaMastercardPayment">
-                                Visa/Mastercard
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="discover" id="discover"
-                                   value="discover">
-                            <label class="form-check-label" for="discover">
-                                Discover
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="americanExpress" id="americanExpress"
-                                   value="americanExpress">
-                            <label class="form-check-label" for="americanExpress">
-                                American Express
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="returns-input" class="col-3 col-form-label">Return options</label>
-                    <div class="col-9 input-group" id="returns-input">
-                        <div class="form-check">
-                            <input class="form-check-input" data-toggle="collapse" data-target='#accept_hide' type="radio" name="return" value="accept" aria-expanded="false" aria-controls="collapseCheckbox" id="accept" checked>
-                            <label class="form-check-label" for="accept">
-                                Returns accepted
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" data-toggle="collapse" data-target='#refuse_hide' type="radio" name="return" value="refuse" aria-expanded="false" aria-controls="collapseCheckbox" id="refuse">
-                            <label class="form-check-label" for="refuse">
-                                No returns accepted
-                            </label>
-                        </div>
-
-                        <div class="form-group col-md-4 collapse" id='accept_hide'>
-                            <label for="returnDays">After receiving the item, your buyer should contact you within:</label>
-                            <select id="returnDays" class="form-control">
-                                <option>14 Days</option>
-                                <option selected>30 Days</option>
-                                <option>60 Days</option>
-                            </select>
-                            <label for="returnShipping">Return shipping will be paid by:</label>
-                            <select id="returnShipping" class="form-control">
-                                <option selected>Buyer</option>
-                                <option>Auctioneer</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-7 collapse" id='refuse_hide'>
-                            <div class="card border-warning mb-3">
-                                The item could still be returned if it doesn't match the listing's description.
-                            </div>
-                        </div>
-                    </div>
-
-                </div> --}}
-
                 <div class="form-group row">
                     <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
                     <div class="col-9 input-group" id="shipping-input">
@@ -222,42 +135,7 @@
 
             </fieldset>
         </form>
-        {{--
 
 
-    </form>
-
-    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
-    <form>
-
-
-    </form>
-    <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
-    <form>
-
-        <div class="form-group row">
-            <label for="location-input" class="col-3 col-form-label">Item location</label>
-            <div class="col-9">
-                <input class="form-control" type="text" value="Henan, China" id="location-input" required>
-            </div>
-        </div>
-
-    </form>
-
-    <form>
-        <h2 class="border-bottom pb-1 mb-4 h4">Q&A</h2>
-
-        <div class="form-group row">
-            <dt class="col-sm-4 text-align-center mobile-text-center">Does it come with a fingerprint reader?</dt>
-            <input class="col-sm-8 form-control" type="text" value="Nope :-)">
-        </div>
-        <div class="form-group row">
-            <dt class="col-sm-4 text-align-center mobile-text-center">Are you able to deliver this with portuguese keyboard layout?</dt>
-            <input class="col-sm-8 form-control" type="text" value="Yes we can delivery with Portuguese keyboard layout.">
-        </div>
-    </form>
-    --}}
-
-
-    </div><!-- end container -->
+    </div>
 @endsection

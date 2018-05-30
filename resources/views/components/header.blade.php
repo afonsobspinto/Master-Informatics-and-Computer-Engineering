@@ -38,11 +38,8 @@
         </fieldset>
     </form>
     @auth
-    {{--logged in user--}}
-    <!-- authentication links -->
     <a class="fa-stack fa-3x" id="mail-icon" href="/messages">
         <i class="far fa-envelope fa-stack-2x"></i>
-        <!-- place numbers of messages here -->
         <strong id="num-messages" class="fa-stack-1x calendar-text got-messages mail-icon-number">
             0
         </strong>
@@ -59,12 +56,8 @@
             @elseif(Auth::user()->isRegular())
             <a class="dropdown-item" href="{{ url('/auctions/create') }}">New Auction</a>
             @endif
-            {{-- TODO direct profile to actual profile --}}
             <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id) }}">Profile</a>
-            <a class="dropdown-item" href="/messages" id="messages-dropdown-item">Messages <strong
-                        class="got-messages" id="num-messages">0</strong>
-                <input type="hidden" id="header-user-id" value="{{ Auth::id() }}">
-            </a>
+            <a class="dropdown-item" href="/messages">Messages</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout

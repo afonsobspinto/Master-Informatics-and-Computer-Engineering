@@ -2,7 +2,6 @@
 
 @section('resources')
     @parent
-    {{-- MODIFIED: css --}}
     <script src="{{ asset('js/auction_form.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/auction_form.css') }}">
 
@@ -14,7 +13,6 @@
 
         <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
 
-        {{-- MODIFIED: enctype --}}
         <form method="POST" enctype="multipart/form-data" action="{{action('AuctionController@store')}}">
             <fieldset>
                 <legend hidden> Create your auction </legend>
@@ -23,14 +21,14 @@
                 <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                 <div class="form-group row">
-                    <label for="title-input" class="col-3 col-form-label">Title</label>
+                    <label for="title-input" class="col-3 col-form-label">Title <i>*</i></label>
                     <div class="col-9">
                         <input class="form-control" type="text" placeholder="Title" id="title-input" name="title-input" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="category-input" class="col-3 col-form-label">Category</label>
+                    <label for="category-input" class="col-3 col-form-label">Category <i>*</i></label>
                     <div class="col-9">
                         <select class="form-control" id="category-input" name="category" aria-describedby="Category" required>
                             <option value="" {{ old('category') ? '' : 'selected' }}>All Categories</option>
@@ -42,14 +40,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description-input" class="col-3 col-form-label">Description</label>
+                    <label for="description-input" class="col-3 col-form-label">Description <i>*</i></label>
                     <div class="col-9">
                         <input class="form-control" type="text" placeholder="Description" id="description-input" name="description-input" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="condition-input" class="col-3 col-form-label">Condition</label>
+                    <label for="condition-input" class="col-3 col-form-label">Condition <i>*</i></label>
                     <div class="col-9">
                         <select class="form-control" id="condition-input" name="condition-input">
                             <option hidden> -</option>
@@ -60,15 +58,12 @@
                     </div>
                 </div>
 
-                {{-- MODIFIED --}}
-                {{-- Pictures --}}
                 @include('auctions.components.form_images', ['images' => $images ])
-                {{-- /MODIFIED --}}
 
                 <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
 
                 <div class="form-group row">
-                    <label for="price-input" class="col-3 col-form-label">Starting price</label>
+                    <label for="price-input" class="col-3 col-form-label">Starting price <i>*</i></label>
                     <div class="col-9 input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
@@ -82,88 +77,17 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="duration-input" class="col-3 col-form-label">End of auction</label>
+                    <label for="duration-input" class="col-3 col-form-label">End of auction <i>*</i></label>
                     <div class="col-9 input-group">
                         <input class="form-control" type="datetime-local" placeholder="mm/dd/yyyy, --:-- --"
                                id="duration-input" name="duration-input" required>
                     </div>
                 </div>
 
-                {{--<div class="form-group row">
-                    <label for="payment-input" class="col-3 col-form-label">Payment options</label>
-                    <div class="col-9 input-group" id="payment-input" name="payment-input">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="atmPayment" id="atmPayment"
-                                   value="atmPayment" checked>
-                            <label class="form-check-label" for="atmPayment">
-                                ATM Reference
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="paypalPayment" id="paypalPayment"
-                                   value="paypalPayment">
-                            <label class="form-check-label" for="paypalPayment">
-                                Paypal
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="visaMastercardPayment"
-                                   id="visaMastercardPayment"
-                                   value="visaMastercardPayment">
-                            <label class="form-check-label" for="visaMastercardPayment">
-                                Visa/Mastercard
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="discover" id="discover"
-                                   value="discover">
-                            <label class="form-check-label" for="discover">
-                                Discover
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="americanExpress" id="americanExpress"
-                                   value="americanExpress">
-                            <label class="form-check-label" for="americanExpress">
-                                American Express
-                            </label>
-                        </div>
-                    </div>
-                </div>--}}
-
-
                 <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Shipping details</h2>
-                {{--<form>
-                    <div class="form-group row">
-                        <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
-                        <div class="col-9 input-group" id="shipping-input">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping"
-                                       value="domesticShipping">
-                                <label class="form-check-label" for="domesticShipping">
-                                    Domestic shipping
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="internationalShipping"
-                                       id="internationalShipping"
-                                       value="internationalShipping">
-                                <label class="form-check-label" for="internationalShipping">
-                                    International Shipping
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
-                                       value="localPickup">
-                                <label class="form-check-label" for="localPickup">
-                                    No shipping: Local pickup only
-                                </label>
-                            </div>
-                        </div>
-                    </div>--}}
 
                 <div class="form-group row">
-                    <label for="shippingPrice-input" class="col-3 col-form-label">Shipping Cost</label>
+                    <label for="shippingPrice-input" class="col-3 col-form-label">Shipping Cost <i>*</i></label>
                     <div class="col-9 input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
@@ -183,7 +107,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="city-input" class="col-3 col-form-label">Item Location</label>
+                    <label for="city-input" class="col-3 col-form-label">Item Location <i>*</i></label>
                     <div class="col-9">
                         <select class="form-control" id="city-input" name="city" aria-describedby="City" required>
                             <option value="" {{ old('city') ? '' : 'selected' }}>All Cities</option>
@@ -193,6 +117,8 @@
                         </select>
                     </div>
                 </div>
+
+                <a>Fields with an * mean they are required to fill</a>
 
                 <div class="text-right mb-3 mt-3">
                     <button type="submit" class="btn btn-primary sm-mb-3">List auction</button>
@@ -205,5 +131,5 @@
         </form>
 
 
-    </div><!-- end container -->
+    </div>
 @endsection

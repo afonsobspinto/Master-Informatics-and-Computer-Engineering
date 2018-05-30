@@ -66,9 +66,11 @@ class AuctionController extends Controller
     {
         $this->validate($request, [
             'title-input' => 'required',
+            'description-input' =>'required',
             'condition-input' => 'required',
             'price-input' => 'required',
             'duration-input' => 'required',
+            'shippingPrice-input' => 'required',
             'photos-input.*' => $this->image_rule,
 
         ]);
