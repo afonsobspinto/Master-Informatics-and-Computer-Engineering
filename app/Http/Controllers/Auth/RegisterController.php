@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
 
+use Illuminate\Http\Request;
+
 use App\VerifyUser;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
@@ -129,4 +131,31 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $user->verified = true;
+                $user->save();
+                $verifyUser->delete();
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            return redirect('/login')->with('error', "Sorry your email cannot be identified.");
+        }
+
+        return redirect('/login')->with('status', $status);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('error', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
 }

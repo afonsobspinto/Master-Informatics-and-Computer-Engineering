@@ -66,6 +66,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('profile/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');

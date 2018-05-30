@@ -9,6 +9,6 @@
 <br/>
 Please verify your email ({{$user['email']}}) to activate your account
 <br/>
-<a href="{{url('user/verify', $user->verifyUser->token)}}">Verify Email</a>
+<a href="{{url('profile/verify', $user->verifyUser->token)}}">Verify Email</a>
 </body>
 </html>
