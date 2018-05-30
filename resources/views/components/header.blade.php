@@ -49,7 +49,7 @@
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
             {{ Auth::user()->username }} <span class="caret"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown" aria-labelledby="authenticated-dropdown"
+        <div class="dropdown-menu dropdown-menu-right" id="header-dropdown"
              role="menu">
             @if(Auth::user()->isAdmin())
             <a class="dropdown-item" href="/reports">User Reports</a>

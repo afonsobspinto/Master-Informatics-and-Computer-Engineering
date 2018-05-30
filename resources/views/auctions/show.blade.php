@@ -233,8 +233,8 @@
     </div>
 
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <ul class="nav nav-tabs">
-            <li class="nav-item" class="active">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
                 <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
                    aria-controls="details" aria-selected="true">Bid Details</a>
             </li>
@@ -254,7 +254,7 @@
                 ></li>
         </ul>
         @if(!Auth::check() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
-        @elseif(Auth::user()->isAdmin())
+        @elseif(Auth::user()->isAdmin() && !$auction->isClosed())
             <span>
         <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#cancelModal">Cancel Auction</a>
      <input type = "hidden" value="{{$auction->id}}" id="auctionAdmin">
@@ -446,7 +446,7 @@
             @endif
         </div>
 
-        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
             <div class="review-block">
                 @if(count($reviews) == 0)
                     <p>This auctioneer has no reviews yet!</p>
