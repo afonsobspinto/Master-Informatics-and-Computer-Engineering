@@ -252,7 +252,7 @@
             </li>
         </ul>
         @if(!Auth::check() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
-        @elseif(Auth::user()->isAdmin())
+        @elseif(Auth::user()->isAdmin() && !$auction->isClosed())
             <span>
         <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#cancelModal">Cancel Auction</a>
             </span>
