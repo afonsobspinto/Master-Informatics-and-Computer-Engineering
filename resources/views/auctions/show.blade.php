@@ -381,8 +381,6 @@
         </div>
         <div class="tab-pane fade" id="shippingAndPayment" role="tabpanel" aria-labelledby="shippingAndPayment-tab">
             <dl class="row">
-                <dt class="col-sm-2 text-align-center mobile-text-center">Shipping</dt>
-                <dd class="col-sm-10">{{ $auction->shipping_options }}</dd>
 
                 <dt class="col-sm-2 text-align-center mobile-text-center">Shipping Cost</dt>
                 <dd class="col-sm-10">{{ $auction->shipping_cost }}€</dd>
