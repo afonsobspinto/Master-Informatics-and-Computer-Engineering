@@ -61,8 +61,9 @@
             @endif
             {{-- TODO direct profile to actual profile --}}
             <a class="dropdown-item" href="{{ url('profile/' . Auth::user()->id) }}">Profile</a>
-            <a class="dropdown-item" href="../chat.html" id="messages-dropdown-item">Messages <strong
-                        class="got-messages">27</strong>
+            <a class="dropdown-item" href="/messages" id="messages-dropdown-item">Messages <strong
+                        class="got-messages" id="num-messages">0</strong>
+                <input type="hidden" id="header-user-id" value="{{ Auth::id() }}">
             </a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
