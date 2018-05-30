@@ -33,8 +33,9 @@ class VerifyMail extends Mailable
     public function build()
     {
         return $this
-            ->from($this->adminEmail)
+            ->from(['address' => $this->adminEmail, 'name' => env("MAIL_USERNAME") ])
             ->subject('BidBay: verify email')
+
             ->view('mail.registration_token');
     }
 }
