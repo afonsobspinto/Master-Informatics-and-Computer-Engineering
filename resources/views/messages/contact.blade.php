@@ -162,11 +162,8 @@
         var $form = $("#userForm");
 
         var message = editor.getData();
-        console.log("message" , message);
         var subject = $("#item-name").val();
-        console.log("sub" , subject);
         var receiver_id = $("#recipient-name").val();
-        console.log("id" , receiver_id);
         var auction = $("#auction").val();
         var url = "/auctions/"+auction;
         $.ajax({
