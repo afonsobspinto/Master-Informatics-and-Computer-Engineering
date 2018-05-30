@@ -85,9 +85,9 @@
                                     {{Form::hidden('_method', 'DELETE')}}
                                     <!--  {{Form::submit('Delete', ['class' => 'btn btn-primary'])}} -->
                                     {!! Form::close() !!}
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

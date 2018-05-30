@@ -9,9 +9,6 @@
 
 @section('content')
 
-    <!--  <video width="1000" height="600" autoplay id="commercial">
-          <source src="../../../public/media/commercial.mp4" type="video/mp4">
-      </video> -->
       <br>
       <h3 class="border-bottom pb-1 mb-4">About BidBay </h3>
       <p>BidBay is a website where users can do all of their shopping (new, second hand, handcrafted or miscellaneous items) where the seller is another user like them. Do you have something you want to sell? Want something from our users? Start your selling and shopping here, at BidBay! </p>

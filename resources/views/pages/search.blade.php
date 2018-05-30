@@ -15,23 +15,6 @@
     <form id="sidebar" class="sidebar-nav ">
         <fieldset>
             <legend>Search</legend>
-            {{--<div class="format">--}}
-                {{--<h5> Look for </h5>--}}
-                {{--<div class="radio">--}}
-                    {{--<label><input type="radio" name="buy-type" value="all">All listings </label>--}}
-                    {{--<label><input type="radio" name="buy-type">Auction </label>--}}
-                    {{--<label><input type="radio" name="buy-type">Buy It Now</label>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            {{--<div class="condition">--}}
-                {{--<h5> Condition </h5>--}}
-                {{--<div class="radio">--}}
-                    {{--<label><input type="radio" name="item-condition" checked="checked" value="ALL"> Not Specified </label>--}}
-                    {{--<label><input type="radio" name="item-condition"> New </label>--}}
-                    {{--<label><input type="radio" name="item-condition"> Used </label>--}}
-                {{--</div>--}}
-            {{--</div>--}}
 
             <div class="price">
                 <h5> Price (EUR)   </h5>

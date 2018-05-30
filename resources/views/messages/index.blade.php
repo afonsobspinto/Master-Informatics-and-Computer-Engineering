@@ -44,9 +44,9 @@
                                     </div>
                                 {{Form::hidden('_method', 'DELETE')}}
                                 {!! Form::close() !!}
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                            </div>
+                        </div>
+                    </div>
 
 
 

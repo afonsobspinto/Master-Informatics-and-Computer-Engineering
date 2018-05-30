@@ -2,7 +2,6 @@
 
 @section('resources')
     @parent
-    {{-- MODIFIED: css --}}
     <script src="{{ asset('js/auction_form.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/auction_form.css') }}">
 
@@ -14,7 +13,6 @@
 
         <h1 class="border-bottom pb-1 mb-4 h2">Create your auction</h1>
 
-        {{-- MODIFIED: enctype --}}
         <form method="POST" enctype="multipart/form-data" action="{{action('AuctionController@store')}}">
             <fieldset>
                 <legend hidden> Create your auction </legend>
@@ -60,10 +58,7 @@
                     </div>
                 </div>
 
-                {{-- MODIFIED --}}
-                {{-- Pictures --}}
                 @include('auctions.components.form_images', ['images' => $images ])
-                {{-- /MODIFIED --}}
 
                 <h2 class="border-bottom pb-1 mb-4 mt-4 h4">Selling details</h2>
 
@@ -136,5 +131,5 @@
         </form>
 
 
-    </div><!-- end container -->
+    </div>
 @endsection
