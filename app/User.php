@@ -184,4 +184,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\VerifyUser');
     }
+
+    public static function getByEmail($email) {
+        return User::where('email', '=', $email)->first();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPassMail;
 use App\Messages;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Validation\Rule;
 
@@ -156,4 +158,31 @@ class ProfileController extends Controller
 
         return response()->json($numMessages);
     }
+
+    public function showResetPasswordForm()
+    {
+        $categories = Category::all();
+
+        return view('profile.send_reset_password', [
+            'categories' => $categories,
+        ]);
+    }
+
+    public function sendResetPassword(Request $request) {
+
+        $this->validate($request, [
+            'email' => $this->buildEmailRule()
+        ]);
+
+        $email = $request->input('email');
+        $user = User::getByEmail($email);
+
+        if($user) {
+            $this->createVerifyUser($user->id);
+            Mail::to($email)->send(new ResetPassMail($user));
+        }
+
+        return redirect( url('/') )->with('status', 'Password Reset email sent to the indicated email if it exists.');
+    }
+
 }

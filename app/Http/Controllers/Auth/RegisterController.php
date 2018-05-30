@@ -7,6 +7,7 @@ use App\Http\Controllers\UserTraits;
 use App\Mail\VerifyEmail;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -122,10 +123,7 @@ class RegisterController extends Controller
         if(array_key_exists('picture', $data))
             $this->tryStoreProfilePicture($data['picture'], $user->id);
 
-        $verifyUser = VerifyUser::create([
-            'user_id' => $user->id,
-            'token' => str_random(40)
-        ]);
+        $this->createVerifyUser($user->id);
 
         Mail::to($user->email)->send(new VerifyMail($user));
 
@@ -157,5 +155,7 @@ class RegisterController extends Controller
         $this->guard()->logout();
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
+
+
 
 }

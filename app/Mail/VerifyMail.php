@@ -34,6 +34,7 @@ class VerifyMail extends Mailable
     {
         return $this
             ->from($this->adminEmail)
-            ->view('mail.registration-token');
+            ->subject('BidBay: verify email')
+            ->view('mail.registration_token');
     }
 }
