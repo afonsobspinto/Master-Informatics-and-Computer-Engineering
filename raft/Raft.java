@@ -1,5 +1,6 @@
 package raft;
 
+import raft.http.RaftHttpServer;
 import raft.net.ssl.SSLChannel;
 import raft.util.Serialization;
 
@@ -121,14 +122,15 @@ public class Raft<T extends Serializable> {
     void restartFollowerTimeout() {
         System.out.println("{" + ID + "} "+"Restart Timeout");
         followerTimerTask.cancel();
-        followerTimeout(); //TODO: @Shinuzi isto é preciso?
+        followerTimerTask = followerTimeout();
     }
 
-    private void followerTimeout() {
+    private TimerTask followerTimeout() {
         System.out.println("{" + ID + "} "+"Starting Timeout");
         int delay = ThreadLocalRandom.current().nextInt(RaftProtocol.maxElectionTimeout - RaftProtocol.minElectionTimeout) + RaftProtocol.minElectionTimeout;
         System.out.println(delay);
         timer.schedule(followerTimerTask = followerTimerTask(), delay);
+        return followerTimerTask;
     }
 
     private void candidateTimeout() {
@@ -161,9 +163,11 @@ public class Raft<T extends Serializable> {
 		Constructors
 	 */
 
+	private RaftHttpServer httpServer;
     public Raft(Integer port, InetSocketAddress cluster) {
         this.port = port;
         log.add(new RaftLog<T>(null, 0));
+        httpServer = new RaftHttpServer(this.port + 1000, this.pool, this);
 
         // Connect to known cluster
         {
@@ -193,6 +197,8 @@ public class Raft<T extends Serializable> {
         this.port = port;
         leaderID = ID;
         log.add(new RaftLog<T>(null, 0));
+        httpServer = new RaftHttpServer(this.port + 1000, this.pool, this);
+
 
         // Listen for new connections
         this.pool.execute(() -> {
