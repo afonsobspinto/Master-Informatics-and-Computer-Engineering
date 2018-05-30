@@ -636,9 +636,9 @@
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                                        <label for="message-text-motive" class="col-form-label">Message:</label>
                                                                         <label>
-                                                                            <textarea class="form-control" id="message-text"></textarea>
+                                                                            <textarea class="form-control" id="message-text-motive"></textarea>
                                                                         </label>
                                                                     </div>
                                                                 </fieldset>
