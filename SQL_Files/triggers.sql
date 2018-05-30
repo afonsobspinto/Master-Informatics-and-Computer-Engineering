@@ -39,7 +39,7 @@ CREATE TRIGGER auctions_starting_price_tsvector BEFORE INSERT ON auctions FOR EA
 DROP TRIGGER IF EXISTS update_current_price ON bids;
 CREATE OR REPLACE FUNCTION fn_update_current_price() RETURNS TRIGGER AS $$
 BEGIN
-  IF TG_OP = 'INSERT' THEN
+  IF TG_OP = 'INSERT' OR TG_OP = 'UPDATE' THEN
       IF NEW.bid_amount> (SELECT current_price FROM auctions WHERE id=NEW.id) THEN
          UPDATE auctions
          SET current_price = NEW.bid_amount
@@ -52,7 +52,7 @@ END
 $$ LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER update_current_price AFTER INSERT ON bids FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
+CREATE TRIGGER update_current_price AFTER INSERT OR UPDATE ON bids FOR EACH ROW EXECUTE PROCEDURE fn_update_current_price();
 
 
 -- check if is admin who is banning 

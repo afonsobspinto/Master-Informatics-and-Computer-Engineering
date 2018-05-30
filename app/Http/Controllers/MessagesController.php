@@ -70,8 +70,8 @@ class MessagesController extends Controller
         $unreadMessages = Messages::countUnreadMessages($userId);
         $messages = $this->messageService->getUserMessagesPaginate($userId);
 
-        $count = $this->messageService->countUnreadMessages(5);
-        error_log("unread ".$count);
+        //$count = $this->messageService->countUnreadMessages(5);
+        //error_log("unread ".$count);
 
         return view('messages.sendmessage', [
             'categories' => $categories,
@@ -91,8 +91,8 @@ class MessagesController extends Controller
         $unreadMessages = Messages::countUnreadMessages($userId);
         $messages = $this->messageService->getUserMessagesPaginate($userId);
 
-        $count = $this->messageService->countUnreadMessages(5);
-        error_log("unread ".$count);
+        //$count = $this->messageService->countUnreadMessages(5);
+        //error_log("unread ".$count);
 
         return view('messages.contact', [
             'categories' => $categories,
@@ -130,8 +130,8 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $username = $request->input('id');
         $receiver_user = $this->messageService->getMessageReceiverId($username);
-        $my = $this->messageService->getuser(5);
-        error_log("REC user ".$my->username);
+        //$my = $this->messageService->getuser(5);
+        //error_log("REC user ".$my->username);
 
         try {
 
