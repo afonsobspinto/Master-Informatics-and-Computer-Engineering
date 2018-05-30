@@ -9,4 +9,7 @@ class Category extends Model
     protected $table = 'categories';
     public $timestamps = false;
 
+    public static function getSortedCategories() {
+        return Category::orderBy('name', 'asc')->get();
+    }
 }

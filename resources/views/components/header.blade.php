@@ -10,6 +10,7 @@
             <input class="form-control rounded-1" name="search-input" type="search" placeholder="Search" aria-label="Search" value="{{ $searchString ?? "" }}" id="search-input">
             <select class="form-control rounded-1 col-2" name="category" id="search-categories">
                 <option value="ALL" @if(! isset($categoryID)) selected @endif> All Categories</option>
+                @php($categories = \App\Category::getSortedCategories())
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}" @if(isset($categoryID) && $categoryID == $category->id) selected @endif>{{ ucfirst($category->name) }}</option>
                 @endforeach
