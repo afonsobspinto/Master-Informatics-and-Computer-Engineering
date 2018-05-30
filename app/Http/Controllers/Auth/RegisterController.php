@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
 
+use App\VerifyUser;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyMail;
 
 class RegisterController extends Controller
 {
@@ -116,6 +119,13 @@ class RegisterController extends Controller
 
         if(array_key_exists('picture', $data))
             $this->tryStoreProfilePicture($data['picture'], $user->id);
+
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($user->email)->send(new VerifyMail($user));
 
         return $user;
     }

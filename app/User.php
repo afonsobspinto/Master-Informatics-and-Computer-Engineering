@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $guarded = [];
+
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
@@ -176,5 +178,10 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
     }
 }
