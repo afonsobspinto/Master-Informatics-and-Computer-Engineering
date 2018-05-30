@@ -41,7 +41,7 @@
         <a class="btn btn-link" href="{{ url('/register') }}">
             Don't have an account? Register
         </a>
-        <a class="btn btn-link" href="{{ url('/profile/password/send-email') }}">
+        <a class="btn btn-link" href="{{ url('/password/reset') }}">
             Forgot your password?
         </a>
         <button type="submit" class="btn btn-primary mx-auto w-50 mb-3 mt-4">Login</button>

@@ -14,6 +14,7 @@
 
 // static pages
 Route::get('/', 'StaticPagesController@showLandingPage');
+Route::get('home', 'StaticPagesController@showLandingPage');
 Route::get('landing_page', 'StaticPagesController@showLandingPage');
 Route::get('about', 'StaticPagesController@showAbout');
 Route::get('faq', 'StaticPagesController@showFAQ');
@@ -64,9 +65,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 Route::get('profile/verify/{token}', 'Auth\RegisterController@verifyUser');
-Route::get('profile/password/send-email', 'ProfileController@showResetPasswordForm');
-Route::post('profile/password/send-email', 'ProfileController@sendResetPassword');
 
+Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //other API
