@@ -209,8 +209,8 @@
                                                             <input type="text" class="form-control" id="reason1">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="message-text" class="col-form-label">Message:</label>
-                                                            <textarea class="form-control" id="message-text"></textarea>
+                                                            <label for="message-text-motive" class="col-form-label">Message:</label>
+                                                            <textarea class="form-control" id="message-text-motive"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
