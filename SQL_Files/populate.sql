@@ -137,9 +137,8 @@ INSERT INTO "public"."reviews" ("id","rating","review_text") VALUES (1,4,'This i
 INSERT INTO "public"."closed_auctions" ("id") VALUES (4);
 INSERT INTO "public"."closed_auctions" ("id") VALUES (6);
 
-
-INSERT INTO "public"."won_auctions" ("id","is_successful_transaction","has_winner_complained","winner_id") VALUES (6,True,False,1);
-
+INSERT INTO "public"."won_auctions" ("id","winner_id") VALUES (4,9);
+INSERT INTO "public"."won_auctions" ("id","winner_id") VALUES (6,9);
 
 INSERT INTO "public"."qas" ("id","question","answer","auction_id","questioner_id") VALUES (9632424,'EnfGW8NyO6OH0yuHlv4ihFMFi0LymeDTZZwgd5KikuCrbzPafURMscr6t06pXYTtewJ0vZTvvqjZQIZSILsJbzlXjounzSoDlkfHYIwkiErzDdH0lEIY2ikuNCRB64jxoeuKGMm8qcjKUYz0fCFwsSuHi2RVQXTW3xE2jxakZTyhHWnLLfuMg2oBHAAuYhgQSZqqhwtUfBCGUZYZ82aRQziRjwv42jKMex6','ojBOa',1,3);
 INSERT INTO "public"."qas" ("id","question","answer","auction_id","questioner_id") VALUES (9624332,'bEfgYqkriLX0aypAYrkaWAPxgAaEcWM0Nfga5u5jPWj','J23duGx40axM7tpzQyDVwdgfwRpKHSqafibQKITo0Tjkr5yyNRCrWxRB2oCWVw7Wz',3,2);
@@ -150,3 +149,5 @@ INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (1,2);
 INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (2,3);
 INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (3,1);
 INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (5,1);
+
+

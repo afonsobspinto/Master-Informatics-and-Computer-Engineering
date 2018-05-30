@@ -38,7 +38,6 @@ class MessagesController extends Controller
         $messages = $this->messageService->getUserMessagesPaginate($userId);
 
         $count = $this->messageService->countUnreadMessages(5);
-        error_log("unread ".$count);
 
         return view('messages.index', [
             'categories' => $categories,
@@ -159,7 +158,6 @@ class MessagesController extends Controller
 
     public static function systemStore($receiverID, $data)
     {
-        echo "System Store";
         try {
             $message = new Messages();
             $message->subject = $data['subject'];
@@ -296,7 +294,6 @@ class MessagesController extends Controller
         $user = Auth::user()->id;
         $message = $this->messageService->getUserMessages($user);
         foreach ($message as $value) {
-            error_log($value->id);
             $email = Emails::find($value->id);
             $email->delete();
             $msg = Messages::find($value->id);

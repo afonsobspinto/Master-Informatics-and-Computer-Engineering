@@ -209,6 +209,29 @@ class AuctionController extends Controller
         return response()->json('', Response::HTTP_OK);
     }
 
+
+
+    public function cancelAuction($auction_id, Request $request)
+    {
+
+        $auction = Auction::find($auction_id);
+
+
+        $password = $request->input('password');
+        if (!Auth::user()->checkPassword($password))
+            return response()->json('Invalid password', Response::HTTP_FORBIDDEN);
+
+        $this->closeAuctionBySystem($auction);
+
+        $messageToOwner = array("id" => Auth::user()->id, "subject" => "Auction fechada por " . $request->input('motive') .  ".",
+            "message" => $request->input("message"));
+
+
+        MessagesController::systemStore($auction->owner_id, $messageToOwner);
+
+        return response()->json('', Response::HTTP_OK);
+    }
+
     public function addToWishlist($id)
     {
 
@@ -337,6 +360,11 @@ class AuctionController extends Controller
 
     }
 
+    private function closeAuctionBySystem($auction)
+    {
+        $this->storeClosed($auction->id);
+    }
+
     private function closeAuction($auction)
     {
         $this->storeClosed($auction->id);
@@ -384,7 +412,7 @@ class AuctionController extends Controller
         try {
             $wonAuction = new WonAuction();
             $wonAuction->id = $auctionID;
-            $wonAuction->is_successful_transaction = true;
+            $wonAuction->is_successful_transaction = false;
             $wonAuction->has_winner_complained = false;
             $wonAuction->winner_id = $winnerID;
             $wonAuction->save();

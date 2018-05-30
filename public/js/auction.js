@@ -18,7 +18,31 @@ $('#remove-auction-btn').click(function() {
         }
     });
 });
+const auctionIDAdmin = $('#auctionAdmin');
+if(auctionIDAdmin.length){
+    const adminID = auctionIDAdmin.val();
 
+
+    $('#cancel-auction-btn').click(function() {
+    const pass_input = $('#admin-pass').val();
+    const message = $('#message-text-remove').val();
+    const motive = $('input[name=motive]:checked', '#motive').val();
+    $.ajax({
+        url:`/auctions/${adminID}/cancel`,
+        type: 'DELETE',
+        contentType: 'application/x-www-form-urlencoded',
+        data: {"password":pass_input, "message":message, "motive":motive},
+        success: function(data) {
+            window.location.replace("../..");
+        },
+        error: function (data) {
+            const msg = JSON.parse(data.responseText);
+            $("#close_btn").trigger("click");
+            showErrorAlert(msg);
+        }
+    });
+});
+}
 
 // update current bid price and time
 const auctionID = $('#auction');
@@ -29,8 +53,6 @@ if(auctionID.length)
 
     const updateAuctionCallback = function (data) {
         let obj = JSON.parse(data);
-        console.log(obj.time);
-
         $('#current-auction-price').text(obj.price + '€');
         $('#current-auction-time').text("Ending in " + obj.time );
         };

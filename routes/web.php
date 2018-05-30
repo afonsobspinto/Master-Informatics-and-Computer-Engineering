@@ -26,6 +26,7 @@ Route::post('auctions/{id}/addToWishlist', 'AuctionController@addToWishlist')->n
 Route::post('auctions/{id}/removeFromWishlist', 'AuctionController@removeFromWishlist')->name('auctions.removeFromWishlist');
 Route::post('auctions/{id}/storeQuestion', 'AuctionController@storeQuestion')->name('auctions.storeQuestion');
 Route::post('auctions/{id}/storeAnswer/{qaID}', 'AuctionController@storeAnswer')->name('auctions.storeAnswer');
+Route::delete('auctions/{id}/cancel', 'AuctionController@cancelAuction');
 
 // bids
 Route::post('auctions/{id}/storeBid', 'AuctionController@storeBid')->name('auctions.storeBid');

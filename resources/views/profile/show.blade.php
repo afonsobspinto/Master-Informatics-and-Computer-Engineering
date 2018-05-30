@@ -271,7 +271,7 @@
         @if(!Auth::check() || !((Auth::user()->isAdmin() || (Auth::user()->isBanned())) && Auth::user()->isProfileOwner($user)
             || (Auth::user()->isUserAdmin($user)) || (Auth::user()->isUserBanned($user))))
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" role="tablist">
             <li class="active">
                 <a class="nav-link active" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="true">Feedback</a>
             </li>
@@ -303,7 +303,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
                 @if(count($feedback) == 0)
-                    <p>No one reviewed this user's amazing work yet!</p>
+                    <a>No one reviewed this user's amazing work yet!</a>
                 @else
                 @foreach($feedback as $review)
                 <div class="review-block">
@@ -411,7 +411,7 @@
                     <div class="col-md-12">
                         <ul>
                             @if(count($itemsForSale) == 0)
-                                <p>This user isn't selling any item.</p>
+                                <a>This user isn't selling any item.</a>
                             @else
                             @foreach($itemsForSale as $item)
                             <li>
@@ -446,7 +446,9 @@
                     <div class="col-md-12">
                         <ul>
                             @if(count($wishlist) == 0)
-                                <p>Add something to your wishlist!</p>
+                                <li>
+                                    <a>Add something to your wishlist!</a>
+                                </li>
                             @else
                             @foreach($wishlist as $item)
                             <li>
@@ -494,7 +496,9 @@
                     <div class="col-md-12">
                         <ul>
                             @if(count($biddingItems) == 0)
-                                <p>You're not bidding any item right now! What are you waiting for?</p>
+                                <li>
+                                    <a>You're not bidding any item right now! What are you waiting for?</a>
+                                </li>
                             @else
                             @foreach($biddingItems as $item)
                             <li>
@@ -529,7 +533,9 @@
                     <div class="col-md-12">
                         <ul>
                             @if(count($purchaseHistory) == 0)
-                                <p>You haven't purchased anything yet...</p>
+                                <li>
+                                    <a>You haven't purchased anything yet...</a>
+                                </li>
                             @else
                             @foreach($purchaseHistory as $item)
                             <li>
@@ -668,8 +674,7 @@
     @if(!Auth::check())
     @else
     <input type = "hidden" value="{{Auth::user()->id}}" id="reporter">
-    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
-         aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -26,7 +26,7 @@
                     <button id="sendmsg" type="button" class="btn btn-success d-inline-block" data-toggle="modal" data-target="#sendMessageModal"
                             data-whatever="@getbootstrap"> New Message  &nbsp; </button> &nbsp; &nbsp;
 
-                    <button id="delete" type="button" class="btn btn-danger d-inline-block" data-toggle="modal" data-target="#alert"
+                    <button id="delete-all" type="button" class="btn btn-danger d-inline-block" data-toggle="modal" data-target="#alert"
                             data-whatever="@getbootstrap"> Delete All &nbsp; &nbsp; &nbsp; <i class="fas fa-trash-alt"></i></button>
 
                     <div class="modal fade" id="alert">
@@ -59,13 +59,13 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form route="{{route('messages.store')}}" method="POST" id="userForm" class=="userForm">
+                                <form route="{{route('messages.store')}}" method="POST" id="userForm" class="userForm">
                                     {{csrf_field() }}
                                     <fieldset>
                                         <legend hidden>Message</legend>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label label for="recipient-name" class="form-control-label">To:</label>
+                                                <label for="recipient-name" class="form-control-label">To:</label>
                                                 <input type="text" value="{{$toUserName}}" class="form-control" id="recipient-name" name="recipient-name" maxlength="50">
                                             </div>
                                             <div class="form-group">
@@ -78,7 +78,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" id="closebtn" class="btn btn-success" data-dismiss="modal">Close</button>
+                                            <button type="button" id="closebtn-m" class="btn btn-success" data-dismiss="modal">Close</button>
                                             <button  id="bew" class="btn btn-success">Send message</button>
                                         </div>
                                     </fieldset>
@@ -136,7 +136,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
     $(document).ready(function ($) {
         $('.clickable-row').click(function () {
             window.document.location = $(this).data("href");
@@ -149,7 +149,7 @@
     var editor = CKEDITOR.replace( 'message-text' );
 </script>
 
-<script type="text/javascript">
+<script>
     $(window).on('load',function(){
         $('#exampleModal').modal('show');
     });
@@ -161,11 +161,8 @@
         var $form = $("#userForm");
 
         var message = editor.getData();
-        console.log("message" , message);
         var subject = $("#item-name").val();
-        console.log("sub" , subject);
         var receiver_id = $("#recipient-name").val();
-        console.log("id" , receiver_id);
         $.ajax({
             type: $form.attr('method'),
             url: $form.attr('route'),

@@ -233,8 +233,8 @@
     </div>
 
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <ul class="nav nav-tabs">
-            <li class="nav-item" class="active">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
                 <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
                    aria-controls="details" aria-selected="true">Bid Details</a>
             </li>
@@ -250,11 +250,15 @@
                 <a class="nav-link" id="review-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
                    aria-selected="true">Auctioneer Reviews</a>
             </li>
+            <li
+                ></li>
         </ul>
         @if(!Auth::check() || Auth::user()->isBanned() || Auth::user()->isAuctionOwner($auction))
-        @elseif(Auth::user()->isAdmin())
+        @elseif(Auth::user()->isAdmin() && !$auction->isClosed())
             <span>
         <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#cancelModal">Cancel Auction</a>
+     <input type = "hidden" value="{{$auction->id}}" id="auctionAdmin">
+
             </span>
         @else
             <button type="button" class="btn btn-danger btn-sm report" data-toggle="modal" data-target="#exampleModal1">
@@ -442,7 +446,7 @@
             @endif
         </div>
 
-        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
             <div class="review-block">
                 @if(count($reviews) == 0)
                     <p>This auctioneer has no reviews yet!</p>
@@ -507,18 +511,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
                             <fieldset>
                                 <legend hidden>Motive</legend>
-                                <div class="form-group">
+                                <div class="form-group" id="motive">
                                     <div>
                                         <h5 style="color:brown"> Motive</h5>
                                         <div class="radio">
                                             <label><input type="radio"
-                                                          name="behaviour"> Abusive behaviour </label>
+                                                          name="motive" value="Abusive behaviour"> Abusive behaviour </label>
                                         </div>
                                         <div class="radio">
-                                            <label><input type="radio" name="content"> Spam </label>
+                                            <label><input type="radio" name="motive" value="Spam"> Spam </label>
                                         </div>
                                     </div>
                                 </div>
@@ -529,13 +532,12 @@
                                 <label for="admin-pass" class="col-form-label">Password:</label>
                                 <input type="password" class="form-control" id="admin-pass">
                             </fieldset>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">Close
+                                data-dismiss="modal" id="close_btn">Close
                         </button>
-                        <button type="button" class="btn btn-danger report">Remove</button>
+                        <button id="cancel-auction-btn" type="submit" class="btn btn-danger report">Remove</button>
                     </div>
                 </div>
             </div>
