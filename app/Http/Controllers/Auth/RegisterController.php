@@ -124,7 +124,6 @@ class RegisterController extends Controller
             $this->tryStoreProfilePicture($data['picture'], $user->id);
 
         $this->createVerifyUser($user->id);
-
         Mail::to($user->email)->send(new VerifyMail($user));
 
         return $user;

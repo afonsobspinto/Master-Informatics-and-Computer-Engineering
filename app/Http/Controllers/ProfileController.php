@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Validation\Rule;
 
+use App\Mail\VerifyMail;
+
 
 class ProfileController extends Controller
 {
@@ -123,6 +125,7 @@ class ProfileController extends Controller
             ]);
 
 
+        $bChangeEmail = $user->email != $request->input('email');
 
         try {
 
@@ -144,7 +147,18 @@ class ProfileController extends Controller
         $file = $request->file('picture');
         $this->tryStoreProfilePicture($file, Auth::id());
 
-        return redirect( url('/') );
+//        $bChangeEmail = false // se nao devia verificar no profile update
+        if($bChangeEmail) {
+            $user->verified = false;
+            $this->createVerifyUser($user->id);
+            Mail::to($request->input('email'))->send(new VerifyMail($user));
+            Auth::logout();
+        }
+
+        if($bChangeEmail)
+            return redirect( url('/') )->with('status', 'We sent you an activation code to your new email. Your account has been deactivated in the meantine.');
+        else
+            return redirect( url('/') );
 
 //        TODO when done
 //        return redirect( url('profile', [Auth::id()] ) );
