@@ -171,6 +171,14 @@ class User extends Authenticatable
             return false;
     }
 
+    public function getBanTime(){
+        if($this->isBanned()){
+            return DB::table('bans')->where(
+                ['banned_id', '=', $this->id])->value('ban_expiration_date');
+        }
+        return null;
+    }
+
     public function isHighestBidder($auction){
         $current_bid = $auction->current_price;
         $user_bid = DB::table('bids')

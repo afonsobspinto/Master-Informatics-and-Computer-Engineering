@@ -20,15 +20,22 @@ $('#remove-auction-btn').click(function() {
 });
 
 
-// update current bid price
+// update current bid price and time
 const auctionID = $('#auction');
 if(auctionID.length)
 {
     const userID = auctionID.val();
-    const url = `/auctions/${userID}/price`;
+    const url = `/auctions/${userID}/update`;
 
-    const setNumMessagesCallback = (price) => $('#current-auction-price').text(price + '€');
-    infinitePollingApiJson(url, setNumMessagesCallback, 1000);
+    const updateAuctionCallback = function (data) {
+        let obj = JSON.parse(data);
+        console.log(obj.time);
+
+        $('#current-auction-price').text(obj.price + '€');
+        $('#current-auction-time').text("Ending in " + obj.time );
+        };
+
+    infinitePollingApiJson(url, updateAuctionCallback, 1000);
 }
 
 

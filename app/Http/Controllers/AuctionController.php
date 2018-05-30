@@ -59,16 +59,18 @@ class AuctionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
             'title-input' => 'required',
+            'description-input' =>'required',
             'condition-input' => 'required',
             'price-input' => 'required',
             'duration-input' => 'required',
+            'shippingPrice-input' => 'required',
             'photos-input.*' => $this->image_rule,
 
         ]);
@@ -87,8 +89,7 @@ class AuctionController extends Controller
             $auction->category_id = $request->input('category');
             $auction->city_id = $request->input('city');;
             $auction->save();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
@@ -102,7 +103,7 @@ class AuctionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -125,7 +126,7 @@ class AuctionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -146,8 +147,8 @@ class AuctionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -171,8 +172,7 @@ class AuctionController extends Controller
             $auction->category_id = $request->input('category');
             $auction->city_id = $request->input('city');
             $auction->save();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json('Invalid Update', Response::HTTP_FORBIDDEN);
         }
 
@@ -185,7 +185,7 @@ class AuctionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $auction_id)
@@ -193,7 +193,7 @@ class AuctionController extends Controller
         $auction = Auction::findOrFail($auction_id);
 
         $password = $request->input('password');
-        if(! Auth::user()->checkPassword($password))
+        if (!Auth::user()->checkPassword($password))
             return response()->json('Invalid password', Response::HTTP_FORBIDDEN);
 
         try {
@@ -209,28 +209,30 @@ class AuctionController extends Controller
         return response()->json('', Response::HTTP_OK);
     }
 
-    public function addToWishlist($id){
+    public function addToWishlist($id)
+    {
 
         try {
             $wishlist = new Wishlist();
             $wishlist->auction_id = $id;
             $wishlist->id = Auth::user()->id;
             $wishlist->save();
-        }
-        catch (\Exception$e) {
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
         return redirect('auctions/' . $id);
     }
 
-    public function removeFromWishlist($auction_id){
-            $auction = Auction::findOrFail($auction_id);
-            $auction->removeWishlist(Auth::user());
+    public function removeFromWishlist($auction_id)
+    {
+        $auction = Auction::findOrFail($auction_id);
+        $auction->removeWishlist(Auth::user());
 
         return redirect('auctions/' . $auction_id);
     }
 
-    public function storeQuestion(Request $request, $id){
+    public function storeQuestion(Request $request, $id)
+    {
         $this->validate($request, [
             'question-input' => 'required',
         ]);
@@ -242,15 +244,15 @@ class AuctionController extends Controller
             $qa->auction_id = $id;
             $qa->questioner_id = Auth::user()->id;
             $qa->save();
-        }
-        catch (\Exception$e) {
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
         return redirect('auctions/' . $id);
     }
 
-    public function storeAnswer(Request $request, $auction_id, $qa_id){
+    public function storeAnswer(Request $request, $auction_id, $qa_id)
+    {
         $this->validate($request, [
             'answer-input' => 'required',
         ]);
@@ -259,9 +261,7 @@ class AuctionController extends Controller
             $answer = $request->input('answer-input');
             $auction = Auction::findOrFail($auction_id);
             $auction->answerQA($auction, $qa_id, $answer);
-        }
-
-        catch (\Exception$e) {
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
@@ -275,31 +275,41 @@ class AuctionController extends Controller
             'bid-amount' => 'required',
         ]);
 
-        try {
-            $bid = new Bid();
-            $bid->id = $id;
-            $bid->bidder_id = Auth::user()->id;
-            $bid->bid_amount = $request->input('bid-amount');
-            if(!$bid->isBidBigger($bid->bid_amount, $id))
+        $auctions = Auction::getAuctionGivenID($id);
+        if (count($auctions) > 0) {
+            $auction = $auctions[0];
+
+            $oldMaxBidder = Auction::getAuctionWinnerGivenID($id);
+            $messageToOldMaxBidder = array("id" => $oldMaxBidder, "subject" => "Bid ultrapassada.",
+                "message" => "Olá. A tua bid no item  " . $auction->item_name . " foi ultrapassada." . " O novo valor é " .  $request->input('bid-amount') . "€." .
+            "\n Esta mensagem foi enviada automaticamente pelo sistema. Beep!");
+
+            try {
+                $bid = new Bid();
+                $bid->id = $id;
+                $bid->bidder_id = Auth::user()->id;
+                $bid->bid_amount = $request->input('bid-amount');
+                if (!$bid->isBidBigger($bid->bid_amount, $id))
+                    return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
+                $this->destroyPreviousBid(Auction::findOrFail($id));
+                $bid->save();
+            } catch (\Exception$e) {
                 return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
-            $this->destroyPreviousBid(Auction::findOrFail($id));
-            $bid->save();
-        }
+            }
 
-        catch (\Exception$e){
-            return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
-        }
 
+            MessagesController::systemStore($oldMaxBidder, $messageToOldMaxBidder);
+        }
 
         return redirect('auctions/' . $id);
     }
 
-    public function destroyPreviousBid($auction){
-        try{
+    public function destroyPreviousBid($auction)
+    {
+        try {
             $auction->deleteBids(Auth::user());
 
-        }
-        catch (\Exception$e){
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
@@ -307,45 +317,69 @@ class AuctionController extends Controller
         return redirect('auctions/' . $auction->id);
     }
 
-    public function getCurrentPrice($auctionID) {
+    public function updateAuction($auctionID)
+    {
         $auction = Auction::findOrFail($auctionID);
 
-        return response()->json($auction->currentPriceEuros());
+        $update = json_encode(array('price' => $auction->currentPriceEuros(), 'time' =>$auction->getTimeLeftString()));
+
+        return response()->json($update);
     }
 
-    public function closeAuctions(){
+    public function closeAuctions()
+    {
 
+        //echo "You don't pay me enough to do this every minute.";
         $auctionsToClose = Auction::getAuctionsToClose();
-        foreach ($auctionsToClose as $auction){
-            echo Auction::getAuctionWinnerGivenID($auction->id) . " \n";
+        foreach ($auctionsToClose as $auction) {
             $this->closeAuction($auction);
         }
 
     }
 
-    private function closeAuction($auction){
+    private function closeAuction($auction)
+    {
         $this->storeClosed($auction->id);
-        if($auction->starting_price	< $auction->current_price){
+        if ($auction->starting_price < $auction->current_price) {
             $winnerID = $auction->getAuctionWinnerGivenID($auction->id);
             $this->storeWon($auction->id, $winnerID);
+            $this->notify($auction, $winnerID);
+
         }
     }
 
-    private function storeClosed($auctionID){
+    private function notify($auction, $winner)
+    {
+        $messageToOwner = array("id" => $winner, "subject" => "Item " . $auction->item_name . " adquirido.",
+            "message" => "Olá. O teu item " . $auction->item_name . " foi adquirido por " . $auction->current_price .
+                "€. Deves agora entrar em contacto com o comprador. 
+            \n Esta mensagem foi enviada automaticamente pelo sistema. Beep!");
+
+        $messageToWinner = array("id" => $auction->owner_id, "subject" => "Item " . $auction->item_name . " adquirido.",
+            "message" => "Olá. Acabaste de adquirir o item  " . $auction->item_name . " por " . $auction->current_price .
+                "€. Deves agora entrar em contacto com o vendedor. 
+            \n Esta mensagem foi enviada automaticamente pelo sistema. Beep!");
+
+        MessagesController::systemStore($auction->owner_id, $messageToOwner);
+        MessagesController::systemStore($winner, $messageToWinner);
+    }
+
+    private function storeClosed($auctionID)
+    {
 
         try {
             $closedAuction = new ClosedAuction();
             $closedAuction->id = $auctionID;
             $closedAuction->save();
-        }
-        catch (\Exception$e) {
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 
         return true;
     }
 
-    private function storeWon($auctionID, $winnerID){
+    private function storeWon($auctionID, $winnerID)
+    {
 
         try {
             $wonAuction = new WonAuction();
@@ -354,8 +388,7 @@ class AuctionController extends Controller
             $wonAuction->has_winner_complained = false;
             $wonAuction->winner_id = $winnerID;
             $wonAuction->save();
-        }
-        catch (\Exception$e) {
+        } catch (\Exception$e) {
             return response()->json('Invalid Store', Response::HTTP_FORBIDDEN);
         }
 

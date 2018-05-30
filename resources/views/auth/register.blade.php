@@ -30,7 +30,7 @@
 
 @section('form-bottom')
     @include('profile.components.new_password_inputs', [ 'name_prefix' => 'password', 'pretty_name' => 'New Password', 'required' => true ])
-
+    <a class="text-center mb-2">All fields (except the Profile Picture) are required to fill</a>
     <a href="{{ url('/login') }}" class="text-center mb-2">Already have an account? Login</a>
     <button type="submit" class="btn btn-primary mx-auto w-50 mb-3 mt-4">Register</button>
 @endsection

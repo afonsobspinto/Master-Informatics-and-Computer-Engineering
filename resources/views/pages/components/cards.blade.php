@@ -11,8 +11,6 @@
         @foreach($auctions as $auction)
         <div class="card border-info">
             <a href="{{ url("auctions/{$auction->id}") }}">
-                <!-- place auction data here -->
-                <!-- images can be any size -->
                 <img class="card-img-top" src="{{ $auction->getDisplayPictureURL($auction->id) }}" alt="auction image" title="{{ $auction->item_name }}">
                 <div class="card-body">
                     <h3 class="card-title">{{ $auction->item_name }}</h3>

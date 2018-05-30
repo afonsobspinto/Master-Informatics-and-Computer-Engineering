@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-9"></div>
                             <div class="col-3">
-                                <a href="/messages/sendMessage/{{App\User::find($report->user_id)->username}}/{{$report->subject}}" id = "sendbtn" type="button" class="btn btn-success ""> Send Answer </a></div>
+                                <a href="/messages/sendMessage/{{App\User::find($report->user_id)->username}}/{{$report->subject}}" id = "sendbtn" type="button" class="btn btn-success "> Send Answer </a></div>
                         </div>
                     </div>
                 </div>

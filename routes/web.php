@@ -21,7 +21,7 @@ Route::get('faq', 'StaticPagesController@showFAQ');
 
 // auctions
 Route::resource('auctions', 'AuctionController');
-Route::get('auctions/{id}/price', 'AuctionController@getCurrentPrice');
+Route::get('auctions/{id}/update', 'AuctionController@updateAuction');
 Route::post('auctions/{id}/addToWishlist', 'AuctionController@addToWishlist')->name('auctions.addToWishlist');
 Route::post('auctions/{id}/removeFromWishlist', 'AuctionController@removeFromWishlist')->name('auctions.removeFromWishlist');
 Route::post('auctions/{id}/storeQuestion', 'AuctionController@storeQuestion')->name('auctions.storeQuestion');
