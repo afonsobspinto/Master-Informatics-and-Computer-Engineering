@@ -330,7 +330,7 @@
                     <dt class="col-sm-2 text-align-center mobile-text-center">Current Bid</dt>
                 @endif
                 @if($auction->isWon())
-                    <dd class="col-sm-10" id="current-auction-price-won">{{ $auction->currentPriceEuros()}}€ (Won
+                    <dd class="col-sm-10">{{ $auction->currentPriceEuros()}}€ (Won
                         by <a href="../profile/{{$auction->getAuctionWinner($auction->id)}}">{{ $auction->getAuctionWinnerName($auction->id) }} </a> )</dd>
                 @else
                     <dd class="col-sm-10" id="current-auction-price">{{ $auction->currentPriceEuros()}}€ </dd>
@@ -340,7 +340,7 @@
 
                     <dt class="col-sm-2 text-align-center mobile-text-center">Time Left</dt>
                     @if(!$auction->isClosed())
-                        <dd class="col-sm-10">Ending in {{ $auction->getTimeLeftString() }}</dd>
+                        <dd class="col-sm-10" id="current-auction-time">Ending in {{ $auction->getTimeLeftString() }}</dd>
                     @else
                         <dd class="col-sm-10">Auction Closed</dd>
                     @endif
@@ -602,11 +602,11 @@
         </div>
         @if(!Auth::check())
             <div class="alert alert-danger" role="alert">
-                <strong>Hey you! </strong> Regist in our website to enjoy our full experience <i class="fas fa-exclamation"></i>
+                <strong>Hey you! </strong> Sign up in our website to be able to bid. <i class="fas fa-exclamation"></i>
             </div>
         @elseif(Auth::user()->isBanned())
             <div class="alert alert-danger" role="alert">
-                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until 6 March 2022 <i class="fas fa-exclamation"></i>
+                <strong>Oh snap! </strong> It seems like you are banned. You can't fully enjoy our awesome website until {{Auth::user()->getBanTime()}}. <i class="fas fa-exclamation"></i>
             </div>
         @endif
     </div>

@@ -315,11 +315,13 @@ class AuctionController extends Controller
         return redirect('auctions/' . $auction->id);
     }
 
-    public function getCurrentPrice($auctionID)
+    public function updateAuction($auctionID)
     {
         $auction = Auction::findOrFail($auctionID);
 
-        return response()->json($auction->currentPriceEuros());
+        $update = json_encode(array('price' => $auction->currentPriceEuros(), 'time' =>$auction->getTimeLeftString()));
+
+        return response()->json($update);
     }
 
     public function closeAuctions()

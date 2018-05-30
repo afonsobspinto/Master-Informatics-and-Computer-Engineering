@@ -49,14 +49,22 @@ class Auction extends Model
 
     public function getTimeLeftString()
     {
-        $endDate = new Carbon($this->end_date);
-        return $endDate->diffForHumans(Carbon::now(), true);
+        $endDate = new Carbon($this->end_date, 'Europe/London');
+        return Carbon::now('Europe/London')->diffForHumans($endDate, true);
+
+    }
+
+    public function getTimeLeftSeconds()
+    {
+        $endDate = new Carbon($this->end_date, 'Europe/London');
+        return Carbon::now('Europe/London')->diffInRealSeconds($endDate, true);
     }
 
     public function getSubmittedTimeString()
     {
+
         $pubDate = new Carbon($this->publication_date);
-        return Carbon::now()->diffForHumans($pubDate, true);
+        return Carbon::now('America/Vancouver')->diffForHumans($pubDate, true);
     }
 
     public static function getOpenAuctionsCollection()
