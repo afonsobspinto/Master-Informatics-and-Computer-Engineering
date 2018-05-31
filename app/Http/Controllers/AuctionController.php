@@ -165,7 +165,7 @@ class AuctionController extends Controller
             $auction->condition = $request->input('condition-input');
             $auction->starting_price = $request->input('price-input');
             $auction->end_date = Carbon::tomorrow();
-            $auction->payment_type = $request->input('payment-input');
+            $auction->payment_type = "Other";
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;;

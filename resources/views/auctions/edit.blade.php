@@ -63,7 +63,7 @@
 
 
                 <div class="form-group row">
-                    <label for="price-input" class="col-3 col-form-label">Starting price</label>
+                    <label for="price-input" class="col-3 col-form-label">Starting Price</label>
                     <div class="col-9 input-group">
                         <input class="form-control" type="number" value="{{$auction->starting_price}}"
                                aria-label="Amount (to the nearest euro)" name="price-input" id="price-input" required disab>
@@ -74,34 +74,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="shipping-input" class="col-3 col-form-label">Shipping options</label>
-                    <div class="col-9 input-group" id="shipping-input">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="domesticShipping" id="domesticShipping" value="domesticShipping">
-                            <label class="form-check-label" for="domesticShipping">
-                                Domestic shipping
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="internationalShipping" id="internationalShipping"
-                                   value="internationalShipping" checked>
-                            <label class="form-check-label" for="internationalShipping">
-                                International Shipping
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="localPickup" id="localPickup"
-                                   value="localPickup">
-                            <label class="form-check-label" for="localPickup">
-                                No shipping: Local pickup only
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label for="shippingPrice-input" class="col-3 col-form-label">Cost</label>
+                    <label for="shippingPrice-input" class="col-3 col-form-label">Shipping Cost</label>
                     <div class="col-9 input-group">
                         <input class="form-control" type="number" value="{{$auction->shipping_cost}}"
                                aria-label="Amount (to the nearest euro)" name="shippingPrice-input" id="shippingPrice-input">
@@ -130,7 +103,7 @@
 
                 <div class="text-right mb-3 mt-3">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-secondary" href="auction_asAuctioneer.html">Cancel</a>
+                    <a type="button" class="btn btn-secondary" href="{{ url('auctions/' . $auction->id)}}">Cancel</a>
                 </div>
 
             </fieldset>
