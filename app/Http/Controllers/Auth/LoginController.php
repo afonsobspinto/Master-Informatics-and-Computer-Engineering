@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Category;
 
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -53,5 +54,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function authenticated(Request $request, $user)
+    {
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('error', 'We have sent you an activation code, please check your email to activate your account.');
+        }
+        return redirect()->intended($this->redirectPath());
     }
 }

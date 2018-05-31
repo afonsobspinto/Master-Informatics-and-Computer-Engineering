@@ -27,7 +27,7 @@ CREATE TABLE countries (
 CREATE TABLE cities (
     id serial NOT NULL PRIMARY KEY,
     city varchar(50) NOT NULL,
-    country_id integer NOT NULL REFERENCES countries(id) ON UPDATE CASCADE
+    country_id integer NOT NULL REFERENCES countries(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -41,10 +41,11 @@ CREATE TABLE "users" (
     zip_code varchar(25),
     address varchar(200),
     "registration_date" timestamp DEFAULT CURRENT_TIMESTAMP,
-    location integer REFERENCES cities(id) ON UPDATE CASCADE,
+    location integer REFERENCES cities(id) ON UPDATE CASCADE ON DELETE CASCADE,
     rating real CONSTRAINT rating_ck CHECK (((rating > 1.0) AND (rating <= 5.0))),
     is_administrator boolean DEFAULT false,
-    remember_token character varying(100)
+    remember_token character varying(100),
+    verified boolean DEFAULT false
 );
 
 CREATE TABLE auctions (
@@ -62,9 +63,9 @@ CREATE TABLE auctions (
     CONSTRAINT payment_type CHECK ((payment_type = ANY (ARRAY['PayPal'::text, 'Credit Card'::text, 'Bank Transfer'::text, 'Other'::text]))),
     CONSTRAINT shipping_options CHECK ((shipping_options = ANY (ARRAY['Domestic Shipping'::text, 'International Shipping'::text, 'No shipping'::text]))),
     shipping_cost real CONSTRAINT shipping_cost_ck CHECK (shipping_cost >=0.0),
-    owner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    category_id integer NOT NULL REFERENCES categories(id) ON UPDATE CASCADE,
-    city_id integer NOT NULL REFERENCES cities(id) ON UPDATE CASCADE,
+    owner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    category_id integer NOT NULL REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    city_id integer NOT NULL REFERENCES cities(id) ON UPDATE CASCADE ON DELETE CASCADE,
     search tsvector
 );
 
@@ -73,8 +74,8 @@ CREATE TABLE auctions (
 
 CREATE TABLE bans (
     id serial PRIMARY KEY,
-    banned_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    admin integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    banned_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    admin integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     "ban_start_date" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL ,
     ban_expiration_date timestamp  NOT NULL CONSTRAINT banExpiration_ck CHECK (ban_expiration_date > "ban_start_date"),
     ban_reason text NOT NULL
@@ -103,10 +104,10 @@ CREATE TABLE closed_auctions (
 );
 
 CREATE TABLE emails (
-    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE,
+    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE ON DELETE CASCADE,
     "has_been_opened" boolean DEFAULT false NOT NULL,
-    receiver_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    sender_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
+    receiver_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    sender_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -115,15 +116,15 @@ CREATE TABLE qas (
     id serial NOT NULL PRIMARY KEY,
     question text NOT NULL,
     answer text,
-    auction_id integer NOT NULL REFERENCES "auctions"(id) ON UPDATE CASCADE,
-    questioner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
+    auction_id integer NOT NULL REFERENCES "auctions"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    questioner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE reports (
-    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE,
-    user_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
-    reported_user integer REFERENCES "users"(id) ON UPDATE CASCADE,
-    auction_id integer REFERENCES auctions(id) ON UPDATE CASCADE,
+    id integer NOT NULL PRIMARY KEY REFERENCES messages(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    user_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    reported_user integer REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    auction_id integer REFERENCES auctions(id) ON UPDATE CASCADE  ON DELETE CASCADE,
     is_user boolean DEFAULT false
 );
 
@@ -135,7 +136,7 @@ CREATE TABLE reviews (
 
 CREATE TABLE wishlists (
     auction_id integer NOT NULL REFERENCES auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE,
+    id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY(auction_id, id)
 );
 
@@ -143,7 +144,7 @@ CREATE TABLE won_auctions (
     id integer NOT NULL PRIMARY KEY REFERENCES closed_auctions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     "is_successful_transaction" boolean DEFAULT false NOT NULL,
     "has_winner_complained" boolean DEFAULT false NOT NULL,
-    winner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE
+    winner_id integer NOT NULL REFERENCES "users"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 

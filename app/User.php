@@ -7,10 +7,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use CanResetPassword;
+
+
+    protected $guarded = [];
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
@@ -184,5 +189,14 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
+
+    public static function getByEmail($email) {
+        return User::where('email', '=', $email)->first();
     }
 }

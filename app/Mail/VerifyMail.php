@@ -7,24 +7,23 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Administration extends Mailable
+class VerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $user;
+    private $adminEmail;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
+        $this->user = $user;
         $this->adminEmail = env("MAIL_USERNAME");
-
-        if(!$this->adminEmail)
-            throw new \Exception("System email not configure");
     }
-
-    private $adminEmail;
 
     /**
      * Build the message.
@@ -33,8 +32,10 @@ class Administration extends Mailable
      */
     public function build()
     {
-        return $this->from($this->adminEmail)
-            ->view('mail.account-creation')
-            ->subject('Email Confirmation');
+        return $this
+            ->from(['address' => $this->adminEmail, 'name' => env("MAIL_USERNAME") ])
+            ->subject('BidBay: verify email')
+
+            ->view('mail.registration_token');
     }
 }

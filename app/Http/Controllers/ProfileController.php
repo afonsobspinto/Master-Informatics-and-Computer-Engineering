@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPassMail;
 use App\Messages;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -12,8 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Validation\Rule;
+
+use App\Mail\VerifyMail;
 
 
 class ProfileController extends Controller
@@ -121,6 +125,7 @@ class ProfileController extends Controller
             ]);
 
 
+        $bChangeEmail = $user->email != $request->input('email');
 
         try {
 
@@ -142,7 +147,18 @@ class ProfileController extends Controller
         $file = $request->file('picture');
         $this->tryStoreProfilePicture($file, Auth::id());
 
-        return redirect( url('/') );
+//        $bChangeEmail = false // se nao devia verificar no profile update
+        if($bChangeEmail) {
+            $user->verified = false;
+            $this->createVerifyUser($user->id);
+            Mail::to($request->input('email'))->send(new VerifyMail($user));
+            Auth::logout();
+        }
+
+        if($bChangeEmail)
+            return redirect( url('/') )->with('status', 'We sent you an activation code to your new email. Your account has been deactivated in the meantine.');
+        else
+            return redirect( url('/') );
 
 //        TODO when done
 //        return redirect( url('profile', [Auth::id()] ) );
@@ -156,4 +172,31 @@ class ProfileController extends Controller
 
         return response()->json($numMessages);
     }
+
+    public function showResetPasswordForm()
+    {
+        $categories = Category::all();
+
+        return view('profile.send_reset_password', [
+            'categories' => $categories,
+        ]);
+    }
+
+    public function sendResetPassword(Request $request) {
+
+        $this->validate($request, [
+            'email' => $this->buildEmailRule()
+        ]);
+
+        $email = $request->input('email');
+        $user = User::getByEmail($email);
+
+        if($user) {
+            $this->createVerifyUser($user->id);
+            Mail::to($email)->send(new ResetPassMail($user));
+        }
+
+        return redirect( url('/') )->with('status', 'Password Reset email sent to the indicated email if it exists.');
+    }
+
 }

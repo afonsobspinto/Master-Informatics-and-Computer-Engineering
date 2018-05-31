@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Mail\Administration;
 use Illuminate\Support\Facades\Mail;
+use App\VerifyUser;
 
 trait UserTraits
 {
@@ -23,7 +24,9 @@ trait UserTraits
 
     protected function buildEmailRule() {
         $rulesArr = func_get_args();
-        return array_merge([ 'required' , 'string', 'email', 'max:255', $this->buildCheckEmailRule() ], $rulesArr);
+        return array_merge([ 'required' , 'string', 'email', 'max:255',
+//            $this->buildCheckEmailRule()
+        ], $rulesArr);
     }
     protected function buildPasswordRule() {
         $rulesArr = func_get_args();
@@ -50,6 +53,15 @@ trait UserTraits
     protected $zip_code_regex = '^[\da-zA-Z]+([ -][\da-zA-Z]+)?$'; //regex based on https://en.wikipedia.org/wiki/List_of_postal_codes
     protected function getZipCodeRule() {
         return 'required|string|regex:/' . $this->zip_code_regex . '/';
+    }
+
+    protected function createVerifyUser($userId) {
+        $verifyUser = VerifyUser::create([
+            'user_id' => $userId,
+            'token' => str_random(40)
+        ]);
+
+        return $verifyUser;
     }
 
     protected $name_rule = "required|string";

@@ -25,7 +25,15 @@
 
         @include('components.header', ['categories' => $categories])
 
+        @if (session('status'))
+            @include('components.alert', ['type' => 'success', 'msg' => session('status')])
+        @endif
+        @if (session('error'))
+            @include('components.alert', ['type' => 'danger', 'msg' => session('error')])
+        @endif
+
         <div class="@yield('body-class', 'container mb-5 ')" id="page-body-section">
+
             @yield('content')
 
         </div>

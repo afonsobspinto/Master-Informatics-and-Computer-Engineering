@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('landing_page');
-});
 
 // static pages
+Route::get('/', 'StaticPagesController@showLandingPage');
+Route::get('home', 'StaticPagesController@showLandingPage');
 Route::get('landing_page', 'StaticPagesController@showLandingPage');
 Route::get('about', 'StaticPagesController@showAbout');
 Route::get('faq', 'StaticPagesController@showFAQ');
@@ -64,10 +63,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('profile/verify/{token}', 'Auth\RegisterController@verifyUser');
 
+Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //other API

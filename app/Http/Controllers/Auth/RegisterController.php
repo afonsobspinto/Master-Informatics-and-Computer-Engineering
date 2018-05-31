@@ -7,12 +7,18 @@ use App\Http\Controllers\UserTraits;
 use App\Mail\VerifyEmail;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Country;
 
+use Illuminate\Http\Request;
+
+use App\VerifyUser;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyMail;
 
 class RegisterController extends Controller
 {
@@ -117,6 +123,38 @@ class RegisterController extends Controller
         if(array_key_exists('picture', $data))
             $this->tryStoreProfilePicture($data['picture'], $user->id);
 
+        $this->createVerifyUser($user->id);
+        Mail::to($user->email)->send(new VerifyMail($user));
+
         return $user;
     }
+
+    public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $user->verified = true;
+                $user->save();
+                $verifyUser->delete();
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            return redirect('/')->with('error', "Bad token.");
+        }
+
+        return redirect('/login')->with('status', $status);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
+
+
 }

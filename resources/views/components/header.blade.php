@@ -21,6 +21,7 @@
     </a>
     <!-- search bar -->
     <form action="{{ url('search') }}" enctype="application/x-www-form-urlencoded" method="get" class="px-2" id="search-bar">
+        @php($categories = \App\Category::getSortedCategories())
         <fieldset>
             <legend hidden>Search</legend>
             <div class="d-flex">
@@ -82,10 +83,10 @@
     <div class="navbar-collapse collapse justify-content-end" id="authentication">
         <ul class="nav navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-right" href="../login">Login</a>
+                <a class="nav-link text-right" href="/login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-right" href="../register">Register</a>
+                <a class="nav-link text-right" href="/register">Register</a>
             </li>
         </ul>
     </div>

@@ -13,7 +13,7 @@
 <div class="container">
     <form action="{{ route('login') }}" method="POST" class="mt-5 d-flex flex-column mx-auto p-4 bg-light" id="login">
         {{ csrf_field() }}
-        <fieldset>
+        <fieldset class="d-flex flex-column mx-0">
             <legend hidden>Login</legend>
             <h1 class="mx-auto pt-3 mb-5 font-weight-bold"> Login</h1>
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -42,6 +42,9 @@
             </div>
             <a class="btn btn-link" href="{{ url('/register') }}">
                 Don't have an account? Register
+            </a>
+            <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                Forgot your password? Reset Password
             </a>
             <button type="submit" class="btn btn-primary mx-auto w-50 mb-3 mt-4">Login</button>
         </fieldset>
