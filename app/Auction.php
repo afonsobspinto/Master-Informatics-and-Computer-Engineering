@@ -77,7 +77,7 @@ class Auction extends Model
     {
 
         return Auction::leftJoin('closed_auctions', 'auctions.id', '=', 'closed_auctions.id')
-            ->where('closed_auctions.id', '=', null)->where('end_date', '<=', 'now()')->select('*', 'auctions.id as id')->get();
+            ->where('closed_auctions.id', '=', null)->whereRaw('end_date <= cast(timezone(\'Europe/Lisbon\', now()) as TIMESTAMP)')->select('*', 'auctions.id as id')->get();
     }
 
     public static function create(array $data)
