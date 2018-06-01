@@ -82,7 +82,7 @@ class AuctionController extends Controller
             $auction->condition = $request->input('condition-input');
             $auction->starting_price = $request->input('price-input');
             $auction->end_date = $request->input('duration-input');
-            $auction->payment_type = 'Credit Card';
+            $auction->payment_type = 'Other';
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
             $auction->owner_id = Auth::user()->id;
@@ -164,7 +164,7 @@ class AuctionController extends Controller
             $auction->description = $request->input('description-input');
             $auction->condition = $request->input('condition-input');
             $auction->starting_price = $request->input('price-input');
-            $auction->end_date = Carbon::tomorrow();
+//            $auction->end_date = Carbon::tomorrow();
             $auction->payment_type = "Other";
             $auction->shipping_options = 'No shipping';
             $auction->shipping_cost = $request->input('shippingPrice-input');
@@ -352,8 +352,9 @@ class AuctionController extends Controller
     public function closeAuctions()
     {
 
-        //echo "You don't pay me enough to do this every minute.";
+        echo "You don't pay me enough to do this every minute.";
         $auctionsToClose = Auction::getAuctionsToClose();
+//        print_r($auctionsToClose)
         foreach ($auctionsToClose as $auction) {
             $this->closeAuction($auction);
         }
