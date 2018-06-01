@@ -70,7 +70,7 @@ INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (4
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (5,'deX8ZPbDdpdUhyjqBD7jHaSWL2Op8UmjPPpUkgglr8hTqvTzYTELIUdUhLlWOdmKkQr3NM2xLmL2IM4fJ8e1bj6ECYRg4WOIuIQ4Xzj652ckpHA70RrWdp6VR67XD85rZkUKiZ','IB1FysKucmBpRPinp3LmtmkotBE2ZDWLUNL2IdEIXSzhvBxQkqnftuRjqZbkBP4','08/19/2012 04:51:00');
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (6,'fOoHZTVXph5iIOTLm716XXw624ZhltQ82jeDkzB8pew6Hv2nGvgHVDNcjIdDOnEIalOWDmCGywRGjxDbWijyoRqeaRIrZmvSbMQ82XcA5mlLL54oCnJg0pG24JOq8dRWSP38SOAj2RFrQmNah3NwYXfQrfplbDwmSHNt0xBCkRF4KZaflNIliHWMkeldqxqw01DZyMKMZJAeNKGu51xCuIm5Ofe','NKz6TbzWfyj0wnNWqNMB7lgrnjIa8BYHM4A8Q5REGvN0i3ZDEbeW000DxeAD503H42nygNk8fheRfI0QlEQ','10/29/2013 08:47:00');
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (7,'De5EUi6zelaVEufO2rKGZyF1wLD3Lo3JeVZKZsXGK2gocCvvJYdSegTfGz8EyTYjO2kL7Ey','bauHM21euQRZR3208LizEtZfh7LSL4HL2J',NULL);
-INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (8,'nsnstrOE1YX2YCeCvVgtRvnIF3df3tYttlwJ3gFsu1qgUWWH2RrO7q2Hcsku2y6iYVxLfRolppRUfNKbK3ZZCQ5aF3YHpH8Z5ylH86Fhe6qsYs5CtGj4g3UfzPQq03VkuRngRm8R2jxnh16gVjyFthVrzoY257lHnsOvzzdR4QsoeWhJlo','Zlqo0A2d4dgyzXzohQKEKb','10/18/2000 02:05:00');
+INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (8,'nsnstrOE1YX2','Zlqo0A2d4dgyzXzohQKEKb','10/18/2000 02:05:00');
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (9,'OIAxjji3gO3WjaToLM5nyzhGFBtZWqgLpJQXGMTQbf6PAmUAbGjU2Tp0pJzvEXQKdGMFTokJjcGdEL2DnUNHZfqBbME5c27WmnY1ufFqa0k77wwLriBy4i0t6Iqj1D1QiXSFoV6GR','wkrce1a7Mx8R5fUUb2Sv0GaTXxSdB6FbwxR2XAaIwsMfJVM26iwAvFwh8GMQqhfiQeNqL2ep1ZX1ZmKouex7TQKI0PEuI1VSkoIipzcwbchF6GroyEGkiINBlkREAsrKDyM2q5hkwPhvva0aaw1EXtPcXkaWAPBDmiNe2kW4Hz6YhOa3OtZPFOLcyxsPiQ07PjbEaRkMJK4feYinbXN0LoS4FQRr8aaZqjgf2iSM1oednH4tXqYFHnpe',NULL);
 INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (10,'ywlD5byLg0nJVjs3eZs5GNzjdTsGQuP3Cw','Some message , ttuut', '08/24/2007 02:48:00');
 
@@ -79,15 +79,15 @@ INSERT INTO "public"."messages" ("id","subject","message","send_date") VALUES (1
 
 
 -- ALL passwords are '123456'
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (1,'a','Ross',NULL,'$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','a@a.a','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True); -- admin
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (2,'Mads9','Marie','Katsekes','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Mick.Byrnes5@telfort.cc','42767','8 Brooke Valley Drive','06/25/2013 03:26:00', 1,1.1,FALSE); -- well tested
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (3,'Richard889',NULL,'Morton','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Dave.Petterson@dolfijn.dk','84063',NULL,NULL, 1,4.01,False); -- banned
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (4,'Dave3','Isabel','Bloom','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','JohanDepew@libero.be','39927','4235 Serang Place','12/04/2006 00:22:00', 2,3.73,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (5,'Magnus420','Olivia','Stewart','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','E.King3@dolfijn.fr','73108','20 Devonshire Rd','12/06/2016 06:23:00', 2,3.21,True);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (6,'Sophia812','Olivia','Swaine','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','YLamere@excite.us',NULL,'0 Melrose Ave',NULL, 3,1.22,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (7,'Tim16',NULL,'Bernstein','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Trees.King@hotmail.gov','94588','991 East MacArthur','11/29/2006 04:42:00', 3,4.91,FALSE);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (8,'Louise00','Nahay', 'Pelosi','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','LindsyBrown@weboffice.no','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False);
-INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator") VALUES (9,'guest','guest', 'lbaw64','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','guest@lbaw64.com','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (1,'a','Ross',NULL,'$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','a@a.a','94167','31 Stewart Ave','04/04/2011 06:48:00',1,1.58,True, True); -- admin
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (2,'Mads9','Marie','Katsekes','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Mick.Byrnes5@telfort.cc','42767','8 Brooke Valley Drive','06/25/2013 03:26:00', 1,1.1,FALSE, True); -- well tested
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (3,'Richard889',NULL,'Morton','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Dave.Petterson@dolfijn.dk','84063',NULL,NULL, 1,4.01,False, True); -- banned
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (4,'Dave3','Isabel','Bloom','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','JohanDepew@libero.be','39927','4235 Serang Place','12/04/2006 00:22:00', 2,3.73,True, True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (5,'Magnus420','Olivia','Stewart','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','E.King3@dolfijn.fr','73108','20 Devonshire Rd','12/06/2016 06:23:00', 2,3.21,True, True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (6,'Sophia812','Olivia','Swaine','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','YLamere@excite.us',NULL,'0 Melrose Ave',NULL, 3,1.22,FALSE, True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (7,'Tim16',NULL,'Bernstein','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','Trees.King@hotmail.gov','94588','991 East MacArthur','11/29/2006 04:42:00', 3,4.91,FALSE, True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (8,'Louise00','Nahay', 'Pelosi','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','LindsyBrown@weboffice.no','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False, True);
+INSERT INTO "public"."users" ("id","username","first_name","last_name","password","email","zip_code","address","registration_date","location","rating","is_administrator", verified) VALUES (9,'guest','guest', 'lbaw64','$2y$10$iZp1uAimUgGSJ/mqLbqoouPk5lhQQfhJWw1xzTF7/kppazpSXBogy','guest@lbaw64.com','71654','2024 Melrose Ave','11/30/2011 01:07:00', 3,3.48,False, True);
 ALTER SEQUENCE users_id_seq RESTART WITH 10;
 
 INSERT INTO "public"."bans" ("id","banned_id","admin","ban_start_date","ban_expiration_date","ban_reason") VALUES (1, 3, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '1 month','6LgRbEbX3RBWeGZsNIhVgaA1bXEdcfTVaNrgkjzYo3wnu8DhLgWSy4faOWd1Y8IuGLCQ2BmbfNdqZNIjwV3DyhvnkPZRlMZXfUykHWN1wY33Eb7zE86hASKPo2tIX0Cpugm1kgarlD3wvr');
@@ -151,3 +151,26 @@ INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (3,1);
 INSERT INTO "public"."wishlists" ("auction_id","id") VALUES (5,1);
 
 
+
+
+-- --------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------
+-- EXTRAS
+-- --------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------
+
+
+
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('HP zen - 17t Touch Laptop','
+Imagination meets the height of performance. This sleek laptop was engineered to deliver incredible graphics and speed to empower you when inspiration strikes. Reinvent your creative process with four unique modes and bring your vision to life with a laptop designed around you.
+The pinnacle of performance
+Whether it''s photo or video editing, rewrite the meaning of speed with unquestionable performance. With a quad-core processor[3] and dedicated graphics. Power through your most demanding days with long-lasting battery life[4] and HP Fast Charge.[5]
+A creative revolution
+Stretch creativity to its limits with our 15.6” diagonal 4K micro-edge touch display. Compatible with a digital pen[2] to evolve your vision and with a scratch-resistant Corning® Gorilla® Glass 4 – your talent has met its perfect canvas.
+Smart technology. Designed around you.
+We’ve designed this PC around you, with four unique modes that convert from a powerful laptop to get things done to a beautiful canvas in tablet mode. We then added an IR camera and fingerprint reader for easy and secure login.
+',0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '10 days','PayPal','No shipping',4.63, 1, 2,2);
+
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Asus zen - 15t Touch Laptop','A+ laptop',0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '10 days','PayPal','No shipping',4.63, 1, 2,2);
+
+INSERT INTO "public"."auctions" ("item_name","description","starting_price","condition","publication_date","end_date","payment_type","shipping_options","shipping_cost","owner_id","category_id","city_id") VALUES ('Asus zen - 17t Touch Laptop','A+ laptop',0,'Used',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + '10 days','PayPal','No shipping',4.63, 1, 3,3);
