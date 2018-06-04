@@ -199,6 +199,8 @@ public class SymbolTableVisitor implements ParserVisitor {
             return null;
         }
 
+        element2.setInitialized(true);
+
         if (element1.getType() == Type.UNDEFINED && !element1.isInitialized()) {
             element1.setType(element2.getType());
             this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
