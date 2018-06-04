@@ -1,6 +1,13 @@
 #Comp G51
 A repository to host COMP project
 
+GROUP: G27
+
+Afonso Pinto - up201503316
+Bruno Moreno - up201504781
+João Moura - up201405197
+Tomás Oliveira - up201504746
+
 ## Checkpoint 1
 
 1. Develop a parser for yal using JavaCC and taking as starting point the yal grammar furnished with a global LL(1) replaced by a larger local lookahead when needed.
