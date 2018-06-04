@@ -198,20 +198,20 @@ public class SymbolTableVisitor implements ParserVisitor {
         }
 
         Element element2 = (Element) node.jjtGetChild(1).jjtAccept(this, data);
+        if(element2 == null){
+            SemanticManager.addError(node.line,
+                    "Error: Right Side Variable is undefined!");
+            return null;
+        }
 
-        if (element1.getType() == Type.UNDEFINED) {
+        if (element1.getType() == Type.UNDEFINED && !element1.isInitialized()) {
             element1.setType(element2.getType());
             this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
 
         } else if (element1.getType() == Type.FUNCTION) {
 
             element1 = new Element(element1.getName(), element2.getType());
-        }
-
-        if (element2 == null) {
-            SemanticManager.addError(node.line,
-                    "Error: Cannot Assign a variable to undefined!");
-            return null;
+            this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
         }
 
         if (!element2.isInitialized()) {
@@ -324,6 +324,7 @@ public class SymbolTableVisitor implements ParserVisitor {
         return (Element) node.jjtGetChild(node.jjtGetNumChildren() - 1).jjtAccept(this, data);
 
     }
+
 
     public Object visit(ASTFunctionName node, Object data) {
         return null;

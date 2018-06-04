@@ -17,3 +17,12 @@ A repository to host COMP project
 7. Create a symbol table using the Visitor Pattern.
 8. Add full Semantic Analysis.
 9. Add very partially jasmin code generation.
+
+## Checkpoint 3
+
+10. Completed code generation for the invocation of functions in yal.
+11. Added code generation for arithmetic expressions.
+12. Added code generation for conditional instructions.
+13. Added code generation for loops.
+14. Added code generation for arrays.
+15. Temporarily disabled semantic analysis, as it is currently misjudging errors and preventing code generation.

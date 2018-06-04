@@ -9,10 +9,11 @@
 /bin/cp -rf Type.java keep/
 /bin/cp -rf JasminVisitor.java keep/
 /bin/cp -rf JasminGenerator.java keep/
+/bin/cp -rf Utils.java keep/
 jjtree Parser.jjt
 javacc Parser.jj
 javac *.java
-java Parser ../yalFiles/yalTestFiles/array1.yal
+java Parser ../yalFiles/yalTestFiles/aval3.yal
 #./_runAllTests.sh
 #./_runAllErrorTests.sh
 #java Parser ../yalFiles/yalSemanticFiles/test.yal

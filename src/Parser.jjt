@@ -19,6 +19,7 @@ public class Parser
 
     static int errors = 0;
     public static boolean isDivide = false;
+    public static boolean callFlag = false;
 	public static void main(String args []){
         if(args.length != 1 || !Pattern.matches(".*\\.yal$", args[0])){
             System.out.println("Usage: java Parser <file.yal>");
@@ -31,6 +32,7 @@ public class Parser
 
           SymbolTable symbolTable = new SymbolTable();
           root.jjtAccept(symbolTable.getSymbolTableVisitor(),null);
+          symbolTable.setLineNumbers();
           System.out.println("//////////////////////////////");
           System.out.println("//// Abstract Syntax Tree ////");
           System.out.println("//////////////////////////////");
@@ -47,9 +49,10 @@ public class Parser
           System.out.println("/////// Semantic Analyses ////////");
           System.out.println("//////////////////////////////");
           System.out.println("");
-          System.out.println(SemanticManager.getString());
 
-          if(SemanticManager.getErrorCount() > 0 || errors > 0){
+         /* if(SemanticManager.getErrorCount() > 0 || errors > 0){
+             System.out.println(SemanticManager.getString());
+
             if(errors == 0){
                  System.out.print("Semantic ");
 
@@ -57,6 +60,9 @@ public class Parser
             System.out.println("Errors Found! Aborting...");
             System.exit(-1);
           }
+          else{
+            System.out.println("All Right! You Are Good To Go.");
+          }*/
 
 
           System.out.println("");
@@ -67,7 +73,8 @@ public class Parser
           JasminGenerator jasminGenerator = new JasminGenerator(args[0], symbolTable);
           root.jjtAccept(jasminGenerator.getJasminVisitor(), null);
           jasminGenerator.close();
-          System.out.println(".jasmin file generated on " + jasminGenerator.getFilepath() + " with " + errors + " errors");
+          System.out.println(".jasmin File Generated On " + jasminGenerator.getFilepath() + " With " + errors + " Errors");
+          System.out.println("");
 
 
         }catch (FileNotFoundException e){
@@ -407,13 +414,15 @@ void Call()#Call : {}
   <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
 }
 
-void CallFunction()#void : {}
+void CallFunction()#ArgumentList(callFlag) : {}
 {
+    {callFlag = true;}
   <LPAR> (ArgumentList())? <RPAR>
 }
 
 void ArgumentList() : {}
 {
+    {callFlag = false;}
   Argument() (<VIRG> Argument())*
 }
 
