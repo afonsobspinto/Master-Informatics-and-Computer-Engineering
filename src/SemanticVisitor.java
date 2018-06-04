@@ -160,19 +160,41 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTCall node, Object data) {
 
-        if (node.jjtGetNumChildren() == 1) {
+        if (node.jjtGetNumChildren() <= 1) {
 
             Element function = this.symbolTableContextManager.getRootSymbolTable().getElement((String) node.jjtGetValue());
+
+			if(function == null){
+				SemanticManager.addError(node.line,
+						"Error: Wrong function call -> Function " + node.jjtGetValue() + " does not exist!");
+				return null;
+			}
 
             LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
 
             LinkedList<Element> args = function.getArguments();
 
+            if(args.size() == 0 && node.jjtGetNumChildren() == 0)
+				return function;
+
+
+			if(node.jjtGetNumChildren() == 0){
+				SemanticManager.addError(node.line,
+						"Error: Function call on " + node.jjtGetValue() + " has illegal number of arguments! There should be " + args.size() + " argument(s).");
+				return null;
+            }
+            
+            if(args.size() == 0 && parameters.size() != 0){
+				SemanticManager.addError(node.line,
+						"Error: Function call on " + node.jjtGetValue() + " has illegal number of arguments! The function does not require any argument.");
+				return null;
+			}
+
             int aux = args.size();
 
             if (parameters.size() != args.size()) {
 
-                SemanticManager.addError(node.line, "Illegal number of arguments on " + node.jjtGetValue() + " Should be " + args.size() + " argument(s).");
+                SemanticManager.addError(node.line, "Error: Illegal number of arguments on " + node.jjtGetValue() + " -> There should be " + args.size() + " argument(s).");
 
                 if (aux > parameters.size()) {
                     aux = parameters.size();
@@ -181,16 +203,21 @@ public class SemanticVisitor implements ParserVisitor {
 
             for (int i = 0; i < aux; i++) {
 
+                if(parameters.get(i) == null){
+                    continue;
+                }
+
                 if (parameters.get(i) != args.get(i)) {
                     SemanticManager.addError(node.line,
-                            "Argument " + parameters.get(i).getName()
+                            "Error: Argument " + parameters.get(i).getName()
                                     + " type error! Expected "
                                     + args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
                 }
             }
+            return function;
         }
 
-        return null;
+        return new Element(null, Type.UNDEFINED);
     }
 
     public Object visit(ASTArgumentList node, Object data) {

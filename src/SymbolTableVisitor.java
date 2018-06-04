@@ -267,6 +267,12 @@ public class SymbolTableVisitor implements ParserVisitor {
             return new Element("", Type.UNDEFINED, true);
         }
 
+        if (leftElement.getType() == Type.ARRAY && rightElement.getType() == Type.ARRAY) {
+
+            SemanticManager.addError(node.line,
+                    "Error: Cannot make operations with two variables of type " + Type.getTypeStr(rightElement.getType()));
+        }
+
         if (leftElement.getType() == rightElement.getType())
             return new Element("", leftElement.getType(), true);
 
