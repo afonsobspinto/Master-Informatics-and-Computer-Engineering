@@ -252,7 +252,7 @@ public class JasminGenerator {
     }
 
     private void writeIstore(int value) {
-        println("istore " + value);
+        println("istore_" + value);
     }
 
     private void writeIastore() {
@@ -260,15 +260,15 @@ public class JasminGenerator {
     }
 
     private void writeAstore(int value) {
-        println("astore " + value);
+        println("astore_" + value);
     }
 
     private void writeAload(int lineNumber) {
-        println("aload " + lineNumber);
+        println("aload_" + lineNumber);
     }
 
     private void writeIload(int lineNumber) {
-        println("iload " + lineNumber);
+        println("iload_" + lineNumber);
     }
 
     public void writeIaload() {
