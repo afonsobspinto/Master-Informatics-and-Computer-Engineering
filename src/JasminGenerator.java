@@ -181,13 +181,13 @@ public class JasminGenerator {
     }
 
     public void writePutstatic(Element element) {
-        writer.print("putstatic" + moduleName + "/" + element.getName() + " ");
+        writer.print("putstatic " + moduleName + "/" + element.getName() + " ");
         println(element.getJasminType());
 
     }
 
     public void writeGetStatic(Element element) {
-        writer.print("getstatic" + moduleName + "/" + element.getName() + " ");
+        writer.print("getstatic " + moduleName + "/" + element.getName() + " ");
         println(element.getJasminType());
     }
 

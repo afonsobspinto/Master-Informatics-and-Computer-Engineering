@@ -15,9 +15,7 @@ public class SymbolTableContextManager {
         this.contextSwitcher.push(symbolTable);
     }
 
-    public SymbolTable popFront(){
-        return this.contextSwitcher.removeFirst();
-    }
+    public SymbolTable popFront(){ return this.contextSwitcher.removeFirst();   }
 
     public SymbolTable getRootSymbolTable(){
         return this.contextSwitcher.getLast();
