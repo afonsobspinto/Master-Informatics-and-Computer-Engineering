@@ -97,8 +97,17 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTAssign node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+        Element element = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        Element function = (Element) node.jjtGetChild(1).jjtAccept(this, data);
+
+        if(function!= null){
+            if(function.getReturn().getType() == Type.UNDEFINED){
+                SemanticManager.addError(node.line, "Cannot Assign Variable to Void!");
+                return null;
+            }
+            if(element.getType() == Type.UNDEFINED){
+                element.setType(function.getReturn().getType());
+            }
         }
 
         return null;
@@ -114,16 +123,12 @@ public class SemanticVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTAccess node, Object data) {
-        return null;
+        return this.symbolTableContextManager.getCurrentSymbolTable().getElement((String) node.value);
     }
 
     public Object visit(ASTTerm node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-
-        return null;
+        return node.jjtGetChild(node.jjtGetNumChildren() - 1).jjtAccept(this, data);
     }
 
     public Object visit(ASTFunctionName node, Object data) {
@@ -238,6 +243,7 @@ public class SemanticVisitor implements ParserVisitor {
                                     + args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
                 }
             }
+            return function;
         }
 
         return null;
