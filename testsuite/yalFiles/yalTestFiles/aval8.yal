@@ -1,0 +1,31 @@
+module aval8
+{
+
+function max=max1() {
+    a=io.read();
+    b=io.read();
+
+    max = b;
+    if(a > b) {
+		 max = a;
+    }
+    d = 2*4;
+    io.print("a",a);
+
+    if (a < -23) {
+       e=0;
+    } else {
+       e=-2*4;
+    }
+    max = e;
+}
+
+
+function main()
+{
+ 		 max=max1();
+ 		 io.println(max);
+
+}
+
+}
