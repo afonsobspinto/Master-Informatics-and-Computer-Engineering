@@ -131,6 +131,11 @@ public class SemanticVisitorAssigns implements ParserVisitor {
             return null;
         }
 
+        if(leftElement.getType() == Type.ARRAY && rightElement.getType() == Type.INTEGER){
+            return null;
+        }
+
+
         if(leftElement.getType() != rightElement.getType()){
             SemanticManager.addError(node.line,"Cannot assign a variable with different type");
         }
