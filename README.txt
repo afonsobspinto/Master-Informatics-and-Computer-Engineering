@@ -50,10 +50,9 @@ When it comes to the approach and algorithms used in our tool, we developed our 
 The main tool used in our project is JavaCC for the syntactic analysis and the jjtree extension for the AST builder. No additional packages or third-party tools were used in our project.
  
 
-//TODO
 **TESTSUITE AND TEST INFRASTRUCTURE:
-In order to test the code developed, our group used the sets of example files available in the moodle page. Our tool passed in all syntactic tests provided and most of the semantic tests provided. Furthermore, we also developed some test files of our own ([X NUMBER] to be exact), in an attempt to further analyse the performance of our compiler.
-To automate the testing of our tool we created [X NUMBER] scripts one to completely compile the project (jjtree, javacc, javac) and another one to test a specific file , we would feed the script the name of the file and it would run our compiler with it. //TODO: NAO SEI O QUE METER AQUI, NAO SEI O QUE TEMOS NO QUE TOCA A SCRIPTS.
+In order to test the code developed, our group used the sets of example files available in the moodle page. Our tool passed in all syntactic tests provided and most of the semantic tests provided. Furthermore, we also developed some test files of our own (test.yal, test2.yal and test3.yal, located at testsuite/yalFiles/yalSemanticFiles/), in an attempt to further analyse the performance of our compiler.
+To automate the testing of our tool we created an example script file which compiles the project (jjtree, javacc, javac) and runs a specific file (in this case, the file "example5.yal").
  
 
 **TASK DISTRIBUTION:
