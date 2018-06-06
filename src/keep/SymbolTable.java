@@ -17,8 +17,6 @@ public class SymbolTable {
     private SemanticVisitorAssigns semanticVisitorAssigns = new SemanticVisitorAssigns(this.symbolTableContextManager);
 
 
-
-
     private String name;
     private boolean isFunction = false;
     private boolean isConditional = false;
@@ -54,8 +52,10 @@ public class SymbolTable {
     }
 
     private void addParameters(LinkedList<Element> elements) {
-        for (Element element : elements)
-            parameters.put(element.getName(), element);
+        if (elements != null) {
+            for (Element element : elements)
+                parameters.put(element.getName(), element);
+        }
     }
 
     public void addChild(SymbolTable symbolTable) {
@@ -72,7 +72,6 @@ public class SymbolTable {
 
     public LinkedList<Element> getParameters() {
         return this.symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
-        //return new LinkedList<Element>(parameters.values());
     }
 
     public LinkedList<Element> getElements() {
@@ -117,16 +116,16 @@ public class SymbolTable {
         return returnValue;
     }
 
-    public int getLocals(){
+    public int getLocals() {
         int counter = elements.size();
-        if(parameters!=null){
+        if (parameters != null) {
             counter += parameters.size();
         }
-        if(getDepth() == 1){
+        if (getDepth() == 1) {
             counter++;
         }
 
-        for (SymbolTable child: children){
+        for (SymbolTable child : children) {
             counter += child.getLocals();
         }
 
@@ -140,6 +139,7 @@ public class SymbolTable {
     public SemanticVisitor getSemanticVisitor() {
         return semanticVisitor;
     }
+
     public SemanticVisitorAssigns getSemanticVisitorAssigns() {
         return semanticVisitorAssigns;
     }
@@ -161,8 +161,11 @@ public class SymbolTable {
     private int setLineNumbers(int line) {
         if (getDepth() == 1) {
             LinkedList<Element> arguments = symbolTableContextManager.getRootSymbolTable().getElement(name).getArguments();
-            for (Element element : arguments) {
-                element.setVarnum(line++);
+            if (arguments != null) {
+
+                for (Element element : arguments) {
+                    element.setVarnum(line++);
+                }
             }
             returnValue.setVarnum(line++);
         }

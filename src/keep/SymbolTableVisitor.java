@@ -124,9 +124,11 @@ public class SymbolTableVisitor implements ParserVisitor {
         Element function = new Element(functionName, true, returnValue, parameters);
         function.setInitialized(true);
 
-        for(Element element : parameters){
-            if(element.getName().equals(returnValue.getName())){
-                returnValue.setInitialized(true);
+        if(parameters!= null) {
+            for (Element element : parameters) {
+                if (element.getName().equals(returnValue.getName())) {
+                    returnValue.setInitialized(true);
+                }
             }
         }
         SymbolTable currentST = this.symbolTableContextManager.getCurrentSymbolTable();

@@ -265,7 +265,6 @@ public class JasminVisitor implements ParserVisitor {
 
     public Object visit(ASTIf node, Object data) {
 
-
         ASTConditionalOperation conditionNode = (ASTConditionalOperation)node.jjtGetChild(0);
         ASTStatements ifNode = (ASTStatements)node.jjtGetChild(1);
         ASTStatements elseNode = null;
