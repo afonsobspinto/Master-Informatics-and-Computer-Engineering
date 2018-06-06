@@ -5,8 +5,8 @@ public class SymbolTableVisitor implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SymbolTableVisitor(SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SymbolTableVisitor(SymbolTableContextManager symbolTableContextManager) {
+        this.symbolTableContextManager = symbolTableContextManager;
     }
 
     public Object visit(ASTerror_skipto node, Object data) {
@@ -189,48 +189,54 @@ public class SymbolTableVisitor implements ParserVisitor {
 
     public Object visit(ASTAssign node, Object data) {
 
-        Element element1 = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        Element leftElement = (Element) node.jjtGetChild(0).jjtAccept(this, data);
 
-        if (element1 == null) {
+
+
+
+        if (leftElement == null) {
             SemanticManager.addError(node.line,
                     "Error: Left Side Variable is undefined!");
             return null;
         }
 
-        Element element2 = (Element) node.jjtGetChild(1).jjtAccept(this, data);
-        if(element2 == null){
+        Element rightElement = (Element) node.jjtGetChild(1).jjtAccept(this, data);
+        if(rightElement == null){
             SemanticManager.addError(node.line,
                     "Error: Right Side Variable is undefined!");
             return null;
         }
 
-        if (element1.getType() == Type.UNDEFINED && !element1.isInitialized()) {
-            element1.setType(element2.getType());
-            this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
+        System.out.println(leftElement.toString());
+        System.out.println(rightElement.toString());
 
-        } else if (element1.getType() == Type.FUNCTION) {
+        if (leftElement.getType() == Type.UNDEFINED && !leftElement.isInitialized()) {
+            leftElement.setType(rightElement.getType());
+            this.symbolTableContextManager.getCurrentSymbolTable().addElement(leftElement);
 
-            element1 = new Element(element1.getName(), element2.getType());
-            this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
+        } else if (leftElement.getType() == Type.FUNCTION) {
+
+            leftElement = new Element(leftElement.getName(), rightElement.getType());
+            this.symbolTableContextManager.getCurrentSymbolTable().addElement(leftElement);
         }
 
-        if (!element2.isInitialized()) {
+        if (!rightElement.isInitialized()) {
             SemanticManager.addError(node.line,
-                    "Error variable: " + element1.getName() + " -> Cannot Assign a variable to undefined!");
+                    "Error variable: " + leftElement.getName() + " -> Cannot Assign a variable to undefined!");
 
-        } else if (element1.getType() == Type.UNDEFINED || element2.getType() == Type.UNDEFINED) {
+        } else if (leftElement.getType() == Type.UNDEFINED || rightElement.getType() == Type.UNDEFINED) {
 
-            if (element1.getType() == Type.UNDEFINED) {
-                element1.setType(element2.getType());
+            if (leftElement.getType() == Type.UNDEFINED) {
+                leftElement.setType(rightElement.getType());
             }
 
-            element1.setInitialized(element2.isInitialized());
+            leftElement.setInitialized(rightElement.isInitialized());
 
-        } else if (element1.getType() == element2.getType()) {
-            element1.setInitialized(element2.isInitialized());
+        } else if (leftElement.getType() == rightElement.getType()) {
+            leftElement.setInitialized(rightElement.isInitialized());
         } else {
             SemanticManager.addError(node.line,
-                    "Error: Right side variable of type " + Type.getTypeStr(element1.getType()) + " is incompatible with type " + Type.getTypeStr(element2.getType()));
+                    "Error: Right side variable of type " + Type.getTypeStr(leftElement.getType()) + " is incompatible with type " + Type.getTypeStr(rightElement.getType()));
         }
 
         return null;

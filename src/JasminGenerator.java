@@ -27,7 +27,7 @@ public class JasminGenerator {
     }
 
     public JasminGenerator(String fileName, SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+        this.symbolTableContextManager = symbolTable.getSymbolTableContextManager();
         this.filepath = fileName.replace(".yal", "_generated.j");
         try {
             writer = new PrintWriter(this.filepath);
@@ -181,13 +181,13 @@ public class JasminGenerator {
     }
 
     public void writePutstatic(Element element) {
-        writer.print("putstatic" + moduleName + "/" + element.getName() + " ");
+        writer.print("putstatic " + moduleName + "/" + element.getName() + " ");
         println(element.getJasminType());
 
     }
 
     public void writeGetStatic(Element element) {
-        writer.print("getstatic" + moduleName + "/" + element.getName() + " ");
+        writer.print("getstatic " + moduleName + "/" + element.getName() + " ");
         println(element.getJasminType());
     }
 

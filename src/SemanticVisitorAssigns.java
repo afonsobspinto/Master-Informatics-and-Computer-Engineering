@@ -5,8 +5,8 @@ public class SemanticVisitorAssigns implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SemanticVisitorAssigns(SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SemanticVisitorAssigns(SymbolTableContextManager symbolTableContextManager) {
+        this.symbolTableContextManager = symbolTableContextManager;
 
     }
 
@@ -104,10 +104,23 @@ public class SemanticVisitorAssigns implements ParserVisitor {
 
         Element rightElement = (Element)node.jjtGetChild(1).jjtAccept(this, data);
 
-        if(leftElement.getType() == Type.UNDEFINED){
+        if (leftElement == null) {
+            SemanticManager.addError(node.line,
+                    "Error: Left Side Variable is undefined!");
             return null;
         }
 
+        if(rightElement == null){
+            SemanticManager.addError(node.line,
+                    "Error: Right Side Variable is undefined!");
+            return null;
+        }
+
+
+
+        if(leftElement.getType() == Type.UNDEFINED){
+            return null;
+        }
 
         if(leftElement.getName().equals("read_only")){
             SemanticManager.addError(node.line, "Invalid Operation. Cannot assign a length of an array");
@@ -119,7 +132,7 @@ public class SemanticVisitorAssigns implements ParserVisitor {
         }
 
         if(leftElement.getType() != rightElement.getType()){
-            SemanticManager.addError(node.line,"Cnnot assign a variable with different type");
+            SemanticManager.addError(node.line,"Cannot assign a variable with different type");
         }
 
         return null;
@@ -167,8 +180,6 @@ public class SemanticVisitorAssigns implements ParserVisitor {
     }
 
     public Object visit(ASTWhile node, Object data) {
-
-
 
         SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
 

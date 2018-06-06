@@ -4,8 +4,8 @@ public class SemanticVisitor implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SemanticVisitor(SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SemanticVisitor(SymbolTableContextManager symbolTableContextManager) {
+        this.symbolTableContextManager = symbolTableContextManager;
 
     }
 

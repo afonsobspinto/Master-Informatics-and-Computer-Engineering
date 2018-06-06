@@ -6,13 +6,17 @@ import java.util.Map;
 
 public class SymbolTable {
 
-    private SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor(this);
-    private SemanticVisitor semanticVisitor = new SemanticVisitor(this);
-    private SemanticVisitorAssigns semanticVisitorAssigns = new SemanticVisitorAssigns(this);
 
-
+    public SymbolTableContextManager getSymbolTableContextManager() {
+        return symbolTableContextManager;
+    }
 
     private SymbolTableContextManager symbolTableContextManager = new SymbolTableContextManager(this);
+    private SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor(this.symbolTableContextManager);
+    private SemanticVisitor semanticVisitor = new SemanticVisitor(this.symbolTableContextManager);
+    private SemanticVisitorAssigns semanticVisitorAssigns = new SemanticVisitorAssigns(this.symbolTableContextManager);
+
+
 
 
     private String name;
