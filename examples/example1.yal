@@ -1,4 +1,4 @@
-module aval2_err
+module example1
 {
 
 function c=f(a, b) {

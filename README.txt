@@ -7,7 +7,7 @@ NAME1: Bruno Moreno, NR1: up201504781, GRADE1: , CONTRIBUTION: 24
 NAME1: João Moura, NR1: up201405197, GRADE1: , CONTRIBUTION: 24
 NAME1: Tomás Oliveira, NR1: up201504746, GRADE1: , CONTRIBUTION: 24
 
-GLOBAL Grade of the project: 15
+GLOBAL Grade of the project: 18
 
 ** SUMMARY: 
 Our compiler is capable of compiling yal code to JVM instructions accepted by Jasmin. In order to make our compiler as complete and efficient as possible, our group implemented the different phases that a regular compiler executes; these are the Lexical Analysis, the Syntactic Analysis, the Semantic Analysis and Code Generation. Our compiler is build with an LL(1) grammar (programming language "yal"). Our project's features also include the output of semantic errors that let the user know where the code should be improved.
