@@ -58,11 +58,11 @@ To automate the testing of our tool we created [X NUMBER] scripts one to complet
 
 **TASK DISTRIBUTION:
 
-Afonso Pinto : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the development of error treatment and recovery mechanisms. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Testing and debugging the tool. Contribution to the readme.txt file. Contribution to the testing infrastructure.
+Afonso Pinto : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the development of error treatment and recovery mechanisms. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Testing and debugging the tool. Contribution to the readme.txt file.
 
 Bruno Moreno : Grammar development. Contribution to the construction of the AST. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Contribution to the readme.txt file. Contribution to the testing infrastructure.
 
-João Moura: Grammar development. Conversion of the grammar to a LL(1) formal. Contribution to the development of error treatment and recovery mechanisms. Contribution to the construction of the AST. Development of the semantic analysis. Contribution to the readme.txt file.
+João Moura: Grammar development. Conversion of the grammar to a LL(1) formal. Contribution to the development of error treatment and recovery mechanisms. Contribution to the construction of the AST. Development of the semantic analysis. Contribution to the readme.txt file. Contribution to the testing infrastructure.
 
 Tomás Oliveira : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the construction of the AST. Contribution to the development of error treatment and recovery mechanisms. Development of the code generation. Testing and debugging the project. Contribution to the testing infrastructure.
 
