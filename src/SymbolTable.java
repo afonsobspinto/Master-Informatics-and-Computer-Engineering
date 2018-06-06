@@ -1,3 +1,4 @@
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -5,9 +6,17 @@ import java.util.Map;
 
 public class SymbolTable {
 
-    private SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor(this);
-    private SemanticVisitor semanticVisitor = new SemanticVisitor(this);
+
+    public SymbolTableContextManager getSymbolTableContextManager() {
+        return symbolTableContextManager;
+    }
+
     private SymbolTableContextManager symbolTableContextManager = new SymbolTableContextManager(this);
+    private SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor(this.symbolTableContextManager);
+    private SemanticVisitor semanticVisitor = new SemanticVisitor(this.symbolTableContextManager);
+    private SemanticVisitorAssigns semanticVisitorAssigns = new SemanticVisitorAssigns(this.symbolTableContextManager);
+
+
 
 
     private String name;
@@ -130,6 +139,9 @@ public class SymbolTable {
 
     public SemanticVisitor getSemanticVisitor() {
         return semanticVisitor;
+    }
+    public SemanticVisitorAssigns getSemanticVisitorAssigns() {
+        return semanticVisitorAssigns;
     }
 
     public void setParent(SymbolTable symbolTable) {

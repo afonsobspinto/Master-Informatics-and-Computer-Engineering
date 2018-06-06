@@ -4,8 +4,8 @@ public class SemanticVisitor implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SemanticVisitor(SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SemanticVisitor(SymbolTableContextManager symbolTableContextManager) {
+        this.symbolTableContextManager = symbolTableContextManager;
 
     }
 
@@ -58,12 +58,15 @@ public class SemanticVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTFunction node, Object data) {
+        SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+        this.symbolTableContextManager.pushFront(currenSymbolTable.popChild());
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
+        node.jjtGetChild(2).jjtAccept(this, data);
+
+        this.symbolTableContextManager.popFront();
 
         return null;
+
     }
 
     public Object visit(ASTReturn node, Object data) {
@@ -94,11 +97,25 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTAssign node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+        Element element = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        Element function = (Element) node.jjtGetChild(1).jjtAccept(this, data);
+
+        if(function!= null) {
+            if(function.getType()== Type.UNDEFINED){
+                element.setType(Type.INTEGER);
+            }
+            else if (function.getReturn() != null) {
+                if (function.getReturn().getType() == Type.UNDEFINED) {
+                    SemanticManager.addError(node.line, "Cannot Assign Variable to Void!");
+                    return null;
+                }
+                if (element.getType() == Type.UNDEFINED) {
+                    element.setType(function.getReturn().getType());
+                }
+            }
         }
 
-        return null;
+        return new Element(null, Type.UNDEFINED);
     }
 
     public Object visit(ASTOperation node, Object data) {
@@ -111,16 +128,12 @@ public class SemanticVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTAccess node, Object data) {
-        return null;
+        return this.symbolTableContextManager.getCurrentSymbolTable().getElement((String) node.value);
     }
 
     public Object visit(ASTTerm node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-
-        return null;
+        return node.jjtGetChild(node.jjtGetNumChildren() - 1).jjtAccept(this, data);
     }
 
     public Object visit(ASTFunctionName node, Object data) {
@@ -133,28 +146,48 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTConditionalOperation node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
+        node.jjtGetChild(1).jjtAccept(this, data);
 
         return null;
     }
 
     public Object visit(ASTWhile node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
+
+
+        SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+
+        node.jjtGetChild(0).jjtAccept(this, data);
+
+        this.symbolTableContextManager.pushFront(currenSymbolTable.popChild());
+
+        node.jjtGetChild(1).jjtAccept(this, data);
+
+        this.symbolTableContextManager.popFront();
 
         return null;
     }
 
     public Object visit(ASTIf node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
 
+        SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+        node.jjtGetChild(0).jjtAccept(this, data);
+
+        this.symbolTableContextManager.pushFront(currenSymbolTable.popChild());
+
+        node.jjtGetChild(1).jjtAccept(this, data);
+
+        this.symbolTableContextManager.popFront();
+
+        if(node.jjtGetNumChildren() == 3){
+
+            this.symbolTableContextManager.pushFront(currenSymbolTable.popChild());
+
+            node.jjtGetChild(2).jjtAccept(this, data);
+
+            this.symbolTableContextManager.popFront();
+        }
         return null;
     }
 
@@ -164,11 +197,34 @@ public class SemanticVisitor implements ParserVisitor {
 
             Element function = this.symbolTableContextManager.getRootSymbolTable().getElement((String) node.jjtGetValue());
 
-            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
+            if(function == null){
+                SemanticManager.addError(node.line,
+                        "Wrong function call : Function " + node.jjtGetValue() + " does not exist!");
+                return null;
+            }
+
+
 
             LinkedList<Element> args = function.getArguments();
 
             int aux = args.size();
+
+            if(aux == 0 && node.jjtGetNumChildren() == 0)
+                return function;
+
+            if(node.jjtGetNumChildren() == 0 ){
+                SemanticManager.addError(node.line,
+                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! Should be " + args.size() + " argument(s).");
+                return null;
+            }
+
+            if(aux == 0){
+                SemanticManager.addError(node.line,
+                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! This function does not accept any argument.");
+                return null;
+            }
+
+            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
 
             if (parameters.size() != args.size()) {
 
@@ -181,13 +237,18 @@ public class SemanticVisitor implements ParserVisitor {
 
             for (int i = 0; i < aux; i++) {
 
-                if (parameters.get(i) != args.get(i)) {
+                if(parameters.get(i) == null){
+                    continue;
+                }
+
+                if (parameters.get(i).getType() != args.get(i).getType()) {
                     SemanticManager.addError(node.line,
                             "Argument " + parameters.get(i).getName()
                                     + " type error! Expected "
                                     + args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
                 }
             }
+            return function;
         }
 
         return null;

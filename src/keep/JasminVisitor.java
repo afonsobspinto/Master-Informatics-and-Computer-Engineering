@@ -84,6 +84,15 @@ public class JasminVisitor implements ParserVisitor {
         this.jasminGenerator.pushFront(currentSymbolTable.popChild());
         this.jasminGenerator.writeBeginMethod(this.jasminGenerator.getCurrentSymbolTable());
         this.jasminGenerator.writeStackAndLocals(20, this.jasminGenerator.getCurrentSymbolTable().getLocals());
+
+        Element returnElement = this.jasminGenerator.getCurrentSymbolTable().getReturnValue();
+        if(returnElement.getType() != Type.UNDEFINED){
+            this.jasminGenerator.writeLoadScalar(0);
+            if(returnElement.getType() == Type.ARRAY){
+                this.jasminGenerator.writeArray();
+            }
+            this.jasminGenerator.writeStoreElement(returnElement, false);
+        }
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
             node.jjtGetChild(i).jjtAccept(this, data);
         }

@@ -2,6 +2,7 @@
 /bin/cp -rf Element.java keep/
 /bin/cp -rf SemanticManager.java keep/
 /bin/cp -rf SemanticVisitor.java keep/
+/bin/cp -rf SemanticVisitorAssigns.java keep/
 /bin/cp -rf SimpleNode.java keep/
 /bin/cp -rf SymbolTable.java keep/
 /bin/cp -rf SymbolTableVisitor.java keep/

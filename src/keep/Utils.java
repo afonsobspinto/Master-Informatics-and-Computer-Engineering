@@ -16,6 +16,12 @@ public class Utils {
         operationsHashMap.put("-", "isub");
         operationsHashMap.put("*", "imul");
         operationsHashMap.put("/", "idiv");
+        operationsHashMap.put(">>", "ishr");
+        operationsHashMap.put("<<", "ishl");
+        operationsHashMap.put(">>>", "iushr");
+        operationsHashMap.put("|", "ior");
+        operationsHashMap.put("&", "iand");
+        operationsHashMap.put("^", "ixor");
     }
 
 }

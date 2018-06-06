@@ -5,8 +5,8 @@ public class SymbolTableVisitor implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SymbolTableVisitor(SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+    public SymbolTableVisitor(SymbolTableContextManager symbolTableContextManager) {
+        this.symbolTableContextManager = symbolTableContextManager;
     }
 
     public Object visit(ASTerror_skipto node, Object data) {
@@ -118,17 +118,29 @@ public class SymbolTableVisitor implements ParserVisitor {
     public Object visit(ASTFunction node, Object data) {
 
         LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(1).jjtAccept(this, data);
-        Element returnVal = (Element) node.jjtGetChild(0).jjtAccept(this, data);
-        String functName = (String) node.jjtGetValue();
+        Element returnValue = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        String functionName = (String) node.jjtGetValue();
 
-        Element funct = new Element(functName, true, returnVal, parameters);
+        Element function = new Element(functionName, true, returnValue, parameters);
+        function.setInitialized(true);
+
+        for(Element element : parameters){
+            if(element.getName().equals(returnValue.getName())){
+                returnValue.setInitialized(true);
+            }
+        }
         SymbolTable currentST = this.symbolTableContextManager.getCurrentSymbolTable();
 
-        currentST.addElement(funct);
-        currentST.addChild(new SymbolTable(functName, returnVal, parameters));
+        currentST.addElement(function);
+        currentST.addChild(new SymbolTable(functionName, returnValue, parameters));
 
         this.symbolTableContextManager.pushFront(currentST.popChild());
         node.jjtGetChild(2).jjtAccept(this, data);
+
+
+        if (!returnValue.isInitialized() && returnValue.getType() != Type.UNDEFINED) {
+            SemanticManager.addError(node.line, "Error: Function " + functionName + " must return a value!");
+        }
 
         this.symbolTableContextManager.popFront();
         return null;
@@ -184,50 +196,54 @@ public class SymbolTableVisitor implements ParserVisitor {
 
     public Object visit(ASTAssign node, Object data) {
 
-        Element element1 = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        Element leftElement = (Element) node.jjtGetChild(0).jjtAccept(this, data);
 
-        if (element1 == null) {
+
+
+
+        if (leftElement == null) {
             SemanticManager.addError(node.line,
                     "Error: Left Side Variable is undefined!");
             return null;
         }
 
-        Element element2 = (Element) node.jjtGetChild(1).jjtAccept(this, data);
-        if(element2 == null){
+        Element rightElement = (Element) node.jjtGetChild(1).jjtAccept(this, data);
+        if(rightElement == null){
             SemanticManager.addError(node.line,
                     "Error: Right Side Variable is undefined!");
             return null;
         }
 
-        element2.setInitialized(true);
+        System.out.println(leftElement.toString());
+        System.out.println(rightElement.toString());
 
-        if (element1.getType() == Type.UNDEFINED && !element1.isInitialized()) {
-            element1.setType(element2.getType());
-            this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
+        if (leftElement.getType() == Type.UNDEFINED && !leftElement.isInitialized()) {
+            leftElement.setType(rightElement.getType());
+            this.symbolTableContextManager.getCurrentSymbolTable().addElement(leftElement);
 
-        } else if (element1.getType() == Type.FUNCTION) {
+        } else if (leftElement.getType() == Type.FUNCTION) {
 
-            element1 = new Element(element1.getName(), element2.getType());
-            this.symbolTableContextManager.getCurrentSymbolTable().addElement(element1);
+            leftElement = new Element(leftElement.getName(), rightElement.getType());
+            this.symbolTableContextManager.getCurrentSymbolTable().addElement(leftElement);
         }
 
-        if (!element2.isInitialized()) {
+        if (!rightElement.isInitialized()) {
             SemanticManager.addError(node.line,
-                    "Error variable: " + element1.getName() + " -> Cannot Assign a variable to undefined!");
+                    "Error variable: " + leftElement.getName() + " -> Cannot Assign a variable to undefined!");
 
-        } else if (element1.getType() == Type.UNDEFINED || element2.getType() == Type.UNDEFINED) {
+        } else if (leftElement.getType() == Type.UNDEFINED || rightElement.getType() == Type.UNDEFINED) {
 
-            if (element1.getType() == Type.UNDEFINED) {
-                element1.setType(element2.getType());
+            if (leftElement.getType() == Type.UNDEFINED) {
+                leftElement.setType(rightElement.getType());
             }
 
-            element1.setInitialized(element2.isInitialized());
+            leftElement.setInitialized(rightElement.isInitialized());
 
-        } else if (element1.getType() == element2.getType()) {
-            element1.setInitialized(element2.isInitialized());
+        } else if (leftElement.getType() == rightElement.getType()) {
+            leftElement.setInitialized(rightElement.isInitialized());
         } else {
             SemanticManager.addError(node.line,
-                    "Error: Right side variable of type " + Type.getTypeStr(element1.getType()) + " is incompatible with type " + Type.getTypeStr(element2.getType()));
+                    "Error: Right side variable of type " + Type.getTypeStr(leftElement.getType()) + " is incompatible with type " + Type.getTypeStr(rightElement.getType()));
         }
 
         return null;
@@ -267,12 +283,6 @@ public class SymbolTableVisitor implements ParserVisitor {
             return new Element("", Type.UNDEFINED, true);
         }
 
-        if (leftElement.getType() == Type.ARRAY && rightElement.getType() == Type.ARRAY) {
-
-            SemanticManager.addError(node.line,
-                    "Error: Cannot make operations with two variables of type " + Type.getTypeStr(rightElement.getType()));
-        }
-
         if (leftElement.getType() == rightElement.getType())
             return new Element("", leftElement.getType(), true);
 
@@ -293,7 +303,7 @@ public class SymbolTableVisitor implements ParserVisitor {
             return new Element((String) node.jjtGetValue(), Type.UNDEFINED);
         }
 
-        if (node.jjtGetNumChildren() == 1 && element.getType() != Type.ARRAY) {
+        if (node.jjtGetNumChildren() == 1 && element.getType() != Type.ARRAY && element.getType()!= Type.UNDEFINED) {
             SemanticManager.addError(node.line,
                     "Error: variable " + node.jjtGetValue() + " isn't an array!");
 
@@ -364,7 +374,7 @@ public class SymbolTableVisitor implements ParserVisitor {
             SemanticManager.addError(node.line,
                     "Error: Right side variable " + rightElement.getName() + " isn't initialized!");
 
-        } else if (rightElement.getType() != Type.UNDEFINED) {
+        } else if (rightElement.getType() != Type.UNDEFINED && leftElement.getType() != Type.UNDEFINED) {
             if (leftElement.getType() != rightElement.getType()) {
                 SemanticManager.addError(node.line,
                         "Error: Right side variable of type" + Type.getTypeStr(rightElement.getType()) + " is incompatible with left side variable of type " + Type.getTypeStr(leftElement.getType()));

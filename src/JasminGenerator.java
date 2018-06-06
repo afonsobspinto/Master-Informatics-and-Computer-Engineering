@@ -27,7 +27,7 @@ public class JasminGenerator {
     }
 
     public JasminGenerator(String fileName, SymbolTable symbolTable) {
-        this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
+        this.symbolTableContextManager = symbolTable.getSymbolTableContextManager();
         this.filepath = fileName.replace(".yal", "_generated.j");
         try {
             writer = new PrintWriter(this.filepath);
@@ -285,6 +285,24 @@ public class JasminGenerator {
 
     public void writePop(){
         println("pop");
+    }
+
+    public void writeLoadScalar(Integer value){
+        if(value>=0 && value <=5){
+            writeIConst(value);
+        }
+        else {
+            writeBipush(value);
+        }
+    }
+
+    private void writeIConst(Integer value){
+        println("iconst_" + value);
+    }
+
+    private void writeBipush(Integer value){
+        println("bipush " + value);
+
     }
 
     private void println(String line) {
