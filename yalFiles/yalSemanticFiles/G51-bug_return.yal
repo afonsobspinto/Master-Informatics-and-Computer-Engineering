@@ -1,5 +1,0 @@
-module m {
-	function y=f(a) {
-		y = 1;
-	}
-}

@@ -1,11 +1,11 @@
-module aval5_err
+module example4
 {
 
-function c=f(a+ c) { // error 1
-	b += 10; // error 2
+function c=f(a, c) {
+	b = 10;
  	if(a == c) {
     		while(a < b) {
-			a ++; // error 3
+			a = a+1;
     		}
 		c = a << 2;
 	} else {
@@ -13,9 +13,9 @@ function c=f(a+ c) { // error 1
 	}
 }
 
-function a,b=main() // error 4
+function main()
 {
- c="khkhk"; // error 5
+ c=f(4, 5);
  io.println(c); // result= 9
 
  c=f(2, 2);

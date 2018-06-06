@@ -1,4 +1,4 @@
-module aval8
+module example3
 {
 
 function max=max1() {

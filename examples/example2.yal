@@ -1,4 +1,4 @@
-module aval1 {
+module example2 {
     function w = f(a, b) {
     if (a > b) {
         y = 0;
