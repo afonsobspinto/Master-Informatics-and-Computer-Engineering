@@ -1,7 +1,8 @@
-#Comp G51
+﻿#Comp G51
 A repository to host COMP project
 
-GROUP: G27
+
+GROUP: G51
 
 Afonso Pinto - up201503316
 Bruno Moreno - up201504781
