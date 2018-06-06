@@ -118,21 +118,28 @@ public class SymbolTableVisitor implements ParserVisitor {
     public Object visit(ASTFunction node, Object data) {
 
         LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(1).jjtAccept(this, data);
-        Element returnVal = (Element) node.jjtGetChild(0).jjtAccept(this, data);
-        String functName = (String) node.jjtGetValue();
+        Element returnValue = (Element) node.jjtGetChild(0).jjtAccept(this, data);
+        String functionName = (String) node.jjtGetValue();
 
-        Element funct = new Element(functName, true, returnVal, parameters);
+        Element function = new Element(functionName, true, returnValue, parameters);
+        function.setInitialized(true);
+
+        for(Element element : parameters){
+            if(element.getName().equals(returnValue.getName())){
+                returnValue.setInitialized(true);
+            }
+        }
         SymbolTable currentST = this.symbolTableContextManager.getCurrentSymbolTable();
 
-        currentST.addElement(funct);
-        currentST.addChild(new SymbolTable(functName, returnVal, parameters));
+        currentST.addElement(function);
+        currentST.addChild(new SymbolTable(functionName, returnValue, parameters));
 
         this.symbolTableContextManager.pushFront(currentST.popChild());
         node.jjtGetChild(2).jjtAccept(this, data);
 
 
-        if (!returnVal.isInitialized() && returnVal.getType() != Type.UNDEFINED) {
-            SemanticManager.addError(node.line, "Error: Function " + functName + " must return a value!");
+        if (!returnValue.isInitialized() && returnValue.getType() != Type.UNDEFINED) {
+            SemanticManager.addError(node.line, "Error: Function " + functionName + " must return a value!");
         }
 
         this.symbolTableContextManager.popFront();
@@ -296,7 +303,7 @@ public class SymbolTableVisitor implements ParserVisitor {
             return new Element((String) node.jjtGetValue(), Type.UNDEFINED);
         }
 
-        if (node.jjtGetNumChildren() == 1 && element.getType() != Type.ARRAY) {
+        if (node.jjtGetNumChildren() == 1 && element.getType() != Type.ARRAY && element.getType()!= Type.UNDEFINED) {
             SemanticManager.addError(node.line,
                     "Error: variable " + node.jjtGetValue() + " isn't an array!");
 
@@ -367,7 +374,7 @@ public class SymbolTableVisitor implements ParserVisitor {
             SemanticManager.addError(node.line,
                     "Error: Right side variable " + rightElement.getName() + " isn't initialized!");
 
-        } else if (rightElement.getType() != Type.UNDEFINED) {
+        } else if (rightElement.getType() != Type.UNDEFINED && leftElement.getType() != Type.UNDEFINED) {
             if (leftElement.getType() != rightElement.getType()) {
                 SemanticManager.addError(node.line,
                         "Error: Right side variable of type" + Type.getTypeStr(rightElement.getType()) + " is incompatible with left side variable of type " + Type.getTypeStr(leftElement.getType()));

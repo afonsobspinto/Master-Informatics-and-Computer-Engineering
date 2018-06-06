@@ -100,17 +100,22 @@ public class SemanticVisitor implements ParserVisitor {
         Element element = (Element) node.jjtGetChild(0).jjtAccept(this, data);
         Element function = (Element) node.jjtGetChild(1).jjtAccept(this, data);
 
-        if(function!= null){
-            if(function.getReturn().getType() == Type.UNDEFINED){
-                SemanticManager.addError(node.line, "Cannot Assign Variable to Void!");
-                return null;
+        if(function!= null) {
+            if(function.getType()== Type.UNDEFINED){
+                element.setType(Type.INTEGER);
             }
-            if(element.getType() == Type.UNDEFINED){
-                element.setType(function.getReturn().getType());
+            else if (function.getReturn() != null) {
+                if (function.getReturn().getType() == Type.UNDEFINED) {
+                    SemanticManager.addError(node.line, "Cannot Assign Variable to Void!");
+                    return null;
+                }
+                if (element.getType() == Type.UNDEFINED) {
+                    element.setType(function.getReturn().getType());
+                }
             }
         }
 
-        return null;
+        return new Element(null, Type.UNDEFINED);
     }
 
     public Object visit(ASTOperation node, Object data) {
@@ -205,9 +210,9 @@ public class SemanticVisitor implements ParserVisitor {
             int aux = args.size();
 
             if(aux == 0 && node.jjtGetNumChildren() == 0)
-                return null;
+                return function;
 
-            if(node.jjtGetNumChildren() == 0){
+            if(node.jjtGetNumChildren() == 0 ){
                 SemanticManager.addError(node.line,
                         "Function call on " + node.jjtGetValue() + " has illegal number of arguments! Should be " + args.size() + " argument(s).");
                 return null;

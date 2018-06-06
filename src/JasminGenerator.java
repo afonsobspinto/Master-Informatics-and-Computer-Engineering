@@ -287,6 +287,24 @@ public class JasminGenerator {
         println("pop");
     }
 
+    public void writeLoadScalar(Integer value){
+        if(value>=0 && value <=5){
+            writeIConst(value);
+        }
+        else {
+            writeBipush(value);
+        }
+    }
+
+    private void writeIConst(Integer value){
+        println("iconst_" + value);
+    }
+
+    private void writeBipush(Integer value){
+        println("bipush " + value);
+
+    }
+
     private void println(String line) {
         writer.println(line);
         lineNumber++;
