@@ -3,7 +3,7 @@
 **GROUP: G51
 
 NAME1: Afonso Pinto, NR1: up201503316, GRADE1: , CONTRIBUTION: 28
-NAME1: Bruno Moreno, NR1: up201504781, GRADE1: , CONTRIBUTION: 24
+NAME1: Bruno Moreno, NR1: up201504781, GRADE1: 18, CONTRIBUTION: 24
 NAME1: João Moura, NR1: up201405197, GRADE1: , CONTRIBUTION: 24
 NAME1: Tomás Oliveira, NR1: up201504746, GRADE1: , CONTRIBUTION: 24
 
@@ -58,11 +58,11 @@ To automate the testing of our tool we created [X NUMBER] scripts one to complet
 
 **TASK DISTRIBUTION:
 
-Afonso Pinto : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the development of error treatment and recovery mechanisms. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Testing and debugging the tool. Contribution to the readme.txt file. Contribution to the testing infrastructure.
+Afonso Pinto : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the development of error treatment and recovery mechanisms. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Testing and debugging the tool. Contribution to the readme.txt file.
 
 Bruno Moreno : Grammar development. Contribution to the construction of the AST. Contribution to the creation of the symbol table. Development of the semantic analysis. Development of the code generation. Contribution to the readme.txt file. Contribution to the testing infrastructure.
 
-João Moura: Grammar development. Conversion of the grammar to a LL(1) formal. Contribution to the development of error treatment and recovery mechanisms. Contribution to the construction of the AST. Development of the semantic analysis. Contribution to the readme.txt file.
+João Moura: Grammar development. Conversion of the grammar to a LL(1) formal. Contribution to the development of error treatment and recovery mechanisms. Contribution to the construction of the AST. Development of the semantic analysis. Contribution to the readme.txt file. Contribution to the testing infrastructure.
 
 Tomás Oliveira : Grammar development. Conversion of the grammar to an LL(1) format. Contribution to the construction of the AST. Contribution to the development of error treatment and recovery mechanisms. Development of the code generation. Testing and debugging the project. Contribution to the testing infrastructure.
 
