@@ -143,9 +143,12 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTWhile node, Object data) {
 
-        node.jjtGetChild(0).jjtAccept(this, data);
+
 
         SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
+
+        node.jjtGetChild(0).jjtAccept(this, data);
+
         this.symbolTableContextManager.pushFront(currenSymbolTable.popChild());
 
         node.jjtGetChild(1).jjtAccept(this, data);

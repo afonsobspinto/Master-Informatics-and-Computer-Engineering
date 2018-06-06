@@ -2,6 +2,7 @@
 /bin/cp -rf Element.java keep/
 /bin/cp -rf SemanticManager.java keep/
 /bin/cp -rf SemanticVisitor.java keep/
+/bin/cp -rf SemanticVisitorAssigns.java keep/
 /bin/cp -rf SimpleNode.java keep/
 /bin/cp -rf SymbolTable.java keep/
 /bin/cp -rf SymbolTableVisitor.java keep/
@@ -14,7 +15,7 @@ jjtree Parser.jjt
 javacc Parser.jj
 javac *.java
 #java Parser ../feedback/G51-bug_initialization.yal
-java Parser ../yalFiles/yalTestFiles/t.yal
+java Parser ../yalFiles/yalTestFiles/aval3.yal
 #./_runAllTests.sh
 #./_runAllErrorTests.sh
 #java Parser ../yalFiles/yalSemanticFiles/test.yal

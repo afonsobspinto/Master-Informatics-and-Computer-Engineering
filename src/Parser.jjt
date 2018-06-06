@@ -51,6 +51,7 @@ public class Parser
           System.out.println("");
 
           root.jjtAccept(symbolTable.getSemanticVisitor(),null);
+          root.jjtAccept(symbolTable.getSemanticVisitorAssigns(),null);
 
 
 /*         if(SemanticManager.getErrorCount() > 0 || errors > 0){

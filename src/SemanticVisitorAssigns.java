@@ -1,10 +1,11 @@
+
 import java.util.LinkedList;
 
-public class SemanticVisitor implements ParserVisitor {
+public class SemanticVisitorAssigns implements ParserVisitor {
 
     SymbolTableContextManager symbolTableContextManager;
 
-    public SemanticVisitor(SymbolTable symbolTable) {
+    public SemanticVisitorAssigns(SymbolTable symbolTable) {
         this.symbolTableContextManager = new SymbolTableContextManager(symbolTable);
 
     }
@@ -50,12 +51,10 @@ public class SemanticVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTScalar node, Object data) {
-        return null;
-    }
+        return new Element("", Type.INTEGER);    }
 
     public Object visit(ASTArrayDeclaration node, Object data) {
-        return null;
-    }
+        return new Element("", Type.ARRAY);    }
 
     public Object visit(ASTFunction node, Object data) {
         SymbolTable currenSymbolTable = this.symbolTableContextManager.getCurrentSymbolTable();
@@ -79,11 +78,15 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTVariable node, Object data) {
 
-        return (Element) this.symbolTableContextManager.getCurrentSymbolTable().getElement((String) node.jjtGetValue());
+        if(node.jjtGetNumChildren() == 1){
+            SemanticManager.addError(node.line, "Invalid Operation. Cannot declare an array while accessing another");
+        }
+
+        return new Element("", Type.INTEGER);
     }
 
     public Object visit(ASTArrayElement node, Object data) {
-        return null;
+        return new Element("", Type.ARRAY);
     }
 
     public Object visit(ASTStatements node, Object data) {
@@ -97,33 +100,57 @@ public class SemanticVisitor implements ParserVisitor {
 
     public Object visit(ASTAssign node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+        Element leftElement = (Element)node.jjtGetChild(0).jjtAccept(this, data);
+
+        Element rightElement = (Element)node.jjtGetChild(1).jjtAccept(this, data);
+
+        if(leftElement.getType() == Type.UNDEFINED){
+            return null;
+        }
+
+
+        if(leftElement.getName().equals("read_only")){
+            SemanticManager.addError(node.line, "Invalid Operation. Cannot assign a length of an array");
+        }
+
+
+        if(rightElement.getType() == Type.UNDEFINED){
+            return null;
+        }
+
+        if(leftElement.getType() != rightElement.getType()){
+            SemanticManager.addError(node.line,"Cnnot assign a variable with different type");
         }
 
         return null;
+
     }
 
     public Object visit(ASTOperation node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
+        Element element1 = (Element)node.jjtGetChild(0).jjtAccept(this, data);
+        Element element2 = (Element)node.jjtGetChild(1).jjtAccept(this, data);
 
-        return null;
+        if(element1.getType() == Type.INTEGER && element2.getType() == Type.INTEGER){
+            return new Element("", Type.INTEGER);
+        }else if(element1.getType() == Type.ARRAY || element2.getType() == Type.ARRAY){
+            SemanticManager.addError(node.line, "Invalid operations with different arrays");
+        }
+        return new Element("", Type.UNDEFINED);
     }
 
     public Object visit(ASTAccess node, Object data) {
-        return null;
+        if(node.jjtGetNumChildren() == 0){
+            return this.symbolTableContextManager.getCurrentSymbolTable().getElement((String)node.jjtGetValue());
+        }else{
+
+            return node.jjtGetChild(0).jjtAccept(this, data);
+        }
     }
 
     public Object visit(ASTTerm node, Object data) {
 
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-
-        return null;
+        return (Element)node.jjtGetChild(node.jjtGetNumChildren()-1).jjtAccept(this, data);
     }
 
     public Object visit(ASTFunctionName node, Object data) {
@@ -131,12 +158,10 @@ public class SemanticVisitor implements ParserVisitor {
     }
 
     public Object visit(ASTSize node, Object data) {
-        return null;
+        return new Element("read_only", Type.INTEGER);
     }
 
     public Object visit(ASTConditionalOperation node, Object data) {
-
-        node.jjtGetChild(1).jjtAccept(this, data);
 
         return null;
     }
@@ -186,72 +211,16 @@ public class SemanticVisitor implements ParserVisitor {
         if (node.jjtGetNumChildren() == 1) {
 
             Element function = this.symbolTableContextManager.getRootSymbolTable().getElement((String) node.jjtGetValue());
+            return function.getReturn();
 
-            if(function == null){
-                SemanticManager.addError(node.line,
-                        "Wrong function call : Function " + node.jjtGetValue() + " does not exist!");
-                return null;
-            }
-
-
-
-            LinkedList<Element> args = function.getArguments();
-
-            int aux = args.size();
-
-            if(aux == 0 && node.jjtGetNumChildren() == 0)
-                return null;
-
-            if(node.jjtGetNumChildren() == 0){
-                SemanticManager.addError(node.line,
-                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! Should be " + args.size() + " argument(s).");
-                return null;
-            }
-
-            if(aux == 0){
-                SemanticManager.addError(node.line,
-                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! This function does not accept any argument.");
-                return null;
-            }
-
-            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
-
-            if (parameters.size() != args.size()) {
-
-                SemanticManager.addError(node.line, "Illegal number of arguments on " + node.jjtGetValue() + " Should be " + args.size() + " argument(s).");
-
-                if (aux > parameters.size()) {
-                    aux = parameters.size();
-                }
-            }
-
-            for (int i = 0; i < aux; i++) {
-
-                if(parameters.get(i) == null){
-                    continue;
-                }
-
-                if (parameters.get(i).getType() != args.get(i).getType()) {
-                    SemanticManager.addError(node.line,
-                            "Argument " + parameters.get(i).getName()
-                                    + " type error! Expected "
-                                    + args.get(i).getTypeStr() + " but got " + parameters.get(i).getTypeStr() + " instead!");
-                }
-            }
         }
 
-        return null;
+        return new Element("", Type.UNDEFINED);
     }
 
     public Object visit(ASTArgumentList node, Object data) {
 
-        LinkedList<Element> vars = new LinkedList<Element>();
-
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            vars.add((Element) node.jjtGetChild(i).jjtAccept(this, data));
-        }
-
-        return vars;
+        return null;
     }
 
     public Object visit(ASTString node, Object data) {
