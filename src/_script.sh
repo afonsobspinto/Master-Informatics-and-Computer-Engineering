@@ -13,7 +13,8 @@
 jjtree Parser.jjt
 javacc Parser.jj
 javac *.java
-java Parser ../yalFiles/yalTestFiles/aval3.yal
+#java Parser ../feedback/G51-bug_initialization.yal
+java Parser ../yalFiles/yalTestFiles/t.yal
 #./_runAllTests.sh
 #./_runAllErrorTests.sh
 #java Parser ../yalFiles/yalSemanticFiles/test.yal
