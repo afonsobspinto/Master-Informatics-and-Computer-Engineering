@@ -50,10 +50,10 @@ public class JasminGenerator {
     }
 
     public void writeStackAndLocals(int stack, int locals) {
-        writer.print(".limit stack ");
-        println(Integer.toString(stack));
         writer.print(".limit locals ");
         println(Integer.toString(locals));
+        writer.print(".limit stack ");
+        println(Integer.toString(stack));
     }
 
     public int writeFields(LinkedList<Element> fields) {

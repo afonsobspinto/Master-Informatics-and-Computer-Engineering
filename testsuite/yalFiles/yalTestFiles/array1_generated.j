@@ -1,56 +1,68 @@
 .class public array1
 .super java/lang/Object
-.field static t I = 1
-.method static public <clinit>()V
-return
-.end method
+
 .method public static print_array(I)V
-.limit stack 20
 .limit locals 5
-iload_0
+.limit stack 20
+iload 0
 newarray int
-astore_2
+astore 2
+
 ldc 0
-istore_3
-loop15:
-iload_3
-iload_0
-if_icmpge loop15_end
-aload_2
-iload_3
-iload_3
-iastore 
-iload_3
+istore 3
+
+loop11:
+
+iload 3
+iload 0
+if_icmpge loop11_end
+
+aload 2
+iload 3
+iload 3
+iastore
+iload 3
 ldc 1
 iadd
-istore_3
-goto loop15
-loop15_end:
+istore 3
+goto loop11
+
+loop11_end:
+
 ldc 0
-istore_3
-loop29:
-iload_3
-iload_0
-if_icmpge loop29_end
-aload_2
-iload_3
+istore 3
+
+loop25:
+
+iload 3
+iload 0
+if_icmpge loop25_end
+
+aload 2
+iload 3
 iaload
-istore_4
+istore 4
+
 ldc "a: "
-iload_4
+iload 4
 invokestatic io/print(Ljava/lang/String;I)V
-iload_3
+
+iload 3
 ldc 1
 iadd
-istore_3
-goto loop29
-loop29_end:
+istore 3
+goto loop25
+
+loop25_end:
+
 return
 .end method
+
 .method public static main([Ljava/lang/String;)V
-.limit stack 20
 .limit locals 1
+.limit stack 20
 ldc 10
 invokestatic array1/print_array(I)V
+
 return
 .end method

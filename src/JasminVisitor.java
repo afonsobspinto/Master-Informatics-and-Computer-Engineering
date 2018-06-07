@@ -54,6 +54,7 @@ public class JasminVisitor implements ParserVisitor {
         Element leftNode = (Element) node.jjtGetChild(0).jjtAccept(this, true);
         if(leftNode.getType() != Type.ARRAY)
             return null;
+
         node.jjtGetChild(1).jjtAccept(this, false);
         this.jasminGenerator.writePutstatic(leftNode);
         return null;

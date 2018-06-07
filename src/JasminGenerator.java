@@ -50,10 +50,10 @@ public class JasminGenerator {
     }
 
     public void writeStackAndLocals(int stack, int locals) {
-        writer.print(".limit stack ");
-        println(Integer.toString(stack));
         writer.print(".limit locals ");
         println(Integer.toString(locals));
+        writer.print(".limit stack ");
+        println(Integer.toString(stack));
     }
 
     public int writeFields(LinkedList<Element> fields) {
@@ -252,7 +252,7 @@ public class JasminGenerator {
     }
 
     private void writeIstore(int value) {
-        println("istore_" + value);
+        println("istore " + value);
     }
 
     private void writeIastore() {
@@ -260,15 +260,15 @@ public class JasminGenerator {
     }
 
     private void writeAstore(int value) {
-        println("astore_" + value);
+        println("astore " + value);
     }
 
     private void writeAload(int lineNumber) {
-        println("aload_" + lineNumber);
+        println("aload " + lineNumber);
     }
 
     private void writeIload(int lineNumber) {
-        println("iload_" + lineNumber);
+        println("iload " + lineNumber);
     }
 
     public void writeIaload() {
