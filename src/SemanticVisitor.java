@@ -206,29 +206,32 @@ public class SemanticVisitor implements ParserVisitor {
 
 
             LinkedList<Element> args = function.getArguments();
+            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
 
-            int aux = args.size();
 
-            if(aux == 0 && node.jjtGetNumChildren() == 0)
+            if(args.size() == 0 && node.jjtGetNumChildren() == 0)
                 return function;
 
             if(node.jjtGetNumChildren() == 0 ){
                 SemanticManager.addError(node.line,
-                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! Should be " + args.size() + " argument(s).");
+                        "Incorrect function call on " + node.jjtGetValue() + " has illegal number of arguments! Should be " + args.size() + " argument(s).");
                 return null;
             }
 
-            if(aux == 0){
+            if(args.size() == 0 && parameters.size()!=0){
                 SemanticManager.addError(node.line,
-                        "Function call on " + node.jjtGetValue() + " has illegal number of arguments! This function does not accept any argument.");
+                        "Incorrect function call on " + node.jjtGetValue() + " has illegal number of arguments! This function does not accept any argument.");
                 return null;
             }
 
-            LinkedList<Element> parameters = (LinkedList<Element>) node.jjtGetChild(0).jjtAccept(this, data);
+
+            int aux = args.size();
 
             if (parameters.size() != args.size()) {
 
                 SemanticManager.addError(node.line, "Illegal number of arguments on " + node.jjtGetValue() + " Should be " + args.size() + " argument(s).");
+
+
 
                 if (aux > parameters.size()) {
                     aux = parameters.size();

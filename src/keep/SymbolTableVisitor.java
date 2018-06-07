@@ -140,9 +140,9 @@ public class SymbolTableVisitor implements ParserVisitor {
         node.jjtGetChild(2).jjtAccept(this, data);
 
 
-        if (!returnValue.isInitialized() && returnValue.getType() != Type.UNDEFINED) {
+/*        if (!returnValue.isInitialized() && returnValue.getType() != Type.UNDEFINED) {
             SemanticManager.addError(node.line, "Error: Function " + functionName + " must return a value!");
-        }
+        }*/
 
         this.symbolTableContextManager.popFront();
         return null;

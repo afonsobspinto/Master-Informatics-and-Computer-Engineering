@@ -14,7 +14,7 @@
 jjtree Parser.jjt
 javacc Parser.jj
 javac *.java
-java Parser ../testsuite/yalFiles/yalTestFiles/array1.yal
+java Parser ../testsuite/yalFiles/yalTestFiles/nested-branch.yal
 rm *.java
 rm *.class
 rm *.jj
