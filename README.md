@@ -23,6 +23,9 @@ The graphical interface for the game developed in [Plog - Racing Kings](https://
 ### [LAIG/SnookerScene](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/SnookerScene)
 An application with a small 3D engine, capable of producing images of any scene through a text file that respects the XML format used.
 
+### [LBAW/Online Auctions](https://github.com/afonsobspinto/FEUP/tree/master/LBAW)
+It is intended to develop an information system with a web interface to support an online auction service. Any registered user can place items up for auction or bid on items available. The system should automatically manage the bidding deadlines and determine the winning bid. System managers are allowed to stop auction block accounts or delete content.
+
 ### [LCOM/ChessProject](https://github.com/afonsobspinto/FEUP/tree/master/LCOM)
  ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
 
