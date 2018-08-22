@@ -1,0 +1,154 @@
+@import "common/bootstrap-values";
+
+
+#sidebar {
+    background-color: #ecf0f1;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    min-height: 88vh;
+
+
+    @media @d-xs, @d-sm {
+        display: none;
+    }
+    > div {
+        margin-top: 2rem;
+    }
+
+}
+
+
+.sidebar-nav {
+    list-style: none;
+
+    li {
+        a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #ffffff;
+            background: #95a5a6;
+        }
+
+        a:active, a:focus {
+            text-decoration: none;
+        }
+    }
+
+    h5 {
+        font-weight: bold;
+        font-size: 110%;
+    }
+
+}
+
+.location, .condition, .category, .format, .price {
+    margin-top: 5%;
+}
+
+.radio, .price {
+    display: flex;
+    flex-direction: column;
+}
+
+.price > input {
+    margin-right: 1rem;
+    max-width: 7rem;
+}
+
+.auction-item  {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border: solid transparent;
+    border-top-color: #ddd;
+
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    p, h4 {
+        margin-bottom: 0.5rem;
+    }
+
+    .auction-image {
+        width: 20vw;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .auction-text {
+
+        margin-left: 3rem;
+        width: 90%;
+        padding-right: 2rem;
+    }
+
+    @media @d-xs {
+        a {
+            flex-direction: column;
+        }
+
+        .auction-text {
+            margin-left: 0rem;
+            padding-right: 0rem;
+        }
+        .auction-image {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            width: 80%;
+        }
+    }
+}
+
+.auction-item:first-child {
+    border: none;
+}
+
+
+
+.priceResult{
+    font-weight: bold;
+}
+
+
+
+ul {
+    list-style-type: none;
+}
+
+
+@media @d-xs {
+    #page-body-section > button{
+        width: 100%;
+    }
+}
+
+#load-more-div {
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+#load-more {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#no-more-auctions {
+    display: none;
+}
+
+#main {
+    min-width: 80%;
+}

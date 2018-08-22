@@ -1,0 +1,10 @@
+@xs-sm: 576px;
+@sm-md: 768px;
+@md-lg: 992px;
+@lg-xl: 1200px;
+
+@d-xs: ~'(max-width: @{xs-sm})';
+@d-sm: ~'(min-width: @{xs-sm}) and (max-width: @{sm-md})';
+@d-md: ~'(min-width: @{sm-md}) and (max-width: @{md-lg})';
+@d-lg: ~'(min-width: @{md-lg}) and (max-width: @{lg-xl})';
+@d-xl: ~'(min-width: @{lg-xl})';
