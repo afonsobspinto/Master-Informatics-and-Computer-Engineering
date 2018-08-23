@@ -1,12 +1,11 @@
-﻿#Comp G51
+# Comp G51
 A repository to host COMP project
 
-GROUP: G51
-
-- Afonso Pinto - up201503316
-- Bruno Moreno - up201504781
-- João Moura - up201405197
-- Tomás Oliveira - up201504746
+  ## Authors
+* Afonso Pinto – [@afonsobspinto](https://github.com/afonsobspinto)
+* Bruno Moreno – [@TheBrunoMiguel](https://github.com/TheBrunoMiguel)
+* João Moura – [@Bitoque](https://bitbucket.org/Bitoque/)
+* Tomás Oliveira – [@Toliveira97](https://github.com/Toliveira97)
 
 ## Checkpoint 1
 
