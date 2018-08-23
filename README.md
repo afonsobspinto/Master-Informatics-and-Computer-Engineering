@@ -53,7 +53,7 @@ Implementation of a communication protocol for transmitting files through the se
 ### [RCOM/FTP Client](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/FTP%20Client)
 Development of an FTP download application.
 
-### [SDIS/Distributed backup service](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/distributed%20backup%20service) 
+### [SDIS/Distributed Backup Service](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/distributed%20backup%20service) 
 The idea is to use the free disk space of the computers in a LAN for backing up files in other computers in the same LAN. The service is provided by servers in an environment that is assumed cooperative (rather than hostile). Nevertheless, each server retains control over its own disks and, if needed, may reclaim the space it made available for backing up other computers' files.
 
 ### [SDIS/Raft](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/raft) 
