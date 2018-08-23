@@ -1,5 +1,4 @@
-# FEUP-IART - A repository to host IART projects @FEUP 
-
+# FEUP-IART
 
 ### E2: Aplicação de ID3 ou C4.5 à identificação de Pulsars
 
@@ -20,3 +19,8 @@ O projeto inclui os seguintes procedimentos:
     Apresentação das regras de classificação, que são retiradas da Árvore de Decisão resultante.
 
     Medição detalhada de resultados nos dados de treino e de teste.
+
+  ## Authors
+* Afonso Pinto – [@afonsobspinto](https://github.com/afonsobspinto)
+* Bruno Pinto – [@bruno02960](https://github.com/bruno02960)
+* Tomás Oliveira – [@Toliveira97](https://github.com/Toliveira97)
