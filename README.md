@@ -38,11 +38,11 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 ### [LTW/ToDoFeup](https://github.com/afonsobspinto/FEUP/tree/master/LTW/ToDoFeup)
 A web application where users can store and manage to-do lists.
 
-### [PLOG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings)
-Modeling a popular chess variant, [Racing Kings](https://lichess.org/variant/racingKings), using logical programming.
-
 ### [PLOG/Optimization](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/Optimization)
 Modeling a teaching service distribution as a optimization problem using constraint logic programming.
+
+### [PLOG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings)
+Modeling a popular chess variant, [Racing Kings](https://lichess.org/variant/racingKings), using logical programming.
 
 ### [PROG/Supermaket++](https://github.com/afonsobspinto/FEUP/tree/master/PROG/Supermaket++)
 Supermarket Management System
@@ -53,11 +53,18 @@ Implementation of a communication protocol for transmitting files through the se
 ### [RCOM/FTP Client](https://github.com/afonsobspinto/FEUP/tree/master/RCOM/FTP%20Client)
 Development of an FTP download application.
 
-### [SOPE/sfind](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sfind)
+### [SDIS/Distributed Backup Service](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/distributed%20backup%20service) 
+The idea is to use the free disk space of the computers in a LAN for backing up files in other computers in the same LAN. The service is provided by servers in an environment that is assumed cooperative (rather than hostile). Nevertheless, each server retains control over its own disks and, if needed, may reclaim the space it made available for backing up other computers' files.
+
+### [SDIS/Raft](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/raft) 
+Raft is a consensus algorithm that is designed to be easy to understand. It's equivalent to Paxos in fault-tolerance and performance. The difference is that it's decomposed into relatively independent subproblems, and it cleanly addresses all major pieces needed for practical systems. We hope Raft will make consensus available to a wider audience, and that this wider audience will be able to develop a variety of higher quality consensus-based systems than are available today.
+
+### [SOPE/Sauna](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sauna) 
+Simulation of access to shared resources: Saunas Manager
+
+### [SOPE/Sfind](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sfind)
 Simplified version of find command
 
-### [SOPE/sauna](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sauna) 
-Simulation of access to shared resources: Saunas Manager
 
 
 
