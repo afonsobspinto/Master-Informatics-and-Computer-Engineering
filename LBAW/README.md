@@ -1,6 +1,10 @@
 ## LBAW - GROUP1764   
    
 ### Theme: 6. Online Auctions   
+
+It is intended to develop an information system with a web interface to support an online auction service. Any registered user can place items up for auction or bid on items available. The system should automatically manage the bidding deadlines and determine the winning bid. System managers are allowed to stop auction block accounts or delete content.
+
+[![LBAW](https://i.imgur.com/uZKO08L.png)](https://vimeo.com/272700034)
    
 ### Run Locally:
 1. `composer install`
