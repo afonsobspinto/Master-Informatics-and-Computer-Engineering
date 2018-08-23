@@ -1,0 +1,19 @@
+CHECKPOINT 3 FEEDBACK
+=====================
+Class 1 - Group 51
+
+These notes are based on an analysis of commit 4f7a17637f4982de598946a6247539768af1b7a5.
+If you believe this is an error, contact your class teacher.
+=====================
+
+High-priority:
+	- "call-main.yal": NullPointerException at SymbolTable.getParameters
+	- "getstatic"/"putstatic" instructions are missing a whitespace before the variable name,
+and type signature appears as "Unknown".
+	- "constant-ranges.yal": NullPointerException at SymbolTable.setLineNumbers
+	- "nested-branch.yal": Appears to use "getstatic"/"putstatic" in example where all variables
+are local.
+
+Low-priority:
+	- Prefer the use of compact instructions whenever possible (e.g., "iload_0" instead of
+"iload 0").

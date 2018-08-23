@@ -1,0 +1,11 @@
+module example2 {
+    function w = f(a, b) {
+    if (a > b) {
+        y = 0;
+        // y is initialized here
+    }
+    // y might not be initialized here
+    x = y;
+    w = 0;
+    }
+}

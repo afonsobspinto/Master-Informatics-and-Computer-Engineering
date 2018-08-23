@@ -1,0 +1,32 @@
+module max1
+{
+
+function max=max() {
+
+    a=io.read();
+    b=io.read();
+    c=io.read();
+    d=io.read();
+    e=io.read();
+
+    max = a;
+    if(max < b) {
+	max = b;
+    }
+    if(max < c) {
+	max = c;
+    }
+    if(max < d) {
+	max = d;
+    }
+    if(max < e) {
+	max = e;
+    }
+    io.print("max ", max);
+}
+
+function main() {
+		 max=max();
+}
+
+}

@@ -1,0 +1,34 @@
+
+// module with 4 syntactic yal errors
+
+module array4_err
+{
+
+
+  function 1print_array(N, "hjhjhjk") // error 1, 2
+  {
+
+   a=[N];
+
+
+   i=0;
+   while(i < N < 2)  // error 3
+   {
+   	a[i] = i;
+	i=i+1;
+	}
+
+	i=0;
+	while(i < N) {
+		ai=a[i];
+		io.print("a: ",ai);
+		i=i+1;
+	}
+	}
+
+	function main()
+	{
+	 print_array(10+4); // error 4
+	}
+
+}

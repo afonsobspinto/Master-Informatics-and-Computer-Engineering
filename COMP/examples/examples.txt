@@ -1,0 +1,9 @@
+The first example (example1.yal) shows the error handling, in which the compiler aborts due to both errors it returns
+
+The files example2 and example3 demonstrate the errors that the semantic analyses finds.
+
+The files example4 and example5 shows how to compiler works and the files generated when there are no errors.
+
+After compiling, run the following command:
+java Parser example[n].yal
+in which [n] represents the number of the example (1 to 5) you want to run.

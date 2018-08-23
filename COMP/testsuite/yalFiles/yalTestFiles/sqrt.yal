@@ -1,0 +1,41 @@
+module sqrt
+{
+
+function a=sqrt() {
+	vsqn = io.read();
+	io.println("vsqn: ", vsqn);
+
+	vsq=vsqn;
+     	asq=0;
+     	a=0;
+     	tvsq=0;
+     	i=0;
+     	while(I < 6) {
+        	nasq1 = asq + a;
+        	nasq2 = nasq1 << 2;
+	    	nasq = nasq2 | 1;
+	    	sa = a << 1;
+         	tvsq1 = tvsq << 2;
+         	vsq1 =  vsq >> 10;
+         	vsq2 = vsq1 & 3;
+	     	tvsq = tvsq1 | vsq2;
+	     	vsq = vsq << 2;
+		if(nasq <= tvsq) {
+			a = sa | 1;
+			asq = nasq;
+		} else {
+			a = sa ;
+			asq = asq << 2 ;
+		}
+		i=i+1;
+	}
+
+	io.println("sqrt: ", a);
+}
+
+function main()
+{
+ a=sqrt();
+}
+
+}
