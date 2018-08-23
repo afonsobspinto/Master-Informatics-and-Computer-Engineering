@@ -1,0 +1,39 @@
+module programa2 {
+
+function a[]=f1(b[]) {
+		 i = 0;
+		 N = b.size;
+		 a = [N];
+		 while(i<b.size) {
+		 	a[i] = b[i];
+		 	i = i +1;
+		 }
+}
+
+function a[]=f2(N) {
+		 a = [N];
+		 
+		 a = 1; // initialize all the N elements of a with value 1
+}
+
+function main() {
+	b = [100];
+	b[0] = 1;
+	b[99] = 2;
+
+	a = f1(b);
+
+	first = a[0];
+	last = a[99];
+	io.println("first: ",first);
+	io.println("last: ",last);
+
+	a = f2(100);
+
+	first = a[0];
+	last = a[99];
+	io.println("first: ",first);
+	io.println("last: ",last);
+}
+}
+

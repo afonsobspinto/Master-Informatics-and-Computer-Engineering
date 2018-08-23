@@ -1,0 +1,464 @@
+
+options
+{
+  static = true;
+  LOOKAHEAD = 1;
+  IGNORE_CASE = true;
+  MULTI = true;
+  VISITOR = true;
+}
+
+PARSER_BEGIN(Parser)
+
+import java.io.*;
+import java.util.*;
+import java.util.regex.Pattern;
+
+public class Parser
+{
+
+    static int errors = 0;
+    public static boolean isDivide = false;
+    public static boolean callFlag = false;
+	public static void main(String args []){
+        if(args.length != 1 || !Pattern.matches(".*\\.yal$", args[0])){
+            System.out.println("Usage: java Parser <file.yal>");
+            System.exit(-1);
+            }
+        try
+        {
+          Parser parser = new Parser(new FileInputStream(args[0]));
+          SimpleNode root = parser.Start();
+
+          SymbolTable symbolTable = new SymbolTable();
+          root.jjtAccept(symbolTable.getSymbolTableVisitor(),null);
+          symbolTable.setLineNumbers();
+          System.out.println("//////////////////////////////");
+          System.out.println("//// Abstract Syntax Tree ////");
+          System.out.println("//////////////////////////////");
+          System.out.println("");
+          root.dump("");
+          System.out.println("");
+          System.out.println("//////////////////////////////");
+          System.out.println("/////// Symbol Table ////////");
+          System.out.println("//////////////////////////////");
+          System.out.println("");
+          System.out.println(symbolTable.toString());
+          System.out.println("");
+          System.out.println("//////////////////////////////");
+          System.out.println("/////// Semantic Analyses ////////");
+          System.out.println("//////////////////////////////");
+          System.out.println("");
+
+          root.jjtAccept(symbolTable.getSemanticVisitor(),null);
+          root.jjtAccept(symbolTable.getSemanticVisitorAssigns(),null);
+
+
+
+
+         if(SemanticManager.getErrorCount() > 0 || errors > 0){
+             System.out.println(SemanticManager.getString());
+
+            if(errors == 0){
+                 System.out.print("Semantic ");
+
+            }
+            System.out.println("Errors Found! Aborting...");
+            System.exit(-1);
+          }
+          else{
+            System.out.println("All Right! You Are Good To Go.");
+          }
+
+
+
+
+          System.out.println("");
+          System.out.println("//////////////////////////////");
+          System.out.println("/////////// Jasmin ///////////");
+          System.out.println("//////////////////////////////");
+          System.out.println("");
+          JasminGenerator jasminGenerator = new JasminGenerator(args[0], symbolTable);
+          root.jjtAccept(jasminGenerator.getJasminVisitor(), null);
+          jasminGenerator.close();
+          System.out.println(".jasmin File Generated On " + jasminGenerator.getFilepath() + " With " + errors + " Errors");
+          System.out.println("");
+
+
+        }catch (FileNotFoundException e){
+          System.out.println("File Error!");
+          //e.printStackTrace();
+          System.exit(-1);
+        }
+        catch (Exception e)
+        {
+          //e.printStackTrace(System.out);
+          System.exit(-1);
+        }
+      }
+}
+
+PARSER_END(Parser)
+
+<DEFAULT> SKIP : {
+" "
+| "\t"
+| "\n"
+| "\r"
+| <"//" (~["\n","\r"])* ("\n" | "\r" | "\r\n")>
+| <"/*" (~["*"])* "*" ("*" | ~["*","/"] (~["*"])* "*")* "/">
+}
+
+/* reserved words */
+<DEFAULT> TOKEN : {
+<RELA_OP: ">" | "<" | "<=" | ">=" | "==" | "!=">
+| <ADDSUB_OP: "+" | "-">
+| <ARITH_OP: "*" | "/" | "<<" | ">>" | ">>>">
+| <BITWISE_OP: "&" | "|" | "^">
+| <NOT_OP: "!">
+| <WHILE: "while">
+| <IF: "if">
+| <ELSE: "else">
+| <ASSIGN: "=">
+| <ASPA: "\"">
+| <LPAR: "(">
+| <RPAR: ")">
+| <VIRG: ",">
+| <PVIRG: ";">
+| <LCHAVETA: "{">
+| <RCHAVETA: "}">
+| <FUNCTION: "function">
+| <MODULE: "module">
+| <SIZE: "size">
+}
+
+<DEFAULT> TOKEN : {
+<INTEGER: (<DIGIT>)+>
+| <ID: <LETTER> (<LETTER> | <DIGIT>)*>
+| <#LETTER: ["$","A"-"Z","_","a"-"z"]>
+| <#DIGIT: ["0"-"9"]>
+| <STRING: "\"" (["a"-"z","A"-"Z","0"-"9",":"," ","="])+ "\"">
+}
+
+
+JAVACODE
+
+void error_skipto(int kind, String msg) {
+  ParseException e = generateParseException();
+  System.out.println(msg + " - " + e.toString());
+  errors++;
+  Token t;
+  while(true)
+  {
+    t = getToken(1);
+    if(t.kind == kind | t.kind == EOF){
+        return;}
+    getNextToken();
+  }
+}
+
+JAVACODE
+void error_skipto_andEat(int kind, String msg) {
+  ParseException e = generateParseException();
+  System.out.println(msg + " - " + e.toString());
+  errors++;
+  Token t;
+  do {
+    t = getNextToken();
+  } while (t.kind != kind);
+}
+
+
+SimpleNode Start() : { }
+{
+  Module()
+  {return jjtThis;}
+}
+
+void Module() : {Token t;}
+{
+
+    try{
+       <MODULE> t = <ID> {jjtThis.value = t.image;} <LCHAVETA>
+       try{
+       (Declaration())*
+       }
+       catch(ParseException e){
+         error_skipto(RCHAVETA, "declarations");
+       }
+       try{
+       (Function())*
+       }
+       catch(ParseException e){
+         error_skipto(RCHAVETA, "FUNCTION");
+       }
+       <RCHAVETA>
+       }
+        catch(ParseException e){
+           error_skipto(RCHAVETA, "MODULE");
+          }
+}
+
+void Declaration(): {Token t;}
+{
+    try{
+      (Element()) (t = <ASSIGN> {jjtThis.line = t.beginLine;} ( ArrayDeclaration() | ScalarDeclaration()))?
+    }
+    catch(ParseException e){
+      error_skipto(PVIRG, "Declaration");
+     }
+     <PVIRG>
+}
+
+void ScalarDeclaration() : {Token t, sign;}
+{
+  (sign = <ADDSUB_OP> {jjtThis.value=sign.image;} #Sign)? (t = <INTEGER> {jjtThis.value = t.image;}#Scalar)
+}
+
+void ArrayDeclaration() : {}
+{
+  ( "[" ArraySize() "]" )
+}
+
+void Function() : {Token t;}
+{
+
+  try{
+  <FUNCTION> t = FunctionDeclaration()
+  {jjtThis.value = t.image; jjtThis.line = t.beginLine;}
+
+  }
+  catch(ParseException e){
+    error_skipto_andEat(LPAR, "FUNCTION DECLARATION");
+  }
+  try{
+    FunctionParameters()
+  }
+  catch(ParseException e){
+    error_skipto(LCHAVETA, "FUNCTION PARAMETERS");
+  }
+  <LCHAVETA>Stmtlst()<RCHAVETA>
+
+}
+
+Token FunctionDeclaration()#Return : {Token t1, t2 = null;}
+{
+
+    t1 = <ID> ((ArrayElement())? (t2 = FunctionReturnValue()))?
+    {if(t2 == null){
+        jjtThis.value = null;
+        return t1;
+    }else{
+        jjtThis.value = t1.image;
+        jjtThis.line = t1.beginLine;
+        return t2;
+  }}
+}
+
+Token FunctionReturnValue()#void : {Token t;}
+{
+  <ASSIGN> t = <ID>
+  {return t;}
+}
+
+void FunctionParameters()#Parameters : { }
+{
+	<LPAR> (Varlist())? <RPAR>
+}
+
+void Varlist()#void : {}
+{
+  (Element()) (<VIRG> (Element()))*
+}
+
+void Element() #Variable :{Token t;}
+{
+  t = <ID> {jjtThis.value = t.image; jjtThis.line = t.beginLine;} (ArrayElement())?
+
+}
+
+void ArrayElement():{}
+{
+  "[" "]"
+}
+
+void Stmtlst() #Statements: {}
+{
+  (Stmt())*
+}
+
+void Stmt() #void : {}
+{
+    While() | If() |
+      try
+          {
+              AssignOrCall()
+          }
+          catch(ParseException e)
+          {
+              error_skipto(PVIRG, "Stmt");
+          }
+
+          <PVIRG>
+}
+
+void AssignOrCall()#Assign(>1) : {Token t; boolean isCall;}
+{
+    try{
+        isCall = Access() {if(isCall) return;}
+    }
+    catch(ParseException e)
+    {
+        error_skipto(ASSIGN, "VARIABLE ACCESS");
+      }
+      t = <ASSIGN>
+      try{
+        {jjtThis.value = t.image; jjtThis.line=t.beginLine;}
+        Rhs()
+      }
+      catch(ParseException e){
+        error_skipto(PVIRG, "RHS");
+      }
+}
+
+void Lhs()#void : {}
+{
+  ArrayOrScalar()
+}
+
+void Rhs()#Operation(>1): {Token t;}
+{
+  try{
+  (Term() ( ( (t = <ARITH_OP>) | (t = <BITWISE_OP>) | (t = <ADDSUB_OP>) ) Term(){jjtThis.value = t.image; jjtThis.line = t.beginLine;})?) | ArrayDeclaration()
+  }
+  catch(ParseException e){
+    error_skipto(PVIRG, "RHS");
+  }
+}
+
+void ArraySize()#void : {Token t;}
+{
+ ( ArraySizeAux() | (t = <INTEGER>{jjtThis.value = t.image;jjtThis.line = t.beginLine;}#Scalar))
+
+}
+
+void ArraySizeAux()#Access : {Token t;}
+{
+  t = <ID> {jjtThis.value = t.image; jjtThis.line = t.beginLine;}
+  ScalarAccess()
+}
+
+void Term() : {Token t1, t2;}
+{
+  (t1 = <ADDSUB_OP> {jjtThis.value = t1.image;jjtThis.line = t1.beginLine;} #Sign)? (t2 = <INTEGER> {jjtThis.value = t2.image;jjtThis.line = t2.beginLine;} #Scalar |  Access())
+}
+
+boolean AccessAux(Token t)#Call(Parser.isDivide) : {boolean isCall;}
+{
+  	isCall = AccessAuxAux()
+
+  	{jjtThis.value = t.image;jjtThis.line = t.beginLine;}
+  	{
+    	return isCall;
+  	}
+}
+
+boolean Access()#Access(!Parser.isDivide) : {Token t; boolean isCall;}
+{
+  t = <ID>
+
+  isCall = AccessAux(t)
+  {
+    jjtThis.value = t.image;jjtThis.line = t.beginLine;
+    return isCall;
+  }
+}
+
+boolean AccessAuxAux()#void : {Token t;}
+{
+  (
+  (ArrayAccess()) | CallFunction(){Parser.isDivide = true; return true;} | ("." ((t = <ID>{jjtThis.value = t.image;jjtThis.line = t.beginLine;}#FunctionName CallFunction(){Parser.isDivide = true;return true;}) | (<SIZE>)#Size))?
+  )
+  {Parser.isDivide=false; return false;}
+}
+
+void Exprtest() #ConditionalOperation : {Token t;}
+{
+    <LPAR>
+    try{
+      Lhs() t = <RELA_OP> {jjtThis.value = t.image; jjtThis.line = t.beginLine;} Rhs()
+    }
+    catch(ParseException e){
+      error_skipto(RPAR, "Exprtest");
+     }
+    try{
+     <RPAR>
+     }
+     catch(ParseException e){
+       error_skipto_andEat(RPAR, "Exprtest");
+     }
+}
+
+void While() : {}
+{
+  <WHILE> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA>
+}
+
+void If() : {}
+{
+  <IF> Exprtest() <LCHAVETA> Stmtlst() <RCHAVETA>
+  try
+    {
+        (<ELSE> <LCHAVETA> Stmtlst() <RCHAVETA>)?
+     }
+    catch(ParseException e)
+    {
+        error_skipto(RCHAVETA, "ELSE");
+    }
+}
+
+void Call()#Call : {}
+{
+  <ID> ("." <ID>)? <LPAR> (ArgumentList())? <RPAR>
+}
+
+void CallFunction()#ArgumentList(callFlag) : {}
+{
+    {callFlag = true;}
+  <LPAR> (ArgumentList())? <RPAR>
+}
+
+void ArgumentList() : {}
+{
+    {callFlag = false;}
+  Argument() (<VIRG> Argument())*
+}
+
+void Argument()#void : {Token t;}
+{
+  ( (t = <ID>{jjtThis.value = t.image;jjtThis.line = t.beginLine;}#Variable)
+  | (t = <STRING>{jjtThis.value = t.image;jjtThis.line = t.beginLine;}#String)
+  | (t = <INTEGER>{jjtThis.value = t.image;jjtThis.line = t.beginLine;}#Scalar) )
+
+}
+
+void ArrayOrScalar()#Access : {Token t;}
+{
+  t = <ID> {jjtThis.value = t.image;jjtThis.line = t.beginLine;} (ArrayAccess() | ScalarAccess())
+
+}
+
+void ArrayAccess()#void: {}
+{
+  "[" Index() "]"
+}
+
+void ScalarAccess()#void: {}
+{
+  ("." <SIZE> #Size)?
+}
+
+void Index() #void : { Token t1;}
+{
+  (t1 = <ID>{ jjtThis.value = t1.image;jjtThis.line = t1.beginLine;}#Variable) | ( t1 = <INTEGER>{ jjtThis.value = t1.image;jjtThis.line = t1.beginLine;}#Scalar)
+}
