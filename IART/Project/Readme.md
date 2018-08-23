@@ -1,24 +1,24 @@
 # FEUP-IART
 
-### E2: Aplicação de ID3 ou C4.5 à identificação de Pulsars
+### E2: Application of ID3 or C4.5 to the identification of Pulsars
 
-#### Objetivo
+#### GOal
 
-A partir de um conjunto de exemplos, é possível aprender (ou derivar) as regras de classificação para o domínio em análise. O objetivo deste projeto é a determinação da árvore de decisão que traduz essas regras na predição da popularidade de notícias.
+From a set of examples, it is possible to learn (or derive) the classification rules for the domain under analysis. The goal of this project is to determine the decision tree that translates these rules into predicting news popularity.
 
-#### Descrição
+#### Description
 
-Um conjunto de exemplos (amostras) são usados na aprendizagem das regras de classificação para os elementos (população) do domínio em análise. Os elementos do domínio estão definidos por um conjunto de atributos (ou variáveis), que irão constituir os parâmetros das regras de classificação a derivar após o processo de aprendizagem. Um primeiro passo, muito importante, é a identificação dos atributos que melhor definem o domínio em análise.
+A set of examples (samples) are used in learning the classification rules for the elements (population) of the domain under analysis. The elements of the domain are defined by a set of attributes (or variables), which will constitute the parameters of the classification rules to derive after the learning process. A very important first step is to identify the attributes that best define the domain under analysis.
 
-O programa deve aplicar o algoritmo ID3/C4.5 para, com base no conjunto de dados disponibilizado aqui, determinar uma Árvore de Decisão que traduz as regras de classificação desse conjunto de dados. O conjunto de dados deve ser cuidadosamente analizado de forma a verificar a eventual necessidade de pré-processamento. O modelo obtido deve poder depois ser utilizado na classificação de novos casos.
+The program should apply the ID3 / C4.5 algorithm to, based on the data set available here, determine a Decision Tree that translates the classification rules of this data set. The data set must be carefully analyzed in order to verify the possible need for pre-processing. The model obtained must then be used in the classification of new cases.
 
-O projeto inclui os seguintes procedimentos:
+The project includes the following procedures:
 
-    Implementação/aplicação do algoritmo ID3/C4.5.
+    Implementation / application of algorithm ID3 / C4.5.
 
-    Apresentação das regras de classificação, que são retiradas da Árvore de Decisão resultante.
+    Presentation of classification rules, which are taken from the resulting Decision Tree.
 
-    Medição detalhada de resultados nos dados de treino e de teste.
+    Detailed measurement of results in training and test data.
 
   ## Authors
 * Afonso Pinto – [@afonsobspinto](https://github.com/afonsobspinto)
