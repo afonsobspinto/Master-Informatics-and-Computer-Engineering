@@ -17,7 +17,7 @@ Also, both Exact search, as well as approximate search, of the strings identifyi
 ### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
 Poker Game - Five-card draw 
 
-### [IART/Decision Tree](https://github.com/afonsobspinto/FEUP/tree/master/IART)
+### [IART/Decision Tree](https://github.com/afonsobspinto/FEUP/tree/master/IART/Project)
 The goal of this project is to determine the decision tree that translates these rules into predicting news popularity.
 
 ### [LAIG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/RacingKings)
