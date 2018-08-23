@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Raft-4" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="raft.RaftInitiator" />
+    <module name="SDIS2" />
+    <option name="PROGRAM_PARAMETERS" value="8004 localhost 8001" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    <method />
+  </configuration>
+</component>

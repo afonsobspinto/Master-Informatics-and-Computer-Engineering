@@ -1,0 +1,36 @@
+package raft.states;
+
+import raft.Raft;
+import raft.RaftState;
+
+public class CandidateState extends State {
+    public CandidateState(Raft raft) {
+        super(raft);
+        System.out.println("Candidate Created");
+    }
+
+    @Override
+    public void receiveMessage(){
+
+    }
+
+    @Override
+    public void handleHeartbeats(Raft raft) {
+
+    }
+
+    @Override
+    public void handleLeaderHeartBeat() {
+
+    }
+
+    @Override
+    public void handleLeaderHeartBeatFailure() {
+
+    }
+
+    @Override
+    public RaftState getStateID() {
+        return RaftState.CANDIDATE;
+    }
+}
