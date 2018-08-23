@@ -14,6 +14,9 @@ Also, both Exact search, as well as approximate search, of the strings identifyi
 ### [CGRA/Final Project](https://github.com/afonsobspinto/FEUP/tree/master/CGRA/FinalProject)
 3D Computer Graphics project using WebGL 1.0
 
+### [COMP/Yal Compiler](https://github.com/afonsobspinto/FEUP/tree/master/COMP)
+A simple compiler for the Yal language.
+
 ### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
 Poker Game - Five-card draw 
 
