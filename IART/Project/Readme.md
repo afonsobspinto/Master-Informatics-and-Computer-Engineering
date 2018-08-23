@@ -4,7 +4,7 @@
 
 #### GOal
 
-From a set of examples, it is possible to learn (or derive) the classification rules for the domain under analysis. The goal of this project is to determine the decision tree that translates these rules into predicting news popularity.
+From a set of examples, it is possible to learn (or derive) the classification rules for the domain under analysis. The goal of this project is to determine the decision tree that translates these rules into predicting Pulsars identification.
 
 #### Description
 
