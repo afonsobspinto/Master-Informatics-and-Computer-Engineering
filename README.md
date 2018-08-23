@@ -18,7 +18,7 @@ Also, both Exact search, as well as approximate search, of the strings identifyi
 Poker Game - Five-card draw 
 
 ### [IART/Decision Tree](https://github.com/afonsobspinto/FEUP/tree/master/IART/Project)
-The goal of this project is to determine the decision tree that translates these rules into predicting news popularity.
+The goal of this project is to determine the decision tree that translates these rules into identification of Pulsars.
 
 ### [LAIG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/RacingKings)
 The graphical interface for the game developed in [Plog - Racing Kings](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings) , using JavaScript and WebGL technology.
