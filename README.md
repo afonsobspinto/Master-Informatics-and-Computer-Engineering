@@ -35,7 +35,10 @@ An application with a small 3D engine, capable of producing images of any scene 
 It is intended to develop an information system with a web interface to support an online auction service. Any registered user can place items up for auction or bid on items available. The system should automatically manage the bidding deadlines and determine the winning bid. System managers are allowed to stop auction block accounts or delete content.
 
 ### [LCOM/ChessProject](https://github.com/afonsobspinto/FEUP/tree/master/LCOM)
- ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
+ ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.u
+ 
+### [LDSO/Autistic App]
+To be updated
 
 ### [LPOO/Dungeon Keep](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/Dungeon%20Keep) 
 "Unfairly captured by the tyrant ruler of your Realm, you have been thrown into a dark, damp and ghastly dungeon, left there to rot into forgetfulness... You keep yelling for the Guard, but he seems oblivious to your calls...You need to escape...wait...but...in the midst of all the fuss that was your capture, they forgot to lock your cell door...there is hope...but the task is not simple...will you have it in you to elude your jailers and make your way back to freedom?"
