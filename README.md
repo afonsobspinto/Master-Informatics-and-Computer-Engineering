@@ -1,5 +1,7 @@
 # FEUP
 
+Repository to host various projects for the FEUP course.
+
 ### [AEDA/APlaceInTheSun](https://github.com/afonsobspinto/FEUP/tree/master/AEDA/APlaceInTheSun)
 The company "A place in the Sun" is dedicated to making reservations for accommodation in hotels, apartments, bednbreakfast, flats, and rooms in sharedhouses.
 
