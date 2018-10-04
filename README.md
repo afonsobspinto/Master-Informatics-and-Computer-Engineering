@@ -5,6 +5,9 @@ Repository to host various projects for the FEUP course.
 ### [AEDA/APlaceInTheSun](https://github.com/afonsobspinto/FEUP/tree/master/AEDA/APlaceInTheSun)
 The company "A place in the Sun" is dedicated to making reservations for accommodation in hotels, apartments, bednbreakfast, flats, and rooms in sharedhouses.
 
+### [AIAD/...]
+To be updated
+
 ### [BDAD/Online Shopping Center](https://github.com/afonsobspinto/FEUP/tree/master/BDAD/Online%20Shopping%20Center)
 The purpose of this project was to implement and interrogate a database. To do this, we created the conceptual model, configured this model for a relational system, deployed that schema to the SQLite database, entered data, and finally interrogated the database.
 
