@@ -3,5 +3,8 @@
   "extends": ["standard", "standard-react"],
   "globals": {
     "__DEV__": false
+  },
+  "rules": {
+    "react/prop-types": 0
   }
 }
