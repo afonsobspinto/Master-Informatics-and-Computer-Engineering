@@ -1,24 +1,31 @@
 import React from 'react'
 import { TouchableOpacity, Image, StyleSheet } from 'react-native'
+import Images from '../assets/images/images'
+import { _retrieveSetting } from '../helpers/Settings'
+import { VISUAL_SYTLE } from '../helpers/SettingTypes'
 
 export default class RoutineButton extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      visualStyle: 'cartoon'
+    }
+  }
+
   onPress = () => {
   }
 
+  componentDidMount () {
+    _retrieveSetting(VISUAL_SYTLE)
+      .then(res => this.setState({ visualStyle: res }))
+  }
+
   render () {
-    let image, viewStyle, imageStyle
+    const image = Images.routine[`${this.state.visualStyle}${this.props.type}`]
+    const imageStyle = styles[`${this.state.visualStyle}${this.props.type}Image`]
+    const viewColor = this.props.type === 'Day' ? { backgroundColor: '#8bd8ec' } : { backgroundColor: '#203262' }
 
-    if (this.props.type === 'Day') {
-      image = require('../assets/images/sun.png')
-      viewStyle = styles.dayView
-      imageStyle = styles.dayImage
-    } else {
-      image = require('../assets/images/night.png')
-      viewStyle = styles.nightView
-      imageStyle = styles.nightImage
-    }
-
-    return <TouchableOpacity activeOpacity={0.7} style={[viewStyle, styles.view]} onPress={this.onPress}>
+    return <TouchableOpacity activeOpacity={0.7} style={[styles.view, viewColor]} onPress={this.onPress}>
       <Image
         source={image}
         resizeMode={'contain'}
@@ -33,16 +40,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  dayView: {
-    backgroundColor: '#8bd8ec'
-  },
-  nightView: {
-    backgroundColor: '#203262'
-  },
-  nightImage: {
+  cartoonNightImage: {
     height: '30%'
   },
-  dayImage: {
+  cartoonDayImage: {
     height: '50%'
+  },
+  photoDayImage: {
+    height: '100%'
+  },
+  photoNightImage: {
+    height: '100%'
   }
 })
