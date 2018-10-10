@@ -20,8 +20,8 @@ export default class ChooseRoutineScreen extends React.Component {
     return (
       <View style={styles.view}>
         <StatusBar hidden />
-        <RoutineButton name='Day' />
-        <RoutineButton name='Night' />
+        <RoutineButton type='Day' />
+        <RoutineButton type='Night' />
       </View>
     )
   }
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    backgroundColor: '#000000'
   }
 })
