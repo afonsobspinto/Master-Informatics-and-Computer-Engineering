@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StatusBar, StyleSheet } from 'react-native'
+import { Text, View, Image, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
 import AnimatedBar from 'react-native-animated-bar'
@@ -10,12 +10,15 @@ export default class SingleActivity extends Component {
     taskDurationMinutes: 15,
     taskTitle: 'Lavar os dentes',
     color: 'grey',
-    updateRate: 0.5
+    updateRate: 0.5,
+    paused: false
   }
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
 
     const interval = setInterval(() => {
+
+      if(this.state.paused === true) return
       if (this.state.progress >= 1) return clearInterval(interval)
       if (this.state.progress > 0.2) this.state.color = 'green'
       if (this.state.progress > 0.6 && this.state.progress < 0.85) this.state.color = 'orange'
@@ -29,45 +32,70 @@ export default class SingleActivity extends Component {
   componentWillUnmount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
+  pauseActivity(){
+    this.setState(state => { return { paused: true }})
+  }
+  resumeActivity(){
+    this.setState(state => { return { paused: false }})
+  }
   render () {
-    return (
-      <View style={styles.flexColumn} >
-        <StatusBar hidden />
-        <View style={[{ alignSelf: 'stretch', margin: 10, height: 70, backgroundColor: '#3F51B5' }, styles.centerItem]} >
-          <AnimatedBar
-            progress={this.state.progress}
-            height={70}
-            borderColor='white'
-            barColor={this.state.color}
-            duration={50}
-          />
-        </View>
-        <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginBottom: 10 }} >
-          <View style={[{ width: 250, backgroundColor: '#C5CAE9' }, styles.centerItem]} >
-            <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} />
+    if(this.state.paused === true){
+      return (
+        <View style={styles.centerItem}>
+          <View style={[{ alignSelf: 'stretch', margin: 10, height: 70, backgroundColor: '#3F51B5' }, styles.centerItem]} >
           </View>
-          <View style={styles.flexColumn} >
-            <View style={[{ height: 70, backgroundColor: '#7986CB' }, styles.centerItem]} >
-              <Text style={styles.taskName} >{ this.state.taskTitle }</Text>
+          <TouchableOpacity onPress={() => this.resumeActivity()}>
+            <Image style={styles.resumeButton} source={require('../assets/images/resume-button.png')} />
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else{
+      return (
+        <View style={styles.flexColumn} >
+          <StatusBar hidden />
+          <View style={[{ alignSelf: 'stretch', margin: 10, height: 70, backgroundColor: '#3F51B5' }, styles.centerItem]} >
+            <AnimatedBar
+              progress={this.state.progress}
+              height={70}
+              borderColor='white'
+              barColor={this.state.color}
+              duration={50}
+            />
+          </View>
+          <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginBottom: 10 }} >
+            <View style={[{ width: 250, backgroundColor: '#C5CAE9' }, styles.centerItem]} >
+              <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} />
             </View>
-            <View style={[{ height: 60, backgroundColor: '#3F51B5' }, styles.centerItem]} >
-              <Text style={styles.taskDuration} >{ this.state.taskDurationMinutes } minutos</Text>
-            </View>
-            <View style={{ flex: 1, flexDirection: 'row' }} >
-              <View style={[{ flex: 0.95 }, styles.buttonBackground]} >
-                <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
+            <View style={styles.flexColumn} >
+              <View style={[{ height: 70, backgroundColor: '#7986CB' }, styles.centerItem]} >
+                <Text style={styles.taskName} >{ this.state.taskTitle }</Text>
               </View>
-              <View style={[{ flex: 1 }, styles.buttonBackground]} >
-                <Image style={styles.cancelButton} source={require('../assets/images/nav-cancel.png')} />
+              <View style={[{ height: 60, backgroundColor: '#3F51B5' }, styles.centerItem]} >
+                <Text style={styles.taskDuration} >{ this.state.taskDurationMinutes } minutos</Text>
               </View>
-              <View style={[{ flex: 1 }, styles.buttonBackground]} >
-                <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
+              <View style={{ flex: 1, flexDirection: 'row' }} >
+                <TouchableOpacity onPress={ () => this.pauseActivity() }>
+                  <View style={[{ flex: 0.95 }, styles.buttonBackground]} >
+                  <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <View style={[{ flex: 1 }, styles.buttonBackground]} >
+                  <Image style={styles.cancelButton} source={require('../assets/images/nav-cancel.png')} />
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <View style={[{ flex: 1 }, styles.buttonBackground]} >
+                  <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
         </View>
-      </View>
-    )
+      );
+    }
   }
 }
 
@@ -112,5 +140,10 @@ const styles = StyleSheet.create({
     tintColor: 'white',
     width: 80,
     height: 80
+  },
+  resumeButton: {
+    tintColor: '#303F9F',
+    width: 150,
+    height: 150
   }
 })
