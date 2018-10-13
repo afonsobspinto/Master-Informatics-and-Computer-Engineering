@@ -5,7 +5,6 @@ import { ScreenOrientation } from 'expo'
 import RoutineCarousel from '../components/RoutineCarousel'
 
 export default class CarouselRoutineScreen extends React.Component {
-
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }
@@ -14,7 +13,7 @@ export default class CarouselRoutineScreen extends React.Component {
   }
 
   render () {
-    const testData = ['Dia', 'Noite']
+    const testData = ['Manhas das manhãs', 'Pos-Almoço', 'Fim de semana']
 
     return (
       <View>

@@ -4,23 +4,15 @@ import Layout from '../constants/Layout'
 const paddingVertical = Layout.window.height * 0.05
 
 export const sliderWidth = Layout.window.height
-export const itemWidth = Layout.window.height * 0.8
+export const itemWidth = Layout.window.height * 0.4
 
 export default StyleSheet.create({
   card: {
     height: '100%',
-    backgroundColor: '#0000ff',
+    backgroundColor: '#dfdfdf',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: paddingVertical,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-    elevation: 9
+    borderRadius: paddingVertical / 2
   },
   cardContainer: {
     height: '100%',
