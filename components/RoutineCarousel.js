@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 
 import styles, { sliderWidth, itemWidth } from '../styles/RoutineCarousel.style'
@@ -10,6 +10,12 @@ export default class RoutineCarousel extends React.Component {
       <View style={styles.cardContainer}>
         <View style={styles.card}>
           <Text> { item } </Text>
+          <View>
+            <Image
+              source={require('../assets/images/play.png')}
+              resizeMode={'contain'}
+              style={{ width: 200, height: 200 }} />
+          </View>
         </View>
       </View>
     )
