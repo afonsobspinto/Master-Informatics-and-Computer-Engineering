@@ -20,3 +20,15 @@ export const ACTIVITIES = [
     image: 'https://i.imgur.com/KZsmUi2l.jpg'
   }
 ]
+
+export const ROUTINES = [
+  {
+    title: 'Após acordar'
+  },
+  {
+    title: 'Antes de dormir'
+  },
+  {
+    title: 'Domingos'
+  }
+]

@@ -13,11 +13,10 @@ export default class SelectActivityScreen extends React.Component {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
   render () {
-    const data = ACTIVITIES
     return (
       <View>
         <StatusBar hidden />
-        <ActivityCarousel data={data} />
+        <ActivityCarousel data={ACTIVITIES} />
       </View>
     )
   }

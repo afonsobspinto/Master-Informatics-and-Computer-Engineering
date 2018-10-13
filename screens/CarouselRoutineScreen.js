@@ -3,6 +3,7 @@ import { StatusBar, View } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
 import RoutineCarousel from '../components/RoutineCarousel'
+import { ROUTINES } from '../entries/entries'
 
 export default class CarouselRoutineScreen extends React.Component {
   componentDidMount () {
@@ -13,12 +14,10 @@ export default class CarouselRoutineScreen extends React.Component {
   }
 
   render () {
-    const testData = ['Manhas das manhãs', 'Pos-Almoço', 'Fim de semana']
-
     return (
       <View>
         <StatusBar hidden />
-        <RoutineCarousel data={testData} />
+        <RoutineCarousel data={ROUTINES} />
       </View>
     )
   }
