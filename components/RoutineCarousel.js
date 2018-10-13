@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
+import Images from '../assets/images/images'
 
 import styles, { sliderWidth, itemWidth } from '../styles/RoutineCarousel.style'
 
@@ -11,10 +12,12 @@ export default class RoutineCarousel extends React.Component {
         <View style={styles.card}>
           <Text> { item } </Text>
           <View>
-            <Image
-              source={require('../assets/images/play.png')}
-              resizeMode={'contain'}
-              style={{ width: 200, height: 200 }} />
+            <TouchableOpacity activeOpacity={0.7} onPress={this.onPress}>
+              <Image
+                source={Images.button[`playButton`]}
+                resizeMode={'contain'}
+                style={{ width: 200, height: 200 }} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>

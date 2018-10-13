@@ -4,6 +4,9 @@ const images = {
     cartoonNight: require('./moon.png'),
     photoDay: require('./sun_pic.png'),
     photoNight: require('./moon_pic.png')
+  },
+  button: {
+    playButton: require('./play.png')
   }
 }
 
