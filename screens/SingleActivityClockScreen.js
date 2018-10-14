@@ -3,16 +3,23 @@ import { Text, View, Image, StatusBar, StyleSheet, TouchableOpacity } from 'reac
 import { ScreenOrientation } from 'expo'
 
 import * as Progress from 'react-native-progress'
+import { ActivityButtons } from '../components/ActivityButtons'
 
-export default class SingleActivityClock extends Component {
+export default class SingleActivityClockScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.pauseActivity = this.pauseActivity.bind(this)
+  }
+
   state = {
     progress: 0,
-    taskDurationMinutes: 1,
+    taskDurationMinutes: 2,
     taskTitle: 'Lavar os dentes',
     color: 'rgb(169,169,169)',
     updateRate: 0.5,
     isPaused: false
   }
+
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
 
@@ -24,21 +31,25 @@ export default class SingleActivityClock extends Component {
       if (this.state.progress >= 0.85) this.state.color = 'red'
 
       if (!this.state.isPaused) {
-        this.setState(state => {
+        this.setState(() => {
           return { progress: this.state.progress + this.state.updateRate / (this.state.taskDurationMinutes * 60) }
         })
       }
     }, this.state.updateRate * 1000)
   }
+
   componentWillUnmount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
+
   pauseActivity () {
-    this.setState(state => { return { isPaused: true } })
+    this.setState(() => { return { isPaused: true } })
   }
+
   resumeActivity () {
-    this.setState(state => { return { isPaused: false } })
+    this.setState(() => { return { isPaused: false } })
   }
+
   render () {
     if (this.state.isPaused) {
       return (
@@ -80,21 +91,7 @@ export default class SingleActivityClock extends Component {
                   />
                 </View>
                 <View style={{ flex: 2, flexDirection: 'row' }}>
-                  <View style={[{ flex: 0.95 }, styles.buttonBackground]} >
-                    <TouchableOpacity onPress={() => this.pauseActivity()}>
-                      <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={[{ flex: 1 }, styles.buttonBackground]} >
-                    <TouchableOpacity>
-                      <Image style={styles.cancelButton} source={require('../assets/images/nav-cancel.png')} />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={[{ flex: 1 }, styles.buttonBackground]} >
-                    <TouchableOpacity>
-                      <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
-                    </TouchableOpacity>
-                  </View>
+                  <ActivityButtons pauseActivity={this.pauseActivity} />
                 </View>
               </View>
             </View>
@@ -137,26 +134,6 @@ const styles = StyleSheet.create({
   flexColumn: {
     flex: 1,
     flexDirection: 'column'
-  },
-  buttonBackground: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#303F9F'
-  },
-  pauseButton: {
-    tintColor: 'white',
-    width: 100,
-    height: 90
-  },
-  cancelButton: {
-    tintColor: 'white',
-    width: 80,
-    height: 80
-  },
-  confirmButton: {
-    tintColor: 'white',
-    width: 80,
-    height: 80
   },
   resumeButton: {
     tintColor: '#303F9F',
