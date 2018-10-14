@@ -24,5 +24,8 @@ export default StyleSheet.create({
     height: 10,
     borderRadius: 5,
     marginHorizontal: 3
+  },
+  contentStyle: {
+    marginBottom: '10%'
   }
 })

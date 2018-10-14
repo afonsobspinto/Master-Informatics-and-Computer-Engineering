@@ -6,7 +6,7 @@ const images = {
     photoNight: require('./moon_pic.png')
   },
   button: {
-    playButton: require('./play.png')
+    playButton: require('./play2.png')
   }
 }
 

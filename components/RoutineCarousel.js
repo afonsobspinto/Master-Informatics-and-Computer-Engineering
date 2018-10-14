@@ -16,13 +16,21 @@ export default class RoutineCarousel extends React.Component {
     return (
       <View style={styles.cardContainer}>
         <View style={styles.card}>
-          <Text> { item.title } </Text>
+          <View style={styles.contentStyle}>
+            <Text> { item.title } </Text>
+          </View>
+          <View style={styles.contentStyle}>
+            <Image
+              source={Images.routine[item.image]}
+              resizeMode={'contain'}
+              style={{ width: 130, height: 130 }} />
+          </View>
           <View>
             <TouchableOpacity activeOpacity={0.7} onPress={this.onPress}>
               <Image
                 source={Images.button[`playButton`]}
                 resizeMode={'contain'}
-                style={{ width: 200, height: 200 }} />
+                style={{ width: 45, height: 45 }} />
             </TouchableOpacity>
           </View>
         </View>
