@@ -9,6 +9,12 @@ export default class SingleActivityScreen extends Component {
   constructor (props) {
     super(props)
     this.pauseActivity = this.pauseActivity.bind(this)
+    this.cancelActivity = this.cancelActivity.bind(this)
+    this.completeActivity = this.completeActivity.bind(this)
+  }
+
+  static navigationOptions = {
+    header: null
   }
 
     state = {
@@ -23,9 +29,9 @@ export default class SingleActivityScreen extends Component {
     componentDidMount () {
       ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
 
-      const interval = setInterval(() => {
-        if (this.state.isPaused === true) return
-        if (this.state.progress >= 1) return clearInterval(interval)
+      this.interval = setInterval(() => {
+        if (this.state.isPaused) return
+        if (this.state.progress >= 1) return this.cancelActivity()
         if (this.state.progress > 0.2) this.state.color = 'green'
         if (this.state.progress >= 0.6 && this.state.progress < 0.85) this.state.color = 'orange'
         if (this.state.progress >= 0.85) this.state.color = 'red'
@@ -40,11 +46,20 @@ export default class SingleActivityScreen extends Component {
 
     componentWillUnmount () {
       ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
+      clearInterval(this.interval)
     }
 
     pauseActivity (e) {
       e.preventDefault()
       this.setState(() => { return { isPaused: true } })
+    }
+
+    cancelActivity () {
+      this.props.navigation.goBack()
+    }
+
+    completeActivity () {
+      this.props.navigation.goBack()
     }
 
     resumeActivity () {
@@ -90,7 +105,7 @@ export default class SingleActivityScreen extends Component {
                 <View style={[{ height: 60, backgroundColor: '#3F51B5' }, styles.centerItem]} >
                   <Text style={styles.taskDuration} >{ this.state.taskDurationMinutes } minutos</Text>
                 </View>
-                <ActivityButtons pauseActivity={this.pauseActivity} />
+                <ActivityButtons pauseActivity={this.pauseActivity} cancelActivity={this.cancelActivity} completeActivity={this.completeActivity} />
               </View>
             </View>
           </View>

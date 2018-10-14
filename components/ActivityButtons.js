@@ -12,12 +12,12 @@ export class ActivityButtons extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.props.cancelActivity}>
             <Image style={styles.cancelButton} source={require('../assets/images/nav-cancel.png')} />
           </TouchableOpacity>
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.props.completeActivity}>
             <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
           </TouchableOpacity>
         </View>
@@ -27,7 +27,9 @@ export class ActivityButtons extends React.Component {
 }
 
 ActivityButtons.propTypes = {
-  pauseActivity: PropTypes.func.isRequired
+  pauseActivity: PropTypes.func.isRequired,
+  cancelActivity: PropTypes.func.isRequired,
+  completeActivity: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -36,8 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#303F9F',
-    borderWidth: 1,
-    borderColor: 'white'
+    margin: 1
   },
   pauseButton: {
     tintColor: 'white',
