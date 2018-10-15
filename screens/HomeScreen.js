@@ -30,6 +30,13 @@ export default class HomeScreen extends React.Component {
             this.props.navigation.navigate('RoutineScreen')
           }}
         />
+        <Text />
+        <Button
+          title='Go to Carousel Routine Screen'
+          onPress={() => {
+            this.props.navigation.navigate('CarouselRoutineScreen')
+          }}
+        />
       </View>
     )
   }

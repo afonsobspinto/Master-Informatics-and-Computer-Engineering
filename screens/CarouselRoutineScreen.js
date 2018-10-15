@@ -6,6 +6,9 @@ import RoutineCarousel from '../components/RoutineCarousel'
 import { ROUTINES, ACTIVITIES } from '../entries/entries'
 
 export default class CarouselRoutineScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
   constructor (props) {
     super(props)
     this.state = {
