@@ -3,8 +3,14 @@ import { createStackNavigator } from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
 import SingleActivityScreen from './screens/SingleActivityScreen'
 import SingleActivityClockScreen from './screens/SingleActivityClockScreen'
+import { _setDefault } from './helpers/Settings'
+import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 
 export default class App extends React.Component {
+  componentDidMount () {
+    _setDefault()
+  }
+
   render () {
     return (
       <AppStackNavigator />
@@ -15,5 +21,6 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
   SingleActivity: SingleActivityScreen,
-  SingleActivityClock: SingleActivityClockScreen
+  SingleActivityClock: SingleActivityClockScreen,
+  RoutineScreen: ChooseRoutineScreen
 })

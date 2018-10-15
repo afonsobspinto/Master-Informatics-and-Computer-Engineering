@@ -23,6 +23,13 @@ export default class HomeScreen extends React.Component {
             this.props.navigation.navigate('SingleActivityClock')
           }}
         />
+        <Text />
+        <Button
+          title='Go to Routine Screen'
+          onPress={() => {
+            this.props.navigation.navigate('RoutineScreen')
+          }}
+        />
       </View>
     )
   }
