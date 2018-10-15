@@ -5,7 +5,7 @@ import SingleActivityScreen from './screens/SingleActivityScreen'
 import SingleActivityClockScreen from './screens/SingleActivityClockScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import CarouselRoutineScreen from "./screens/CarouselRoutineScreen";
+import CarouselRoutineScreen from './screens/CarouselRoutineScreen'
 
 export default class App extends React.Component {
   componentDidMount () {

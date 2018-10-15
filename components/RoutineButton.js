@@ -8,7 +8,7 @@ export default class RoutineButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      visualStyle: 'cartoon'
+      visualStyle: 'photo'
     }
   }
 
@@ -17,7 +17,9 @@ export default class RoutineButton extends React.Component {
 
   componentDidMount () {
     _retrieveSetting(VISUAL_SYTLE)
-      .then(res => this.setState({ visualStyle: res }))
+      .then(res => {
+        this.setState({ visualStyle: res })
+      })
   }
 
   render () {
