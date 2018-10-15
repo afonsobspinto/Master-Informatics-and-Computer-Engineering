@@ -3,9 +3,15 @@ import { StatusBar, View } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
 import RoutineCarousel from '../components/RoutineCarousel'
-import { ROUTINES } from '../entries/entries'
+import { ROUTINES, ACTIVITIES } from '../entries/entries'
 
 export default class CarouselRoutineScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isRoutinesMenu: true
+    }
+  }
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }
@@ -17,7 +23,7 @@ export default class CarouselRoutineScreen extends React.Component {
     return (
       <View>
         <StatusBar hidden />
-        <RoutineCarousel data={ROUTINES} />
+        <RoutineCarousel data={this.state.isRoutinesMenu ? ROUTINES : ACTIVITIES} />
       </View>
     )
   }

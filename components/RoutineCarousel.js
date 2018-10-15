@@ -23,7 +23,7 @@ export default class RoutineCarousel extends React.Component {
             <Image
               source={Images.routine[item.image]}
               resizeMode={'contain'}
-              style={{ width: 130, height: 130 }} />
+              style={{ width: 100, height: 100 }} />
           </View>
           <View>
             <TouchableOpacity activeOpacity={0.7} onPress={this.onPress}>
