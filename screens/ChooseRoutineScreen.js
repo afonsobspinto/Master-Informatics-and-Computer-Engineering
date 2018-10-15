@@ -6,7 +6,8 @@ import RoutineButton from '../components/RoutineButton'
 
 export default class ChooseRoutineScreen extends React.Component {
   static navigationOptions = {
-    title: 'Rotinas'
+    title: 'Rotinas',
+    header: null
   };
 
   componentDidMount () {
