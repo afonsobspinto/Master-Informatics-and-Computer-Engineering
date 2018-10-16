@@ -17,7 +17,7 @@ export class ActivityButtons extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
-          <TouchableOpacity onPress={this.props.completeActivity}>
+          <TouchableOpacity onPress={this.props.completeActivity} disabled={!this.props.isCompletable} >
             <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
           </TouchableOpacity>
         </View>
