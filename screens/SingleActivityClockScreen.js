@@ -92,7 +92,7 @@ export default class SingleActivityClockScreen extends Component {
           </View>
           <View style={{ flex: 3, flexDirection: 'row', marginLeft: 10, marginBottom: 10 }}>
             <View style={[{ flex: 2, backgroundColor: '#C5CAE9' }, styles.centerItem]} >
-              <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} />
+              <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} resizeMode='contain' />
             </View>
             <View style={{ flex: 3, flexDirection: 'row', marginRight: 10 }} >
               <View style={styles.flexColumn}>
@@ -103,7 +103,7 @@ export default class SingleActivityClockScreen extends Component {
                     thickness={60}
                     color={this.state.color}
                     borderColor={'#7986CB'}
-                    borderWidth={3}
+                    borderWidth={2}
                   />
                 </View>
                 <View style={{ flex: 2, flexDirection: 'row' }}>

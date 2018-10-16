@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, Image, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
-import AnimatedBar from 'react-native-animated-bar'
 import { ActivityButtons } from '../components/ActivityButtons'
+import { ActivityProgressBar } from '../components/ActivityProgressBar'
 
 export default class SingleActivityScreen extends Component {
   constructor (props) {
@@ -19,10 +19,10 @@ export default class SingleActivityScreen extends Component {
 
     state = {
       progress: 0,
-      taskDurationMinutes: 2,
+      taskDurationMinutes: 0.1,
       taskTitle: 'Lavar os dentes',
       color: 'grey',
-      updateRate: 0.5,
+      updateRate: 0.075,
       isPaused: false
     }
 
@@ -36,11 +36,9 @@ export default class SingleActivityScreen extends Component {
         if (this.state.progress >= 0.6 && this.state.progress < 0.85) this.state.color = 'orange'
         if (this.state.progress >= 0.85) this.state.color = 'red'
 
-        if (!this.state.isPaused) {
-          this.setState(() => {
-            return { progress: this.state.progress + this.state.updateRate / (this.state.taskDurationMinutes * 60) }
-          })
-        }
+        this.setState(() => {
+          return { progress: this.state.progress + this.state.updateRate / (this.state.taskDurationMinutes * 60) }
+        })
       }, this.state.updateRate * 1000)
     }
 
@@ -80,29 +78,21 @@ export default class SingleActivityScreen extends Component {
         return (
           <View style={styles.flexColumn} >
             <StatusBar hidden />
-            <View style={[{ alignSelf: 'stretch', margin: 10, height: 70, backgroundColor: '#3F51B5' }, styles.centerItem]} >
-              <AnimatedBar
-                progress={this.state.progress}
-                height={70}
-                borderColor='white'
-                barColor={this.state.color}
-                duration={50}
-              />
-              <View style={styles.progressBarOverlay}>
-                <View style={[{ flex: 0.61 }, styles.progressBarDivider]} />
-                <View style={[{ flex: 0.26 }, styles.progressBarDivider]} />
-                <View style={{ flex: 0.14 }} />
-              </View>
-            </View>
+            <ActivityProgressBar
+              progress={this.state.progress}
+              color={this.state.color}
+              updateRate={this.state.updateRate}
+              duration={this.state.taskDurationMinutes}
+            />
             <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginBottom: 10 }} >
               <View style={[{ width: 250, backgroundColor: '#C5CAE9' }, styles.centerItem]} >
                 <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} />
               </View>
               <View style={styles.flexColumn} >
-                <View style={[{ height: 70, backgroundColor: '#7986CB' }, styles.centerItem]} >
+                <View style={[{ marginHorizontal: 1, height: 70, backgroundColor: '#7986CB' }, styles.centerItem]} >
                   <Text style={styles.taskName} >{ this.state.taskTitle }</Text>
                 </View>
-                <View style={[{ height: 60, backgroundColor: '#3F51B5' }, styles.centerItem]} >
+                <View style={[{ marginHorizontal: 1, height: 60, backgroundColor: '#3F51B5' }, styles.centerItem]} >
                   <Text style={styles.taskDuration} >{ this.state.taskDurationMinutes } minutos</Text>
                 </View>
                 <ActivityButtons pauseActivity={this.pauseActivity} cancelActivity={this.cancelActivity} completeActivity={this.completeActivity} />
@@ -115,18 +105,6 @@ export default class SingleActivityScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  progressBarOverlay: {
-    flexDirection: 'row',
-    height: 70,
-    left: 0,
-    right: 0,
-    position: 'absolute'
-  },
-  progressBarDivider: {
-    borderRightColor: 'gray',
-    borderRightWidth: 4,
-    opacity: 0.5
-  },
   centerItem: {
     alignItems: 'center',
     justifyContent: 'center'
