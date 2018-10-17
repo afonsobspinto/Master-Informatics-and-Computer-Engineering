@@ -2,7 +2,7 @@ import React from 'react'
 import { StatusBar, View } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
-import RoutineCarousel from '../components/RoutineCarousel'
+import CardCarousel from '../components/Carousel/CardCarousel'
 import { ROUTINES, ACTIVITIES } from '../entries/entries'
 
 export default class CarouselRoutineScreen extends React.Component {
@@ -29,7 +29,7 @@ export default class CarouselRoutineScreen extends React.Component {
     return (
       <View style={{ backgroundColor: '#fff7ae' }}>
         <StatusBar hidden />
-        <RoutineCarousel data={this.state.isRoutinesMenu ? ROUTINES : ACTIVITIES} />
+        <CardCarousel data={this.state.isRoutinesMenu ? ROUTINES : ACTIVITIES} />
       </View>
     )
   }

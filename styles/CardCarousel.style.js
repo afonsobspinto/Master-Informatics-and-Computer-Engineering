@@ -4,7 +4,7 @@ import Layout from '../constants/Layout'
 const padding = Layout.window.height * 0.05
 
 export const sliderWidth = Layout.window.height
-export const itemWidth = Layout.window.height * 0.6
+export const itemWidth = Layout.window.height * 0.7
 
 export const getCardStyle = (color) => {
   const cardColor = color
@@ -99,5 +99,10 @@ export default StyleSheet.create({
   carouselContainer: {
     flexDirection: 'column',
     height: '100%'
+  },
+  paginationContainer: {
+    height: padding,
+    justifyContent: 'center',
+    marginBottom: 10
   }
 })
