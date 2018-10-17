@@ -5,6 +5,7 @@ import SingleActivityScreen from './screens/SingleActivityScreen'
 import SingleActivityClockScreen from './screens/SingleActivityClockScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
+import ChooseActivityScreen from './screens/ChooseActivityScreen'
 import { Font } from 'expo'
 
 export default class App extends React.Component {
@@ -26,5 +27,6 @@ const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
   SingleActivity: SingleActivityScreen,
   SingleActivityClock: SingleActivityClockScreen,
-  ChooseRoutineScreen: ChooseRoutineScreen
+  ChooseRoutineScreen: ChooseRoutineScreen,
+  ChooseActivityScreen: ChooseActivityScreen
 })

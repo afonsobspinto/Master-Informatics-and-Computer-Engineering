@@ -1,31 +1,34 @@
-export const ACTIVITIES = [
-  {
-    title: 'Lavar os dentes',
-    time: 15,
-    image: 'brushTeeth'
-  },
-  {
-    title: 'Tomar banho',
-    time: 20,
-    image: 'takeBath'
-  },
-  {
-    title: 'Preparar a mochila',
-    time: 15,
-    image: 'brushTeeth'
-  },
-  {
-    title: 'Fazer os trabalhos de casa',
-    time: 45,
-    image: 'brushTeeth'
-  }
-]
-
-export const ROUTINES = [
+export const demoRoutines = [
   {
     title: 'Após acordar',
     image: 'cartoonDay',
-    color: '#37c1f0'
+    color: '#37c1f0',
+    activities: [
+      {
+        title: 'Lavar os dentes',
+        time: 15,
+        image: 'brushTeeth',
+        color: '#37c1f0'
+      },
+      {
+        title: 'Tomar banho',
+        time: 20,
+        image: 'takeBath',
+        color: '#37c1f0'
+      },
+      {
+        title: 'Preparar a mochila',
+        time: 15,
+        image: 'brushTeeth',
+        color: '#37c1f0'
+      },
+      {
+        title: 'Fazer os trabalhos de casa porque a mae vai ficar chateada',
+        time: 45,
+        image: 'brushTeeth',
+        color: '#37c1f0'
+      }
+    ]
   },
   {
     title: 'Antes de dormir',

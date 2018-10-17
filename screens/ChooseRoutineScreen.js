@@ -3,18 +3,12 @@ import { StatusBar, View } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
-import { ROUTINES } from '../entries/entries'
+import { demoRoutines } from '../entries/entries'
+import { backgroundColor } from '../styles/General.style'
 
 export default class ChooseRoutineScreen extends React.Component {
   static navigationOptions = {
     header: null
-  }
-
-  constructor (props) {
-    super(props)
-    this.state = {
-      isRoutinesMenu: true
-    }
   }
 
   componentDidMount () {
@@ -27,9 +21,9 @@ export default class ChooseRoutineScreen extends React.Component {
 
   render () {
     return (
-      <View style={{ backgroundColor: '#fff7ae' }}>
+      <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
-        <CardCarousel data={ROUTINES} />
+        <CardCarousel data={demoRoutines} navigation={this.props.navigation} renderButton />
       </View>
     )
   }

@@ -11,8 +11,10 @@ export const getCardStyle = (color) => {
   return StyleSheet.create({
     card: {
       backgroundColor: cardColor,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      paddingHorizontal: 30,
+      paddingVertical: 20,
       borderRadius: padding / 2,
       flexGrow: 1,
       shadowColor: '#000',
@@ -62,13 +64,6 @@ export const getCardStyle = (color) => {
       fontFamily: 'Baloo',
       fontSize: 35,
       color: '#fff'
-    },
-    cardContent: {
-      position: 'absolute',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      left: 30,
-      top: 20
     },
     cardImage: {
       height: '120%',

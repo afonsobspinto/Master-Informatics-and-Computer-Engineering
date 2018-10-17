@@ -5,23 +5,25 @@ import CardButton from './CardButton'
 
 import { getCardStyle } from '../../styles/CardCarousel.style'
 
-export const renderCard = ({ item }) => {
-  const cardStyle = getCardStyle(item.color)
-  return (
-    <View style={cardStyle.cardContainer}>
-      <TouchableWithoutFeedback
-        onPress={() => console.log(item.title)}>
-        <View style={cardStyle.card}>
-          <Image
-            source={Images.routine[item.image]}
-            resizeMode={'center'}
-            style={cardStyle.cardImage} />
-          <View style={cardStyle.cardContent}>
+export default class Card extends React.Component {
+  render () {
+    const { item, navigation, renderButton } = this.props
+
+    const cardStyle = getCardStyle(item.color)
+    return (
+      <View style={cardStyle.cardContainer}>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate('ChooseActivityScreen', { activities: item.activities })}>
+          <View style={cardStyle.card}>
+            <Image
+              source={Images.routine[item.image]}
+              resizeMode={'center'}
+              style={cardStyle.cardImage} />
             <Text style={cardStyle.cardTitle}> { item.title } </Text>
-            <CardButton cardStyle={cardStyle} />
+            {renderButton && <CardButton cardStyle={cardStyle} />}
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
-  )
+        </TouchableWithoutFeedback>
+      </View>
+    )
+  }
 }

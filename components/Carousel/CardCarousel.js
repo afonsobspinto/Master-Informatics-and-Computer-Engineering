@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
-import { renderCard } from './Card'
+import Card from './Card'
 import styles, { sliderWidth, itemWidth } from '../../styles/CardCarousel.style'
 
 export default class CardCarousel extends React.Component {
@@ -11,6 +11,12 @@ export default class CardCarousel extends React.Component {
     this.state = {
       activeSlide: 0
     }
+  }
+
+  renderCard = ({ item }) => {
+    return (
+      <Card item={item} renderButton={this.props.renderButton} navigation={this.props.navigation} />
+    )
   }
 
   get pagination () {
@@ -33,7 +39,7 @@ export default class CardCarousel extends React.Component {
           <Carousel
             ref={(c) => { this._carousel = c }}
             data={this.props.data}
-            renderItem={renderCard}
+            renderItem={this.renderCard.bind(this)} // eslint-disable-line
             onSnapToItem={index => this.setState({ activeSlide: index })}
             sliderWidth={sliderWidth}
             itemWidth={itemWidth}
