@@ -24,14 +24,17 @@ export const ACTIVITIES = [
 export const ROUTINES = [
   {
     title: 'Após acordar',
-    image: `cartoonDay`
+    image: 'cartoonDay',
+    color: '#37c1f0'
   },
   {
     title: 'Antes de dormir',
-    image: `cartoonNight`
+    image: 'cartoonNight',
+    color: '#011f39'
   },
   {
     title: 'Domingos',
-    image: `cartoonDay`
+    image: 'cartoonDay',
+    color: '#399e5a'
   }
 ]

@@ -9,22 +9,25 @@ export default class CarouselRoutineScreen extends React.Component {
   static navigationOptions = {
     header: null
   }
+
   constructor (props) {
     super(props)
     this.state = {
       isRoutinesMenu: true
     }
   }
+
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }
+
   componentWillUnmount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
 
   render () {
     return (
-      <View>
+      <View style={{ backgroundColor: '#fff7ae' }}>
         <StatusBar hidden />
         <RoutineCarousel data={this.state.isRoutinesMenu ? ROUTINES : ACTIVITIES} />
       </View>

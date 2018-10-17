@@ -5,11 +5,15 @@ import SingleActivityScreen from './screens/SingleActivityScreen'
 import SingleActivityClockScreen from './screens/SingleActivityClockScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import CarouselRoutineScreen from "./screens/CarouselRoutineScreen";
+import CarouselRoutineScreen from './screens/CarouselRoutineScreen'
+import { Font } from 'expo'
 
 export default class App extends React.Component {
   componentDidMount () {
     _setDefault()
+    Font.loadAsync({
+      'Baloo': require('./assets/fonts/Baloo-Regular.ttf')
+    })
   }
 
   render () {
