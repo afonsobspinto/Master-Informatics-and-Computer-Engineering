@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Text, View } from 'react-native'
+import { VISUAL_SYTLE } from '../helpers/SettingTypes'
+import { _storeSetting } from '../helpers/Settings'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -25,9 +27,17 @@ export default class HomeScreen extends React.Component {
         />
         <Text />
         <Button
-          title='Go to Routine Screen'
+          title='Go to Routine Screen Photo'
           onPress={() => {
-            this.props.navigation.navigate('RoutineScreen')
+            _storeSetting(VISUAL_SYTLE, 'photo').then(() => this.props.navigation.navigate('RoutineScreen'))
+          }}
+        /><Text />
+        <Button
+          title='Go to Routine Screen Cartoon'
+          onPress={() => {
+            _storeSetting(VISUAL_SYTLE, 'cartoon').then(() => {
+              this.props.navigation.navigate('RoutineScreen')
+            })
           }}
         />
         <Text />

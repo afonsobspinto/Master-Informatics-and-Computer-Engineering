@@ -1,9 +1,12 @@
 const images = {
   routine: {
-    cartoonDay: require('./routine/sun.png'),
-    cartoonNight: require('./routine/moon.png'),
+    cartoonDay: require('./sun.png'),
+    cartoonNight: require('./moon.png'),
     brushTeeth: require('./activity/brush-teeth.png'),
-    takeBath: require('./activity/take-bath.png')
+    takeBath: require('./activity/take-bath.png'),
+    photoDay: require('./sun_pic.png'),
+    photoNight: require('./moon_pic.png')
+
   },
   button: {
     playButton: require('./play.png')
