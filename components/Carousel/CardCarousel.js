@@ -17,7 +17,7 @@ export default class CardCarousel extends React.Component {
     return (
       <Card
         item={item}
-        isRoutineButton={this.props.isRoutineButton}
+        isRoutineCard={this.props.isRoutine}
         navigation={this.props.navigation}
         onPress={this.onCardPress}
       />

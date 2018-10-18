@@ -65,13 +65,21 @@ export const getCardStyle = (color) => {
       fontSize: 35,
       color: '#fff'
     },
-    cardImage: {
+    cardRoutineImage: {
       height: '120%',
       width: '70%',
       position: 'absolute',
       right: '-5%',
       bottom: '-30%',
       transform: [{ rotate: '25deg' }]
+    },
+    cardActivityImage: {
+      height: '120%',
+      width: '80%',
+      position: 'absolute',
+      right: '10%',
+      bottom: '-30%',
+      transform: [{ rotate: '-25deg' }]
     },
     dotStyle: {
       width: 10,

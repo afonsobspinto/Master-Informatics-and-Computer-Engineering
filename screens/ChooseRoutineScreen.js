@@ -26,7 +26,7 @@ export default class ChooseRoutineScreen extends React.Component {
         <CardCarousel
           data={demoRoutines}
           navigation={this.props.navigation}
-          isRoutineButton
+          isRoutine
         />
       </View>
     )
