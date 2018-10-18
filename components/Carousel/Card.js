@@ -6,21 +6,29 @@ import CardButton from './CardButton'
 import { getCardStyle } from '../../styles/CardCarousel.style'
 
 export default class Card extends React.Component {
+  onRoutinePress = () => {
+    this.props.navigation.navigate('ChooseActivityScreen', { activities: this.props.item.activities })
+  }
+
+  onActivityPress = () => {
+    this.props.navigation.navigate('SingleActivity')
+  }
+
   render () {
-    const { item, navigation, renderButton } = this.props
+    const { item, isRoutineButton } = this.props
 
     const cardStyle = getCardStyle(item.color)
     return (
       <View style={cardStyle.cardContainer}>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate('ChooseActivityScreen', { activities: item.activities })}>
+          onPress={isRoutineButton ? this.onRoutinePress : this.onActivityPress}>
           <View style={cardStyle.card}>
             <Image
               source={Images.routine[item.image]}
               resizeMode={'center'}
               style={cardStyle.cardImage} />
             <Text style={cardStyle.cardTitle}> { item.title } </Text>
-            {renderButton && <CardButton cardStyle={cardStyle} />}
+            {isRoutineButton && <CardButton cardStyle={cardStyle} />}
           </View>
         </TouchableWithoutFeedback>
       </View>

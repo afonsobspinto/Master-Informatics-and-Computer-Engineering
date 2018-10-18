@@ -23,7 +23,11 @@ export default class ChooseRoutineScreen extends React.Component {
     return (
       <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
-        <CardCarousel data={demoRoutines} navigation={this.props.navigation} renderButton />
+        <CardCarousel
+          data={demoRoutines}
+          navigation={this.props.navigation}
+          isRoutineButton
+        />
       </View>
     )
   }
