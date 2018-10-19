@@ -8,20 +8,23 @@ export class ActivityProgressClock extends React.Component {
     super(props)
     this.state = {
       progress: this.props.progress,
-      color: this.props.color,
+      color: 'gray',
       updateRate: this.props.updateRate,
-      duration: this.props.duration
+      duration: this.props.duration,
+      isPaused: this.props.isPaused
     }
 
     this.interval = setInterval(() => {
-      if (this.state.progress > 0.2) this.state.color = 'green'
-      if (this.state.progress >= 0.6 && this.state.progress < 0.85) this.state.color = 'orange'
-      if (this.state.progress >= 0.85) this.state.color = 'red'
+      if (this.props.progress > 0.2) this.state.color = 'green'
+      if (this.props.progress >= 0.6 && this.props.progress < 0.85) this.state.color = 'orange'
+      if (this.props.progress >= 0.85) this.state.color = 'red'
 
-      this.setState(() => {
-        return { progress: this.state.progress + this.state.updateRate / (this.state.duration * 60) }
-      })
-    }, this.state.updateRate * 1000)
+      if (!this.props.isPaused) {
+        this.setState(() => {
+          return { progress: this.props.progress + this.props.updateRate / (this.props.duration * 60) }
+        })
+      }
+    }, this.props.updateRate * 1000)
   }
 
   componentWillUnmount () {
@@ -32,7 +35,7 @@ export class ActivityProgressClock extends React.Component {
     return (
       <View>
         <Progress.Circle
-          progress={this.state.progress}
+          progress={this.props.progress}
           size={125}
           thickness={60}
           color={this.state.color}
