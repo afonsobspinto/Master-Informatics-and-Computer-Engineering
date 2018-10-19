@@ -4,12 +4,12 @@
 ## Increment Description
 In this update we introduce the core appearence and funtionality of the various screens related to the Child user interface. The objective was just to nail the general look, which was achieved and approved.
 ## Closed PBI's
-[`#7`](https://gitlab.com/ldso18-19/t4g2/issues/7)
+[`#7`](https://gitlab.com/ldso18-19/t4g2/issues/7) Select Day/Night Routine
 
-[`#8`](https://gitlab.com/ldso18-19/t4g2/issues/8)
+[`#8`](https://gitlab.com/ldso18-19/t4g2/issues/8) Start Single Activity
 
-[`#9`](https://gitlab.com/ldso18-19/t4g2/issues/9)
+[`#9`](https://gitlab.com/ldso18-19/t4g2/issues/9) Pause Activity
 
-[`#11`](https://gitlab.com/ldso18-19/t4g2/issues/11)
+[`#11`](https://gitlab.com/ldso18-19/t4g2/issues/11) Complete Activity
 
-[`#32`](https://gitlab.com/ldso18-19/t4g2/issues/32)
+[`#32`](https://gitlab.com/ldso18-19/t4g2/issues/32) Play Daily/Nightly Routine
