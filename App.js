@@ -5,6 +5,7 @@ import SingleActivityScreen from './screens/SingleActivityScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 import CarouselRoutineScreen from './screens/CarouselRoutineScreen'
+import ChildMainMenuScreen from './screens/ChildMainMenuScreen'
 
 export default class App extends React.Component {
   componentDidMount () {
@@ -22,5 +23,6 @@ const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
   SingleActivity: SingleActivityScreen,
   RoutineScreen: ChooseRoutineScreen,
-  CarouselRoutineScreen: CarouselRoutineScreen
+  CarouselRoutineScreen: CarouselRoutineScreen,
+  ChildMainMenuScreen: ChildMainMenuScreen
 })

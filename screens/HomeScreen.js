@@ -13,6 +13,13 @@ export default class HomeScreen extends React.Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
         <Button
+          title='Go to Child Main Menu Screen'
+          onPress={() => {
+            this.props.navigation.navigate('ChildMainMenuScreen')
+          }}
+        />
+        <Text />
+        <Button
           title='Go to Single Activity Screen'
           onPress={() => {
             this.props.navigation.navigate('SingleActivity', { progressType: 'bar' })
