@@ -1,5 +1,5 @@
 # Routine management system
-![Issues Open](https://img.shields.io/badge/issues-open_36-54cc1f.svg) ![Issues Closed](https://img.shields.io/badge/issues-closed_5-d7af23.svg) ![Downloads](https://img.shields.io/badge/downloads-0_total-54cc1f.svg) ![Version](https://img.shields.io/badge/version-0.1.0-54cc1f.svg)
+![Issues Open](https://img.shields.io/badge/issues-open_34-54cc1f.svg) ![Issues Closed](https://img.shields.io/badge/issues-closed_0-d7af23.svg) ![Downloads](https://img.shields.io/badge/downloads-0_total-54cc1f.svg) ![Version](https://img.shields.io/badge/version-0.0.1-54cc1f.svg)
 
 Routine management system is a mobile application to handle routines of children and teenagers diagnosed with **autism spectrum disorder** in a form of game.
 ## Guiding principles
