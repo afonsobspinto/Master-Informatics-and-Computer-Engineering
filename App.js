@@ -4,11 +4,15 @@ import HomeScreen from './screens/HomeScreen'
 import ActivityScreen from './screens/ActivityScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import CarouselRoutineScreen from './screens/CarouselRoutineScreen'
+import ChooseActivityScreen from './screens/ChooseActivityScreen'
+import { Font } from 'expo'
 
 export default class App extends React.Component {
-  componentDidMount () {
+  async componentDidMount () {
     _setDefault()
+    await Font.loadAsync({
+      'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf')
+    })
   }
 
   render () {
@@ -21,6 +25,6 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
   Activity: ActivityScreen,
-  RoutineScreen: ChooseRoutineScreen,
-  CarouselRoutineScreen: CarouselRoutineScreen
+  ChooseRoutineScreen: ChooseRoutineScreen,
+  ChooseActivityScreen: ChooseActivityScreen
 })

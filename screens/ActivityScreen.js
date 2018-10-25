@@ -34,7 +34,7 @@ export default class SingleActivityScreen extends Component {
   }
 
   componentDidMount () {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
+    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
 
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
