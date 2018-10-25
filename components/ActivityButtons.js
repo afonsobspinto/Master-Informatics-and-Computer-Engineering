@@ -3,13 +3,25 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
 
 export class ActivityButtons extends React.Component {
+  displayCorrectButton = () => {
+    if (this.props.activityPaused) {
+      return (<TouchableOpacity onPress={this.props.resumeActivity}>
+        <Image style={styles.pauseButton} source={require('../assets/images/nav-resume.png')} />
+      </TouchableOpacity>
+      )
+    } else {
+      return (<TouchableOpacity onPress={this.props.pauseActivity}>
+        <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
+      </TouchableOpacity>
+      )
+    }
+  }
+
   render () {
     return (
       <View style={{ flex: 1, flexDirection: 'row' }} >
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
-          <TouchableOpacity onPress={this.props.pauseActivity}>
-            <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
-          </TouchableOpacity>
+          {this.displayCorrectButton()}
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
           <TouchableOpacity onPress={this.props.cancelActivity}>
@@ -28,6 +40,7 @@ export class ActivityButtons extends React.Component {
 
 ActivityButtons.propTypes = {
   pauseActivity: PropTypes.func.isRequired,
+  resumeActivity: PropTypes.func.isRequired,
   cancelActivity: PropTypes.func.isRequired,
   completeActivity: PropTypes.func.isRequired
 }

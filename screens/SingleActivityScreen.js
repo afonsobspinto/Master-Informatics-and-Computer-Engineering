@@ -52,7 +52,7 @@ export default class SingleActivityScreen extends Component {
 
   pauseActivity (e) {
     e.preventDefault()
-    this.setState(() => { return { isPaused: true } })
+    this.setState(() => ({ isPaused: true }))
   }
 
   cancelActivity () {
@@ -63,8 +63,9 @@ export default class SingleActivityScreen extends Component {
     this.props.navigation.goBack()
   }
 
-  resumeActivity () {
-    this.setState(() => { return { isPaused: false } })
+  resumeActivity (e) {
+    e.preventDefault()
+    this.setState(() => ({ isPaused: false }))
   }
 
   render () {
@@ -105,7 +106,9 @@ export default class SingleActivityScreen extends Component {
           </View>
           <View style={{ flex: 3 }} >
             <ActivityButtons
+              activityPaused={this.state.isPaused}
               pauseActivity={this.pauseActivity}
+              resumeActivity={this.resumeActivity}
               cancelActivity={this.cancelActivity}
               completeActivity={this.completeActivity}
               isCompletable={this.state.isCompletable}
