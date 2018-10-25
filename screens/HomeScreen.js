@@ -15,14 +15,14 @@ export default class HomeScreen extends React.Component {
         <Button
           title='Go to Single Activity Screen'
           onPress={() => {
-            this.props.navigation.navigate('SingleActivity', { progressType: 'bar' })
+            this.props.navigation.navigate('Activity', { progressType: 'bar' })
           }}
         />
         <Text />
         <Button
           title='Go to Single Activity Clock Screen'
           onPress={() => {
-            this.props.navigation.navigate('SingleActivity', { progressType: 'clock' })
+            this.props.navigation.navigate('Activity', { progressType: 'clock' })
           }}
         />
         <Text />

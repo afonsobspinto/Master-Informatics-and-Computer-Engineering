@@ -6,12 +6,12 @@ export class ActivityButtons extends React.Component {
   displayCorrectButton = () => {
     if (this.props.activityPaused) {
       return (<TouchableOpacity onPress={this.props.resumeActivity}>
-        <Image style={styles.pauseButton} source={require('../assets/images/nav-resume.png')} />
+        <Image style={styles.pauseButton} source={require('../../assets/images/nav-resume.png')} />
       </TouchableOpacity>
       )
     } else {
       return (<TouchableOpacity onPress={this.props.pauseActivity}>
-        <Image style={styles.pauseButton} source={require('../assets/images/nav-pause.png')} />
+        <Image style={styles.pauseButton} source={require('../../assets/images/nav-pause.png')} />
       </TouchableOpacity>
       )
     }
@@ -25,12 +25,12 @@ export class ActivityButtons extends React.Component {
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
           <TouchableOpacity onPress={this.props.cancelActivity}>
-            <Image style={styles.cancelButton} source={require('../assets/images/nav-cancel.png')} />
+            <Image style={styles.cancelButton} source={require('../../assets/images/nav-cancel.png')} />
           </TouchableOpacity>
         </View>
         <View style={[{ flex: 1 }, styles.buttonBackground]} >
           <TouchableOpacity onPress={this.props.completeActivity} disabled={!this.props.isCompletable} >
-            <Image style={styles.confirmButton} source={require('../assets/images/nav-complete.png')} />
+            <Image style={styles.confirmButton} source={require('../../assets/images/nav-complete.png')} />
           </TouchableOpacity>
         </View>
       </View>

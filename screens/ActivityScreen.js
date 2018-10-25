@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StatusBar } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
-import { ActivityButtons } from '../components/ActivityButtons'
 import { ActivityProgressBar } from '../components/ActivityProgressBar'
 import { ActivityProgressClock } from '../components/ActivityProgressClock'
-import styles from '../styles/SingleActivityScreen.style'
+import { CompleteButton } from '../components/Activity/CompleteButton'
+import { PauseButton } from '../components/Activity/PauseButton'
+import { CancelButton } from '../components/Activity/CancelButton'
+
+import styles from '../styles/Activity.style'
 
 export default class SingleActivityScreen extends Component {
   constructor (props) {
@@ -13,6 +16,7 @@ export default class SingleActivityScreen extends Component {
     this.pauseActivity = this.pauseActivity.bind(this)
     this.cancelActivity = this.cancelActivity.bind(this)
     this.completeActivity = this.completeActivity.bind(this)
+    this.resumeActivity = this.resumeActivity.bind(this)
   }
 
   static navigationOptions = {
@@ -69,7 +73,7 @@ export default class SingleActivityScreen extends Component {
   }
 
   render () {
-    let progressComponent
+    /* let progressComponent
 
     if (this.state.progressType === 'bar') {
       progressComponent =
@@ -87,12 +91,12 @@ export default class SingleActivityScreen extends Component {
           duration={this.state.taskDurationMinutes}
           isPaused={this.state.isPaused}
         />
-    }
+    } */
 
     return (
       <View style={{ flex: 1, flexDirection: 'row' }} >
         <StatusBar hidden />
-        <View style={{ flex: 1, flexDirection: 'column', margin: 6, marginRight: 0 }} >
+        {/* <View style={{ flex: 1, flexDirection: 'column', margin: 6, marginRight: 0 }} >
           <View style={[{ flex: 1.5, backgroundColor: '#7986CB' }, styles.centerItem]} >
             <Text style={styles.taskName} >{this.state.taskTitle}</Text>
           </View>
@@ -114,6 +118,11 @@ export default class SingleActivityScreen extends Component {
               isCompletable={this.state.isCompletable}
             />
           </View>
+        </View> */}
+        <View style={styles.buttonContainer}>
+          <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
+          <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
+          <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
         </View>
       </View>
     )
