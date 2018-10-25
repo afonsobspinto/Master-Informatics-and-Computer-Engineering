@@ -4,11 +4,15 @@ import HomeScreen from './screens/HomeScreen'
 import SingleActivityScreen from './screens/SingleActivityScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import CarouselRoutineScreen from './screens/CarouselRoutineScreen'
+import ChooseActivityScreen from './screens/ChooseActivityScreen'
+import { Font } from 'expo'
 
 export default class App extends React.Component {
   componentDidMount () {
     _setDefault()
+    Font.loadAsync({
+      'Baloo': require('./assets/fonts/Baloo-Regular.ttf')
+    })
   }
 
   render () {
@@ -21,6 +25,6 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
   SingleActivity: SingleActivityScreen,
-  RoutineScreen: ChooseRoutineScreen,
-  CarouselRoutineScreen: CarouselRoutineScreen
+  ChooseRoutineScreen: ChooseRoutineScreen,
+  ChooseActivityScreen: ChooseActivityScreen
 })
