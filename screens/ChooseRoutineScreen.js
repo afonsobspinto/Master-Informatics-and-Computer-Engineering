@@ -1,39 +1,34 @@
 import React from 'react'
-import { StatusBar, View, StyleSheet } from 'react-native'
+import { StatusBar, View } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
-import RoutineButton from '../components/RoutineButton'
+import CardCarousel from '../components/Carousel/CardCarousel'
+import { demoRoutines } from '../entries/entries'
+import { backgroundColor } from '../styles/General.style'
 
 export default class ChooseRoutineScreen extends React.Component {
   static navigationOptions = {
-    title: 'Rotinas',
     header: null
-  };
+  }
 
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }
+
   componentWillUnmount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
 
   render () {
     return (
-      <View style={styles.view}>
+      <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
-        <RoutineButton type='Day' />
-        <RoutineButton type='Night' />
+        <CardCarousel
+          data={demoRoutines}
+          navigation={this.props.navigation}
+          isRoutine
+        />
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: '#000000'
-  }
-})
