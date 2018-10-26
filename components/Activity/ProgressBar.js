@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import PropTypes from 'prop-types'
 import styles, { buttonHeight } from '../../styles/Activity.style'
 import * as colors from '../../styles/Colors'
 
@@ -42,4 +43,9 @@ export class ProgressBar extends React.Component {
       </View>
     )
   }
+}
+
+ProgressBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+  isPaused: PropTypes.bool.isRequired
 }

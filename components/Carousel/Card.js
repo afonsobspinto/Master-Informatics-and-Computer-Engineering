@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native'
+import PropTypes from 'prop-types'
 import Images from '../../assets/images/images'
 import CardButton from './CardButton'
 
@@ -28,4 +29,10 @@ export default class Card extends React.Component {
       </View>
     )
   }
+}
+
+Card.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
+  isRoutineCard: PropTypes.bool.isRequired
 }

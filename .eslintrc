@@ -4,9 +4,6 @@
   "globals": {
     "__DEV__": false
   },
-  "rules": {
-    "react/prop-types": 0
-  },
   "env": {
     "jest": true
   }

@@ -24,7 +24,8 @@ export class CompleteButton extends React.Component {
 
 CompleteButton.propTypes = {
   completeActivity: PropTypes.func.isRequired,
-  isCompletable: PropTypes.bool
+  isCompletable: PropTypes.bool.isRequired,
+  style: PropTypes.object.isRequired
 }
 
 const styles = StyleSheet.create({

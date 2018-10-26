@@ -22,7 +22,8 @@ export class CancelButton extends React.Component {
 }
 
 CancelButton.propTypes = {
-  cancelActivity: PropTypes.func.isRequired
+  cancelActivity: PropTypes.func.isRequired,
+  style: PropTypes.object
 }
 
 const styles = StyleSheet.create({

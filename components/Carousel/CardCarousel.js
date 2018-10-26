@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import PropTypes from 'prop-types'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
 import Card from './Card'
@@ -64,4 +65,10 @@ export default class CardCarousel extends React.Component {
       </View>
     )
   }
+}
+
+CardCarousel.propTypes = {
+  isRoutine: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 }

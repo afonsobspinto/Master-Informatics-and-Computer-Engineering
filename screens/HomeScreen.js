@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Text, View } from 'react-native'
+import PropTypes from 'prop-types'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -47,4 +48,8 @@ export default class HomeScreen extends React.Component {
       </View>
     )
   }
+}
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }

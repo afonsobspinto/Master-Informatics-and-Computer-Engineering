@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import PropTypes from 'prop-types'
 import styles, { clockHeight } from '../../styles/Activity.style'
 import * as colors from '../../styles/Colors'
 
@@ -39,4 +40,9 @@ export class ProgressClock extends React.Component {
       </View>
     )
   }
+}
+
+ProgressClock.propTypes = {
+  progress: PropTypes.number.isRequired,
+  isPaused: PropTypes.bool.isRequired
 }

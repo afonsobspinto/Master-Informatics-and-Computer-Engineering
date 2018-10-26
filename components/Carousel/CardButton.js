@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, Image, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 import Images from '../../assets/images/images'
 
 export default class CardButton extends React.Component {
@@ -18,4 +19,8 @@ export default class CardButton extends React.Component {
       </TouchableOpacity>
     )
   }
+}
+
+CardButton.propTypes = {
+  cardStyle: PropTypes.object.isRequired
 }

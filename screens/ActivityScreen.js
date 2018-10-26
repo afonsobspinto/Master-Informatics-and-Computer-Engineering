@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Image, Text, View, StatusBar } from 'react-native'
+import PropTypes from 'prop-types'
 import { ScreenOrientation } from 'expo'
 
 import { ProgressBar } from '../components/Activity/ProgressBar'
@@ -11,7 +12,7 @@ import Images from '../assets/images/images'
 
 import styles from '../styles/Activity.style'
 
-export default class SingleActivityScreen extends Component {
+export default class ActivityScreen extends Component {
   constructor (props) {
     super(props)
     this.pauseActivity = this.pauseActivity.bind(this)
@@ -88,4 +89,8 @@ export default class SingleActivityScreen extends Component {
       </View>
     )
   }
+}
+
+ActivityScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }

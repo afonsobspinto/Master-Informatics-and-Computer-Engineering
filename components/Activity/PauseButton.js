@@ -24,7 +24,8 @@ export class PauseButton extends React.Component {
 PauseButton.propTypes = {
   resumeActivity: PropTypes.func.isRequired,
   pauseActivity: PropTypes.func.isRequired,
-  isPaused: PropTypes.bool
+  isPaused: PropTypes.bool.isRequired,
+  style: PropTypes.object.isRequired
 }
 
 const styles = StyleSheet.create({
