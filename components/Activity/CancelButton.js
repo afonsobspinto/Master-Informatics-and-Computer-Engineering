@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { buttonStyle } from '../../styles/Activity.style'
+import { red } from '../../styles/Colors'
 
 export class CancelButton extends React.Component {
   render () {
@@ -25,7 +26,7 @@ CancelButton.propTypes = {
 const styles = StyleSheet.create({
   button: {
     ...buttonStyle,
-    backgroundColor: '#e63b2e'
+    backgroundColor: red
   },
   image: {
     height: '35%',

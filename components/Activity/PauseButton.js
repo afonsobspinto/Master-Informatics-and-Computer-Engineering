@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { buttonStyle } from '../../styles/Activity.style'
+import { yellow } from '../../styles/Colors'
 
 export class PauseButton extends React.Component {
   render () {
@@ -27,7 +28,7 @@ PauseButton.propTypes = {
 const styles = StyleSheet.create({
   button: {
     ...buttonStyle,
-    backgroundColor: '#dba159'
+    backgroundColor: yellow
   },
   image: {
     height: '50%',

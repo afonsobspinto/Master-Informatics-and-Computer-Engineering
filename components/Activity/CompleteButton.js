@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { buttonStyle } from '../../styles/Activity.style'
+import { green } from '../../styles/Colors'
 
 export class CompleteButton extends React.Component {
   render () {
@@ -27,7 +28,7 @@ CompleteButton.propTypes = {
 const styles = StyleSheet.create({
   button: {
     ...buttonStyle,
-    backgroundColor: '#16db65'
+    backgroundColor: green
   },
   image: {
     height: '50%',

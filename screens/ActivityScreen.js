@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
-// import { ActivityProgressBar } from '../components/ActivityProgressBar'
+import { ProgressBar } from '../components/Activity/ProgressBar'
 // import { ActivityProgressClock } from '../components/ActivityProgressClock'
 import { CompleteButton } from '../components/Activity/CompleteButton'
 import { PauseButton } from '../components/Activity/PauseButton'
@@ -120,6 +120,10 @@ export default class SingleActivityScreen extends Component {
           </View>
         </View> */}
         <View style={styles.buttonContainer}>
+          <ProgressBar progress={this.state.progress}
+            updateRate={this.state.updateRate}
+            duration={this.state.taskDurationMinutes}
+            isPaused={this.state.isPaused} />
           <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
           <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
