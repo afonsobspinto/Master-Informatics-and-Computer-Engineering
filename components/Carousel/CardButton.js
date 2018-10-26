@@ -10,7 +10,7 @@ export default class CardButton extends React.Component {
         onPress={this.onPress}
         style={this.props.cardStyle.playButton}>
         <Image
-          source={Images.button.playButton}
+          source={Images.ui.play}
           resizeMode={'contain'}
           style={this.props.cardStyle.playIcon}
         />
