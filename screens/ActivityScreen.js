@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { View, StatusBar } from 'react-native'
+import { Image, Text, View, StatusBar } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
 import { ProgressBar } from '../components/Activity/ProgressBar'
-// import { ActivityProgressClock } from '../components/ActivityProgressClock'
+import { ProgressClock } from '../components/Activity/ProgressClock'
 import { CompleteButton } from '../components/Activity/CompleteButton'
 import { PauseButton } from '../components/Activity/PauseButton'
 import { CancelButton } from '../components/Activity/CancelButton'
+import Images from '../assets/images/images'
 
 import styles from '../styles/Activity.style'
 
@@ -23,14 +24,14 @@ export default class SingleActivityScreen extends Component {
     header: null
   }
 
+  activity = this.props.navigation.state.params.activity
+
   state = {
     progress: 0,
-    taskDurationMinutes: 0.1,
-    taskTitle: 'Lavar os dentes',
+    progressType: this.props.navigation.state.params.progressType,
     updateRate: 0.075,
     isPaused: false,
-    isCompletable: false,
-    progressType: this.props.navigation.state.params.progressType
+    isCompletable: false
   }
 
   componentDidMount () {
@@ -44,86 +45,42 @@ export default class SingleActivityScreen extends Component {
       }
 
       this.setState(() => {
-        return { progress: this.state.progress + this.state.updateRate / (this.state.taskDurationMinutes * 60) }
+        return { progress: this.state.progress + this.state.updateRate / this.activity.duration }
       })
     }, this.state.updateRate * 1000)
   }
 
   componentWillUnmount () {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
     clearInterval(this.interval)
   }
 
-  pauseActivity (e) {
-    e.preventDefault()
+  pauseActivity () {
     this.setState(() => ({ isPaused: true }))
   }
 
   cancelActivity () {
-    this.props.navigation.goBack()
+    this.props.navigation.popToTop()
   }
 
   completeActivity () {
-    this.props.navigation.goBack()
+    this.props.navigation.popToTop()
   }
 
-  resumeActivity (e) {
-    e.preventDefault()
+  resumeActivity () {
     this.setState(() => ({ isPaused: false }))
   }
 
   render () {
-    /* let progressComponent
-
-    if (this.state.progressType === 'bar') {
-      progressComponent =
-        <ActivityProgressBar
-          progress={this.state.progress}
-          updateRate={this.state.updateRate}
-          duration={this.state.taskDurationMinutes}
-          isPaused={this.state.isPaused}
-        />
-    } else if (this.state.progressType === 'clock') {
-      progressComponent =
-        <ActivityProgressClock
-          progress={this.state.progress}
-          updateRate={this.state.updateRate}
-          duration={this.state.taskDurationMinutes}
-          isPaused={this.state.isPaused}
-        />
-    } */
-
     return (
-      <View style={{ flex: 1, flexDirection: 'row' }} >
+      <View style={[{ backgroundColor: this.activity.color }, styles.activityScreen]} >
         <StatusBar hidden />
-        {/* <View style={{ flex: 1, flexDirection: 'column', margin: 6, marginRight: 0 }} >
-          <View style={[{ flex: 1.5, backgroundColor: '#7986CB' }, styles.centerItem]} >
-            <Text style={styles.taskName} >{this.state.taskTitle}</Text>
-          </View>
-          <View style={[{ flex: 5, backgroundColor: '#C5CAE9' }, styles.centerItem]} >
-            <Image style={styles.themeImage} source={require('../assets/images/act-brush-teeth.png')} />
-          </View>
+        <Image style={styles.image} resizeMode={'center'} source={Images[this.activity.image]} />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{this.activity.title}</Text>
         </View>
-        <View style={{ flex: 1, flexDirection: 'column', margin: 6, marginLeft: 0 }} >
-          <View style={[{ flex: 5 }, styles.centerItem]} >
-            {progressComponent}
-          </View>
-          <View style={{ flex: 3 }} >
-            <ActivityButtons
-              activityPaused={this.state.isPaused}
-              pauseActivity={this.pauseActivity}
-              resumeActivity={this.resumeActivity}
-              cancelActivity={this.cancelActivity}
-              completeActivity={this.completeActivity}
-              isCompletable={this.state.isCompletable}
-            />
-          </View>
-        </View> */}
+        {this.state.progressType === 'clock' && <ProgressClock progress={this.state.progress} isPaused={this.state.isPaused} />}
         <View style={styles.buttonContainer}>
-          <ProgressBar progress={this.state.progress}
-            updateRate={this.state.updateRate}
-            duration={this.state.taskDurationMinutes}
-            isPaused={this.state.isPaused} />
+          {this.state.progressType === 'bar' && <ProgressBar progress={this.state.progress} isPaused={this.state.isPaused} />}
           <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
           <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />

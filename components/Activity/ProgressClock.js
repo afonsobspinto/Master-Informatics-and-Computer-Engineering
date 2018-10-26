@@ -1,11 +1,11 @@
 import React from 'react'
 import { View } from 'react-native'
-import styles, { buttonHeight } from '../../styles/Activity.style'
+import styles, { clockHeight } from '../../styles/Activity.style'
 import * as colors from '../../styles/Colors'
 
 import * as Progress from 'react-native-progress'
 
-export class ProgressBar extends React.Component {
+export class ProgressClock extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -27,18 +27,15 @@ export class ProgressBar extends React.Component {
 
   render () {
     return (
-      <View style={styles.progressBarContainer}>
-        <Progress.Bar
-          width={null}
-          height={buttonHeight / 1.5}
-          borderRadius={0}
-          borderWidth={0}
+      <View style={styles.progressClockContainer}>
+        <Progress.Circle
           progress={this.props.progress}
+          size={clockHeight}
+          thickness={clockHeight / 2}
           color={this.state.color}
+          unfilledColor={colors.gray}
+          borderWidth={0}
         />
-        <View style={[{ left: '20%' }, styles.progressBarDivider]} />
-        <View style={[{ left: '60%' }, styles.progressBarDivider]} />
-        <View style={[{ left: '85%' }, styles.progressBarDivider]} />
       </View>
     )
   }

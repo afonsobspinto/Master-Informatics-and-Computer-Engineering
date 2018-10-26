@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { gray } from './Colors'
 
-const buttonHeight = Layout.window.height * 0.12
+export const buttonHeight = Layout.window.height * 0.12
+export const clockHeight = Layout.window.height * 0.24
 const padding = Layout.window.height * 0.03
 
 export const buttonStyle = {
@@ -20,6 +21,10 @@ export const buttonStyle = {
 }
 
 export default StyleSheet.create({
+  activityScreen: {
+    flex: 1,
+    justifyContent: 'center'
+  },
   largeButton: {
     height: buttonHeight,
     aspectRatio: 1,
@@ -64,5 +69,43 @@ export default StyleSheet.create({
     opacity: 0.5,
     height: buttonHeight / 1.5,
     position: 'absolute'
+  },
+  progressClockContainer: {
+    height: clockHeight + 12,
+    width: clockHeight + 12,
+    borderRadius: (clockHeight + 12) / 2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    position: 'absolute',
+    bottom: padding,
+    left: padding
+  },
+  titleContainer: {
+    position: 'absolute',
+    top: 0,
+    padding: padding,
+    paddingLeft: padding * 1.8
+  },
+  title: {
+    fontFamily: 'LinotteBold',
+    fontSize: 50,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 10
+  },
+  image: {
+    position: 'absolute',
+    height: '60%',
+    alignSelf: 'center'
   }
 })

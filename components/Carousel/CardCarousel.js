@@ -8,6 +8,8 @@ import styles, { sliderWidth, itemWidth } from '../../styles/CardCarousel.style'
 export default class CardCarousel extends React.Component {
   constructor (props) {
     super(props)
+    this.onRoutinePress = this.onRoutinePress.bind(this)
+    this.onActivityPress = this.onActivityPress.bind(this)
     this.state = {
       activeSlide: 0
     }
@@ -18,10 +20,17 @@ export default class CardCarousel extends React.Component {
       <Card
         item={item}
         isRoutineCard={this.props.isRoutine}
-        navigation={this.props.navigation}
-        onPress={this.onCardPress}
+        onPress={this.props.isRoutine ? this.onRoutinePress : this.onActivityPress}
       />
     )
+  }
+
+  onRoutinePress = (routine) => {
+    this.props.navigation.navigate('ChooseActivityScreen', { activities: routine.activities })
+  }
+
+  onActivityPress = (activity) => {
+    this.props.navigation.navigate('Activity', { progressType: 'bar', activity: activity })
   }
 
   get pagination () {

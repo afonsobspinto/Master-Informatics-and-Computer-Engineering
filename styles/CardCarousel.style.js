@@ -64,7 +64,10 @@ export const getCardStyle = (color) => {
     cardTitle: {
       fontFamily: 'LinotteBold',
       fontSize: 35,
-      color: '#fff'
+      color: '#fff',
+      textShadowColor: 'rgba(0, 0, 0, 0.2)',
+      textShadowOffset: { width: 0, height: 1 },
+      textShadowRadius: 3
     },
     cardRoutineImage: {
       height: '120%',
