@@ -11,6 +11,7 @@ export default class CardCarousel extends React.Component {
     super(props)
     this.onRoutinePress = this.onRoutinePress.bind(this)
     this.onActivityPress = this.onActivityPress.bind(this)
+    this.onRoutineButtonPress = this.onRoutineButtonPress.bind(this)
     this.state = {
       activeSlide: 0
     }
@@ -22,12 +23,17 @@ export default class CardCarousel extends React.Component {
         item={item}
         isRoutineCard={this.props.isRoutine}
         onPress={this.props.isRoutine ? this.onRoutinePress : this.onActivityPress}
+        onButtonPress={this.props.isRoutine && this.onRoutineButtonPress}
       />
     )
   }
 
   onRoutinePress = (routine) => {
     this.props.navigation.navigate('ChooseActivityScreen', { activities: routine.activities })
+  }
+
+  onRoutineButtonPress = (routine) => {
+    this.props.navigation.navigate('Activity', { progressType: 'bar', activity: routine.activities[0] })
   }
 
   onActivityPress = (activity) => {
@@ -68,7 +74,7 @@ export default class CardCarousel extends React.Component {
 }
 
 CardCarousel.propTypes = {
-  isRoutine: PropTypes.bool.isRequired,
+  isRoutine: PropTypes.bool,
   navigation: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.array.isRequired
 }

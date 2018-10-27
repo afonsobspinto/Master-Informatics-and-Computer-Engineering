@@ -8,7 +8,7 @@ export default class CardButton extends React.Component {
     return (
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={this.onPress}
+        onPress={this.props.onPress}
         style={this.props.cardStyle.playButton}>
         <Image
           source={Images.ui.play}
@@ -22,5 +22,6 @@ export default class CardButton extends React.Component {
 }
 
 CardButton.propTypes = {
-  cardStyle: PropTypes.object.isRequired
+  cardStyle: PropTypes.object.isRequired,
+  onPress: PropTypes.func.isRequired
 }

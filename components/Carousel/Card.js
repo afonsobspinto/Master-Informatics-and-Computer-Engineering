@@ -11,6 +11,10 @@ export default class Card extends React.Component {
     this.props.onPress(this.props.item)
   }
 
+  onButtonPress = () => {
+    this.props.onButtonPress(this.props.item)
+  }
+
   render () {
     const cardStyle = getCardStyle(this.props.item.color)
     return (
@@ -23,7 +27,7 @@ export default class Card extends React.Component {
               resizeMode={'center'}
               style={this.props.isRoutineCard ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
             <Text style={cardStyle.cardTitle}> { this.props.item.title } </Text>
-            {this.props.isRoutineCard && <CardButton cardStyle={cardStyle} />}
+            {this.props.isRoutineCard && <CardButton cardStyle={cardStyle} onPress={this.onButtonPress} />}
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -33,6 +37,7 @@ export default class Card extends React.Component {
 
 Card.propTypes = {
   onPress: PropTypes.func.isRequired,
+  onButtonPress: PropTypes.func,
   item: PropTypes.object.isRequired,
-  isRoutineCard: PropTypes.bool.isRequired
+  isRoutineCard: PropTypes.bool
 }

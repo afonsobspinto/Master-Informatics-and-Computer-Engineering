@@ -25,7 +25,7 @@ PauseButton.propTypes = {
   resumeActivity: PropTypes.func.isRequired,
   pauseActivity: PropTypes.func.isRequired,
   isPaused: PropTypes.bool.isRequired,
-  style: PropTypes.object.isRequired
+  style: PropTypes.number.isRequired
 }
 
 const styles = StyleSheet.create({
