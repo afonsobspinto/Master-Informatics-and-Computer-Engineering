@@ -7,6 +7,14 @@ import CardButton from './CardButton'
 import { getCardStyle } from '../../styles/CardCarousel.style'
 
 export default class Card extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isPhoto: this.props.item.photo !== undefined
+    }
+  }
+
   onPress = () => {
     this.props.onPress(this.props.item)
   }
@@ -23,10 +31,10 @@ export default class Card extends React.Component {
           onPress={this.onPress}>
           <View style={cardStyle.card}>
             <Image
-              source={Images[this.props.item.image]}
-              resizeMode={'center'}
-              style={this.props.isRoutineCard ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
-            <Text style={cardStyle.cardTitle}> { this.props.item.title } </Text>
+              source={Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]}
+              resizeMode={this.state.isPhoto ? 'cover' : 'center'}
+              style={this.state.isPhoto ? cardStyle.cardPhoto : this.props.isRoutineCard ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
+            <Text style={this.state.isPhoto ? cardStyle.photoCardTitle : cardStyle.cardTitle}> { this.props.item.title } </Text>
             {this.props.isRoutineCard && <CardButton cardStyle={cardStyle} onPress={this.onButtonPress} />}
           </View>
         </TouchableWithoutFeedback>

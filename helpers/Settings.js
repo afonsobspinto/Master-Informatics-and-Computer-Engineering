@@ -1,5 +1,20 @@
 import { AsyncStorage } from 'react-native'
-import { VISUAL_SYTLE } from './SettingTypes'
+
+export const VISUAL_STYLE = Object.freeze({
+  key: 'settings:visual_style',
+  values: {
+    cartoon: 'cartoon',
+    photo: 'photo'
+  }
+})
+
+export const ACTIVITY_PROGRESS_TYPE = Object.freeze({
+  key: 'settings:activity_progress_type',
+  values: {
+    bar: 'bar',
+    clock: 'clock'
+  }
+})
 
 export const _storeSetting = async (key, value) => {
   try {
@@ -21,5 +36,5 @@ export const _retrieveSetting = async (key) => {
 }
 
 export const _setDefault = async () => {
-  _storeSetting(VISUAL_SYTLE, 'photo')
+  _storeSetting(ACTIVITY_PROGRESS_TYPE.key, ACTIVITY_PROGRESS_TYPE.values.bar)
 }

@@ -12,6 +12,7 @@ export class ProgressClock extends React.Component {
     this.state = {
       color: colors.darkGray
     }
+    this.times = props.activityTimes
   }
 
   componentWillUnmount () {
@@ -19,9 +20,9 @@ export class ProgressClock extends React.Component {
   }
 
   componentWillReceiveProps (props) {
-    if (props.progress >= 0.85) this.setState(() => ({ color: colors.red }))
-    else if (props.progress >= 0.6) this.setState(() => ({ color: colors.yellow }))
-    else if (props.progress > 0.2) this.setState(() => ({ color: colors.green }))
+    if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) this.setState(() => ({ color: colors.red }))
+    else if (props.elapsedTime >= this.times.goal) this.setState(() => ({ color: colors.yellow }))
+    else if (props.elapsedTime > this.times.min) this.setState(() => ({ color: colors.green }))
 
     if (props.isPaused) this.setState(() => ({ color: colors.darkGray }))
   }
@@ -30,7 +31,7 @@ export class ProgressClock extends React.Component {
     return (
       <View style={styles.progressClockContainer}>
         <Progress.Circle
-          progress={this.props.progress}
+          progress={this.props.elapsedTime / this.times.max}
           size={clockHeight}
           thickness={clockHeight / 2}
           color={this.state.color}
@@ -43,6 +44,7 @@ export class ProgressClock extends React.Component {
 }
 
 ProgressClock.propTypes = {
-  progress: PropTypes.number.isRequired,
+  elapsedTime: PropTypes.number.isRequired,
+  activityTimes: PropTypes.object.isRequired,
   isPaused: PropTypes.bool.isRequired
 }

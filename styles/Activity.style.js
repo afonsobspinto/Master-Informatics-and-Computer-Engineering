@@ -103,9 +103,23 @@ export default StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 10
   },
+  photoTitle: {
+    fontFamily: 'LinotteBold',
+    fontSize: 50,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.6)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 15
+  },
   image: {
     position: 'absolute',
     height: '60%',
+    alignSelf: 'center'
+  },
+  photo: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
     alignSelf: 'center'
   }
 })

@@ -33,11 +33,11 @@ export default class CardCarousel extends React.Component {
   }
 
   onRoutineButtonPress = (routine) => {
-    this.props.navigation.navigate('Activity', { progressType: 'bar', activity: routine.activities[0] })
+    this.props.navigation.navigate('Activity', { activity: routine.activities[0] })
   }
 
   onActivityPress = (activity) => {
-    this.props.navigation.navigate('Activity', { progressType: 'bar', activity: activity })
+    this.props.navigation.navigate('Activity', { activity: activity })
   }
 
   get pagination () {

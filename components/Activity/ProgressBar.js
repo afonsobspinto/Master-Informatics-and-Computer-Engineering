@@ -12,6 +12,7 @@ export class ProgressBar extends React.Component {
     this.state = {
       color: colors.darkGray
     }
+    this.times = props.activityTimes
   }
 
   componentWillUnmount () {
@@ -19,9 +20,9 @@ export class ProgressBar extends React.Component {
   }
 
   componentWillReceiveProps (props) {
-    if (props.progress >= 0.85) this.setState(() => ({ color: colors.red }))
-    else if (props.progress >= 0.6) this.setState(() => ({ color: colors.yellow }))
-    else if (props.progress > 0.2) this.setState(() => ({ color: colors.green }))
+    if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) this.setState(() => ({ color: colors.red }))
+    else if (props.elapsedTime >= this.times.goal) this.setState(() => ({ color: colors.yellow }))
+    else if (props.elapsedTime > this.times.min) this.setState(() => ({ color: colors.green }))
 
     if (props.isPaused) this.setState(() => ({ color: colors.darkGray }))
   }
@@ -34,18 +35,19 @@ export class ProgressBar extends React.Component {
           height={buttonHeight / 1.5}
           borderRadius={0}
           borderWidth={0}
-          progress={this.props.progress}
+          progress={this.props.elapsedTime / this.times.max}
           color={this.state.color}
         />
-        <View style={[{ left: '20%' }, styles.progressBarDivider]} />
-        <View style={[{ left: '60%' }, styles.progressBarDivider]} />
-        <View style={[{ left: '85%' }, styles.progressBarDivider]} />
+        <View style={[{ left: `${this.times.min / this.times.max * 100}%` }, styles.progressBarDivider]} />
+        <View style={[{ left: `${this.times.goal / this.times.max * 100}%` }, styles.progressBarDivider]} />
+        <View style={[{ left: `${(this.times.goal + (this.times.max - this.times.goal) / 2) / this.times.max * 100}%` }, styles.progressBarDivider]} />
       </View>
     )
   }
 }
 
 ProgressBar.propTypes = {
-  progress: PropTypes.number.isRequired,
+  elapsedTime: PropTypes.number.isRequired,
+  activityTimes: PropTypes.object.isRequired,
   isPaused: PropTypes.bool.isRequired
 }

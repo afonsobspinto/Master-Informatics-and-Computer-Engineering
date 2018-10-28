@@ -13,8 +13,6 @@ export const getCardStyle = (color) => {
       backgroundColor: cardColor,
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      paddingHorizontal: 30,
-      paddingVertical: 20,
       borderRadius: padding / 2,
       flexGrow: 1,
       shadowColor: '#000',
@@ -24,7 +22,8 @@ export const getCardStyle = (color) => {
       },
       shadowOpacity: 0.27,
       shadowRadius: 4.65,
-      elevation: 6
+      elevation: 6,
+      overflow: 'hidden'
     },
     cardContainer: {
       flexGrow: 1,
@@ -41,6 +40,7 @@ export const getCardStyle = (color) => {
         width: 0,
         height: 1
       },
+      marginLeft: 30,
       shadowOpacity: 0.3,
       shadowRadius: 4.65,
       elevation: 3,
@@ -67,7 +67,19 @@ export const getCardStyle = (color) => {
       color: '#fff',
       textShadowColor: 'rgba(0, 0, 0, 0.2)',
       textShadowOffset: { width: 0, height: 1 },
-      textShadowRadius: 3
+      textShadowRadius: 3,
+      marginHorizontal: 30,
+      marginTop: 20
+    },
+    photoCardTitle: {
+      fontFamily: 'LinotteBold',
+      fontSize: 35,
+      color: '#fff',
+      textShadowColor: 'rgba(0, 0, 0, 0.6)',
+      textShadowOffset: { width: 2, height: 2 },
+      textShadowRadius: 5,
+      marginHorizontal: 30,
+      marginTop: 20
     },
     cardRoutineImage: {
       height: '120%',
@@ -84,6 +96,11 @@ export const getCardStyle = (color) => {
       right: '10%',
       bottom: '-30%',
       transform: [{ rotate: '-25deg' }]
+    },
+    cardPhoto: {
+      height: '100%',
+      width: '100%',
+      position: 'absolute'
     },
     dotStyle: {
       width: 10,
