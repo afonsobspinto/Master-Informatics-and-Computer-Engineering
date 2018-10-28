@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import styles, { buttonHeight } from '../../styles/Activity.style'
+import { Timer } from './Timer'
 import * as colors from '../../styles/Colors'
 
 import * as Progress from 'react-native-progress'
@@ -41,6 +42,7 @@ export class ProgressBar extends React.Component {
         <View style={[{ left: `${this.times.min / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${this.times.goal / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${(this.times.goal + (this.times.max - this.times.goal) / 2) / this.times.max * 100}%` }, styles.progressBarDivider]} />
+        {this.props.showTimer && <Timer style={styles.timerBar} elapsedTime={this.props.elapsedTime} />}
       </View>
     )
   }
@@ -49,5 +51,6 @@ export class ProgressBar extends React.Component {
 ProgressBar.propTypes = {
   elapsedTime: PropTypes.number.isRequired,
   activityTimes: PropTypes.object.isRequired,
-  isPaused: PropTypes.bool.isRequired
+  isPaused: PropTypes.bool.isRequired,
+  showTimer: PropTypes.bool.isRequired
 }

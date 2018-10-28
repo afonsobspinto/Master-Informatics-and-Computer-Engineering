@@ -8,7 +8,7 @@ import { ProgressClock } from '../components/Activity/ProgressClock'
 import { CompleteButton } from '../components/Activity/CompleteButton'
 import { PauseButton } from '../components/Activity/PauseButton'
 import { CancelButton } from '../components/Activity/CancelButton'
-import { _retrieveSetting, ACTIVITY_PROGRESS_TYPE } from '../helpers/Settings'
+import { _retrieveSetting, ACTIVITY_PROGRESS_TYPE, ACTIVITY_SHOW_TIMER } from '../helpers/Settings'
 import Images from '../assets/images/images'
 
 import styles from '../styles/Activity.style'
@@ -23,7 +23,8 @@ export default class ActivityScreen extends Component {
       isPhoto: this.props.navigation.state.params.activity.photo !== undefined,
       updateRate: 100, // ms
       isPaused: false,
-      isCompletable: false
+      isCompletable: false,
+      showTimer: false
     }
 
     this.pauseActivity = this.pauseActivity.bind(this)
@@ -42,6 +43,7 @@ export default class ActivityScreen extends Component {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
 
     _retrieveSetting(ACTIVITY_PROGRESS_TYPE.key).then(res => this.setState(() => ({ progressType: res })))
+    _retrieveSetting(ACTIVITY_SHOW_TIMER.key).then(res => this.setState(() => ({ showTimer: res })))
 
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
@@ -87,9 +89,9 @@ export default class ActivityScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.activity.title}</Text>
         </View>
-        {this.state.progressType === 'clock' && <ProgressClock elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
+        {this.state.progressType === 'clock' && <ProgressClock showTimer={this.state.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
         <View style={styles.buttonContainer}>
-          {this.state.progressType === 'bar' && <ProgressBar elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
+          {this.state.progressType === 'bar' && <ProgressBar showTimer={this.state.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
           <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />

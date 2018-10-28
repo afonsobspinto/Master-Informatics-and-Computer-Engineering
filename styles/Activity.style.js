@@ -61,7 +61,29 @@ export default StyleSheet.create({
     height: buttonHeight / 1.5,
     borderRadius: buttonHeight / 3,
     overflow: 'hidden',
-    position: 'relative'
+    position: 'relative',
+    justifyContent: 'center'
+  },
+  timerClock: {
+    fontFamily: 'LinotteBold',
+    fontSize: 20,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 5,
+    position: 'absolute',
+    padding: 6
+  },
+  timerBar: {
+    fontFamily: 'LinotteBold',
+    fontSize: 20,
+    color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 5,
+    position: 'absolute',
+    padding: 6,
+    left: padding
   },
   progressBarDivider: {
     borderRightColor: '#000',
