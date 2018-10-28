@@ -11,7 +11,7 @@ export default class ChildMainMenuScreen extends Component {
   }
 
   componentDidMount () {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
+    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }
 
   componentWillUnmount () {
@@ -20,32 +20,31 @@ export default class ChildMainMenuScreen extends Component {
 
   render () {
     return (
-      <View style={{ flex: 1, flexDirection: 'column' }}>
+      <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#C5CAE9' }}>
         <StatusBar hidden />
-        <View style={{ flex: 1, flexDirection: 'column' }} >
-          <View style={{ flex: 1, backgroundColor: '#7986CB' }} />
-          <View style={{ flex: 2, flexDirection: 'row' }} >
-            <View style={{ flex: 1, backgroundColor: '#7986CB' }} />
-            <View style={{ flex: 5, backgroundColor: 'black' }} >
-              <ChildExperienceBar />
+        <View style={styles.experienceBarContainer}>
+          <ChildExperienceBar />
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 0.75 }} />
+          <View style={{ flex: 2, flexDirection: 'column' }}>
+            <View style={styles.profileImageContainer}>
+              <Image style={styles.profileImage} source={require('../assets/images/placeholder-avatar.png')} />
             </View>
-            <View style={{ flex: 1, backgroundColor: '#7986CB' }} />
-          </View>
-          <View style={{ flex: 1, backgroundColor: '#7986CB' }} />
-          <View style={[styles.overlayPadding, styles.experienceBarOverlay]}>
-            <View style={{ flex: 9 }} />
-            <View style={{ flex: 1 }}>
-              <View style={[styles.experienceBarCircle]}>
-                <Text style={{ fontWeight: 'bold', fontSize: 22 }} >6</Text>
+            <View style={{ flex: 2 }}>
+              <View style={styles.currencyContainer}>
+                <Image style={styles.currencyIcon} source={require('../assets/images/yellow_star.png')} resizeMode='contain' />
+                <Text style={{ fontSize: 22, fontWeight: 'bold' }} >100</Text>
               </View>
             </View>
           </View>
-        </View>
-        <View style={{ flex: 3, flexDirection: 'row' }}>
-          <View style={{ flex: 1, backgroundColor: '#C5CAE9', alignItems: 'center', justifyContent: 'center' }} >
-            <Image style={{ width: 200, height: 200 }} source={require('../assets/images/placeholder-avatar.png')} resizeMode='contain' />
+          <View style={{ flex: 2, flexDirection: 'column' }}>
+            <View style={{ flex: 3, alignItems: 'center', justifyContent: 'center' }}>
+              <Image style={{ width: Layout.window.width * 0.3, height: Layout.window.height * 0.3, tintColor: '#9999FF' }} source={require('../assets/images/resume-button.png')} resizeMode='contain' />
+            </View>
+            <View style={{ flex: 2 }} />
           </View>
-          <View style={{ flex: 1, backgroundColor: '#C5CAE9' }} />
+          <View style={{ flex: 0.75 }} />
         </View>
       </View>
     )
@@ -53,25 +52,30 @@ export default class ChildMainMenuScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  experienceBarOverlay: {
+  experienceBarContainer: {
+    marginHorizontal: Layout.window.width * 0.2,
+    marginVertical: Layout.window.height * 0.075
+  },
+  profileImageContainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: Layout.window.height * 0.025
+  },
+  profileImage: {
+    width: Layout.window.width * 0.4,
+    height: Layout.window.width * 0.4,
+    borderRadius: Layout.window.width * 0.4 / 2,
+    borderWidth: 1
+  },
+  currencyContainer: {
     flexDirection: 'row',
-    height: Layout.window.height * 0.07,
-    left: 0,
-    right: 0,
-    position: 'absolute'
-  },
-  overlayPadding: {
-    paddingTop: Layout.window.height * 0.0675 / 2,
-    paddingRight: Layout.window.height * 0.08
-  },
-  experienceBarCircle: {
-    width: Layout.window.height * 0.085,
-    height: Layout.window.height * 0.085,
-    borderRadius: Layout.window.height * 0.085 / 2,
-    backgroundColor: '#C5CAE9',
-    borderColor: '#3F51B5',
-    borderWidth: 3,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  currencyIcon: {
+    width: Layout.window.width * 0.08,
+    height: Layout.window.height * 0.08,
+    marginHorizontal: Layout.window.width * 0.02
   }
 })
