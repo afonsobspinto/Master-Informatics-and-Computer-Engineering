@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, Image, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 import Images from '../../assets/images/images'
 
 export default class CardButton extends React.Component {
@@ -7,10 +8,10 @@ export default class CardButton extends React.Component {
     return (
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={this.onPress}
+        onPress={this.props.onPress}
         style={this.props.cardStyle.playButton}>
         <Image
-          source={Images.button.playButton}
+          source={Images.ui.play}
           resizeMode={'contain'}
           style={this.props.cardStyle.playIcon}
         />
@@ -18,4 +19,9 @@ export default class CardButton extends React.Component {
       </TouchableOpacity>
     )
   }
+}
+
+CardButton.propTypes = {
+  cardStyle: PropTypes.object.isRequired,
+  onPress: PropTypes.func.isRequired
 }

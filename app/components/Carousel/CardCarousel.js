@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import PropTypes from 'prop-types'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
 import Card from './Card'
@@ -8,6 +9,9 @@ import styles, { sliderWidth, itemWidth } from '../../styles/CardCarousel.style'
 export default class CardCarousel extends React.Component {
   constructor (props) {
     super(props)
+    this.onRoutinePress = this.onRoutinePress.bind(this)
+    this.onActivityPress = this.onActivityPress.bind(this)
+    this.onRoutineButtonPress = this.onRoutineButtonPress.bind(this)
     this.state = {
       activeSlide: 0
     }
@@ -18,10 +22,22 @@ export default class CardCarousel extends React.Component {
       <Card
         item={item}
         isRoutineCard={this.props.isRoutine}
-        navigation={this.props.navigation}
-        onPress={this.onCardPress}
+        onPress={this.props.isRoutine ? this.onRoutinePress : this.onActivityPress}
+        onButtonPress={this.props.isRoutine && this.onRoutineButtonPress}
       />
     )
+  }
+
+  onRoutinePress = (routine) => {
+    this.props.navigation.navigate('ChooseActivityScreen', { activities: routine.activities })
+  }
+
+  onRoutineButtonPress = (routine) => {
+    this.props.navigation.navigate('Activity', { activity: routine.activities[0] })
+  }
+
+  onActivityPress = (activity) => {
+    this.props.navigation.navigate('Activity', { activity: activity })
   }
 
   get pagination () {
@@ -55,4 +71,10 @@ export default class CardCarousel extends React.Component {
       </View>
     )
   }
+}
+
+CardCarousel.propTypes = {
+  isRoutine: PropTypes.bool,
+  navigation: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired
 }

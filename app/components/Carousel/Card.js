@@ -1,37 +1,51 @@
 import React from 'react'
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native'
+import PropTypes from 'prop-types'
 import Images from '../../assets/images/images'
 import CardButton from './CardButton'
 
 import { getCardStyle } from '../../styles/CardCarousel.style'
 
 export default class Card extends React.Component {
-  onRoutinePress = () => {
-    this.props.navigation.navigate('ChooseActivityScreen', { activities: this.props.item.activities })
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isPhoto: this.props.item.photo !== undefined
+    }
   }
 
-  onActivityPress = () => {
-    this.props.navigation.navigate('SingleActivity', { progressType: 'bar' })
+  onPress = () => {
+    this.props.onPress(this.props.item)
+  }
+
+  onButtonPress = () => {
+    this.props.onButtonPress(this.props.item)
   }
 
   render () {
-    const { item, isRoutineCard } = this.props
-
-    const cardStyle = getCardStyle(item.color)
+    const cardStyle = getCardStyle(this.props.item.color)
     return (
       <View style={cardStyle.cardContainer}>
         <TouchableWithoutFeedback
-          onPress={isRoutineCard ? this.onRoutinePress : this.onActivityPress}>
+          onPress={this.onPress}>
           <View style={cardStyle.card}>
             <Image
-              source={Images[item.image]}
-              resizeMode={'center'}
-              style={isRoutineCard ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
-            <Text style={cardStyle.cardTitle}> { item.title } </Text>
-            {isRoutineCard && <CardButton cardStyle={cardStyle} />}
+              source={Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]}
+              resizeMode={this.state.isPhoto ? 'cover' : 'center'}
+              style={this.state.isPhoto ? cardStyle.cardPhoto : this.props.isRoutineCard ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
+            <Text style={this.state.isPhoto ? cardStyle.photoCardTitle : cardStyle.cardTitle}> { this.props.item.title } </Text>
+            {this.props.isRoutineCard && <CardButton cardStyle={cardStyle} onPress={this.onButtonPress} />}
           </View>
         </TouchableWithoutFeedback>
       </View>
     )
   }
+}
+
+Card.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  onButtonPress: PropTypes.func,
+  item: PropTypes.object.isRequired,
+  isRoutineCard: PropTypes.bool
 }

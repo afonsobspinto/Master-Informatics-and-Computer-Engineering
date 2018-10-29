@@ -1,30 +1,59 @@
 import React from 'react'
 import { createStackNavigator } from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
-import SingleActivityScreen from './screens/SingleActivityScreen'
+import PropTypes from 'prop-types'
+import ActivityScreen from './screens/ActivityScreen'
 import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 import ChooseActivityScreen from './screens/ChooseActivityScreen'
-import { Font } from 'expo'
+import { AppLoading, Font } from 'expo'
 
 export default class App extends React.Component {
-  componentDidMount () {
-    _setDefault()
-    Font.loadAsync({
-      'Baloo': require('./assets/fonts/Baloo-Regular.ttf')
-    })
-  }
+  state = {
+    isLoadingComplete: false
+  };
 
   render () {
-    return (
-      <AppStackNavigator />
-    )
+    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+      return (
+        <AppLoading
+          startAsync={this._loadResourcesAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      )
+    } else {
+      return (
+        <AppStackNavigator />
+      )
+    }
   }
+
+  _loadResourcesAsync = async () => {
+    return Promise.all([
+      Font.loadAsync({
+        'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf')
+      }),
+      _setDefault()
+    ])
+  }
+
+  _handleLoadingError = error => {
+    console.warn(error)
+  }
+
+  _handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true })
+  }
+}
+
+App.propTypes = {
+  skipLoadingScreen: PropTypes.bool
 }
 
 const AppStackNavigator = createStackNavigator({
   Home: HomeScreen,
-  SingleActivity: SingleActivityScreen,
+  Activity: ActivityScreen,
   ChooseRoutineScreen: ChooseRoutineScreen,
   ChooseActivityScreen: ChooseActivityScreen
 })

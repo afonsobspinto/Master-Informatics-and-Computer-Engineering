@@ -6,94 +6,152 @@ export const demoRoutines = [
     activities: [
       {
         title: 'Fazer a cama',
-        time: 10,
         image: 'bed',
-        color: '#7d84b2'
+        photo: 'bedroom',
+        color: '#7d84b2',
+        time: {
+          min: 30,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Lavar os dentes',
-        time: 15,
         image: 'toothbrush',
-        color: '#0e79b2'
+        color: '#0e79b2',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Vestir',
-        time: 20,
         image: 'socks',
-        color: '#7fb800'
+        color: '#7fb800',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Tomar banho',
-        time: 15,
         image: 'shower',
-        color: '#37c1f0'
+        color: '#37c1f0',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Preparar a mochila',
-        time: 45,
         image: 'bag',
-        color: '#e43f6f'
+        color: '#e43f6f',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Calçar os sapatos',
-        time: 45,
         image: 'sneakers',
-        color: '#4bb3fd'
+        color: '#4bb3fd',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Tomar o pequeno almoço',
-        time: 45,
         image: 'breakfast',
-        color: '#ff7f11'
+        color: '#ff7f11',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Pentear cabelo',
-        time: 45,
         image: 'comb',
-        color: '#b0db43'
+        color: '#b0db43',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       }
     ]
   },
   {
     title: 'Antes de dormir',
     image: 'moon',
+    photo: 'night',
     color: '#011f39',
     activities: [
       {
         title: 'Ajudar na cozinha',
-        time: 45,
         image: 'fork',
-        color: '#1a5e63'
+        color: '#1a5e63',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Arrumar o quarto',
-        time: 45,
         image: 'drawers',
-        color: '#a3320b'
+        color: '#a3320b',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Fazer os trabalhos para casa',
-        time: 45,
         image: 'paper',
-        color: '#657153'
+        color: '#657153',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Arrumar os brinquedos',
-        time: 45,
         image: 'blocks',
-        color: '#519e8a'
+        color: '#519e8a',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Ler um livro',
-        time: 45,
         image: 'book',
-        color: '#ff9f1c'
+        color: '#ff9f1c',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       },
       {
         title: 'Preparar a roupa do dia seguinte',
-        time: 45,
         image: 'shirt',
-        color: '#ff9f1c'
+        color: '#ff9f1c',
+        time: {
+          min: 10,
+          max: 120,
+          goal: 60
+        }
       }
     ]
   }

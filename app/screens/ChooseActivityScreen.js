@@ -1,5 +1,6 @@
 import React from 'react'
 import { StatusBar, View } from 'react-native'
+import PropTypes from 'prop-types'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
 import { backgroundColor } from '../styles/General.style'
@@ -19,4 +20,8 @@ export default class ChooseActivityScreen extends React.Component {
       </View>
     )
   }
+}
+
+ChooseActivityScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }

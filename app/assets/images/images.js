@@ -17,8 +17,13 @@ const images = {
   sleep: require('./activities/sleep.png'),
   socks: require('./activities/socks.png'),
   tea: require('./activities/tea.png'),
-  button: {
-    playButton: require('./play.png')
+  bedroom: require('./activities/bedroom.jpg'),
+  night: require('./routines/night.jpg'),
+  ui: {
+    play: require('./navigation/play.png'),
+    cancel: require('./navigation/cancel.png'),
+    pause: require('./navigation/pause.png'),
+    confirm: require('./navigation/confirm.png')
   }
 }
 

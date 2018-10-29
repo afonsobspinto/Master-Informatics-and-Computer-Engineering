@@ -1,5 +1,6 @@
 import React from 'react'
 import { StatusBar, View } from 'react-native'
+import PropTypes from 'prop-types'
 import { ScreenOrientation } from 'expo'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
@@ -31,4 +32,8 @@ export default class ChooseRoutineScreen extends React.Component {
       </View>
     )
   }
+}
+
+ChooseRoutineScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
