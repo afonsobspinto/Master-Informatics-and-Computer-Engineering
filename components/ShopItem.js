@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 
 import Layout from '../constants/Layout'
 import PropTypes from 'prop-types'
@@ -8,11 +8,13 @@ export class ShopItem extends React.Component {
   render () {
     return (
       <View>
-        <View style={styles.shopItem} />
-        <View style={styles.itemPrice} >
-          <Image style={styles.currencyIcon} source={require('../assets/images/yellow_star.png')} resizeMode='contain' />
-          <Text>{this.props.cost}</Text>
-        </View>
+        <TouchableOpacity>
+          <View style={styles.shopItem} />
+          <View style={styles.itemPrice} >
+            <Image style={styles.currencyIcon} source={require('../assets/images/yellow_star.png')} resizeMode='contain' />
+            <Text>{this.props.cost}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
