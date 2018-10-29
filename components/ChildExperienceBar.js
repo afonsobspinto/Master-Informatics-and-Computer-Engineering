@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
+import PropTypes from 'prop-types'
 
 import * as Progress from 'react-native-progress'
 
@@ -15,18 +16,23 @@ export class ChildExperienceBar extends React.Component {
             height={Layout.window.height * 0.12 / 1.5}
             borderRadius={0}
             borderWidth={0}
-            progress={0.36}
+            progress={this.props.progress}
           />
           <View style={[{ left: '25%' }, styles.progressBarDivider]} />
           <View style={[{ left: '50%' }, styles.progressBarDivider]} />
           <View style={[{ left: '75%' }, styles.progressBarDivider]} />
         </View>
         <View style={styles.experienceBarCircle} >
-          <Text>6</Text>
+          <Text>{this.props.level}</Text>
         </View>
       </View>
     )
   }
+}
+
+ChildExperienceBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired
 }
 
 const styles = StyleSheet.create({
