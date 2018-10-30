@@ -3,3 +3,4 @@ node_modules/**/*
 *.js.snap
 .idea/
 .vscode
+app/package-lock.json
