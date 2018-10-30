@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "routine-manager",
+    "description": "A very interesting project.",
+    "slug": "routine-manager",
+    "privacy": "public",
+    "sdkVersion": "30.0.0",
+    "platforms": ["android"],
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "feup.ldso.routines",
+      "permissions": []
+    }
+  }
+}
