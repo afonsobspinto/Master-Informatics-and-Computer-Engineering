@@ -4,3 +4,4 @@ node_modules/**/*
 .idea/
 .vscode
 app/package-lock.json
+server/server.iml
