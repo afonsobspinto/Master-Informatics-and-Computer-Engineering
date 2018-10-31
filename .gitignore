@@ -7,5 +7,4 @@ app/package-lock.json
 server/server.iml
 app/.expo
 app/node_modules
-server/routine_manager/__pycache__/
-server/server/__pycache__/
+**/__pycache__/
