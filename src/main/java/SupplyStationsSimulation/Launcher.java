@@ -1,8 +1,8 @@
-package SupplyStations;
+package SupplyStationsSimulation;
 
-import ServiceConsumerProvider.Repast3ServiceConsumerProviderLauncher;
-import SupplyStations.Agents.Drivers.AdventurousDriver;
-import SupplyStations.Agents.Drivers.CollaborativeDriver;
+import SupplyStationsSimulation.Agents.Driver;
+import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
+import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.StaleProxyException;
@@ -10,9 +10,7 @@ import sajas.core.Runtime;
 import sajas.sim.repast3.Repast3Launcher;
 import sajas.wrapper.ContainerController;
 import uchicago.src.sim.engine.SimInit;
-import uchicago.src.sim.gui.DisplaySurface;
 
-import java.io.IOException;
 
 public class Launcher extends Repast3Launcher {
     private static final boolean BATCH_MODE = true;
@@ -33,24 +31,22 @@ public class Launcher extends Repast3Launcher {
 
 
     private void launchAgents() {
-        if (DYNAMIC) {
-            System.out.println("Launch Dynamic");
-        } else {
-            launchStaticAgents();
-        }
+        launchDrivers();
     }
 
-    private void launchStaticAgents(){
+    private void launchDrivers(){
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
-                AdventurousDriver adventurousDriver = new AdventurousDriver();
-                mainContainer.acceptNewAgent("AdventurousDriver" + i, adventurousDriver).start();
+                Driver adventurousDriver = new Driver();
+                adventurousDriver.addBehaviour(new AdventurousDriverBehaviour(adventurousDriver));
+                mainContainer.acceptNewAgent("Adventurous" + i, adventurousDriver).start();
             }
 
             // create guided driver agents
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
-                CollaborativeDriver collaborativeDriver = new CollaborativeDriver();
+                Driver collaborativeDriver = new Driver();
+                collaborativeDriver.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriver));
                 mainContainer.acceptNewAgent("Collaborative" + i, collaborativeDriver).start();
             }
 

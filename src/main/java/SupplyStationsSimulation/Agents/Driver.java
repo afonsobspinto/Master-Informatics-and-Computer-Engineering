@@ -1,10 +1,10 @@
-package SupplyStations.Agents.Drivers;
+package SupplyStationsSimulation.Agents;
 
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
-public class AdventurousDriver extends Agent {
-    public AdventurousDriver() {
+public class Driver extends Agent {
+    public Driver() {
     }
 
     @Override
@@ -15,7 +15,7 @@ public class AdventurousDriver extends Agent {
     @Override
     protected void setup() {
         super.setup();
-        System.out.println("Adventurous Driver");
+        System.out.println("Driver Agent Launch");
     }
 
 }
