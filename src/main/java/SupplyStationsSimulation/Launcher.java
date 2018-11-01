@@ -43,7 +43,6 @@ public class Launcher extends Repast3Launcher {
                 mainContainer.acceptNewAgent("Adventurous" + i, adventurousDriver).start();
             }
 
-            // create guided driver agents
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 Driver collaborativeDriver = new Driver();
                 collaborativeDriver.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriver));
