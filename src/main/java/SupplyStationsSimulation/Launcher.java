@@ -1,24 +1,55 @@
 package SupplyStationsSimulation;
 
-import SupplyStationsSimulation.Agents.Driver;
+import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
+import SupplyStationsSimulation.Utilities.RandomPositionsGenerator;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.StaleProxyException;
 import sajas.core.Runtime;
 import sajas.sim.repast3.Repast3Launcher;
 import sajas.wrapper.ContainerController;
+import uchicago.src.sim.engine.Schedule;
 import uchicago.src.sim.engine.SimInit;
+import uchicago.src.sim.gui.DisplaySurface;
+import uchicago.src.sim.gui.Object2DDisplay;
+import uchicago.src.sim.space.Object2DGrid;
+
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 
 public class Launcher extends Repast3Launcher {
-    private static final boolean BATCH_MODE = true;
     private static int COLLABORATIVE_DRIVERS = 10;
     private static int ADVENTUROUS_DRIVERS = 10;
-    private static boolean DYNAMIC = false;
+    private static int WIDTH = 200, HEIGHT = 200;
 
     private ContainerController mainContainer;
+    private DisplaySurface dsurf;
+    private List<DriverAgent> adventurousDrivers, collaborativeDrivers;
+    private DrawableMap drawableMap;
+
+    @Override
+    public void begin() {
+        super.begin();
+        buildAndScheduleDisplay();
+
+    }
+
+    private void buildAndScheduleDisplay() {
+        if(dsurf!=null) dsurf.dispose();
+
+        dsurf = new DisplaySurface(this, "DrawableMap");
+        registerDisplaySurface("DrawableMap", dsurf);
+        Object2DDisplay display = new Object2DDisplay(drawableMap.getSpace());
+        dsurf.addDisplayableProbeable(display, "Grid Display");
+        addSimEventListener(dsurf);
+        dsurf.display();
+
+        getSchedule().scheduleActionAtInterval(1, dsurf, "updateDisplay", Schedule.LAST);
+    }
 
     @Override
     protected void launchJADE() {
@@ -29,24 +60,34 @@ public class Launcher extends Repast3Launcher {
         launchAgents();
     }
 
-
     private void launchAgents() {
+        new Random(System.currentTimeMillis());
+
+        collaborativeDrivers = new ArrayList<>();
+        adventurousDrivers = new ArrayList<>();
+        drawableMap = new DrawableMap(WIDTH, HEIGHT);
         launchDrivers();
     }
 
     private void launchDrivers(){
+        LinkedList<List<Integer>> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS, WIDTH, HEIGHT).getPositions();
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
-                Driver adventurousDriver = new Driver();
-                adventurousDriver.addBehaviour(new AdventurousDriverBehaviour(adventurousDriver));
-                mainContainer.acceptNewAgent("Adventurous" + i, adventurousDriver).start();
+                String nickname = "Adventurous" + i;
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop());
+                adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
+                mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
+                drawableMap.addAgent(adventurousDriverAgent);
+
             }
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
-                Driver collaborativeDriver = new Driver();
-                collaborativeDriver.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriver));
-                mainContainer.acceptNewAgent("Collaborative" + i, collaborativeDriver).start();
+                String nickname = "Collaborative" + i;
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop());
+                collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
+                mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
+                drawableMap.addAgent(collaborativeDriverAgent);
             }
 
         } catch (StaleProxyException e) {
@@ -70,10 +111,7 @@ public class Launcher extends Repast3Launcher {
      * @param args
      */
     public static void main(String[] args) {
-        boolean runMode = !BATCH_MODE;   // BATCH_MODE or !BATCH_MODE
-
         SimInit init = new SimInit();
-        init.setNumRuns(1);   // works only in batch mode
-        init.loadModel(new Launcher(), null, runMode);
+        init.loadModel(new Launcher(), null, false);
     }
 }

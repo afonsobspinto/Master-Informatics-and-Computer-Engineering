@@ -14,7 +14,7 @@ public class CollaborativeDriverBehaviour extends Behaviour {
 
     @Override
     public void action() {
-        System.out.println("Collaborative Driver Behaviour Action");
+        System.out.println("Collaborative DriverAgent Behaviour Action");
 
     }
 
