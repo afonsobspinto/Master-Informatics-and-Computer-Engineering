@@ -51,6 +51,13 @@ export default class HomeScreen extends React.Component {
         />
         <Text />
         <Button
+          title='Go to main menu'
+          onPress={() => {
+            this.props.navigation.navigate('ChildMainMenu')
+          }}
+        />
+        <Text />
+        <Button
           title={`Progress: ${this.state.activityProgressType}`}
           onPress={this.changeActivityProgressType}
         />
