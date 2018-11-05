@@ -1,0 +1,23 @@
+image: node:alpine
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.npm
+    - .jest
+stages:
+  - test
+  - deploy
+before_script:
+  - cd app
+  - npm ci
+  - npm install -g expo-cli
+jest-tests:
+  stage: test
+  script:
+    - npx jest --ci
+expo-deployments:
+  stage: deploy
+  script:
+    - apk add --no-cache bash
+    - npx expo login -u 'ldsog02@gmail.com' -p $EXPO_PASSWORD
+    - npx expo publish --non-interactive
