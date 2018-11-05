@@ -77,9 +77,11 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
+        'NAME': 'ldsog02_db',
+        'USER': 'ldsog02_user',
+        'PASSWORD': 'ldsog02_pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3308',
     }
 }
 
