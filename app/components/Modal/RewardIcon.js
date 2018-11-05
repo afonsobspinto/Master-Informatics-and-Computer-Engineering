@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
 import * as Animatable from 'react-native-animatable'
 
 export class RewardIcon extends React.Component {
@@ -40,3 +41,7 @@ const styles = StyleSheet.create({
     width: 160
   }
 })
+
+RewardIcon.propTypes = {
+  rewardsCount: PropTypes.number.isRequired
+}
