@@ -25,7 +25,7 @@ SECRET_KEY = 'x7wn(r^!^4oln)d1-ad=us))+!80_#ki1k#n_pyr6u5uz8)gvo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': 'ldsog02_db',
         'USER': 'ldsog02_user',
         'PASSWORD': 'ldsog02_pass',
-        'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'HOST': 'mysql-dev',
+        'PORT': '3306',
     }
 }
 
