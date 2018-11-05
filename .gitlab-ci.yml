@@ -19,5 +19,5 @@ expo-deployments:
   stage: deploy
   script:
     - apk add --no-cache bash
-    - npx expo login -u 'ldsog02@gmail.com' -p $EXPO_PASSWORD
+    - npx expo login -u ldsog02 -p jungle-setup
     - npx expo publish --non-interactive
