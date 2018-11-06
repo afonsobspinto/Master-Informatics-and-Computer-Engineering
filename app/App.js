@@ -1,13 +1,21 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation'
-import HomeScreen from './screens/HomeScreen'
 import PropTypes from 'prop-types'
+import { createStackNavigator } from 'react-navigation'
+import { AppLoading, Font } from 'expo'
+
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import { setSettings } from './actions/settingsActions'
+
+import { _retrieveJson } from './helpers/LocalStore'
+
+import HomeScreen from './screens/HomeScreen'
 import ActivityScreen from './screens/ActivityScreen'
-import { _setDefault } from './helpers/Settings'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 import ChooseActivityScreen from './screens/ChooseActivityScreen'
-import { AppLoading, Font } from 'expo'
 import ChildMainMenuScreen from './screens/ChildMainMenuScreen'
+
+const store = configureStore()
 
 export default class App extends React.Component {
   state = {
@@ -25,7 +33,9 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <AppStackNavigator />
+        <Provider store={store}>
+          <AppStackNavigator />
+        </Provider>
       )
     }
   }
@@ -35,7 +45,9 @@ export default class App extends React.Component {
       Font.loadAsync({
         'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf')
       }),
-      _setDefault()
+      _retrieveJson('settings')
+        .then(res => store.dispatch(setSettings(res)))
+        .catch(console.log('No default settings stored'))
     ])
   }
 

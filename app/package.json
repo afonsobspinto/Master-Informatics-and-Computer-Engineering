@@ -23,7 +23,10 @@
     "react-native-modal": "^6.5.0",
     "react-native-progress": "^3.5.0",
     "react-native-snap-carousel": "^3.7.5",
-    "react-navigation": "^2.16.0"
+    "react-navigation": "^2.16.0",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
