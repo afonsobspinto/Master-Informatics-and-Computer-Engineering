@@ -1,5 +1,6 @@
 package SupplyStationsSimulation.Agents;
 
+import SupplyStationsSimulation.Utilities.Position;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 
@@ -10,9 +11,9 @@ public class SupplyStationAgent extends DrawableAgent {
 
     private String nickname;
     private Color color;
-    private List<Integer> position;
+    private Position position;
 
-    public SupplyStationAgent(String nickname, Color color, List<Integer> initialPosition) {
+    public SupplyStationAgent(String nickname, Color color, Position initialPosition) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
@@ -36,11 +37,11 @@ public class SupplyStationAgent extends DrawableAgent {
 
     @Override
     public int getX() {
-        return position.get(0);
+        return position.getX();
     }
 
     @Override
     public int getY() {
-        return position.get(1);
+        return position.getY();
     }
 }

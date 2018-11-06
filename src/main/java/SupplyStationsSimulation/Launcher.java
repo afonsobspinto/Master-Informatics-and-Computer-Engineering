@@ -5,6 +5,7 @@ import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
+import SupplyStationsSimulation.Utilities.Position;
 import SupplyStationsSimulation.Utilities.RandomPositionsGenerator;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
@@ -73,7 +74,7 @@ public class Launcher extends Repast3Launcher {
     }
 
     private void launchDrivers(){
-        LinkedList<List<Integer>> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS+SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
+        LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS+SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
