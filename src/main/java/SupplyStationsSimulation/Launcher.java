@@ -1,8 +1,10 @@
 package SupplyStationsSimulation;
 
 import SupplyStationsSimulation.Agents.DriverAgent;
+import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
+import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
 import SupplyStationsSimulation.Utilities.RandomPositionsGenerator;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
@@ -24,6 +26,7 @@ import java.util.List;
 public class Launcher extends Repast3Launcher {
     private static int COLLABORATIVE_DRIVERS = 10;
     private static int ADVENTUROUS_DRIVERS = 10;
+    private static int SUPPLY_STATIONS = 5;
     private static int WIDTH = 200, HEIGHT = 200;
 
     private ContainerController mainContainer;
@@ -70,7 +73,7 @@ public class Launcher extends Repast3Launcher {
     }
 
     private void launchDrivers(){
-        LinkedList<List<Integer>> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS, WIDTH, HEIGHT).getPositions();
+        LinkedList<List<Integer>> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS+SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
@@ -88,6 +91,14 @@ public class Launcher extends Repast3Launcher {
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
+            }
+
+            for (int i = 0; i < SUPPLY_STATIONS; i++) {
+                String nickname = "SupplyStation" + i;
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop());
+                supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
+                mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
+                drawableMap.addAgent(supplyStationAgent);
             }
 
         } catch (StaleProxyException e) {

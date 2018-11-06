@@ -16,8 +16,8 @@ public class RandomPositionsGenerator {
         Random random = new Random(System.currentTimeMillis());
 
         for(int i = 0; i < size; i++){
-            int randomX = random.nextInt(height + 1);
-            int randomY = random.nextInt(width + 1);
+            int randomX = random.nextInt(height);
+            int randomY = random.nextInt(width);
             List<Integer> pos = List.of(randomX, randomY);
 
             if(!positions.add(pos)){
