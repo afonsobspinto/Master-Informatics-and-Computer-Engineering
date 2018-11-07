@@ -1,24 +1,27 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
+import SupplyStationsSimulation.Agents.DrawableAgent;
+import SupplyStationsSimulation.Agents.DriverAgent;
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
 public class AdventurousDriverBehaviour extends Behaviour {
-    private boolean isDone = false;
+    private DriverAgent driverAgent;
+    private int tick = 0;
 
-    public AdventurousDriverBehaviour(Agent a) {
+    public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
+        this.driverAgent = a;
 
     }
 
     @Override
     public void action() {
-        System.out.println("Adventurous DriverAgent Behaviour Action");
-
+        driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
     }
 
     @Override
     public boolean done() {
-        return isDone;
+        return driverAgent.getPath().getLength()-1 == tick;
     }
 }

@@ -36,7 +36,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     @Override
     public void draw(SimGraphics simGraphics) {
-        simGraphics.drawCircle(color);
+        simGraphics.drawHollowRect(color);
     }
 
     @Override
@@ -63,5 +63,10 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public boolean hasAvailableGasPumps(){
         return this.availableGasPumps > 0;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.SUPPLYSTATION;
     }
 }
