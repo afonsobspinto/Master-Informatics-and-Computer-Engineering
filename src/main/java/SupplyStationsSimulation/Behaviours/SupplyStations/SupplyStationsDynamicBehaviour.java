@@ -19,7 +19,7 @@ public class SupplyStationsDynamicBehaviour extends Behaviour {
     }
     @Override
     public void action() {
-        System.out.println("Supply Station Dynamic Behaviour Action");
+        //System.out.println("Supply Station Dynamic Behaviour Action");
 
     }
 

@@ -3,6 +3,7 @@ package SupplyStationsSimulation;
 import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
+import SupplyStationsSimulation.Agents.Type;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsDynamicBehaviour;
@@ -75,6 +76,7 @@ public class Launcher extends Repast3Launcher {
         adventurousDrivers = new ArrayList<>();
         drawableMap = new DrawableMap(WIDTH, HEIGHT);
         launchDrivers();
+
     }
 
     private void launchDrivers(){
@@ -113,11 +115,20 @@ public class Launcher extends Repast3Launcher {
                 drawableMap.addAgent(supplyStationAgent);
             }
 
+
+            for(DrawableAgent agent: drawableMap.getAgentList()){
+                if(agent.getType() == Type.DRIVER) {
+                    ((DriverAgent) agent).calculatePath();
+                }
+            }
+
+
         } catch (StaleProxyException e) {
             e.printStackTrace();
         }
 
     }
+
 
     @Override
     public String[] getInitParam() {

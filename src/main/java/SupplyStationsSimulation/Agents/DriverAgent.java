@@ -21,12 +21,17 @@ public class DriverAgent extends DrawableAgent {
     private Boolean needsFuel = true;
     private Path path;
     private ArrayList<SupplyStationAgent> knownSupplyStations;
+    private DrawableMap map;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
+        this.map = map;
+    }
+
+    public void calculatePath(){
         this.path = new AStarPathFinder(map, map.getHeightInTiles()* map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
     }
 
@@ -68,6 +73,9 @@ public class DriverAgent extends DrawableAgent {
     }
 
     public void setPosition(Position position) {
+        this.map.getSpace().putObjectAt(this.position.getX(), this.position.getY(), null);
         this.position = position;
+        this.map.getSpace().putObjectAt(this.position.getX(), this.position.getY(), this);
+
     }
 }

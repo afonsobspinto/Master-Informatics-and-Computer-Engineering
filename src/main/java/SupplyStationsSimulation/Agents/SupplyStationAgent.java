@@ -36,7 +36,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     @Override
     public void draw(SimGraphics simGraphics) {
-        simGraphics.drawCircle(color);
+        simGraphics.drawHollowRect(color);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
 
     @Override
     public void action() {
-        System.out.println("Supply Station Static Behaviour Action");
+        //System.out.println("Supply Station Static Behaviour Action");
 
     }
 

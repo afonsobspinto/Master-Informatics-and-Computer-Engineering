@@ -1,6 +1,8 @@
 package SupplyStationsSimulation;
 
 import SupplyStationsSimulation.Agents.DrawableAgent;
+import SupplyStationsSimulation.Agents.DriverAgent;
+import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Utilities.PathFinder.Mover;
 import SupplyStationsSimulation.Utilities.PathFinder.TileBasedMap;
 import uchicago.src.collection.BaseMatrix;
@@ -27,6 +29,9 @@ public class DrawableMap implements TileBasedMap {
         space.putObjectAt(agent.getX(), agent.getY(), agent);
     }
 
+    public ArrayList<DrawableAgent> getAgentList() {
+        return agentList;
+    }
 
     public Object2DGrid getSpace(){
         return space;
