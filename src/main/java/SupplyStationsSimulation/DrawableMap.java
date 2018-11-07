@@ -21,5 +21,7 @@ public class DrawableMap {
         return space;
     }
 
-
+    public ArrayList<DrawableAgent> getAgentList() {
+        return agentList;
+    }
 }

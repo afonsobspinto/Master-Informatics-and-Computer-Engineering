@@ -11,12 +11,11 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
 
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
-    private ArrayList<DriverAgent> pumpingDrivers;
+
 
     public SupplyStationsStaticBehaviour(SupplyStationAgent supplyStationAgent) {
         super();
         this.supplyStationAgent = supplyStationAgent;
-        this.pumpingDrivers = new ArrayList<DriverAgent>();
     }
 
     @Override
