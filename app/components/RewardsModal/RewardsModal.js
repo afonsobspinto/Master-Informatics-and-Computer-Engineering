@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 
 import Modal from 'react-native-modalbox'
 
@@ -9,7 +10,7 @@ import Images from '../../assets/images/images'
 export class RewardsModal extends React.Component {
   render () {
     return (
-      <Modal style={styles.rewardsModal} isOpen={this.props.show} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
+      <Modal style={styles.rewardsModal} isOpen={this.props.isOpen} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
         <View style={styles.rewardContainer}>
           <Image style={styles.icon} resizeMode={'center'} source={Images.ui.star} />
           <Image style={[styles.icon, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
@@ -49,4 +50,10 @@ export class RewardsModal extends React.Component {
       </Modal>
     )
   }
+}
+
+RewardsModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  elapsedTime: PropTypes.number.isRequired,
+  activity: PropTypes.object.isRequired
 }

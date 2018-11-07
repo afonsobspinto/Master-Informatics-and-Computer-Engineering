@@ -99,7 +99,7 @@ class ActivityScreen extends Component {
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
         </View>}
         <RewardsModal
-          show={this.state.showRewardsModal}
+          isOpen={this.state.showRewardsModal}
           activity={this.activity}
           elapsedTime={this.state.elapsedTime} />
       </View>
