@@ -21,6 +21,7 @@
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-modal": "^6.5.0",
+    "react-native-modalbox": "^1.6.0",
     "react-native-progress": "^3.5.0",
     "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^2.16.0",

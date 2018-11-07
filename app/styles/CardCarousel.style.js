@@ -15,13 +15,6 @@ export const getCardStyle = (color) => {
       alignItems: 'flex-start',
       borderRadius: padding / 2,
       flexGrow: 1,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowOpacity: 0.27,
-      shadowRadius: 4.65,
       elevation: 6,
       overflow: 'hidden'
     },

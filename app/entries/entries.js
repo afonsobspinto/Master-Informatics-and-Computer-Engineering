@@ -10,7 +10,7 @@ export const demoRoutines = [
         photo: 'bedroom',
         color: '#7d84b2',
         time: {
-          min: 30,
+          min: 0,
           max: 120,
           goal: 60
         }
