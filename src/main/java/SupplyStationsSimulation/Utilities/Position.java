@@ -16,4 +16,20 @@ public class Position {
     public int getY() {
         return y;
     }
+
+
+    public int hashCode() {
+        return x*y;
+    }
+
+
+    public boolean equals(Object other) {
+        if (other instanceof Position) {
+            Position o = (Position) other;
+
+            return (o.x == x) && (o.y == y);
+        }
+
+        return false;
+    }
 }

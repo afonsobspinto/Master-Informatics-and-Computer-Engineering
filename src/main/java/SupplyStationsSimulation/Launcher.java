@@ -1,5 +1,6 @@
 package SupplyStationsSimulation;
 
+import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
@@ -10,6 +11,7 @@ import SupplyStationsSimulation.Utilities.Position;
 import SupplyStationsSimulation.Utilities.RandomPositionsGenerator;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import jade.lang.acl.ACLMessage;
 import jade.wrapper.StaleProxyException;
 import sajas.core.Runtime;
 import sajas.sim.repast3.Repast3Launcher;
@@ -76,21 +78,20 @@ public class Launcher extends Repast3Launcher {
     }
 
     private void launchDrivers(){
-        LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS+COLLABORATIVE_DRIVERS+STATIC_SUPPLY_STATIONS+DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
+        LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS*2+COLLABORATIVE_DRIVERS*2+STATIC_SUPPLY_STATIONS+DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
-                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop());
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
-
             }
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
-                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop());
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap);
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
