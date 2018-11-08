@@ -32,7 +32,7 @@ public class SearchForSupplyStationServicesBehaviour extends TickerBehaviour {
             for(int i = 0; i < results.length; i++){
                 supplyStations.add(results[i].getName());
             }
-            agent.setSupplyStationsServices(supplyStations);
+            agent.setSupplyStationsServicesAIDs(supplyStations);
         } catch (FIPAException e) {
             e.printStackTrace();
         }

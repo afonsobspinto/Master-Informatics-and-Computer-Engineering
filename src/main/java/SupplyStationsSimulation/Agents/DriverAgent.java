@@ -16,6 +16,8 @@ import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class DriverAgent extends DrawableAgent {
@@ -28,7 +30,8 @@ public class DriverAgent extends DrawableAgent {
     private DrawableMap map;
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
     private int expectedTravelDuration;
-    private ArrayList<AID> supplyStationsServices = new ArrayList<>();
+    private ArrayList<AID> supplyStationsServicesAIDs = new ArrayList<>();
+    private Map<AID, Position> supplyStationsLocation = new HashMap<>();
     private AID targetSupplyStation;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
@@ -96,9 +99,9 @@ public class DriverAgent extends DrawableAgent {
 
     }
 
-    public void setSupplyStationsServices(ArrayList<AID> supplyStationsServices) {
-        this.supplyStationsServices = supplyStationsServices;
-        for(AID aid: supplyStationsServices){
+    public void setSupplyStationsServicesAIDs(ArrayList<AID> supplyStationsServicesAIDs) {
+        this.supplyStationsServicesAIDs = supplyStationsServicesAIDs;
+        for(AID aid: supplyStationsServicesAIDs){
             new Message(this, aid, ACLMessage.REQUEST, MessageType.POSITION.getTypeStr()).send();
         }
 
@@ -108,8 +111,8 @@ public class DriverAgent extends DrawableAgent {
         return needsFuel;
     }
 
-    public ArrayList<AID> getSupplyStationsServices() {
-        return supplyStationsServices;
+    public ArrayList<AID> getSupplyStationsServicesAIDs() {
+        return supplyStationsServicesAIDs;
     }
 
     public AID getTargetSupplyStation() {
@@ -120,4 +123,11 @@ public class DriverAgent extends DrawableAgent {
         this.targetSupplyStation = targetSupplyStation;
     }
 
+    public Map<AID, Position> getSupplyStationsLocation() {
+        return supplyStationsLocation;
+    }
+
+    public void addSupplyStationsLocation(AID aid, Position supplyStationsLocation) {
+        this.supplyStationsLocation.put(aid, supplyStationsLocation);
+    }
 }
