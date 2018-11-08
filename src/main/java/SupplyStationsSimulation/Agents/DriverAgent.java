@@ -1,18 +1,19 @@
 package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
 import SupplyStationsSimulation.Utilities.Position;
+import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DriverAgent extends DrawableAgent {
@@ -20,12 +21,12 @@ public class DriverAgent extends DrawableAgent {
     private Color color;
     private Position position;
     private Position destination;
-    private Position supplyStation = null;
     private Boolean needsFuel = true;
     private Path path;
-    private ArrayList<SupplyStationAgent> knownSupplyStations;
     private DrawableMap map;
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
+    private int expectedTravelDuration;
+    private ArrayList<AID> supplyStationsServices = new ArrayList<>();
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -37,6 +38,7 @@ public class DriverAgent extends DrawableAgent {
 
     public void calculatePath(){
         this.path = new AStarPathFinder(map, map.getHeightInTiles()* map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
+        this.expectedTravelDuration = path.getLength();
     }
 
     @Override
@@ -50,6 +52,7 @@ public class DriverAgent extends DrawableAgent {
     protected void setup() {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
+        addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
     }
 
     @Override
@@ -79,10 +82,6 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-    public Boolean getNeedsFuel() {
-        return needsFuel;
-    }
-
     public Path getPath() {
         return path;
     }
@@ -92,5 +91,17 @@ public class DriverAgent extends DrawableAgent {
         this.position = position;
         this.map.getSpace().putObjectAt(this.position.getX(), this.position.getY(), this);
 
+    }
+
+    public void setSupplyStationsServices(ArrayList<AID> supplyStationsServices) {
+        this.supplyStationsServices = supplyStationsServices;
+    }
+
+    public Boolean getNeedsFuel() {
+        return needsFuel;
+    }
+
+    public ArrayList<AID> getSupplyStationsServices() {
+        return supplyStationsServices;
     }
 }

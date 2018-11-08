@@ -21,7 +21,6 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     }
     @Override
     public void action() {
-        //System.out.println("Supply Station Dynamic Behaviour Action");
 
     }
 

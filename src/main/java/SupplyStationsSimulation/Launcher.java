@@ -86,7 +86,7 @@ public class Launcher extends Repast3Launcher {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
                 DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
-                adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent,  drawableMap.getAgentList()));
+                adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
             }
@@ -101,7 +101,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < STATIC_SUPPLY_STATIONS; i++) {
                 String nickname = "StaticSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(), 10, 1.5);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(),  1.5);
                 supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
@@ -109,7 +109,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < DYNAMIC_SUPPLY_STATIONS; i++) {
                 String nickname = "DynamicSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(), 10, 1.3);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(),  1.3);
                 supplyStationAgent.addBehaviour(new SupplyStationsDynamicBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
