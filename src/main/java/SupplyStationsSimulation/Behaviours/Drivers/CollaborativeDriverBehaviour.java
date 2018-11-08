@@ -2,6 +2,7 @@ package SupplyStationsSimulation.Behaviours.Drivers;
 
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
@@ -28,7 +29,7 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
     }
 
     @Override
-    public void handleMessage(ACLMessage message) {
+    public void handleMessage(Message message) {
 
     }
 }

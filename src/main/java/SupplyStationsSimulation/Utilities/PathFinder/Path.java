@@ -1,6 +1,6 @@
 package SupplyStationsSimulation.Utilities.PathFinder;
 
-import SupplyStationsSimulation.Utilities.Position;
+import SupplyStationsSimulation.Utilities.Locations.Position;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,6 @@
-package SupplyStationsSimulation.Utilities;
+package SupplyStationsSimulation.Utilities.Locations;
+
+import SupplyStationsSimulation.Utilities.Locations.Position;
 
 import java.util.*;
 

@@ -1,7 +1,7 @@
 package SupplyStationsSimulation.Behaviours;
 
 import SupplyStationsSimulation.Agents.DrawableAgent;
-import SupplyStationsSimulation.Utilities.Message;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.CyclicBehaviour;
 
@@ -21,7 +21,11 @@ public class ListeningBehaviour extends CyclicBehaviour {
         if (msg == null)
             return;
 
-        System.out.println(new Message(this.agent, msg));
+        Message message = new Message(this.agent, msg);
+        System.out.println(message);
+
+        agent.handleMessage(message);
+
 
     }
 }

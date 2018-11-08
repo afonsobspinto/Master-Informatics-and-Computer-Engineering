@@ -1,18 +1,18 @@
 package SupplyStationsSimulation.Agents;
 
-import SupplyStationsSimulation.Utilities.Position;
-import jade.core.Agent;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Utilities.Locations.Position;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import sajas.domain.DFService;
 import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SupplyStationAgent extends DrawableAgent {
 
@@ -22,6 +22,8 @@ public class SupplyStationAgent extends DrawableAgent {
     private int totalGasPumps = 4;
     private double pricePerLiter;
     private ArrayList<DriverAgent>currentDriversOnStation = new ArrayList<DriverAgent>();
+    private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
+
 
 
     public SupplyStationAgent(String nickname, Color color, Position location, double pricePerLiter) {
@@ -43,12 +45,17 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     public void addBehaviour(Behaviour b) {
         super.addBehaviour(b);
+        if(b instanceof ACLMessageBehaviour){
+            behaviours.add((ACLMessageBehaviour)b);
+        }
     }
 
     @Override
     protected void setup()
     {
         super.setup();
+        addBehaviour(new ListeningBehaviour(this));
+
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
         ServiceDescription sd = new ServiceDescription();
@@ -61,6 +68,7 @@ public class SupplyStationAgent extends DrawableAgent {
             e.printStackTrace();
         }
     }
+
 
     @Override
     protected void takeDown() {
@@ -94,8 +102,14 @@ public class SupplyStationAgent extends DrawableAgent {
     }
 
     @Override
-    public void handleMessage(ACLMessage message) {
+    public void handleMessage(Message message) {
+        for(ACLMessageBehaviour behaviour: behaviours){
+            behaviour.handleMessage(message);
+        }
 
     }
 
+    public Position getPosition() {
+        return position;
+    }
 }

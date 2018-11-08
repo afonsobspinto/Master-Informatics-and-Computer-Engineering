@@ -1,7 +1,7 @@
 package SupplyStationsSimulation.Behaviours;
 
-import jade.lang.acl.ACLMessage;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
 
 public interface ACLMessageBehaviour {
-    public void handleMessage(ACLMessage message);
+    void handleMessage(Message message);
 }

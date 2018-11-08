@@ -1,7 +1,7 @@
-package SupplyStationsSimulation.Utilities;
+package SupplyStationsSimulation.Utilities.Messaging;
 
+import jade.core.AID;
 import jade.lang.acl.UnreadableException;
-import sajas.core.AID;
 import sajas.core.Agent;
 import jade.lang.acl.ACLMessage;
 
@@ -12,11 +12,11 @@ public class Message {
 
     private Agent receiver;
     private boolean isObject = true;
+
     private ACLMessage message;
 
-
     private Agent sender;
-    private AID receiverAID;
+    private AID sendToAID;
     private Serializable content;
     private int performative;
 
@@ -32,9 +32,9 @@ public class Message {
         this.isObject = isObject;
     }
 
-    public Message(Agent sender, AID receiverAID, int performative, Serializable content) {
+    public Message(Agent sender, AID sendToAID, int performative, Serializable content) {
         this.sender = sender;
-        this.receiverAID = receiverAID;
+        this.sendToAID = sendToAID;
         this.content = content;
         this.performative = performative;
     }
@@ -61,13 +61,31 @@ public class Message {
     public void send() {
         try {
             ACLMessage message = new ACLMessage(performative);
-            message.addReceiver(receiverAID);
+            message.addReceiver(sendToAID);
             message.setContentObject(content);
             sender.send(message);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
+
+    public int getPerformative(){
+        return message.getPerformative();
+    }
+
+    public String getContent() {
+        try {
+            return (isObject) ? message.getContentObject().toString() : message.getContent();
+        } catch (UnreadableException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public AID getReceiver() {
+        return receiver.getAID();
+    }
+
 
 
 }

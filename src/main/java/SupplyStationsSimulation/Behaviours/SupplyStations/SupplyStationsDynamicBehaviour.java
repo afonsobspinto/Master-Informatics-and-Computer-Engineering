@@ -3,6 +3,7 @@ package SupplyStationsSimulation.Behaviours.SupplyStations;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
@@ -30,7 +31,7 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     }
 
     @Override
-    public void handleMessage(ACLMessage message) {
+    public void handleMessage(Message message) {
 
     }
 }

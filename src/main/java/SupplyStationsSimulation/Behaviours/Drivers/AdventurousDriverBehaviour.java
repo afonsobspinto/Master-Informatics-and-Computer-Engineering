@@ -2,7 +2,7 @@ package SupplyStationsSimulation.Behaviours.Drivers;
 
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
-import jade.core.AID;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
@@ -18,9 +18,6 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
-        for(AID aid: driverAgent.getSupplyStationsServices()){
-            System.out.println(aid);
-        }
         driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
     }
 
@@ -30,13 +27,17 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
     }
 
     @Override
-    public void handleMessage(ACLMessage message) {
+    public void handleMessage(Message message) {
 
         switch (message.getPerformative()){
             case ACLMessage.INFORM:
-                System.out.println("Inform Received");
+                handleInform(message);
 
         }
+    }
 
+    private void handleInform(Message message){
+        //TODO: HandleInform
+        System.out.println(message);
     }
 }

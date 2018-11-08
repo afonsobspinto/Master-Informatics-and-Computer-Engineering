@@ -4,9 +4,11 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
-import SupplyStationsSimulation.Utilities.Position;
+import SupplyStationsSimulation.Utilities.Locations.Position;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
@@ -27,6 +29,7 @@ public class DriverAgent extends DrawableAgent {
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
     private int expectedTravelDuration;
     private ArrayList<AID> supplyStationsServices = new ArrayList<>();
+    private AID targetSupplyStation;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -76,7 +79,7 @@ public class DriverAgent extends DrawableAgent {
     }
 
     @Override
-    public void handleMessage(ACLMessage message) {
+    public void handleMessage(Message message) {
         for(ACLMessageBehaviour behaviour: behaviours){
             behaviour.handleMessage(message);
         }
@@ -95,6 +98,10 @@ public class DriverAgent extends DrawableAgent {
 
     public void setSupplyStationsServices(ArrayList<AID> supplyStationsServices) {
         this.supplyStationsServices = supplyStationsServices;
+        for(AID aid: supplyStationsServices){
+            new Message(this, aid, ACLMessage.REQUEST, MessageType.POSITION.getTypeStr()).send();
+        }
+
     }
 
     public Boolean getNeedsFuel() {
@@ -104,4 +111,13 @@ public class DriverAgent extends DrawableAgent {
     public ArrayList<AID> getSupplyStationsServices() {
         return supplyStationsServices;
     }
+
+    public AID getTargetSupplyStation() {
+        return targetSupplyStation;
+    }
+
+    public void setTargetSupplyStation(AID targetSupplyStation) {
+        this.targetSupplyStation = targetSupplyStation;
+    }
+
 }
