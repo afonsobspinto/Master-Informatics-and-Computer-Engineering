@@ -75,7 +75,4 @@ public class DrawableMap implements TileBasedMap {
     public float getCost(Mover mover, int sx, int sy, int tx, int ty) {
         return 1;
     }
-    public ArrayList<DrawableAgent> getAgentList() {
-        return agentList;
-    }
 }
