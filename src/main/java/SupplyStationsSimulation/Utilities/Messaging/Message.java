@@ -11,34 +11,42 @@ import java.io.Serializable;
 public class Message {
 
     private Agent receiver;
-    private boolean isObject = true;
+    private Agent sender;
+    private AID receiverAID;
+    private AID senderAID;
 
     private ACLMessage message;
-
-    private Agent sender;
-    private AID sendToAID;
     private Serializable content;
     private int performative;
+    private boolean isObject = true;
 
 
-    public Message(Agent receiver, ACLMessage message) {
-        this.receiver = receiver;
-        this.message = message;
-    }
 
+    /*
     public Message(Agent receiver, ACLMessage message, boolean isObject) {
         this.receiver = receiver;
         this.message = message;
         this.isObject = isObject;
     }
+*/
 
-    public Message(Agent sender, AID sendToAID, int performative, Serializable content) {
+    public Message(Agent receiver, ACLMessage message) {
+        this.receiver = receiver;
+        this.receiverAID = receiver.getAID();
+        this.senderAID = message.getSender();
+        this.message = message;
+    }
+
+    public Message(Agent sender, AID receiverAID, int performative, Serializable content) {
         this.sender = sender;
-        this.sendToAID = sendToAID;
+        this.senderAID = sender.getAID();
+        this.receiverAID = receiverAID;
         this.content = content;
         this.performative = performative;
     }
 
+
+    //TODO: ADD timestamps
     @Override
     public String toString() {
         String receiver = this.receiver.getLocalName();
@@ -61,7 +69,7 @@ public class Message {
     public void send() {
         try {
             ACLMessage message = new ACLMessage(performative);
-            message.addReceiver(sendToAID);
+            message.addReceiver(receiverAID);
             message.setContentObject(content);
             sender.send(message);
         } catch (IOException e) {
@@ -87,5 +95,7 @@ public class Message {
     }
 
 
-
+    public AID getSenderAID() {
+        return senderAID;
+    }
 }

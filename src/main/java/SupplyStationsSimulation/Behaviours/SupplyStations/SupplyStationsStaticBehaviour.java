@@ -2,7 +2,7 @@ package SupplyStationsSimulation.Behaviours.SupplyStations;
 
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
-import SupplyStationsSimulation.Utilities.Messaging.Content;
+import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import jade.lang.acl.ACLMessage;
@@ -42,7 +42,7 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
 
     private void handleRequest(Message message) {
         if (message.getContent().equals(MessageType.POSITION.getTypeStr())) {
-            new Message(this.supplyStationAgent, message.getReceiver(), ACLMessage.INFORM, new Content(MessageType.POSITION, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY())).getContent()).send();
+            new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.POSITION, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY())).getContent()).send();
         }
     }
 }

@@ -23,7 +23,6 @@ public class ListeningBehaviour extends CyclicBehaviour {
 
         Message message = new Message(this.agent, msg);
         System.out.println(message);
-
         agent.handleMessage(message);
 
 
