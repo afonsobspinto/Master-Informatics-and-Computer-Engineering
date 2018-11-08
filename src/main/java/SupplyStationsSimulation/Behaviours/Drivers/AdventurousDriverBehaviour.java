@@ -4,6 +4,8 @@ import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Utilities.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.AID;
+import SupplyStationsSimulation.Agents.DrawableAgent;
+import SupplyStationsSimulation.Agents.DriverAgent;
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
@@ -12,14 +14,17 @@ import java.util.ArrayList;
 public class AdventurousDriverBehaviour extends Behaviour {
     private boolean isDone = false;
     private ArrayList<DrawableAgent> allDrivers = new ArrayList<DrawableAgent>();
+    private DriverAgent driverAgent;
+    private int tick = 0;
 
-    public AdventurousDriverBehaviour(Agent a, ArrayList<DrawableAgent> agentList) {
+    public AdventurousDriverBehaviour(DriverAgent a, ArrayList<DrawableAgent> agentList) {
         super(a);
         for (DrawableAgent anAgentList : agentList) {
             if (anAgentList.getName().charAt(0) == 'A' || anAgentList.getName().charAt(0) == 'C') {
                 this.allDrivers.add(anAgentList);
             }
         }
+        this.driverAgent = a;
 
     }
 
@@ -38,11 +43,12 @@ public class AdventurousDriverBehaviour extends Behaviour {
             System.out.println("Sent message to all drivers");
         }
 
+        driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
     }
 
     @Override
     public boolean done() {
-        return isDone;
+        return driverAgent.getPath().getLength()-1 == tick;
     }
 
     /*
