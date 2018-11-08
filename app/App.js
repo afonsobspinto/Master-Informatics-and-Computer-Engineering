@@ -8,6 +8,7 @@ import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 import ChooseActivityScreen from './screens/ChooseActivityScreen'
 import { AppLoading, Font } from 'expo'
 import ChildMainMenuScreen from './screens/ChildMainMenuScreen'
+import ParentScreen from './screens/ParentScreen'
 
 export default class App extends React.Component {
   state = {
@@ -57,5 +58,6 @@ const AppStackNavigator = createStackNavigator({
   Activity: ActivityScreen,
   ChooseRoutineScreen: ChooseRoutineScreen,
   ChooseActivityScreen: ChooseActivityScreen,
+  ParentScreen: ParentScreen,
   ChildMainMenu: ChildMainMenuScreen
 })

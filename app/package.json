@@ -23,6 +23,7 @@
     "react-native-modal": "^6.5.0",
     "react-native-progress": "^3.5.0",
     "react-native-snap-carousel": "^3.7.5",
+    "react-native-sound": "^0.10.9",
     "react-navigation": "^2.16.0"
   },
   "devDependencies": {

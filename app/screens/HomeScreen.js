@@ -66,6 +66,13 @@ export default class HomeScreen extends React.Component {
           title={`Timer: ${this.state.activityShowTimer}`}
           onPress={this.changeActivityShowTimer}
         />
+        <Text />
+        <Button
+          title={'Parent: Add New Activity'}
+          onPress={() => {
+            this.props.navigation.navigate('ParentScreen')
+          }}
+        />
       </View>
     )
   }
