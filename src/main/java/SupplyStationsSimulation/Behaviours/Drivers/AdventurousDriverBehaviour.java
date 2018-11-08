@@ -1,18 +1,16 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
 import SupplyStationsSimulation.Agents.DrawableAgent;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Utilities.Message;
 import jade.lang.acl.ACLMessage;
 import sajas.core.AID;
-import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
-import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
 import java.util.ArrayList;
 
-public class AdventurousDriverBehaviour extends Behaviour {
-    private boolean isDone = false;
+public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
     private ArrayList<DrawableAgent> allDrivers = new ArrayList<DrawableAgent>();
     private DriverAgent driverAgent;
     private int tick = 0;
@@ -30,20 +28,8 @@ public class AdventurousDriverBehaviour extends Behaviour {
 
     @Override
     public void action() {
-        System.out.println("Adventurous DriverAgent Behaviour Action");
-
-        ACLMessage msg = myAgent.receive();
-        if (msg != null ){
-            Message.printMessage(myAgent, msg, true);
-            if (msg.getPerformative() == ACLMessage.INFORM)
-                System.out.println("Thanks for the info!");
-        }
-        for (DrawableAgent anAgentList : this.allDrivers) {
-            inform((AID) anAgentList.getAID(), "bla bla");
-            System.out.println("Sent message to all drivers");
-        }
-
         driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
+        informBroadcast();
     }
 
     @Override
@@ -51,19 +37,29 @@ public class AdventurousDriverBehaviour extends Behaviour {
         return driverAgent.getPath().getLength()-1 == tick;
     }
 
-    /*
-     * Send Inform Message to request to enter the station
-     */
+    private void informBroadcast(){
+        for (DrawableAgent anAgentList : this.allDrivers) {
+            inform((AID) anAgentList.getAID(), "bla bla");
+        }
+    }
+
     private void inform(AID receiver, String content) {
-        Message.sendMessage(this.myAgent, receiver, ACLMessage.INFORM, content);
+        new Message(this.myAgent, receiver, ACLMessage.INFORM, content).send();
     }
 
-    /*
-     * Send Inform Message to request to enter the station
-     */
     private void receive(AID receiver, String content) {
-        Message.sendMessage(this.myAgent, receiver, ACLMessage.INFORM, content);
+        new Message(this.myAgent, receiver, ACLMessage.INFORM, content).send();
     }
 
 
+    @Override
+    public void handleMessage(ACLMessage message) {
+
+        switch (message.getPerformative()){
+            case ACLMessage.INFORM:
+                System.out.println("Inform Received");
+
+        }
+
+    }
 }

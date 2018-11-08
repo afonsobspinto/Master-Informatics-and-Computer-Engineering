@@ -1,18 +1,13 @@
 package SupplyStationsSimulation.Behaviours.SupplyStations;
 
-import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Utilities.Message;
 import sajas.core.AID;
-import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
-import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-public class SupplyStationsStaticBehaviour extends Behaviour {
+public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
@@ -26,7 +21,6 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
     @Override
     public void action() {
         //System.out.println("Supply Station Static Behaviour Action");
-
     }
 
     @Override
@@ -39,13 +33,18 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
      * Send Confirm Message confirming the car can enter the station
      */
     private void confirm(AID receiver, String content) {
-        Message.sendMessage(this.supplyStationAgent, receiver, ACLMessage.CONFIRM, content);
+        new Message(this.supplyStationAgent, receiver, ACLMessage.CONFIRM, content).send();
     }
 
     /*
      * Send Disconfirm Message rejecting the car entrance in the station
      */
     private void disconfirm(AID receiver, String content) {
-        Message.sendMessage(this.supplyStationAgent, receiver, ACLMessage.DISCONFIRM, content);
+        new Message(this.supplyStationAgent, receiver, ACLMessage.DISCONFIRM, content).send();
+    }
+
+    @Override
+    public void handleMessage(ACLMessage message) {
+
     }
 }

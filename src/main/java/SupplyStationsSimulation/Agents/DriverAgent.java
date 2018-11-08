@@ -1,9 +1,12 @@
 package SupplyStationsSimulation.Agents;
 
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
 import SupplyStationsSimulation.Utilities.Position;
+import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 
@@ -22,6 +25,7 @@ public class DriverAgent extends DrawableAgent {
     private Path path;
     private ArrayList<SupplyStationAgent> knownSupplyStations;
     private DrawableMap map;
+    private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -38,10 +42,14 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public void addBehaviour(Behaviour b) {
         super.addBehaviour(b);
+        if(b instanceof ACLMessageBehaviour)
+            behaviours.add((ACLMessageBehaviour)b);
     }
 
     @Override
-    protected void setup() { super.setup();
+    protected void setup() {
+        super.setup();
+        addBehaviour(new ListeningBehaviour(this));
     }
 
     @Override
@@ -62,6 +70,13 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.DRIVER;
+    }
+
+    @Override
+    public void handleMessage(ACLMessage message) {
+        for(ACLMessageBehaviour behaviour: behaviours){
+            behaviour.handleMessage(message);
+        }
     }
 
     public Boolean getNeedsFuel() {

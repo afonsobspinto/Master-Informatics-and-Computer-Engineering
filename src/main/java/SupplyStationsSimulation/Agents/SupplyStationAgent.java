@@ -1,6 +1,7 @@
 package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Utilities.Position;
+import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 
@@ -72,6 +73,11 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.SUPPLYSTATION;
+    }
+
+    @Override
+    public void handleMessage(ACLMessage message) {
+
     }
 
     public void pumpGas(DriverAgent agent){

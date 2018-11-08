@@ -1,10 +1,12 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
 import SupplyStationsSimulation.Agents.DriverAgent;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import jade.lang.acl.ACLMessage;
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
-public class CollaborativeDriverBehaviour extends Behaviour {
+public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private DriverAgent driverAgent;
     private int tick = 0;
@@ -23,5 +25,10 @@ public class CollaborativeDriverBehaviour extends Behaviour {
     @Override
     public boolean done() {
         return driverAgent.getPath().getLength()-1 == tick;
+    }
+
+    @Override
+    public void handleMessage(ACLMessage message) {
+
     }
 }
