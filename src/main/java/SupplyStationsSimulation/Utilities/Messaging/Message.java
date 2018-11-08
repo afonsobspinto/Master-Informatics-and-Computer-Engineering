@@ -1,5 +1,6 @@
 package SupplyStationsSimulation.Utilities.Messaging;
 
+import SupplyStationsSimulation.Utilities.Timestamp;
 import jade.core.AID;
 import jade.lang.acl.UnreadableException;
 import sajas.core.Agent;
@@ -7,6 +8,7 @@ import jade.lang.acl.ACLMessage;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Message {
 
@@ -45,8 +47,6 @@ public class Message {
         this.performative = performative;
     }
 
-
-    //TODO: ADD timestamps
     @Override
     public String toString() {
         String receiver = this.receiver.getLocalName();
@@ -54,7 +54,7 @@ public class Message {
         String performative = ACLMessage.getPerformative(message.getPerformative());
         try {
             String content = (isObject) ? message.getContentObject().toString() : message.getContent();
-            return receiver + " received " + performative + " from " + sender + " : " + content;
+            return  new Timestamp().getCurrentTime() + " - " + receiver + " received " + performative + " from " + sender + " : " + content;
 
         } catch (UnreadableException e) {
             System.err.println(e.getMessage());
@@ -62,6 +62,8 @@ public class Message {
 
         return "Message{}";
     }
+
+
 
     /*
      * Send message between two agents
