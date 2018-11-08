@@ -8,11 +8,10 @@ import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsDynamicBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
-import SupplyStationsSimulation.Utilities.Position;
-import SupplyStationsSimulation.Utilities.RandomPositionsGenerator;
+import SupplyStationsSimulation.Utilities.Locations.Position;
+import SupplyStationsSimulation.Utilities.Locations.RandomPositionsGenerator;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
-import jade.lang.acl.ACLMessage;
 import jade.wrapper.StaleProxyException;
 import sajas.core.Runtime;
 import sajas.sim.repast3.Repast3Launcher;
@@ -21,7 +20,6 @@ import uchicago.src.sim.engine.Schedule;
 import uchicago.src.sim.engine.SimInit;
 import uchicago.src.sim.gui.DisplaySurface;
 import uchicago.src.sim.gui.Object2DDisplay;
-import uchicago.src.sim.space.Object2DGrid;
 
 import java.awt.*;
 import java.util.*;
@@ -86,7 +84,7 @@ public class Launcher extends Repast3Launcher {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
                 DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
-                adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent,  drawableMap.getAgentList()));
+                adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
             }
@@ -101,7 +99,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < STATIC_SUPPLY_STATIONS; i++) {
                 String nickname = "StaticSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(), 10, 1.5);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(),  1.5);
                 supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
@@ -109,7 +107,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < DYNAMIC_SUPPLY_STATIONS; i++) {
                 String nickname = "DynamicSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(), 10, 1.3);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(),  1.3);
                 supplyStationAgent.addBehaviour(new SupplyStationsDynamicBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);

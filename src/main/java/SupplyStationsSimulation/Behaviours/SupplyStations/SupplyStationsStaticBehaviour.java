@@ -1,18 +1,16 @@
 package SupplyStationsSimulation.Behaviours.SupplyStations;
 
-import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
-import SupplyStationsSimulation.Utilities.Message;
-import sajas.core.AID;
-import jade.domain.FIPAException;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Utilities.Messaging.Content;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import jade.lang.acl.ACLMessage;
-import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
-public class SupplyStationsStaticBehaviour extends Behaviour {
+public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
@@ -25,8 +23,6 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
 
     @Override
     public void action() {
-        //System.out.println("Supply Station Static Behaviour Action");
-
     }
 
     @Override
@@ -34,18 +30,19 @@ public class SupplyStationsStaticBehaviour extends Behaviour {
         return isDone;
     }
 
+    @Override
+    public void handleMessage(Message message) {
 
-    /*
-     * Send Confirm Message confirming the car can enter the station
-     */
-    private void confirm(AID receiver, String content) {
-        Message.sendMessage(this.supplyStationAgent, receiver, ACLMessage.CONFIRM, content);
+        switch (message.getPerformative()) {
+            case ACLMessage.REQUEST:
+                handleRequest(message);
+        }
+
     }
 
-    /*
-     * Send Disconfirm Message rejecting the car entrance in the station
-     */
-    private void disconfirm(AID receiver, String content) {
-        Message.sendMessage(this.supplyStationAgent, receiver, ACLMessage.DISCONFIRM, content);
+    private void handleRequest(Message message) {
+        if (message.getContent().equals(MessageType.POSITION.getTypeStr())) {
+            new Message(this.supplyStationAgent, message.getReceiver(), ACLMessage.INFORM, new Content(MessageType.POSITION, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY())).getContent()).send();
+        }
     }
 }

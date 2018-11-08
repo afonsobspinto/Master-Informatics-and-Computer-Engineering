@@ -1,4 +1,4 @@
-package SupplyStationsSimulation.Utilities;
+package SupplyStationsSimulation.Utilities.Locations;
 
 public class Position {
     private int x;
@@ -32,4 +32,5 @@ public class Position {
 
         return false;
     }
+
 }

@@ -2,11 +2,14 @@ package SupplyStationsSimulation.Behaviours.SupplyStations;
 
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
+import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Utilities.Messaging.Message;
+import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
 import java.util.ArrayList;
 
-public class SupplyStationsDynamicBehaviour extends Behaviour {
+public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
@@ -19,12 +22,16 @@ public class SupplyStationsDynamicBehaviour extends Behaviour {
     }
     @Override
     public void action() {
-        //System.out.println("Supply Station Dynamic Behaviour Action");
 
     }
 
     @Override
     public boolean done() {
         return isDone;
+    }
+
+    @Override
+    public void handleMessage(Message message) {
+
     }
 }
