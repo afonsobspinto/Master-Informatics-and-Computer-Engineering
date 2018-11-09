@@ -3,6 +3,7 @@ import { View, Image, SafeAreaView, ScrollView } from 'react-native'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation'
 
 import CreateNewActivityScreen from './CreateNewActivityScreen'
+import ParentHomeScreen from './ParentHomeScreen'
 
 export default class ParentScreen extends React.Component {
   static navigationOptions = {
@@ -27,6 +28,7 @@ const CustomDrawerComponent = (props) => (
 )
 
 const ParentDrawerNavigator = createDrawerNavigator({
+  'A Minha Conta': ParentHomeScreen,
   'Criar Nova Atividade': CreateNewActivityScreen
 },
 {

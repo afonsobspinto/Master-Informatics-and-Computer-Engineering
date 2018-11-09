@@ -7,7 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a5c1ec-defe-4a55-8d39-ad77fb5a7c5e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/add-activity-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/home-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/screens/ParentHomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/CreateNewActivityScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/CreateNewActivityScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/ParentScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/ParentScreen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,10 +34,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">

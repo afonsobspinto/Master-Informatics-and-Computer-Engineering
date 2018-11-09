@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Image, View, Text, StyleSheet } from 'react-native'
 import { Header, Left, Body, Right, Icon } from 'native-base'
 
-export default class CreateNewActivityScreen extends Component {
+import PropTypes from 'prop-types'
+
+export default class ParentHomeScreen extends Component {
   static navigationOptions = {
     header: null,
     drawerIcon: (
-      <Image source={require('../assets/images/add-activity-icon.png')} style={{ height: 24, width: 24 }} />
+      <Image source={require('../assets/images/home-icon.png')} style={{ height: 24, width: 24 }} />
     )
   };
   render () {
@@ -18,10 +19,11 @@ export default class CreateNewActivityScreen extends Component {
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
           </Left>
           <Body>
-            <Text>Criar uma nova atividade</Text>
+            <Text style={{ fontSize: 16 }}>Criar uma nova atividade</Text>
           </Body>
           <Right />
         </Header>
+        <Text>This is the parents home screen</Text>
       </View>
     )
   }
@@ -35,6 +37,6 @@ const styles = StyleSheet.create({
   }
 })
 
-CreateNewActivityScreen.propTypes = {
+ParentHomeScreen.propTypes = {
   navigation: PropTypes.object.isRequired
 }
