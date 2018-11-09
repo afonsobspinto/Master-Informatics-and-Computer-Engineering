@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 
+import { backgroundColor } from './General.style'
+
 const padding = Layout.window.height * 0.05
 
 export const sliderWidth = Layout.window.height
@@ -121,5 +123,19 @@ export default StyleSheet.create({
     height: padding,
     justifyContent: 'center',
     marginBottom: 10
+  },
+  tooltip: {
+    fontFamily: 'LinotteBold',
+    fontSize: 40,
+    color: '#000',
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+    textAlign: 'center'
+  },
+  screenBackground: {
+    backgroundColor: backgroundColor,
+    width: '100%',
+    height: '100%'
   }
 })

@@ -3,6 +3,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 import Modal from 'react-native-modalbox'
+import * as Animatable from 'react-native-animatable'
 
 import styles from '../../styles/RewardModal.style'
 import { grayedOut } from '../../styles/Colors'
@@ -11,7 +12,7 @@ import Images from '../../assets/images/images'
 export class RewardsModal extends React.Component {
   render () {
     let pastActivityIcons = this.props.activities
-      .filter((activity, index, array) => {
+      .filter((_, index, array) => {
         if (this.props.currentActivity + 8 > array.length) return index >= array.length - 8
         else return index >= this.props.currentActivity && index < this.props.currentActivity + 8
       })
@@ -19,14 +20,6 @@ export class RewardsModal extends React.Component {
         (<View key={index} style={[styles.pastActivityIcon, { backgroundColor: activity.status ? activity.color : grayedOut }]}>
           <Image style={[styles.pastActivityImage, { opacity: activity.status ? 1 : 0.3 }]} recizeMode={'center'} source={Images[activity.image]} />
         </View>))
-
-    let rewards = this.props.activities[this.props.currentActivity].status
-      ? (<View style={styles.rewardContainer}>
-        <Image style={[styles.icon, this.props.activities[this.props.currentActivity].status.reward < 1 && styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
-        <Image style={[styles.icon, this.props.activities[this.props.currentActivity].status.reward < 2 && styles.iconGreyedOut, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
-        <Image style={[styles.icon, this.props.activities[this.props.currentActivity].status.reward < 3 && styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
-      </View>)
-      : (<View style={styles.rewardContainer} />)
 
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
 
@@ -38,7 +31,31 @@ export class RewardsModal extends React.Component {
 
     return (
       <Modal style={styles.rewardsModal} isOpen={this.props.activities[this.props.currentActivity].status !== undefined} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
-        {rewards}
+        <View style={styles.rewardContainer}>
+          <Image style={[styles.icon, styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
+          <Image style={[styles.icon, styles.iconGreyedOut, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
+          <Image style={[styles.icon, styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
+        </View>
+        <View style={styles.rewardContainer}>
+          <Animatable.Image
+            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 1 ? '' : 'zoomIn'}
+            delay={400}
+            style={styles.icon}
+            resizeMode={'center'}
+            source={Images.ui.star} />
+          <Animatable.Image
+            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 2 ? '' : 'zoomIn'}
+            delay={1400}
+            style={[styles.icon, styles.iconCenter]}
+            resizeMode={'center'}
+            source={Images.ui.star} />
+          <Animatable.Image
+            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 3 ? '' : 'zoomIn'}
+            delay={2400}
+            style={styles.icon}
+            resizeMode={'center'}
+            source={Images.ui.star} />
+        </View>
         <View style={styles.rewardCard}>
           <Text style={styles.cardTitle}>
             { cardText }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setActivityStatus, nextActivity } from '../actions/gameActions'
 import { Image, Text, View, StatusBar } from 'react-native'
-import { ScreenOrientation } from 'expo'
+import { handleAndroidBackButton, removeAndroidBackButtonHandler } from '../helpers/AndroidBackButton'
 
 import { ProgressBar } from '../components/Activity/ProgressBar'
 import { ProgressClock } from '../components/Activity/ProgressClock'
@@ -44,7 +44,7 @@ class ActivityScreen extends Component {
   }
 
   componentDidMount () {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
+    handleAndroidBackButton(this.cancelActivity)
 
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
@@ -61,6 +61,7 @@ class ActivityScreen extends Component {
 
   componentWillUnmount () {
     clearInterval(this.interval)
+    removeAndroidBackButtonHandler()
   }
 
   pauseActivity () {

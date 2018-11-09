@@ -1,11 +1,11 @@
 import React from 'react'
-import { StatusBar, View } from 'react-native'
+import { StatusBar, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { setCurrentRoutine, nextActivity } from '../actions/gameActions'
 import PropTypes from 'prop-types'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
-import { backgroundColor } from '../styles/General.style'
+import styles from '../styles/CardCarousel.style'
 
 class ChooseRoutineScreen extends React.Component {
   constructor (props) {
@@ -30,16 +30,22 @@ class ChooseRoutineScreen extends React.Component {
   }
 
   render () {
-    return (
-      <View style={{ backgroundColor: backgroundColor }}>
-        <StatusBar hidden />
-        <CardCarousel
-          data={this.props.routines.filter(routine => !routine.activities.every(activity => activity.status !== undefined))}
-          onPress={this.onPress}
-          onButtonPress={this.onButtonPress}
-        />
-      </View>
-    )
+    if (!this.props.routines.every(routine => routine.activities.every(activity => activity.status !== undefined))) {
+      return (
+        <View style={styles.screenBackground}>
+          <StatusBar hidden />
+          <CardCarousel
+            data={this.props.routines.filter(routine => !routine.activities.every(activity => activity.status !== undefined))}
+            onPress={this.onPress}
+            onButtonPress={this.onButtonPress}
+          />
+        </View>
+      )
+    } else {
+      return (<View style={[styles.screenBackground, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={styles.tooltip}>Sem rotinas para jogar{'\n'}Volta amanha!</Text>
+      </View>)
+    }
   }
 }
 

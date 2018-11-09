@@ -34,10 +34,12 @@ export default StyleSheet.create({
   icon: {
     height: padding * 2.5,
     width: padding * 2.5,
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    opacity: 0
   },
   iconGreyedOut: {
-    tintColor: grayedOut
+    tintColor: grayedOut,
+    opacity: 1
   },
   iconCenter: {
     height: padding * 3,
