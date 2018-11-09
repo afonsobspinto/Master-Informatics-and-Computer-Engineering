@@ -34,7 +34,7 @@ class ChooseRoutineScreen extends React.Component {
       <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
         <CardCarousel
-          data={this.props.routines}
+          data={this.props.routines.filter(routine => !routine.activities.every(activity => activity.status !== undefined))}
           onPress={this.onPress}
           onButtonPress={this.onButtonPress}
         />

@@ -26,7 +26,9 @@ class ChooseActivityScreen extends React.Component {
     return (
       <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
-        <CardCarousel data={this.props.activities} onPress={this.onPress} />
+        <CardCarousel
+          data={this.props.activities.filter(activity => activity.status === undefined)}
+          onPress={this.onPress} />
       </View>
     )
   }

@@ -36,6 +36,7 @@ class ActivityScreen extends Component {
     this.completeActivity = this.completeActivity.bind(this)
     this.resumeActivity = this.resumeActivity.bind(this)
     this.nextActivity = this.nextActivity.bind(this)
+    this.backToMenu = this.backToMenu.bind(this)
   }
 
   static navigationOptions = {
@@ -88,6 +89,10 @@ class ActivityScreen extends Component {
     this.props.navigation.replace('Activity')
   }
 
+  backToMenu () {
+    this.props.navigation.popToTop()
+  }
+
   resumeActivity () {
     this.setState(() => ({ isPaused: false }))
   }
@@ -113,7 +118,8 @@ class ActivityScreen extends Component {
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
-          nextActivity={this.nextActivity} />
+          nextPress={this.nextActivity}
+          backPress={this.backToMenu} />
       </View>
     )
   }

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
-import { green } from './Colors'
+import { grayedOut, green, red } from './Colors'
 import { backgroundColor } from './General.style'
 
 const padding = Layout.window.height * 0.05
@@ -37,7 +37,7 @@ export default StyleSheet.create({
     marginHorizontal: 5
   },
   iconGreyedOut: {
-    tintColor: '#ccc5b9'
+    tintColor: grayedOut
   },
   iconCenter: {
     height: padding * 3,
@@ -51,7 +51,8 @@ export default StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,
     marginHorizontal: 30,
-    marginTop: padding * 2
+    marginTop: padding * 2,
+    textAlign: 'center'
   },
   button: {
     elevation: 7,
@@ -60,11 +61,23 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: buttonHeight,
     aspectRatio: 1,
-    borderRadius: buttonHeight / 2,
-    backgroundColor: green,
+    borderRadius: buttonHeight / 2
+  },
+  nextButton: {
+    backgroundColor: green
+  },
+  backButton: {
+    backgroundColor: red,
+    marginRight: 3 * padding
+  },
+  buttonContainer: {
     position: 'absolute',
-    bottom: 3 * padding,
-    right: 3 * padding - buttonHeight / 3
+    bottom: 2 * padding - buttonHeight / 2,
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 7
   },
   buttonImage: {
     height: '50%',
@@ -75,7 +88,6 @@ export default StyleSheet.create({
     height: buttonHeight / 2,
     width: buttonHeight / 2,
     borderRadius: buttonHeight / 4,
-    backgroundColor: '#7fb800',
     elevation: 2,
     justifyContent: 'center',
     alignItems: 'center',
@@ -87,8 +99,6 @@ export default StyleSheet.create({
   },
   pastActivityContainer: {
     flexDirection: 'row',
-    position: 'absolute',
-    bottom: padding + buttonHeight / 4,
-    right: buttonHeight * (2 / 3) + 5
+    marginTop: padding
   }
 })

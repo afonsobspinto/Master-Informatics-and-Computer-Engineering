@@ -23,9 +23,9 @@ const initialState = {
           image: 'toothbrush',
           color: '#0e79b2',
           time: {
-            min: 10,
-            max: 120,
-            goal: 60
+            min: 1,
+            max: 15,
+            goal: 10
           }
         },
         {
