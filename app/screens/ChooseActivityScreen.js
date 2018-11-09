@@ -6,8 +6,17 @@ import CardCarousel from '../components/Carousel/CardCarousel'
 import { backgroundColor } from '../styles/General.style'
 
 export default class ChooseActivityScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.onPress = this.onPress.bind(this)
+  }
+
   static navigationOptions = {
     header: null
+  }
+
+  onPress = (activity) => {
+    this.props.navigation.navigate('Activity', { activity: activity })
   }
 
   render () {
@@ -16,7 +25,7 @@ export default class ChooseActivityScreen extends React.Component {
     return (
       <View style={{ backgroundColor: backgroundColor }}>
         <StatusBar hidden />
-        <CardCarousel data={activities} navigation={this.props.navigation} />
+        <CardCarousel data={activities} onPress={this.onPress} />
       </View>
     )
   }
