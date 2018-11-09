@@ -26,13 +26,6 @@ class HomeScreen extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
-          title='Go to routine screen'
-          onPress={() => {
-            this.props.navigation.navigate('ChooseRoutineScreen')
-          }}
-        />
-        <Text />
-        <Button
           title='Go to main menu'
           onPress={() => {
             this.props.navigation.navigate('ChildMainMenu')

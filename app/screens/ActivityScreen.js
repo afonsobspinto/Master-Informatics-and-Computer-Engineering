@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { setActivityStatus, nextActivity } from '../actions/gameActions'
 import { Image, Text, View, StatusBar } from 'react-native'
 import { ScreenOrientation } from 'expo'
 
@@ -18,30 +19,28 @@ class ActivityScreen extends Component {
   constructor (props) {
     super(props)
 
+    this.activity = this.props.activities[this.props.currentActivity]
+
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.navigation.state.params.activity.photo !== undefined,
+      isPhoto: this.activity.photo !== undefined,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
-      isCompletable: false,
-      showTimer: false,
-      rewardsCount: 3,
-      showRewardsModal: false
+      isCompletable: false
     }
 
     this.pauseActivity = this.pauseActivity.bind(this)
     this.cancelActivity = this.cancelActivity.bind(this)
     this.completeActivity = this.completeActivity.bind(this)
     this.resumeActivity = this.resumeActivity.bind(this)
+    this.nextActivity = this.nextActivity.bind(this)
   }
 
   static navigationOptions = {
     header: null
   }
-
-  activity = this.props.navigation.state.params.activity
 
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
@@ -73,7 +72,20 @@ class ActivityScreen extends Component {
 
   completeActivity () {
     clearInterval(this.interval)
-    this.setState(() => { return { isCompleted: true, showRewardsModal: true } })
+    const status = {
+      completed: true,
+      reward: this.state.elapsedTime > this.activity.time.max ? 0
+        : this.state.elapsedTime < this.activity.time.goal ? 3
+          : this.state.elapsedTime < this.activity.time.goal + (this.activity.time.max - this.activity.time.goal) / 2 ? 2 : 1,
+      time: parseInt(this.state.elapsedTime)
+    }
+    this.props.setActivityStatus(this.activity, status)
+    this.setState(() => { return { isCompleted: true } })
+  }
+
+  nextActivity () {
+    this.props.nextActivity()
+    this.props.navigation.replace('Activity')
   }
 
   resumeActivity () {
@@ -91,17 +103,17 @@ class ActivityScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && <ProgressClock showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
-        {!this.state.showRewardsModal && <View style={styles.buttonContainer}>
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
+        {!this.state.isCompleted && <View style={styles.buttonContainer}>
           {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
           <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
         </View>}
         <RewardsModal
-          isOpen={this.state.showRewardsModal}
-          activity={this.activity}
-          elapsedTime={this.state.elapsedTime} />
+          currentActivity={this.props.currentActivity}
+          activities={this.props.activities}
+          nextActivity={this.nextActivity} />
       </View>
     )
   }
@@ -110,15 +122,23 @@ class ActivityScreen extends Component {
 export default connect(
   state => ({
     progressType: state.settings.activityProgressType,
-    showTimer: state.settings.activityShowTimer
+    showTimer: state.settings.activityShowTimer,
+    activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
+    activities: state.game.routines[state.game.currentRoutine].activities,
+    currentActivity: state.game.currentActivity
   }),
   dispatch => ({
-
+    setActivityStatus: (activity, status) => dispatch(setActivityStatus(activity, status)),
+    nextActivity: () => dispatch(nextActivity())
   })
 )(ActivityScreen)
 
 ActivityScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   progressType: PropTypes.string.isRequired,
-  showTimer: PropTypes.bool.isRequired
+  showTimer: PropTypes.bool.isRequired,
+  currentActivity: PropTypes.number.isRequired,
+  activities: PropTypes.array.isRequired,
+  setActivityStatus: PropTypes.func.isRequired,
+  nextActivity: PropTypes.func.isRequired
 }

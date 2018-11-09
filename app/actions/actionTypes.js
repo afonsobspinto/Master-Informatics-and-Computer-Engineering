@@ -9,5 +9,6 @@ export const gameTypes = {
   addRoutines: 'game:addRoutines',
   setCurrentRoutine: 'game:setCurrentRoutine',
   setCurrentActivity: 'game:setCurrentActivity',
-  setActivityStatus: 'game:setActivityStatus'
+  setActivityStatus: 'game:setActivityStatus',
+  nextActivity: 'game.nextActivity'
 }

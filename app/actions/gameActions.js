@@ -7,26 +7,29 @@ export function addRoutines (routines) {
   }
 }
 
-export function setCurrentRoutine (routineIndex) {
+export function setCurrentRoutine (routine) {
   return {
     type: gameTypes.setCurrentRoutine,
-    payload: routineIndex
+    payload: routine
   }
 }
 
-export function setCurrentActivity (activityIndex) {
+export function setCurrentActivity (activity) {
   return {
     type: gameTypes.setCurrentActivity,
-    payload: activityIndex
+    payload: activity
   }
 }
 
-export function setActivityStatus (activityIndex, status) {
+export function setActivityStatus (activity, status) {
   return {
     type: gameTypes.setActivityStatus,
-    payload: {
-      activity: activityIndex,
-      status
-    }
+    payload: { activity, status }
+  }
+}
+
+export function nextActivity () {
+  return {
+    type: gameTypes.nextActivity
   }
 }

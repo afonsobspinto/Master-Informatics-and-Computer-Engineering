@@ -10,7 +10,7 @@ import Images from '../../assets/images/images'
 export class RewardsModal extends React.Component {
   render () {
     return (
-      <Modal style={styles.rewardsModal} isOpen={this.props.isOpen} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
+      <Modal style={styles.rewardsModal} isOpen={this.props.activities[this.props.currentActivity].status !== undefined} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
         <View style={styles.rewardContainer}>
           <Image style={styles.icon} resizeMode={'center'} source={Images.ui.star} />
           <Image style={[styles.icon, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
@@ -18,7 +18,7 @@ export class RewardsModal extends React.Component {
         </View>
         <View style={styles.rewardCard}>
           <Text style={styles.cardTitle}>
-            {this.props.elapsedTime < this.props.activity.time.max ? 'Actividade completa!' : 'Actividade falhada.'}
+            {this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward ? 'Actividade completa!' : 'Actividade falhada.'}
           </Text>
           <View style={styles.pastActivityContainer}>
             <View style={styles.pastActivityIcon}>
@@ -41,7 +41,7 @@ export class RewardsModal extends React.Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.button}
-          onPress={() => console.log('ola')} >
+          onPress={this.props.nextActivity} >
           <Image
             style={styles.buttonImage}
             resizeMode={'contain'}
@@ -53,7 +53,7 @@ export class RewardsModal extends React.Component {
 }
 
 RewardsModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  elapsedTime: PropTypes.number.isRequired,
-  activity: PropTypes.object.isRequired
+  activities: PropTypes.array.isRequired,
+  currentActivity: PropTypes.number.isRequired,
+  nextActivity: PropTypes.func.isRequired
 }
