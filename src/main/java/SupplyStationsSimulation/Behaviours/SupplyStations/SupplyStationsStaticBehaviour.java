@@ -41,8 +41,8 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
     }
 
     private void handleRequest(Message message) {
-        if (message.getContent().equals(MessageType.POSITION.getTypeStr())) {
-            new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.POSITION, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY())).getContent()).send();
+        if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
+            new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.INFO, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY(), this.supplyStationAgent.getPricePerLiter())).getContent()).send();
         }
     }
 }

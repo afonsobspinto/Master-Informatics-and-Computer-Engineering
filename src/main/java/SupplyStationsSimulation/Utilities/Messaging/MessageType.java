@@ -1,7 +1,7 @@
 package SupplyStationsSimulation.Utilities.Messaging;
 
 public enum MessageType {
-    POSITION("Position");
+    INFO("INFO");
 
     private String typeStr;
     MessageType(String type) {

@@ -6,12 +6,11 @@ import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageType;
-import jade.core.AID;
+import SupplyStationsSimulation.Utilities.SupplyStationInfo;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
 import java.util.List;
-import java.util.Map;
 
 public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
     private DriverAgent driverAgent;
@@ -25,8 +24,6 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
-
-
         driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
     }
 
@@ -47,11 +44,12 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     private void handleInform(Message message){
         MessageContent messageContent = new MessageContent(message);
-        if(messageContent.getMessageType() == MessageType.POSITION){
+        if(messageContent.getMessageType() == MessageType.INFO){
             List<Object> contentObjects = messageContent.getContetObjects();
             int x =  Integer.parseInt((String)contentObjects.get(0));
             int y =  Integer.parseInt((String)contentObjects.get(1));
-            driverAgent.addSupplyStationsLocation(message.getSenderAID(), new Position(x,y));
+            double price =  Double.parseDouble((String)contentObjects.get(2));
+            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(), new Position(x,y), price));
 
         }
     }

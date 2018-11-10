@@ -9,15 +9,16 @@ import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
 import SupplyStationsSimulation.Utilities.Locations.Position;
+import SupplyStationsSimulation.Utilities.SupplyStationInfo;
+import SupplyStationsSimulation.Utilities.UtilityComparator;
+import SupplyStationsSimulation.Utilities.UtilityFactor;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class DriverAgent extends DrawableAgent {
@@ -26,12 +27,17 @@ public class DriverAgent extends DrawableAgent {
     private Position position;
     private Position destination;
     private Boolean needsFuel = true;
+    private static double priceIntoleranceDeviation = 0.2;
+    private static double priceIntoleranceMean = 1.0;
+    private double priceIntolerance = new Random().nextGaussian()*priceIntoleranceDeviation + priceIntoleranceMean;
     private Path path;
     private DrawableMap map;
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
     private int expectedTravelDuration;
+    private int deFactoTravelDuration;
     private ArrayList<AID> supplyStationsServicesAIDs = new ArrayList<>();
-    private Map<AID, Position> supplyStationsLocation = new HashMap<>();
+    private Map<AID, SupplyStationInfo> supplyStationsInfo = new HashMap<>();
+    private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
@@ -102,7 +108,7 @@ public class DriverAgent extends DrawableAgent {
     public void setSupplyStationsServicesAIDs(ArrayList<AID> supplyStationsServicesAIDs) {
         this.supplyStationsServicesAIDs = supplyStationsServicesAIDs;
         for(AID aid: supplyStationsServicesAIDs){
-            new Message(this, aid, ACLMessage.REQUEST, MessageType.POSITION.getTypeStr()).send();
+            new Message(this, aid, ACLMessage.REQUEST, MessageType.INFO.getTypeStr()).send();
         }
 
     }
@@ -123,11 +129,13 @@ public class DriverAgent extends DrawableAgent {
         this.targetSupplyStation = targetSupplyStation;
     }
 
-    public Map<AID, Position> getSupplyStationsLocation() {
-        return supplyStationsLocation;
-    }
+    public void addSupplyStationsInfo(AID aid, SupplyStationInfo supplyStationInfo) {
+        SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(aid);
 
-    public void addSupplyStationsLocation(AID aid, Position supplyStationsLocation) {
-        this.supplyStationsLocation.put(aid, supplyStationsLocation);
+        if(currentSupplyStationInfo == null || !currentSupplyStationInfo.equals(supplyStationInfo)){
+            this.supplyStationsInfo.put(aid, supplyStationInfo);
+            this.supplyStationQueue.add(new UtilityFactor(supplyStationInfo, this.position, this.priceIntolerance));
+
+        }
     }
 }

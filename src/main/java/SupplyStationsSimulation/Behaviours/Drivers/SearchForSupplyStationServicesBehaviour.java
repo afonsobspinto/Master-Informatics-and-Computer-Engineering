@@ -20,7 +20,7 @@ public class SearchForSupplyStationServicesBehaviour extends TickerBehaviour {
 
     @Override
     protected void onTick() {
-        if(!agent.getNeedsFuel())
+        if(!agent.getNeedsFuel() || agent.getTargetSupplyStation() != null)
             return;
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();

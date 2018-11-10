@@ -54,7 +54,8 @@ public class Message {
         String performative = ACLMessage.getPerformative(message.getPerformative());
         try {
             String content = (isObject) ? message.getContentObject().toString() : message.getContent();
-            return  new Timestamp().getCurrentTime() + " - " + receiver + " received " + performative + " from " + sender + " : " + content;
+            return  new Timestamp().getCurrentTime() + " - " + receiver + " received " + performative + " from " + sender + " : '" +
+                    content.replace("\r\n", " ").replace("\n", " ") + "'";
 
         } catch (UnreadableException e) {
             System.err.println(e.getMessage());

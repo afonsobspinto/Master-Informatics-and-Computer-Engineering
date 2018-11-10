@@ -13,20 +13,32 @@ import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SupplyStationAgent extends DrawableAgent {
 
     private String nickname;
     private Color color;
     private Position position;
-    private int totalGasPumps = 4;
-    private double pricePerLiter;
+
+    private static int totalGasMin = 2;
+    private static int totalGasMax = 6;
+    private int totalGasPumps = new Random().nextInt(totalGasMax)+totalGasMin;
+
+    private static double pricePerLiterDeviation = 1.0;
+    private static double pricePerLiterMean = 1.6;
+    private double pricePerLiter = new Random().nextGaussian() * pricePerLiterDeviation + pricePerLiterMean;
+
+    private static int maxTicksToFuel = 50;
+    private static int minTicksToFuel = 4;
+    private int ticksToFuel = new Random().nextInt(maxTicksToFuel)+minTicksToFuel;
+
     private ArrayList<DriverAgent>currentDriversOnStation = new ArrayList<DriverAgent>();
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
 
 
 
-    public SupplyStationAgent(String nickname, Color color, Position location, double pricePerLiter) {
+    public SupplyStationAgent(String nickname, Color color, Position location) {
         this.nickname = nickname;
         this.color = color;
         this.position = location;
@@ -34,13 +46,6 @@ public class SupplyStationAgent extends DrawableAgent {
 
     }
 
-    public SupplyStationAgent(String nickname, Color color, Position initialPosition, int totalPumps, double pricePerLiter) {
-        this.nickname = nickname;
-        this.color = color;
-        this.position = initialPosition;
-        this.totalGasPumps = totalPumps;
-        this.pricePerLiter = pricePerLiter;
-    }
 
     @Override
     public void addBehaviour(Behaviour b) {
@@ -111,5 +116,9 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public Position getPosition() {
         return position;
+    }
+
+    public double getPricePerLiter() {
+        return pricePerLiter;
     }
 }

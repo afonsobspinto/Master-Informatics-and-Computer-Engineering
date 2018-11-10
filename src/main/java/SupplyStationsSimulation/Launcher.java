@@ -45,12 +45,6 @@ public class Launcher extends Repast3Launcher {
 
     }
 
-    // TODO: Edit GUI
-
-
-
-
-
     private void buildAndScheduleDisplay() {
         if(dsurf!=null) dsurf.dispose();
 
@@ -105,7 +99,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < STATIC_SUPPLY_STATIONS; i++) {
                 String nickname = "StaticSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(),  1.5);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop());
                 supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
@@ -113,7 +107,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < DYNAMIC_SUPPLY_STATIONS; i++) {
                 String nickname = "DynamicSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(),  1.3);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop());
                 supplyStationAgent.addBehaviour(new SupplyStationsDynamicBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
