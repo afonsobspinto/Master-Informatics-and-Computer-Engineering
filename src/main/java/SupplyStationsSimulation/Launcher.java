@@ -64,10 +64,15 @@ public class Launcher extends Repast3Launcher {
         Profile p1 = new ProfileImpl();
         mainContainer = rt.createMainContainer(p1);
 
-        launchAgents();
+        try {
+            launchAgents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
-    private void launchAgents() {
+    private void launchAgents() throws Exception {
         new Random(System.currentTimeMillis());
 
         collaborativeDrivers = new ArrayList<>();
@@ -77,7 +82,7 @@ public class Launcher extends Repast3Launcher {
 
     }
 
-    private void launchDrivers(){
+    private void launchDrivers() throws Exception {
         LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS*2+COLLABORATIVE_DRIVERS*2+STATIC_SUPPLY_STATIONS+DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {

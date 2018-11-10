@@ -3,6 +3,7 @@ package SupplyStationsSimulation;
 import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
+import SupplyStationsSimulation.Agents.Type;
 import SupplyStationsSimulation.Utilities.PathFinder.Mover;
 import SupplyStationsSimulation.Utilities.PathFinder.TileBasedMap;
 import uchicago.src.collection.BaseMatrix;
@@ -66,7 +67,8 @@ public class DrawableMap implements TileBasedMap {
     public boolean blocked(Mover mover, int x, int y) {
         for(DrawableAgent agent: agentList){
             if(agent.getX()==x && agent.getY() == y)
-                return true;
+                if(agent.getType()== Type.DRIVER)
+                    return true;
         }
         return false;
     }

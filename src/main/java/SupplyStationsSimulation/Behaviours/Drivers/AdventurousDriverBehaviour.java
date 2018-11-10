@@ -14,7 +14,6 @@ import java.util.List;
 
 public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
     private DriverAgent driverAgent;
-    private int tick = 0;
 
     public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
@@ -24,12 +23,12 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
-        driverAgent.setPosition(driverAgent.getPath().getStep(++tick));
+        driverAgent.updatePosition();
     }
 
     @Override
     public boolean done() {
-        return driverAgent.getPath().getLength()-1 == tick;
+        return driverAgent.isDone();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
             int x =  Integer.parseInt((String)contentObjects.get(0));
             int y =  Integer.parseInt((String)contentObjects.get(1));
             double price =  Double.parseDouble((String)contentObjects.get(2));
-            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(), new Position(x,y), price));
+            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(), new Position(x,y), price, driverAgent.getPosition(), driverAgent.getPriceIntolerance()));
 
         }
     }

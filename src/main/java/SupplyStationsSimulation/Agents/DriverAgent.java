@@ -31,10 +31,11 @@ public class DriverAgent extends DrawableAgent {
     private static double priceIntoleranceMean = 1.0;
     private double priceIntolerance = new Random().nextGaussian()*priceIntoleranceDeviation + priceIntoleranceMean;
     private Path path;
+    private int pathStep;
     private DrawableMap map;
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
     private int expectedTravelDuration;
-    private int deFactoTravelDuration;
+    private int deFactoTravelDuration = 0;
     private ArrayList<AID> supplyStationsServicesAIDs = new ArrayList<>();
     private Map<AID, SupplyStationInfo> supplyStationsInfo = new HashMap<>();
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
@@ -48,9 +49,44 @@ public class DriverAgent extends DrawableAgent {
         this.map = map;
     }
 
-    public void calculatePath(){
-        this.path = new AStarPathFinder(map, map.getHeightInTiles()* map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
-        this.expectedTravelDuration = path.getLength();
+    public void calculatePath() throws Exception {
+        Path path = new AStarPathFinder(map, map.getHeightInTiles()* map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
+        if(validatePath(path)){
+            this.path = path;
+            this.expectedTravelDuration = path.getLength();
+        }
+    }
+
+    private void updatePath(){
+        if(this.needsFuel) {
+            Position destination = supplyStationsInfo.get(this.targetSupplyStation).getLocation();
+            Path path = new AStarPathFinder(map, map.getHeightInTiles()* map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
+            try {
+                if(validatePath(path)){
+                    this.deFactoTravelDuration += this.pathStep;
+                    this.pathStep = 0;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    private boolean validatePath(Path path) throws Exception {
+        if(path != null){
+            this.path = path;
+            return true;
+        }
+        if(this.targetSupplyStation!=null){
+            this.supplyStationQueue.remove(this.supplyStationsInfo.get(targetSupplyStation).getUtilityFactor());
+            if (this.supplyStationQueue.peek() != null) {
+                this.targetSupplyStation = this.supplyStationQueue.peek().getAid();
+            }
+        }
+
+        throw new Exception("Invalid Path");
     }
 
     @Override
@@ -98,9 +134,18 @@ public class DriverAgent extends DrawableAgent {
         return path;
     }
 
-    public void setPosition(Position position) {
+    public Position getPosition() {
+        return position;
+    }
+
+    public double getPriceIntolerance() {
+        return priceIntolerance;
+    }
+
+    //TODO: Make drivers go under the supplyStation
+    public void updatePosition() {
         this.map.getSpace().putObjectAt(this.position.getX(), this.position.getY(), null);
-        this.position = position;
+        this.position = path.getStep(++pathStep);
         this.map.getSpace().putObjectAt(this.position.getX(), this.position.getY(), this);
 
     }
@@ -134,8 +179,21 @@ public class DriverAgent extends DrawableAgent {
 
         if(currentSupplyStationInfo == null || !currentSupplyStationInfo.equals(supplyStationInfo)){
             this.supplyStationsInfo.put(aid, supplyStationInfo);
+            if (currentSupplyStationInfo != null) {
+                this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
+            }
             this.supplyStationQueue.add(new UtilityFactor(supplyStationInfo, this.position, this.priceIntolerance));
+            UtilityFactor bestUtilityFactor = this.supplyStationQueue.peek();
+            if(bestUtilityFactor == null || bestUtilityFactor.getAid().equals(aid)){
+                this.targetSupplyStation = aid;
+                updatePath();
+            }
 
         }
     }
+
+    public boolean isDone(){
+        return path.getLength()-1 == pathStep;
+    }
+
 }

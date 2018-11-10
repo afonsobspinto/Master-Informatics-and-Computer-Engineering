@@ -8,18 +8,22 @@ import java.util.Objects;
 public class SupplyStationInfo {
 
     private AID aid;
-
     private Position location;
-
     private double pricePerLiter;
-
     private int ticksToFuel;
+    private UtilityFactor utilityFactor;
 
     public SupplyStationInfo(AID aid, Position location, double pricePerLiter) {
         this.aid = aid;
         this.location = location;
         this.pricePerLiter = pricePerLiter;
     }
+
+    public SupplyStationInfo(AID aid, Position location, double pricePerLiter, Position driverLocation, double priceIntolerance) {
+        this(aid, location, pricePerLiter);
+        this.utilityFactor = new UtilityFactor(this,driverLocation, priceIntolerance);
+    }
+
 
 
     public Position getLocation() {
@@ -32,6 +36,10 @@ public class SupplyStationInfo {
 
     public AID getAid() {
         return aid;
+    }
+
+    public UtilityFactor getUtilityFactor(){
+        return utilityFactor;
     }
 
     @Override
