@@ -120,12 +120,16 @@ public class SupplyStationAgent extends DrawableAgent {
         switch (message.getPerformative()) {
             case ACLMessage.REQUEST:
                 handleRequest(message);
+                break;
             case ACLMessage.PROPOSE:
                 handlePropose(message);
+                break;
             case ACLMessage.CONFIRM:
                 handleConfirm(message);
+                break;
             case ACLMessage.DISCONFIRM:
                 handleDisconfirm(message);
+                break;
         }
 
     }
@@ -148,8 +152,7 @@ public class SupplyStationAgent extends DrawableAgent {
                         String.valueOf(getTotalGasPumps()));
                 new Message(this, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
                         new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
-            }
-            else{
+            } else {
                 List<String> listOf = List.of(String.valueOf(getOccupation()),
                         String.valueOf(getTicksToFuel()),
                         String.valueOf(getWaitingListSize()),
@@ -226,7 +229,7 @@ public class SupplyStationAgent extends DrawableAgent {
                 currentDriversOnStation.put(entry.getKey(), entry.getValue() - 1);
             }
         }
-        for(AID element: elementsToRemove){
+        for (AID element : elementsToRemove) {
             currentDriversOnStation.remove(element);
         }
     }
@@ -237,6 +240,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public void updatePrice() {
 
+        //todo: improve formula -> price should decrease as well.
         double oldPrice = this.pricePerLiter;
         this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
     }

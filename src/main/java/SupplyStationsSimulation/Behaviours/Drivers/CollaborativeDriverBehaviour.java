@@ -56,13 +56,33 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         MessageContent messageContent = new MessageContent(message);
 
         switch (messageContent.getMessageType()) {
-/*            case INFO:
+            case INFO:
                 this.handlePropagateInform(messageContent);
-                break;*/
-            case ENTRANCE:
+                break;
+            case ACCEPTED:
                 this.handlePropagateAccept(messageContent);
                 break;
+            case REJECTED:
+                this.handlePropagateReject(messageContent);
         }
+
+    }
+
+    private void handlePropagateReject(MessageContent messageContent) {
+        List<String> contentObjects = messageContent.getContetObjects();
+        int ticksToFuel = Integer.parseInt(contentObjects.get(1));
+        int waitingLine = Integer.parseInt(contentObjects.get(2));
+        int totalGasPumps = Integer.parseInt(contentObjects.get(3));
+        int x = Integer.parseInt(contentObjects.get(4));
+        int y = Integer.parseInt(contentObjects.get(5));
+        double price = Double.parseDouble(contentObjects.get(6));
+
+        AID sender = messageContent.getSenderAID(contentObjects, 7);
+
+        int ticks = averageTimeWaiting(totalGasPumps,ticksToFuel,waitingLine);
+        this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
+                new Position(x, y), price, this.driverAgent.getPosition(),
+                this.driverAgent.getPriceIntolerance(), this.driverAgent.getDestination(), ticks));
 
     }
 
@@ -102,7 +122,9 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handleReject(Message message) {
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
-        this.broadcast(message, this.driverAgent.getDriversList(), null);
+        this.broadcast(message, this.driverAgent.getDriversList(), List.of(String.valueOf(this.driverAgent.getX()),
+                String.valueOf(this.driverAgent.getY()),
+                String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.REJECTED);
     }
 
     private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
@@ -114,16 +136,16 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         this.broadcast(message, this.driverAgent.getDriversList(),
                 List.of(String.valueOf(this.driverAgent.getX()),
                         String.valueOf(this.driverAgent.getY()),
-                        String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())));
+                        String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.ACCEPTED);
 
     }
 
     private void handleInform(Message message) {
         this.driverAgent.handleInform(message);
-        this.broadcast(message, this.driverAgent.getDriversList(), null);
+        this.broadcast(message, this.driverAgent.getDriversList(), null, MessageType.INFO);
     }
 
-    private void broadcast(Message message, List<AID> aids, List<String>additionalFields) {
+    private void broadcast(Message message, List<AID> aids, List<String>additionalFields, MessageType messageType) {
         MessageContent messageContent = new MessageContent(message);
         for (AID aid : aids) {
             if (!aid.equals(getAgent().getAID())) {
@@ -133,7 +155,7 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
                 }
                 messageContentObjects.add(message.getSerializedSenderAID());
                 new Message(this.driverAgent, aid, ACLMessage.PROPAGATE,
-                        new MessageContent(messageContent.getMessageType(), messageContentObjects).getContent()).send();
+                        new MessageContent(messageType, messageContentObjects).getContent()).send();
 
             }
         }

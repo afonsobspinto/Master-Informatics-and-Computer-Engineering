@@ -46,6 +46,7 @@ public class MessageContent {
         return contetObjects;
     }
 
+    //todo: fix me
 
     public AID getSenderAID(List<String> contetObjects, int index){
         StringBuilder sb = new StringBuilder();

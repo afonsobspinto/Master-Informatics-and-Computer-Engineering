@@ -2,13 +2,8 @@ package SupplyStationsSimulation.Behaviours.SupplyStations;
 
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
-import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
-import SupplyStationsSimulation.Utilities.Messaging.MessageType;
-import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
-
-import java.util.List;
 
 public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessageBehaviour {
 

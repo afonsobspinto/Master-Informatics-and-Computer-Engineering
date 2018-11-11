@@ -17,6 +17,7 @@ import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 import uchicago.src.sim.space.Object2DGrid;
+
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -51,7 +52,7 @@ public class DriverAgent extends DrawableAgent {
     private double priceIntolerance = new Random().nextGaussian() * priceIntoleranceDeviation + priceIntoleranceMean;
     private static int maxFuel = 100;
     private static int minFuel = 50;
-    private int fuelToBuy = new Random().nextInt(maxFuel)+ minFuel;
+    private int fuelToBuy = new Random().nextInt(maxFuel) + minFuel;
     private double moneySpent;
     private Path path;
     private int pathStep;
@@ -64,14 +65,12 @@ public class DriverAgent extends DrawableAgent {
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
 
-    private boolean test;
-    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map, boolean test) {
+    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
-        this.test = test;
     }
 
     public void calculateInitialPath() {
@@ -81,15 +80,16 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-    public void updatePathToFuel() {
+    private void updatePathToFuel() {
         if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING_REPLY) || this.driverState.equals(WAITING_LINE)) {
             Position destination = supplyStationsInfo.get(this.targetSupplyStation).getLocation();
             calculatePath(position, destination);
         }
     }
 
-    public Path calculatePath(Position source, Position destination) {
+    private Path calculatePath(Position source, Position destination) {
 
+        //todo: deFactoBug?
         Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, source.getX(), source.getY(), destination.getX(), destination.getY());
         if (path != null) {
             this.deFactoTravelDuration += this.pathStep;
@@ -132,9 +132,8 @@ public class DriverAgent extends DrawableAgent {
     protected void setup() {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
-        if(this.test) {
-            addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
-        }
+        addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
+
 
     }
 
@@ -143,8 +142,8 @@ public class DriverAgent extends DrawableAgent {
         super.takeDown();
         double truncatedMoneySpent = BigDecimal.valueOf(moneySpent).setScale(2, RoundingMode.HALF_UP).doubleValue();
         System.out.println("Agent " + getLocalName() + " was taken down. Expected: " + expectedTravelDuration
-                         + " ticks; DeFacto: " + deFactoTravelDuration + " ticks; Diff: " + Math.abs(expectedTravelDuration - deFactoTravelDuration)
-                         + " additional ticks; Money spent: " + truncatedMoneySpent + "€");
+                + " ticks; DeFacto: " + deFactoTravelDuration + " ticks; Diff: " + Math.abs(expectedTravelDuration - deFactoTravelDuration)
+                + " additional ticks; Money spent: " + truncatedMoneySpent + "€");
 
         this.color = Color.BLACK;
     }
@@ -474,7 +473,7 @@ public class DriverAgent extends DrawableAgent {
 
     }
 
-    public SupplyStationInfo getTargetSupplyStationInfo(){
+    public SupplyStationInfo getTargetSupplyStationInfo() {
         return this.supplyStationsInfo.get(this.targetSupplyStation);
     }
 
