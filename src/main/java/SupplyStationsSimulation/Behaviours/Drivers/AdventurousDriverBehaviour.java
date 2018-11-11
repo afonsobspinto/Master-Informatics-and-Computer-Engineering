@@ -37,47 +37,26 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
             case ACLMessage.INFORM:
                 handleInform(message);
                 break;
-            case ACLMessage.ACCEPT_PROPOSAL:
-                handleAccept(message);
-                break;
             case ACLMessage.REJECT_PROPOSAL:
                 handleReject(message);
                 break;
+            case ACLMessage.ACCEPT_PROPOSAL:
+                handleAccept(message);
+                break;
+
         }
     }
 
     private void handleInform(Message message) {
-        MessageContent messageContent = new MessageContent(message);
-        if (messageContent.getMessageType() == MessageType.INFO) {
-            List<Object> contentObjects = messageContent.getContetObjects();
-            int x = Integer.parseInt((String) contentObjects.get(0));
-            int y = Integer.parseInt((String) contentObjects.get(1));
-            double price = Double.parseDouble((String) contentObjects.get(2));
-            driverAgent.addSupplyStationsInfo(new SupplyStationInfo(message.getSenderAID(),
-                    new Position(x, y), price, driverAgent.getPosition(),
-                    driverAgent.getPriceIntolerance(), driverAgent.getDestination()));
-
-        }
+        this.driverAgent.handleInform(message);
     }
 
     private void handleAccept(Message message) {
-        MessageContent messageContent = new MessageContent(message);
-        if (messageContent.getMessageType() == MessageType.ENTRANCE) {
-            List<Object> contentObjects = messageContent.getContetObjects();
-            int ticksToFuel = Integer.parseInt((String) contentObjects.get(1));
-            this.driverAgent.handleAccept(ticksToFuel);
-        }
+        this.driverAgent.handleAccept(message);
     }
 
     private void handleReject(Message message) {
-        MessageContent messageContent = new MessageContent(message);
-        if (messageContent.getMessageType() == MessageType.ENTRANCE) {
-            List<Object> contentObjects = messageContent.getContetObjects();
-            int ticksToFuel = Integer.parseInt((String) contentObjects.get(1));
-            int waitingLine = Integer.parseInt((String) contentObjects.get(2));
-            int totalGasPumps = Integer.parseInt((String) contentObjects.get(3));
-            this.driverAgent.handleReject(averageTimeWaiting(totalGasPumps, ticksToFuel, waitingLine));
-        }
+        this.driverAgent.handleReject(message, (this::averageTimeWaiting));
     }
 
     private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine){
