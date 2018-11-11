@@ -49,26 +49,32 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
 
     private void handleRequest(Message message) {
         if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
-            new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.INFO, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY(), this.supplyStationAgent.getPricePerLiter())).getContent()).send();
+            List<String> listOf = List.of(String.valueOf(this.supplyStationAgent.getX()),
+                    String.valueOf(this.supplyStationAgent.getY()),
+                    String.valueOf(this.supplyStationAgent.getPricePerLiter()));
+            new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM,
+                    new MessageContent(MessageType.INFO, listOf).getContent()).send();
         }
     }
 
     private void handlePropose(Message message) {
+
+
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
             if (this.supplyStationAgent.isAvailable()) {
+                List<String> listOf = List.of(String.valueOf(this.supplyStationAgent.getOccupation()),
+                        String.valueOf(this.supplyStationAgent.getTicksToFuel()),
+                        String.valueOf(this.supplyStationAgent.getTotalGasPumps()));
                 new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
-                        new MessageContent(MessageType.ENTRANCE,
-                                List.of(this.supplyStationAgent.getOccupation(),
-                                        this.supplyStationAgent.getTicksToFuel(),
-                                        this.supplyStationAgent.getTotalGasPumps())).getContent()).send();
+                        new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
             }
             else{
+                List<String> listOf = List.of(String.valueOf(this.supplyStationAgent.getOccupation()),
+                        String.valueOf(this.supplyStationAgent.getTicksToFuel()),
+                        String.valueOf(this.supplyStationAgent.getWaitingListSize()),
+                        String.valueOf(this.supplyStationAgent.getTotalGasPumps()));
                 new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
-                        new MessageContent(MessageType.ENTRANCE,
-                                List.of(this.supplyStationAgent.getOccupation(),
-                                        this.supplyStationAgent.getTicksToFuel(),
-                                        this.supplyStationAgent.getWaitingListSize(),
-                                        this.supplyStationAgent.getTotalGasPumps())).getContent()).send();
+                        new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
             }
         }
     }

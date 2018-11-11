@@ -6,8 +6,8 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import sajas.core.Agent;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
+import java.util.Base64;
 
 public class Message {
 
@@ -35,6 +35,8 @@ public class Message {
         this.content = content;
         this.performative = performative;
     }
+
+    //TODO: beautify propagate message -> No need for byteString to be displayed
 
     @Override
     public String toString() {
@@ -81,8 +83,21 @@ public class Message {
         return receiver.getAID();
     }
 
-
     public AID getSenderAID() {
         return senderAID;
+    }
+
+    public String getSerializedSenderAID() {
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream so = new ObjectOutputStream(bo);
+            so.writeObject(senderAID);
+            so.flush();
+            final byte[] byteArray = bo.toByteArray();
+            return Base64.getEncoder().encodeToString(byteArray);
+        } catch (Exception e) {
+            System.out.println("getSerializedSenderAID Failed. Propagation Might Be Unstable");
+            return null;
+        }
     }
 }
