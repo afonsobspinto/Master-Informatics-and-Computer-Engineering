@@ -89,7 +89,6 @@ public class DriverAgent extends DrawableAgent {
 
     private Path calculatePath(Position source, Position destination) {
 
-        //todo: deFactoBug?
         Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, source.getX(), source.getY(), destination.getX(), destination.getY());
         if (path != null) {
             this.deFactoTravelDuration += this.pathStep;
@@ -140,6 +139,7 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public void takeDown() {
         super.takeDown();
+        this.deFactoTravelDuration += this.pathStep;
         double truncatedMoneySpent = BigDecimal.valueOf(moneySpent).setScale(2, RoundingMode.HALF_UP).doubleValue();
         System.out.println("Agent " + getLocalName() + " was taken down. Expected: " + expectedTravelDuration
                 + " ticks; DeFacto: " + deFactoTravelDuration + " ticks; Diff: " + Math.abs(expectedTravelDuration - deFactoTravelDuration)
