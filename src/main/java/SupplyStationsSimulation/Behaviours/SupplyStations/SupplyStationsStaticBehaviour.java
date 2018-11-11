@@ -58,8 +58,6 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
     }
 
     private void handlePropose(Message message) {
-
-
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
             if (this.supplyStationAgent.isAvailable()) {
                 List<String> listOf = List.of(String.valueOf(this.supplyStationAgent.getOccupation()),
