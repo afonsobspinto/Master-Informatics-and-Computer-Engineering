@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 
 public class Timestamp {
 
-    //todo: Make hours minutes and seconds always 2 digit
     public String getCurrentTime(){
         LocalDateTime now = LocalDateTime.now();
         int hour = now.getHour();
+        String hourString = String.format("%02d" , hour);
         int minute = now.getMinute();
+        String minuteString = String.format("%02d" , minute);
         int second = now.getSecond();
-        return hour + ":" + minute + ":" + second;
+        String secondString = String.format("%02d" , second);
+        return hourString + ":" + minuteString + ":" + secondString;
     }
 }
