@@ -132,44 +132,49 @@ public class SupplyStationAgent extends DrawableAgent {
 
     private void handleRequest(Message message) {
         if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
-            new Message(this, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.INFO, List.of(this.getX(), this.getY(), this.getPricePerLiter())).getContent()).send();
+            List<String> listOf = List.of(String.valueOf(getX()),
+                    String.valueOf(getY()),
+                    String.valueOf(getPricePerLiter()));
+            new Message(this, message.getSenderAID(), ACLMessage.INFORM,
+                    new MessageContent(MessageType.INFO, listOf).getContent()).send();
         }
-        this.totalRequests++;
     }
 
     private void handlePropose(Message message) {
+
+
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
-            if (this.isAvailable()) {
+            if (isAvailable()) {
+                List<String> listOf = List.of(String.valueOf(getOccupation()),
+                        String.valueOf(getTicksToFuel()),
+                        String.valueOf(getTotalGasPumps()));
                 new Message(this, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
-                        new MessageContent(MessageType.ENTRANCE,
-                                List.of(this.getOccupation(),
-                                        this.getTicksToFuel(),
-                                        this.getTotalGasPumps())).getContent()).send();
+                        new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
             }
             else{
+                List<String> listOf = List.of(String.valueOf(getOccupation()),
+                        String.valueOf(getTicksToFuel()),
+                        String.valueOf(getWaitingListSize()),
+                        String.valueOf(getTotalGasPumps()));
                 new Message(this, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
-                        new MessageContent(MessageType.ENTRANCE,
-                                List.of(this.getOccupation(),
-                                        this.getTicksToFuel(),
-                                        this.getWaitingListSize(),
-                                        this.getTotalGasPumps())).getContent()).send();
+                        new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
             }
         }
     }
 
     private void handleConfirm(Message message) {
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
-            this.getCurrentDriversWaiting().remove(message.getSenderAID());
-            this.addDriver(message.getSenderAID());
+            getCurrentDriversWaiting().remove(message.getSenderAID());
+            addDriver(message.getSenderAID());
         }
         if (message.getContent().equals(MessageType.WAITLINE.getTypeStr())) {
-            this.addDriverWaiting(message.getSenderAID());
+            addDriverWaiting(message.getSenderAID());
         }
     }
 
     private void handleDisconfirm(Message message) {
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
-            this.increaseTotalDisconfirms();
+            increaseTotalDisconfirms();
         }
     }
 
