@@ -20,21 +20,21 @@ public class SearchForSupplyStationServicesBehaviour extends TickerBehaviour {
 
     @Override
     protected void onTick() {
-        if(!agent.getNeedsFuel() || agent.getTargetSupplyStation() != null)
-            return;
-        DFAgentDescription template = new DFAgentDescription();
-        ServiceDescription sd = new ServiceDescription();
-        sd.setType("fuel-selling");
-        template.addServices(sd);
-        try{
-            DFAgentDescription[] results = DFService.search(agent, template);
-            ArrayList<AID> supplyStations = new ArrayList<>(results.length);
-            for(int i = 0; i < results.length; i++){
-                supplyStations.add(results[i].getName());
+        if (agent.getDriverState().equals(DriverAgent.DriverState.SEARCHING)) {
+            DFAgentDescription template = new DFAgentDescription();
+            ServiceDescription sd = new ServiceDescription();
+            sd.setType("fuel-selling");
+            template.addServices(sd);
+            try {
+                DFAgentDescription[] results = DFService.search(agent, template);
+                ArrayList<AID> supplyStations = new ArrayList<>(results.length);
+                for (int i = 0; i < results.length; i++) {
+                    supplyStations.add(results[i].getName());
+                }
+                agent.setSupplyStationsServicesAIDs(supplyStations);
+            } catch (FIPAException e) {
+                e.printStackTrace();
             }
-            agent.setSupplyStationsServicesAIDs(supplyStations);
-        } catch (FIPAException e) {
-            e.printStackTrace();
         }
     }
 }

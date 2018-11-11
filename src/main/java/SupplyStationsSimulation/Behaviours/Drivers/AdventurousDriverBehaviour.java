@@ -23,6 +23,12 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
+        try {
+            driverAgent.updateState();
+        } catch (Exception e) {
+            e.printStackTrace();
+            driverAgent.takeDown();
+        }
         driverAgent.updatePosition();
     }
 
@@ -34,21 +40,23 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
     @Override
     public void handleMessage(Message message) {
 
-        switch (message.getPerformative()){
+        switch (message.getPerformative()) {
             case ACLMessage.INFORM:
                 handleInform(message);
 
         }
     }
 
-    private void handleInform(Message message){
+    private void handleInform(Message message) {
         MessageContent messageContent = new MessageContent(message);
-        if(messageContent.getMessageType() == MessageType.INFO){
+        if (messageContent.getMessageType() == MessageType.INFO) {
             List<Object> contentObjects = messageContent.getContetObjects();
-            int x =  Integer.parseInt((String)contentObjects.get(0));
-            int y =  Integer.parseInt((String)contentObjects.get(1));
-            double price =  Double.parseDouble((String)contentObjects.get(2));
-            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(), new Position(x,y), price, driverAgent.getPosition(), driverAgent.getPriceIntolerance()));
+            int x = Integer.parseInt((String) contentObjects.get(0));
+            int y = Integer.parseInt((String) contentObjects.get(1));
+            double price = Double.parseDouble((String) contentObjects.get(2));
+            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(),
+                    new Position(x, y), price, driverAgent.getPosition(),
+                    driverAgent.getPriceIntolerance(), driverAgent.getDestination()));
 
         }
     }

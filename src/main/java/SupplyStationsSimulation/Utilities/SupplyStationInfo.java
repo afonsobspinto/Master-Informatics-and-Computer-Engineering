@@ -19,12 +19,10 @@ public class SupplyStationInfo {
         this.pricePerLiter = pricePerLiter;
     }
 
-    public SupplyStationInfo(AID aid, Position location, double pricePerLiter, Position driverLocation, double priceIntolerance) {
+    public SupplyStationInfo(AID aid, Position location, double pricePerLiter, Position driverLocation, double priceIntolerance, Position destination) {
         this(aid, location, pricePerLiter);
-        this.utilityFactor = new UtilityFactor(this,driverLocation, priceIntolerance);
+        this.utilityFactor = new UtilityFactor(this,driverLocation, priceIntolerance, destination);
     }
-
-
 
     public Position getLocation() {
         return location;

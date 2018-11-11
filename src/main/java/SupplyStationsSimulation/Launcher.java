@@ -27,6 +27,7 @@ import java.util.List;
 
 
 public class Launcher extends Repast3Launcher {
+
     private static int COLLABORATIVE_DRIVERS = 10;
     private static int ADVENTUROUS_DRIVERS = 10;
     private static int STATIC_SUPPLY_STATIONS = 5;
@@ -54,6 +55,7 @@ public class Launcher extends Repast3Launcher {
         dsurf.addDisplayableProbeable(display, "Grid Display");
         addSimEventListener(dsurf);
         dsurf.display();
+
 
         getSchedule().scheduleActionAtInterval(1, dsurf, "updateDisplay", Schedule.LAST);
     }
