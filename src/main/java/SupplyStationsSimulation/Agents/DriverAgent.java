@@ -81,15 +81,19 @@ public class DriverAgent extends DrawableAgent {
     }
 
     public Path calculatePath(Position source, Position destination) {
+
         Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, source.getX(), source.getY(), destination.getX(), destination.getY());
         if (path != null) {
             this.deFactoTravelDuration += this.pathStep;
+            this.pathStep = 0;
             this.path = path;
         }
-//            else{
-//                //TODO: Add behaviour for situations where you can't reach the goal - Currently this cannot happen.
-//            }
-        this.pathStep = 0;
+/*        else{
+            //TODO: deal with this (if needed)
+            if(source.equals(destination));
+            else(somethingWentWrong)
+        }*/
+
         return path;
     }
 
@@ -244,6 +248,7 @@ public class DriverAgent extends DrawableAgent {
 
 
     private void updatePosition() {
+        //TODO: Don't let drivers delete other drivers
         Object2DGrid space = this.map.getSpace();
 
         Object objectCurrentPos = space.getObjectAt(this.position.getX(), this.position.getY());
@@ -336,6 +341,7 @@ public class DriverAgent extends DrawableAgent {
             logTargetSupplyStationChange(newSupplyStationInfo.getAid());
             this.targetSupplyStation = newSupplyStationInfo.getAid();
             updatePathToFuel();
+            System.out.println(this.path);
         }
     }
 

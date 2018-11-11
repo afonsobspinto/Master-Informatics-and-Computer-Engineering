@@ -59,6 +59,7 @@ public class AStarPathFinder implements PathFinder {
      * @see PathFinder#findPath(Mover, int, int, int, int)
      */
     public Path findPath(Mover mover, int sx, int sy, int tx, int ty) {
+
         // easy first check, if the destination is blocked, we can't get there
 
         if (map.blocked(mover, tx, ty)) {

@@ -65,11 +65,6 @@ public class DrawableMap implements TileBasedMap {
 
     @Override
     public boolean blocked(Mover mover, int x, int y) {
-        for(DrawableAgent agent: agentList){
-            if(agent.getX()==x && agent.getY() == y)
-                if(agent.getType()== Type.DRIVER)
-                    return true;
-        }
         return false;
     }
 
