@@ -4,10 +4,13 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Locations.Position;
+import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
+import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import jade.core.AID;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
+import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 import sajas.domain.DFService;
 import uchicago.src.sim.gui.SimGraphics;
@@ -38,7 +41,8 @@ public class SupplyStationAgent extends DrawableAgent {
     private Set<AID> currentDriversWaiting = new HashSet<>();
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
 
-    private int totalUsers = 0;
+    private int totalRequests = 0;
+    private int lastUsers = 0;
     private static int fuelAdded = 50;
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
@@ -111,12 +115,62 @@ public class SupplyStationAgent extends DrawableAgent {
         return Type.SUPPLYSTATION;
     }
 
-    @Override
     public void handleMessage(Message message) {
-        for (ACLMessageBehaviour behaviour : behaviours) {
-            behaviour.handleMessage(message);
+
+        switch (message.getPerformative()) {
+            case ACLMessage.REQUEST:
+                handleRequest(message);
+            case ACLMessage.PROPOSE:
+                handlePropose(message);
+            case ACLMessage.CONFIRM:
+                handleConfirm(message);
+            case ACLMessage.DISCONFIRM:
+                handleDisconfirm(message);
         }
 
+    }
+
+    private void handleRequest(Message message) {
+        if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
+            new Message(this, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.INFO, List.of(this.getX(), this.getY(), this.getPricePerLiter())).getContent()).send();
+        }
+        this.totalRequests++;
+    }
+
+    private void handlePropose(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            if (this.isAvailable()) {
+                new Message(this, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
+                        new MessageContent(MessageType.ENTRANCE,
+                                List.of(this.getOccupation(),
+                                        this.getTicksToFuel(),
+                                        this.getTotalGasPumps())).getContent()).send();
+            }
+            else{
+                new Message(this, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
+                        new MessageContent(MessageType.ENTRANCE,
+                                List.of(this.getOccupation(),
+                                        this.getTicksToFuel(),
+                                        this.getWaitingListSize(),
+                                        this.getTotalGasPumps())).getContent()).send();
+            }
+        }
+    }
+
+    private void handleConfirm(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            this.getCurrentDriversWaiting().remove(message.getSenderAID());
+            this.addDriver(message.getSenderAID());
+        }
+        if (message.getContent().equals(MessageType.WAITLINE.getTypeStr())) {
+            this.addDriverWaiting(message.getSenderAID());
+        }
+    }
+
+    private void handleDisconfirm(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            this.increaseTotalDisconfirms();
+        }
     }
 
     public Position getPosition() {
@@ -149,7 +203,6 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public void addDriver(AID driverAID) {
         this.currentDriversOnStation.put(driverAID, ticksToFuel);
-        this.totalUsers++;
         this.totalIncoming += fuelAdded * this.pricePerLiter;
     }
 
@@ -179,4 +232,9 @@ public class SupplyStationAgent extends DrawableAgent {
         return currentDriversWaiting;
     }
 
+    public void updatePrice() {
+
+        double oldPrice = this.pricePerLiter;
+        this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
+    }
 }

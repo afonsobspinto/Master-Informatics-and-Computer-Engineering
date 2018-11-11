@@ -30,8 +30,8 @@ public class Launcher extends Repast3Launcher {
 
     private static int COLLABORATIVE_DRIVERS = 0;
     private static int ADVENTUROUS_DRIVERS = 40;
-    private static int STATIC_SUPPLY_STATIONS = 2;
-    private static int DYNAMIC_SUPPLY_STATIONS = 0;
+    private static int STATIC_SUPPLY_STATIONS = 0;
+    private static int DYNAMIC_SUPPLY_STATIONS = 1;
     private static int WIDTH = 200, HEIGHT = 200;
 
     private ContainerController mainContainer;

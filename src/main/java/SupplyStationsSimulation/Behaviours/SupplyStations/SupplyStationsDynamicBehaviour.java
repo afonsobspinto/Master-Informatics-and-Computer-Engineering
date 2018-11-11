@@ -8,12 +8,17 @@ import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
     private ArrayList<DriverAgent> pumpingDrivers;
+
+    private static int timeoutDeviation = 40;
+    private static int timeoutMin = 10;
+    private int currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
 
     public SupplyStationsDynamicBehaviour(SupplyStationAgent supplyStationAgent) {
         super();
@@ -22,7 +27,12 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     }
     @Override
     public void action() {
-
+        this.supplyStationAgent.updateDrivers();
+        this.currentPriceTimeout--;
+        if(this.currentPriceTimeout == 0) {
+            this.supplyStationAgent.updatePrice();
+            this.updatePriceTimeout();
+        }
     }
 
     @Override
@@ -33,5 +43,12 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     @Override
     public void handleMessage(Message message) {
 
+        this.supplyStationAgent.handleMessage(message);
+
     }
+
+    public void updatePriceTimeout(){
+        currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
+    }
+
 }
