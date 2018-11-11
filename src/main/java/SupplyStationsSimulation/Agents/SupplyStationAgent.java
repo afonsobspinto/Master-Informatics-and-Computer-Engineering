@@ -31,7 +31,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     private static double pricePerLiterDeviation = 1.0;
     private static double pricePerLiterMean = 1.6;
-    private double pricePerLiter = new Random().nextGaussian() * pricePerLiterDeviation + pricePerLiterMean;
+    private double pricePerLiter = Math.abs(new Random().nextGaussian() * pricePerLiterDeviation + pricePerLiterMean);
 
     private static int maxTicksToFuel = 50;
     private static int minTicksToFuel = 4;

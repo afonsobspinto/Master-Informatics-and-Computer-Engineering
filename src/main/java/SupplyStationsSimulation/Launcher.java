@@ -57,7 +57,7 @@ public class Launcher extends Repast3Launcher {
         STATIC_SUPPLY_STATIONS = reader.nextInt();
         System.out.println("How many dynamic supply stations do you want to add to the map?");
         DYNAMIC_SUPPLY_STATIONS = reader.nextInt();
-        System.out.println("All set! Click play on the Repast Gui to start the simulation.");
+        System.out.println("All set! Hit start on the Repast Gui to start the simulation.");
     }
 
     private void buildAndScheduleDisplay() {

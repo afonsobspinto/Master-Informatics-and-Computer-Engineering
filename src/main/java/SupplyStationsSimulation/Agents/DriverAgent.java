@@ -20,6 +20,8 @@ import uchicago.src.sim.gui.SimGraphics;
 import uchicago.src.sim.space.Object2DGrid;
 
 import java.awt.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.*;
@@ -47,6 +49,10 @@ public class DriverAgent extends DrawableAgent {
     private static double priceIntoleranceDeviation = 0.2;
     private static double priceIntoleranceMean = 1.0;
     private double priceIntolerance = new Random().nextGaussian() * priceIntoleranceDeviation + priceIntoleranceMean;
+    private static int maxFuel = 100;
+    private static int minFuel = 50;
+    private int fuelToBuy = new Random().nextInt(maxFuel)+ minFuel;
+    private double moneySpent;
     private Path path;
     private int pathStep;
     private DrawableMap map;
@@ -130,7 +136,11 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public void takeDown() {
         super.takeDown();
-        System.out.println("Agent " + getLocalName() + " was taken down.");
+        double truncatedMoneySpent = BigDecimal.valueOf(moneySpent).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        System.out.println("Agent " + getLocalName() + " was taken down. Expected: " + expectedTravelDuration
+                         + " ticks; DeFacto: " + deFactoTravelDuration + " ticks; Diff: " + Math.abs(expectedTravelDuration - deFactoTravelDuration)
+                         + " additional ticks; Money spent: " + truncatedMoneySpent + "€");
+
         this.color = Color.BLACK;
     }
 
@@ -204,6 +214,7 @@ public class DriverAgent extends DrawableAgent {
             if (!driverState.equals(REACHING_GOAL)) {
                 this.path = calculatePath(position, destination);
                 this.needsFuel = false;
+                this.moneySpent = supplyStationsInfo.get(targetSupplyStation).getPricePerLiter() * fuelToBuy;
                 this.targetSupplyStation = null;
                 //TODO: Remove all supplyServiceEntrys - currently not necessary as drivers only stop once.
             }
@@ -334,7 +345,7 @@ public class DriverAgent extends DrawableAgent {
         if (currentSupplyStationInfo != null) {
             this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
         }
-        this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination));
+        this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination, this.fuelToBuy));
         assert this.supplyStationQueue.peek() != null;
         AID bestSupplyStation = this.supplyStationQueue.peek().getAid();
         if (bestSupplyStation == newSupplyStationInfo.getAid()) {
@@ -387,7 +398,7 @@ public class DriverAgent extends DrawableAgent {
 
 
         this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
-        this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination));
+        this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination, this.fuelToBuy));
         assert this.supplyStationQueue.peek() != null;
         AID bestSupplyStation = this.supplyStationQueue.peek().getAid();
         if (bestSupplyStation != newSupplyStationInfo.getAid()) {
