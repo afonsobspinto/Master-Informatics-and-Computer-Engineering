@@ -141,8 +141,6 @@ public class SupplyStationAgent extends DrawableAgent {
     }
 
     private void handlePropose(Message message) {
-
-
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
             if (isAvailable()) {
                 List<String> listOf = List.of(String.valueOf(getOccupation()),
