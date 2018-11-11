@@ -28,6 +28,13 @@ public class SupplyStationInfo {
         this.utilityFactor = new UtilityFactor(this,driverLocation, priceIntolerance, destination);
     }
 
+    public SupplyStationInfo(AID aid, Position location, double pricePerLiter, Position driverLocation, double priceIntolerance, Position destination, int ticksToFuel) {
+        this(aid, location, pricePerLiter);
+        this.ticksToFuel = ticksToFuel;
+        this.isTicksGuess = false;
+        this.utilityFactor = new UtilityFactor(this,driverLocation, priceIntolerance, destination);
+    }
+
     public Position getLocation() {
         return location;
     }
@@ -61,11 +68,6 @@ public class SupplyStationInfo {
 
     public int getTicksToFuel() {
         return ticksToFuel;
-    }
-
-    public void setTicksToFuel(int ticksToFuel) {
-        this.ticksToFuel = ticksToFuel;
-        this.isTicksGuess = false;
     }
 
     public Boolean isTicksGuess() {

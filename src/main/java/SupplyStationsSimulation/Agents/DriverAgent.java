@@ -22,8 +22,7 @@ import uchicago.src.sim.space.Object2DGrid;
 import java.awt.*;
 import java.util.*;
 
-import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.REACHING_FUEL;
-import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.WAITING;
+import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.*;
 
 
 public class DriverAgent extends DrawableAgent {
@@ -39,9 +38,7 @@ public class DriverAgent extends DrawableAgent {
     private DriverState driverState = DriverState.INITIALIZING;
     private Boolean needsFuel = true;
     private Boolean isAttended = false;
-    private static int waitingTimeoutDeviation = 2;
-    private static int waitingTimeoutMean = 5;
-    private int waitingTimeout = Math.abs((int) (new Random().nextGaussian() * waitingTimeoutDeviation + waitingTimeoutMean)) + 1; //TODO: is abs + 1 necessary?
+    private static int waitingTimeout = 15;
     private int currentWaitingTimeout = waitingTimeout;
     private int ticksToFuel;
     private static double priceIntoleranceDeviation = 0.2;
@@ -66,27 +63,33 @@ public class DriverAgent extends DrawableAgent {
         this.map = map;
     }
 
-    public void calculatePath() {
-        Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
+    public void calculateInitialPath() {
+        Path path = calculatePath(position, destination);
         if (path != null) {
-            this.path = path;
             this.expectedTravelDuration = path.getLength();
         }
     }
 
-    private void updatePath() {
+    private void updatePathToFuel() {
         if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING)) {
             Position destination = supplyStationsInfo.get(this.targetSupplyStation).getLocation();
-            Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, position.getX(), position.getY(), destination.getX(), destination.getY());
-            if (path != null) {
-                this.deFactoTravelDuration += this.pathStep;
-                this.pathStep = 0;
-                this.path = path;
-            }
+            calculatePath(position, destination);
+
+
+        }
+    }
+
+    public Path calculatePath(Position source, Position destination){
+        Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, source.getX(), source.getY(), destination.getX(), destination.getY());
+        if (path != null) {
+            this.deFactoTravelDuration += this.pathStep;
+            this.pathStep = 0;
+            this.path = path;
+        }
 //            else{
 //                //TODO: Add behaviour for situations where you can't reach the goal - Currently this cannot happen.
 //            }
-        }
+        return path;
     }
 
 
@@ -96,7 +99,7 @@ public class DriverAgent extends DrawableAgent {
         if (targetSupplyStation != null) {
             oldTarget = targetSupplyStation.getLocalName() + " (" + supplyStationsInfo.get(targetSupplyStation).getUtilityFactor().getUtility() + ")";
         }
-        if(aid!=null){
+        if (aid != null) {
             newTarget = aid.getLocalName() + supplyStationsInfo.get(aid).getUtilityFactor();
         }
 
@@ -122,7 +125,8 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public void takeDown() {
         super.takeDown();
-        System.out.println("Agent " + getAID() + " is terminating...");
+        System.out.println("Agent " + getAID() + " was taken down.");
+        this.color = Color.BLACK;
     }
 
     @Override
@@ -181,10 +185,9 @@ public class DriverAgent extends DrawableAgent {
                 updateWaiting();
                 break;
             case FUELLING:
-                ticksToFuel--;
+                updateFuelling();
+                break;
         }
-
-
     }
 
     private void updatePosition() {
@@ -201,7 +204,14 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
+
+    private void updateFuelling(){
+        logFuelling();
+        ticksToFuel--;
+
+    }
     private void updateWaiting() {
+
         logWaiting();
         if (currentWaitingTimeout == 0) {
             removeAndupdateTargetSupplyStation();
@@ -215,24 +225,39 @@ public class DriverAgent extends DrawableAgent {
                 " is waiting " + currentWaitingTimeout + " ticks for " + this.targetSupplyStation.getLocalName());
     }
 
+    private void logFuelling() {
+        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
+                " is fuelling for the next " + ticksToFuel + " ticks");
+    }
+
 
     private void updateState() throws Exception {
 
-        if (this.isDone()) {
-            setDriverState(DriverState.TERMINATING);
-            this.takeDown();
-        }
-
         if ((this.driverState.equals(DriverState.FUELLING) && this.ticksToFuel == 0) || !needsFuel) {
+            if (!driverState.equals(REACHING_GOAL)) {
+                this.path = calculatePath(position, destination);
+                this.needsFuel = false;
+                this.targetSupplyStation = null;
+                //TODO: Remove all supplyServiceEntrys - currently not necessary as drivers only stop once.
+            }
             setDriverState(DriverState.REACHING_GOAL);
             return;
         }
 
         if (this.targetSupplyStation != null && this.position.equals(this.supplyStationsInfo.get(this.targetSupplyStation).getLocation()) && needsFuel) {
             if (isAttended) {
+                if (!driverState.equals(FUELLING)) {
+                    this.ticksToFuel = this.supplyStationsInfo.get(this.targetSupplyStation).getTicksToFuel();
+                }
                 setDriverState(DriverState.FUELLING);
+
             } else {
+                if (!driverState.equals(WAITING)) {
+                    currentWaitingTimeout = waitingTimeout;
+                    new Message(this, this.targetSupplyStation, ACLMessage.PROPOSE, MessageType.ENTRANCE.getTypeStr()).send();
+                }
                 setDriverState(DriverState.WAITING);
+
             }
             return;
         }
@@ -247,18 +272,18 @@ public class DriverAgent extends DrawableAgent {
             return;
         }
 
-
         throw new Exception("Unknown Driver State");
     }
 
     private void setDriverState(DriverState driverState) {
-        logState(driverState);
-        this.driverState = driverState;
+        if (!this.driverState.equals(driverState)) {
+            logState(driverState);
+            this.driverState = driverState;
+        }
     }
 
     private void logState(DriverState nextState) {
-        if (!driverState.equals(nextState))
-            System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname + " changed from " + driverState + " to " + nextState);
+        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname + " changed from " + driverState + " to " + nextState);
     }
 
     public void setSupplyStationsServicesAIDs(ArrayList<AID> supplyStationsServicesAIDs) {
@@ -288,19 +313,20 @@ public class DriverAgent extends DrawableAgent {
         if (bestSupplyStation == newSupplyStationInfo.getAid()) {
             logTargetSupplyStationChange(newSupplyStationInfo.getAid());
             this.targetSupplyStation = newSupplyStationInfo.getAid();
-            updatePath();
+            updatePathToFuel();
         }
     }
 
     private void removeAndupdateTargetSupplyStation() {
         if (targetSupplyStation != null) {
             this.supplyStationQueue.remove(this.supplyStationsInfo.get(targetSupplyStation).getUtilityFactor());
+            this.supplyStationsInfo.remove(targetSupplyStation);
         }
         UtilityFactor bestSupplyStation = this.supplyStationQueue.peek();
         if (bestSupplyStation != null) {
             logTargetSupplyStationChange(bestSupplyStation.getAid());
             this.targetSupplyStation = bestSupplyStation.getAid();
-            updatePath();
+            updatePathToFuel();
         } else {
             logTargetSupplyStationChange(null);
             this.targetSupplyStation = null;
@@ -309,7 +335,12 @@ public class DriverAgent extends DrawableAgent {
 
 
     public boolean isDone() {
-        return this.position.equals(this.destination);
+        if(this.position.equals(this.destination)){
+            this.setDriverState(TERMINATING);
+            takeDown();
+            return true;
+        }
+        return false;
     }
 
     public Position getDestination() {
@@ -318,6 +349,32 @@ public class DriverAgent extends DrawableAgent {
 
     public DriverState getDriverState() {
         return driverState;
+    }
+
+
+    public void handleAccept(int ticksToFuel) {
+        SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(targetSupplyStation);
+        SupplyStationInfo newSupplyStationInfo = new SupplyStationInfo(currentSupplyStationInfo.getAid(),
+                currentSupplyStationInfo.getLocation(), currentSupplyStationInfo.getPricePerLiter(),
+                this.getPosition(), this.priceIntolerance, this.destination, ticksToFuel);
+
+
+        this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
+        this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination));
+        assert this.supplyStationQueue.peek() != null;
+        AID bestSupplyStation = this.supplyStationQueue.peek().getAid();
+        if (bestSupplyStation != newSupplyStationInfo.getAid()) {
+            logTargetSupplyStationChange(bestSupplyStation);
+            this.targetSupplyStation = bestSupplyStation;
+            updatePathToFuel();
+        } else {
+            acknowledgeAccpet();
+        }
+    }
+
+    public void acknowledgeAccpet() {
+        new Message(this, this.targetSupplyStation, ACLMessage.CONFIRM, MessageType.ENTRANCE.getTypeStr()).send();
+        this.isAttended = true;
     }
 
 

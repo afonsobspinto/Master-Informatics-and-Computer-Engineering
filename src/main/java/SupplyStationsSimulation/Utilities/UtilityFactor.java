@@ -15,6 +15,7 @@ public class UtilityFactor {
     private int ticksToFuel;
     private Boolean isTicksGuess;
     private AID aid;
+    private static int priceAmplifier = 50;
 
 
     public UtilityFactor(SupplyStationInfo supplyStationInfo, Position driverPosition, double priceIntolerance, Position targetPosition) {
@@ -31,7 +32,7 @@ public class UtilityFactor {
    public double getUtility() {
         return Math.ceil(new EuclideanDistance().getDistance(driverPosition.getX(), driverPosition.getY(), supplyStationPosition.getX(), supplyStationPosition.getY()) +
                 new EuclideanDistance().getDistance(supplyStationPosition.getX(), supplyStationPosition.getY(), targetPosition.getX(), targetPosition.getY()) +
-                pricePerLiter * priceIntolerance + ticksToFuel);
+                (pricePerLiter * priceIntolerance) * priceAmplifier + ticksToFuel);
     }
 
     public AID getAid() {
@@ -70,4 +71,5 @@ public class UtilityFactor {
     public int hashCode() {
         return Objects.hash(supplyStationPosition, pricePerLiter, driverPosition, targetPosition, priceIntolerance, ticksToFuel, isTicksGuess, aid);
     }
+
 }

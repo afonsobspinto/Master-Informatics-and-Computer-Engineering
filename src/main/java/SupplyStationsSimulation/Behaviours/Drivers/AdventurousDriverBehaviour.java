@@ -37,6 +37,8 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
         switch (message.getPerformative()) {
             case ACLMessage.INFORM:
                 handleInform(message);
+            case ACLMessage.ACCEPT_PROPOSAL:
+                handleAccept(message);
 
         }
     }
@@ -52,6 +54,15 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
                     new Position(x, y), price, driverAgent.getPosition(),
                     driverAgent.getPriceIntolerance(), driverAgent.getDestination()));
 
+        }
+    }
+
+    private void handleAccept(Message message) {
+        MessageContent messageContent = new MessageContent(message);
+        if (messageContent.getMessageType() == MessageType.ENTRANCE) {
+            List<Object> contentObjects = messageContent.getContetObjects();
+            int ticksToFuel = Integer.parseInt((String) contentObjects.get(1));
+            this.driverAgent.handleAccept(ticksToFuel);
         }
     }
 }

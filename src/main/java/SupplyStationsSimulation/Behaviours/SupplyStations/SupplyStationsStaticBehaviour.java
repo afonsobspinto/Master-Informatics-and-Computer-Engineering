@@ -36,6 +36,10 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
         switch (message.getPerformative()) {
             case ACLMessage.REQUEST:
                 handleRequest(message);
+            case ACLMessage.PROPOSE:
+                handlePropose(message);
+            case ACLMessage.CONFIRM:
+                handleConfirm(message);
         }
 
     }
@@ -43,6 +47,30 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
     private void handleRequest(Message message) {
         if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
             new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.INFORM, new MessageContent(MessageType.INFO, List.of(this.supplyStationAgent.getX(), this.supplyStationAgent.getY(), this.supplyStationAgent.getPricePerLiter())).getContent()).send();
+        }
+    }
+
+    private void handlePropose(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            if (this.supplyStationAgent.isAvailable()) {
+                new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
+                        new MessageContent(MessageType.ENTRANCE,
+                                List.of(this.supplyStationAgent.getOccupation(),
+                                        this.supplyStationAgent.getTicksToFuel())).getContent()).send();
+            }
+            else{
+                new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
+                        new MessageContent(MessageType.ENTRANCE,
+                                List.of(this.supplyStationAgent.getOccupation(),
+                                        this.supplyStationAgent.getTicksToFuel(),
+                                        this.supplyStationAgent.getWaitingListSize())).getContent()).send();
+            }
+        }
+    }
+
+    private void handleConfirm(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            this.supplyStationAgent.addDriver(message.getSenderAID());
         }
     }
 }

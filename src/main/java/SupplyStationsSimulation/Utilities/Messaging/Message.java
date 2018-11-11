@@ -2,13 +2,12 @@ package SupplyStationsSimulation.Utilities.Messaging;
 
 import SupplyStationsSimulation.Utilities.Timestamp;
 import jade.core.AID;
+import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import sajas.core.Agent;
-import jade.lang.acl.ACLMessage;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class Message {
 
@@ -21,16 +20,6 @@ public class Message {
     private Serializable content;
     private int performative;
     private boolean isObject = true;
-
-
-
-    /*
-    public Message(Agent receiver, ACLMessage message, boolean isObject) {
-        this.receiver = receiver;
-        this.message = message;
-        this.isObject = isObject;
-    }
-*/
 
     public Message(Agent receiver, ACLMessage message) {
         this.receiver = receiver;
@@ -64,11 +53,6 @@ public class Message {
         return "Message{}";
     }
 
-
-
-    /*
-     * Send message between two agents
-     */
     public void send() {
         try {
             ACLMessage message = new ACLMessage(performative);

@@ -123,7 +123,7 @@ public class Launcher extends Repast3Launcher {
 
             for(DrawableAgent agent: drawableMap.getAgentList()){
                 if(agent.getType() == Type.DRIVER) {
-                    ((DriverAgent) agent).calculatePath();
+                    ((DriverAgent) agent).calculateInitialPath();
                 }
             }
 

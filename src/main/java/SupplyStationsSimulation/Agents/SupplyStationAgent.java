@@ -4,6 +4,7 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Locations.Position;
+import jade.core.AID;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
@@ -33,8 +34,13 @@ public class SupplyStationAgent extends DrawableAgent {
     private static int minTicksToFuel = 4;
     private int ticksToFuel = new Random().nextInt(maxTicksToFuel)+minTicksToFuel;
 
-    private ArrayList<DriverAgent>currentDriversOnStation = new ArrayList<DriverAgent>();
+    private ArrayList<jade.core.AID>currentDriversOnStation = new ArrayList<>();
+    private ArrayList<jade.core.AID>currentDriversWaiting = new ArrayList<>();
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
+
+    private int totalUsers = 0;
+    private static int fuelAdded = 50;
+    private double totalIncoming = 0;
 
 
 
@@ -120,5 +126,30 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public double getPricePerLiter() {
         return pricePerLiter;
+    }
+
+    public boolean isAvailable(){
+        return (this.totalGasPumps - this.currentDriversOnStation.size()) > 0;
+    }
+
+    public int getTicksToFuel(){
+        return this.ticksToFuel;
+    }
+
+    public int getOccupation(){
+        return this.currentDriversOnStation.size();
+    }
+
+    public int getWaitingListSize(){
+        return this.currentDriversWaiting.size();
+    }
+
+    public void addDriver(AID driverAID){
+        this.currentDriversOnStation.add(driverAID);
+        this.totalUsers++;
+        this.totalIncoming+=fuelAdded*this.pricePerLiter;
+    }
+    public void addDriverWaiting(AID driverAID){
+        this.currentDriversWaiting.add(driverAID);
     }
 }
