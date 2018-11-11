@@ -46,6 +46,20 @@ public class Launcher extends Repast3Launcher {
 
     }
 
+    private static void chooseParams(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Welcome to a Supply Station Simulation!");
+        System.out.println("How many collaborative drivers do you want to add to the map?");
+        COLLABORATIVE_DRIVERS = reader.nextInt();
+        System.out.println("How many adventurous drivers do you want to add to the map?");
+        ADVENTUROUS_DRIVERS = reader.nextInt();
+        System.out.println("How many static supply stations do you want to add to the map?");
+        STATIC_SUPPLY_STATIONS = reader.nextInt();
+        System.out.println("How many dynamic supply stations do you want to add to the map?");
+        DYNAMIC_SUPPLY_STATIONS = reader.nextInt();
+        System.out.println("All set! Click play on the Repast Gui to start the simulation.");
+    }
+
     private void buildAndScheduleDisplay() {
         if(dsurf!=null) dsurf.dispose();
 
@@ -150,6 +164,7 @@ public class Launcher extends Repast3Launcher {
      * @param args
      */
     public static void main(String[] args) {
+        chooseParams();
         SimInit init = new SimInit();
         init.loadModel(new Launcher(), null, false);
     }
