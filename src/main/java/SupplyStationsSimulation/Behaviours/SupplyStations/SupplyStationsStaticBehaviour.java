@@ -23,6 +23,7 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
 
     @Override
     public void action() {
+        this.supplyStationAgent.updateDrivers();
     }
 
     @Override
@@ -40,6 +41,8 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
                 handlePropose(message);
             case ACLMessage.CONFIRM:
                 handleConfirm(message);
+            case ACLMessage.DISCONFIRM:
+                handleDisconfirm(message);
         }
 
     }
@@ -56,21 +59,33 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
                 new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.ACCEPT_PROPOSAL,
                         new MessageContent(MessageType.ENTRANCE,
                                 List.of(this.supplyStationAgent.getOccupation(),
-                                        this.supplyStationAgent.getTicksToFuel())).getContent()).send();
+                                        this.supplyStationAgent.getTicksToFuel(),
+                                        this.supplyStationAgent.getTotalGasPumps())).getContent()).send();
             }
             else{
                 new Message(this.supplyStationAgent, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
                         new MessageContent(MessageType.ENTRANCE,
                                 List.of(this.supplyStationAgent.getOccupation(),
                                         this.supplyStationAgent.getTicksToFuel(),
-                                        this.supplyStationAgent.getWaitingListSize())).getContent()).send();
+                                        this.supplyStationAgent.getWaitingListSize(),
+                                        this.supplyStationAgent.getTotalGasPumps())).getContent()).send();
             }
         }
     }
 
     private void handleConfirm(Message message) {
         if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            this.supplyStationAgent.getCurrentDriversWaiting().remove(message.getSenderAID());
             this.supplyStationAgent.addDriver(message.getSenderAID());
+        }
+        if (message.getContent().equals(MessageType.WAITLINE.getTypeStr())) {
+            this.supplyStationAgent.addDriverWaiting(message.getSenderAID());
+        }
+    }
+
+    private void handleDisconfirm(Message message) {
+        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
+            this.supplyStationAgent.increaseTotalDisconfirms();
         }
     }
 }

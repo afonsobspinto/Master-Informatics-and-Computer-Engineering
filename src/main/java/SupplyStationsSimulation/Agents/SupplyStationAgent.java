@@ -13,8 +13,8 @@ import sajas.domain.DFService;
 import uchicago.src.sim.gui.SimGraphics;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 public class SupplyStationAgent extends DrawableAgent {
 
@@ -24,7 +24,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     private static int totalGasMin = 2;
     private static int totalGasMax = 6;
-    private int totalGasPumps = new Random().nextInt(totalGasMax)+totalGasMin;
+    private int totalGasPumps = new Random().nextInt(totalGasMax) + totalGasMin;
 
     private static double pricePerLiterDeviation = 1.0;
     private static double pricePerLiterMean = 1.6;
@@ -32,16 +32,16 @@ public class SupplyStationAgent extends DrawableAgent {
 
     private static int maxTicksToFuel = 50;
     private static int minTicksToFuel = 4;
-    private int ticksToFuel = new Random().nextInt(maxTicksToFuel)+minTicksToFuel;
+    private int ticksToFuel = new Random().nextInt(maxTicksToFuel) + minTicksToFuel;
 
-    private ArrayList<jade.core.AID>currentDriversOnStation = new ArrayList<>();
-    private ArrayList<jade.core.AID>currentDriversWaiting = new ArrayList<>();
+    private Map<AID, Integer> currentDriversOnStation = new HashMap<>();
+    private Set<AID> currentDriversWaiting = new HashSet<>();
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
 
     private int totalUsers = 0;
     private static int fuelAdded = 50;
     private double totalIncoming = 0;
-
+    private int totalDisconfirms = 0;
 
 
     public SupplyStationAgent(String nickname, Color color, Position location) {
@@ -56,14 +56,13 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     public void addBehaviour(Behaviour b) {
         super.addBehaviour(b);
-        if(b instanceof ACLMessageBehaviour){
-            behaviours.add((ACLMessageBehaviour)b);
+        if (b instanceof ACLMessageBehaviour) {
+            behaviours.add((ACLMessageBehaviour) b);
         }
     }
 
     @Override
-    protected void setup()
-    {
+    protected void setup() {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
 
@@ -84,7 +83,7 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     protected void takeDown() {
         super.takeDown();
-        try{
+        try {
             DFService.deregister(this);
         } catch (FIPAException e) {
             e.printStackTrace();
@@ -114,7 +113,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     @Override
     public void handleMessage(Message message) {
-        for(ACLMessageBehaviour behaviour: behaviours){
+        for (ACLMessageBehaviour behaviour : behaviours) {
             behaviour.handleMessage(message);
         }
 
@@ -128,28 +127,56 @@ public class SupplyStationAgent extends DrawableAgent {
         return pricePerLiter;
     }
 
-    public boolean isAvailable(){
+    public boolean isAvailable() {
         return (this.totalGasPumps - this.currentDriversOnStation.size()) > 0;
     }
 
-    public int getTicksToFuel(){
+    public int getTicksToFuel() {
         return this.ticksToFuel;
     }
 
-    public int getOccupation(){
+    public int getTotalGasPumps() {
+        return this.totalGasPumps;
+    }
+
+    public int getOccupation() {
         return this.currentDriversOnStation.size();
     }
 
-    public int getWaitingListSize(){
+    public int getWaitingListSize() {
         return this.currentDriversWaiting.size();
     }
 
-    public void addDriver(AID driverAID){
-        this.currentDriversOnStation.add(driverAID);
+    public void addDriver(AID driverAID) {
+        this.currentDriversOnStation.put(driverAID, ticksToFuel);
         this.totalUsers++;
-        this.totalIncoming+=fuelAdded*this.pricePerLiter;
+        this.totalIncoming += fuelAdded * this.pricePerLiter;
     }
-    public void addDriverWaiting(AID driverAID){
+
+    public void addDriverWaiting(AID driverAID) {
         this.currentDriversWaiting.add(driverAID);
     }
+
+    public void increaseTotalDisconfirms() {
+        totalDisconfirms++;
+    }
+
+    public void updateDrivers() {
+        List<AID> elementsToRemove = new ArrayList<AID>();
+        for (Map.Entry<AID, Integer> entry : currentDriversOnStation.entrySet()) {
+            if (entry.getValue() == 0) {
+                elementsToRemove.add(entry.getKey());
+            } else {
+                currentDriversOnStation.put(entry.getKey(), entry.getValue() - 1);
+            }
+        }
+        for(AID element: elementsToRemove){
+            currentDriversOnStation.remove(element);
+        }
+    }
+
+    public Set<AID> getCurrentDriversWaiting() {
+        return currentDriversWaiting;
+    }
+
 }

@@ -1,7 +1,7 @@
 package SupplyStationsSimulation.Utilities.Messaging;
 
 public enum MessageType {
-    INFO("INFO"), ENTRANCE("ENTRANCE");
+    INFO("INFO"), ENTRANCE("ENTRANCE"), WAITLINE("WAITLINE");
 
     private String typeStr;
     MessageType(String type) {

@@ -27,8 +27,9 @@ import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.*;
 
 public class DriverAgent extends DrawableAgent {
 
+
     public enum DriverState {
-        INITIALIZING, SEARCHING, REACHING_FUEL, WAITING, FUELLING, REACHING_GOAL, TERMINATING
+        INITIALIZING, SEARCHING, REACHING_FUEL, WAITING_REPLY, WAITING_LINE, FUELLING, REACHING_GOAL, TERMINATING
     }
 
     private String nickname;
@@ -38,8 +39,10 @@ public class DriverAgent extends DrawableAgent {
     private DriverState driverState = DriverState.INITIALIZING;
     private Boolean needsFuel = true;
     private Boolean isAttended = false;
+    private boolean isWaitingLine = false;
     private static int waitingTimeout = 15;
     private int currentWaitingTimeout = waitingTimeout;
+    private static int unresponsiveWaitingTimeout = 100;
     private int ticksToFuel;
     private static double priceIntoleranceDeviation = 0.2;
     private static double priceIntoleranceMean = 1.0;
@@ -71,24 +74,22 @@ public class DriverAgent extends DrawableAgent {
     }
 
     private void updatePathToFuel() {
-        if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING)) {
+        if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING_REPLY)) {
             Position destination = supplyStationsInfo.get(this.targetSupplyStation).getLocation();
             calculatePath(position, destination);
-
-
         }
     }
 
-    public Path calculatePath(Position source, Position destination){
+    public Path calculatePath(Position source, Position destination) {
         Path path = new AStarPathFinder(map, map.getHeightInTiles() * map.getWidthInTiles(), false).findPath(this, source.getX(), source.getY(), destination.getX(), destination.getY());
         if (path != null) {
             this.deFactoTravelDuration += this.pathStep;
-            this.pathStep = 0;
             this.path = path;
         }
 //            else{
 //                //TODO: Add behaviour for situations where you can't reach the goal - Currently this cannot happen.
 //            }
+        this.pathStep = 0;
         return path;
     }
 
@@ -125,7 +126,7 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public void takeDown() {
         super.takeDown();
-        System.out.println("Agent " + getAID() + " was taken down.");
+        System.out.println("Agent " + getLocalName() + " was taken down.");
         this.color = Color.BLACK;
     }
 
@@ -181,53 +182,15 @@ public class DriverAgent extends DrawableAgent {
             case REACHING_GOAL:
                 updatePosition();
                 break;
-            case WAITING:
-                updateWaiting();
+            case WAITING_REPLY:
+                updateWaitingReply();
+            case WAITING_LINE:
+                updateWaitingLine();
                 break;
             case FUELLING:
                 updateFuelling();
                 break;
         }
-    }
-
-    private void updatePosition() {
-        Object2DGrid space = this.map.getSpace();
-
-        Object objectCurrentPos = space.getObjectAt(this.position.getX(), this.position.getY());
-        if (objectCurrentPos == null || !((DrawableAgent) objectCurrentPos).getType().equals(Type.SUPPLYSTATION)) {
-            space.putObjectAt(this.position.getX(), this.position.getY(), null);
-        }
-        this.position = path.getStep(++pathStep);
-        Object objectNextPos = space.getObjectAt(this.position.getX(), this.position.getY());
-        if (objectNextPos == null || !((DrawableAgent) objectNextPos).getType().equals(Type.SUPPLYSTATION)) {
-            space.putObjectAt(this.position.getX(), this.position.getY(), this);
-        }
-    }
-
-
-    private void updateFuelling(){
-        logFuelling();
-        ticksToFuel--;
-
-    }
-    private void updateWaiting() {
-
-        logWaiting();
-        if (currentWaitingTimeout == 0) {
-            removeAndupdateTargetSupplyStation();
-            currentWaitingTimeout = waitingTimeout;
-        }
-        currentWaitingTimeout--;
-    }
-
-    private void logWaiting() {
-        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
-                " is waiting " + currentWaitingTimeout + " ticks for " + this.targetSupplyStation.getLocalName());
-    }
-
-    private void logFuelling() {
-        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
-                " is fuelling for the next " + ticksToFuel + " ticks");
     }
 
 
@@ -252,11 +215,15 @@ public class DriverAgent extends DrawableAgent {
                 setDriverState(DriverState.FUELLING);
 
             } else {
-                if (!driverState.equals(WAITING)) {
+                if (isWaitingLine) {
+                    setDriverState(WAITING_LINE);
+                    return;
+                }
+                if (!driverState.equals(WAITING_REPLY)) {
                     currentWaitingTimeout = waitingTimeout;
                     new Message(this, this.targetSupplyStation, ACLMessage.PROPOSE, MessageType.ENTRANCE.getTypeStr()).send();
                 }
-                setDriverState(DriverState.WAITING);
+                setDriverState(DriverState.WAITING_REPLY);
 
             }
             return;
@@ -273,6 +240,61 @@ public class DriverAgent extends DrawableAgent {
         }
 
         throw new Exception("Unknown Driver State");
+    }
+
+
+    private void updatePosition() {
+        Object2DGrid space = this.map.getSpace();
+
+        Object objectCurrentPos = space.getObjectAt(this.position.getX(), this.position.getY());
+        if (objectCurrentPos == null || !((DrawableAgent) objectCurrentPos).getType().equals(Type.SUPPLYSTATION)) {
+            space.putObjectAt(this.position.getX(), this.position.getY(), null);
+        }
+        this.position = path.getStep(++pathStep);
+        Object objectNextPos = space.getObjectAt(this.position.getX(), this.position.getY());
+        if (objectNextPos == null || !((DrawableAgent) objectNextPos).getType().equals(Type.SUPPLYSTATION)) {
+            space.putObjectAt(this.position.getX(), this.position.getY(), this);
+        }
+    }
+
+
+    private void updateFuelling() {
+        logFuelling();
+        ticksToFuel--;
+
+    }
+
+    private void updateWaitingLine() {
+
+        logWaiting();
+        if (currentWaitingTimeout == 0) {
+            currentWaitingTimeout = waitingTimeout;
+            isWaitingLine = false;
+        }
+        currentWaitingTimeout--;
+    }
+
+    private void updateWaitingReply() {
+
+        logWaiting();
+        if (currentWaitingTimeout == 0) {
+            updateTicksTargetSupplyStation(this.supplyStationsInfo.get(targetSupplyStation).getTicksToFuel() + unresponsiveWaitingTimeout);
+            updatePathToFuel();
+            currentWaitingTimeout = waitingTimeout;
+            return;
+
+        }
+        currentWaitingTimeout--;
+    }
+
+    private void logWaiting() {
+        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
+                " is waiting " + currentWaitingTimeout + " ticks for " + this.targetSupplyStation.getLocalName());
+    }
+
+    private void logFuelling() {
+        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
+                " is fuelling for the next " + ticksToFuel + " ticks");
     }
 
     private void setDriverState(DriverState driverState) {
@@ -317,25 +339,9 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-    private void removeAndupdateTargetSupplyStation() {
-        if (targetSupplyStation != null) {
-            this.supplyStationQueue.remove(this.supplyStationsInfo.get(targetSupplyStation).getUtilityFactor());
-            this.supplyStationsInfo.remove(targetSupplyStation);
-        }
-        UtilityFactor bestSupplyStation = this.supplyStationQueue.peek();
-        if (bestSupplyStation != null) {
-            logTargetSupplyStationChange(bestSupplyStation.getAid());
-            this.targetSupplyStation = bestSupplyStation.getAid();
-            updatePathToFuel();
-        } else {
-            logTargetSupplyStationChange(null);
-            this.targetSupplyStation = null;
-        }
-    }
-
 
     public boolean isDone() {
-        if(this.position.equals(this.destination)){
+        if (this.position.equals(this.destination)) {
             this.setDriverState(TERMINATING);
             takeDown();
             return true;
@@ -351,12 +357,27 @@ public class DriverAgent extends DrawableAgent {
         return driverState;
     }
 
-
     public void handleAccept(int ticksToFuel) {
+        if (updateTicksTargetSupplyStation(ticksToFuel)) {
+            updatePathToFuel();
+            disconfirm();
+        } else
+            acknowledgeAccpet();
+    }
+
+    public void handleReject(int ticks) {
+        if (updateTicksTargetSupplyStation(ticks)) {
+            updatePathToFuel();
+            disconfirm();
+        } else
+            acknowledgeReject(ticks);
+    }
+
+    private boolean updateTicksTargetSupplyStation(int ticks) {
         SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(targetSupplyStation);
         SupplyStationInfo newSupplyStationInfo = new SupplyStationInfo(currentSupplyStationInfo.getAid(),
                 currentSupplyStationInfo.getLocation(), currentSupplyStationInfo.getPricePerLiter(),
-                this.getPosition(), this.priceIntolerance, this.destination, ticksToFuel);
+                this.getPosition(), this.priceIntolerance, this.destination, ticks);
 
 
         this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
@@ -366,15 +387,25 @@ public class DriverAgent extends DrawableAgent {
         if (bestSupplyStation != newSupplyStationInfo.getAid()) {
             logTargetSupplyStationChange(bestSupplyStation);
             this.targetSupplyStation = bestSupplyStation;
-            updatePathToFuel();
+            return true;
         } else {
-            acknowledgeAccpet();
+            return false;
         }
     }
 
     public void acknowledgeAccpet() {
         new Message(this, this.targetSupplyStation, ACLMessage.CONFIRM, MessageType.ENTRANCE.getTypeStr()).send();
         this.isAttended = true;
+    }
+
+    public void acknowledgeReject(int waitingLine) {
+        new Message(this, this.targetSupplyStation, ACLMessage.CONFIRM, MessageType.WAITLINE.getTypeStr()).send();
+        this.currentWaitingTimeout = waitingLine;
+        this.isWaitingLine = true;
+    }
+
+    public void disconfirm() {
+        new Message(this, this.targetSupplyStation, ACLMessage.DISCONFIRM, MessageType.ENTRANCE.getTypeStr()).send();
     }
 
 
