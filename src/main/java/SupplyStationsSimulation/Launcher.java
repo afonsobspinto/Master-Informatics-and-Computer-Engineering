@@ -61,7 +61,7 @@ public class Launcher extends Repast3Launcher {
     }
 
     private void buildAndScheduleDisplay() {
-        if(dsurf!=null) dsurf.dispose();
+        if (dsurf != null) dsurf.dispose();
 
         dsurf = new DisplaySurface(this, "DrawableMap");
         registerDisplaySurface("DrawableMap", dsurf);
@@ -99,21 +99,23 @@ public class Launcher extends Repast3Launcher {
     }
 
     private void launchDrivers() {
-        LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS*2+COLLABORATIVE_DRIVERS*2+STATIC_SUPPLY_STATIONS+DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
+        LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS * 2 + COLLABORATIVE_DRIVERS * 2 + STATIC_SUPPLY_STATIONS + DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
-                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap, true);
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
             }
 
 
+            boolean test = true;
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
-                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap);
+                test = !test;
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap, test);
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
@@ -136,8 +138,8 @@ public class Launcher extends Repast3Launcher {
             }
 
 
-            for(DrawableAgent agent: drawableMap.getAgentList()){
-                if(agent.getType() == Type.DRIVER) {
+            for (DrawableAgent agent : drawableMap.getAgentList()) {
+                if (agent.getType() == Type.DRIVER) {
                     ((DriverAgent) agent).calculateInitialPath();
                 }
             }
@@ -162,6 +164,7 @@ public class Launcher extends Repast3Launcher {
 
     /**
      * Launching Repast3
+     *
      * @param args
      */
     public static void main(String[] args) {

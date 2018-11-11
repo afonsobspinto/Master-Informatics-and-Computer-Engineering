@@ -4,26 +4,24 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
-import SupplyStationsSimulation.Utilities.*;
+import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
 import SupplyStationsSimulation.Utilities.Messaging.MessageType;
+import SupplyStationsSimulation.Utilities.*;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
-import SupplyStationsSimulation.Utilities.Locations.Position;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 import uchicago.src.sim.space.Object2DGrid;
-
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.*;
@@ -66,12 +64,14 @@ public class DriverAgent extends DrawableAgent {
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
 
-    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
+    private boolean test;
+    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map, boolean test) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
+        this.test = test;
     }
 
     public void calculateInitialPath() {
@@ -81,8 +81,8 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-    private void updatePathToFuel() {
-        if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING_REPLY)) {
+    public void updatePathToFuel() {
+        if (this.driverState.equals(DriverState.SEARCHING) || this.driverState.equals(REACHING_FUEL) || this.driverState.equals(WAITING_REPLY) || this.driverState.equals(WAITING_LINE)) {
             Position destination = supplyStationsInfo.get(this.targetSupplyStation).getLocation();
             calculatePath(position, destination);
         }
@@ -132,7 +132,9 @@ public class DriverAgent extends DrawableAgent {
     protected void setup() {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
-        addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
+        if(this.test) {
+            addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
+        }
 
     }
 
@@ -427,7 +429,7 @@ public class DriverAgent extends DrawableAgent {
             acknowledgeReject(ticks);
     }
 
-    private boolean updateTicksTargetSupplyStation(int ticks) {
+    public boolean updateTicksTargetSupplyStation(int ticks) {
         SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(targetSupplyStation);
         SupplyStationInfo newSupplyStationInfo = new SupplyStationInfo(currentSupplyStationInfo.getAid(),
                 currentSupplyStationInfo.getLocation(), currentSupplyStationInfo.getPricePerLiter(),
@@ -470,6 +472,10 @@ public class DriverAgent extends DrawableAgent {
     public List<AID> getDriversList() {
         return getAgentList().stream().filter(drawableAgent -> drawableAgent.getType() == Type.DRIVER).map(Agent::getAID).collect(Collectors.toList());
 
+    }
+
+    public SupplyStationInfo getTargetSupplyStationInfo(){
+        return this.supplyStationsInfo.get(this.targetSupplyStation);
     }
 
 }

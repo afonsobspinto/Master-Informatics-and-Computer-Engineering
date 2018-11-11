@@ -54,18 +54,44 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handlePropagate(Message message) {
         MessageContent messageContent = new MessageContent(message);
-        if (messageContent.getMessageType().equals(MessageType.INFO)) {
-            this.handlePropagateInform(messageContent);
+
+        switch (messageContent.getMessageType()) {
+/*            case INFO:
+                this.handlePropagateInform(messageContent);
+                break;*/
+            case ENTRANCE:
+                this.handlePropagateAccept(messageContent);
+                break;
         }
+
     }
 
-    private void handlePropagateInform(MessageContent message) {
-        if (message.getMessageType() == MessageType.INFO) {
-            List<String> contentObjects = message.getContetObjects();
+    private void handlePropagateAccept(MessageContent messageContent) {
+        List<String> contentObjects = messageContent.getContetObjects();
+        int occupation = Integer.parseInt(contentObjects.get(0));
+        int ticksToFuel = Integer.parseInt(contentObjects.get(1));
+        int totalGasPumps = Integer.parseInt(contentObjects.get(2));
+        int x = Integer.parseInt(contentObjects.get(3));
+        int y = Integer.parseInt(contentObjects.get(4));
+        double price = Double.parseDouble(contentObjects.get(5));
+
+        AID sender = messageContent.getSenderAID(contentObjects, 6);
+
+        int ticks = (int) (1.0 + ((occupation+1.0)/totalGasPumps) * ticksToFuel);
+        this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
+                new Position(x, y), price, this.driverAgent.getPosition(),
+                this.driverAgent.getPriceIntolerance(), this.driverAgent.getDestination(), ticks));
+
+        }
+
+
+    private void handlePropagateInform(MessageContent messageContent) {
+        if (messageContent.getMessageType() == MessageType.INFO) {
+            List<String> contentObjects = messageContent.getContetObjects();
             int x = Integer.parseInt(contentObjects.get(0));
             int y = Integer.parseInt(contentObjects.get(1));
             double price = Double.parseDouble(contentObjects.get(2));
-            AID sender = message.getSenderAID(contentObjects, 3);
+            AID sender = messageContent.getSenderAID(contentObjects, 3);
             this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
                     new Position(x, y), price, this.driverAgent.getPosition(),
                     this.driverAgent.getPriceIntolerance(), this.driverAgent.getDestination()));
@@ -76,7 +102,7 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handleReject(Message message) {
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
-        this.broadcast(message, this.driverAgent.getDriversList());
+        this.broadcast(message, this.driverAgent.getDriversList(), null);
     }
 
     private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
@@ -85,20 +111,26 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handleAccept(Message message) {
         this.driverAgent.handleAccept(message);
-        this.broadcast(message, this.driverAgent.getDriversList());
+        this.broadcast(message, this.driverAgent.getDriversList(),
+                List.of(String.valueOf(this.driverAgent.getX()),
+                        String.valueOf(this.driverAgent.getY()),
+                        String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())));
 
     }
 
     private void handleInform(Message message) {
         this.driverAgent.handleInform(message);
-        this.broadcast(message, this.driverAgent.getDriversList());
+        this.broadcast(message, this.driverAgent.getDriversList(), null);
     }
 
-    private void broadcast(Message message, List<AID> aids) {
+    private void broadcast(Message message, List<AID> aids, List<String>additionalFields) {
         MessageContent messageContent = new MessageContent(message);
         for (AID aid : aids) {
             if (!aid.equals(getAgent().getAID())) {
                 List<String> messageContentObjects = messageContent.getContetObjects();
+                if(additionalFields!=null){
+                    messageContentObjects.addAll(additionalFields);
+                }
                 messageContentObjects.add(message.getSerializedSenderAID());
                 new Message(this.driverAgent, aid, ACLMessage.PROPAGATE,
                         new MessageContent(messageContent.getMessageType(), messageContentObjects).getContent()).send();
