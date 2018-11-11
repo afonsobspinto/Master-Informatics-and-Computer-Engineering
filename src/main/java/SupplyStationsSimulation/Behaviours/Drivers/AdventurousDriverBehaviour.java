@@ -23,13 +23,7 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
-        try {
-            driverAgent.updateState();
-        } catch (Exception e) {
-            e.printStackTrace();
-            driverAgent.takeDown();
-        }
-        driverAgent.updatePosition();
+        driverAgent.update();
     }
 
     @Override
@@ -54,7 +48,7 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
             int x = Integer.parseInt((String) contentObjects.get(0));
             int y = Integer.parseInt((String) contentObjects.get(1));
             double price = Double.parseDouble((String) contentObjects.get(2));
-            driverAgent.addSupplyStationsInfo(message.getSenderAID(), new SupplyStationInfo(message.getSenderAID(),
+            driverAgent.addSupplyStationsInfo(new SupplyStationInfo(message.getSenderAID(),
                     new Position(x, y), price, driverAgent.getPosition(),
                     driverAgent.getPriceIntolerance(), driverAgent.getDestination()));
 

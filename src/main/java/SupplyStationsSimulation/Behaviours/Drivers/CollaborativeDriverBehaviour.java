@@ -17,7 +17,7 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     @Override
     public void action() {
-        driverAgent.updatePosition();
+        driverAgent.update();
     }
 
     @Override

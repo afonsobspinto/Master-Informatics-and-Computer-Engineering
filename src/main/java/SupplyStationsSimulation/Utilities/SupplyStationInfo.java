@@ -4,13 +4,17 @@ import SupplyStationsSimulation.Utilities.Locations.Position;
 import jade.core.AID;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class SupplyStationInfo {
 
     private AID aid;
     private Position location;
     private double pricePerLiter;
-    private int ticksToFuel;
+    private static int maxTicksToFuelGuess = 100;
+    private static int minTicksToFuelGuess = 8;
+    private int ticksToFuel = new Random().nextInt(maxTicksToFuelGuess)+minTicksToFuelGuess;
+    private Boolean isTicksGuess = true;
     private UtilityFactor utilityFactor;
 
     public SupplyStationInfo(AID aid, Position location, double pricePerLiter) {
@@ -61,5 +65,22 @@ public class SupplyStationInfo {
 
     public void setTicksToFuel(int ticksToFuel) {
         this.ticksToFuel = ticksToFuel;
+        this.isTicksGuess = false;
+    }
+
+    public Boolean isTicksGuess() {
+        return isTicksGuess;
+    }
+
+
+    @Override
+    public String toString() {
+        return "SupplyStationInfo{" +
+                aid.getLocalName() +
+                ", " + location +
+                ", pricePerLiter=" + pricePerLiter +
+                ", ticksToFuel=" + ticksToFuel + "(" + !isTicksGuess +")" +
+                ", utilityFactor=" + utilityFactor +
+                '}';
     }
 }
