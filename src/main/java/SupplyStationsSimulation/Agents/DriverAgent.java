@@ -4,17 +4,16 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
+import SupplyStationsSimulation.Utilities.*;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
 import SupplyStationsSimulation.Utilities.Messaging.MessageType;
 import SupplyStationsSimulation.Utilities.PathFinder.AStarPathFinder;
 import SupplyStationsSimulation.Utilities.PathFinder.Path;
 import SupplyStationsSimulation.Utilities.Locations.Position;
-import SupplyStationsSimulation.Utilities.SupplyStationInfo;
-import SupplyStationsSimulation.Utilities.Timestamp;
-import SupplyStationsSimulation.Utilities.UtilityComparator;
-import SupplyStationsSimulation.Utilities.UtilityFactor;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
+import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
 import uchicago.src.sim.space.Object2DGrid;
@@ -23,6 +22,9 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static SupplyStationsSimulation.Agents.DriverAgent.DriverState.*;
 
@@ -131,6 +133,7 @@ public class DriverAgent extends DrawableAgent {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
         addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
+
     }
 
     @Override
@@ -352,7 +355,6 @@ public class DriverAgent extends DrawableAgent {
             logTargetSupplyStationChange(newSupplyStationInfo.getAid());
             this.targetSupplyStation = newSupplyStationInfo.getAid();
             updatePathToFuel();
-            System.out.println(this.path);
         }
     }
 
@@ -374,7 +376,31 @@ public class DriverAgent extends DrawableAgent {
         return driverState;
     }
 
-    public void handleAccept(int ticksToFuel) {
+    public void handleInform(Message message) {
+        MessageContent messageContent = new MessageContent(message);
+        if (messageContent.getMessageType() == MessageType.INFO) {
+            List<String> contentObjects = messageContent.getContetObjects();
+            int x = Integer.parseInt(contentObjects.get(0));
+            int y = Integer.parseInt(contentObjects.get(1));
+            double price = Double.parseDouble(contentObjects.get(2));
+            this.addSupplyStationsInfo(new SupplyStationInfo(message.getSenderAID(),
+                    new Position(x, y), price, this.getPosition(),
+                    this.getPriceIntolerance(), this.getDestination()));
+
+        }
+    }
+
+
+    public void handleAccept(Message message) {
+        MessageContent messageContent = new MessageContent(message);
+        if (messageContent.getMessageType() == MessageType.ENTRANCE) {
+            List<String> contentObjects = messageContent.getContetObjects();
+            int ticksToFuel = Integer.parseInt(contentObjects.get(1));
+            this.handleAccept(ticksToFuel);
+        }
+    }
+
+    private void handleAccept(int ticksToFuel) {
         if (updateTicksTargetSupplyStation(ticksToFuel)) {
             updatePathToFuel();
             disconfirm();
@@ -382,7 +408,18 @@ public class DriverAgent extends DrawableAgent {
             acknowledgeAccpet();
     }
 
-    public void handleReject(int ticks) {
+    public void handleReject(Message message, MethodInterface methodInterface) {
+        MessageContent messageContent = new MessageContent(message);
+        if (messageContent.getMessageType() == MessageType.ENTRANCE) {
+            List<String> contentObjects = messageContent.getContetObjects();
+            int ticksToFuel = Integer.parseInt(contentObjects.get(1));
+            int waitingLine = Integer.parseInt(contentObjects.get(2));
+            int totalGasPumps = Integer.parseInt(contentObjects.get(3));
+            this.handleReject(methodInterface.averageWaitingTime(totalGasPumps, ticksToFuel, waitingLine));
+        }
+    }
+
+    private void handleReject(int ticks) {
         if (updateTicksTargetSupplyStation(ticks)) {
             updatePathToFuel();
             disconfirm();
@@ -425,5 +462,14 @@ public class DriverAgent extends DrawableAgent {
         new Message(this, this.targetSupplyStation, ACLMessage.DISCONFIRM, MessageType.ENTRANCE.getTypeStr()).send();
     }
 
+
+    private ArrayList<DrawableAgent> getAgentList() {
+        return this.map.getAgentList();
+    }
+
+    public List<AID> getDriversList() {
+        return getAgentList().stream().filter(drawableAgent -> drawableAgent.getType() == Type.DRIVER).map(Agent::getAID).collect(Collectors.toList());
+
+    }
 
 }

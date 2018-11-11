@@ -28,10 +28,10 @@ import java.util.List;
 
 public class Launcher extends Repast3Launcher {
 
-    private static int COLLABORATIVE_DRIVERS = 0;
-    private static int ADVENTUROUS_DRIVERS = 40;
-    private static int STATIC_SUPPLY_STATIONS = 0;
-    private static int DYNAMIC_SUPPLY_STATIONS = 1;
+    private static int COLLABORATIVE_DRIVERS;
+    private static int ADVENTUROUS_DRIVERS;
+    private static int STATIC_SUPPLY_STATIONS;
+    private static int DYNAMIC_SUPPLY_STATIONS;
     private static int WIDTH = 200, HEIGHT = 200;
 
     private ContainerController mainContainer;
@@ -88,7 +88,7 @@ public class Launcher extends Repast3Launcher {
         }
     }
 
-    private void launchAgents() throws Exception {
+    private void launchAgents() {
         new Random(System.currentTimeMillis());
 
         collaborativeDrivers = new ArrayList<>();
@@ -98,7 +98,7 @@ public class Launcher extends Repast3Launcher {
 
     }
 
-    private void launchDrivers() throws Exception {
+    private void launchDrivers() {
         LinkedList<Position> positions = new RandomPositionsGenerator(ADVENTUROUS_DRIVERS*2+COLLABORATIVE_DRIVERS*2+STATIC_SUPPLY_STATIONS+DYNAMIC_SUPPLY_STATIONS, WIDTH, HEIGHT).getPositions();
 
         try {
@@ -109,6 +109,7 @@ public class Launcher extends Repast3Launcher {
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
             }
+
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
