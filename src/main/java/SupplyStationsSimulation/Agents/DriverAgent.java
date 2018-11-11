@@ -60,15 +60,12 @@ public class DriverAgent extends DrawableAgent {
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
 
-    private boolean test;
-
-    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map, boolean test) {
+    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
-        this.test = test;
     }
 
     public void calculateInitialPath() {
@@ -129,9 +126,8 @@ public class DriverAgent extends DrawableAgent {
     protected void setup() {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
-        if(test) {
-            addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
-        }
+        addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
+
     }
 
     @Override
@@ -369,7 +365,7 @@ public class DriverAgent extends DrawableAgent {
         return driverState;
     }
 
-    public void handleInform(Message message){
+    public void handleInform(Message message) {
         MessageContent messageContent = new MessageContent(message);
         if (messageContent.getMessageType() == MessageType.INFO) {
             List<String> contentObjects = messageContent.getContetObjects();
@@ -384,7 +380,7 @@ public class DriverAgent extends DrawableAgent {
     }
 
 
-    public void handleAccept(Message message){
+    public void handleAccept(Message message) {
         MessageContent messageContent = new MessageContent(message);
         if (messageContent.getMessageType() == MessageType.ENTRANCE) {
             List<String> contentObjects = messageContent.getContetObjects();
@@ -456,12 +452,12 @@ public class DriverAgent extends DrawableAgent {
     }
 
 
-    private ArrayList<DrawableAgent> getAgentList(){
+    private ArrayList<DrawableAgent> getAgentList() {
         return this.map.getAgentList();
     }
 
-    public List<AID> getDriversList(){
-        return getAgentList().stream().filter(drawableAgent -> drawableAgent.getType()==Type.DRIVER).map(Agent::getAID).collect(Collectors.toList());
+    public List<AID> getDriversList() {
+        return getAgentList().stream().filter(drawableAgent -> drawableAgent.getType() == Type.DRIVER).map(Agent::getAID).collect(Collectors.toList());
 
     }
 

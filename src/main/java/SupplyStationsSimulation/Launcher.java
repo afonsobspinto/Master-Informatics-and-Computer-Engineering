@@ -90,18 +90,16 @@ public class Launcher extends Repast3Launcher {
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
-                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap, true);
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
             }
 
-            boolean test = true;
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
-                test = !test;
-                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap, test);
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap);
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
