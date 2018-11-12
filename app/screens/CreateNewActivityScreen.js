@@ -2,10 +2,11 @@ import { ImagePicker, Permissions } from 'expo'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import { Header, Left, Body, Right, Icon } from 'native-base'
+import { Header, Left, Body, Right, Icon, Picker } from 'native-base'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 import style from '../styles/CreateActivity.style'
+import Images from '../assets/images/images.js'
 export default class CreateNewActivityScreen extends Component {
   constructor (props) {
     super(props)
@@ -93,7 +94,14 @@ export default class CreateNewActivityScreen extends Component {
 
     if (!result.cancelled) {
       this.setState({ image: result.uri })
+      console.log(result.uri)
     }
+  }
+
+  getPickerImages = () => {
+    return Object.keys(Images).map((image, index) =>
+      <Picker.Item value={image} label={image} key={index} />
+    )
   }
 
   render () {
@@ -161,6 +169,13 @@ export default class CreateNewActivityScreen extends Component {
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Imagem de Atividade</Text>
+            <TouchableOpacity style={style.uploadImageBtn} onPress={() => this.imagePicker(false)}>
+              <Text>Upload Image</Text>
+            </TouchableOpacity>
+            <Picker selectedValue={this.state.image} style={style.uploadImageBtn}
+              onValueChange={(item) => this.setState({ image: item })}>
+              {this.getPickerImages()}
+            </Picker>
           </View>
         </ScrollView>
         <View>
