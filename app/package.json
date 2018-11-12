@@ -23,6 +23,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-modal": "^6.5.0",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-progress": "^3.5.0",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-sound": "^0.10.9",

@@ -2,9 +2,46 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { Header, Left, Body, Right, Icon } from 'native-base'
-import CustomDrowpdown from '../components/Dropdowns/CustomDropdown'
+import DateTimePicker from 'react-native-modal-datetime-picker'
 
 export default class CreateNewActivityScreen extends Component {
+  state = {
+    isDatePickerVisible: false
+  }
+
+  daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+  ]
+
+  showDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: true
+    })
+  }
+
+  convertToWeekDay = (dayNumber) => {
+    return this.daysOfWeek[dayNumber]
+  }
+
+  handleDatePicked = (date) => {
+    console.log('Chosen date: ' + this.convertToWeekDay(date.getDay()))
+    this.setState({
+      isDatePickerVisible: false
+    })
+  }
+
+  hideDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: false
+    })
+  }
+
   static navigationOptions = {
     header: null,
     drawerIcon: (
@@ -33,7 +70,14 @@ export default class CreateNewActivityScreen extends Component {
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Dia da Tarefa :</Text>
-            <CustomDrowpdown style={{ height: 40, justifyContent: 'flex-end', width: 200, paddingHorizontal: 10, backgroundColor: 'gray', marginLeft: 20 }} />
+            <TouchableOpacity onPress={this.showDatePicker}>
+              <Text>Escolher data</Text>
+            </TouchableOpacity>
+            <DateTimePicker
+              isVisible={this.state.isDatePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDatePicker}
+            />
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Hora de Início :</Text>
