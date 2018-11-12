@@ -25,8 +25,8 @@ export class RewardsModal extends React.Component {
 
     let cardText = this.props.activities[this.props.currentActivity].status
       ? routineIsDone
-        ? 'Routina completa!'
-        : this.props.activities[this.props.currentActivity].status.reward ? 'Actividade completa!' : 'Actividade falhada.'
+        ? 'Rotina completada!'
+        : this.props.activities[this.props.currentActivity].status.reward ? 'Atividade completada!' : 'Atividade falhada...'
       : ''
 
     return (

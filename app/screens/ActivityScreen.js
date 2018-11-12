@@ -48,7 +48,7 @@ class ActivityScreen extends Component {
 
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
-      if (this.state.progress >= this.activity.time.max) return this.cancelActivity()
+      if (this.state.elapsedTime >= this.activity.time.max) this.completeActivity()
       if (this.state.elapsedTime >= this.activity.time.min) {
         this.state.isCompletable = true
       }

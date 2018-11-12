@@ -43,7 +43,7 @@ class ChooseRoutineScreen extends React.Component {
       )
     } else {
       return (<View style={[styles.screenBackground, { justifyContent: 'center', alignItems: 'center' }]}>
-        <Text style={styles.tooltip}>Sem rotinas para jogar{'\n'}Volta amanha!</Text>
+        <Text style={styles.tooltip}>Sem rotinas para jogar.{'\n'}Volta amanhã!</Text>
       </View>)
     }
   }
