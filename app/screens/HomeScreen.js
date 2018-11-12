@@ -68,7 +68,7 @@ export default class HomeScreen extends React.Component {
         />
         <Text />
         <Button
-          title={'Parent: Add New Activity'}
+          title={'Parent Screen'}
           onPress={() => {
             this.props.navigation.navigate('ParentScreen')
           }}

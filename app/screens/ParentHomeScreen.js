@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Image, View, Text, StyleSheet } from 'react-native'
 import { Header, Left, Body, Right, Icon } from 'native-base'
 
 import PropTypes from 'prop-types'
 
-export default class ParentHomeScreen extends Component {
+export default class ParentHomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
     drawerIcon: (
@@ -19,11 +19,10 @@ export default class ParentHomeScreen extends Component {
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
           </Left>
           <Body>
-            <Text style={{ fontSize: 16 }}>Criar uma nova atividade</Text>
+            <Text style={{ fontSize: 16 }}>A minha Conta</Text>
           </Body>
           <Right />
         </Header>
-        <Text>This is the parents home screen</Text>
       </View>
     )
   }
