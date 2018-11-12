@@ -25,7 +25,7 @@ export default class CreateNewActivityScreen extends Component {
         </Header>
         <ScrollView style={{ flex: 1, flexDirection: 'row', padding: 20 }}>
           <View style={styles.centeredContainer}>
-            <Text>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
+            <Text style={{ paddingBottom: 20 }}>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Nome :</Text>
@@ -35,20 +35,23 @@ export default class CreateNewActivityScreen extends Component {
             <Text style={styles.label} >Dia da Tarefa :</Text>
             <CustomDrowpdown style={{ height: 40, justifyContent: 'flex-end', width: 200, paddingHorizontal: 10, backgroundColor: 'gray', marginLeft: 20 }} />
           </View>
-          <View>
-            <Text>Hora de Início :</Text>
+          <View style={styles.inputContainer} >
+            <Text style={styles.label} >Hora de Início :</Text>
           </View>
-          <View>
-            <Text>Duração :</Text>
+          <View style={styles.inputContainer} >
+            <Text style={styles.label} >Duração :</Text>
           </View>
-          <View>
-            <Text>Categoria: </Text>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label} >Categoria: </Text>
           </View>
-          <View>
-            <Text>Recompensa: </Text>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label} >Recompensa: </Text>
           </View>
-          <View>
-            <Text>Tema: </Text>
+          <View style={styles.inputContainer} >
+            <Text style={styles.label} >Tema: </Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label} >Image da Atividade :</Text>
           </View>
         </ScrollView>
         <View>
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    paddingBottom: 10
+    paddingBottom: 20
   },
   container: {
     height: 90,
