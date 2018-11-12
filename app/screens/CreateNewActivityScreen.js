@@ -1,17 +1,50 @@
+import { ImagePicker, Permissions } from 'expo'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { Header, Left, Body, Right, Icon } from 'native-base'
 import CustomDrowpdown from '../components/Dropdowns/CustomDropdown'
 
+import style from '../styles/CreateActivity.style'
 export default class CreateNewActivityScreen extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      image: null
+    }
+
+    this.imagePicker = this.imagePicker.bind(this)
+  }
+
   static navigationOptions = {
     header: null,
     drawerIcon: (
       <Image source={require('../assets/images/add-activity-icon.png')} style={{ height: 24, width: 24 }} />
     )
   };
+
+  imagePicker = async (camera) => {
+    let options = {
+      allowsEditing: true, aspect: [1, 1]
+    }
+    let result
+
+    if (camera) {
+      await Permissions.askAsync(Permissions.CAMERA)
+      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images' })
+    } else {
+      await Permissions.askAsync(Permissions.CAMERA_ROLL)
+      result = await ImagePicker.launchImageLibraryAsync(options)
+    }
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri })
+    }
+  }
+
   render () {
+    let { image } = this.state
     return (
       <View style={{ flex: 1 }} >
         <Header style={styles.container}>
@@ -24,6 +57,7 @@ export default class CreateNewActivityScreen extends Component {
           <Right />
         </Header>
         <ScrollView style={{ flex: 1, flexDirection: 'row', padding: 20 }}>
+          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
           <View style={styles.centeredContainer}>
             <Text style={{ paddingBottom: 20 }}>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
           </View>
@@ -51,7 +85,16 @@ export default class CreateNewActivityScreen extends Component {
             <Text style={styles.label} >Tema: </Text>
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.label} >Image da Atividade :</Text>
+            <Text style={styles.label}>Logótipo da Atividade</Text>
+            <TouchableOpacity style={style.uploadImageBtn} onPress={() => this.imagePicker(false)}>
+              <Text>Upload Image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={style.uploadImageBtn} onPress={() => this.imagePicker(true)}>
+              <Text>Open Camera</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Imagem de Atividade</Text>
           </View>
         </ScrollView>
         <View>
