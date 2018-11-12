@@ -7,13 +7,6 @@ export const clockHeight = Layout.window.height * 0.24
 const padding = Layout.window.height * 0.03
 
 export const buttonStyle = {
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 3
-  },
-  shadowOpacity: 0.27,
-  shadowRadius: 4.65,
   elevation: 6,
   flexDirection: 'row',
   justifyContent: 'center',
@@ -44,19 +37,13 @@ export default StyleSheet.create({
     padding: padding,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    elevation: 1
   },
   progressBarContainer: {
     flexGrow: 1,
     backgroundColor: gray,
     marginRight: padding / 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
     elevation: 6,
     height: buttonHeight / 1.5,
     borderRadius: buttonHeight / 3,
@@ -96,13 +83,6 @@ export default StyleSheet.create({
     height: clockHeight + 12,
     width: clockHeight + 12,
     borderRadius: (clockHeight + 12) / 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
     elevation: 6,
     justifyContent: 'center',
     alignItems: 'center',

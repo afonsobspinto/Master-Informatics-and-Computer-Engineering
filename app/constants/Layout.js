@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
+let width = Dimensions.get('window').width < Dimensions.get('window').height ? Dimensions.get('window').width : Dimensions.get('window').height
+let height = Dimensions.get('window').height > Dimensions.get('window').width ? Dimensions.get('window').height : Dimensions.get('window').width
 
 export default {
   window: {

@@ -24,7 +24,9 @@ const images = {
     play: require('./navigation/play.png'),
     cancel: require('./navigation/cancel.png'),
     pause: require('./navigation/pause.png'),
-    confirm: require('./navigation/confirm.png')
+    confirm: require('./navigation/confirm.png'),
+    next: require('./navigation/next.png'),
+    star: require('./star.png')
   }
 }
 
