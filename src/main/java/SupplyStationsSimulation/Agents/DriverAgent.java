@@ -338,6 +338,9 @@ public class DriverAgent extends DrawableAgent {
     }
 
     public void addSupplyStationsInfo(SupplyStationInfo newSupplyStationInfo) {
+        if(this.driverState.equals(FUELLING) || this.driverState.equals(REACHING_GOAL)){
+            return;
+        }
         SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(newSupplyStationInfo.getAid());
         if (currentSupplyStationInfo == null || !currentSupplyStationInfo.equals(newSupplyStationInfo)) {
             this.supplyStationsInfo.put(newSupplyStationInfo.getAid(), newSupplyStationInfo);
@@ -346,6 +349,9 @@ public class DriverAgent extends DrawableAgent {
     }
 
     private void addAndUpdateTargetSupplyStation(SupplyStationInfo currentSupplyStationInfo, SupplyStationInfo newSupplyStationInfo) {
+        if(this.driverState.equals(FUELLING) || this.driverState.equals(REACHING_GOAL)){
+            return;
+        }
         if (currentSupplyStationInfo != null) {
             this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
         }
@@ -464,7 +470,7 @@ public class DriverAgent extends DrawableAgent {
     }
 
 
-    private ArrayList<DrawableAgent> getAgentList() {
+    public ArrayList<DrawableAgent> getAgentList() {
         return this.map.getAgentList();
     }
 

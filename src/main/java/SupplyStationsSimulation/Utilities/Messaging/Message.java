@@ -45,7 +45,7 @@ public class Message {
         String performative = ACLMessage.getPerformative(message.getPerformative());
         try {
             String content = (isObject) ? message.getContentObject().toString() : message.getContent();
-            return  new Timestamp().getCurrentTime() + " - " + receiver + " received " + performative + " from " + sender + " : '" +
+            return new Timestamp().getCurrentTime() + " - " + receiver + " received " + performative + " from " + sender + " : '" +
                     content.replace("\r\n", " ").replace("\n", " ") + "'";
 
         } catch (UnreadableException e) {
@@ -66,7 +66,7 @@ public class Message {
         }
     }
 
-    public int getPerformative(){
+    public int getPerformative() {
         return message.getPerformative();
     }
 
@@ -86,18 +86,5 @@ public class Message {
     public AID getSenderAID() {
         return senderAID;
     }
-
-    public String getSerializedSenderAID() {
-        try {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            ObjectOutputStream so = new ObjectOutputStream(bo);
-            so.writeObject(senderAID);
-            so.flush();
-            final byte[] byteArray = bo.toByteArray();
-            return Base64.getEncoder().encodeToString(byteArray);
-        } catch (Exception e) {
-            System.out.println("getSerializedSenderAID Failed. Propagation Might Be Unstable");
-            return null;
-        }
-    }
 }
+
