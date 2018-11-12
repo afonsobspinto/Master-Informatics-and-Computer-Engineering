@@ -1,6 +1,6 @@
 export const settingTypes = {
   setSettings: 'settings:setSettings',
-  changeActivityProgressType: 'settings:changeActivityProgressType',
+  toggleActivityProgressType: 'settings:toggleActivityProgressType',
   changeVisualStyle: 'settings:changeVisualStyle',
   toggleActivityTimer: 'settings:toggleActivityTimer'
 }

@@ -14,10 +14,10 @@ export function changeVisualStyle (visualStyle) {
   }
 }
 
-export function changeActivityProgressType (progressType) {
+export function toggleActivityProgressType () {
   return {
-    type: settingTypes.changeActivityProgressType,
-    payload: progressType
+    type: settingTypes.toggleActivityProgressType,
+    payload: null
   }
 }
 
