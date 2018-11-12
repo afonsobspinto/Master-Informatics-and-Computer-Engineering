@@ -6,7 +6,10 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 
 export default class CreateNewActivityScreen extends Component {
   state = {
-    isDatePickerVisible: false
+    isDatePickerVisible: false,
+    isTimePickerVisible: false,
+    activityStartingTime: new Date(),
+    activityWeekDay: null
   }
 
   daysOfWeek = [
@@ -19,18 +22,19 @@ export default class CreateNewActivityScreen extends Component {
     'Saturday'
   ]
 
+  convertToWeekDay = (dayNumber) => {
+    return this.daysOfWeek[dayNumber]
+  }
+
+  /* DATE PICKER */
   showDatePicker = () => {
     this.setState({
       isDatePickerVisible: true
     })
   }
 
-  convertToWeekDay = (dayNumber) => {
-    return this.daysOfWeek[dayNumber]
-  }
-
   handleDatePicked = (date) => {
-    console.log('Chosen date: ' + this.convertToWeekDay(date.getDay()))
+    this.state.activityWeekDay = this.convertToWeekDay(date.getDay())
     this.setState({
       isDatePickerVisible: false
     })
@@ -39,6 +43,28 @@ export default class CreateNewActivityScreen extends Component {
   hideDatePicker = () => {
     this.setState({
       isDatePickerVisible: false
+    })
+  }
+
+  /* TIME PICKER */
+  showTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: true
+    })
+  }
+
+  handleTimePicked = (time) => {
+    this.state.activityStartingTime.setHours(time.getHours())
+    this.state.activityStartingTime.setMinutes(time.getMinutes())
+    console.log(this.state.activityStartingTime.getHours() + '------' + this.state.activityStartingTime.getMinutes())
+    this.setState({
+      isTimePickerVisible: false
+    })
+  }
+
+  hideTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: false
     })
   }
 
@@ -81,12 +107,18 @@ export default class CreateNewActivityScreen extends Component {
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Hora de Início :</Text>
+            <TouchableOpacity onPress={this.showTimePicker}>
+              <Text>Escolher hora de início</Text>
+            </TouchableOpacity>
+            <DateTimePicker
+              mode='time'
+              isVisible={this.state.isTimePickerVisible}
+              onConfirm={this.handleTimePicked}
+              onCancel={this.hideTimePicker}
+            />
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Duração :</Text>
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label} >Categoria: </Text>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label} >Recompensa: </Text>
