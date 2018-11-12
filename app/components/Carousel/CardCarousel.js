@@ -9,9 +9,7 @@ import styles, { sliderWidth, itemWidth } from '../../styles/CardCarousel.style'
 export default class CardCarousel extends React.Component {
   constructor (props) {
     super(props)
-    this.onRoutinePress = this.onRoutinePress.bind(this)
-    this.onActivityPress = this.onActivityPress.bind(this)
-    this.onRoutineButtonPress = this.onRoutineButtonPress.bind(this)
+    this.renderCard = this.renderCard.bind(this)
     this.state = {
       activeSlide: 0
     }
@@ -21,23 +19,10 @@ export default class CardCarousel extends React.Component {
     return (
       <Card
         item={item}
-        isRoutineCard={this.props.isRoutine}
-        onPress={this.props.isRoutine ? this.onRoutinePress : this.onActivityPress}
-        onButtonPress={this.props.isRoutine && this.onRoutineButtonPress}
+        onPress={this.props.onPress}
+        onButtonPress={this.props.onButtonPress}
       />
     )
-  }
-
-  onRoutinePress = (routine) => {
-    this.props.navigation.navigate('ChooseActivityScreen', { activities: routine.activities })
-  }
-
-  onRoutineButtonPress = (routine) => {
-    this.props.navigation.navigate('Activity', { activity: routine.activities[0] })
-  }
-
-  onActivityPress = (activity) => {
-    this.props.navigation.navigate('Activity', { activity: activity })
   }
 
   get pagination () {
@@ -60,7 +45,7 @@ export default class CardCarousel extends React.Component {
           <Carousel
             ref={(c) => { this._carousel = c }}
             data={this.props.data}
-            renderItem={this.renderCard.bind(this)} // eslint-disable-line
+            renderItem={this.renderCard}
             onSnapToItem={index => this.setState({ activeSlide: index })}
             sliderWidth={sliderWidth}
             itemWidth={itemWidth}
@@ -74,7 +59,7 @@ export default class CardCarousel extends React.Component {
 }
 
 CardCarousel.propTypes = {
-  isRoutine: PropTypes.bool,
-  navigation: PropTypes.object.isRequired,
+  onPress: PropTypes.func.isRequired,
+  onButtonPress: PropTypes.func,
   data: PropTypes.array.isRequired
 }
