@@ -19,6 +19,7 @@ const images = {
   tea: require('./activities/tea.png'),
   bedroom: require('./activities/bedroom.jpg'),
   night: require('./routines/night.jpg'),
+  pool: require('./pool.jpg'),
   ui: {
     play: require('./navigation/play.png'),
     cancel: require('./navigation/cancel.png'),
