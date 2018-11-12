@@ -3,18 +3,71 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { Header, Left, Body, Right, Icon } from 'native-base'
-import CustomDrowpdown from '../components/Dropdowns/CustomDropdown'
+import DateTimePicker from 'react-native-modal-datetime-picker'
 
 import style from '../styles/CreateActivity.style'
 export default class CreateNewActivityScreen extends Component {
   constructor (props) {
     super(props)
+    this.imagePicker = this.imagePicker.bind(this)
 
     this.state = {
+      isDatePickerVisible: false,
+      isTimePickerVisible: false,
+      activityStartingTime: new Date(),
+      activityWeekDay: null,
       image: null
     }
 
-    this.imagePicker = this.imagePicker.bind(this)
+    this.daysOfWeek = [
+      'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ]
+  }
+
+  convertToWeekDay = (dayNumber) => {
+    return this.daysOfWeek[dayNumber]
+  }
+
+  /* DATE PICKER */
+  showDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: true
+    })
+  }
+
+  handleDatePicked = (date) => {
+    this.state.activityWeekDay = this.convertToWeekDay(date.getDay())
+    this.setState({
+      isDatePickerVisible: false
+    })
+  }
+
+  hideDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: false
+    })
+  }
+
+  /* TIME PICKER */
+  showTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: true
+    })
+  }
+
+  handleTimePicked = (time) => {
+    this.state.activityStartingTime.setHours(time.getHours())
+    this.state.activityStartingTime.setMinutes(time.getMinutes())
+    console.log(this.state.activityStartingTime.getHours() + '------' + this.state.activityStartingTime.getMinutes())
+    this.setState({
+      isTimePickerVisible: false
+    })
+  }
+
+  hideTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: false
+    })
   }
 
   static navigationOptions = {
@@ -67,16 +120,29 @@ export default class CreateNewActivityScreen extends Component {
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Dia da Tarefa :</Text>
-            <CustomDrowpdown style={{ height: 40, justifyContent: 'flex-end', width: 200, paddingHorizontal: 10, backgroundColor: 'gray', marginLeft: 20 }} />
+            <TouchableOpacity onPress={this.showDatePicker}>
+              <Text>Escolher data</Text>
+            </TouchableOpacity>
+            <DateTimePicker
+              isVisible={this.state.isDatePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDatePicker}
+            />
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Hora de Início :</Text>
+            <TouchableOpacity onPress={this.showTimePicker}>
+              <Text>Escolher hora de início</Text>
+            </TouchableOpacity>
+            <DateTimePicker
+              mode='time'
+              isVisible={this.state.isTimePickerVisible}
+              onConfirm={this.handleTimePicked}
+              onCancel={this.hideTimePicker}
+            />
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Duração :</Text>
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label} >Categoria: </Text>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label} >Recompensa: </Text>
