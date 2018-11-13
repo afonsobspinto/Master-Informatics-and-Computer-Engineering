@@ -4,7 +4,6 @@ import { ScreenOrientation } from 'expo'
 import PropTypes from 'prop-types'
 
 import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
-import { MainMenuProfile } from '../components/MainMenu/MainMenuProfile'
 
 import Images from '../assets/images/images'
 
@@ -13,12 +12,12 @@ import styles from '../styles/ChildMainMenuScreen.style'
 export default class ChildMainMenuScreen extends Component {
   constructor (props) {
     super(props)
-    this.openProfile = this.openProfile.bind(this)
-    this.closeProfile = this.closeProfile.bind(this)
+    this.openShop = this.openShop.bind(this)
+    this.closeShop = this.closeShop.bind(this)
   }
 
   state = {
-    isProfileVisible: false,
+    isShopVisible: false,
     childLevel: 6,
     currentLevelProgress: 0.45,
     currencyEarned: 282
@@ -36,32 +35,27 @@ export default class ChildMainMenuScreen extends Component {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
 
-  openProfile () {
-    this.setState({ isProfileVisible: true })
+  openShop () {
+    this.setState({ isShopVisible: true })
   }
 
-  closeProfile () {
-    this.setState({ isProfileVisible: false })
+  closeShop () {
+    this.setState({ isShopVisible: false })
   }
 
   render () {
     return (
       <View style={styles.mainMenuContainer}>
         <StatusBar hidden />
-        <MainMenuProfile
-          isProfileVisible={this.state.isProfileVisible}
-          closeProfile={this.closeProfile}
-          currencyEarned={this.state.currencyEarned}
-        />
         <View style={styles.experienceBarContainer}>
           <ChildExperienceBar progress={this.state.currentLevelProgress} level={this.state.childLevel} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={styles.button}
-            onPress={this.openProfile}
+            style={styles.profileButton}
+            onPress={() => { this.props.navigation.navigate('ShopScreen') }}
             activeOpacity={0.9} >
-            <Image style={styles.profileImage} source={require('../assets/images/placeholder-avatar.png')} />
+            <Image style={styles.profileImage} resizeMode={'contain'} source={Images.avatar} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
