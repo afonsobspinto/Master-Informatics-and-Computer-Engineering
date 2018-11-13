@@ -10,7 +10,6 @@ import Images from '../assets/images/images.js'
 export default class CreateNewActivityScreen extends Component {
   constructor (props) {
     super(props)
-    this.imagePicker = this.imagePicker.bind(this)
 
     this.state = {
       isDatePickerVisible: false,
@@ -104,6 +103,19 @@ export default class CreateNewActivityScreen extends Component {
     )
   }
 
+  buildNewCustomActivity = () => {
+    this.props.addCustomActivity('Após acordar', {
+      title: 'Teste',
+      image: 'bed',
+      color: '#7d84b2',
+      time: {
+        min: 0,
+        max: 20,
+        goal: 10
+      }
+    })
+  }
+
   render () {
     let { image } = this.state
     return (
@@ -179,7 +191,7 @@ export default class CreateNewActivityScreen extends Component {
           </View>
         </ScrollView>
         <View>
-          <TouchableOpacity style={styles.centeredContainer}>
+          <TouchableOpacity style={styles.centeredContainer} onPress={this.buildNewCustomActivity}>
             <Text>Criar Atividade</Text>
           </TouchableOpacity>
         </View>
@@ -211,5 +223,6 @@ const styles = StyleSheet.create({
 })
 
 CreateNewActivityScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  addCustomActivity: PropTypes.func.isRequired
 }
