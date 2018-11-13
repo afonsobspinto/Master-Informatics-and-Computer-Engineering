@@ -46,24 +46,5 @@ public class MessageContent {
         return contetObjects;
     }
 
-    //todo: fix me
-
-    public AID getSenderAID(List<String> contetObjects, int index){
-        StringBuilder sb = new StringBuilder();
-        for (int i = index; i < contetObjects.size(); i++){
-            sb.append(contetObjects.get(i));
-        }
-        String serializedAID = sb.toString();
-        final byte[] bytes = Base64.getDecoder().decode(serializedAID);
-
-        try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes); ObjectInput in = new ObjectInputStream(bis)) {
-            return (AID) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("getSenderAID Failed. Propagation Might Be Unstable");
-
-        }
-        return null;
-    }
 
 }

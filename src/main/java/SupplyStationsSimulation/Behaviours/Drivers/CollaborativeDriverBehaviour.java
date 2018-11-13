@@ -1,5 +1,6 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
+import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Utilities.Locations.Position;
@@ -76,8 +77,8 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         int x = Integer.parseInt(contentObjects.get(4));
         int y = Integer.parseInt(contentObjects.get(5));
         double price = Double.parseDouble(contentObjects.get(6));
-
-        AID sender = messageContent.getSenderAID(contentObjects, 7);
+        String senderStr = contentObjects.get(7);
+        AID sender = getSenderAID(senderStr);
 
         int ticks = averageTimeWaiting(totalGasPumps,ticksToFuel,waitingLine);
         this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
@@ -94,8 +95,8 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         int x = Integer.parseInt(contentObjects.get(3));
         int y = Integer.parseInt(contentObjects.get(4));
         double price = Double.parseDouble(contentObjects.get(5));
-
-        AID sender = messageContent.getSenderAID(contentObjects, 6);
+        String senderStr = contentObjects.get(6);
+        AID sender = getSenderAID(senderStr);
 
         int ticks = (int) (1.0 + ((occupation+1.0)/totalGasPumps) * ticksToFuel);
         this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
@@ -111,7 +112,8 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
             int x = Integer.parseInt(contentObjects.get(0));
             int y = Integer.parseInt(contentObjects.get(1));
             double price = Double.parseDouble(contentObjects.get(2));
-            AID sender = messageContent.getSenderAID(contentObjects, 3);
+            String senderStr = contentObjects.get(3);
+            AID sender = getSenderAID(senderStr);
             this.driverAgent.addSupplyStationsInfo(new SupplyStationInfo(sender,
                     new Position(x, y), price, this.driverAgent.getPosition(),
                     this.driverAgent.getPriceIntolerance(), this.driverAgent.getDestination()));
@@ -153,11 +155,20 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
                 if(additionalFields!=null){
                     messageContentObjects.addAll(additionalFields);
                 }
-                messageContentObjects.add(message.getSerializedSenderAID());
+                messageContentObjects.add(message.getSenderAID().toString());
                 new Message(this.driverAgent, aid, ACLMessage.PROPAGATE,
                         new MessageContent(messageType, messageContentObjects).getContent()).send();
 
             }
         }
+    }
+
+    private AID getSenderAID(String senderAID){
+        for(DrawableAgent drawableAgent: this.driverAgent.getAgentList()){
+            if(drawableAgent.getAID().toString().equals(senderAID)){
+                return drawableAgent.getAID();
+            }
+        }
+        return null;
     }
 }
