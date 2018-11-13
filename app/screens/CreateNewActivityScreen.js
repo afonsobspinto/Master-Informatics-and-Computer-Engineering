@@ -1,13 +1,15 @@
 import { ImagePicker, Permissions } from 'expo'
 import React, { Component } from 'react'
+import { addCustomActivity } from '../actions/gameActions'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { Header, Left, Body, Right, Icon, Picker } from 'native-base'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 import style from '../styles/CreateActivity.style'
 import Images from '../assets/images/images.js'
-export default class CreateNewActivityScreen extends Component {
+class CreateNewActivityScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -199,6 +201,15 @@ export default class CreateNewActivityScreen extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    addCustomActivity: state.game.addCustomActivity
+  }),
+  dispatch => ({
+    addCustomActivity: (routineTitle, activity) => dispatch(addCustomActivity(routineTitle, activity))
+  })
+)(CreateNewActivityScreen)
 
 const styles = StyleSheet.create({
   label: {

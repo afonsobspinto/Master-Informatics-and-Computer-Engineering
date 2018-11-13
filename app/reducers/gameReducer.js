@@ -166,11 +166,13 @@ const initialState = {
 export default function game (state = initialState, { type, payload }) {
   switch (type) {
     case gameTypes.addCustomActivity:
-      return { ...state,
+      let res = { ...state,
         routines: state.routines.map(
           (routine) => routine.title === payload.routineTitle ? { ...routine,
-            activities: routine.activities.concat(payload.activity) } : '')
+            activities: routine.activities.concat(payload.activity) } : routine)
       }
+      console.log(res)
+      return res
 
     case gameTypes.addRoutines:
       return { ...state, routines: payload }
