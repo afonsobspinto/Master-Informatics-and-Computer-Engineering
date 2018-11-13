@@ -22,7 +22,7 @@ export class CancelButton extends React.Component {
 
   handleButtonPress () {
     this.timer = setInterval(() => {
-      if (this.state.progress >= 0.99) {
+      if (this.state.progress >= 1.09) {
         this.props.cancelActivity()
       }
 
@@ -55,7 +55,10 @@ export class CancelButton extends React.Component {
         { this.state.isCancelling &&
           <Progress.Bar
             width={Layout.window.height * 0.12 / 1.5}
+            height={Layout.window.height * 0.02 / 1.5}
             progress={this.state.progress}
+            color={red}
+            borderColor={red}
           />
         }
         <TouchableOpacity
@@ -81,7 +84,8 @@ CancelButton.propTypes = {
 const styles = StyleSheet.create({
   button: {
     ...buttonStyle,
-    backgroundColor: red
+    backgroundColor: red,
+    marginTop: 10
   },
   image: {
     height: '35%',
