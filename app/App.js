@@ -14,6 +14,7 @@ import ActivityScreen from './screens/ActivityScreen'
 import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
 import ChooseActivityScreen from './screens/ChooseActivityScreen'
 import ChildMainMenuScreen from './screens/ChildMainMenuScreen'
+import ShopScreen from './screens/ShopScreen'
 
 const store = configureStore()
 
@@ -69,5 +70,6 @@ const AppStackNavigator = createStackNavigator({
   Activity: ActivityScreen,
   ChooseRoutineScreen: ChooseRoutineScreen,
   ChooseActivityScreen: ChooseActivityScreen,
-  ChildMainMenu: ChildMainMenuScreen
+  ChildMainMenu: ChildMainMenuScreen,
+  ShopScreen: ShopScreen
 })
