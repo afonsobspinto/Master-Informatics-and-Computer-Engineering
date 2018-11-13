@@ -6,7 +6,7 @@ const initialState = {
   visualStyle: 'cartoon'
 }
 
-export default function game (state = initialState, { type, payload }) {
+export default function (state = initialState, { type, payload }) {
   switch (type) {
     case settingTypes.setSettings:
       return { ...state, ...payload }

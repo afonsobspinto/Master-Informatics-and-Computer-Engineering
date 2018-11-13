@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, StatusBar, Image, TouchableOpacity } from 'react-native'
 import { ScreenOrientation } from 'expo'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
 
@@ -9,7 +10,7 @@ import Images from '../assets/images/images'
 
 import styles from '../styles/ChildMainMenuScreen.style'
 
-export default class ChildMainMenuScreen extends Component {
+class ChildMainMenuScreen extends Component {
   constructor (props) {
     super(props)
     this.openShop = this.openShop.bind(this)
@@ -17,10 +18,7 @@ export default class ChildMainMenuScreen extends Component {
   }
 
   state = {
-    isShopVisible: false,
-    childLevel: 6,
-    currentLevelProgress: 0.45,
-    currencyEarned: 282
+    isShopVisible: false
   }
 
   static navigationOptions = {
@@ -48,7 +46,9 @@ export default class ChildMainMenuScreen extends Component {
       <View style={styles.mainMenuContainer}>
         <StatusBar hidden />
         <View style={styles.experienceBarContainer}>
-          <ChildExperienceBar progress={this.state.currentLevelProgress} level={this.state.childLevel} />
+          <ChildExperienceBar
+            progress={(this.props.xp - this.props.level * 100) / 100}
+            level={this.props.level} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -69,6 +69,15 @@ export default class ChildMainMenuScreen extends Component {
   }
 }
 
+export default connect(
+  state => ({
+    level: state.child.level,
+    xp: state.child.xp
+  })
+)(ChildMainMenuScreen)
+
 ChildMainMenuScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  level: PropTypes.number.isRequired,
+  xp: PropTypes.number.isRequired
 }

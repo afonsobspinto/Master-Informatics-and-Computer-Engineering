@@ -7,14 +7,20 @@ import PropTypes from 'prop-types'
 import Images from '../../assets/images/images'
 
 export class ShopItem extends React.Component {
+  purchaseItem = () => this.props.purchaseItem(this.props.cost, this.props.id)
+
   render () {
     return (
       <View style={styles.shopItemContainer} >
-        <TouchableOpacity style={this.props.canAfford ? styles.shopItem : styles.shopItemDisabled} activeOpacity={0.6} disabled={!this.props.canAfford}>
-          <Image style={[styles.shopItemImage, !this.props.canAfford && { opacity: 0.3 }]} source={Images.cap} recizeMode='contain' />
-          <View style={[styles.itemPrice, !this.props.canAfford && { opacity: 0.3 }]} >
-            <Image style={styles.currencyIcon} source={Images.ui.star} resizeMode='contain' />
-            <Text style={styles.currencyText}>{this.props.cost}</Text>
+        <TouchableOpacity
+          style={this.props.disabled ? styles.shopItemDisabled : styles.shopItem}
+          activeOpacity={0.6}
+          disabled={this.props.disabled}
+          onPress={this.purchaseItem}>
+          <Image style={[styles.shopItemImage, this.props.disabled && { opacity: 0.3 }]} source={Images.cap} recizeMode='contain' />
+          <View style={[styles.itemPrice, this.props.disabled && { opacity: 0.3 }]} >
+            {!this.props.purchased && <Image style={styles.currencyIcon} source={Images.ui.star} resizeMode='contain' />}
+            <Text style={styles.currencyText}>{this.props.purchased ? 'Comprado' : this.props.cost}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -24,5 +30,8 @@ export class ShopItem extends React.Component {
 
 ShopItem.propTypes = {
   cost: PropTypes.number.isRequired,
-  canAfford: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
+  purchased: PropTypes.bool.isRequired,
+  purchaseItem: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
 }
