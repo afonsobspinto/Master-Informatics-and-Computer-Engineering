@@ -1,60 +1,54 @@
 import React, { Component } from 'react'
-import { Image, Text, View, StatusBar, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import { ScreenOrientation } from 'expo'
-
-import { RewardIcon } from '../components/Modal/RewardIcon'
-import Modal from 'react-native-modal'
+import { connect } from 'react-redux'
+import { setActivityStatus, nextActivity } from '../actions/gameActions'
+import { Image, Text, View, StatusBar } from 'react-native'
+import { handleAndroidBackButton, removeAndroidBackButtonHandler } from '../helpers/AndroidBackButton'
 
 import { ProgressBar } from '../components/Activity/ProgressBar'
 import { ProgressClock } from '../components/Activity/ProgressClock'
 import { CompleteButton } from '../components/Activity/CompleteButton'
 import { PauseButton } from '../components/Activity/PauseButton'
 import { CancelButton } from '../components/Activity/CancelButton'
-import { _retrieveSetting, ACTIVITY_PROGRESS_TYPE, ACTIVITY_SHOW_TIMER } from '../helpers/Settings'
+import { RewardsModal } from '../components/RewardsModal/RewardsModal'
 import Images from '../assets/images/images'
-import rewardModalStyles from '../styles/RewardModal.style'
 
 import styles from '../styles/Activity.style'
 
-export default class ActivityScreen extends Component {
+class ActivityScreen extends Component {
   constructor (props) {
     super(props)
+
+    this.activity = this.props.activities[this.props.currentActivity]
 
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.navigation.state.params.activity.photo !== undefined,
+      isPhoto: this.activity.photo !== undefined,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
-      isCompletable: false,
-      showTimer: false,
-      rewardsCount: 3,
-      showRewardsModal: false
+      isCompletable: false
     }
 
     this.pauseActivity = this.pauseActivity.bind(this)
     this.cancelActivity = this.cancelActivity.bind(this)
     this.completeActivity = this.completeActivity.bind(this)
     this.resumeActivity = this.resumeActivity.bind(this)
+    this.nextActivity = this.nextActivity.bind(this)
+    this.backToMenu = this.backToMenu.bind(this)
   }
 
   static navigationOptions = {
     header: null
   }
 
-  activity = this.props.navigation.state.params.activity
-
   componentDidMount () {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
-
-    _retrieveSetting(ACTIVITY_PROGRESS_TYPE.key).then(res => this.setState(() => ({ progressType: res })))
-    _retrieveSetting(ACTIVITY_SHOW_TIMER.key).then(res => this.setState(() => ({ showTimer: res })))
+    handleAndroidBackButton(this.cancelActivity)
 
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
-      if (this.state.progress >= this.activity.time.max) return this.cancelActivity()
+      if (this.state.elapsedTime >= this.activity.time.max) this.completeActivity()
       if (this.state.elapsedTime >= this.activity.time.min) {
         this.state.isCompletable = true
       }
@@ -67,6 +61,7 @@ export default class ActivityScreen extends Component {
 
   componentWillUnmount () {
     clearInterval(this.interval)
+    removeAndroidBackButtonHandler()
   }
 
   pauseActivity () {
@@ -78,38 +73,35 @@ export default class ActivityScreen extends Component {
   }
 
   completeActivity () {
-    this.setState(() => { return { isCompleted: true, showRewardsModal: true } })
+    clearInterval(this.interval)
+    const status = {
+      completed: true,
+      reward: this.state.elapsedTime > this.activity.time.max ? 0
+        : this.state.elapsedTime < this.activity.time.goal ? 3
+          : this.state.elapsedTime < this.activity.time.goal + (this.activity.time.max - this.activity.time.goal) / 2 ? 2 : 1,
+      time: parseInt(this.state.elapsedTime)
+    }
+    this.props.setActivityStatus(this.activity, status)
+    this.setState(() => { return { isCompleted: true } })
+  }
+
+  nextActivity () {
+    this.props.nextActivity()
+    this.props.navigation.replace('Activity')
+  }
+
+  backToMenu () {
+    this.props.navigation.popToTop()
   }
 
   resumeActivity () {
     this.setState(() => ({ isPaused: false }))
   }
 
-  renderRewardsModal = () => {
-    return (
-      <View style={rewardModalStyles.rewardsModal}>
-        <StatusBar hidden />
-        <Text style={[{ marginTop: 20 }, rewardModalStyles.completedTaskText]}>{`Completaste a tarefa '${this.state.taskTitle}'!`}</Text>
-        <Text style={rewardModalStyles.rewardTaskText}>{`Ganhaste ${this.state.rewardsCount} ${(this.state.rewardsCount === 1) ? 'estrela' : 'estrelas'}!`}</Text>
-        <View style={{ alignItems: 'center' }}>
-          <RewardIcon rewardsCount={this.state.rewardsCount} />
-        </View>
-        <View style={{ position: 'absolute', right: 15, bottom: 15 }}>
-          <TouchableOpacity onPress={this.cancelActivity}>
-            <Image style={rewardModalStyles.continueArrow} source={require('../assets/images/navigation/play.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  }
-
   render () {
     return (
       <View style={[{ backgroundColor: this.activity.color }, styles.activityScreen]} >
         <StatusBar hidden />
-        <Modal isVisible={this.state.showRewardsModal} animationInTiming={600} animationIn={'slideInLeft'} onBackButtonPress={() => { return this.cancelActivity }}>
-          {this.renderRewardsModal()}
-        </Modal>
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
@@ -117,18 +109,43 @@ export default class ActivityScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.activity.title}</Text>
         </View>
-        {this.state.progressType === 'clock' && <ProgressClock showTimer={this.state.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
-        <View style={styles.buttonContainer}>
-          {this.state.progressType === 'bar' && <ProgressBar showTimer={this.state.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
+        {!this.state.isCompleted && <View style={styles.buttonContainer}>
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
           <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
-        </View>
+        </View>}
+        <RewardsModal
+          currentActivity={this.props.currentActivity}
+          activities={this.props.activities}
+          nextPress={this.nextActivity}
+          backPress={this.backToMenu} />
       </View>
     )
   }
 }
 
+export default connect(
+  state => ({
+    progressType: state.settings.activityProgressType,
+    showTimer: state.settings.activityShowTimer,
+    activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
+    activities: state.game.routines[state.game.currentRoutine].activities,
+    currentActivity: state.game.currentActivity
+  }),
+  dispatch => ({
+    setActivityStatus: (activity, status) => dispatch(setActivityStatus(activity, status)),
+    nextActivity: () => dispatch(nextActivity())
+  })
+)(ActivityScreen)
+
 ActivityScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  progressType: PropTypes.string.isRequired,
+  showTimer: PropTypes.bool.isRequired,
+  currentActivity: PropTypes.number.isRequired,
+  activities: PropTypes.array.isRequired,
+  setActivityStatus: PropTypes.func.isRequired,
+  nextActivity: PropTypes.func.isRequired
 }
