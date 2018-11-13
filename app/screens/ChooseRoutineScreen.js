@@ -10,20 +10,20 @@ import styles from '../styles/CardCarousel.style'
 class ChooseRoutineScreen extends React.Component {
   constructor (props) {
     super(props)
-    this.onPress = this.onPress.bind(this)
-    this.onButtonPress = this.onButtonPress.bind(this)
+    this.chooseActivities = this.chooseActivities.bind(this)
+    this.startRoutine = this.startRoutine.bind(this)
   }
 
   static navigationOptions = {
     header: null
   }
 
-  onPress = (routine) => {
+  chooseActivities = (routine) => {
     this.props.setCurrentRoutine(routine)
     this.props.navigation.navigate('ChooseActivityScreen')
   }
 
-  onButtonPress = (routine) => {
+  startRoutine = (routine) => {
     this.props.setCurrentRoutine(routine)
     this.props.nextActivity()
     this.props.navigation.navigate('Activity')
@@ -36,8 +36,9 @@ class ChooseRoutineScreen extends React.Component {
           <StatusBar hidden />
           <CardCarousel
             data={this.props.routines.filter(routine => !routine.activities.every(activity => activity.status !== undefined))}
-            onPress={this.onPress}
-            onButtonPress={this.onButtonPress}
+            onPress={this.props.routinePlayType === 'auto' ? this.startRoutine : this.chooseActivities}
+            onButtonPress={this.props.routinePlayType === 'choose' ? this.startRoutine : undefined}
+            isRoutine
           />
         </View>
       )
@@ -51,7 +52,8 @@ class ChooseRoutineScreen extends React.Component {
 
 export default connect(
   state => ({
-    routines: state.game.routines
+    routines: state.game.routines,
+    routinePlayType: state.settings.routinePlayType
   }),
   dispatch => ({
     setCurrentRoutine: routine => dispatch(setCurrentRoutine(routine)),
@@ -61,6 +63,7 @@ export default connect(
 
 ChooseRoutineScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
+  routinePlayType: PropTypes.bool.isRequired,
   routines: PropTypes.array.isRequired,
   setCurrentRoutine: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired

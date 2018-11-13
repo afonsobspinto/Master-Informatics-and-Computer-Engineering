@@ -34,7 +34,7 @@ export default class Card extends React.Component {
             <Image
               source={Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]}
               resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-              style={this.state.isPhoto ? cardStyle.cardPhoto : this.state.hasButton ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
+              style={this.state.isPhoto ? cardStyle.cardPhoto : this.props.isRoutine ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
             <Text style={this.state.isPhoto ? cardStyle.photoCardTitle : cardStyle.cardTitle}> { this.props.item.title } </Text>
             {this.state.hasButton && <CardButton cardStyle={cardStyle} onPress={this.onButtonPress} />}
           </View>
@@ -47,5 +47,6 @@ export default class Card extends React.Component {
 Card.propTypes = {
   onPress: PropTypes.func.isRequired,
   onButtonPress: PropTypes.func,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  isRoutine: PropTypes.bool.isRequired
 }
