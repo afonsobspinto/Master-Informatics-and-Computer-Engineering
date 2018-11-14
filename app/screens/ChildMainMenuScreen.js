@@ -21,10 +21,6 @@ class ChildMainMenuScreen extends Component {
     isShopVisible: false
   }
 
-  static navigationOptions = {
-    header: null
-  }
-
   componentDidMount () {
     ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE)
   }

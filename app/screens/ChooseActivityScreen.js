@@ -13,10 +13,6 @@ class ChooseActivityScreen extends React.Component {
     this.onPress = this.onPress.bind(this)
   }
 
-  static navigationOptions = {
-    header: null
-  }
-
   onPress = (activity) => {
     this.props.setCurrentActivity(activity)
     this.props.navigation.navigate('Activity')

@@ -11,10 +11,6 @@ import styles from '../styles/Shop.style'
 import { purchaseItem } from '../actions/childActions'
 
 class ShopScreen extends Component {
-  static navigationOptions = {
-    header: null
-  }
-
   render () {
     let shopItems = []
 
