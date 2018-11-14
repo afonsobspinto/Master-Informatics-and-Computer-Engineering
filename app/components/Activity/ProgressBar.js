@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Vibration } from 'react-native'
 import PropTypes from 'prop-types'
 import styles, { buttonHeight } from '../../styles/Activity.style'
 import { Timer } from './Timer'
@@ -21,11 +21,16 @@ export class ProgressBar extends React.Component {
   }
 
   componentWillReceiveProps (props) {
-    if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) this.setState(() => ({ color: colors.red }))
-    else if (props.elapsedTime >= this.times.goal) this.setState(() => ({ color: colors.yellow }))
+    if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) {
+      this.setState(() => ({ color: colors.red }))
+      Vibration.vibrate([50, 200, 50])
+    } else if (props.elapsedTime >= this.times.goal) this.setState(() => ({ color: colors.yellow }))
     else if (props.elapsedTime > this.times.min) this.setState(() => ({ color: colors.green }))
 
-    if (props.isPaused) this.setState(() => ({ color: colors.darkGray }))
+    if (props.isPaused) {
+      this.setState(() => ({ color: colors.darkGray }))
+      Vibration.cancel()
+    }
   }
 
   render () {
