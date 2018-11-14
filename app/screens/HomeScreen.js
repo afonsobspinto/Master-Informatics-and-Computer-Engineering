@@ -6,10 +6,6 @@ import PropTypes from 'prop-types'
 import { toggleActivityProgressType, toggleActivityTimer } from '../actions/settingsActions'
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null
-  }
-
   render () {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
