@@ -48,5 +48,5 @@ Card.propTypes = {
   onPress: PropTypes.func.isRequired,
   onButtonPress: PropTypes.func,
   item: PropTypes.object.isRequired,
-  isRoutine: PropTypes.bool.isRequired
+  isRoutine: PropTypes.bool
 }

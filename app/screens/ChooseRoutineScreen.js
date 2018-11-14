@@ -63,7 +63,7 @@ export default connect(
 
 ChooseRoutineScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  routinePlayType: PropTypes.bool.isRequired,
+  routinePlayType: PropTypes.string.isRequired,
   routines: PropTypes.array.isRequired,
   setCurrentRoutine: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired
