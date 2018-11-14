@@ -10,6 +10,8 @@ const initialState = {
 export default function game (state = initialState, { type, payload }) {
   switch (type) {
     case settingTypes.setSettings:
+      return { ...state, ...payload }
+    case settingTypes.toggleActivityProgressType:
       return { ...state, activityProgressType: state.activityProgressType === 'bar' ? 'clock' : 'bar' }
     case settingTypes.changeVisualStyle:
       return { ...state, visualStyle: payload }
