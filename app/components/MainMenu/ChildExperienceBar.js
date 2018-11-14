@@ -1,30 +1,35 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Image } from 'react-native'
 import PropTypes from 'prop-types'
 
 import * as Progress from 'react-native-progress'
 
+import Images from '../../assets/images/images'
 import Layout from '../../constants/Layout'
+
+const barHeight = Layout.window.height * 0.08
 
 export class ChildExperienceBar extends React.Component {
   render () {
     return (
-      <View>
+      <View style={styles.expirienceBarContainer}>
         <View style={[styles.progressBarContainer]} >
           <Progress.Bar
             width={null}
-            height={Layout.window.height * 0.12 / 1.5}
+            height={barHeight}
             borderRadius={0}
             borderWidth={0}
             progress={this.props.progress}
+            color={'#700548'}
           />
           <View style={[{ left: '25%' }, styles.progressBarDivider]} />
           <View style={[{ left: '50%' }, styles.progressBarDivider]} />
           <View style={[{ left: '75%' }, styles.progressBarDivider]} />
         </View>
         <View style={styles.experienceBarCircle} >
-          <Text>{this.props.level}</Text>
+          <Image style={styles.rewardImage} source={Images.pool} resizeMode={'cover'} />
         </View>
+        <Text style={styles.levelText}>Nível {this.props.level}</Text>
       </View>
     )
   }
@@ -36,20 +41,19 @@ ChildExperienceBar.propTypes = {
 }
 
 const styles = StyleSheet.create({
+  expirienceBarContainer: {
+    height: barHeight * 2,
+    width: '100%',
+    justifyContent: 'flex-end',
+    paddingLeft: barHeight,
+    paddingRight: barHeight * 1.5
+  },
   progressBarContainer: {
-    flexGrow: 1,
     backgroundColor: 'gray',
-    marginRight: Layout.window.height * 0.03 / 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+    height: barHeight,
+    width: '100%',
+    borderRadius: barHeight / 2,
     elevation: 6,
-    height: Layout.window.height * 0.12 / 1.5,
-    borderRadius: Layout.window.height * 0.12 / 3,
     overflow: 'hidden',
     position: 'relative'
   },
@@ -57,28 +61,32 @@ const styles = StyleSheet.create({
     borderRightColor: '#000',
     borderRightWidth: 2,
     opacity: 0.5,
-    height: Layout.window.height * 0.12 / 1.5,
+    height: barHeight,
     position: 'absolute'
   },
   experienceBarCircle: {
-    width: Layout.window.height * 0.1,
-    height: Layout.window.height * 0.1,
-    borderRadius: Layout.window.height * 0.1 / 2,
-    backgroundColor: 'white',
-    borderColor: '#9999FF',
-    borderWidth: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: Layout.window.width * 1.15,
-    top: -Layout.window.height * 0.01,
-    position: 'absolute',
+    width: barHeight * 1.5,
+    height: barHeight * 1.5,
+    borderRadius: barHeight * 0.75,
     elevation: 7,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65
+    backgroundColor: 'white',
+    right: barHeight * 0.75,
+    bottom: barHeight * 0.25,
+    position: 'absolute',
+    overflow: 'hidden'
+  },
+  levelText: {
+    fontFamily: 'LinotteBold',
+    fontSize: 18,
+    height: barHeight / 2,
+    color: '#000',
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+    marginLeft: barHeight / 3 + 6
+  },
+  rewardImage: {
+    width: barHeight * 1.5,
+    height: barHeight * 1.5
   }
 })

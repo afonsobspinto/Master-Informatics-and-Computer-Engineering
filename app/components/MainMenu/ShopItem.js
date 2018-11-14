@@ -1,18 +1,26 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 
-import Layout from '../../constants/Layout'
+import styles from '../../styles/Shop.style'
 import PropTypes from 'prop-types'
 
+import Images from '../../assets/images/images'
+
 export class ShopItem extends React.Component {
+  purchaseItem = () => this.props.purchaseItem(this.props.cost, this.props.id)
+
   render () {
     return (
-      <View>
-        <TouchableOpacity>
-          <View style={styles.shopItem} />
-          <View style={styles.itemPrice} >
-            <Image style={styles.currencyIcon} source={require('../../assets/images/yellow_star.png')} resizeMode='contain' />
-            <Text>{this.props.cost}</Text>
+      <View style={styles.shopItemContainer} >
+        <TouchableOpacity
+          style={this.props.disabled ? styles.shopItemDisabled : styles.shopItem}
+          activeOpacity={0.6}
+          disabled={this.props.disabled}
+          onPress={this.purchaseItem}>
+          <Image style={[styles.shopItemImage, this.props.disabled && { opacity: 0.3 }]} source={Images.cap} recizeMode='contain' />
+          <View style={[styles.itemPrice, this.props.disabled && { opacity: 0.3 }]} >
+            {!this.props.purchased && <Image style={styles.currencyIcon} source={Images.ui.star} resizeMode='contain' />}
+            <Text style={styles.currencyText}>{this.props.purchased ? 'Comprado' : this.props.cost}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -21,31 +29,9 @@ export class ShopItem extends React.Component {
 }
 
 ShopItem.propTypes = {
-  cost: PropTypes.number.isRequired
+  cost: PropTypes.number.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  purchased: PropTypes.bool.isRequired,
+  purchaseItem: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
 }
-
-const styles = StyleSheet.create({
-  shopItem: {
-    width: Layout.window.width * 0.25,
-    height: Layout.window.height * 0.2,
-    borderColor: 'black',
-    borderWidth: 2,
-    backgroundColor: '#C5CAE9',
-    position: 'relative'
-  },
-  currencyIcon: {
-    width: Layout.window.width * 0.03,
-    height: Layout.window.height * 0.03,
-    marginHorizontal: Layout.window.width * 0.01
-  },
-  itemPrice: {
-    width: Layout.window.width * 0.25,
-    height: Layout.window.height * 0.04,
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
-  }
-})

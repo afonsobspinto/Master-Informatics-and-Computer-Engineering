@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createStackNavigator } from 'react-navigation'
 import { AppLoading, Font } from 'expo'
 
 import { Provider } from 'react-redux'
@@ -9,11 +8,7 @@ import { setSettings } from './actions/settingsActions'
 
 import { _retrieveJson } from './helpers/LocalStore'
 
-import HomeScreen from './screens/HomeScreen'
-import ActivityScreen from './screens/ActivityScreen'
-import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import ChooseActivityScreen from './screens/ChooseActivityScreen'
-import ChildMainMenuScreen from './screens/ChildMainMenuScreen'
+import AppNavigator from './navigation/AppNavigator'
 
 const store = configureStore()
 
@@ -34,7 +29,7 @@ export default class App extends React.Component {
     } else {
       return (
         <Provider store={store}>
-          <AppStackNavigator />
+          <AppNavigator />
         </Provider>
       )
     }
@@ -63,11 +58,3 @@ export default class App extends React.Component {
 App.propTypes = {
   skipLoadingScreen: PropTypes.bool
 }
-
-const AppStackNavigator = createStackNavigator({
-  Home: HomeScreen,
-  Activity: ActivityScreen,
-  ChooseRoutineScreen: ChooseRoutineScreen,
-  ChooseActivityScreen: ChooseActivityScreen,
-  ChildMainMenu: ChildMainMenuScreen
-})

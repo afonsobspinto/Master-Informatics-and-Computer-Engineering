@@ -14,11 +14,7 @@ class ChooseRoutineScreen extends React.Component {
     this.startRoutine = this.startRoutine.bind(this)
   }
 
-  static navigationOptions = {
-    header: null
-  }
-
-  chooseActivities = (routine) => {
+  onPress = (routine) => {
     this.props.setCurrentRoutine(routine)
     this.props.navigation.navigate('ChooseActivityScreen')
   }
