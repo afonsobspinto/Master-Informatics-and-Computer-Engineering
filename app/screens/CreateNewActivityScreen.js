@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { addCustomActivity } from '../actions/gameActions'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { Image, View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { Header, Left, Body, Right, Icon, Picker } from 'native-base'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
@@ -18,7 +18,13 @@ class CreateNewActivityScreen extends Component {
       isTimePickerVisible: false,
       activityStartingTime: new Date(),
       activityWeekDay: null,
-      image: null
+      image: 'bed',
+      title: 'Atividade de testes',
+      color: '#7d84b2',
+      minTime: 0,
+      maxTime: 20,
+      goalTime: 10,
+      routine: 'Após acordar'
     }
 
     this.daysOfWeek = [
@@ -106,14 +112,15 @@ class CreateNewActivityScreen extends Component {
   }
 
   buildNewCustomActivity = () => {
-    this.props.addCustomActivity('Após acordar', {
-      title: 'Teste',
-      image: 'bed',
-      color: '#7d84b2',
+    Alert.alert('Atividade criada!')
+    this.props.addCustomActivity(this.state.routine, {
+      title: this.state.title,
+      image: this.state.image,
+      color: this.state.color,
       time: {
-        min: 0,
-        max: 20,
-        goal: 10
+        min: this.state.minTime,
+        max: this.state.maxTime,
+        goal: this.state.goalTime
       }
     })
   }
@@ -138,7 +145,8 @@ class CreateNewActivityScreen extends Component {
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Nome :</Text>
-            <TextInput style={{ height: 40, justifyContent: 'flex-end', width: 200, paddingHorizontal: 10, backgroundColor: 'gray', marginLeft: 20 }} placeholder='Nome da nova Atividade' />
+            <TextInput style={{ height: 40, justifyContent: 'flex-end', width: 200, paddingHorizontal: 10, backgroundColor: 'gray', marginLeft: 20 }} placeholder='Nome da nova Atividade'
+              onChangeText={(title) => this.setState({ title })} value={this.state.title} />
           </View>
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Dia da Tarefa :</Text>
