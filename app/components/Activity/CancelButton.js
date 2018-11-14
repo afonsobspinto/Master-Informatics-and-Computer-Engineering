@@ -24,6 +24,7 @@ export class CancelButton extends React.Component {
     this.timer = setInterval(() => {
       if (this.state.progress >= 1.09) {
         this.props.cancelActivity()
+        clearInterval(this.timer)
       }
 
       this.setState(() => {
