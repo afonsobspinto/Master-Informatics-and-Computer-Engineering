@@ -101,7 +101,6 @@ class CreateNewActivityScreen extends Component {
 
     if (!result.cancelled) {
       this.setState({ image: result.uri })
-      console.log(result.uri)
     }
   }
 
@@ -126,7 +125,6 @@ class CreateNewActivityScreen extends Component {
   }
 
   render () {
-    let { image } = this.state
     return (
       <View style={{ flex: 1 }} >
         <Header style={styles.container}>
@@ -139,7 +137,6 @@ class CreateNewActivityScreen extends Component {
           <Right />
         </Header>
         <ScrollView style={{ flex: 1, flexDirection: 'row', padding: 20 }}>
-          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
           <View style={styles.centeredContainer}>
             <Text style={{ paddingBottom: 20 }}>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
           </View>
