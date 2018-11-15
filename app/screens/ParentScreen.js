@@ -34,6 +34,6 @@ const ParentDrawerNavigator = createDrawerNavigator({
 {
   contentComponent: CustomDrawerComponent,
   contentOptions: {
-    activeTintColor: '#33adff'
+    activeTintColor: '#006494'
   }
 })

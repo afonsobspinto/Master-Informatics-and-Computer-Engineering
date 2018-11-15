@@ -19,7 +19,7 @@ export default class ParentHomeScreen extends React.Component {
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
           </Left>
           <Body>
-            <Text style={{ fontSize: 16 }}>A minha Conta</Text>
+            <Text style={{ fontSize: 16, color: 'white' }}>A minha Conta</Text>
           </Body>
           <Right />
         </Header>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     height: 90,
     paddingTop: 15,
-    backgroundColor: '#33adff'
+    backgroundColor: '#006494'
   }
 })
 
