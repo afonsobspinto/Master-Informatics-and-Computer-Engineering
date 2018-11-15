@@ -273,6 +273,7 @@ class CreateNewActivityScreen extends Component {
                   onValueChange={(item) => this.setState({ image: item })}>
                   {this.getPickerImages()}
                 </Picker>
+                <Text style={{ fontSize: 12 }}>Escolher imagem pré-definida</Text>
               </View>
             </View>
           </View>
