@@ -32,7 +32,7 @@ class CreateNewActivityScreen extends Component {
     }
 
     this.daysOfWeek = [
-      'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+      'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'
     ]
   }
 
@@ -70,7 +70,6 @@ class CreateNewActivityScreen extends Component {
   handleTimePicked = (time) => {
     this.state.activityStartingTime.setHours(time.getHours())
     this.state.activityStartingTime.setMinutes(time.getMinutes())
-    console.log(this.state.activityStartingTime.getHours() + '------' + this.state.activityStartingTime.getMinutes())
     this.setState({
       isTimePickerVisible: false
     })
@@ -165,7 +164,7 @@ class CreateNewActivityScreen extends Component {
               <Text>Data da Atividade</Text>
             </View>
             <View style={{ flexDirection: 'row', flexBasis: '50%', justifyContent: 'center', alignItems: 'center' }}>
-              <Text>Data selecionada</Text>
+              <Text>{this.state.activityWeekDay}</Text>
               <View style={{ flexBasis: '35%' }}>
                 <TouchableOpacity onPress={this.showDatePicker}>
                   <Image style={{ alignSelf: 'flex-end', height: 35, width: 35 }} source={require('../assets/images/add-activity-icon.png')} />
@@ -183,7 +182,7 @@ class CreateNewActivityScreen extends Component {
               <Text>Hora da Atividade</Text>
             </View>
             <View style={{ flexDirection: 'row', flexBasis: '50%', justifyContent: 'center', alignItems: 'center' }} >
-              <Text>Hora selecionada</Text>
+              <Text>{this.state.activityStartingTime.getHours()} : {this.state.activityStartingTime.getMinutes()}</Text>
               <View style={{ flexBasis: '35%' }} >
                 <TouchableOpacity onPress={this.showTimePicker}>
                   <Image style={{ alignSelf: 'flex-end', height: 35, width: 35 }} source={require('../assets/images/add-activity-icon.png')} />
@@ -277,7 +276,7 @@ class CreateNewActivityScreen extends Component {
               </View>
             </View>
           </View>
-          <View style={{ paddingBottom: 60, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ paddingBottom: 40, justifyContent: 'center', alignItems: 'center' }}>
             <TouchableOpacity onPress={this.buildNewCustomActivity}
               style={{ backgroundColor: 'gray', paddingLeft: 30, paddingRight: 30, paddingTop: 15, paddingBottom: 15 }}>
               <Text>Criar Atividade</Text>
