@@ -10,8 +10,10 @@ describe('ChooseRoutineScreen snapshot', () => {
     NavigationTestUtils.resetInternalState()
   })
 
+  const navigation = { navigate: jest.fn() }
+
   it('renders correctly', async () => {
-    const tree = renderer.create(<ChildMainMenuScreen />).toJSON()
+    const tree = renderer.create(<ChildMainMenuScreen navigation={navigation} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })
