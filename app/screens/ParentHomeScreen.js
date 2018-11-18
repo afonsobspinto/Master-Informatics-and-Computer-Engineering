@@ -47,15 +47,18 @@ export default class ParentHomeScreen extends React.Component {
               <Text>Alterar Foto de Pefil</Text>
             </TouchableOpacity>
             <Modal
+              style={styles.uploadModal}
               isVisible={this.state.uploadModalVisible}>
-              <TouchableOpacity onPress={this.toggleUploadPicModal} style={styles.closeBtn}>
-                <Text>EXIT</Text>
+              <TouchableOpacity onPress={this.toggleUploadPicModal} style={{ alignSelf: 'flex-end' }}>
+                <Image source={require('../assets/images/icons/close-button.png')} style={styles.closeBtn} />
               </TouchableOpacity>
               <View style={styles.modalLayout}>
-                <View>
+                <View style={styles.modalIconContainer}>
+                  <Image source={require('../assets/images/icons/upload.png')} style={styles.modalIcon} />
                   <Text>Upload Picture</Text>
                 </View>
-                <View>
+                <View style={styles.modalIconContainer}>
+                  <Image source={require('../assets/images/icons/camera.png')} style={styles.modalIcon} />
                   <Text>Take photo</Text>
                 </View>
               </View>
