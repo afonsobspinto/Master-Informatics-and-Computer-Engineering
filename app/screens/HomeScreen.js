@@ -18,6 +18,13 @@ class HomeScreen extends React.Component {
           title={`Timer: ${this.props.activityShowTimer}`}
           onPress={this.props.toggleActivityTimer}
         />
+        <Text />
+        <Button
+          title={'Parent Screen'}
+          onPress={() => {
+            this.props.navigation.navigate('ParentScreen')
+          }}
+        />
       </View>
     )
   }
@@ -38,5 +45,6 @@ HomeScreen.propTypes = {
   activityProgressType: PropTypes.string.isRequired,
   activityShowTimer: PropTypes.bool.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
-  toggleActivityTimer: PropTypes.func.isRequired
+  toggleActivityTimer: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 }
