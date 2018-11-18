@@ -1,69 +1,57 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Button, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
-import { _retrieveSetting, _storeSetting, ACTIVITY_PROGRESS_TYPE, ACTIVITY_SHOW_TIMER } from '../helpers/Settings'
 
-export default class HomeScreen extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      activityProgressType: ACTIVITY_PROGRESS_TYPE.values.bar,
-      activityShowTimer: false
-    }
-  }
+import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType } from '../actions/settingsActions'
 
-  componentDidMount () {
-    _retrieveSetting(ACTIVITY_PROGRESS_TYPE.key).then(res => this.setState(() => ({ activityProgressType: res })))
-  }
-
-  static navigationOptions = {
-    header: null
-  }
-
-  changeActivityProgressType = () => {
-    if (this.state.activityProgressType === ACTIVITY_PROGRESS_TYPE.values.bar) {
-      _storeSetting(ACTIVITY_PROGRESS_TYPE.key, ACTIVITY_PROGRESS_TYPE.values.clock)
-      this.setState(() => ({ activityProgressType: ACTIVITY_PROGRESS_TYPE.values.clock }))
-    } else {
-      _storeSetting(ACTIVITY_PROGRESS_TYPE.key, ACTIVITY_PROGRESS_TYPE.values.bar)
-      this.setState(() => ({ activityProgressType: ACTIVITY_PROGRESS_TYPE.values.bar }))
-    }
-  }
-
-  changeActivityShowTimer = () => {
-    if (this.state.activityShowTimer) {
-      _storeSetting(ACTIVITY_SHOW_TIMER.key, false)
-      this.setState(() => ({ activityShowTimer: false }))
-    } else {
-      _storeSetting(ACTIVITY_SHOW_TIMER.key, true)
-      this.setState(() => ({ activityShowTimer: true }))
-    }
-  }
-
+class HomeScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
-          title='Go to routine screen'
-          onPress={() => {
-            this.props.navigation.navigate('ChooseRoutineScreen')
-          }}
+          title={'Parent Screen'}
+          onPress={() => { this.props.navigation.navigate('ParentScreen') }}
         />
         <Text />
         <Button
-          title={`Progress: ${this.state.activityProgressType}`}
-          onPress={this.changeActivityProgressType}
+          title={`Progress: ${this.props.activityProgressType}`}
+          onPress={this.props.toggleActivityProgressType}
         />
         <Text />
         <Button
-          title={`Timer: ${this.state.activityShowTimer}`}
-          onPress={this.changeActivityShowTimer}
+          title={`Timer: ${this.props.activityShowTimer}`}
+          onPress={this.props.toggleActivityTimer}
+        />
+        <Text />
+        <Button
+          title={`Routine: ${this.props.routinePlayType}`}
+          onPress={this.props.toggleRoutinePlayType}
         />
       </View>
     )
   }
 }
 
+export default connect(
+  state => ({
+    activityProgressType: state.settings.activityProgressType,
+    activityShowTimer: state.settings.activityShowTimer,
+    routinePlayType: state.settings.routinePlayType
+  }),
+  dispatch => ({
+    toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
+    toggleActivityTimer: () => dispatch(toggleActivityTimer()),
+    toggleRoutinePlayType: () => dispatch(toggleRoutinePlayType())
+  })
+)(HomeScreen)
+
 HomeScreen.propTypes = {
+  activityProgressType: PropTypes.string.isRequired,
+  activityShowTimer: PropTypes.bool.isRequired,
+  routinePlayType: PropTypes.string.isRequired,
+  toggleActivityProgressType: PropTypes.func.isRequired,
+  toggleActivityTimer: PropTypes.func.isRequired,
+  toggleRoutinePlayType: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired
 }
