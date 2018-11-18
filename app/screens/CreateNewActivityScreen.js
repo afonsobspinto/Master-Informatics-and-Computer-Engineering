@@ -19,7 +19,8 @@ class CreateNewActivityScreen extends Component {
       isTimePickerVisible: false,
       activityStartingTime: new Date(),
       activityWeekDay: null,
-      image: 'bed',
+      image: null,
+      photo: null,
       title: 'Atividade de testes',
       color: '#7d84b2',
       routinePeriod: '',
@@ -113,8 +114,8 @@ class CreateNewActivityScreen extends Component {
       result = await ImagePicker.launchImageLibraryAsync(options)
     }
 
-    if (!result.cancelled) {
-      this.setState({ image: result.uri })
+    if (!result.cancelled && camera) {
+      this.setState(camera ? { photo: result.uri } : { image: result.uri })
     }
   }
 
@@ -126,10 +127,12 @@ class CreateNewActivityScreen extends Component {
 
   buildNewCustomActivity = () => {
     Alert.alert('Atividade criada!')
+
     this.props.addCustomActivity(this.state.routine, {
       title: this.state.title,
-      image: this.state.image,
       color: this.state.color,
+      image: (this.state.image !== null ? this.state.image : undefined),
+      photo: (this.state.photo !== null ? this.state.photo : undefined),
       time: {
         min: this.state.minTime,
         max: this.state.maxTime,

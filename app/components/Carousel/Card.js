@@ -25,8 +25,9 @@ export default class Card extends React.Component {
   }
 
   returnURIorImage = () => {
-    if (this.props.item.image.includes('file://')) {
-      return { uri: this.props.item.image }
+    console.log(this.props.item)
+    if (this.props.item.photo !== undefined && this.props.item.photo.includes('file://')) {
+      return { uri: this.props.item.photo }
     } else {
       return Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]
     }
