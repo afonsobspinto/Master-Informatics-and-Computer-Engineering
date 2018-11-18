@@ -27,3 +27,10 @@ export function toggleActivityTimer () {
     payload: null
   }
 }
+
+export function toggleActivityFeedback () {
+  return {
+    type: settingTypes.toggleActivityFeedback,
+    payload: null
+  }
+}

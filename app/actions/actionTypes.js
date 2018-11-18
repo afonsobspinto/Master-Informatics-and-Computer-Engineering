@@ -2,7 +2,8 @@ export const settingTypes = {
   setSettings: 'settings:setSettings',
   toggleActivityProgressType: 'settings:toggleActivityProgressType',
   changeVisualStyle: 'settings:changeVisualStyle',
-  toggleActivityTimer: 'settings:toggleActivityTimer'
+  toggleActivityTimer: 'settings:toggleActivityTimer',
+  toggleActivityFeedback: 'settings:toggleActivityFeedback'
 }
 
 export const gameTypes = {

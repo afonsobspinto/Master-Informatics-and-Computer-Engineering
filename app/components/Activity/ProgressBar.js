@@ -79,14 +79,22 @@ export class ProgressBar extends React.Component {
     ]).start()
   }
 
+  activityFeedback () {
+    if (this.props.activityFeedback === 'visual') {
+      this.borderFeedback()
+    } else if (this.props.activityFeedback === 'sound') {
+      this.playSound()
+    } else if (this.props.activityFeedback === 'vibration') {
+      Vibration.vibrate(250, true)
+    }
+  }
+
   componentWillReceiveProps (props) {
     if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) {
       this.setState(() => ({ color: colors.red }))
 
       if (!this.state.playedFeedback || this.state.feedbackCycles % 25 === 0) {
-        Vibration.vibrate(250, true)
-        this.playSound()
-        this.borderFeedback()
+        this.activityFeedback()
         this.setState(() => ({ playedFeedback: true, feedbackCycles: this.state.feedbackCycles + 1 }))
       } else {
         this.setState(() => ({ feedbackCycles: this.state.feedbackCycles + 1 }))
@@ -130,5 +138,6 @@ ProgressBar.propTypes = {
   elapsedTime: PropTypes.number.isRequired,
   activityTimes: PropTypes.object.isRequired,
   isPaused: PropTypes.bool.isRequired,
-  showTimer: PropTypes.bool.isRequired
+  showTimer: PropTypes.bool.isRequired,
+  activityFeedback: PropTypes.string.isRequired
 }
