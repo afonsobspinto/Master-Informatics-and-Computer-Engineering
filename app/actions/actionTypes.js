@@ -3,10 +3,12 @@ export const settingTypes = {
   toggleActivityProgressType: 'settings:toggleActivityProgressType',
   changeVisualStyle: 'settings:changeVisualStyle',
   toggleActivityTimer: 'settings:toggleActivityTimer',
-  toggleActivityFeedback: 'settings:toggleActivityFeedback'
+  toggleActivityFeedback: 'settings:toggleActivityFeedback',
+  toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
 }
 
 export const gameTypes = {
+  addCustomActivity: 'game:addCustomActivity',
   addRoutines: 'game:addRoutines',
   setCurrentRoutine: 'game:setCurrentRoutine',
   setCurrentActivity: 'game:setCurrentActivity',

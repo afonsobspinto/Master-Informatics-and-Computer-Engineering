@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setActivityStatus, nextActivity } from '../actions/gameActions'
 import { addStars } from '../actions/childActions'
-import { Image, Text, View, StatusBar } from 'react-native'
-import { handleAndroidBackButton, removeAndroidBackButtonHandler } from '../helpers/AndroidBackButton'
+import { Image, Text, View, StatusBar, BackHandler } from 'react-native'
 
 import { ProgressBar } from '../components/Activity/ProgressBar'
 import { ProgressClock } from '../components/Activity/ProgressClock'
@@ -38,13 +37,8 @@ class ActivityScreen extends Component {
     this.backToMenu = this.backToMenu.bind(this)
   }
 
-  static navigationOptions = {
-    header: null
-  }
-
   componentDidMount () {
-    handleAndroidBackButton(this.cancelActivity)
-
+    BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
     this.interval = setInterval(() => {
       if (this.state.isPaused) return
       if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
@@ -59,8 +53,8 @@ class ActivityScreen extends Component {
   }
 
   componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.cancelActivity)
     clearInterval(this.interval)
-    removeAndroidBackButtonHandler()
   }
 
   pauseActivity () {
@@ -69,6 +63,7 @@ class ActivityScreen extends Component {
 
   cancelActivity () {
     this.props.navigation.popToTop()
+    return true // To be called by andrdid back button
   }
 
   completeActivity () {

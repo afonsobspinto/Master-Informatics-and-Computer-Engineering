@@ -22,6 +22,7 @@ const images = {
   pool: require('./pool.jpg'),
   avatar: require('./avatar.png'),
   cap: require('./cap.png'),
+  child: require('./child.png'),
   ui: {
     play: require('./navigation/play.png'),
     cancel: require('./navigation/cancel.png'),

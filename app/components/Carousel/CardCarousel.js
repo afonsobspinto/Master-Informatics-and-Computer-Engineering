@@ -21,6 +21,7 @@ export default class CardCarousel extends React.Component {
         item={item}
         onPress={this.props.onPress}
         onButtonPress={this.props.onButtonPress}
+        isRoutine={this.props.isRoutine}
       />
     )
   }
@@ -60,6 +61,7 @@ export default class CardCarousel extends React.Component {
 
 CardCarousel.propTypes = {
   onPress: PropTypes.func.isRequired,
+  isRoutine: PropTypes.bool,
   onButtonPress: PropTypes.func,
   data: PropTypes.array.isRequired
 }

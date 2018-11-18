@@ -34,3 +34,10 @@ export function toggleActivityFeedback () {
     payload: null
   }
 }
+
+export function toggleRoutinePlayType () {
+  return {
+    type: settingTypes.toggleRoutinePlayType,
+    payload: null
+  }
+}
