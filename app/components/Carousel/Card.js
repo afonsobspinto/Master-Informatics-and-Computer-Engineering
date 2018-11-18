@@ -25,7 +25,7 @@ export default class Card extends React.Component {
   }
 
   returnURIorImage = () => {
-    console.log(this.props.item)
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
     if (this.props.item.photo !== undefined && this.props.item.photo.includes('file://')) {
       return { uri: this.props.item.photo }
     } else {

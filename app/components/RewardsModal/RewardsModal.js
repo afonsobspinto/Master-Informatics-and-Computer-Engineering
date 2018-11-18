@@ -10,6 +10,15 @@ import { grayedOut } from '../../styles/Colors'
 import Images from '../../assets/images/images'
 
 export class RewardsModal extends React.Component {
+  returnURIorImage = (activity) => {
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (activity.photo !== undefined && activity.photo.includes('file://')) {
+      return { uri: activity.photo }
+    } else {
+      return Images[activity.image]
+    }
+  }
+
   render () {
     let pastActivityIcons = this.props.activities
       .filter((_, index, array) => {
@@ -18,7 +27,7 @@ export class RewardsModal extends React.Component {
       })
       .map((activity, index) =>
         (<View key={index} style={[styles.pastActivityIcon, { backgroundColor: activity.status ? activity.color : grayedOut }]}>
-          <Image style={[styles.pastActivityImage, { opacity: activity.status ? 1 : 0.3 }]} recizeMode={'center'} source={Images[activity.image]} />
+          <Image style={[styles.pastActivityImage, { opacity: activity.status ? 1 : 0.3 }]} resizeMode={'center'} source={this.returnURIorImage(activity)} />
         </View>))
 
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)

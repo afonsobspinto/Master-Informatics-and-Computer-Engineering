@@ -108,7 +108,7 @@ class CreateNewActivityScreen extends Component {
 
     if (camera) {
       await Permissions.askAsync(Permissions.CAMERA)
-      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images' })
+      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images', aspect: [5, 3] })
     } else {
       await Permissions.askAsync(Permissions.CAMERA_ROLL)
       result = await ImagePicker.launchImageLibraryAsync(options)

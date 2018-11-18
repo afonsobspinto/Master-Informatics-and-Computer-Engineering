@@ -94,6 +94,15 @@ class ActivityScreen extends Component {
     this.setState(() => ({ isPaused: false }))
   }
 
+  returnURIorImage = () => {
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (this.props.activity.photo !== undefined && this.props.activity.photo.includes('file://')) {
+      return { uri: this.props.activity.photo }
+    } else {
+      return Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]
+    }
+  }
+
   render () {
     return (
       <View style={[{ backgroundColor: this.props.activity.color }, styles.activityScreen]} >
@@ -101,7 +110,7 @@ class ActivityScreen extends Component {
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-          source={Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]} />
+          source={this.returnURIorImage()} />
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
