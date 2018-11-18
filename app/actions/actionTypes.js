@@ -13,3 +13,8 @@ export const gameTypes = {
   setActivityStatus: 'game:setActivityStatus',
   nextActivity: 'game.nextActivity'
 }
+
+export const childTypes = {
+  addStars: 'child:addStars',
+  purchaseItem: 'child:purchaseItem'
+}

@@ -1,48 +1,57 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
+import { green, avatarBlue } from './Colors'
+import { backgroundColor } from './General.style'
+
+const buttonHeight = Layout.window.width * 0.5
 
 export default StyleSheet.create({
   mainMenuContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#C5CAE9'
+    backgroundColor: backgroundColor
   },
   experienceBarContainer: {
-    marginHorizontal: Layout.window.width * 0.2,
-    marginVertical: Layout.window.height * 0.075
+    flex: 0
   },
-  profileImageContainer: {
-    flex: 3,
-    alignItems: 'center',
+  button: {
+    height: buttonHeight,
+    width: buttonHeight,
+    borderRadius: buttonHeight / 2,
+    elevation: 10,
+    backgroundColor: green,
     justifyContent: 'center',
-    marginBottom: Layout.window.height * 0.025
+    alignItems: 'center',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  profileButton: {
+    height: buttonHeight,
+    width: buttonHeight,
+    borderRadius: buttonHeight / 2,
+    elevation: 10,
+    backgroundColor: avatarBlue,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  buttonImage: {
+    height: '40%',
+    width: '40%',
+    tintColor: '#fff',
+    marginLeft: '7%'
   },
   profileImage: {
-    width: Layout.window.width * 0.4,
-    height: Layout.window.width * 0.4,
-    borderRadius: Layout.window.width * 0.4 / 2,
-    borderWidth: 1
+    width: buttonHeight * 1.5,
+    height: buttonHeight * 1.5,
+    position: 'absolute',
+    top: 0
   },
-  currencyContainer: {
+  buttonContainer: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  currencyIcon: {
-    width: Layout.window.width * 0.06,
-    height: Layout.window.height * 0.06,
-    marginHorizontal: Layout.window.width * 0.02
-  },
-  currencyFont: {
-    fontSize: 22,
-    fontWeight: 'bold'
-  },
-  playButton: {
-    tintColor: '#9999FF'
-  },
-  playButtonContainer: {
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
   }
 })

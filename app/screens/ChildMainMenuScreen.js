@@ -1,29 +1,24 @@
 import React, { Component } from 'react'
-import { View, StatusBar, Image, Text, TouchableOpacity } from 'react-native'
+import { View, StatusBar, Image, TouchableOpacity } from 'react-native'
 import { ScreenOrientation } from 'expo'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
-import { MainMenuProfile } from '../components/MainMenu/MainMenuProfile'
+
+import Images from '../assets/images/images'
 
 import styles from '../styles/ChildMainMenuScreen.style'
 
-export default class ChildMainMenuScreen extends Component {
+class ChildMainMenuScreen extends Component {
   constructor (props) {
     super(props)
-    this.openProfile = this.openProfile.bind(this)
-    this.closeProfile = this.closeProfile.bind(this)
+    this.openShop = this.openShop.bind(this)
+    this.closeShop = this.closeShop.bind(this)
   }
 
   state = {
-    isProfileVisible: false,
-    childLevel: 6,
-    currentLevelProgress: 0.45,
-    currencyEarned: 282
-  }
-
-  static navigationOptions = {
-    header: null
+    isShopVisible: false
   }
 
   componentDidMount () {
@@ -34,56 +29,51 @@ export default class ChildMainMenuScreen extends Component {
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT)
   }
 
-  openProfile () {
-    this.setState({ isProfileVisible: true })
+  openShop () {
+    this.setState({ isShopVisible: true })
   }
 
-  closeProfile () {
-    this.setState({ isProfileVisible: false })
+  closeShop () {
+    this.setState({ isShopVisible: false })
   }
 
   render () {
     return (
       <View style={styles.mainMenuContainer}>
         <StatusBar hidden />
-        <MainMenuProfile
-          isProfileVisible={this.state.isProfileVisible}
-          closeProfile={this.closeProfile}
-          currencyEarned={this.state.currencyEarned}
-        />
         <View style={styles.experienceBarContainer}>
-          <ChildExperienceBar progress={this.state.currentLevelProgress} level={this.state.childLevel} />
+          <ChildExperienceBar
+            progress={(this.props.xp - this.props.level * 100) / 100}
+            level={this.props.level} />
         </View>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <View style={{ flex: 0.75 }} />
-          <View style={{ flex: 2, flexDirection: 'column' }}>
-            <View style={styles.profileImageContainer}>
-              <TouchableOpacity onPress={this.openProfile} >
-                <Image style={styles.profileImage} source={require('../assets/images/placeholder-avatar.png')} />
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 2 }}>
-              <View style={styles.currencyContainer}>
-                <Image style={styles.currencyIcon} source={require('../assets/images/yellow_star.png')} resizeMode='contain' />
-                <Text style={styles.currencyFont} >{this.state.currencyEarned}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{ flex: 2, flexDirection: 'column' }}>
-            <View style={styles.playButtonContainer}>
-              <TouchableOpacity onPress={() => { this.props.navigation.navigate('ChooseRoutineScreen') }}>
-                <Image style={styles.playButton} source={require('../assets/images/navigation/play.png')} />
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 2 }} />
-          </View>
-          <View style={{ flex: 0.75 }} />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.profileButton}
+            onPress={() => { this.props.navigation.navigate('ShopScreen') }}
+            activeOpacity={0.9} >
+            <Image style={styles.profileImage} resizeMode={'contain'} source={Images.avatar} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => { this.props.navigation.navigate('ChooseRoutineScreen') }}
+            activeOpacity={0.9}>
+            <Image style={styles.buttonImage} source={Images.ui.play} />
+          </TouchableOpacity>
         </View>
       </View>
     )
   }
 }
 
+export default connect(
+  state => ({
+    level: state.child.level,
+    xp: state.child.xp
+  })
+)(ChildMainMenuScreen)
+
 ChildMainMenuScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  level: PropTypes.number.isRequired,
+  xp: PropTypes.number.isRequired
 }
