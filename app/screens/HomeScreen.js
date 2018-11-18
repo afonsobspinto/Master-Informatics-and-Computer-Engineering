@@ -45,5 +45,6 @@ HomeScreen.propTypes = {
   activityProgressType: PropTypes.string.isRequired,
   activityShowTimer: PropTypes.bool.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
-  toggleActivityTimer: PropTypes.func.isRequired
+  toggleActivityTimer: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 }
