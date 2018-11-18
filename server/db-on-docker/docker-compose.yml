@@ -5,8 +5,6 @@ services:
     image: mysql:5.7.24
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_USER: ldsog02_user
-      MYSQL_PASSWORD: ldsog02_pass
       MYSQL_DATABASE: ldsog02_db
     ports:
       - "3308:3306"
