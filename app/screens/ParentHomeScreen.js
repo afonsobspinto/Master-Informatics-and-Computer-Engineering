@@ -30,13 +30,13 @@ export default class ParentHomeScreen extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Header style={styles.headerContainer}>
           <Left>
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
           </Left>
           <Body>
-            <Text style={{ fontSize: 16, color: 'white' }}>A minha Conta</Text>
+            <Text style={{ fontSize: 18, color: 'white' }}>A minha Conta</Text>
           </Body>
           <Right />
         </Header>
@@ -63,6 +63,34 @@ export default class ParentHomeScreen extends React.Component {
                 </View>
               </View>
             </Modal>
+          </View>
+          <View style={styles.sectionContainer}>
+            <View style={styles.descriptionBox}>
+              <Text>Informação Geral</Text>
+            </View>
+            <View style={[styles.infoContainer, styles.rowDirection]}>
+              <Text style={{ flex: 1 }}>Nome</Text>
+              <Text style={{ flex: 1 }}>Nome da Pessoa</Text>
+              <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ flexBasis: '10%', height: 25, width: 25 }} />
+            </View>
+            <View style={[styles.infoContainer, styles.rowDirection]}>
+              <Text style={{ flex: 1 }}>E-mail</Text>
+              <Text style={{ flex: 1 }}>E-mail da pESSOA</Text>
+              <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ flexBasis: '10%', height: 25, width: 25 }} />
+            </View>
+          </View>
+          <View style={styles.sectionContainer}>
+            <View style={styles.descriptionBox}>
+              <Text>Repor Definições</Text>
+            </View>
+            <View style={[styles.infoContainer, styles.rowDirection]}>
+              <Text style={{ flex: 1 }}>Repor E-mail</Text>
+              <Text style={{ flex: 1 }}>email@hotmail.com</Text>
+            </View>
+            <View style={[styles.infoContainer, styles.rowDirection]}>
+              <Text style={{ flex: 3 }}>Repor Palavra-passe</Text>
+              <Text style={{ flex: 1 }}>********</Text>
+            </View>
           </View>
         </ScrollView>
       </View>
