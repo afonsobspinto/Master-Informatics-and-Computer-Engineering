@@ -10,6 +10,11 @@ class HomeScreen extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
+          title={'Parent Screen'}
+          onPress={() => { this.props.navigation.navigate('ParentScreen') }}
+        />
+        <Text />
+        <Button
           title={`Progress: ${this.props.activityProgressType}`}
           onPress={this.props.toggleActivityProgressType}
         />
@@ -47,5 +52,6 @@ HomeScreen.propTypes = {
   routinePlayType: PropTypes.string.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
   toggleActivityTimer: PropTypes.func.isRequired,
-  toggleRoutinePlayType: PropTypes.func.isRequired
+  toggleRoutinePlayType: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 }

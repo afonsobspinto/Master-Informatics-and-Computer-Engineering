@@ -7,6 +7,7 @@ export const settingTypes = {
 }
 
 export const gameTypes = {
+  addCustomActivity: 'game:addCustomActivity',
   addRoutines: 'game:addRoutines',
   setCurrentRoutine: 'game:setCurrentRoutine',
   setCurrentActivity: 'game:setCurrentActivity',
