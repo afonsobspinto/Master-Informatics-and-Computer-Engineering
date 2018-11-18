@@ -14,8 +14,14 @@ before_script:
 jest-tests:
   stage: test
   script:
-    - npx jest --ci
-expo-deployments:
+    - npm run validate
+    - npm run test
+  artifacts:
+    reports:
+      junit: app/junit.xml
+expo-prod-deployments:
+  only:
+    - master
   stage: deploy
   script:
     - apk add --no-cache bash
