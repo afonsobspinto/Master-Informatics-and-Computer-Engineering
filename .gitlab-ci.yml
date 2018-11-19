@@ -30,6 +30,7 @@ expo-prod-deployments:
 expo-staging-deployments:
   only:
     - development
+    - 66-fix-pipelines
   stage: deploy
   script:
     - apk add --no-cache bash
