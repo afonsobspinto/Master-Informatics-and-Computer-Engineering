@@ -167,6 +167,7 @@ describe('ChooseRoutineScreen snapshot', () => {
   it('renders ChooseRoutineScreen correctly', async () => {
     const tree = renderer.create(<ChooseRoutineScreen
       navigation={{}}
+      routinePlayType={'auto'}
       routines={routines}
       setCurrentRoutine={jest.fn()}
       nextActivity={jest.fn()} />).toJSON()
