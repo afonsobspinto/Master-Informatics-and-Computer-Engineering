@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import CardCarousel from '../components/Carousel/CardCarousel'
 import { backgroundColor } from '../styles/General.style'
 
-class ChooseActivityScreen extends React.Component {
+export class ChooseActivityScreen extends React.Component {
   constructor (props) {
     super(props)
     this.onPress = this.onPress.bind(this)

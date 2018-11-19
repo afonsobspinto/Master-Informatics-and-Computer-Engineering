@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShopScreen snapshot renders ShopScreen correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff7ae",
+      "flexDirection": "row",
+      "height": "100%",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f7f7f7",
+        "borderRadius": 37.5,
+        "elevation": 6,
+        "flex": 3,
+        "justifyContent": "center",
+        "marginLeft": 37.5,
+        "marginVertical": 37.5,
+        "overflow": "hidden",
+        "paddingVertical": 37.5,
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "aspectRatio": 1,
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 4,
+        "paddingHorizontal": 18.75,
+        "paddingVertical": 37.5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "height": 75,
+          "justifyContent": "space-between",
+          "marginBottom": 18.75,
+          "paddingHorizontal": 18.75,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "LinotteBold",
+            "fontSize": 56.25,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+        Loja
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={1}
+          style={
+            Object {
+              "height": 45,
+              "marginRight": 9.375,
+              "width": 45,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "LinotteBold",
+              "fontSize": 56.25,
+              "textShadowColor": "rgba(0, 0, 0, 0.2)",
+              "textShadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "textShadowRadius": 3,
+            }
+          }
+        >
+          1
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

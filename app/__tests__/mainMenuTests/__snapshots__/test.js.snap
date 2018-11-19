@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "center",
+      "backgroundColor": "#fff7ae",
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexGrow": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 225,
+          "elevation": 10,
+          "height": 450,
+          "justifyContent": "center",
+          "opacity": 1,
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 450,
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#000",
+          "fontFamily": "LinotteBold",
+          "fontSize": 30,
+          "marginTop": 15,
+          "textShadowColor": "rgba(0, 0, 0, 0.2)",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "textShadowRadius": 3,
+        }
+      }
+    >
+      Miguel
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#7a9e7e",
+          "borderTopLeftRadius": 45,
+          "borderTopRightRadius": 45,
+          "elevation": 10,
+          "height": 150,
+          "justifyContent": "center",
+          "opacity": 1,
+          "overflow": "hidden",
+          "width": 450,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 30,
+            "marginTop": 15,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+        Zona de pai
+      </Text>
+    </View>
+  </View>
+</View>
+`;
