@@ -41,11 +41,13 @@ The backend server also received a major update and appears to be fully function
 [`#38`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/38) Refine child application look  
 [`#40`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/40) Setup Django server  
 [`#41`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/41) Create post-completion activity reward screen  
+[`#42`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/42) Setup CI / CD
 [`#43`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/43) Feedback when activity is ending  
 [`#44`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/44) Choose between parent and child application screens  
 [`#45`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/45) Choose routine play type  
 [`#46`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/46) Rework main menu design and add avatar  
 [`#47`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/47) Rework activity reward screen to have previous progress  
+[`#48`](https://gitlab.com/feup-tbs/ldso18-19/t4g2/issues/48) Unit Tests
 
 
 
