@@ -1,19 +1,20 @@
 import 'react-native'
 import React from 'react'
+import { shallow, configure } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import configureStore from 'redux-mock-store'
+import Adapter from 'enzyme-adapter-react-16'
+
 import ChooseRoutineScreen from '../../screens/ChooseRoutineScreen'
-import renderer from 'react-test-renderer'
-import NavigationTestUtils from 'react-navigation/NavigationTestUtils'
+
+configure({ adapter: new Adapter() })
 
 describe('ChooseRoutineScreen snapshot', () => {
-  jest.useFakeTimers()
-  beforeEach(() => {
-    NavigationTestUtils.resetInternalState()
-  })
+  const initialState = {}
+  const mockStore = configureStore()
+  let store = mockStore(initialState)
+  const wrapper = shallow(<ChooseRoutineScreen store={store} />)
+  const component = wrapper.dive()
 
-  const navigation = { navigate: jest.fn() }
-
-  it('renders correctly', async () => {
-    const tree = renderer.create(<ChooseRoutineScreen navigation={navigation} />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
+  expect(toJson(component)).toMatchSnapshot()
 })
