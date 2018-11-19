@@ -15,7 +15,6 @@ jest-tests:
   stage: test
   script:
     - npm run validate
-    - npm run test
   artifacts:
     reports:
       junit: app/junit.xml
