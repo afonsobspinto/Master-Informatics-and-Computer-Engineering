@@ -10,6 +10,7 @@ stages:
 before_script:
   - cd app
   - npm ci
+  - npm install
   - npm install -g expo-cli
 jest-tests:
   stage: test
