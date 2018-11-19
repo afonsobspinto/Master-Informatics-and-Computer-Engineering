@@ -1,3 +1,11 @@
+*.js.snap
+.idea/
+.vscode
+app/package-lock.json
+server/server.iml
+app/.expo
+app/node_modules
+**/__pycache__/
 .DS_Store
 .expo/
 .idea/

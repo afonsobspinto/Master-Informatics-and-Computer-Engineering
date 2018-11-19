@@ -1,5 +1,0 @@
-node_modules/**/*
-.expo/**/*
-*.js.snap
-.idea/
-.vscode
