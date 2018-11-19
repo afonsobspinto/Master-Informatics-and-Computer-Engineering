@@ -9,7 +9,7 @@
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js",
     "lint": "./node_modules/.bin/eslint . --ext .jsx --ext .js",
-    "validate": "concurrently --kill-others \"npm run --silent lint\" \"npm run --silent test\""
+    "validate": "concurrently \"npm run --silent lint\" \"npm run --silent test\""
   },
   "jest": {
     "coverageReporters": [
