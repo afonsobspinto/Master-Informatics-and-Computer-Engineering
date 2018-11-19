@@ -10,7 +10,7 @@ import Images from '../assets/images/images'
 
 import styles from '../styles/ChildMainMenuScreen.style'
 
-class ChildMainMenuScreen extends Component {
+export class ChildMainMenuScreen extends Component {
   constructor (props) {
     super(props)
     this.openShop = this.openShop.bind(this)

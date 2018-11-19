@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
-import styles, { clockHeight } from '../../styles/Activity.style'
+import styles, { clockHeight, timerClock } from '../../styles/Activity.style'
 import { Timer } from './Timer'
 import * as colors from '../../styles/Colors'
 
@@ -39,7 +39,7 @@ export class ProgressClock extends React.Component {
           unfilledColor={colors.gray}
           borderWidth={0}
         />
-        {this.props.showTimer && <Timer style={styles.timerClock} elapsedTime={this.props.elapsedTime} />}
+        {this.props.showTimer && <Timer style={timerClock} elapsedTime={this.props.elapsedTime} />}
       </View>
     )
   }

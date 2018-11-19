@@ -29,5 +29,5 @@ export class Timer extends React.Component {
 
 Timer.propTypes = {
   elapsedTime: PropTypes.number.isRequired,
-  style: PropTypes.number.isRequired
+  style: PropTypes.object.isRequired
 }

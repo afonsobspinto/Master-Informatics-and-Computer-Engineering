@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
-import styles, { buttonHeight } from '../../styles/Activity.style'
+import styles, { buttonHeight, timerBar } from '../../styles/Activity.style'
 import { Timer } from './Timer'
 import * as colors from '../../styles/Colors'
 
@@ -42,7 +42,7 @@ export class ProgressBar extends React.Component {
         <View style={[{ left: `${this.times.min / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${this.times.goal / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${(this.times.goal + (this.times.max - this.times.goal) / 2) / this.times.max * 100}%` }, styles.progressBarDivider]} />
-        {this.props.showTimer && <Timer style={styles.timerBar} elapsedTime={this.props.elapsedTime} />}
+        {this.props.showTimer && <Timer style={timerBar} elapsedTime={this.props.elapsedTime} />}
       </View>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import { buttonStyle } from '../../styles/Activity.style'
+import activityStyles, { buttonStyle } from '../../styles/Activity.style'
 import { green, gray } from '../../styles/Colors'
 import Images from '../../assets/images/images'
 
@@ -10,7 +10,7 @@ export class CompleteButton extends React.Component {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        style={[(this.props.isCompletable ? styles.buttonActive : styles.buttonDisabled), this.props.style]}
+        style={[(this.props.isCompletable ? styles.buttonActive : styles.buttonDisabled), activityStyles.largeButton]}
         onPress={this.props.completeActivity}
         disabled={!this.props.isCompletable} >
         <Image
@@ -24,8 +24,7 @@ export class CompleteButton extends React.Component {
 
 CompleteButton.propTypes = {
   completeActivity: PropTypes.func.isRequired,
-  isCompletable: PropTypes.bool.isRequired,
-  style: PropTypes.number.isRequired
+  isCompletable: PropTypes.bool.isRequired
 }
 
 const styles = StyleSheet.create({
