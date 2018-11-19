@@ -7,6 +7,72 @@ Routine management system is a mobile application to handle routines of children
 
 - __Customizable.__ New images are simple to upload, and existing icon packs provide ample options to customize every aspect of the game. The abiliity to easily change colors allows for total customization, making routine management system suitable for the target audience.
 
+## How To
+
+### Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine. See deployment for notes on how to deploy the project on a live system.
+
+#### Setup Django serve
+**Disclaimer:**
+The following notes are intended to help you set up the Django development environment in Ubuntu, if you use another OS or you want jungle instead please search on your own. 
+
+*  Use [pyenv](https://github.com/pyenv/pyenv) and set up a new virtual environment for python 3.7:
+```
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+xz-utils tk-dev libffi-dev liblzma-dev
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+pyenv install 3.7.0
+pyenv global 3.7.0
+pyenv virtualenv LDSO
+pyenv activate LDSO
+
+```
+* Install mysql stuff:
+```
+sudo apt-get install mysql-server
+sudo apt-get install libmysqlclient-dev
+```
+
+* Install requirements
+```
+pyenv activate LDSO
+cd your/path/t4g2/server
+pip install -r requirements.txt
+```
+
+* Install [docker](https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-18-04-pt) and [docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04) (links are tutorials)
+
+#### How to use:
+
+Development Recommended Way - Running only db on docker:
+``` 
+pyenv activate LDSO
+cd your/path/t4g2/server/db-on-docker
+docker-compose up
+cd your/path/t4g2/server
+cat dev.env > .env (copies the content of dev.env to .env, you may want to save .env content first)
+python manage.py runserver 
+open http://127.0.0.1:8000/routine-manager and enjoy
+```
+Anohter way - Run django and db on docker:
+``` 
+cd your/path/t4g2/server
+docker-compose up
+open http://127.0.0.1:8000/routine-manager and enjoy
+```
+
+#### Deploy the project
+
+In the folder of the project (t4g2):
+
+```
+cd app
+npm install
+npm start ('expo start' can also be used)
+```
+
 
 ## Meet the team
 
