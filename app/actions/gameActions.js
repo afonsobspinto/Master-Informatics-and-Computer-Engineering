@@ -33,3 +33,10 @@ export function nextActivity () {
     type: gameTypes.nextActivity
   }
 }
+
+export function addCustomActivity (routineTitle, activity) {
+  return {
+    type: gameTypes.addCustomActivity,
+    payload: { routineTitle, activity }
+  }
+}

@@ -27,3 +27,10 @@ export function toggleActivityTimer () {
     payload: null
   }
 }
+
+export function toggleRoutinePlayType () {
+  return {
+    type: settingTypes.toggleRoutinePlayType,
+    payload: null
+  }
+}

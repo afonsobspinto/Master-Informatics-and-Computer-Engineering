@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import { Button, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import { toggleActivityProgressType, toggleActivityTimer } from '../actions/settingsActions'
+import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType } from '../actions/settingsActions'
 
 class HomeScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+          title={'Parent Screen'}
+          onPress={() => { this.props.navigation.navigate('ParentScreen') }}
+        />
+        <Text />
         <Button
           title={`Progress: ${this.props.activityProgressType}`}
           onPress={this.props.toggleActivityProgressType}
@@ -18,6 +23,11 @@ class HomeScreen extends React.Component {
           title={`Timer: ${this.props.activityShowTimer}`}
           onPress={this.props.toggleActivityTimer}
         />
+        <Text />
+        <Button
+          title={`Routine: ${this.props.routinePlayType}`}
+          onPress={this.props.toggleRoutinePlayType}
+        />
       </View>
     )
   }
@@ -26,17 +36,22 @@ class HomeScreen extends React.Component {
 export default connect(
   state => ({
     activityProgressType: state.settings.activityProgressType,
-    activityShowTimer: state.settings.activityShowTimer
+    activityShowTimer: state.settings.activityShowTimer,
+    routinePlayType: state.settings.routinePlayType
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
-    toggleActivityTimer: showTimer => dispatch(toggleActivityTimer(showTimer))
+    toggleActivityTimer: () => dispatch(toggleActivityTimer()),
+    toggleRoutinePlayType: () => dispatch(toggleRoutinePlayType())
   })
 )(HomeScreen)
 
 HomeScreen.propTypes = {
   activityProgressType: PropTypes.string.isRequired,
   activityShowTimer: PropTypes.bool.isRequired,
+  routinePlayType: PropTypes.string.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
-  toggleActivityTimer: PropTypes.func.isRequired
+  toggleActivityTimer: PropTypes.func.isRequired,
+  toggleRoutinePlayType: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 }

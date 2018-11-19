@@ -3,7 +3,8 @@ import { settingTypes } from '../actions/actionTypes'
 const initialState = {
   activityProgressType: 'bar',
   activityShowTimer: false,
-  visualStyle: 'cartoon'
+  visualStyle: 'cartoon',
+  routinePlayType: 'choose'
 }
 
 export default function (state = initialState, { type, payload }) {
@@ -11,15 +12,13 @@ export default function (state = initialState, { type, payload }) {
     case settingTypes.setSettings:
       return { ...state, ...payload }
     case settingTypes.toggleActivityProgressType:
-      if (state.activityProgressType === 'bar') {
-        return { ...state, activityProgressType: 'clock' }
-      } else {
-        return { ...state, activityProgressType: 'bar' }
-      }
+      return { ...state, activityProgressType: state.activityProgressType === 'bar' ? 'clock' : 'bar' }
     case settingTypes.changeVisualStyle:
       return { ...state, visualStyle: payload }
     case settingTypes.toggleActivityTimer:
       return { ...state, activityShowTimer: !state.activityShowTimer }
+    case settingTypes.toggleRoutinePlayType:
+      return { ...state, routinePlayType: state.routinePlayType === 'choose' ? 'auto' : 'choose' }
     default:
       return state
   }
