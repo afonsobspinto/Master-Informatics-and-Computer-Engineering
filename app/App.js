@@ -1,12 +1,16 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation'
-import HomeScreen from './screens/HomeScreen'
 import PropTypes from 'prop-types'
-import ActivityScreen from './screens/ActivityScreen'
-import { _setDefault } from './helpers/Settings'
-import ChooseRoutineScreen from './screens/ChooseRoutineScreen'
-import ChooseActivityScreen from './screens/ChooseActivityScreen'
 import { AppLoading, Font } from 'expo'
+
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import { setSettings } from './actions/settingsActions'
+
+import { _retrieveJson } from './helpers/LocalStore'
+
+import AppNavigator from './navigation/AppNavigator'
+
+const store = configureStore()
 
 export default class App extends React.Component {
   state = {
@@ -24,7 +28,9 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <AppStackNavigator />
+        <Provider store={store}>
+          <AppNavigator />
+        </Provider>
       )
     }
   }
@@ -34,7 +40,9 @@ export default class App extends React.Component {
       Font.loadAsync({
         'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf')
       }),
-      _setDefault()
+      _retrieveJson('settings')
+        .then(res => store.dispatch(setSettings(res)))
+        .catch(console.log('No default settings stored'))
     ])
   }
 
@@ -50,10 +58,3 @@ export default class App extends React.Component {
 App.propTypes = {
   skipLoadingScreen: PropTypes.bool
 }
-
-const AppStackNavigator = createStackNavigator({
-  Home: HomeScreen,
-  Activity: ActivityScreen,
-  ChooseRoutineScreen: ChooseRoutineScreen,
-  ChooseActivityScreen: ChooseActivityScreen
-})
