@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
-import { buttonStyle } from '../../styles/Activity.style'
+import activityStyles, { buttonStyle } from '../../styles/Activity.style'
 import { red } from '../../styles/Colors'
 import Images from '../../assets/images/images'
 import Layout from '../../constants/Layout'
@@ -64,7 +64,7 @@ export class CancelButton extends React.Component {
         }
         <TouchableOpacity
           activeOpacity={0.8}
-          style={[styles.button, this.props.style]}
+          style={[styles.button, activityStyles.smallButton]}
           onPressIn={this.handleButtonPress}
           onPressOut={this.handleButtonRelease} >
           <Image
@@ -78,8 +78,7 @@ export class CancelButton extends React.Component {
 }
 
 CancelButton.propTypes = {
-  cancelActivity: PropTypes.func.isRequired,
-  style: PropTypes.number.isRequired
+  cancelActivity: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import CardCarousel from '../components/Carousel/CardCarousel'
 import styles from '../styles/CardCarousel.style'
 
-class ChooseRoutineScreen extends React.Component {
+export class ChooseRoutineScreen extends React.Component {
   constructor (props) {
     super(props)
     this.chooseActivities = this.chooseActivities.bind(this)

@@ -10,7 +10,7 @@ import { ShopTitle } from '../components/MainMenu/ShopTitle'
 import styles from '../styles/Shop.style'
 import { purchaseItem } from '../actions/childActions'
 
-class ShopScreen extends Component {
+export class ShopScreen extends Component {
   render () {
     let shopItems = []
 

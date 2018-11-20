@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import { buttonStyle } from '../../styles/Activity.style'
+import activityStyles, { buttonStyle } from '../../styles/Activity.style'
 import { yellow } from '../../styles/Colors'
 import Images from '../../assets/images/images'
 
@@ -10,7 +10,7 @@ export class PauseButton extends React.Component {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        style={[styles.button, this.props.style]}
+        style={[styles.button, activityStyles.smallButton]}
         onPress={this.props.isPaused ? this.props.resumeActivity : this.props.pauseActivity} >
         <Image
           style={styles.image}
@@ -24,8 +24,7 @@ export class PauseButton extends React.Component {
 PauseButton.propTypes = {
   resumeActivity: PropTypes.func.isRequired,
   pauseActivity: PropTypes.func.isRequired,
-  isPaused: PropTypes.bool.isRequired,
-  style: PropTypes.number.isRequired
+  isPaused: PropTypes.bool.isRequired
 }
 
 const styles = StyleSheet.create({

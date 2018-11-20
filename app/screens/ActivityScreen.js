@@ -15,7 +15,7 @@ import Images from '../assets/images/images'
 
 import styles from '../styles/Activity.style'
 
-class ActivityScreen extends Component {
+export class ActivityScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -108,9 +108,9 @@ class ActivityScreen extends Component {
         {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
           {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
-          <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
-          <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
-          <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
+          <CancelButton cancelActivity={this.cancelActivity} />
+          <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
+          <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
         </View>}
         <RewardsModal
           currentActivity={this.props.currentActivity}
