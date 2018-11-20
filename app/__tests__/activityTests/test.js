@@ -1,8 +1,12 @@
 import 'react-native'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { configure, shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import Adapter from 'enzyme-adapter-react-16'
 
 import { ActivityScreen } from '../../screens/ActivityScreen'
+
+configure({ adapter: new Adapter() })
 
 describe('ActivityScreen snapshot', () => {
   const activities = [
@@ -90,7 +94,7 @@ describe('ActivityScreen snapshot', () => {
   ]
 
   it('renders ActivityScreen correctly with bar & without timer', async () => {
-    const tree = renderer.create(<ActivityScreen
+    const wrapper = shallow(<ActivityScreen
       navigation={{}}
       progressType={'bar'}
       showTimer={false}
@@ -99,12 +103,12 @@ describe('ActivityScreen snapshot', () => {
       activity={activities[0]}
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
-      addStars={jest.fn()} />).toJSON()
-    expect(tree).toMatchSnapshot('./__snapshots__/snap1.js.snap')
+      addStars={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap1.js.snap')
   })
 
   it('renders ActivityScreen correctly with bar & with timer', async () => {
-    const tree = renderer.create(<ActivityScreen
+    const wrapper = shallow(<ActivityScreen
       navigation={{}}
       progressType={'bar'}
       showTimer
@@ -113,12 +117,12 @@ describe('ActivityScreen snapshot', () => {
       activity={activities[0]}
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
-      addStars={jest.fn()} />).toJSON()
-    expect(tree).toMatchSnapshot('./__snapshots__/snap2.js.snap')
+      addStars={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap2.js.snap')
   })
 
   it('renders ActivityScreen correctly with clock & without timer', async () => {
-    const tree = renderer.create(<ActivityScreen
+    const wrapper = shallow(<ActivityScreen
       navigation={{}}
       progressType={'clock'}
       showTimer={false}
@@ -127,12 +131,12 @@ describe('ActivityScreen snapshot', () => {
       activity={activities[0]}
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
-      addStars={jest.fn()} />).toJSON()
-    expect(tree).toMatchSnapshot('./__snapshots__/snap3.js.snap')
+      addStars={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap3.js.snap')
   })
 
   it('renders ActivityScreen correctly with clock & with timer', async () => {
-    const tree = renderer.create(<ActivityScreen
+    const wrapper = shallow(<ActivityScreen
       navigation={{}}
       progressType={'clock'}
       showTimer
@@ -141,7 +145,7 @@ describe('ActivityScreen snapshot', () => {
       activity={activities[0]}
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
-      addStars={jest.fn()} />).toJSON()
-    expect(tree).toMatchSnapshot('./__snapshots__/snap4.js.snap')
+      addStars={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap4.js.snap')
   })
 })

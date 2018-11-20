@@ -1,338 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`] = `
-<View
+<Component
   style={
     Object {
       "backgroundColor": "#fff7ae",
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flexDirection": "column",
-        "height": "100%",
-      }
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <CardCarousel
+    data={
+      Array [
+        Object {
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
+        Object {
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
     }
-  >
-    <View
-      style={
-        Object {
-          "flexGrow": 1,
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "height": 66.7,
-          "justifyContent": "center",
-          "marginBottom": 10,
-        }
-      }
-    >
-      <View
-        pointerEvents="box-none"
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "paddingHorizontal": 20,
-              "paddingVertical": 30,
-            },
-            Object {
-              "flexDirection": "row",
-            },
-            Object {
-              "paddingVertical": 0,
-            },
-          ]
-        }
-      >
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "marginHorizontal": 8,
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgba(0, 0, 0, 0.75)",
-                "borderRadius": 5,
-                "height": 10,
-                "opacity": 0.5,
-                "transform": Array [
-                  Object {
-                    "scale": 0.5,
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-      </View>
-    </View>
-  </View>
-</View>
+    onPress={[Function]}
+  />
+</Component>
 `;

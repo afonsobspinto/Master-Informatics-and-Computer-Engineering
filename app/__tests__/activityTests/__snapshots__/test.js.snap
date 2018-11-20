@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & with timer: ./__snapshots__/snap2.js.snap 1`] = `
-<View
+<Component
   style={
     Array [
       Object {
@@ -14,6 +14,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
     ]
   }
 >
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
   <Image
     resizeMode="cover"
     source={1}
@@ -26,7 +31,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
       }
     }
   />
-  <View
+  <Component
     style={
       Object {
         "padding": 40.019999999999996,
@@ -56,8 +61,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
     >
       Fazer a cama
     </Text>
-  </View>
-  <View
+  </Component>
+  <Component
     style={
       Object {
         "alignItems": "flex-end",
@@ -72,256 +77,126 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
       }
     }
   >
-    <View
-      style={
+    <ProgressBar
+      activityTimes={
         Object {
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexGrow": 1,
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "overflow": "hidden",
-          "position": "relative",
+          "goal": 60,
+          "max": 120,
+          "min": 0,
         }
       }
-    >
-      <View
-        animated={true}
-        animationConfig={
-          Object {
-            "bounciness": 0,
-          }
-        }
-        animationType="spring"
-        indeterminate={false}
-        onLayout={[Function]}
-        progress={0}
-        style={
-          Array [
-            Object {
-              "backgroundColor": undefined,
-              "borderColor": "#474647",
-              "borderRadius": 0,
-              "borderWidth": 0,
-              "overflow": "hidden",
-              "width": null,
-            },
-            undefined,
-          ]
-        }
-        useNativeDriver={false}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "#474647",
-              "height": 106.71999999999998,
-              "transform": Array [
-                Object {
-                  "translateX": -0,
-                },
-                Object {
-                  "translateX": -0,
-                },
-                Object {
-                  "scaleX": 0.0001,
-                },
-              ],
-            }
-          }
-        />
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "left": "0%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-      <View
-        style={
-          Array [
-            Object {
-              "left": "50%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-      <View
-        style={
-          Array [
-            Object {
-              "left": "75%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#fff",
-            "fontFamily": "LinotteBold",
-            "fontSize": 20,
-            "left": 40.019999999999996,
-            "padding": 6,
-            "position": "absolute",
-            "textShadowColor": "rgba(0, 0, 0, 0.4)",
-            "textShadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "textShadowRadius": 5,
-          }
-        }
-      >
-        0:00
-      </Text>
-    </View>
-    <View>
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "aspectRatio": 1,
-            "backgroundColor": "#e63b2e",
-            "borderRadius": 53.35999999999999,
-            "elevation": 6,
-            "flexDirection": "row",
-            "height": 106.71999999999998,
-            "justifyContent": "center",
-            "marginRight": 20.009999999999998,
-            "marginTop": 10,
-            "opacity": 1,
-          }
-        }
-      >
-        <Image
-          resizeMode="contain"
-          source={1}
-          style={
-            Object {
-              "height": "35%",
-              "tintColor": "#fff",
-              "width": "35%",
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+      elapsedTime={0}
+      isPaused={false}
+      showTimer={true}
+    />
+    <CancelButton
+      cancelActivity={[Function]}
+    />
+    <PauseButton
+      isPaused={false}
+      pauseActivity={[Function]}
+      resumeActivity={[Function]}
+    />
+    <CompleteButton
+      completeActivity={[Function]}
+      isCompletable={false}
+    />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#dba159",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "35%",
-            "tintColor": "#fff",
-            "width": "35%",
-          }
-        }
-      />
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 80.03999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 160.07999999999998,
-          "justifyContent": "center",
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "50%",
-            "tintColor": "#fff",
-            "width": "50%",
-          }
-        }
-      />
-    </View>
-  </View>
-  <View />
-</View>
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
 `;
 
 exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & without timer: ./__snapshots__/snap1.js.snap 1`] = `
-<View
+<Component
   style={
     Array [
       Object {
@@ -334,6 +209,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
     ]
   }
 >
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
   <Image
     resizeMode="cover"
     source={1}
@@ -346,7 +226,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
       }
     }
   />
-  <View
+  <Component
     style={
       Object {
         "padding": 40.019999999999996,
@@ -376,8 +256,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
     >
       Fazer a cama
     </Text>
-  </View>
-  <View
+  </Component>
+  <Component
     style={
       Object {
         "alignItems": "flex-end",
@@ -392,233 +272,126 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
       }
     }
   >
-    <View
-      style={
+    <ProgressBar
+      activityTimes={
         Object {
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexGrow": 1,
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "overflow": "hidden",
-          "position": "relative",
+          "goal": 60,
+          "max": 120,
+          "min": 0,
         }
       }
-    >
-      <View
-        animated={true}
-        animationConfig={
-          Object {
-            "bounciness": 0,
-          }
-        }
-        animationType="spring"
-        indeterminate={false}
-        onLayout={[Function]}
-        progress={0}
-        style={
-          Array [
-            Object {
-              "backgroundColor": undefined,
-              "borderColor": "#474647",
-              "borderRadius": 0,
-              "borderWidth": 0,
-              "overflow": "hidden",
-              "width": null,
-            },
-            undefined,
-          ]
-        }
-        useNativeDriver={false}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "#474647",
-              "height": 106.71999999999998,
-              "transform": Array [
-                Object {
-                  "translateX": -0,
-                },
-                Object {
-                  "translateX": -0,
-                },
-                Object {
-                  "scaleX": 0.0001,
-                },
-              ],
-            }
-          }
-        />
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "left": "0%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-      <View
-        style={
-          Array [
-            Object {
-              "left": "50%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-      <View
-        style={
-          Array [
-            Object {
-              "left": "75%",
-            },
-            Object {
-              "borderRightColor": "#000",
-              "borderRightWidth": 2,
-              "height": 106.71999999999998,
-              "opacity": 0.5,
-              "position": "absolute",
-            },
-          ]
-        }
-      />
-    </View>
-    <View>
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "aspectRatio": 1,
-            "backgroundColor": "#e63b2e",
-            "borderRadius": 53.35999999999999,
-            "elevation": 6,
-            "flexDirection": "row",
-            "height": 106.71999999999998,
-            "justifyContent": "center",
-            "marginRight": 20.009999999999998,
-            "marginTop": 10,
-            "opacity": 1,
-          }
-        }
-      >
-        <Image
-          resizeMode="contain"
-          source={1}
-          style={
-            Object {
-              "height": "35%",
-              "tintColor": "#fff",
-              "width": "35%",
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+      elapsedTime={0}
+      isPaused={false}
+      showTimer={false}
+    />
+    <CancelButton
+      cancelActivity={[Function]}
+    />
+    <PauseButton
+      isPaused={false}
+      pauseActivity={[Function]}
+      resumeActivity={[Function]}
+    />
+    <CompleteButton
+      completeActivity={[Function]}
+      isCompletable={false}
+    />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#dba159",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "35%",
-            "tintColor": "#fff",
-            "width": "35%",
-          }
-        }
-      />
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 80.03999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 160.07999999999998,
-          "justifyContent": "center",
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "50%",
-            "tintColor": "#fff",
-            "width": "50%",
-          }
-        }
-      />
-    </View>
-  </View>
-  <View />
-</View>
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
 `;
 
 exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & with timer: ./__snapshots__/snap4.js.snap 1`] = `
-<View
+<Component
   style={
     Array [
       Object {
@@ -631,6 +404,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
     ]
   }
 >
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
   <Image
     resizeMode="cover"
     source={1}
@@ -643,7 +421,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
       }
     }
   />
-  <View
+  <Component
     style={
       Object {
         "padding": 40.019999999999996,
@@ -673,161 +451,20 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
     >
       Fazer a cama
     </Text>
-  </View>
-  <View
-    style={
+  </Component>
+  <ProgressClock
+    activityTimes={
       Object {
-        "alignItems": "center",
-        "backgroundColor": "black",
-        "borderRadius": 166.07999999999998,
-        "bottom": 40.019999999999996,
-        "elevation": 6,
-        "height": 332.15999999999997,
-        "justifyContent": "center",
-        "left": 40.019999999999996,
-        "position": "absolute",
-        "width": 332.15999999999997,
+        "goal": 60,
+        "max": 120,
+        "min": 0,
       }
     }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-            "overflow": "hidden",
-          },
-          undefined,
-        ]
-      }
-    >
-      <ARTSurfaceView
-        style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "0deg",
-                },
-              ],
-            },
-            Object {
-              "height": 320.15999999999997,
-              "width": 320.15999999999997,
-            },
-          ]
-        }
-      >
-        <ARTShape
-          d={
-            Array [
-              0,
-              160.07999999999998,
-              80.03999999999999,
-              4,
-              160.07999999999998,
-              160.07999999999998,
-              80.03999999999999,
-              -1.5707963267948966,
-              1.5707963267948966,
-              1,
-              4,
-              160.07999999999998,
-              160.07999999999998,
-              80.03999999999999,
-              1.5707963267948966,
-              -1.5707963267948966,
-              1,
-              1,
-            ]
-          }
-          fill={null}
-          opacity={1}
-          stroke={
-            Array [
-              0.7725490196078432,
-              0.796078431372549,
-              0.8274509803921568,
-              1,
-            ]
-          }
-          strokeCap={0}
-          strokeDash={null}
-          strokeJoin={1}
-          strokeWidth={160.07999999999998}
-          transform={
-            Array [
-              1,
-              0,
-              0,
-              1,
-              0,
-              0,
-            ]
-          }
-        />
-        <ARTShape
-          d={
-            Array [
-              0,
-              160.07999999999998,
-              80.03999999999999,
-              2,
-              160.07999999999998,
-              80.03999999999999,
-            ]
-          }
-          fill={null}
-          opacity={1}
-          stroke={
-            Array [
-              0.2784313725490196,
-              0.27450980392156865,
-              0.2784313725490196,
-              1,
-            ]
-          }
-          strokeCap={0}
-          strokeDash={null}
-          strokeJoin={1}
-          strokeWidth={160.07999999999998}
-          transform={
-            Array [
-              1,
-              0,
-              0,
-              1,
-              0,
-              0,
-            ]
-          }
-        />
-      </ARTSurfaceView>
-    </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#fff",
-          "fontFamily": "LinotteBold",
-          "fontSize": 20,
-          "padding": 6,
-          "position": "absolute",
-          "textShadowColor": "rgba(0, 0, 0, 0.4)",
-          "textShadowOffset": Object {
-            "height": 1,
-            "width": 1,
-          },
-          "textShadowRadius": 5,
-        }
-      }
-    >
-      0:00
-    </Text>
-  </View>
-  <View
+    elapsedTime={0}
+    isPaused={false}
+    showTimer={true}
+  />
+  <Component
     style={
       Object {
         "alignItems": "flex-end",
@@ -842,123 +479,114 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
       }
     }
   >
-    <View>
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "aspectRatio": 1,
-            "backgroundColor": "#e63b2e",
-            "borderRadius": 53.35999999999999,
-            "elevation": 6,
-            "flexDirection": "row",
-            "height": 106.71999999999998,
-            "justifyContent": "center",
-            "marginRight": 20.009999999999998,
-            "marginTop": 10,
-            "opacity": 1,
-          }
-        }
-      >
-        <Image
-          resizeMode="contain"
-          source={1}
-          style={
-            Object {
-              "height": "35%",
-              "tintColor": "#fff",
-              "width": "35%",
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+    <CancelButton
+      cancelActivity={[Function]}
+    />
+    <PauseButton
+      isPaused={false}
+      pauseActivity={[Function]}
+      resumeActivity={[Function]}
+    />
+    <CompleteButton
+      completeActivity={[Function]}
+      isCompletable={false}
+    />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#dba159",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "35%",
-            "tintColor": "#fff",
-            "width": "35%",
-          }
-        }
-      />
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 80.03999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 160.07999999999998,
-          "justifyContent": "center",
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "50%",
-            "tintColor": "#fff",
-            "width": "50%",
-          }
-        }
-      />
-    </View>
-  </View>
-  <View />
-</View>
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
 `;
 
 exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & without timer: ./__snapshots__/snap3.js.snap 1`] = `
-<View
+<Component
   style={
     Array [
       Object {
@@ -971,6 +599,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
     ]
   }
 >
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
   <Image
     resizeMode="cover"
     source={1}
@@ -983,7 +616,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
       }
     }
   />
-  <View
+  <Component
     style={
       Object {
         "padding": 40.019999999999996,
@@ -1013,139 +646,20 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
     >
       Fazer a cama
     </Text>
-  </View>
-  <View
-    style={
+  </Component>
+  <ProgressClock
+    activityTimes={
       Object {
-        "alignItems": "center",
-        "backgroundColor": "black",
-        "borderRadius": 166.07999999999998,
-        "bottom": 40.019999999999996,
-        "elevation": 6,
-        "height": 332.15999999999997,
-        "justifyContent": "center",
-        "left": 40.019999999999996,
-        "position": "absolute",
-        "width": 332.15999999999997,
+        "goal": 60,
+        "max": 120,
+        "min": 0,
       }
     }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-            "overflow": "hidden",
-          },
-          undefined,
-        ]
-      }
-    >
-      <ARTSurfaceView
-        style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "0deg",
-                },
-              ],
-            },
-            Object {
-              "height": 320.15999999999997,
-              "width": 320.15999999999997,
-            },
-          ]
-        }
-      >
-        <ARTShape
-          d={
-            Array [
-              0,
-              160.07999999999998,
-              80.03999999999999,
-              4,
-              160.07999999999998,
-              160.07999999999998,
-              80.03999999999999,
-              -1.5707963267948966,
-              1.5707963267948966,
-              1,
-              4,
-              160.07999999999998,
-              160.07999999999998,
-              80.03999999999999,
-              1.5707963267948966,
-              -1.5707963267948966,
-              1,
-              1,
-            ]
-          }
-          fill={null}
-          opacity={1}
-          stroke={
-            Array [
-              0.7725490196078432,
-              0.796078431372549,
-              0.8274509803921568,
-              1,
-            ]
-          }
-          strokeCap={0}
-          strokeDash={null}
-          strokeJoin={1}
-          strokeWidth={160.07999999999998}
-          transform={
-            Array [
-              1,
-              0,
-              0,
-              1,
-              0,
-              0,
-            ]
-          }
-        />
-        <ARTShape
-          d={
-            Array [
-              0,
-              160.07999999999998,
-              80.03999999999999,
-              2,
-              160.07999999999998,
-              80.03999999999999,
-            ]
-          }
-          fill={null}
-          opacity={1}
-          stroke={
-            Array [
-              0.2784313725490196,
-              0.27450980392156865,
-              0.2784313725490196,
-              1,
-            ]
-          }
-          strokeCap={0}
-          strokeDash={null}
-          strokeJoin={1}
-          strokeWidth={160.07999999999998}
-          transform={
-            Array [
-              1,
-              0,
-              0,
-              1,
-              0,
-              0,
-            ]
-          }
-        />
-      </ARTSurfaceView>
-    </View>
-  </View>
-  <View
+    elapsedTime={0}
+    isPaused={false}
+    showTimer={false}
+  />
+  <Component
     style={
       Object {
         "alignItems": "flex-end",
@@ -1160,117 +674,108 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
       }
     }
   >
-    <View>
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "aspectRatio": 1,
-            "backgroundColor": "#e63b2e",
-            "borderRadius": 53.35999999999999,
-            "elevation": 6,
-            "flexDirection": "row",
-            "height": 106.71999999999998,
-            "justifyContent": "center",
-            "marginRight": 20.009999999999998,
-            "marginTop": 10,
-            "opacity": 1,
-          }
-        }
-      >
-        <Image
-          resizeMode="contain"
-          source={1}
-          style={
-            Object {
-              "height": "35%",
-              "tintColor": "#fff",
-              "width": "35%",
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+    <CancelButton
+      cancelActivity={[Function]}
+    />
+    <PauseButton
+      isPaused={false}
+      pauseActivity={[Function]}
+      resumeActivity={[Function]}
+    />
+    <CompleteButton
+      completeActivity={[Function]}
+      isCompletable={false}
+    />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#dba159",
-          "borderRadius": 53.35999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 106.71999999999998,
-          "justifyContent": "center",
-          "marginRight": 20.009999999999998,
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "35%",
-            "tintColor": "#fff",
-            "width": "35%",
-          }
-        }
-      />
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
         Object {
-          "alignItems": "center",
-          "aspectRatio": 1,
-          "backgroundColor": "#c5cbd3",
-          "borderRadius": 80.03999999999999,
-          "elevation": 6,
-          "flexDirection": "row",
-          "height": 160.07999999999998,
-          "justifyContent": "center",
-          "opacity": 1,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "50%",
-            "tintColor": "#fff",
-            "width": "50%",
-          }
-        }
-      />
-    </View>
-  </View>
-  <View />
-</View>
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
 `;
