@@ -9,11 +9,12 @@ import { ChildMainMenuScreen } from '../../screens/ChildMainMenuScreen'
 configure({ adapter: new Adapter() })
 
 describe('ChildMainMenuScreen snapshot', () => {
-  it('renders ChildMainMenuScreen correctly', async () => {
+  it('renders ChildMainMenuScreen correctly', () => {
     const wrapper = shallow(<ChildMainMenuScreen
       navigation={{}}
       xp={150}
       level={1} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
   })
 })

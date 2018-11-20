@@ -20,9 +20,6 @@
       }
   },
   "verbose": false,
-  "coverageReporters": [
-    "text"
-  ],
   "reporters": [
     "default",
     "jest-junit"

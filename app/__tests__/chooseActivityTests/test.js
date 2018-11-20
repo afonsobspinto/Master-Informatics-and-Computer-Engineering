@@ -92,11 +92,12 @@ describe('ChooseActivityScreen snapshot', () => {
     }
   ]
 
-  it('renders ChooseActivityScreen correctly', async () => {
+  it('renders ChooseActivityScreen correctly', () => {
     const wrapper = shallow(<ChooseActivityScreen
       navigation={{}}
       activities={activities}
       setCurrentActivity={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
   })
 })

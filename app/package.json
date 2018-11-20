@@ -7,6 +7,7 @@
     "android": "expo start --android --lan",
     "ios": "expo start --ios",
     "eject": "expo eject",
+    "coverage": "node ./node_modules/jest/bin/jest.js --coverage --config jest.config.json",
     "test": "node ./node_modules/jest/bin/jest.js --config jest.config.json --no-cache",
     "lint": "./node_modules/.bin/eslint . --ext .jsx --ext .js",
     "validate": "concurrently \"npm run --silent lint\" \"npm run --silent test\""

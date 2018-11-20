@@ -1,201 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & with timer: ./__snapshots__/snap2.js.snap 1`] = `
-<Component
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#7d84b2",
-      },
-      Object {
-        "flex": 1,
-        "justifyContent": "center",
-      },
-    ]
-  }
->
-  <StatusBar
-    animated={false}
-    hidden={true}
-    showHideTransition="fade"
-  />
-  <Image
-    resizeMode="cover"
-    source={1}
-    style={
-      Object {
-        "alignSelf": "center",
-        "height": "100%",
-        "position": "absolute",
-        "width": "100%",
-      }
-    }
-  />
-  <Component
-    style={
-      Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
-        "position": "absolute",
-        "top": 0,
-      }
-    }
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#fff",
-          "fontFamily": "LinotteBold",
-          "fontSize": 50,
-          "textShadowColor": "rgba(0, 0, 0, 0.6)",
-          "textShadowOffset": Object {
-            "height": 2,
-            "width": 2,
-          },
-          "textShadowRadius": 15,
-        }
-      }
-    >
-      Fazer a cama
-    </Text>
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignItems": "flex-end",
-        "bottom": 0,
-        "elevation": 1,
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
-        "left": 0,
-        "padding": 40.019999999999996,
-        "position": "absolute",
-        "width": "100%",
-      }
-    }
-  >
-    <ProgressBar
-      activityTimes={
-        Object {
-          "goal": 60,
-          "max": 120,
-          "min": 0,
-        }
-      }
-      elapsedTime={0}
-      isPaused={false}
-      showTimer={true}
-    />
-    <CancelButton
-      cancelActivity={[Function]}
-    />
-    <PauseButton
-      isPaused={false}
-      pauseActivity={[Function]}
-      resumeActivity={[Function]}
-    />
-    <CompleteButton
-      completeActivity={[Function]}
-      isCompletable={false}
-    />
-  </Component>
-  <RewardsModal
-    activities={
-      Array [
-        Object {
-          "color": "#7d84b2",
-          "image": "bed",
-          "photo": "bedroom",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 0,
-          },
-          "title": "Fazer a cama",
-        },
-        Object {
-          "color": "#0e79b2",
-          "image": "toothbrush",
-          "time": Object {
-            "goal": 10,
-            "max": 15,
-            "min": 1,
-          },
-          "title": "Lavar os dentes",
-        },
-        Object {
-          "color": "#7fb800",
-          "image": "socks",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Vestir",
-        },
-        Object {
-          "color": "#37c1f0",
-          "image": "shower",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Tomar banho",
-        },
-        Object {
-          "color": "#e43f6f",
-          "image": "bag",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Preparar a mochila",
-        },
-        Object {
-          "color": "#4bb3fd",
-          "image": "sneakers",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Calçar os sapatos",
-        },
-        Object {
-          "color": "#ff7f11",
-          "image": "breakfast",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Tomar o pequeno almoço",
-        },
-        Object {
-          "color": "#b0db43",
-          "image": "comb",
-          "time": Object {
-            "goal": 60,
-            "max": 120,
-            "min": 10,
-          },
-          "title": "Pentear cabelo",
-        },
-      ]
-    }
-    backPress={[Function]}
-    currentActivity={0}
-    nextPress={[Function]}
-  />
-</Component>
-`;
-
-exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & without timer: ./__snapshots__/snap1.js.snap 1`] = `
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
 <Component
   style={
     Array [
@@ -390,7 +195,202 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
 </Component>
 `;
 
-exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & with timer: ./__snapshots__/snap4.js.snap 1`] = `
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#7d84b2",
+      },
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <Image
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "padding": 40.019999999999996,
+        "paddingLeft": 72.036,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#fff",
+          "fontFamily": "LinotteBold",
+          "fontSize": 50,
+          "textShadowColor": "rgba(0, 0, 0, 0.6)",
+          "textShadowOffset": Object {
+            "height": 2,
+            "width": 2,
+          },
+          "textShadowRadius": 15,
+        }
+      }
+    >
+      Fazer a cama
+    </Text>
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "bottom": 0,
+        "elevation": 1,
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "left": 0,
+        "padding": 40.019999999999996,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <ProgressBar
+      activityTimes={
+        Object {
+          "goal": 60,
+          "max": 120,
+          "min": 0,
+        }
+      }
+      elapsedTime={0}
+      isPaused={false}
+      showTimer={true}
+    />
+    <CancelButton
+      cancelActivity={[Function]}
+    />
+    <PauseButton
+      isPaused={false}
+      pauseActivity={[Function]}
+      resumeActivity={[Function]}
+    />
+    <CompleteButton
+      completeActivity={[Function]}
+      isCompletable={false}
+    />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
+        Object {
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
+        Object {
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
+`;
+
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
 <Component
   style={
     Array [
@@ -585,7 +585,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
 </Component>
 `;
 
-exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & without timer: ./__snapshots__/snap3.js.snap 1`] = `
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
 <Component
   style={
     Array [
@@ -657,7 +657,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
     }
     elapsedTime={0}
     isPaused={false}
-    showTimer={false}
+    showTimer={true}
   />
   <Component
     style={
@@ -686,6 +686,161 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
       completeActivity={[Function]}
       isCompletable={false}
     />
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
+        Object {
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
+        Object {
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    nextPress={[Function]}
+  />
+</Component>
+`;
+
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#7d84b2",
+      },
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <Image
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "padding": 40.019999999999996,
+        "paddingLeft": 72.036,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#fff",
+          "fontFamily": "LinotteBold",
+          "fontSize": 50,
+          "textShadowColor": "rgba(0, 0, 0, 0.6)",
+          "textShadowOffset": Object {
+            "height": 2,
+            "width": 2,
+          },
+          "textShadowRadius": 15,
+        }
+      }
+    >
+      Fazer a cama
+    </Text>
   </Component>
   <RewardsModal
     activities={

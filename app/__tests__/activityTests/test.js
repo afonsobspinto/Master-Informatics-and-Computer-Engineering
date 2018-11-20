@@ -93,9 +93,9 @@ describe('ActivityScreen snapshot', () => {
     }
   ]
 
-  it('renders ActivityScreen correctly with bar & without timer', async () => {
+  it('renders ActivityScreen correctly', () => {
     const wrapper = shallow(<ActivityScreen
-      navigation={{}}
+      navigation={{ navigate: jest.fn(), popToTop: jest.fn(), replace: jest.fn() }}
       progressType={'bar'}
       showTimer={false}
       currentActivity={0}
@@ -104,48 +104,39 @@ describe('ActivityScreen snapshot', () => {
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
       addStars={jest.fn()} />)
-    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap1.js.snap')
-  })
-
-  it('renders ActivityScreen correctly with bar & with timer', async () => {
-    const wrapper = shallow(<ActivityScreen
-      navigation={{}}
-      progressType={'bar'}
-      showTimer
-      currentActivity={0}
-      activities={activities}
-      activity={activities[0]}
-      setActivityStatus={jest.fn()}
-      nextActivity={jest.fn()}
-      addStars={jest.fn()} />)
-    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap2.js.snap')
-  })
-
-  it('renders ActivityScreen correctly with clock & without timer', async () => {
-    const wrapper = shallow(<ActivityScreen
-      navigation={{}}
-      progressType={'clock'}
-      showTimer={false}
-      currentActivity={0}
-      activities={activities}
-      activity={activities[0]}
-      setActivityStatus={jest.fn()}
-      nextActivity={jest.fn()}
-      addStars={jest.fn()} />)
-    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap3.js.snap')
-  })
-
-  it('renders ActivityScreen correctly with clock & with timer', async () => {
-    const wrapper = shallow(<ActivityScreen
-      navigation={{}}
-      progressType={'clock'}
-      showTimer
-      currentActivity={0}
-      activities={activities}
-      activity={activities[0]}
-      setActivityStatus={jest.fn()}
-      nextActivity={jest.fn()}
-      addStars={jest.fn()} />)
-    expect(toJson(wrapper)).toMatchSnapshot('./__snapshots__/snap4.js.snap')
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ showTimer: true })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ progressType: 'clock' })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ showTimer: true })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().pauseActivity()
+    wrapper.instance().resumeActivity()
+    wrapper.instance().backToMenu()
+    wrapper.instance().cancelActivity()
+    wrapper.instance().completeActivity()
+    wrapper.instance().nextActivity()
+    wrapper.setProps({ activity: {
+      title: 'Fazer a cama',
+      image: 'bed',
+      photo: 'bedroom',
+      color: '#7d84b2',
+      time: {
+        min: 0,
+        max: 120,
+        goal: 60
+      },
+      status: {
+        reward: 0,
+        completed: true,
+        time: 120
+      }
+    } })
+    wrapper.setState({ isPhoto: true })
+    wrapper.instance().backToMenu()
+    wrapper.instance().nextActivity()
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
   })
 })
