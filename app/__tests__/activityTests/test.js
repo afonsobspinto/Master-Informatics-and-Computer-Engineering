@@ -89,10 +89,13 @@ describe('ActivityScreen snapshot', () => {
     }
   ]
 
-  it('renders ActivityScreen correctly with bar & without timer', async () => {
+  jest.useFakeTimers()
+
+  it('renders ActivityScreen correctly with bar & without timer & with vibration feedback', async () => {
     const tree = renderer.create(<ActivityScreen
       navigation={{}}
       progressType={'bar'}
+      activityFeedback={'vibration'}
       showTimer={false}
       currentActivity={0}
       activities={activities}
@@ -103,11 +106,12 @@ describe('ActivityScreen snapshot', () => {
     expect(tree).toMatchSnapshot('./__snapshots__/snap1.js.snap')
   })
 
-  it('renders ActivityScreen correctly with bar & with timer', async () => {
+  it('renders ActivityScreen correctly with bar & without timer & with visual feedback', async () => {
     const tree = renderer.create(<ActivityScreen
       navigation={{}}
       progressType={'bar'}
-      showTimer
+      activityFeedback={'visual'}
+      showTimer={false}
       currentActivity={0}
       activities={activities}
       activity={activities[0]}
@@ -117,10 +121,11 @@ describe('ActivityScreen snapshot', () => {
     expect(tree).toMatchSnapshot('./__snapshots__/snap2.js.snap')
   })
 
-  it('renders ActivityScreen correctly with clock & without timer', async () => {
+  it('renders ActivityScreen correctly with bar & without timer & with sound feedback', async () => {
     const tree = renderer.create(<ActivityScreen
       navigation={{}}
-      progressType={'clock'}
+      progressType={'bar'}
+      activityFeedback={'sound'}
       showTimer={false}
       currentActivity={0}
       activities={activities}
@@ -131,10 +136,11 @@ describe('ActivityScreen snapshot', () => {
     expect(tree).toMatchSnapshot('./__snapshots__/snap3.js.snap')
   })
 
-  it('renders ActivityScreen correctly with clock & with timer', async () => {
+  it('renders ActivityScreen correctly with bar & with timer & with vibration feedback', async () => {
     const tree = renderer.create(<ActivityScreen
       navigation={{}}
-      progressType={'clock'}
+      progressType={'bar'}
+      activityFeedback={'vibration'}
       showTimer
       currentActivity={0}
       activities={activities}
@@ -143,5 +149,125 @@ describe('ActivityScreen snapshot', () => {
       nextActivity={jest.fn()}
       addStars={jest.fn()} />).toJSON()
     expect(tree).toMatchSnapshot('./__snapshots__/snap4.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with bar & with timer & with visual feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'bar'}
+      activityFeedback={'visual'}
+      showTimer
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap5.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with bar & with timer & with sound feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'bar'}
+      activityFeedback={'sound'}
+      showTimer
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap6.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & without timer & with vibration feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'vibration'}
+      showTimer={false}
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap7.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & without timer & with visual feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'visual'}
+      showTimer={false}
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap8.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & without timer & with sound feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'sound'}
+      showTimer={false}
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap9.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & with timer & with vibration feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'vibration'}
+      showTimer
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap10.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & with timer & with visual feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'visual'}
+      showTimer
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap11.js.snap')
+  })
+
+  it('renders ActivityScreen correctly with clock & with timer & with sound feedback', async () => {
+    const tree = renderer.create(<ActivityScreen
+      navigation={{}}
+      progressType={'clock'}
+      activityFeedback={'sound'}
+      showTimer
+      currentActivity={0}
+      activities={activities}
+      activity={activities[0]}
+      setActivityStatus={jest.fn()}
+      nextActivity={jest.fn()}
+      addStars={jest.fn()} />).toJSON()
+    expect(tree).toMatchSnapshot('./__snapshots__/snap12.js.snap')
   })
 })

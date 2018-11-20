@@ -105,9 +105,9 @@ export class ActivityScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
-          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton cancelActivity={this.cancelActivity} />
           <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
@@ -126,6 +126,7 @@ export default connect(
   state => ({
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
+    activityFeedback: state.settings.activityFeedback,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
     currentActivity: state.game.currentActivity
@@ -141,6 +142,7 @@ ActivityScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   progressType: PropTypes.string.isRequired,
   showTimer: PropTypes.bool.isRequired,
+  activityFeedback: PropTypes.string.isRequired,
   currentActivity: PropTypes.number.isRequired,
   activities: PropTypes.array.isRequired,
   activity: PropTypes.object.isRequired,

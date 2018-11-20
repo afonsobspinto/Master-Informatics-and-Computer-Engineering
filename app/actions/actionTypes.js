@@ -3,6 +3,7 @@ export const settingTypes = {
   toggleActivityProgressType: 'settings:toggleActivityProgressType',
   changeVisualStyle: 'settings:changeVisualStyle',
   toggleActivityTimer: 'settings:toggleActivityTimer',
+  toggleActivityFeedback: 'settings:toggleActivityFeedback',
   toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
 }
 
