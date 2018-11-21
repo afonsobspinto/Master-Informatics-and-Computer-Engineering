@@ -19,7 +19,7 @@ export const timerClock = {
   color: '#fff',
   textShadowColor: 'rgba(0, 0, 0, 0.4)',
   textShadowOffset: { width: 1, height: 1 },
-  textShadowRadius: 5,
+  textShadowRadius: 3,
   position: 'absolute',
   padding: 6
 }
@@ -30,7 +30,7 @@ export const timerBar = {
   color: '#fff',
   textShadowColor: 'rgba(0, 0, 0, 0.4)',
   textShadowOffset: { width: 1, height: 1 },
-  textShadowRadius: 5,
+  textShadowRadius: 3,
   position: 'absolute',
   padding: 6,
   left: padding

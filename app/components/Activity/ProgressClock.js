@@ -120,7 +120,7 @@ export class ProgressClock extends React.Component {
           unfilledColor={colors.gray}
           borderWidth={0}
         />
-        {this.props.showTimer && <Timer style={timerClock} elapsedTime={this.props.elapsedTime} />}
+        {this.props.showTimer && <Timer style={timerClock} remainingTime={this.times.max - this.props.elapsedTime} />}
       </Animated.View>
     )
   }
