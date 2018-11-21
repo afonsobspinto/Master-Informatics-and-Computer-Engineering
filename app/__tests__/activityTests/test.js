@@ -97,6 +97,7 @@ describe('ActivityScreen snapshot', () => {
     const wrapper = shallow(<ActivityScreen
       navigation={{ navigate: jest.fn(), popToTop: jest.fn(), replace: jest.fn() }}
       progressType={'bar'}
+      activityFeedback={'vibration'}
       showTimer={false}
       currentActivity={0}
       activities={activities}
@@ -133,10 +134,18 @@ describe('ActivityScreen snapshot', () => {
         time: 120
       }
     } })
-    wrapper.setState({ isPhoto: true })
+    wrapper.setState({ isPhoto: false })
     wrapper.instance().backToMenu()
     wrapper.instance().nextActivity()
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ activityFeedback: 'visual' })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setState({ elapsedTime: 130 })
+    wrapper.instance().completeActivity()
+    wrapper.setState({ elapsedTime: 110 })
+    wrapper.instance().completeActivity()
+    wrapper.setState({ elapsedTime: 70 })
+    wrapper.instance().completeActivity()
     wrapper.unmount()
   })
 })

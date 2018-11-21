@@ -33,10 +33,18 @@ describe('setting actions', () => {
     }
     expect(settingActions.toggleActivityTimer()).toEqual(expectedAction)
   })
+
   it('should create an action to toggle routine play type', () => {
     const expectedAction = {
       type: settingTypes.toggleRoutinePlayType
     }
     expect(settingActions.toggleRoutinePlayType()).toEqual(expectedAction)
+  })
+
+  it('should create an action to toggle activity feedback', () => {
+    const expectedAction = {
+      type: settingTypes.toggleActivityFeedback
+    }
+    expect(settingActions.toggleActivityFeedback()).toEqual(expectedAction)
   })
 })

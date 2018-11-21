@@ -6,6 +6,7 @@ describe('settings reducer', () => {
     expect(settingsReducer(undefined, {})).toEqual({
       activityProgressType: 'bar',
       activityShowTimer: false,
+      activityFeedback: 'visual',
       visualStyle: 'cartoon',
       routinePlayType: 'choose'
     })
@@ -106,6 +107,48 @@ describe('settings reducer', () => {
       }))
       .toEqual({
         routinePlayType: 'auto'
+      })
+  })
+
+  it('should toggle activity feedback', () => {
+    expect(
+      settingsReducer({
+        activityFeedback: 'visual'
+      }, {
+        type: settingTypes.toggleActivityFeedback
+      }))
+      .toEqual({
+        activityFeedback: 'sound'
+      })
+
+    expect(
+      settingsReducer({
+        activityFeedback: 'sound'
+      }, {
+        type: settingTypes.toggleActivityFeedback
+      }))
+      .toEqual({
+        activityFeedback: 'vibration'
+      })
+
+    expect(
+      settingsReducer({
+        activityFeedback: 'vibration'
+      }, {
+        type: settingTypes.toggleActivityFeedback
+      }))
+      .toEqual({
+        activityFeedback: 'visual'
+      })
+
+    expect(
+      settingsReducer({
+        activityFeedback: 'error'
+      }, {
+        type: settingTypes.toggleActivityFeedback
+      }))
+      .toEqual({
+        activityFeedback: 'error'
       })
   })
 })

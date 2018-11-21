@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType } from '../actions/settingsActions'
+import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback } from '../actions/settingsActions'
 
 class HomeScreen extends React.Component {
   render () {
@@ -28,6 +28,11 @@ class HomeScreen extends React.Component {
           title={`Routine: ${this.props.routinePlayType}`}
           onPress={this.props.toggleRoutinePlayType}
         />
+        <Text />
+        <Button
+          title={`Feedback: ${this.props.activityFeedback}`}
+          onPress={this.props.toggleActivityFeedback}
+        />
       </View>
     )
   }
@@ -37,11 +42,13 @@ export default connect(
   state => ({
     activityProgressType: state.settings.activityProgressType,
     activityShowTimer: state.settings.activityShowTimer,
+    activityFeedback: state.settings.activityFeedback,
     routinePlayType: state.settings.routinePlayType
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
-    toggleActivityTimer: () => dispatch(toggleActivityTimer()),
+    toggleActivityTimer: showTimer => dispatch(toggleActivityTimer(showTimer)),
+    toggleActivityFeedback: () => dispatch(toggleActivityFeedback()),
     toggleRoutinePlayType: () => dispatch(toggleRoutinePlayType())
   })
 )(HomeScreen)
@@ -49,9 +56,11 @@ export default connect(
 HomeScreen.propTypes = {
   activityProgressType: PropTypes.string.isRequired,
   activityShowTimer: PropTypes.bool.isRequired,
-  routinePlayType: PropTypes.string.isRequired,
+  activityFeedback: PropTypes.string.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
   toggleActivityTimer: PropTypes.func.isRequired,
+  toggleActivityFeedback: PropTypes.func.isRequired,
+  routinePlayType: PropTypes.string.isRequired,
   toggleRoutinePlayType: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired
 }

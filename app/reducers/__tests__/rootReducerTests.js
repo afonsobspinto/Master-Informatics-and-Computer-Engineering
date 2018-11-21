@@ -12,6 +12,7 @@ describe('root reducer', () => {
       settings: {
         activityProgressType: 'bar',
         activityShowTimer: false,
+        activityFeedback: 'visual',
         visualStyle: 'cartoon',
         routinePlayType: 'choose'
       },

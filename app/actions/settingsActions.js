@@ -26,6 +26,12 @@ export function toggleActivityTimer () {
   }
 }
 
+export function toggleActivityFeedback () {
+  return {
+    type: settingTypes.toggleActivityFeedback
+  }
+}
+
 export function toggleRoutinePlayType () {
   return {
     type: settingTypes.toggleRoutinePlayType
