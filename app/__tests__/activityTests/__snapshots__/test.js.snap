@@ -200,11 +200,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
               "height": 1,
               "width": 1,
             },
-            "textShadowRadius": 5,
+            "textShadowRadius": 3,
           }
         }
       >
-        0:00
+        2:00
       </Text>
     </View>
     <View>
@@ -522,11 +522,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
               "height": 1,
               "width": 1,
             },
-            "textShadowRadius": 5,
+            "textShadowRadius": 3,
           }
         }
       >
-        0:00
+        2:00
       </Text>
     </View>
     <View>
@@ -844,11 +844,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with bar & wit
               "height": 1,
               "width": 1,
             },
-            "textShadowRadius": 5,
+            "textShadowRadius": 3,
           }
         }
       >
-        0:00
+        2:00
       </Text>
     </View>
     <View>
@@ -2066,11 +2066,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
             "height": 1,
             "width": 1,
           },
-          "textShadowRadius": 5,
+          "textShadowRadius": 3,
         }
       }
     >
-      0:00
+      2:00
     </Text>
   </View>
   <View
@@ -2406,11 +2406,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
             "height": 1,
             "width": 1,
           },
-          "textShadowRadius": 5,
+          "textShadowRadius": 3,
         }
       }
     >
-      0:00
+      2:00
     </Text>
   </View>
   <View
@@ -2746,11 +2746,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly with clock & w
             "height": 1,
             "width": 1,
           },
-          "textShadowRadius": 5,
+          "textShadowRadius": 3,
         }
       }
     >
-      0:00
+      2:00
     </Text>
   </View>
   <View
