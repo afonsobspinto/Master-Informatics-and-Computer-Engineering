@@ -170,11 +170,17 @@ describe('ChooseActivityScreen snapshot', () => {
 
   it('renders ChooseActivityScreen correctly', () => {
     const wrapper = shallow(<ChooseRoutineScreen
-      navigation={{}}
+      navigation={{ navigate: jest.fn() }}
       routinePlayType={'auto'}
       routines={routines}
       setCurrentRoutine={jest.fn()}
       nextActivity={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().chooseActivities()
+    wrapper.instance().startRoutine()
+    wrapper.setProps({ routinePlayType: 'choose' })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ routines: [] })
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })
