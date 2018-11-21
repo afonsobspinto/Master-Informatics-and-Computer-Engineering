@@ -1,8 +1,11 @@
 import 'react-native'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
+import { configure, shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import Adapter from 'enzyme-adapter-react-16'
 import { ChooseActivityScreen } from '../../screens/ChooseActivityScreen'
+
+configure({ adapter: new Adapter() })
 
 describe('ChooseActivityScreen snapshot', () => {
   const activities = [
@@ -89,11 +92,13 @@ describe('ChooseActivityScreen snapshot', () => {
     }
   ]
 
-  it('renders ChooseActivityScreen correctly', async () => {
-    const tree = renderer.create(<ChooseActivityScreen
-      navigation={{}}
+  it('renders ChooseActivityScreen correctly', () => {
+    const wrapper = shallow(<ChooseActivityScreen
+      navigation={{ navigate: jest.fn() }}
       activities={activities}
-      setCurrentActivity={jest.fn()} />).toJSON()
-    expect(tree).toMatchSnapshot()
+      setCurrentActivity={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().onPress()
+    wrapper.unmount()
   })
 })

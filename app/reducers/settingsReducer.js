@@ -26,7 +26,7 @@ export default function (state = initialState, { type, payload }) {
       } else if (state.activityFeedback === 'vibration') {
         return { ...state, activityFeedback: 'visual' }
       }
-      break
+      return state
     case settingTypes.toggleRoutinePlayType:
       return { ...state, routinePlayType: state.routinePlayType === 'choose' ? 'auto' : 'choose' }
     default:

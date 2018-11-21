@@ -1,0 +1,21 @@
+// Commented while shop uses random values
+import 'react-native'
+import React from 'react'
+import { configure, shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import Adapter from 'enzyme-adapter-react-16'
+
+import { ShopScreen } from '../../screens/ShopScreen'
+
+configure({ adapter: new Adapter() })
+
+describe('ShopScreen snapshot', () => {
+  it('renders ShopScreen correctly', () => {
+    const wrapper = shallow(<ShopScreen
+      stars={1}
+      itemsOwned={[]}
+      purchaseItem={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
+  })
+})

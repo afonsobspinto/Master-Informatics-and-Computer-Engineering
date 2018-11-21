@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] = `
-<View
+<Component
   style={
     Object {
       "backgroundColor": "#fff7ae",
@@ -10,186 +10,24 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
     }
   }
 >
-  <View
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <Component
     style={
       Object {
         "flex": 0,
       }
     }
   >
-    <View
-      style={
-        Object {
-          "height": 213.44,
-          "justifyContent": "flex-end",
-          "paddingLeft": 106.72,
-          "paddingRight": 160.07999999999998,
-          "width": "100%",
-        }
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "gray",
-              "borderRadius": 53.36,
-              "elevation": 6,
-              "height": 106.72,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <View
-          animated={true}
-          animationConfig={
-            Object {
-              "bounciness": 0,
-            }
-          }
-          animationType="spring"
-          indeterminate={false}
-          onLayout={[Function]}
-          progress={0.5}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "#700548",
-                "borderRadius": 0,
-                "borderWidth": 0,
-                "overflow": "hidden",
-                "width": null,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "#700548",
-                "height": 106.72,
-                "transform": Array [
-                  Object {
-                    "translateX": -0,
-                  },
-                  Object {
-                    "translateX": -0,
-                  },
-                  Object {
-                    "scaleX": 0.50005,
-                  },
-                ],
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "left": "25%",
-              },
-              Object {
-                "borderRightColor": "#000",
-                "borderRightWidth": 2,
-                "height": 106.72,
-                "opacity": 0.5,
-                "position": "absolute",
-              },
-            ]
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "left": "50%",
-              },
-              Object {
-                "borderRightColor": "#000",
-                "borderRightWidth": 2,
-                "height": 106.72,
-                "opacity": 0.5,
-                "position": "absolute",
-              },
-            ]
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "left": "75%",
-              },
-              Object {
-                "borderRightColor": "#000",
-                "borderRightWidth": 2,
-                "height": 106.72,
-                "opacity": 0.5,
-                "position": "absolute",
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          Object {
-            "backgroundColor": "white",
-            "borderRadius": 80.03999999999999,
-            "bottom": 26.68,
-            "elevation": 7,
-            "height": 160.07999999999998,
-            "overflow": "hidden",
-            "position": "absolute",
-            "right": 80.03999999999999,
-            "width": 160.07999999999998,
-          }
-        }
-      >
-        <Image
-          resizeMode="cover"
-          source={1}
-          style={
-            Object {
-              "height": 160.07999999999998,
-              "width": 160.07999999999998,
-            }
-          }
-        />
-      </View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#000",
-            "fontFamily": "LinotteBold",
-            "fontSize": 18,
-            "height": 53.36,
-            "marginLeft": 41.57333333333333,
-            "textShadowColor": "rgba(0, 0, 0, 0.2)",
-            "textShadowOffset": Object {
-              "height": 1,
-              "width": 0,
-            },
-            "textShadowRadius": 3,
-          }
-        }
-      >
-        Nível 
-        1
-      </Text>
-    </View>
-  </View>
-  <View
+    <ChildExperienceBar
+      level={1}
+      progress={0.5}
+    />
+  </Component>
+  <Component
     style={
       Object {
         "alignItems": "center",
@@ -199,15 +37,9 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
       }
     }
   >
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -216,7 +48,6 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
           "elevation": 10,
           "height": 375,
           "justifyContent": "center",
-          "opacity": 1,
           "overflow": "hidden",
           "position": "relative",
           "width": 375,
@@ -235,16 +66,10 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
           }
         }
       />
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -253,7 +78,6 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
           "elevation": 10,
           "height": 375,
           "justifyContent": "center",
-          "opacity": 1,
           "overflow": "hidden",
           "position": "relative",
           "width": 375,
@@ -271,7 +95,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
           }
         }
       />
-    </View>
-  </View>
-</View>
+    </TouchableOpacity>
+  </Component>
+</Component>
 `;

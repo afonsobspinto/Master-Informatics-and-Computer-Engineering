@@ -1,7 +1,15 @@
-import { gameTypes } from '../actions/actionTypes'
+import 'react-native'
+import React from 'react'
+import { configure, shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import Adapter from 'enzyme-adapter-react-16'
 
-const initialState = {
-  routines: [
+import { ChooseRoutineScreen } from '../../screens/ChooseRoutineScreen'
+
+configure({ adapter: new Adapter() })
+
+describe('ChooseActivityScreen snapshot', () => {
+  const routines = [
     {
       title: 'Após acordar',
       image: 'sun',
@@ -158,42 +166,22 @@ const initialState = {
         }
       ]
     }
-  ],
-  currentActivity: -1,
-  currentRoutine: -1
-}
+  ]
 
-export default function game (state = initialState, { type, payload }) {
-  switch (type) {
-    case gameTypes.addCustomActivity:
-      return { ...state,
-        routines: state.routines.map(
-          (routine) => routine.title === payload.routineTitle ? { ...routine,
-            activities: routine.activities.concat(payload.activity) } : routine)
-      }
-
-    case gameTypes.addRoutines:
-      return { ...state, routines: [...state.routines, payload] }
-
-    case gameTypes.setCurrentActivity:
-      return { ...state, currentActivity: state.routines[state.currentRoutine].activities.findIndex(activity => activity.title === payload.title) }
-
-    case gameTypes.setCurrentRoutine:
-      return { ...state, currentRoutine: state.routines.findIndex(routine => routine.title === payload.title) }
-
-    case gameTypes.setActivityStatus:
-      return { ...state,
-        routines: state.routines.map(
-          (routine, i) => i === state.currentRoutine ? { ...routine,
-            activities: routine.activities.map(
-              activity => activity.title === payload.activity.title ? { ...activity, status: payload.status } : activity
-            ) } : routine)
-      }
-
-    case gameTypes.nextActivity:
-      return { ...state, currentActivity: state.routines[state.currentRoutine].activities.findIndex(activity => activity.status === undefined) }
-
-    default:
-      return state
-  }
-}
+  it('renders ChooseActivityScreen correctly', () => {
+    const wrapper = shallow(<ChooseRoutineScreen
+      navigation={{ navigate: jest.fn() }}
+      routinePlayType={'auto'}
+      routines={routines}
+      setCurrentRoutine={jest.fn()}
+      nextActivity={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().chooseActivities()
+    wrapper.instance().startRoutine()
+    wrapper.setProps({ routinePlayType: 'choose' })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ routines: [] })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
+  })
+})
