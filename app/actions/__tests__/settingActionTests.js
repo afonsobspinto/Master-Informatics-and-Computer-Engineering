@@ -1,7 +1,7 @@
 import { settingTypes } from '../actionTypes'
 import * as settingActions from '../settingsActions'
 
-describe('child actions', () => {
+describe('setting actions', () => {
   it('should create an action to set all settings', () => {
     const params = { setting: 'test' }
     const expectedAction = {

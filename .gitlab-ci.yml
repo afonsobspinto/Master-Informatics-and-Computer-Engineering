@@ -14,7 +14,8 @@ before_script:
 jest-tests:
   stage: test
   script:
-    - npm run validate
+    - npm run ci-test
+    - npm run lint
   artifacts:
     reports:
       junit: app/junit.xml

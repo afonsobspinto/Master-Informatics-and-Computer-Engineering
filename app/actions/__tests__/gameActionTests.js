@@ -12,19 +12,19 @@ describe('game actions', () => {
   })
 
   it('should create an action to set the current routine', () => {
-    const params = 1
+    const params = { title: 'test' }
     const expectedAction = {
       type: gameTypes.setCurrentRoutine,
-      payload: 1
+      payload: { title: 'test' }
     }
     expect(gameActions.setCurrentRoutine(params)).toEqual(expectedAction)
   })
 
   it('should create an action to set the current activity', () => {
-    const params = 2
+    const params = { title: 'test' }
     const expectedAction = {
       type: gameTypes.setCurrentActivity,
-      payload: 2
+      payload: { title: 'test' }
     }
     expect(gameActions.setCurrentActivity(params)).toEqual(expectedAction)
   })

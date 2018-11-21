@@ -173,7 +173,7 @@ export default function game (state = initialState, { type, payload }) {
       }
 
     case gameTypes.addRoutines:
-      return { ...state, routines: payload }
+      return { ...state, routines: [...state.routines, payload] }
 
     case gameTypes.setCurrentActivity:
       return { ...state, currentActivity: state.routines[state.currentRoutine].activities.findIndex(activity => activity.title === payload.title) }
