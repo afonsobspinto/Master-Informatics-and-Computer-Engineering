@@ -98,6 +98,7 @@ describe('ActivityScreen snapshot', () => {
       navigation={{ navigate: jest.fn(), popToTop: jest.fn(), replace: jest.fn() }}
       progressType={'bar'}
       activityFeedback={'vibration'}
+      feedbackFrequency={'normal'}
       showTimer={false}
       currentActivity={0}
       activities={activities}
@@ -139,6 +140,8 @@ describe('ActivityScreen snapshot', () => {
     wrapper.instance().nextActivity()
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ activityFeedback: 'visual' })
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ feedbackFrequency: 'fast' })
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setState({ elapsedTime: 130 })
     wrapper.instance().completeActivity()

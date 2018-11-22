@@ -32,6 +32,12 @@ export function toggleActivityFeedback () {
   }
 }
 
+export function changeFeedbackFrequency () {
+  return {
+    type: settingTypes.changeFeedbackFrequency
+  }
+}
+
 export function toggleRoutinePlayType () {
   return {
     type: settingTypes.toggleRoutinePlayType

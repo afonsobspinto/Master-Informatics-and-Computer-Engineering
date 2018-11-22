@@ -4,6 +4,7 @@ export const settingTypes = {
   changeVisualStyle: 'settings:changeVisualStyle',
   toggleActivityTimer: 'settings:toggleActivityTimer',
   toggleActivityFeedback: 'settings:toggleActivityFeedback',
+  changeFeedbackFrequency: 'settings:changeFeedbackFrequency',
   toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
 }
 

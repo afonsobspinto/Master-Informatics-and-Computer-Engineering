@@ -4,6 +4,7 @@ const initialState = {
   activityProgressType: 'bar',
   activityShowTimer: false,
   activityFeedback: 'visual',
+  feedbackFrequency: 'normal',
   visualStyle: 'cartoon',
   routinePlayType: 'choose'
 }
@@ -25,6 +26,15 @@ export default function (state = initialState, { type, payload }) {
         return { ...state, activityFeedback: 'vibration' }
       } else if (state.activityFeedback === 'vibration') {
         return { ...state, activityFeedback: 'visual' }
+      }
+      return state
+    case settingTypes.changeFeedbackFrequency:
+      if (state.feedbackFrequency === 'slow') {
+        return { ...state, feedbackFrequency: 'normal' }
+      } else if (state.feedbackFrequency === 'normal') {
+        return { ...state, feedbackFrequency: 'fast' }
+      } else if (state.feedbackFrequency === 'fast') {
+        return { ...state, feedbackFrequency: 'slow' }
       }
       return state
     case settingTypes.toggleRoutinePlayType:
