@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#fff7ae",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <Component
+    style={
+      Object {
+        "flex": 0,
+      }
+    }
+  >
+    <ChildExperienceBar
+      level={1}
+      progress={0.5}
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#49c6e5",
+          "borderRadius": 187.5,
+          "elevation": 10,
+          "height": 375,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 375,
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": 562.5,
+            "position": "absolute",
+            "top": 0,
+            "width": 562.5,
+          }
+        }
+      />
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#16db65",
+          "borderRadius": 187.5,
+          "elevation": 10,
+          "height": 375,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 375,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": "40%",
+            "marginLeft": "7%",
+            "tintColor": "#fff",
+            "width": "40%",
+          }
+        }
+      />
+    </TouchableOpacity>
+  </Component>
+</Component>
+`;

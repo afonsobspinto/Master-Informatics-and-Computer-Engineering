@@ -1,0 +1,32 @@
+{
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+      "**/*.js"
+  ],
+  "coveragePathIgnorePatterns": [
+      "node_modules",
+      "coverage",
+      "navigation",
+      "helpers",
+      "store",
+      "constants",
+      "App.js"
+  ],
+  "coverageDirectory": "<rootDir>/coverage/",
+  "coverageThreshold": {
+      "global": {
+          "functions": 30,
+          "lines": 30
+      }
+  },
+  "verbose": false,
+  "reporters": [
+    "default",
+    "jest-junit"
+  ],
+  "preset": "jest-expo",
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ],
+  "testPathIgnorePatterns": ["assets/images", "node_modules"]
+}
