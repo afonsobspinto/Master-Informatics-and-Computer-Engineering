@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
+import { LevelUpModal } from '../components/MainMenu/LevelUpModal'
 
 import Images from '../assets/images/images'
 
@@ -15,10 +16,12 @@ export class ChildMainMenuScreen extends Component {
     super(props)
     this.openShop = this.openShop.bind(this)
     this.closeShop = this.closeShop.bind(this)
+    this.onCloseModal = this.onCloseModal.bind(this)
   }
 
   state = {
-    isShopVisible: false
+    isShopVisible: false,
+    showModal: true
   }
 
   componentDidMount () {
@@ -35,6 +38,10 @@ export class ChildMainMenuScreen extends Component {
 
   closeShop () {
     this.setState({ isShopVisible: false })
+  }
+
+  onCloseModal () {
+    this.setState({ showModal: false })
   }
 
   render () {
@@ -60,6 +67,7 @@ export class ChildMainMenuScreen extends Component {
             <Image style={styles.buttonImage} source={Images.ui.play} />
           </TouchableOpacity>
         </View>
+        {this.state.showModal && <LevelUpModal show={this.state.showModal} onClosed={this.onCloseModal} />}
       </View>
     )
   }

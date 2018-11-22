@@ -97,5 +97,9 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
       />
     </TouchableOpacity>
   </Component>
+  <LevelUpModal
+    onClosed={[Function]}
+    show={true}
+  />
 </Component>
 `;
