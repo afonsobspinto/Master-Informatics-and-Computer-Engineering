@@ -13,7 +13,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'orange',
     borderRadius: 10,
-    height: 40
+    height: 40,
+    shadowOpacity: 5,
+    shadowRadius: 10,
+    shadowColor: 'black'
   },
   inputContainer: {
     height: 50,

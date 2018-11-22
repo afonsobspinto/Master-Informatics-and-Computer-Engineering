@@ -17,7 +17,7 @@ export default class ChangeEmailScreen extends React.Component {
       <View style={styles.generalLayout}>
         <View style={styles.container}>
           <Text>E-mail Atual</Text>
-          <Text>{this.props.navigation.state.params.email}</Text>
+          <Text style={{ textAlign: 'center', paddingTop: 20 }}>{this.props.navigation.state.params.email}</Text>
         </View>
         <View style={styles.container}>
           <Text>Novo E-mail</Text>

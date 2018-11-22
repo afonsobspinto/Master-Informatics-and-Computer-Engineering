@@ -36,6 +36,10 @@ export default class ParentHomeScreen extends React.Component {
     })
   }
 
+  sendEmailProps = () => {
+    this.props.navigation.navigate('ChangeEmail', { email: this.state.email }, { setEmail: (email) => this.setEmail(email) })
+  }
+
   toggleUploadPicModal = () => {
     this.setState({
       uploadModalVisible: !this.state.uploadModalVisible
@@ -109,7 +113,7 @@ export default class ParentHomeScreen extends React.Component {
               <Text style={{ flex: 1 }}>Repor E-mail</Text>
               <Text style={{ flex: 1 }}>{this.state.email}</Text>
               <View style={styles.arrowContainer}>
-                <TouchableOpacity onPress={() => { this.props.navigation.navigate('ChangeEmail', { email: this.state.email }, { setEmail: (email) => this.setEmail(email).bind(this) }) }}>
+                <TouchableOpacity onPress={() => this.sendEmailProps()}>
                   <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
                 </TouchableOpacity>
               </View>
