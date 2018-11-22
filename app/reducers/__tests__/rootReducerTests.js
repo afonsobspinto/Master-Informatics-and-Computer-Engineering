@@ -7,7 +7,8 @@ describe('root reducer', () => {
         stars: 100,
         level: 4,
         xp: 460,
-        itemsOwned: []
+        itemsOwned: [],
+        showLevelUpModal: true
       },
       settings: {
         activityProgressType: 'bar',

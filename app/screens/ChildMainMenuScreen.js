@@ -4,6 +4,7 @@ import { ScreenOrientation } from 'expo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import { toggleLevelUpModal } from '../actions/childActions'
 import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
 import { LevelUpModal } from '../components/MainMenu/LevelUpModal'
 
@@ -21,7 +22,7 @@ export class ChildMainMenuScreen extends Component {
 
   state = {
     isShopVisible: false,
-    showModal: true
+    showModal: this.props.showLevelUpModal
   }
 
   componentDidMount () {
@@ -42,6 +43,7 @@ export class ChildMainMenuScreen extends Component {
 
   onCloseModal () {
     this.setState({ showModal: false })
+    this.props.toggleLevelUpModal()
   }
 
   render () {
@@ -76,12 +78,18 @@ export class ChildMainMenuScreen extends Component {
 export default connect(
   state => ({
     level: state.child.level,
-    xp: state.child.xp
+    xp: state.child.xp,
+    showLevelUpModal: state.child.showLevelUpModal
+  }),
+  dispatch => ({
+    toggleLevelUpModal: () => dispatch(toggleLevelUpModal())
   })
 )(ChildMainMenuScreen)
 
 ChildMainMenuScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   level: PropTypes.number.isRequired,
-  xp: PropTypes.number.isRequired
+  xp: PropTypes.number.isRequired,
+  showLevelUpModal: PropTypes.bool.isRequired,
+  toggleLevelUpModal: PropTypes.func.isRequired
 }
