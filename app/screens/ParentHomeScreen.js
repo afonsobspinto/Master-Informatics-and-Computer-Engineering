@@ -12,6 +12,8 @@ export default class ParentHomeScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      name: 'Nome Da Pessoa',
+      email: 'email@hotmail.com',
       uploadModalVisible: false
     }
   }
@@ -21,6 +23,18 @@ export default class ParentHomeScreen extends React.Component {
       <Image source={require('../assets/images/home-icon.png')} style={{ height: 24, width: 24 }} />
     )
   };
+
+  setName = (newName) => {
+    this.setState({
+      name: newName
+    })
+  }
+
+  setEmail = (newEmail) => {
+    this.setState({
+      email: newEmail
+    })
+  }
 
   toggleUploadPicModal = () => {
     this.setState({
@@ -70,13 +84,21 @@ export default class ParentHomeScreen extends React.Component {
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>Nome</Text>
-              <Text style={{ flex: 1 }}>Nome da Pessoa</Text>
-              <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ flexBasis: '10%', height: 25, width: 25 }} />
+              <Text style={{ flex: 1 }}>{this.state.name}</Text>
+              <View style={styles.arrowContainer}>
+                <TouchableOpacity>
+                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>E-mail</Text>
               <Text style={{ flex: 1 }}>E-mail da pESSOA</Text>
-              <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ flexBasis: '10%', height: 25, width: 25 }} />
+              <View style={styles.arrowContainer}>
+                <TouchableOpacity>
+                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           <View style={styles.sectionContainer}>
@@ -85,11 +107,21 @@ export default class ParentHomeScreen extends React.Component {
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>Repor E-mail</Text>
-              <Text style={{ flex: 1 }}>email@hotmail.com</Text>
+              <Text style={{ flex: 1 }}>{this.state.email}</Text>
+              <View style={styles.arrowContainer}>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('ChangeEmail', { email: this.state.email }, { setEmail: (email) => this.setEmail(email).bind(this) }) }}>
+                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 3 }}>Repor Palavra-passe</Text>
               <Text style={{ flex: 1 }}>********</Text>
+              <View style={styles.arrowContainer}>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('ChangePassword') }}>
+                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </ScrollView>

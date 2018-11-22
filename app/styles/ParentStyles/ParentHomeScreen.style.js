@@ -17,7 +17,7 @@ export default StyleSheet.create({
   headerContainer: {
     height: 110,
     paddingTop: 15,
-    backgroundColor: '#7a9e7e'
+    backgroundColor: '#4D4861'
   },
   profileImgContainer: {
     height: 200,
@@ -55,7 +55,10 @@ export default StyleSheet.create({
   },
   infoContainer: {
     height: 60,
-    padding: 20,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingBottom: 20,
+    paddingRight: 5,
     flexWrap: 'wrap',
     backgroundColor: 'white',
     borderBottomColor: '#A0A0A0',
@@ -63,5 +66,11 @@ export default StyleSheet.create({
   },
   sectionContainer: {
     marginBottom: 15
-  }
+  },
+  arrowContainer: {
+    flexBasis: '10%',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    height: 30 }
 })
