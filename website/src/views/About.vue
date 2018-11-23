@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <button type="button" class="btn btn-success">Success</button>
+    <p>This is a computer shop company</p>
   </div>
 </template>
