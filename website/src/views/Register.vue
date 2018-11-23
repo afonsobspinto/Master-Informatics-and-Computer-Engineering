@@ -3,7 +3,7 @@ import Vue from "vue";
 import { tryLogin } from "../lib/authentication";
 
 export default Vue.extend({
-  name: "Login",
+  name: "Register",
   data: function() {
     return {
       credentials: {
@@ -15,17 +15,12 @@ export default Vue.extend({
   methods: {
     login: function() {
       if (tryLogin(this.credentials.email, this.credentials.password)) {
-        
         this.$router.push('/');
-      } else {
-        //@ts-ignore
-        this.$toaster.error('Wrong Login credentials');
       }
     }
   }
 });
 </script>
-
 
 
 <template>

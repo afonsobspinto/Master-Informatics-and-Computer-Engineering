@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
+    "v-toaster": "^1.0.3",
     "vee-validate": "^2.1.3",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",

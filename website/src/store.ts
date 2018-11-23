@@ -9,7 +9,6 @@ export default new Vuex.Store({
   },
   mutations: {
     logIn(state) {
-        console.log("login");
         state.isLoggedin = true;
     },
     logOut(state) {

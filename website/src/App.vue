@@ -11,8 +11,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import Header from './components/Header.vue';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default Vue.extend({
   name: 'app',
