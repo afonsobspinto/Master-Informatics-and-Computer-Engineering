@@ -1,6 +1,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { tryLogin } from "../lib/authentication";
+import { isObjectNotFullySet } from '../lib/utils';
 
 export default Vue.extend({
   name: "Login",
@@ -9,17 +10,22 @@ export default Vue.extend({
       credentials: {
         email: "",
         password: ""
-      },
+      }
     };
+  },
+  computed: {
+    hasErrors: function(): boolean {
+        //@ts-ignore
+        return this.errors.any() || isObjectNotFullySet(this.credentials);
+    }
   },
   methods: {
     login: function() {
       if (tryLogin(this.credentials.email, this.credentials.password)) {
-        
-        this.$router.push('/');
+        this.$router.push("/");
       } else {
         //@ts-ignore
-        this.$toaster.error('Wrong Login credentials');
+        this.$toaster.error("Wrong Login credentials");
       }
     }
   }
@@ -54,7 +60,7 @@ export default Vue.extend({
           
           <router-link to="/register" class="btn btn-link" tag="a">Don't have an account? Register</router-link> 
           
-          <button class="btn btn-primary mx-auto w-50 mb-3 mt-4" @click="login" v-bind:disabled="errors.any()">Login</button>
+          <button class="btn btn-primary mx-auto w-50 mb-3 mt-4" @click="login" v-bind:disabled="hasErrors">Login</button>
         </fieldset>
     </div>
   </div> 
