@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
-import { backgroundColor } from './General.style'
+import { backgroundColor, lightTextColor, darkerBackgroundColor } from './Colors'
 
 const buttonHeight = Layout.window.width * 0.6
 
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     borderTopLeftRadius: buttonHeight / 10,
     borderTopRightRadius: buttonHeight / 10,
     elevation: 10,
-    backgroundColor: '#7a9e7e',
+    backgroundColor: darkerBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden'
@@ -52,7 +52,7 @@ export default StyleSheet.create({
   childName: {
     fontFamily: 'LinotteBold',
     fontSize: 30,
-    color: '#000',
+    color: lightTextColor,
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,

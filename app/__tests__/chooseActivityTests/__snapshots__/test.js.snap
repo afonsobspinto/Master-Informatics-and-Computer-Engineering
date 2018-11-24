@@ -4,7 +4,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`
 <Component
   style={
     Object {
-      "backgroundColor": "#fff7ae",
+      "backgroundColor": "#3db3e2",
     }
   }
 >

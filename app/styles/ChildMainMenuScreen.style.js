@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
-import { green, avatarBlue } from './Colors'
-import { backgroundColor } from './General.style'
+import { backgroundColor, lighterBackgroundColor, oppositeColor } from './Colors'
 
 const padding = Layout.window.height * 0.05
 const buttonHeight = Layout.window.width * 0.5
@@ -20,7 +19,7 @@ export default StyleSheet.create({
     width: buttonHeight,
     borderRadius: buttonHeight / 2,
     elevation: 10,
-    backgroundColor: green,
+    backgroundColor: oppositeColor,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
@@ -31,7 +30,7 @@ export default StyleSheet.create({
     width: buttonHeight,
     borderRadius: buttonHeight / 2,
     elevation: 10,
-    backgroundColor: avatarBlue,
+    backgroundColor: lighterBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
@@ -40,7 +39,7 @@ export default StyleSheet.create({
   buttonImage: {
     height: '40%',
     width: '40%',
-    tintColor: '#fff',
+    tintColor: '#FFE5C9',
     marginLeft: '7%'
   },
   profileImage: {
@@ -86,15 +85,14 @@ export default StyleSheet.create({
     height: Layout.window.height * 0.12,
     aspectRatio: 1,
     borderRadius: Layout.window.height * 0.06,
-    backgroundColor: green,
-    position: 'absolute',
-    bottom: Layout.window.height * 0.03,
-    right: Layout.window.height * 0.03
+    backgroundColor: oppositeColor,
+    marginRight: Layout.window.height * 0.03,
+    marginBottom: Layout.window.height * 0.03
   },
   levelUpButtonImage: {
     height: '50%',
     width: '50%',
-    tintColor: '#fff'
+    tintColor: '#FFE5C9'
   },
   levelUpRewardImage: {
     width: '100%',
@@ -102,14 +100,44 @@ export default StyleSheet.create({
   },
   levelUpText: {
     fontFamily: 'LinotteBold',
-    fontSize: 35,
+    fontSize: padding,
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.6)',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,
     padding: Layout.window.height * 0.03,
+    flex: 1
+  },
+  levelUpCardBottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    width: '100%',
     position: 'absolute',
-    top: 0,
-    left: 0
+    bottom: 0
+  },
+  levelUpCardTitleContainer: {
+    backgroundColor: lighterBackgroundColor,
+    borderRadius: padding * 0.75,
+    height: padding * 1.5,
+    paddingHorizontal: padding * 0.75,
+    elevation: 12,
+    position: 'absolute',
+    top: padding * 1.25,
+    left: padding * 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  levelUpCardTitle: {
+    fontFamily: 'LinotteBold',
+    fontSize: padding,
+    color: '#061111',
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 1
+  },
+  levelUpStarIcon: {
+    height: padding * 0.9,
+    width: padding * 0.9
   }
 })

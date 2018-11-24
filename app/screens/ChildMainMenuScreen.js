@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { toggleLevelUpModal } from '../actions/childActions'
-import { ChildExperienceBar } from '../components/MainMenu/ChildExperienceBar'
-import { LevelUpModal } from '../components/MainMenu/LevelUpModal'
+import { ChildExperienceBar } from '../components/ChildMainMenu/ChildExperienceBar'
+import { LevelUpModal } from '../components/ChildMainMenu/LevelUpModal'
 
 import Images from '../assets/images/images'
 
@@ -18,6 +18,7 @@ export class ChildMainMenuScreen extends Component {
     this.openShop = this.openShop.bind(this)
     this.closeShop = this.closeShop.bind(this)
     this.onCloseModal = this.onCloseModal.bind(this)
+    this.showRewardModal = this.showRewardModal.bind(this)
   }
 
   state = {
@@ -43,7 +44,11 @@ export class ChildMainMenuScreen extends Component {
 
   onCloseModal () {
     this.setState({ showModal: false })
-    this.props.toggleLevelUpModal()
+    if (this.props.showLevelUpModal) this.props.toggleLevelUpModal()
+  }
+
+  showRewardModal () {
+    this.setState({ showModal: true })
   }
 
   render () {
@@ -53,7 +58,8 @@ export class ChildMainMenuScreen extends Component {
         <View style={styles.experienceBarContainer}>
           <ChildExperienceBar
             progress={(this.props.xp - this.props.level * 100) / 100}
-            level={this.props.level} />
+            level={this.props.level}
+            onPress={this.showRewardModal} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -69,7 +75,12 @@ export class ChildMainMenuScreen extends Component {
             <Image style={styles.buttonImage} source={Images.ui.play} />
           </TouchableOpacity>
         </View>
-        {this.state.showModal && <LevelUpModal show={this.state.showModal} onClosed={this.onCloseModal} />}
+        {this.state.showModal && <LevelUpModal
+          level={this.props.level}
+          xp={this.props.xp}
+          isReward={this.props.showLevelUpModal}
+          show={this.state.showModal}
+          onClosed={this.onCloseModal} />}
       </View>
     )
   }

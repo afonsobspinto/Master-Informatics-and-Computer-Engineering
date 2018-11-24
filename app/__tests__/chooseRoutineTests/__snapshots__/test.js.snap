@@ -4,7 +4,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`
 <Component
   style={
     Object {
-      "backgroundColor": "#fff7ae",
+      "backgroundColor": "#3db3e2",
       "height": "100%",
       "width": "100%",
     }
@@ -186,7 +186,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 2`
 <Component
   style={
     Object {
-      "backgroundColor": "#fff7ae",
+      "backgroundColor": "#3db3e2",
       "height": "100%",
       "width": "100%",
     }
@@ -370,7 +370,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 3`
   style={
     Array [
       Object {
-        "backgroundColor": "#fff7ae",
+        "backgroundColor": "#3db3e2",
         "height": "100%",
         "width": "100%",
       },
