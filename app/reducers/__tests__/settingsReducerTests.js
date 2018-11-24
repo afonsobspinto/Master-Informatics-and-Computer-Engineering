@@ -7,6 +7,7 @@ describe('settings reducer', () => {
       activityProgressType: 'bar',
       activityShowTimer: false,
       activityFeedback: 'visual',
+      feedbackFrequency: 'normal',
       visualStyle: 'cartoon',
       routinePlayType: 'choose'
     })
@@ -149,6 +150,48 @@ describe('settings reducer', () => {
       }))
       .toEqual({
         activityFeedback: 'error'
+      })
+  })
+
+  it('should toggle activity feedback frequency', () => {
+    expect(
+      settingsReducer({
+        feedbackFrequency: 'slow'
+      }, {
+        type: settingTypes.changeFeedbackFrequency
+      }))
+      .toEqual({
+        feedbackFrequency: 'normal'
+      })
+
+    expect(
+      settingsReducer({
+        feedbackFrequency: 'normal'
+      }, {
+        type: settingTypes.changeFeedbackFrequency
+      }))
+      .toEqual({
+        feedbackFrequency: 'fast'
+      })
+
+    expect(
+      settingsReducer({
+        feedbackFrequency: 'fast'
+      }, {
+        type: settingTypes.changeFeedbackFrequency
+      }))
+      .toEqual({
+        feedbackFrequency: 'slow'
+      })
+
+    expect(
+      settingsReducer({
+        feedbackFrequency: 'error'
+      }, {
+        type: settingTypes.changeFeedbackFrequency
+      }))
+      .toEqual({
+        feedbackFrequency: 'error'
       })
   })
 })
