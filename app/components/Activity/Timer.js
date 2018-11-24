@@ -12,6 +12,11 @@ export class Timer extends React.Component {
   }
 
   setNumberDisplay = remainingTime => {
+    if (remainingTime <= 0) {
+      this.setState(() => ({ minutes: '0', seconds: '00' }))
+      return
+    }
+
     let minutes = Math.floor(remainingTime / 60)
 
     let seconds = Math.floor(remainingTime % 60)
@@ -30,7 +35,7 @@ export class Timer extends React.Component {
 
   render () {
     return (
-      <Text style={this.props.style}>{`${this.state.minutes}:${this.state.seconds}`}</Text>
+      <Text style={this.props.style}>-{`${this.state.minutes}:${this.state.seconds}`}</Text>
     )
   }
 }
