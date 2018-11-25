@@ -5,15 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isLoggedin: false
+    userId: null
   },
   mutations: {
-    logIn(state) {
-        state.isLoggedin = true;
+    logIn(state, userId) {
+        state.userId = userId;
     },
     logOut(state) {
-        state.isLoggedin = false;
+        state.userId = null;
     }
+  },
+  getters: {
+    isLoggedin: state => state.userId,
+    isLoggedout: (state, getters) => !getters.isLoggedin,
   },
   actions: {
 

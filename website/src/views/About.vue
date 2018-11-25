@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <p>This is a computer shop company You are </p>
-    <p> {{ $store.state.isLoggedin }} </p>
+    <p> {{ $store.getters.isLoggedin }} </p>
   </div>
 </template>
 

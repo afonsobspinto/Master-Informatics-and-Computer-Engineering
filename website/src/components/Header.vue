@@ -22,20 +22,20 @@
 
       <ul class="navbar-nav my-2 my-lg-0">
         
-        <li class="nav-item" v-show="$store.state.isLoggedin">
+        <li class="nav-item" v-show="$store.getters.isLoggedin">
 
           <router-link to="/profile/1" class="nav-link" tag="a">Profile</router-link> 
         </li>
 
-        <li class="nav-item mr-2" v-show="$store.state.isLoggedin">
+        <li class="nav-item mr-2" v-show="$store.getters.isLoggedin">
             <a hred="" class="nav-link" @click="logout">Logout</a>
         </li>
 
-        <li class="nav-item mr-2" v-show="!$store.state.isLoggedin">
+        <li class="nav-item mr-2" v-show="$store.getters.isLoggedout">
           <router-link to="/login" class="nav-link" tag="a">Login</router-link> 
         </li>
 
-        <li class="nav-item mr-2" v-show="!$store.state.isLoggedin">
+        <li class="nav-item mr-2" v-show="$store.getters.isLoggedout">
           <router-link to="/register" class="nav-link" tag="a">Register</router-link> 
         </li>
         
