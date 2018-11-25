@@ -23,8 +23,7 @@
       <ul class="navbar-nav my-2 my-lg-0">
         
         <li class="nav-item" v-show="$store.getters.isLoggedin">
-
-          <router-link to="/profile/1" class="nav-link" tag="a">Profile</router-link> 
+          <router-link to="/profile" class="nav-link" tag="a">Profile</router-link> 
         </li>
 
         <li class="nav-item mr-2" v-show="$store.getters.isLoggedin">

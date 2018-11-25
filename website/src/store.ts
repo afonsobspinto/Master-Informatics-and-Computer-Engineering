@@ -18,6 +18,7 @@ export default new Vuex.Store({
   getters: {
     isLoggedin: state => state.userId,
     isLoggedout: (state, getters) => !getters.isLoggedin,
+    userId: state => state.userId,
   },
   actions: {
 

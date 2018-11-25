@@ -34,7 +34,7 @@ export default Vue.extend({
 
 <template>
   <Account :credentials="credentials" title="Profile" buttonText="Update" :onFormSubmit="update"> 
-    Account id: {{ $route.params.id }} TODO remove me
+    <!-- Account id: {{ $store.getters.userId }} TODO remove me -->
   </Account>
 </template>
 
