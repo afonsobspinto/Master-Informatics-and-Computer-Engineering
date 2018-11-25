@@ -6,21 +6,12 @@ import Modal from 'react-native-modalbox'
 import * as Animatable from 'react-native-animatable'
 
 import styles from '../../styles/RewardModal.style'
-import { grayedOut } from '../../styles/Colors'
+import { PastActivityIcons } from './PastActivityIcons'
+
 import Images from '../../assets/images/images'
 
 export class RewardsModal extends React.Component {
   render () {
-    let pastActivityIcons = this.props.activities
-      .filter((_, index, array) => {
-        if (this.props.currentActivity + 8 > array.length) return index >= array.length - 8
-        else return index >= this.props.currentActivity && index < this.props.currentActivity + 8
-      })
-      .map((activity, index) =>
-        (<View key={index} style={[styles.pastActivityIcon, { backgroundColor: activity.status ? activity.color : grayedOut }]}>
-          <Image style={[styles.pastActivityImage, { opacity: activity.status ? 1 : 0.3 }]} recizeMode={'center'} source={Images[activity.image]} />
-        </View>))
-
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
 
     let cardText = this.props.activities[this.props.currentActivity].status
@@ -60,9 +51,7 @@ export class RewardsModal extends React.Component {
           <Text style={styles.cardTitle}>
             { cardText }
           </Text>
-          <View style={styles.pastActivityContainer}>
-            {pastActivityIcons}
-          </View>
+          <PastActivityIcons activities={this.props.activities} currentActivity={this.props.currentActivity} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity

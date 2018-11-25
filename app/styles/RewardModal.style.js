@@ -93,13 +93,53 @@ export default StyleSheet.create({
     elevation: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    overflow: 'hidden',
+    opacity: 1
+  },
+  grayedOutActivityIcon: {
+    height: buttonHeight / 2,
+    width: buttonHeight / 2,
+    borderRadius: buttonHeight / 4,
+    elevation: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    backgroundColor: grayedOut,
+    overflow: 'hidden'
   },
   pastActivityImage: {
     height: '60%',
     width: '60%'
   },
-  pastActivityContainer: {
+  pastActivityPhoto: {
+    height: '100%',
+    width: '100%'
+  },
+  pastActivitySpacer: {
+    height: buttonHeight / 2,
+    width: buttonHeight / 2,
+    marginHorizontal: 5
+  },
+  grayedOutActivityImage: {
+    height: '60%',
+    width: '60%',
+    opacity: 0.3
+  },
+  grayedOutActivityPhoto: {
+    height: '100%',
+    width: '100%',
+    opacity: 0.3
+  },
+  pastActivitiesContainer: {
+    position: 'relative'
+  },
+  completedActivitiesContainer: {
+    flexDirection: 'row',
+    marginTop: padding,
+    position: 'absolute'
+  },
+  greyedOutActivitiesContainer: {
     flexDirection: 'row',
     marginTop: padding
   }
