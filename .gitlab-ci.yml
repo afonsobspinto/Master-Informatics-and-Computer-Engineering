@@ -1,16 +1,20 @@
 image: node:alpine
+
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ~/.npm
     - .jest
+
 stages:
   - test
   - deploy
+
 before_script:
   - cd app
   - npm ci
   - npm install -g expo-cli
+
 jest-tests:
   stage: test
   script:
@@ -19,6 +23,7 @@ jest-tests:
   artifacts:
     reports:
       junit: app/junit.xml
+
 expo-prod-deployments:
   only:
     - master
@@ -27,6 +32,7 @@ expo-prod-deployments:
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel production
+    
 expo-staging-deployments:
   only:
     - development
