@@ -1,5 +1,11 @@
 # website
 
+## Setup Instructions
+
+1. Install [npm](https://www.npmjs.com/) 
+2. Run `npm i` in `website` dir
+3. Run `npm run serve` to start server
+
 ## Project setup
 ```
 npm install

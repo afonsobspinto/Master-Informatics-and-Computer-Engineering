@@ -22,7 +22,6 @@ export default Vue.extend({
   methods: {
     register: function() {
       console.log("hi");
-      alert("hi");
     }
   },
   components: {
