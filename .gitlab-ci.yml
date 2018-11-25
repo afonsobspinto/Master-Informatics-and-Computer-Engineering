@@ -1,5 +1,3 @@
-image: node:alpine
-
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -7,24 +5,41 @@ cache:
     - .jest
 
 stages:
+  - build
   - test
   - deploy
 
-before_script:
-  - cd app
-  - npm ci
-  - npm install -g expo-cli
+build-app:
+  image: node:alpine
+  stage: build
+  script: 
+    - cd app
+    - npm ci
+    - npm install -g expo-cli
+
+build-server:
+  image: python:3.7.1
+  stage: build
+  script: 
+    - cd server
+    - pip install -r requirements.txt
 
 jest-tests:
   stage: test
-  tags:
-    - digitalocean
   script:
+    - cd app
     - npm run ci-test
     - npm run lint
   artifacts:
     reports:
       junit: app/junit.xml
+
+django-tests:
+  stage: test
+  script:
+    - cd server
+    - python -c 'print("Hello World")'
+
 
 expo-prod-deployments:
   only:
