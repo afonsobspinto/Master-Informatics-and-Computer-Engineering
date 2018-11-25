@@ -23,13 +23,12 @@
       <ul class="navbar-nav my-2 my-lg-0">
         
         <li class="nav-item" v-show="$store.state.isLoggedin">
-          <router-link to="/profile" class="nav-link" tag="a">Profile</router-link> 
+
+          <router-link to="/profile/1" class="nav-link" tag="a">Profile</router-link> 
         </li>
 
         <li class="nav-item mr-2" v-show="$store.state.isLoggedin">
-          <!-- <router-link to="/" class="nav-link"> -->
             <a hred="" class="nav-link" @click="logout">Logout</a>
-          <!-- </router-link>  -->
         </li>
 
         <li class="nav-item mr-2" v-show="!$store.state.isLoggedin">
