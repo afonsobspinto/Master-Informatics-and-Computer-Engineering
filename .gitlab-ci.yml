@@ -17,6 +17,8 @@ before_script:
 
 jest-tests:
   stage: test
+  tags:
+    - digitalocean
   script:
     - npm run ci-test
     - npm run lint
@@ -32,7 +34,7 @@ expo-prod-deployments:
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel production
-    
+
 expo-staging-deployments:
   only:
     - development
