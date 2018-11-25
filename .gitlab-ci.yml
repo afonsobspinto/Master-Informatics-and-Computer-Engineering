@@ -5,42 +5,42 @@ cache:
     - .jest
 
 stages:
-  - build
   - test
   - deploy
 
-build-app:
+install-app-packages:
   image: node:alpine
-  stage: build
   script: 
     - cd app
     - npm ci
     - npm install -g expo-cli
 
-build-server:
+install-server-packages:
   image: python:3.7.1
-  stage: build
   script: 
     - cd server
     - pip install -r requirements.txt
 
 jest-tests:
   stage: test
+  before_script:
+    - install-app-packages
   script:
     - cd app
     - npm run ci-test
     - npm run lint
   artifacts:
     reports:
-      junit: app/junit.xml
+      junit: junit.xml
 
 django-tests:
   stage: test
+  before_script:
+    - install-server-packages
   script:
     - cd server
     - python -c 'print("Hello World")'
-
-
+  
 expo-prod-deployments:
   only:
     - master
