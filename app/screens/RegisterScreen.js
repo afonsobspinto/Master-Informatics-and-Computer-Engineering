@@ -12,17 +12,17 @@ export default class RegisterScreen extends Component {
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
-            <Item floatingLabel regular style={styles.inputContainer}>
+            <Item floatingLabel style={styles.inputContainer}>
               <Label style={styles.labelText}>Nome de Utilizador</Label>
               <Input style={styles.labelText} />
             </Item>
 
-            <Item floatingLabel regular style={styles.inputContainer}>
+            <Item floatingLabel style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input style={styles.labelText} />
             </Item>
 
-            <Item floatingLabel regular style={styles.inputContainer}>
+            <Item floatingLabel style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input style={styles.labelText} secureTextEntry />
             </Item>

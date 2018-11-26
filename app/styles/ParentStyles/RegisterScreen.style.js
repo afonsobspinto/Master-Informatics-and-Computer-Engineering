@@ -17,7 +17,8 @@ export default StyleSheet.create({
     left: '10%'
   },
   inputContainer: {
-    marginBottom: '5%'
+    marginBottom: '5%',
+    marginRight: '5%'
   },
   labelText: {
     fontFamily: 'LinotteBold',
