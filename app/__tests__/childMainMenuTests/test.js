@@ -13,7 +13,9 @@ describe('ChildMainMenuScreen snapshot', () => {
     const wrapper = shallow(<ChildMainMenuScreen
       navigation={{ navigate: jest.fn() }}
       xp={150}
-      level={1} />)
+      level={1}
+      showLevelUpModal={false}
+      toggleLevelUpModal={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(TouchableOpacity).at(0).props().onPress()
     wrapper.find(TouchableOpacity).at(1).props().onPress()

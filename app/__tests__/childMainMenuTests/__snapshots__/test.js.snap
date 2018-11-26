@@ -4,7 +4,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
 <Component
   style={
     Object {
-      "backgroundColor": "#fff7ae",
+      "backgroundColor": "#3db3e2",
       "flex": 1,
       "flexDirection": "column",
     }
@@ -24,6 +24,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
   >
     <ChildExperienceBar
       level={1}
+      onPress={[Function]}
       progress={0.5}
     />
   </Component>
@@ -43,7 +44,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#49c6e5",
+          "backgroundColor": "#bbecec",
           "borderRadius": 187.5,
           "elevation": 10,
           "height": 375,
@@ -73,7 +74,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#16db65",
+          "backgroundColor": "#FFA23D",
           "borderRadius": 187.5,
           "elevation": 10,
           "height": 375,
@@ -90,7 +91,7 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
           Object {
             "height": "40%",
             "marginLeft": "7%",
-            "tintColor": "#fff",
+            "tintColor": "#FFE5C9",
             "width": "40%",
           }
         }

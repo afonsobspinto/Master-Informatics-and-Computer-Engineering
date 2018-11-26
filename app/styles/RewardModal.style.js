@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
-import { grayedOut, green, red } from './Colors'
-import { backgroundColor } from './General.style'
+import { grayedOut, green, red, backgroundColor } from './Colors'
 
 const padding = Layout.window.height * 0.05
 const buttonHeight = Layout.window.height * 0.12

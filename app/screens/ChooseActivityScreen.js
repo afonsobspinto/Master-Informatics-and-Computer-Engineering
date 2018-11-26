@@ -5,7 +5,7 @@ import { setCurrentActivity } from '../actions/gameActions'
 import PropTypes from 'prop-types'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
-import { backgroundColor } from '../styles/General.style'
+import { backgroundColor } from '../styles/Colors'
 
 export class ChooseActivityScreen extends React.Component {
   constructor (props) {
