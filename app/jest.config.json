@@ -15,8 +15,8 @@
   "coverageDirectory": "<rootDir>/coverage/",
   "coverageThreshold": {
       "global": {
-          "functions": 30,
-          "lines": 30
+          "functions": 50,
+          "lines": 50
       }
   },
   "verbose": false,

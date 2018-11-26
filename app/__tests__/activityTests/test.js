@@ -66,6 +66,7 @@ describe('ActivityScreen snapshot', () => {
     wrapper.instance().completeActivity()
     wrapper.setState({ elapsedTime: 70 })
     wrapper.instance().completeActivity()
+    wrapper.instance().intervalFunction()
     wrapper.unmount()
   })
 })

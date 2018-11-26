@@ -37,19 +37,21 @@ export class ActivityScreen extends Component {
     this.backToMenu = this.backToMenu.bind(this)
   }
 
+  intervalFunction = () => {
+    if (this.state.isPaused) return
+    if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
+    if (this.state.elapsedTime >= this.props.activity.time.min) {
+      this.state.isCompletable = true
+    }
+
+    this.setState(() => {
+      return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
+    })
+  }
+
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
-    this.interval = setInterval(() => {
-      if (this.state.isPaused) return
-      if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
-      if (this.state.elapsedTime >= this.props.activity.time.min) {
-        this.state.isCompletable = true
-      }
-
-      this.setState(() => {
-        return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
-      })
-    }, this.state.updateRate)
+    this.interval = setInterval(this.intervalFunction, this.state.updateRate)
   }
 
   componentWillUnmount () {
