@@ -7,7 +7,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
   - app/node_modules/
-  - server/.cache/pip
+  - server/ .cache/pip
 stages:
   - test
   - deploy
@@ -55,7 +55,6 @@ expo-prod-deployments:
 expo-staging-deployments:
   only:
     - development
-    - 65-setup-ci-cd
   stage: deploy
   <<: *install_app_packages
   script:
