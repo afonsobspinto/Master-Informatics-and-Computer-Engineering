@@ -1,44 +1,45 @@
+image: ubuntu:bionic
+
+variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/server/.cache/pip"
+
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - ~/.npm
-    - .jest
-
+  - app/node_modules/
+  - .cache/pip
 stages:
   - test
   - deploy
 
-install-app-packages:
+.install-app-packages: &install_app_packages
   image: node:alpine
-  script: 
+  before_script:
+    - npm install -g expo-cli 
     - cd app
     - npm ci
-    - npm install -g expo-cli
 
-install-server-packages:
+.install-server-packages: &install_server_packages
   image: python:3.7.1
-  script: 
+  before_script: 
     - cd server
     - pip install -r requirements.txt
 
 jest-tests:
   stage: test
-  before_script:
-    - install-app-packages
+  <<: *install_app_packages
   script:
-    - cd app
     - npm run ci-test
     - npm run lint
   artifacts:
     reports:
-      junit: junit.xml
+      junit: app/junit.xml
 
 django-tests:
   stage: test
-  before_script:
-    - install-server-packages
+  <<: *install_server_packages
   script:
-    - cd server
+    - pip list
     - python -c 'print("Hello World")'
   
 expo-prod-deployments:
