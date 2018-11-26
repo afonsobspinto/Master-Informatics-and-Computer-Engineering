@@ -522,7 +522,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#fff7ae",
+        "backgroundColor": "#3db3e2",
         "borderRadius": 33.35,
         "elevation": 6,
         "flexGrow": 1,
