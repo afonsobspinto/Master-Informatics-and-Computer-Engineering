@@ -7,3 +7,5 @@ app/node_modules
 .DS_Store
 .expo/
 .idea/
+app/tests_report.xml
+server/tests_report.xml
