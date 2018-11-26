@@ -14,7 +14,7 @@
     "validate": "concurrently \"npm run --silent lint\" \"npm run --silent test\""
   },
   "jest-junit": {
-    "output": "junit.xml",
+    "output": "tests_report.xml",
     "usePathForSuiteName": "true"
   },
   "dependencies": {

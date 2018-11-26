@@ -33,15 +33,18 @@ jest-tests:
     - npm run lint
   artifacts:
     reports:
-      junit: app/junit.xml
+      junit: app/tests_report.xml
 
 django-tests:
   stage: test
   <<: *install_server_packages
   script:
     - pip list
-    - python -c 'print("Hello World")'
-  
+    - python manage.py test
+  artifacts:
+    reports:
+      junit: serve/tests_report.xml
+
 expo-prod-deployments:
   only:
     - master
