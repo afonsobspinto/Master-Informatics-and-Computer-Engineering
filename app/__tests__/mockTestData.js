@@ -228,7 +228,7 @@ export const routines = [
         }
       },
       {
-        title: 'Fazer os trabalhos para casa',
+        title: 'Fazer os trabalhos de casa',
         image: 'paper',
         color: '#657153',
         time: {
