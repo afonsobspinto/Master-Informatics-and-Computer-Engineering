@@ -31,9 +31,11 @@ export class ChooseActivityScreen extends React.Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     activities: state.game.routines[state.game.currentRoutine].activities
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setCurrentActivity: routine => dispatch(setCurrentActivity(routine))
   })

@@ -125,6 +125,7 @@ export class ActivityScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
@@ -134,6 +135,7 @@ export default connect(
     activities: state.game.routines[state.game.currentRoutine].activities,
     currentActivity: state.game.currentActivity
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setActivityStatus: (activity, status) => dispatch(setActivityStatus(activity, status)),
     nextActivity: () => dispatch(nextActivity()),

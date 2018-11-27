@@ -66,6 +66,7 @@ export class ChildMainMenuScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     level: state.child.level,
     xp: state.child.xp
