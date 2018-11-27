@@ -22,4 +22,11 @@ describe('child actions', () => {
     }
     expect(childActions.purchaseItem(...params)).toEqual(expectedAction)
   })
+
+  it('should create an action to toggle level up modal', () => {
+    const expectedAction = {
+      type: childTypes.toggleLevelUpModal
+    }
+    expect(childActions.toggleLevelUpModal()).toEqual(expectedAction)
+  })
 })

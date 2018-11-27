@@ -47,4 +47,11 @@ describe('setting actions', () => {
     }
     expect(settingActions.toggleActivityFeedback()).toEqual(expectedAction)
   })
+
+  it('should create an action to change activity feedback frequency', () => {
+    const expectedAction = {
+      type: settingTypes.changeFeedbackFrequency
+    }
+    expect(settingActions.changeFeedbackFrequency()).toEqual(expectedAction)
+  })
 })

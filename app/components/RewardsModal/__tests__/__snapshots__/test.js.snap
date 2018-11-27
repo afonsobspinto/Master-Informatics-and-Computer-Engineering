@@ -1,0 +1,725 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
+<Component
+  style={
+    Object {
+      "position": "relative",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginTop": 66.7,
+      }
+    }
+  >
+    <Component
+      key="0"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "100%",
+            "opacity": 0.3,
+            "width": "100%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="1"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="2"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="3"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="4"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="5"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="6"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+    <Component
+      key="7"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ccc5b9",
+          "borderRadius": 40.019999999999996,
+          "elevation": 2,
+          "height": 80.03999999999999,
+          "justifyContent": "center",
+          "marginHorizontal": 5,
+          "overflow": "hidden",
+          "width": 80.03999999999999,
+        }
+      }
+    >
+      <Image
+        recizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "60%",
+            "opacity": 0.3,
+            "width": "60%",
+          }
+        }
+      />
+    </Component>
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginTop": 66.7,
+        "position": "absolute",
+      }
+    }
+  >
+    <Component
+      key="0"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="1"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="2"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="3"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="4"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="5"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="6"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+    <Component
+      key="7"
+      style={
+        Object {
+          "height": 80.03999999999999,
+          "marginHorizontal": 5,
+          "width": 80.03999999999999,
+        }
+      }
+    />
+  </Component>
+</Component>
+`;
+
+exports[`RewardsModal components renders RewardsModal correctly 1`] = `
+<ModalBox
+  animationDuration={400}
+  backButtonClose={false}
+  backdrop={true}
+  backdropColor="black"
+  backdropContent={null}
+  backdropOpacity={0.5}
+  backdropPressToClose={false}
+  coverScreen={false}
+  easing={[Function]}
+  isOpen={false}
+  keyboardTopOffset={22}
+  position="center"
+  startOpen={false}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "position": "relative",
+    }
+  }
+  swipeThreshold={50}
+  swipeToClose={false}
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "elevation": 7,
+        "flexDirection": "row",
+        "height": 233.45000000000002,
+        "justifyContent": "center",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "height": 166.75,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 166.75,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+        ]
+      }
+    />
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "height": 166.75,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 166.75,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+          Object {
+            "height": 200.10000000000002,
+            "width": 200.10000000000002,
+          },
+        ]
+      }
+    />
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "height": 166.75,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 166.75,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+        ]
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "elevation": 7,
+        "flexDirection": "row",
+        "height": 233.45000000000002,
+        "justifyContent": "center",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <withAnimatable(Image)
+      animation="zoomIn"
+      delay={400}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
+      resizeMode="center"
+      source={1}
+      style={
+        Object {
+          "height": 166.75,
+          "marginHorizontal": 5,
+          "opacity": 0,
+          "width": 166.75,
+        }
+      }
+      useNativeDriver={false}
+    />
+    <withAnimatable(Image)
+      animation="zoomIn"
+      delay={1400}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "height": 166.75,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 166.75,
+          },
+          Object {
+            "height": 200.10000000000002,
+            "width": 200.10000000000002,
+          },
+        ]
+      }
+      useNativeDriver={false}
+    />
+    <withAnimatable(Image)
+      animation="zoomIn"
+      delay={2400}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
+      resizeMode="center"
+      source={1}
+      style={
+        Object {
+          "height": 166.75,
+          "marginHorizontal": 5,
+          "opacity": 0,
+          "width": 166.75,
+        }
+      }
+      useNativeDriver={false}
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#3db3e2",
+        "borderRadius": 33.35,
+        "elevation": 6,
+        "flexGrow": 1,
+        "marginHorizontal": 200.10000000000002,
+        "marginVertical": 133.4,
+        "position": "relative",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#000",
+          "fontFamily": "LinotteBold",
+          "fontSize": 40,
+          "marginHorizontal": 30,
+          "marginTop": 133.4,
+          "textAlign": "center",
+          "textShadowColor": "rgba(0, 0, 0, 0.2)",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "textShadowRadius": 3,
+        }
+      }
+    />
+    <PastActivityIcons
+      activities={
+        Array [
+          Object {
+            "color": "#7d84b2",
+            "image": "bed",
+            "photo": "bedroom",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 0,
+            },
+            "title": "Fazer a cama",
+          },
+          Object {
+            "color": "#0e79b2",
+            "image": "toothbrush",
+            "time": Object {
+              "goal": 10,
+              "max": 15,
+              "min": 1,
+            },
+            "title": "Lavar os dentes",
+          },
+          Object {
+            "color": "#7fb800",
+            "image": "socks",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Vestir",
+          },
+          Object {
+            "color": "#37c1f0",
+            "image": "shower",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Tomar banho",
+          },
+          Object {
+            "color": "#e43f6f",
+            "image": "bag",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Preparar a mochila",
+          },
+          Object {
+            "color": "#4bb3fd",
+            "image": "sneakers",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Calçar os sapatos",
+          },
+          Object {
+            "color": "#ff7f11",
+            "image": "breakfast",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Tomar o pequeno almoço",
+          },
+          Object {
+            "color": "#b0db43",
+            "image": "comb",
+            "time": Object {
+              "goal": 60,
+              "max": 120,
+              "min": 10,
+            },
+            "title": "Pentear cabelo",
+          },
+        ]
+      }
+      currentActivity={0}
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "bottom": 53.360000000000014,
+        "elevation": 7,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={[MockFunction]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "aspectRatio": 1,
+            "borderRadius": 80.03999999999999,
+            "elevation": 7,
+            "flexDirection": "row",
+            "height": 160.07999999999998,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#e63b2e",
+            "marginRight": 200.10000000000002,
+          },
+        ]
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": "50%",
+            "tintColor": "#fff",
+            "width": "50%",
+          }
+        }
+      />
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={[MockFunction]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "aspectRatio": 1,
+            "borderRadius": 80.03999999999999,
+            "elevation": 7,
+            "flexDirection": "row",
+            "height": 160.07999999999998,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#16db65",
+          },
+        ]
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": "50%",
+            "tintColor": "#fff",
+            "width": "50%",
+          }
+        }
+      />
+    </TouchableOpacity>
+  </Component>
+</ModalBox>
+`;

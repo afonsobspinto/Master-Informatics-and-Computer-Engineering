@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 
-import { backgroundColor } from './General.style'
+import { backgroundColor } from './Colors'
 
 const padding = Layout.window.height * 0.05
 

@@ -23,6 +23,7 @@ export class ProgressBar extends React.Component {
       feedbackCycles: 0
     }
     this.times = props.activityTimes
+    this.frequency = 0
     this.feedbackBorderWidth = 0
     this.feedbackElevation = new Animated.Value(6)
     this.borderColor = new Animated.Value(ORIGINAL_VALUE)
@@ -32,6 +33,26 @@ export class ProgressBar extends React.Component {
   componentWillUnmount () {
     Vibration.cancel()
     clearInterval(this.interval)
+  }
+
+  componentDidMount () {
+    this.assignFeedbackFrequency()
+  }
+
+  assignFeedbackFrequency () {
+    switch (this.props.feedbackFrequency) {
+      case 'slow':
+        this.frequency = 3
+        break
+      case 'normal':
+        this.frequency = 2
+        break
+      case 'fast':
+        this.frequency = 1
+        break
+      default:
+        break
+    }
   }
 
   playSound = async () => {
@@ -93,7 +114,7 @@ export class ProgressBar extends React.Component {
     if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) {
       this.setState(() => ({ color: colors.red }))
 
-      if (!this.state.playedFeedback || this.state.feedbackCycles % 25 === 0) {
+      if (!this.state.playedFeedback || this.state.feedbackCycles % (15 * this.frequency) === 0) {
         this.activityFeedback()
         this.setState(() => ({ playedFeedback: true, feedbackCycles: this.state.feedbackCycles + 1 }))
       } else {
@@ -128,7 +149,7 @@ export class ProgressBar extends React.Component {
         <View style={[{ left: `${this.times.min / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${this.times.goal / this.times.max * 100}%` }, styles.progressBarDivider]} />
         <View style={[{ left: `${(this.times.goal + (this.times.max - this.times.goal) / 2) / this.times.max * 100}%` }, styles.progressBarDivider]} />
-        {this.props.showTimer && <Timer style={timerBar} elapsedTime={this.props.elapsedTime} />}
+        {this.props.showTimer && <Timer style={timerBar} remainingTime={this.times.max - this.props.elapsedTime} />}
       </Animated.View>
     )
   }
@@ -139,5 +160,6 @@ ProgressBar.propTypes = {
   activityTimes: PropTypes.object.isRequired,
   isPaused: PropTypes.bool.isRequired,
   showTimer: PropTypes.bool.isRequired,
-  activityFeedback: PropTypes.string.isRequired
+  activityFeedback: PropTypes.string.isRequired,
+  feedbackFrequency: PropTypes.string.isRequired
 }

@@ -28,5 +28,5 @@
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
   ],
-  "testPathIgnorePatterns": ["assets/images", "node_modules"]
+  "testPathIgnorePatterns": ["assets/images", "node_modules", "__tests__/mockTestData"]
 }

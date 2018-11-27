@@ -13,3 +13,9 @@ export function purchaseItem (cost, id) {
     payload: { cost, id }
   }
 }
+
+export function toggleLevelUpModal () {
+  return {
+    type: childTypes.toggleLevelUpModal
+  }
+}
