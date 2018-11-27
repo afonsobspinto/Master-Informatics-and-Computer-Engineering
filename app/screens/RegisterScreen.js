@@ -5,6 +5,33 @@ import { Container, Content, Form, Item, Input, Label, Button } from 'native-bas
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 
 export default class RegisterScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      email: '',
+      emailError: undefined,
+      password: '',
+      passwordError: undefined
+    }
+  }
+
+  validate (type, value) {
+    if (type === 'email') {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if (re.test(value)) {
+        this.setState(() => ({ emailError: false }))
+      } else {
+        this.setState(() => ({ emailError: true }))
+      }
+    } else if (type === 'password') {
+      if (String(value).length < 6) {
+        this.setState(() => ({ passwordError: true }))
+      } else {
+        this.setState(() => ({ passwordError: false }))
+      }
+    }
+  }
+
   render () {
     return (
       <Container style={styles.registerContainter}>
@@ -12,19 +39,21 @@ export default class RegisterScreen extends Component {
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
-            <Item floatingLabel style={styles.inputContainer}>
-              <Label style={styles.labelText}>Nome de Utilizador</Label>
-              <Input style={styles.labelText} />
-            </Item>
-
-            <Item floatingLabel style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.emailError} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
-              <Input style={styles.labelText} />
+              <Input
+                onChangeText={(text) => this.validate('email', text.trim())}
+                style={styles.labelText}
+              />
             </Item>
 
-            <Item floatingLabel style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.passwordError} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
-              <Input style={styles.labelText} secureTextEntry />
+              <Input
+                onChangeText={(text) => this.validate('password', text.trim())}
+                style={styles.labelText}
+                secureTextEntry
+              />
             </Item>
 
             <Button rounded block primary style={styles.submitButton}>
