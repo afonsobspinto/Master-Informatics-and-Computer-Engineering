@@ -115,7 +115,6 @@ export class ProgressBar extends React.Component {
   }
 
   componentWillReceiveProps (props) {
-    console.log('this.state.playedFeedback = ' + this.state.playedFeedback)
     if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) {
       this.setState(() => ({ color: colors.red }))
 
