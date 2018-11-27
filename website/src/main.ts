@@ -10,14 +10,14 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 //need to import icons individually as needed
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 //@ts-ignore
 import Toaster from 'v-toaster';
 
 //Add to the library every icon needed
-library.add(faCoffee)
+library.add(faPlusCircle)
 
 Vue.config.productionTip = false
 
