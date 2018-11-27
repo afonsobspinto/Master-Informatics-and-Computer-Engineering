@@ -940,7 +940,295 @@ exports[`Activity components renders ProgressBar correctly 4 3`] = `
 </AnimatedComponent>
 `;
 
-exports[`Activity components renders ProgressClock correctly 1`] = `
+exports[`Activity components renders ProgressClock correctly 1 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 1 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 2 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 2 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 3 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 3 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#474647"
+    indeterminate={false}
+    progress={0.8333333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 4 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#16db65"
+    indeterminate={false}
+    progress={0.008333333333333333}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 4 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "borderRadius": 166.07999999999998,
+        "bottom": 40.019999999999996,
+        "elevation": 6,
+        "height": 332.15999999999997,
+        "justifyContent": "center",
+        "left": 40.019999999999996,
+        "position": "absolute",
+        "width": 332.15999999999997,
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <withAnimation(ProgressCircle)
+    animated={true}
+    borderWidth={0}
+    color="#dba159"
+    indeterminate={false}
+    progress={0.5833333333333334}
+    size={320.15999999999997}
+    thickness={160.07999999999998}
+    unfilledColor="#c5cbd3"
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressClock correctly 4 3`] = `
 <AnimatedComponent
   style={
     Array [
