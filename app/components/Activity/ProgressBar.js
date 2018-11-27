@@ -106,11 +106,16 @@ export class ProgressBar extends React.Component {
     } else if (this.props.activityFeedback === 'sound') {
       this.playSound()
     } else if (this.props.activityFeedback === 'vibration') {
-      Vibration.vibrate(250, true)
+      try {
+        Vibration.vibrate(250, true)
+      } catch (error) {
+        console.log('This device cannot vibrate')
+      }
     }
   }
 
   componentWillReceiveProps (props) {
+    console.log('this.state.playedFeedback = ' + this.state.playedFeedback)
     if (props.elapsedTime >= this.times.goal + (this.times.max - this.times.goal) / 2) {
       this.setState(() => ({ color: colors.red }))
 

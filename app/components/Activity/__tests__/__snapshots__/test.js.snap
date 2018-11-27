@@ -112,7 +112,743 @@ exports[`Activity components renders PauseButton correctly 1`] = `
 </TouchableOpacity>
 `;
 
-exports[`Activity components renders ProgressBar correctly 1`] = `
+exports[`Activity components renders ProgressBar correctly 1 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 1 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 2 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 2 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 3 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 3 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#474647"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.8333333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 4 1`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#16db65"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.008333333333333333}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 4 2`] = `
+<AnimatedComponent
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#c5cbd3",
+        "borderRadius": 53.35999999999999,
+        "elevation": 6,
+        "flexGrow": 1,
+        "height": 106.71999999999998,
+        "justifyContent": "center",
+        "marginRight": 20.009999999999998,
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      Object {
+        "borderColor": "rgba(0, 0, 0, 0)",
+        "borderWidth": 0,
+        "elevation": 6,
+      },
+    ]
+  }
+>
+  <ProgressBar
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    borderColor="red"
+    borderRadius={106.71999999999998}
+    borderWidth={0}
+    color="#dba159"
+    height={106.71999999999998}
+    indeterminate={false}
+    progress={0.5833333333333334}
+    useNativeDriver={false}
+    width={null}
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "0%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "50%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "left": "75%",
+        },
+        Object {
+          "borderRightColor": "#000",
+          "borderRightWidth": 2,
+          "height": 106.71999999999998,
+          "opacity": 0.5,
+          "position": "absolute",
+        },
+      ]
+    }
+  />
+</AnimatedComponent>
+`;
+
+exports[`Activity components renders ProgressBar correctly 4 3`] = `
 <AnimatedComponent
   style={
     Array [
