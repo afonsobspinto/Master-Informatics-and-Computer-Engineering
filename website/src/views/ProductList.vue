@@ -27,18 +27,25 @@ export default Vue.extend({
       <b-col sm="3" id="ViewOptions">
         options
       </b-col>
+      
       <b-col sm="9" id="ProductsList">
-        <b-row v-for="product in products" :key="product.id" style="height: 10em" class="mb-3">
-          <b-img :src="product.image" thumbnail fluid alt="product image" class="h-100"/>
+        <b-row v-for="product in products" :key="product.id" style="height: 10em" class="mb-3 bg-light border border-info">
+          <div class="bg-white col-3 row m-0">
+            <b-img :src="product.image" fluid alt="product image" class="my-auto"/>
+          </div>
           
-          <h5 class="col-4">{{product.name}}</h5>
+          <p class="col">{{product.name}}</p>
+          <!-- TODO link to product page -->
           
-          <div>
-            <button>
-              <font-awesome-icon icon="plus-circle" />
-              Add to cart
-              </button>
-            <p>{{product.stock}} units in stock</p>
+          <div class="col-3 row m-0 p-0">
+            <div class="mt-auto w-100 mx-0 p-0">
+              <p class="small d-inline">{{product.stock}} units in stock</p>
+              <b-button class="btn btn-info float-right m-1">
+                <font-awesome-icon icon="cart-plus" />
+                <!-- TODO add to cart -->
+              </b-button>
+              
+            </div>
           </div>
         </b-row>
         
