@@ -587,7 +587,7 @@ exports[`Carousel components renders CardCarousel correctly 1`] = `
                   "max": 120,
                   "min": 10,
                 },
-                "title": "Fazer os trabalhos para casa",
+                "title": "Fazer os trabalhos de casa",
               },
               Object {
                 "color": "#519e8a",

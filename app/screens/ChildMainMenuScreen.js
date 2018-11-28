@@ -93,6 +93,7 @@ export default connect(
     xp: state.child.xp,
     showLevelUpModal: state.child.showLevelUpModal
   }),
+  /* istanbul ignore next */
   dispatch => ({
     toggleLevelUpModal: () => dispatch(toggleLevelUpModal())
   })
