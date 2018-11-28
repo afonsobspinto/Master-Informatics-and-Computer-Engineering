@@ -24,6 +24,6 @@ export class RoutineItem extends React.Component {
 }
 
 RoutineItem.propTypes = {
-  image: PropTypes.object.isRequired,
-  title: PropTypes.object.isRequired
+  image: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired
 }
