@@ -12,6 +12,8 @@ export class LevelUpModal extends React.Component {
     isOpened: this.props.show
   }
 
+  onPress = () => this.setState({ isOpened: false })
+
   render () {
     return (
       <View style={styles.modalContainer}>
@@ -28,7 +30,7 @@ export class LevelUpModal extends React.Component {
               {this.props.isReward && <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.levelUpButton}
-                onPress={() => this.setState({ isOpened: false })}>
+                onPress={this.onPress}>
                 <Image
                   style={styles.levelUpButtonImage}
                   resizeMode={'contain'}
