@@ -89,20 +89,10 @@ export default class ParentHomeScreen extends React.Component {
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>Nome</Text>
               <Text style={{ flex: 1 }}>{this.state.name}</Text>
-              <View style={styles.arrowContainer}>
-                <TouchableOpacity>
-                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
-                </TouchableOpacity>
-              </View>
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>E-mail</Text>
               <Text style={{ flex: 1 }}>E-mail da pESSOA</Text>
-              <View style={styles.arrowContainer}>
-                <TouchableOpacity>
-                  <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
-                </TouchableOpacity>
-              </View>
             </View>
           </View>
           <View style={styles.sectionContainer}>

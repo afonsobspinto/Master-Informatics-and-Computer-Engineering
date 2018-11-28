@@ -154,6 +154,13 @@ class CreateNewActivityScreen extends Component {
           <View style={styles.centeredContainer}>
             <Text style={{ paddingBottom: 20 }}>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
           </View>
+
+          <View style={styles.sectionContainer}>
+            <View style={styles.descriptionBox}>
+              <Text>Nome</Text>
+            </View>
+          </View>
+
           <View style={styles.inputContainer} >
             <Text style={styles.label} >Nome</Text>
             <TextInput style={{ height: 50, alignSelf: 'stretch', paddingHorizontal: 10, borderBottomColor: '#13293D', borderBottomWidth: 1 }} placeholder='Nome da nova Atividade'
