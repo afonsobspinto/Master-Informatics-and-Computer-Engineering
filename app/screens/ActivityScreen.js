@@ -37,19 +37,21 @@ export class ActivityScreen extends Component {
     this.backToMenu = this.backToMenu.bind(this)
   }
 
+  intervalFunction = () => {
+    if (this.state.isPaused) return
+    if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
+    if (this.state.elapsedTime >= this.props.activity.time.min) {
+      this.state.isCompletable = true
+    }
+
+    this.setState(() => {
+      return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
+    })
+  }
+
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
-    this.interval = setInterval(() => {
-      if (this.state.isPaused) return
-      if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
-      if (this.state.elapsedTime >= this.props.activity.time.min) {
-        this.state.isCompletable = true
-      }
-
-      this.setState(() => {
-        return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
-      })
-    }, this.state.updateRate)
+    this.interval = setInterval(this.intervalFunction, this.state.updateRate)
   }
 
   componentWillUnmount () {
@@ -123,6 +125,7 @@ export class ActivityScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
@@ -132,6 +135,7 @@ export default connect(
     activities: state.game.routines[state.game.currentRoutine].activities,
     currentActivity: state.game.currentActivity
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setActivityStatus: (activity, status) => dispatch(setActivityStatus(activity, status)),
     nextActivity: () => dispatch(nextActivity()),

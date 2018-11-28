@@ -1,3 +1,15 @@
+export const activityWithURI = {
+  title: 'Fazer a cama',
+  image: 'file://test.uri',
+  photo: 'bedroom',
+  color: '#7d84b2',
+  time: {
+    min: 0,
+    max: 120,
+    goal: 60
+  }
+}
+
 export const activitiesWithStatus = [
   {
     title: 'Fazer a cama',
