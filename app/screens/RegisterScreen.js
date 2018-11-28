@@ -9,9 +9,11 @@ export default class RegisterScreen extends Component {
     super(props)
     this.state = {
       email: '',
-      emailError: undefined,
+      emailError: null,
       password: '',
-      passwordError: undefined
+      passwordError: null,
+      emailHadInteraction: false,
+      passwordHadInteraction: false
     }
   }
 
@@ -23,12 +25,14 @@ export default class RegisterScreen extends Component {
       } else {
         this.setState(() => ({ emailError: true }))
       }
+      this.setState(() => ({ emailHadInteraction: true }))
     } else if (type === 'password') {
       if (String(value).length < 6) {
         this.setState(() => ({ passwordError: true }))
       } else {
         this.setState(() => ({ passwordError: false }))
       }
+      this.setState(() => ({ passwordHadInteraction: true }))
     }
   }
 
@@ -39,7 +43,7 @@ export default class RegisterScreen extends Component {
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
-            <Item floatingLabel error={this.state.emailError} style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.emailError} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input
                 onChangeText={(text) => this.validate('email', text.trim())}
@@ -47,7 +51,7 @@ export default class RegisterScreen extends Component {
               />
             </Item>
 
-            <Item floatingLabel error={this.state.passwordError} style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.passwordError} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input
                 onChangeText={(text) => this.validate('password', text.trim())}

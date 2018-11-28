@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { backgroundColor } from '../General.style'
+import { backgroundColor, lightTextColor } from '../Colors'
 
 export default StyleSheet.create({
   registerContainter: {
@@ -8,7 +8,8 @@ export default StyleSheet.create({
   registerTitle: {
     fontFamily: 'LinotteBold',
     fontSize: 30,
-    marginBottom: '5%'
+    marginBottom: '5%',
+    color: lightTextColor
   },
   contentContainter: {
     flex: 1,
@@ -22,7 +23,8 @@ export default StyleSheet.create({
   },
   labelText: {
     fontFamily: 'LinotteBold',
-    fontSize: 20
+    fontSize: 20,
+    color: lightTextColor
   },
   submitButton: {
     marginTop: '10%'
@@ -39,7 +41,7 @@ export default StyleSheet.create({
   },
   loginText: {
     fontFamily: 'LinotteBold',
-    color: 'black',
-    marginBottom: '2%'
+    marginBottom: '2%',
+    color: lightTextColor
   }
 })
