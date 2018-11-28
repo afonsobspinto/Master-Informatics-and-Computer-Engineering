@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Image, SafeAreaView, ScrollView } from 'react-native'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation'
 
-import CreateNewActivityScreen from './CreateNewActivityScreen'
 import MyAccountNavigator from '../navigation/MyAccountNavigator'
+import { RoutinesScreen } from './RoutinesScreen'
 
 export default class ParentScreen extends React.Component {
   static navigationOptions = {
@@ -29,7 +29,7 @@ const CustomDrawerComponent = (props) => (
 
 const ParentDrawerNavigator = createDrawerNavigator({
   'A Minha Conta': { screen: MyAccountNavigator },
-  'Criar Nova Atividade': { screen: CreateNewActivityScreen }
+  'Criar Nova Atividade': { screen: RoutinesScreen }
 },
 {
   contentComponent: CustomDrawerComponent,

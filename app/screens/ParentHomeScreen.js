@@ -92,7 +92,7 @@ export default class ParentHomeScreen extends React.Component {
             </View>
             <View style={[styles.infoContainer, styles.rowDirection]}>
               <Text style={{ flex: 1 }}>E-mail</Text>
-              <Text style={{ flex: 1 }}>E-mail da pESSOA</Text>
+              <Text style={{ flex: 1 }}>{this.state.email}</Text>
             </View>
           </View>
           <View style={styles.sectionContainer}>
