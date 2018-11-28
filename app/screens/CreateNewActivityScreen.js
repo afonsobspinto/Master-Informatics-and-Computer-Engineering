@@ -1,14 +1,15 @@
 import { ImagePicker, Permissions } from 'expo'
-import { Body, Header, Icon, Left, Picker, Right } from 'native-base'
+import { Body, Header, Icon, Left, Picker, Right, Form, Content, Container, Item, Input } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Alert, Animated, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import Modal from 'react-native-modal'
-import DateTimePicker from 'react-native-modal-datetime-picker'
+import { Alert, Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native'
+// import Modal from 'react-native-modal'
+// import DateTimePicker from 'react-native-modal-datetime-picker'
 import { connect } from 'react-redux'
 import { addCustomActivity } from '../actions/gameActions'
 import Images from '../assets/images/images.js'
-import { DurationModal } from '../components/Slides/DurationModal'
+// import { DurationModal } from '../components/Slides/DurationModal'
+import { PickerSettings } from '../components/Settings/PickerSettings'
 
 class CreateNewActivityScreen extends Component {
   constructor (props) {
@@ -34,6 +35,8 @@ class CreateNewActivityScreen extends Component {
     this.daysOfWeek = [
       'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'
     ]
+    this.items = ['Manhã', 'Noite']
+    this.title = 'Escolher Rotina'
   }
 
   convertToWeekDay = (dayNumber) => {
@@ -140,7 +143,7 @@ class CreateNewActivityScreen extends Component {
 
   render () {
     return (
-      <View style={{ flex: 1 }} >
+      <Container>
         <Header style={styles.container}>
           <Left>
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
@@ -150,147 +153,33 @@ class CreateNewActivityScreen extends Component {
           </Body>
           <Right />
         </Header>
-        <ScrollView style={styles.activeScrollView}>
-          <View style={styles.centeredContainer}>
-            <Text style={{ paddingBottom: 20 }}>Introduza os seguintes dados de forma a criar uma nova rotina.</Text>
-          </View>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.descriptionBox}>
-              <Text>Nome</Text>
-            </View>
-          </View>
-
-          <View style={styles.inputContainer} >
-            <Text style={styles.label} >Nome</Text>
-            <TextInput style={{ height: 50, alignSelf: 'stretch', paddingHorizontal: 10, borderBottomColor: '#13293D', borderBottomWidth: 1 }} placeholder='Nome da nova Atividade'
-              underlineColorAndroid={'transparent'} onChangeText={(title) => this.setState({ title })} value={this.state.title} />
-          </View>
-          <View style={{ flexDirection: 'row', height: 70 }} >
-            <View style={{ flexBasis: '50%', justifyContent: 'center', alignItems: 'flex-start' }}>
-              <Text>Data da Atividade</Text>
-            </View>
-            <View style={{ flexDirection: 'row', flexBasis: '50%', justifyContent: 'center', alignItems: 'center' }}>
-              <Text>{this.state.activityWeekDay}</Text>
-              <View style={{ flexBasis: '35%' }}>
-                <TouchableOpacity onPress={this.showDatePicker}>
-                  <Image style={{ alignSelf: 'flex-end', height: 35, width: 35 }} source={require('../assets/images/add-activity-icon.png')} />
-                  <DateTimePicker
-                    isVisible={this.state.isDatePickerVisible}
-                    onConfirm={this.handleDatePicked}
-                    onCancel={this.hideDatePicker}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', height: 70 }}>
-            <View style={{ flexBasis: '50%', justifyContent: 'center', alignItems: 'flex-start' }} >
-              <Text>Hora da Atividade</Text>
-            </View>
-            <View style={{ flexDirection: 'row', flexBasis: '50%', justifyContent: 'center', alignItems: 'center' }} >
-              <Text>{this.state.activityStartingTime.getHours()} : {this.state.activityStartingTime.getMinutes()}</Text>
-              <View style={{ flexBasis: '35%' }} >
-                <TouchableOpacity onPress={this.showTimePicker}>
-                  <Image style={{ alignSelf: 'flex-end', height: 35, width: 35 }} source={require('../assets/images/add-activity-icon.png')} />
-                </TouchableOpacity>
-                <DateTimePicker
-                  mode='time'
-                  isVisible={this.state.isTimePickerVisible}
-                  onConfirm={this.handleTimePicked}
-                  onCancel={this.hideTimePicker}
-                />
-              </View>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', paddingBottom: 20, justifyContent: 'center', alignItems: 'flex-start' }} >
-            <Text style={{ alignSelf: 'center', flexBasis: '40%' }} >Periodicidade</Text>
-            <Picker
-              selectedValue={this.state.routinePeriod}
-              onValueChange={this.updateRoutinePeriod}
-            >
-              <Picker.Item label='Uma vez apenas' value='only-one' />
-              <Picker.Item label='Semanalmente' value='weekly' />
-              <Picker.Item label='Mensalmente' value='monthly' />
-              <Picker.Item label='Personalizar' value='personalized' />
-            </Picker>
-          </View>
-          <View style={{ flexDirection: 'row', height: 70, paddingBottom: 20 }}>
-            <View style={{ flexBasis: '50%', justifyContent: 'center', alignItems: 'flex-start' }} >
-              <Text>Duração da Atividade</Text>
-            </View>
-            <View style={{ flexDirection: 'row', flexBasis: '50%', justifyContent: 'center', alignItems: 'center' }} >
-              <Text>Dura selecionada</Text>
-              <View style={{ flexBasis: '35%' }} >
-                <TouchableOpacity onPress={this.showTimePicker}>
-                  <Image style={{ alignSelf: 'flex-end', height: 35, width: 35 }} source={require('../assets/images/add-activity-icon.png')} />
-                </TouchableOpacity>
-                <Modal
-                  isVisible={this.state.showRoutineDurationView}
-                  style={styles.durationModal}>
-                  <DurationModal closeModalCallback={this.toggleRoutineDurationModal} />
-                </Modal>
-              </View>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.label} >Recompensa: </Text>
-          </View>
-          <View style={{ flexDirection: 'row' }} >
-            <Text style={styles.label} >Inserir em Rotina</Text>
-            <Picker
-              selectedValue={this.state.routinePeriod}
-              onValueChange={this.updateRoutinePeriod}
-            >
-              <Picker.Item label='Após Acordar' value='after-wakeup' />
-            </Picker>
-          </View>
-          <View>
-            <Text style={styles.label}>Logótipo da Atividade</Text>
-            <View style={{ flexDirection: 'row', paddingBottom: 20 }}>
-              <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                <TouchableOpacity style={{ flexBasis: '50%', flexDirection: 'column' }}
-                  onPress={() => this.imagePicker(false)}>
-                  <Image style={{ height: 35, width: 35 }} source={require('../assets/images/icons/upload.png')} />
-                </TouchableOpacity>
-                <Text style={{ fontSize: 12, paddingTop: 5 }}>Importar imagem da galeria</Text>
-              </View>
-              <View style={{ justifyContent: 'center', alignItems: 'center', flexBasis: '50%' }}>
-                <TouchableOpacity
-                  onPress={() => this.imagePicker(true)}>
-                  <Image style={{ height: 40, width: 40 }} source={require('../assets/images/icons/camera.png')} />
-                </TouchableOpacity>
-                <Text style={{ fontSize: 12, paddingTop: 5 }}>Tirar fotografia</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{ paddingBottom: 20 }}>
-            <Text style={styles.label}>Imagem de Atividade</Text>
-            <View styles={{ flexDirection: 'row' }}>
-              <View style={{ flexBasis: '50%' }}>
-                <TouchableOpacity onPress={() => this.imagePicker(false)}>
-                  <Image style={{ height: 35, width: 35 }} source={require('../assets/images/icons/upload.png')} />
-                </TouchableOpacity>
-                <Text style={{ fontSize: 12, paddingTop: 5 }}>Importar imagem da galeria</Text>
-              </View>
-              <View style={{ flexBasis: '50%' }}>
-                <Picker selectedValue={this.state.image}
-                  style={{ width: 100 }}
-                  onValueChange={(item) => this.setState({ image: item })}>
-                  {this.getPickerImages()}
-                </Picker>
-                <Text style={{ fontSize: 12 }}>Escolher imagem pré-definida</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{ paddingBottom: 40, justifyContent: 'center', alignItems: 'center' }}>
+        <Content>
+          <Form>
+            <Text>Nome:</Text>
+            <Item>
+              <Input />
+            </Item>
+            <Text>Escolha a rotina:</Text>
+            <PickerSettings title={this.title} items={this.items} />
+            <Text>Escolha a cor da rotina:</Text>
+            <Text>Duração Mínima:</Text>
+            <TextInput keyboardType='numeric' textContentType='telephoneNumber' />
+            <Text>Duração Máximo:</Text>
+            <TextInput keyboardType='numeric' textContentType='telephoneNumber' />
+            <Text>Duração Ideal:</Text>
+            <TextInput keyboardType='numeric' textContentType='telephoneNumber' />
+            <Text>Escolha a imagem da atividade:</Text>
+            <TouchableOpacity onPress={() => this.imagePicker(false)}>
+              <Image style={{ height: 35, width: 35 }} source={require('../assets/images/icons/upload.png')} />
+            </TouchableOpacity>
             <TouchableOpacity onPress={this.buildNewCustomActivity}
               style={{ backgroundColor: 'gray', paddingLeft: 30, paddingRight: 30, paddingTop: 15, paddingBottom: 15 }}>
               <Text>Criar Atividade</Text>
             </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </View>
+
+          </Form>
+        </Content>
+      </Container>
     )
   }
 }
