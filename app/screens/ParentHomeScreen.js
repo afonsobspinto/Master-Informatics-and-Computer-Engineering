@@ -26,10 +26,6 @@ export default class ParentHomeScreen extends React.Component {
       email: newEmail
     })
   }
-/*
-  sendEmailProps = () => {
-    this.props.navigation.navigate('ChangeEmail', { email: this.state.email }, { setEmail: (email) => this.setEmail(email) })
-  }*/
 
   toggleUploadPicModal = () => {
     this.setState({
@@ -38,6 +34,7 @@ export default class ParentHomeScreen extends React.Component {
   }
 
   render () {
+    console.log('chegou aqui + HOME SCREEN')
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.generalLayout}>

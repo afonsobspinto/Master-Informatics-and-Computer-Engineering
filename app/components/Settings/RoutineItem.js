@@ -15,7 +15,7 @@ export class RoutineItem extends React.Component {
         </Body>
         <Right>
           <Button transparent>
-            <Text>View</Text>
+            <Text>Ver</Text>
           </Button>
         </Right>
       </ListItem>

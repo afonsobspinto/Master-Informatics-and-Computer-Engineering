@@ -15,12 +15,12 @@ export default class ParentMainMenuScreen extends React.Component {
 
   renderSelectedTab () {
     switch (this.state.selectedTab) {
-      case 'welcome':
+      case 'initial':
+        return (<RoutinesScreen />)
+      case 'routines':
         return (<RoutinesScreen />)
       case 'profile':
         return (<ParentHomeScreen />)
-      case 'login':
-        return (<RoutinesScreen />)
     }
   }
 
@@ -33,13 +33,20 @@ export default class ParentMainMenuScreen extends React.Component {
         </Content>
         <Footer>
           <FooterTab>
-            <Button active={this.state.selectedTab === 'welcome'}
-              onPress={() => this.setState({ selectedTab: 'welcome' })} >
-              <Text>Paulo Footer</Text>
+            <Button active={this.state.selectedTab === 'initial'}
+              onPress={() => this.setState({ selectedTab: 'initial' })} >
+              <Icon name='home' />
+              <Text>Ecrã Inicial</Text>
+            </Button>
+            <Button active={this.state.selectedTab === 'routines'}
+              onPress={() => this.setState({ selectedTab: 'routines' })} >
+              <Icon name='apps' />
+              <Text>Rotinas</Text>
             </Button>
             <Button active={this.selectedTab === 'profile'}
               onPress={() => this.setState({ selectedTab: 'profile' })}>
               <Icon name='cog' />
+              <Text>Definições</Text>
             </Button>
           </FooterTab>
         </Footer>
