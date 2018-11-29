@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
 import ParentHomeScreen from './ParentHomeScreen'
@@ -9,14 +9,14 @@ export default class ParentMainMenuScreen extends React.Component {
     super(props)
 
     this.state = {
-      selectedTab: 'welcome'
+      selectedTab: 'initial'
     }
   }
 
   renderSelectedTab () {
     switch (this.state.selectedTab) {
       case 'initial':
-        return (<RoutinesScreen />)
+        return (<View><Text>Ecrã Inicial</Text></View>)
       case 'routines':
         return (<RoutinesScreen />)
       case 'profile':

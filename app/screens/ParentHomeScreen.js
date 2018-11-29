@@ -34,7 +34,6 @@ export default class ParentHomeScreen extends React.Component {
   }
 
   render () {
-    console.log('chegou aqui + HOME SCREEN')
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.generalLayout}>
