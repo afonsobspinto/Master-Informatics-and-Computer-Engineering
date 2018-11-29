@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
-import { grayedOut, green, red, backgroundColor } from './Colors'
+import { grayedOut, oppositeColor, accentColor, backgroundColor } from './Colors'
 
 const padding = Layout.window.height * 0.05
 const buttonHeight = Layout.window.height * 0.12
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   cardTitle: {
     fontFamily: 'LinotteBold',
     fontSize: 40,
-    color: '#000',
+    color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,
@@ -65,10 +65,10 @@ export default StyleSheet.create({
     borderRadius: buttonHeight / 2
   },
   nextButton: {
-    backgroundColor: green
+    backgroundColor: accentColor
   },
   backButton: {
-    backgroundColor: red,
+    backgroundColor: oppositeColor,
     marginRight: 3 * padding
   },
   buttonContainer: {
