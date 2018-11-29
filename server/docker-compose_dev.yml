@@ -1,0 +1,21 @@
+
+version: '3'
+
+services:
+  mysql-db-dev:
+    image: mysql:5.7.24
+    environment:
+      MYSQL_ROOT_PASSWORD: cenas
+      MYSQL_DATABASE: ldsog02_db_dev
+    ports:
+      - "3308:3306"
+
+  django-dev:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db-dev
