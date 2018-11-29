@@ -79,5 +79,8 @@ django-staging-deployments:
   stage: deploy
   before_script:
     - apt-get update -qq && apt-get install -y -qq git
+    - cd server
+    - chmod +x deploy-django.sh
   script:
     - git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2
+    - ./deploy-django.sh
