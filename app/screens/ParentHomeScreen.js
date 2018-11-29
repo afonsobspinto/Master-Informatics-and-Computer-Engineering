@@ -1,28 +1,19 @@
 import React from 'react'
 import { Image, View, Text, ScrollView, TouchableOpacity } from 'react-native'
-import { Header, Left, Body, Right, Icon } from 'native-base'
-
-import PropTypes from 'prop-types'
 
 import Modal from 'react-native-modal'
 
 import styles from '../styles/ParentStyles/ParentHomeScreen.style'
 
 export default class ParentHomeScreen extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {
       name: 'Nome Da Pessoa',
       email: 'email@hotmail.com',
       uploadModalVisible: false
     }
   }
-  static navigationOptions = {
-    header: null,
-    drawerIcon: (
-      <Image source={require('../assets/images/home-icon.png')} style={{ height: 24, width: 24 }} />
-    )
-  };
 
   setName = (newName) => {
     this.setState({
@@ -35,10 +26,10 @@ export default class ParentHomeScreen extends React.Component {
       email: newEmail
     })
   }
-
+/*
   sendEmailProps = () => {
     this.props.navigation.navigate('ChangeEmail', { email: this.state.email }, { setEmail: (email) => this.setEmail(email) })
-  }
+  }*/
 
   toggleUploadPicModal = () => {
     this.setState({
@@ -49,15 +40,6 @@ export default class ParentHomeScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1 }}>
-        <Header style={styles.headerContainer}>
-          <Left>
-            <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
-          </Left>
-          <Body>
-            <Text style={{ fontSize: 18, color: 'white' }}>A minha Conta</Text>
-          </Body>
-          <Right />
-        </Header>
         <ScrollView style={styles.generalLayout}>
           <View style={styles.centeredContainer}>
             <Image source={require('../assets/images/profile-icon.png')} style={styles.profileImgContainer} />
@@ -103,7 +85,7 @@ export default class ParentHomeScreen extends React.Component {
               <Text style={{ flex: 1 }}>Repor E-mail</Text>
               <Text style={{ flex: 1 }}>{this.state.email}</Text>
               <View style={styles.arrowContainer}>
-                <TouchableOpacity onPress={() => this.sendEmailProps()}>
+                <TouchableOpacity>
                   <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
                 </TouchableOpacity>
               </View>
@@ -112,7 +94,7 @@ export default class ParentHomeScreen extends React.Component {
               <Text style={{ flex: 3 }}>Repor Palavra-passe</Text>
               <Text style={{ flex: 1 }}>********</Text>
               <View style={styles.arrowContainer}>
-                <TouchableOpacity onPress={() => { this.props.navigation.navigate('ChangePassword') }}>
+                <TouchableOpacity >
                   <Image source={require('../assets/images/icons/slide-arrow.png')} style={{ height: 25, width: 25 }} />
                 </TouchableOpacity>
               </View>
@@ -122,8 +104,4 @@ export default class ParentHomeScreen extends React.Component {
       </View>
     )
   }
-}
-
-ParentHomeScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
 }
