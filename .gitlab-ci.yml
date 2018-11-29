@@ -77,7 +77,7 @@ django-staging-deployments:
     - development
     - 65-setup-ci-cd
   stage: deploy
-  before-script:
+  before_script:
     - apt install git
   script:
     - git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2
