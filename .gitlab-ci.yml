@@ -25,6 +25,8 @@ stages:
     - pip install -r requirements.txt
 
 jest-tests:
+  except: 
+    - 65-setup-ci-cd
   stage: test
   <<: *install_app_dependencies
   script:
@@ -37,6 +39,8 @@ jest-tests:
       junit: app/tests_report.xml
 
 django-tests:
+  except: 
+    - 65-setup-ci-cd
   stage: test
   <<: *install_server_dependencies
   script:
