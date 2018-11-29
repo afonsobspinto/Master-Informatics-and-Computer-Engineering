@@ -1,6 +1,7 @@
 import React from 'react'
-import { View } from 'react-native'
-import { List, Icon, Fab } from 'native-base'
+import { View, StyleSheet } from 'react-native'
+import { List, Icon } from 'native-base'
+import ActionButton from 'react-native-action-button'
 import { RoutineItem } from '../components/Settings/RoutineItem'
 
 export class RoutinesScreen extends React.Component {
@@ -12,15 +13,23 @@ export class RoutinesScreen extends React.Component {
           <RoutineItem title='Depois do Almoço' image={require('../assets/images/activities/breakfast.png')} />
           <RoutineItem title='Antes de Dormir' image={require('../assets/images/activities/breakfast.png')} />
         </List>
-        <Fab
-          active
-          direction='up'
-          containerStyle={{ backgroundColor: 'transparent' }}
-          style={{ backgroundColor: '#5067FF' }}
-          position='bottomRight'>
-          <Icon name='add' />
-        </Fab>
+        <ActionButton buttonColor='rgba(231,76,60,1)'>
+          <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => {}}>
+            <Icon name='md-create' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => console.log('criar nova rotina')}>
+            <Icon name='md-done-all' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white'
+  }
+})

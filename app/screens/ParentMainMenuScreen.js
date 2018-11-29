@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
 import ParentHomeScreen from './ParentHomeScreen'
+import CreateNewActivityScreen from './CreateNewActivityScreen'
 
 export default class ParentMainMenuScreen extends React.Component {
   constructor (props) {
@@ -21,6 +22,10 @@ export default class ParentMainMenuScreen extends React.Component {
         return (<RoutinesScreen />)
       case 'profile':
         return (<ParentHomeScreen />)
+      case 'createNewActivity':
+        return (<CreateNewActivityScreen />)
+      case 'createNewRoutine':
+        /* return (<CreateNewRoutine  />) */
     }
   }
 
