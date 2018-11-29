@@ -65,3 +65,14 @@ expo-staging-deployments:
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel staging
+
+django-staging-deployments:
+  tags:
+    - digitalocean
+  only:
+    - development
+    - 65-setup-ci-cd
+  stage: deploy
+  <<: *install_server_dependencies
+  script:
+    - git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git
