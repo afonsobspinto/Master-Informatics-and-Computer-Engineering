@@ -8,7 +8,7 @@ export class RoutinesScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1 }}>
-        <List style={{ paddingBottom: 370 }}>
+        <List style={{ paddingBottom: '90%' }}>
           <RoutineItem title='Após Acordar' image={require('../assets/images/activities/breakfast.png')} />
           <RoutineItem title='Depois do Almoço' image={require('../assets/images/activities/breakfast.png')} />
           <RoutineItem title='Antes de Dormir' image={require('../assets/images/activities/breakfast.png')} />
