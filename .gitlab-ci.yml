@@ -73,6 +73,5 @@ django-staging-deployments:
     - development
     - 65-setup-ci-cd
   stage: deploy
-  <<: *install_server_dependencies
   script:
-    - git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git
+    - git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2
