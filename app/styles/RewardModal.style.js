@@ -4,6 +4,7 @@ import { grayedOut, oppositeColor, accentColor, backgroundColor } from './Colors
 
 const padding = Layout.window.height * 0.05
 const buttonHeight = Layout.window.height * 0.12
+const barHeight = Layout.window.height * 0.04
 
 export default StyleSheet.create({
   rewardsModal: {
@@ -21,19 +22,21 @@ export default StyleSheet.create({
     position: 'relative'
   },
   rewardContainer: {
-    height: padding * 3.5,
+    height: padding * 4.6 + barHeight / 2,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
     position: 'absolute',
     top: 0,
-    elevation: 7
+    elevation: 7,
+    overflow: 'hidden'
   },
   icon: {
     height: padding * 2.5,
     width: padding * 2.5,
     marginHorizontal: 5,
+    bottom: padding * 1.1 + barHeight / 2,
     opacity: 0
   },
   iconGreyedOut: {
@@ -52,8 +55,9 @@ export default StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,
     marginHorizontal: 30,
-    marginTop: padding * 2,
-    textAlign: 'center'
+    top: padding * 2.6,
+    textAlign: 'center',
+    position: 'absolute'
   },
   button: {
     elevation: 7,
@@ -131,7 +135,8 @@ export default StyleSheet.create({
     opacity: 0.3
   },
   pastActivitiesContainer: {
-    position: 'relative'
+    position: 'absolute',
+    bottom: 2 * padding
   },
   completedActivitiesContainer: {
     flexDirection: 'row',
@@ -141,5 +146,22 @@ export default StyleSheet.create({
   greyedOutActivitiesContainer: {
     flexDirection: 'row',
     marginTop: padding
+  },
+  progressBarContainer: {
+    backgroundColor: 'gray',
+    height: barHeight,
+    width: buttonHeight * 4 + 80,
+    borderRadius: barHeight / 2,
+    elevation: 6,
+    overflow: 'hidden',
+    position: 'absolute',
+    top: 2.6 * padding
+  },
+  progressBarDivider: {
+    borderRightColor: '#000',
+    borderRightWidth: 2,
+    opacity: 0.5,
+    height: barHeight,
+    position: 'absolute'
   }
 })
