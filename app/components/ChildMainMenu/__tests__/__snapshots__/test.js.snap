@@ -1,0 +1,448 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenu components renders ChildExperienceBar correctly 1`] = `
+<Component
+  style={
+    Object {
+      "height": 213.44,
+      "justifyContent": "flex-end",
+      "paddingLeft": 106.72,
+      "paddingRight": 160.07999999999998,
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "backgroundColor": "gray",
+          "borderRadius": 53.36,
+          "elevation": 6,
+          "height": 106.72,
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <ProgressBar
+      animated={true}
+      animationConfig={
+        Object {
+          "bounciness": 0,
+        }
+      }
+      animationType="spring"
+      borderRadius={0}
+      borderWidth={0}
+      color="#a4e76f"
+      height={106.72}
+      indeterminate={false}
+      progress={0.5}
+      useNativeDriver={false}
+      width={null}
+    />
+    <Component
+      style={
+        Array [
+          Object {
+            "left": "25%",
+          },
+          Object {
+            "borderRightColor": "#000",
+            "borderRightWidth": 2,
+            "height": 106.72,
+            "opacity": 0.5,
+            "position": "absolute",
+          },
+        ]
+      }
+    />
+    <Component
+      style={
+        Array [
+          Object {
+            "left": "50%",
+          },
+          Object {
+            "borderRightColor": "#000",
+            "borderRightWidth": 2,
+            "height": 106.72,
+            "opacity": 0.5,
+            "position": "absolute",
+          },
+        ]
+      }
+    />
+    <Component
+      style={
+        Array [
+          Object {
+            "left": "75%",
+          },
+          Object {
+            "borderRightColor": "#000",
+            "borderRightWidth": 2,
+            "height": 106.72,
+            "opacity": 0.5,
+            "position": "absolute",
+          },
+        ]
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderRadius": 80.03999999999999,
+        "bottom": 26.68,
+        "elevation": 7,
+        "height": 160.07999999999998,
+        "overflow": "hidden",
+        "position": "absolute",
+        "right": 80.03999999999999,
+        "width": 160.07999999999998,
+      }
+    }
+  >
+    <TouchableWithoutFeedback
+      onPress={[MockFunction]}
+    >
+      <Image
+        resizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": 160.07999999999998,
+            "width": 160.07999999999998,
+          }
+        }
+      />
+    </TouchableWithoutFeedback>
+  </Component>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+        "fontFamily": "LinotteBold",
+        "fontSize": 18,
+        "height": 53.36,
+        "marginLeft": 41.57333333333333,
+        "textShadowColor": "rgba(0, 0, 0, 0.2)",
+        "textShadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "textShadowRadius": 3,
+      }
+    }
+  >
+    Nível 
+    2
+  </Text>
+</Component>
+`;
+
+exports[`MainMenu components renders LevelUpModal correctly 1`] = `
+<Component
+  style={
+    Object {
+      "elevation": 99,
+      "height": "100%",
+      "position": "absolute",
+      "width": "100%",
+    }
+  }
+>
+  <ModalBox
+    animationDuration={400}
+    backButtonClose={false}
+    backdrop={true}
+    backdropColor="black"
+    backdropContent={null}
+    backdropOpacity={0.5}
+    backdropPressToClose={true}
+    coverScreen={false}
+    easing={[Function]}
+    isOpen={false}
+    keyboardTopOffset={22}
+    onClosed={[MockFunction]}
+    position="center"
+    startOpen={false}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "height": "100%",
+        "position": "relative",
+        "width": "100%",
+      }
+    }
+    swipeThreshold={50}
+    swipeToClose={true}
+  >
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#bbecec",
+          "borderRadius": 50.025000000000006,
+          "elevation": 12,
+          "flexDirection": "row",
+          "height": 100.05000000000001,
+          "justifyContent": "center",
+          "left": 266.8,
+          "paddingHorizontal": 50.025000000000006,
+          "position": "absolute",
+          "top": 83.375,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#061111",
+            "fontFamily": "LinotteBold",
+            "fontSize": 66.7,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 2,
+              "width": 1,
+            },
+            "textShadowRadius": 1,
+          }
+        }
+      >
+        Faltam 50
+      </Text>
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": 60.03,
+            "width": 60.03,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#061111",
+            "fontFamily": "LinotteBold",
+            "fontSize": 66.7,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 2,
+              "width": 1,
+            },
+            "textShadowRadius": 1,
+          }
+        }
+      >
+         para
+      </Text>
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#3db3e2",
+          "borderRadius": 33.35,
+          "elevation": 6,
+          "flexGrow": 1,
+          "marginHorizontal": 200.10000000000002,
+          "marginVertical": 133.4,
+          "overflow": "hidden",
+          "position": "relative",
+        }
+      }
+    >
+      <Image
+        resizeMode="cover"
+        source={1}
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+      <Component
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "bottom": 0,
+            "flexDirection": "row",
+            "position": "absolute",
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "flex": 1,
+              "fontFamily": "LinotteBold",
+              "fontSize": 66.7,
+              "padding": 40.019999999999996,
+              "textShadowColor": "rgba(0, 0, 0, 0.6)",
+              "textShadowOffset": Object {
+                "height": 2,
+                "width": 2,
+              },
+              "textShadowRadius": 5,
+            }
+          }
+        >
+          Dia na piscina
+        </Text>
+      </Component>
+    </Component>
+  </ModalBox>
+</Component>
+`;
+
+exports[`MainMenu components renders ShopItem correctly 1`] = `
+<Component
+  style={
+    Object {
+      "aspectRatio": 1,
+      "padding": 18.75,
+      "width": "33.3333%",
+    }
+  }
+>
+  <TouchableOpacity
+    activeOpacity={0.6}
+    disabled={false}
+    onPress={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#bbecec",
+        "borderRadius": 18.75,
+        "elevation": 6,
+        "height": "100%",
+        "justifyContent": "center",
+        "paddingBottom": 56.25,
+        "paddingHorizontal": 9.375,
+        "paddingTop": 9.375,
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      recizeMode="contain"
+      source={1}
+      style={
+        Array [
+          Object {
+            "aspectRatio": 1,
+            "height": "100%",
+          },
+          false,
+        ]
+      }
+    />
+    <Component
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "bottom": 9.375,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "height": 37.5,
+            "marginRight": 9.375,
+            "width": 37.5,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "LinotteBold",
+            "fontSize": 30,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+        100
+      </Text>
+    </Component>
+  </TouchableOpacity>
+</Component>
+`;
+
+exports[`MainMenu components renders ShopTitle correctly 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 75,
+      "justifyContent": "space-between",
+      "marginBottom": 18.75,
+      "paddingHorizontal": 18.75,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+        "fontFamily": "LinotteBold",
+        "fontSize": 56.25,
+        "textShadowColor": "rgba(0, 0, 0, 0.2)",
+        "textShadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "textShadowRadius": 3,
+      }
+    }
+  >
+    test
+  </Text>
+</Component>
+`;

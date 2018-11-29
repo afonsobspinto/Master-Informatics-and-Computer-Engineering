@@ -20,20 +20,22 @@ export class CancelButton extends React.Component {
     }
   }
 
-  handleButtonPress () {
-    this.timer = setInterval(() => {
-      if (this.state.progress >= 1.09) {
-        this.props.cancelActivity()
-        clearInterval(this.timer)
-      }
+  intervalFunction = () => {
+    if (this.state.progress >= 1.09) {
+      this.props.cancelActivity()
+      clearInterval(this.timer)
+    }
 
-      this.setState(() => {
-        return {
-          progress: this.state.progress + 0.01,
-          isCancelling: true
-        }
-      })
-    }, 10)
+    this.setState(() => {
+      return {
+        progress: this.state.progress + 0.01,
+        isCancelling: true
+      }
+    })
+  }
+
+  handleButtonPress () {
+    this.timer = setInterval(this.intervalFunction, 10)
   }
 
   handleButtonRelease () {

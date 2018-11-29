@@ -87,11 +87,13 @@ export class ChildMainMenuScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     level: state.child.level,
     xp: state.child.xp,
     showLevelUpModal: state.child.showLevelUpModal
   }),
+  /* istanbul ignore next */
   dispatch => ({
     toggleLevelUpModal: () => dispatch(toggleLevelUpModal())
   })
