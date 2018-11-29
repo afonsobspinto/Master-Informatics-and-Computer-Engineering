@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "babel": "^6.23.0",
     "expo": "^30.0.1",
     "jest-junit": "^5.2.0",
     "native-base": "^2.8.1",

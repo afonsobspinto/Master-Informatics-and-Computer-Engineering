@@ -46,6 +46,7 @@ export default class RegisterScreen extends Component {
             <Item floatingLabel error={this.state.emailError} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input
+                className='email'
                 onChangeText={(text) => this.validate('email', text.trim())}
                 style={styles.labelText}
               />
@@ -54,6 +55,7 @@ export default class RegisterScreen extends Component {
             <Item floatingLabel error={this.state.passwordError} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input
+                className='password'
                 onChangeText={(text) => this.validate('password', text.trim())}
                 style={styles.labelText}
                 secureTextEntry
