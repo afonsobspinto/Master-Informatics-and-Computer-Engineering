@@ -41,6 +41,7 @@ export default StyleSheet.create({
   },
   loginText: {
     fontFamily: 'LinotteBold',
+    fontSize: 15,
     marginBottom: '2%',
     color: lightTextColor
   }
