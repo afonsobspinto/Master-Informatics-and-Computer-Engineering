@@ -36,7 +36,7 @@
             <i class="fa fa-star"></i>
           </div>
           <div>
-            <p>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</p>
+            <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
           </div>
           <div>
             <span class="title is-3"><strong>{{ product.price }}&euro;</strong></span>

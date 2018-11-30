@@ -29,7 +29,7 @@
           <i v-if="product.ratings === 5" class="fa fa-star"></i>
           <i v-if="product.ratings === 5" class="fa fa-star"></i>
           <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <p>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</p>
+          <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
         </div>
         <p class="is-pulled-right">
           <span class="title is-4"><strong>&euro; {{ product.price }}</strong></span>
@@ -71,7 +71,7 @@
           title: product.title,
           price: product.price,
           rating: product.ratings,
-          reviews: product.reviews,
+          stock: product.stock,
           isAddedBtn: product.isAddedBtn
         }
       }"
