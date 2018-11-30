@@ -10,31 +10,6 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud
           </p>
-          <div v-if="product.rating === 1">
-            <i class="fa fa-star"></i>
-          </div>
-          <div v-else-if="product.rating === 2">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div v-else-if="product.rating === 3">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div v-else-if="product.rating === 4">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div v-else-if="product.rating === 5">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
           <div>
             <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
           </div>

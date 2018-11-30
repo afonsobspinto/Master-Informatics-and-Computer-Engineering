@@ -14,21 +14,6 @@
       <div class="content is-clearfix">
         <p>{{ product.description }}</p>
         <div class="is-pulled-left">
-          <i v-if="product.ratings === 1" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
           <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
         </div>
         <p class="is-pulled-right">
@@ -41,16 +26,6 @@
             <button class="button is-primary" v-if="!product.isAddedToCart" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="product.isAddedToCart" @click="removeFromCart(product.id, false)">{{ removeFromCartLabel }}</button>
             <div>
-              <button class="button is-small" :title="removeFromFavouriteLabel" v-show="product.isFavourite" @click="removeFromFavourite(product.id)">
-                <span class="icon is-small">
-                  <i class="fas fa-heart"></i>
-                </span>
-              </button>
-              <button class="button is-small" :title="addToFavouriteLabel" v-show="!product.isFavourite" @click="saveToFavorite(product.id)">
-                <span class="icon is-small">
-                  <i class="far fa-heart"></i>
-                </span>
-              </button>
               <div class="select is-rounded is-small">
                 <select @change="onSelectQuantity(product.id)" v-model="selected">
                   <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
@@ -70,7 +45,6 @@
           id: product.id,
           title: product.title,
           price: product.price,
-          rating: product.ratings,
           stock: product.stock,
           isAddedBtn: product.isAddedBtn
         }
@@ -90,8 +64,6 @@ export default {
       addToCartLabel: 'Add to cart',
       viewDetailsLabel: 'Details',
       removeFromCartLabel: 'Remove from cart',
-      addToFavouriteLabel: 'Add to favourite',
-      removeFromFavouriteLabel: 'Remove from favourite',
       selected: 1,
       quantityArray: []
     }
@@ -129,18 +101,6 @@ export default {
       }
       this.$store.commit('removeFromCart', id);
       this.$store.commit('setAddedBtn', data);
-    },
-    saveToFavorite (id) {
-      let isUserLogged = this.$store.state.userInfo.isLoggedIn;
-
-      if (isUserLogged) {
-        this.$store.commit('addToFavourite', id);
-      } else {
-        this.$store.commit('showLoginModal', true);
-      }
-    },
-    removeFromFavourite (id) {
-      this.$store.commit('removeFromFavourite', id);
     },
     onSelectQuantity (id) {
       let data = {
