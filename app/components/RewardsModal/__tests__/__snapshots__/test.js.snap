@@ -430,6 +430,97 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
 </withAnimatable(Component)>
 `;
 
+exports[`RewardsModal components renders RewardModalStars correctly 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "flex-end",
+      "elevation": 7,
+      "flexDirection": "row",
+      "height": 346.84,
+      "justifyContent": "center",
+      "overflow": "hidden",
+      "position": "absolute",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <withAnimatable(Image)
+    delay={0}
+    direction="normal"
+    iterationCount={1}
+    iterationDelay={0}
+    onAnimationBegin={[Function]}
+    onAnimationEnd={[Function]}
+    onTransitionBegin={[Function]}
+    onTransitionEnd={[Function]}
+    resizeMode="center"
+    source={1}
+    style={
+      Object {
+        "bottom": 113.39,
+        "height": 166.75,
+        "marginHorizontal": 5,
+        "opacity": 0,
+        "width": 166.75,
+      }
+    }
+    useNativeDriver={false}
+  />
+  <withAnimatable(Image)
+    delay={0}
+    direction="normal"
+    iterationCount={1}
+    iterationDelay={0}
+    onAnimationBegin={[Function]}
+    onAnimationEnd={[Function]}
+    onTransitionBegin={[Function]}
+    onTransitionEnd={[Function]}
+    resizeMode="center"
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 113.39,
+          "height": 166.75,
+          "marginHorizontal": 5,
+          "opacity": 0,
+          "width": 166.75,
+        },
+        Object {
+          "height": 200.10000000000002,
+          "width": 200.10000000000002,
+        },
+      ]
+    }
+    useNativeDriver={false}
+  />
+  <withAnimatable(Image)
+    delay={0}
+    direction="normal"
+    iterationCount={1}
+    iterationDelay={0}
+    onAnimationBegin={[Function]}
+    onAnimationEnd={[Function]}
+    onTransitionBegin={[Function]}
+    onTransitionEnd={[Function]}
+    resizeMode="center"
+    source={1}
+    style={
+      Object {
+        "bottom": 113.39,
+        "height": 166.75,
+        "marginHorizontal": 5,
+        "opacity": 0,
+        "width": 166.75,
+      }
+    }
+    useNativeDriver={false}
+  />
+</Component>
+`;
+
 exports[`RewardsModal components renders RewardsModal correctly 1`] = `
 <ModalBox
   animationDuration={400}

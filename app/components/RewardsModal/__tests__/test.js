@@ -7,6 +7,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import { PastActivityIcons } from '../PastActivityIcons'
 import { RewardsModal } from '../RewardsModal'
 import { RewardModalExperienceBar } from '../RewardModalExperienceBar'
+import { RewardModalStars } from '../RewardModalStars'
 import { activities, activitiesWithStatus } from '../../../__tests__/mockTestData'
 
 configure({ adapter: new Adapter() })
@@ -38,6 +39,17 @@ describe('RewardsModal components', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ activities: activitiesWithStatus })
     wrapper.instance().increaseProgress()
+    wrapper.unmount()
+  })
+
+  it('renders RewardModalStars correctly', () => {
+    jest.useFakeTimers()
+    const wrapper = shallow(<RewardModalStars
+      currentActivity={0}
+      activities={activities}
+      increaseProgress={jest.fn()} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    // jest.advanceTimersByTime(401) acho que percebes o que isto faz se descomentares
     wrapper.unmount()
   })
 })
