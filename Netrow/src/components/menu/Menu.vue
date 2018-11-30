@@ -28,8 +28,8 @@
 				<router-link class="navbar-item" :to="{ path: '/account', name: 'account-component' }">
 					{{ accountLabel }}
 				</router-link>
-				<router-link class="navbar-item" :to="{ path: '/wishlist', name: 'wishlist-container-component' }">
-					{{ wishlistLabel }}
+				<router-link class="navbar-item" :to="{ path: '/order-history', name: 'order-history-container-component' }">
+					{{ orderHistoryLabel }}
 				</router-link>
 				<hr class="navbar-divider">
 				<a class="navbar-item" @click="logout">
@@ -45,7 +45,7 @@ export default {
 	name: 'menu-component',
 	data () {
 		return {
-			wishlistLabel: 'Wishlist',
+			orderHistoryLabel: 'Order history',
 			logoutLabel: 'Log out',
 			accountLabel: 'My account',
 			loginLabel: 'Log in',

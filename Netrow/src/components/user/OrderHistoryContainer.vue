@@ -2,10 +2,10 @@
   <div class="section">
     <h3 class="title">{{ pageTitle }}</h3>
     <div class="columns is-centered is-multiline">
-      <div class="card column is-one-quarter" v-for="product in productsInWishlist" :key="product.id">
+      <div class="card column is-one-quarter" v-for="product in productsInOrderHistory" :key="product.id">
         <products-component :product="product"></products-component>
       </div>
-      <div class="section" v-if="productsInWishlist.length === 0">
+      <div class="section" v-if="productsInOrderHistory.length === 0">
         <p>{{ noProductLabel }}</p>
       </div>
     </div>
@@ -17,11 +17,11 @@ import ProductsComponent from '../Products';
 import { getByTitle } from '../../filters';
 
 export default {
-  name: 'wishlist-container-component',
+  name: 'order-history-container-component',
   data () {
     return {
-      pageTitle: 'Your Wishlist',
-      noProductLabel: 'Your wishlist is empty'
+      pageTitle: 'Your Order history',
+      noProductLabel: 'Your Order history is empty'
     }
   },
 
@@ -30,7 +30,7 @@ export default {
   },
 
   computed: {
-    productsInWishlist () {
+    productsInOrderHistory () {
       if (this.$store.state.userInfo.hasSearched) {
         return this.getProductByTitle();
       } else {
