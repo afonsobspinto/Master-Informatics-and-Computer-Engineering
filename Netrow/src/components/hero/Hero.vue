@@ -3,7 +3,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Free ecommerce website example for <br>
+            Ecommerce website example for <br>
             Primavera v10 API Interoperability
           </h1>
           <h2 class="subtitle">
