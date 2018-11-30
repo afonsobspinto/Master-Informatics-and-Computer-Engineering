@@ -1,0 +1,62 @@
+{
+  "name": "netrow",
+  "version": "0.8.0",
+  "description": "Responsive ecommerce website built with Vue.js",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "production": "vue-cli-service build",
+    "development": "vue-cli-service build --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ross65536/FEUP-SINF"
+  },
+  "keywords": [
+    "css",
+    "js",
+    "html",
+    "template",
+    "ecommerce",
+    "vuejs",
+    "theme",
+    "responsive"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "bulma": "^0.7.2",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.2",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.1.6",
+    "@fortawesome/fontawesome-free": "^5.5.0",
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": "plugin:vue/essential",
+    "rules": {}
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
