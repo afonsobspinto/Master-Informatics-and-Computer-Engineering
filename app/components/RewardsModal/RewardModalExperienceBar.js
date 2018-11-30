@@ -10,7 +10,7 @@ import Layout from '../../constants/Layout'
 import styles from '../../styles/RewardModal.style'
 import { accentColor } from '../../styles/Colors'
 
-const barHeight = Layout.window.height * 0.04
+const barHeight = Layout.window.height * 0.06
 
 export class RewardModalExperienceBar extends React.Component {
   render () {

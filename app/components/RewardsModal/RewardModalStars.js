@@ -39,7 +39,7 @@ export class RewardModalStars extends React.Component {
 
     for (let i = 0; i < 3; i++) {
       setTimeout(() => { if (this.state.animations[i]) this.stars[i].bounceOutDown(2000) }, 4000 + i * 400)
-      setTimeout(() => { if (this.state.animations[i]) this.props.increaseProgress() }, 4400 + i * 400)
+      setTimeout(() => { if (this.state.animations[i]) this.props.increaseProgress(i + 1) }, 4400 + i * 400)
     }
   }
 

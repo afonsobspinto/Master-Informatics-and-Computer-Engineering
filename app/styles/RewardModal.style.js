@@ -4,7 +4,6 @@ import { grayedOut, oppositeColor, accentColor, backgroundColor } from './Colors
 
 const padding = Layout.window.height * 0.05
 const buttonHeight = Layout.window.height * 0.12
-const barHeight = Layout.window.height * 0.04
 
 export default StyleSheet.create({
   rewardsModal: {
@@ -22,7 +21,7 @@ export default StyleSheet.create({
     position: 'relative'
   },
   rewardContainer: {
-    height: padding * 4.6 + barHeight / 2,
+    height: padding * 4.6 + buttonHeight / 4,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -36,7 +35,7 @@ export default StyleSheet.create({
     height: padding * 2.5,
     width: padding * 2.5,
     marginHorizontal: 5,
-    bottom: padding * 1.1 + barHeight / 2,
+    bottom: padding * 1.1 + buttonHeight / 4,
     opacity: 0
   },
   iconGreyedOut: {
@@ -149,19 +148,19 @@ export default StyleSheet.create({
   },
   progressBarContainer: {
     backgroundColor: 'gray',
-    height: barHeight,
+    height: buttonHeight / 2,
     width: buttonHeight * 4 + 80,
-    borderRadius: barHeight / 2,
+    borderRadius: buttonHeight / 4,
     elevation: 6,
     overflow: 'hidden',
     position: 'absolute',
-    top: 2.6 * padding
+    top: 2.5 * padding
   },
   progressBarDivider: {
     borderRightColor: '#000',
     borderRightWidth: 2,
     opacity: 0.5,
-    height: barHeight,
+    height: buttonHeight / 2,
     position: 'absolute'
   }
 })

@@ -22,8 +22,8 @@ export class RewardsModal extends React.Component {
     this.increaseProgress = this.increaseProgress.bind(this)
   }
 
-  increaseProgress = () => {
-    this.setState({ progress: (this.props.xp - this.props.level * 100 + 1) / 100 })
+  increaseProgress = (increase) => {
+    this.setState({ progress: (this.props.xp - this.props.level * 100 + increase) / 100 })
   }
 
   render () {
