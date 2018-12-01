@@ -5,6 +5,7 @@ import ProductDetail from '../src/components/product_detail/ProductDetail';
 import OrderHistoryContainer from '../src/components/user/OrderHistoryContainer';
 import Account from '../src/components/user/Account';
 import About from '../src/components/about/About';
+import CheckoutPage from "./components/checkout/CheckoutPage";
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/account',
       name: 'account-component',
       component: Account,
+    },
+    {
+      path: '/checkoutPage',
+      name: 'checkout-page-component',
+      component: CheckoutPage,
     },
     {
       path: '/about',
