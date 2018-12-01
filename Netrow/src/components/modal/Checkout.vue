@@ -9,12 +9,19 @@
       <section class="modal-card-body">
         <div v-if="!isCheckoutSection">
           <div class="box" v-for="product in products" :key="product.id">
-            <button
-              class="is-pulled-right button is-info is-inverted"
-              @click="removeFromCart(product.id)"
-            >{{ removeLabel }}</button>
+            <div class="is-pulled-right">
+              <button
+                class="button is-info is-inverted"
+                @click="removeFromCart(product.id)"
+              >{{ removeLabel }}</button>
+              <p style="text-align:right; padding-right: 1em">{{product.stock}} units left</p>
+            </div>
             <div>
               <p style="display:inline-block; margin-right: 0.5em">{{ product.title }}</p>
+              <p style="display:inline-block;">|</p>
+              <p style="display:inline-block; margin-left: 0.5em">{{ product.price }} &euro;</p>
+            </div>
+            <div>
               <div class="select is-rounded is-small">
                 <select
                   @change="onSelectQuantity(product.id, product.quantity)"
@@ -27,11 +34,9 @@
                   >{{ quantity }}</option>
                 </select>
               </div>
-            </div>
-            <div>
-              <p style="display:inline-block; margin-right: 0.5em">{{ product.price }} &euro;</p>
-              <p style="display:inline-block;">|</p>
-              <p style="display:inline-block; margin-left: 0.5em">{{product.stock}} units left</p>
+              <p
+                style="display:inline-block; margin-left: 0.5em"
+              >Cost {{product.quantity*product.price}} &euro;</p>
             </div>
           </div>
           <div v-if="products.length === 0">
