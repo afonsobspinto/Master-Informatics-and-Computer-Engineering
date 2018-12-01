@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-height:100vh">
     <h1>
       Netrow
     </h1>
