@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
@@ -8,110 +8,116 @@ export default new Vuex.Store({
     products: [
       {
         id: 1,
-        title: 'Product 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 50,
         stock: 5,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Lorem",
         quantity: 1
       },
       {
         id: 2,
-        title: 'Product 2',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 35,
         stock: 10,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Lorem",
         quantity: 1
       },
       {
         id: 3,
-        title: 'Product 3',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 3",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 110,
         stock: 3,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Ipsum",
         quantity: 1
       },
       {
         id: 4,
-        title: 'Product 4',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 4",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 50,
         stock: 0,
         isAddedToCart: false,
         isAddedBtn: false,
+        category: "Ipsum",
         isFavourite: false,
         quantity: 1
       },
       {
         id: 5,
-        title: 'Product 5',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 5",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 35,
         stock: 2,
         isAddedToCart: false,
         isAddedBtn: false,
+        category: "Lorem",
         isFavourite: false,
         quantity: 1
       },
       {
         id: 6,
-        title: 'Product 6',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 6",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 110,
         stock: 1,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Ipsum",
         quantity: 1
       },
       {
         id: 7,
-        title: 'Product 7',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 7",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 50,
         stock: 7,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Dolor",
         quantity: 1
       },
       {
         id: 8,
-        title: 'Product 8',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 8",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 35,
         stock: 0,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Ipsum",
         quantity: 1
       },
       {
         id: 9,
-        title: 'Product 9',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        title: "Product 9",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         price: 110,
         stock: 2,
         isAddedToCart: false,
         isAddedBtn: false,
-        isFavourite: false,
+        category: "Dolor",
         quantity: 1
       }
     ],
+    categories: ["Lorem", "Ipsum", "Dolor", "Sit"],
     userInfo: {
       isLoggedIn: false,
       isSignedUp: false,
       hasSearched: false,
-      name: '',
-      productTitleSearched: ''
+      showMoreFilters: false,
+      selectedPriceRange: [0, 500],
+      categoryFilter: "all",
+      name: "",
+      productTitleSearched: ""
     },
     systemInfo: {
       openLoginModal: false,
@@ -119,7 +125,6 @@ export default new Vuex.Store({
       openCheckoutModal: false
     }
   },
-  
   getters: {
     productsAdded: state => {
       return state.products.filter(el => {
@@ -154,9 +159,15 @@ export default new Vuex.Store({
     },
     quantity: state => {
       return state.products.quantity;
+    },
+    categories: state => {
+      return state.categories;
+    },
+    isExtraFiltersVisible: state => {
+      return state.userInfo.showMoreFilters;
     }
   },
-  
+
   mutations: {
     addToCart: (state, id) => {
       state.products.forEach(el => {
@@ -192,6 +203,15 @@ export default new Vuex.Store({
     },
     setHasUserSearched: (state, hasSearched) => {
       state.userInfo.hasSearched = hasSearched;
+    },
+    setCategorySelected: (state, categorySelected) => {
+      state.userInfo.categoryFilter = categorySelected;
+    },
+    showMoreFilters: (state, showFilters) => {
+      state.userInfo.showMoreFilters = showFilters;
+    },
+    setPriceRangeSelected: (state, range) => {
+      state.userInfo.selectedPriceRange = range;
     },
     setUserName: (state, name) => {
       state.userInfo.name = name;
@@ -230,8 +250,6 @@ export default new Vuex.Store({
       });
     }
   },
-  
-  actions: {
 
-  }
+  actions: {}
 });

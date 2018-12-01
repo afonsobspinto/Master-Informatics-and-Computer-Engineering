@@ -17,18 +17,32 @@
           <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
         </div>
         <p class="is-pulled-right">
-          <span class="title is-4"><strong>&euro; {{ product.price }}</strong></span>
+          <span class="title is-4">
+            <strong>&euro; {{ product.price }}</strong>
+          </span>
         </p>
       </div>
       <div class="card-footer btn-actions">
         <div class="card-footer-item field is-grouped">
           <div class="buttons">
-            <button class="button is-primary" v-if="!product.isAddedToCart" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
-            <button class="button is-text" v-if="product.isAddedToCart" @click="removeFromCart(product.id, false)">{{ removeFromCartLabel }}</button>
+            <button
+              class="button is-primary"
+              v-if="!product.isAddedToCart"
+              @click="addToCart(product.id)"
+            >{{ addToCartLabel }}</button>
+            <button
+              class="button is-text"
+              v-if="product.isAddedToCart"
+              @click="removeFromCart(product.id, false)"
+            >{{ removeFromCartLabel }}</button>
             <div>
               <div class="select is-rounded is-small">
                 <select @change="onSelectQuantity(product.id)" v-model="selected">
-                  <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
+                  <option
+                    v-for="quantity in quantityArray"
+                    :value="quantity"
+                    :key="quantity"
+                  >{{ quantity }}</option>
                 </select>
               </div>
             </div>
@@ -49,27 +63,26 @@
           isAddedBtn: product.isAddedBtn
         }
       }"
-    >
-    </router-link>
+    ></router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'products-component',
-  props: ['product'],
-  
-  data () {
+  name: "products-component",
+  props: ["product"],
+
+  data() {
     return {
-      addToCartLabel: 'Add to cart',
-      viewDetailsLabel: 'Details',
-      removeFromCartLabel: 'Remove from cart',
+      addToCartLabel: "Add to cart",
+      viewDetailsLabel: "Details",
+      removeFromCartLabel: "Remove from cart",
       selected: 1,
       quantityArray: []
-    }
+    };
   },
 
-  mounted () {
+  mounted() {
     for (let i = 1; i <= 20; i++) {
       this.quantityArray.push(i);
     }
@@ -80,61 +93,61 @@ export default {
   },
 
   computed: {
-    isUserLogged () {
+    isUserLogged() {
       return this.$store.getters.isUserLoggedIn;
     }
   },
 
   methods: {
-    addToCart (id) {
+    addToCart(id) {
       let data = {
         id: id,
         status: true
-      }
-      this.$store.commit('addToCart', id);
-      this.$store.commit('setAddedBtn', data);
+      };
+      this.$store.commit("addToCart", id);
+      this.$store.commit("setAddedBtn", data);
     },
-    removeFromCart (id) {
+    removeFromCart(id) {
       let data = {
         id: id,
         status: false
-      }
-      this.$store.commit('removeFromCart', id);
-      this.$store.commit('setAddedBtn', data);
+      };
+      this.$store.commit("removeFromCart", id);
+      this.$store.commit("setAddedBtn", data);
     },
-    onSelectQuantity (id) {
+    onSelectQuantity(id) {
       let data = {
         id: id,
         quantity: this.selected
-      }
-      this.$store.commit('quantity', data);
+      };
+      this.$store.commit("quantity", data);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
- .details {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+.details {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 
-    &:hover {
-      border: 1px solid #51bafc;
-    }
- }
- .button,
- .select {
-   z-index: 2;
- }
- .select {
-   position: absolute;
-   right: 15px;
- }
+  &:hover {
+    border: 1px solid #51bafc;
+  }
+}
+.button,
+.select {
+  z-index: 2;
+}
+.select {
+  position: absolute;
+  right: 15px;
+}
 </style>
 
 

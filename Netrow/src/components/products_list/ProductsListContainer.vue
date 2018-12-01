@@ -10,48 +10,70 @@
 </template>
 
 <script>
-import ProductsComponent from '../Products';
-import { getByTitle } from '../../filters';
+import ProductsComponent from "../Products";
+import { getByTitle, getByCategory, getInPriceRange } from "../../filters";
 
 export default {
-  name: 'products-list-component',
-  
+  name: "products-list-component",
+
   components: {
-    'products-component': ProductsComponent
+    "products-component": ProductsComponent
   },
-  
-  data () {
+
+  data() {
     return {
-      id: '',
-      noProductLabel: 'No product found',
+      id: "",
+      noProductLabel: "No product found",
       productsFiltered: []
     };
   },
 
   computed: {
-    products () {
+    products() {
+      let prods = this.getProductByCategory();
+      prods = this.getProductInRange(prods);
       if (this.$store.state.userInfo.hasSearched) {
-        return this.getProductByTitle();
+        return this.getProductByTitle(prods);
       } else {
-        return this.$store.state.products;
+        return prods;
       }
     }
   },
 
   methods: {
-    getProductByTitle () {
+    getProductByTitle(products) {
+      let listOfProducts = products,
+        titleSearched = this.$store.state.userInfo.productTitleSearched;
+
+      return (this.productsFiltered = getByTitle(
+        listOfProducts,
+        titleSearched
+      ));
+    },
+    getProductByCategory() {
       let listOfProducts = this.$store.state.products,
-          titleSearched = this.$store.state.userInfo.productTitleSearched;
-      
-      return this.productsFiltered = getByTitle(listOfProducts, titleSearched);
+        categoryFilter = this.$store.state.userInfo.categoryFilter;
+
+      return (this.productsFiltered = getByCategory(
+        listOfProducts,
+        categoryFilter
+      ));
+    },
+    getProductInRange(products) {
+      let listOfProducts = products,
+        priceRange = this.$store.state.userInfo.selectedPriceRange;
+
+      return (this.productsFiltered = getInPriceRange(
+        listOfProducts,
+        priceRange
+      ));
     }
   }
-
 };
 </script>
 
 <style lang="scss" scoped>
-  .card {
-    margin: 10px;
-  }
+.card {
+  margin: 10px;
+}
 </style>
