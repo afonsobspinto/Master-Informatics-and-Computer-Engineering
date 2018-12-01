@@ -28,7 +28,11 @@
                 </select>
               </div>
             </div>
-            <p>{{ product.price }} &euro;</p>
+            <div>
+              <p style="display:inline-block; margin-right: 0.5em">{{ product.price }} &euro;</p>
+              <p style="display:inline-block;">|</p>
+              <p style="display:inline-block; margin-left: 0.5em">{{product.stock}} units left</p>
+            </div>
           </div>
           <div v-if="products.length === 0">
             <p>{{ cartEmptyLabel }}</p>
