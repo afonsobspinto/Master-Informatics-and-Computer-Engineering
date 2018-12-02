@@ -1,9 +1,162 @@
 <template>
-  <div class="section">
+  <div class="section" style="min-height:100vh">
     <h3 class="title">{{ pageTitle }}</h3>
     <div class="columns is-centered is-multiline">
-      <div class="card column is-one-quarter" v-for="product in productsInOrderHistory" :key="product.id">
-        <products-component :product="product"></products-component>
+      <div class="column">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>3</td>
+                  <td>30€</td>
+              </tr>
+              <tr>
+                  <th scope="row">2</th>
+                  <td>Product 2</td>
+                  <td>1</td>
+                  <td>10€</td>
+              </tr>
+              <tr>
+                <td>Date:</td>
+                <td>02/12/2018</td>
+                <td>TOTAL:</td>
+                <td>100€</td>
+              </tr>
+              <tr>
+                <td>Shipped</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="column">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>3</td>
+                  <td>30€</td>
+              </tr>
+              <tr>
+                  <th scope="row">2</th>
+                  <td>Product 2</td>
+                  <td>1</td>
+                  <td>10€</td>
+              </tr>
+              <tr>
+                <td>Date:</td>
+                <td>02/12/2018</td>
+                <td>TOTAL:</td>
+                <td>100€</td>
+              </tr>
+              <tr>
+                <td>Shipped</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="column">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>3</td>
+                  <td>30€</td>
+              </tr>
+              <tr>
+                  <th scope="row">2</th>
+                  <td>Product 2</td>
+                  <td>1</td>
+                  <td>10€</td>
+              </tr>
+              <tr>
+                <td>Date:</td>
+                <td>02/12/2018</td>
+                <td>TOTAL:</td>
+                <td>100€</td>
+              </tr>
+              <tr>
+                <td>Shipped</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="column">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>3</td>
+                  <td>30€</td>
+              </tr>
+              <tr>
+                  <th scope="row">2</th>
+                  <td>Product 2</td>
+                  <td>1</td>
+                  <td>10€</td>
+              </tr>
+              <tr>
+                  <td>Date:</td>
+                  <td>02/12/2018</td>
+                  <td>TOTAL:</td>
+                  <td>100€</td>
+              </tr>
+              <tr>
+                <td>Shipped</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+          </table>
       </div>
       <div class="section" v-if="productsInOrderHistory.length === 0">
         <p>{{ noProductLabel }}</p>
