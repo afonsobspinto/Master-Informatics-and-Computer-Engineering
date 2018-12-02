@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ProductsComponent from '../Products';
+import ProductsComponent from '../OrderedProduct';
 import { getByTitle } from '../../filters';
 
 export default {
@@ -43,7 +43,7 @@ export default {
     getProductByTitle () {
       let listOfProducts = this.$store.getters.productsAddedToFavourite,
           titleSearched = this.$store.state.userInfo.productTitleSearched;
-      
+
       return this.productsFiltered = getByTitle(listOfProducts, titleSearched);
     }
   }
@@ -55,5 +55,3 @@ export default {
     margin: 10px;
   }
 </style>
-
-

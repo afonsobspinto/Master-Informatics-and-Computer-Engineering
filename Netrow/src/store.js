@@ -48,7 +48,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Ipsum",
-        isFavourite: false,
+        isFavourite: true,
+        orderStatus: "Shipped",
         quantity: 1
       },
       {
@@ -60,7 +61,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Lorem",
-        isFavourite: false,
+        isFavourite: true,
+        orderStatus: "Not Shipped",
         quantity: 1
       },
       {

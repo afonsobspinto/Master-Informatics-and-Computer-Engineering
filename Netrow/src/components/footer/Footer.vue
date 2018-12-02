@@ -7,7 +7,7 @@
       <div class="column has-text-right">
         <p>Netrow | Made with
           <a href="https://vuejs.org/">Vue</a> |
-          <a href="#">About us</a>
+          <router-link :to="{ path: '/about', name: 'about-component' }">About us</router-link>
         </p>
       </div>
     </div>
