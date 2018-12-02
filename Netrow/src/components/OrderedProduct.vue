@@ -13,14 +13,15 @@
       </div>
       <div class="content is-clearfix">
         <p>{{ product.description }}</p>
+        <p>Order Date: {{ product.date }}</p>
         <div class="is-pulled-left">
           <p>{{ product.amountOrdered == 1 ? `${product.amountOrdered} item` : `${product.amountOrdered} items` }}</p>
         </div>
-        <p class="is-pulled-right">
+        <div class="is-pulled-right">
           <span class="title is-4">
             <strong>&euro; {{ product.price }}</strong>
           </span>
-        </p>
+        </div>
       </div>
       <div class="card-footer btn-actions">
         <div class="card-footer-item field is-grouped">

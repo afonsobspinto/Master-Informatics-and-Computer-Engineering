@@ -51,6 +51,7 @@ export default new Vuex.Store({
         isFavourite: true,
         orderStatus: "Shipped",
         amountOrdered: 2,
+        date: "02/12/2018",
         quantity: 1
       },
       {
@@ -65,6 +66,7 @@ export default new Vuex.Store({
         isFavourite: true,
         orderStatus: "Not Shipped",
         amountOrdered: 3,
+        date: "04/12/2018",
         quantity: 1
       },
       {
