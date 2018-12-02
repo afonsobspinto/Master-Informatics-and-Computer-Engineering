@@ -50,6 +50,7 @@ export default new Vuex.Store({
         category: "Ipsum",
         isFavourite: true,
         orderStatus: "Shipped",
+        amountOrdered: 2,
         quantity: 1
       },
       {
@@ -63,6 +64,7 @@ export default new Vuex.Store({
         category: "Lorem",
         isFavourite: true,
         orderStatus: "Not Shipped",
+        amountOrdered: 3,
         quantity: 1
       },
       {

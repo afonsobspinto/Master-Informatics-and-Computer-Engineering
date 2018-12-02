@@ -13,6 +13,9 @@
       </div>
       <div class="content is-clearfix">
         <p>{{ product.description }}</p>
+        <div class="is-pulled-left">
+          <p>{{ product.amountOrdered == 1 ? `${product.amountOrdered} item` : `${product.amountOrdered} items` }}</p>
+        </div>
         <p class="is-pulled-right">
           <span class="title is-4">
             <strong>&euro; {{ product.price }}</strong>
