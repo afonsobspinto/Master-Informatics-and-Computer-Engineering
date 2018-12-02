@@ -11,7 +11,7 @@ const company = {
     line: "Professional",
 }
 
-let instance: HttpClient = null;
+let  instance: HttpClient | null  = null;
 
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";

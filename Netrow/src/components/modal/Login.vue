@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import { isValidEmail } from '../../validators';
 import HttpClient from '../../lib/httpClient';
 
