@@ -1,18 +1,67 @@
 <template>
-  <div class="section" style="min-height:100vh">
+  <div id="aboutContent">
     <h1 class="title">About Us</h1>
+    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</h2>
     <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+      <p class="storeLogo"></p>
+      <table style="width:100%">
+        <tr>
+          <td>email:</td>
+          <td>netrow@example.com</td>
+        </tr>
+        <tr>
+          <td>phone:</td>
+          <td>220 000 000</td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td>consectetur adipiscing elit</td>
+        </tr>
+      </table>
     </div>
-    <br>
-    <p>Email: netrow@example.com</p>
-    <p>Phone: 220 000 000</p>
-    <p>Address: consectetur adipiscing elit</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'about-component'
+  name: "about-component"
 };
 </script>
+
+<style lang="scss" scoped>
+body {
+  min-height: 100vh;
+}
+.storeLogo {
+  background: url("../../../public/assets/netrow-logo.png") no-repeat;
+  background-position: 50% 50%;
+  background-size: 165px;
+  width: 175px * 2;
+  height: 35px * 2;
+  margin: 0 auto;
+}
+#aboutContent {
+  width: 80%;
+  margin: 1em auto;
+}
+#aboutContent > div {
+  background-color: white;
+  width: 50%;
+  margin: 2em auto;
+  padding: 2em 1em 3em 1em;
+  border-radius: 1em;
+}
+
+tr td:first-child {
+  text-align: end;
+  width: 25%;
+}
+
+tr {
+  margin: 0.5em 0;
+}
+td {
+  padding: 0.2em 0.5em;
+  width: 50%;
+}
+</style>
