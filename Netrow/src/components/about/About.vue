@@ -7,7 +7,7 @@
     <br>
     <p>Email: netrow@example.com</p>
     <p>Phone: 220 000 000</p>
-    <p>Adress: consectetur adipiscing elit</p>
+    <p>Address: consectetur adipiscing elit</p>
   </div>
 </template>
 
