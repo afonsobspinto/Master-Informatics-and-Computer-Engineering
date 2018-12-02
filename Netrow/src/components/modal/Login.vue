@@ -67,10 +67,11 @@
   </div>
 </template>
 
-<script >
+<script>
 import { isValidEmail } from '../../validators';
-import HttpClient from '../../lib/httpClient';
+import { HttpClient } from '../../lib/httpClient';
 
+let httpClient = HttpClient.instance(console.error);
 
 export default {
   name: 'login-component',
