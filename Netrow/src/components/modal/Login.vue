@@ -67,8 +67,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { isValidEmail } from '../../validators';
+import HttpClient from '../../lib/httpClient';
+
 
 export default {
   name: 'login-component',

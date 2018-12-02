@@ -16,6 +16,8 @@ import LoginModal from './components/modal/Login';
 import RegistrationModal from './components/modal/Registration';
 import CheckoutModal from './components/modal/Checkout';
 
+import { HttpClient } from './lib/httpClient';
+
 export default {
   name: 'app',
   components: {
