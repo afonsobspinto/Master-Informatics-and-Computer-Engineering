@@ -1,61 +1,76 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
 import ParentHomeScreen from './ParentHomeScreen'
-import CreateNewActivityScreen from './CreateNewActivityScreen'
+import ActionButton from 'react-native-action-button'
 
 export default class ParentMainMenuScreen extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      selectedTab: 'initial'
+      selectedTab: 'activity',
+      title: 'Actividade'
     }
   }
 
-  renderSelectedTab () {
+  renderSelectedTab = () => {
     switch (this.state.selectedTab) {
-      case 'initial':
-        return (<View><Text>Ecrã Inicial</Text></View>)
+      case 'activity':
+        return (<Content />)
       case 'routines':
         return (<RoutinesScreen />)
-      case 'profile':
+      case 'settings':
         return (<ParentHomeScreen />)
-      case 'createNewActivity':
-        return (<CreateNewActivityScreen />)
-      case 'createNewRoutine':
-        /* return (<CreateNewRoutine  />) */
     }
   }
 
   render () {
     return (
       <Container>
-        <Header />
-        <Content>
-          {this.renderSelectedTab()}
-        </Content>
+        <Header>
+          <Body>
+            <Title>{this.state.title}</Title>
+          </Body>
+        </Header>
+        {this.renderSelectedTab()}
         <Footer>
           <FooterTab>
-            <Button active={this.state.selectedTab === 'initial'}
-              onPress={() => this.setState({ selectedTab: 'initial' })} >
+            <Button active={this.state.selectedTab === 'activity'}
+              onPress={() => this.setState({ selectedTab: 'activity', title: 'Actividade' })} >
               <Icon name='home' />
-              <Text>Ecrã Inicial</Text>
+              <Text>Actividade</Text>
             </Button>
             <Button active={this.state.selectedTab === 'routines'}
-              onPress={() => this.setState({ selectedTab: 'routines' })} >
+              onPress={() => this.setState({ selectedTab: 'routines', title: 'Gerir Rotinas' })} >
               <Icon name='apps' />
-              <Text>Rotinas</Text>
+              <Text>Gerir Rotinas</Text>
             </Button>
-            <Button active={this.selectedTab === 'profile'}
-              onPress={() => this.setState({ selectedTab: 'profile' })}>
+            <Button active={this.selectedTab === 'settings'}
+              onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
               <Icon name='cog' />
               <Text>Definições</Text>
             </Button>
           </FooterTab>
         </Footer>
+        <ActionButton buttonColor='rgba(231,76,60,1)' elevation={6}>
+          <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => {}}>
+            <Icon name='md-create' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => console.log('criar nova rotina')}>
+            <Icon name='md-done-all' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
       </Container>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white'
+  }
+})
