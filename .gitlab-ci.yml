@@ -78,11 +78,12 @@ django-staging-deployments:
     - 65-setup-ci-cd
   stage: deploy
   before_script:
-    - ls
-    - ls ..
     - apt-get update -qq && apt-get install -y -qq git
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2
-  artifacts:
-      paths:
-      - t4g2/
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git"
