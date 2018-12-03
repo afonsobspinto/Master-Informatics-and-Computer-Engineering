@@ -22,7 +22,9 @@ describe('ActivityScreen snapshot', () => {
       activity={activities[0]}
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
-      addStars={jest.fn()} />)
+      addStars={jest.fn()}
+      xp={430}
+      level={4} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ showTimer: true })
     expect(toJson(wrapper)).toMatchSnapshot()

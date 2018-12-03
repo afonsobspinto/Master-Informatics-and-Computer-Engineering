@@ -126,6 +126,8 @@ export class ActivityScreen extends Component {
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
+          level={this.props.level}
+          xp={this.props.xp}
           nextPress={this.nextActivity}
           backPress={this.backToMenu} />
       </View>
@@ -142,7 +144,9 @@ export default connect(
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
-    currentActivity: state.game.currentActivity
+    currentActivity: state.game.currentActivity,
+    xp: state.child.xp,
+    level: state.child.level
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -163,5 +167,7 @@ ActivityScreen.propTypes = {
   activity: PropTypes.object.isRequired,
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
-  addStars: PropTypes.func.isRequired
+  addStars: PropTypes.func.isRequired,
+  xp: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired
 }
