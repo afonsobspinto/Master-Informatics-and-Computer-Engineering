@@ -219,11 +219,6 @@ exports[`Carousel components renders Card correctly 2`] = `
     >
       <Image
         resizeMode="center"
-        source={
-          Object {
-            "uri": "file://test.uri",
-          }
-        }
         style={
           Object {
             "bottom": "-30%",
