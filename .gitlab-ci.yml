@@ -85,4 +85,4 @@ django-staging-deployments:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02"
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git"
