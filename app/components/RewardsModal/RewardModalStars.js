@@ -23,6 +23,7 @@ export class RewardModalStars extends React.Component {
   }
 
   componentDidMount () {
+    /* istanbul ignore next */
     setTimeout(() => {
       if (this.state.animations[0]) {
         this.stars[0].zoomIn(1000).then(() => {
@@ -38,7 +39,9 @@ export class RewardModalStars extends React.Component {
     }, 400)
 
     for (let i = 0; i < 3; i++) {
+      /* istanbul ignore next */
       setTimeout(() => { if (this.state.animations[i]) this.stars[i].bounceOutDown(2000) }, 4000 + i * 400)
+      /* istanbul ignore next */
       setTimeout(() => { if (this.state.animations[i]) this.props.increaseProgress(i + 1) }, 4400 + i * 400)
     }
   }

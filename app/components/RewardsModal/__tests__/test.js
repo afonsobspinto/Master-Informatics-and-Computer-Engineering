@@ -49,7 +49,6 @@ describe('RewardsModal components', () => {
       activities={activities}
       increaseProgress={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
-    // jest.advanceTimersByTime(401) acho que percebes o que isto faz se descomentares
     wrapper.unmount()
   })
 })
