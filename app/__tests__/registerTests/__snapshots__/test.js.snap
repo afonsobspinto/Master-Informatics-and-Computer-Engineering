@@ -168,10 +168,11 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
             "fontFamily": "LinotteBold",
             "fontSize": 15,
             "marginBottom": "2%",
+            "textDecorationLine": "underline",
           }
         }
       >
-        Faça login!
+        Faça login aqui!
       </Text>
     </Component>
   </Styled(Content)>
