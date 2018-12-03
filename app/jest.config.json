@@ -1,4 +1,7 @@
 {
+  "transformIgnorePatterns": [
+    "/node_modules/(?!native-base)/"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
       "**/*.js"

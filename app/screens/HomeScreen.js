@@ -15,6 +15,11 @@ class HomeScreen extends React.Component {
         />
         <Text />
         <Button
+          title={'Register Screen'}
+          onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
+        />
+        <Text />
+        <Button
           title={`Progress: ${this.props.activityProgressType}`}
           onPress={this.props.toggleActivityProgressType}
         />
