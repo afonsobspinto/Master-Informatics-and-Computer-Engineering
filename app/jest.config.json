@@ -1,4 +1,7 @@
 {
+  "transformIgnorePatterns": [
+    "/node_modules/(?!native-base)/"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
       "**/*.js"
@@ -15,8 +18,8 @@
   "coverageDirectory": "<rootDir>/coverage/",
   "coverageThreshold": {
       "global": {
-          "functions": 70,
-          "lines": 70
+          "functions": 50,
+          "lines": 50
       }
   },
   "verbose": false,

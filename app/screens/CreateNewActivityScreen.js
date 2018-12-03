@@ -19,7 +19,8 @@ class CreateNewActivityScreen extends Component {
       isTimePickerVisible: false,
       activityStartingTime: new Date(),
       activityWeekDay: null,
-      image: 'bed',
+      image: null,
+      photo: null,
       title: 'Atividade de testes',
       color: '#7d84b2',
       routinePeriod: '',
@@ -99,7 +100,7 @@ class CreateNewActivityScreen extends Component {
     )
   };
 
-  imagePicker = async (camera) => {
+  imagePicker = async (camera, photo) => {
     let options = {
       allowsEditing: true, aspect: [1, 1]
     }
@@ -107,14 +108,18 @@ class CreateNewActivityScreen extends Component {
 
     if (camera) {
       await Permissions.askAsync(Permissions.CAMERA)
-      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images' })
+      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images', aspect: [5, 3] })
     } else {
       await Permissions.askAsync(Permissions.CAMERA_ROLL)
-      result = await ImagePicker.launchImageLibraryAsync(options)
+      if (photo) {
+        result = await ImagePicker.launchImageLibraryAsync({ ...options, aspect: [5, 3] })
+      } else {
+        result = await ImagePicker.launchImageLibraryAsync(options)
+      }
     }
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri })
+      this.setState(camera ? { photo: result.uri } : { image: result.uri })
     }
   }
 
@@ -126,10 +131,12 @@ class CreateNewActivityScreen extends Component {
 
   buildNewCustomActivity = () => {
     Alert.alert('Atividade criada!')
+
     this.props.addCustomActivity(this.state.routine, {
       title: this.state.title,
-      image: this.state.image,
       color: this.state.color,
+      image: (this.state.image !== null ? this.state.image : undefined),
+      photo: (this.state.photo !== null ? this.state.photo : undefined),
       time: {
         min: this.state.minTime,
         max: this.state.maxTime,
@@ -239,18 +246,18 @@ class CreateNewActivityScreen extends Component {
             </Picker>
           </View>
           <View>
-            <Text style={styles.label}>Logótipo da Atividade</Text>
+            <Text style={styles.label}>Imagem da Atividade</Text>
             <View style={{ flexDirection: 'row', paddingBottom: 20 }}>
               <View style={{ justifyContent: 'center', alignItems: 'center' }} >
                 <TouchableOpacity style={{ flexBasis: '50%', flexDirection: 'column' }}
-                  onPress={() => this.imagePicker(false)}>
+                  onPress={() => this.imagePicker(false, true)}>
                   <Image style={{ height: 35, width: 35 }} source={require('../assets/images/icons/upload.png')} />
                 </TouchableOpacity>
                 <Text style={{ fontSize: 12, paddingTop: 5 }}>Importar imagem da galeria</Text>
               </View>
               <View style={{ justifyContent: 'center', alignItems: 'center', flexBasis: '50%' }}>
                 <TouchableOpacity
-                  onPress={() => this.imagePicker(true)}>
+                  onPress={() => this.imagePicker(true, true)}>
                   <Image style={{ height: 40, width: 40 }} source={require('../assets/images/icons/camera.png')} />
                 </TouchableOpacity>
                 <Text style={{ fontSize: 12, paddingTop: 5 }}>Tirar fotografia</Text>
@@ -258,10 +265,10 @@ class CreateNewActivityScreen extends Component {
             </View>
           </View>
           <View style={{ paddingBottom: 20 }}>
-            <Text style={styles.label}>Imagem de Atividade</Text>
+            <Text style={styles.label}>Logótipo de Atividade</Text>
             <View styles={{ flexDirection: 'row' }}>
               <View style={{ flexBasis: '50%' }}>
-                <TouchableOpacity onPress={() => this.imagePicker(false)}>
+                <TouchableOpacity onPress={() => this.imagePicker(false, false)}>
                   <Image style={{ height: 35, width: 35 }} source={require('../assets/images/icons/upload.png')} />
                 </TouchableOpacity>
                 <Text style={{ fontSize: 12, paddingTop: 5 }}>Importar imagem da galeria</Text>

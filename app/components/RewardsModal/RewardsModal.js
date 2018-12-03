@@ -26,6 +26,15 @@ export class RewardsModal extends React.Component {
     this.setState({ progress: (this.props.xp - this.props.level * 100 + increase) / 100 })
   }
 
+  returnURIorImage = (activity) => {
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (activity.photo !== undefined && activity.photo.includes('file://')) {
+      return { uri: activity.photo }
+    } else {
+      return Images[activity.image]
+    }
+  }
+
   render () {
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
 
