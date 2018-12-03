@@ -23,6 +23,9 @@
     "android": {
       "package": "feup.ldso.routines",
       "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "pt.up.fe.ldsog02"
     }
   }
 }
