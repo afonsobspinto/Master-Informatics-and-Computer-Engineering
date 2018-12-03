@@ -81,9 +81,8 @@ django-staging-deployments:
     - apt-get update -qq && apt-get install -y -qq git
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")    
     - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git"
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02"
