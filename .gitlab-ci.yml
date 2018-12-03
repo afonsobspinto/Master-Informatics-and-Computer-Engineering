@@ -83,6 +83,6 @@ django-staging-deployments:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")    
     - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
   script:
     - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone git@gitlab.com:feup-tbs/ldso18-19/t4g2.git"
