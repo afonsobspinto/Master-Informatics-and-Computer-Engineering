@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StatusBar, Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
 
-import styles from '../styles/ParentStyles/RegisterScreen.style'
+import styles from '../../styles/ParentStyles/RegisterScreen.style'
 
 export default class RegisterScreen extends Component {
   constructor (props) {

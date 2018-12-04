@@ -23,7 +23,6 @@ export class DurationModal extends React.Component {
     this.setState({
       itemsList: newItems
     })
-    console.log('ahahah' + this.state.itemsList)
   }
 
   onPickerSelect = (index) => {
@@ -34,7 +33,6 @@ export class DurationModal extends React.Component {
       <View style={{ padding: 10 }}>
         <Text style={styles.centeredElement}>Escolha a duração da atividade</Text>
         <View style={[styles.centeredElement, { justifyContent: 'flex-end' }]}>
-
           <TouchableOpacity onPress={this.props.closeModalCallback}>
             <Text>EXIT</Text>
           </TouchableOpacity>

@@ -1,15 +1,9 @@
 import { createStackNavigator } from 'react-navigation'
 
-import ChooseActivityScreen from '../screens/ChooseActivityScreen'
-import ChildMainMenuScreen from '../screens/ChildMainMenuScreen'
-import ParentScreen from '../screens/ParentScreen'
-import RegisterScreen from '../screens/RegisterScreen'
+import ParentMainMenuScreen from '../screens/parent/ParentMainMenuScreen'
 
 export default createStackNavigator({
-  ParentScreen: ParentScreen,
-  ChooseActivityScreen: ChooseActivityScreen,
-  ChildMainMenu: ChildMainMenuScreen,
-  RegisterScreen: RegisterScreen
+  ParentMainMenuScreen
 },
 {
   headerMode: 'none',

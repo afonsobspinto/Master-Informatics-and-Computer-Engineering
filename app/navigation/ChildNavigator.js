@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation'
 
-import ActivityScreen from '../screens/ActivityScreen'
-import ChooseRoutineScreen from '../screens/ChooseRoutineScreen'
-import ChooseActivityScreen from '../screens/ChooseActivityScreen'
-import ChildMainMenuScreen from '../screens/ChildMainMenuScreen'
-import ShopScreen from '../screens/ShopScreen'
+import ActivityScreen from '../screens/child/ActivityScreen'
+import ChooseRoutineScreen from '../screens/child/ChooseRoutineScreen'
+import ChooseActivityScreen from '../screens/child/ChooseActivityScreen'
+import ChildMainMenuScreen from '../screens/child/ChildMainMenuScreen'
+import ShopScreen from '../screens/child/ShopScreen'
 
 export default createStackNavigator({
   ChildMainMenu: ChildMainMenuScreen,

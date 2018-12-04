@@ -1,11 +1,11 @@
 import React from 'react'
 import { StatusBar, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { setCurrentRoutine, nextActivity } from '../actions/gameActions'
+import { setCurrentRoutine, nextActivity } from '../../actions/gameActions'
 import PropTypes from 'prop-types'
 
-import CardCarousel from '../components/Carousel/CardCarousel'
-import styles from '../styles/CardCarousel.style'
+import CardCarousel from '../../components/Carousel/CardCarousel'
+import styles from '../../styles/CardCarousel.style'
 
 export class ChooseRoutineScreen extends React.Component {
   constructor (props) {

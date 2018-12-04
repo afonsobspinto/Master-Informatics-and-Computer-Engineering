@@ -86,9 +86,7 @@ export class ProgressClock extends React.Component {
     } else if (this.props.activityFeedback === 'vibration') {
       try {
         Vibration.vibrate(250, true)
-      } catch (error) {
-        console.log('Device cannot vibrate.')
-      }
+      } catch (error) {}
     }
   }
 

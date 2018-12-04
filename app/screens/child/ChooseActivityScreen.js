@@ -1,11 +1,11 @@
 import React from 'react'
 import { StatusBar, View } from 'react-native'
 import { connect } from 'react-redux'
-import { setCurrentActivity } from '../actions/gameActions'
+import { setCurrentActivity } from '../../actions/gameActions'
 import PropTypes from 'prop-types'
 
-import CardCarousel from '../components/Carousel/CardCarousel'
-import { backgroundColor } from '../styles/Colors'
+import CardCarousel from '../../components/Carousel/CardCarousel'
+import { backgroundColor } from '../../styles/Colors'
 
 export class ChooseActivityScreen extends React.Component {
   constructor (props) {
