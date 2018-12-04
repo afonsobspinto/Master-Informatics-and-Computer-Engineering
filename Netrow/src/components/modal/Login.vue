@@ -14,14 +14,14 @@
               <p class="control has-icons-left has-icons-right">
                   <input
                     :class="[highlightEmailWithError ? 'input is-danger' : 'input']"
-                    type="email"
+                    type="text"
                     :placeholder="emailPlaceholder"
                     name="emailName"
                     v-model="email"
                     @keyup="checkEmailOnKeyUp(email)"
                   >
                   <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-user-alt"></i>
                   </span>
                   <span v-if="highlightEmailWithError !== null" class="icon is-small is-right">
                     <i :class="[highlightEmailWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
@@ -71,7 +71,7 @@
 import { isValidEmail } from '../../validators';
 import { HttpClient } from '../../lib/httpClient';
 
-let httpClient = HttpClient.instance(console.error);
+const httpClient = HttpClient.instance(console.error);
 
 export default {
   name: 'login-component',
@@ -81,11 +81,11 @@ export default {
       modalTitle: 'Log in',
       modalTitleLoggedIn: 'Welcome!',
       primaryBtnLabel: 'Log in',
-      emailRequiredLabel: 'Email required',
+      emailRequiredLabel: 'Username required',
       passwordRequiredLabel: 'Password required',
       emailNotValidLabel: 'Valid email required',
       btnLoggedInLabel: 'Close',
-      emailPlaceholder: 'Your email',
+      emailPlaceholder: 'Your username',
       email: '',
       password: '',
       highlightEmailWithError: null,
@@ -111,14 +111,61 @@ export default {
     closeModal () {
       this.$store.commit('showLoginModal', false);
     },
+    validCredentials (username, password) {
+      const attributes = [
+        "Nome",
+        "Descricao",
+        "Telefone",
+        "Morada",
+        "Localidade",
+        "CodigoPostal",
+        "Pais",
+        "NumContribuinte",
+        "CDU_Email",
+        "CDU_Password"
+      ]
+
+      const path = `Base/Clientes/DaValorAtributos/${username}`;
+      return new Promise((resolve, reject) => {
+        httpClient.postJson(path, attributes)
+          .then(retObj => {
+            console.log(retObj);
+            if (retObj === null || !Array.isArray(retObj)) {
+              reject("Server Error");
+            }
+  
+            const profile = retObj.reduce((map, attrib) => {
+              map[attrib.Nome] = attrib.Valor;
+              return map;
+            }, {});
+  
+            console.log(profile);
+            console.log(password);
+            console.log(profile.CDU_Password);
+            if (password == profile.CDU_Password) {
+              console.log("heya");
+              resolve();
+            }
+          }).catch(e => {
+            console.error(e);
+            reject(e);
+          })});
+    },
     checkForm (e) {
       e.preventDefault();
 
       if (this.email && this.password) {
-        this.highlightEmailWithError = false;
-        this.highlightPasswordWithError = false;
-        this.isFormSuccess = true;
-        this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+        this.validCredentials(this.email, this.password)
+          .then(() => {
+            console.log("hi");
+            this.highlightEmailWithError = false;
+            this.highlightPasswordWithError = false;
+            this.isFormSuccess = true;
+            this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+
+          }).catch(e => {
+
+          })
       }
 
       if (!this.email) {
@@ -138,15 +185,15 @@ export default {
       }
     },
     checkEmailOnKeyUp (emailValue) {
-      if (emailValue && isValidEmail(emailValue)) {
-        this.highlightEmailWithError = false;
-      } else {
-        this.highlightEmailWithError = true;
+      // if (emailValue && isValidEmail(emailValue)) {
+      //   this.highlightEmailWithError = false;
+      // } else {
+      //   this.highlightEmailWithError = true;
 
-        if (!isValidEmail(emailValue)) {
-          this.emailRequiredLabel = this.emailNotValidLabel;
-        }
-      }
+      //   if (!isValidEmail(emailValue)) {
+      //     this.emailRequiredLabel = this.emailNotValidLabel;
+      //   }
+      // }
     },
     checkPasswordOnKeyUp (passwordValue) {
       if (passwordValue) {

@@ -1,5 +1,4 @@
 import queryString from 'query-string';
-import axios from 'axios';
 
 const ADRESS = "http://localhost:2018/WebApi";
 
@@ -12,12 +11,15 @@ const company = {
     line: "Professional",
 }
 
-let  instance: HttpClient | null  = null;
+let instance: HttpClient | null = null;
 
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
+const TOKEN = "Qo-UuBso2NYDn8QMTDKO0EO5cQZfFxGOjzekHRgIsYOUbOjqHWuuqZO9tAurkb3CqEWTbBltr4qNKqoEGDugKo-FdRl8duadcFYfOTlVAi8E61MCoUDIJDoj2EMjnocOfFTolXp1zjqVDkKdAmIH7Qdk3PukY6vWyTH9ji5etsNkMmjHpEopruBmItpQqyolUAhEzLW80s-cEFRi0C-OOE8eRa2xN42_57LfYJ3BukdVU8knccZeSnMfOTpJ2Xx3YvedKNtH3S75nUI4QTKdV4y6-T3-9lh5CjNkVZvalhSnW6nvzp6BfF2ef-Dl5U3a";
+
 export class HttpClient {
+    private token: string;
 
     static instance(onTokenError: Function) {
         if (instance == null) {
@@ -28,53 +30,48 @@ export class HttpClient {
     }
 
     private constructor(onTokenError: Function) {
+        // TODO fix
         // this.getToken(onTokenError);
+        this.token = TOKEN;
+    }
 
-        let url = `${ADRESS}/Base/Clientes/Existe/C8`;
-        const token = "Jbz32PxnqHlOXN3AHULvfJLed5OVWcIUfqb4yexEqCailQv4bt6xKaJmdVtc9Az3ud3QjvTQJx5nBMi0qU9wSNSuLQVzG_w1aNYw0V_C7IPpAUCj6zt_LeLePj34NbSaeGcFwi_hvc_ycUmWHx9ExJG--2eRklxmMUb5Wsg9mxGgwb5i3GKWBahiZZ3a9r9JAsnTSQkiHbeNuiqhguAk9N8ee-KPiTnCDTTkwHLJR0BeyixE6rc1ox2RkoRKgHHteln5Cxq8bhXK3zK-pzsGMCJ_ZIThCPfGgp4uidCF4ypXWmjczIlUoyUPLxu9zrZM";
-        axios.post(url, {
+    public postJson(path: string, body: Object) {
+        const url = `${ADRESS}/${path}`;
+
+        return new Promise<Object>((resolve, reject) => fetch(url, {
+            method: "POST",
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Accept': jsonValue
-            }
-        }).then(data => {
-                
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
+                'Authorization': `Bearer ${this.token}`,
+                'Accept': jsonValue,
+                'Content-Type': jsonValue
+            },
+            redirect: "follow",
+            body: JSON.stringify(body)
+            }).then(data => {
+                data.json().then(obj => {
+                    resolve(obj);
+                });
+            })
+            .catch(error => {
+                reject(error);
+            }));
     }
 
     getToken(onTokenError: Function) {
-        this.postUrlEncoded("token", company)
-            .then(data => {
-                
-                console.log(data);
-            })
+        let url = `${ADRESS}/token?${queryString.stringify(company)}`;
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': urlEncoded,
+                'Accept': jsonValue,
+            }
+        }).then(data => {
+            console.log(data);
+            data.json().then(o => console.log(o));
+        })
             .catch(error => {
                 console.log(error);
             });
-    }
-
-    postUrlEncoded(path: string, body: Object) {
-        let url = `${ADRESS}/${path}?${queryString.stringify(company)}`;
-        console.log(url);
-        return axios.post(url, body, {
-            headers: {
-                'Content-Type': urlEncoded,
-                // 'Accept': jsonValue
-            }
-        });
-
-        // return fetch(url, {
-        //     method: "POST",
-        //     // mode: "cors",
-        //     // headers: postHeaders,
-        //     redirect: "follow",
-        //     body: new URLSearchParams(queryString.stringify(body)),
-        // });
     }
 
 

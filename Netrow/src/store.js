@@ -123,7 +123,8 @@ export default new Vuex.Store({
       selectedPriceRange: [0, 500],
       categoryFilter: "all",
       name: "",
-      productTitleSearched: ""
+      productTitleSearched: "",
+      username: "",
     },
     systemInfo: {
       openLoginModal: false,
@@ -175,6 +176,9 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    addUsername: (state, username) => {
+      state.userInfo.username = username;
+    },
     addToCart: (state, id) => {
       state.products.forEach(el => {
         if (id === el.id) {
