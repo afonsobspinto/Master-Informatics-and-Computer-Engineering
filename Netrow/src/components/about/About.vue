@@ -1,13 +1,13 @@
 <template>
   <div id="aboutContent">
     <h1 class="title">About Us</h1>
-    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</h2>
+    <h2>The best store in general</h2>
     <div>
       <p class="storeLogo"></p>
       <table style="width:100%">
         <tr>
           <td>email:</td>
-          <td>netrow@example.com</td>
+          <td>netrow@netrow.com</td>
         </tr>
         <tr>
           <td>phone:</td>
@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <td>Address:</td>
-          <td>consectetur adipiscing elit</td>
+          <td>Rua general, 3200-123, Porto, Portugal</td>
         </tr>
       </table>
     </div>

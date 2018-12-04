@@ -2,12 +2,11 @@
   <div class="footer">
     <div class="columns container">
       <div class="column">
-        <p>Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</p>
+        <p>Ecommerce website example for Primavera v10 API Interoperability. Built for the SINF class of MIEIC.</p>
       </div>
       <div class="column has-text-right">
         <p>
-          Netrow | Made with
-          <a href="https://vuejs.org/">Vue</a> |
+          Netrow | 
           <router-link :to="{ path: '/about', name: 'about-component' }">About us</router-link>
         </p>
       </div>

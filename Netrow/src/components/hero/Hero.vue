@@ -3,11 +3,10 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Ecommerce website example for <br>
-            Primavera v10 API Interoperability
+            Netrow
           </h1>
           <h2 class="subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            The number one electronics store in the galaxy
           </h2>
         </div>
       </div>
