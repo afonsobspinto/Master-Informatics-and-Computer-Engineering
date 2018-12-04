@@ -15,14 +15,14 @@ const company = {
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "4Y5KILVlvOASR1LsZgHp7ip69uJIkt25KdaKu2gFVS47nRAPwWNdhqxlzrA52tpECD7V-UBOE4GsruhfZEyNWVpgS7NW7ZF7bDmJ6EGXdXNhvR0He0FJx2YjC-u4EQtnsdILf3VigylKH89VeHrZiaa6sT2PDjZmob-rfyqnqAmXjcSJM0CnjVpR-dmUNTO6-1avr1XRViibJsD7fh8q2ZYGvlh5QbcE0cf5il--AMQHCREaGStg3jx1AN2X_07Jd_M-aP4jAgW1nvKe4MADhb8Fu8jxIgNkwEQLLsMXpC52OYPLhRxJtG2r8YH0_Dvf";
+const TOKEN = "4SZFT7DjCO1L11mgp_P5sgAXwty65OyzEAxuS2WzOe__ddTyPc_PzIru3h8fnRje0V8QVz_RzJts2H0Q8nbMRvyovySJiIm2w-KuGplG-7pjhLhjoXWPTljFVH-cTUUivbSG4JyP-Rhl6MBih8Yx83QSsE-_IOXDUd0IqroqqfzY-hS9HeJPOnAK2j1M5uTZtnj3c2K1Q3DcKUaOMWJLQydFA1I1hvWGhsoI162I5g7MpuPimOb0vtWpjiz0AIcy_HMewexS1SuXuD9Ziqkf3Qcqcaj8BqpnSSD5BYiT15MYNtdIqX8rIECRfp9wUcrb";
 
 let instance: HttpClient | null = null;
 
 export class HttpClient {
     private token: string;
 
-    static instance(onTokenError: Function) {
+    static instance(onTokenError: Function = console.error) {
         if (instance == null) {
             instance = new HttpClient(onTokenError);
         }

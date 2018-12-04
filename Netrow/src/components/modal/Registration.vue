@@ -31,7 +31,7 @@
 
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="number" placeholder="Username*" v-model="profile.Cliente">
+                  <input class="input" type="text" placeholder="Username*" v-model="profile.Cliente">
                 </p>
               </div>
 
@@ -146,6 +146,7 @@
 <script>
 import { isValidEmail } from '../../validators';
 import { isAnyObjectEmpty } from '../../lib/utils';
+import { HttpClient } from '../../lib/httpClient';
 
 export default {
   name: 'registration-component',
@@ -194,6 +195,7 @@ export default {
       if (this.$store.getters.isSignupModalOpen) {
         return true;
       } else {
+        
         return false;
       }
     }
@@ -203,6 +205,27 @@ export default {
     closeModal () {
       this.$store.commit('showSignupModal', false);
     },
+    createUser() {
+      let requestData = {
+        ... this.profile,
+        Moeda: 'EUR',
+        Nome: this.name,
+        CamposUtil: [
+          {
+            "Nome": "CDU_CampoVar1",
+            "Valor": this.email
+          },
+          {
+            "Nome": "CDU_CampoVar2",
+            "Valor": this.password
+          }
+        ]
+      }
+
+      return HttpClient.instance(console.error)
+        .postJson("Base/Clientes/Actualiza", requestData);
+    },
+
     checkForm (e) {
       e.preventDefault();
 
@@ -210,11 +233,18 @@ export default {
         this.highlightEmailWithError = false;
         this.highlightPasswordWithError = false;
         this.isFormSuccess = true;
-        this.$store.commit('setUserName', this.name);
-        this.$store.commit('isUserSignedUp', this.isFormSuccess);
-        this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+
+        this.createUser()
+          .then(data => {
+            this.$store.commit('setUserName', this.name);
+            this.$store.commit('isUserSignedUp', this.isFormSuccess);
+            this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+          }).catch(e => {
+            console.error(e);
+            this.$toaster.error("Failed to Update Profile.");
+          });
       } else {
-        this.$toaster.error("Please fill in all the fields");
+        this.$toaster.error("Failed to register");
       }
 
       if (!this.name) {

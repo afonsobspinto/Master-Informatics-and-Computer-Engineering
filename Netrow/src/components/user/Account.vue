@@ -110,12 +110,9 @@ export default {
       delete requestData.CDU_CampoVar1;
       delete requestData.CDU_CampoVar2;
 
-      console.log(this.profile);
-      console.log(requestData);
       HttpClient.instance(console.error)
         .postJson("Base/Clientes/Actualiza", requestData)
         .then(data => {
-          console.log(data);
           this.$toaster.success('Updated Profile Successfully.');
         }).catch(e => {
           console.error(e);
