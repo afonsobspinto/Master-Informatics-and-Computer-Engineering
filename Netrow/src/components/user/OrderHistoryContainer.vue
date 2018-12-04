@@ -1,5 +1,5 @@
 <template>
-  <div class="section" style="min-height:100vh">
+  <div class="section">
     <h3 class="title">{{ pageTitle }}</h3>
     <div class="columns is-centered is-multiline">
       <div class="column">

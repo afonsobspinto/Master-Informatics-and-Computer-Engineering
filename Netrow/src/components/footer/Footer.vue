@@ -5,7 +5,8 @@
         <p>Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</p>
       </div>
       <div class="column has-text-right">
-        <p>Netrow | Made with
+        <p>
+          Netrow | Made with
           <a href="https://vuejs.org/">Vue</a> |
           <router-link :to="{ path: '/about', name: 'about-component' }">About us</router-link>
         </p>
@@ -26,5 +27,6 @@ export default {
 .footer {
   background: #b9e2fc;
   color: black;
+  height: 13rem;
 }
 </style>

@@ -29,9 +29,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body {
-  min-height: 100vh;
-}
 .storeLogo {
   background: url("../../../public/assets/netrow-logo.png") no-repeat;
   background-position: 50% 50%;
