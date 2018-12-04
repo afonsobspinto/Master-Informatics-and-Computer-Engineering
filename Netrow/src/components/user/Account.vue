@@ -1,6 +1,8 @@
 <template>
-    <div class="section">
-      <div class="card">
+    <div class="section container">
+      <div class="card" id="profile-container">
+          <p class="title" id="profile-title">Profile Information</p>
+        
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
@@ -61,9 +63,9 @@
             <input class="input" type="number" placeholder="e.g. 241241234"  v-model="profile.NumContribuinte">
           </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button class="btn btn-primary btn-sx mt-3" type="button" @click="updateProfile">Update</button>
+        <div class="text-center" id="update-button">
+          <button class="button is-info" type="button" @click="updateProfile">Update</button>
+        </div>
       </div>
   </div>
 </template>
@@ -139,3 +141,21 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+#profile-container {
+  padding: 3rem;
+}
+
+#update-button {
+  margin-top: 2rem;
+}
+
+#profile-title {
+  border-bottom: 0.5rem ;
+  margin-bottom: 3rem;
+}
+
+</style>
+

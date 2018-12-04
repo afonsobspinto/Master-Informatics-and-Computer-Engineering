@@ -15,7 +15,7 @@ const company = {
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "4SZFT7DjCO1L11mgp_P5sgAXwty65OyzEAxuS2WzOe__ddTyPc_PzIru3h8fnRje0V8QVz_RzJts2H0Q8nbMRvyovySJiIm2w-KuGplG-7pjhLhjoXWPTljFVH-cTUUivbSG4JyP-Rhl6MBih8Yx83QSsE-_IOXDUd0IqroqqfzY-hS9HeJPOnAK2j1M5uTZtnj3c2K1Q3DcKUaOMWJLQydFA1I1hvWGhsoI162I5g7MpuPimOb0vtWpjiz0AIcy_HMewexS1SuXuD9Ziqkf3Qcqcaj8BqpnSSD5BYiT15MYNtdIqX8rIECRfp9wUcrb";
+const TOKEN = "quJPZhOUgC1kwCf5vJmNtx2qHIldeE-q6IMl7vKkfSXWXEKoPb5WqAZX-aRS-GMBOzmCrQwQaB3UXoK3KDJJ_zrJNvk-aiWsz1hcT-VqZIsyxpu26uJ8LSlSxSvD7onNhMbRYi66lKKRKukaNOSBeN5IwcqE9IqgiGIeOxFRuSRd_FHiH-9Tuzhzihkwf1487Kj12nfDrQCZXM1anckYu72P-F3pwWTV3wiUvpHLPINCOss26vj8SkD0lgFS4RP12SDLMcwxL7oWsMCh-dZ6TgUnuCXl_VbOUZ77pPWQTEwb_Dh-XM-ANgyedY5JqQEc";
 
 let instance: HttpClient | null = null;
 
