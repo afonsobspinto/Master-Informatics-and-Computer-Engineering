@@ -133,6 +133,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    username: state => state.userInfo.username,
     productsAdded: state => {
       return state.products.filter(el => {
         return el.isAddedToCart;

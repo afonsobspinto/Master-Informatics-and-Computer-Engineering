@@ -16,7 +16,7 @@ let instance: HttpClient | null = null;
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "Qo-UuBso2NYDn8QMTDKO0EO5cQZfFxGOjzekHRgIsYOUbOjqHWuuqZO9tAurkb3CqEWTbBltr4qNKqoEGDugKo-FdRl8duadcFYfOTlVAi8E61MCoUDIJDoj2EMjnocOfFTolXp1zjqVDkKdAmIH7Qdk3PukY6vWyTH9ji5etsNkMmjHpEopruBmItpQqyolUAhEzLW80s-cEFRi0C-OOE8eRa2xN42_57LfYJ3BukdVU8knccZeSnMfOTpJ2Xx3YvedKNtH3S75nUI4QTKdV4y6-T3-9lh5CjNkVZvalhSnW6nvzp6BfF2ef-Dl5U3a";
+const TOKEN = "XeKafqSfSX6b60EQjJXOViFyibn6TAkHrIQ_ztGTxUZymC78ks5hx7PlKG6dLMtZYJh3Q-KmuFaW9z_W-YUwy52WqWenAMG-5lAWrM2F9sNz6E7-9-R3SCZFlbctJTpkpJ2QLZB-66f9oSv2LGzh7xnrEPX0R4RK_KrQekx_AP8KeXyqsurPOutG2Kfyu7g1WZajjwd1_ZbtbXEWDyh1VTiMLxvz5r8WvQi8kdBSpTewB1LHnmnGqBLHib_rR2hZc8pauRhh1-mQGtWTubxqM9LpksZTUIEQ_eFTJcJuGfGJv08X6FJUaMzIL_zmU03g";
 
 export class HttpClient {
     private token: string;

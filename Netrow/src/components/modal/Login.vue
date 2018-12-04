@@ -129,9 +129,9 @@ export default {
       return new Promise((resolve, reject) => {
         httpClient.postJson(path, attributes)
           .then(retObj => {
-            console.log(retObj);
             if (retObj === null || !Array.isArray(retObj)) {
-              reject("Server Error");
+              reject(`Server Error: ${retObj}`);
+              return;
             }
   
             const profile = retObj.reduce((map, attrib) => {
@@ -139,32 +139,29 @@ export default {
               return map;
             }, {});
   
-            console.log(profile);
-            console.log(password);
-            console.log(profile.CDU_Password);
             if (password == profile.CDU_Password) {
-              console.log("heya");
               resolve();
+            } else {
+              reject();
             }
           }).catch(e => {
-            console.error(e);
             reject(e);
           })});
     },
     checkForm (e) {
       e.preventDefault();
-
+      const toaster = this.$toaster;
       if (this.email && this.password) {
         this.validCredentials(this.email, this.password)
           .then(() => {
-            console.log("hi");
             this.highlightEmailWithError = false;
             this.highlightPasswordWithError = false;
             this.isFormSuccess = true;
             this.$store.commit('isUserLoggedIn', this.isFormSuccess);
-
+            this.$store.commit('addUsername', this.email);
           }).catch(e => {
-
+            console.error(e);
+            toaster.error("Failed to login");
           })
       }
 
