@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Text } from 'react-native'
-import { Body, Left, Right, Thumbnail, ListItem, Button } from 'native-base'
+import { Body, Left, Right, Thumbnail, ListItem, Button, Icon } from 'native-base'
 
 export class RoutineItem extends React.Component {
   render () {
@@ -15,7 +15,7 @@ export class RoutineItem extends React.Component {
         </Body>
         <Right>
           <Button transparent>
-            <Text>Ver</Text>
+            <Icon name='md-arrow-forward' />
           </Button>
         </Right>
       </ListItem>

@@ -39,29 +39,29 @@ export default class ParentMainMenuScreen extends React.Component {
           <FooterTab>
             <Button active={this.state.selectedTab === 'activity'}
               onPress={() => this.setState({ selectedTab: 'activity', title: 'Actividade' })} >
-              <Icon name='home' />
+              <Icon name='md-filing' />
               <Text>Actividade</Text>
             </Button>
             <Button active={this.state.selectedTab === 'routines'}
               onPress={() => this.setState({ selectedTab: 'routines', title: 'Gerir Rotinas' })} >
-              <Icon name='apps' />
+              <Icon name='md-apps' />
               <Text>Gerir Rotinas</Text>
             </Button>
             <Button active={this.selectedTab === 'settings'}
               onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
-              <Icon name='cog' />
+              <Icon name='md-settings' />
               <Text>Definições</Text>
             </Button>
           </FooterTab>
         </Footer>
-        <ActionButton buttonColor='rgba(231,76,60,1)' elevation={6}>
+        {this.state.selectedTab === 'routines' && <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
           <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => {}}>
             <Icon name='md-create' style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => console.log('criar nova rotina')}>
             <Icon name='md-done-all' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-        </ActionButton>
+        </ActionButton>}
       </Container>
     )
   }
@@ -72,5 +72,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 22,
     color: 'white'
+  },
+  actionButton: {
+    marginBottom: 55
   }
 })
