@@ -16,7 +16,8 @@ stages:
 .install-app-dependencies: &install_app_dependencies
   image: node:alpine
   before_script:
-    - npm install -g expo-cli 
+    - cd app
+    - npm ci
 
 .install-server-dependencies: &install_server_dependencies
   image: python:3.7.1
@@ -37,8 +38,6 @@ jest-tests:
   stage: test
   <<: *install_app_dependencies
   script:
-    - cd app
-    - npm ci
     - npm run ci-test
     - npm run lint
   artifacts:
@@ -61,6 +60,7 @@ expo-prod-deployments:
   stage: deploy
   <<: *install_app_dependencies
   script:
+    - npm install -g expo-cli 
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel production
@@ -68,10 +68,11 @@ expo-prod-deployments:
 expo-staging-deployments:
   only:
     - development
-    - fixpipelines
+    - 92-fix-pipelines
   stage: deploy
   <<: *install_app_dependencies
   script:
+    - npm install -g expo-cli 
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel staging
@@ -81,6 +82,7 @@ django-staging-deployments:
     - digitalocean
   only:
     - development
+    - 92-fix-pipelines
   stage: deploy
   <<: *install_ssh_dependencies
   script:
@@ -90,7 +92,7 @@ django-prod-deployments:
   tags:
     - digitalocean
   only:
-    - development
+    - master
   stage: deploy
   <<: *install_ssh_dependencies
   script:
