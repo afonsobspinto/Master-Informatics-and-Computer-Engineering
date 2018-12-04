@@ -24,6 +24,15 @@ stages:
     - cd server
     - pip install -r requirements.txt
 
+.install-ssh-dependencies: &install_ssh_dependencies
+  before_script: 
+    - apt-get update -qq && apt-get install -y -qq git
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")    
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
 jest-tests:
   except: 
     - 65-setup-ci-cd
@@ -77,12 +86,17 @@ django-staging-deployments:
     - development
     - 65-setup-ci-cd
   stage: deploy
-  before_script:
-    - apt-get update -qq && apt-get install -y -qq git
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")    
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  <<: *install_ssh_dependencies
   script:
     - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2 && ./t4g2/deploy_stage.sh"
+
+django-staging-deployments:
+  tags:
+    - digitalocean
+  only:
+    - development
+    - 65-setup-ci-cd
+  stage: deploy
+  <<: *install_ssh_dependencies
+  script:
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2 && ./t4g2/deploy_prod.sh"
