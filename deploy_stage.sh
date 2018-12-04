@@ -8,4 +8,4 @@ sudo rm -rf /home/ldsog02/staging/server
 cp -r /home/ldsog02/t4g2/server /home/ldsog02/staging
 sudo rm -rf /home/ldsog02/t4g2
 cd /home/ldsog02/staging/server
-sudo docker-compose up
+sudo docker-compose up -d
