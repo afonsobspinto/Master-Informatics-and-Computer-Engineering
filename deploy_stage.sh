@@ -2,7 +2,7 @@ cd /home/ldsog02/t4g2/
 echo "Copying dev.env into .env"
 cat server/dev.env > server/.env
 echo "Copying docker-compose_dev.yml into docker-compose.yml"
-cat server/docker-compose_dev.yml server/docker-compose.yml
+cat server/docker-compose_dev.yml > server/docker-compose.yml
 cd /home/ldsog02/staging/server
 echo "Shutting server down"
 sudo docker-compose down
