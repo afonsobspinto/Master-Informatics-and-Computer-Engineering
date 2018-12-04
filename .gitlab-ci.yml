@@ -90,7 +90,7 @@ django-staging-deployments:
   script:
     - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2 && ./t4g2/deploy_stage.sh"
 
-django-staging-deployments:
+django-prod-deployments:
   tags:
     - digitalocean
   only:
