@@ -112,41 +112,15 @@ export default {
       this.$store.commit('showLoginModal', false);
     },
     validCredentials (username, password) {
-      const attributes = [
-        "Nome",
-        "Descricao",
-        "Telefone",
-        "Morada",
-        "Localidade",
-        "CodigoPostal",
-        "Pais",
-        "NumContribuinte",
-        "CDU_Email",
-        "CDU_Password"
-      ]
-
-      const path = `Base/Clientes/DaValorAtributos/${username}`;
-      return new Promise((resolve, reject) => {
-        httpClient.postJson(path, attributes)
-          .then(retObj => {
-            if (retObj === null || !Array.isArray(retObj)) {
-              reject(`Server Error: ${retObj}`);
-              return;
-            }
-  
-            const profile = retObj.reduce((map, attrib) => {
-              map[attrib.Nome] = attrib.Valor;
-              return map;
-            }, {});
-  
-            if (password == profile.CDU_Password) {
-              resolve();
-            } else {
-              reject();
-            }
-          }).catch(e => {
-            reject(e);
-          })});
+      return new Promise((resolve, reject) => httpClient.getProfile(username).then(profile => {
+        if (password == profile.CDU_Password) {
+            resolve();
+          } else {
+            reject();
+          }
+        }).catch(e => {
+          reject(e);
+        }));
     },
     checkForm (e) {
       e.preventDefault();

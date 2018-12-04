@@ -16,7 +16,7 @@ let instance: HttpClient | null = null;
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "XeKafqSfSX6b60EQjJXOViFyibn6TAkHrIQ_ztGTxUZymC78ks5hx7PlKG6dLMtZYJh3Q-KmuFaW9z_W-YUwy52WqWenAMG-5lAWrM2F9sNz6E7-9-R3SCZFlbctJTpkpJ2QLZB-66f9oSv2LGzh7xnrEPX0R4RK_KrQekx_AP8KeXyqsurPOutG2Kfyu7g1WZajjwd1_ZbtbXEWDyh1VTiMLxvz5r8WvQi8kdBSpTewB1LHnmnGqBLHib_rR2hZc8pauRhh1-mQGtWTubxqM9LpksZTUIEQ_eFTJcJuGfGJv08X6FJUaMzIL_zmU03g";
+const TOKEN = "xlY7_qYCgDLoQz9WKidFpobQc8fSNZ33JAYAt2M8DXmRG_qf2HUYBA31pmN8DpPvrWVXJfKwTm1-1YNjisyGKK00rT1a4VvbsBm5DLxOgzSpPo5Ue95tfVBUuz8fdujpPmJBaKlE0-5wBOmb9uBf88CbxPmgeH0zDR7yA6g0_P3HoDC5PSQtoDtC7-05H4rEqGZ2XCb59LyjIAnKTcb2YMv57-md_48Vt5THeBtbPT3GM2tw7MgHlYduiFq50_bHtpWEejOpj08yWZ_6DacXuQ9kGYw2iRkwuZq-58tLBNeEW3hjYv4pI_4gXuf503DB";
 
 export class HttpClient {
     private token: string;
@@ -33,6 +33,40 @@ export class HttpClient {
         // TODO fix
         // this.getToken(onTokenError);
         this.token = TOKEN;
+    }
+
+    public getProfile(username: string) {
+        const attributes = [
+            "Nome",
+            "Descricao",
+            "Telefone",
+            "Morada",
+            "Localidade",
+            "CodigoPostal",
+            "Pais",
+            "NumContribuinte",
+            "CDU_Email",
+            "CDU_Password"
+          ]
+    
+          const path = `Base/Clientes/DaValorAtributos/${username}`;
+          return new Promise<Object>((resolve, reject) => {
+            this.postJson(path, attributes)
+              .then(retObj => {
+                if (retObj === null || !Array.isArray(retObj)) {
+                  reject(retObj);
+                  return;
+                }
+      
+                const profile = retObj.reduce((map, attrib) => {
+                  map[attrib.Nome] = attrib.Valor;
+                  return map;
+                }, {});
+      
+                resolve(profile);
+              }).catch(e => {
+                reject(e);
+              })});
     }
 
     public postJson(path: string, body: Object) {
