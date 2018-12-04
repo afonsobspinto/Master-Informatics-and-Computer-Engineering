@@ -26,7 +26,7 @@ SECRET_KEY = 'x7wn(r^!^4oln)d1-ad=us))+!80_#ki1k#n_pyr6u5uz8)gvo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '167.99.128.178']
 
 
 # Application definition
@@ -124,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Plug XMLTestRunner
+TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
+TEST_OUTPUT_FILE_NAME = 'tests_report.xml'
