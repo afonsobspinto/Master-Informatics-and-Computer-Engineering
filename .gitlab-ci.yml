@@ -34,8 +34,6 @@ stages:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 jest-tests:
-  except: 
-    - 65-setup-ci-cd
   stage: test
   <<: *install_app_dependencies
   script:
@@ -48,8 +46,6 @@ jest-tests:
       junit: app/tests_report.xml
 
 django-tests:
-  except: 
-    - 65-setup-ci-cd
   stage: test
   <<: *install_server_dependencies
   script:
@@ -84,7 +80,6 @@ django-staging-deployments:
     - digitalocean
   only:
     - development
-    - 65-setup-ci-cd
   stage: deploy
   <<: *install_ssh_dependencies
   script:
@@ -95,7 +90,6 @@ django-prod-deployments:
     - digitalocean
   only:
     - development
-    - 65-setup-ci-cd
   stage: deploy
   <<: *install_ssh_dependencies
   script:
