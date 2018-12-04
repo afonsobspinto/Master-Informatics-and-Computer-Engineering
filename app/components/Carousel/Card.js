@@ -25,8 +25,9 @@ export default class Card extends React.Component {
   }
 
   returnURIorImage = () => {
-    if (this.props.item.image.includes('file://')) {
-      return { uri: this.props.item.image }
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (this.props.item.photo !== undefined && this.props.item.photo.includes('file://')) {
+      return { uri: this.props.item.photo }
     } else {
       return Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]
     }
@@ -42,7 +43,7 @@ export default class Card extends React.Component {
             <Image
               source={this.returnURIorImage()}
               resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-              style={this.state.isPhoto ? cardStyle.cardPhoto : this.state.hasButton ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
+              style={this.state.isPhoto ? cardStyle.cardPhoto : this.props.isRoutine ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
             <Text style={this.state.isPhoto ? cardStyle.photoCardTitle : cardStyle.cardTitle}> { this.props.item.title } </Text>
             {this.state.hasButton && <CardButton cardStyle={cardStyle} onPress={this.onButtonPress} />}
           </View>
@@ -55,5 +56,6 @@ export default class Card extends React.Component {
 Card.propTypes = {
   onPress: PropTypes.func.isRequired,
   onButtonPress: PropTypes.func,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  isRoutine: PropTypes.bool
 }

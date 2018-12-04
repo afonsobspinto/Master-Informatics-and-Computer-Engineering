@@ -5,9 +5,9 @@ import { setCurrentActivity } from '../actions/gameActions'
 import PropTypes from 'prop-types'
 
 import CardCarousel from '../components/Carousel/CardCarousel'
-import { backgroundColor } from '../styles/General.style'
+import { backgroundColor } from '../styles/Colors'
 
-class ChooseActivityScreen extends React.Component {
+export class ChooseActivityScreen extends React.Component {
   constructor (props) {
     super(props)
     this.onPress = this.onPress.bind(this)
@@ -31,9 +31,11 @@ class ChooseActivityScreen extends React.Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     activities: state.game.routines[state.game.currentRoutine].activities
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setCurrentActivity: routine => dispatch(setCurrentActivity(routine))
   })

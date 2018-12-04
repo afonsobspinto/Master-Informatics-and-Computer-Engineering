@@ -1,3 +1,11 @@
+.idea/
+.vscode
+server/server.iml
+app/.expo
+app/node_modules
+**/__pycache__/
 .DS_Store
 .expo/
 .idea/
+app/tests_report.xml
+server/tests_report.xml

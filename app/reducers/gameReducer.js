@@ -117,7 +117,7 @@ const initialState = {
           }
         },
         {
-          title: 'Fazer os trabalhos para casa',
+          title: 'Fazer os trabalhos de casa',
           image: 'paper',
           color: '#657153',
           time: {
@@ -173,7 +173,7 @@ export default function game (state = initialState, { type, payload }) {
       }
 
     case gameTypes.addRoutines:
-      return { ...state, routines: payload }
+      return { ...state, routines: [...state.routines, payload] }
 
     case gameTypes.setCurrentActivity:
       return { ...state, currentActivity: state.routines[state.currentRoutine].activities.findIndex(activity => activity.title === payload.title) }

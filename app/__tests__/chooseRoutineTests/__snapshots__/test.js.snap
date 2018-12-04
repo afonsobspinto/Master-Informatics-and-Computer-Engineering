@@ -1,0 +1,409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#3db3e2",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <CardCarousel
+    data={
+      Array [
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#7d84b2",
+              "image": "bed",
+              "photo": "bedroom",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 0,
+              },
+              "title": "Fazer a cama",
+            },
+            Object {
+              "color": "#0e79b2",
+              "image": "toothbrush",
+              "time": Object {
+                "goal": 10,
+                "max": 15,
+                "min": 1,
+              },
+              "title": "Lavar os dentes",
+            },
+            Object {
+              "color": "#7fb800",
+              "image": "socks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Vestir",
+            },
+            Object {
+              "color": "#37c1f0",
+              "image": "shower",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar banho",
+            },
+            Object {
+              "color": "#e43f6f",
+              "image": "bag",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a mochila",
+            },
+            Object {
+              "color": "#4bb3fd",
+              "image": "sneakers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Calçar os sapatos",
+            },
+            Object {
+              "color": "#ff7f11",
+              "image": "breakfast",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar o pequeno almoço",
+            },
+            Object {
+              "color": "#b0db43",
+              "image": "comb",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Pentear cabelo",
+            },
+          ],
+          "color": "#37c1f0",
+          "image": "sun",
+          "title": "Após acordar",
+        },
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#1a5e63",
+              "image": "fork",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ajudar na cozinha",
+            },
+            Object {
+              "color": "#a3320b",
+              "image": "drawers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar o quarto",
+            },
+            Object {
+              "color": "#657153",
+              "image": "paper",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Fazer os trabalhos de casa",
+            },
+            Object {
+              "color": "#519e8a",
+              "image": "blocks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar os brinquedos",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "book",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ler um livro",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "shirt",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a roupa do dia seguinte",
+            },
+          ],
+          "color": "#011f39",
+          "image": "moon",
+          "photo": "night",
+          "title": "Antes de dormir",
+        },
+      ]
+    }
+    isRoutine={true}
+    onPress={[Function]}
+  />
+</Component>
+`;
+
+exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 2`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#3db3e2",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <CardCarousel
+    data={
+      Array [
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#7d84b2",
+              "image": "bed",
+              "photo": "bedroom",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 0,
+              },
+              "title": "Fazer a cama",
+            },
+            Object {
+              "color": "#0e79b2",
+              "image": "toothbrush",
+              "time": Object {
+                "goal": 10,
+                "max": 15,
+                "min": 1,
+              },
+              "title": "Lavar os dentes",
+            },
+            Object {
+              "color": "#7fb800",
+              "image": "socks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Vestir",
+            },
+            Object {
+              "color": "#37c1f0",
+              "image": "shower",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar banho",
+            },
+            Object {
+              "color": "#e43f6f",
+              "image": "bag",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a mochila",
+            },
+            Object {
+              "color": "#4bb3fd",
+              "image": "sneakers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Calçar os sapatos",
+            },
+            Object {
+              "color": "#ff7f11",
+              "image": "breakfast",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar o pequeno almoço",
+            },
+            Object {
+              "color": "#b0db43",
+              "image": "comb",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Pentear cabelo",
+            },
+          ],
+          "color": "#37c1f0",
+          "image": "sun",
+          "title": "Após acordar",
+        },
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#1a5e63",
+              "image": "fork",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ajudar na cozinha",
+            },
+            Object {
+              "color": "#a3320b",
+              "image": "drawers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar o quarto",
+            },
+            Object {
+              "color": "#657153",
+              "image": "paper",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Fazer os trabalhos de casa",
+            },
+            Object {
+              "color": "#519e8a",
+              "image": "blocks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar os brinquedos",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "book",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ler um livro",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "shirt",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a roupa do dia seguinte",
+            },
+          ],
+          "color": "#011f39",
+          "image": "moon",
+          "photo": "night",
+          "title": "Antes de dormir",
+        },
+      ]
+    }
+    isRoutine={true}
+    onButtonPress={[Function]}
+    onPress={[Function]}
+  />
+</Component>
+`;
+
+exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 3`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#3db3e2",
+        "height": "100%",
+        "width": "100%",
+      },
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#000",
+        "fontFamily": "LinotteBold",
+        "fontSize": 40,
+        "textAlign": "center",
+        "textShadowColor": "rgba(0, 0, 0, 0.2)",
+        "textShadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "textShadowRadius": 3,
+      }
+    }
+  >
+    Sem rotinas para jogar.
+    
+
+    Volta amanhã!
+  </Text>
+</Component>
+`;

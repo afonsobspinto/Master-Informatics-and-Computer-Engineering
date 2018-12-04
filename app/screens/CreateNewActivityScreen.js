@@ -20,7 +20,8 @@ class CreateNewActivityScreen extends Component {
       isTimePickerVisible: false,
       activityStartingTime: new Date(),
       activityWeekDay: null,
-      image: 'bed',
+      image: null,
+      photo: null,
       title: 'Atividade de testes',
       color: '#7d84b2',
       routinePeriod: '',
@@ -102,7 +103,7 @@ class CreateNewActivityScreen extends Component {
     )
   };
 
-  imagePicker = async (camera) => {
+  imagePicker = async (camera, photo) => {
     let options = {
       allowsEditing: true, aspect: [1, 1]
     }
@@ -110,14 +111,18 @@ class CreateNewActivityScreen extends Component {
 
     if (camera) {
       await Permissions.askAsync(Permissions.CAMERA)
-      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images' })
+      result = await ImagePicker.launchCameraAsync({ ...options, mediaTypes: 'Images', aspect: [5, 3] })
     } else {
       await Permissions.askAsync(Permissions.CAMERA_ROLL)
-      result = await ImagePicker.launchImageLibraryAsync(options)
+      if (photo) {
+        result = await ImagePicker.launchImageLibraryAsync({ ...options, aspect: [5, 3] })
+      } else {
+        result = await ImagePicker.launchImageLibraryAsync(options)
+      }
     }
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri })
+      this.setState(camera ? { photo: result.uri } : { image: result.uri })
     }
   }
 
@@ -129,10 +134,12 @@ class CreateNewActivityScreen extends Component {
 
   buildNewCustomActivity = () => {
     Alert.alert('Atividade criada!')
+
     this.props.addCustomActivity(this.state.routine, {
       title: this.state.title,
-      image: this.state.image,
       color: this.state.color,
+      image: (this.state.image !== null ? this.state.image : undefined),
+      photo: (this.state.photo !== null ? this.state.photo : undefined),
       time: {
         min: this.state.minTime,
         max: this.state.maxTime,

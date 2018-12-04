@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableWithoutFeedback } from 'react-native'
 import PropTypes from 'prop-types'
 
 import * as Progress from 'react-native-progress'
 
 import Images from '../../assets/images/images'
 import Layout from '../../constants/Layout'
+import { accentColor } from '../../styles/Colors'
 
 const barHeight = Layout.window.height * 0.08
 
@@ -20,14 +21,16 @@ export class ChildExperienceBar extends React.Component {
             borderRadius={0}
             borderWidth={0}
             progress={this.props.progress}
-            color={'#700548'}
+            color={accentColor}
           />
           <View style={[{ left: '25%' }, styles.progressBarDivider]} />
           <View style={[{ left: '50%' }, styles.progressBarDivider]} />
           <View style={[{ left: '75%' }, styles.progressBarDivider]} />
         </View>
-        <View style={styles.experienceBarCircle} >
-          <Image style={styles.rewardImage} source={Images.pool} resizeMode={'cover'} />
+        <View style={styles.experienceBarCircle}>
+          <TouchableWithoutFeedback onPress={this.props.onPress}>
+            <Image style={styles.rewardImage} source={Images.pool} resizeMode={'cover'} />
+          </TouchableWithoutFeedback>
         </View>
         <Text style={styles.levelText}>Nível {this.props.level}</Text>
       </View>
@@ -37,7 +40,8 @@ export class ChildExperienceBar extends React.Component {
 
 ChildExperienceBar.propTypes = {
   progress: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired
+  level: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     fontFamily: 'LinotteBold',
     fontSize: 18,
     height: barHeight / 2,
-    color: '#000',
+    color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,

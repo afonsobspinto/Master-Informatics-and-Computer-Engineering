@@ -1,0 +1,35 @@
+{
+  "transformIgnorePatterns": [
+    "/node_modules/(?!native-base)/"
+  ],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+      "**/*.js"
+  ],
+  "coveragePathIgnorePatterns": [
+      "node_modules",
+      "coverage",
+      "navigation",
+      "helpers",
+      "store",
+      "constants",
+      "App.js"
+  ],
+  "coverageDirectory": "<rootDir>/coverage/",
+  "coverageThreshold": {
+      "global": {
+          "functions": 50,
+          "lines": 50
+      }
+  },
+  "verbose": false,
+  "reporters": [
+    "default",
+    "jest-junit"
+  ],
+  "preset": "jest-expo",
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ],
+  "testPathIgnorePatterns": ["assets/images", "node_modules", "__tests__/mockTestData"]
+}

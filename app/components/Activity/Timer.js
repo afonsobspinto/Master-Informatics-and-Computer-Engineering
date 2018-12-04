@@ -11,23 +11,36 @@ export class Timer extends React.Component {
     }
   }
 
-  componentWillReceiveProps (props) {
-    let minutes = Math.floor(props.elapsedTime / 60)
+  setNumberDisplay = remainingTime => {
+    if (remainingTime <= 0) {
+      this.setState(() => ({ minutes: '0', seconds: '00' }))
+      return
+    }
 
-    let seconds = Math.floor(props.elapsedTime % 60)
+    let minutes = Math.floor(remainingTime / 60)
+
+    let seconds = Math.floor(remainingTime % 60)
     if (seconds < 10) seconds = '0' + seconds
 
     this.setState(() => ({ minutes: minutes, seconds: seconds }))
   }
 
+  componentWillMount () {
+    this.setNumberDisplay(this.props.remainingTime)
+  }
+
+  componentWillReceiveProps (props) {
+    this.setNumberDisplay(props.remainingTime)
+  }
+
   render () {
     return (
-      <Text style={this.props.style}>{`${this.state.minutes}:${this.state.seconds}`}</Text>
+      <Text style={this.props.style}>-{`${this.state.minutes}:${this.state.seconds}`}</Text>
     )
   }
 }
 
 Timer.propTypes = {
-  elapsedTime: PropTypes.number.isRequired,
-  style: PropTypes.number.isRequired
+  remainingTime: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired
 }

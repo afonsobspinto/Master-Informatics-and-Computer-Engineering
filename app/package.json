@@ -7,17 +7,22 @@
     "android": "expo start --android --lan",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "coverage": "node ./node_modules/jest/bin/jest.js --coverage --config jest.config.json",
+    "ci-test": "node ./node_modules/jest/bin/jest.js --config jest.config.json --no-cache --verbose",
+    "test": "node ./node_modules/jest/bin/jest.js --config jest.config.json --collectCoverage=false",
     "lint": "./node_modules/.bin/eslint . --ext .jsx --ext .js",
-    "validate": "concurrently --kill-others \"npm run --silent lint\""
+    "validate": "concurrently \"npm run --silent lint\" \"npm run --silent test\""
   },
-  "jest": {
-    "preset": "jest-expo"
+  "jest-junit": {
+    "output": "tests_report.xml",
+    "usePathForSuiteName": "true"
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^8.0.0",
+    "babel": "^6.23.0",
     "expo": "^30.0.1",
+    "jest-junit": "^5.2.0",
     "native-base": "^2.8.1",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
@@ -40,6 +45,9 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "concurrently": "^4.0.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
@@ -50,7 +58,10 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
-    "jest-expo": "30.0.0"
+    "jest-expo": "30.0.0",
+    "jest-serializer-enzyme": "^1.0.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.6.3"
   },
   "husky": {
     "hooks": {

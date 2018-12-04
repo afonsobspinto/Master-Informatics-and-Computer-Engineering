@@ -1,26 +1,41 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
+import { View, Image, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 import Modal from 'react-native-modalbox'
 import * as Animatable from 'react-native-animatable'
-
-import styles from '../../styles/RewardModal.style'
-import { grayedOut } from '../../styles/Colors'
 import Images from '../../assets/images/images'
 
-export class RewardsModal extends React.Component {
-  render () {
-    let pastActivityIcons = this.props.activities
-      .filter((_, index, array) => {
-        if (this.props.currentActivity + 8 > array.length) return index >= array.length - 8
-        else return index >= this.props.currentActivity && index < this.props.currentActivity + 8
-      })
-      .map((activity, index) =>
-        (<View key={index} style={[styles.pastActivityIcon, { backgroundColor: activity.status ? activity.color : grayedOut }]}>
-          <Image style={[styles.pastActivityImage, { opacity: activity.status ? 1 : 0.3 }]} recizeMode={'center'} source={Images[activity.image]} />
-        </View>))
+import styles from '../../styles/RewardModal.style'
+import { PastActivityIcons } from './PastActivityIcons'
+import { RewardModalExperienceBar } from './RewardModalExperienceBar'
+import { RewardModalStars } from './RewardModalStars'
 
+export class RewardsModal extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      progress: (this.props.xp - this.props.level * 100) / 100
+    }
+
+    this.increaseProgress = this.increaseProgress.bind(this)
+  }
+
+  increaseProgress = (increase) => {
+    this.setState({ progress: (this.props.xp - this.props.level * 100 + increase) / 100 })
+  }
+
+  returnURIorImage = (activity) => {
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (activity.photo !== undefined && activity.photo.includes('file://')) {
+      return { uri: activity.photo }
+    } else {
+      return Images[activity.image]
+    }
+  }
+
+  render () {
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
 
     let cardText = this.props.activities[this.props.currentActivity].status
@@ -36,33 +51,16 @@ export class RewardsModal extends React.Component {
           <Image style={[styles.icon, styles.iconGreyedOut, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
           <Image style={[styles.icon, styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
         </View>
-        <View style={styles.rewardContainer}>
-          <Animatable.Image
-            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 1 ? '' : 'zoomIn'}
-            delay={400}
-            style={styles.icon}
-            resizeMode={'center'}
-            source={Images.ui.star} />
-          <Animatable.Image
-            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 2 ? '' : 'zoomIn'}
-            delay={1400}
-            style={[styles.icon, styles.iconCenter]}
-            resizeMode={'center'}
-            source={Images.ui.star} />
-          <Animatable.Image
-            animation={this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward < 3 ? '' : 'zoomIn'}
-            delay={2400}
-            style={styles.icon}
-            resizeMode={'center'}
-            source={Images.ui.star} />
-        </View>
+        <RewardModalStars activities={this.props.activities} currentActivity={this.props.currentActivity} increaseProgress={this.increaseProgress} />
         <View style={styles.rewardCard}>
-          <Text style={styles.cardTitle}>
+          <Animatable.Text
+            animation={'fadeOut'}
+            delay={2400}
+            style={styles.cardTitle}>
             { cardText }
-          </Text>
-          <View style={styles.pastActivityContainer}>
-            {pastActivityIcons}
-          </View>
+          </Animatable.Text>
+          <RewardModalExperienceBar progress={this.state.progress} />
+          <PastActivityIcons activities={this.props.activities} currentActivity={this.props.currentActivity} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -92,6 +90,8 @@ export class RewardsModal extends React.Component {
 RewardsModal.propTypes = {
   activities: PropTypes.array.isRequired,
   currentActivity: PropTypes.number.isRequired,
+  xp: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired,
   nextPress: PropTypes.func.isRequired,
   backPress: PropTypes.func.isRequired
 }

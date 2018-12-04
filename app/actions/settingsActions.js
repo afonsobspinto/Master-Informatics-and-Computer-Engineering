@@ -16,14 +16,30 @@ export function changeVisualStyle (visualStyle) {
 
 export function toggleActivityProgressType () {
   return {
-    type: settingTypes.toggleActivityProgressType,
-    payload: null
+    type: settingTypes.toggleActivityProgressType
   }
 }
 
 export function toggleActivityTimer () {
   return {
-    type: settingTypes.toggleActivityTimer,
-    payload: null
+    type: settingTypes.toggleActivityTimer
+  }
+}
+
+export function toggleActivityFeedback () {
+  return {
+    type: settingTypes.toggleActivityFeedback
+  }
+}
+
+export function changeFeedbackFrequency () {
+  return {
+    type: settingTypes.changeFeedbackFrequency
+  }
+}
+
+export function toggleRoutinePlayType () {
+  return {
+    type: settingTypes.toggleRoutinePlayType
   }
 }

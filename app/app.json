@@ -9,6 +9,9 @@
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
+    "androidStatusBar": {
+      "backgroundColor": "#000000"
+    },
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -28,6 +31,9 @@
     "android": {
       "package": "feup.ldso.routines",
       "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "pt.up.fe.ldsog02"
     }
   }
 }

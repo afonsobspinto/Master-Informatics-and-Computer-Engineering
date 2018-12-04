@@ -13,6 +13,29 @@ export const buttonStyle = {
   alignItems: 'center'
 }
 
+export const timerClock = {
+  fontFamily: 'LinotteBold',
+  fontSize: 20,
+  color: '#fff',
+  textShadowColor: 'rgba(0, 0, 0, 0.4)',
+  textShadowOffset: { width: 1, height: 1 },
+  textShadowRadius: 3,
+  position: 'absolute',
+  padding: 6
+}
+
+export const timerBar = {
+  fontFamily: 'LinotteBold',
+  fontSize: 20,
+  color: '#fff',
+  textShadowColor: 'rgba(0, 0, 0, 0.4)',
+  textShadowOffset: { width: 1, height: 1 },
+  textShadowRadius: 3,
+  position: 'absolute',
+  padding: 6,
+  left: padding
+}
+
 export default StyleSheet.create({
   activityScreen: {
     flex: 1,
@@ -50,27 +73,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
     position: 'relative',
     justifyContent: 'center'
-  },
-  timerClock: {
-    fontFamily: 'LinotteBold',
-    fontSize: 20,
-    color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.4)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
-    position: 'absolute',
-    padding: 6
-  },
-  timerBar: {
-    fontFamily: 'LinotteBold',
-    fontSize: 20,
-    color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.4)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
-    position: 'absolute',
-    padding: 6,
-    left: padding
   },
   progressBarDivider: {
     borderRightColor: '#000',

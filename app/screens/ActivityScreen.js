@@ -15,7 +15,7 @@ import Images from '../assets/images/images'
 
 import styles from '../styles/Activity.style'
 
-class ActivityScreen extends Component {
+export class ActivityScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -37,19 +37,21 @@ class ActivityScreen extends Component {
     this.backToMenu = this.backToMenu.bind(this)
   }
 
+  intervalFunction = () => {
+    if (this.state.isPaused) return
+    if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
+    if (this.state.elapsedTime >= this.props.activity.time.min) {
+      this.state.isCompletable = true
+    }
+
+    this.setState(() => {
+      return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
+    })
+  }
+
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
-    this.interval = setInterval(() => {
-      if (this.state.isPaused) return
-      if (this.state.elapsedTime >= this.props.activity.time.max) this.completeActivity()
-      if (this.state.elapsedTime >= this.props.activity.time.min) {
-        this.state.isCompletable = true
-      }
-
-      this.setState(() => {
-        return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
-      })
-    }, this.state.updateRate)
+    this.interval = setInterval(this.intervalFunction, this.state.updateRate)
   }
 
   componentWillUnmount () {
@@ -94,6 +96,15 @@ class ActivityScreen extends Component {
     this.setState(() => ({ isPaused: false }))
   }
 
+  returnURIorImage = () => {
+    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
+    if (this.props.activity.photo !== undefined && this.props.activity.photo.includes('file://')) {
+      return { uri: this.props.activity.photo }
+    } else {
+      return Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]
+    }
+  }
+
   render () {
     return (
       <View style={[{ backgroundColor: this.props.activity.color }, styles.activityScreen]} >
@@ -101,20 +112,22 @@ class ActivityScreen extends Component {
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-          source={Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]} />
+          source={this.returnURIorImage()} />
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
-          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
-          <CancelButton style={styles.smallButton} cancelActivity={this.cancelActivity} />
-          <PauseButton style={styles.smallButton} pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
-          <CompleteButton style={styles.largeButton} isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+          <CancelButton cancelActivity={this.cancelActivity} />
+          <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
+          <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
         </View>}
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
+          level={this.props.level}
+          xp={this.props.xp}
           nextPress={this.nextActivity}
           backPress={this.backToMenu} />
       </View>
@@ -123,13 +136,19 @@ class ActivityScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
+    activityFeedback: state.settings.activityFeedback,
+    feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
-    currentActivity: state.game.currentActivity
+    currentActivity: state.game.currentActivity,
+    xp: state.child.xp,
+    level: state.child.level
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setActivityStatus: (activity, status) => dispatch(setActivityStatus(activity, status)),
     nextActivity: () => dispatch(nextActivity()),
@@ -141,10 +160,14 @@ ActivityScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   progressType: PropTypes.string.isRequired,
   showTimer: PropTypes.bool.isRequired,
+  activityFeedback: PropTypes.string.isRequired,
+  feedbackFrequency: PropTypes.string.isRequired,
   currentActivity: PropTypes.number.isRequired,
   activities: PropTypes.array.isRequired,
   activity: PropTypes.object.isRequired,
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
-  addStars: PropTypes.func.isRequired
+  addStars: PropTypes.func.isRequired,
+  xp: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired
 }
