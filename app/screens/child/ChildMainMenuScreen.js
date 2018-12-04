@@ -4,13 +4,13 @@ import { ScreenOrientation } from 'expo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { toggleLevelUpModal } from '../actions/childActions'
-import { ChildExperienceBar } from '../components/ChildMainMenu/ChildExperienceBar'
-import { LevelUpModal } from '../components/ChildMainMenu/LevelUpModal'
+import { toggleLevelUpModal } from '../../actions/childActions'
+import { ChildExperienceBar } from '../../components/ChildMainMenu/ChildExperienceBar'
+import { LevelUpModal } from '../../components/ChildMainMenu/LevelUpModal'
 
-import Images from '../assets/images/images'
+import Images from '../../assets/images/images'
 
-import styles from '../styles/ChildMainMenuScreen.style'
+import styles from '../../styles/ChildMainMenuScreen.style'
 
 export class ChildMainMenuScreen extends Component {
   constructor (props) {

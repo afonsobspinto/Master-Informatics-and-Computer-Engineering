@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setActivityStatus, nextActivity } from '../actions/gameActions'
-import { addStars } from '../actions/childActions'
+import { setActivityStatus, nextActivity } from '../../actions/gameActions'
+import { addStars } from '../../actions/childActions'
 import { Image, Text, View, StatusBar, BackHandler } from 'react-native'
 
-import { ProgressBar } from '../components/Activity/ProgressBar'
-import { ProgressClock } from '../components/Activity/ProgressClock'
-import { CompleteButton } from '../components/Activity/CompleteButton'
-import { PauseButton } from '../components/Activity/PauseButton'
-import { CancelButton } from '../components/Activity/CancelButton'
-import { RewardsModal } from '../components/RewardsModal/RewardsModal'
-import Images from '../assets/images/images'
+import { ProgressBar } from '../../components/Activity/ProgressBar'
+import { ProgressClock } from '../../components/Activity/ProgressClock'
+import { CompleteButton } from '../../components/Activity/CompleteButton'
+import { PauseButton } from '../../components/Activity/PauseButton'
+import { CancelButton } from '../../components/Activity/CancelButton'
+import { RewardsModal } from '../../components/RewardsModal/RewardsModal'
+import Images from '../../assets/images/images'
 
-import styles from '../styles/Activity.style'
+import styles from '../../styles/Activity.style'
 
 export class ActivityScreen extends Component {
   constructor (props) {

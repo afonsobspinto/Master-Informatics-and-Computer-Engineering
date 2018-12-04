@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { View, ScrollView, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-import Images from '../assets/images/images'
-import { ShopItem } from '../components/ChildMainMenu/ShopItem'
-import { ShopTitle } from '../components/ChildMainMenu/ShopTitle'
+import Images from '../../assets/images/images'
+import { ShopItem } from '../../components/ChildMainMenu/ShopItem'
+import { ShopTitle } from '../../components/ChildMainMenu/ShopTitle'
 
-import styles from '../styles/Shop.style'
-import { purchaseItem } from '../actions/childActions'
+import styles from '../../styles/Shop.style'
+import { purchaseItem } from '../../actions/childActions'
 
 export class ShopScreen extends Component {
   render () {

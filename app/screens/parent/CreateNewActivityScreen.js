@@ -6,10 +6,10 @@ import { Alert, Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity }
 // import Modal from 'react-native-modal'
 // import DateTimePicker from 'react-native-modal-datetime-picker'
 import { connect } from 'react-redux'
-import { addCustomActivity } from '../actions/gameActions'
-import Images from '../assets/images/images.js'
+import { addCustomActivity } from '../../actions/gameActions'
+import Images from '../../assets/images/images.js'
 // import { DurationModal } from '../components/Slides/DurationModal'
-import { PickerSettings } from '../components/Settings/PickerSettings'
+import { PickerSettings } from '../../components/Settings/PickerSettings'
 
 class CreateNewActivityScreen extends Component {
   constructor (props) {

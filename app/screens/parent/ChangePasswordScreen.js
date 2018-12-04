@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
-import styles from '../styles/ParentStyles/ChangePasswordScreen.style'
+import styles from '../../styles/ParentStyles/ChangePasswordScreen.style'
 
 export default class ChangePasswordScreen extends React.Component {
   static navigationOptions = {

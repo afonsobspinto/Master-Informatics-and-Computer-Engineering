@@ -1,6 +1,6 @@
 import React from 'react'
 import { Content } from 'native-base'
-import { SortableList } from '../components/Settings/SortableList'
+import { SortableList } from '../../components/Settings/SortableList'
 
 export class RoutinesScreen extends React.Component {
   render () {

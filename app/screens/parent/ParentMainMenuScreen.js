@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
-import ParentHomeScreen from './ParentHomeScreen'
+import SettingsScreen from './SettingsScreen'
 import ActionButton from 'react-native-action-button'
 
 export default class ParentMainMenuScreen extends React.Component {
@@ -22,7 +22,7 @@ export default class ParentMainMenuScreen extends React.Component {
       case 'routines':
         return (<RoutinesScreen />)
       case 'settings':
-        return (<ParentHomeScreen />)
+        return (<SettingsScreen />)
     }
   }
 
@@ -47,7 +47,7 @@ export default class ParentMainMenuScreen extends React.Component {
               <Icon name='md-apps' />
               <Text>Gerir Rotinas</Text>
             </Button>
-            <Button active={this.selectedTab === 'settings'}
+            <Button active={this.state.selectedTab === 'settings'}
               onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
               <Icon name='md-settings' />
               <Text>Definições</Text>

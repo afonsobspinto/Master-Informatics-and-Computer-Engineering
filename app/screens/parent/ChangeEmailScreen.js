@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 import PropTypes from 'prop-types'
 
-import styles from '../styles/ParentStyles/ChangeEmailScreen.style'
+import styles from '../../styles/ParentStyles/ChangeEmailScreen.style'
 
 export default class ChangeEmailScreen extends React.Component {
   static navigationOptions = {
