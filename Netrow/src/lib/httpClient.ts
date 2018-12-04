@@ -47,27 +47,27 @@ export class HttpClient {
             "NumContribuinte",
             "CDU_Email",
             "CDU_Password"
-          ]
+        ]
+
+        const path = `Base/Clientes/DaValorAtributos/${username}`;
+        return new Promise<Object>((resolve, reject) => {
+        this.postJson(path, attributes)
+            .then(retObj => {
+            if (retObj === null || !Array.isArray(retObj)) {
+                reject(retObj);
+                return;
+            }
     
-          const path = `Base/Clientes/DaValorAtributos/${username}`;
-          return new Promise<Object>((resolve, reject) => {
-            this.postJson(path, attributes)
-              .then(retObj => {
-                if (retObj === null || !Array.isArray(retObj)) {
-                  reject(retObj);
-                  return;
-                }
-      
-                const profile = retObj.reduce((map, attrib) => {
-                  map[attrib.Nome] = attrib.Valor;
-                  return map;
-                }, {});
-      
-                resolve(profile);
-              }).catch(e => {
-                reject(e);
-              })});
-    }
+            const profile = retObj.reduce((map, attrib) => {
+                map[attrib.Nome] = attrib.Valor;
+                return map;
+            }, {});
+    
+            resolve(profile);
+            }).catch(e => {
+            reject(e);
+            })});
+}
 
     public postJson(path: string, body: Object) {
         const url = `${ADRESS}/${path}`;

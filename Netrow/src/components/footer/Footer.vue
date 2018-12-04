@@ -10,6 +10,8 @@
           <router-link :to="{ path: '/about', name: 'about-component' }">About us</router-link>
         </p>
       </div>
+      <!-- TODO remove this -->
+      <a @click="$store.commit('isUserLoggedIn', true); $store.commit('addUsername', 'C0001');">Just Login</a>
     </div>
   </div>
 </template>
