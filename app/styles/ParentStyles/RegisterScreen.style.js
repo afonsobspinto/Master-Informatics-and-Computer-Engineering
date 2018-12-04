@@ -44,5 +44,12 @@ export default StyleSheet.create({
     fontSize: 15,
     marginBottom: '2%',
     color: lightTextColor
+  },
+  loginRegisterText: {
+    textDecorationLine: 'underline',
+    fontFamily: 'LinotteBold',
+    fontSize: 15,
+    marginBottom: '2%',
+    color: lightTextColor
   }
 })

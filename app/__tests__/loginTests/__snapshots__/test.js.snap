@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
+exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
 <Styled(Container)
   style={
     Object {
@@ -36,7 +36,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         }
       }
     >
-      Registo de Conta
+      Início de sessão
     </Text>
     <Styled(Form)>
       <Styled(Item)
@@ -63,7 +63,6 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         </Styled(Label)>
         <Styled(Input)
           className="email"
-          onChangeText={[Function]}
           style={
             Object {
               "color": "#ffffff",
@@ -97,7 +96,6 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         </Styled(Label)>
         <Styled(Input)
           className="password"
-          onChangeText={[Function]}
           secureTextEntry={true}
           style={
             Object {
@@ -130,7 +128,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
             }
           }
         >
-          Concluir Registo
+          Login
         </Text>
       </Styled(Button)>
     </Styled(Form)>
@@ -156,7 +154,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
           }
         }
       >
-        Já possui uma conta?
+        Não possui uma conta?
       </Text>
       <Text
         accessible={true}
@@ -172,7 +170,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
           }
         }
       >
-        Faça login aqui!
+        Registe-se aqui
       </Text>
     </Component>
   </Styled(Content)>
