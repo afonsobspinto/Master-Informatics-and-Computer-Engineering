@@ -11,12 +11,13 @@ const company = {
     line: "Professional",
 }
 
-let instance: HttpClient | null = null;
 
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "xlY7_qYCgDLoQz9WKidFpobQc8fSNZ33JAYAt2M8DXmRG_qf2HUYBA31pmN8DpPvrWVXJfKwTm1-1YNjisyGKK00rT1a4VvbsBm5DLxOgzSpPo5Ue95tfVBUuz8fdujpPmJBaKlE0-5wBOmb9uBf88CbxPmgeH0zDR7yA6g0_P3HoDC5PSQtoDtC7-05H4rEqGZ2XCb59LyjIAnKTcb2YMv57-md_48Vt5THeBtbPT3GM2tw7MgHlYduiFq50_bHtpWEejOpj08yWZ_6DacXuQ9kGYw2iRkwuZq-58tLBNeEW3hjYv4pI_4gXuf503DB";
+const TOKEN = "4Y5KILVlvOASR1LsZgHp7ip69uJIkt25KdaKu2gFVS47nRAPwWNdhqxlzrA52tpECD7V-UBOE4GsruhfZEyNWVpgS7NW7ZF7bDmJ6EGXdXNhvR0He0FJx2YjC-u4EQtnsdILf3VigylKH89VeHrZiaa6sT2PDjZmob-rfyqnqAmXjcSJM0CnjVpR-dmUNTO6-1avr1XRViibJsD7fh8q2ZYGvlh5QbcE0cf5il--AMQHCREaGStg3jx1AN2X_07Jd_M-aP4jAgW1nvKe4MADhb8Fu8jxIgNkwEQLLsMXpC52OYPLhRxJtG2r8YH0_Dvf";
+
+let instance: HttpClient | null = null;
 
 export class HttpClient {
     private token: string;
@@ -45,29 +46,30 @@ export class HttpClient {
             "CodigoPostal",
             "Pais",
             "NumContribuinte",
-            "CDU_Email",
-            "CDU_Password"
+            "CDU_CampoVar1",
+            "CDU_CampoVar2"
         ]
 
         const path = `Base/Clientes/DaValorAtributos/${username}`;
         return new Promise<Object>((resolve, reject) => {
-        this.postJson(path, attributes)
-            .then(retObj => {
-            if (retObj === null || !Array.isArray(retObj)) {
-                reject(retObj);
-                return;
-            }
-    
-            const profile = retObj.reduce((map, attrib) => {
-                map[attrib.Nome] = attrib.Valor;
-                return map;
-            }, {});
-    
-            resolve(profile);
-            }).catch(e => {
-            reject(e);
-            })});
-}
+            this.postJson(path, attributes)
+                .then(retObj => {
+                    if (retObj === null || !Array.isArray(retObj)) {
+                        reject(retObj);
+                        return;
+                    }
+
+                    const profile = retObj.reduce((map, attrib) => {
+                        map[attrib.Nome] = attrib.Valor;
+                        return map;
+                    }, {});
+
+                    resolve(profile);
+                }).catch(e => {
+                    reject(e);
+                })
+        });
+    }
 
     public postJson(path: string, body: Object) {
         const url = `${ADRESS}/${path}`;
@@ -81,17 +83,29 @@ export class HttpClient {
             },
             redirect: "follow",
             body: JSON.stringify(body)
-            }).then(data => {
-                data.json().then(obj => {
-                    resolve(obj);
-                });
-            })
-            .catch(error => {
-                reject(error);
-            }));
+        }).then(data => {
+            let sendPromise = (obj1, obj2 = obj1) => {
+                if (this.isStatusValid(data.status)) {
+                    resolve(obj1);
+                } else {
+                    reject(obj2);
+                }
+            }
+            data.json()
+            .then(obj => sendPromise(obj))
+            .catch(e => sendPromise(null, e));
+        })
+        .catch(error => {
+            reject(error);
+        }));
     }
 
-    getToken(onTokenError: Function) {
+    private isStatusValid(status: number) {
+        const family = Math.floor(status / 100);
+        return family == 2;
+    }
+
+    private getToken(onTokenError: Function) {
         let url = `${ADRESS}/token?${queryString.stringify(company)}`;
         return fetch(url, {
             method: "POST",

@@ -91,7 +91,7 @@
 						"token": "{{secondToken}}"
 					},
 					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
-					"rawModeData": "[\n\t\"Nome\",\n\t\"Descricao\",\n\t\"Telefone\",\n\t\"Morada\",\n\t\"Localidade\",\n\t\"CodigoPostal\",\n\t\"Pais\",\n\t\"NumContribuinte\",\n\t\"CDU_Email\",\n\t\"CDU_Password\"\n]",
+					"rawModeData": "[\n\t\"Nome\",\n\t\"Descricao\",\n\t\"Telefone\",\n\t\"Morada\",\n\t\"Localidade\",\n\t\"CodigoPostal\",\n\t\"Pais\",\n\t\"NumContribuinte\",\n\t\"CDU_CampoVar1\",\n\t\"CDU_CampoVar2\"\n]",
 					"headers": "Content-Type: application/json\nAccept: application/json\n",
 					"pathVariables": {}
 				},
@@ -167,7 +167,7 @@
 						"token": "{{secondToken}}"
 					},
 					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
-					"rawModeData": "{\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_Email\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_Password\",\n\t    \"Valor\": \"bbb\"\n\t}\n\t]\n}",
+					"rawModeData": "{\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_CampoVar1\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_CampoVar2\",\n\t    \"Valor\": \"bbb\"\n\t}\n\t]\n}",
 					"headers": "Content-Type: application/json\n",
 					"pathVariables": {}
 				},
@@ -419,7 +419,7 @@
 						"token": "{{secondToken}}"
 					},
 					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
-					"rawModeData": "{\n    \"EmModoEdicao\": true,\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_Email\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_Password\",\n\t    \"Valor\": \"new\"\n\t}\n\t]\n}",
+					"rawModeData": "{\n    \"EmModoEdicao\": true,\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_CampoVar1\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_CampoVar2\",\n\t    \"Valor\": \"new\"\n\t}\n\t]\n}",
 					"headers": "Content-Type: application/json\n",
 					"pathVariables": {}
 				},

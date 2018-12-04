@@ -113,7 +113,7 @@ export default {
     },
     validCredentials (username, password) {
       return new Promise((resolve, reject) => httpClient.getProfile(username).then(profile => {
-        if (password == profile.CDU_Password) {
+        if (password == profile.CDU_CampoVar2) {
             resolve();
           } else {
             reject();
@@ -124,7 +124,6 @@ export default {
     },
     checkForm (e) {
       e.preventDefault();
-      const toaster = this.$toaster;
       if (this.email && this.password) {
         this.validCredentials(this.email, this.password)
           .then(() => {
@@ -135,7 +134,7 @@ export default {
             this.$store.commit('addUsername', this.email);
           }).catch(e => {
             console.error(e);
-            toaster.error("Failed to login");
+            this.$toaster.error("Failed to login");
           })
       }
 
