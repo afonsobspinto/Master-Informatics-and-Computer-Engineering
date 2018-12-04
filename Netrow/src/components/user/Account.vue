@@ -4,7 +4,7 @@
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
-            <input class="input" type="text" placeholder="e. g. ab123"  v-model="profile.Cliente">
+            <input class="input" type="text" placeholder="e. g. ab123"  v-model="profile.Cliente" disabled>
           </div>
         </div>
         <div class="field">
@@ -62,9 +62,9 @@
           </div>
         </div>
       </div>
-        <div class="text-center">
-          <button class="btn btn-primary btn-sx mt-3" type="button" @click="updateProfile">Update</button>
-        </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-sx mt-3" type="button" @click="updateProfile">Update</button>
+      </div>
   </div>
 </template>
 

@@ -19,15 +19,22 @@
                     v-model="name"
                     @keyup="checkNameOnKeyUp(name)"
                   >
-                  <span class="icon is-small is-left">
+                  <!-- <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
-                  </span>
+                  </span> -->
                   <span v-if="highlightNameWithError !== null" class="icon is-small is-right">
                     <i :class="[highlightNameWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                   </span>
                 </p>
                 <p v-if="highlightNameWithError" class="help is-danger">{{ nameErrorLabel }}</p>
               </div>
+
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="number" placeholder="Username*" v-model="profile.Cliente">
+                </p>
+              </div>
+
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
                   <input
@@ -38,9 +45,9 @@
                     v-model="email"
                     @keyup="checkEmailOnKeyUp(email)"
                   >
-                  <span class="icon is-small is-left">
+                  <!-- <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
-                  </span>
+                  </span> -->
                   <span v-if="highlightEmailWithError !== null" class="icon is-small is-right">
                     <i :class="[highlightEmailWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                   </span>
@@ -56,9 +63,9 @@
                     v-model="password"
                     @keyup="checkPasswordOnKeyUp(password)"
                   >
-                  <span class="icon is-small is-left">
+                  <!-- <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
-                  </span>
+                  </span> -->
                   <span v-if="highlightPasswordWithError !== null" class="icon is-small is-right">
                     <i :class="[highlightPasswordWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                   </span>
@@ -74,16 +81,50 @@
                     v-model="repeatPassword"
                     @keyup="checkRepeatPasswordOnKeyUp(repeatPassword)"
                   >
-                  <span class="icon is-small is-left">
+                  <!-- <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
-                  </span>
+                  </span> -->
                   <span v-if="highlightRepeatPasswordWithError !== null" class="icon is-small is-right">
                     <i :class="[highlightRepeatPasswordWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                   </span>
                 </p>
                 <p v-if="highlightRepeatPasswordWithError" class="help is-danger">{{ notEqualErrorLabel }}</p>
               </div>
+
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="number" placeholder="Phone Number*" v-model="profile.Telefone">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="Address*" v-model="profile.Morada">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="City*" v-model="profile.Localidade">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="Zip-Code*" v-model="profile.CodigoPostal">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="Country*" v-model="profile.Pais">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="Fiscal Number*" v-model="profile.NumContribuinte">
+                </p>
+              </div>
+
             </div>
+
+
             <div v-if="isUserSignedUp" class="level">
               <div class="level-item has-text-centered">
                 <div>
@@ -104,6 +145,7 @@
 
 <script>
 import { isValidEmail } from '../../validators';
+import { isAnyObjectEmpty } from '../../lib/utils';
 
 export default {
   name: 'registration-component',
@@ -131,7 +173,16 @@ export default {
       highlightEmailWithError: null,
       highlightPasswordWithError: null,
       highlightRepeatPasswordWithError: null,
-      isFormSuccess: false
+      isFormSuccess: false,
+      profile: {
+        Cliente: "",
+        Telefone: "",
+        Morada: "",
+        Localidade: "",
+        CodigoPostal: "",
+        Pais: "",
+        NumContribuinte: "",
+      }
     };
   },
 
@@ -155,13 +206,15 @@ export default {
     checkForm (e) {
       e.preventDefault();
 
-      if (this.name && this.email && this.password && this.repeatPassword) {
+      if (this.name && this.email && this.password && this.repeatPassword && isAnyObjectEmpty(this.profile)) {
         this.highlightEmailWithError = false;
         this.highlightPasswordWithError = false;
         this.isFormSuccess = true;
         this.$store.commit('setUserName', this.name);
         this.$store.commit('isUserSignedUp', this.isFormSuccess);
         this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+      } else {
+        this.$toaster.error("Please fill in all the fields");
       }
 
       if (!this.name) {
