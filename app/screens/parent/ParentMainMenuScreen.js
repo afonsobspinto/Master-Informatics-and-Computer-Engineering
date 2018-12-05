@@ -4,6 +4,7 @@ import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Bod
 import { RoutinesScreen } from './RoutinesScreen'
 import SettingsScreen from './SettingsScreen'
 import ActionButton from 'react-native-action-button'
+import PropTypes from 'prop-types'
 
 export default class ParentMainMenuScreen extends React.Component {
   constructor (props) {
@@ -55,7 +56,7 @@ export default class ParentMainMenuScreen extends React.Component {
           </FooterTab>
         </Footer>
         {this.state.selectedTab === 'routines' && <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
-          <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => {}}>
+          <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
             <Icon name='md-create' style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => console.log('criar nova rotina')}>
@@ -65,6 +66,10 @@ export default class ParentMainMenuScreen extends React.Component {
       </Container>
     )
   }
+}
+
+ParentMainMenuScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 const styles = StyleSheet.create({
