@@ -36,13 +36,7 @@ export class RewardsModal extends React.Component {
   }
 
   render () {
-    const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
-
-    let cardText = this.props.activities[this.props.currentActivity].status
-      ? routineIsDone
-        ? 'Rotina completada!'
-        : this.props.activities[this.props.currentActivity].status.reward ? 'Atividade completada!' : 'Atividade falhada...'
-      : ''
+    let cardText = this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward ? 'Atividade completada!' : 'Atividade falhada...'
 
     return (
       <Modal style={styles.rewardsModal} isOpen={this.props.activities[this.props.currentActivity].status !== undefined} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
@@ -75,7 +69,7 @@ export class RewardsModal extends React.Component {
           <TouchableOpacity
             activeOpacity={0.8}
             style={[styles.button, styles.nextButton]}
-            onPress={routineIsDone ? this.props.backPress : this.props.nextPress} >
+            onPress={this.props.nextPress} >
             <Image
               style={styles.buttonImage}
               resizeMode={'contain'}

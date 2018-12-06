@@ -83,8 +83,12 @@ export class ActivityScreen extends Component {
 
   nextActivity () {
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
-    this.props.nextActivity()
-    this.props.navigation.replace('Activity')
+    if (this.props.activities.every(activity => activity.status !== undefined)) {
+      this.props.navigation.replace('RoutineBonusScreen')
+    } else {
+      this.props.nextActivity()
+      this.props.navigation.replace('Activity')
+    }
   }
 
   backToMenu () {
