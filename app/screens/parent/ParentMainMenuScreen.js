@@ -21,7 +21,7 @@ export default class ParentMainMenuScreen extends React.Component {
       case 'activity':
         return (<Content />)
       case 'routines':
-        return (<RoutinesScreen />)
+        return (<RoutinesScreen navigation={this.props.navigation} />)
       case 'settings':
         return (<SettingsScreen />)
     }
@@ -57,10 +57,10 @@ export default class ParentMainMenuScreen extends React.Component {
         </Footer>
         {this.state.selectedTab === 'routines' && <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
           <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
-            <Icon name='md-create' style={styles.actionButtonIcon} />
+            <Icon name='md-albuns' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => console.log('criar nova rotina')}>
-            <Icon name='md-done-all' style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => this.props.navigation.navigate('RoutineFormScreen')}>
+            <Icon name='md-alarm' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>}
       </Container>

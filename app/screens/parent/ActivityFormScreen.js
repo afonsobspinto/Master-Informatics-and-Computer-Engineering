@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
 import PropTypes from 'prop-types'
 
-import { addCustomActivity } from '../../actions/gameActions'
 import { ItemPicker } from '../../components/Parent/ItemPicker'
 import { ColorPicker } from '../../components/Parent/ColorPicker'
 import { DurationPickers } from '../../components/Parent/DurationPickers'
@@ -11,24 +9,38 @@ import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 
-class ActivityFormScreen extends Component {
+const defaultState = {
+  title: 'Atividade de testes',
+  color: '#0074D9',
+  time: {
+    goal: '3',
+    min: '1.5',
+    max: '6'
+  },
+  photo: undefined,
+  image: undefined,
+  routine: 'Manhã',
+  createActivity: true
+}
+
+export default class ActivityFormScreen extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      title: 'Atividade de testes',
-      color: '#0074D9',
-      time: {
-        goal: '3',
-        min: '1.5',
-        max: '6'
-      },
-      photo: undefined,
-      image: undefined,
-      routine: 'Manhã'
-    }
+    const activity = this.props.navigation.getParam('activity')
 
-    this.items = ['Manhã', 'Noite']
+    if (activity) {
+      this.state = {
+        ...activity,
+        time: {
+          goal: activity.time.goal.toString(),
+          min: activity.time.min.toString(),
+          max: activity.time.max.toString()
+        }
+      }
+    } else this.state = defaultState
+
+    this.routines = ['Manhã', 'Noite']
 
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
@@ -62,21 +74,19 @@ class ActivityFormScreen extends Component {
   }
 
   onRoutineChange = (index) => {
-    this.setState({ routine: this.items[index] })
+    this.setState({ routine: this.routines[index] })
   }
 
-  buildNewCustomActivity = () => {
-    this.props.addCustomActivity(this.state.routine, {
-      title: this.state.title,
-      color: this.state.color,
-      image: (this.state.image !== null ? this.state.image : undefined),
-      photo: (this.state.photo !== null ? this.state.photo : undefined),
-      time: {
-        min: this.state.minTime,
-        max: this.state.maxTime,
-        goal: this.state.goalTime
-      }
-    })
+  removeActivity = () => {
+    console.log('Remove Activity')
+  }
+
+  createActivity = () => {
+    console.log('Create Activity')
+  }
+
+  editActivity = () => {
+    console.log('Edit Activity')
   }
 
   render () {
@@ -91,7 +101,11 @@ class ActivityFormScreen extends Component {
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
-          <Right />
+          {!this.state.createActivity && <Right>
+            <Button transparent onPress={this.removeActivity}>
+              <Icon name='md-trash' />
+            </Button>
+          </Right>}
         </Header>
         <Content>
           <Form>
@@ -101,7 +115,7 @@ class ActivityFormScreen extends Component {
             </Item>
             <Item stackedLabel>
               <Label>Rotina</Label>
-              <ItemPicker items={this.items} selected={this.state.routine} onValueChange={this.onRoutineChange} />
+              <ItemPicker items={this.routines} selected={this.state.routine} onValueChange={this.onRoutineChange} />
             </Item>
             <Item stackedLabel>
               <Label>Cor</Label>
@@ -109,7 +123,7 @@ class ActivityFormScreen extends Component {
             </Item>
             <DurationPickers color={this.state.color} time={this.state.time} onDurationChange={this.onDurationChange} />
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-            <BottomButton color={this.state.color} text='Criar Actividade' onPress={() => console.log('without a promise')} />
+            <BottomButton color={this.state.color} text={this.state.createActivity ? 'Criar Actividade' : 'Editar Actividade'} onPress={this.state.createActivity ? this.createActivity : this.editActivity} />
           </Form>
         </Content>
       </Container>
@@ -117,16 +131,6 @@ class ActivityFormScreen extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    addCustomActivity: state.game.addCustomActivity
-  }),
-  dispatch => ({
-    addCustomActivity: (routineTitle, activity) => dispatch(addCustomActivity(routineTitle, activity))
-  })
-)(ActivityFormScreen)
-
 ActivityFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  addCustomActivity: PropTypes.func.isRequired
+  navigation: PropTypes.object.isRequired
 }

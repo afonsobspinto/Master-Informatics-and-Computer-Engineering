@@ -23,10 +23,10 @@ export class SortableList extends React.Component {
   }
 
   render () {
-    const items = this.state.items.map((item, index) => (<SortableListItem item={item} index={index} key={index} moveItemUp={this.moveItemUp} />))
+    const items = this.state.items.map((item, index) => (<SortableListItem item={item} index={index} key={index} moveItemUp={this.moveItemUp} onItemPress={this.props.onItemPress} color={this.props.color} />))
 
     return (
-      <List>
+      <List style={{ width: '100%' }}>
         {items}
       </List>
     )
@@ -34,5 +34,7 @@ export class SortableList extends React.Component {
 }
 
 SortableList.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  onItemPress: PropTypes.func.isRequired,
+  color: PropTypes.string
 }
