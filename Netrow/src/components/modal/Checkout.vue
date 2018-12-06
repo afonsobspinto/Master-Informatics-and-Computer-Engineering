@@ -48,11 +48,9 @@
         </div>
       </section>
       <footer class="modal-card-foot">
-        <button
-          v-show="products.length > 0 && !isCheckoutSection"
-          class="button is-success"
-          @click="onNextBtn"
-        >{{ buyLabel }}</button>
+          <router-link :to="{ path: '/CheckoutPage', name: 'checkout-page-component' } ">
+            <span v-on:click="goToCheckout()">{{buyLabel}}</span>
+          </router-link>
         <button
           v-if="isCheckoutSection"
           class="button is-success"
@@ -130,6 +128,13 @@ export default {
 
       if (reloadPage) {
         window.location.reload();
+      }
+    },
+    goToCheckout() {
+      if (this.isUserLoggedIn) {
+          this.$store.commit("showCheckoutModal", false);
+      }
+      else{
       }
     },
     removeFromCart(id) {
