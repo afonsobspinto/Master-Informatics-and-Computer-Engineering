@@ -29,7 +29,8 @@ const images = {
     pause: require('./navigation/pause.png'),
     confirm: require('./navigation/confirm.png'),
     next: require('./navigation/next.png'),
-    star: require('./star.png')
+    star: require('./star.png'),
+    sad: require('./sad.png')
   }
 }
 

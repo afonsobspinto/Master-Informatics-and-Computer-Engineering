@@ -739,7 +739,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
         Object {
           "color": "#fff",
           "fontFamily": "LinotteBold",
-          "fontSize": 40,
+          "fontSize": 66.7,
           "marginHorizontal": 30,
           "position": "absolute",
           "textAlign": "center",

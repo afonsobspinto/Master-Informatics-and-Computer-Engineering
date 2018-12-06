@@ -16,7 +16,7 @@ export class RewardsModal extends React.Component {
     super(props)
 
     this.state = {
-      progress: (this.props.xp - this.props.level * 100) / 100
+      progress: (props.xp - props.level * 100) / 100
     }
 
     this.increaseProgress = this.increaseProgress.bind(this)
@@ -26,40 +26,31 @@ export class RewardsModal extends React.Component {
     this.setState({ progress: (this.props.xp - this.props.level * 100 + increase) / 100 })
   }
 
-  returnURIorImage = (activity) => {
-    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
-    if (activity.photo !== undefined && activity.photo.includes('file://')) {
-      return { uri: activity.photo }
-    } else {
-      return Images[activity.image]
-    }
-  }
-
   render () {
     const routineIsDone = this.props.activities.every(activity => activity.status !== undefined)
 
-    let cardText = this.props.activities[this.props.currentActivity].status
-      ? routineIsDone
-        ? 'Rotina completada!'
-        : this.props.activities[this.props.currentActivity].status.reward ? 'Atividade completada!' : 'Atividade falhada...'
-      : ''
+    let cardText = this.props.activities[this.props.currentActivity].status ? routineIsDone ? 'Rotina completada!' : 'Atividade completada!' : ''
+    let failed = this.props.activities[this.props.currentActivity].status && this.props.activities[this.props.currentActivity].status.reward === 0
 
     return (
       <Modal style={styles.rewardsModal} isOpen={this.props.activities[this.props.currentActivity].status !== undefined} backButtonClose={false} swipeToClose={false} backdropPressToClose={false}>
-        <View style={styles.rewardContainer}>
+        {!failed && <View style={styles.rewardContainer}>
           <Image style={[styles.icon, styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
           <Image style={[styles.icon, styles.iconGreyedOut, styles.iconCenter]} resizeMode={'center'} source={Images.ui.star} />
           <Image style={[styles.icon, styles.iconGreyedOut]} resizeMode={'center'} source={Images.ui.star} />
-        </View>
-        <RewardModalStars activities={this.props.activities} currentActivity={this.props.currentActivity} increaseProgress={this.increaseProgress} />
+        </View>}
+        {!failed && <RewardModalStars activities={this.props.activities} currentActivity={this.props.currentActivity} increaseProgress={this.increaseProgress} />}
+        {failed && <View style={styles.sadFaceContainer}>
+          <Image style={styles.sadFaceImage} source={Images.ui.sad} resizeMode={'contain'} />
+        </View>}
         <View style={styles.rewardCard}>
-          <Animatable.Text
+          {!failed && <Animatable.Text
             animation={'fadeOut'}
             delay={2400}
             style={styles.cardTitle}>
             { cardText }
-          </Animatable.Text>
-          <RewardModalExperienceBar progress={this.state.progress} />
+          </Animatable.Text>}
+          {!failed && <RewardModalExperienceBar progress={this.state.progress} />}
           <PastActivityIcons activities={this.props.activities} currentActivity={this.props.currentActivity} />
         </View>
         <View style={styles.buttonContainer}>
