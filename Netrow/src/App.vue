@@ -17,6 +17,8 @@ import RegistrationModal from './components/modal/Registration';
 import CheckoutModal from './components/modal/Checkout';
 
 import { HttpClient } from './lib/httpClient';
+// get initial token
+HttpClient.instance();
 
 export default {
   name: 'app',

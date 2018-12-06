@@ -15,8 +15,6 @@ const company = {
 const jsonValue = "application/json";
 const urlEncoded = "application/x-www-form-urlencoded";
 
-const TOKEN = "quJPZhOUgC1kwCf5vJmNtx2qHIldeE-q6IMl7vKkfSXWXEKoPb5WqAZX-aRS-GMBOzmCrQwQaB3UXoK3KDJJ_zrJNvk-aiWsz1hcT-VqZIsyxpu26uJ8LSlSxSvD7onNhMbRYi66lKKRKukaNOSBeN5IwcqE9IqgiGIeOxFRuSRd_FHiH-9Tuzhzihkwf1487Kj12nfDrQCZXM1anckYu72P-F3pwWTV3wiUvpHLPINCOss26vj8SkD0lgFS4RP12SDLMcwxL7oWsMCh-dZ6TgUnuCXl_VbOUZ77pPWQTEwb_Dh-XM-ANgyedY5JqQEc";
-
 let instance: HttpClient | null = null;
 
 export class HttpClient {
@@ -31,9 +29,7 @@ export class HttpClient {
     }
 
     private constructor(onTokenError: Function) {
-        // TODO fix
-        // this.getToken(onTokenError);
-        this.token = TOKEN;
+        this.getToken(onTokenError);
     }
 
     public getProfile(username: string) {
@@ -92,12 +88,12 @@ export class HttpClient {
                 }
             }
             data.json()
-            .then(obj => sendPromise(obj))
-            .catch(e => sendPromise(null, e));
+                .then(obj => sendPromise(obj))
+                .catch(e => sendPromise(null, e));
         })
-        .catch(error => {
-            reject(error);
-        }));
+            .catch(error => {
+                reject(error);
+            }));
     }
 
     private isStatusValid(status: number) {
@@ -106,21 +102,22 @@ export class HttpClient {
     }
 
     private getToken(onTokenError: Function) {
-        let url = `${ADRESS}/token?${queryString.stringify(company)}`;
+        let url = `${ADRESS}/token`;
         return fetch(url, {
             method: "POST",
             headers: {
                 'Content-Type': urlEncoded,
                 'Accept': jsonValue,
-            }
-        }).then(data => {
-            console.log(data);
-            data.json().then(o => console.log(o));
-        })
-            .catch(error => {
-                console.log(error);
-            });
+            },
+            body: queryString.stringify(company),
+        }).then(data => data.json()
+            .then(o => {
+                this.token = o.access_token;
+            }).catch(error => {
+                onTokenError(error);
+        })).catch(error => {
+            onTokenError(error);
+        });
     }
-
 
 }
