@@ -57,6 +57,7 @@ django-tests:
 expo-prod-deployments:
   only:
     - master
+    - 93-merge-sprint-4
   stage: deploy
   <<: *install_app_dependencies
   script:
@@ -91,6 +92,7 @@ django-prod-deployments:
     - digitalocean
   only:
     - master
+    - 93-merge-sprint-4
   stage: deploy
   <<: *install_ssh_dependencies
   script:
