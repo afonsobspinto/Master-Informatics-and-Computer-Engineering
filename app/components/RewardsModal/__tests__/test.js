@@ -35,7 +35,8 @@ describe('RewardsModal components', () => {
       xp={430}
       level={4}
       nextPress={jest.fn()}
-      backPress={jest.fn()} />)
+      backPress={jest.fn()}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ activities: activitiesWithStatus })
     wrapper.instance().increaseProgress()

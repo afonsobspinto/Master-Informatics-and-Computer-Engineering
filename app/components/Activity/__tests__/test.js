@@ -55,7 +55,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'sound'}
-      feedbackFrequency={'slow'} />)
+      feedbackFrequency={'slow'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -68,7 +69,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'vibration'}
-      feedbackFrequency={'normal'} />)
+      feedbackFrequency={'normal'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -81,7 +83,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'visual'}
-      feedbackFrequency={'fast'} />)
+      feedbackFrequency={'fast'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     jest.useFakeTimers()
     wrapper.instance().activityFeedback()
@@ -95,7 +98,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={''}
-      feedbackFrequency={''} />)
+      feedbackFrequency={''}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().componentWillReceiveProps(wrapper.props)
     wrapper.setProps({ elapsedTime: 1 })
@@ -112,7 +116,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'sound'}
-      feedbackFrequency={'slow'} />)
+      feedbackFrequency={'slow'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -125,7 +130,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'vibration'}
-      feedbackFrequency={'normal'} />)
+      feedbackFrequency={'normal'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -138,7 +144,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'visual'}
-      feedbackFrequency={'fast'} />)
+      feedbackFrequency={'fast'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     jest.useFakeTimers()
     wrapper.instance().activityFeedback()
@@ -153,6 +160,7 @@ describe('Activity components', () => {
       showTimer={false}
       activityFeedback={''}
       feedbackFrequency={''}
+      playSounds={false}
     />)
     wrapper.instance().componentWillReceiveProps(wrapper.props)
     wrapper.setProps({ elapsedTime: 100 })

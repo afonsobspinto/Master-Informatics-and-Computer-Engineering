@@ -89,6 +89,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
       elapsedTime={0}
       feedbackFrequency="normal"
       isPaused={false}
+      playSounds={false}
       showTimer={false}
     />
     <CancelButton
@@ -194,6 +195,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -288,6 +290,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
       elapsedTime={0}
       feedbackFrequency="normal"
       isPaused={false}
+      playSounds={false}
       showTimer={true}
     />
     <CancelButton
@@ -393,6 +396,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -472,6 +476,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
     elapsedTime={0}
     feedbackFrequency="normal"
     isPaused={false}
+    playSounds={false}
     showTimer={true}
   />
   <Component
@@ -592,6 +597,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -671,6 +677,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
     elapsedTime={0}
     feedbackFrequency="normal"
     isPaused={false}
+    playSounds={false}
     showTimer={true}
   />
   <Component
@@ -791,6 +798,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -947,6 +955,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -1103,6 +1112,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -1259,6 +1269,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>

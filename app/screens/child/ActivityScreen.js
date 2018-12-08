@@ -116,9 +116,9 @@ export class ActivityScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
-          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton cancelActivity={this.cancelActivity} />
           <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
@@ -129,7 +129,8 @@ export class ActivityScreen extends Component {
           level={this.props.level}
           xp={this.props.xp}
           nextPress={this.nextActivity}
-          backPress={this.backToMenu} />
+          backPress={this.backToMenu}
+          playSounds={this.props.playSounds} />
       </View>
     )
   }
@@ -141,6 +142,7 @@ export default connect(
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
     activityFeedback: state.settings.activityFeedback,
+    playSounds: state.settings.playSounds,
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
@@ -161,6 +163,7 @@ ActivityScreen.propTypes = {
   progressType: PropTypes.string.isRequired,
   showTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired,
   feedbackFrequency: PropTypes.string.isRequired,
   currentActivity: PropTypes.number.isRequired,
   activities: PropTypes.array.isRequired,

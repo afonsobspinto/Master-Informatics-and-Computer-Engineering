@@ -40,7 +40,7 @@ export class LevelUpModal extends React.Component {
             </View>
           </View>
         </Modal>
-        {this.props.isReward && <RewardSound success />}
+        {this.props.isReward && <RewardSound success playSounds={this.props.playSounds} />}
       </View>
     )
   }
@@ -51,5 +51,6 @@ LevelUpModal.propTypes = {
   level: PropTypes.number.isRequired,
   xp: PropTypes.number.isRequired,
   isReward: PropTypes.bool.isRequired,
-  onClosed: PropTypes.func.isRequired
+  onClosed: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

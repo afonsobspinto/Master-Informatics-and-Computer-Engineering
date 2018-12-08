@@ -103,7 +103,7 @@ export class ProgressBar extends React.Component {
   activityFeedback () {
     if (this.props.activityFeedback === 'visual') {
       this.borderFeedback()
-    } else if (this.props.activityFeedback === 'sound') {
+    } else if (this.props.activityFeedback === 'sound' && this.props.playSounds) {
       this.playSound()
     } else if (this.props.activityFeedback === 'vibration') {
       try {
@@ -163,5 +163,6 @@ ProgressBar.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   showTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
-  feedbackFrequency: PropTypes.string.isRequired
+  feedbackFrequency: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }
