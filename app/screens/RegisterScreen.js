@@ -17,29 +17,24 @@ export default class RegisterScreen extends Component {
     }
   }
 
-
-
-  handlePress(email, password){
-      //if(__DEV__){
-          fetch('http://167.99.128.178:8000/routine_manager/register/', {
-              method: 'POST',
-              headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  email: email,
-                  password: password,
-              }),
-          }).then((response) => response.json())
-              .then((responseJson) => {
-                  return responseJson;
-              })
-              .catch((error) => {
-                  console.error(error);
-              });
-      //}
-
+  handlePress (email, password) {
+    fetch('http://167.99.128.178:8000/routine_manager/register/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   validate (type, value) {
@@ -48,18 +43,17 @@ export default class RegisterScreen extends Component {
       if (re.test(value)) {
         this.setState(() => ({ emailError: false }))
       } else {
-        this.setState(() => ({ emailError: true , email: value}))
+        this.setState(() => ({ emailError: true, email: value }))
       }
       this.setState(() => ({ emailHadInteraction: true }))
     } else if (type === 'password') {
       if (String(value).length < 6) {
         this.setState(() => ({ passwordError: true }))
       } else {
-        this.setState(() => ({ passwordError: false, password: value}))
+        this.setState(() => ({ passwordError: false, password: value }))
       }
       this.setState(() => ({ passwordHadInteraction: true }))
     }
-
   }
 
   render () {

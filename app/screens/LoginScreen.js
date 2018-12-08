@@ -3,6 +3,7 @@ import { StatusBar, Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
+import PropTypes from 'prop-types'
 
 export default class LoginScreen extends Component {
   constructor (props) {
@@ -54,4 +55,7 @@ export default class LoginScreen extends Component {
       </Container>
     )
   }
+}
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
