@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
-from routine_manager.views import index
+
+from server.routine_manager.views import index
+
 
 class SimpleTest(TestCase):
     def setUp(self):
@@ -13,4 +15,3 @@ class SimpleTest(TestCase):
         # Test my_view() as if it were deployed at /customer/details
         response = index(request)
         self.assertEqual(response.status_code, 200)
-    

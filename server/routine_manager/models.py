@@ -1,9 +1,11 @@
 from django.db import models
+from django import forms
 
 
 class User(models.Model):
-    name = models.CharField(max_length=200)
-    email = models.CharField(max_length=50) 
+    name = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput)
 
     def __str__(self):
         return self.name
@@ -19,6 +21,7 @@ class Child(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Routine(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)

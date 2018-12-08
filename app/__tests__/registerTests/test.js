@@ -3,7 +3,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import RegisterScreen from '../../screens/parent/RegisterScreen'
+import RegisterScreen from '../../screens/RegisterScreen'
 
 configure({ adapter: new Adapter() })
 

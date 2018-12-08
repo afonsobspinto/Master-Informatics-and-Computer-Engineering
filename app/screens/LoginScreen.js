@@ -48,7 +48,7 @@ export default class LoginScreen extends Component {
 
           <View style={styles.loginTextContainer}>
             <Text style={styles.loginText}>Não possui uma conta?</Text>
-            <Text style={styles.loginRegisterText} >Registe-se aqui</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('RegisterMenu')} >Registe-se aqui</Text>
           </View>
         </Content>
       </Container>

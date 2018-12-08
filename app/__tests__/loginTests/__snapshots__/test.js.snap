@@ -160,6 +160,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        onPress={[Function]}
         style={
           Object {
             "color": "#ffffff",

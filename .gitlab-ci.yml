@@ -79,6 +79,7 @@ expo-staging-deployments:
 django-staging-deployments:
   tags:
     - digitalocean
+    - 90-register
   only:
     - development
   stage: deploy
