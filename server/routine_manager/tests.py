@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 
-from server.routine_manager.views import index
+from routine_manager.views import index
 
 
 class SimpleTest(TestCase):
