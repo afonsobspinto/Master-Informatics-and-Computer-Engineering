@@ -10,12 +10,12 @@ class User(models.Model):
 
 
 class Child(models.Model):
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
     xp = models.IntegerField(default=0)
     stars = models.IntegerField(default=0)
-    avatar = models.CharField(max_length=500)
+    avatar = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return self.name
@@ -25,8 +25,8 @@ class Routine(models.Model):
     name = models.CharField(max_length=100)
     image = models.IntegerField(default=0)
     photo = models.CharField(max_length=200)
-    color = models.IntegerField(defaul=0)
-    weight = models.IntegerField(defaul=0)
-    timeGoal = models.IntegerField(defaul=0)
-    timeMax = models.IntegerField(defaul=0)
-    timeMin = models.IntegerField(defaul=0)
+    color = models.IntegerField(default=0)
+    weight = models.IntegerField(default=0)
+    timeGoal = models.IntegerField(default=0)
+    timeMax = models.IntegerField(default=0)
+    timeMin = models.IntegerField(default=0)
