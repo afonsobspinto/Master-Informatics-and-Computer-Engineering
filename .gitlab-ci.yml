@@ -79,9 +79,9 @@ expo-staging-deployments:
 django-staging-deployments:
   tags:
     - digitalocean
-    - 90-register
   only:
     - development
+    - 90-register
   stage: deploy
   <<: *install_ssh_dependencies
   script:
