@@ -35,7 +35,7 @@ export class Timer extends React.Component {
 
   render () {
     return (
-      <Text style={this.props.style}>-{`${this.state.minutes}:${this.state.seconds}`}</Text>
+      <Text style={this.props.style}>{`${this.state.minutes}:${this.state.seconds}`}</Text>
     )
   }
 }

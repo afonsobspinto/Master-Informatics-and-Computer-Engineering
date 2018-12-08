@@ -595,7 +595,6 @@ exports[`Activity components renders Timer correctly 1`] = `
   ellipsizeMode="tail"
   style={Object {}}
 >
-  -
   1:40
 </Text>
 `;
