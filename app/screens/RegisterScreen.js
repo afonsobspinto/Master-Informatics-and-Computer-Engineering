@@ -18,7 +18,7 @@ export default class RegisterScreen extends Component {
   }
 
   handlePress (email, password) {
-    fetch('http://167.99.128.178:8000/routine_manager/register/', {
+    fetch('http://167.99.128.178:8080/routine_manager/register/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
