@@ -1,7 +1,6 @@
 from django.http import JsonResponse
-from routine_manager.models import Parent
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -11,9 +10,8 @@ def index(request):
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
-        parent = Parent(email=request.POST['email'], password=make_password(request.POST['password']))
         try:
-            parent.save()
+            user = User.objects.create_user(email='lennon@thebeatles.com', password='johnpassword')
         except Exception:
             return JsonResponse({'status': '400'})
         return JsonResponse({'status': '200'})
