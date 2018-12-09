@@ -12,6 +12,28 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
     }
   }
 >
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": "5%",
+        "left": 250,
+        "top": 50,
+        "width": "5%",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </TouchableOpacity>
   <Component
     style={
       Object {
