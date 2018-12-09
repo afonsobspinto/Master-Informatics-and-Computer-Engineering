@@ -9,6 +9,9 @@ export default class MainMenuScreen extends React.Component {
   render () {
     return (
       <View style={styles.mainMenuContainer}>
+        <TouchableOpacity style={styles.infoButton} onPress={() => this.props.navigation.navigate('AppIntro')}>
+          <Image source={Images.ui.info} />
+        </TouchableOpacity>
         <View style={styles.childContainer}>
           <TouchableOpacity
             style={styles.button}

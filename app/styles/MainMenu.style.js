@@ -29,6 +29,8 @@ export default StyleSheet.create({
     height: '100%',
     width: '100%'
   },
+  infoButton: {
+  },
   childContainer: {
     justifyContent: 'center',
     alignItems: 'center',
