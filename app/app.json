@@ -33,7 +33,7 @@
       "permissions": []
     },
     "ios": {
-      "bundleIdentifier": "pt.up.fe.ldsog02"
+      "bundleIdentifier": "pt.up.fe.ldsog02_staging"
     }
   }
 }
