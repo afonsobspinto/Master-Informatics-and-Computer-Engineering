@@ -1,17 +1,20 @@
-from django.http import HttpResponse
-from routine_manager.models import User
+from django.http import JsonResponse
+from routine_manager.models import Parent
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import make_password
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the routine-manager index!")
+    return JsonResponse({'foo': 'bar'})
 
 
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
-        user = User(email=request.POST['name'], password=make_password(request.POST['password']))
+        parent = Parent(email=request.POST['email'], password=make_password(request.POST['password']))
         try:
-            user.save()
+            parent.save()
         except Exception:
-            return HttpResponse(status=400)
-        return HttpResponse(status=200)
+            return JsonResponse({'status': '400'})
+        return JsonResponse({'status': '200'})
 

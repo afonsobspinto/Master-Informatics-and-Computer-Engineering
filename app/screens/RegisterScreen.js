@@ -4,6 +4,7 @@ import { Container, Content, Form, Item, Input, Label, Button } from 'native-bas
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
+import EnvVars from '../constants/EnviromentVars'
 
 export default class RegisterScreen extends Component {
   constructor (props) {
@@ -20,7 +21,7 @@ export default class RegisterScreen extends Component {
 
   handlePress (email, password) {
     if (!this.state.passwordError && !this.state.emailError) {
-      fetch('http://167.99.128.178:8080/routine_manager/register/', {
+      fetch(EnvVars.apiUrl + 'routine_manager/register/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

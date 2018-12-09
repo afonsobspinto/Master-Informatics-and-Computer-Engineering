@@ -2,8 +2,7 @@ from django.db import models
 from django import forms
 
 
-class User(models.Model):
-    name = models.CharField(max_length=50, null=True)
+class Parent(models.Model):
     email = models.CharField(max_length=50)
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -12,7 +11,7 @@ class User(models.Model):
 
 
 class Child(models.Model):
-    userID = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    parentID = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
     xp = models.IntegerField(default=0)
