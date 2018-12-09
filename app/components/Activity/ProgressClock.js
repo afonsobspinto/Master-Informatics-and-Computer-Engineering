@@ -84,7 +84,9 @@ export class ProgressClock extends React.Component {
     } else if (this.props.activityFeedback === 'sound') {
       this.playSound()
     } else if (this.props.activityFeedback === 'vibration') {
-      Vibration.vibrate(250, true)
+      try {
+        Vibration.vibrate(250, true)
+      } catch (error) {}
     }
   }
 
@@ -120,7 +122,7 @@ export class ProgressClock extends React.Component {
           unfilledColor={colors.gray}
           borderWidth={0}
         />
-        {this.props.showTimer && <Timer style={timerClock} elapsedTime={this.props.elapsedTime} />}
+        {this.props.showTimer && <Timer style={timerClock} remainingTime={this.times.max - this.props.elapsedTime} />}
       </Animated.View>
     )
   }

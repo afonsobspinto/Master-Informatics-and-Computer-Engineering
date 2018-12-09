@@ -7,12 +7,14 @@ describe('root reducer', () => {
         stars: 100,
         level: 4,
         xp: 460,
-        itemsOwned: []
+        itemsOwned: [],
+        showLevelUpModal: true
       },
       settings: {
         activityProgressType: 'bar',
         activityShowTimer: false,
         activityFeedback: 'visual',
+        feedbackFrequency: 'normal',
         visualStyle: 'cartoon',
         routinePlayType: 'choose'
       },
@@ -133,7 +135,7 @@ describe('root reducer', () => {
                 }
               },
               {
-                title: 'Fazer os trabalhos para casa',
+                title: 'Fazer os trabalhos de casa',
                 image: 'paper',
                 color: '#657153',
                 time: {

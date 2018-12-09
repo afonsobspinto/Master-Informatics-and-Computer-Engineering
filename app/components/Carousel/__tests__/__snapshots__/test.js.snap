@@ -1,0 +1,680 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel components renders Card correctly 1`] = `
+<Component
+  style={
+    Object {
+      "flexGrow": 1,
+      "paddingBottom": 10,
+      "paddingHorizontal": 33.35,
+      "paddingTop": 66.7,
+    }
+  }
+>
+  <TouchableWithoutFeedback
+    onPress={[Function]}
+  >
+    <Component
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "#37c1f0",
+          "borderRadius": 33.35,
+          "elevation": 6,
+          "flexGrow": 1,
+          "justifyContent": "flex-start",
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Image
+        resizeMode="center"
+        source={1}
+        style={
+          Object {
+            "bottom": "-30%",
+            "height": "120%",
+            "position": "absolute",
+            "right": "10%",
+            "transform": Array [
+              Object {
+                "rotate": "-25deg",
+              },
+            ],
+            "width": "80%",
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 35,
+            "marginHorizontal": 30,
+            "marginTop": 20,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+         
+        Após acordar
+         
+      </Text>
+      <CardButton
+        cardStyle={
+          Object {
+            "card": Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#37c1f0",
+              "borderRadius": 33.35,
+              "elevation": 6,
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+              "overflow": "hidden",
+            },
+            "cardActivityImage": Object {
+              "bottom": "-30%",
+              "height": "120%",
+              "position": "absolute",
+              "right": "10%",
+              "transform": Array [
+                Object {
+                  "rotate": "-25deg",
+                },
+              ],
+              "width": "80%",
+            },
+            "cardContainer": Object {
+              "flexGrow": 1,
+              "paddingBottom": 10,
+              "paddingHorizontal": 33.35,
+              "paddingTop": 66.7,
+            },
+            "cardPhoto": Object {
+              "height": "100%",
+              "position": "absolute",
+              "width": "100%",
+            },
+            "cardRoutineImage": Object {
+              "bottom": "-30%",
+              "height": "120%",
+              "position": "absolute",
+              "right": "-5%",
+              "transform": Array [
+                Object {
+                  "rotate": "25deg",
+                },
+              ],
+              "width": "70%",
+            },
+            "cardTitle": Object {
+              "color": "#fff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 35,
+              "marginHorizontal": 30,
+              "marginTop": 20,
+              "textShadowColor": "rgba(0, 0, 0, 0.2)",
+              "textShadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "textShadowRadius": 3,
+            },
+            "carouselContainer": Object {
+              "flexDirection": "column",
+              "height": "100%",
+            },
+            "dotStyle": Object {
+              "borderRadius": 5,
+              "height": 10,
+              "width": 10,
+            },
+            "photoCardTitle": Object {
+              "color": "#fff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 35,
+              "marginHorizontal": 30,
+              "marginTop": 20,
+              "textShadowColor": "rgba(0, 0, 0, 0.6)",
+              "textShadowOffset": Object {
+                "height": 2,
+                "width": 2,
+              },
+              "textShadowRadius": 5,
+            },
+            "playButton": Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "borderRadius": 20,
+              "elevation": 3,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "center",
+              "marginLeft": 30,
+              "marginTop": 4,
+              "paddingHorizontal": 15,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "shadowOpacity": 0.3,
+              "shadowRadius": 4.65,
+            },
+            "playIcon": Object {
+              "height": 15,
+              "marginRight": 5,
+              "tintColor": "#37c1f0",
+              "width": 15,
+            },
+            "playText": Object {
+              "color": "#37c1f0",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            },
+          }
+        }
+        onPress={[Function]}
+      />
+    </Component>
+  </TouchableWithoutFeedback>
+</Component>
+`;
+
+exports[`Carousel components renders Card correctly 2`] = `
+<Component
+  style={
+    Object {
+      "flexGrow": 1,
+      "paddingBottom": 10,
+      "paddingHorizontal": 33.35,
+      "paddingTop": 66.7,
+    }
+  }
+>
+  <TouchableWithoutFeedback
+    onPress={[Function]}
+  >
+    <Component
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "#7d84b2",
+          "borderRadius": 33.35,
+          "elevation": 6,
+          "flexGrow": 1,
+          "justifyContent": "flex-start",
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Image
+        resizeMode="center"
+        style={
+          Object {
+            "bottom": "-30%",
+            "height": "120%",
+            "position": "absolute",
+            "right": "10%",
+            "transform": Array [
+              Object {
+                "rotate": "-25deg",
+              },
+            ],
+            "width": "80%",
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 35,
+            "marginHorizontal": 30,
+            "marginTop": 20,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+         
+        Fazer a cama
+         
+      </Text>
+      <CardButton
+        cardStyle={
+          Object {
+            "card": Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#7d84b2",
+              "borderRadius": 33.35,
+              "elevation": 6,
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+              "overflow": "hidden",
+            },
+            "cardActivityImage": Object {
+              "bottom": "-30%",
+              "height": "120%",
+              "position": "absolute",
+              "right": "10%",
+              "transform": Array [
+                Object {
+                  "rotate": "-25deg",
+                },
+              ],
+              "width": "80%",
+            },
+            "cardContainer": Object {
+              "flexGrow": 1,
+              "paddingBottom": 10,
+              "paddingHorizontal": 33.35,
+              "paddingTop": 66.7,
+            },
+            "cardPhoto": Object {
+              "height": "100%",
+              "position": "absolute",
+              "width": "100%",
+            },
+            "cardRoutineImage": Object {
+              "bottom": "-30%",
+              "height": "120%",
+              "position": "absolute",
+              "right": "-5%",
+              "transform": Array [
+                Object {
+                  "rotate": "25deg",
+                },
+              ],
+              "width": "70%",
+            },
+            "cardTitle": Object {
+              "color": "#fff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 35,
+              "marginHorizontal": 30,
+              "marginTop": 20,
+              "textShadowColor": "rgba(0, 0, 0, 0.2)",
+              "textShadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "textShadowRadius": 3,
+            },
+            "carouselContainer": Object {
+              "flexDirection": "column",
+              "height": "100%",
+            },
+            "dotStyle": Object {
+              "borderRadius": 5,
+              "height": 10,
+              "width": 10,
+            },
+            "photoCardTitle": Object {
+              "color": "#fff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 35,
+              "marginHorizontal": 30,
+              "marginTop": 20,
+              "textShadowColor": "rgba(0, 0, 0, 0.6)",
+              "textShadowOffset": Object {
+                "height": 2,
+                "width": 2,
+              },
+              "textShadowRadius": 5,
+            },
+            "playButton": Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "borderRadius": 20,
+              "elevation": 3,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "center",
+              "marginLeft": 30,
+              "marginTop": 4,
+              "paddingHorizontal": 15,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "shadowOpacity": 0.3,
+              "shadowRadius": 4.65,
+            },
+            "playIcon": Object {
+              "height": 15,
+              "marginRight": 5,
+              "tintColor": "#7d84b2",
+              "width": 15,
+            },
+            "playText": Object {
+              "color": "#7d84b2",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            },
+          }
+        }
+        onPress={[Function]}
+      />
+    </Component>
+  </TouchableWithoutFeedback>
+</Component>
+`;
+
+exports[`Carousel components renders CardButton correctly 1`] = `
+<TouchableOpacity
+  activeOpacity={0.9}
+  onPress={[MockFunction]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderRadius": 20,
+      "elevation": 3,
+      "flexDirection": "row",
+      "height": 40,
+      "justifyContent": "center",
+      "marginLeft": 30,
+      "marginTop": 4,
+      "paddingHorizontal": 15,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 1,
+        "width": 0,
+      },
+      "shadowOpacity": 0.3,
+      "shadowRadius": 4.65,
+    }
+  }
+>
+  <Image
+    resizeMode="contain"
+    source={1}
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "tintColor": "#fff",
+        "width": 15,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+        "fontFamily": "LinotteBold",
+        "fontSize": 20,
+      }
+    }
+  >
+    Começar
+  </Text>
+</TouchableOpacity>
+`;
+
+exports[`Carousel components renders CardCarousel correctly 1`] = `
+<Component
+  style={
+    Object {
+      "flexDirection": "column",
+      "height": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+  >
+    <Carousel
+      activeAnimationOptions={null}
+      activeAnimationType="timing"
+      activeSlideAlignment="center"
+      activeSlideOffset={20}
+      apparitionDelay={0}
+      autoplay={false}
+      autoplayDelay={5000}
+      autoplayInterval={3000}
+      callbackOffsetMargin={5}
+      containerCustomStyle={Object {}}
+      contentContainerCustomStyle={Object {}}
+      data={
+        Array [
+          Object {
+            "activities": Array [
+              Object {
+                "color": "#7d84b2",
+                "image": "bed",
+                "photo": "bedroom",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 0,
+                },
+                "title": "Fazer a cama",
+              },
+              Object {
+                "color": "#0e79b2",
+                "image": "toothbrush",
+                "time": Object {
+                  "goal": 10,
+                  "max": 15,
+                  "min": 1,
+                },
+                "title": "Lavar os dentes",
+              },
+              Object {
+                "color": "#7fb800",
+                "image": "socks",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Vestir",
+              },
+              Object {
+                "color": "#37c1f0",
+                "image": "shower",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Tomar banho",
+              },
+              Object {
+                "color": "#e43f6f",
+                "image": "bag",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Preparar a mochila",
+              },
+              Object {
+                "color": "#4bb3fd",
+                "image": "sneakers",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Calçar os sapatos",
+              },
+              Object {
+                "color": "#ff7f11",
+                "image": "breakfast",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Tomar o pequeno almoço",
+              },
+              Object {
+                "color": "#b0db43",
+                "image": "comb",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Pentear cabelo",
+              },
+            ],
+            "color": "#37c1f0",
+            "image": "sun",
+            "title": "Após acordar",
+          },
+          Object {
+            "activities": Array [
+              Object {
+                "color": "#1a5e63",
+                "image": "fork",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Ajudar na cozinha",
+              },
+              Object {
+                "color": "#a3320b",
+                "image": "drawers",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Arrumar o quarto",
+              },
+              Object {
+                "color": "#657153",
+                "image": "paper",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Fazer os trabalhos de casa",
+              },
+              Object {
+                "color": "#519e8a",
+                "image": "blocks",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Arrumar os brinquedos",
+              },
+              Object {
+                "color": "#ff9f1c",
+                "image": "book",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Ler um livro",
+              },
+              Object {
+                "color": "#ff9f1c",
+                "image": "shirt",
+                "time": Object {
+                  "goal": 60,
+                  "max": 120,
+                  "min": 10,
+                },
+                "title": "Preparar a roupa do dia seguinte",
+              },
+            ],
+            "color": "#011f39",
+            "image": "moon",
+            "photo": "night",
+            "title": "Antes de dormir",
+          },
+        ]
+      }
+      enableMomentum={false}
+      enableSnap={true}
+      firstItem={0}
+      hasParallaxImages={false}
+      inactiveSlideOpacity={0.7}
+      inactiveSlideScale={1}
+      inactiveSlideShift={0}
+      itemWidth={933.8}
+      layout="default"
+      lockScrollTimeoutDuration={1000}
+      lockScrollWhileSnapping={false}
+      loop={false}
+      loopClonesPerSide={3}
+      onSnapToItem={[Function]}
+      renderItem={[Function]}
+      scrollEnabled={true}
+      shouldOptimizeUpdates={true}
+      slideStyle={Object {}}
+      sliderWidth={1334}
+      swipeThreshold={20}
+      useScrollView={false}
+      vertical={false}
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "height": 66.7,
+        "justifyContent": "center",
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Pagination
+      activeDotIndex={0}
+      containerStyle={
+        Object {
+          "paddingVertical": 0,
+        }
+      }
+      dotStyle={
+        Object {
+          "borderRadius": 5,
+          "height": 10,
+          "width": 10,
+        }
+      }
+      dotsLength={2}
+      inactiveDotOpacity={0.5}
+      inactiveDotScale={0.5}
+      tappableDots={false}
+      vertical={false}
+    />
+  </Component>
+</Component>
+`;

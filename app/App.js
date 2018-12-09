@@ -38,7 +38,9 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Font.loadAsync({
-        'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf')
+        'LinotteBold': require('./assets/fonts/Linotte-Bold.ttf'),
+        'Roboto': require('native-base/Fonts/Roboto.ttf'),
+        'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
       }),
       _retrieveJson('settings')
         .then(res => store.dispatch(setSettings(res)))

@@ -4,6 +4,7 @@ export const settingTypes = {
   changeVisualStyle: 'settings:changeVisualStyle',
   toggleActivityTimer: 'settings:toggleActivityTimer',
   toggleActivityFeedback: 'settings:toggleActivityFeedback',
+  changeFeedbackFrequency: 'settings:changeFeedbackFrequency',
   toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
 }
 
@@ -18,5 +19,6 @@ export const gameTypes = {
 
 export const childTypes = {
   addStars: 'child:addStars',
-  purchaseItem: 'child:purchaseItem'
+  purchaseItem: 'child:purchaseItem',
+  toggleLevelUpModal: 'child:toggleLevelUpModal'
 }

@@ -5,7 +5,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { ShopScreen } from '../../screens/ShopScreen'
+import { ShopScreen } from '../../screens/child/ShopScreen'
 
 configure({ adapter: new Adapter() })
 

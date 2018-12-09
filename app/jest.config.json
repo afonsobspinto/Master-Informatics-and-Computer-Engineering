@@ -1,4 +1,7 @@
 {
+  "transformIgnorePatterns": [
+    "/node_modules/(?!native-base)/"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
       "**/*.js"
@@ -15,8 +18,8 @@
   "coverageDirectory": "<rootDir>/coverage/",
   "coverageThreshold": {
       "global": {
-          "functions": 30,
-          "lines": 30
+          "functions": 50,
+          "lines": 50
       }
   },
   "verbose": false,
@@ -28,5 +31,5 @@
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
   ],
-  "testPathIgnorePatterns": ["assets/images", "node_modules"]
+  "testPathIgnorePatterns": ["assets/images", "node_modules", "__tests__/mockTestData"]
 }

@@ -5,7 +5,7 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
   style={
     Object {
       "alignContent": "center",
-      "backgroundColor": "#fff7ae",
+      "backgroundColor": "#3db3e2",
       "height": "100%",
       "justifyContent": "center",
       "width": "100%",
@@ -54,7 +54,7 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
       ellipsizeMode="tail"
       style={
         Object {
-          "color": "#000",
+          "color": "#ffffff",
           "fontFamily": "LinotteBold",
           "fontSize": 30,
           "marginTop": 15,
@@ -84,7 +84,7 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#7a9e7e",
+          "backgroundColor": "#046488",
           "borderTopLeftRadius": 45,
           "borderTopRightRadius": 45,
           "elevation": 10,

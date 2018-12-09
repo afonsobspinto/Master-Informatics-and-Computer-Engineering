@@ -87,6 +87,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
         }
       }
       elapsedTime={0}
+      feedbackFrequency="normal"
       isPaused={false}
       showTimer={false}
     />
@@ -191,7 +192,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;
@@ -283,6 +286,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
         }
       }
       elapsedTime={0}
+      feedbackFrequency="normal"
       isPaused={false}
       showTimer={true}
     />
@@ -387,7 +391,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;
@@ -464,6 +470,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
       }
     }
     elapsedTime={0}
+    feedbackFrequency="normal"
     isPaused={false}
     showTimer={true}
   />
@@ -583,7 +590,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;
@@ -660,6 +669,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
       }
     }
     elapsedTime={0}
+    feedbackFrequency="normal"
     isPaused={false}
     showTimer={true}
   />
@@ -779,7 +789,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;
@@ -933,7 +945,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;
@@ -1087,7 +1101,165 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
     }
     backPress={[Function]}
     currentActivity={0}
+    level={4}
     nextPress={[Function]}
+    xp={430}
+  />
+</Component>
+`;
+
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#7d84b2",
+      },
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <StatusBar
+    animated={false}
+    hidden={true}
+    showHideTransition="fade"
+  />
+  <Image
+    resizeMode="center"
+    source={1}
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": "60%",
+        "position": "absolute",
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "padding": 40.019999999999996,
+        "paddingLeft": 72.036,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#fff",
+          "fontFamily": "LinotteBold",
+          "fontSize": 50,
+          "textShadowColor": "rgba(0, 0, 0, 0.2)",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "textShadowRadius": 10,
+        }
+      }
+    >
+      Fazer a cama
+    </Text>
+  </Component>
+  <RewardsModal
+    activities={
+      Array [
+        Object {
+          "color": "#7d84b2",
+          "image": "bed",
+          "photo": "bedroom",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
+        Object {
+          "color": "#0e79b2",
+          "image": "toothbrush",
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "image": "socks",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "image": "shower",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "image": "bag",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "image": "sneakers",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "image": "breakfast",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "image": "comb",
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    backPress={[Function]}
+    currentActivity={0}
+    level={4}
+    nextPress={[Function]}
+    xp={430}
   />
 </Component>
 `;

@@ -1,37 +1,97 @@
-image: node:alpine
+image: ubuntu:bionic
+
+variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/server/.cache/pip"
+
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - ~/.npm
-    - .jest
+  - app/node_modules/
+  - server/.cache/pip
+
 stages:
   - test
   - deploy
-before_script:
-  - cd app
-  - npm ci
-  - npm install -g expo-cli
+
+.install-app-dependencies: &install_app_dependencies
+  image: node:alpine
+  before_script:
+    - cd app
+    - npm ci
+
+.install-server-dependencies: &install_server_dependencies
+  image: python:3.7.1
+  before_script: 
+    - cd server
+    - pip install -r requirements.txt
+
+.install-ssh-dependencies: &install_ssh_dependencies
+  before_script: 
+    - apt-get update -qq && apt-get install -y -qq git
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")    
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
 jest-tests:
   stage: test
+  <<: *install_app_dependencies
   script:
     - npm run ci-test
     - npm run lint
   artifacts:
     reports:
-      junit: app/junit.xml
+      junit: app/tests_report.xml
+
+django-tests:
+  stage: test
+  <<: *install_server_dependencies
+  script:
+    - pip list
+    - python manage.py test
+  artifacts:
+    reports:
+      junit: server/tests_report.xml
+
 expo-prod-deployments:
   only:
     - master
   stage: deploy
+  <<: *install_app_dependencies
   script:
+    - npm install -g expo-cli 
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
-    - npx expo build:android --release-channel production
+    - npx expo build:android
+
 expo-staging-deployments:
   only:
     - development
   stage: deploy
+  <<: *install_app_dependencies
   script:
+    - npm install -g expo-cli 
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
     - npx expo build:android --release-channel staging
+
+django-staging-deployments:
+  tags:
+    - digitalocean
+  only:
+    - development
+  stage: deploy
+  <<: *install_ssh_dependencies
+  script:
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2 && ./t4g2/deploy_stage.sh"
+
+django-prod-deployments:
+  tags:
+    - digitalocean
+  only:
+    - master
+  stage: deploy
+  <<: *install_ssh_dependencies
+  script:
+    - ssh -t ldsog02@167.99.128.178 "cd /home/ldsog02 && git clone -b ${CI_COMMIT_REF_NAME} https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/ldso18-19/t4g2 && ./t4g2/deploy_prod.sh"

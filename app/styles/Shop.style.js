@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import Layout from '../constants/Layout'
-import { backgroundColor } from './General.style'
+import { backgroundColor, lighterBackgroundColor } from './Colors'
 
 const padding = Layout.window.width * 0.05
 
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   imageCard: {
     flex: 3,
-    backgroundColor: '#f7f7f7',
+    backgroundColor: lighterBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: padding,
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   shopItem: {
     height: '100%',
     width: '100%',
-    backgroundColor: '#f7f7f7',
+    backgroundColor: lighterBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: padding / 2,
@@ -103,7 +103,7 @@ export default StyleSheet.create({
   shopTitle: {
     fontFamily: 'LinotteBold',
     fontSize: padding * 1.5,
-    color: '#000',
+    color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3
@@ -122,7 +122,7 @@ export default StyleSheet.create({
   currentBalance: {
     fontFamily: 'LinotteBold',
     fontSize: padding * 1.5,
-    color: '#000',
+    color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3

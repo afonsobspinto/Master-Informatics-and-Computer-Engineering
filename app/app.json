@@ -9,10 +9,18 @@
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
+    "androidStatusBar": {
+      "backgroundColor": "#000000"
+    },
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "androidStatusBarColor": "#000000",
+    "androidStatusBar": {
+    "barStyle": "light-content",
+    "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,6 +31,9 @@
     "android": {
       "package": "feup.ldso.routines",
       "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "pt.up.fe.ldsog02"
     }
   }
 }
