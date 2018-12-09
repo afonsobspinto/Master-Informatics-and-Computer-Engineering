@@ -3,38 +3,41 @@ import { StatusBar, Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
+import PropTypes from 'prop-types'
 
 export default class RegisterScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
       email: '',
-      emailError: null,
+      emailError: true,
       password: '',
-      passwordError: null,
+      passwordError: true,
       emailHadInteraction: false,
       passwordHadInteraction: false
     }
   }
 
   handlePress (email, password) {
-    fetch('http://167.99.128.178:8080/routine_manager/register/', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        return responseJson
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    if (!this.state.passwordError && !this.state.emailError) {
+      fetch('http://167.99.128.178:8080/routine_manager/register/', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      }).then((response) => response.json())
+        .then((responseJson) => {
+          return responseJson
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
 
   validate (type, value) {
@@ -45,14 +48,14 @@ export default class RegisterScreen extends Component {
       } else {
         this.setState(() => ({ emailError: true, email: value }))
       }
-      this.setState(() => ({ emailHadInteraction: true }))
+      this.setState(() => ({ emailHadInteraction: true, email: value }))
     } else if (type === 'password') {
       if (String(value).length < 6) {
         this.setState(() => ({ passwordError: true }))
       } else {
-        this.setState(() => ({ passwordError: false, password: value }))
+        this.setState(() => ({ passwordError: false }))
       }
-      this.setState(() => ({ passwordHadInteraction: true }))
+      this.setState(() => ({ passwordHadInteraction: true, password: value }))
     }
   }
 
@@ -63,7 +66,7 @@ export default class RegisterScreen extends Component {
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
-            <Item floatingLabel error={this.state.emailError} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.emailError && this.state.emailHadInteraction} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input
                 className='email'
@@ -72,7 +75,7 @@ export default class RegisterScreen extends Component {
               />
             </Item>
 
-            <Item floatingLabel error={this.state.passwordError} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
+            <Item floatingLabel error={this.state.passwordError && this.state.passwordHadInteraction} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input
                 className='password'
@@ -89,10 +92,14 @@ export default class RegisterScreen extends Component {
 
           <View style={styles.loginTextContainer}>
             <Text style={styles.loginText}>Já possui uma conta?</Text>
-            <Text style={styles.loginRegisterText}>Faça login aqui!</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('RegisterMenu')}>Faça login aqui!</Text>
           </View>
         </Content>
       </Container>
     )
   }
+}
+
+RegisterScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
