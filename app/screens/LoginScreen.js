@@ -4,6 +4,7 @@ import { Container, Content, Form, Item, Input, Label, Button } from 'native-bas
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
+import EnvVars from "../constants/EnviromentVars";
 
 export default class LoginScreen extends Component {
   constructor (props) {
@@ -17,6 +18,35 @@ export default class LoginScreen extends Component {
       passwordHadInteraction: false
     }
   }
+
+  handlePress (email, password) {
+      if (!this.state.passwordError && !this.state.emailError) {
+          fetch(EnvVars.apiUrl + 'routine_manager/login/', {
+              method: 'POST',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  email: email,
+                  password: password
+              })
+          }).then((response) => response.json())
+              .then((responseJson) => {
+                if(responseJson.status === "200"){
+                  this.props.navigation.navigate('MainMenu')
+                }
+                else{
+                  //TODO: Password ou user incorretos
+                }
+                  return responseJson
+              })
+              .catch((error) => {
+                  console.error(error)
+              })
+      }
+  }
+
 
   validate (type, value) {
     if (type === 'email') {
@@ -64,7 +94,7 @@ export default class LoginScreen extends Component {
             </Item>
 
             <Button rounded block primary style={styles.submitButton}>
-              <Text style={styles.buttonText}>Login</Text>
+              <Text style={styles.buttonText} onPress={() => this.handlePress(this.state.email, this.state.password)}>Login</Text>
             </Button>
           </Form>
 

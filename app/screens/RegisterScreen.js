@@ -33,6 +33,12 @@ export default class RegisterScreen extends Component {
         })
       }).then((response) => response.json())
         .then((responseJson) => {
+        if(responseJson.status === "200"){
+            this.props.navigation.navigate('MainMenu')
+        }
+        else{
+            //TODO: Falhou qql cena, não sei bem o que fazer aqui tbh
+        }
           return responseJson
         })
         .catch((error) => {
