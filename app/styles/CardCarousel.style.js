@@ -3,7 +3,7 @@ import Layout from '../constants/Layout'
 
 import { backgroundColor } from './Colors'
 
-const padding = Layout.window.height * 0.05
+const padding = Layout.window.width * 0.08
 
 export const sliderWidth = Layout.window.height
 export const itemWidth = Layout.window.height * 0.7

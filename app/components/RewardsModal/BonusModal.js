@@ -8,6 +8,7 @@ import Images from '../../assets/images/images'
 import styles from '../../styles/RewardModal.style'
 import { RewardModalExperienceBar } from './RewardModalExperienceBar'
 import { RewardModalStars } from './RewardModalStars'
+import { RewardSound } from './RewardSound'
 
 export class BonusModal extends React.Component {
   constructor (props) {
@@ -52,6 +53,7 @@ export class BonusModal extends React.Component {
                 source={Images.ui.next} />
             </TouchableOpacity>
           </View>
+          <RewardSound success />
         </View>
       </View>
     )

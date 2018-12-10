@@ -6,8 +6,8 @@ exports[`Carousel components renders Card correctly 1`] = `
     Object {
       "flexGrow": 1,
       "paddingBottom": 10,
-      "paddingHorizontal": 33.35,
-      "paddingTop": 66.7,
+      "paddingHorizontal": 30,
+      "paddingTop": 60,
     }
   }
 >
@@ -19,7 +19,7 @@ exports[`Carousel components renders Card correctly 1`] = `
         Object {
           "alignItems": "flex-start",
           "backgroundColor": "#37c1f0",
-          "borderRadius": 33.35,
+          "borderRadius": 30,
           "elevation": 6,
           "flexGrow": 1,
           "justifyContent": "flex-start",
@@ -75,7 +75,7 @@ exports[`Carousel components renders Card correctly 1`] = `
             "card": Object {
               "alignItems": "flex-start",
               "backgroundColor": "#37c1f0",
-              "borderRadius": 33.35,
+              "borderRadius": 30,
               "elevation": 6,
               "flexGrow": 1,
               "justifyContent": "flex-start",
@@ -96,8 +96,8 @@ exports[`Carousel components renders Card correctly 1`] = `
             "cardContainer": Object {
               "flexGrow": 1,
               "paddingBottom": 10,
-              "paddingHorizontal": 33.35,
-              "paddingTop": 66.7,
+              "paddingHorizontal": 30,
+              "paddingTop": 60,
             },
             "cardPhoto": Object {
               "height": "100%",
@@ -196,8 +196,8 @@ exports[`Carousel components renders Card correctly 2`] = `
     Object {
       "flexGrow": 1,
       "paddingBottom": 10,
-      "paddingHorizontal": 33.35,
-      "paddingTop": 66.7,
+      "paddingHorizontal": 30,
+      "paddingTop": 60,
     }
   }
 >
@@ -209,7 +209,7 @@ exports[`Carousel components renders Card correctly 2`] = `
         Object {
           "alignItems": "flex-start",
           "backgroundColor": "#7d84b2",
-          "borderRadius": 33.35,
+          "borderRadius": 30,
           "elevation": 6,
           "flexGrow": 1,
           "justifyContent": "flex-start",
@@ -264,7 +264,7 @@ exports[`Carousel components renders Card correctly 2`] = `
             "card": Object {
               "alignItems": "flex-start",
               "backgroundColor": "#7d84b2",
-              "borderRadius": 33.35,
+              "borderRadius": 30,
               "elevation": 6,
               "flexGrow": 1,
               "justifyContent": "flex-start",
@@ -285,8 +285,8 @@ exports[`Carousel components renders Card correctly 2`] = `
             "cardContainer": Object {
               "flexGrow": 1,
               "paddingBottom": 10,
-              "paddingHorizontal": 33.35,
-              "paddingTop": 66.7,
+              "paddingHorizontal": 30,
+              "paddingTop": 60,
             },
             "cardPhoto": Object {
               "height": "100%",
@@ -565,16 +565,6 @@ exports[`Carousel components renders CardCarousel correctly 1`] = `
                 "title": "Ajudar na cozinha",
               },
               Object {
-                "color": "#a3320b",
-                "image": "drawers",
-                "time": Object {
-                  "goal": 60,
-                  "max": 120,
-                  "min": 10,
-                },
-                "title": "Arrumar o quarto",
-              },
-              Object {
                 "color": "#657153",
                 "image": "paper",
                 "time": Object {
@@ -649,7 +639,7 @@ exports[`Carousel components renders CardCarousel correctly 1`] = `
   <Component
     style={
       Object {
-        "height": 66.7,
+        "height": 60,
         "justifyContent": "center",
         "marginBottom": 10,
       }

@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { grayedOut, oppositeColor, accentColor, backgroundColor } from './Colors'
 
-const padding = Layout.window.height * 0.05
-const buttonHeight = Layout.window.height * 0.12
+const padding = Layout.window.width * 0.08 // * 15 / 9 * 0.05
+const buttonHeight = Layout.window.width * 0.2 // * 15 / 9 * 0.12
 
 export default StyleSheet.create({
   rewardsModal: {
@@ -33,6 +33,21 @@ export default StyleSheet.create({
     elevation: 7,
     overflow: 'hidden'
   },
+  sadFaceContainer: {
+    height: padding * 6,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    position: 'absolute',
+    top: 0,
+    elevation: 7,
+    overflow: 'hidden'
+  },
+  sadFaceImage: {
+    height: padding * 5,
+    width: padding * 5
+  },
   icon: {
     height: padding * 2.5,
     width: padding * 2.5,
@@ -50,7 +65,7 @@ export default StyleSheet.create({
   },
   cardTitle: {
     fontFamily: 'LinotteBold',
-    fontSize: 40,
+    fontSize: padding,
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
