@@ -9,7 +9,9 @@ configure({ adapter: new Adapter() })
 
 describe('RegisterScreen snapshot', () => {
   it('renders RegisterScreen correctly', async () => {
-    const wrapper = shallow(<RegisterScreen />)
+    const wrapper = shallow(<RegisterScreen
+      navigation={{ navigate: jest.fn() }}
+    />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find('.email').simulate('changeText', 'a')
     wrapper.find('.password').simulate('changeText', 'a')

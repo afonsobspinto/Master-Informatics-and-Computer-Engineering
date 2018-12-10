@@ -12,8 +12,10 @@ export default class RegisterScreen extends Component {
     this.state = {
       email: '',
       emailError: true,
+      emailErrorMessage: 'Este e-mail não é válido!',
       password: '',
       passwordError: true,
+      passwordErrorMessage: 'A password deve conter 6 caracteres!',
       emailHadInteraction: false,
       passwordHadInteraction: false
     }
@@ -36,7 +38,7 @@ export default class RegisterScreen extends Component {
           if (responseJson.status === '200') {
             this.props.navigation.navigate('MainMenu')
           } else {
-            // TODO: Falhou qql cena, não sei bem o que fazer aqui tbh
+            this.setState(() => ({ emailErrorMessage: 'Este e-mail já está a ser utilizado!' }))
           }
           return responseJson
         })
@@ -63,6 +65,7 @@ export default class RegisterScreen extends Component {
       }
       this.setState(() => ({ passwordHadInteraction: true, password: value }))
     }
+    this.setState(() => ({ emailErrorMessage: 'Este e-mail não é válido!' }))
   }
 
   render () {
@@ -72,6 +75,8 @@ export default class RegisterScreen extends Component {
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
+
+            {this.state.emailError && this.state.emailHadInteraction && <Text style={styles.errorMessage}>{this.state.emailErrorMessage}</Text>}
             <Item floatingLabel error={this.state.emailError && this.state.emailHadInteraction} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input
@@ -81,6 +86,7 @@ export default class RegisterScreen extends Component {
               />
             </Item>
 
+            {this.state.passwordError && this.state.passwordHadInteraction && <Text style={styles.errorMessage}>{this.state.passwordErrorMessage}</Text>}
             <Item floatingLabel error={this.state.passwordError && this.state.passwordHadInteraction} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input
@@ -98,7 +104,7 @@ export default class RegisterScreen extends Component {
 
           <View style={styles.loginTextContainer}>
             <Text style={styles.loginText}>Já possui uma conta?</Text>
-            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('RegisterMenu')}>Faça login aqui!</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('LoginMenu')}>Faça login aqui!</Text>
           </View>
         </Content>
       </Container>
