@@ -191,15 +191,15 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#bbecec",
-          "borderRadius": 50.025000000000006,
+          "borderRadius": 45,
           "elevation": 12,
           "flexDirection": "row",
-          "height": 100.05000000000001,
+          "height": 90,
           "justifyContent": "center",
-          "left": 266.8,
-          "paddingHorizontal": 50.025000000000006,
+          "left": 240,
+          "paddingHorizontal": 45,
           "position": "absolute",
-          "top": 83.375,
+          "top": 75,
         }
       }
     >
@@ -211,7 +211,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
           Object {
             "color": "#061111",
             "fontFamily": "LinotteBold",
-            "fontSize": 66.7,
+            "fontSize": 60,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 2,
@@ -228,8 +228,8 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         source={1}
         style={
           Object {
-            "height": 60.03,
-            "width": 60.03,
+            "height": 54,
+            "width": 54,
           }
         }
       />
@@ -241,7 +241,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
           Object {
             "color": "#061111",
             "fontFamily": "LinotteBold",
-            "fontSize": 66.7,
+            "fontSize": 60,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 2,
@@ -259,11 +259,11 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#3db3e2",
-          "borderRadius": 33.35,
+          "borderRadius": 30,
           "elevation": 6,
           "flexGrow": 1,
-          "marginHorizontal": 200.10000000000002,
-          "marginVertical": 133.4,
+          "marginHorizontal": 180,
+          "marginVertical": 120,
           "overflow": "hidden",
           "position": "relative",
         }
@@ -299,7 +299,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
               "color": "#fff",
               "flex": 1,
               "fontFamily": "LinotteBold",
-              "fontSize": 66.7,
+              "fontSize": 60,
               "padding": 40.019999999999996,
               "textShadowColor": "rgba(0, 0, 0, 0.6)",
               "textShadowOffset": Object {
@@ -323,7 +323,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
   style={
     Object {
       "aspectRatio": 1,
-      "padding": 18.75,
+      "padding": 30,
       "width": "33.3333%",
     }
   }
@@ -336,13 +336,13 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#bbecec",
-        "borderRadius": 18.75,
+        "borderRadius": 30,
         "elevation": 6,
         "height": "100%",
         "justifyContent": "center",
-        "paddingBottom": 56.25,
-        "paddingHorizontal": 9.375,
-        "paddingTop": 9.375,
+        "paddingBottom": 90,
+        "paddingHorizontal": 15,
+        "paddingTop": 15,
         "width": "100%",
       }
     }
@@ -365,7 +365,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "bottom": 9.375,
+            "bottom": 15,
             "flexDirection": "row",
             "justifyContent": "center",
             "position": "absolute",
@@ -379,9 +379,9 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         source={1}
         style={
           Object {
-            "height": 37.5,
-            "marginRight": 9.375,
-            "width": 37.5,
+            "height": 60,
+            "marginRight": 15,
+            "width": 60,
           }
         }
       />
@@ -393,7 +393,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
           Object {
             "color": "#000",
             "fontFamily": "LinotteBold",
-            "fontSize": 30,
+            "fontSize": 48,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 1,
@@ -416,10 +416,10 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
     Object {
       "alignItems": "center",
       "flexDirection": "row",
-      "height": 75,
+      "height": 120,
       "justifyContent": "space-between",
-      "marginBottom": 18.75,
-      "paddingHorizontal": 18.75,
+      "marginBottom": 30,
+      "paddingHorizontal": 30,
       "width": "100%",
     }
   }
@@ -432,7 +432,7 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
       Object {
         "color": "#fff",
         "fontFamily": "LinotteBold",
-        "fontSize": 56.25,
+        "fontSize": 90,
         "textShadowColor": "rgba(0, 0, 0, 0.2)",
         "textShadowOffset": Object {
           "height": 1,

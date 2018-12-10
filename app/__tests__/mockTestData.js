@@ -230,16 +230,6 @@ export const routines = [
         }
       },
       {
-        title: 'Arrumar o quarto',
-        image: 'drawers',
-        color: '#a3320b',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
         title: 'Fazer os trabalhos de casa',
         image: 'paper',
         color: '#657153',

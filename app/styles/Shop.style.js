@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { backgroundColor, lighterBackgroundColor } from './Colors'
 
-const padding = Layout.window.width * 0.05
+const padding = Layout.window.width * 0.08
 
 export default StyleSheet.create({
   shopModal: {
