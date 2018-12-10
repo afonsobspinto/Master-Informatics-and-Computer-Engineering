@@ -23,11 +23,12 @@ def register(request):
 
 @csrf_exempt
 def login(request):
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    user = authenticate(username=body['email'], password=body['password'])
-    if user is not None:
-        return JsonResponse({'status': '200'})
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        user = authenticate(username=body['email'], password=body['password'])
+        if user is not None:
+            return JsonResponse({'status': '200'})
 
-    else:
-        return JsonResponse({'status': '400'})
+        else:
+            return JsonResponse({'status': '400'})
