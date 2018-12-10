@@ -9,4 +9,3 @@ app/node_modules
 .idea/
 app/tests_report.xml
 server/tests_report.xml
-app/constants/localIP.json
