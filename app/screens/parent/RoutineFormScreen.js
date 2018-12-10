@@ -3,6 +3,7 @@ import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Containe
 import PropTypes from 'prop-types'
 
 import { ColorPicker } from '../../components/Parent/ColorPicker'
+import { PeriodicityPicker } from '../../components/Parent/PeriodicityPicker'
 import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
@@ -11,6 +12,8 @@ import { SortableList } from '../../components/Parent/SortableList'
 const defaultState = {
   title: 'Nome da rotina',
   color: '#0074D9',
+  isRepeat: false,
+  periodicity: [ 5, 6 ],
   createRoutine: true
 }
 
@@ -25,6 +28,7 @@ export default class RoutineFormScreen extends Component {
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
     this.onPhotoChange = this.onPhotoChange.bind(this)
+    this.togglePeriodicity = this.togglePeriodicity.bind(this)
   }
 
   onColorChange = code => {
@@ -41,6 +45,15 @@ export default class RoutineFormScreen extends Component {
 
   onActivityPress = (index) => {
     this.props.navigation.navigate('ActivityFormScreen', { activity: this.state.activities[index] })
+  }
+
+  togglePeriodicity = (index) => {
+    if (this.state.periodicity.includes(index)) this.setState({ periodicity: this.state.periodicity.filter(day => day !== index) })
+    else this.setState({ periodicity: [index, ...this.state.periodicity] })
+  }
+
+  toggleIsRepeat = () => {
+    this.setState({ isRepeat: !this.state.isRepeat })
   }
 
   removeRoutine = () => {
@@ -83,6 +96,7 @@ export default class RoutineFormScreen extends Component {
               <Label>Cor</Label>
               <ColorPicker color={this.state.color} colors={availableColors} onColorChange={this.onColorChange} />
             </Item>
+            <PeriodicityPicker color={this.state.color} isRepeat={this.state.isRepeat} periodicity={this.state.periodicity} togglePeriodicity={this.togglePeriodicity} toggleIsRepeat={this.toggleIsRepeat} />
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
             {this.state.activities && <Item stackedLabel style={{ borderColor: 'transparent' }}>
               <Label>Actividades</Label>

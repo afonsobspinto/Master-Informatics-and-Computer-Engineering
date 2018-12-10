@@ -26,6 +26,8 @@ const routines = [
     title: 'Após acordar',
     image: 'sun',
     color: '#37c1f0',
+    periodicity: [ 0, 1, 2, 3, 4 ],
+    isRepeat: true,
     activities: [
       {
         title: 'Fazer a cama',
@@ -113,6 +115,8 @@ const routines = [
     title: 'Antes de dormir',
     image: 'moon',
     color: '#011f39',
+    periodicity: [ 0, 1, 2, 3, 4, 5, 6 ],
+    isRepeat: true,
     activities: [
       {
         title: 'Ajudar na cozinha',
