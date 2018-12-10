@@ -32,7 +32,8 @@ export class RoutineBonusScreen extends Component {
         <BonusModal
           level={this.props.level}
           xp={this.props.xp}
-          nextPress={() => this.props.navigation.popToTop()} />
+          nextPress={() => this.props.navigation.popToTop()}
+          playSounds={this.props.playSounds} />
       </View>
     )
   }
@@ -42,7 +43,8 @@ export default connect(
   /* istanbul ignore next */
   state => ({
     xp: state.child.xp,
-    level: state.child.level
+    level: state.child.level,
+    playSounds: state.settings.playSounds
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -54,5 +56,6 @@ RoutineBonusScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   level: PropTypes.number.isRequired,
   xp: PropTypes.number.isRequired,
-  addStars: PropTypes.func.isRequired
+  addStars: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }
