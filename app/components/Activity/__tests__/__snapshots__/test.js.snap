@@ -18,9 +18,9 @@ exports[`Activity components renders CancelButton correctly 1`] = `
         },
         Object {
           "aspectRatio": 1,
-          "borderRadius": 53.35999999999999,
-          "height": 106.71999999999998,
-          "marginRight": 20.009999999999998,
+          "borderRadius": 50,
+          "height": 100,
+          "marginRight": 18.75,
         },
       ]
     }
@@ -56,8 +56,8 @@ exports[`Activity components renders CompleteButton correctly 1`] = `
       },
       Object {
         "aspectRatio": 1,
-        "borderRadius": 80.03999999999999,
-        "height": 160.07999999999998,
+        "borderRadius": 75,
+        "height": 150,
       },
     ]
   }
@@ -91,9 +91,9 @@ exports[`Activity components renders PauseButton correctly 1`] = `
       },
       Object {
         "aspectRatio": 1,
-        "borderRadius": 53.35999999999999,
-        "height": 106.71999999999998,
-        "marginRight": 20.009999999999998,
+        "borderRadius": 50,
+        "height": 100,
+        "marginRight": 18.75,
       },
     ]
   }
@@ -118,12 +118,12 @@ exports[`Activity components renders ProgressBar correctly 1 1`] = `
     Array [
       Object {
         "backgroundColor": "#c5cbd3",
-        "borderRadius": 53.35999999999999,
+        "borderRadius": 50,
         "elevation": 6,
         "flexGrow": 1,
-        "height": 106.71999999999998,
+        "height": 100,
         "justifyContent": "center",
-        "marginRight": 20.009999999999998,
+        "marginRight": 18.75,
         "overflow": "hidden",
         "position": "relative",
       },
@@ -147,7 +147,7 @@ exports[`Activity components renders ProgressBar correctly 1 1`] = `
     borderRadius={106.71999999999998}
     borderWidth={0}
     color="#474647"
-    height={106.71999999999998}
+    height={100}
     indeterminate={false}
     progress={0.8333333333333334}
     useNativeDriver={false}
@@ -162,7 +162,7 @@ exports[`Activity components renders ProgressBar correctly 1 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -178,7 +178,7 @@ exports[`Activity components renders ProgressBar correctly 1 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -194,7 +194,7 @@ exports[`Activity components renders ProgressBar correctly 1 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -210,12 +210,12 @@ exports[`Activity components renders ProgressBar correctly 2 1`] = `
     Array [
       Object {
         "backgroundColor": "#c5cbd3",
-        "borderRadius": 53.35999999999999,
+        "borderRadius": 50,
         "elevation": 6,
         "flexGrow": 1,
-        "height": 106.71999999999998,
+        "height": 100,
         "justifyContent": "center",
-        "marginRight": 20.009999999999998,
+        "marginRight": 18.75,
         "overflow": "hidden",
         "position": "relative",
       },
@@ -239,7 +239,7 @@ exports[`Activity components renders ProgressBar correctly 2 1`] = `
     borderRadius={106.71999999999998}
     borderWidth={0}
     color="#474647"
-    height={106.71999999999998}
+    height={100}
     indeterminate={false}
     progress={0.8333333333333334}
     useNativeDriver={false}
@@ -254,7 +254,7 @@ exports[`Activity components renders ProgressBar correctly 2 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -270,7 +270,7 @@ exports[`Activity components renders ProgressBar correctly 2 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -286,7 +286,7 @@ exports[`Activity components renders ProgressBar correctly 2 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -302,12 +302,12 @@ exports[`Activity components renders ProgressBar correctly 3 1`] = `
     Array [
       Object {
         "backgroundColor": "#c5cbd3",
-        "borderRadius": 53.35999999999999,
+        "borderRadius": 50,
         "elevation": 6,
         "flexGrow": 1,
-        "height": 106.71999999999998,
+        "height": 100,
         "justifyContent": "center",
-        "marginRight": 20.009999999999998,
+        "marginRight": 18.75,
         "overflow": "hidden",
         "position": "relative",
       },
@@ -331,7 +331,7 @@ exports[`Activity components renders ProgressBar correctly 3 1`] = `
     borderRadius={106.71999999999998}
     borderWidth={0}
     color="#474647"
-    height={106.71999999999998}
+    height={100}
     indeterminate={false}
     progress={0.8333333333333334}
     useNativeDriver={false}
@@ -346,7 +346,7 @@ exports[`Activity components renders ProgressBar correctly 3 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -362,7 +362,7 @@ exports[`Activity components renders ProgressBar correctly 3 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -378,7 +378,7 @@ exports[`Activity components renders ProgressBar correctly 3 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -394,12 +394,12 @@ exports[`Activity components renders ProgressBar correctly 4 1`] = `
     Array [
       Object {
         "backgroundColor": "#c5cbd3",
-        "borderRadius": 53.35999999999999,
+        "borderRadius": 50,
         "elevation": 6,
         "flexGrow": 1,
-        "height": 106.71999999999998,
+        "height": 100,
         "justifyContent": "center",
-        "marginRight": 20.009999999999998,
+        "marginRight": 18.75,
         "overflow": "hidden",
         "position": "relative",
       },
@@ -423,7 +423,7 @@ exports[`Activity components renders ProgressBar correctly 4 1`] = `
     borderRadius={106.71999999999998}
     borderWidth={0}
     color="#474647"
-    height={106.71999999999998}
+    height={100}
     indeterminate={false}
     progress={0.8333333333333334}
     useNativeDriver={false}
@@ -438,7 +438,7 @@ exports[`Activity components renders ProgressBar correctly 4 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -454,7 +454,7 @@ exports[`Activity components renders ProgressBar correctly 4 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -470,7 +470,7 @@ exports[`Activity components renders ProgressBar correctly 4 1`] = `
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 106.71999999999998,
+          "height": 100,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -487,14 +487,14 @@ exports[`Activity components renders ProgressClock correctly 1 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "black",
-        "borderRadius": 166.07999999999998,
-        "bottom": 40.019999999999996,
+        "borderRadius": 272.8,
+        "bottom": 37.5,
         "elevation": 6,
-        "height": 332.15999999999997,
+        "height": 545.6,
         "justifyContent": "center",
-        "left": 40.019999999999996,
+        "left": 37.5,
         "position": "absolute",
-        "width": 332.15999999999997,
+        "width": 545.6,
       },
       Object {
         "backgroundColor": "rgba(0, 0, 0, 1)",
@@ -509,8 +509,8 @@ exports[`Activity components renders ProgressClock correctly 1 1`] = `
     color="#474647"
     indeterminate={false}
     progress={0.8333333333333334}
-    size={320.15999999999997}
-    thickness={160.07999999999998}
+    size={533.6}
+    thickness={266.8}
     unfilledColor="#c5cbd3"
   />
 </AnimatedComponent>
@@ -523,14 +523,14 @@ exports[`Activity components renders ProgressClock correctly 2 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "black",
-        "borderRadius": 166.07999999999998,
-        "bottom": 40.019999999999996,
+        "borderRadius": 272.8,
+        "bottom": 37.5,
         "elevation": 6,
-        "height": 332.15999999999997,
+        "height": 545.6,
         "justifyContent": "center",
-        "left": 40.019999999999996,
+        "left": 37.5,
         "position": "absolute",
-        "width": 332.15999999999997,
+        "width": 545.6,
       },
       Object {
         "backgroundColor": "rgba(0, 0, 0, 1)",
@@ -545,8 +545,8 @@ exports[`Activity components renders ProgressClock correctly 2 1`] = `
     color="#474647"
     indeterminate={false}
     progress={0.8333333333333334}
-    size={320.15999999999997}
-    thickness={160.07999999999998}
+    size={533.6}
+    thickness={266.8}
     unfilledColor="#c5cbd3"
   />
 </AnimatedComponent>
@@ -559,14 +559,14 @@ exports[`Activity components renders ProgressClock correctly 3 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "black",
-        "borderRadius": 166.07999999999998,
-        "bottom": 40.019999999999996,
+        "borderRadius": 272.8,
+        "bottom": 37.5,
         "elevation": 6,
-        "height": 332.15999999999997,
+        "height": 545.6,
         "justifyContent": "center",
-        "left": 40.019999999999996,
+        "left": 37.5,
         "position": "absolute",
-        "width": 332.15999999999997,
+        "width": 545.6,
       },
       Object {
         "backgroundColor": "rgba(0, 0, 0, 1)",
@@ -581,8 +581,8 @@ exports[`Activity components renders ProgressClock correctly 3 1`] = `
     color="#474647"
     indeterminate={false}
     progress={0.8333333333333334}
-    size={320.15999999999997}
-    thickness={160.07999999999998}
+    size={533.6}
+    thickness={266.8}
     unfilledColor="#c5cbd3"
   />
 </AnimatedComponent>
