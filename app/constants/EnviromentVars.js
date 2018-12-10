@@ -1,8 +1,9 @@
 import { Constants } from 'expo'
+import localIP from './localIP'
 
 const ENV = {
   dev: {
-    apiUrl: 'http://10.0.0.11:8000/'
+    apiUrl: `http://${localIP.localIP}:8000/`
   },
   staging: {
     apiUrl: 'http://167.99.128.178:8080/'
