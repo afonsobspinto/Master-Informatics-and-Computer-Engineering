@@ -101,11 +101,11 @@ export default class ActivityFormScreen extends Component {
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
-          {!this.state.createActivity && <Right>
-            <Button transparent onPress={this.removeActivity}>
+          <Right>
+            {!this.state.createActivity && <Button transparent onPress={this.removeActivity}>
               <Icon name='md-trash' />
-            </Button>
-          </Right>}
+            </Button>}
+          </Right>
         </Header>
         <Content>
           <Form>
