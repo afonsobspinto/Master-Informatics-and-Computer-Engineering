@@ -67,7 +67,7 @@ export class RewardsModal extends React.Component {
           <TouchableOpacity
             activeOpacity={0.8}
             style={[styles.button, styles.nextButton]}
-            onPress={routineIsDone ? this.props.backPress : this.props.nextPress} >
+            onPress={this.props.nextPress} >
             <Image
               style={styles.buttonImage}
               resizeMode={'contain'}

@@ -539,7 +539,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
   style={
     Object {
       "backgroundColor": "transparent",
+      "height": "100%",
       "position": "relative",
+      "width": "100%",
     }
   }
   swipeThreshold={50}

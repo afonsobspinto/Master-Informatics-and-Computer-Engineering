@@ -8,7 +8,9 @@ const buttonHeight = Layout.window.width * 0.2 // * 15 / 9 * 0.12
 export default StyleSheet.create({
   rewardsModal: {
     backgroundColor: 'transparent',
-    position: 'relative'
+    position: 'relative',
+    height: '100%',
+    width: '100%'
   },
   rewardCard: {
     backgroundColor: backgroundColor,
@@ -94,6 +96,16 @@ export default StyleSheet.create({
     bottom: 2 * padding - buttonHeight / 2,
     flexDirection: 'row',
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 7
+  },
+  routineButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    padding: padding,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 7
