@@ -9,7 +9,9 @@ configure({ adapter: new Adapter() })
 
 describe('LoginScreen snapshot', () => {
   it('renders LoginScreen correctly', async () => {
-    const wrapper = shallow(<LoginScreen />)
+    const wrapper = shallow(<LoginScreen
+      navigation={{ navigate: jest.fn() }}
+    />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })

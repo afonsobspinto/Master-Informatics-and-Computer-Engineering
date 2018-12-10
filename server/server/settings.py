@@ -32,6 +32,16 @@ localIP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname
                                                                s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET,
                                                                                                                       socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
 
+# Path to save the file containing the local IP address
+pathToSaveFile = os.getcwd()+"../../app/constants/"
+
+completeFilePath = os.path.join(pathToSaveFile, "localIP.json")
+
+file = open(completeFilePath, "w")
+file.write(localIP)
+file.close()
+
+
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', localIP, '167.99.128.178']
 
 # Application definition

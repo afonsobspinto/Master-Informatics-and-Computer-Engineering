@@ -15,7 +15,9 @@ export default class LoginScreen extends Component {
       password: '',
       passwordError: true,
       emailHadInteraction: false,
-      passwordHadInteraction: false
+      passwordHadInteraction: false,
+      loginFailed: false,
+      errorMessage: 'As suas credenciais estão erradas!'
     }
   }
 
@@ -36,7 +38,7 @@ export default class LoginScreen extends Component {
           if (responseJson.status === '200') {
             this.props.navigation.navigate('MainMenu')
           } else {
-            // TODO: Password ou user incorretos
+            this.setState(() => ({ loginFailed: true }))
           }
           return responseJson
         })
@@ -63,6 +65,7 @@ export default class LoginScreen extends Component {
       }
       this.setState(() => ({ passwordHadInteraction: true, password: value }))
     }
+    this.setState(() => ({ loginFailed: false }))
   }
 
   render () {
@@ -91,6 +94,7 @@ export default class LoginScreen extends Component {
               />
             </Item>
 
+            {this.state.loginFailed && <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>}
             <Button rounded block primary style={styles.submitButton}>
               <Text style={styles.buttonText} onPress={() => this.handlePress(this.state.email, this.state.password)}>Login</Text>
             </Button>
