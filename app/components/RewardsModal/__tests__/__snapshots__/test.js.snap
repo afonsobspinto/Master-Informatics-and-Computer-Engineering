@@ -34,8 +34,12 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": "bedroom",
+          }
+        }
         style={
           Object {
             "height": "100%",
@@ -62,7 +66,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -90,7 +94,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -118,7 +122,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -146,7 +150,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -174,7 +178,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -202,7 +206,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {
@@ -230,7 +234,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     >
       <Image
-        recizeMode="cover"
+        resizeMode="cover"
         source={1}
         style={
           Object {

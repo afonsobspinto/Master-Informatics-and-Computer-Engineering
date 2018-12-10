@@ -65,15 +65,15 @@ export default class ActivityFormScreen extends Component {
     this.setState({ time })
   }
 
-  onPhotoChange = (uri) => {
-    this.setState({ photo: { uri } })
+  onPhotoChange = uri => {
+    this.setState({ photo: uri })
   }
 
-  onImageChange = (image) => {
+  onImageChange = image => {
     this.setState({ image: image })
   }
 
-  onRoutineChange = (index) => {
+  onRoutineChange = index => {
     this.setState({ routine: this.routines[index] })
   }
 

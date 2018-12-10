@@ -17,8 +17,6 @@ const images = {
   sleep: require('./activities/sleep.png'),
   socks: require('./activities/socks.png'),
   tea: require('./activities/tea.png'),
-  bedroom: require('./activities/bedroom.jpg'),
-  night: require('./routines/night.jpg'),
   pool: require('./pool.jpg'),
   avatar: require('./avatar.png'),
   cap: require('./cap.png'),

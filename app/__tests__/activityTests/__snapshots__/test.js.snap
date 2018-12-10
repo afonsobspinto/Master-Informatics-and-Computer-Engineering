@@ -21,7 +21,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -222,7 +226,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -423,7 +431,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -624,7 +636,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -825,7 +841,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -982,7 +1002,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -1139,7 +1163,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",

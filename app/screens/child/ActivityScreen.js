@@ -11,7 +11,7 @@ import { CompleteButton } from '../../components/Activity/CompleteButton'
 import { PauseButton } from '../../components/Activity/PauseButton'
 import { CancelButton } from '../../components/Activity/CancelButton'
 import { RewardsModal } from '../../components/RewardsModal/RewardsModal'
-import Images from '../../assets/images/images'
+import { getSource } from '../../helpers/GetSource'
 
 import styles from '../../styles/Activity.style'
 
@@ -100,15 +100,6 @@ export class ActivityScreen extends Component {
     this.setState(() => ({ isPaused: false }))
   }
 
-  returnURIorImage = () => {
-    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
-    if (this.props.activity.photo !== undefined && this.props.activity.photo.includes('file://')) {
-      return { uri: this.props.activity.photo }
-    } else {
-      return Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]
-    }
-  }
-
   render () {
     return (
       <View style={[{ backgroundColor: this.props.activity.color }, styles.activityScreen]} >
@@ -116,7 +107,7 @@ export class ActivityScreen extends Component {
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-          source={this.returnURIorImage()} />
+          source={getSource(this.props.activity)} />
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
