@@ -67,11 +67,11 @@ export default class RoutineFormScreen extends Component {
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
-          {!this.state.createRoutine && <Right>
-            <Button transparent onPress={this.removeRoutine}>
+          <Right>
+            {!this.state.createRoutine && <Button transparent onPress={this.removeRoutine}>
               <Icon name='md-trash' />
-            </Button>
-          </Right>}
+            </Button>}
+          </Right>
         </Header>
         <Content>
           <Form>
