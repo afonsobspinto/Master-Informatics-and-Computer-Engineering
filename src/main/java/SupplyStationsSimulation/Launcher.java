@@ -8,6 +8,7 @@ import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsDynamicBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Locations.RandomPositionsGenerator;
 import jade.core.Profile;
@@ -35,6 +36,7 @@ public class Launcher extends Repast3Launcher {
     private static int STATIC_SUPPLY_STATIONS;
     private static int DYNAMIC_SUPPLY_STATIONS;
     private static int WIDTH = 200, HEIGHT = 200;
+    private Statistics statistics;
 
     private ContainerController mainContainer;
     private DisplaySurface dsurf;
@@ -84,6 +86,7 @@ public class Launcher extends Repast3Launcher {
 
         try {
             launchAgents();
+            this.statistics = new Statistics();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -170,5 +173,9 @@ public class Launcher extends Repast3Launcher {
         chooseParams();
         SimInit init = new SimInit();
         init.loadModel(new Launcher(), null, false);
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 }

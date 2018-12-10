@@ -15,7 +15,7 @@ public class Statistics {
         return ourInstance;
     }
 
-    private Statistics() {
+    public Statistics() {
     }
 
     public AgentInfo getAgentInfo(AID aid){
@@ -30,6 +30,7 @@ public class Statistics {
     public void finishTick(){
         history.add(map);
     }
+
     public void export(){
 
     }

@@ -4,6 +4,7 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
+import SupplyStationsSimulation.Statistics.DriverInfo;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -166,6 +167,18 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.DRIVER;
+    }
+
+    public int getFuelToBuy() {
+        return fuelToBuy;
+    }
+
+    public int getExpectedTravelDuration() {
+        return expectedTravelDuration;
+    }
+
+    public int getDeFactoTravelDuration() {
+        return deFactoTravelDuration;
     }
 
     @Override

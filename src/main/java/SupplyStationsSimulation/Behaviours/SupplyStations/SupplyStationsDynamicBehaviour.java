@@ -1,9 +1,11 @@
 package SupplyStationsSimulation.Behaviours.SupplyStations;
 
+import SupplyStationsSimulation.Agents.BehaviourType;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Statistics.SupplyStationInfo;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
@@ -19,6 +21,8 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     private static int timeoutDeviation = 40;
     private static int timeoutMin = 10;
     private int currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
+    private SupplyStationInfo supplyStationInfo;
+    private int infoFlag = 0;
 
     public SupplyStationsDynamicBehaviour(SupplyStationAgent supplyStationAgent) {
         super();
@@ -27,12 +31,17 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     }
     @Override
     public void action() {
+        if(infoFlag == 500) {
+            this.supplyStationInfo = new SupplyStationInfo(this.supplyStationAgent.getPricePerLiter(), this.supplyStationAgent.getTicksToFuel(), this.supplyStationAgent.getTotalRequests(), BehaviourType.DYNAMIC);
+            this.infoFlag = 0;
+        }
         this.supplyStationAgent.updateDrivers();
         this.currentPriceTimeout--;
         if(this.currentPriceTimeout == 0) {
             this.supplyStationAgent.updatePrice();
             this.updatePriceTimeout();
         }
+        infoFlag++;
     }
 
     @Override

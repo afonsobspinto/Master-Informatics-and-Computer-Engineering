@@ -207,6 +207,8 @@ public class SupplyStationAgent extends DrawableAgent {
         return this.currentDriversWaiting.size();
     }
 
+    public int getTotalRequests() { return totalRequests;  }
+
     public void addDriver(AID driverAID) {
         this.currentDriversOnStation.put(driverAID, ticksToFuel);
         this.totalIncoming += fuelAdded * this.pricePerLiter;

@@ -1,7 +1,9 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
+import SupplyStationsSimulation.Agents.BehaviourType;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Statistics.DriverInfo;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -13,6 +15,8 @@ import java.util.List;
 
 public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
     private DriverAgent driverAgent;
+    private DriverInfo driverInfo;
+    private int infoFlag;
 
     public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
@@ -22,7 +26,14 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
+        if(infoFlag == 500){
+            this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
+                    this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.ADVENTUROUS);
+            infoFlag = 0;
+        }
+
         driverAgent.update();
+        infoFlag++;
     }
 
     @Override
