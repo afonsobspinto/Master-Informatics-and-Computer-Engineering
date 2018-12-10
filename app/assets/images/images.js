@@ -30,6 +30,7 @@ const images = {
     confirm: require('./navigation/confirm.png'),
     next: require('./navigation/next.png'),
     star: require('./star.png'),
+    sad: require('./sad.png'),
     info: require('./info-button.png')
   }
 }
