@@ -74,7 +74,7 @@ export class RewardsModal extends React.Component {
               source={Images.ui.next} />
           </TouchableOpacity>
         </View>
-        {this.props.activities[this.props.currentActivity].status && <RewardSound success={this.props.activities[this.props.currentActivity].status.reward !== 0} />}
+        {this.props.activities[this.props.currentActivity].status && <RewardSound success={this.props.activities[this.props.currentActivity].status.reward !== 0} playSounds={this.props.playSounds} />}
       </Modal>
     )
   }
@@ -86,5 +86,6 @@ RewardsModal.propTypes = {
   xp: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
   nextPress: PropTypes.func.isRequired,
-  backPress: PropTypes.func.isRequired
+  backPress: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

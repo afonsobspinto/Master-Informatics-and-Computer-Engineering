@@ -16,7 +16,8 @@ describe('root reducer', () => {
         activityFeedback: 'visual',
         feedbackFrequency: 'normal',
         visualStyle: 'cartoon',
-        routinePlayType: 'choose'
+        routinePlayType: 'choose',
+        playSounds: true
       },
       game: {
         routines: [

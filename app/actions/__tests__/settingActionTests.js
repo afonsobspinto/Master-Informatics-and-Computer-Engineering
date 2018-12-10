@@ -54,4 +54,11 @@ describe('setting actions', () => {
     }
     expect(settingActions.changeFeedbackFrequency()).toEqual(expectedAction)
   })
+
+  it('should create an action to change sound feedback', () => {
+    const expectedAction = {
+      type: settingTypes.togglePlaySounds
+    }
+    expect(settingActions.togglePlaySounds()).toEqual(expectedAction)
+  })
 })

@@ -53,7 +53,7 @@ export class BonusModal extends React.Component {
                 source={Images.ui.next} />
             </TouchableOpacity>
           </View>
-          <RewardSound success />
+          <RewardSound success playSounds={this.props.playSounds} />
         </View>
       </View>
     )
@@ -63,5 +63,6 @@ export class BonusModal extends React.Component {
 BonusModal.propTypes = {
   xp: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
-  nextPress: PropTypes.func.isRequired
+  nextPress: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

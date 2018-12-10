@@ -6,7 +6,8 @@ const initialState = {
   activityFeedback: 'visual',
   feedbackFrequency: 'normal',
   visualStyle: 'cartoon',
-  routinePlayType: 'choose'
+  routinePlayType: 'choose',
+  playSounds: true
 }
 
 export default function (state = initialState, { type, payload }) {
@@ -39,6 +40,8 @@ export default function (state = initialState, { type, payload }) {
       return state
     case settingTypes.toggleRoutinePlayType:
       return { ...state, routinePlayType: state.routinePlayType === 'choose' ? 'auto' : 'choose' }
+    case settingTypes.togglePlaySounds:
+      return { ...state, playSounds: !state.playSounds }
     default:
       return state
   }

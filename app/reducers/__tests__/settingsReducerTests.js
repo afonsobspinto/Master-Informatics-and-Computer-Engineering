@@ -9,7 +9,8 @@ describe('settings reducer', () => {
       activityFeedback: 'visual',
       feedbackFrequency: 'normal',
       visualStyle: 'cartoon',
-      routinePlayType: 'choose'
+      routinePlayType: 'choose',
+      playSounds: true
     })
   })
 
@@ -192,6 +193,28 @@ describe('settings reducer', () => {
       }))
       .toEqual({
         feedbackFrequency: 'error'
+      })
+  })
+
+  it('should toggle sound playback', () => {
+    expect(
+      settingsReducer({
+        playSounds: false
+      }, {
+        type: settingTypes.togglePlaySounds
+      }))
+      .toEqual({
+        playSounds: true
+      })
+
+    expect(
+      settingsReducer({
+        playSounds: true
+      }, {
+        type: settingTypes.togglePlaySounds
+      }))
+      .toEqual({
+        playSounds: false
       })
   })
 })

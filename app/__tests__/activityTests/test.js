@@ -17,6 +17,7 @@ describe('ActivityScreen snapshot', () => {
       activityFeedback={'vibration'}
       feedbackFrequency={'normal'}
       showTimer={false}
+      playSounds={false}
       currentActivity={0}
       activities={activities}
       activity={activities[0]}
