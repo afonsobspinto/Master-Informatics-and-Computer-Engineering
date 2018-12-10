@@ -10,6 +10,7 @@ import styles from '../../styles/RewardModal.style'
 import { PastActivityIcons } from './PastActivityIcons'
 import { RewardModalExperienceBar } from './RewardModalExperienceBar'
 import { RewardModalStars } from './RewardModalStars'
+import { RewardSound } from './RewardSound'
 
 export class RewardsModal extends React.Component {
   constructor (props) {
@@ -73,6 +74,7 @@ export class RewardsModal extends React.Component {
               source={Images.ui.next} />
           </TouchableOpacity>
         </View>
+        {this.props.activities[this.props.currentActivity].status && <RewardSound success={this.props.activities[this.props.currentActivity].status.reward !== 0} />}
       </Modal>
     )
   }

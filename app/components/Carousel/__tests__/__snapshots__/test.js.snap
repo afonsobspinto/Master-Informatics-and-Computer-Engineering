@@ -565,16 +565,6 @@ exports[`Carousel components renders CardCarousel correctly 1`] = `
                 "title": "Ajudar na cozinha",
               },
               Object {
-                "color": "#a3320b",
-                "image": "drawers",
-                "time": Object {
-                  "goal": 60,
-                  "max": 120,
-                  "min": 10,
-                },
-                "title": "Arrumar o quarto",
-              },
-              Object {
                 "color": "#657153",
                 "image": "paper",
                 "time": Object {
