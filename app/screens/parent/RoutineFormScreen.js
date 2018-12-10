@@ -31,15 +31,15 @@ export default class RoutineFormScreen extends Component {
     this.setState({ color: code })
   }
 
-  onPhotoChange = (uri) => {
-    this.setState({ photo: { uri } })
+  onPhotoChange = uri => {
+    this.setState({ photo: uri })
   }
 
-  onImageChange = (image) => {
+  onImageChange = image => {
     this.setState({ image: image })
   }
 
-  onActivityPress = (index) => {
+  onActivityPress = index => {
     this.props.navigation.navigate('ActivityFormScreen', { activity: this.state.activities[index] })
   }
 

@@ -3,7 +3,7 @@ import { View, Image } from 'react-native'
 import PropTypes from 'prop-types'
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/RewardModal.style'
-import Images from '../../assets/images/images'
+import { getSource } from '../../helpers/GetSource'
 
 export class PastActivityIcons extends React.Component {
   filterActivities = (_, index, array) => {
@@ -17,7 +17,7 @@ export class PastActivityIcons extends React.Component {
       .map((activity, index) => activity.status
         ? (<View key={index} style={styles.grayedOutActivityIcon} />)
         : (<View key={index} style={styles.grayedOutActivityIcon}>
-          <Image style={activity.photo ? styles.grayedOutActivityPhoto : styles.grayedOutActivityImage} recizeMode={'cover'} source={activity.photo ? Images[activity.photo] : Images[activity.image]} />
+          <Image style={activity.photo ? styles.grayedOutActivityPhoto : styles.grayedOutActivityImage} resizeMode={'cover'} source={getSource(activity)} />
         </View>)
       )
 
@@ -28,7 +28,7 @@ export class PastActivityIcons extends React.Component {
           return {
             counter: accumulator.counter + 1,
             views: [...accumulator.views, (<Animatable.View key={index} animation={'zoomIn'} delay={600 + accumulator.counter * 1000} style={[styles.pastActivityIcon, { backgroundColor: activity.color }]}>
-              <Image style={activity.photo ? styles.pastActivityPhoto : styles.pastActivityImage} recizeMode={'cover'} source={activity.photo ? Images[activity.photo] : Images[activity.image]} />
+              <Image style={activity.photo ? styles.pastActivityPhoto : styles.pastActivityImage} resizeMode={'cover'} source={getSource(activity)} />
             </Animatable.View>)]
           }
         } else {

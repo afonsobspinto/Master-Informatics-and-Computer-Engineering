@@ -16,7 +16,7 @@ export default function (state = initialState, { type, payload }) {
     case settingTypes.toggleActivityProgressType:
       return { ...state, activityProgressType: state.activityProgressType === 'bar' ? 'clock' : 'bar' }
     case settingTypes.changeVisualStyle:
-      return { ...state, visualStyle: payload }
+      return { ...state, visualStyle: state.visualStyle === 'cartoon' ? 'photo' : 'cartoon' }
     case settingTypes.toggleActivityTimer:
       return { ...state, activityShowTimer: !state.activityShowTimer }
     case settingTypes.toggleActivityFeedback:

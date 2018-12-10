@@ -59,11 +59,10 @@ describe('settings reducer', () => {
       settingsReducer({
         visualStyle: 'cartoon'
       }, {
-        type: settingTypes.changeVisualStyle,
-        payload: 'test'
+        type: settingTypes.changeVisualStyle
       }))
       .toEqual({
-        visualStyle: 'test'
+        visualStyle: 'photo'
       })
   })
 

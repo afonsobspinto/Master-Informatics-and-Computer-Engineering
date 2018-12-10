@@ -51,7 +51,7 @@ export class ImagePickerButtons extends Component {
       return (
         <View style={styles.itemContainer}>
           {this.props.photo && <View style={styles.imageContainer}>
-            <Image style={styles.photoPreview} source={this.props.photo} resizeMode={'contain'} />
+            <Image style={styles.photoPreview} source={{ uri: this.props.photo }} resizeMode={'contain'} />
           </View>}
           <View style={styles.imageButtonContainer}>
             <Button style={[styles.imageButton, { backgroundColor: this.props.color }]} onPress={() => this.imagePicker(true)}>
@@ -129,6 +129,6 @@ ImagePickerButtons.propTypes = {
   color: PropTypes.string.isRequired,
   onPhotoChange: PropTypes.func.isRequired,
   onImageChange: PropTypes.func.isRequired,
-  photo: PropTypes.object,
+  photo: PropTypes.string,
   image: PropTypes.string
 }
