@@ -19,6 +19,7 @@ export const gameTypes = {
 }
 
 export const childTypes = {
+  addChild: 'child:addChild',
   addStars: 'child:addStars',
   purchaseItem: 'child:purchaseItem',
   toggleLevelUpModal: 'child:toggleLevelUpModal'

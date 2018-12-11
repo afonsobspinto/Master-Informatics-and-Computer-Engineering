@@ -10,6 +10,8 @@ const initialState = {
 
 export default function (state = initialState, { type, payload }) {
   switch (type) {
+    case childTypes.addChild:
+      return { ...state, payload }
     case childTypes.addStars:
       let stars = state.stars + payload
       let xp = state.xp + payload
