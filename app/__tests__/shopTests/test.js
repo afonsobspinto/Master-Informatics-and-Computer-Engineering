@@ -14,7 +14,10 @@ describe('ShopScreen snapshot', () => {
     const wrapper = shallow(<ShopScreen
       stars={1}
       itemsOwned={[]}
-      purchaseItem={jest.fn()} />)
+      purchaseItem={jest.fn()}
+      gender={'M'}
+      toggleItem={jest.fn()}
+      itemsEquiped={[0, 1]} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })

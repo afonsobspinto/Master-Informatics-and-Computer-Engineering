@@ -55,17 +55,15 @@ exports[`ChildMainMenuScreen snapshot renders ChildMainMenuScreen correctly 1`] 
         }
       }
     >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": 562.5,
-            "position": "absolute",
-            "top": 0,
-            "width": 562.5,
-          }
+      <Avatar
+        button={true}
+        equiped={
+          Array [
+            0,
+            3,
+          ]
         }
+        gender="M"
       />
     </TouchableOpacity>
     <TouchableOpacity

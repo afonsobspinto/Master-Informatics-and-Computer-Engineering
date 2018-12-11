@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { toggleLevelUpModal } from '../../actions/childActions'
 import { ChildExperienceBar } from '../../components/ChildMainMenu/ChildExperienceBar'
 import { LevelUpModal } from '../../components/ChildMainMenu/LevelUpModal'
+import { Avatar } from '../../components/ChildMainMenu/Avatar'
 
 import Images from '../../assets/images/images'
 
@@ -66,7 +67,7 @@ export class ChildMainMenuScreen extends Component {
             style={styles.profileButton}
             onPress={() => { this.props.navigation.navigate('ShopScreen') }}
             activeOpacity={0.9} >
-            <Image style={styles.profileImage} resizeMode={'contain'} source={Images.avatar} />
+            <Avatar button equiped={this.props.itemsEquiped} gender={this.props.gender} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
@@ -92,6 +93,8 @@ export default connect(
   state => ({
     level: state.child.level,
     xp: state.child.xp,
+    gender: state.child.gender,
+    itemsEquiped: state.child.itemsEquiped,
     showLevelUpModal: state.child.showLevelUpModal,
     playSounds: state.settings.playSounds
   }),
@@ -107,5 +110,7 @@ ChildMainMenuScreen.propTypes = {
   xp: PropTypes.number.isRequired,
   showLevelUpModal: PropTypes.bool.isRequired,
   toggleLevelUpModal: PropTypes.func.isRequired,
-  playSounds: PropTypes.bool.isRequired
+  playSounds: PropTypes.bool.isRequired,
+  gender: PropTypes.string.isRequired,
+  itemsEquiped: PropTypes.array.isRequired
 }

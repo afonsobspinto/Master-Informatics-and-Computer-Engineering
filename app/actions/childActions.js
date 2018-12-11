@@ -14,6 +14,13 @@ export function purchaseItem (cost, id) {
   }
 }
 
+export function toggleItem (id) {
+  return {
+    type: childTypes.toggleItem,
+    payload: id
+  }
+}
+
 export function toggleLevelUpModal () {
   return {
     type: childTypes.toggleLevelUpModal

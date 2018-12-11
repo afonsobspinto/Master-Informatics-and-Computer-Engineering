@@ -4,10 +4,12 @@ import { childTypes } from '../../actions/actionTypes'
 describe('child reducer', () => {
   it('should return initial state', () => {
     expect(childReducer(undefined, {})).toEqual({
-      stars: 100,
+      stars: 300,
       level: 4,
       xp: 460,
+      gender: 'F',
       itemsOwned: [],
+      itemsEquiped: [],
       showLevelUpModal: true
     })
   })
@@ -85,6 +87,30 @@ describe('child reducer', () => {
       }))
       .toEqual({
         showLevelUpModal: true
+      })
+  })
+
+  it('should toggle equiped item', () => {
+    expect(
+      childReducer({
+        itemsEquiped: [1]
+      }, {
+        type: childTypes.toggleItem,
+        payload: 1
+      }))
+      .toEqual({
+        itemsEquiped: []
+      })
+
+    expect(
+      childReducer({
+        itemsEquiped: [2]
+      }, {
+        type: childTypes.toggleItem,
+        payload: 3
+      }))
+      .toEqual({
+        itemsEquiped: [2, 3]
       })
   })
 })
