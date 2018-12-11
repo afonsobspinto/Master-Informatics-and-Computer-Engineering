@@ -38,7 +38,7 @@ export default class RewardFormScreen extends Component {
             <Input onChangeText={text => this.setState({ title: text })} />
           </Item>
           <ImagePickerButtons color={'#0074D9'} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-          <BottomButton color={'#0074D9'} text={'Criar prémio'} onPress={() => null} />
+          <BottomButton color={'#0074D9'} text={'Criar prémio'} onPress={() => this.props.navigation.pop()} />
         </Form>
       </Container>
     )
