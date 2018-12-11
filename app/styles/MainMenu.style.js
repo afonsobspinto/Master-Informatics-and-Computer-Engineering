@@ -12,6 +12,10 @@ export default StyleSheet.create({
     alignContent: 'center',
     backgroundColor: backgroundColor
   },
+  childButtonsContainer: {
+    flex: 1,
+    paddingTop: 30
+  },
   experienceBarContainer: {
     flex: 0
   },
@@ -30,15 +34,17 @@ export default StyleSheet.create({
     width: '100%'
   },
   infoButton: {
-    left: 250,
-    top: 50,
-    height: '5%',
-    width: '5%'
+    right: 20,
+    top: 20,
+    position: 'absolute',
+    height: 30,
+    width: 30
   },
   childContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: 30
   },
   parentContainer: {
     justifyContent: 'center',

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { StatusBar, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
+import { connect } from 'react-redux'
+import { login } from '../actions/userActions'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
 import EnvVars from '../constants/EnviromentVars'
 
-export default class RegisterScreen extends Component {
+export class RegisterScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -36,7 +38,8 @@ export default class RegisterScreen extends Component {
       }).then((response) => response.json())
         .then((responseJson) => {
           if (responseJson.status === '200') {
-            this.props.navigation.navigate('MainMenu')
+            this.props.login(this.state.email)
+            this.props.navigation.navigate('ChildFormScreen', { afterRegisterScreen: true })
           } else {
             this.setState(() => ({ emailErrorMessage: 'Este e-mail já está a ser utilizado!' }))
           }
@@ -71,7 +74,6 @@ export default class RegisterScreen extends Component {
   render () {
     return (
       <Container style={styles.registerContainter}>
-        <StatusBar hidden />
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
@@ -97,8 +99,8 @@ export default class RegisterScreen extends Component {
               />
             </Item>
 
-            <Button rounded block primary style={styles.submitButton}>
-              <Text style={styles.buttonText} onPress={() => this.handlePress(this.state.email, this.state.password)}>Concluir Registo</Text>
+            <Button rounded block primary style={styles.submitButton} onPress={() => this.handlePress(this.state.email, this.state.password)}>
+              <Text style={styles.buttonText}>Concluir Registo</Text>
             </Button>
           </Form>
 
@@ -112,6 +114,18 @@ export default class RegisterScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+
+  }),
+  /* istanbul ignore next */
+  dispatch => ({
+    login: (email) => dispatch(login(email))
+  })
+)(RegisterScreen)
+
 RegisterScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired
 }

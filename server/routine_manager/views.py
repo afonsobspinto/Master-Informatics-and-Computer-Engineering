@@ -10,7 +10,7 @@ from .models import Child, UserInfo
 def index(request):
     return JsonResponse({'foo': 'bar'})
 
-
+#TODO: try and catch
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -33,6 +33,7 @@ def login(request):
             return JsonResponse({'status': '400'})
 
 
+#TODO: Add try and catch
 @csrf_exempt
 def add_child(request):
     if request.method == 'POST':

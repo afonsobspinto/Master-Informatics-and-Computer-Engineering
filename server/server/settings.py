@@ -44,7 +44,7 @@ with open(completeFilePath, 'w') as outfile:
     json.dump(data, outfile)
 
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', localIP, '167.99.128.178']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', localIP, '167.99.128.178', '10.0.2.2']
 
 # Application definition
 

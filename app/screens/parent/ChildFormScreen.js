@@ -1,33 +1,45 @@
 import React, { Component } from 'react'
-import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { Body, Header, Icon, Left, Right, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { BackHandler } from 'react-native'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
+import { PhotoPickerButton } from '../../components/Parent/PhotoPickerButton'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import EnvVars from '../../constants/EnviromentVars'
 
-export default class ChildFormScreen extends Component {
+export class ChildFormScreen extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      title: 'Adicionar Nova Criança',
+      title: 'Adicionar Criança',
       color: '#0074D9',
-      childName: 'Nova Criança',
-      childPhoto: null
+      name: '',
+      photo: undefined,
+      afterRegister: this.props.navigation.getParam('afterRegisterScreen', false)
     }
+    this.handlePress = this.handlePress.bind(this)
+  }
+
+  removeBackButton () {
+    return true // To be called by andrdid back button
+  }
+
+  componentDidMount () {
+    if (this.state.afterRegister) BackHandler.addEventListener('hardwareBackPress', this.removeBackButton)
+  }
+
+  componentWillUnmount () {
+    if (this.state.afterRegister) BackHandler.removeEventListener('hardwareBackPress', this.removeBackButton)
   }
 
   onPhotoChange = (uri) => {
     this.setState({ photo: { uri } })
   }
 
-  onImageChange = (image) => {
-    this.setState({ image: image })
-  }
-
   handlePress () {
-    if (this.state.childName) {
+    if (this.state.name) {
       fetch(EnvVars.apiUrl + 'routine_manager/add-child/', {
         method: 'POST',
         headers: {
@@ -35,10 +47,10 @@ export default class ChildFormScreen extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userEmail: 'A@a.com', // TODO: this.props.userEmail
-          name: this.state.childName,
+          userEmail: this.props.loggedUserEmail,
+          name: this.state.name,
           gender: 'M', // TODO: this.props.gender Gender deve ser um F ou um M
-          image: this.state.image
+          image: 'image' // TODO: nome da imagem
         })
       }).then((response) => response.json())
         .then((responseJson) => {
@@ -58,26 +70,28 @@ export default class ChildFormScreen extends Component {
   }
 
   render () {
+    console.log(this.state.name)
     return (
       <Container>
         <Header style={{ backgroundColor: this.state.color }} androidStatusBarColor={this.state.color}>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.pop()}>
+            {!this.state.afterRegister && <Button transparent onPress={() => this.props.navigation.pop()}>
               <Icon name='arrow-back' />
-            </Button>
+            </Button>}
           </Left>
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
+          <Right />
         </Header>
         <Content>
           <Form>
             <Item stackedLabel>
               <Label>Nome</Label>
-              <Input value={this.state.childName} onChangeText={text => this.setState({ childName: text })} />
+              <Input value={this.state.name} onChangeText={text => this.setState({ name: text })} />
             </Item>
-            <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-            <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={() => this.handlePress()} />
+            <PhotoPickerButton color={this.state.color} onPhotoChange={this.onPhotoChange} photo={this.state.photo} />
+            <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={this.handlePress} />
           </Form>
         </Content>
       </Container>
@@ -85,6 +99,14 @@ export default class ChildFormScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  })
+)(ChildFormScreen)
+
 ChildFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }

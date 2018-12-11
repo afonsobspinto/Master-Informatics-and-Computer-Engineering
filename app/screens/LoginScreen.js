@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { StatusBar, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
+import { connect } from 'react-redux'
+import { login } from '../actions/userActions'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
 import EnvVars from '../constants/EnviromentVars'
 
-export default class LoginScreen extends Component {
+export class LoginScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -36,6 +38,7 @@ export default class LoginScreen extends Component {
       }).then((response) => response.json())
         .then((responseJson) => {
           if (responseJson.status === '200') {
+            this.props.login(this.state.email)
             this.props.navigation.navigate('MainMenu')
           } else {
             this.setState(() => ({ loginFailed: true }))
@@ -71,7 +74,6 @@ export default class LoginScreen extends Component {
   render () {
     return (
       <Container style={styles.registerContainter}>
-        <StatusBar hidden />
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Início de sessão</Text>
           <Form>
@@ -95,8 +97,8 @@ export default class LoginScreen extends Component {
             </Item>
 
             {this.state.loginFailed && <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>}
-            <Button rounded block primary style={styles.submitButton}>
-              <Text style={styles.buttonText} onPress={() => this.handlePress(this.state.email, this.state.password)}>Login</Text>
+            <Button rounded block primary style={styles.submitButton} onPress={() => this.handlePress(this.state.email, this.state.password)}>
+              <Text style={styles.buttonText}>Login</Text>
             </Button>
           </Form>
 
@@ -110,6 +112,18 @@ export default class LoginScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+
+  }),
+  /* istanbul ignore next */
+  dispatch => ({
+    login: (email) => dispatch(login(email))
+  })
+)(LoginScreen)
+
 LoginScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired
 }
