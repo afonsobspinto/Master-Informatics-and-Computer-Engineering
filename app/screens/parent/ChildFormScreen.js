@@ -56,10 +56,10 @@ export class ChildFormScreen extends Component {
         .then((responseJson) => {
           if (responseJson.status === '200') {
             console.log('Criança Adicionada')
-            // TODO: Criança Adicionada
+            if (this.state.afterRegister) this.props.navigation.replace('MainMenu')
+            else this.props.navigation.popToTop()
           } else {
             console.log('Criança Não Adicionada')
-            // TODO: Criança Não Adicionada
           }
           return responseJson
         })

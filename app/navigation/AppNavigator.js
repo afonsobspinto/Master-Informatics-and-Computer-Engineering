@@ -8,8 +8,8 @@ import AppIntroScreen from '../screens/parent/AppIntroScreen'
 import ChildFormScreen from '../screens/parent/ChildFormScreen'
 
 export default createStackNavigator({
-  RegisterMenu: RegisterScreen,
   LoginMenu: LoginScreen,
+  RegisterMenu: RegisterScreen,
   MainMenu: MainMenuScreen,
   ChildMainMenu: ChildNavigator,
   ParentMainMenu: ParentNavigator,

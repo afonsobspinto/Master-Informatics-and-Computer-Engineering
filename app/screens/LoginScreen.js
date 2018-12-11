@@ -39,7 +39,7 @@ export class LoginScreen extends Component {
         .then((responseJson) => {
           if (responseJson.status === '200') {
             this.props.login(this.state.email)
-            this.props.navigation.navigate('MainMenu')
+            this.props.navigation.replace('MainMenu')
           } else {
             this.setState(() => ({ loginFailed: true }))
           }
@@ -104,7 +104,7 @@ export class LoginScreen extends Component {
 
           <View style={styles.loginTextContainer}>
             <Text style={styles.loginText}>Não possui uma conta?</Text>
-            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('RegisterMenu')} >Registe-se aqui</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('RegisterMenu')} >Registe-se aqui</Text>
           </View>
         </Content>
       </Container>

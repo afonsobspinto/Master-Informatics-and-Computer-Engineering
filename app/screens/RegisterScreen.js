@@ -39,7 +39,7 @@ export class RegisterScreen extends Component {
         .then((responseJson) => {
           if (responseJson.status === '200') {
             this.props.login(this.state.email)
-            this.props.navigation.navigate('ChildFormScreen', { afterRegisterScreen: true })
+            this.props.navigation.replace('ChildFormScreen', { afterRegisterScreen: true })
           } else {
             this.setState(() => ({ emailErrorMessage: 'Este e-mail já está a ser utilizado!' }))
           }
@@ -106,7 +106,7 @@ export class RegisterScreen extends Component {
 
           <View style={styles.loginTextContainer}>
             <Text style={styles.loginText}>Já possui uma conta?</Text>
-            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.navigate('LoginMenu')}>Faça login aqui!</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('LoginMenu')}>Faça login aqui!</Text>
           </View>
         </Content>
       </Container>
