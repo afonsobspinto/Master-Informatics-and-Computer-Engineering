@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
-
 from .models import Child, UserInfo
 
 
@@ -60,16 +59,15 @@ def push_token(request):
         return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 
-@csrf_exempt
-def handle_uploaded_file(title,f):
-    with open('routine_manager/assets/images/' + title, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
 
 @csrf_exempt
 def add_image(request):
     if request.method == 'POST':
-        handle_uploaded_file('image1', request.body)
-        return JsonResponse({'status': '200'})  
-    return JsonResponse({'status': '400'})
+        handle_uploaded_file(request.FILES['photo'])
+        return JsonResponse({'status': '200'})
 
+
+def handle_uploaded_file(f):
+    with open('routine_manager/assets/images/' + f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)

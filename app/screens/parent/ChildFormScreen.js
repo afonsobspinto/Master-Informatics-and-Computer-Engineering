@@ -99,7 +99,6 @@ export class ChildFormScreen extends Component {
   }
 
   render () {
-    console.log(this.state.name)
     return (
       <Container>
         <Header style={{ backgroundColor: this.state.color }} androidStatusBarColor={this.state.color}>
