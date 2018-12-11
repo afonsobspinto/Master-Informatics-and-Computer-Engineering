@@ -145,3 +145,5 @@ STATIC_URL = '/static/'
 # Plug XMLTestRunner
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
 TEST_OUTPUT_FILE_NAME = 'tests_report.xml'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10486860

@@ -19,7 +19,7 @@ export class ChildFormScreen extends Component {
       photo: undefined,
       afterRegister: this.props.navigation.getParam('afterRegisterScreen', false)
     }
-    this.handlePress = this.handlePress.bind(this)
+    this.handleServerRequests = this.handleServerRequests.bind(this)
   }
 
   removeBackButton () {
@@ -36,6 +36,30 @@ export class ChildFormScreen extends Component {
 
   onPhotoChange = (uri) => {
     this.setState({ photo: { uri } })
+  }
+
+  async uploadImageAsync (uri) {
+    let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
+
+    let uriParts = uri.split('.')
+    let fileType = uriParts[uriParts.length - 1]
+
+    let formData = new FormData()
+    formData.append('photo', {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    })
+
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return fetch(apiUrl, options)
   }
 
   handlePress () {
@@ -69,6 +93,11 @@ export class ChildFormScreen extends Component {
     }
   }
 
+  handleServerRequests () {
+    this.handlePress()
+    this.uploadImageAsync(this.state.photo.uri)
+  }
+
   render () {
     console.log(this.state.name)
     return (
@@ -91,7 +120,7 @@ export class ChildFormScreen extends Component {
               <Input value={this.state.name} onChangeText={text => this.setState({ name: text })} />
             </Item>
             <PhotoPickerButton color={this.state.color} onPhotoChange={this.onPhotoChange} photo={this.state.photo} />
-            <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={this.handlePress} />
+            <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={this.handleServerRequests} />
           </Form>
         </Content>
       </Container>
