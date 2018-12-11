@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
 
-from .models import Child, UserInfo
+from .models import Child, UserInfo, Settings
 
 
 def index(request):
@@ -17,6 +17,9 @@ def register(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         User.objects.create_user(username=body['email'], email=body['email'], password=body['password'])
+        user = User.objects.get(username=body['email'])
+        settings = Settings(user=user)
+        settings.save()
         return JsonResponse({'status': '200'})
 
 

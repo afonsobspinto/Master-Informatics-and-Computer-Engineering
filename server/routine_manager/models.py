@@ -46,3 +46,13 @@ class Routine(models.Model):
     timeGoal = models.IntegerField(default=0)
     timeMax = models.IntegerField(default=0)
     timeMin = models.IntegerField(default=0)
+
+class Settings(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    activityProgressType = models.CharField(max_length=10, default='bar')
+    activityShowTimer = models.BooleanField(default=False)
+    activityFeedback = models.CharField(max_length=15, default='visual')
+    feedbackFrequency = models.CharField(max_length=15, default='normal')
+    visualStyle = models.CharField(max_length=15, default='cartoon')
+    routinePlayType = models.CharField(max_length=15, default='choose')
+    playSounds = models.BooleanField(default=True)
