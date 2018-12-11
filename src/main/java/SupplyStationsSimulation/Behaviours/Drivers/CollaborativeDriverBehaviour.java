@@ -20,7 +20,6 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private DriverAgent driverAgent;
     private DriverInfo driverInfo;
-    private int infoFlag;
 
     public CollaborativeDriverBehaviour(DriverAgent a) {
         super(a);
@@ -30,14 +29,7 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     @Override
     public void action() {
-        if(infoFlag == 500){
-            this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
-                    this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.COLLABORATIVE);
-            infoFlag = 0;
-        }
-
         driverAgent.update();
-        infoFlag++;
     }
 
     @Override
@@ -181,5 +173,11 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
             }
         }
         return null;
+    }
+
+    public void saveStatistics(){
+        this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
+                this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.COLLABORATIVE);
+        this.driverAgent.getStatistics().updateAgentInfo(this.driverAgent.getAID(), this.driverInfo);
     }
 }

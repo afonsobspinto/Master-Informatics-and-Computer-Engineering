@@ -22,7 +22,6 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     private static int timeoutMin = 10;
     private int currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
     private SupplyStationInfo supplyStationInfo;
-    private int infoFlag = 0;
 
     public SupplyStationsDynamicBehaviour(SupplyStationAgent supplyStationAgent) {
         super();
@@ -31,17 +30,12 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     }
     @Override
     public void action() {
-        if(infoFlag == 500) {
-            this.supplyStationInfo = new SupplyStationInfo(this.supplyStationAgent.getPricePerLiter(), this.supplyStationAgent.getTicksToFuel(), this.supplyStationAgent.getTotalRequests(), BehaviourType.DYNAMIC);
-            this.infoFlag = 0;
-        }
         this.supplyStationAgent.updateDrivers();
         this.currentPriceTimeout--;
         if(this.currentPriceTimeout == 0) {
             this.supplyStationAgent.updatePrice();
             this.updatePriceTimeout();
         }
-        infoFlag++;
     }
 
     @Override
@@ -58,6 +52,11 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
 
     public void updatePriceTimeout(){
         currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
+    }
+
+    public void saveStatistics(){
+        this.supplyStationInfo = new SupplyStationInfo(this.supplyStationAgent.getPricePerLiter(), this.supplyStationAgent.getTicksToFuel(), this.supplyStationAgent.getTotalRequests(), BehaviourType.DYNAMIC);
+        this.supplyStationAgent.getStatistics().updateAgentInfo(this.supplyStationAgent.getAID(), this.supplyStationInfo);
     }
 
 }

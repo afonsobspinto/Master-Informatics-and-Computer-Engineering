@@ -4,7 +4,9 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
+import SupplyStationsSimulation.Launcher;
 import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -65,13 +67,15 @@ public class DriverAgent extends DrawableAgent {
     private Map<AID, SupplyStationInfo> supplyStationsInfo = new HashMap<>();
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
+    private Statistics statistics;
 
-    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
+    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map, Statistics statistics) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
+        this.statistics = statistics;
     }
 
     public void calculateInitialPath() {
@@ -179,6 +183,10 @@ public class DriverAgent extends DrawableAgent {
 
     public int getDeFactoTravelDuration() {
         return deFactoTravelDuration;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     @Override

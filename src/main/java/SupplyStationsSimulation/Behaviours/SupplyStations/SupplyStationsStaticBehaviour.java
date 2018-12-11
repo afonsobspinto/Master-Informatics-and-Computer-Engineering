@@ -12,7 +12,6 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
     private boolean isDone = false;
     private SupplyStationAgent supplyStationAgent;
     private SupplyStationInfo supplyStationInfo;
-    private int infoFlag = 0;
 
     public SupplyStationsStaticBehaviour(SupplyStationAgent supplyStationAgent) {
         super();
@@ -21,12 +20,7 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
 
     @Override
     public void action() {
-        if(infoFlag == 500) {
-            this.supplyStationInfo = new SupplyStationInfo(this.supplyStationAgent.getPricePerLiter(), this.supplyStationAgent.getTicksToFuel(), this.supplyStationAgent.getTotalRequests(), BehaviourType.STATIC);
-            this.infoFlag = 0;
-        }
         this.supplyStationAgent.updateDrivers();
-        infoFlag++;
     }
 
     @Override
@@ -41,5 +35,8 @@ public class SupplyStationsStaticBehaviour extends Behaviour implements ACLMessa
 
     }
 
-
+    public void saveStatistics(){
+        this.supplyStationInfo = new SupplyStationInfo(this.supplyStationAgent.getPricePerLiter(), this.supplyStationAgent.getTicksToFuel(), this.supplyStationAgent.getTotalRequests(), BehaviourType.STATIC);
+        this.supplyStationAgent.getStatistics().updateAgentInfo(this.supplyStationAgent.getAID(), this.supplyStationInfo);
+    }
 }

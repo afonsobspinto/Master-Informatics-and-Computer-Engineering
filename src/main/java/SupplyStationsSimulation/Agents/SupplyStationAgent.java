@@ -2,6 +2,7 @@ package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -46,14 +47,15 @@ public class SupplyStationAgent extends DrawableAgent {
     private static int fuelAdded = 50;
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
+    private Statistics statistics;
 
 
-    public SupplyStationAgent(String nickname, Color color, Position location) {
+    public SupplyStationAgent(String nickname, Color color, Position location, Statistics statistics) {
         this.nickname = nickname;
         this.color = color;
         this.position = location;
         this.pricePerLiter = pricePerLiter;
-
+        this.statistics = statistics;
     }
 
 
@@ -113,6 +115,10 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.SUPPLYSTATION;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     public void handleMessage(Message message) {

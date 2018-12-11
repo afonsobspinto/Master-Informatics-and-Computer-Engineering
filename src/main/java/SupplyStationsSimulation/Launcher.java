@@ -40,7 +40,6 @@ public class Launcher extends Repast3Launcher {
 
     private ContainerController mainContainer;
     private DisplaySurface dsurf;
-    private List<DriverAgent> adventurousDrivers, collaborativeDrivers;
     private DrawableMap drawableMap;
 
     @Override
@@ -96,8 +95,6 @@ public class Launcher extends Repast3Launcher {
     private void launchAgents() {
         new Random(System.currentTimeMillis());
 
-        collaborativeDrivers = new ArrayList<>();
-        adventurousDrivers = new ArrayList<>();
         drawableMap = new DrawableMap(WIDTH, HEIGHT);
         launchDrivers();
 
@@ -109,7 +106,7 @@ public class Launcher extends Repast3Launcher {
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
-                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap, statistics);
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
@@ -117,7 +114,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
-                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap);
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap, statistics);
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
@@ -125,7 +122,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < STATIC_SUPPLY_STATIONS; i++) {
                 String nickname = "StaticSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop());
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(), statistics);
                 supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
@@ -133,7 +130,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < DYNAMIC_SUPPLY_STATIONS; i++) {
                 String nickname = "DynamicSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop());
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(), statistics);
                 supplyStationAgent.addBehaviour(new SupplyStationsDynamicBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);

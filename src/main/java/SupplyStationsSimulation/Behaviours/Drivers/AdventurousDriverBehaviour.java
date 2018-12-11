@@ -14,9 +14,9 @@ import sajas.core.behaviours.Behaviour;
 import java.util.List;
 
 public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
+
     private DriverAgent driverAgent;
     private DriverInfo driverInfo;
-    private int infoFlag;
 
     public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
@@ -26,14 +26,7 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
 
     @Override
     public void action() {
-        if(infoFlag == 500){
-            this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
-                    this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.ADVENTUROUS);
-            infoFlag = 0;
-        }
-
         driverAgent.update();
-        infoFlag++;
     }
 
     @Override
@@ -70,7 +63,13 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
     }
 
-    private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine){
-        return (int) Math.ceil((waitingLine*1.0 / totalGasPumps) * ticksToFuel);
+    private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
+        return (int) Math.ceil((waitingLine * 1.0 / totalGasPumps) * ticksToFuel);
+    }
+
+    public void saveStatistics(){
+        this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
+                this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.ADVENTUROUS);
+        this.driverAgent.getStatistics().updateAgentInfo(this.driverAgent.getAID(), this.driverInfo);
     }
 }
