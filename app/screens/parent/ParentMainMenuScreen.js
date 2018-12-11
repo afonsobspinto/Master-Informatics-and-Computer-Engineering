@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
+import { StatusBar, StyleSheet } from 'react-native'
+import { Container, Header, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
 import RewardsScreen from './RewardsScreen'
+import { ActivityScreen } from './ActivityScreen'
 import SettingsScreen from './SettingsScreen'
 import ActionButton from 'react-native-action-button'
 import PropTypes from 'prop-types'
@@ -20,7 +21,7 @@ export default class ParentMainMenuScreen extends React.Component {
   renderSelectedTab = () => {
     switch (this.state.selectedTab) {
       case 'activity':
-        return (<Content />)
+        return (<ActivityScreen />)
       case 'routines':
         return (<RoutinesScreen navigation={this.props.navigation} />)
       case 'rewards':
@@ -56,6 +57,7 @@ export default class ParentMainMenuScreen extends React.Component {
   render () {
     return (
       <Container>
+        <StatusBar hidden={false} />
         <Header>
           <Body>
             <Title>{this.state.title}</Title>
