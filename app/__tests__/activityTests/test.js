@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
 import { ActivityScreen } from '../../screens/child/ActivityScreen'
-import { activities } from '../mockTestData'
+import { activities } from '../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 

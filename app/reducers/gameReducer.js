@@ -1,5 +1,5 @@
 import { gameTypes } from '../actions/actionTypes'
-import { routines } from '../__tests__/mockTestData'
+import { routines } from '../constants/mockTestData'
 
 const initialState = {
   routines: routines,

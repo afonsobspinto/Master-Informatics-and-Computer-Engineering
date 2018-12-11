@@ -1,5 +1,5 @@
 import rootReducer from '../rootReducer'
-import { routines } from '../../__tests__/mockTestData'
+import { routines } from '../../constants/mockTestData'
 
 describe('root reducer', () => {
   it('should return initial state', () => {

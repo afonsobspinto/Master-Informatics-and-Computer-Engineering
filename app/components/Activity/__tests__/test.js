@@ -4,7 +4,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { activities } from '../../../__tests__/mockTestData'
+import { activities } from '../../../constants/mockTestData'
 
 import { CancelButton } from '../CancelButton'
 import { CompleteButton } from '../CompleteButton'

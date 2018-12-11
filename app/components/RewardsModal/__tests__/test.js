@@ -8,7 +8,7 @@ import { PastActivityIcons } from '../PastActivityIcons'
 import { RewardsModal } from '../RewardsModal'
 import { RewardModalExperienceBar } from '../RewardModalExperienceBar'
 import { RewardModalStars } from '../RewardModalStars'
-import { activities, activitiesWithStatus } from '../../../__tests__/mockTestData'
+import { activities, activitiesWithStatus } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 
