@@ -68,6 +68,7 @@ expo-prod-deployments:
 expo-staging-deployments:
   only:
     - development
+    - pipeline-fix
   stage: deploy
   <<: *install_app_dependencies
   script:

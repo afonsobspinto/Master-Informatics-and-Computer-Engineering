@@ -19,7 +19,7 @@ export default class MainMenuScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('ChildMainMenu')}>
             <Image style={styles.buttonImage} source={Images.child} resizeMode={'contain'} />
           </TouchableOpacity>
-          <Text style={styles.childName}>Miguel</Text>
+          <Text style={styles.childName}>Mano</Text>
         </View>
         <View style={styles.parentContainer}>
           <TouchableOpacity

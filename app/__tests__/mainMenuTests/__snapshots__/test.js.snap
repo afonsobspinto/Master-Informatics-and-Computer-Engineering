@@ -89,7 +89,7 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
         }
       }
     >
-      Miguel
+      Mano
     </Text>
   </Component>
   <Component
