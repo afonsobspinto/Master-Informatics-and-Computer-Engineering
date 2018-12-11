@@ -3,9 +3,7 @@ package SupplyStationsSimulation.Statistics;
 import SupplyStationsSimulation.Agents.Type;
 import jade.core.AID;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,9 +36,6 @@ public class Statistics {
     }
 
     public void export(){
-
-        File file = new File("SSStatistics.txt");
-        FileWriter fr = null;
         StringBuilder stringBuilder = new StringBuilder();
         for(int step = 0; step < history.size(); step++){
             Map<AID, AgentInfo> historyMap = history.get(step);
@@ -52,20 +47,18 @@ public class Statistics {
             }
         }
 
-        try {
-            fr = new FileWriter(file);
-            fr.write(stringBuilder.toString());
-        }  catch (IOException e) {
+        stringBuilder.append("\n");
+
+        try(FileWriter fw = new FileWriter("SSStatistics.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(stringBuilder.toString());
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally{
-            //close resources
-            try {
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
+        System.out.println("The information about this experience was added to the statistics file");
 
     }
 
