@@ -8,11 +8,6 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
     }
   }
 >
-  <StatusBar
-    animated={false}
-    hidden={true}
-    showHideTransition="fade"
-  />
   <Styled(Content)
     contentContainerStyle={
       Object {
@@ -110,6 +105,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
       </Styled(Item)>
       <Styled(Button)
         block={true}
+        onPress={[Function]}
         primary={true}
         rounded={true}
         style={
@@ -122,7 +118,6 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          onPress={[Function]}
           style={
             Object {
               "color": "white",

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { Body, Header, Icon, Left, Right, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { BackHandler } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
+import { PhotoPickerButton } from '../../components/Parent/PhotoPickerButton'
 import { BottomButton } from '../../components/Parent/BottomButton'
 
 export class ChildFormScreen extends Component {
@@ -11,21 +12,30 @@ export class ChildFormScreen extends Component {
     super(props)
 
     this.state = {
-      title: 'Adicionar Nova Criança',
+      title: 'Adicionar Criança',
       color: '#0074D9',
-      childName: 'Nova Criança',
-      childPhoto: null
+      name: '',
+      photo: undefined,
+      afterRegister: this.props.navigation.getParam('afterRegisterScreen', false)
     }
 
     this.createChild = this.createChild.bind(this)
   }
 
-  onPhotoChange = (uri) => {
-    this.setState({ photo: { uri } })
+  removeBackButton () {
+    return true // To be called by andrdid back button
   }
 
-  onImageChange = (image) => {
-    this.setState({ image: image })
+  componentDidMount () {
+    if (this.state.afterRegister) BackHandler.addEventListener('hardwareBackPress', this.removeBackButton)
+  }
+
+  componentWillUnmount () {
+    if (this.state.afterRegister) BackHandler.removeEventListener('hardwareBackPress', this.removeBackButton)
+  }
+
+  onPhotoChange = (uri) => {
+    this.setState({ photo: { uri } })
   }
 
   createChild = () => {
@@ -37,21 +47,22 @@ export class ChildFormScreen extends Component {
       <Container>
         <Header style={{ backgroundColor: this.state.color }} androidStatusBarColor={this.state.color}>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.pop()}>
+            {!this.state.afterRegister && <Button transparent onPress={() => this.props.navigation.pop()}>
               <Icon name='arrow-back' />
-            </Button>
+            </Button>}
           </Left>
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
+          <Right />
         </Header>
         <Content>
           <Form>
             <Item stackedLabel>
               <Label>Nome</Label>
-              <Input value={this.state.childName} onChangeText={text => this.setState({ childName: text })} />
+              <Input value={this.state.name} onChangeText={text => this.setState({ name: text })} />
             </Item>
-            <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
+            <PhotoPickerButton color={this.state.color} onPhotoChange={this.onPhotoChange} photo={this.state.photo} />
             <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={this.createChild} />
           </Form>
         </Content>
@@ -64,10 +75,6 @@ export default connect(
   /* istanbul ignore next */
   state => ({
     loggedUserEmail: state.user.email
-  }),
-  /* istanbul ignore next */
-  dispatch => ({
-
   })
 )(ChildFormScreen)
 

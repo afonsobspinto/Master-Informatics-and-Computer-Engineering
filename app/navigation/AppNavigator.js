@@ -5,14 +5,16 @@ import ParentNavigator from './ParentNavigator'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import AppIntroScreen from '../screens/parent/AppIntroScreen'
+import ChildFormScreen from '../screens/parent/ChildFormScreen'
 
 export default createStackNavigator({
-  LoginMenu: LoginScreen,
   RegisterMenu: RegisterScreen,
+  LoginMenu: LoginScreen,
   MainMenu: MainMenuScreen,
   ChildMainMenu: ChildNavigator,
   ParentMainMenu: ParentNavigator,
-  AppIntro: AppIntroScreen
+  AppIntro: AppIntroScreen,
+  ChildFormScreen
 },
 {
   headerMode: 'none',

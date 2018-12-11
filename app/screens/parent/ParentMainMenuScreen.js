@@ -49,9 +49,9 @@ export default class ParentMainMenuScreen extends React.Component {
               <Text>Gerir Rotinas</Text>
             </Button>
             <Button active={this.state.selectedTab === 'settings'}
-              onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
+              onPress={() => this.setState({ selectedTab: 'settings', title: 'Opções' })}>
               <Icon name='md-settings' />
-              <Text>Definições</Text>
+              <Text>Opções</Text>
             </Button>
           </FooterTab>
         </Footer>

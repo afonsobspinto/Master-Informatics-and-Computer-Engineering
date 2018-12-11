@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StatusBar, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
 import { connect } from 'react-redux'
 import { login } from '../actions/userActions'
@@ -74,7 +74,6 @@ export class LoginScreen extends Component {
   render () {
     return (
       <Container style={styles.registerContainter}>
-        <StatusBar hidden />
         <Content contentContainerStyle={styles.contentContainter}>
           <Text style={styles.registerTitle}>Início de sessão</Text>
           <Form>
@@ -98,8 +97,8 @@ export class LoginScreen extends Component {
             </Item>
 
             {this.state.loginFailed && <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>}
-            <Button rounded block primary style={styles.submitButton}>
-              <Text style={styles.buttonText} onPress={() => this.handlePress(this.state.email, this.state.password)}>Login</Text>
+            <Button rounded block primary style={styles.submitButton} onPress={() => this.handlePress(this.state.email, this.state.password)}>
+              <Text style={styles.buttonText}>Login</Text>
             </Button>
           </Form>
 
