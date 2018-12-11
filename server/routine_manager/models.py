@@ -3,12 +3,18 @@ from django.contrib.auth.models import User
 
 
 class Child(models.Model):
-    userID = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    level = models.IntegerField(default=0)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
+    level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
     stars = models.IntegerField(default=0)
     avatar = models.CharField(max_length=500, null=True)
+    image = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return self.name

@@ -81,6 +81,7 @@ django-staging-deployments:
     - digitalocean
   only:
     - development
+    - 5-create-a-new-child-profile-db
   stage: deploy
   <<: *install_ssh_dependencies
   script:
