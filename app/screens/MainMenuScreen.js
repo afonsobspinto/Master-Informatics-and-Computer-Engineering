@@ -5,7 +5,13 @@ import PropTypes from 'prop-types'
 import Images from '../assets/images/images'
 import styles from '../styles/MainMenu.style'
 
+import { registerForPushNotificationsAsync } from '../helpers/Notification'
+
 export default class MainMenuScreen extends React.Component {
+  componentDidMount () {
+    registerForPushNotificationsAsync()
+  }
+
   render () {
     return (
       <View style={styles.mainMenuContainer}>

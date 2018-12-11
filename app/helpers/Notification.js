@@ -15,6 +15,7 @@ export async function registerForPushNotificationsAsync () {
   }
 
   let token = await Notifications.getExpoPushTokenAsync()
+  console.log(token)
 
   let requestInit = {
     method: 'POST',
