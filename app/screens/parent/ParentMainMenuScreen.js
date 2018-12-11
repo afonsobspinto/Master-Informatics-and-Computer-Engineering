@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
+import RewardsScreen from './RewardsScreen'
 import SettingsScreen from './SettingsScreen'
 import ActionButton from 'react-native-action-button'
 import PropTypes from 'prop-types'
@@ -12,7 +13,7 @@ export default class ParentMainMenuScreen extends React.Component {
 
     this.state = {
       selectedTab: 'activity',
-      title: 'Actividade'
+      title: 'Atividade'
     }
   }
 
@@ -22,8 +23,33 @@ export default class ParentMainMenuScreen extends React.Component {
         return (<Content />)
       case 'routines':
         return (<RoutinesScreen navigation={this.props.navigation} />)
+      case 'rewards':
+        return (<RewardsScreen />)
       case 'settings':
         return (<SettingsScreen />)
+    }
+  }
+
+  getCorrespondingActionButton = () => {
+    if (this.state.selectedTab === 'activity') {
+      return (
+        <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
+          <ActionButton.Item buttonColor='#9b59b6' title='Criar atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
+            <Icon name='md-list-box' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title='Criar rotina' onPress={() => this.props.navigation.navigate('RoutineFormScreen')}>
+            <Icon name='md-calendar' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      )
+    } else if (this.state.selectedTab === 'rewards') {
+      return (
+        <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
+          <ActionButton.Item buttonColor='#9b59b6' title='Criar prémio' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
+            <Icon name='md-trophy' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      )
     }
   }
 
@@ -39,14 +65,19 @@ export default class ParentMainMenuScreen extends React.Component {
         <Footer>
           <FooterTab>
             <Button active={this.state.selectedTab === 'activity'}
-              onPress={() => this.setState({ selectedTab: 'activity', title: 'Actividade' })} >
+              onPress={() => this.setState({ selectedTab: 'activity', title: 'Atividade' })} >
               <Icon name='md-filing' />
-              <Text>Actividade</Text>
+              <Text>Atividades</Text>
             </Button>
             <Button active={this.state.selectedTab === 'routines'}
               onPress={() => this.setState({ selectedTab: 'routines', title: 'Gerir Rotinas' })} >
               <Icon name='md-apps' />
-              <Text>Gerir Rotinas</Text>
+              <Text>Rotinas</Text>
+            </Button>
+            <Button active={this.state.selectedTab === 'rewards'}
+              onPress={() => this.setState({ selectedTab: 'rewards', title: 'Recompensas' })} >
+              <Icon name='md-trophy' />
+              <Text>Prémios</Text>
             </Button>
             <Button active={this.state.selectedTab === 'settings'}
               onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
@@ -55,14 +86,7 @@ export default class ParentMainMenuScreen extends React.Component {
             </Button>
           </FooterTab>
         </Footer>
-        {this.state.selectedTab === 'routines' && <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
-          <ActionButton.Item buttonColor='#9b59b6' title='Nova Atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
-            <Icon name='md-list-box' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title='Nova Rotina' onPress={() => this.props.navigation.navigate('RoutineFormScreen')}>
-            <Icon name='md-calendar' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>}
+        {this.getCorrespondingActionButton()}
       </Container>
     )
   }

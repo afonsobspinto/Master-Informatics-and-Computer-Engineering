@@ -123,7 +123,7 @@ export default class ActivityFormScreen extends Component {
             </Item>
             <DurationPickers color={this.state.color} time={this.state.time} onDurationChange={this.onDurationChange} />
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-            <BottomButton color={this.state.color} text={this.state.createActivity ? 'Criar Actividade' : 'Editar Actividade'} onPress={this.state.createActivity ? this.createActivity : this.editActivity} />
+            <BottomButton color={this.state.color} text={this.state.createActivity ? 'Criar Atividade' : 'Editar Atividade'} onPress={this.state.createActivity ? this.createActivity : this.editActivity} />
           </Form>
         </Content>
       </Container>
