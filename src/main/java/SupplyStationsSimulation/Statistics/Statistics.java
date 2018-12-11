@@ -47,8 +47,6 @@ public class Statistics {
             }
         }
 
-        stringBuilder.append("\n");
-
         try(FileWriter fw = new FileWriter("SSStatistics.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
