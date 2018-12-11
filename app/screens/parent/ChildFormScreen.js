@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Right, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
-import { BackHandler } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { PhotoPickerButton } from '../../components/Parent/PhotoPickerButton'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import EnvVars from '../../constants/EnviromentVars'
+import { ItemPicker } from '../../components/Parent/ItemPicker'
+
+const genders = ['Masculino', 'Feminino']
 
 export class ChildFormScreen extends Component {
   constructor (props) {
@@ -17,25 +19,19 @@ export class ChildFormScreen extends Component {
       color: '#0074D9',
       name: '',
       photo: undefined,
+      gender: 'M',
+      imageHash: Math.random().toString(36).substr(2, 10),
       afterRegister: this.props.navigation.getParam('afterRegisterScreen', false)
     }
     this.handleServerRequests = this.handleServerRequests.bind(this)
   }
 
-  removeBackButton () {
-    return true // To be called by andrdid back button
-  }
-
-  componentDidMount () {
-    if (this.state.afterRegister) BackHandler.addEventListener('hardwareBackPress', this.removeBackButton)
-  }
-
-  componentWillUnmount () {
-    if (this.state.afterRegister) BackHandler.removeEventListener('hardwareBackPress', this.removeBackButton)
-  }
-
-  onPhotoChange = (uri) => {
+  onPhotoChange = uri => {
     this.setState({ photo: { uri } })
+  }
+
+  onGenderChange = index => {
+    this.setState({ gender: genders[index].charAt(0) })
   }
 
   async uploadImageAsync (uri) {
@@ -47,7 +43,7 @@ export class ChildFormScreen extends Component {
     let formData = new FormData()
     formData.append('photo', {
       uri,
-      name: `photo.${fileType}`, // TODO: Uma cena aleatória identificador
+      name: `${this.state.imageHash}.${fileType}`,
       type: `image/${fileType}`
     })
 
@@ -73,8 +69,8 @@ export class ChildFormScreen extends Component {
         body: JSON.stringify({
           userEmail: this.props.loggedUserEmail,
           name: this.state.name,
-          gender: 'M', // TODO: this.props.gender Gender deve ser um F ou um M
-          image: 'image' // TODO: nome da imagem
+          gender: this.state.gender,
+          image: this.state.imageHash
         })
       }).then((response) => response.json())
         .then((responseJson) => {
@@ -117,6 +113,10 @@ export class ChildFormScreen extends Component {
             <Item stackedLabel>
               <Label>Nome</Label>
               <Input value={this.state.name} onChangeText={text => this.setState({ name: text })} />
+            </Item>
+            <Item stackedLabel>
+              <Label>Género</Label>
+              <ItemPicker items={genders} selected={genders.find(gender => gender.charAt(0) === this.state.gender)} onValueChange={this.onGenderChange} />
             </Item>
             <PhotoPickerButton color={this.state.color} onPhotoChange={this.onPhotoChange} photo={this.state.photo} />
             <BottomButton color={this.state.color} text={'Adicionar Criança'} onPress={this.handleServerRequests} />
