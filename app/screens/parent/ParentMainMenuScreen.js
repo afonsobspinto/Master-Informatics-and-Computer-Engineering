@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StatusBar, StyleSheet } from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Title, Body, Text } from 'native-base'
 import { RoutinesScreen } from './RoutinesScreen'
 import SettingsScreen from './SettingsScreen'
@@ -30,6 +30,7 @@ export default class ParentMainMenuScreen extends React.Component {
   render () {
     return (
       <Container>
+        <StatusBar hidden={false} />
         <Header>
           <Body>
             <Title>{this.state.title}</Title>
