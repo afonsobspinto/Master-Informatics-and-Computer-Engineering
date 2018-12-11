@@ -16,11 +16,7 @@ def register(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        try:
-            user = User.objects.create_user(username=body['email'], email=body['email'], password=body['password'])
-            user.save()
-        except Exception:
-            return JsonResponse({'status': '400'})
+        User.objects.create_user(username=body['email'], email=body['email'], password=body['password'])
         return JsonResponse({'status': '200'})
 
 
@@ -42,21 +38,24 @@ def add_child(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        child = Child(userID=User.objects.get(username=body['userEmail']), name=body['name'],
+        user = User.objects.get(username=body['userEmail'])
+        user_info = UserInfo.objects.get(user=user)
+        child = Child(userID=user_info, name=body['name'],
                       gender=body['gender'], image=body['image'])
-        try:
-            child.save()
-        except Exception:
-            return JsonResponse({'status': '400'})
+        child.save()
         return JsonResponse({'status': '200'})
+
 
 @csrf_exempt
 def push_token(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        user = UserInfo.objects.get(username=body['user'].username)
-        user.token = body['token'].value
-        user.save()
+        user_info = UserInfo.objects.get(username=body['userEmail'])
+        user_info.token = body['token'].value
+    try:
+        user_info.save()
+    except Exception:
+        return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
 
-        

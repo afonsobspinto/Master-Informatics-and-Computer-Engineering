@@ -35,7 +35,7 @@ export default class ChildFormScreen extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userEmail: 'Afonso@gmail.com', // TODO: this.props.userEmail
+          userEmail: 'A@a.com', // TODO: this.props.userEmail
           name: this.state.childName,
           gender: 'M', // TODO: this.props.gender Gender deve ser um F ou um M
           image: this.state.image

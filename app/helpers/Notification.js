@@ -1,5 +1,5 @@
 import { Permissions, Notifications } from 'expo'
-const PUSH_ENDPOINT = 'https://your-server.com/users/push-token'
+import EnvVars from '../constants/EnviromentVars'
 
 export async function registerForPushNotificationsAsync () {
   const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
@@ -23,5 +23,5 @@ export async function registerForPushNotificationsAsync () {
     body: JSON.stringify({ token: { value: token }, user: { username: 'Brent' } })
   }
 
-  return fetch(PUSH_ENDPOINT, requestInit)
+  return fetch(EnvVars.apiUrl + 'routine_manager/push-token/', requestInit)
 }
