@@ -23,7 +23,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`
             Object {
               "color": "#7d84b2",
               "image": "bed",
-              "photo": "bedroom",
+              "photo": "https://www.brewsterwallcovering.com/images/thumbs/0030235_900.jpeg",
               "time": Object {
                 "goal": 60,
                 "max": 120,
@@ -104,6 +104,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`
           ],
           "color": "#37c1f0",
           "image": "sun",
+          "photo": "https://i.ytimg.com/vi/Br-GC8FcTig/maxresdefault.jpg",
           "title": "Após acordar",
         },
         Object {
@@ -161,7 +162,6 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 1`
           ],
           "color": "#011f39",
           "image": "moon",
-          "photo": "night",
           "title": "Antes de dormir",
         },
       ]
@@ -195,7 +195,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 2`
             Object {
               "color": "#7d84b2",
               "image": "bed",
-              "photo": "bedroom",
+              "photo": "https://www.brewsterwallcovering.com/images/thumbs/0030235_900.jpeg",
               "time": Object {
                 "goal": 60,
                 "max": 120,
@@ -276,6 +276,7 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 2`
           ],
           "color": "#37c1f0",
           "image": "sun",
+          "photo": "https://i.ytimg.com/vi/Br-GC8FcTig/maxresdefault.jpg",
           "title": "Após acordar",
         },
         Object {
@@ -333,7 +334,6 @@ exports[`ChooseActivityScreen snapshot renders ChooseActivityScreen correctly 2`
           ],
           "color": "#011f39",
           "image": "moon",
-          "photo": "night",
           "title": "Antes de dormir",
         },
       ]

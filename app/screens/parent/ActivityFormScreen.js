@@ -65,15 +65,15 @@ export default class ActivityFormScreen extends Component {
     this.setState({ time })
   }
 
-  onPhotoChange = (uri) => {
-    this.setState({ photo: { uri } })
+  onPhotoChange = uri => {
+    this.setState({ photo: uri })
   }
 
-  onImageChange = (image) => {
+  onImageChange = image => {
     this.setState({ image: image })
   }
 
-  onRoutineChange = (index) => {
+  onRoutineChange = index => {
     this.setState({ routine: this.routines[index] })
   }
 
@@ -101,11 +101,11 @@ export default class ActivityFormScreen extends Component {
           <Body>
             <Title>{this.state.title}</Title>
           </Body>
-          {!this.state.createActivity && <Right>
-            <Button transparent onPress={this.removeActivity}>
+          <Right>
+            {!this.state.createActivity && <Button transparent onPress={this.removeActivity}>
               <Icon name='md-trash' />
-            </Button>
-          </Right>}
+            </Button>}
+          </Right>
         </Header>
         <Content>
           <Form>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Switch } from 'react-native'
 import PropTypes from 'prop-types'
 import { List, Content, ListItem, Text, Right, Body, Picker, Button } from 'native-base'
-import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback, changeFeedbackFrequency } from '../../actions/settingsActions'
+import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback, changeFeedbackFrequency, togglePlaySounds } from '../../actions/settingsActions'
 
 class SettingsScreen extends React.Component {
   render () {
@@ -32,6 +32,10 @@ class SettingsScreen extends React.Component {
             <Right><Switch value={this.props.activityShowTimer} onValueChange={this.props.toggleActivityTimer} /></Right>
           </ListItem>
           <ListItem icon>
+            <Body><Text>Reproduzir sons</Text></Body>
+            <Right><Switch value={this.props.playSounds} onValueChange={this.props.togglePlaySounds} /></Right>
+          </ListItem>
+          <ListItem icon>
             <Body><Text>Modo de reprodução de rotina</Text></Body>
             <Right>
               <Picker style={{ width: 125 }} selectedValue={this.props.routinePlayType} onValueChange={this.props.toggleRoutinePlayType}>
@@ -46,7 +50,7 @@ class SettingsScreen extends React.Component {
               <Picker style={{ width: 125 }} selectedValue={this.props.activityFeedback} onValueChange={this.props.toggleActivityFeedback}>
                 <Picker.Item label='Vibração' value='vibration' />
                 <Picker.Item label='Visual' value='visual' />
-                <Picker.Item label='Sonoro' value='sound' />
+                <Picker.Item label='Sonoro' value='sound' enabled={this.props.playSounds} />
               </Picker>
             </Right>
           </ListItem>
@@ -72,14 +76,16 @@ export default connect(
     activityShowTimer: state.settings.activityShowTimer,
     activityFeedback: state.settings.activityFeedback,
     feedbackFrequency: state.settings.feedbackFrequency,
-    routinePlayType: state.settings.routinePlayType
+    routinePlayType: state.settings.routinePlayType,
+    playSounds: state.settings.playSounds
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
     toggleActivityTimer: showTimer => dispatch(toggleActivityTimer(showTimer)),
     toggleActivityFeedback: () => dispatch(toggleActivityFeedback()),
     toggleRoutinePlayType: () => dispatch(toggleRoutinePlayType()),
-    changeFeedbackFrequency: () => dispatch(changeFeedbackFrequency())
+    changeFeedbackFrequency: () => dispatch(changeFeedbackFrequency()),
+    togglePlaySounds: () => dispatch(togglePlaySounds())
   })
 )(SettingsScreen)
 
@@ -88,11 +94,13 @@ SettingsScreen.propTypes = {
   activityShowTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
   feedbackFrequency: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired,
   toggleActivityProgressType: PropTypes.func.isRequired,
   toggleActivityTimer: PropTypes.func.isRequired,
   toggleActivityFeedback: PropTypes.func.isRequired,
   changeFeedbackFrequency: PropTypes.func.isRequired,
   routinePlayType: PropTypes.string.isRequired,
   toggleRoutinePlayType: PropTypes.func.isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  togglePlaySounds: PropTypes.func.isRequired
 }

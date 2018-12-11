@@ -17,8 +17,6 @@ const images = {
   sleep: require('./activities/sleep.png'),
   socks: require('./activities/socks.png'),
   tea: require('./activities/tea.png'),
-  bedroom: require('./activities/bedroom.jpg'),
-  night: require('./routines/night.jpg'),
   pool: require('./pool.jpg'),
   avatar: require('./avatar.png'),
   cap: require('./cap.png'),
@@ -30,6 +28,7 @@ const images = {
     confirm: require('./navigation/confirm.png'),
     next: require('./navigation/next.png'),
     star: require('./star.png'),
+    sad: require('./sad.png'),
     info: require('./info-button.png')
   }
 }

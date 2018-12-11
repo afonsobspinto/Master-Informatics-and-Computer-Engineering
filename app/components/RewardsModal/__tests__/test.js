@@ -8,7 +8,7 @@ import { PastActivityIcons } from '../PastActivityIcons'
 import { RewardsModal } from '../RewardsModal'
 import { RewardModalExperienceBar } from '../RewardModalExperienceBar'
 import { RewardModalStars } from '../RewardModalStars'
-import { activities, activitiesWithStatus } from '../../../__tests__/mockTestData'
+import { activities, activitiesWithStatus } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 
@@ -35,7 +35,8 @@ describe('RewardsModal components', () => {
       xp={430}
       level={4}
       nextPress={jest.fn()}
-      backPress={jest.fn()} />)
+      backPress={jest.fn()}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ activities: activitiesWithStatus })
     wrapper.instance().increaseProgress()

@@ -6,7 +6,9 @@ export class RewardSound extends React.Component {
   sound = null
 
   componentDidMount () {
-    setTimeout(this.playSound, 400)
+    if (this.props.playSounds) {
+      setTimeout(this.playSound, 400)
+    }
   }
 
   componentWillUnmount () {
@@ -31,5 +33,6 @@ export class RewardSound extends React.Component {
 }
 
 RewardSound.propTypes = {
-  success: PropTypes.bool.isRequired
+  success: PropTypes.bool.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

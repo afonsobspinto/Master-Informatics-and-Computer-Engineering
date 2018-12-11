@@ -80,7 +80,8 @@ export class ChildMainMenuScreen extends Component {
           xp={this.props.xp}
           isReward={this.props.showLevelUpModal}
           show={this.state.showModal}
-          onClosed={this.onCloseModal} />}
+          onClosed={this.onCloseModal}
+          playSounds={this.props.playSounds} />}
       </View>
     )
   }
@@ -91,7 +92,8 @@ export default connect(
   state => ({
     level: state.child.level,
     xp: state.child.xp,
-    showLevelUpModal: state.child.showLevelUpModal
+    showLevelUpModal: state.child.showLevelUpModal,
+    playSounds: state.settings.playSounds
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -104,5 +106,6 @@ ChildMainMenuScreen.propTypes = {
   level: PropTypes.number.isRequired,
   xp: PropTypes.number.isRequired,
   showLevelUpModal: PropTypes.bool.isRequired,
-  toggleLevelUpModal: PropTypes.func.isRequired
+  toggleLevelUpModal: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { backgroundColor, lighterBackgroundColor, oppositeColor } from './Colors'
 
-const padding = Layout.window.height * 0.05
+const padding = Layout.window.width * 0.08
 const buttonHeight = Layout.window.width * 0.5
 
 export default StyleSheet.create({

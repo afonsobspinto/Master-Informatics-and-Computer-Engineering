@@ -48,7 +48,8 @@ describe('MainMenu components', () => {
       level={3}
       xp={350}
       isReward={false}
-      onClosed={jest.fn()} />)
+      onClosed={jest.fn()}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ isReward: true })
     wrapper.instance().onPress()

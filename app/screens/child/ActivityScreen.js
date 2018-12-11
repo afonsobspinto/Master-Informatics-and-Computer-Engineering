@@ -11,7 +11,7 @@ import { CompleteButton } from '../../components/Activity/CompleteButton'
 import { PauseButton } from '../../components/Activity/PauseButton'
 import { CancelButton } from '../../components/Activity/CancelButton'
 import { RewardsModal } from '../../components/RewardsModal/RewardsModal'
-import Images from '../../assets/images/images'
+import { getSource } from '../../helpers/GetSource'
 
 import styles from '../../styles/Activity.style'
 
@@ -83,8 +83,12 @@ export class ActivityScreen extends Component {
 
   nextActivity () {
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
-    this.props.nextActivity()
-    this.props.navigation.replace('Activity')
+    if (this.props.activities.every(activity => activity.status !== undefined)) {
+      this.props.navigation.replace('RoutineBonusScreen')
+    } else {
+      this.props.nextActivity()
+      this.props.navigation.replace('Activity')
+    }
   }
 
   backToMenu () {
@@ -96,15 +100,6 @@ export class ActivityScreen extends Component {
     this.setState(() => ({ isPaused: false }))
   }
 
-  returnURIorImage = () => {
-    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
-    if (this.props.activity.photo !== undefined && this.props.activity.photo.includes('file://')) {
-      return { uri: this.props.activity.photo }
-    } else {
-      return Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]
-    }
-  }
-
   render () {
     return (
       <View style={[{ backgroundColor: this.props.activity.color }, styles.activityScreen]} >
@@ -112,13 +107,13 @@ export class ActivityScreen extends Component {
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-          source={this.returnURIorImage()} />
+          source={getSource(this.props.activity)} />
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
-          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton cancelActivity={this.cancelActivity} />
           <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
@@ -129,7 +124,8 @@ export class ActivityScreen extends Component {
           level={this.props.level}
           xp={this.props.xp}
           nextPress={this.nextActivity}
-          backPress={this.backToMenu} />
+          backPress={this.backToMenu}
+          playSounds={this.props.playSounds} />
       </View>
     )
   }
@@ -141,6 +137,7 @@ export default connect(
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
     activityFeedback: state.settings.activityFeedback,
+    playSounds: state.settings.playSounds,
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
@@ -161,6 +158,7 @@ ActivityScreen.propTypes = {
   progressType: PropTypes.string.isRequired,
   showTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired,
   feedbackFrequency: PropTypes.string.isRequired,
   currentActivity: PropTypes.number.isRequired,
   activities: PropTypes.array.isRequired,

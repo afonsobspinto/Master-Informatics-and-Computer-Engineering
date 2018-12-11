@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import socket
 from decouple import config
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,8 +28,23 @@ SECRET_KEY = 'x7wn(r^!^4oln)d1-ad=us))+!80_#ki1k#n_pyr6u5uz8)gvo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '167.99.128.178']
+localIP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
+                         if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
+                                                               s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET,
+                                                                                                                      socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
 
+# Path to save the file containing the local IP address
+pathToSaveFile = os.getcwd()+"/../app/constants/"
+
+completeFilePath = os.path.join(pathToSaveFile, "localIP.json")
+
+data = {'localIP': localIP}
+
+with open(completeFilePath, 'w') as outfile:
+    json.dump(data, outfile)
+
+
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', localIP, '167.99.128.178']
 
 # Application definition
 
