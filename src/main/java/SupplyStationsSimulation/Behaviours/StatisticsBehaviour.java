@@ -25,19 +25,26 @@ public class StatisticsBehaviour extends Behaviour implements ACLMessageBehaviou
 
     @Override
     public void action() {
-        for (DrawableAgent agent : this.agentList) {
-            if(infoFlag == 500) {
+        if(infoFlag == 500) {
+            for (DrawableAgent agent : this.agentList) {
                 agent.saveStatistics();
                 Statistics statistics = Statistics.getInstance();
                 statistics.finishTick();
             }
+            infoFlag=0;
         }
         infoFlag++;
     }
 
     @Override
     public boolean done() {
-        return false;
+        for (DrawableAgent agent : agentList) {
+            if (agent.getType() == Type.DRIVER && !agent.isDone()) {
+                return false;
+            }
+        }
+        Statistics.getInstance().export();
+        return true;
     }
 
     @Override

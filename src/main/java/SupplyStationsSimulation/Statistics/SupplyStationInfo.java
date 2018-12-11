@@ -18,6 +18,18 @@ public class SupplyStationInfo extends AgentInfo {
         this.behaviourType = behaviourType;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public int getTicksToFuel() {
+        return ticksToFuel;
+    }
+
+    public int getTotalRequests() {
+        return totalRequests;
+    }
+
     @Override
     public Type getType() {
         return super.getType();
@@ -31,5 +43,13 @@ public class SupplyStationInfo extends AgentInfo {
     @Override
     public Position getLocation() {
         return super.getLocation();
+    }
+
+    @Override
+    public String toString() {
+        return price +
+                "," + ticksToFuel +
+                "," + totalRequests +
+                "," + behaviourType;
     }
 }

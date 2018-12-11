@@ -132,8 +132,8 @@ public class Launcher extends Repast3Launcher {
                 drawableMap.addAgent(supplyStationAgent);
             }
 
-            StatisticsAgent statisticsAgent = new StatisticsAgent();
-            statisticsAgent.addBehaviour(new StatisticsBehaviour(statisticsAgent, drawableMap.getAgentList()));
+            StatisticsAgent statisticsAgent = new StatisticsAgent(drawableMap.getAgentList());
+            mainContainer.acceptNewAgent("Statistics", statisticsAgent).start();
 
             for (DrawableAgent agent : drawableMap.getAgentList()) {
                 if (agent.getType() == Type.DRIVER) {

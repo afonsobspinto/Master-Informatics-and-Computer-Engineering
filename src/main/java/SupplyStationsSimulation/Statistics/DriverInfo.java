@@ -23,6 +23,26 @@ public class DriverInfo extends AgentInfo {
         this.behaviourType = behaviourType;
     }
 
+    public double getPriceIntolerance() {
+        return priceIntolerance;
+    }
+
+    public int getFuelToBuy() {
+        return fuelToBuy;
+    }
+
+    public Position getDestination() {
+        return destination;
+    }
+
+    public DriverState getDriverState() {
+        return driverState;
+    }
+
+    public int getTravelDiff() {
+        return travelDiff;
+    }
+
     @Override
     public Type getType() {
         return super.getType();
@@ -36,5 +56,15 @@ public class DriverInfo extends AgentInfo {
     @Override
     public Position getLocation() {
         return super.getLocation();
+    }
+
+    @Override
+    public String toString() {
+        return priceIntolerance +
+                "," + fuelToBuy +
+                "," + destination +
+                "," + driverState +
+                "," + travelDiff +
+                "," + behaviourType;
     }
 }

@@ -68,6 +68,7 @@ public class DriverAgent extends DrawableAgent {
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
     private DriverInfo driverInfo;
+    private BehaviourType behaviourType;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -75,6 +76,10 @@ public class DriverAgent extends DrawableAgent {
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
+        if(this.color == Color.RED)
+            behaviourType = BehaviourType.ADVENTUROUS;
+        else
+            behaviourType = BehaviourType.COLLABORATIVE;
     }
 
     public void calculateInitialPath() {
@@ -136,8 +141,6 @@ public class DriverAgent extends DrawableAgent {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
         addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
-
-
     }
 
     @Override
@@ -381,7 +384,7 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-
+    @Override
     public boolean isDone() {
         if (this.position.equals(this.destination)) {
             this.setDriverState(TERMINATING);
@@ -501,8 +504,8 @@ public class DriverAgent extends DrawableAgent {
 
     public void saveStatistics(){
         Statistics statistics = Statistics.getInstance();
-        this.driverInfo = new DriverInfo(this.getPriceIntolerance(), this.getFuelToBuy(), this.getDestination(),
-                this.getDriverState(), Math.abs(this.getExpectedTravelDuration() - this.getDeFactoTravelDuration()), BehaviourType.ADVENTUROUS);
+        this.driverInfo = new DriverInfo(priceIntolerance, fuelToBuy, destination,
+                driverState, Math.abs(expectedTravelDuration - deFactoTravelDuration), behaviourType);
         statistics.updateAgentInfo(this.getAID(), this.driverInfo);
     }
 

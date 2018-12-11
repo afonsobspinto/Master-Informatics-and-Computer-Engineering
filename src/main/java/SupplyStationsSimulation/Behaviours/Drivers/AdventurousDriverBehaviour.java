@@ -21,7 +21,6 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
     public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
         this.driverAgent = a;
-
     }
 
     @Override
@@ -47,7 +46,6 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
             case ACLMessage.ACCEPT_PROPOSAL:
                 handleAccept(message);
                 break;
-
         }
     }
 
@@ -66,5 +64,4 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
     private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
         return (int) Math.ceil((waitingLine * 1.0 / totalGasPumps) * ticksToFuel);
     }
-
 }

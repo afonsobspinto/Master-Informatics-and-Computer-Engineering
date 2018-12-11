@@ -50,12 +50,18 @@ public class SupplyStationAgent extends DrawableAgent {
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
     private SupplyStationInfo supplyStationInfo;
+    private BehaviourType behaviourType;
 
     public SupplyStationAgent(String nickname, Color color, Position location) {
         this.nickname = nickname;
         this.color = color;
         this.position = location;
         this.pricePerLiter = pricePerLiter;
+        this.behaviourType = behaviourType;
+        if(this.color == Color.GREEN)
+            behaviourType = BehaviourType.STATIC;
+        else
+            behaviourType = BehaviourType.DYNAMIC;
     }
 
 
@@ -134,6 +140,11 @@ public class SupplyStationAgent extends DrawableAgent {
                 break;
         }
 
+    }
+
+    @Override
+    public boolean isDone() {
+        return false;
     }
 
     private void handleRequest(Message message) {
@@ -251,7 +262,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public void saveStatistics(){
         Statistics statistics = Statistics.getInstance();
-        this.supplyStationInfo = new SupplyStationInfo(this.getPricePerLiter(), this.getTicksToFuel(), this.getTotalRequests(), BehaviourType.DYNAMIC);
+        this.supplyStationInfo = new SupplyStationInfo(pricePerLiter, ticksToFuel, totalRequests, behaviourType);
         statistics.updateAgentInfo(this.getAID(), this.supplyStationInfo);
     }
 }
