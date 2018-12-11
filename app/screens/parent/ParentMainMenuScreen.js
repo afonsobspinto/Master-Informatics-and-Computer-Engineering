@@ -45,7 +45,7 @@ export default class ParentMainMenuScreen extends React.Component {
     } else if (this.state.selectedTab === 'rewards') {
       return (
         <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
-          <ActionButton.Item buttonColor='#9b59b6' title='Criar prémio' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
+          <ActionButton.Item buttonColor='#9b59b6' title='Criar prémio' onPress={() => this.props.navigation.navigate('RewardFormScreen')}>
             <Icon name='md-trophy' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
