@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Picker } from 'native-base'
+import { Picker, Text } from 'native-base'
 import { View, Image, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import images from '../../assets/images/images'
 
 export class SelectChildPicker extends Component {
   render () {
@@ -9,18 +10,27 @@ export class SelectChildPicker extends Component {
 
     return (
       <View style={styles.childPickerContainer}>
-        <View style={styles.imageView}>
-          <Image style={styles.photo} source={{ uri: this.props.children[this.props.selected].image }} />
+        <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }}>
+          <View style={styles.imageView}>
+            <Image style={styles.photo} source={{ uri: this.props.children[this.props.selected].image }} />
+          </View>
+          <Picker
+            mode='dropdown'
+            style={{ flexGrow: 1, height: '100%' }}
+            selectedValue={this.props.selected}
+            onValueChange={this.props.onChildChanged}
+            itemTextStyle={{ color: 'red' }}
+          >
+            {pickerItems}
+          </Picker>
         </View>
-        <Picker
-          mode='dropdown'
-          style={{ flexGrow: 1, height: '100%' }}
-          selectedValue={this.props.selected}
-          onValueChange={this.props.onChildChanged}
-          itemTextStyle={{ color: 'red' }}
-        >
-          {pickerItems}
-        </Picker>
+        <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, paddingTop: 0 }}>
+          <Text>Nível {this.props.children[this.props.selected].level}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Image style={{ height: 20, width: 20, marginRight: 5 }} source={images.ui.star} />
+            <Text>{this.props.children[this.props.selected].stars}</Text>
+          </View>
+        </View>
       </View>
     )
   }
@@ -48,9 +58,12 @@ const styles = StyleSheet.create({
   },
   childPickerContainer: {
     width: '100%',
-    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey',
+    borderBottomColor: 'lightgrey'
+  },
+  rowView: {
+    width: '100%',
+    flexDirection: 'row',
     alignItems: 'center'
   }
 })
