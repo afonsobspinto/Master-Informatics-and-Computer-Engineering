@@ -2,7 +2,9 @@ package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
+import SupplyStationsSimulation.Statistics.DriverInfo;
 import SupplyStationsSimulation.Statistics.Statistics;
+import SupplyStationsSimulation.Statistics.SupplyStationInfo;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -47,15 +49,13 @@ public class SupplyStationAgent extends DrawableAgent {
     private static int fuelAdded = 50;
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
-    private Statistics statistics;
+    private SupplyStationInfo supplyStationInfo;
 
-
-    public SupplyStationAgent(String nickname, Color color, Position location, Statistics statistics) {
+    public SupplyStationAgent(String nickname, Color color, Position location) {
         this.nickname = nickname;
         this.color = color;
         this.position = location;
         this.pricePerLiter = pricePerLiter;
-        this.statistics = statistics;
     }
 
 
@@ -115,10 +115,6 @@ public class SupplyStationAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.SUPPLYSTATION;
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
     }
 
     public void handleMessage(Message message) {
@@ -251,5 +247,11 @@ public class SupplyStationAgent extends DrawableAgent {
         //todo: improve formula -> price should decrease as well.
         double oldPrice = this.pricePerLiter;
         this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
+    }
+
+    public void saveStatistics(){
+        Statistics statistics = Statistics.getInstance();
+        this.supplyStationInfo = new SupplyStationInfo(this.getPricePerLiter(), this.getTicksToFuel(), this.getTotalRequests(), BehaviourType.DYNAMIC);
+        statistics.updateAgentInfo(this.getAID(), this.supplyStationInfo);
     }
 }

@@ -5,6 +5,7 @@ import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -19,7 +20,6 @@ import java.util.List;
 public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
 
     private DriverAgent driverAgent;
-    private DriverInfo driverInfo;
 
     public CollaborativeDriverBehaviour(DriverAgent a) {
         super(a);
@@ -124,7 +124,6 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         }
     }
 
-
     private void handleReject(Message message) {
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
         this.broadcast(message, this.driverAgent.getDriversList(), List.of(String.valueOf(this.driverAgent.getX()),
@@ -175,9 +174,4 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         return null;
     }
 
-    public void saveStatistics(){
-        this.driverInfo = new DriverInfo(this.driverAgent.getPriceIntolerance(), this.driverAgent.getFuelToBuy(), this.driverAgent.getDestination(),
-                this.driverAgent.getDriverState(), Math.abs(this.driverAgent.getExpectedTravelDuration() - this.driverAgent.getDeFactoTravelDuration()), BehaviourType.COLLABORATIVE);
-        this.driverAgent.getStatistics().updateAgentInfo(this.driverAgent.getAID(), this.driverInfo);
-    }
 }

@@ -1,11 +1,9 @@
 package SupplyStationsSimulation;
 
-import SupplyStationsSimulation.Agents.DrawableAgent;
-import SupplyStationsSimulation.Agents.DriverAgent;
-import SupplyStationsSimulation.Agents.SupplyStationAgent;
-import SupplyStationsSimulation.Agents.Type;
+import SupplyStationsSimulation.Agents.*;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
+import SupplyStationsSimulation.Behaviours.StatisticsBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsDynamicBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
 import SupplyStationsSimulation.Statistics.Statistics;
@@ -36,7 +34,6 @@ public class Launcher extends Repast3Launcher {
     private static int STATIC_SUPPLY_STATIONS;
     private static int DYNAMIC_SUPPLY_STATIONS;
     private static int WIDTH = 200, HEIGHT = 200;
-    private Statistics statistics;
 
     private ContainerController mainContainer;
     private DisplaySurface dsurf;
@@ -85,7 +82,6 @@ public class Launcher extends Repast3Launcher {
 
         try {
             launchAgents();
-            this.statistics = new Statistics();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -106,7 +102,7 @@ public class Launcher extends Repast3Launcher {
         try {
             for (int i = 0; i < ADVENTUROUS_DRIVERS; i++) {
                 String nickname = "Adventurous" + i;
-                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap, statistics);
+                DriverAgent adventurousDriverAgent = new DriverAgent(nickname, Color.RED, positions.pop(), positions.pop(), drawableMap);
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
@@ -114,7 +110,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
                 String nickname = "Collaborative" + i;
-                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap, statistics);
+                DriverAgent collaborativeDriverAgent = new DriverAgent(nickname, Color.CYAN, positions.pop(), positions.pop(), drawableMap);
                 collaborativeDriverAgent.addBehaviour(new CollaborativeDriverBehaviour(collaborativeDriverAgent));
                 mainContainer.acceptNewAgent(nickname, collaborativeDriverAgent).start();
                 drawableMap.addAgent(collaborativeDriverAgent);
@@ -122,7 +118,7 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < STATIC_SUPPLY_STATIONS; i++) {
                 String nickname = "StaticSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop(), statistics);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.GREEN, positions.pop());
                 supplyStationAgent.addBehaviour(new SupplyStationsStaticBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
@@ -130,12 +126,14 @@ public class Launcher extends Repast3Launcher {
 
             for (int i = 0; i < DYNAMIC_SUPPLY_STATIONS; i++) {
                 String nickname = "DynamicSupplyStation" + i;
-                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop(), statistics);
+                SupplyStationAgent supplyStationAgent = new SupplyStationAgent(nickname, Color.YELLOW, positions.pop());
                 supplyStationAgent.addBehaviour(new SupplyStationsDynamicBehaviour(supplyStationAgent));
                 mainContainer.acceptNewAgent(nickname, supplyStationAgent).start();
                 drawableMap.addAgent(supplyStationAgent);
             }
 
+            StatisticsAgent statisticsAgent = new StatisticsAgent();
+            statisticsAgent.addBehaviour(new StatisticsBehaviour(statisticsAgent, drawableMap.getAgentList()));
 
             for (DrawableAgent agent : drawableMap.getAgentList()) {
                 if (agent.getType() == Type.DRIVER) {
@@ -170,9 +168,5 @@ public class Launcher extends Repast3Launcher {
         chooseParams();
         SimInit init = new SimInit();
         init.loadModel(new Launcher(), null, false);
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
     }
 }

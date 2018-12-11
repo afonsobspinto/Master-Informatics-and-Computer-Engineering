@@ -67,15 +67,14 @@ public class DriverAgent extends DrawableAgent {
     private Map<AID, SupplyStationInfo> supplyStationsInfo = new HashMap<>();
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
-    private Statistics statistics;
+    private DriverInfo driverInfo;
 
-    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map, Statistics statistics) {
+    public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
         this.color = color;
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
-        this.statistics = statistics;
     }
 
     public void calculateInitialPath() {
@@ -183,10 +182,6 @@ public class DriverAgent extends DrawableAgent {
 
     public int getDeFactoTravelDuration() {
         return deFactoTravelDuration;
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
     }
 
     @Override
@@ -502,6 +497,13 @@ public class DriverAgent extends DrawableAgent {
 
     public SupplyStationInfo getTargetSupplyStationInfo() {
         return this.supplyStationsInfo.get(this.targetSupplyStation);
+    }
+
+    public void saveStatistics(){
+        Statistics statistics = Statistics.getInstance();
+        this.driverInfo = new DriverInfo(this.getPriceIntolerance(), this.getFuelToBuy(), this.getDestination(),
+                this.getDriverState(), Math.abs(this.getExpectedTravelDuration() - this.getDeFactoTravelDuration()), BehaviourType.ADVENTUROUS);
+        statistics.updateAgentInfo(this.getAID(), this.driverInfo);
     }
 
 }

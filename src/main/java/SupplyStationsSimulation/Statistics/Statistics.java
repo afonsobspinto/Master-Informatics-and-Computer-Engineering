@@ -9,14 +9,14 @@ public class Statistics {
     Map<AID, AgentInfo> map;
     ArrayList<Map<AID,AgentInfo>> history;
 
-    private static Statistics ourInstance = new Statistics();
+    private static Statistics ourInstance;
 
     public static Statistics getInstance() {
+        if(ourInstance == null)
+            ourInstance = new Statistics();
         return ourInstance;
     }
 
-    public Statistics() {
-    }
 
     public AgentInfo getAgentInfo(AID aid){
         return map.get(aid);
@@ -34,5 +34,6 @@ public class Statistics {
     public void export(){
 
     }
+
 }
 
