@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 
-export default class ChildFormScreen extends Component {
+export class ChildFormScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -15,6 +16,8 @@ export default class ChildFormScreen extends Component {
       childName: 'Nova Criança',
       childPhoto: null
     }
+
+    this.createChild = this.createChild.bind(this)
   }
 
   onPhotoChange = (uri) => {
@@ -26,7 +29,7 @@ export default class ChildFormScreen extends Component {
   }
 
   createChild = () => {
-    console.log('Create Child')
+    console.log('Create Child with email ' + this.props.loggedUserEmail)
   }
 
   render () {
@@ -57,6 +60,18 @@ export default class ChildFormScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  }),
+  /* istanbul ignore next */
+  dispatch => ({
+
+  })
+)(ChildFormScreen)
+
 ChildFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }
