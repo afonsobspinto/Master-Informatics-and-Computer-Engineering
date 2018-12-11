@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 export default class PasswordPromptScreen extends Component {
   verifyPassword = () => {
-    if (this.state.storedPW === this.state.inputPW) this.props.navigation.navigate('ParentMainMenuScreen')
+    if (this.state.storedPW === this.state.inputPW) this.props.navigation.replace('ParentMainMenuScreen')
     else {
       Alert.alert('Palavra-passe incorreta!', 'Tente novamente...', [
         { text: 'Esqueci-me', onPress: () => console.log('Esqueceu-se lol burro') },
