@@ -99,7 +99,7 @@ export default class RoutineFormScreen extends Component {
             <PeriodicityPicker color={this.state.color} isRepeat={this.state.isRepeat} periodicity={this.state.periodicity} togglePeriodicity={this.togglePeriodicity} toggleIsRepeat={this.toggleIsRepeat} />
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
             {this.state.activities && <Item stackedLabel style={{ borderColor: 'transparent' }}>
-              <Label>Actividades</Label>
+              <Label>Atividades</Label>
               <SortableList items={this.state.activities} color={this.state.color} onItemPress={this.onActivityPress} />
             </Item>}
             <BottomButton color={this.state.color} text={this.state.createRoutine ? 'Criar Rotina' : 'Editar Rotina'} onPress={this.state.createRoutine ? this.createRoutine : this.editRoutine} />
