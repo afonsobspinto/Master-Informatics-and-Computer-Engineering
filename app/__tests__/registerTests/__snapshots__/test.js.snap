@@ -44,8 +44,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         floatingLabel={true}
         style={
           Object {
-            "marginBottom": "5%",
-            "marginRight": "5%",
+            "marginLeft": 0,
           }
         }
         success={false}
@@ -78,8 +77,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         floatingLabel={true}
         style={
           Object {
-            "marginBottom": "5%",
-            "marginRight": "5%",
+            "marginLeft": 0,
           }
         }
         success={false}
