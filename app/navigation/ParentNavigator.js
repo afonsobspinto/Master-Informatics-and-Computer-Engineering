@@ -9,8 +9,8 @@ import ChildFormScreen from '../screens/parent/ChildFormScreen'
 import RemoveChildScreen from '../screens/parent/RemoveChildScreen'
 
 export default createStackNavigator({
-  ParentMainMenuScreen,
   PasswordPromptScreen,
+  ParentMainMenuScreen,
   ActivityFormScreen,
   RewardFormScreen,
   RoutineFormScreen,

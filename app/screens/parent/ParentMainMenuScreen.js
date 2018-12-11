@@ -32,7 +32,7 @@ export default class ParentMainMenuScreen extends React.Component {
   }
 
   getCorrespondingActionButton = () => {
-    if (this.state.selectedTab === 'activity') {
+    if (this.state.selectedTab === 'routines') {
       return (
         <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
           <ActionButton.Item buttonColor='#9b59b6' title='Criar atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
