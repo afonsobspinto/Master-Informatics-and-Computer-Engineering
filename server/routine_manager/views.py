@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
 
-from .models import Child
+from .models import Child, UserInfo
 
 
 def index(request):
@@ -49,3 +49,14 @@ def add_child(request):
         except Exception:
             return JsonResponse({'status': '400'})
         return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def push_token(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        user = UserInfo.objects.get(username=body['user'].username)
+        user.token = body['token'].value
+        user.save()
+
+        
