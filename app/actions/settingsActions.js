@@ -43,3 +43,9 @@ export function toggleRoutinePlayType () {
     type: settingTypes.toggleRoutinePlayType
   }
 }
+
+export function togglePlaySounds () {
+  return {
+    type: settingTypes.togglePlaySounds
+  }
+}

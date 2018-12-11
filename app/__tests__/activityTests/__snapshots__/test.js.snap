@@ -21,7 +21,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -34,8 +38,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -71,7 +75,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "left": 0,
-        "padding": 40.019999999999996,
+        "padding": 37.5,
         "position": "absolute",
         "width": "100%",
       }
@@ -89,6 +93,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
       elapsedTime={0}
       feedbackFrequency="normal"
       isPaused={false}
+      playSounds={false}
       showTimer={false}
     />
     <CancelButton
@@ -194,6 +199,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -220,7 +226,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -233,8 +243,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -270,7 +280,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "left": 0,
-        "padding": 40.019999999999996,
+        "padding": 37.5,
         "position": "absolute",
         "width": "100%",
       }
@@ -288,6 +298,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
       elapsedTime={0}
       feedbackFrequency="normal"
       isPaused={false}
+      playSounds={false}
       showTimer={true}
     />
     <CancelButton
@@ -393,6 +404,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -419,7 +431,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -432,8 +448,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -472,6 +488,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
     elapsedTime={0}
     feedbackFrequency="normal"
     isPaused={false}
+    playSounds={false}
     showTimer={true}
   />
   <Component
@@ -483,7 +500,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "left": 0,
-        "padding": 40.019999999999996,
+        "padding": 37.5,
         "position": "absolute",
         "width": "100%",
       }
@@ -592,6 +609,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -618,7 +636,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
   />
   <Image
     resizeMode="cover"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -631,8 +653,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -671,6 +693,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
     elapsedTime={0}
     feedbackFrequency="normal"
     isPaused={false}
+    playSounds={false}
     showTimer={true}
   />
   <Component
@@ -682,7 +705,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "left": 0,
-        "padding": 40.019999999999996,
+        "padding": 37.5,
         "position": "absolute",
         "width": "100%",
       }
@@ -791,6 +814,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -817,7 +841,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -829,8 +857,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -947,6 +975,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -973,7 +1002,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -985,8 +1018,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -1103,6 +1136,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>
@@ -1129,7 +1163,11 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
   />
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "uri": "bedroom",
+      }
+    }
     style={
       Object {
         "alignSelf": "center",
@@ -1141,8 +1179,8 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
   <Component
     style={
       Object {
-        "padding": 40.019999999999996,
-        "paddingLeft": 72.036,
+        "padding": 37.5,
+        "paddingLeft": 67.5,
         "position": "absolute",
         "top": 0,
       }
@@ -1259,6 +1297,7 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
     currentActivity={0}
     level={4}
     nextPress={[Function]}
+    playSounds={false}
     xp={430}
   />
 </Component>

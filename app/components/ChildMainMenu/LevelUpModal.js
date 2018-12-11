@@ -3,6 +3,7 @@ import { TouchableOpacity, Image, View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 
 import Modal from 'react-native-modalbox'
+import { RewardSound } from '../RewardsModal/RewardSound'
 import styles from '../../styles/ChildMainMenuScreen.style'
 
 import Images from '../../assets/images/images'
@@ -39,6 +40,7 @@ export class LevelUpModal extends React.Component {
             </View>
           </View>
         </Modal>
+        {this.props.isReward && <RewardSound success playSounds={this.props.playSounds} />}
       </View>
     )
   }
@@ -49,5 +51,6 @@ LevelUpModal.propTypes = {
   level: PropTypes.number.isRequired,
   xp: PropTypes.number.isRequired,
   isReward: PropTypes.bool.isRequired,
-  onClosed: PropTypes.func.isRequired
+  onClosed: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

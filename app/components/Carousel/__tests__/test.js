@@ -4,7 +4,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { routines, activityWithURI } from '../../../__tests__/mockTestData'
+import { routines, activityWithURI } from '../../../constants/mockTestData'
 import { getCardStyle } from '../../../styles/CardCarousel.style'
 
 import Card from '../Card'

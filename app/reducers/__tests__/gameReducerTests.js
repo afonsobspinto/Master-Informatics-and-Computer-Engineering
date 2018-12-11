@@ -1,6 +1,6 @@
 import gameReducer from '../gameReducer'
 import { gameTypes } from '../../actions/actionTypes'
-import { routines } from '../../__tests__/mockTestData'
+import { routines } from '../../constants/mockTestData'
 
 describe('game reducer', () => {
   it('should return initial state', () => {

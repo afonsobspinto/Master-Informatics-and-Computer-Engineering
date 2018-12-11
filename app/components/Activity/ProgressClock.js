@@ -81,7 +81,7 @@ export class ProgressClock extends React.Component {
   activityFeedback () {
     if (this.props.activityFeedback === 'visual') {
       this.borderFeedback()
-    } else if (this.props.activityFeedback === 'sound') {
+    } else if (this.props.activityFeedback === 'sound' && this.props.playSounds) {
       this.playSound()
     } else if (this.props.activityFeedback === 'vibration') {
       try {
@@ -133,5 +133,6 @@ ProgressClock.propTypes = {
   activityTimes: PropTypes.object.isRequired,
   isPaused: PropTypes.bool.isRequired,
   showTimer: PropTypes.bool.isRequired,
-  activityFeedback: PropTypes.string.isRequired
+  activityFeedback: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

@@ -1,27 +1,37 @@
 import React from 'react'
 import { Content } from 'native-base'
-import { SortableList } from '../../components/Settings/SortableList'
+import { SortableList } from '../../components/Parent/SortableList'
+import { PropTypes } from 'prop-types'
 
 export class RoutinesScreen extends React.Component {
+  onRoutinePress = (index) => {
+    this.props.navigation.navigate('RoutineFormScreen', { routine: routines[index] })
+  }
+
   render () {
     return (
       <Content>
-        <SortableList items={routines} />
+        <SortableList items={routines} onItemPress={this.onRoutinePress} />
       </Content>
     )
   }
 }
 
+RoutinesScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+}
+
 const routines = [
   {
     title: 'Após acordar',
-    image: 'sun',
+    photo: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg',
     color: '#37c1f0',
+    periodicity: [ 0, 1, 2, 3, 4 ],
+    isRepeat: true,
     activities: [
       {
         title: 'Fazer a cama',
-        image: 'bed',
-        photo: 'bedroom',
+        photo: 'https://hniesfp.imgix.net/8/images/detailed/14/EA1A7075.jpg?fit=fill&bg=0FFF&w=1500&h=1000&auto=format,compress',
         color: '#7d84b2',
         time: {
           min: 0,
@@ -104,8 +114,9 @@ const routines = [
   {
     title: 'Antes de dormir',
     image: 'moon',
-    photo: 'night',
     color: '#011f39',
+    periodicity: [ 0, 1, 2, 3, 4, 5, 6 ],
+    isRepeat: true,
     activities: [
       {
         title: 'Ajudar na cozinha',

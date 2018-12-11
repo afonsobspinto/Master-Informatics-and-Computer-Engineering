@@ -17,8 +17,6 @@ const images = {
   sleep: require('./activities/sleep.png'),
   socks: require('./activities/socks.png'),
   tea: require('./activities/tea.png'),
-  bedroom: require('./activities/bedroom.jpg'),
-  night: require('./routines/night.jpg'),
   pool: require('./pool.jpg'),
   avatar: require('./avatar.png'),
   cap: require('./cap.png'),
@@ -29,8 +27,31 @@ const images = {
     pause: require('./navigation/pause.png'),
     confirm: require('./navigation/confirm.png'),
     next: require('./navigation/next.png'),
-    star: require('./star.png')
+    star: require('./star.png'),
+    sad: require('./sad.png'),
+    info: require('./info-button.png')
   }
 }
+
+export const availableImages = [
+  { name: 'Sol', image: 'sun' },
+  { name: 'Lua', image: 'moon' },
+  { name: 'Mochila', image: 'bag' },
+  { name: 'Cama', image: 'bed' },
+  { name: 'Blocos', image: 'blocks' },
+  { name: 'Livro', image: 'book' },
+  { name: 'Cereais', image: 'breakfast' },
+  { name: 'Pente', image: 'comb' },
+  { name: 'Armario', image: 'drawers' },
+  { name: 'Talheres', image: 'fork' },
+  { name: 'T-Shirt', image: 'shirt' },
+  { name: 'Trabalhos', image: 'paper' },
+  { name: 'Escova de dentes', image: 'toothbrush' },
+  { name: 'Sapatilhas', image: 'sneakers' },
+  { name: 'Chuveiro', image: 'shower' },
+  { name: 'Dormir', image: 'sleep' },
+  { name: 'Meias', image: 'socks' },
+  { name: 'Cha', image: 'tea' }
+]
 
 export default images

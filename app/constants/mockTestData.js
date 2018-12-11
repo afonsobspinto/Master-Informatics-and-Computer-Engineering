@@ -128,12 +128,13 @@ export const routines = [
   {
     title: 'Após acordar',
     image: 'sun',
+    photo: 'https://i.ytimg.com/vi/Br-GC8FcTig/maxresdefault.jpg',
     color: '#37c1f0',
     activities: [
       {
         title: 'Fazer a cama',
         image: 'bed',
-        photo: 'bedroom',
+        photo: 'https://www.brewsterwallcovering.com/images/thumbs/0030235_900.jpeg',
         color: '#7d84b2',
         time: {
           min: 0,
@@ -216,23 +217,12 @@ export const routines = [
   {
     title: 'Antes de dormir',
     image: 'moon',
-    photo: 'night',
     color: '#011f39',
     activities: [
       {
         title: 'Ajudar na cozinha',
         image: 'fork',
         color: '#1a5e63',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Arrumar o quarto',
-        image: 'drawers',
-        color: '#a3320b',
         time: {
           min: 10,
           max: 120,

@@ -5,7 +5,8 @@ export const settingTypes = {
   toggleActivityTimer: 'settings:toggleActivityTimer',
   toggleActivityFeedback: 'settings:toggleActivityFeedback',
   changeFeedbackFrequency: 'settings:changeFeedbackFrequency',
-  toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
+  toggleRoutinePlayType: 'settings:toggleRoutinePlayType',
+  togglePlaySounds: 'settings:togglePlaySounds'
 }
 
 export const gameTypes = {
