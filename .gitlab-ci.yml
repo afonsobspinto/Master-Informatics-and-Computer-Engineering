@@ -68,7 +68,6 @@ expo-prod-deployments:
 expo-staging-deployments:
   only:
     - development
-    - 90-register
   stage: deploy
   <<: *install_app_dependencies
   script:
@@ -82,7 +81,6 @@ django-staging-deployments:
     - digitalocean
   only:
     - development
-    - 90-register
   stage: deploy
   <<: *install_ssh_dependencies
   script:
