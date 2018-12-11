@@ -1,5 +1,6 @@
 package SupplyStationsSimulation.Statistics;
 
+import SupplyStationsSimulation.Agents.Type;
 import jade.core.AID;
 
 import java.io.File;
@@ -44,10 +45,10 @@ public class Statistics {
         for(int step = 0; step < history.size(); step++){
             Map<AID, AgentInfo> historyMap = history.get(step);
             for (AID aid : historyMap.keySet()) {
-                stringBuilder.append(step*infoFlag+infoFlag);
-                stringBuilder.append(",");
-                stringBuilder.append(historyMap.get(aid).toString());
-                stringBuilder.append("\n");
+                    stringBuilder.append(step * infoFlag + infoFlag);
+                    stringBuilder.append(",");
+                    stringBuilder.append(historyMap.get(aid).toString());
+                    stringBuilder.append("\n");
             }
         }
 

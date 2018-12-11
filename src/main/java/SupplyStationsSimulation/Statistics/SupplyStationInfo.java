@@ -9,13 +9,16 @@ public class SupplyStationInfo extends AgentInfo {
     private double price;
     private int ticksToFuel;
     private int totalRequests;
-    private BehaviourType behaviourType;
+    private int behaviourType;
 
     public SupplyStationInfo(double price, int ticksToFuel, int totalRequests, BehaviourType behaviourType) {
+        if(behaviourType == BehaviourType.DYNAMIC)
+            this.behaviourType = 2;
+        else
+            this.behaviourType = 3;
         this.price = price;
         this.ticksToFuel = ticksToFuel;
         this.totalRequests = totalRequests;
-        this.behaviourType = behaviourType;
     }
 
     public double getPrice() {
@@ -47,9 +50,9 @@ public class SupplyStationInfo extends AgentInfo {
 
     @Override
     public String toString() {
-        return price +
+        return behaviourType +
                 "," + ticksToFuel +
-                "," + totalRequests +
-                "," + behaviourType;
+                "," + price +
+                "," + totalRequests;
     }
 }
