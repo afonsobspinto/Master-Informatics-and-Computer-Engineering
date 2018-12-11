@@ -23,7 +23,7 @@ export default class ParentMainMenuScreen extends React.Component {
       case 'routines':
         return (<RoutinesScreen navigation={this.props.navigation} />)
       case 'settings':
-        return (<SettingsScreen />)
+        return (<SettingsScreen navigation={this.props.navigation} />)
     }
   }
 
