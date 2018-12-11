@@ -50,5 +50,11 @@ export default StyleSheet.create({
     fontSize: 15,
     marginBottom: '2%',
     color: lightTextColor
+  },
+  errorMessage: {
+    fontFamily: 'LinotteBold',
+    fontSize: 15,
+    marginTop: '5%',
+    color: lightTextColor
   }
 })

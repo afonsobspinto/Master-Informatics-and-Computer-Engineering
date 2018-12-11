@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Switch } from 'react-native'
 import PropTypes from 'prop-types'
-import { List, Content, ListItem, Text, Right, Body, Picker } from 'native-base'
+import { List, Content, ListItem, Text, Right, Body, Picker, Separator } from 'native-base'
 import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback, changeFeedbackFrequency, togglePlaySounds } from '../../actions/settingsActions'
 
 class SettingsScreen extends React.Component {
@@ -10,6 +10,18 @@ class SettingsScreen extends React.Component {
     return (
       <Content>
         <List>
+          <Separator bordered>
+            <Text>CRIANÇAS</Text>
+          </Separator>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('ChildFormScreen')}>
+            <Body><Text>Adicionar nova criança</Text></Body>
+          </ListItem>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('RemoveChildScreen')}>
+            <Body><Text>Remover criança</Text></Body>
+          </ListItem>
+          <Separator bordered>
+            <Text>DEFINIÇÕES</Text>
+          </Separator>
           <ListItem icon>
             <Body><Text>Visual de progresso</Text></Body>
             <Right>
@@ -93,5 +105,6 @@ SettingsScreen.propTypes = {
   changeFeedbackFrequency: PropTypes.func.isRequired,
   routinePlayType: PropTypes.string.isRequired,
   toggleRoutinePlayType: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
   togglePlaySounds: PropTypes.func.isRequired
 }

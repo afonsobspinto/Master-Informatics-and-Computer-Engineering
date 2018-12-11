@@ -8,24 +8,24 @@ import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
 import EnvVars from '../constants/EnviromentVars'
 
-export class LoginScreen extends Component {
+export class RegisterScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
       email: '',
       emailError: true,
+      emailErrorMessage: 'Este e-mail não é válido!',
       password: '',
       passwordError: true,
+      passwordErrorMessage: 'A password deve conter 6 caracteres!',
       emailHadInteraction: false,
-      passwordHadInteraction: false,
-      loginFailed: false,
-      errorMessage: 'As suas credenciais estão erradas!'
+      passwordHadInteraction: false
     }
   }
 
   handlePress (email, password) {
     if (!this.state.passwordError && !this.state.emailError) {
-      fetch(EnvVars.apiUrl + 'routine_manager/login/', {
+      fetch(EnvVars.apiUrl + 'routine_manager/register/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -39,9 +39,9 @@ export class LoginScreen extends Component {
         .then((responseJson) => {
           if (responseJson.status === '200') {
             this.props.login(this.state.email)
-            this.props.navigation.replace('MainMenu')
+            this.props.navigation.replace('ChildFormScreen', { afterRegisterScreen: true })
           } else {
-            this.setState(() => ({ loginFailed: true }))
+            this.setState(() => ({ emailErrorMessage: 'Este e-mail já está a ser utilizado!' }))
           }
           return responseJson
         })
@@ -68,15 +68,17 @@ export class LoginScreen extends Component {
       }
       this.setState(() => ({ passwordHadInteraction: true, password: value }))
     }
-    this.setState(() => ({ loginFailed: false }))
+    this.setState(() => ({ emailErrorMessage: 'Este e-mail não é válido!' }))
   }
 
   render () {
     return (
       <Container style={styles.registerContainter}>
         <Content contentContainerStyle={styles.contentContainter}>
-          <Text style={styles.registerTitle}>Início de sessão</Text>
+          <Text style={styles.registerTitle}>Registo de Conta</Text>
           <Form>
+
+            {this.state.emailError && this.state.emailHadInteraction && <Text style={styles.errorMessage}>{this.state.emailErrorMessage}</Text>}
             <Item floatingLabel error={this.state.emailError && this.state.emailHadInteraction} success={!this.state.emailError && this.state.emailHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>E-mail</Label>
               <Input
@@ -86,6 +88,7 @@ export class LoginScreen extends Component {
               />
             </Item>
 
+            {this.state.passwordError && this.state.passwordHadInteraction && <Text style={styles.errorMessage}>{this.state.passwordErrorMessage}</Text>}
             <Item floatingLabel error={this.state.passwordError && this.state.passwordHadInteraction} success={!this.state.passwordError && this.state.passwordHadInteraction} style={styles.inputContainer}>
               <Label style={styles.labelText}>Password</Label>
               <Input
@@ -96,15 +99,14 @@ export class LoginScreen extends Component {
               />
             </Item>
 
-            {this.state.loginFailed && <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>}
             <Button rounded block primary style={styles.submitButton} onPress={() => this.handlePress(this.state.email, this.state.password)}>
-              <Text style={styles.buttonText}>Login</Text>
+              <Text style={styles.buttonText}>Concluir Registo</Text>
             </Button>
           </Form>
 
           <View style={styles.loginTextContainer}>
-            <Text style={styles.loginText}>Não possui uma conta?</Text>
-            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('RegisterMenu')} >Registe-se aqui</Text>
+            <Text style={styles.loginText}>Já possui uma conta?</Text>
+            <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('LoginMenu')}>Faça login aqui!</Text>
           </View>
         </Content>
       </Container>
@@ -121,9 +123,9 @@ export default connect(
   dispatch => ({
     login: (email) => dispatch(login(email))
   })
-)(LoginScreen)
+)(RegisterScreen)
 
-LoginScreen.propTypes = {
+RegisterScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired
 }

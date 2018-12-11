@@ -1,15 +1,19 @@
+import 'react-native'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import RegisterScreen from '../../screens/parent/RegisterScreen'
+import { RegisterScreen } from '../../screens/RegisterScreen'
 
 configure({ adapter: new Adapter() })
 
 describe('RegisterScreen snapshot', () => {
   it('renders RegisterScreen correctly', async () => {
-    const wrapper = shallow(<RegisterScreen />)
+    const wrapper = shallow(<RegisterScreen
+      navigation={{ navigate: jest.fn() }}
+      login={jest.fn()}
+    />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find('.email').simulate('changeText', 'a')
     wrapper.find('.password').simulate('changeText', 'a')

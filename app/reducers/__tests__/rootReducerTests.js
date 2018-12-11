@@ -24,6 +24,9 @@ describe('root reducer', () => {
         routines: routines,
         currentActivity: -1,
         currentRoutine: -1
+      },
+      user: {
+        email: ''
       }
     })
   })

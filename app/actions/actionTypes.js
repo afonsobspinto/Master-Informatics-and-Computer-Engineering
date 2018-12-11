@@ -23,3 +23,8 @@ export const childTypes = {
   purchaseItem: 'child:purchaseItem',
   toggleLevelUpModal: 'child:toggleLevelUpModal'
 }
+
+export const userTypes = {
+  login: 'user:login',
+  logout: 'user:logout'
+}

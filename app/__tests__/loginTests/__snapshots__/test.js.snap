@@ -8,11 +8,6 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
     }
   }
 >
-  <StatusBar
-    animated={false}
-    hidden={true}
-    showHideTransition="fade"
-  />
   <Styled(Content)
     contentContainerStyle={
       Object {
@@ -40,7 +35,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
     </Text>
     <Styled(Form)>
       <Styled(Item)
-        error={null}
+        error={false}
         floatingLabel={true}
         style={
           Object {
@@ -62,6 +57,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
         </Styled(Label)>
         <Styled(Input)
           className="email"
+          onChangeText={[Function]}
           style={
             Object {
               "color": "#ffffff",
@@ -72,7 +68,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
         />
       </Styled(Item)>
       <Styled(Item)
-        error={null}
+        error={false}
         floatingLabel={true}
         style={
           Object {
@@ -94,6 +90,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
         </Styled(Label)>
         <Styled(Input)
           className="password"
+          onChangeText={[Function]}
           secureTextEntry={true}
           style={
             Object {
@@ -106,6 +103,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
       </Styled(Item)>
       <Styled(Button)
         block={true}
+        onPress={[Function]}
         primary={true}
         rounded={true}
         style={
@@ -158,6 +156,7 @@ exports[`LoginScreen snapshot renders LoginScreen correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        onPress={[Function]}
         style={
           Object {
             "color": "#ffffff",
