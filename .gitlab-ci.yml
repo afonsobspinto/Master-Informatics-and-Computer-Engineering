@@ -49,7 +49,7 @@ django-tests:
   <<: *install_server_dependencies
   script:
     - pip list
-    - python manage.py test
+    - python manage.py test --noinput
   artifacts:
     reports:
       junit: server/tests_report.xml
@@ -74,7 +74,7 @@ expo-staging-deployments:
     - npm install -g expo-cli 
     - apk add --no-cache bash
     - npx expo login -u ldsog02 -p jungle-setup
-    - npx expo build:android --release-channel staging
+    - npx expo publish --release-channel staging
 
 django-staging-deployments:
   tags:
