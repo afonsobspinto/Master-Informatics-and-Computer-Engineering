@@ -60,6 +60,22 @@ def add_child(request):
         child.save()
         return JsonResponse({'status': '200'})
 
+@csrf_exempt
+def add_routine(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+
+        if('photo' in body):
+            print("To Save")    # Save in database
+
+        if('image' in body):
+            print("To Save")    # Save in database
+       
+
+        print(body['userEmail'] +  body['color'] + body['title'] + body['repeatable'] + body['periodicity'])
+        return JsonResponse({'status': '200'})
+
 
 @csrf_exempt
 def push_token(request):

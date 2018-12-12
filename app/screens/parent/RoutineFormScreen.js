@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { ColorPicker } from '../../components/Parent/ColorPicker'
 import { PeriodicityPicker } from '../../components/Parent/PeriodicityPicker'
@@ -8,6 +9,8 @@ import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 import { SortableList } from '../../components/Parent/SortableList'
+
+import EnvVars from '../../constants/EnviromentVars'
 
 const defaultState = {
   title: 'Nome da rotina',
@@ -17,7 +20,7 @@ const defaultState = {
   createRoutine: true
 }
 
-export default class RoutineFormScreen extends Component {
+export class RoutineFormScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -60,8 +63,47 @@ export default class RoutineFormScreen extends Component {
     console.log('Remove Routine')
   }
 
+  encodePeriodicity () {
+    let codedPeriodicity = '0000000'
+    for (let x in this.state.periodicity) {
+      let index = this.state.periodicity[x]
+      if (index > codedPeriodicity.length - 1) {
+        break
+      } else {
+        codedPeriodicity = codedPeriodicity.substr(0, index) + '1' + codedPeriodicity.substr(index + 1)
+      }
+    }
+    return codedPeriodicity
+  }
+
   createRoutine = () => {
-    console.log('Create Routine')
+    fetch(EnvVars.apiUrl + 'routine_manager/add-routine/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userEmail: this.props.loggedUserEmail,
+        title: this.state.title,
+        color: this.state.color,
+        image: this.state.image,
+        photo: this.state.photo,
+        repeatable: (this.state.isRepeat).toString(),
+        periodicity: this.encodePeriodicity()
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('salvo')
+        } else {
+          console.log('oops')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   editRoutine = () => {
@@ -110,6 +152,14 @@ export default class RoutineFormScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  })
+)(RoutineFormScreen)
+
 RoutineFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }
