@@ -3,37 +3,41 @@ import PropTypes from 'prop-types'
 import { View, ScrollView, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-import Images from '../../assets/images/images'
+import Images, { avatarItems, avatarCategories } from '../../assets/images/images'
 import { ShopItem } from '../../components/ChildMainMenu/ShopItem'
 import { ShopTitle } from '../../components/ChildMainMenu/ShopTitle'
+import { Avatar } from '../../components/ChildMainMenu/Avatar'
 
 import styles from '../../styles/Shop.style'
-import { purchaseItem } from '../../actions/childActions'
+import { purchaseItem, toggleItem } from '../../actions/childActions'
 
 export class ShopScreen extends Component {
   render () {
     let shopItems = []
 
-    for (let i = 0; i < 36; i++) {
-      if (i % 8 === 0) {
-        shopItems.push(<ShopTitle key={100 + i} title='Chapéus' />)
-      }
-      let cost = (Math.floor(Math.random() * 9) + 1) * 10
-      shopItems.push(
-        <ShopItem
-          key={i}
-          id={i}
-          cost={cost}
-          disabled={cost > this.props.stars || this.props.itemsOwned.includes(i)}
-          purchaseItem={this.props.purchaseItem}
-          purchased={this.props.itemsOwned.includes(i)} />
-      )
+    for (let i = 0; i < avatarCategories.length; i++) {
+      shopItems.push(<ShopTitle key={1000 + i} title={avatarCategories[i]} />)
+
+      avatarItems
+        .filter(item => item.category === avatarCategories[i])
+        .forEach((item, index) => shopItems.push(
+          <ShopItem
+            key={i * 100 + index}
+            id={item.id}
+            cost={item.price}
+            image={item.thumbnail}
+            disabled={item.price > this.props.stars && !this.props.itemsOwned.includes(item.id)}
+            purchaseItem={this.props.purchaseItem}
+            toggleItem={this.props.toggleItem}
+            equiped={this.props.itemsEquiped.includes(item.id)}
+            purchased={this.props.itemsOwned.includes(item.id)} />
+        ))
     }
 
     return (
       <View style={styles.shopModal}>
         <View style={styles.imageCard} >
-          <Image style={styles.avatar} resizeMode={'contain'} source={Images.avatar} />
+          <Avatar equiped={this.props.itemsEquiped} gender={this.props.gender} />
         </View>
         <View style={styles.shopItemsContainer} >
           <View style={styles.shopTitleContainer}>
@@ -57,15 +61,21 @@ export class ShopScreen extends Component {
 export default connect(
   state => ({
     stars: state.child.stars,
-    itemsOwned: state.child.itemsOwned
+    itemsOwned: state.child.itemsOwned,
+    itemsEquiped: state.child.itemsEquiped,
+    gender: state.child.gender
   }),
   dispatch => ({
-    purchaseItem: (cost, id) => dispatch(purchaseItem(cost, id))
+    purchaseItem: (cost, id) => dispatch(purchaseItem(cost, id)),
+    toggleItem: id => dispatch(toggleItem(id))
   })
 )(ShopScreen)
 
 ShopScreen.propTypes = {
   stars: PropTypes.number.isRequired,
+  gender: PropTypes.string.isRequired,
   itemsOwned: PropTypes.array.isRequired,
-  purchaseItem: PropTypes.func.isRequired
+  purchaseItem: PropTypes.func.isRequired,
+  toggleItem: PropTypes.func.isRequired,
+  itemsEquiped: PropTypes.array.isRequired
 }

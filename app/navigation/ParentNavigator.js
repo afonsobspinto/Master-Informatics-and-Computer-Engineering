@@ -7,8 +7,8 @@ import RoutineFormScreen from '../screens/parent/RoutineFormScreen'
 import RewardFormScreen from '../screens/parent/RewardFormScreen'
 
 export default createStackNavigator({
-  ParentMainMenuScreen,
   PasswordPromptScreen,
+  ParentMainMenuScreen,
   ActivityFormScreen,
   RoutineFormScreen,
   RewardFormScreen

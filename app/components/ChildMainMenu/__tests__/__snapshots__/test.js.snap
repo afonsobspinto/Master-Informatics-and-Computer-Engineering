@@ -323,7 +323,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
   style={
     Object {
       "aspectRatio": 1,
-      "padding": 30,
+      "padding": 22.5,
       "width": "33.3333%",
     }
   }
@@ -336,13 +336,15 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#bbecec",
-        "borderRadius": 30,
+        "borderColor": "#bbecec",
+        "borderRadius": 22.5,
+        "borderWidth": 3,
         "elevation": 6,
         "height": "100%",
         "justifyContent": "center",
-        "paddingBottom": 90,
-        "paddingHorizontal": 15,
-        "paddingTop": 15,
+        "paddingBottom": 67.5,
+        "paddingHorizontal": 11.25,
+        "paddingTop": 11.25,
         "width": "100%",
       }
     }
@@ -365,7 +367,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "bottom": 15,
+            "bottom": 11.25,
             "flexDirection": "row",
             "justifyContent": "center",
             "position": "absolute",
@@ -379,9 +381,9 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         source={1}
         style={
           Object {
-            "height": 60,
-            "marginRight": 15,
-            "width": 60,
+            "height": 45,
+            "marginRight": 11.25,
+            "width": 45,
           }
         }
       />
@@ -393,7 +395,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
           Object {
             "color": "#000",
             "fontFamily": "LinotteBold",
-            "fontSize": 48,
+            "fontSize": 27,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 1,
@@ -416,10 +418,10 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
     Object {
       "alignItems": "center",
       "flexDirection": "row",
-      "height": 120,
+      "height": 90,
       "justifyContent": "space-between",
-      "marginBottom": 30,
-      "paddingHorizontal": 30,
+      "marginBottom": 22.5,
+      "paddingHorizontal": 22.5,
       "width": "100%",
     }
   }
@@ -432,7 +434,7 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
       Object {
         "color": "#fff",
         "fontFamily": "LinotteBold",
-        "fontSize": 90,
+        "fontSize": 67.5,
         "textShadowColor": "rgba(0, 0, 0, 0.2)",
         "textShadowOffset": Object {
           "height": 1,

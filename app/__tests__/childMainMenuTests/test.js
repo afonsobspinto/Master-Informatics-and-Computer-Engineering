@@ -16,7 +16,9 @@ describe('ChildMainMenuScreen snapshot', () => {
       level={1}
       showLevelUpModal={false}
       toggleLevelUpModal={jest.fn()}
-      playSounds={false} />)
+      playSounds={false}
+      gender={'M'}
+      itemsEquiped={[0, 3]} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(TouchableOpacity).at(0).props().onPress()
     wrapper.find(TouchableOpacity).at(1).props().onPress()

@@ -9,6 +9,8 @@ import { ShopItem } from '../ShopItem'
 import { ShopTitle } from '../ShopTitle'
 import { LevelUpModal } from '../LevelUpModal'
 
+import { avatarItems } from '../../../assets/images/images'
+
 configure({ adapter: new Adapter() })
 
 describe('MainMenu components', () => {
@@ -27,7 +29,10 @@ describe('MainMenu components', () => {
       disabled={false}
       purchased={false}
       purchaseItem={jest.fn()}
-      id={0} />)
+      id={0}
+      equiped={false}
+      toggleItem={jest.fn()}
+      image={avatarItems[0].thumbnail} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ disabled: true })
     wrapper.setProps({ purchased: true })

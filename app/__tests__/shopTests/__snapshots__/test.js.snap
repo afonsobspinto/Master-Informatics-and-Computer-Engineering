@@ -1,0 +1,298 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShopScreen snapshot renders ShopScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#3db3e2",
+      "flexDirection": "row",
+      "height": "100%",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#bbecec",
+        "borderRadius": 45,
+        "elevation": 6,
+        "flex": 3,
+        "justifyContent": "center",
+        "marginLeft": 45,
+        "marginVertical": 45,
+        "overflow": "hidden",
+        "paddingBottom": 45,
+      }
+    }
+  >
+    <Avatar
+      equiped={
+        Array [
+          0,
+          1,
+        ]
+      }
+      gender="M"
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "flex": 4,
+        "paddingHorizontal": 22.5,
+        "paddingVertical": 45,
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "height": 90,
+          "justifyContent": "space-between",
+          "marginBottom": 22.5,
+          "paddingHorizontal": 22.5,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 67.5,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+        Loja
+      </Text>
+      <Component
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={1}
+          style={
+            Object {
+              "height": 54,
+              "marginRight": 11.25,
+              "width": 54,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 67.5,
+              "textShadowColor": "rgba(0, 0, 0, 0.2)",
+              "textShadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "textShadowRadius": 3,
+            }
+          }
+        >
+          1
+        </Text>
+      </Component>
+    </Component>
+    <ScrollViewMock>
+      <Component
+        style={
+          Object {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+          }
+        }
+      >
+        <ShopTitle
+          key="1000"
+          title="Acessórios"
+        />
+        <ShopItem
+          cost={40}
+          disabled={true}
+          equiped={false}
+          id={9}
+          image={1}
+          key="0"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={10}
+          disabled={true}
+          equiped={false}
+          id={10}
+          image={1}
+          key="1"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={50}
+          disabled={true}
+          equiped={false}
+          id={12}
+          image={1}
+          key="2"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopTitle
+          key="1001"
+          title="Chapéus"
+        />
+        <ShopItem
+          cost={20}
+          disabled={true}
+          equiped={false}
+          id={4}
+          image={1}
+          key="100"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={20}
+          disabled={true}
+          equiped={false}
+          id={5}
+          image={1}
+          key="101"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopTitle
+          key="1002"
+          title="Mascotes"
+        />
+        <ShopItem
+          cost={30}
+          disabled={true}
+          equiped={true}
+          id={0}
+          image={1}
+          key="200"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={20}
+          disabled={true}
+          equiped={true}
+          id={1}
+          image={1}
+          key="201"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={100}
+          disabled={true}
+          equiped={false}
+          id={2}
+          image={1}
+          key="202"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopTitle
+          key="1003"
+          title="Objectos"
+        />
+        <ShopItem
+          cost={10}
+          disabled={true}
+          equiped={false}
+          id={3}
+          image={1}
+          key="300"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={10}
+          disabled={true}
+          equiped={false}
+          id={6}
+          image={1}
+          key="301"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={80}
+          disabled={true}
+          equiped={false}
+          id={7}
+          image={1}
+          key="302"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={40}
+          disabled={true}
+          equiped={false}
+          id={8}
+          image={1}
+          key="303"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+        <ShopItem
+          cost={150}
+          disabled={true}
+          equiped={false}
+          id={11}
+          image={1}
+          key="304"
+          purchaseItem={[MockFunction]}
+          purchased={false}
+          toggleItem={[MockFunction]}
+        />
+      </Component>
+    </ScrollViewMock>
+  </Component>
+</Component>
+`;

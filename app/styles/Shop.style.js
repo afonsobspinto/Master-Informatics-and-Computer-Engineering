@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 import Layout from '../constants/Layout'
-import { backgroundColor, lighterBackgroundColor } from './Colors'
+import { backgroundColor, lighterBackgroundColor, darkerBackgroundColor } from './Colors'
 
-const padding = Layout.window.width * 0.08
+const padding = Layout.window.width * 0.06
 
 export default StyleSheet.create({
   shopModal: {
@@ -23,12 +23,24 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginVertical: padding,
     marginLeft: padding,
-    paddingVertical: padding
+    paddingBottom: padding
   },
-  avatar: {
+  avatarItem: {
     width: '100%',
     height: '100%',
+    position: 'absolute',
     aspectRatio: 1
+  },
+  avatarContainer: {
+    width: '100%',
+    height: '100%',
+    position: 'relative'
+  },
+  buttonAvatarContainer: {
+    position: 'absolute',
+    top: 0,
+    height: '150%',
+    width: '150%'
   },
   shopItemsContainer: {
     flex: 4,
@@ -48,9 +60,11 @@ export default StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: lighterBackgroundColor,
+    borderColor: lighterBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: padding / 2,
+    borderWidth: 3,
     elevation: 6,
     paddingTop: padding / 4,
     paddingHorizontal: padding / 4,
@@ -63,6 +77,21 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: padding / 2,
+    borderWidth: 3,
+    borderColor: '#cecece',
+    paddingTop: padding / 4,
+    paddingHorizontal: padding / 4,
+    paddingBottom: padding * 1.5
+  },
+  shopItemEquiped: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: lighterBackgroundColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: padding / 2,
+    borderColor: darkerBackgroundColor,
+    borderWidth: 3,
     paddingTop: padding / 4,
     paddingHorizontal: padding / 4,
     paddingBottom: padding * 1.5
@@ -74,7 +103,7 @@ export default StyleSheet.create({
   },
   currencyText: {
     fontFamily: 'LinotteBold',
-    fontSize: padding * 0.8,
+    fontSize: padding * 0.6,
     color: '#000',
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },

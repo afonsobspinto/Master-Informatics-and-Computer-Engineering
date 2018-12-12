@@ -29,4 +29,12 @@ describe('child actions', () => {
     }
     expect(childActions.toggleLevelUpModal()).toEqual(expectedAction)
   })
+
+  it('should create an action to toggle an item', () => {
+    const expectedAction = {
+      type: childTypes.toggleItem,
+      payload: 1
+    }
+    expect(childActions.toggleItem(1)).toEqual(expectedAction)
+  })
 })
