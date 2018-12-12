@@ -69,6 +69,22 @@ def add_child(request):
                     new_activity.save()
         return JsonResponse({'status': '200'})
 
+@csrf_exempt
+def remove_child(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        user = User.objects.get(username=body['email'])
+        user_info = UserInfo.objects.get(user=user)
+        children = Child.objects.filter(userID=user_info) #esta a dar delete a primeira crianca, alterar quando houver front end
+        print(children)
+        child_to_delete = children[0]
+        child_to_delete.delete()
+        children = Child.objects.filter(userID=user_info) #esta a dar delete a primeira crianca, alterar quando houver front end
+        print(children)
+        return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
 
 @csrf_exempt
 def push_token(request):

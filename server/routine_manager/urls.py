@@ -8,6 +8,6 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('add-child/', views.add_child, name='add-child'),
     path('push-token/', views.push_token, name='push-token'),
-    path('settings/', views.settings, name='settings')
-    #path('routines/', views.routines, name='routines')
+    path('settings/', views.settings, name='settings'),
+    path('remove-child/', views.remove_child, name='remove-child')
 ]
