@@ -18,7 +18,6 @@ import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -30,19 +29,22 @@ DEBUG = True
 
 LOCALIP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
                          if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
-                                                               s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET,
-                                                                                                                      socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
+                                                               s.getsockname()[0], s.close()) for s in
+                                                              [socket.socket(socket.AF_INET,
+                                                                             socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
 
 # Path to save the file containing the local IP address
-pathToSaveFile = os.getcwd()+"/../app/constants/"
+__DEV__ = config('DEV_MODE', default=False, cast=bool)
 
-completeFilePath = os.path.join(pathToSaveFile, "localIP.json")
+if __DEV__:
+    pathToSaveFile = os.getcwd() + "/../app/constants/"
 
-data = {'localIP': LOCALIP}
+    completeFilePath = os.path.join(pathToSaveFile, "localIP.json")
 
-with open(completeFilePath, 'w') as outfile:
-    json.dump(data, outfile)
+    data = {'localIP': LOCALIP}
 
+    with open(completeFilePath, 'w') as outfile:
+        json.dump(data, outfile)
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', LOCALIP, '167.99.128.178', '10.0.2.2']
 
@@ -88,7 +90,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -102,7 +103,6 @@ DATABASES = {
         'PORT': config('DATABASE_PORT')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -122,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -135,7 +134,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
