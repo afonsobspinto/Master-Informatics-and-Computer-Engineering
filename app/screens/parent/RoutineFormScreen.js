@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
 import { ColorPicker } from '../../components/Parent/ColorPicker'
 import { PeriodicityPicker } from '../../components/Parent/PeriodicityPicker'
@@ -20,7 +19,7 @@ const defaultState = {
   createRoutine: true
 }
 
-export class RoutineFormScreen extends Component {
+export default class RoutineFormScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -84,7 +83,6 @@ export class RoutineFormScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userEmail: this.props.loggedUserEmail,
         title: this.state.title,
         color: this.state.color,
         image: this.state.image,
@@ -152,14 +150,6 @@ export class RoutineFormScreen extends Component {
   }
 }
 
-export default connect(
-  /* istanbul ignore next */
-  state => ({
-    loggedUserEmail: state.user.email
-  })
-)(RoutineFormScreen)
-
 RoutineFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  loggedUserEmail: PropTypes.string.isRequired
+  navigation: PropTypes.object.isRequired
 }

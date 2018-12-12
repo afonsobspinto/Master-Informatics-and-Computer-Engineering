@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
 
-from .models import Child, UserInfo, Settings
+from .models import Child, UserInfo, Settings, Routine
 
 
 def index(request):
@@ -66,14 +66,18 @@ def add_routine(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
 
-        if('photo' in body):
-            print("To Save")    # Save in database
-
-        if('image' in body):
-            print("To Save")    # Save in database
-       
-
-        print(body['userEmail'] +  body['color'] + body['title'] + body['repeatable'] + body['periodicity'])
+        for child in Child.objects.all():
+            if('photo' in body and 'image' in body):
+                routine = Routine(childID=child, title=body['title'], color=body['color'], image=body['image'],
+                        photo=body['photo'], periodicity=body['periodicity'])
+            elif('photo' in body):
+                routine = Routine(childID=child, title=body['title'], color=body['color'],
+                        photo=body['photo'], periodicity=body['periodicity'])
+            elif('image' in body):
+                routine = Routine(childID=child, title=body['title'], color=body['color'], image=body['image'],
+                        periodicity=body['periodicity'])
+                     
+        routine.save()
         return JsonResponse({'status': '200'})
 
 
