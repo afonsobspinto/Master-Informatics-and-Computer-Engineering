@@ -69,6 +69,7 @@ public class DriverAgent extends DrawableAgent {
     private AID targetSupplyStation;
     private DriverInfo driverInfo;
     private BehaviourType behaviourType;
+    private boolean doneFlag = false;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -332,8 +333,10 @@ public class DriverAgent extends DrawableAgent {
     }
 
     private void logFuelling() {
-        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
-                " is fuelling for the next " + ticksToFuel + " ticks");
+        if (ticksToFuel % 10 == 0) {
+            System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
+                    " is fuelling for the next " + ticksToFuel + " ticks");
+        }
     }
 
     private void setDriverState(DriverState driverState) {
@@ -386,12 +389,16 @@ public class DriverAgent extends DrawableAgent {
 
     @Override
     public boolean isDone() {
-        if (this.position.equals(this.destination)) {
-            this.setDriverState(TERMINATING);
-            takeDown();
-            return true;
+        if(!doneFlag) {
+            if (this.position.equals(this.destination)) {
+                this.setDriverState(TERMINATING);
+                takeDown();
+                doneFlag = true;
+                return true;
+            }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public Position getDestination() {
