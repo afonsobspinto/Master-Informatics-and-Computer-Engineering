@@ -57,6 +57,13 @@ class Activity(models.Model):
     timeMax = models.IntegerField(default=0)
     timeMin = models.IntegerField(default=0)
 
+class ActivityHistory(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    rewardGained = models.IntegerField(default=0)
+    elapsedTime = models.IntegerField(default=0)
+    timeStamp = models.IntegerField(default=0)
+
 class Settings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     activityProgressType = models.CharField(max_length=10, default='bar')

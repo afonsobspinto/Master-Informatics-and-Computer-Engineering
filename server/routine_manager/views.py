@@ -117,3 +117,17 @@ def settings(request):
         except Exception:
             return JsonResponse({'status': '400'})
         return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def add_history(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        loggedUser = User.objects.get(username=body['userEmail'])
+        child = Child.objects.get(userID=loggedUser, name=body['name'])
+        routine = Routine.objects.get(childID=child, title=body['routineTitle'])
+        activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
+        history = (childId=child, activityID=activity, rewardGained=body['rewardGained'],
+                    elapsedTime=body['elapsedTime'], timeStamp=body['timeStamp'])
+        history.save()
+        return JsonResponse({'status': '200'})
