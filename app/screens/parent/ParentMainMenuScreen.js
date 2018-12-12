@@ -27,12 +27,12 @@ export default class ParentMainMenuScreen extends React.Component {
       case 'rewards':
         return (<RewardsScreen />)
       case 'settings':
-        return (<SettingsScreen />)
+        return (<SettingsScreen navigation={this.props.navigation} />)
     }
   }
 
   getCorrespondingActionButton = () => {
-    if (this.state.selectedTab === 'activity') {
+    if (this.state.selectedTab === 'routines') {
       return (
         <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
           <ActionButton.Item buttonColor='#9b59b6' title='Criar atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
@@ -82,9 +82,9 @@ export default class ParentMainMenuScreen extends React.Component {
               <Text>Prémios</Text>
             </Button>
             <Button active={this.state.selectedTab === 'settings'}
-              onPress={() => this.setState({ selectedTab: 'settings', title: 'Definições' })}>
+              onPress={() => this.setState({ selectedTab: 'settings', title: 'Opções' })}>
               <Icon name='md-settings' />
-              <Text>Definições</Text>
+              <Text>Opções</Text>
             </Button>
           </FooterTab>
         </Footer>

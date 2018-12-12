@@ -20,7 +20,6 @@ const images = {
   pool: require('./pool.jpg'),
   avatar: require('./avatar.png'),
   cap: require('./cap.png'),
-  child: require('./child.png'),
   ui: {
     play: require('./navigation/play.png'),
     cancel: require('./navigation/cancel.png'),
@@ -34,24 +33,24 @@ const images = {
 }
 
 export const availableImages = [
-  { name: 'Sol', image: 'sun' },
-  { name: 'Lua', image: 'moon' },
-  { name: 'Mochila', image: 'bag' },
-  { name: 'Cama', image: 'bed' },
+  { name: 'Armário', image: 'drawers' },
   { name: 'Blocos', image: 'blocks' },
-  { name: 'Livro', image: 'book' },
+  { name: 'Cama', image: 'bed' },
   { name: 'Cereais', image: 'breakfast' },
-  { name: 'Pente', image: 'comb' },
-  { name: 'Armario', image: 'drawers' },
-  { name: 'Talheres', image: 'fork' },
-  { name: 'T-Shirt', image: 'shirt' },
-  { name: 'Trabalhos', image: 'paper' },
-  { name: 'Escova de dentes', image: 'toothbrush' },
-  { name: 'Sapatilhas', image: 'sneakers' },
   { name: 'Chuveiro', image: 'shower' },
+  { name: 'Chá', image: 'tea' },
   { name: 'Dormir', image: 'sleep' },
+  { name: 'Escova de dentes', image: 'toothbrush' },
+  { name: 'Livro', image: 'book' },
+  { name: 'Lua', image: 'moon' },
   { name: 'Meias', image: 'socks' },
-  { name: 'Cha', image: 'tea' }
+  { name: 'Mochila', image: 'bag' },
+  { name: 'Pente', image: 'comb' },
+  { name: 'Sapatilhas', image: 'sneakers' },
+  { name: 'Sol', image: 'sun' },
+  { name: 'T-Shirt', image: 'shirt' },
+  { name: 'Talheres', image: 'fork' },
+  { name: 'Trabalhos', image: 'paper' }
 ]
 
 export const avatars = {

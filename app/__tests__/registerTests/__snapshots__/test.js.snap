@@ -8,11 +8,6 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
     }
   }
 >
-  <StatusBar
-    animated={false}
-    hidden={true}
-    showHideTransition="fade"
-  />
   <Styled(Content)
     contentContainerStyle={
       Object {
@@ -40,7 +35,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
     </Text>
     <Styled(Form)>
       <Styled(Item)
-        error={null}
+        error={false}
         floatingLabel={true}
         style={
           Object {
@@ -73,7 +68,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         />
       </Styled(Item)>
       <Styled(Item)
-        error={null}
+        error={false}
         floatingLabel={true}
         style={
           Object {
@@ -108,6 +103,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
       </Styled(Item)>
       <Styled(Button)
         block={true}
+        onPress={[Function]}
         primary={true}
         rounded={true}
         style={
@@ -160,6 +156,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        onPress={[Function]}
         style={
           Object {
             "color": "#ffffff",

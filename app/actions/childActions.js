@@ -1,5 +1,12 @@
 import { childTypes } from './actionTypes'
 
+export function addChild (child) {
+  return {
+    type: childTypes.addStars,
+    payload: child
+  }
+}
+
 export function addStars (stars) {
   return {
     type: childTypes.addStars,

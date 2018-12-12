@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import socket
 from decouple import config
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -26,8 +27,26 @@ SECRET_KEY = 'x7wn(r^!^4oln)d1-ad=us))+!80_#ki1k#n_pyr6u5uz8)gvo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '167.99.128.178']
+LOCALIP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
+                         if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
+                                                               s.getsockname()[0], s.close()) for s in
+                                                              [socket.socket(socket.AF_INET,
+                                                                             socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
 
+# Path to save the file containing the local IP address
+__DEV__ = config('DEV_MODE', default=False, cast=bool)
+
+if __DEV__:
+    pathToSaveFile = os.getcwd() + "/../app/constants/"
+
+    completeFilePath = os.path.join(pathToSaveFile, "localIP.json")
+
+    data = {'localIP': LOCALIP}
+
+    with open(completeFilePath, 'w') as outfile:
+        json.dump(data, outfile)
+
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', LOCALIP, '167.99.128.178', '10.0.2.2']
 
 # Application definition
 
@@ -71,7 +90,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -85,7 +103,6 @@ DATABASES = {
         'PORT': config('DATABASE_PORT')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -105,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -119,12 +135,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), 'static')
+]
+
 # Plug XMLTestRunner
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
 TEST_OUTPUT_FILE_NAME = 'tests_report.xml'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10486860

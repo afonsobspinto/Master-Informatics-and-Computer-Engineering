@@ -35,6 +35,6 @@ export class SortableList extends React.Component {
 
 SortableList.propTypes = {
   items: PropTypes.array.isRequired,
-  onItemPress: PropTypes.func.isRequired,
+  onItemPress: PropTypes.func,
   color: PropTypes.string
 }

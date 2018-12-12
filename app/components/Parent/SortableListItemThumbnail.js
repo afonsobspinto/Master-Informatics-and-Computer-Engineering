@@ -13,7 +13,7 @@ export class SortableListItemThumbnail extends React.Component {
 }
 
 SortableListItemThumbnail.propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   source: PropTypes.any.isRequired,
   isPhoto: PropTypes.bool.isRequired
 }

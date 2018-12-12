@@ -50,7 +50,7 @@ export class ActivityScreen extends Component {
   }
 
   componentDidMount () {
-    BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
+    BackHandler.addEventListener('hardwareBackPress', this.cancelActivity)
     this.interval = setInterval(this.intervalFunction, this.state.updateRate)
   }
 

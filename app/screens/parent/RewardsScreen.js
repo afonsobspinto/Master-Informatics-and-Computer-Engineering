@@ -6,7 +6,7 @@ export default class RewardsScreen extends React.Component {
   render () {
     return (
       <Content>
-        <SortableList items={rewards} onItemPress={null} />
+        <SortableList items={rewards} onItemPress={() => {}} />
       </Content>
     )
   }
