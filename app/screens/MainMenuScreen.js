@@ -41,6 +41,7 @@ export class MainMenuScreen extends React.Component {
     const childButtons = this.state.kids.map((kid, index) => (
       <View style={styles.childContainer} key={index}>
         <TouchableOpacity
+          class='child'
           style={styles.button}
           activeOpacity={0.8}
           onPress={() => this.props.navigation.navigate('ChildMainMenu')}>
@@ -70,6 +71,7 @@ export class MainMenuScreen extends React.Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     loggedUserEmail: state.user.email
   })
