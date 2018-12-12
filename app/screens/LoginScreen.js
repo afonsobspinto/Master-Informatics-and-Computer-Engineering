@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button } from 'native-base'
 import { connect } from 'react-redux'
 import { login } from '../actions/userActions'
+import { setSettings } from '../actions/settingsActions'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
@@ -39,6 +40,7 @@ export class LoginScreen extends Component {
         .then((responseJson) => {
           if (responseJson.status === '200') {
             this.props.login(this.state.email)
+            this.props.setSettings({ activityProgressType: responseJson.activityProgressType, activityShowTimer: responseJson.activityShowTimer, activityFeedback: responseJson.activityFeedback, feedbackFrequency: responseJson.feedbackFrequency, visualStyle: responseJson.visualStyle, routinePlayType: responseJson.routinePlayType, playSounds: responseJson.playSounds })
             this.props.navigation.replace('MainMenu')
           } else {
             this.setState(() => ({ loginFailed: true }))
@@ -119,11 +121,13 @@ export default connect(
   }),
   /* istanbul ignore next */
   dispatch => ({
-    login: (email) => dispatch(login(email))
+    login: (email) => dispatch(login(email)),
+    setSettings: (activityProgressType, activityShowTimer, activityFeedback, feedbackFrequency, visualStyle, routinePlayType, playSounds) => dispatch(setSettings(activityProgressType, activityShowTimer, activityFeedback, feedbackFrequency, visualStyle, routinePlayType, playSounds))
   })
 )(LoginScreen)
 
 LoginScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  setSettings: PropTypes.func.isRequired
 }

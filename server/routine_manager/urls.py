@@ -10,6 +10,9 @@ urlpatterns = [
     path('add-child/', views.add_child, name='add-child'),
     path('push-token/', views.push_token, name='push-token'),
     path('assets/images/', views.add_image, name='images'),
-    url(r'^children/', views.get_children, name='children')
+    url(r'^children/', views.get_children, name='children'),
+    path('push-token/', views.push_token, name='push-token'),
+    path('settings/', views.settings, name='settings'),
+    path('add-routine/', views.add_routine, name='add-routine')
 ] + staticfiles_urlpatterns()
 
