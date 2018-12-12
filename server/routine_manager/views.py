@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
 
-from .models import Child, UserInfo, Settings
+from .models import Child, UserInfo, Settings, Routine, Activity
 
 
 def index(request):
@@ -58,6 +58,15 @@ def add_child(request):
         child = Child(userID=user_info, name=body['name'],
                       gender=body['gender'], image=body['image'])
         child.save()
+
+        with open('routine_manager/default_data.json') as data_file:
+            data = json.load(data_file)
+            for routine in data['routines']:
+                new_routine = Routine(childID=child, title=routine['title'], image=routine['image'], photo=routine['photo'], color=routine['color'], weight=routine['weight'], periodicity=routine['periodicity'])
+                new_routine.save()
+                for activity in routine['activities']:
+                    new_activity = Activity(routineID=new_routine, title=activity['title'], image=activity['image'], photo=activity['photo'], color=activity['color'], weight=activity['weight'], timeGoal=activity['time']['goal'], timeMax=activity['time']['max'], timeMin=activity['time']['min'])
+                    new_activity.save()
         return JsonResponse({'status': '200'})
 
 

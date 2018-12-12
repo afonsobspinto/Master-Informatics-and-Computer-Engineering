@@ -38,10 +38,20 @@ class Child(models.Model):
 
 class Routine(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    image = models.IntegerField(default=0)
-    photo = models.CharField(max_length=200)
-    color = models.IntegerField(default=0)
+    title = models.CharField(max_length=100)
+    image = models.CharField(max_length=32)
+    photo = models.CharField(max_length=256, null=True)
+    color = models.CharField(max_length=10)
+    weight = models.IntegerField(default=0)
+    periodicity = models.CharField(max_length=7, default='1111111')
+    isWeeklyRepeatable = models.BooleanField(default=True)
+
+class Activity(models.Model):
+    routineID = models.ForeignKey(Routine, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    image = models.CharField(max_length=32)
+    photo = models.CharField(max_length=256, null=True)
+    color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
     timeGoal = models.IntegerField(default=0)
     timeMax = models.IntegerField(default=0)
