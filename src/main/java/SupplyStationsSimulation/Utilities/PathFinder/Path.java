@@ -34,7 +34,7 @@ public class Path {
      * @return The Position information, the position on the map.
      */
     public Position getStep(int index) {
-        return (Position) steps.get(index-1);
+        return (Position) steps.get(index);
     }
 
     /**
