@@ -1,9 +1,10 @@
+import json
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-import json
 from .models import Child, UserInfo
+from django.conf import settings
 
 
 def index(request):
@@ -68,6 +69,18 @@ def add_image(request):
 
 
 def handle_uploaded_file(f):
-    with open('routine_manager/assets/images/' + f.name, 'wb+') as destination:
+    with open('./server/static/assets/images/' + f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+
+def get_children(request):
+    if request.method == 'GET':
+        user = User.objects.get(username=request.GET.get('userEmail', ''))
+        children = Child.objects.filter(userID=user.userinfo)
+        dict_child_wrapper = []
+        for child in children:
+            dict_child_wrapper.append({"name": child.name, "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
+        response = json.dumps(dict_child_wrapper)
+        return JsonResponse({'status': '200',
+                             'response': response})

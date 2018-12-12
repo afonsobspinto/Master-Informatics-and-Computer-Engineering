@@ -23,6 +23,7 @@ class Child(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
+
     userID = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')

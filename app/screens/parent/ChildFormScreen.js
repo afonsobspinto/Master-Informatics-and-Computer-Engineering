@@ -20,6 +20,7 @@ export class ChildFormScreen extends Component {
       name: '',
       photo: undefined,
       gender: 'M',
+      fileType: undefined,
       imageHash: Math.random().toString(36).substr(2, 10),
       afterRegister: this.props.navigation.getParam('afterRegisterScreen', false)
     }
@@ -27,7 +28,7 @@ export class ChildFormScreen extends Component {
   }
 
   onPhotoChange = uri => {
-    this.setState({ photo: { uri } })
+    this.setState({ photo: { uri }, fileType: uri.split('.')[uri.split('.').length - 1] })
   }
 
   onGenderChange = index => {
@@ -36,15 +37,11 @@ export class ChildFormScreen extends Component {
 
   async uploadImageAsync (uri) {
     let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
-
-    let uriParts = uri.split('.')
-    let fileType = uriParts[uriParts.length - 1]
-
     let formData = new FormData()
     formData.append('photo', {
       uri,
-      name: `${this.state.imageHash}.${fileType}`,
-      type: `image/${fileType}`
+      name: `${this.state.imageHash}.${this.state.fileType}`,
+      type: `image/${this.state.fileType}`
     })
 
     let options = {
@@ -70,7 +67,7 @@ export class ChildFormScreen extends Component {
           userEmail: this.props.loggedUserEmail,
           name: this.state.name,
           gender: this.state.gender,
-          image: this.state.imageHash
+          image: `${this.state.imageHash}.${this.state.fileType}`
         })
       }).then((response) => response.json())
         .then((responseJson) => {
