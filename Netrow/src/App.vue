@@ -17,8 +17,6 @@ import RegistrationModal from './components/modal/Registration';
 import CheckoutModal from './components/modal/Checkout';
 
 import { HttpClient } from './lib/httpClient';
-// get initial token
-HttpClient.instance();
 
 export default {
   name: 'app',
@@ -28,7 +26,17 @@ export default {
     'login-modal-component': LoginModal,
     'registration-modal-component': RegistrationModal,
     'checkout-modal-component': CheckoutModal
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+            // get initial token
+        HttpClient.instance(e => {
+          console.error(e);
+          vm.$toaster.error("Failed to connect to server");
+        });
+    })
   }
+
 };
 </script>
 

@@ -17,18 +17,30 @@ const urlEncoded = "application/x-www-form-urlencoded";
 
 let instance: HttpClient | null = null;
 
+let onSuccessCallbacks: Function[] = [];
+
 export class HttpClient {
     private token: string;
 
-    static instance(onTokenError: Function = console.error) {
+    static instance(onTokenError: Function = console.error, onSuccess = () => {}) {
         if (instance == null) {
+            onSuccessCallbacks.push(onSuccess);
             instance = new HttpClient(onTokenError);
+        } else {
+            if (instance.token === null) {
+                onSuccessCallbacks.push(onSuccess);
+            } else {
+                onSuccess();
+            }
         }
+
+    
 
         return instance;
     }
 
     private constructor(onTokenError: Function) {
+        this.token = null;
         this.getToken(onTokenError);
     }
 
@@ -113,6 +125,12 @@ export class HttpClient {
         }).then(data => data.json()
             .then(o => {
                 this.token = o.access_token;
+
+                if (onSuccessCallbacks.length != 0) {
+                    onSuccessCallbacks.forEach(func => func());
+                    onSuccessCallbacks = [];
+                }
+
             }).catch(error => {
                 onTokenError(error);
         })).catch(error => {
