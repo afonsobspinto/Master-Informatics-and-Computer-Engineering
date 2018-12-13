@@ -146,7 +146,6 @@ export class HttpClient {
             body: queryString.stringify(company),
         }).then(data => data.json()
             .then(o => {
-                console.log(data);
                 this.token = o.access_token;
 
                 if (onSuccessCallbacks.length != 0) {
@@ -155,8 +154,7 @@ export class HttpClient {
                 }
 
             }).catch(error => {
-                console.log(data);
-                onTokenError(error);
+                    onTokenError(error);
         })).catch(error => {
             onTokenError(error);
         });

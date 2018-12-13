@@ -22,8 +22,6 @@ export default {
     };
   },
   mounted() {
-    this.categoriesList = this.$store.getters.categories;      
-    console.log(this.categoriesList)
 
   },
   computed: {
@@ -37,9 +35,6 @@ export default {
     },
     getCategories: function () {
       return this.$store.getters.categories;      
-      console.log('catlist')
-      console.log(this.categoriesList)
-      return this.categoriesList;
     }
   },
 
@@ -49,9 +44,9 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-        next(vm => {
-          HttpClient.instance(console.error, (instance) => {
-            instance.getCategories()
+    next(vm => {
+      HttpClient.instance(console.error, (instance) => {
+        instance.getCategories()
               .then(catObj => {
                 let categories = catObj.DataSet.Table;
                 let organizedCategories = [];
@@ -68,6 +63,7 @@ export default {
 
                 vm.$store.commit("setCategories", organizedCategories);
                 vm.categoriesList = organizedCategories;
+                console.log('organizedCategories')
                 console.log(organizedCategories)
               })
               .catch(e => {
