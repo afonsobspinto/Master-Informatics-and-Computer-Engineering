@@ -1,7 +1,10 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
+import SupplyStationsSimulation.Agents.BehaviourType;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -12,12 +15,12 @@ import sajas.core.behaviours.Behaviour;
 import java.util.List;
 
 public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageBehaviour {
+
     private DriverAgent driverAgent;
 
     public AdventurousDriverBehaviour(DriverAgent a) {
         super(a);
         this.driverAgent = a;
-
     }
 
     @Override
@@ -43,7 +46,6 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
             case ACLMessage.ACCEPT_PROPOSAL:
                 handleAccept(message);
                 break;
-
         }
     }
 
@@ -59,7 +61,7 @@ public class AdventurousDriverBehaviour extends Behaviour implements ACLMessageB
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
     }
 
-    private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine){
-        return (int) Math.ceil((waitingLine*1.0 / totalGasPumps) * ticksToFuel);
+    private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
+        return (int) Math.ceil((waitingLine * 1.0 / totalGasPumps) * ticksToFuel);
     }
 }

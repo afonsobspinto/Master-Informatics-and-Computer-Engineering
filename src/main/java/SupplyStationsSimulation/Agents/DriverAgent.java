@@ -4,6 +4,9 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
+import SupplyStationsSimulation.Launcher;
+import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -64,6 +67,9 @@ public class DriverAgent extends DrawableAgent {
     private Map<AID, SupplyStationInfo> supplyStationsInfo = new HashMap<>();
     private PriorityQueue<UtilityFactor> supplyStationQueue = new PriorityQueue<>(1, new UtilityComparator());
     private AID targetSupplyStation;
+    private DriverInfo driverInfo;
+    private BehaviourType behaviourType;
+    private boolean doneFlag = false;
 
     public DriverAgent(String nickname, Color color, Position initialPosition, Position destination, DrawableMap map) {
         this.nickname = nickname;
@@ -71,6 +77,10 @@ public class DriverAgent extends DrawableAgent {
         this.position = initialPosition;
         this.destination = destination;
         this.map = map;
+        if(this.color == Color.RED)
+            behaviourType = BehaviourType.ADVENTUROUS;
+        else
+            behaviourType = BehaviourType.COLLABORATIVE;
     }
 
     public void calculateInitialPath() {
@@ -132,8 +142,6 @@ public class DriverAgent extends DrawableAgent {
         super.setup();
         addBehaviour(new ListeningBehaviour(this));
         addBehaviour(new SearchForSupplyStationServicesBehaviour(this, 5));
-
-
     }
 
     @Override
@@ -166,6 +174,18 @@ public class DriverAgent extends DrawableAgent {
     @Override
     public Type getType() {
         return Type.DRIVER;
+    }
+
+    public int getFuelToBuy() {
+        return fuelToBuy;
+    }
+
+    public int getExpectedTravelDuration() {
+        return expectedTravelDuration;
+    }
+
+    public int getDeFactoTravelDuration() {
+        return deFactoTravelDuration;
     }
 
     @Override
@@ -313,8 +333,10 @@ public class DriverAgent extends DrawableAgent {
     }
 
     private void logFuelling() {
-        System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
-                " is fuelling for the next " + ticksToFuel + " ticks");
+        if (ticksToFuel % 10 == 0) {
+            System.out.println(new Timestamp().getCurrentTime() + " - " + this.nickname +
+                    " is fuelling for the next " + ticksToFuel + " ticks");
+        }
     }
 
     private void setDriverState(DriverState driverState) {
@@ -365,14 +387,18 @@ public class DriverAgent extends DrawableAgent {
         }
     }
 
-
+    @Override
     public boolean isDone() {
-        if (this.position.equals(this.destination)) {
-            this.setDriverState(TERMINATING);
-            takeDown();
-            return true;
+        if(!doneFlag) {
+            if (this.position.equals(this.destination)) {
+                this.setDriverState(TERMINATING);
+                takeDown();
+                doneFlag = true;
+                return true;
+            }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public Position getDestination() {
@@ -481,6 +507,13 @@ public class DriverAgent extends DrawableAgent {
 
     public SupplyStationInfo getTargetSupplyStationInfo() {
         return this.supplyStationsInfo.get(this.targetSupplyStation);
+    }
+
+    public void saveStatistics(){
+        Statistics statistics = Statistics.getInstance();
+        this.driverInfo = new DriverInfo(priceIntolerance, fuelToBuy, destination,
+                driverState, Math.abs(expectedTravelDuration - deFactoTravelDuration), behaviourType);
+        statistics.updateAgentInfo(this.getAID(), this.driverInfo);
     }
 
 }

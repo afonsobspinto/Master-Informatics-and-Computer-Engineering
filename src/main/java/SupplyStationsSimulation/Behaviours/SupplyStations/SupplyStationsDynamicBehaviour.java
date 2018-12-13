@@ -1,9 +1,12 @@
 package SupplyStationsSimulation.Behaviours.SupplyStations;
 
+import SupplyStationsSimulation.Agents.BehaviourType;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Agents.SupplyStationAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
+import SupplyStationsSimulation.Statistics.SupplyStationInfo;
 import jade.lang.acl.ACLMessage;
 import sajas.core.behaviours.Behaviour;
 
@@ -50,5 +53,7 @@ public class SupplyStationsDynamicBehaviour extends Behaviour implements ACLMess
     public void updatePriceTimeout(){
         currentPriceTimeout = new Random().nextInt(timeoutDeviation) + timeoutMin;
     }
+
+
 
 }

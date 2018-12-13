@@ -1,13 +1,12 @@
 package SupplyStationsSimulation;
 
-import SupplyStationsSimulation.Agents.DrawableAgent;
-import SupplyStationsSimulation.Agents.DriverAgent;
-import SupplyStationsSimulation.Agents.SupplyStationAgent;
-import SupplyStationsSimulation.Agents.Type;
+import SupplyStationsSimulation.Agents.*;
 import SupplyStationsSimulation.Behaviours.Drivers.AdventurousDriverBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.CollaborativeDriverBehaviour;
+import SupplyStationsSimulation.Behaviours.StatisticsBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsDynamicBehaviour;
 import SupplyStationsSimulation.Behaviours.SupplyStations.SupplyStationsStaticBehaviour;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Locations.RandomPositionsGenerator;
 import jade.core.Profile;
@@ -38,7 +37,6 @@ public class Launcher extends Repast3Launcher {
 
     private ContainerController mainContainer;
     private DisplaySurface dsurf;
-    private List<DriverAgent> adventurousDrivers, collaborativeDrivers;
     private DrawableMap drawableMap;
 
     @Override
@@ -93,8 +91,6 @@ public class Launcher extends Repast3Launcher {
     private void launchAgents() {
         new Random(System.currentTimeMillis());
 
-        collaborativeDrivers = new ArrayList<>();
-        adventurousDrivers = new ArrayList<>();
         drawableMap = new DrawableMap(WIDTH, HEIGHT);
         launchDrivers();
 
@@ -136,6 +132,8 @@ public class Launcher extends Repast3Launcher {
                 drawableMap.addAgent(supplyStationAgent);
             }
 
+            StatisticsAgent statisticsAgent = new StatisticsAgent(drawableMap.getAgentList());
+            mainContainer.acceptNewAgent("Statistics", statisticsAgent).start();
 
             for (DrawableAgent agent : drawableMap.getAgentList()) {
                 if (agent.getType() == Type.DRIVER) {

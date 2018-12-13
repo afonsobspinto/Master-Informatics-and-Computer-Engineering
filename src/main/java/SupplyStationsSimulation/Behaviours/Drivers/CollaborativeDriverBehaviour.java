@@ -1,8 +1,11 @@
 package SupplyStationsSimulation.Behaviours.Drivers;
 
+import SupplyStationsSimulation.Agents.BehaviourType;
 import SupplyStationsSimulation.Agents.DrawableAgent;
 import SupplyStationsSimulation.Agents.DriverAgent;
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
+import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -121,7 +124,6 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         }
     }
 
-
     private void handleReject(Message message) {
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
         this.broadcast(message, this.driverAgent.getDriversList(), List.of(String.valueOf(this.driverAgent.getX()),
@@ -171,4 +173,5 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
         }
         return null;
     }
+
 }

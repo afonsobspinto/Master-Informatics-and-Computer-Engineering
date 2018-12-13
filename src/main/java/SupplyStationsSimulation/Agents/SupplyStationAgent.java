@@ -2,6 +2,9 @@ package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
+import SupplyStationsSimulation.Statistics.DriverInfo;
+import SupplyStationsSimulation.Statistics.Statistics;
+import SupplyStationsSimulation.Statistics.SupplyStationInfo;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import SupplyStationsSimulation.Utilities.Locations.Position;
 import SupplyStationsSimulation.Utilities.Messaging.MessageContent;
@@ -46,14 +49,19 @@ public class SupplyStationAgent extends DrawableAgent {
     private static int fuelAdded = 50;
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
-
+    private SupplyStationInfo supplyStationInfo;
+    private BehaviourType behaviourType;
 
     public SupplyStationAgent(String nickname, Color color, Position location) {
         this.nickname = nickname;
         this.color = color;
         this.position = location;
         this.pricePerLiter = pricePerLiter;
-
+        this.behaviourType = behaviourType;
+        if(this.color == Color.GREEN)
+            behaviourType = BehaviourType.STATIC;
+        else
+            behaviourType = BehaviourType.DYNAMIC;
     }
 
 
@@ -134,6 +142,11 @@ public class SupplyStationAgent extends DrawableAgent {
 
     }
 
+    @Override
+    public boolean isDone() {
+        return false;
+    }
+
     private void handleRequest(Message message) {
         if (message.getContent().equals(MessageType.INFO.getTypeStr())) {
             List<String> listOf = List.of(String.valueOf(getX()),
@@ -207,6 +220,8 @@ public class SupplyStationAgent extends DrawableAgent {
         return this.currentDriversWaiting.size();
     }
 
+    public int getTotalRequests() { return totalRequests;  }
+
     public void addDriver(AID driverAID) {
         this.currentDriversOnStation.put(driverAID, ticksToFuel);
         this.totalIncoming += fuelAdded * this.pricePerLiter;
@@ -243,5 +258,11 @@ public class SupplyStationAgent extends DrawableAgent {
         //todo: improve formula -> price should decrease as well.
         double oldPrice = this.pricePerLiter;
         this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
+    }
+
+    public void saveStatistics(){
+        Statistics statistics = Statistics.getInstance();
+        this.supplyStationInfo = new SupplyStationInfo(pricePerLiter, ticksToFuel, totalRequests, behaviourType);
+        statistics.updateAgentInfo(this.getAID(), this.supplyStationInfo);
     }
 }
