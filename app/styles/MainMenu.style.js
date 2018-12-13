@@ -13,8 +13,15 @@ export default StyleSheet.create({
     backgroundColor: backgroundColor
   },
   childButtonsContainer: {
-    flex: 1,
-    paddingTop: 30
+    height: '100%',
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: 'red'
+  },
+  childScrollView: {
+    flexGrow: 1,
+    justifyContent: 'center'
   },
   experienceBarContainer: {
     flex: 0

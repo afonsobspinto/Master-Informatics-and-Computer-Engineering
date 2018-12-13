@@ -49,12 +49,10 @@ export class MainMenuScreen extends React.Component {
         </TouchableOpacity>
         <Text style={styles.childName}>{kid.name}</Text>
       </View>))
+
     return (
       <View style={styles.mainMenuContainer}>
-        <TouchableOpacity style={styles.infoButton} onPress={() => this.props.navigation.navigate('AppIntro')}>
-          <Image style={styles.buttonImage} source={Images.ui.info} resizeMode={'contain'} />
-        </TouchableOpacity>
-        <ScrollView style={styles.childButtonsContainer}>
+        <ScrollView contentContainerStyle={styles.childScrollView}>
           {childButtons}
         </ScrollView>
         <View style={styles.parentContainer}>
@@ -65,6 +63,9 @@ export class MainMenuScreen extends React.Component {
             <Text style={styles.parentTooltip}>Zona de pai</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity style={styles.infoButton} onPress={() => this.props.navigation.navigate('AppIntro')}>
+          <Image style={styles.buttonImage} source={Images.ui.info} resizeMode={'contain'} />
+        </TouchableOpacity>
       </View>
     )
   }

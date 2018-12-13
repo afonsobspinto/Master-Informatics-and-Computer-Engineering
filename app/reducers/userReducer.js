@@ -1,7 +1,7 @@
 import { userTypes } from '../actions/actionTypes'
 
 const initialState = {
-  email: ''
+  email: undefined
 }
 
 export default function (state = initialState, { type, payload }) {
