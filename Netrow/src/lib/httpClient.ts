@@ -30,7 +30,7 @@ export class HttpClient {
             if (instance.token === null) {
                 onSuccessCallbacks.push(onSuccess);
             } else {
-                onSuccess(this);
+                onSuccess(instance);
             }
         }
 
@@ -135,6 +135,8 @@ export class HttpClient {
 
     private getToken(onTokenError: Function) {
         let url = `${ADRESS}/token`;
+        const httpInstance = this;
+
         return fetch(url, {
             method: "POST",
             headers: {
@@ -147,9 +149,8 @@ export class HttpClient {
                 console.log(data);
                 this.token = o.access_token;
 
-                const that = this;
                 if (onSuccessCallbacks.length != 0) {
-                    onSuccessCallbacks.forEach(func => func(that));
+                    onSuccessCallbacks.forEach(func => func(httpInstance));
                     onSuccessCallbacks = [];
                 }
 

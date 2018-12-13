@@ -18,29 +18,31 @@ export default {
   },
    beforeRouteEnter(to, from, next) {
         next(vm => {
-          HttpClient.instance(console.error, (instance) => instance.getCategories())
-            .then(catObj => {
-              let categories = catObj.DataSet.Table;
-              let organizedCategories = [];
-              categories.forEach(category => {
-                if(organizedCategories[category.Descricao] === undefined)
-                {
-                  organizedCategories[category.Descricao] = [];
-                }
-                organizedCategories[category.Descricao].push({
-                    subCategory: category.SubFamilia,
-                    subCatDesc: category.SubDescricao
+          HttpClient.instance(console.error, (instance) => {
+            instance.getCategories()
+              .then(catObj => {
+                let categories = catObj.DataSet.Table;
+                let organizedCategories = [];
+                categories.forEach(category => {
+                  if(organizedCategories[category.Descricao] === undefined)
+                  {
+                    organizedCategories[category.Descricao] = [];
+                  }
+                  organizedCategories[category.Descricao].push({
+                      subCategory: category.SubFamilia,
+                      subCatDesc: category.SubDescricao
+                  });
                 });
-              });
 
-              vm.$store.commit("setCategories", organizedCategories);
-              console.log(organizedCategories)
+                vm.$store.commit("setCategories", organizedCategories);
+                console.log(organizedCategories)
+              })
+              .catch(e => {
+                console.error(e);
+                console.error("Failed to fetch categories data");
+                vm.$toaster.error("Failed to fetch categories data");
+              });
             })
-            .catch(e => {
-              console.error(e);
-              console.error("Failed to fetch categories data");
-              vm.$toaster.error("Failed to fetch categories data");
-            });
         });
       },
 };
