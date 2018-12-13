@@ -55,16 +55,10 @@ class Activity(models.Model):
     photo = models.CharField(max_length=256, null=True)
     color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
-    periodicity = models.CharField(max_length=7, default='1111111')
-    isWeeklyRepeatable = models.BooleanField(default=True)
+    timeGoal = models.IntegerField(default=0)
+    timeMax = models.IntegerField(default=0)
+    timeMin = models.IntegerField(default=0)
 
-
-class ActivityHistory(models.Model):
-    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
-    activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    rewardGained = models.IntegerField(default=0)
-    elapsedTime = models.IntegerField(default=0)
-    timeStamp = models.IntegerField(default=0)
 
 class Settings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
