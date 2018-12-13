@@ -19,7 +19,11 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
         "justifyContent": "center",
       }
     }
-  />
+  >
+    <Styled(Spinner)
+      color="#FFA23D"
+    />
+  </ScrollViewMock>
   <Component
     style={
       Object {

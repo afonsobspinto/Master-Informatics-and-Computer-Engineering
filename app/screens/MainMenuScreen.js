@@ -1,17 +1,20 @@
 import React from 'react'
 import { View, TouchableOpacity, Image, Text, ScrollView } from 'react-native'
+import { Spinner } from 'native-base'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Images from '../assets/images/images'
 import styles from '../styles/MainMenu.style'
 import { registerForPushNotificationsAsync } from '../helpers/Notification'
 import EnvVars from '../constants/EnviromentVars'
+import { oppositeColor } from '../styles/Colors'
 
 export class MainMenuScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      kids: []
+      kids: [],
+      loading: true
     }
   }
 
@@ -26,7 +29,7 @@ export class MainMenuScreen extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-          this.setState({ kids: JSON.parse(responseJson.response) })
+          this.setState({ kids: JSON.parse(responseJson.response), loading: false })
         } else {
           console.log('Ta mal')
         }
@@ -53,7 +56,7 @@ export class MainMenuScreen extends React.Component {
     return (
       <View style={styles.mainMenuContainer}>
         <ScrollView contentContainerStyle={styles.childScrollView}>
-          {childButtons}
+          {this.state.loading ? <Spinner color={oppositeColor} /> : childButtons}
         </ScrollView>
         <View style={styles.parentContainer}>
           <TouchableOpacity

@@ -1,19 +1,31 @@
 import React from 'react'
-import { Content } from 'native-base'
+import { Content, Spinner } from 'native-base'
 import { SortableList } from '../../components/Parent/SortableList'
 import { PropTypes } from 'prop-types'
 
 export class RoutinesScreen extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      routines: routines,
+      loading: false
+    }
+  }
+
   onRoutinePress = (index) => {
     this.props.navigation.navigate('RoutineFormScreen', { routine: routines[index] })
   }
 
   render () {
-    return (
-      <Content>
-        <SortableList items={routines} onItemPress={this.onRoutinePress} />
-      </Content>
-    )
+    if (this.state.loading) return (<Content contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}><Spinner /></Content>)
+    else {
+      return (
+        <Content>
+          <SortableList items={this.state.routines} onItemPress={this.onRoutinePress} />
+        </Content>
+      )
+    }
   }
 }
 
