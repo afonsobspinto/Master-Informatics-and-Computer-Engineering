@@ -1,13 +1,9 @@
 import json
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Child, UserInfo
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-import json
 
 from .models import Child, UserInfo, Settings, Routine
 
@@ -15,7 +11,11 @@ from .models import Child, UserInfo, Settings, Routine
 def index(request):
     return JsonResponse({'foo': 'bar'})
 
-#TODO: try and catch
+
+# TODO:
+# try and catch nisto tudo
+# adicionar Token
+
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -52,7 +52,6 @@ def login(request):
             return JsonResponse({'status': '400'})
 
 
-#TODO: Add try and catch
 @csrf_exempt
 def add_child(request):
     if request.method == 'POST':
@@ -65,24 +64,26 @@ def add_child(request):
         child.save()
         return JsonResponse({'status': '200'})
 
+
 @csrf_exempt
 def add_routine(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-
+        routine = None
         for child in Child.objects.all():
-            if('photo' in body and 'image' in body):
+            if 'photo' in body and 'image' in body:
                 routine = Routine(childID=child, title=body['title'], color=body['color'], image=body['image'],
-                        photo=body['photo'], periodicity=body['periodicity'])
-            elif('photo' in body):
+                                  photo=body['photo'], periodicity=body['periodicity'])
+            elif 'photo' in body:
                 routine = Routine(childID=child, title=body['title'], color=body['color'],
-                        photo=body['photo'], periodicity=body['periodicity'])
-            elif('image' in body):
+                                  photo=body['photo'], periodicity=body['periodicity'])
+            elif 'image' in body:
                 routine = Routine(childID=child, title=body['title'], color=body['color'], image=body['image'],
-                        periodicity=body['periodicity'])
+                                  periodicity=body['periodicity'])
 
-        routine.save()
+        if routine is not None:
+            routine.save()
         return JsonResponse({'status': '200'})
 
 
@@ -93,30 +94,32 @@ def push_token(request):
         body = json.loads(body_unicode)
         user_info = UserInfo.objects.get(username=body['userEmail'])
         user_info.token = body['token'].value
-    try:
-        user_info.save()
-    except Exception:
-        return JsonResponse({'status': '400'})
+        try:
+            user_info.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 
+
 @csrf_exempt
-def settings(request):
+def add_settings(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        loggedUser = User.objects.get(username=body['userEmail'])
-        settings = Settings.objects.get(user=loggedUser)
-        settings.activityProgressType = body['activityProgressType']
-        settings.activityShowTimer = body['activityShowTimer']
-        settings.activityFeedback = body['activityFeedback']
-        settings.feedbackFrequency = body['feedbackFrequency']
-        settings.routinePlayType = body['routinePlayType']
-        settings.playSounds = body['playSounds']
+        logged_user = User.objects.get(username=body['userEmail'])
+        settings_model = Settings.objects.get(user=logged_user)
+        settings_model.activityProgressType = body['activityProgressType']
+        settings_model.activityShowTimer = body['activityShowTimer']
+        settings_model.activityFeedback = body['activityFeedback']
+        settings_model.feedbackFrequency = body['feedbackFrequency']
+        settings_model.routinePlayType = body['routinePlayType']
+        settings_model.playSounds = body['playSounds']
         try:
-            settings.save()
+            settings_model.save()
         except Exception:
             return JsonResponse({'status': '400'})
         return JsonResponse({'status': '200'})
+
 
 @csrf_exempt
 def add_image(request):
@@ -137,7 +140,8 @@ def get_children(request):
         children = Child.objects.filter(userID=user.userinfo)
         dict_child_wrapper = []
         for child in children:
-            dict_child_wrapper.append({"name": child.name, "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
+            dict_child_wrapper.append({"name": child.name,
+                                       "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
         response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})
