@@ -18,8 +18,7 @@ export default {
   },
    beforeRouteEnter(to, from, next) {
         next(vm => {
-          HttpClient.instance(console.error)
-            .getCategories()
+          HttpClient.instance(console.error, (instance) => instance.getCategories())
             .then(catObj => {
               let categories = catObj.DataSet.Table;
               let organizedCategories = [];

@@ -22,7 +22,7 @@ let onSuccessCallbacks: Function[] = [];
 export class HttpClient {
     private token: string;
 
-    static instance(onTokenError: Function = console.error, onSuccess = () => {}) {
+    static instance(onTokenError: Function = console.error, onSuccess = (instance) => {}) {
         if (instance == null) {
             onSuccessCallbacks.push(onSuccess);
             instance = new HttpClient(onTokenError);
@@ -30,7 +30,7 @@ export class HttpClient {
             if (instance.token === null) {
                 onSuccessCallbacks.push(onSuccess);
             } else {
-                onSuccess();
+                onSuccess(this);
             }
         }
 
@@ -147,8 +147,9 @@ export class HttpClient {
                 console.log(data);
                 this.token = o.access_token;
 
+                const that = this;
                 if (onSuccessCallbacks.length != 0) {
-                    onSuccessCallbacks.forEach(func => func());
+                    onSuccessCallbacks.forEach(func => func(that));
                     onSuccessCallbacks = [];
                 }
 

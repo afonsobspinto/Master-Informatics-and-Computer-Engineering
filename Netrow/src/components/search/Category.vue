@@ -2,7 +2,7 @@
   <p class="control has-icons-right">
     <select class="input is-rounded" id="categoryInput" v-model="category" @change="selectCategory">
       <option value="all" selected>All categories</option>
-      <optgroup v-for="(subCat, cat) in categoriesList" :key="cat" :label="cat">
+      <optgroup v-for="(subCat, cat) in getCategories" :key="cat" :label="cat">
         <option  v-for="sub in subCat" :key="sub.subCategory" :value="sub.subCategory">{{sub.subCatDesc}}</option>
       </optgroup>
     </select>
@@ -22,6 +22,9 @@ export default {
     };
   },
   mounted() {
+    this.categoriesList = this.$store.getters.categories;      
+    console.log(this.categoriesList)
+
   },
   computed: {
     placeholder() {
@@ -30,18 +33,19 @@ export default {
       } else {
         return "Search...";
       }
+
+    },
+    getCategories: function () {
+      this.categoriesList = this.$store.getters.categories;      
+      console.log('catlist')
+      console.log(this.categoriesList)
+      return this.categoriesList;
     }
   },
 
   methods: {
     selectCategory() {
       this.$store.commit("setCategorySelected", this.category);
-    },
-    getCategories() {
-    this.categoriesList = this.$store.getters.categories;      
-    // console.log('catlist')
-    // console.log(this.categoriesList)
-    return this.categoriesList;
     }
   }
 };
