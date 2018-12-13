@@ -68,6 +68,15 @@ class SettingsScreen extends React.Component {
               </Picker>
             </Right>
           </ListItem>
+          <Separator bordered>
+            <Text>SOBRE</Text>
+          </Separator>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('AboutScreen')}>
+            <Body><Text>Sobre a equipa</Text></Body>
+          </ListItem>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('LicensesScreen')}>
+            <Body><Text>Ver licenças</Text></Body>
+          </ListItem>
         </List>
       </Content>
     )

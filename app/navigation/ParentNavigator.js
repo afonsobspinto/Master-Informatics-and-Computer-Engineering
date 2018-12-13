@@ -7,6 +7,8 @@ import RoutineFormScreen from '../screens/parent/RoutineFormScreen'
 import RewardFormScreen from '../screens/parent/RewardFormScreen'
 import ChildFormScreen from '../screens/parent/ChildFormScreen'
 import RemoveChildScreen from '../screens/parent/RemoveChildScreen'
+import LicensesScreen from '../screens/parent/LicensesScreen'
+import AboutScreen from '../screens/parent/AboutScreen'
 
 export default createStackNavigator({
   PasswordPromptScreen,
@@ -15,7 +17,9 @@ export default createStackNavigator({
   RewardFormScreen,
   RoutineFormScreen,
   ChildFormScreen,
-  RemoveChildScreen
+  RemoveChildScreen,
+  LicensesScreen,
+  AboutScreen
 },
 {
   headerMode: 'none',
