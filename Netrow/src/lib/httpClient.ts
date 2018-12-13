@@ -67,6 +67,26 @@ export class HttpClient {
         });
     }
 
+    public getCategories() {
+        const SQLquery =
+          "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
+    
+        const path = `Administrador/Consulta`;
+        return new Promise<Object>((resolve, reject) => {
+          this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+      }
+
     public postJson(path: string, body: Object) {
         const url = `${ADRESS}/${path}`;
 
@@ -112,8 +132,10 @@ export class HttpClient {
             body: queryString.stringify(company),
         }).then(data => data.json()
             .then(o => {
+                console.log(data);
                 this.token = o.access_token;
             }).catch(error => {
+                console.log(data);
                 onTokenError(error);
         })).catch(error => {
             onTokenError(error);
