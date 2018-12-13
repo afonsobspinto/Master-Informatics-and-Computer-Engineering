@@ -37,13 +37,15 @@
             >{{ removeFromCartLabel }}</button>
             <div>
               <div class="select is-rounded is-small">
-                <select @change="onSelectQuantity(product.id)" v-model="selected">
-                  <option
-                    v-for="quantity in quantityArray"
-                    :value="quantity"
-                    :key="quantity"
-                  >{{ quantity }}</option>
-                </select>
+                <label>
+                  <select @change="onSelectQuantity(product.id)" v-model="selected">
+                    <option
+                      v-for="quantity in quantityArray"
+                      :value="quantity"
+                      :key="quantity"
+                    >{{ quantity }}</option>
+                  </select>
+                </label>
               </div>
             </div>
           </div>
