@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
-from .models import Child, UserInfo, Settings, Routine
+from .models import Child, UserInfo, Settings, Routine, Activity
 
 
 def index(request):
@@ -34,18 +33,18 @@ def login(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         user = authenticate(username=body['email'], password=body['password'])
-        loggedUser = User.objects.get(username=body['email'])
-        settings = Settings.objects.get(user=loggedUser)
+        logged_user = User.objects.get(username=body['email'])
+        settings_model = Settings.objects.get(user=logged_user)
         if user is not None:
             return JsonResponse({
                 'status': '200',
-                'activityProgressType': settings.activityProgressType,
-                'activityShowTimer': settings.activityShowTimer,
-                'activityFeedback': settings.activityFeedback,
-                'feedbackFrequency': settings.feedbackFrequency,
-                'visualStyle': settings.visualStyle,
-                'routinePlayType': settings.routinePlayType,
-                'playSounds': settings.playSounds
+                'activityProgressType': settings_model.activityProgressType,
+                'activityShowTimer': settings_model.activityShowTimer,
+                'activityFeedback': settings_model.activityFeedback,
+                'feedbackFrequency': settings_model.feedbackFrequency,
+                'visualStyle': settings_model.visualStyle,
+                'routinePlayType': settings_model.routinePlayType,
+                'playSounds': settings_model.playSounds
             })
 
         else:
@@ -62,6 +61,15 @@ def add_child(request):
         child = Child(userID=user_info, name=body['name'],
                       gender=body['gender'], image=body['image'])
         child.save()
+
+        with open('routine_manager/default_data.json') as data_file:
+            data = json.load(data_file)
+            for routine in data['routines']:
+                new_routine = Routine(childID=child, title=routine['title'], image=routine['image'], photo=routine['photo'], color=routine['color'], weight=routine['weight'], periodicity=routine['periodicity'])
+                new_routine.save()
+                for activity in routine['activities']:
+                    new_activity = Activity(routineID=new_routine, title=activity['title'], image=activity['image'], photo=activity['photo'], color=activity['color'], weight=activity['weight'], timeGoal=activity['time']['goal'], timeMax=activity['time']['max'], timeMin=activity['time']['min'])
+                    new_activity.save()
         return JsonResponse({'status': '200'})
 
 
@@ -85,6 +93,19 @@ def add_routine(request):
         if routine is not None:
             routine.save()
         return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def remove_child(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        user = User.objects.get(username=body['email'])
+        user_info = UserInfo.objects.get(user=user)
+        children = Child.objects.filter(userID=user_info) # TODO: esta a dar delete a primeira crianca, alterar quando houver front end
+        child_to_delete = children[0]
+        child_to_delete.delete()
+        return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
 
 
 @csrf_exempt
@@ -145,3 +166,17 @@ def get_children(request):
         response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})
+
+@csrf_exempt
+def add_history(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        loggedUser = User.objects.get(username=body['userEmail'])
+        child = Child.objects.get(userID=loggedUser, name=body['name'])
+        routine = Routine.objects.get(childID=child, title=body['routineTitle'])
+        activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
+        history = (childId=child, activityID=activity, rewardGained=body['rewardGained'],
+                    elapsedTime=body['elapsedTime'], timeStamp=body['timeStamp'])
+        history.save()
+        return JsonResponse({'status': '200'})

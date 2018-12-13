@@ -48,6 +48,24 @@ class Routine(models.Model):
     isWeeklyRepeatable = models.BooleanField(default=True)
 
 
+class Activity(models.Model):
+    routineID = models.ForeignKey(Routine, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    image = models.CharField(max_length=32)
+    photo = models.CharField(max_length=256, null=True)
+    color = models.CharField(max_length=10)
+    weight = models.IntegerField(default=0)
+    periodicity = models.CharField(max_length=7, default='1111111')
+    isWeeklyRepeatable = models.BooleanField(default=True)
+
+
+class ActivityHistory(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    rewardGained = models.IntegerField(default=0)
+    elapsedTime = models.IntegerField(default=0)
+    timeStamp = models.IntegerField(default=0)
+
 class Settings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     activityProgressType = models.CharField(max_length=10, default='bar')

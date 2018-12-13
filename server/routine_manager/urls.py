@@ -12,6 +12,6 @@ urlpatterns = [
     path('assets/images/', views.add_image, name='image'),
     url(r'^children/', views.get_children, name='children'),
     path('settings/', views.add_settings, name='settings'),
-    path('add-routine/', views.add_routine, name='add-routine')
+    path('add-routine/', views.add_routine, name='add-routine'),
+    path('remove-child/', views.remove_child, name='remove-child')
 ] + staticfiles_urlpatterns()
-
