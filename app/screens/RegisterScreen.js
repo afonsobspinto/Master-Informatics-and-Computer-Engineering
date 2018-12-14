@@ -120,7 +120,7 @@ export class RegisterScreen extends Component {
 
             <View style={styles.loginTextContainer}>
               <Text style={styles.loginText}>Já possui uma conta?</Text>
-              <Text style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('LoginMenu')}>Faça login aqui!</Text>
+              <Text className='login' style={styles.loginRegisterText} onPress={() => this.props.navigation.replace('LoginMenu')}>Faça login aqui!</Text>
             </View>
           </Content>
         </Container>

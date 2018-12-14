@@ -15,7 +15,7 @@ describe('MainMenuScreen snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(TouchableOpacity).at(0).props().onPress()
     wrapper.find(TouchableOpacity).at(1).props().onPress()
-    // wrapper.find('.child').props().onPress()
+    // wrapper.find('.child').at(0).props().onPress()
     wrapper.unmount()
   })
 })
