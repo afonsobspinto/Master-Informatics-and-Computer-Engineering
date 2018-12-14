@@ -44,10 +44,10 @@ export default class CardCarousel extends React.Component {
       <View style={styles.carouselContainer}>
         <View style={{ flexGrow: 1 }}>
           <Carousel
-            ref={(c) => { this._carousel = c }}
+            ref={/* istanbul ignore next */(c) => { this._carousel = c }}
             data={this.props.data}
             renderItem={this.renderCard}
-            onSnapToItem={index => this.setState({ activeSlide: index })}
+            onSnapToItem={/* istanbul ignore next */index => this.setState({ activeSlide: index })}
             sliderWidth={sliderWidth}
             itemWidth={itemWidth}
             inactiveSlideScale={1}
