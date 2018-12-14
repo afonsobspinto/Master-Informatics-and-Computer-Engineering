@@ -37,4 +37,13 @@ describe('child actions', () => {
     }
     expect(childActions.toggleItem(1)).toEqual(expectedAction)
   })
+
+  it('should create an action to add a child', () => {
+    const param = 'Name'
+    const expectedAction = {
+      type: childTypes.addStars,
+      payload: 'Name'
+    }
+    expect(childActions.addChild(param)).toEqual(expectedAction)
+  })
 })

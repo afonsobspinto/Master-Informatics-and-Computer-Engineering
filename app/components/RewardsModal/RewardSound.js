@@ -19,6 +19,7 @@ export class RewardSound extends React.Component {
 
   playSound = async () => {
     this.sound = new Audio.Sound()
+    /* istanbul ignore next */
     try {
       if (this.props.success) await this.sound.loadAsync(require('../../assets/sounds/happy.wav'))
       else await this.sound.loadAsync(require('../../assets/sounds/sad.wav'))
