@@ -12,6 +12,7 @@ describe('LoginScreen snapshot', () => {
     const wrapper = shallow(<LoginScreen
       navigation={{ navigate: jest.fn() }}
       login={jest.fn()}
+      setSettings={jest.fn()}
     />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
