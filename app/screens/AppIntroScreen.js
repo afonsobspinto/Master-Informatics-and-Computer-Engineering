@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider'
 import PropTypes from 'prop-types'
-import Images from '../../assets/images/images'
+import Images from '../assets/images/images'
 
 const slides = [
   {

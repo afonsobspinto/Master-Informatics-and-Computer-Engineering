@@ -1,5 +1,5 @@
 import React from 'react'
-import { Content } from 'native-base'
+import { Content, Spinner } from 'native-base'
 import { InvalidateList } from '../../components/Parent/InvalidateList'
 import { SelectChildPicker } from '../../components/Parent/SelectChildPicker'
 
@@ -115,16 +115,20 @@ export class ActivityScreen extends React.Component {
     this.state = {
       children: kids,
       activities: activities,
-      selectedChild: 0
+      selectedChild: 0,
+      loading: false
     }
   }
 
   render () {
-    return (
-      <Content>
-        <SelectChildPicker children={this.state.children} selected={this.state.selectedChild} onChildChanged={child => this.setState({ selectedChild: child })} />
-        <InvalidateList activities={activities} onInvalidatePress={index => console.log(index)} />
-      </Content>
-    )
+    if (this.state.loading) return (<Content contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}><Spinner /></Content>)
+    else {
+      return (
+        <Content>
+          <SelectChildPicker children={this.state.children} selected={this.state.selectedChild} onChildChanged={child => this.setState({ selectedChild: child })} />
+          <InvalidateList activities={activities} onInvalidatePress={index => console.log(index)} />
+        </Content>
+      )
+    }
   }
 }

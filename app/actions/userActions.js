@@ -9,7 +9,6 @@ export function login (email) {
 
 export function logout () {
   return {
-    type: userTypes.login,
-    payload: ''
+    type: userTypes.login
   }
 }
