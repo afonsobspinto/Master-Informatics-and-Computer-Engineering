@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Child, UserInfo, Settings, Routine, Activity
+from .models import Child, UserInfo, Settings, Routine, Activity, ActivityHistory
 
 
 def index(request):
@@ -170,6 +170,20 @@ def get_children(request):
         for child in children:
             dict_child_wrapper.append({"name": child.name,
                                        "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
-        response = json.dumps(dict_child_wrapper)
+            response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})
+
+@csrf_exempt
+def add_history(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        loggedUser = User.objects.get(username=body['userEmail'])
+        child = Child.objects.get(userID=loggedUser, name=body['name'])
+        routine = Routine.objects.get(childID=child, title=body['routineTitle'])
+        activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
+        history = ActivityHistory(childId=child, activityID=activity, rewardGained=body['rewardGained'],
+                   elapsedTime=body['elapsedTime'], timeStamp=body['timeStamp'])
+        history.save()
+        return JsonResponse({'status': '200'})

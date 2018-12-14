@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setActivityStatus, nextActivity } from '../../actions/gameActions'
 import { addStars } from '../../actions/childActions'
 import { Image, Text, View, StatusBar, BackHandler } from 'react-native'
+import EnvVars from '../../constants/EnviromentVars'
 
 import { ProgressBar } from '../../components/Activity/ProgressBar'
 import { ProgressClock } from '../../components/Activity/ProgressClock'
@@ -47,6 +48,36 @@ export class ActivityScreen extends Component {
     this.setState(() => {
       return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
     })
+  }
+
+  createHistory () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userEmail: this.props.loggedUserEmail,
+        name: this.state.child.name,
+        routineTitle: this.state.game.routines[this.state.game.currentRoutine].title,
+        activityTitle: this.props.activity.title,
+        rewardGained: this.props.xp,
+        elapsedTime: this.state.elapsedTime,
+        timeStamp: this.state.elapsedTime
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   componentDidMount () {
@@ -167,5 +198,6 @@ ActivityScreen.propTypes = {
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
   xp: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired
+  level: PropTypes.number.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }

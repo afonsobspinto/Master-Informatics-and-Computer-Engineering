@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^children/', views.get_children, name='children'),
     path('settings/', views.add_settings, name='settings'),
     path('add-routine/', views.add_routine, name='add-routine'),
-    path('remove-child/', views.remove_child, name='remove-child')
+    path('remove-child/', views.remove_child, name='remove-child'),
+    path('add-history/', views.add_history, name='add-history')
 ] + staticfiles_urlpatterns()
