@@ -187,8 +187,8 @@ def add_history(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        loggedUser = User.objects.get(username=body['userEmail'])
-        child = Child.objects.get(userID=loggedUser, name=body['name'])
+        # loggedUser = User.objects.get(username=body['userEmail'])
+        child = Child.objects.get(childID=body['id'])
         routine = Routine.objects.get(childID=child, title=body['routineTitle'])
         activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
         history = ActivityHistory(childId=child, activityID=activity, rewardGained=body['rewardGained'],

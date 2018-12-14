@@ -51,6 +51,7 @@ export class ActivityScreen extends Component {
   }
 
   createHistory () {
+    console.log('entrou')
     fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
       method: 'POST',
       headers: {
@@ -59,10 +60,9 @@ export class ActivityScreen extends Component {
       },
       body: JSON.stringify({
         id: this.props.child.id,
-        userEmail: this.props.loggedUserEmail,
         routineTitle: this.props.routine.title,
         activityTitle: this.props.activity.title,
-        rewardGained: this.props.activity.status.reward,
+        // rewardGained: this.props.activity.status.reward,
         elapsedTime: this.state.elapsedTime,
         timeStamp: Date.now()
       })
@@ -113,6 +113,7 @@ export class ActivityScreen extends Component {
   }
 
   nextActivity () {
+    this.createHistory()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
     if (this.props.activities.every(activity => activity.status !== undefined)) {
       this.props.navigation.replace('RoutineBonusScreen')
@@ -199,6 +200,5 @@ ActivityScreen.propTypes = {
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
   child: PropTypes.object.isRequired,
-  loggedUserEmail: PropTypes.string.isRequired,
   routine: PropTypes.object.isRequired
 }
