@@ -7,6 +7,7 @@ import { List, Content, ListItem, Text, Right, Body, Picker, Separator } from 'n
 import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback, changeFeedbackFrequency, togglePlaySounds } from '../../actions/settingsActions'
 import { logout } from '../../actions/userActions'
 import { _storeJson } from '../../helpers/LocalStore'
+import EnvVars from '../../constants/EnviromentVars'
 
 class SettingsScreen extends React.Component {
   logout = () => {
@@ -25,6 +26,36 @@ class SettingsScreen extends React.Component {
       ],
       { cancelable: false }
     )
+  }
+
+  componentWillUnmount () {
+    fetch(EnvVars.apiUrl + 'routine_manager/settings/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userEmail: this.props.loggedUserEmail,
+        activityProgressType: this.props.activityProgressType,
+        activityShowTimer: this.props.activityShowTimer,
+        activityFeedback: this.props.activityFeedback,
+        feedbackFrequency: this.props.feedbackFrequency,
+        routinePlayType: this.props.routinePlayType,
+        playSounds: this.props.playSounds
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('salvo')
+        } else {
+          console.log('oops')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   render () {
@@ -108,7 +139,8 @@ export default connect(
     activityFeedback: state.settings.activityFeedback,
     feedbackFrequency: state.settings.feedbackFrequency,
     routinePlayType: state.settings.routinePlayType,
-    playSounds: state.settings.playSounds
+    playSounds: state.settings.playSounds,
+    loggedUserEmail: state.user.email
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
@@ -134,5 +166,6 @@ SettingsScreen.propTypes = {
   routinePlayType: PropTypes.string.isRequired,
   toggleRoutinePlayType: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
-  togglePlaySounds: PropTypes.func.isRequired
+  togglePlaySounds: PropTypes.func.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }
