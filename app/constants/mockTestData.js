@@ -46,6 +46,9 @@ export const activities = [
     image: 'bed',
     photo: 'bedroom',
     color: '#7d84b2',
+    status: {
+      reward: 1
+    },
     time: {
       min: 0,
       max: 120,

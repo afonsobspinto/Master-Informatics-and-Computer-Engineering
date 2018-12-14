@@ -4,8 +4,8 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { ChooseActivityScreen } from '../../screens/child/ChooseActivityScreen'
-import { activities } from '../../constants/mockTestData'
+import { ChooseActivityScreen } from '../../../screens/child/ChooseActivityScreen'
+import { activities } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 

@@ -4,8 +4,8 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { ChooseRoutineScreen } from '../../screens/child/ChooseRoutineScreen'
-import { routines } from '../../constants/mockTestData'
+import { ChooseRoutineScreen } from '../../../screens/child/ChooseRoutineScreen'
+import { routines } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 

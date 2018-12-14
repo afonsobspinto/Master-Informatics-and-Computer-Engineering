@@ -62,7 +62,7 @@ export class ActivityScreen extends Component {
         id: this.props.child.id,
         routineTitle: this.props.routine.title,
         activityTitle: this.props.activity.title,
-        // rewardGained: this.props.activity.status.reward,
+        rewardGained: this.props.activity.status.reward,
         elapsedTime: this.state.elapsedTime,
         timeStamp: Date.now()
       })
