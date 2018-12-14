@@ -24,9 +24,9 @@ describe('ActivityScreen snapshot', () => {
       setActivityStatus={jest.fn()}
       nextActivity={jest.fn()}
       addStars={jest.fn()}
-      xp={430}
-      level={4}
-      loggedUserEmail={"test@test.com"}/>)
+      child={{ xp: 430, level: 4, id: 0 }}
+      routine={{ title: 'test' }}
+      loggedUserEmail={'test@test.com'} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ showTimer: true })
     expect(toJson(wrapper)).toMatchSnapshot()

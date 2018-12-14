@@ -58,13 +58,13 @@ export class ActivityScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        id: this.props.child.id,
         userEmail: this.props.loggedUserEmail,
-        name: this.state.child.name,
-        routineTitle: this.state.game.routines[this.state.game.currentRoutine].title,
+        routineTitle: this.props.routine.title,
         activityTitle: this.props.activity.title,
-        rewardGained: this.props.xp,
+        rewardGained: this.props.activity.status.reward,
         elapsedTime: this.state.elapsedTime,
-        timeStamp: this.state.elapsedTime
+        timeStamp: Date.now()
       })
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -152,8 +152,8 @@ export class ActivityScreen extends Component {
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
-          level={this.props.level}
-          xp={this.props.xp}
+          level={this.props.child.level}
+          xp={this.props.child.xp}
           nextPress={this.nextActivity}
           backPress={this.backToMenu}
           playSounds={this.props.playSounds} />
@@ -172,9 +172,10 @@ export default connect(
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
+    routine: state.game.routines[state.game.currentRoutine],
     currentActivity: state.game.currentActivity,
-    xp: state.child.xp,
-    level: state.child.level
+    loggedUserEmail: state.user.email,
+    child: state.child
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -197,7 +198,7 @@ ActivityScreen.propTypes = {
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
-  xp: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired,
-  loggedUserEmail: PropTypes.string.isRequired
+  child: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired,
+  routine: PropTypes.object.isRequired
 }

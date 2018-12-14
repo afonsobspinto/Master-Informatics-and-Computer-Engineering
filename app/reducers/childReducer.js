@@ -9,10 +9,9 @@ const initialState = {
 export default function (state = initialState, { type, payload }) {
   switch (type) {
     case childTypes.addChild:
-      if(payload.avatar == null){
+      if (payload.avatar == null) {
         delete payload.avatar
-      }
-      else{
+      } else {
         payload.itemsEquiped = JSON.parse(payload.avatar).itemsEquiped
         payload.itemsOwned = JSON.parse(payload.avatar).itemsOwned
       }

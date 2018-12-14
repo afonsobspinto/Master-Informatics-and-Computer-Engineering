@@ -40,9 +40,8 @@ export class MainMenuScreen extends React.Component {
   }
 
   onChildClick = (i) => {
-      console.log(this.state.kids[i])
-      this.props.addChild(this.state.kids[i])
-      this.props.navigation.navigate('ChildMainMenu')
+    this.props.addChild(this.state.kids[i])
+    this.props.navigation.navigate('ChildMainMenu')
   }
 
   render () {
@@ -83,7 +82,7 @@ export default connect(
   state => ({
     loggedUserEmail: state.user.email
   }),
-    /* istanbul ignore next */
+  /* istanbul ignore next */
   dispatch => ({
     addChild: child => dispatch(addChild(child))
   })
