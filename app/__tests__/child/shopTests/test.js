@@ -1,4 +1,3 @@
-// Commented while shop uses random values
 import 'react-native'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
