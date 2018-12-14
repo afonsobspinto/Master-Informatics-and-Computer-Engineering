@@ -168,8 +168,16 @@ def get_children(request):
         children = Child.objects.filter(userID=user.userinfo)
         dict_child_wrapper = []
         for child in children:
-            dict_child_wrapper.append({"name": child.name,
-                                       "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
+            dict_child_wrapper.append(
+                {
+                    "id": child.id,
+                    "name": child.name,
+                    "gender": child.gender,
+                    "level": int(child.level),
+                    "xp": int(child.xp),
+                    "stars": int(child.stars),
+                    "avatar": child.avatar,
+                    "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
             response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})

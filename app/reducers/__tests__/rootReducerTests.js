@@ -5,13 +5,9 @@ describe('root reducer', () => {
   it('should return initial state', () => {
     expect(rootReducer(undefined, {})).toEqual({
       child: {
-        stars: 300,
-        level: 4,
-        xp: 460,
-        gender: 'F',
         itemsOwned: [],
         itemsEquiped: [],
-        showLevelUpModal: true
+        showLevelUpModal: false
       },
       settings: {
         activityProgressType: 'bar',

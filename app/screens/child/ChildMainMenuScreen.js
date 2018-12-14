@@ -53,6 +53,7 @@ export class ChildMainMenuScreen extends Component {
   }
 
   render () {
+
     return (
       <View style={styles.mainMenuContainer}>
         <StatusBar hidden />
