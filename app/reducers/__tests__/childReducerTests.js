@@ -109,4 +109,18 @@ describe('child reducer', () => {
         itemsEquiped: [2, 3]
       })
   })
+
+  it('should add child', () => {
+    expect(
+      childReducer({
+        itemsEquiped: [1]
+      }, {
+        type: childTypes.addChild,
+        payload: 'Name'
+      }))
+      .toEqual({
+        itemsEquiped: [1],
+        payload: 'Name'
+      })
+  })
 })
