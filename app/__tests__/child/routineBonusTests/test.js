@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
 import { RoutineBonusScreen } from '../../../screens/child/RoutineBonusScreen'
-import { BonusModal } from '../../../components/RewardsModal/BonusModal'
+// import { BonusModal } from '../../../components/RewardsModal/BonusModal'
 
 configure({ adapter: new Adapter() })
 
