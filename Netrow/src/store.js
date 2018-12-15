@@ -114,7 +114,7 @@ export default new Vuex.Store({
         quantity: 1
       }
     ],
-    categories: ["Lorem", "Ipsum", "Dolor", "Sit"],
+    categories: [],
     userInfo: {
       isLoggedIn: false,
       isSignedUp: false,
@@ -252,6 +252,9 @@ export default new Vuex.Store({
           el.isFavourite = false;
         }
       });
+    },
+    setCategories: (state, data) => {
+      state.categories = data;
     },
     quantity: (state, data) => {
       state.products.forEach(el => {

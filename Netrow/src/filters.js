@@ -5,6 +5,7 @@ export function getByTitle(list, keyword) {
 }
 
 export function getByCategory(list, category) {
+  // console.log(category); TODO check how sub fams are saved to filter
   if (category === "all") return list;
   return list.filter(
     item => item.category.toLowerCase() === category.toLowerCase()

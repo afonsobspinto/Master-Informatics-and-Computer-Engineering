@@ -61,7 +61,6 @@ import Filters from "../search/ExtraFilters";
 
 export default {
   name: "header-component",
-
   data() {
     return {
       isCheckoutActive: false,
@@ -92,7 +91,8 @@ export default {
         !this.$store.state.userInfo.showMoreFilters
       );
     }
-  }
+  },
+      
 };
 </script>
 

@@ -22,7 +22,7 @@ let onSuccessCallbacks: Function[] = [];
 export class HttpClient {
     private token: string;
 
-    static instance(onTokenError: Function = console.error, onSuccess = () => {}) {
+    static instance(onTokenError: Function = console.error, onSuccess = (instance) => {}) {
         if (instance == null) {
             onSuccessCallbacks.push(onSuccess);
             instance = new HttpClient(onTokenError);
@@ -30,7 +30,7 @@ export class HttpClient {
             if (instance.token === null) {
                 onSuccessCallbacks.push(onSuccess);
             } else {
-                onSuccess();
+                onSuccess(instance);
             }
         }
 
@@ -79,6 +79,26 @@ export class HttpClient {
         });
     }
 
+    public getCategories() {
+        const SQLquery =
+          "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
+    
+        const path = `Administrador/Consulta`;
+        return new Promise<Object>((resolve, reject) => {
+          this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+      }
+
     public postJson(path: string, body: Object) {
         const url = `${ADRESS}/${path}`;
 
@@ -115,6 +135,8 @@ export class HttpClient {
 
     private getToken(onTokenError: Function) {
         let url = `${ADRESS}/token`;
+        const httpInstance = this;
+
         return fetch(url, {
             method: "POST",
             headers: {
@@ -127,12 +149,12 @@ export class HttpClient {
                 this.token = o.access_token;
 
                 if (onSuccessCallbacks.length != 0) {
-                    onSuccessCallbacks.forEach(func => func());
+                    onSuccessCallbacks.forEach(func => func(httpInstance));
                     onSuccessCallbacks = [];
                 }
 
             }).catch(error => {
-                onTokenError(error);
+                    onTokenError(error);
         })).catch(error => {
             onTokenError(error);
         });
