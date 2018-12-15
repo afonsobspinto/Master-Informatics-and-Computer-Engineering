@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveChildScreen snapshot renders RemoveChildScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)>
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Remover Criança
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)>
+    <Styled(List)
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(ListItem)
+        button={true}
+        key="0"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://davidkallin.files.wordpress.com/2010/11/bart-simpson.jpg",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Bart
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+      <Styled(ListItem)
+        button={true}
+        key="1"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://66.media.tumblr.com/aa10720452d4eb5f7999144ba6a82b83/tumblr_nczlkjyQSn1sauer5o6_250.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Lisa
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+      <Styled(ListItem)
+        button={true}
+        key="2"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://img.maximummedia.ie/joe_co_uk/eyJkYXRhIjoie1widXJsXCI6XCJodHRwOlxcXC9cXFwvbWVkaWEtam9lY291ay5tYXhpbXVtbWVkaWEuaWUuczMuYW1hem9uYXdzLmNvbVxcXC93cC1jb250ZW50XFxcL3VwbG9hZHNcXFwvMjAxN1xcXC8xMlxcXC8xNDIwMjcxNVxcXC9tYWdnaWUtc2ltcHNvbi5wbmdcIixcIndpZHRoXCI6NzY3LFwiaGVpZ2h0XCI6NDMxLFwiZGVmYXVsdFwiOlwiaHR0cHM6XFxcL1xcXC93d3cuam9lLmNvLnVrXFxcL2Fzc2V0c1xcXC9pbWFnZXNcXFwvam9lY291a1xcXC9uby1pbWFnZS5wbmc_dj01XCJ9IiwiaGFzaCI6ImZmNmY2NWYxYjRjYjQyYTVjMWQ5ZGUxNGI1MGUxMmEyYjJlZjcwYjQifQ==/maggie-simpson.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Maggie
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+    </Styled(List)>
+  </Styled(Content)>
+</Styled(Container)>
+`;
+
+exports[`RemoveChildScreen snapshot renders RemoveChildScreen correctly 2`] = `
+<Styled(Container)>
+  <Styled(Header)>
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Remover Criança
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)>
+    <Styled(List)
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(ListItem)
+        button={true}
+        key="0"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://davidkallin.files.wordpress.com/2010/11/bart-simpson.jpg",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Bart
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+      <Styled(ListItem)
+        button={true}
+        key="1"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://66.media.tumblr.com/aa10720452d4eb5f7999144ba6a82b83/tumblr_nczlkjyQSn1sauer5o6_250.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Lisa
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+      <Styled(ListItem)
+        button={true}
+        key="2"
+        onPress={[Function]}
+      >
+        <Styled(Left)>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": 25,
+                "height": 50,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "overflow": "hidden",
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://img.maximummedia.ie/joe_co_uk/eyJkYXRhIjoie1widXJsXCI6XCJodHRwOlxcXC9cXFwvbWVkaWEtam9lY291ay5tYXhpbXVtbWVkaWEuaWUuczMuYW1hem9uYXdzLmNvbVxcXC93cC1jb250ZW50XFxcL3VwbG9hZHNcXFwvMjAxN1xcXC8xMlxcXC8xNDIwMjcxNVxcXC9tYWdnaWUtc2ltcHNvbi5wbmdcIixcIndpZHRoXCI6NzY3LFwiaGVpZ2h0XCI6NDMxLFwiZGVmYXVsdFwiOlwiaHR0cHM6XFxcL1xcXC93d3cuam9lLmNvLnVrXFxcL2Fzc2V0c1xcXC9pbWFnZXNcXFwvam9lY291a1xcXC9uby1pbWFnZS5wbmc_dj01XCJ9IiwiaGFzaCI6ImZmNmY2NWYxYjRjYjQyYTVjMWQ5ZGUxNGI1MGUxMmEyYjJlZjcwYjQifQ==/maggie-simpson.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </Component>
+          <Styled(Text)>
+            Maggie
+          </Styled(Text)>
+        </Styled(Left)>
+        <Styled(Body) />
+        <Styled(Right) />
+      </Styled(ListItem)>
+    </Styled(List)>
+  </Styled(Content)>
+</Styled(Container)>
+`;

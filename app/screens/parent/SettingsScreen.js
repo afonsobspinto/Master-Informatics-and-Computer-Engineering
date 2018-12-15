@@ -9,7 +9,7 @@ import { logout } from '../../actions/userActions'
 import { _storeJson } from '../../helpers/LocalStore'
 import EnvVars from '../../constants/EnviromentVars'
 
-class SettingsScreen extends React.Component {
+export class SettingsScreen extends React.Component {
   logout = () => {
     Alert.alert(
       'Tem a certeza que pretende fazer logout?',
@@ -142,6 +142,7 @@ class SettingsScreen extends React.Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     activityProgressType: state.settings.activityProgressType,
     activityShowTimer: state.settings.activityShowTimer,
@@ -150,6 +151,7 @@ export default connect(
     routinePlayType: state.settings.routinePlayType,
     playSounds: state.settings.playSounds
   }),
+  /* istanbul ignore next */
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
     toggleActivityTimer: showTimer => dispatch(toggleActivityTimer(showTimer)),
@@ -162,6 +164,7 @@ export default connect(
 )(SettingsScreen)
 
 SettingsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
   activityProgressType: PropTypes.string.isRequired,
   activityShowTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
@@ -173,7 +176,6 @@ SettingsScreen.propTypes = {
   changeFeedbackFrequency: PropTypes.func.isRequired,
   routinePlayType: PropTypes.string.isRequired,
   toggleRoutinePlayType: PropTypes.func.isRequired,
-  navigation: PropTypes.object.isRequired,
   togglePlaySounds: PropTypes.func.isRequired,
   loggedUserEmail: PropTypes.string.isRequired
 }

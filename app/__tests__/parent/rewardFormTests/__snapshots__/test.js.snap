@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardFormScreen snapshot renders RewardFormScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)
+    androidStatusBarColor="#0074D9"
+    style={
+      Object {
+        "backgroundColor": "#0074D9",
+      }
+    }
+  >
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Criar prémio
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Form)>
+    <Styled(Item)
+      stackedLabel={true}
+    >
+      <Styled(Label)>
+        Nome do prémio
+      </Styled(Label)>
+      <Styled(Input)
+        onChangeText={[Function]}
+      />
+    </Styled(Item)>
+    <ImagePickerButtons
+      color="#0074D9"
+      image={null}
+      onImageChange={[Function]}
+      onPhotoChange={[Function]}
+      photo={null}
+    />
+    <BottomButton
+      color="#0074D9"
+      onPress={[Function]}
+      text="Criar prémio"
+    />
+  </Styled(Form)>
+</Styled(Container)>
+`;
