@@ -1,14 +1,26 @@
 import React from 'react'
-import { Content } from 'native-base'
+import { Content, Spinner } from 'native-base'
 import { SortableList } from '../../components/Parent/SortableList'
 
 export default class RewardsScreen extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      rewards: rewards,
+      loading: false
+    }
+  }
+
   render () {
-    return (
-      <Content>
-        <SortableList items={rewards} onItemPress={() => {}} />
-      </Content>
-    )
+    if (this.state.loading) return (<Content contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}><Spinner /></Content>)
+    else {
+      return (
+        <Content>
+          <SortableList items={this.state.rewards} onItemPress={() => {}} />
+        </Content>
+      )
+    }
   }
 }
 

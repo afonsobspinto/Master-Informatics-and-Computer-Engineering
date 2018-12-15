@@ -3,6 +3,7 @@ import { Image, View, StyleSheet, Alert } from 'react-native'
 import { Body, Header, Icon, Left, Right, Title, Button, Content, Container, List, Text, ListItem } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import EnvVars from '../../constants/EnviromentVars'
 
 const kids = [
   { name: 'Bart', image: 'https://davidkallin.files.wordpress.com/2010/11/bart-simpson.jpg' },
@@ -17,10 +18,35 @@ export class RemoveChildScreen extends Component {
       'Esta ação não pode ser revertida',
       [
         { text: 'Não', onPress: () => console.log('test'), style: 'cancel' },
-        { text: 'Sim', onPress: () => console.log('OK Pressed') }
+        { text: 'Sim', onPress: () => this.deleteChild() }
       ],
       { cancelable: false }
     )
+  }
+
+  // TODO: tirar o hardcode
+  deleteChild () {
+    fetch(EnvVars.apiUrl + 'routine_manager/remove-child/', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.props.loggedUserEmail
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   render () {
@@ -68,8 +94,8 @@ export default connect(
 )(RemoveChildScreen)
 
 RemoveChildScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
-  // loggedUserEmail: PropTypes.string.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }
 
 const styles = StyleSheet.create({

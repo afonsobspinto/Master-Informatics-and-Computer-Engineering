@@ -9,6 +9,8 @@ import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 import { SortableList } from '../../components/Parent/SortableList'
 
+import EnvVars from '../../constants/EnviromentVars'
+
 const defaultState = {
   title: 'Nome da rotina',
   color: '#0074D9',
@@ -60,8 +62,46 @@ export default class RoutineFormScreen extends Component {
     console.log('Remove Routine')
   }
 
+  encodePeriodicity () {
+    let codedPeriodicity = '0000000'
+    for (let x in this.state.periodicity) {
+      let index = this.state.periodicity[x]
+      if (index > codedPeriodicity.length - 1) {
+        break
+      } else {
+        codedPeriodicity = codedPeriodicity.substr(0, index) + '1' + codedPeriodicity.substr(index + 1)
+      }
+    }
+    return codedPeriodicity
+  }
+
   createRoutine = () => {
-    console.log('Create Routine')
+    fetch(EnvVars.apiUrl + 'routine_manager/add-routine/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        color: this.state.color,
+        image: this.state.image,
+        photo: this.state.photo,
+        repeatable: (this.state.isRepeat).toString(),
+        periodicity: this.encodePeriodicity()
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('salvo')
+        } else {
+          console.log('oops')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   editRoutine = () => {

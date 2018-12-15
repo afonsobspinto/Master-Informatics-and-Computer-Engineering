@@ -1,7 +1,7 @@
 import { userTypes } from '../actions/actionTypes'
 
 const initialState = {
-  email: ''
+  email: undefined
 }
 
 export default function (state = initialState, { type, payload }) {
@@ -9,7 +9,7 @@ export default function (state = initialState, { type, payload }) {
     case userTypes.login:
       return { ...state, email: payload }
     case userTypes.logout:
-      return { ...state, email: payload }
+      return { ...state, email: undefined }
     default:
       return state
   }
