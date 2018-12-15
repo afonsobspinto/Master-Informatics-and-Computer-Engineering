@@ -107,10 +107,9 @@ def remove_child(request):
         body = json.loads(body_unicode)
         user = User.objects.get(username=body['email'])
         user_info = UserInfo.objects.get(user=user)
-        # TODO: esta a dar delete a primeira crianca, alterar quando houver front end
-        children = Child.objects.filter(userID=user_info)
-        child_to_delete = children[0]
-        child_to_delete.delete()
+        # TODO: esta a dar delete a todas as criancas daquele pai com o mesmo nome
+        child = Child.objects.filter(userID=user_info, name=body['childName'])
+        child.delete()
         return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 

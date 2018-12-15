@@ -1,31 +1,51 @@
 import React, { Component } from 'react'
 import { Image, View, StyleSheet, Alert } from 'react-native'
-import { Body, Header, Icon, Left, Right, Title, Button, Content, Container, List, Text, ListItem } from 'native-base'
+import { Body, Header, Icon, Left, Right, Title, Button, Content, Container, List, Text, ListItem, Spinner } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import EnvVars from '../../constants/EnviromentVars'
-
-const kids = [
-  { name: 'Bart', image: 'https://davidkallin.files.wordpress.com/2010/11/bart-simpson.jpg' },
-  { name: 'Lisa', image: 'https://66.media.tumblr.com/aa10720452d4eb5f7999144ba6a82b83/tumblr_nczlkjyQSn1sauer5o6_250.png' },
-  { name: 'Maggie', image: 'https://img.maximummedia.ie/joe_co_uk/eyJkYXRhIjoie1widXJsXCI6XCJodHRwOlxcXC9cXFwvbWVkaWEtam9lY291ay5tYXhpbXVtbWVkaWEuaWUuczMuYW1hem9uYXdzLmNvbVxcXC93cC1jb250ZW50XFxcL3VwbG9hZHNcXFwvMjAxN1xcXC8xMlxcXC8xNDIwMjcxNVxcXC9tYWdnaWUtc2ltcHNvbi5wbmdcIixcIndpZHRoXCI6NzY3LFwiaGVpZ2h0XCI6NDMxLFwiZGVmYXVsdFwiOlwiaHR0cHM6XFxcL1xcXC93d3cuam9lLmNvLnVrXFxcL2Fzc2V0c1xcXC9pbWFnZXNcXFwvam9lY291a1xcXC9uby1pbWFnZS5wbmc_dj01XCJ9IiwiaGFzaCI6ImZmNmY2NWYxYjRjYjQyYTVjMWQ5ZGUxNGI1MGUxMmEyYjJlZjcwYjQifQ==/maggie-simpson.png' }
-]
+import { oppositeColor } from '../../styles/Colors'
 
 export class RemoveChildScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      kids: [],
+      loading: true
+    }
+  }
+
   onItemPress = index => {
     Alert.alert(
-      `Tem a certeza que pretende apagar o perfil "${kids[index].name}"`,
+      `Tem a certeza que pretende apagar o perfil "${this.state.kids[index].name}"`,
       'Esta ação não pode ser revertida',
       [
         { text: 'Não', onPress: () => console.log('test'), style: 'cancel' },
-        { text: 'Sim', onPress: () => this.deleteChild() }
+        { text: 'Sim', onPress: () => this.deleteChild(this.state.kids[index].name) }
       ],
       { cancelable: false }
     )
   }
 
-  // TODO: tirar o hardcode
-  deleteChild () {
+  componentDidMount () {
+    let url = `${EnvVars.apiUrl}routine_manager/children?userEmail=${this.props.loggedUserEmail}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.setState({ kids: JSON.parse(responseJson.response), loading: false })
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  // TODO: quando as cenas de child ID estiverem merged, adicionar para corrigir casos em que existam dois filhos com o mesmo nome
+  deleteChild (name) {
     fetch(EnvVars.apiUrl + 'routine_manager/remove-child/', {
       method: 'DELETE',
       headers: {
@@ -33,7 +53,8 @@ export class RemoveChildScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: this.props.loggedUserEmail
+        email: this.props.loggedUserEmail,
+        childName: name
       })
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -50,7 +71,7 @@ export class RemoveChildScreen extends Component {
   }
 
   render () {
-    const children = kids.map((child, index) => (
+    const children = this.state.kids.map((child, index) => (
       <ListItem button onPress={() => this.onItemPress(index)} key={index}>
         <Left>
           <View style={styles.view}>
@@ -78,7 +99,7 @@ export class RemoveChildScreen extends Component {
         </Header>
         <Content>
           <List style={{ width: '100%' }}>
-            {children}
+            {this.state.loading ? <Spinner color={oppositeColor} /> : children}
           </List>
         </Content>
       </Container>
