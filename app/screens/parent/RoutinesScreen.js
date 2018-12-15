@@ -2,12 +2,15 @@ import React from 'react'
 import { Content, Spinner } from 'native-base'
 import { SortableList } from '../../components/Parent/SortableList'
 import { PropTypes } from 'prop-types'
+import { SelectChildPicker } from '../../components/Parent/SelectChildPicker'
 
 export class RoutinesScreen extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
+      children: kids,
+      selectedChild: 0,
       routines: routines,
       loading: false
     }
@@ -22,6 +25,7 @@ export class RoutinesScreen extends React.Component {
     else {
       return (
         <Content>
+          <SelectChildPicker hideStatus children={this.state.children} selected={this.state.selectedChild} onChildChanged={child => this.setState({ selectedChild: child })} />
           <SortableList items={this.state.routines} onItemPress={this.onRoutinePress} />
         </Content>
       )
@@ -32,6 +36,12 @@ export class RoutinesScreen extends React.Component {
 RoutinesScreen.propTypes = {
   navigation: PropTypes.object.isRequired
 }
+
+const kids = [
+  { name: 'Bart', image: 'https://davidkallin.files.wordpress.com/2010/11/bart-simpson.jpg', level: 4, stars: 45 },
+  { name: 'Lisa', image: 'https://66.media.tumblr.com/aa10720452d4eb5f7999144ba6a82b83/tumblr_nczlkjyQSn1sauer5o6_250.png', level: 15, stars: 910 },
+  { name: 'Maggie', image: 'https://img.maximummedia.ie/joe_co_uk/eyJkYXRhIjoie1widXJsXCI6XCJodHRwOlxcXC9cXFwvbWVkaWEtam9lY291ay5tYXhpbXVtbWVkaWEuaWUuczMuYW1hem9uYXdzLmNvbVxcXC93cC1jb250ZW50XFxcL3VwbG9hZHNcXFwvMjAxN1xcXC8xMlxcXC8xNDIwMjcxNVxcXC9tYWdnaWUtc2ltcHNvbi5wbmdcIixcIndpZHRoXCI6NzY3LFwiaGVpZ2h0XCI6NDMxLFwiZGVmYXVsdFwiOlwiaHR0cHM6XFxcL1xcXC93d3cuam9lLmNvLnVrXFxcL2Fzc2V0c1xcXC9pbWFnZXNcXFwvam9lY291a1xcXC9uby1pbWFnZS5wbmc_dj01XCJ9IiwiaGFzaCI6ImZmNmY2NWYxYjRjYjQyYTVjMWQ5ZGUxNGI1MGUxMmEyYjJlZjcwYjQifQ==/maggie-simpson.png', level: 2, stars: 400 }
+]
 
 const routines = [
   {
