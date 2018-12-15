@@ -100,20 +100,20 @@ def add_routine(request):
         return JsonResponse({'status': '200'})
 
 @csrf_exempt
-def add_child(request):
+def add_activity(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-
-        print("arrived")
+        # routine = Routine.objects.get(title=body['title'])
         
-        for child in Child.objects.all():
-            if 'photo' in body and 'image' in body:
-                print('both')
-            elif 'photo' in body:
-                print('photo')
-            elif 'image' in body:
-                print('image')
+        routine = Routine.objects.all()
+    
+        if 'photo' in body and 'image' in body:
+            print('both')
+        elif 'photo' in body:
+            print('photo')
+        elif 'image' in body:
+            print('image')
 
 
     return JsonResponse({'status': '200'})

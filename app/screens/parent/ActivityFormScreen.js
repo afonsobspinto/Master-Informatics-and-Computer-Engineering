@@ -21,7 +21,7 @@ const defaultState = {
   },
   photo: undefined,
   image: undefined,
-  routine: 'Manhã',
+  routine: 'Após acordar',
   createActivity: true
 }
 
@@ -42,7 +42,7 @@ export default class ActivityFormScreen extends Component {
       }
     } else this.state = defaultState
 
-    this.routines = ['Manhã', 'Noite']
+    this.routines = ['Após acordar', 'Antes de dormir']
 
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
@@ -85,7 +85,7 @@ export default class ActivityFormScreen extends Component {
 
   createActivity = () => {
     console.log('Create Activity')
-    fetch(EnvVars.apiUrl + 'routine_manager/add-child/', {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-activity/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -95,7 +95,11 @@ export default class ActivityFormScreen extends Component {
         title: this.state.title,
         color: this.state.color,
         image: this.state.image,
-        photo: this.state.photo
+        photo: this.state.photo,
+        timeGoal: this.state.goal,
+        timeMin: this.state.min,
+        timeMax: this.state.max,
+        routine: this.state.routine
       })
     }).then((response) => response.json())
       .then((responseJson) => {
