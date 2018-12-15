@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
+<Styled(Content)>
+  <SelectChildPicker
+    onChildChanged={[Function]}
+    selected={0}
+  >
+    <Component />
+    <Component />
+    <Component />
+  </SelectChildPicker>
+  <InvalidateList
+    activities={
+      Array [
+        Object {
+          "color": "#7d84b2",
+          "elapsedTime": 40,
+          "photo": "https://hniesfp.imgix.net/8/images/detailed/14/EA1A7075.jpg?fit=fill&bg=0FFF&w=1500&h=1000&auto=format,compress",
+          "reward": 3,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 0,
+          },
+          "title": "Fazer a cama",
+        },
+        Object {
+          "color": "#0e79b2",
+          "elapsedTime": 120,
+          "image": "toothbrush",
+          "reward": 3,
+          "time": Object {
+            "goal": 10,
+            "max": 15,
+            "min": 1,
+          },
+          "title": "Lavar os dentes",
+        },
+        Object {
+          "color": "#7fb800",
+          "elapsedTime": 40,
+          "image": "socks",
+          "reward": 2,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Vestir",
+        },
+        Object {
+          "color": "#37c1f0",
+          "elapsedTime": 34,
+          "image": "shower",
+          "reward": 3,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar banho",
+        },
+        Object {
+          "color": "#e43f6f",
+          "elapsedTime": 3000,
+          "image": "bag",
+          "reward": 0,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Preparar a mochila",
+        },
+        Object {
+          "color": "#4bb3fd",
+          "elapsedTime": 20,
+          "image": "sneakers",
+          "reward": 3,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Calçar os sapatos",
+        },
+        Object {
+          "color": "#ff7f11",
+          "elapsedTime": 242,
+          "image": "breakfast",
+          "reward": 3,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Tomar o pequeno almoço",
+        },
+        Object {
+          "color": "#b0db43",
+          "elapsedTime": 27,
+          "image": "comb",
+          "reward": 2,
+          "time": Object {
+            "goal": 60,
+            "max": 120,
+            "min": 10,
+          },
+          "title": "Pentear cabelo",
+        },
+      ]
+    }
+    onInvalidatePress={[Function]}
+  />
+</Styled(Content)>
+`;

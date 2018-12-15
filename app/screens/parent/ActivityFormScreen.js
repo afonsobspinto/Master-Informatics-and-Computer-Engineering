@@ -12,7 +12,25 @@ import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 import { connect } from 'react-redux'
 
+<<<<<<< HEAD
 class ActivityFormScreen extends Component {
+=======
+const defaultState = {
+  title: 'Atividade de testes',
+  color: '#0074D9',
+  time: {
+    goal: '3',
+    min: '1.5',
+    max: '6'
+  },
+  photo: undefined,
+  image: undefined,
+  routine: 'Manhã',
+  createActivity: true
+}
+
+export class ActivityFormScreen extends Component {
+>>>>>>> Improve coverage of functions to 66.49% and of lines to 68.5%
   constructor (props) {
     super(props)
 
@@ -226,7 +244,7 @@ class ActivityFormScreen extends Component {
       <Container>
         <Header style={{ backgroundColor: this.state.color }} androidStatusBarColor={this.state.color}>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.pop()}>
+            <Button className='back' transparent onPress={() => this.props.navigation.pop()}>
               <Icon name='arrow-back' />
             </Button>
           </Left>
@@ -234,7 +252,7 @@ class ActivityFormScreen extends Component {
             <Title>{this.state.title}</Title>
           </Body>
           <Right>
-            {!this.state.createActivity && <Button transparent onPress={this.removeActivity}>
+            {!this.state.createActivity && <Button className='delete' transparent onPress={this.removeActivity}>
               <Icon name='md-trash' />
             </Button>}
           </Right>
@@ -243,7 +261,7 @@ class ActivityFormScreen extends Component {
           <Form>
             <Item stackedLabel>
               <Label>Nome</Label>
-              <Input value={this.state.title} onChangeText={text => this.setState({ title: text })} />
+              <Input className='input' value={this.state.title} onChangeText={text => this.setState({ title: text })} />
             </Item>
             <Item stackedLabel>
               <Label>Rotina</Label>
@@ -263,6 +281,7 @@ class ActivityFormScreen extends Component {
   }
 }
 
+<<<<<<< HEAD
 export default connect(
   /* istanbul ignore next */
   state => ({
@@ -273,4 +292,8 @@ export default connect(
 ActivityFormScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   routines: PropTypes.array.isRequired
+=======
+export default ActivityFormScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+>>>>>>> Improve coverage of functions to 66.49% and of lines to 68.5%
 }

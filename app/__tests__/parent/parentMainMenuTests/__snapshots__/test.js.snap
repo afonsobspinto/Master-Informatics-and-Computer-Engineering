@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ParentMainMenuScreen snapshot renders ParentMainMenuScreen correctly 1`] = `
+<Styled(Container)>
+  <StatusBar
+    animated={false}
+    hidden={false}
+    showHideTransition="fade"
+  />
+  <Styled(Header)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Atividade
+      </Styled(Title)>
+    </Styled(Body)>
+  </Styled(Header)>
+  <ActivityScreen />
+  <Styled(Footer)>
+    <Styled(FooterTab)>
+      <Styled(Button)
+        active={true}
+        className="activity"
+        onPress={[Function]}
+      >
+        <Styled(Icon)
+          name="md-filing"
+        />
+        <Styled(Text)>
+          Atividades
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        active={false}
+        className="routines"
+        onPress={[Function]}
+      >
+        <Styled(Icon)
+          name="md-apps"
+        />
+        <Styled(Text)>
+          Rotinas
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        active={false}
+        className="rewards"
+        onPress={[Function]}
+      >
+        <Styled(Icon)
+          name="md-trophy"
+        />
+        <Styled(Text)>
+          Prémios
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        active={false}
+        className="settings"
+        onPress={[Function]}
+      >
+        <Styled(Icon)
+          name="md-settings"
+        />
+        <Styled(Text)>
+          Opções
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(FooterTab)>
+  </Styled(Footer)>
+</Styled(Container)>
+`;
