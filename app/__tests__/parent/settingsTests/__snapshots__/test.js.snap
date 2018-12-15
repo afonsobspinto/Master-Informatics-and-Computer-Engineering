@@ -196,6 +196,24 @@ exports[`SettingsScreen snapshot renders SettingsScreen correctly 1`] = `
         </Styled(PickerNB)>
       </Styled(Right)>
     </Styled(ListItem)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
+        CONTA
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Log out
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
   </Styled(List)>
 </Styled(Content)>
 `;
