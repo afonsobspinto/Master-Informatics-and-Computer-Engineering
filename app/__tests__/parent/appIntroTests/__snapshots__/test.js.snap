@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppIntroScreen snapshot renders AppIntroScreen correctly 1`] = `
+<AppIntroSlider
+  activeDotStyle={
+    Object {
+      "backgroundColor": "rgba(255, 255, 255, .9)",
+    }
+  }
+  buttonStyle={null}
+  buttonTextStyle={null}
+  doneLabel="Done"
+  dotStyle={
+    Object {
+      "backgroundColor": "rgba(0, 0, 0, .2)",
+    }
+  }
+  nextLabel="Next"
+  onDone={[Function]}
+  prevLabel="Back"
+  skipLabel="Skip"
+  slides={
+    Array [
+      Object {
+        "backgroundColor": "#59b2ab",
+        "image": 1,
+        "imageStyle": Object {
+          "height": 240,
+          "width": 240,
+        },
+        "key": "1",
+        "text": "A ser preenchido pelas nossas fantásticas product owners.
+O número de páginas e imagem é ajustável consoante necessário.",
+        "title": "Texto explicativo #1",
+      },
+      Object {
+        "backgroundColor": "#febe29",
+        "image": 1,
+        "imageStyle": Object {
+          "height": 240,
+          "width": 240,
+        },
+        "key": "2",
+        "text": "A ser preenchido pelas nossas fantásticas product owners.
+O número de páginas e imagem é ajustável consoante necessário.",
+        "title": "Texto explicativo #2",
+      },
+      Object {
+        "backgroundColor": "#22bcb5",
+        "image": 1,
+        "imageStyle": Object {
+          "height": 240,
+          "width": 240,
+        },
+        "key": "3",
+        "text": "A ser preenchido pelas nossas fantásticas product owners.
+O número de páginas e imagem é ajustável consoante necessário.",
+        "title": "Texto explicativo #3",
+      },
+    ]
+  }
+/>
+`;

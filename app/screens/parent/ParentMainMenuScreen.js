@@ -37,10 +37,10 @@ export class ParentMainMenuScreen extends React.Component {
     if (this.state.selectedTab === 'routines') {
       return (
         <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
-          <ActionButton.Item buttonColor='#9b59b6' title='Criar atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
+          <ActionButton.Item className='newActivity' buttonColor='#9b59b6' title='Criar atividade' onPress={() => this.props.navigation.navigate('ActivityFormScreen')}>
             <Icon name='md-list-box' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title='Criar rotina' onPress={() => this.props.navigation.navigate('RoutineFormScreen')}>
+          <ActionButton.Item className='newRoutine' buttonColor='#1abc9c' title='Criar rotina' onPress={() => this.props.navigation.navigate('RoutineFormScreen')}>
             <Icon name='md-calendar' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -48,7 +48,7 @@ export class ParentMainMenuScreen extends React.Component {
     } else if (this.state.selectedTab === 'rewards') {
       return (
         <ActionButton style={styles.actionButton} buttonColor='rgba(231,76,60,1)'>
-          <ActionButton.Item buttonColor='#9b59b6' title='Criar prémio' onPress={() => this.props.navigation.navigate('RewardFormScreen')}>
+          <ActionButton.Item className='newReward' buttonColor='#9b59b6' title='Criar prémio' onPress={() => this.props.navigation.navigate('RewardFormScreen')}>
             <Icon name='md-trophy' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -68,22 +68,22 @@ export class ParentMainMenuScreen extends React.Component {
         {this.renderSelectedTab()}
         <Footer>
           <FooterTab>
-            <Button active={this.state.selectedTab === 'activity'}
+            <Button className='activity' active={this.state.selectedTab === 'activity'}
               onPress={() => this.setState({ selectedTab: 'activity', title: 'Atividade' })} >
               <Icon name='md-filing' />
               <Text>Atividades</Text>
             </Button>
-            <Button active={this.state.selectedTab === 'routines'}
+            <Button className='routines' active={this.state.selectedTab === 'routines'}
               onPress={() => this.setState({ selectedTab: 'routines', title: 'Gerir Rotinas' })} >
               <Icon name='md-apps' />
               <Text>Rotinas</Text>
             </Button>
-            <Button active={this.state.selectedTab === 'rewards'}
+            <Button className='rewards' active={this.state.selectedTab === 'rewards'}
               onPress={() => this.setState({ selectedTab: 'rewards', title: 'Recompensas' })} >
               <Icon name='md-trophy' />
               <Text>Prémios</Text>
             </Button>
-            <Button active={this.state.selectedTab === 'settings'}
+            <Button className='settings' active={this.state.selectedTab === 'settings'}
               onPress={() => this.setState({ selectedTab: 'settings', title: 'Opções' })}>
               <Icon name='md-settings' />
               <Text>Opções</Text>

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChangePasswordScreen snapshot renders ChangePasswordScreen correctly 1`] = `
+<Component>
+  <Component
+    style={
+      Object {
+        "padding": 60,
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "paddingBottom": 20,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Insira a sua antiga password.
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        placeholder="Password Antiga"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderColor": "white",
+            "borderWidth": 1,
+            "height": 50,
+            "marginTop": 20,
+            "padding": 10,
+          }
+        }
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Insira a sua nova password.
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        placeholder="Nova Password"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderColor": "white",
+            "borderWidth": 1,
+            "height": 50,
+            "marginTop": 20,
+            "padding": 10,
+          }
+        }
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Repita a sua nova password.
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        placeholder="Nova Password"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderColor": "white",
+            "borderWidth": 1,
+            "height": 50,
+            "marginTop": 20,
+            "padding": 10,
+          }
+        }
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "orange",
+          "borderRadius": 10,
+          "height": 40,
+          "justifyContent": "center",
+          "shadowColor": "black",
+          "shadowOpacity": 5,
+          "shadowRadius": 10,
+        }
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          Alterar Password
+        </Text>
+      </TouchableOpacity>
+    </Component>
+  </Component>
+</Component>
+`;

@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
 import { RoutineBonusScreen } from '../../../screens/child/RoutineBonusScreen'
-// import { BonusModal } from '../../../components/RewardsModal/BonusModal'
+import { BonusModal } from '../../../components/RewardsModal/BonusModal'
 
 configure({ adapter: new Adapter() })
 
@@ -18,7 +18,7 @@ describe('RoutineBonusScreen snapshot', () => {
       addStars={jest.fn()}Z
       playSounds />)
     expect(toJson(wrapper)).toMatchSnapshot()
-    // wrapper.find(BonusModal).at(0).props().onPress()
+    wrapper.find(BonusModal).at(0).props().nextPress()
     wrapper.unmount()
   })
 })
