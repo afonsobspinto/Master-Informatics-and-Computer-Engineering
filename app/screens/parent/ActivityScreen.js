@@ -2,6 +2,9 @@ import React from 'react'
 import { Content } from 'native-base'
 import { InvalidateList } from '../../components/Parent/InvalidateList'
 import { SelectChildPicker } from '../../components/Parent/SelectChildPicker'
+import EnvVars from '../../constants/EnviromentVars'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const activities = [
   {
@@ -119,6 +122,47 @@ export class ActivityScreen extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.getChildren()
+    this.getActivities()
+  }
+
+  getChildren () {
+    let url = `${EnvVars.apiUrl}routine_manager/children?id=${this.props.loggedUserEmail}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.setState({ children: JSON.parse(responseJson.response)
+          })
+        } else {
+          console.log('Ta mal')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  getActivities () {
+    let url = `${EnvVars.apiUrl}routine_manager/history?userEmail=${this.state.children[this.state.selectedChild].id}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.setState({ activities: JSON.parse(responseJson.response)
+          })
+        } else {
+          console.log('Ta mal')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   render () {
     return (
       <Content>
@@ -127,4 +171,15 @@ export class ActivityScreen extends React.Component {
       </Content>
     )
   }
+}
+
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  })
+)(ActivityScreen)
+
+ActivityScreen.propTypes = {
+  loggedUserEmail: PropTypes.string.isRequired
 }

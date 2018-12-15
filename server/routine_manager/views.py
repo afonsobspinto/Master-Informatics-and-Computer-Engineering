@@ -187,10 +187,7 @@ def add_history(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        # loggedUser = User.objects.get(username=body['userEmail'])
         child = Child.objects.get(pk=body['id'])
-        #print(str(body['timeStamp']) + "--------")
-        #print(child.name + "+++++++++++++++++++++++")
         timestampReceived = str(body['timeStamp'])
         routine = Routine.objects.get(childID=child, title=body['routineTitle'])
         activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
@@ -198,3 +195,20 @@ def add_history(request):
                    elapsedTime=body['elapsedTime'], timeStamp=timestampReceived)
         history.save()
         return JsonResponse({'status': '200'})
+
+def get_history(request):
+    if request.method == 'GET':
+        activity_history = ActivityHistory.objects.filter(childID=request.GET.get('id', ''))
+        query = []
+        for history in activity_history:
+            activityID = history.objects.get(activityID)
+            activity = Activity.objects.get(pk=activityID)
+            query.append(
+                {
+                    "title": activity.title,
+                    "image": activity.image,
+                    "color": activity.color,
+                    "reward": history.reward,
+                    "elapsedTime": history.elapsedTime
+                }
+            )
