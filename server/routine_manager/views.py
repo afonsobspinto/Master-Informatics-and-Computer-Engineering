@@ -101,6 +101,25 @@ def add_routine(request):
 
 
 @csrf_exempt
+def edit_routine(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        routineID = int(body['routineID'])
+        routine_to_edit = Routine.objects.get(pk=routineID)
+        routine_to_edit.title = body['title']
+        routine_to_edit.color = body['color']
+        # TODO: adicionar a edicao das fotos
+        routine_to_edit.periodicity = body['periodicity']
+        routine_to_edit.isWeeklyRepeatable = body['isWeeklyRepeatable'] == 'true'
+        try:
+            routine_to_edit.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
 def remove_child(request):
     if request.method == 'DELETE':
         body_unicode = request.body.decode('utf-8')
@@ -155,20 +174,104 @@ def add_image(request):
         return JsonResponse({'status': '200'})
 
 
+@csrf_exempt
 def handle_uploaded_file(f):
     with open('./server/static/assets/images/' + f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
 
+@csrf_exempt
 def get_children(request):
     if request.method == 'GET':
         user = User.objects.get(username=request.GET.get('userEmail', ''))
         children = Child.objects.filter(userID=user.userinfo)
         dict_child_wrapper = []
         for child in children:
-            dict_child_wrapper.append({"name": child.name,
-                                       "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
-        response = json.dumps(dict_child_wrapper)
+            dict_child_wrapper.append(
+                {
+                    "id": child.id,
+                    "name": child.name,
+                    "gender": child.gender,
+                    "level": int(child.level),
+                    "xp": int(child.xp),
+                    "stars": int(child.stars),
+                    "avatar": child.avatar,
+                    "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
+            response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})
+
+@csrf_exempt
+def get_child_routines(request):
+    if request.method == 'GET':
+        child = Child.objects.get(pk=int(request.GET.get('selectedChildID', '')))
+        child_routines = Routine.objects.filter(childID=child).order_by('weight')
+        dict_routine_wrapper = []
+        for routine in child_routines:
+            routine_activities = Activity.objects.filter(routineID=routine).order_by('weight')
+            dict_activity_wrapper = []
+            for activity in routine_activities:
+                dict_activity_wrapper.append(
+                    {
+                        "id": activity.id,
+                        "title": activity.title,
+                        "image": activity.image,
+                        "photo": None if activity.photo == 'null' else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + activity.photo,
+                        "color": activity.color,
+                        "weight": int(activity.weight),
+                        "time": {
+                            "goal": activity.timeGoal,
+                            "max": activity.timeMax,
+                            "min": activity.timeMin
+                        }})
+            dict_routine_wrapper.append(
+                {
+                    "id": routine.id,
+                    "title": routine.title,
+                    "image": routine.image,
+                    "photo": None if routine.photo == 'null' else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + routine.photo,
+                    "color": routine.color,
+                    "weight": int(routine.weight),
+                    "periodicity": routine.periodicity,
+                    "isRepeat": routine.isWeeklyRepeatable,
+                    "activities": dict_activity_wrapper})
+            response = json.dumps(dict_routine_wrapper)
+        return JsonResponse({'status': '200',
+                                'response': response})
+
+@csrf_exempt
+def switch_routine_weight(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        routine1 = Routine.objects.get(pk=body['firstRoutineID'])
+        routine2 = Routine.objects.get(pk=body['secondRoutineID'])
+        routine1_weight = int(routine1.weight)
+        routine2_weight = int(routine2.weight)
+        routine1.weight = int(routine2_weight)
+        routine2.weight = int(routine1_weight)
+        try:
+            routine1.save()
+            routine2.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+        return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def switch_activity_weight(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activity1 = Activity.objects.get(pk=body['firstActivityID'])
+        activity2 = Activity.objects.get(pk=body['secondActivityID'])
+        activity1_weight = int(activity1.weight)
+        activity2_weight = int(activity2.weight)
+        activity1.weight = int(activity2_weight)
+        activity2.weight = int(activity1_weight)
+        try:
+            activity1.save()
+            activity2.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+        return JsonResponse({'status': '200'})

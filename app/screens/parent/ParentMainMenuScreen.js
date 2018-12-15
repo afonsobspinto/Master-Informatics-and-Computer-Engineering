@@ -7,8 +7,9 @@ import { ActivityScreen } from './ActivityScreen'
 import SettingsScreen from './SettingsScreen'
 import ActionButton from 'react-native-action-button'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-export default class ParentMainMenuScreen extends React.Component {
+export class ParentMainMenuScreen extends React.Component {
   constructor (props) {
     super(props)
 
@@ -23,11 +24,11 @@ export default class ParentMainMenuScreen extends React.Component {
       case 'activity':
         return (<ActivityScreen />)
       case 'routines':
-        return (<RoutinesScreen navigation={this.props.navigation} />)
+        return (<RoutinesScreen navigation={this.props.navigation} loggedUserEmail={this.props.loggedUserEmail} />)
       case 'rewards':
         return (<RewardsScreen />)
       case 'settings':
-        return (<SettingsScreen navigation={this.props.navigation} />)
+        return (<SettingsScreen navigation={this.props.navigation} loggedUserEmail={this.props.loggedUserEmail} />)
     }
   }
 
@@ -94,8 +95,16 @@ export default class ParentMainMenuScreen extends React.Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  })
+)(ParentMainMenuScreen)
+
 ParentMainMenuScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }
 
 const styles = StyleSheet.create({

@@ -1,3 +1,3 @@
 import Images from '../assets/images/images'
 
-export const getSource = item => (item.photo !== undefined) ? { uri: item.photo } : Images[item.image]
+export const getSource = item => (item.photo !== null) ? { uri: item.photo } : Images[item.image]

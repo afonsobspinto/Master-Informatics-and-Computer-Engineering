@@ -3,7 +3,7 @@
         {
 			"title": "Após acordar",
 			"image": "sun",
-			"photo": "https://i.ytimg.com/vi/Br-GC8FcTig/maxresdefault.jpg",
+			"photo": "null",
             "color": "#37c1f0",
             "weight": 1,
             "periodicity": "1111111",
@@ -11,7 +11,7 @@
                 {
 					"title": "Fazer a cama",
 					"image": "bed",
-					"photo": "https://www.brewsterwallcovering.com/images/thumbs/0030235_900.jpeg",
+					"photo": "null",
                     "color": "#7d84b2",
                     "weight": 1,
 					"time": {

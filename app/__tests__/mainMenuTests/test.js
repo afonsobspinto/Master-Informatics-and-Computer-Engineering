@@ -11,7 +11,7 @@ configure({ adapter: new Adapter() })
 describe('MainMenuScreen snapshot', () => {
   it('renders MainMenuScreen correctly', () => {
     const wrapper = shallow(<MainMenuScreen
-      navigation={{ navigate: jest.fn() }} loggedUserEmail='test@jest.com' />)
+      navigation={{ navigate: jest.fn(), addListener: jest.fn() }} loggedUserEmail='test@jest.com' />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(TouchableOpacity).at(0).props().onPress()
     wrapper.find(TouchableOpacity).at(1).props().onPress()

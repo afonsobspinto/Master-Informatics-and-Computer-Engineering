@@ -17,7 +17,7 @@ export class SortableListItem extends React.Component {
     return (
       <ListItem button onPress={this.onItemPress}>
         <Left>
-          <SortableListItemThumbnail isPhoto={this.props.item.photo !== undefined} color={this.props.item.color} source={getSource(this.props.item)} />
+          <SortableListItemThumbnail isPhoto={this.props.item.photo !== null} color={this.props.item.color} source={getSource(this.props.item)} />
           <Text>{this.props.item.title}</Text>
         </Left>
         <Body />

@@ -15,7 +15,7 @@ const defaultState = {
   title: 'Nome da rotina',
   color: '#0074D9',
   isRepeat: false,
-  periodicity: [ 5, 6 ],
+  periodicity: '0000011',
   createRoutine: true
 }
 
@@ -27,10 +27,19 @@ export default class RoutineFormScreen extends Component {
 
     this.state = routine ? { ...routine } : defaultState
 
+    this.state.periodicity = this.decodePeriodicity(this.state.periodicity)
+
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
     this.onPhotoChange = this.onPhotoChange.bind(this)
     this.togglePeriodicity = this.togglePeriodicity.bind(this)
+    this.moveItemUp = this.moveItemUp.bind(this)
+  }
+
+  decodePeriodicity = periodicity => {
+    const periodicityArray = []
+    for (let i = 0; i < periodicity.length; i++) if (periodicity.charAt(i) === '1') periodicityArray.push(i)
+    return periodicityArray
   }
 
   onColorChange = code => {
@@ -105,7 +114,69 @@ export default class RoutineFormScreen extends Component {
   }
 
   editRoutine = () => {
-    console.log('Edit Routine')
+    fetch(EnvVars.apiUrl + 'routine_manager/edit-routine/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        routineID: this.state.id,
+        title: this.state.title,
+        color: this.state.color,
+        // TODO: adicionar foto/imagem aos edits
+        image: this.state.image,
+        photo: this.state.photo,
+        isWeeklyRepeatable: (this.state.isRepeat).toString(),
+        periodicity: this.encodePeriodicity()
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('editado')
+          this.props.navigation.pop()
+        } else {
+          console.log('nao editado')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  moveItemUp = (i) => {
+    if (i === 0) return
+    this.setState({ activities: this.state.activities.map((element, index) => {
+      if (index === i - 1) return this.state.activities[i]
+      else if (index === i) return this.state.activities[i - 1]
+      else return element
+    }) }, () => {
+      let url = `${EnvVars.apiUrl}routine_manager/switch-activity-weight`
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstActivityID: this.state.activities[i].id,
+          secondActivityID: this.state.activities[i - 1].id
+        })
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.status === '200') {
+            console.log('trocado')
+          } else {
+            console.log('nao trocado')
+          }
+          return responseJson
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    })
   }
 
   render () {
@@ -140,7 +211,7 @@ export default class RoutineFormScreen extends Component {
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
             {this.state.activities && <Item stackedLabel style={{ borderColor: 'transparent' }}>
               <Label>Atividades</Label>
-              <SortableList items={this.state.activities} color={this.state.color} onItemPress={this.onActivityPress} />
+              <SortableList items={this.state.activities} color={this.state.color} onItemPress={this.onActivityPress} moveItemUp={this.moveItemUp} />
             </Item>}
             <BottomButton color={this.state.color} text={this.state.createRoutine ? 'Criar Rotina' : 'Editar Rotina'} onPress={this.state.createRoutine ? this.createRoutine : this.editRoutine} />
           </Form>
