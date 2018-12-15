@@ -13,8 +13,7 @@ describe('user actions', () => {
 
   it('should create an action to logout', () => {
     const expectedAction = {
-      type: userTypes.login,
-      payload: ''
+      type: userTypes.login
     }
     expect(userActions.logout()).toEqual(expectedAction)
   })

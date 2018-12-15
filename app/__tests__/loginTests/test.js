@@ -25,6 +25,17 @@ describe('LoginScreen snapshot', () => {
     wrapper.instance().validate('else', '')
     wrapper.find(Button).at(0).props().onPress()
     wrapper.setState({ passwordError: true })
+    wrapper.unmount()
+  })
+
+  it('renders LoginScreen correctly', async () => {
+    const wrapper = shallow(<LoginScreen
+      navigation={{ navigate: jest.fn(), replace: jest.fn() }}
+      login={jest.fn()}
+      setSettings={jest.fn()}
+    />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setState({ passwordError: true })
     wrapper.find(Button).at(0).props().onPress()
     wrapper.find('.register').at(0).props().onPress()
     wrapper.unmount()
