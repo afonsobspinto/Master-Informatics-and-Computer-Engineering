@@ -51,7 +51,6 @@ export class ActivityScreen extends Component {
   }
 
   createHistory () {
-    console.log('entrou')
     fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
       method: 'POST',
       headers: {
