@@ -9,6 +9,8 @@ import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 
+import EnvVars from '../../constants/EnviromentVars'
+
 const defaultState = {
   title: 'Atividade de testes',
   color: '#0074D9',
@@ -83,6 +85,30 @@ export default class ActivityFormScreen extends Component {
 
   createActivity = () => {
     console.log('Create Activity')
+    fetch(EnvVars.apiUrl + 'routine_manager/add-child/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        color: this.state.color,
+        image: this.state.image,
+        photo: this.state.photo
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('ok')
+        } else {
+          console.log('not ok')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   editActivity = () => {

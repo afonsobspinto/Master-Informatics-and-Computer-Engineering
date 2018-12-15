@@ -99,6 +99,24 @@ def add_routine(request):
             routine.save()
         return JsonResponse({'status': '200'})
 
+@csrf_exempt
+def add_child(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+
+        print("arrived")
+        
+        for child in Child.objects.all():
+            if 'photo' in body and 'image' in body:
+                print('both')
+            elif 'photo' in body:
+                print('photo')
+            elif 'image' in body:
+                print('image')
+
+
+    return JsonResponse({'status': '200'})
 
 @csrf_exempt
 def remove_child(request):
