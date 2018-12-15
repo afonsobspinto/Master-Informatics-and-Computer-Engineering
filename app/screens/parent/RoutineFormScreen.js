@@ -67,10 +67,6 @@ export default class RoutineFormScreen extends Component {
     this.setState({ isRepeat: !this.state.isRepeat })
   }
 
-  removeRoutine = () => {
-    console.log('Remove Routine')
-  }
-
   encodePeriodicity () {
     let codedPeriodicity = '0000000'
     for (let x in this.state.periodicity) {
@@ -137,6 +133,31 @@ export default class RoutineFormScreen extends Component {
           this.props.navigation.pop()
         } else {
           console.log('nao editado')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  removeRoutine = () => {
+    fetch(EnvVars.apiUrl + 'routine_manager/delete-routine/', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        routineID: this.state.id
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('rotina apagada')
+          this.props.navigation.pop()
+        } else {
+          console.log('rotina nao apagada')
         }
         return responseJson
       })

@@ -14,6 +14,7 @@ urlpatterns = [
     path('settings/', views.add_settings, name='settings'),
     path('add-routine/', views.add_routine, name='add-routine'),
     path('edit-routine/', views.edit_routine, name='edit-routine'),
+    path('delete-routine/', views.delete_routine, name='delete-routine'),
     path('remove-child/', views.remove_child, name='remove-child'),
     url(r'^routine/', views.get_child_routines, name='child-routines'),
     path('switch-routine-weight', views.switch_routine_weight, name='routine-weights'),

@@ -79,6 +79,20 @@ def add_child(request):
 
 
 @csrf_exempt
+def remove_child(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        childID = int(body['childID'])
+        child = Child.objects.filter(pk=childID)
+        try:
+            child.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
 def add_routine(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
@@ -118,18 +132,17 @@ def edit_routine(request):
             return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 
-
 @csrf_exempt
-def remove_child(request):
+def delete_routine(request):
     if request.method == 'DELETE':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        user = User.objects.get(username=body['email'])
-        user_info = UserInfo.objects.get(user=user)
-        # TODO: esta a dar delete a todas as criancas daquele pai com o mesmo nome
-        child = Child.objects.filter(userID=user_info, name=body['childName'])
-        child.delete()
-        return JsonResponse({'status': '400'})
+        routineID = int(body['routineID'])
+        routine_to_delete = Routine.objects.get(pk=routineID)
+        try:
+            routine_to_delete.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 
 

@@ -21,7 +21,7 @@ export class RemoveChildScreen extends Component {
       'Esta ação não pode ser revertida',
       [
         { text: 'Não', onPress: () => console.log('test'), style: 'cancel' },
-        { text: 'Sim', onPress: () => this.deleteChild(this.state.kids[index].name) }
+        { text: 'Sim', onPress: () => this.deleteChild(this.state.kids[index].id) }
       ],
       { cancelable: false }
     )
@@ -34,6 +34,7 @@ export class RemoveChildScreen extends Component {
       .then((responseJson) => {
         if (responseJson.status === '200') {
           this.setState({ kids: JSON.parse(responseJson.response), loading: false })
+          console.log(this.state.kids)
         } else {
 
         }
@@ -45,7 +46,7 @@ export class RemoveChildScreen extends Component {
   }
 
   // TODO: quando as cenas de child ID estiverem merged, adicionar para corrigir casos em que existam dois filhos com o mesmo nome
-  deleteChild (name) {
+  deleteChild (id) {
     fetch(EnvVars.apiUrl + 'routine_manager/remove-child/', {
       method: 'DELETE',
       headers: {
@@ -53,15 +54,15 @@ export class RemoveChildScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: this.props.loggedUserEmail,
-        childName: name
+        childID: id
       })
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-
+          console.log('crianca apagada')
+          this.props.navigation.pop()
         } else {
-
+          console.log('crianca nao apagada')
         }
         return responseJson
       })
