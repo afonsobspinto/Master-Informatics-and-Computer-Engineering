@@ -188,10 +188,13 @@ def add_history(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         # loggedUser = User.objects.get(username=body['userEmail'])
-        child = Child.objects.get(childID=body['id'])
+        child = Child.objects.get(pk=body['id'])
+        #print(str(body['timeStamp']) + "--------")
+        #print(child.name + "+++++++++++++++++++++++")
+        timestampReceived = str(body['timeStamp'])
         routine = Routine.objects.get(childID=child, title=body['routineTitle'])
         activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
-        history = ActivityHistory(childId=child, activityID=activity, rewardGained=body['rewardGained'],
-                   elapsedTime=body['elapsedTime'], timeStamp=body['timeStamp'])
+        history = ActivityHistory(childID=child, activityID=activity, rewardGained=body['rewardGained'],
+                   elapsedTime=body['elapsedTime'], timeStamp=timestampReceived)
         history.save()
         return JsonResponse({'status': '200'})
