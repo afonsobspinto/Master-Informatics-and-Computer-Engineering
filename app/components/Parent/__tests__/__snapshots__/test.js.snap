@@ -1,0 +1,1592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slide components renders BottomButton correctly 1`] = `
+<Component
+  style={
+    Object {
+      "padding": 15,
+      "width": "100%",
+    }
+  }
+>
+  <Styled(Button)
+    onPress={[MockFunction]}
+    style={
+      Object {
+        "backgroundColor": "",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <Styled(Text) />
+  </Styled(Button)>
+</Component>
+`;
+
+exports[`Slide components renders ColorPicker correctly 1 1`] = `
+<Styled(Item)
+  picker={true}
+  style={
+    Object {
+      "borderColor": "",
+    }
+  }
+>
+  <Styled(PickerNB)
+    mode="dropdown"
+    onValueChange={[Function]}
+    selectedValue={-1}
+    style={
+      Object {
+        "width": 120,
+      }
+    }
+  />
+</Styled(Item)>
+`;
+
+exports[`Slide components renders DurationPickers correctly 1`] = `
+<Component>
+  <Styled(Item)
+    stackedLabel={true}
+  >
+    <Styled(Label)>
+      Duração (minutos)
+    </Styled(Label)>
+    <Styled(Input)
+      keyboardType="numeric"
+      onChangeText={[Function]}
+      textContentType="telephoneNumber"
+    />
+  </Styled(Item)>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Text)
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      >
+        Mais opções de duração
+      </Styled(Text)>
+    </Styled(Button)>
+  </Component>
+</Component>
+`;
+
+exports[`Slide components renders ImagePickerButtons correctly 1`] = `
+<Component>
+  <Styled(Item)
+    stackedLabel={true}
+  >
+    <Styled(Label)>
+      Imagem
+    </Styled(Label)>
+    <Component
+      style={
+        Object {
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(Item)
+        style={
+          Object {
+            "borderColor": "transparent",
+          }
+        }
+      >
+        <ItemPicker
+          items={
+            Array [
+              "Armário",
+              "Blocos",
+              "Cama",
+              "Cereais",
+              "Chuveiro",
+              "Chá",
+              "Dormir",
+              "Escova de dentes",
+              "Livro",
+              "Lua",
+              "Meias",
+              "Mochila",
+              "Pente",
+              "Sapatilhas",
+              "Sol",
+              "T-Shirt",
+              "Talheres",
+              "Trabalhos",
+            ]
+          }
+          onValueChange={[Function]}
+        />
+      </Styled(Item)>
+    </Component>
+  </Styled(Item)>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Text)
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      >
+        Escolher fotografia
+      </Styled(Text)>
+    </Styled(Button)>
+  </Component>
+</Component>
+`;
+
+exports[`Slide components renders InvalidateList correctly 1`] = `
+<Styled(List)
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <Styled(ListItem)
+    button={true}
+    key="0"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#7d84b2"
+        isPhoto={true}
+        source={
+          Object {
+            "uri": "bedroom",
+          }
+        }
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Fazer a cama
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="1"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#0e79b2"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Lavar os dentes
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="2"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#7fb800"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Vestir
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="3"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#37c1f0"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Tomar banho
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="4"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#e43f6f"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Preparar a mochila
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="5"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#4bb3fd"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Calçar os sapatos
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="6"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#ff7f11"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Tomar o pequeno almoço
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    button={true}
+    key="7"
+  >
+    <Styled(Left)>
+      <SortableListItemThumbnail
+        color="#b0db43"
+        isPhoto={false}
+        source={1}
+      />
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Styled(Text)
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          Pentear cabelo
+        </Styled(Text)>
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "margin": 2,
+                  "width": 12,
+                },
+                false,
+              ]
+            }
+          />
+          <Styled(Text)
+            note={true}
+            numberOfLines={1}
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            - Falhada em NaN:NaN
+          </Styled(Text)>
+        </Component>
+      </Component>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Button)
+        onPress={[Function]}
+        rounded={true}
+        style={
+          Object {
+            "backgroundColor": "#e63b2e",
+          }
+        }
+      >
+        <Styled(Icon)
+          name="md-close"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+</Styled(List)>
+`;
+
+exports[`Slide components renders ItemPicker correctly 1`] = `
+<Styled(PickerNB)
+  mode="dropdown"
+  onValueChange={[MockFunction]}
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`Slide components renders PeriodicityPicker correctly 1`] = `
+<Component>
+  <Styled(Item)
+    stackedLabel={true}
+  >
+    <Styled(Label)>
+      Periodicidade
+    </Styled(Label)>
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(Button)
+        key="0"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            S
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="1"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            T
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="2"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            Q
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="3"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            Q
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="4"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            S
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="5"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            S
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="6"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginRight": 10,
+            "paddingBottom": 0,
+            "paddingTop": 10,
+          }
+        }
+        transparent={true}
+      >
+        <Styled(Badge)
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+          >
+            D
+          </Styled(Text)>
+        </Styled(Badge)>
+      </Styled(Button)>
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 15,
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(Text)>
+        Repetir
+      </Styled(Text)>
+      <Styled(CheckBox)
+        checked={true}
+        color=""
+        onPress={[MockFunction]}
+        style={
+          Object {
+            "borderColor": "",
+            "marginRight": 25,
+          }
+        }
+      />
+    </Component>
+  </Styled(Item)>
+</Component>
+`;
+
+exports[`Slide components renders PhotoPickerButton correctly 1`] = `
+<Component>
+  <Styled(Item)
+    stackedLabel={true}
+  >
+    <Styled(Label)>
+      Imagem
+    </Styled(Label)>
+    <Component
+      style={
+        Object {
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "alignItems": "center",
+            "flexGrow": 1,
+            "marginTop": 15,
+            "paddingRight": 15,
+          }
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={Object {}}
+          style={
+            Object {
+              "aspectRatio": 1,
+              "width": "100%",
+            }
+          }
+        />
+      </Component>
+      <Component
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+            "width": "100%",
+          }
+        }
+      >
+        <Styled(Button)
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "marginVertical": 15,
+              },
+              Object {
+                "backgroundColor": "",
+              },
+            ]
+          }
+        >
+          <Styled(Text)>
+            Camara
+          </Styled(Text)>
+        </Styled(Button)>
+        <Styled(Button)
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "justifyContent": "center",
+                "marginRight": 15,
+                "marginVertical": 15,
+              },
+              Object {
+                "backgroundColor": "",
+              },
+            ]
+          }
+        >
+          <Styled(Text)>
+            Galeria
+          </Styled(Text)>
+        </Styled(Button)>
+      </Component>
+    </Component>
+  </Styled(Item)>
+</Component>
+`;
+
+exports[`Slide components renders RoutineItem correctly 1`] = `
+<Styled(ListItem)
+  thumbnail={true}
+>
+  <Styled(Left)>
+    <Styled(Thumbnail)
+      source={0}
+      square={true}
+    />
+  </Styled(Left)>
+  <Styled(Body)>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    />
+  </Styled(Body)>
+  <Styled(Right)>
+    <Styled(Button)
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="md-arrow-forward"
+      />
+    </Styled(Button)>
+  </Styled(Right)>
+</Styled(ListItem)>
+`;
+
+exports[`Slide components renders SelectChildPicker correctly 1`] = `
+<Component
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 1,
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "width": "100%",
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 35,
+          "height": 70,
+          "justifyContent": "center",
+          "margin": 15,
+          "overflow": "hidden",
+          "width": 70,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </Component>
+    <Styled(PickerNB)
+      itemTextStyle={
+        Object {
+          "color": "red",
+        }
+      }
+      mode="dropdown"
+      onValueChange={[MockFunction]}
+      selectedValue={0}
+      style={
+        Object {
+          "flexGrow": 1,
+          "height": "100%",
+        }
+      }
+    >
+      <Item
+        key="0"
+        value={0}
+      />
+    </Styled(PickerNB)>
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 15,
+        "paddingTop": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <Styled(Text)>
+      Nível 
+    </Styled(Text)>
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 20,
+            "marginRight": 5,
+            "width": 20,
+          }
+        }
+      />
+      <Styled(Text) />
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`Slide components renders SortableList correctly 1`] = `
+<Styled(List)
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <SortableListItem
+    color=""
+    index={0}
+    item={Object {}}
+    key="0"
+    moveItemUp={[Function]}
+    onItemPress={[MockFunction]}
+  />
+  <SortableListItem
+    color=""
+    index={1}
+    item={Object {}}
+    key="1"
+    moveItemUp={[Function]}
+    onItemPress={[MockFunction]}
+  />
+  <SortableListItem
+    color=""
+    index={2}
+    item={Object {}}
+    key="2"
+    moveItemUp={[Function]}
+    onItemPress={[MockFunction]}
+  />
+</Styled(List)>
+`;
+
+exports[`Slide components renders SortableListItem correctly 1`] = `
+<Styled(ListItem)
+  button={true}
+  onPress={[Function]}
+>
+  <Styled(Left)>
+    <SortableListItemThumbnail
+      isPhoto={false}
+    />
+    <Styled(Text) />
+  </Styled(Left)>
+  <Styled(Body) />
+  <Styled(Right)>
+    <Styled(Button)
+      onPress={[Function]}
+      style=""
+    >
+      <Styled(Icon)
+        name="md-arrow-dropup"
+      />
+    </Styled(Button)>
+  </Styled(Right)>
+</Styled(ListItem)>
+`;
+
+exports[`Slide components renders SortableListItemThumbnail correctly 1`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 25,
+        "height": 50,
+        "justifyContent": "center",
+        "marginRight": 15,
+        "overflow": "hidden",
+        "width": 50,
+      },
+      Object {
+        "backgroundColor": "",
+      },
+    ]
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={Object {}}
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</Component>
+`;
