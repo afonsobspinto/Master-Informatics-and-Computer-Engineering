@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoutinesScreen snapshot renders RoutinesScreen correctly 1`] = `
+<Styled(Content)>
+  <SortableList
+    items={
+      Array [
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#7d84b2",
+              "photo": "https://hniesfp.imgix.net/8/images/detailed/14/EA1A7075.jpg?fit=fill&bg=0FFF&w=1500&h=1000&auto=format,compress",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 0,
+              },
+              "title": "Fazer a cama",
+            },
+            Object {
+              "color": "#0e79b2",
+              "image": "toothbrush",
+              "time": Object {
+                "goal": 10,
+                "max": 15,
+                "min": 1,
+              },
+              "title": "Lavar os dentes",
+            },
+            Object {
+              "color": "#7fb800",
+              "image": "socks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Vestir",
+            },
+            Object {
+              "color": "#37c1f0",
+              "image": "shower",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar banho",
+            },
+            Object {
+              "color": "#e43f6f",
+              "image": "bag",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a mochila",
+            },
+            Object {
+              "color": "#4bb3fd",
+              "image": "sneakers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Calçar os sapatos",
+            },
+            Object {
+              "color": "#ff7f11",
+              "image": "breakfast",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Tomar o pequeno almoço",
+            },
+            Object {
+              "color": "#b0db43",
+              "image": "comb",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Pentear cabelo",
+            },
+          ],
+          "color": "#37c1f0",
+          "isRepeat": true,
+          "periodicity": Array [
+            0,
+            1,
+            2,
+            3,
+            4,
+          ],
+          "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg",
+          "title": "Após acordar",
+        },
+        Object {
+          "activities": Array [
+            Object {
+              "color": "#1a5e63",
+              "image": "fork",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ajudar na cozinha",
+            },
+            Object {
+              "color": "#a3320b",
+              "image": "drawers",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar o quarto",
+            },
+            Object {
+              "color": "#657153",
+              "image": "paper",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Fazer os trabalhos para casa",
+            },
+            Object {
+              "color": "#519e8a",
+              "image": "blocks",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Arrumar os brinquedos",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "book",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Ler um livro",
+            },
+            Object {
+              "color": "#ff9f1c",
+              "image": "shirt",
+              "time": Object {
+                "goal": 60,
+                "max": 120,
+                "min": 10,
+              },
+              "title": "Preparar a roupa do dia seguinte",
+            },
+          ],
+          "color": "#011f39",
+          "image": "moon",
+          "isRepeat": true,
+          "periodicity": Array [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+          ],
+          "title": "Antes de dormir",
+        },
+      ]
+    }
+    onItemPress={[Function]}
+  />
+</Styled(Content)>
+`;
