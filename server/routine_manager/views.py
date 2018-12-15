@@ -189,8 +189,6 @@ def add_history(request):
         body = json.loads(body_unicode)
         # loggedUser = User.objects.get(username=body['userEmail'])
         child = Child.objects.get(pk=body['id'])
-        #print(str(body['timeStamp']) + "--------")
-        #print(child.name + "+++++++++++++++++++++++")
         timestampReceived = str(body['timeStamp'])
         routine = Routine.objects.get(childID=child, title=body['routineTitle'])
         activity = Activity.objects.get(routineID = routine,title=body['activityTitle'])
