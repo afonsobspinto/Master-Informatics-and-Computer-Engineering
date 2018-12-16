@@ -79,6 +79,20 @@ def add_child(request):
 
 
 @csrf_exempt
+def remove_child(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        childID = int(body['childID'])
+        child = Child.objects.filter(pk=childID)
+        try:
+            child.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
 def add_routine(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
@@ -104,32 +118,106 @@ def add_activity(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        # routine = Routine.objects.get(title=body['title'])
-        
-        routine = Routine.objects.all()
+        routine_id = int(body['routineID'])
+        activity_routine = Routine.objects.get(pk=routineID)
     
         if 'photo' in body and 'image' in body:
-            print('both')
+            new_activity = Activity(routineID=routine_id, title=body['title'], image=body['image'],
+                                    photo=body['photo'], color=body['color'], weight=int(body['weight']),
+                                    timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']), timeMin=int(body['timeMin']))
         elif 'photo' in body:
-            print('photo')
+            new_activity = Activity(routineID=routine_id, title=body['title'], photo=body['photo'], color=body['color'],
+                                    weight=int(body['weight']), timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
+                                    timeMin=int(body['timeMin']))
         elif 'image' in body:
-            print('image')
-
+            new_activity = Activity(routineID=routine_id, title=body['title'], photo=body['photo'], color=body['color'],
+                                    weight=int(body['weight']), timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
+                                    timeMin=int(body['timeMin']))
 
     return JsonResponse({'status': '200'})
 
 @csrf_exempt
-def remove_child(request):
+def edit_routine(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        routineID = int(body['routineID'])
+        routine_to_edit = Routine.objects.get(pk=routineID)
+        routine_to_edit.title = body['title']
+        routine_to_edit.color = body['color']
+        # TODO: adicionar a edicao das fotos
+        routine_to_edit.periodicity = body['periodicity']
+        routine_to_edit.isWeeklyRepeatable = body['isWeeklyRepeatable'] == 'true'
+        try:
+            routine_to_edit.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def delete_routine(request):
     if request.method == 'DELETE':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        user = User.objects.get(username=body['email'])
-        user_info = UserInfo.objects.get(user=user)
-        # TODO: esta a dar delete a primeira crianca, alterar quando houver front end
-        children = Child.objects.filter(userID=user_info)
-        child_to_delete = children[0]
-        child_to_delete.delete()
-        return JsonResponse({'status': '400'})
+        routineID = int(body['routineID'])
+        routine_to_delete = Routine.objects.get(pk=routineID)
+        try:
+            routine_to_delete.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
+def edit_activity(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activityID = int(body['activityID'])
+        routineID = int(body['routineID'])
+        activity_routine = Routine.objects.get(pk=routineID)
+        activity_to_edit = Activity.objects.get(pk=activityID)
+
+        # if activity routine is changed, move lower weight activities up
+        if activity_to_edit.routineID == routineID:
+            activity_to_edit.weight = activity_to_edit.weight
+        else:
+            lowerActivities = Activity.objects.filter(routineID=activity_to_edit.routineID, weight__gt=activity_to_edit.weight)
+            for activity in lowerActivities:
+                activity.weight = activity.weight - 1
+                activity.save()
+            activity_to_edit.weight = Activity.objects.filter(routineID=routineID).count() + 1
+
+        activity_to_edit.routineID = activity_routine
+        activity_to_edit.title = body['title']
+        activity_to_edit.color = body['color']
+        # TODO: adicionar a edicao das fotos
+        activity_to_edit.timeGoal = int(body['timeGoal'])
+        activity_to_edit.timeMin = int(body['timeMin'])
+        activity_to_edit.timeMax = int(body['timeMax'])
+        try:
+            activity_to_edit.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
+def delete_activity(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activityID = int(body['activityID'])
+        activity_to_delete = Activity.objects.get(pk=activityID)
+
+        lowerActivities = Activity.objects.filter(routineID=activity_to_delete.routineID, weight__gt=activity_to_delete.weight)
+        for activity in lowerActivities:
+            activity.weight = activity.weight - 1
+            activity.save()
+        try:
+            activity_to_delete.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
     return JsonResponse({'status': '200'})
 
 
@@ -174,12 +262,14 @@ def add_image(request):
         return JsonResponse({'status': '200'})
 
 
+@csrf_exempt
 def handle_uploaded_file(f):
     with open('./server/static/assets/images/' + f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
 
+@csrf_exempt
 def get_children(request):
     if request.method == 'GET':
         user = User.objects.get(username=request.GET.get('userEmail', ''))
@@ -213,4 +303,76 @@ def add_history(request):
         history = ActivityHistory(childID=child, activityID=activity, rewardGained=body['rewardGained'],
                    elapsedTime=body['elapsedTime'], timeStamp=timestampReceived)
         history.save()
+
+def get_child_routines(request):
+    if request.method == 'GET':
+        child = Child.objects.get(pk=int(request.GET.get('selectedChildID', '')))
+        child_routines = Routine.objects.filter(childID=child).order_by('weight')
+        dict_routine_wrapper = []
+        for routine in child_routines:
+            routine_activities = Activity.objects.filter(routineID=routine).order_by('weight')
+            dict_activity_wrapper = []
+            for activity in routine_activities:
+                dict_activity_wrapper.append(
+                    {
+                        "id": activity.id,
+                        "title": activity.title,
+                        "image": activity.image,
+                        "photo": None if activity.photo == 'null' else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + activity.photo,
+                        "color": activity.color,
+                        "weight": int(activity.weight),
+                        "time": {
+                            "goal": activity.timeGoal,
+                            "max": activity.timeMax,
+                            "min": activity.timeMin
+                        }})
+            dict_routine_wrapper.append(
+                {
+                    "id": routine.id,
+                    "title": routine.title,
+                    "image": routine.image,
+                    "photo": None if routine.photo == 'null' else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + routine.photo,
+                    "color": routine.color,
+                    "weight": int(routine.weight),
+                    "periodicity": routine.periodicity,
+                    "isRepeat": routine.isWeeklyRepeatable,
+                    "activities": dict_activity_wrapper})
+            response = json.dumps(dict_routine_wrapper)
+        return JsonResponse({'status': '200',
+                                'response': response})
+
+@csrf_exempt
+def switch_routine_weight(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        routine1 = Routine.objects.get(pk=body['firstRoutineID'])
+        routine2 = Routine.objects.get(pk=body['secondRoutineID'])
+        routine1_weight = int(routine1.weight)
+        routine2_weight = int(routine2.weight)
+        routine1.weight = int(routine2_weight)
+        routine2.weight = int(routine1_weight)
+        try:
+            routine1.save()
+            routine2.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+        return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def switch_activity_weight(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activity1 = Activity.objects.get(pk=body['firstActivityID'])
+        activity2 = Activity.objects.get(pk=body['secondActivityID'])
+        activity1_weight = int(activity1.weight)
+        activity2_weight = int(activity2.weight)
+        activity1.weight = int(activity2_weight)
+        activity2.weight = int(activity1_weight)
+        try:
+            activity1.save()
+            activity2.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
         return JsonResponse({'status': '200'})

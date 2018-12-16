@@ -24,13 +24,13 @@ export class SelectChildPicker extends Component {
             {pickerItems}
           </Picker>
         </View>
-        <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, paddingTop: 0 }}>
+        {!this.props.hideStatus && <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, paddingTop: 0 }}>
           <Text>Nível {this.props.children[this.props.selected].level}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image style={{ height: 20, width: 20, marginRight: 5 }} source={images.ui.star} />
             <Text>{this.props.children[this.props.selected].stars}</Text>
           </View>
-        </View>
+        </View>}
       </View>
     )
   }
@@ -39,7 +39,8 @@ export class SelectChildPicker extends Component {
 SelectChildPicker.propTypes = {
   children: PropTypes.array.isRequired,
   selected: PropTypes.number.isRequired,
-  onChildChanged: PropTypes.func.isRequired
+  onChildChanged: PropTypes.func.isRequired,
+  hideStatus: PropTypes.bool
 }
 
 const styles = StyleSheet.create({

@@ -51,7 +51,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -79,7 +83,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -107,7 +115,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -135,7 +147,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -163,7 +179,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -191,7 +211,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -219,7 +243,11 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
