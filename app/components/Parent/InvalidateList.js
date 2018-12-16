@@ -13,6 +13,9 @@ export class InvalidateList extends React.Component {
     this.state = {
       activities: this.props.activities
     }
+    if (this.props.activities == null) {
+      this.state.activities = []
+    }
   }
 
   formatTime = time => {
@@ -29,10 +32,11 @@ export class InvalidateList extends React.Component {
   }
 
   render () {
+    console.log(this.props.activities)
     const activities = this.props.activities.map((activity, index) => (
       <ListItem button onPress={this.onItemPress} key={index}>
         <Left>
-          <SortableListItemThumbnail isPhoto={activity.photo !== undefined} color={activity.color} source={getSource(activity)} />
+          <SortableListItemThumbnail isPhoto={activity.photo !== null} color={activity.color} source={getSource(activity)} />
           <View style={{ flex: 1 }}>
             <Text style={{ alignSelf: 'flex-start' }}>{activity.title}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
