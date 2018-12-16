@@ -13,6 +13,7 @@ urlpatterns = [
     path('children/', views.get_children, name='children'),
     path('settings/', views.add_settings, name='settings'),
     path('add-routine/', views.add_routine, name='add-routine'),
+    path('add-activity/', views.add_activity, name='add-activity'),
     path('remove-child/', views.remove_child, name='remove-child'),
     path('add-history/', views.add_history, name='add-history'),
     path('history/', views.get_history, name='get-history'),

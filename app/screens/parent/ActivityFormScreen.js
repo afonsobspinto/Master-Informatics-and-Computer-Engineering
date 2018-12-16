@@ -118,6 +118,35 @@ class ActivityFormScreen extends Component {
 
   createActivity = () => {
     console.log('Create Activity')
+    fetch(EnvVars.apiUrl + 'routine_manager/add-activity/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activityID: this.state.id,
+        routineID: this.state.routine,
+        title: this.state.title,
+        color: this.state.color,
+        image: this.state.image,
+        photo: this.state.photo,
+        timeGoal: parseFloat(this.state.time.goal) * 60,
+        timeMin: parseFloat(this.state.time.min) * 60,
+        timeMax: parseFloat(this.state.time.max) * 60
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('ok')
+        } else {
+          console.log('not ok')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   editActivity = () => {
