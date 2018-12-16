@@ -306,7 +306,6 @@ def add_history(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        # loggedUser = User.objects.get(username=body['userEmail'])
         child = Child.objects.get(pk=body['id'])
         timestampReceived = str(body['timeStamp'])
         routine = Routine.objects.get(childID=child, title=body['routineTitle'])
@@ -314,7 +313,51 @@ def add_history(request):
         history = ActivityHistory(childID=child, activityID=activity, rewardGained=body['rewardGained'],
                    elapsedTime=body['elapsedTime'], timeStamp=timestampReceived)
         history.save()
+        return JsonResponse({'status': '200'})
 
+def get_history(request):
+    if request.method == 'GET':
+        activity_history = ActivityHistory.objects.filter(childID=request.GET.get('id', ''))
+        query = []
+        response = None
+        for history in activity_history:
+            query.append(
+                {
+                    "title": history.activityID.title,
+                    "image": history.activityID.image,
+                    "photo": history.activityID.photo,
+                    "color": history.activityID.color,
+                    "reward": int(history.rewardGained),
+                    "elapsedTime": int(history.elapsedTime),
+                    "id": history.pk
+                }
+            )
+            response = json.dumps(query)
+        return JsonResponse({'status': '200',
+                             'response': response})
+
+@csrf_exempt
+def add_reward(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        child = Child.objects.get(pk=body['id'])
+        child.xp = body['reward'] + child.xp
+        child.stars = body['reward'] + child.stars
+        child.level = child.xp/100
+        child.save()
+        return JsonResponse({'status': '200'})
+
+@csrf_exempt
+def remove_reward(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        child = Child.objects.get(pk=body['id'])
+        child.stars = child.stars - body['reward']
+        child.save()
+        history = ActivityHistory.objects.get(pk=body['activityID'])
+        history.delete()
 def get_child_routines(request):
     if request.method == 'GET':
         child = Child.objects.get(pk=int(request.GET.get('selectedChildID', '')))

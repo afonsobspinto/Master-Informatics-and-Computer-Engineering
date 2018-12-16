@@ -23,7 +23,7 @@ export class ActivityScreen extends Component {
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.activity.photo !== undefined,
+      isPhoto: this.props.activity.photo !== null,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
@@ -48,6 +48,31 @@ export class ActivityScreen extends Component {
     this.setState(() => {
       return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
     })
+  }
+
+  addReward () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-reward/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        reward: this.props.activity.status.reward
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   createHistory () {
@@ -113,6 +138,7 @@ export class ActivityScreen extends Component {
 
   nextActivity () {
     this.createHistory()
+    this.addReward()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
     if (this.props.activities.every(activity => activity.status !== undefined)) {
       this.props.navigation.replace('RoutineBonusScreen')
