@@ -131,7 +131,6 @@ class ActivityFormScreen extends Component {
         color: this.state.color,
         image: this.state.image,
         photo: this.state.photo,
-        weight: this.state.weight,
         timeGoal: parseFloat(this.state.time.goal) * 60,
         timeMin: parseFloat(this.state.time.min) * 60,
         timeMax: parseFloat(this.state.time.max) * 60

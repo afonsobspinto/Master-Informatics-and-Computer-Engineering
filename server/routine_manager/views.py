@@ -119,20 +119,31 @@ def add_activity(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         routine_id = int(body['routineID'])
-        activity_routine = Routine.objects.get(pk=routineID)
+        activity_routine = Routine.objects.get(pk=routine_id)
+        activity_weight = Activity.objects.filter(routineID=routine_id).count() + 1
+        new_activity = None
     
         if 'photo' in body and 'image' in body:
-            new_activity = Activity(routineID=routine_id, title=body['title'], image=body['image'],
-                                    photo=body['photo'], color=body['color'], weight=int(body['weight']),
+            new_activity = Activity(routineID=activity_routine, title=body['title'], image=body['image'],
+                                    photo=body['photo'], color=body['color'], weight=activity_weight,
                                     timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']), timeMin=int(body['timeMin']))
         elif 'photo' in body:
-            new_activity = Activity(routineID=routine_id, title=body['title'], photo=body['photo'], color=body['color'],
-                                    weight=int(body['weight']), timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
+            new_activity = Activity(routineID=activity_routine, title=body['title'], photo=body['photo'], color=body['color'],
+                                    weight=activity_weight, timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
                                     timeMin=int(body['timeMin']))
         elif 'image' in body:
-            new_activity = Activity(routineID=routine_id, title=body['title'], photo=body['photo'], color=body['color'],
-                                    weight=int(body['weight']), timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
+            new_activity = Activity(routineID=activity_routine, title=body['title'], image=body['image'], color=body['color'],
+                                    weight=activity_weight, timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
                                     timeMin=int(body['timeMin']))
+        else:
+            new_activity = Activity(routineID=activity_routine, title=body['title'], color=body['color'],
+                                    weight=activity_weight, timeGoal=int(body['timeGoal']), 
+                                    timeMax=int(body['timeMax']), timeMin=int(body['timeMin']))
+
+        if new_activity is not None:
+            new_activity.save()
+        else:   
+            print("Was not saved")
 
     return JsonResponse({'status': '200'})
 
