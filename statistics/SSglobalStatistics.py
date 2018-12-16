@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('./SSStatistics_.csv', float_precision='high')
+df = pd.read_csv('./SSStatistics_fixed.csv', float_precision='high')
 
 print(df.BehaviourType.value_counts())
 print()
