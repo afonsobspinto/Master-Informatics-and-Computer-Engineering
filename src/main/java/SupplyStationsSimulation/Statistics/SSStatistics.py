@@ -56,11 +56,16 @@ print()
 
 experiments = 0
 data = 0
+fuelSoldTotal = 0
 for row in range(0, df.shape[0]):
     tick = df.Tick[row]
     if math.isnan(tick):
         experiments += 1
     else:
         data += 1
+    fuelSold = df.FuelSold[row]
+    if row > 1 and not math.isnan(tick) and not math.isnan(df.Tick[row-1]):
+        fuelSoldTotal += fuelSold - df.FuelSold[row-1]
 print(experiments)
 print(data)
+print(fuelSoldTotal/data)
