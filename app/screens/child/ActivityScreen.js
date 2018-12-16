@@ -50,6 +50,31 @@ export class ActivityScreen extends Component {
     })
   }
 
+  addReward () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-reward/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        reward: this.props.activity.status.reward
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   createHistory () {
     console.log('entrou')
     fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
@@ -114,6 +139,7 @@ export class ActivityScreen extends Component {
 
   nextActivity () {
     this.createHistory()
+    this.addReward()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
     if (this.props.activities.every(activity => activity.status !== undefined)) {
       this.props.navigation.replace('RoutineBonusScreen')

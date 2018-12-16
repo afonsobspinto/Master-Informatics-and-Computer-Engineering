@@ -15,5 +15,7 @@ urlpatterns = [
     path('add-routine/', views.add_routine, name='add-routine'),
     path('remove-child/', views.remove_child, name='remove-child'),
     path('add-history/', views.add_history, name='add-history'),
-    path('history/', views.get_history, name='get-history')
+    path('history/', views.get_history, name='get-history'),
+    path('add-reward/', views.add_reward, name='add-reward'),
+    path('remove-reward/', views.remove_reward, name='remove-reward')
 ] + staticfiles_urlpatterns()
