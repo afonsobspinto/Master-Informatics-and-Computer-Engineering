@@ -266,8 +266,11 @@ public class SupplyStationAgent extends DrawableAgent {
         //todo: improve formula -> price should decrease as well.
         double oldPrice = this.pricePerLiter;
 
-        if(previousDiff >= this.totalRequests - this.previousTotalRequests)
+        if(previousDiff >= this.totalRequests - this.previousTotalRequests) {
             this.pricePerLiter = (totalRequests * -0.05) + oldPrice;
+            if(pricePerLiter < 0)
+                pricePerLiter *= -1;
+        }
         else
             this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
 

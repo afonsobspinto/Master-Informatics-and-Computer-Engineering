@@ -126,9 +126,11 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handleReject(Message message) {
         this.driverAgent.handleReject(message, (this::averageTimeWaiting));
-        this.broadcast(message, this.driverAgent.getDriversList(), List.of(String.valueOf(this.driverAgent.getX()),
-                String.valueOf(this.driverAgent.getY()),
-                String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.REJECTED);
+        try {
+            this.broadcast(message, this.driverAgent.getDriversList(), List.of(String.valueOf(this.driverAgent.getX()),
+                    String.valueOf(this.driverAgent.getY()),
+                    String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.REJECTED);
+        }catch (Exception ignored){}
     }
 
     private int averageTimeWaiting(int totalGasPumps, int ticksToFuel, int waitingLine) {
@@ -137,10 +139,15 @@ public class CollaborativeDriverBehaviour extends Behaviour implements ACLMessag
 
     private void handleAccept(Message message) {
         this.driverAgent.handleAccept(message);
-        this.broadcast(message, this.driverAgent.getDriversList(),
-                List.of(String.valueOf(this.driverAgent.getX()),
-                        String.valueOf(this.driverAgent.getY()),
-                        String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.ACCEPTED);
+        try {
+            this.broadcast(message, this.driverAgent.getDriversList(),
+                    List.of(String.valueOf(this.driverAgent.getX()),
+                            String.valueOf(this.driverAgent.getY()),
+                            String.valueOf(this.driverAgent.getTargetSupplyStationInfo().getPricePerLiter())), MessageType.ACCEPTED);
+        }
+        catch (Exception ignored){
+        }
+
 
     }
 

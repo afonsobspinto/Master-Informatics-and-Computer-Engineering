@@ -292,7 +292,13 @@ public class DriverAgent extends DrawableAgent {
         if (objectCurrentPos == null || !((DrawableAgent) objectCurrentPos).getType().equals(Type.SUPPLYSTATION)) {
             space.putObjectAt(this.position.getX(), this.position.getY(), null);
         }
-        this.position = path.getStep(++pathStep);
+        try {
+            this.position = path.getStep(++pathStep);
+        }
+        catch (Exception e){
+            pathStep--;
+            pathStep--;
+        }
         Object objectNextPos = space.getObjectAt(this.position.getX(), this.position.getY());
         if (objectNextPos == null || !((DrawableAgent) objectNextPos).getType().equals(Type.SUPPLYSTATION)) {
             space.putObjectAt(this.position.getX(), this.position.getY(), this);
@@ -303,6 +309,9 @@ public class DriverAgent extends DrawableAgent {
     private void updateFuelling() {
         logFuelling();
         ticksToFuel--;
+        if(ticksToFuel < 0){
+            ticksToFuel = 10;
+        }
 
     }
 
@@ -462,13 +471,17 @@ public class DriverAgent extends DrawableAgent {
             acknowledgeReject(ticks);
     }
 
-    public boolean updateTicksTargetSupplyStation(int ticks) {
+    private boolean updateTicksTargetSupplyStation(int ticks) {
         SupplyStationInfo currentSupplyStationInfo = this.supplyStationsInfo.get(targetSupplyStation);
-        SupplyStationInfo newSupplyStationInfo = new SupplyStationInfo(currentSupplyStationInfo.getAid(),
-                currentSupplyStationInfo.getLocation(), currentSupplyStationInfo.getPricePerLiter(),
-                this.getPosition(), this.priceIntolerance, this.destination, ticks);
-
-
+        SupplyStationInfo newSupplyStationInfo;
+        try {
+             newSupplyStationInfo = new SupplyStationInfo(currentSupplyStationInfo.getAid(),
+                    currentSupplyStationInfo.getLocation(), currentSupplyStationInfo.getPricePerLiter(),
+                    this.getPosition(), this.priceIntolerance, this.destination, ticks);
+        }
+        catch (Exception e) {
+            return false;
+        }
         this.supplyStationQueue.remove(currentSupplyStationInfo.getUtilityFactor());
         this.supplyStationQueue.add(new UtilityFactor(newSupplyStationInfo, this.position, this.priceIntolerance, this.destination, this.fuelToBuy));
         assert this.supplyStationQueue.peek() != null;
