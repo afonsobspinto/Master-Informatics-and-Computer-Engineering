@@ -128,15 +128,15 @@ def add_activity(request):
                                     photo=body['photo'], color=body['color'], weight=activity_weight,
                                     timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']), timeMin=int(body['timeMin']))
         elif 'photo' in body:
-            new_activity = Activity(routineID=activity_routine, title=body['title'], photo=body['photo'], color=body['color'],
+            new_activity = Activity(routineID=activity_routine, title=body['title'], photo=body['photo'], image='null', color=body['color'],
                                     weight=activity_weight, timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
                                     timeMin=int(body['timeMin']))
         elif 'image' in body:
-            new_activity = Activity(routineID=activity_routine, title=body['title'], image=body['image'], color=body['color'],
+            new_activity = Activity(routineID=activity_routine, title=body['title'], image=body['image'], photo='null', color=body['color'],
                                     weight=activity_weight, timeGoal=int(body['timeGoal']), timeMax=int(body['timeMax']),
                                     timeMin=int(body['timeMin']))
         else:
-            new_activity = Activity(routineID=activity_routine, title=body['title'], color=body['color'],
+            new_activity = Activity(routineID=activity_routine, title=body['title'], color=body['color'], photo='null', image='null',
                                     weight=activity_weight, timeGoal=int(body['timeGoal']), 
                                     timeMax=int(body['timeMax']), timeMin=int(body['timeMin']))
 
