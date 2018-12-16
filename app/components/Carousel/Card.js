@@ -11,7 +11,7 @@ export default class Card extends React.Component {
     super(props)
 
     this.state = {
-      isPhoto: this.props.item.photo !== undefined,
+      isPhoto: this.props.item.photo !== null,
       hasButton: this.props.onButtonPress !== undefined
     }
   }

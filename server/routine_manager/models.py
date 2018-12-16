@@ -69,3 +69,11 @@ class Settings(models.Model):
     visualStyle = models.CharField(max_length=15, default='cartoon')
     routinePlayType = models.CharField(max_length=15, default='choose')
     playSounds = models.BooleanField(default=True)
+
+class ActivityHistory(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    rewardGained = models.IntegerField(default=0)
+    elapsedTime = models.IntegerField(default=0)
+    timeStamp = models.CharField(max_length=500)
+

@@ -7,6 +7,7 @@ import Images from '../assets/images/images'
 import styles from '../styles/MainMenu.style'
 import { registerForPushNotificationsAsync } from '../helpers/Notification'
 import EnvVars from '../constants/EnviromentVars'
+import { addChild } from '../actions/childActions'
 import { oppositeColor } from '../styles/Colors'
 
 export class MainMenuScreen extends React.Component {
@@ -47,6 +48,11 @@ export class MainMenuScreen extends React.Component {
       })
   }
 
+  onChildClick = (i) => {
+    this.props.addChild(this.state.kids[i])
+    this.props.navigation.navigate('ChildMainMenu')
+  }
+
   render () {
     const childButtons = this.state.kids.map((kid, index) => (
       <View style={styles.childContainer} key={index}>
@@ -54,7 +60,7 @@ export class MainMenuScreen extends React.Component {
           class='child'
           style={styles.button}
           activeOpacity={0.8}
-          onPress={() => this.props.navigation.navigate('ChildMainMenu')}>
+          onPress={() => this.onChildClick(index)}>
           <Image style={styles.buttonImage} source={{ uri: kid.image }} resizeMode={'cover'} />
         </TouchableOpacity>
         <Text style={styles.childName}>{kid.name}</Text>
@@ -85,10 +91,16 @@ export default connect(
   /* istanbul ignore next */
   state => ({
     loggedUserEmail: state.user.email
+  }),
+  /* istanbul ignore next */
+  dispatch => ({
+    addChild: child => dispatch(addChild(child))
   })
+
 )(MainMenuScreen)
 
 MainMenuScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  loggedUserEmail: PropTypes.string.isRequired
+  loggedUserEmail: PropTypes.string.isRequired,
+  addChild: PropTypes.func.isRequired
 }

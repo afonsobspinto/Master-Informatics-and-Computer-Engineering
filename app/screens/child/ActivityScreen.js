@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setActivityStatus, nextActivity } from '../../actions/gameActions'
 import { addStars } from '../../actions/childActions'
 import { Image, Text, View, StatusBar, BackHandler } from 'react-native'
+import EnvVars from '../../constants/EnviromentVars'
 
 import { ProgressBar } from '../../components/Activity/ProgressBar'
 import { ProgressClock } from '../../components/Activity/ProgressClock'
@@ -22,7 +23,7 @@ export class ActivityScreen extends Component {
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.activity.photo !== undefined,
+      isPhoto: this.props.activity.photo !== null,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
@@ -47,6 +48,60 @@ export class ActivityScreen extends Component {
     this.setState(() => {
       return { elapsedTime: this.state.elapsedTime + this.state.updateRate / 1000 }
     })
+  }
+
+  addReward () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-reward/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        reward: this.props.activity.status.reward
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  createHistory () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        routineTitle: this.props.routine.title,
+        activityTitle: this.props.activity.title,
+        rewardGained: this.props.activity.status.reward,
+        elapsedTime: this.state.elapsedTime,
+        timeStamp: Date.now()
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   componentDidMount () {
@@ -82,6 +137,8 @@ export class ActivityScreen extends Component {
   }
 
   nextActivity () {
+    this.createHistory()
+    this.addReward()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
     if (this.props.activities.every(activity => activity.status !== undefined)) {
       this.props.navigation.replace('RoutineBonusScreen')
@@ -121,8 +178,8 @@ export class ActivityScreen extends Component {
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
-          level={this.props.level}
-          xp={this.props.xp}
+          level={this.props.child.level}
+          xp={this.props.child.xp}
           nextPress={this.nextActivity}
           backPress={this.backToMenu}
           playSounds={this.props.playSounds} />
@@ -141,9 +198,10 @@ export default connect(
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
+    routine: state.game.routines[state.game.currentRoutine],
     currentActivity: state.game.currentActivity,
-    xp: state.child.xp,
-    level: state.child.level
+    loggedUserEmail: state.user.email,
+    child: state.child
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -166,6 +224,6 @@ ActivityScreen.propTypes = {
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
-  xp: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired
+  child: PropTypes.object.isRequired,
+  routine: PropTypes.object.isRequired
 }

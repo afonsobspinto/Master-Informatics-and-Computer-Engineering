@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 import { TouchableOpacity } from 'react-native'
 
-import { ChildMainMenuScreen } from '../../screens/child/ChildMainMenuScreen'
+import { ChildMainMenuScreen } from '../../../screens/child/ChildMainMenuScreen'
 
 configure({ adapter: new Adapter() })
 
