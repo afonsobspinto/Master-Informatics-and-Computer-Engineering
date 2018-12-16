@@ -53,8 +53,9 @@ export class RoutinesScreen extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-          console.log(responseJson.response)
-          this.setState({ routines: JSON.parse(responseJson.response), loading: false })
+          this.setState({ routines: JSON.parse(responseJson.response), loading: false }, () => {
+            this.props.setRoutines(this.state.routines.map(routine => ({ id: routine.id, title: routine.title, activities: routine.activities })))
+          })
         } else {
 
         }
@@ -122,5 +123,6 @@ export class RoutinesScreen extends React.Component {
 
 RoutinesScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  loggedUserEmail: PropTypes.string.isRequired
+  loggedUserEmail: PropTypes.string.isRequired,
+  setRoutines: PropTypes.func.isRequired
 }

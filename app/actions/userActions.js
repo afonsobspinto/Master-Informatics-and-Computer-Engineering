@@ -12,3 +12,10 @@ export function logout () {
     type: userTypes.login
   }
 }
+
+export function setRoutines (routines) {
+  return {
+    type: userTypes.setRoutines,
+    payload: routines
+  }
+}

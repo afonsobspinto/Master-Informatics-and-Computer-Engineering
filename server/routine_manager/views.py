@@ -147,6 +147,54 @@ def delete_routine(request):
 
 
 @csrf_exempt
+def edit_activity(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activityID = int(body['activityID'])
+        routineID = int(body['routineID'])
+        activity_routine = Routine.objects.get(pk=routineID)
+        activity_to_edit = Activity.objects.get(pk=activityID)
+
+        # if activity routine is changed, move lower weight activities up
+        if activity_to_edit.routineID == routineID:
+            activity_to_edit.weight = activity_to_edit.weight
+        else:
+            lowerActivities = Activity.objects.filter(routineID=activity_to_edit.routineID, weight__gt=activity_to_edit.weight)
+            for activity in lowerActivities:
+                activity.weight = activity.weight - 1
+                activity.save()
+            activity_to_edit.weight = Activity.objects.filter(routineID=routineID).count() + 1
+
+        activity_to_edit.routineID = activity_routine
+        activity_to_edit.title = body['title']
+        activity_to_edit.color = body['color']
+        # TODO: adicionar a edicao das fotos
+        activity_to_edit.timeGoal = int(body['timeGoal'])
+        activity_to_edit.timeMin = int(body['timeMin'])
+        activity_to_edit.timeMax = int(body['timeMax'])
+        try:
+            activity_to_edit.save()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
+def delete_activity(request):
+    if request.method == 'DELETE':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        activityID = int(body['activityID'])
+        activity_to_delete = Activity.objects.get(pk=activityID)
+        try:
+            activity_to_delete.delete()
+        except Exception:
+            return JsonResponse({'status': '400'})
+    return JsonResponse({'status': '200'})
+
+
+@csrf_exempt
 def push_token(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
