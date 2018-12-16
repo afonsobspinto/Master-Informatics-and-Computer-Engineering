@@ -5,9 +5,9 @@ import AppNavigator from './AppNavigator'
 import ChildFormScreen from '../screens/parent/ChildFormScreen'
 
 export default createStackNavigator({
+  MainMenu: AppNavigator,
   LoginMenu: LoginScreen,
   RegisterMenu: RegisterScreen,
-  MainMenu: AppNavigator,
   ChildFormScreen
 },
 {
