@@ -187,6 +187,11 @@ def delete_activity(request):
         body = json.loads(body_unicode)
         activityID = int(body['activityID'])
         activity_to_delete = Activity.objects.get(pk=activityID)
+
+        lowerActivities = Activity.objects.filter(routineID=activity_to_delete.routineID, weight__gt=activity_to_delete.weight)
+        for activity in lowerActivities:
+            activity.weight = activity.weight - 1
+            activity.save()
         try:
             activity_to_delete.delete()
         except Exception:

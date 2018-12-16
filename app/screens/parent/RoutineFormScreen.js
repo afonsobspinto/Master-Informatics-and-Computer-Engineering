@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
+import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
 
 import { ColorPicker } from '../../components/Parent/ColorPicker'
@@ -142,6 +143,18 @@ export default class RoutineFormScreen extends Component {
   }
 
   removeRoutine = () => {
+    Alert.alert(
+      `Tem a certeza que pretende apagar a rotina "${this.state.title}"?`,
+      'Esta ação não pode ser revertida',
+      [
+        { text: 'Não', style: 'cancel' },
+        { text: 'Sim', onPress: this.sendRemovePost }
+      ],
+      { cancelable: false }
+    )
+  }
+
+  sendRemovePost = () => {
     fetch(EnvVars.apiUrl + 'routine_manager/delete-routine/', {
       method: 'DELETE',
       headers: {

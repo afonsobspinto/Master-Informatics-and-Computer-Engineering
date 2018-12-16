@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
+import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
 import EnvVars from '../../constants/EnviromentVars'
 
@@ -21,9 +22,9 @@ class ActivityFormScreen extends Component {
       this.state = {
         ...activity,
         time: {
-          goal: (activity.time.goal / 60).toString(),
-          min: (activity.time.min / 60).toString(),
-          max: (activity.time.max / 60).toString()
+          goal: (activity.time.goal / 60).toFixed(2).toString(),
+          min: (activity.time.min / 60).toFixed(2).toString(),
+          max: (activity.time.max / 60).toFixed(2).toString()
         },
         routine: this.props.routines.find(routine => routine.activities.some(act => act.id === activity.id)).id
       }
@@ -79,6 +80,18 @@ class ActivityFormScreen extends Component {
   }
 
   removeActivity = () => {
+    Alert.alert(
+      `Tem a certeza que pretende apagar a atividade "${this.state.title}"?`,
+      'Esta ação não pode ser revertida',
+      [
+        { text: 'Não', style: 'cancel' },
+        { text: 'Sim', onPress: this.sendRemovePost }
+      ],
+      { cancelable: false }
+    )
+  }
+
+  sendRemovePost = () => {
     fetch(EnvVars.apiUrl + 'routine_manager/delete-activity/', {
       method: 'DELETE',
       headers: {
@@ -92,7 +105,7 @@ class ActivityFormScreen extends Component {
       .then((responseJson) => {
         if (responseJson.status === '200') {
           console.log('actividade apagada')
-          this.props.navigation.goBack('ParentMainMenuScreen')
+          this.props.navigation.popToTop()
         } else {
           console.log('actividade nao apagada')
         }
@@ -130,8 +143,7 @@ class ActivityFormScreen extends Component {
       .then((responseJson) => {
         if (responseJson.status === '200') {
           console.log('actividade editada')
-          this.props.navigation.pop()
-          this.props.navigation.pop()
+          this.props.navigation.popToTop()
         } else {
           console.log('actividade nao editada')
         }

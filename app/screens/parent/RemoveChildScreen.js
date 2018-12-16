@@ -17,10 +17,10 @@ export class RemoveChildScreen extends Component {
 
   onItemPress = index => {
     Alert.alert(
-      `Tem a certeza que pretende apagar o perfil "${this.state.kids[index].name}"`,
+      `Tem a certeza que pretende apagar o perfil "${this.state.kids[index].name}"?`,
       'Esta ação não pode ser revertida',
       [
-        { text: 'Não', onPress: () => console.log('test'), style: 'cancel' },
+        { text: 'Não', style: 'cancel' },
         { text: 'Sim', onPress: () => this.deleteChild(this.state.kids[index].id) }
       ],
       { cancelable: false }

@@ -27,7 +27,8 @@ describe('root reducer', () => {
         currentRoutine: -1
       },
       user: {
-        email: undefined
+        email: undefined,
+        routines: []
       }
     })
   })
