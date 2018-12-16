@@ -11,7 +11,7 @@ export class ImagePickerButtons extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      photoView: (props.photo || props.image) ? props.photo !== undefined : false
+      photoView: (props.photo || props.image) ? props.photo !== null : false
     }
   }
 

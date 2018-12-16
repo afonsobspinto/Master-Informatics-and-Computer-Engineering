@@ -1,8 +1,7 @@
 import { gameTypes } from '../actions/actionTypes'
-import { routines } from '../constants/mockTestData'
 
 const initialState = {
-  routines: routines,
+  routines: [],
   currentActivity: -1,
   currentRoutine: -1
 }
@@ -17,7 +16,7 @@ export default function game (state = initialState, { type, payload }) {
       }
 
     case gameTypes.addRoutines:
-      return { ...state, routines: [...state.routines, payload] }
+      return { ...state, routines: [...state.routines, ...payload] }
 
     case gameTypes.setCurrentActivity:
       return { ...state, currentActivity: state.routines[state.currentRoutine].activities.findIndex(activity => activity.title === payload.title) }

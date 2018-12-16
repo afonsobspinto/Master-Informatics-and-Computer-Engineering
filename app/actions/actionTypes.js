@@ -28,5 +28,6 @@ export const childTypes = {
 
 export const userTypes = {
   login: 'user:login',
-  logout: 'user:logout'
+  logout: 'user:logout',
+  setRoutines: 'user:setRoutines'
 }

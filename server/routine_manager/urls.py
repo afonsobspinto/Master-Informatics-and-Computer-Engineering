@@ -17,5 +17,13 @@ urlpatterns = [
     path('add-history/', views.add_history, name='add-history'),
     path('history/', views.get_history, name='get-history'),
     path('add-reward/', views.add_reward, name='add-reward'),
-    path('remove-reward/', views.remove_reward, name='remove-reward')
+    path('remove-reward/', views.remove_reward, name='remove-reward'),
+    path('edit-routine/', views.edit_routine, name='edit-routine'),
+    path('delete-routine/', views.delete_routine, name='delete-routine'),
+    path('edit-activity/', views.edit_activity, name='edit-activity'),
+    path('delete-activity/', views.delete_activity, name='delete-activity'),
+    path('remove-child/', views.remove_child, name='remove-child'),
+    url(r'^routine/', views.get_child_routines, name='child-routines'),
+    path('switch-routine-weight', views.switch_routine_weight, name='routine-weights'),
+    path('switch-activity-weight', views.switch_activity_weight, name='activity-weights')
 ] + staticfiles_urlpatterns()

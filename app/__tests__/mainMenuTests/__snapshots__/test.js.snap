@@ -12,38 +12,18 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
     }
   }
 >
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
-    style={
+  <ScrollViewMock
+    contentContainerStyle={
       Object {
-        "height": 30,
-        "position": "absolute",
-        "right": 20,
-        "top": 20,
-        "width": 30,
+        "flexGrow": 1,
+        "justifyContent": "center",
       }
     }
   >
-    <Image
-      resizeMode="contain"
-      source={1}
-      style={
-        Object {
-          "height": "100%",
-          "width": "100%",
-        }
-      }
+    <Styled(Spinner)
+      color="#FFA23D"
     />
-  </TouchableOpacity>
-  <ScrollViewMock
-    style={
-      Object {
-        "flex": 1,
-        "paddingTop": 30,
-      }
-    }
-  />
+  </ScrollViewMock>
   <Component
     style={
       Object {
@@ -92,5 +72,29 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
       </Text>
     </TouchableOpacity>
   </Component>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 30,
+        "position": "absolute",
+        "right": 20,
+        "top": 20,
+        "width": 30,
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </TouchableOpacity>
 </Component>
 `;

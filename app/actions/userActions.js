@@ -9,7 +9,13 @@ export function login (email) {
 
 export function logout () {
   return {
-    type: userTypes.login,
-    payload: ''
+    type: userTypes.login
+  }
+}
+
+export function setRoutines (routines) {
+  return {
+    type: userTypes.setRoutines,
+    payload: routines
   }
 }

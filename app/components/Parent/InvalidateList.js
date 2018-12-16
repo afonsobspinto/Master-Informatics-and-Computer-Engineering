@@ -32,7 +32,6 @@ export class InvalidateList extends React.Component {
   }
 
   render () {
-    console.log(this.props.activities)
     const activities = this.props.activities.map((activity, index) => (
       <ListItem button onPress={this.onItemPress} key={index}>
         <Left>

@@ -1,12 +1,33 @@
 import React from 'react'
+import { Util } from 'expo'
 import { connect } from 'react-redux'
-import { Switch } from 'react-native'
+import { Switch, Alert } from 'react-native'
 import PropTypes from 'prop-types'
 import { List, Content, ListItem, Text, Right, Body, Picker, Separator } from 'native-base'
 import { toggleActivityProgressType, toggleActivityTimer, toggleRoutinePlayType, toggleActivityFeedback, changeFeedbackFrequency, togglePlaySounds } from '../../actions/settingsActions'
+import { logout } from '../../actions/userActions'
+import { _storeJson } from '../../helpers/LocalStore'
 import EnvVars from '../../constants/EnviromentVars'
 
 class SettingsScreen extends React.Component {
+  logout = () => {
+    Alert.alert(
+      'Tem a certeza que pretende fazer logout?',
+      '',
+      [
+        { text: 'Não', style: 'cancel' },
+        {
+          text: 'Sim',
+          onPress: () => {
+            _storeJson('login', { email: undefined })
+              .then(() => Util.reload())
+          }
+        }
+      ],
+      { cancelable: false }
+    )
+  }
+
   componentWillUnmount () {
     fetch(EnvVars.apiUrl + 'routine_manager/settings/', {
       method: 'POST',
@@ -99,6 +120,21 @@ class SettingsScreen extends React.Component {
               </Picker>
             </Right>
           </ListItem>
+          <Separator bordered>
+            <Text>SOBRE</Text>
+          </Separator>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('AboutScreen')}>
+            <Body><Text>Sobre a equipa</Text></Body>
+          </ListItem>
+          <ListItem button icon onPress={() => this.props.navigation.navigate('LicensesScreen')}>
+            <Body><Text>Ver licenças</Text></Body>
+          </ListItem>
+          <Separator bordered>
+            <Text>CONTA</Text>
+          </Separator>
+          <ListItem button icon onPress={this.logout}>
+            <Body><Text>Log out</Text></Body>
+          </ListItem>
         </List>
       </Content>
     )
@@ -112,8 +148,7 @@ export default connect(
     activityFeedback: state.settings.activityFeedback,
     feedbackFrequency: state.settings.feedbackFrequency,
     routinePlayType: state.settings.routinePlayType,
-    playSounds: state.settings.playSounds,
-    loggedUserEmail: state.user.email
+    playSounds: state.settings.playSounds
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),
@@ -121,7 +156,8 @@ export default connect(
     toggleActivityFeedback: () => dispatch(toggleActivityFeedback()),
     toggleRoutinePlayType: () => dispatch(toggleRoutinePlayType()),
     changeFeedbackFrequency: () => dispatch(changeFeedbackFrequency()),
-    togglePlaySounds: () => dispatch(togglePlaySounds())
+    togglePlaySounds: () => dispatch(togglePlaySounds()),
+    logout: () => dispatch(logout())
   })
 )(SettingsScreen)
 

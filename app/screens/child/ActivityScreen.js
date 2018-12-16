@@ -23,7 +23,7 @@ export class ActivityScreen extends Component {
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.activity.photo !== undefined,
+      isPhoto: this.props.activity.photo !== null,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
@@ -76,7 +76,6 @@ export class ActivityScreen extends Component {
   }
 
   createHistory () {
-    console.log('entrou')
     fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
       method: 'POST',
       headers: {
