@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "routine-manager",
-    "description": "A very interesting project.",
-    "slug": "routine-manager",
+    "name": "RoutineGo",
+    "description": "An application to help children diagnosed with spectrum of autism perform daily tasks.",
+    "slug": "routine-go",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["android"],
