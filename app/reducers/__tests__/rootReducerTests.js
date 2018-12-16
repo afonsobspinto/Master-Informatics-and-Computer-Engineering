@@ -1,5 +1,4 @@
 import rootReducer from '../rootReducer'
-import { routines } from '../../constants/mockTestData'
 
 describe('root reducer', () => {
   it('should return initial state', () => {
@@ -23,12 +22,13 @@ describe('root reducer', () => {
         playSounds: true
       },
       game: {
-        routines: routines,
+        routines: [],
         currentActivity: -1,
         currentRoutine: -1
       },
       user: {
-        email: undefined
+        email: undefined,
+        routines: []
       }
     })
   })

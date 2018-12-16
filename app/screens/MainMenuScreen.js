@@ -16,6 +16,13 @@ export class MainMenuScreen extends React.Component {
       kids: [],
       loading: true
     }
+
+    this.props.navigation.addListener(
+      'willFocus',
+      payload => {
+        this.setState({ loading: true }, this.getChildren)
+      }
+    )
   }
 
   componentDidMount () {

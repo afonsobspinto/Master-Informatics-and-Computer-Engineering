@@ -139,8 +139,7 @@ export default connect(
     activityFeedback: state.settings.activityFeedback,
     feedbackFrequency: state.settings.feedbackFrequency,
     routinePlayType: state.settings.routinePlayType,
-    playSounds: state.settings.playSounds,
-    loggedUserEmail: state.user.email
+    playSounds: state.settings.playSounds
   }),
   dispatch => ({
     toggleActivityProgressType: () => dispatch(toggleActivityProgressType()),

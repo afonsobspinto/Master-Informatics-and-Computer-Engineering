@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
+import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
+import EnvVars from '../../constants/EnviromentVars'
 
 import { ItemPicker } from '../../components/Parent/ItemPicker'
 import { ColorPicker } from '../../components/Parent/ColorPicker'
@@ -8,22 +10,9 @@ import { DurationPickers } from '../../components/Parent/DurationPickers'
 import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
 import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
+import { connect } from 'react-redux'
 
-const defaultState = {
-  title: 'Atividade de testes',
-  color: '#0074D9',
-  time: {
-    goal: '3',
-    min: '1.5',
-    max: '6'
-  },
-  photo: undefined,
-  image: undefined,
-  routine: 'Manhã',
-  createActivity: true
-}
-
-export default class ActivityFormScreen extends Component {
+class ActivityFormScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -33,14 +22,27 @@ export default class ActivityFormScreen extends Component {
       this.state = {
         ...activity,
         time: {
-          goal: activity.time.goal.toString(),
-          min: activity.time.min.toString(),
-          max: activity.time.max.toString()
-        }
+          goal: (activity.time.goal / 60).toFixed(2).toString(),
+          min: (activity.time.min / 60).toFixed(2).toString(),
+          max: (activity.time.max / 60).toFixed(2).toString()
+        },
+        routine: this.props.routines.find(routine => routine.activities.some(act => act.id === activity.id)).id
       }
-    } else this.state = defaultState
-
-    this.routines = ['Manhã', 'Noite']
+    } else {
+      this.state = {
+        title: 'Atividade de testes',
+        color: '#0074D9',
+        time: {
+          goal: '3',
+          min: '1.5',
+          max: '6'
+        },
+        photo: undefined,
+        image: undefined,
+        routine: this.props.routines[0].id,
+        createActivity: true
+      }
+    }
 
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
@@ -74,11 +76,44 @@ export default class ActivityFormScreen extends Component {
   }
 
   onRoutineChange = index => {
-    this.setState({ routine: this.routines[index] })
+    this.setState({ routine: this.props.routines[index].id })
   }
 
   removeActivity = () => {
-    console.log('Remove Activity')
+    Alert.alert(
+      `Tem a certeza que pretende apagar a atividade "${this.state.title}"?`,
+      'Esta ação não pode ser revertida',
+      [
+        { text: 'Não', style: 'cancel' },
+        { text: 'Sim', onPress: this.sendRemovePost }
+      ],
+      { cancelable: false }
+    )
+  }
+
+  sendRemovePost = () => {
+    fetch(EnvVars.apiUrl + 'routine_manager/delete-activity/', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activityID: this.state.id
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('actividade apagada')
+          this.props.navigation.popToTop()
+        } else {
+          console.log('actividade nao apagada')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   createActivity = () => {
@@ -86,7 +121,37 @@ export default class ActivityFormScreen extends Component {
   }
 
   editActivity = () => {
-    console.log('Edit Activity')
+    fetch(EnvVars.apiUrl + 'routine_manager/edit-activity/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activityID: this.state.id,
+        routineID: this.state.routine,
+        title: this.state.title,
+        color: this.state.color,
+        // TODO: adicionar foto/imagem aos edits
+        image: this.state.image,
+        photo: this.state.photo,
+        timeGoal: parseFloat(this.state.time.goal) * 60,
+        timeMin: parseFloat(this.state.time.min) * 60,
+        timeMax: parseFloat(this.state.time.max) * 60
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('actividade editada')
+          this.props.navigation.popToTop()
+        } else {
+          console.log('actividade nao editada')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   render () {
@@ -115,7 +180,7 @@ export default class ActivityFormScreen extends Component {
             </Item>
             <Item stackedLabel>
               <Label>Rotina</Label>
-              <ItemPicker items={this.routines} selected={this.state.routine} onValueChange={this.onRoutineChange} />
+              <ItemPicker items={this.props.routines.map(routine => routine.title)} selected={this.props.routines.find(routine => routine.id === this.state.routine).title} onValueChange={this.onRoutineChange} />
             </Item>
             <Item stackedLabel>
               <Label>Cor</Label>
@@ -131,6 +196,14 @@ export default class ActivityFormScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    routines: state.user.routines
+  })
+)(ActivityFormScreen)
+
 ActivityFormScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  routines: PropTypes.array.isRequired
 }
