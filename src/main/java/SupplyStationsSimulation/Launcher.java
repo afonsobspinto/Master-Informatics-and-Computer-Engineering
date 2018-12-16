@@ -106,6 +106,7 @@ public class Launcher extends Repast3Launcher {
                 adventurousDriverAgent.addBehaviour(new AdventurousDriverBehaviour(adventurousDriverAgent));
                 mainContainer.acceptNewAgent(nickname, adventurousDriverAgent).start();
                 drawableMap.addAgent(adventurousDriverAgent);
+
             }
 
             for (int i = 0; i < COLLABORATIVE_DRIVERS; i++) {
@@ -140,7 +141,6 @@ public class Launcher extends Repast3Launcher {
                     ((DriverAgent) agent).calculateInitialPath();
                 }
             }
-
 
         } catch (StaleProxyException e) {
             e.printStackTrace();

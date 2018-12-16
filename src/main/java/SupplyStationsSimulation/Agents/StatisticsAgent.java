@@ -4,6 +4,7 @@ import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationServicesBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.Behaviours.StatisticsBehaviour;
+import SupplyStationsSimulation.Statistics.AgentInfo;
 import SupplyStationsSimulation.Utilities.Messaging.Message;
 import sajas.core.behaviours.Behaviour;
 import uchicago.src.sim.gui.SimGraphics;
@@ -51,8 +52,8 @@ public class StatisticsAgent extends DrawableAgent {
     }
 
     @Override
-    public void saveStatistics() {
-
+    public AgentInfo getAgentInfo() {
+        return null;
     }
 
     @Override

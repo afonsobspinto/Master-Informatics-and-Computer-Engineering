@@ -9,16 +9,21 @@ public class SupplyStationInfo extends AgentInfo {
     private double price;
     private int ticksToFuel;
     private int totalRequests;
-    private int behaviourType;
+    private BehaviourType behaviourType;
+    private int fuelSold;
+    private int waitingLine;
+    private int attending;
+    private int totalGasPumps;
 
-    public SupplyStationInfo(double price, int ticksToFuel, int totalRequests, BehaviourType behaviourType) {
-        if(behaviourType == BehaviourType.DYNAMIC)
-            this.behaviourType = 2;
-        else
-            this.behaviourType = 3;
+    public SupplyStationInfo(double price, int ticksToFuel, int totalRequests, BehaviourType behaviourType, int fuelSold, int waitingLine, int attending, int totalGasPumps) {
+        this.behaviourType = BehaviourType.DYNAMIC;
         this.price = price;
         this.ticksToFuel = ticksToFuel;
         this.totalRequests = totalRequests;
+        this.fuelSold = fuelSold;
+        this.waitingLine = waitingLine;
+        this.attending = attending;
+        this.totalGasPumps = totalGasPumps;
     }
 
     public double getPrice() {
@@ -40,19 +45,24 @@ public class SupplyStationInfo extends AgentInfo {
 
     @Override
     public BehaviourType getBehaviourType() {
-        return super.getBehaviourType();
+        return this.behaviourType;
     }
 
     @Override
     public Position getLocation() {
-        return super.getLocation();
+        return this.location;
     }
 
     @Override
     public String toString() {
-        return behaviourType +
-                "," + ticksToFuel +
+        return behaviourType.getValue() +
                 "," + price +
-                "," + totalRequests;
+                "," + ticksToFuel +
+                "," + totalRequests +
+                "," + waitingLine +
+                "," + attending +
+                "," + totalGasPumps +
+                "," + fuelSold ;
+
     }
 }

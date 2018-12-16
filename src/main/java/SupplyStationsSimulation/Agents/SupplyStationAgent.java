@@ -2,6 +2,7 @@ package SupplyStationsSimulation.Agents;
 
 import SupplyStationsSimulation.Behaviours.ACLMessageBehaviour;
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
+import SupplyStationsSimulation.Statistics.AgentInfo;
 import SupplyStationsSimulation.Statistics.DriverInfo;
 import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Statistics.SupplyStationInfo;
@@ -14,6 +15,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
+import sajas.core.Agent;
 import sajas.core.behaviours.Behaviour;
 import sajas.domain.DFService;
 import uchicago.src.sim.gui.SimGraphics;
@@ -45,8 +47,11 @@ public class SupplyStationAgent extends DrawableAgent {
     private ArrayList<ACLMessageBehaviour> behaviours = new ArrayList<>();
 
     private int totalRequests = 0;
+    private int previousTotalRequests = 0;
+    private int previousDiff = 0;
+
     private int lastUsers = 0;
-    private static int fuelAdded = 50;
+    private int fuelSold = 0;
     private double totalIncoming = 0;
     private int totalDisconfirms = 0;
     private SupplyStationInfo supplyStationInfo;
@@ -173,16 +178,19 @@ public class SupplyStationAgent extends DrawableAgent {
                 new Message(this, message.getSenderAID(), ACLMessage.REJECT_PROPOSAL,
                         new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
             }
+            this.totalRequests++;
         }
     }
 
     private void handleConfirm(Message message) {
-        if (message.getContent().equals(MessageType.ENTRANCE.getTypeStr())) {
-            getCurrentDriversWaiting().remove(message.getSenderAID());
-            addDriver(message.getSenderAID());
-        }
         if (message.getContent().equals(MessageType.WAITLINE.getTypeStr())) {
             addDriverWaiting(message.getSenderAID());
+        }
+        else {
+            getCurrentDriversWaiting().remove(message.getSenderAID());
+            addDriver(message.getSenderAID());
+            String[] parts = message.getContent().split("\n");
+            fuelSold += Integer.parseInt(parts[1]);
         }
     }
 
@@ -224,7 +232,7 @@ public class SupplyStationAgent extends DrawableAgent {
 
     public void addDriver(AID driverAID) {
         this.currentDriversOnStation.put(driverAID, ticksToFuel);
-        this.totalIncoming += fuelAdded * this.pricePerLiter;
+        this.totalIncoming += fuelSold * this.pricePerLiter;
     }
 
     public void addDriverWaiting(AID driverAID) {
@@ -257,12 +265,18 @@ public class SupplyStationAgent extends DrawableAgent {
 
         //todo: improve formula -> price should decrease as well.
         double oldPrice = this.pricePerLiter;
-        this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
+
+        if(previousDiff >= this.totalRequests - this.previousTotalRequests)
+            this.pricePerLiter = (totalRequests * -0.05) + oldPrice;
+        else
+            this.pricePerLiter = (totalRequests * 0.05) + oldPrice;
+
+
+        this.previousDiff = this.totalRequests - this.previousTotalRequests;
+        this.previousTotalRequests = totalRequests;
     }
 
-    public void saveStatistics(){
-        Statistics statistics = Statistics.getInstance();
-        this.supplyStationInfo = new SupplyStationInfo(pricePerLiter, ticksToFuel, totalRequests, behaviourType);
-        statistics.updateAgentInfo(this.getAID(), this.supplyStationInfo);
+    public AgentInfo getAgentInfo(){
+        return new SupplyStationInfo(pricePerLiter, ticksToFuel, totalRequests, behaviourType, fuelSold, currentDriversWaiting.size(), currentDriversOnStation.size(), totalGasPumps);
     }
 }

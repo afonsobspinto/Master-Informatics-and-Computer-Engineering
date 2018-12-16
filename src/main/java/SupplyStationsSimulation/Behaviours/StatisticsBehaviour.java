@@ -15,7 +15,7 @@ public class StatisticsBehaviour extends Behaviour implements ACLMessageBehaviou
 
     private StatisticsAgent statisticsAgent;
     private ArrayList<DrawableAgent> agentList;
-    private int infoFlag = 0;
+    private int tickCounter = 0;
 
     public StatisticsBehaviour(StatisticsAgent a, ArrayList<DrawableAgent> agentList) {
         super(a);
@@ -25,15 +25,10 @@ public class StatisticsBehaviour extends Behaviour implements ACLMessageBehaviou
 
     @Override
     public void action() {
-        if(infoFlag == 500) {
-            for (DrawableAgent agent : this.agentList) {
-                agent.saveStatistics();
-                Statistics statistics = Statistics.getInstance();
-                statistics.finishTick();
-            }
-            infoFlag=0;
+        if(tickCounter % 500 == 0) {
+                Statistics.getInstance().finishTick(tickCounter, agentList);
         }
-        infoFlag++;
+        tickCounter++;
     }
 
     @Override

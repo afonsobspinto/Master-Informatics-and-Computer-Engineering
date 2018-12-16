@@ -5,6 +5,7 @@ import SupplyStationsSimulation.Behaviours.Drivers.SearchForSupplyStationService
 import SupplyStationsSimulation.Behaviours.ListeningBehaviour;
 import SupplyStationsSimulation.DrawableMap;
 import SupplyStationsSimulation.Launcher;
+import SupplyStationsSimulation.Statistics.AgentInfo;
 import SupplyStationsSimulation.Statistics.DriverInfo;
 import SupplyStationsSimulation.Statistics.Statistics;
 import SupplyStationsSimulation.Utilities.Locations.Position;
@@ -239,6 +240,7 @@ public class DriverAgent extends DrawableAgent {
                 this.path = calculatePath(position, destination);
                 this.needsFuel = false;
                 this.moneySpent = supplyStationsInfo.get(targetSupplyStation).getPricePerLiter() * fuelToBuy;
+                this.fuelToBuy = 0;
                 this.targetSupplyStation = null;
                 //TODO: Remove all supplyServiceEntrys - currently not necessary as drivers only stop once.
             }
@@ -481,7 +483,8 @@ public class DriverAgent extends DrawableAgent {
     }
 
     public void acknowledgeAccpet() {
-        new Message(this, this.targetSupplyStation, ACLMessage.CONFIRM, MessageType.ENTRANCE.getTypeStr()).send();
+        List<String> listOf = List.of(Integer.toString(fuelToBuy));
+        new Message(this, this.targetSupplyStation, ACLMessage.CONFIRM, new MessageContent(MessageType.ENTRANCE, listOf).getContent()).send();
         this.isAttended = true;
     }
 
@@ -509,11 +512,9 @@ public class DriverAgent extends DrawableAgent {
         return this.supplyStationsInfo.get(this.targetSupplyStation);
     }
 
-    public void saveStatistics(){
-        Statistics statistics = Statistics.getInstance();
-        this.driverInfo = new DriverInfo(priceIntolerance, fuelToBuy, destination,
+    public AgentInfo getAgentInfo(){
+        return new DriverInfo(priceIntolerance, fuelToBuy, destination,
                 driverState, Math.abs(expectedTravelDuration - deFactoTravelDuration), behaviourType);
-        statistics.updateAgentInfo(this.getAID(), this.driverInfo);
     }
 
 }

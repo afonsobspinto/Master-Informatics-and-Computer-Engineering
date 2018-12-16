@@ -9,13 +9,9 @@ public abstract class AgentInfo {
         return type;
     }
 
-    public BehaviourType getBehaviourType() {
-        return behaviourType;
-    }
+    public abstract BehaviourType getBehaviourType();
 
-    public Position getLocation() {
-        return location;
-    }
+    public abstract Position getLocation();
 
     Type type;
     BehaviourType behaviourType;
