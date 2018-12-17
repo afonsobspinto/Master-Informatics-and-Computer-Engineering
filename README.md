@@ -1,4 +1,4 @@
-# Routine management system
+# RoutineGo
 Routine management system is a mobile application to handle routines of children and teenagers diagnosed with **autism spectrum disorder** in a form of game.
 ## Guiding principles
 - __User friendliness.__ We put user experience front and center. Routine management system follows best practices for reducing visual load: it offers consistent & simple designs, it minimizes the number of potential distractions in common use cases, and it provides a clear and actionable interface even upon user error.
