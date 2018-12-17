@@ -289,7 +289,7 @@ def get_children(request):
                     "xp": int(child.xp),
                     "stars": int(child.stars),
                     "avatar": child.avatar,
-                    "image": "http://" + settings.LOCALIP + ':8000/static/assets/images/' + child.image})
+                    "image": "http://" + settings.LOCALIP + '/static/assets/images/' + child.image})
             response = json.dumps(dict_child_wrapper)
         return JsonResponse({'status': '200',
                              'response': response})
@@ -322,7 +322,7 @@ def get_history(request):
                 {
                     "title": history.activityID.title,
                     "image": history.activityID.image,
-                    "photo": history.activityID.photo,
+                    "photo": None if history.activityID.photo == 'null' or history.activityID.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + history.activityID.photo,
                     "color": history.activityID.color,
                     "reward": int(history.rewardGained),
                     "elapsedTime": int(history.elapsedTime),
@@ -378,7 +378,7 @@ def get_child_routines(request):
                         "id": activity.id,
                         "title": activity.title,
                         "image": activity.image,
-                        "photo": None if activity.photo == 'null' or activity.photo == None else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + activity.photo,
+                        "photo": None if activity.photo == 'null' or activity.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + activity.photo,
                         "color": activity.color,
                         "weight": int(activity.weight),
                         "time": {

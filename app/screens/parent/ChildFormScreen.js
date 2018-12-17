@@ -101,7 +101,6 @@ export class ChildFormScreen extends Component {
 
   handleServerRequests () {
     if (!this.checkInputs()) return
-    this.handlePress()
     this.uploadImageAsync(this.state.photo.uri)
       .then(this.handlePress())
   }
