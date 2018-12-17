@@ -18,7 +18,8 @@ describe('MainMenu components', () => {
     const wrapper = shallow(<ChildExperienceBar
       progress={0.5}
       level={2}
-      onPress={jest.fn()} />)
+      onPress={jest.fn()}
+      reward={{ name: 'test', photo: undefined }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })
@@ -54,7 +55,8 @@ describe('MainMenu components', () => {
       xp={350}
       isReward={false}
       onClosed={jest.fn()}
-      playSounds={false} />)
+      playSounds={false}
+      reward={{ name: 'test', photo: undefined }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ isReward: true })
     wrapper.instance().onPress()

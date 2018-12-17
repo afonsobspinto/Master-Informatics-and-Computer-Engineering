@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 import { TouchableOpacity } from 'react-native'
 
-import { ChildMainMenuScreen } from '../../screens/child/ChildMainMenuScreen'
+import { ChildMainMenuScreen } from '../../../screens/child/ChildMainMenuScreen'
 
 configure({ adapter: new Adapter() })
 
@@ -18,7 +18,9 @@ describe('ChildMainMenuScreen snapshot', () => {
       toggleLevelUpModal={jest.fn()}
       playSounds={false}
       gender={'M'}
-      itemsEquiped={[0, 3]} />)
+      itemsEquiped={[0, 3]}
+      childID={0}
+      addRoutines={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(TouchableOpacity).at(0).props().onPress()
     wrapper.find(TouchableOpacity).at(1).props().onPress()

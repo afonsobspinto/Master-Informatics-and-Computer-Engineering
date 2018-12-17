@@ -4,7 +4,6 @@ import { Container, Content, Form, Item, Input, Label, Button, Spinner } from 'n
 import { connect } from 'react-redux'
 import { login } from '../actions/userActions'
 import { _storeJson } from '../helpers/LocalStore'
-import { setSettings } from '../actions/settingsActions'
 
 import styles from '../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
@@ -46,7 +45,6 @@ export class LoginScreen extends Component {
           if (responseJson.status === '200') {
             _storeJson('login', { email })
             this.props.login(this.state.email)
-            this.props.setSettings({ activityProgressType: responseJson.activityProgressType, activityShowTimer: responseJson.activityShowTimer, activityFeedback: responseJson.activityFeedback, feedbackFrequency: responseJson.feedbackFrequency, visualStyle: responseJson.visualStyle, routinePlayType: responseJson.routinePlayType, playSounds: responseJson.playSounds })
             this.props.navigation.replace('MainMenu')
           } else {
             this.setState(() => ({ loginFailed: true, loading: false, emailHadInteraction: false, passwordHadInteraction: false }))
@@ -137,13 +135,11 @@ export default connect(
   }),
   /* istanbul ignore next */
   dispatch => ({
-    login: (email) => dispatch(login(email)),
-    setSettings: (activityProgressType, activityShowTimer, activityFeedback, feedbackFrequency, visualStyle, routinePlayType, playSounds) => dispatch(setSettings(activityProgressType, activityShowTimer, activityFeedback, feedbackFrequency, visualStyle, routinePlayType, playSounds))
+    login: (email) => dispatch(login(email))
   })
 )(LoginScreen)
 
 LoginScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  login: PropTypes.func.isRequired,
-  setSettings: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired
 }

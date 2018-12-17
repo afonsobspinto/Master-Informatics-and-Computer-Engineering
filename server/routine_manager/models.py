@@ -40,7 +40,7 @@ class Child(models.Model):
 class Routine(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.CharField(max_length=32)
+    image = models.CharField(max_length=32, null=True)
     photo = models.CharField(max_length=256, null=True)
     color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
@@ -51,7 +51,7 @@ class Routine(models.Model):
 class Activity(models.Model):
     routineID = models.ForeignKey(Routine, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.CharField(max_length=32)
+    image = models.CharField(max_length=32, null=True)
     photo = models.CharField(max_length=256, null=True)
     color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
@@ -69,3 +69,16 @@ class Settings(models.Model):
     visualStyle = models.CharField(max_length=15, default='cartoon')
     routinePlayType = models.CharField(max_length=15, default='choose')
     playSounds = models.BooleanField(default=True)
+
+class ActivityHistory(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    rewardGained = models.IntegerField(default=0)
+    elapsedTime = models.IntegerField(default=0)
+    timeStamp = models.CharField(max_length=500)
+
+class Reward(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    name = models.CharField(max_length=64)
+    photo = models.CharField(max_length=256, null=True)
+    weight = models.IntegerField(default=0)

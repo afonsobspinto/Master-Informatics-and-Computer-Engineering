@@ -116,6 +116,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -321,6 +324,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -526,6 +532,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 3`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -731,6 +740,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 4`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -892,6 +904,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 5`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -1053,6 +1068,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 6`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -1214,6 +1232,9 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 7`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,

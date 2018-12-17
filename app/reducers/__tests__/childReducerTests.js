@@ -4,13 +4,9 @@ import { childTypes } from '../../actions/actionTypes'
 describe('child reducer', () => {
   it('should return initial state', () => {
     expect(childReducer(undefined, {})).toEqual({
-      stars: 300,
-      level: 4,
-      xp: 460,
-      gender: 'F',
       itemsOwned: [],
       itemsEquiped: [],
-      showLevelUpModal: true
+      showLevelUpModal: false
     })
   })
 

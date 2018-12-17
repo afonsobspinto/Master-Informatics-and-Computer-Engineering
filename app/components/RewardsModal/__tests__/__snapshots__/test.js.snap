@@ -32,23 +32,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
           "width": 75,
         }
       }
-    >
-      <Image
-        resizeMode="cover"
-        source={
-          Object {
-            "uri": "bedroom",
-          }
-        }
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 0.3,
-            "width": "100%",
-          }
-        }
-      />
-    </Component>
+    />
     <Component
       key="1"
       style={
@@ -283,16 +267,52 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       }
     }
   >
-    <Component
+    <withAnimatable(Component)
+      animation="zoomIn"
+      delay={600}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
       key="0"
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
       style={
-        Object {
-          "height": 75,
-          "marginHorizontal": 5,
-          "width": 75,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 37.5,
+            "elevation": 2,
+            "height": 75,
+            "justifyContent": "center",
+            "marginHorizontal": 5,
+            "opacity": 1,
+            "overflow": "hidden",
+            "width": 75,
+          },
+          Object {
+            "backgroundColor": "#7d84b2",
+          },
+        ]
       }
-    />
+      useNativeDriver={false}
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": "bedroom",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </withAnimatable(Component)>
     <Component
       key="1"
       style={
@@ -564,7 +584,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
   backdropPressToClose={false}
   coverScreen={false}
   easing={[Function]}
-  isOpen={false}
+  isOpen={true}
   keyboardTopOffset={22}
   position="center"
   startOpen={false}
@@ -663,6 +683,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -787,7 +810,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
         }
       }
       useNativeDriver={false}
-    />
+    >
+      Atividade completada!
+    </withAnimatable(Text)>
     <RewardModalExperienceBar
       progress={0.3}
     />
@@ -798,6 +823,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
             "color": "#7d84b2",
             "image": "bed",
             "photo": "bedroom",
+            "status": Object {
+              "reward": 1,
+            },
             "time": Object {
               "goal": 60,
               "max": 120,
@@ -959,5 +987,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       />
     </TouchableOpacity>
   </Component>
+  <RewardSound
+    playSounds={false}
+    success={true}
+  />
 </ModalBox>
 `;

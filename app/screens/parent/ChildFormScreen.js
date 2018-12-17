@@ -103,6 +103,7 @@ export class ChildFormScreen extends Component {
     if (!this.checkInputs()) return
     this.handlePress()
     this.uploadImageAsync(this.state.photo.uri)
+      .then(this.handlePress())
   }
 
   render () {

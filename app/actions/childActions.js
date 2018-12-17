@@ -2,7 +2,7 @@ import { childTypes } from './actionTypes'
 
 export function addChild (child) {
   return {
-    type: childTypes.addStars,
+    type: childTypes.addChild,
     payload: child
   }
 }

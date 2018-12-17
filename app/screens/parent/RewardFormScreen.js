@@ -1,21 +1,79 @@
 import React, { Component } from 'react'
 import { Container, Header, Left, Button, Icon, Body, Title, Right, Form, Item, Label, Input, Toast } from 'native-base'
 import PropTypes from 'prop-types'
-import { ImagePickerButtons } from '../../components/Parent/ImagePickerButtons'
+import { PhotoPickerButton } from '../../components/Parent/PhotoPickerButton'
 import { BottomButton } from '../../components/Parent/BottomButton'
+import EnvVars from '../../constants/EnviromentVars'
 
 export default class RewardFormScreen extends Component {
   constructor (props) {
     super(props)
-    this.state = { title: '', image: null, photo: null }
+    this.state = {
+      title: 'Nova recompensa',
+      photo: undefined
+    }
+
+    this.state.childID = this.props.navigation.getParam('childID')
+    this.state.imageHash = Math.random().toString(36).substr(2, 10)
+    this.state.fileType = undefined
   }
 
-  onImageChange = image => {
-    this.setState({ image: image })
+  async uploadImageAsync (uri) {
+    let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
+    let formData = new FormData()
+    console.log(this.state.fileType)
+    formData.append('photo', {
+      uri,
+      name: `${this.state.imageHash}.${this.state.fileType}`,
+      type: `image/${this.state.fileType}`
+    })
+
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return fetch(apiUrl, options)
+  }
+
+  handleServerRequests = () => {
+    if (!this.checkInputs()) { return }
+    this.uploadImageAsync(this.state.photo.uri)
+      .then(this.createReward())
+  }
+
+  createReward = () => {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-reward/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        childID: this.state.childID,
+        name: this.state.title,
+        photo: `${this.state.imageHash}.${this.state.fileType}`
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('editado')
+          this.props.navigation.pop()
+        } else {
+          console.log('nao editado')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   onPhotoChange = uri => {
-    this.setState({ photo: uri })
+    this.setState({ photo: { uri }, fileType: uri.split('.')[uri.split('.').length - 1] })
   }
 
   showToast = message => (Toast.show({ text: message, buttonText: 'OK' }))
@@ -25,13 +83,11 @@ export default class RewardFormScreen extends Component {
       this.showToast('O nome do prémio não deverá estar vazio!')
       return false
     }
+    if (this.state.photo === undefined) {
+      this.showToast('A imagem do prémio não deverá estar vazia!')
+      return false
+    }
     return true
-  }
-
-  uploadToDatabase = () => {
-    if (!this.checkInputs()) return
-    console.log('TODO: THIS SHOULD UPLOAD TO DATABASE')
-    this.props.navigation.pop()
   }
 
   render () {
@@ -53,8 +109,8 @@ export default class RewardFormScreen extends Component {
             <Label>Nome do prémio</Label>
             <Input onChangeText={text => this.setState({ title: text })} />
           </Item>
-          <ImagePickerButtons color={'#0074D9'} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-          <BottomButton color={'#0074D9'} text={'Criar prémio'} onPress={() => this.uploadToDatabase()} />
+          <PhotoPickerButton color={'#0074D9'} onPhotoChange={this.onPhotoChange} photo={this.state.photo} />
+          <BottomButton color={'#0074D9'} text={'Criar prémio'} onPress={this.handleServerRequests} />
         </Form>
       </Container>
     )

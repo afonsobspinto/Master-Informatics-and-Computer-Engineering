@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, Alert } from 'react-native'
+import { View, Text } from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button, Icon, Spinner } from 'native-base'
 import styles from '../../styles/ParentStyles/RegisterScreen.style'
 import PropTypes from 'prop-types'
 import { oppositeColor } from '../../styles/Colors'
+import { connect } from 'react-redux'
+import EnvVars from '../../constants/EnviromentVars'
 
-export default class PasswordPromptScreen extends Component {
+export class PasswordPromptScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      storedPW: 'asdf',
       inputPW: '',
       passwordError: null,
       passwordHadInteraction: false,
@@ -18,15 +19,31 @@ export default class PasswordPromptScreen extends Component {
     }
   }
 
-  verifyPassword = () => {
-    if (this.state.storedPW === this.state.inputPW) this.props.navigation.replace('ParentMainMenuScreen')
-    else {
-      Alert.alert('Palavra-passe incorreta!', 'Tente novamente...', [
-        { text: 'Esqueci-me', onPress: () => console.log('Esqueceu-se lol burro') },
-        { text: 'OK', style: 'cancel' }
-      ],
-      { cancelable: false })
-    }
+  handlePress = () => {
+    this.setState({ loading: true })
+    fetch(EnvVars.apiUrl + 'routine_manager/login/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.props.loggedUserEmail,
+        password: this.state.inputPW
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.props.navigation.replace('ParentMainMenuScreen')
+        } else {
+          this.setState(() => ({ passwordError: true, loading: false, passwordHadInteraction: true }))
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   render () {
@@ -54,7 +71,7 @@ export default class PasswordPromptScreen extends Component {
                   <Icon name='eye' style={{ color: 'white' }} />
                 </Button>
               </View>
-              <Button rounded block primary style={styles.submitButton} onPress={() => this.verifyPassword()}>
+              <Button rounded block primary style={styles.submitButton} onPress={this.handlePress}>
                 <Text style={styles.buttonText}>Entrar</Text>
               </Button>
             </Form>
@@ -65,6 +82,14 @@ export default class PasswordPromptScreen extends Component {
   }
 }
 
+export default connect(
+  /* istanbul ignore next */
+  state => ({
+    loggedUserEmail: state.user.email
+  })
+)(PasswordPromptScreen)
+
 PasswordPromptScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired
 }

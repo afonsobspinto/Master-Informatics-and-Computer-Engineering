@@ -5,7 +5,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { ShopScreen } from '../../screens/child/ShopScreen'
+import { ShopScreen } from '../../../screens/child/ShopScreen'
 
 configure({ adapter: new Adapter() })
 
@@ -17,7 +17,8 @@ describe('ShopScreen snapshot', () => {
       purchaseItem={jest.fn()}
       gender={'M'}
       toggleItem={jest.fn()}
-      itemsEquiped={[0, 1]} />)
+      itemsEquiped={[0, 1]}
+      id={0} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })
