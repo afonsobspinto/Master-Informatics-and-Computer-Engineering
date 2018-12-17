@@ -7,7 +7,6 @@ import '../../../__mock__/xhr-mock'
 
 import { ActivityScreen } from '../../../screens/parent/ActivityScreen'
 import { SelectChildPicker } from '../../../components/Parent/SelectChildPicker'
-import { InvalidateList } from '../../../components/Parent/InvalidateList'
 
 configure({ adapter: new Adapter() })
 
