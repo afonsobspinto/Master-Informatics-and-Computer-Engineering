@@ -239,7 +239,7 @@ exports[`SettingsScreen snapshot renders SettingsScreen correctly 1`] = `
     >
       <Styled(Body)>
         <Styled(Text)>
-          Log out
+          Sair da Aplicação
         </Styled(Text)>
       </Styled(Body)>
     </Styled(ListItem)>

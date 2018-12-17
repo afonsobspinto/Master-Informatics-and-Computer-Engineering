@@ -38,12 +38,9 @@ exports[`RewardFormScreen snapshot renders RewardFormScreen correctly 1`] = `
         onChangeText={[Function]}
       />
     </Styled(Item)>
-    <ImagePickerButtons
+    <PhotoPickerButton
       color="#0074D9"
-      image={null}
-      onImageChange={[Function]}
       onPhotoChange={[Function]}
-      photo={null}
     />
     <BottomButton
       color="#0074D9"
