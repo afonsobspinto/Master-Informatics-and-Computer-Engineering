@@ -3,10 +3,10 @@
 exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = `
 <Styled(Container)>
   <Styled(Header)
-    androidStatusBarColor="#0074D9"
+    androidStatusBarColor="#7d84b2"
     style={
       Object {
-        "backgroundColor": "#0074D9",
+        "backgroundColor": "#7d84b2",
       }
     }
   >
@@ -23,10 +23,20 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
     </Styled(Left)>
     <Styled(Body)>
       <Styled(Title)>
-        Atividade de testes
+        Fazer a cama
       </Styled(Title)>
     </Styled(Body)>
-    <Styled(Right) />
+    <Styled(Right)>
+      <Styled(Button)
+        className="delete"
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="md-trash"
+        />
+      </Styled(Button)>
+    </Styled(Right)>
   </Styled(Header)>
   <Styled(Content)>
     <Styled(Form)>
@@ -39,7 +49,7 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
         <Styled(Input)
           className="input"
           onChangeText={[Function]}
-          value="Atividade de testes"
+          value="Fazer a cama"
         />
       </Styled(Item)>
       <Styled(Item)
@@ -66,7 +76,7 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
           Cor
         </Styled(Label)>
         <ColorPicker
-          color="#0074D9"
+          color="#7d84b2"
           colors={
             Array [
               Object {
@@ -139,25 +149,27 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
         />
       </Styled(Item)>
       <DurationPickers
-        color="#0074D9"
+        color="#7d84b2"
         onDurationChange={[Function]}
         time={
           Object {
-            "goal": "3",
-            "max": "6",
-            "min": "1.5",
+            "goal": "1.00",
+            "max": "2.00",
+            "min": "0.00",
           }
         }
       />
       <ImagePickerButtons
-        color="#0074D9"
+        color="#7d84b2"
+        image="bed"
         onImageChange={[Function]}
         onPhotoChange={[Function]}
+        photo="bedroom"
       />
       <BottomButton
-        color="#0074D9"
+        color="#7d84b2"
         onPress={[Function]}
-        text="Criar Atividade"
+        text="Editar Atividade"
       />
     </Styled(Form)>
   </Styled(Content)>

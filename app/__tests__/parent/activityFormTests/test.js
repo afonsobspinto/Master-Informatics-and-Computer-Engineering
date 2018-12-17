@@ -7,14 +7,16 @@ import Adapter from 'enzyme-adapter-react-16'
 import '../../../__mock__/xhr-mock'
 
 import { ActivityFormScreen } from '../../../screens/parent/ActivityFormScreen'
-import { routines } from '../../../constants/mockTestData'
+import { routines, activitiesWithStatus } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 
 describe('ActivityFormScreen snapshot', () => {
   it('renders ActivityFormScreen correctly', () => {
+    const myMock = jest.fn()
+    myMock.mockReturnValueOnce(activitiesWithStatus[0])
     const wrapper = shallow(<ActivityFormScreen
-      navigation={{ navigate: jest.fn(), getParam: jest.fn(), pop: jest.fn() }}
+      navigation={{ navigate: jest.fn(), getParam: myMock, pop: jest.fn() }}
       routines={routines} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().onColorChange('#0074D9')
@@ -30,6 +32,9 @@ describe('ActivityFormScreen snapshot', () => {
     wrapper.find('.back').at(0).props().onPress()
     wrapper.find(Input).at(0).props().onChangeText('s')
     wrapper.instance().sendRemovePost()
+    wrapper.instance().handleServerRequests()
+    wrapper.setState({ photo: false })
+    wrapper.instance().handleServerRequests()
     wrapper.unmount()
   })
 

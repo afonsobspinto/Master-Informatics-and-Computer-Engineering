@@ -20,6 +20,7 @@ describe('ParentMainMenuScreen snapshot', () => {
     wrapper.find('.routines').at(0).props().onPress()
     wrapper.find('.settings').at(0).props().onPress()
     wrapper.find('.activity').at(0).props().onPress()
+    wrapper.instance().setChildID(28)
     wrapper.unmount()
   })
 })

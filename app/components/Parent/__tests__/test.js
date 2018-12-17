@@ -35,7 +35,7 @@ describe('Slide components', () => {
 
   it('renders ColorPicker correctly 1', () => {
     const wrapper = shallow(<ColorPicker
-      color={''}
+      color={1}
       colors={[]}
       onColorChange={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
@@ -44,11 +44,12 @@ describe('Slide components', () => {
 
   it('renders ColorPicker correctly 2', () => {
     const wrapper = shallow(<ColorPicker
-      color={'#fff'}
-      colors={['#fff', '#000']}
+      color={0}
+      colors={[1, 2]}
       onColorChange={jest.fn()} />)
     wrapper.instance().onValueChange(1)
     wrapper.instance().onValueChange(999)
+    wrapper.instance().getSelectedValue()
     wrapper.unmount()
   })
 
@@ -65,7 +66,7 @@ describe('Slide components', () => {
     wrapper.unmount()
   })
 
-  it('renders ImagePickerButtons correctly', () => {
+  it('renders ImagePickerButtons correctly', async () => {
     const wrapper = shallow(<ImagePickerButtons
       color={''}
       onPhotoChange={jest.fn()}
@@ -78,6 +79,8 @@ describe('Slide components', () => {
     wrapper.find(Button).at(1).props().onPress()
     wrapper.instance().togglePhotoView()
     wrapper.instance().onImageChanged(0)
+    wrapper.setProps({ image: 'drawers' })
+    wrapper.instance().getSelectedImageName()
     wrapper.unmount()
   })
 
@@ -93,7 +96,7 @@ describe('Slide components', () => {
 
   it('renders ItemPicker correctly', () => {
     const wrapper = shallow(<ItemPicker
-      items={{ map: jest.fn(), findIndex: jest.fn() }}
+      items={[ { label: 'label' }, { label: 'other' } ]}
       selected={{}}
       onValueChange={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()

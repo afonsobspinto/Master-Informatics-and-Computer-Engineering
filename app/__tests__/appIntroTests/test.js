@@ -11,8 +11,9 @@ configure({ adapter: new Adapter() })
 describe('AppIntroScreen snapshot', () => {
   it('renders AppIntroScreen correctly', () => {
     const wrapper = shallow(<AppIntroScreen
-      navigation={{ navigate: jest.fn() }} />)
+      navigation={{ navigate: jest.fn(), goBack: jest.fn() }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance()._onDone()
     wrapper.unmount()
   })
 })

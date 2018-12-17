@@ -10,6 +10,7 @@ import { BonusModal } from '../../../components/RewardsModal/BonusModal'
 configure({ adapter: new Adapter() })
 
 describe('RoutineBonusScreen snapshot', () => {
+  jest.useFakeTimers()
   it('renders RoutineBonusScreen correctly', () => {
     const wrapper = shallow(<RoutineBonusScreen
       navigation={{ navigate: jest.fn(), popToTop: jest.fn() }}
@@ -19,6 +20,17 @@ describe('RoutineBonusScreen snapshot', () => {
       playSounds />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find(BonusModal).at(0).props().nextPress()
+    wrapper.instance().componentWillUnmount()
+    jest.advanceTimersByTime(1002)
+    wrapper.instance()._confettiView = {
+      startConfetti: jest.fn(),
+      stopConfetti: jest.fn()
+    }
+    wrapper.instance()._confettiView2 = {
+      startConfetti: jest.fn(),
+      stopConfetti: jest.fn()
+    }
+    wrapper.instance().componentDidMount()
     wrapper.unmount()
   })
 })

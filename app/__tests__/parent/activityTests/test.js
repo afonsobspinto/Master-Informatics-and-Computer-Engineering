@@ -25,6 +25,7 @@ describe('ActivityScreen snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setState({ activities: ['activity', 2], children: ['Child'], loading: false })
     wrapper.find(SelectChildPicker).at(0).props().onChildChanged(0)
+    wrapper.instance().removeStars(0)
     wrapper.unmount()
   })
 })

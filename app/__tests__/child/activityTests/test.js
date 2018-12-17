@@ -81,6 +81,8 @@ describe('ActivityScreen snapshot', () => {
     wrapper.instance().intervalFunction()
     wrapper.setState({ isPaused: true })
     wrapper.instance().intervalFunction()
+    wrapper.setProps({ activities: [{ status: true }] })
+    wrapper.instance().nextActivity()
     wrapper.unmount()
   })
 })

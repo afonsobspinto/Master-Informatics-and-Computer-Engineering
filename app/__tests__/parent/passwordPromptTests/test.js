@@ -3,6 +3,7 @@ import { Button } from 'native-base'
 import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
+import '../../../__mock__/xhr-mock'
 
 import { PasswordPromptScreen } from '../../../screens/parent/PasswordPromptScreen'
 

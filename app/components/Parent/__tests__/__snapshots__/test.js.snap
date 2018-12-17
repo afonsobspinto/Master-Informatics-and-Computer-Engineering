@@ -29,7 +29,7 @@ exports[`Slide components renders ColorPicker correctly 1 1`] = `
   picker={true}
   style={
     Object {
-      "borderColor": "",
+      "borderColor": 1,
     }
   }
 >
@@ -42,7 +42,13 @@ exports[`Slide components renders ColorPicker correctly 1 1`] = `
         "width": 120,
       }
     }
-  />
+  >
+    <Item
+      key="999"
+      label="Outra"
+      value={999}
+    />
+  </Styled(PickerNB)>
 </Styled(Item)>
 `;
 
@@ -1034,12 +1040,32 @@ exports[`Slide components renders ItemPicker correctly 1`] = `
 <Styled(PickerNB)
   mode="dropdown"
   onValueChange={[MockFunction]}
+  selectedValue={-1}
   style={
     Object {
       "width": "100%",
     }
   }
-/>
+>
+  <Item
+    key="0"
+    label={
+      Object {
+        "label": "label",
+      }
+    }
+    value={0}
+  />
+  <Item
+    key="1"
+    label={
+      Object {
+        "label": "other",
+      }
+    }
+    value={1}
+  />
+</Styled(PickerNB)>
 `;
 
 exports[`Slide components renders PeriodicityPicker correctly 1`] = `
