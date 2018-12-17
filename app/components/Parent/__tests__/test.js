@@ -146,8 +146,6 @@ describe('Slide components', () => {
       color={''}
       onItemPress={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
-    wrapper.instance().moveItemUp(0)
-    wrapper.instance().moveItemUp(2)
     wrapper.unmount()
   })
 

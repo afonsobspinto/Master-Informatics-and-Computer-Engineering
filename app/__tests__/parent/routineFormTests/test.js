@@ -6,6 +6,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import '../../../__mock__/xhr-mock'
 
 import RoutineFormScreen from '../../../screens/parent/RoutineFormScreen'
+import { activities } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 
@@ -33,6 +34,10 @@ describe('RoutineFormScreen snapshot', () => {
     wrapper.instance().createRoutine()
     wrapper.instance().editRoutine()
     wrapper.find(Input).at(0).props().onChangeText('routine')
+    wrapper.instance().sendRemovePost()
+    wrapper.instance().moveItemUp(0)
+    wrapper.setState({ activities: activities })
+    wrapper.instance().moveItemUp(1)
     wrapper.unmount()
   })
 })
