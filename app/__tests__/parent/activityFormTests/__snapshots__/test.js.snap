@@ -176,7 +176,7 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
 </Styled(Container)>
 `;
 
-exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 2`] = `
+exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1 1`] = `
 <Styled(Container)>
   <Styled(Header)
     androidStatusBarColor="#0074D9"

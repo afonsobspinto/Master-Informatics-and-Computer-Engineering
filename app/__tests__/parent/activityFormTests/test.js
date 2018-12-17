@@ -32,13 +32,10 @@ describe('ActivityFormScreen snapshot', () => {
     wrapper.find('.back').at(0).props().onPress()
     wrapper.find(Input).at(0).props().onChangeText('s')
     wrapper.instance().sendRemovePost()
-    wrapper.instance().handleServerRequests()
-    wrapper.setState({ photo: false })
-    wrapper.instance().handleServerRequests()
     wrapper.unmount()
   })
 
-  it('renders ActivityFormScreen correctly', () => {
+  it('renders ActivityFormScreen correctly 1', () => {
     const myMock = jest.fn()
     myMock.mockReturnValue({
       title: 'Atividade de testes',

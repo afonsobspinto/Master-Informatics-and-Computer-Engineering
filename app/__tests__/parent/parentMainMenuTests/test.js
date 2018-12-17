@@ -10,7 +10,9 @@ configure({ adapter: new Adapter() })
 describe('ParentMainMenuScreen snapshot', () => {
   it('renders ParentMainMenuScreen correctly', async () => {
     const wrapper = shallow(<ParentMainMenuScreen
-      navigation={{ navigate: jest.fn() }} />)
+      navigation={{ navigate: jest.fn() }}
+      loggedUserEmail={'email@aleatorio'}
+      setRoutines={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.find('.routines').at(0).props().onPress()
     wrapper.find('.newActivity').at(0).props().onPress()

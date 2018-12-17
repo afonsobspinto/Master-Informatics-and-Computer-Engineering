@@ -1388,7 +1388,7 @@ exports[`Slide components renders PhotoPickerButton correctly 1`] = `
           }
         >
           <Styled(Text)>
-            Camara
+            Câmara
           </Styled(Text)>
         </Styled(Button)>
         <Styled(Button)
