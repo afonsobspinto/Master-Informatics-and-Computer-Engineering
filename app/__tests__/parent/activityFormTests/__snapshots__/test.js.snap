@@ -51,12 +51,12 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 1`] = 
         <ItemPicker
           items={
             Array [
-              "Manhã",
-              "Noite",
+              "Após acordar",
+              "Antes de dormir",
             ]
           }
           onValueChange={[Function]}
-          selected="Manhã"
+          selected="Após acordar"
         />
       </Styled(Item)>
       <Styled(Item)
@@ -215,12 +215,12 @@ exports[`ActivityFormScreen snapshot renders ActivityFormScreen correctly 2`] = 
         <ItemPicker
           items={
             Array [
-              "Manhã",
-              "Noite",
+              "Após acordar",
+              "Antes de dormir",
             ]
           }
           onValueChange={[Function]}
-          selected="Manhã"
+          selected="Após acordar"
         />
       </Styled(Item)>
       <Styled(Item)

@@ -41,7 +41,7 @@ describe('child actions', () => {
   it('should create an action to add a child', () => {
     const param = 'Name'
     const expectedAction = {
-      type: childTypes.addStars,
+      type: childTypes.addChild,
       payload: 'Name'
     }
     expect(childActions.addChild(param)).toEqual(expectedAction)

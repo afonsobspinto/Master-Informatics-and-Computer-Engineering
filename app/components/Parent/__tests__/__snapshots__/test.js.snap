@@ -285,8 +285,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#0e79b2"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -388,8 +392,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#7fb800"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -491,8 +499,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#37c1f0"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -594,8 +606,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#e43f6f"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -697,8 +713,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#4bb3fd"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -800,8 +820,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#ff7f11"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -903,8 +927,12 @@ exports[`Slide components renders InvalidateList correctly 1`] = `
     <Styled(Left)>
       <SortableListItemThumbnail
         color="#b0db43"
-        isPhoto={false}
-        source={1}
+        isPhoto={true}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
       />
       <Component
         style={
@@ -1512,7 +1540,6 @@ exports[`Slide components renders SortableList correctly 1`] = `
     index={0}
     item={Object {}}
     key="0"
-    moveItemUp={[Function]}
     onItemPress={[MockFunction]}
   />
   <SortableListItem
@@ -1520,7 +1547,6 @@ exports[`Slide components renders SortableList correctly 1`] = `
     index={1}
     item={Object {}}
     key="1"
-    moveItemUp={[Function]}
     onItemPress={[MockFunction]}
   />
   <SortableListItem
@@ -1528,7 +1554,6 @@ exports[`Slide components renders SortableList correctly 1`] = `
     index={2}
     item={Object {}}
     key="2"
-    moveItemUp={[Function]}
     onItemPress={[MockFunction]}
   />
 </Styled(List)>
@@ -1541,7 +1566,12 @@ exports[`Slide components renders SortableListItem correctly 1`] = `
 >
   <Styled(Left)>
     <SortableListItemThumbnail
-      isPhoto={false}
+      isPhoto={true}
+      source={
+        Object {
+          "uri": undefined,
+        }
+      }
     />
     <Styled(Text) />
   </Styled(Left)>

@@ -108,6 +108,7 @@ export default connect(
   state => ({
     loggedUserEmail: state.user.email
   }),
+  /* istanbul ignore next */
   dispatch => ({
     setRoutines: routines => dispatch(setRoutines(routines))
   })

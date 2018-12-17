@@ -17,4 +17,12 @@ describe('user actions', () => {
     }
     expect(userActions.logout()).toEqual(expectedAction)
   })
+
+  it('should set routines', () => {
+    const expectedAction = {
+      type: userTypes.setRoutines,
+      payload: 'something'
+    }
+    expect(userActions.setRoutines('something')).toEqual(expectedAction)
+  })
 })

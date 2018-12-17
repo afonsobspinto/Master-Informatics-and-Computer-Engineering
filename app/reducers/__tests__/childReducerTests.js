@@ -110,17 +110,42 @@ describe('child reducer', () => {
       })
   })
 
-  it('should add child', () => {
-    expect(
-      childReducer({
-        itemsEquiped: [1]
-      }, {
-        type: childTypes.addChild,
-        payload: 'Name'
-      }))
-      .toEqual({
-        itemsEquiped: [1],
-        payload: 'Name'
-      })
+  it('should add child w/ existing avatar', () => {
+    childReducer({
+      itemsOwned: [],
+      itemsEquiped: [],
+      showLevelUpModal: false
+    }, {
+      type: childTypes.addChild,
+      payload: {/* eslint-disable */
+        "avatar": "{\"itemsOwned\":[3,8],\"itemsEquiped\":[3,8]}",
+        "gender": "M",
+        "id": 28,
+        "image": "http://10.0.0.11:8000/static/assets/images/3owvgls19w.jpg",
+        "level": 0,
+        "name": "Child 1",
+        "stars": 50,
+        "xp": 24,
+      }
+      /* eslint-enable */
+    })
+    childReducer({
+      itemsOwned: [],
+      itemsEquiped: [],
+      showLevelUpModal: false
+    }, {
+      type: childTypes.addChild,
+      payload: {/* eslint-disable */
+        "avatar": null,
+        "gender": "M",
+        "id": 28,
+        "image": "http://10.0.0.11:8000/static/assets/images/3owvgls19w.jpg",
+        "level": 0,
+        "name": "Child 1",
+        "stars": 50,
+        "xp": 24,
+      }
+      /* eslint-enable */
+    })
   })
 })

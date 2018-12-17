@@ -23,4 +23,15 @@ describe('user reducer', () => {
       })
     )
   })
+
+  it('should return set routines', () => {
+    expect(
+      userReducer({
+        email: ''
+      }, {
+        type: userTypes.setRoutines,
+        payload: 'email@aleatorio.com'
+      })
+    )
+  })
 })

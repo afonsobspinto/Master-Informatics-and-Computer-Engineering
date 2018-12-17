@@ -200,6 +200,35 @@ exports[`SettingsScreen snapshot renders SettingsScreen correctly 1`] = `
       bordered={true}
     >
       <Styled(Text)>
+        SOBRE
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Sobre a equipa
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Ver licenças
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
         CONTA
       </Styled(Text)>
     </Styled(Separator)>

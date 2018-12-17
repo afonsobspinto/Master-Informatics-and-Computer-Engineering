@@ -14,7 +14,7 @@ exports[`ParentMainMenuScreen snapshot renders ParentMainMenuScreen correctly 1`
       </Styled(Title)>
     </Styled(Body)>
   </Styled(Header)>
-  <ActivityScreen />
+  <Connect(ActivityScreen) />
   <Styled(Footer)>
     <Styled(FooterTab)>
       <Styled(Button)
