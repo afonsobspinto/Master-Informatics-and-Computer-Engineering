@@ -12,3 +12,16 @@ exports[`ActivityScreen snapshot renders ActivityScreen correctly 1`] = `
   <Styled(Spinner) />
 </Styled(Content)>
 `;
+
+exports[`ActivityScreen snapshot renders ActivityScreen correctly 2`] = `
+<Styled(Content)
+  contentContainerStyle={
+    Object {
+      "flexGrow": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Styled(Spinner) />
+</Styled(Content)>
+`;

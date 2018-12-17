@@ -374,3 +374,26 @@ export const activitiesDone = [
     elapsedTime: 27
   }
 ]
+
+export const children = [
+  {
+    avatar: { itemsOwned: [3, 8], itemsEquiped: [3, 8] },
+    gender: 'M',
+    id: 28,
+    image: 'http://10.0.0.11:8000/static/assets/images/3owvgls19w.jpg',
+    level: 0,
+    name: 'Child 1',
+    stars: 50,
+    xp: 24
+  },
+  {
+    avatar: null,
+    gender: 'M',
+    id: 29,
+    image: 'http://10.0.0.11:8000/static/assets/images/bmx4i9jg1i.jpg',
+    level: 1,
+    name: 'Child 2',
+    stars: 0,
+    xp: 0
+  }
+]

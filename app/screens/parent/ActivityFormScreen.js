@@ -216,9 +216,11 @@ export class ActivityFormScreen extends Component {
         }
         return responseJson
       })
-      .catch((error) => {
-        console.error(error)
-      })
+      .catch(
+        /* istanbul ignore next */
+        (error) => {
+          console.error(error)
+        })
   }
 
   render () {
