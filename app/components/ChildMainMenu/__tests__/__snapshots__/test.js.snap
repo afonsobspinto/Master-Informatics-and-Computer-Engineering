@@ -93,36 +93,6 @@ exports[`MainMenu components renders ChildExperienceBar correctly 1`] = `
       }
     />
   </Component>
-  <Component
-    style={
-      Object {
-        "backgroundColor": "white",
-        "borderRadius": 80.03999999999999,
-        "bottom": 26.68,
-        "elevation": 7,
-        "height": 160.07999999999998,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 80.03999999999999,
-        "width": 160.07999999999998,
-      }
-    }
-  >
-    <TouchableWithoutFeedback
-      onPress={[MockFunction]}
-    >
-      <Image
-        resizeMode="cover"
-        source={1}
-        style={
-          Object {
-            "height": 160.07999999999998,
-            "width": 160.07999999999998,
-          }
-        }
-      />
-    </TouchableWithoutFeedback>
-  </Component>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -271,7 +241,11 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "100%",
@@ -310,7 +284,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
             }
           }
         >
-          Dia na piscina
+          test
         </Text>
       </Component>
     </Component>

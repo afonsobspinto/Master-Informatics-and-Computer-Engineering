@@ -25,10 +25,14 @@ export default class RoutineFormScreen extends Component {
     super(props)
 
     const routine = this.props.navigation.getParam('routine')
+    const childID = this.props.navigation.getParam('childID')
 
     this.state = routine ? { ...routine } : defaultState
 
     this.state.periodicity = this.decodePeriodicity(this.state.periodicity)
+    this.state.childID = childID
+    this.state.imageHash = Math.random().toString(36).substr(2, 10)
+    this.state.fileType = undefined
 
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
@@ -48,7 +52,7 @@ export default class RoutineFormScreen extends Component {
   }
 
   onPhotoChange = uri => {
-    this.setState({ photo: uri })
+    this.setState({ photo: uri, fileType: uri.split('.')[uri.split('.').length - 1] })
   }
 
   onImageChange = image => {
@@ -81,6 +85,15 @@ export default class RoutineFormScreen extends Component {
     return codedPeriodicity
   }
 
+  handleServerRequests = () => {
+    if (this.state.photo) {
+      this.uploadImageAsync(this.state.photo)
+        .then(this.createRoutine())
+    } else {
+      this.createRoutine()
+    }
+  }
+
   createRoutine = () => {
     fetch(EnvVars.apiUrl + 'routine_manager/add-routine/', {
       method: 'POST',
@@ -89,17 +102,18 @@ export default class RoutineFormScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        childID: this.state.childID,
         title: this.state.title,
         color: this.state.color,
-        image: this.state.image,
-        photo: this.state.photo,
+        image: this.state.image === undefined ? null : this.state.image,
+        photo: this.state.photo === undefined ? null : `${this.state.imageHash}.${this.state.fileType}`,
         repeatable: (this.state.isRepeat).toString(),
         periodicity: this.encodePeriodicity()
       })
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-          console.log('salvo')
+          this.props.navigation.pop()
         } else {
           console.log('oops')
         }
@@ -110,7 +124,36 @@ export default class RoutineFormScreen extends Component {
       })
   }
 
+  async uploadImageAsync (uri) {
+    let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
+    let formData = new FormData()
+    formData.append('photo', {
+      uri,
+      name: `${this.state.imageHash}.${this.state.fileType}`,
+      type: `image/${this.state.fileType}`
+    })
+
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return fetch(apiUrl, options)
+  }
+
   editRoutine = () => {
+    if (this.state.photo !== null && this.state.photo.includes('file://')) {
+      this.uploadImageAsync(this.state.photo)
+        .then(this.sendEditRequest(true))
+    } else {
+      this.sendEditRequest(false)
+    }
+  }
+
+  sendEditRequest = photoChanged => {
     fetch(EnvVars.apiUrl + 'routine_manager/edit-routine/', {
       method: 'POST',
       headers: {
@@ -121,9 +164,8 @@ export default class RoutineFormScreen extends Component {
         routineID: this.state.id,
         title: this.state.title,
         color: this.state.color,
-        // TODO: adicionar foto/imagem aos edits
         image: this.state.image,
-        photo: this.state.photo,
+        photo: photoChanged ? `${this.state.imageHash}.${this.state.fileType}` : this.state.photo,
         isWeeklyRepeatable: (this.state.isRepeat).toString(),
         periodicity: this.encodePeriodicity()
       })
@@ -247,7 +289,7 @@ export default class RoutineFormScreen extends Component {
               <Label>Atividades</Label>
               <SortableList items={this.state.activities} color={this.state.color} onItemPress={this.onActivityPress} moveItemUp={this.moveItemUp} />
             </Item>}
-            <BottomButton color={this.state.color} text={this.state.createRoutine ? 'Criar Rotina' : 'Editar Rotina'} onPress={this.state.createRoutine ? this.createRoutine : this.editRoutine} />
+            <BottomButton color={this.state.color} text={this.state.createRoutine ? 'Criar Rotina' : 'Editar Rotina'} onPress={this.state.createRoutine ? this.handleServerRequests : this.editRoutine} />
           </Form>
         </Content>
       </Container>

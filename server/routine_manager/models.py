@@ -40,7 +40,7 @@ class Child(models.Model):
 class Routine(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.CharField(max_length=32)
+    image = models.CharField(max_length=32, null=True)
     photo = models.CharField(max_length=256, null=True)
     color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
@@ -51,7 +51,7 @@ class Routine(models.Model):
 class Activity(models.Model):
     routineID = models.ForeignKey(Routine, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.CharField(max_length=32)
+    image = models.CharField(max_length=32, null=True)
     photo = models.CharField(max_length=256, null=True)
     color = models.CharField(max_length=10)
     weight = models.IntegerField(default=0)
@@ -77,3 +77,8 @@ class ActivityHistory(models.Model):
     elapsedTime = models.IntegerField(default=0)
     timeStamp = models.CharField(max_length=500)
 
+class Reward(models.Model):
+    childID = models.ForeignKey(Child, on_delete=models.CASCADE)
+    name = models.CharField(max_length=64)
+    photo = models.CharField(max_length=256, null=True)
+    weight = models.IntegerField(default=0)

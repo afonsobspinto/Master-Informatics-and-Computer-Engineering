@@ -6,105 +6,6 @@ import EnvVars from '../../constants/EnviromentVars'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-// const activities = [
-//   {
-//     title: 'Fazer a cama',
-//     photo: 'https://hniesfp.imgix.net/8/images/detailed/14/EA1A7075.jpg?fit=fill&bg=0FFF&w=1500&h=1000&auto=format,compress',
-//     color: '#7d84b2',
-//     time: {
-//       min: 0,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 3,
-//     elapsedTime: 40
-//   },
-//   {
-//     title: 'Lavar os dentes',
-//     image: 'toothbrush',
-//     color: '#0e79b2',
-//     time: {
-//       min: 1,
-//       max: 15,
-//       goal: 10
-//     },
-//     reward: 3,
-//     elapsedTime: 120
-//   },
-//   {
-//     title: 'Vestir',
-//     image: 'socks',
-//     color: '#7fb800',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 2,
-//     elapsedTime: 40
-//   },
-//   {
-//     title: 'Tomar banho',
-//     image: 'shower',
-//     color: '#37c1f0',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 3,
-//     elapsedTime: 34
-//   },
-//   {
-//     title: 'Preparar a mochila',
-//     image: 'bag',
-//     color: '#e43f6f',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 0,
-//     elapsedTime: 3000
-//   },
-//   {
-//     title: 'Calçar os sapatos',
-//     image: 'sneakers',
-//     color: '#4bb3fd',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 3,
-//     elapsedTime: 20
-//   },
-//   {
-//     title: 'Tomar o pequeno almoço',
-//     image: 'breakfast',
-//     color: '#ff7f11',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 3,
-//     elapsedTime: 242
-//   },
-//   {
-//     title: 'Pentear cabelo',
-//     image: 'comb',
-//     color: '#b0db43',
-//     time: {
-//       min: 10,
-//       max: 120,
-//       goal: 60
-//     },
-//     reward: 2,
-//     elapsedTime: 27
-//   }
-// ]
-
 export class ActivityScreen extends React.Component {
   constructor (props) {
     super(props)
@@ -116,7 +17,7 @@ export class ActivityScreen extends React.Component {
       loading: true
     }
 
-    this.removeReward = this.removeReward.bind(this)
+    this.removeStars = this.removeStars.bind(this)
   }
 
   componentDidMount () {
@@ -158,8 +59,8 @@ export class ActivityScreen extends React.Component {
       })
   }
 
-  removeReward = (index) => {
-    fetch(EnvVars.apiUrl + 'routine_manager/remove-reward/', {
+  removeStars = (index) => {
+    fetch(EnvVars.apiUrl + 'routine_manager/remove-stars/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -173,7 +74,7 @@ export class ActivityScreen extends React.Component {
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-
+          this.setState({ activities: this.state.activities.filter((_, i) => i !== index) })
         } else {
 
         }
@@ -194,7 +95,7 @@ export class ActivityScreen extends React.Component {
       return (
         <Content>
           <SelectChildPicker children={this.state.children} selected={this.state.selectedChild} onChildChanged={this.onChildChanged} />
-          <InvalidateList activities={this.state.activities} onInvalidatePress={this.removeReward} />
+          <InvalidateList activities={this.state.activities} onInvalidatePress={this.removeStars} />
         </Content>
       )
     }

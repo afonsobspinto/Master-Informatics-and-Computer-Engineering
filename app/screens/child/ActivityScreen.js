@@ -50,8 +50,8 @@ export class ActivityScreen extends Component {
     })
   }
 
-  addReward () {
-    fetch(EnvVars.apiUrl + 'routine_manager/add-reward/', {
+  addStars () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-stars/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -84,8 +84,7 @@ export class ActivityScreen extends Component {
       },
       body: JSON.stringify({
         id: this.props.child.id,
-        routineTitle: this.props.routine.title,
-        activityTitle: this.props.activity.title,
+        activityID: this.props.activity.id,
         rewardGained: this.props.activity.status.reward,
         elapsedTime: this.state.elapsedTime,
         timeStamp: Date.now()
@@ -138,7 +137,7 @@ export class ActivityScreen extends Component {
 
   nextActivity () {
     this.createHistory()
-    this.addReward()
+    this.addStars()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
     if (this.props.activities.every(activity => activity.status !== undefined)) {
       this.props.navigation.replace('RoutineBonusScreen')
@@ -224,6 +223,5 @@ ActivityScreen.propTypes = {
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
-  child: PropTypes.object.isRequired,
-  routine: PropTypes.object.isRequired
+  child: PropTypes.object.isRequired
 }
