@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Body, Header, Icon, Left, Right, Label, Title, Button, Form, Content, Container, Item, Input } from 'native-base'
+import { Body, Header, Icon, Left, Right, Label, Title, Button, Form, Content, Container, Item, Input, Toast } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -86,7 +86,22 @@ export class ChildFormScreen extends Component {
     }
   }
 
+  showToast = message => (Toast.show({ text: message, buttonText: 'OK' }))
+
+  checkInputs = () => {
+    if (this.state.name === '') {
+      this.showToast('O nome da criança não deverá estar vazio!')
+      return false
+    } else if (this.state.photo === undefined) {
+      this.showToast('A criança deverá ter uma imagem associada!')
+      return false
+    }
+    return true
+  }
+
   handleServerRequests () {
+    if (!this.checkInputs()) return
+    this.handlePress()
     this.uploadImageAsync(this.state.photo.uri)
       .then(this.handlePress())
   }

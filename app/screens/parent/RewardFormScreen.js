@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Left, Button, Icon, Body, Title, Right, Form, Item, Label, Input } from 'native-base'
+import { Container, Header, Left, Button, Icon, Body, Title, Right, Form, Item, Label, Input, Toast } from 'native-base'
 import PropTypes from 'prop-types'
 import { PhotoPickerButton } from '../../components/Parent/PhotoPickerButton'
 import { BottomButton } from '../../components/Parent/BottomButton'
@@ -39,7 +39,7 @@ export default class RewardFormScreen extends Component {
   }
 
   handleServerRequests = () => {
-    if (!this.state.photo) { return }
+    if (!this.checkInputs()) { return }
     this.uploadImageAsync(this.state.photo.uri)
       .then(this.createReward())
   }
@@ -73,6 +73,20 @@ export default class RewardFormScreen extends Component {
 
   onPhotoChange = uri => {
     this.setState({ photo: { uri }, fileType: uri.split('.')[uri.split('.').length - 1] })
+  }
+
+  showToast = message => (Toast.show({ text: message, buttonText: 'OK' }))
+
+  checkInputs = () => {
+    if (this.state.title === '') {
+      this.showToast('O nome do prémio não deverá estar vazio!')
+      return false
+    }
+    if (this.state.photo === undefined) {
+      this.showToast('A imagem do prémio não deverá estar vazia!')
+      return false
+    }
+    return true
   }
 
   render () {

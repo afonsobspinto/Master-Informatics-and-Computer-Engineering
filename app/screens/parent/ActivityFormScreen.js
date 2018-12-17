@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
+import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right, Toast } from 'native-base'
 import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
 import EnvVars from '../../constants/EnviromentVars'
@@ -85,7 +85,7 @@ export class ActivityFormScreen extends Component {
   removeActivity = () => {
     Alert.alert(
       `Tem a certeza que pretende apagar a atividade "${this.state.title}"?`,
-      'Esta ação não pode ser revertida',
+      'Esta ação não pode ser revertida.',
       [
         { text: 'Não', style: 'cancel' },
         { text: 'Sim', onPress: this.sendRemovePost }
@@ -120,6 +120,7 @@ export class ActivityFormScreen extends Component {
   }
 
   handleServerRequests = () => {
+    if (!this.checkInputs()) return
     if (this.state.photo) {
       this.uploadImageAsync(this.state.photo)
         .then(this.createActivity())
@@ -221,6 +222,20 @@ export class ActivityFormScreen extends Component {
         (error) => {
           console.error(error)
         })
+  }
+
+  showToast = message => (Toast.show({ text: message, buttonText: 'OK' }))
+
+  checkInputs = () => {
+    if (this.state.title === '') {
+      this.showToast('O nome da atividade não deverá estar vazio!')
+      return false
+    }
+    if (this.state.timeGoal === undefined || this.state.timeMin === undefined || this.state.timeMax === undefined) {
+      this.showToast('O tempo da atividade não deverá estar vazia!')
+      return false
+    }
+    return true
   }
 
   render () {

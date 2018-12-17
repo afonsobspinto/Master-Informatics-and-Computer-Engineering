@@ -55,7 +55,7 @@ export class ImagePickerButtons extends Component {
           </View>}
           <View style={styles.imageButtonContainer}>
             <Button style={[styles.imageButton, { backgroundColor: this.props.color }]} onPress={() => this.imagePicker(true)}>
-              <Text>Camara</Text>
+              <Text>Câmara</Text>
             </Button>
             <Button style={[styles.imageButton, { backgroundColor: this.props.color }]} onPress={() => this.imagePicker(false)}>
               <Text>Galeria</Text>

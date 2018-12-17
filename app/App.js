@@ -10,6 +10,7 @@ import { _retrieveJson } from './helpers/LocalStore'
 
 import AppNavigator from './navigation/AppNavigator'
 import AutenticationNavigator from './navigation/AutenticationNavigator'
+import { Root } from 'native-base'
 
 const store = configureStore()
 
@@ -29,9 +30,11 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <Provider store={store}>
-          {store.getState().user.email ? <AppNavigator /> : <AutenticationNavigator />}
-        </Provider>
+        <Root>
+          <Provider store={store}>
+            {store.getState().user.email ? <AppNavigator /> : <AutenticationNavigator />}
+          </Provider>
+        </Root>
       )
     }
   }
