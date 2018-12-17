@@ -1,5 +1,4 @@
 # Changelog
-![Issues Open](https://img.shields.io/badge/issues-open_37-54cc1f.svg) ![Issues Closed](https://img.shields.io/badge/issues-closed_55-d7af23.svg) ![Downloads](https://img.shields.io/badge/downloads-0_total-54cc1f.svg) ![Version](https://img.shields.io/badge/version-0.4.0-54cc1f.svg) ![Coverage](https://img.shields.io/badge/coverage-65%25-yellowgreen.svg)
 
 ## Iteration 1
 In this update we introduce the core appearence and funtionality of the various screens related to the Child user interface.  
