@@ -231,7 +231,7 @@ export class ActivityFormScreen extends Component {
       this.showToast('O nome da atividade não deverá estar vazio!')
       return false
     }
-    if (this.state.timeGoal === undefined || this.state.timeMin === undefined || this.state.timeMax === undefined) {
+    if (this.state.time.goal === undefined || this.state.time.min === undefined || this.state.time.max === undefined) {
       this.showToast('O tempo da atividade não deverá estar vazia!')
       return false
     }

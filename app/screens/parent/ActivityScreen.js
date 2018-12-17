@@ -48,7 +48,7 @@ export class ActivityScreen extends React.Component {
       .then((responseJson) => {
         if (responseJson.status === '200') {
           const activities = responseJson.response === null ? [] : JSON.parse(responseJson.response)
-          this.setState({ activities, loading: false })
+          this.setState({ activities, loading: false }, () => console.log(this.state.activities))
         } else {
           console.log('Ta mal')
         }

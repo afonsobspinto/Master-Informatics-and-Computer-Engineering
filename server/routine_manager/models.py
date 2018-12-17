@@ -27,7 +27,7 @@ class Child(models.Model):
     userID = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
-    level = models.IntegerField(default=1)
+    level = models.IntegerField(default=0)
     xp = models.IntegerField(default=0)
     stars = models.IntegerField(default=0)
     avatar = models.CharField(max_length=500, null=True)
@@ -70,12 +70,14 @@ class Settings(models.Model):
     routinePlayType = models.CharField(max_length=15, default='choose')
     playSounds = models.BooleanField(default=True)
 
+
 class ActivityHistory(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)
     activityID = models.ForeignKey(Activity, on_delete=models.CASCADE)
     rewardGained = models.IntegerField(default=0)
     elapsedTime = models.IntegerField(default=0)
     timeStamp = models.CharField(max_length=500)
+
 
 class Reward(models.Model):
     childID = models.ForeignKey(Child, on_delete=models.CASCADE)
