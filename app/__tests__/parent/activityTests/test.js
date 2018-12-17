@@ -6,10 +6,8 @@ import Adapter from 'enzyme-adapter-react-16'
 import '../../../__mock__/xhr-mock'
 
 import { ActivityScreen } from '../../../screens/parent/ActivityScreen'
-// import { SelectChildPicker } from '../../../components/Parent/SelectChildPicker'
-// import { InvalidateList } from '../../../components/Parent/InvalidateList'
-
-// import { activitiesDone } from '../../../constants/mockTestData'
+import { SelectChildPicker } from '../../../components/Parent/SelectChildPicker'
+import { InvalidateList } from '../../../components/Parent/InvalidateList'
 
 configure({ adapter: new Adapter() })
 
@@ -18,18 +16,16 @@ describe('ActivityScreen snapshot', () => {
     const wrapper = shallow(<ActivityScreen
       loggedUserEmail='email@aleatorio.com' />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setState({})
     wrapper.unmount()
   })
 
-  /*
   it('renders ActivityScreen correctly', () => {
     const wrapper = shallow(<ActivityScreen
       loggedUserEmail='email@aleatorio.com' />)
     expect(toJson(wrapper)).toMatchSnapshot()
-    wrapper.setState({ activities: activitiesDone, children: ['Child'] })
+    wrapper.setState({ activities: ['activity', 2], children: ['Child'], loading: false })
     wrapper.find(SelectChildPicker).at(0).props().onChildChanged(0)
-    wrapper.find(InvalidateList).at(0).props().onInvalidatePress()
     wrapper.unmount()
   })
-  */
 })

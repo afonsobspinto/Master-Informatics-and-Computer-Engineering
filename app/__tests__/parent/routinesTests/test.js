@@ -14,6 +14,7 @@ describe('RoutinesScreen snapshot', () => {
       navigation={{ navigate: jest.fn(), getParam: jest.fn(), pop: jest.fn(), addListener: jest.fn() }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().onRoutinePress(0)
+    wrapper.setState({ loading: false })
     wrapper.unmount()
   })
 })
