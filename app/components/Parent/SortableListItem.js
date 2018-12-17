@@ -1,9 +1,8 @@
 import React from 'react'
 import { ListItem, Left, Text, Body, Right, Icon, Button } from 'native-base'
 import PropTypes from 'prop-types'
-
-import Images from '../../assets/images/images'
-import { SortableListItemThumbnail } from './ActivityThumbnail'
+import { SortableListItemThumbnail } from './SortableListItemThumbnail'
+import { getSource } from '../../helpers/GetSource'
 
 export class SortableListItem extends React.Component {
   onItemPress = () => {
@@ -18,7 +17,7 @@ export class SortableListItem extends React.Component {
     return (
       <ListItem button onPress={this.onItemPress}>
         <Left>
-          <SortableListItemThumbnail color={this.props.item.color} source={Images[this.props.item.image]} />
+          <SortableListItemThumbnail isPhoto={this.props.item.photo !== null} color={this.props.item.color} source={getSource(this.props.item)} />
           <Text>{this.props.item.title}</Text>
         </Left>
         <Body />

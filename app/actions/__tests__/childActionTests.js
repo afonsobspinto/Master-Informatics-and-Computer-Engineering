@@ -29,4 +29,21 @@ describe('child actions', () => {
     }
     expect(childActions.toggleLevelUpModal()).toEqual(expectedAction)
   })
+
+  it('should create an action to toggle an item', () => {
+    const expectedAction = {
+      type: childTypes.toggleItem,
+      payload: 1
+    }
+    expect(childActions.toggleItem(1)).toEqual(expectedAction)
+  })
+
+  it('should create an action to add a child', () => {
+    const param = 'Name'
+    const expectedAction = {
+      type: childTypes.addChild,
+      payload: 'Name'
+    }
+    expect(childActions.addChild(param)).toEqual(expectedAction)
+  })
 })

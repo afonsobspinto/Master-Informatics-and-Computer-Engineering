@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardsScreen snapshot renders RewardsScreen correctly 1`] = `
+<Styled(Content)
+  contentContainerStyle={
+    Object {
+      "flexGrow": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Styled(Spinner) />
+</Styled(Content)>
+`;

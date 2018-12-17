@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChangeEmailScreen snapshot renders ChangeEmailScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "padding": 60,
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "paddingBottom": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      E-mail Atual
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "paddingTop": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      email@aleatorio.pt
+    </Text>
+  </Component>
+  <Component
+    style={
+      Object {
+        "paddingBottom": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Novo E-mail
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      keyboardType="email-address"
+      placeholder="Insira o seu novo e-mail"
+      style={
+        Object {
+          "borderColor": "white",
+          "borderRadius": 3,
+          "borderWidth": 1,
+          "height": 50,
+          "marginTop": 20,
+          "padding": 10,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "paddingBottom": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Password
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Insira a sua password para confirmar a alteração de e-mail.
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      placeholder="Insira o seu novo e-mail"
+      secureTextEntry={true}
+      style={
+        Object {
+          "borderColor": "white",
+          "borderRadius": 3,
+          "borderWidth": 1,
+          "height": 50,
+          "marginTop": 20,
+          "padding": 10,
+        }
+      }
+    />
+  </Component>
+  <Component>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "orange",
+          "borderRadius": 10,
+          "height": 40,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Confirmar
+      </Text>
+    </TouchableOpacity>
+  </Component>
+</Component>
+`;

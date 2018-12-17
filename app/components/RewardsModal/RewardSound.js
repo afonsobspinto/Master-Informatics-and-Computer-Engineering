@@ -6,7 +6,9 @@ export class RewardSound extends React.Component {
   sound = null
 
   componentDidMount () {
-    setTimeout(this.playSound, 400)
+    if (this.props.playSounds) {
+      setTimeout(this.playSound, 400)
+    }
   }
 
   componentWillUnmount () {
@@ -17,6 +19,7 @@ export class RewardSound extends React.Component {
 
   playSound = async () => {
     this.sound = new Audio.Sound()
+    /* istanbul ignore next */
     try {
       if (this.props.success) await this.sound.loadAsync(require('../../assets/sounds/happy.wav'))
       else await this.sound.loadAsync(require('../../assets/sounds/sad.wav'))
@@ -31,5 +34,6 @@ export class RewardSound extends React.Component {
 }
 
 RewardSound.propTypes = {
-  success: PropTypes.bool.isRequired
+  success: PropTypes.bool.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

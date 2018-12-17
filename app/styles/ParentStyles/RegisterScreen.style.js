@@ -18,8 +18,7 @@ export default StyleSheet.create({
     left: '10%'
   },
   inputContainer: {
-    marginBottom: '5%',
-    marginRight: '5%'
+    marginLeft: 0
   },
   labelText: {
     fontFamily: 'LinotteBold',
@@ -50,6 +49,12 @@ export default StyleSheet.create({
     fontFamily: 'LinotteBold',
     fontSize: 15,
     marginBottom: '2%',
+    color: lightTextColor
+  },
+  errorMessage: {
+    fontFamily: 'LinotteBold',
+    fontSize: 15,
+    marginTop: '5%',
     color: lightTextColor
   }
 })

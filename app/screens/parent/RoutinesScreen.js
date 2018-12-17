@@ -1,179 +1,130 @@
 import React from 'react'
-import { Content } from 'native-base'
+import { Content, Spinner } from 'native-base'
 import { SortableList } from '../../components/Parent/SortableList'
 import { PropTypes } from 'prop-types'
+import { SelectChildPicker } from '../../components/Parent/SelectChildPicker'
+import EnvVars from '../../constants/EnviromentVars'
 
 export class RoutinesScreen extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      children: [],
+      selectedChild: 0,
+      routines: [],
+      loading: true
+    }
+
+    this.moveItemUp = this.moveItemUp.bind(this)
+
+    this.props.navigation.addListener(
+      'willFocus',
+      payload => {
+        this.setState({ loading: true }, this.getChildren)
+      }
+    )
+  }
+
+  componentWillMount () {
+    this.getChildren()
+  }
+
+  getChildren () {
+    let url = `${EnvVars.apiUrl}routine_manager/children?userEmail=${this.props.loggedUserEmail}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.setState({ children: JSON.parse(responseJson.response) }, this.fetchChildRoutine)
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  fetchChildRoutine = () => {
+    this.props.setChildID(this.state.children[this.state.selectedChild].id)
+    let url = `${EnvVars.apiUrl}routine_manager/routine?selectedChildID=${this.state.children[this.state.selectedChild].id}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          this.setState({ routines: JSON.parse(responseJson.response), loading: false }, () => {
+            this.props.setRoutines(this.state.routines.map(routine => ({ id: routine.id, title: routine.title, activities: routine.activities })))
+          })
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  moveItemUp = (i) => {
+    if (i === 0) return
+    this.setState({ routines: this.state.routines.map((element, index) => {
+      if (index === i - 1) return this.state.routines[i]
+      else if (index === i) return this.state.routines[i - 1]
+      else return element
+    }) }, () => {
+      let url = `${EnvVars.apiUrl}routine_manager/switch-routine-weight`
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstRoutineID: this.state.routines[i].id,
+          secondRoutineID: this.state.routines[i - 1].id
+        })
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.status === '200') {
+            console.log('trocado')
+          } else {
+            console.log('nao trocado')
+          }
+          return responseJson
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    })
+  }
+
   onRoutinePress = (index) => {
-    this.props.navigation.navigate('RoutineFormScreen', { routine: routines[index] })
+    this.props.navigation.navigate('RoutineFormScreen', { routine: this.state.routines[index] })
+  }
+
+  onChildChanged = child => {
+    this.setState({ selectedChild: child, loading: true }, this.fetchChildRoutine)
   }
 
   render () {
-    return (
-      <Content>
-        <SortableList items={routines} onItemPress={this.onRoutinePress} />
-      </Content>
-    )
+    if (this.state.loading) return (<Content contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}><Spinner /></Content>)
+    else {
+      return (
+        <Content>
+          <SelectChildPicker hideStatus children={this.state.children} selected={this.state.selectedChild} onChildChanged={this.onChildChanged} />
+          <SortableList items={this.state.routines} onItemPress={this.onRoutinePress} moveItemUp={this.moveItemUp} />
+        </Content>
+      )
+    }
   }
 }
 
 RoutinesScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  loggedUserEmail: PropTypes.string.isRequired,
+  setRoutines: PropTypes.func.isRequired,
+  setChildID: PropTypes.func.isRequired
 }
-
-const routines = [
-  {
-    title: 'Após acordar',
-    image: 'sun',
-    color: '#37c1f0',
-    activities: [
-      {
-        title: 'Fazer a cama',
-        image: 'bed',
-        color: '#7d84b2',
-        time: {
-          min: 0,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Lavar os dentes',
-        image: 'toothbrush',
-        color: '#0e79b2',
-        time: {
-          min: 1,
-          max: 15,
-          goal: 10
-        }
-      },
-      {
-        title: 'Vestir',
-        image: 'socks',
-        color: '#7fb800',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Tomar banho',
-        image: 'shower',
-        color: '#37c1f0',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Preparar a mochila',
-        image: 'bag',
-        color: '#e43f6f',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Calçar os sapatos',
-        image: 'sneakers',
-        color: '#4bb3fd',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Tomar o pequeno almoço',
-        image: 'breakfast',
-        color: '#ff7f11',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Pentear cabelo',
-        image: 'comb',
-        color: '#b0db43',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      }
-    ]
-  },
-  {
-    title: 'Antes de dormir',
-    image: 'moon',
-    color: '#011f39',
-    activities: [
-      {
-        title: 'Ajudar na cozinha',
-        image: 'fork',
-        color: '#1a5e63',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Arrumar o quarto',
-        image: 'drawers',
-        color: '#a3320b',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Fazer os trabalhos para casa',
-        image: 'paper',
-        color: '#657153',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Arrumar os brinquedos',
-        image: 'blocks',
-        color: '#519e8a',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Ler um livro',
-        image: 'book',
-        color: '#ff9f1c',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      },
-      {
-        title: 'Preparar a roupa do dia seguinte',
-        image: 'shirt',
-        color: '#ff9f1c',
-        time: {
-          min: 10,
-          max: 120,
-          goal: 60
-        }
-      }
-    ]
-  }
-]

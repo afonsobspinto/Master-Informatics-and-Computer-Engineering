@@ -12,6 +12,17 @@ export default StyleSheet.create({
     alignContent: 'center',
     backgroundColor: backgroundColor
   },
+  childButtonsContainer: {
+    height: '100%',
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: 'red'
+  },
+  childScrollView: {
+    flexGrow: 1,
+    justifyContent: 'center'
+  },
   experienceBarContainer: {
     flex: 0
   },
@@ -29,10 +40,18 @@ export default StyleSheet.create({
     height: '100%',
     width: '100%'
   },
+  infoButton: {
+    right: 20,
+    top: 20,
+    position: 'absolute',
+    height: 30,
+    width: 30
+  },
   childContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: 30
   },
   parentContainer: {
     justifyContent: 'center',

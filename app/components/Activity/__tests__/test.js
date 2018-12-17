@@ -4,7 +4,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 
-import { activities } from '../../../__tests__/mockTestData'
+import { activities } from '../../../constants/mockTestData'
 
 import { CancelButton } from '../CancelButton'
 import { CompleteButton } from '../CompleteButton'
@@ -48,16 +48,20 @@ describe('Activity components', () => {
     wrapper.unmount()
   })
 
-  it('renders ProgressBar correctly 1', () => {
+  it('renders ProgressBar correctly 1', async () => {
     const wrapper = shallow(<ProgressBar
       elapsedTime={100}
       activityTimes={activities[0].time}
       isPaused={false}
       showTimer={false}
       activityFeedback={'sound'}
-      feedbackFrequency={'slow'} />)
+      feedbackFrequency={'slow'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
+    wrapper.setProps({ playSounds: true })
+    wrapper.instance().activityFeedback()
+    await wrapper.instance().playSounds
     wrapper.unmount()
   })
 
@@ -68,7 +72,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'vibration'}
-      feedbackFrequency={'normal'} />)
+      feedbackFrequency={'normal'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -81,7 +86,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'visual'}
-      feedbackFrequency={'fast'} />)
+      feedbackFrequency={'fast'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     jest.useFakeTimers()
     wrapper.instance().activityFeedback()
@@ -95,7 +101,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={''}
-      feedbackFrequency={''} />)
+      feedbackFrequency={''}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().componentWillReceiveProps(wrapper.props)
     wrapper.setProps({ elapsedTime: 1 })
@@ -112,8 +119,11 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'sound'}
-      feedbackFrequency={'slow'} />)
+      feedbackFrequency={'slow'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().activityFeedback()
+    wrapper.setProps({ playSounds: true })
     wrapper.instance().activityFeedback()
     wrapper.unmount()
   })
@@ -125,7 +135,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'vibration'}
-      feedbackFrequency={'normal'} />)
+      feedbackFrequency={'normal'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.instance().activityFeedback()
     wrapper.unmount()
@@ -138,7 +149,8 @@ describe('Activity components', () => {
       isPaused={false}
       showTimer={false}
       activityFeedback={'visual'}
-      feedbackFrequency={'fast'} />)
+      feedbackFrequency={'fast'}
+      playSounds={false} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     jest.useFakeTimers()
     wrapper.instance().activityFeedback()
@@ -153,6 +165,7 @@ describe('Activity components', () => {
       showTimer={false}
       activityFeedback={''}
       feedbackFrequency={''}
+      playSounds={false}
     />)
     wrapper.instance().componentWillReceiveProps(wrapper.props)
     wrapper.setProps({ elapsedTime: 100 })
@@ -170,6 +183,7 @@ describe('Activity components', () => {
       style={{}} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ remainingTime: 0 })
+    wrapper.setProps({ remainingTime: 1 })
     wrapper.setProps({ remainingTime: -10 })
     wrapper.setProps({ remainingTime: 13 })
     wrapper.unmount()

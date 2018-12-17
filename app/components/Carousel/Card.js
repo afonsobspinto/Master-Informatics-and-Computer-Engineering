@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native'
 import PropTypes from 'prop-types'
-import Images from '../../assets/images/images'
+import { getSource } from '../../helpers/GetSource'
 import CardButton from './CardButton'
 
 import { getCardStyle } from '../../styles/CardCarousel.style'
@@ -11,7 +11,7 @@ export default class Card extends React.Component {
     super(props)
 
     this.state = {
-      isPhoto: this.props.item.photo !== undefined,
+      isPhoto: this.props.item.photo !== null,
       hasButton: this.props.onButtonPress !== undefined
     }
   }
@@ -24,15 +24,6 @@ export default class Card extends React.Component {
     this.props.onButtonPress(this.props.item)
   }
 
-  returnURIorImage = () => {
-    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
-    if (this.props.item.photo !== undefined && this.props.item.photo.includes('file://')) {
-      return { uri: this.props.item.photo }
-    } else {
-      return Images[this.state.isPhoto ? this.props.item.photo : this.props.item.image]
-    }
-  }
-
   render () {
     const cardStyle = getCardStyle(this.props.item.color)
     return (
@@ -41,7 +32,7 @@ export default class Card extends React.Component {
           onPress={this.onPress}>
           <View style={cardStyle.card}>
             <Image
-              source={this.returnURIorImage()}
+              source={getSource(this.props.item)}
               resizeMode={this.state.isPhoto ? 'cover' : 'center'}
               style={this.state.isPhoto ? cardStyle.cardPhoto : this.props.isRoutine ? cardStyle.cardRoutineImage : cardStyle.cardActivityImage} />
             <Text style={this.state.isPhoto ? cardStyle.photoCardTitle : cardStyle.cardTitle}> { this.props.item.title } </Text>

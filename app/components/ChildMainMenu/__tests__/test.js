@@ -8,6 +8,8 @@ import { ChildExperienceBar } from '../ChildExperienceBar'
 import { ShopItem } from '../ShopItem'
 import { ShopTitle } from '../ShopTitle'
 import { LevelUpModal } from '../LevelUpModal'
+import { Avatar } from '../Avatar'
+import { avatarItems } from '../../../assets/images/images'
 
 configure({ adapter: new Adapter() })
 
@@ -16,7 +18,8 @@ describe('MainMenu components', () => {
     const wrapper = shallow(<ChildExperienceBar
       progress={0.5}
       level={2}
-      onPress={jest.fn()} />)
+      onPress={jest.fn()}
+      reward={{ name: 'test', photo: undefined }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })
@@ -27,11 +30,15 @@ describe('MainMenu components', () => {
       disabled={false}
       purchased={false}
       purchaseItem={jest.fn()}
-      id={0} />)
+      id={0}
+      equiped={false}
+      toggleItem={jest.fn()}
+      image={avatarItems[0].thumbnail} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ disabled: true })
     wrapper.setProps({ purchased: true })
     wrapper.instance().purchaseItem()
+    wrapper.instance().toggleItem()
     wrapper.unmount()
   })
 
@@ -48,10 +55,22 @@ describe('MainMenu components', () => {
       level={3}
       xp={350}
       isReward={false}
-      onClosed={jest.fn()} />)
+      onClosed={jest.fn()}
+      playSounds={false}
+      reward={{ name: 'test', photo: undefined }} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ isReward: true })
     wrapper.instance().onPress()
+    wrapper.unmount()
+  })
+
+  it('renders Avatar correctly', () => {
+    const wrapper = shallow(<Avatar
+      equiped={[0]}
+      gender={'M'}
+      button={false} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ gender: 'F', button: true })
     wrapper.unmount()
   })
 })

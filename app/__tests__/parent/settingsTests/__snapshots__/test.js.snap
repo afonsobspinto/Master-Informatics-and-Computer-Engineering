@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsScreen snapshot renders SettingsScreen correctly 1`] = `
+<Styled(Content)>
+  <Styled(List)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
+        CRIANÇAS
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Adicionar nova criança
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Remover criança
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
+        DEFINIÇÕES
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Visual de progresso
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Styled(PickerNB)
+          onValueChange={[MockFunction]}
+          selectedValue=""
+          style={
+            Object {
+              "width": 125,
+            }
+          }
+        >
+          <Item
+            label="Relógio"
+            value="clock"
+          />
+          <Item
+            label="Barra horizontal"
+            value="bar"
+          />
+        </Styled(PickerNB)>
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Mostrar tempo restante
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Switch
+          disabled={false}
+          onValueChange={[MockFunction]}
+          value={false}
+        />
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Reproduzir sons
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Switch
+          disabled={false}
+          onValueChange={[MockFunction]}
+          value={false}
+        />
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Modo de reprodução de rotina
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Styled(PickerNB)
+          onValueChange={[MockFunction]}
+          selectedValue=""
+          style={
+            Object {
+              "width": 125,
+            }
+          }
+        >
+          <Item
+            label="Escolha"
+            value="choose"
+          />
+          <Item
+            label="Automático"
+            value="auto"
+          />
+        </Styled(PickerNB)>
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Tipo de feedback
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Styled(PickerNB)
+          onValueChange={[MockFunction]}
+          selectedValue=""
+          style={
+            Object {
+              "width": 125,
+            }
+          }
+        >
+          <Item
+            label="Vibração"
+            value="vibration"
+          />
+          <Item
+            label="Visual"
+            value="visual"
+          />
+          <Item
+            enabled={false}
+            label="Sonoro"
+            value="sound"
+          />
+        </Styled(PickerNB)>
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      icon={true}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Intensidade de feedback
+        </Styled(Text)>
+      </Styled(Body)>
+      <Styled(Right)>
+        <Styled(PickerNB)
+          onValueChange={[MockFunction]}
+          selectedValue=""
+          style={
+            Object {
+              "width": 125,
+            }
+          }
+        >
+          <Item
+            label="Leve"
+            value="slow"
+          />
+          <Item
+            label="Moderado"
+            value="normal"
+          />
+          <Item
+            label="Intenso"
+            value="fast"
+          />
+        </Styled(PickerNB)>
+      </Styled(Right)>
+    </Styled(ListItem)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
+        SOBRE
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Sobre a equipa
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Ver licenças
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+    <Styled(Separator)
+      bordered={true}
+    >
+      <Styled(Text)>
+        CONTA
+      </Styled(Text)>
+    </Styled(Separator)>
+    <Styled(ListItem)
+      button={true}
+      icon={true}
+      onPress={[Function]}
+    >
+      <Styled(Body)>
+        <Styled(Text)>
+          Sair da Aplicação
+        </Styled(Text)>
+      </Styled(Body)>
+    </Styled(ListItem)>
+  </Styled(List)>
+</Styled(Content)>
+`;

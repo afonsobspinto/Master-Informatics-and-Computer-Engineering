@@ -1,20 +1,17 @@
 {
   "expo": {
-    "name": "routine-manager",
-    "description": "A very interesting project.",
-    "slug": "routine-manager",
+    "name": "RoutineGo",
+    "description": "An application to help children diagnosed with spectrum of autism perform daily tasks.",
+    "slug": "routine-go",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["android"],
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "androidStatusBar": {
-      "backgroundColor": "#000000"
-    },
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "androidStatusBarColor": "#000000",

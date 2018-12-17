@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { gray } from './Colors'
 
-export const buttonHeight = Layout.window.height * 0.12
-export const clockHeight = Layout.window.height * 0.24
-const padding = Layout.window.height * 0.03
+export const buttonHeight = Layout.window.width * 0.2
+export const clockHeight = Layout.window.height * 0.4
+const padding = Layout.window.width * 0.05
 
 export const buttonStyle = {
   elevation: 6,

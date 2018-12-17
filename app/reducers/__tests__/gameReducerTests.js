@@ -1,11 +1,10 @@
 import gameReducer from '../gameReducer'
 import { gameTypes } from '../../actions/actionTypes'
-import { routines } from '../../__tests__/mockTestData'
 
 describe('game reducer', () => {
   it('should return initial state', () => {
     expect(gameReducer(undefined, {})).toEqual({
-      routines,
+      routines: [],
       currentActivity: -1,
       currentRoutine: -1
     })
@@ -33,10 +32,10 @@ describe('game reducer', () => {
         routines: [{ title: 'test' }]
       }, {
         type: gameTypes.addRoutines,
-        payload: { title: 'test2' }
+        payload: [{ title: 'test2' }]
       }))
       .toEqual({
-        routines: [{ title: 'test' }, { title: 'test2' }]
+        routines: [{ title: 'test2' }]
       })
   })
 

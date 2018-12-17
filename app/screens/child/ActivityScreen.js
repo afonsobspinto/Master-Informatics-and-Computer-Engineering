@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setActivityStatus, nextActivity } from '../../actions/gameActions'
 import { addStars } from '../../actions/childActions'
 import { Image, Text, View, StatusBar, BackHandler } from 'react-native'
+import EnvVars from '../../constants/EnviromentVars'
 
 import { ProgressBar } from '../../components/Activity/ProgressBar'
 import { ProgressClock } from '../../components/Activity/ProgressClock'
@@ -11,7 +12,7 @@ import { CompleteButton } from '../../components/Activity/CompleteButton'
 import { PauseButton } from '../../components/Activity/PauseButton'
 import { CancelButton } from '../../components/Activity/CancelButton'
 import { RewardsModal } from '../../components/RewardsModal/RewardsModal'
-import Images from '../../assets/images/images'
+import { getSource } from '../../helpers/GetSource'
 
 import styles from '../../styles/Activity.style'
 
@@ -22,7 +23,7 @@ export class ActivityScreen extends Component {
     this.state = {
       elapsedTime: 0,
       progressType: '',
-      isPhoto: this.props.activity.photo !== undefined,
+      isPhoto: this.props.activity.photo !== null,
       updateRate: 100, // ms
       isPaused: false,
       isCompleted: false,
@@ -49,8 +50,61 @@ export class ActivityScreen extends Component {
     })
   }
 
+  addStars () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-stars/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        reward: this.props.activity.status.reward
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  createHistory () {
+    fetch(EnvVars.apiUrl + 'routine_manager/add-history/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.child.id,
+        activityID: this.props.activity.id,
+        rewardGained: this.props.activity.status.reward,
+        elapsedTime: this.state.elapsedTime,
+        timeStamp: Date.now()
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+
+        } else {
+
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   componentDidMount () {
-    BackHandler.addEventListener('hardwareBackPres', this.cancelActivity)
+    BackHandler.addEventListener('hardwareBackPress', this.cancelActivity)
     this.interval = setInterval(this.intervalFunction, this.state.updateRate)
   }
 
@@ -82,9 +136,15 @@ export class ActivityScreen extends Component {
   }
 
   nextActivity () {
+    this.createHistory()
+    this.addStars()
     if (this.props.activity.status) this.props.addStars(this.props.activity.status.reward)
-    this.props.nextActivity()
-    this.props.navigation.replace('Activity')
+    if (this.props.activities.every(activity => activity.status !== undefined)) {
+      this.props.navigation.replace('RoutineBonusScreen')
+    } else {
+      this.props.nextActivity()
+      this.props.navigation.replace('Activity')
+    }
   }
 
   backToMenu () {
@@ -96,15 +156,6 @@ export class ActivityScreen extends Component {
     this.setState(() => ({ isPaused: false }))
   }
 
-  returnURIorImage = () => {
-    // TODO: This checks whether the photo attribute is type URI and should probably just eventually be totally changed to URI.
-    if (this.props.activity.photo !== undefined && this.props.activity.photo.includes('file://')) {
-      return { uri: this.props.activity.photo }
-    } else {
-      return Images[this.state.isPhoto ? this.props.activity.photo : this.props.activity.image]
-    }
-  }
-
   render () {
     return (
       <View style={[{ backgroundColor: this.props.activity.color }, styles.activityScreen]} >
@@ -112,13 +163,13 @@ export class ActivityScreen extends Component {
         <Image
           style={this.state.isPhoto ? styles.photo : styles.image}
           resizeMode={this.state.isPhoto ? 'cover' : 'center'}
-          source={this.returnURIorImage()} />
+          source={getSource(this.props.activity)} />
         <View style={styles.titleContainer}>
           <Text style={this.state.isPhoto ? styles.photoTitle : styles.title}>{this.props.activity.title}</Text>
         </View>
-        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+        {this.props.progressType === 'clock' && !this.state.isCompleted && <ProgressClock showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
         {!this.state.isCompleted && <View style={styles.buttonContainer}>
-          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
+          {this.props.progressType === 'bar' && <ProgressBar showTimer={this.props.showTimer} activityFeedback={this.props.activityFeedback} playSounds={this.props.playSounds} feedbackFrequency={this.props.feedbackFrequency} elapsedTime={this.state.elapsedTime} activityTimes={this.props.activity.time} isPaused={this.state.isPaused} />}
           <CancelButton cancelActivity={this.cancelActivity} />
           <PauseButton pauseActivity={this.pauseActivity} resumeActivity={this.resumeActivity} isPaused={this.state.isPaused} />
           <CompleteButton isCompletable={this.state.isCompletable} completeActivity={this.completeActivity} />
@@ -126,10 +177,11 @@ export class ActivityScreen extends Component {
         <RewardsModal
           currentActivity={this.props.currentActivity}
           activities={this.props.activities}
-          level={this.props.level}
-          xp={this.props.xp}
+          level={this.props.child.level}
+          xp={this.props.child.xp}
           nextPress={this.nextActivity}
-          backPress={this.backToMenu} />
+          backPress={this.backToMenu}
+          playSounds={this.props.playSounds} />
       </View>
     )
   }
@@ -141,12 +193,14 @@ export default connect(
     progressType: state.settings.activityProgressType,
     showTimer: state.settings.activityShowTimer,
     activityFeedback: state.settings.activityFeedback,
+    playSounds: state.settings.playSounds,
     feedbackFrequency: state.settings.feedbackFrequency,
     activity: state.game.routines[state.game.currentRoutine].activities[state.game.currentActivity],
     activities: state.game.routines[state.game.currentRoutine].activities,
+    routine: state.game.routines[state.game.currentRoutine],
     currentActivity: state.game.currentActivity,
-    xp: state.child.xp,
-    level: state.child.level
+    loggedUserEmail: state.user.email,
+    child: state.child
   }),
   /* istanbul ignore next */
   dispatch => ({
@@ -161,6 +215,7 @@ ActivityScreen.propTypes = {
   progressType: PropTypes.string.isRequired,
   showTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired,
   feedbackFrequency: PropTypes.string.isRequired,
   currentActivity: PropTypes.number.isRequired,
   activities: PropTypes.array.isRequired,
@@ -168,6 +223,5 @@ ActivityScreen.propTypes = {
   setActivityStatus: PropTypes.func.isRequired,
   nextActivity: PropTypes.func.isRequired,
   addStars: PropTypes.func.isRequired,
-  xp: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired
+  child: PropTypes.object.isRequired
 }

@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MainMenu components renders Avatar correctly 1`] = `
+<Component
+  style={
+    Object {
+      "height": "100%",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    key="0"
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "aspectRatio": 1,
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+  <Image
+    key="1"
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "aspectRatio": 1,
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+</Component>
+`;
+
 exports[`MainMenu components renders ChildExperienceBar correctly 1`] = `
 <Component
   style={
@@ -93,36 +132,6 @@ exports[`MainMenu components renders ChildExperienceBar correctly 1`] = `
       }
     />
   </Component>
-  <Component
-    style={
-      Object {
-        "backgroundColor": "white",
-        "borderRadius": 80.03999999999999,
-        "bottom": 26.68,
-        "elevation": 7,
-        "height": 160.07999999999998,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 80.03999999999999,
-        "width": 160.07999999999998,
-      }
-    }
-  >
-    <TouchableWithoutFeedback
-      onPress={[MockFunction]}
-    >
-      <Image
-        resizeMode="cover"
-        source={1}
-        style={
-          Object {
-            "height": 160.07999999999998,
-            "width": 160.07999999999998,
-          }
-        }
-      />
-    </TouchableWithoutFeedback>
-  </Component>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -191,15 +200,15 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#bbecec",
-          "borderRadius": 50.025000000000006,
+          "borderRadius": 45,
           "elevation": 12,
           "flexDirection": "row",
-          "height": 100.05000000000001,
+          "height": 90,
           "justifyContent": "center",
-          "left": 266.8,
-          "paddingHorizontal": 50.025000000000006,
+          "left": 240,
+          "paddingHorizontal": 45,
           "position": "absolute",
-          "top": 83.375,
+          "top": 75,
         }
       }
     >
@@ -211,7 +220,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
           Object {
             "color": "#061111",
             "fontFamily": "LinotteBold",
-            "fontSize": 66.7,
+            "fontSize": 60,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 2,
@@ -228,8 +237,8 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         source={1}
         style={
           Object {
-            "height": 60.03,
-            "width": 60.03,
+            "height": 54,
+            "width": 54,
           }
         }
       />
@@ -241,7 +250,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
           Object {
             "color": "#061111",
             "fontFamily": "LinotteBold",
-            "fontSize": 66.7,
+            "fontSize": 60,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 2,
@@ -259,11 +268,11 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#3db3e2",
-          "borderRadius": 33.35,
+          "borderRadius": 30,
           "elevation": 6,
           "flexGrow": 1,
-          "marginHorizontal": 200.10000000000002,
-          "marginVertical": 133.4,
+          "marginHorizontal": 180,
+          "marginVertical": 120,
           "overflow": "hidden",
           "position": "relative",
         }
@@ -271,7 +280,11 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
     >
       <Image
         resizeMode="cover"
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "100%",
@@ -299,7 +312,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
               "color": "#fff",
               "flex": 1,
               "fontFamily": "LinotteBold",
-              "fontSize": 66.7,
+              "fontSize": 60,
               "padding": 40.019999999999996,
               "textShadowColor": "rgba(0, 0, 0, 0.6)",
               "textShadowOffset": Object {
@@ -310,7 +323,7 @@ exports[`MainMenu components renders LevelUpModal correctly 1`] = `
             }
           }
         >
-          Dia na piscina
+          test
         </Text>
       </Component>
     </Component>
@@ -323,7 +336,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
   style={
     Object {
       "aspectRatio": 1,
-      "padding": 18.75,
+      "padding": 22.5,
       "width": "33.3333%",
     }
   }
@@ -336,13 +349,15 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#bbecec",
-        "borderRadius": 18.75,
+        "borderColor": "#bbecec",
+        "borderRadius": 22.5,
+        "borderWidth": 3,
         "elevation": 6,
         "height": "100%",
         "justifyContent": "center",
-        "paddingBottom": 56.25,
-        "paddingHorizontal": 9.375,
-        "paddingTop": 9.375,
+        "paddingBottom": 67.5,
+        "paddingHorizontal": 11.25,
+        "paddingTop": 11.25,
         "width": "100%",
       }
     }
@@ -365,7 +380,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "bottom": 9.375,
+            "bottom": 11.25,
             "flexDirection": "row",
             "justifyContent": "center",
             "position": "absolute",
@@ -379,9 +394,9 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
         source={1}
         style={
           Object {
-            "height": 37.5,
-            "marginRight": 9.375,
-            "width": 37.5,
+            "height": 45,
+            "marginRight": 11.25,
+            "width": 45,
           }
         }
       />
@@ -393,7 +408,7 @@ exports[`MainMenu components renders ShopItem correctly 1`] = `
           Object {
             "color": "#000",
             "fontFamily": "LinotteBold",
-            "fontSize": 30,
+            "fontSize": 27,
             "textShadowColor": "rgba(0, 0, 0, 0.2)",
             "textShadowOffset": Object {
               "height": 1,
@@ -416,10 +431,10 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
     Object {
       "alignItems": "center",
       "flexDirection": "row",
-      "height": 75,
+      "height": 90,
       "justifyContent": "space-between",
-      "marginBottom": 18.75,
-      "paddingHorizontal": 18.75,
+      "marginBottom": 22.5,
+      "paddingHorizontal": 22.5,
       "width": "100%",
     }
   }
@@ -432,7 +447,7 @@ exports[`MainMenu components renders ShopTitle correctly 1`] = `
       Object {
         "color": "#fff",
         "fontFamily": "LinotteBold",
-        "fontSize": 56.25,
+        "fontSize": 67.5,
         "textShadowColor": "rgba(0, 0, 0, 0.2)",
         "textShadowOffset": Object {
           "height": 1,

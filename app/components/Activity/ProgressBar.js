@@ -57,6 +57,7 @@ export class ProgressBar extends React.Component {
 
   playSound = async () => {
     const soundObject = new Audio.Sound()
+    /* istanbul ignore next */
     try {
       await soundObject.loadAsync(require('../../assets/sounds/alarmclockbeeps.mp3'))
       this.audioPlayer1 = soundObject
@@ -103,7 +104,7 @@ export class ProgressBar extends React.Component {
   activityFeedback () {
     if (this.props.activityFeedback === 'visual') {
       this.borderFeedback()
-    } else if (this.props.activityFeedback === 'sound') {
+    } else if (this.props.activityFeedback === 'sound' && this.props.playSounds) {
       this.playSound()
     } else if (this.props.activityFeedback === 'vibration') {
       try {
@@ -163,5 +164,6 @@ ProgressBar.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   showTimer: PropTypes.bool.isRequired,
   activityFeedback: PropTypes.string.isRequired,
-  feedbackFrequency: PropTypes.string.isRequired
+  feedbackFrequency: PropTypes.string.isRequired,
+  playSounds: PropTypes.bool.isRequired
 }

@@ -1,10 +1,212 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RewardsModal components renders BonusModal correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "height": "100%",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "elevation": 7,
+        "flexDirection": "row",
+        "height": 313.5,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 103.5,
+            "height": 150,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 150,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+        ]
+      }
+    />
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 103.5,
+            "height": 150,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 150,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+          Object {
+            "height": 180,
+            "width": 180,
+          },
+        ]
+      }
+    />
+    <Image
+      resizeMode="center"
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 103.5,
+            "height": 150,
+            "marginHorizontal": 5,
+            "opacity": 0,
+            "width": 150,
+          },
+          Object {
+            "opacity": 1,
+            "tintColor": "#ccc5b9",
+          },
+        ]
+      }
+    />
+  </Component>
+  <RewardModalStars
+    activities={
+      Array [
+        Object {
+          "status": 3,
+        },
+      ]
+    }
+    currentActivity={0}
+    increaseProgress={[Function]}
+  />
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#3db3e2",
+        "borderRadius": 30,
+        "elevation": 6,
+        "flexGrow": 1,
+        "marginHorizontal": 180,
+        "marginVertical": 120,
+        "position": "relative",
+      }
+    }
+  >
+    <withAnimatable(Text)
+      animation="fadeOut"
+      delay={2400}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
+      style={
+        Object {
+          "color": "#fff",
+          "fontFamily": "LinotteBold",
+          "fontSize": 60,
+          "marginHorizontal": 30,
+          "position": "absolute",
+          "textAlign": "center",
+          "textShadowColor": "rgba(0, 0, 0, 0.2)",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "textShadowRadius": 3,
+          "top": 156,
+        }
+      }
+      useNativeDriver={false}
+    >
+      Rotina Completa
+    </withAnimatable(Text)>
+    <RewardModalExperienceBar
+      progress={-1}
+    />
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "bottom": 0,
+          "elevation": 7,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "padding": 60,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={[MockFunction]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "aspectRatio": 1,
+              "borderRadius": 75,
+              "elevation": 7,
+              "flexDirection": "row",
+              "height": 150,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "#a4e76f",
+            },
+          ]
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={1}
+          style={
+            Object {
+              "height": "50%",
+              "tintColor": "#fff",
+              "width": "50%",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </Component>
+    <RewardSound
+      playSounds={true}
+      success={true}
+    />
+  </Component>
+</Component>
+`;
+
 exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
 <Component
   style={
     Object {
-      "bottom": 133.4,
+      "bottom": 120,
       "position": "absolute",
     }
   }
@@ -13,7 +215,7 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     style={
       Object {
         "flexDirection": "row",
-        "marginTop": 66.7,
+        "marginTop": 60,
       }
     }
   >
@@ -23,47 +225,39 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
-    >
-      <Image
-        recizeMode="cover"
-        source={1}
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 0.3,
-            "width": "100%",
-          }
-        }
-      />
-    </Component>
+    />
     <Component
       key="1"
       style={
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -79,19 +273,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -107,19 +305,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -135,19 +337,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -163,19 +369,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -191,19 +401,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -219,19 +433,23 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ccc5b9",
-          "borderRadius": 40.019999999999996,
+          "borderRadius": 37.5,
           "elevation": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "justifyContent": "center",
           "marginHorizontal": 5,
           "overflow": "hidden",
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     >
       <Image
-        recizeMode="cover"
-        source={1}
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "height": "60%",
@@ -246,28 +464,64 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
     style={
       Object {
         "flexDirection": "row",
-        "marginTop": 66.7,
+        "marginTop": 60,
         "position": "absolute",
       }
     }
   >
-    <Component
+    <withAnimatable(Component)
+      animation="zoomIn"
+      delay={600}
+      direction="normal"
+      iterationCount={1}
+      iterationDelay={0}
       key="0"
+      onAnimationBegin={[Function]}
+      onAnimationEnd={[Function]}
+      onTransitionBegin={[Function]}
+      onTransitionEnd={[Function]}
       style={
-        Object {
-          "height": 80.03999999999999,
-          "marginHorizontal": 5,
-          "width": 80.03999999999999,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 37.5,
+            "elevation": 2,
+            "height": 75,
+            "justifyContent": "center",
+            "marginHorizontal": 5,
+            "opacity": 1,
+            "overflow": "hidden",
+            "width": 75,
+          },
+          Object {
+            "backgroundColor": "#7d84b2",
+          },
+        ]
       }
-    />
+      useNativeDriver={false}
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": "bedroom",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </withAnimatable(Component)>
     <Component
       key="1"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -275,9 +529,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="2"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -285,9 +539,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="3"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -295,9 +549,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="4"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -305,9 +559,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="5"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -315,9 +569,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="6"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -325,9 +579,9 @@ exports[`RewardsModal components renders PastActivityIcons correctly 1`] = `
       key="7"
       style={
         Object {
-          "height": 80.03999999999999,
+          "height": 75,
           "marginHorizontal": 5,
-          "width": 80.03999999999999,
+          "width": 75,
         }
       }
     />
@@ -350,13 +604,13 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
     Array [
       Object {
         "backgroundColor": "gray",
-        "borderRadius": 40.019999999999996,
+        "borderRadius": 37.5,
         "elevation": 6,
-        "height": 80.03999999999999,
+        "height": 75,
         "overflow": "hidden",
         "position": "absolute",
-        "top": 166.75,
-        "width": 720.3199999999999,
+        "top": 150,
+        "width": 680,
       },
     ]
   }
@@ -373,7 +627,7 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
     borderRadius={0}
     borderWidth={0}
     color="#a4e76f"
-    height={80.03999999999999}
+    height={75}
     indeterminate={false}
     progress={0.5}
     useNativeDriver={false}
@@ -388,7 +642,7 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -404,7 +658,7 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -420,7 +674,7 @@ exports[`RewardsModal components renders RewardModalExperienceBar correctly 1`] 
         Object {
           "borderRightColor": "#000",
           "borderRightWidth": 2,
-          "height": 80.03999999999999,
+          "height": 75,
           "opacity": 0.5,
           "position": "absolute",
         },
@@ -437,7 +691,7 @@ exports[`RewardsModal components renders RewardModalStars correctly 1`] = `
       "alignItems": "flex-end",
       "elevation": 7,
       "flexDirection": "row",
-      "height": 346.84,
+      "height": 313.5,
       "justifyContent": "center",
       "overflow": "hidden",
       "position": "absolute",
@@ -459,11 +713,11 @@ exports[`RewardsModal components renders RewardModalStars correctly 1`] = `
     source={1}
     style={
       Object {
-        "bottom": 113.39,
-        "height": 166.75,
+        "bottom": 103.5,
+        "height": 150,
         "marginHorizontal": 5,
         "opacity": 0,
-        "width": 166.75,
+        "width": 150,
       }
     }
     useNativeDriver={false}
@@ -482,15 +736,15 @@ exports[`RewardsModal components renders RewardModalStars correctly 1`] = `
     style={
       Array [
         Object {
-          "bottom": 113.39,
-          "height": 166.75,
+          "bottom": 103.5,
+          "height": 150,
           "marginHorizontal": 5,
           "opacity": 0,
-          "width": 166.75,
+          "width": 150,
         },
         Object {
-          "height": 200.10000000000002,
-          "width": 200.10000000000002,
+          "height": 180,
+          "width": 180,
         },
       ]
     }
@@ -509,17 +763,21 @@ exports[`RewardsModal components renders RewardModalStars correctly 1`] = `
     source={1}
     style={
       Object {
-        "bottom": 113.39,
-        "height": 166.75,
+        "bottom": 103.5,
+        "height": 150,
         "marginHorizontal": 5,
         "opacity": 0,
-        "width": 166.75,
+        "width": 150,
       }
     }
     useNativeDriver={false}
   />
 </Component>
 `;
+
+exports[`RewardsModal components renders RewardSound correctly 1 1`] = `""`;
+
+exports[`RewardsModal components renders RewardSound correctly 2 1`] = `""`;
 
 exports[`RewardsModal components renders RewardsModal correctly 1`] = `
 <ModalBox
@@ -532,14 +790,16 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
   backdropPressToClose={false}
   coverScreen={false}
   easing={[Function]}
-  isOpen={false}
+  isOpen={true}
   keyboardTopOffset={22}
   position="center"
   startOpen={false}
   style={
     Object {
       "backgroundColor": "transparent",
+      "height": "100%",
       "position": "relative",
+      "width": "100%",
     }
   }
   swipeThreshold={50}
@@ -551,7 +811,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
         "alignItems": "flex-end",
         "elevation": 7,
         "flexDirection": "row",
-        "height": 346.84,
+        "height": 313.5,
         "justifyContent": "center",
         "overflow": "hidden",
         "position": "absolute",
@@ -566,11 +826,11 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       style={
         Array [
           Object {
-            "bottom": 113.39,
-            "height": 166.75,
+            "bottom": 103.5,
+            "height": 150,
             "marginHorizontal": 5,
             "opacity": 0,
-            "width": 166.75,
+            "width": 150,
           },
           Object {
             "opacity": 1,
@@ -585,19 +845,19 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       style={
         Array [
           Object {
-            "bottom": 113.39,
-            "height": 166.75,
+            "bottom": 103.5,
+            "height": 150,
             "marginHorizontal": 5,
             "opacity": 0,
-            "width": 166.75,
+            "width": 150,
           },
           Object {
             "opacity": 1,
             "tintColor": "#ccc5b9",
           },
           Object {
-            "height": 200.10000000000002,
-            "width": 200.10000000000002,
+            "height": 180,
+            "width": 180,
           },
         ]
       }
@@ -608,11 +868,11 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       style={
         Array [
           Object {
-            "bottom": 113.39,
-            "height": 166.75,
+            "bottom": 103.5,
+            "height": 150,
             "marginHorizontal": 5,
             "opacity": 0,
-            "width": 166.75,
+            "width": 150,
           },
           Object {
             "opacity": 1,
@@ -629,6 +889,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
           "color": "#7d84b2",
           "image": "bed",
           "photo": "bedroom",
+          "status": Object {
+            "reward": 1,
+          },
           "time": Object {
             "goal": 60,
             "max": 120,
@@ -716,11 +979,11 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#3db3e2",
-        "borderRadius": 33.35,
+        "borderRadius": 30,
         "elevation": 6,
         "flexGrow": 1,
-        "marginHorizontal": 200.10000000000002,
-        "marginVertical": 133.4,
+        "marginHorizontal": 180,
+        "marginVertical": 120,
         "position": "relative",
       }
     }
@@ -739,7 +1002,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
         Object {
           "color": "#fff",
           "fontFamily": "LinotteBold",
-          "fontSize": 40,
+          "fontSize": 60,
           "marginHorizontal": 30,
           "position": "absolute",
           "textAlign": "center",
@@ -749,11 +1012,13 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
             "width": 0,
           },
           "textShadowRadius": 3,
-          "top": 173.42000000000002,
+          "top": 156,
         }
       }
       useNativeDriver={false}
-    />
+    >
+      Atividade completada!
+    </withAnimatable(Text)>
     <RewardModalExperienceBar
       progress={0.3}
     />
@@ -764,6 +1029,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
             "color": "#7d84b2",
             "image": "bed",
             "photo": "bedroom",
+            "status": Object {
+              "reward": 1,
+            },
             "time": Object {
               "goal": 60,
               "max": 120,
@@ -850,7 +1118,7 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "bottom": 53.360000000000014,
+        "bottom": 45,
         "elevation": 7,
         "flexDirection": "row",
         "justifyContent": "center",
@@ -867,15 +1135,15 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
           Object {
             "alignItems": "center",
             "aspectRatio": 1,
-            "borderRadius": 80.03999999999999,
+            "borderRadius": 75,
             "elevation": 7,
             "flexDirection": "row",
-            "height": 160.07999999999998,
+            "height": 150,
             "justifyContent": "center",
           },
           Object {
             "backgroundColor": "#FFA23D",
-            "marginRight": 200.10000000000002,
+            "marginRight": 180,
           },
         ]
       }
@@ -900,10 +1168,10 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
           Object {
             "alignItems": "center",
             "aspectRatio": 1,
-            "borderRadius": 80.03999999999999,
+            "borderRadius": 75,
             "elevation": 7,
             "flexDirection": "row",
-            "height": 160.07999999999998,
+            "height": 150,
             "justifyContent": "center",
           },
           Object {
@@ -925,5 +1193,9 @@ exports[`RewardsModal components renders RewardsModal correctly 1`] = `
       />
     </TouchableOpacity>
   </Component>
+  <RewardSound
+    playSounds={false}
+    success={true}
+  />
 </ModalBox>
 `;

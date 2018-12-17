@@ -4,11 +4,13 @@ import { AppLoading, Font } from 'expo'
 
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
-import { setSettings } from './actions/settingsActions'
+import { login } from './actions/userActions'
 
 import { _retrieveJson } from './helpers/LocalStore'
 
 import AppNavigator from './navigation/AppNavigator'
+import AutenticationNavigator from './navigation/AutenticationNavigator'
+import { Root } from 'native-base'
 
 const store = configureStore()
 
@@ -28,9 +30,11 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <Provider store={store}>
-          <AppNavigator />
-        </Provider>
+        <Root>
+          <Provider store={store}>
+            {store.getState().user.email ? <AppNavigator /> : <AutenticationNavigator />}
+          </Provider>
+        </Root>
       )
     }
   }
@@ -42,9 +46,17 @@ export default class App extends React.Component {
         'Roboto': require('native-base/Fonts/Roboto.ttf'),
         'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
       }),
-      _retrieveJson('settings')
-        .then(res => store.dispatch(setSettings(res)))
-        .catch(console.log('No default settings stored'))
+      new Promise(resolve => {
+        _retrieveJson('login')
+          .then(res => {
+            store.dispatch(login(res.email))
+            resolve()
+          })
+          .catch(() => {
+            console.log('No default login stored')
+            resolve()
+          })
+      })
     ])
   }
 

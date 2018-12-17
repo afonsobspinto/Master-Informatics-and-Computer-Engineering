@@ -3,8 +3,6 @@ import { View, StyleSheet, Text, Image, TouchableWithoutFeedback } from 'react-n
 import PropTypes from 'prop-types'
 
 import * as Progress from 'react-native-progress'
-
-import Images from '../../assets/images/images'
 import Layout from '../../constants/Layout'
 import { accentColor } from '../../styles/Colors'
 
@@ -27,11 +25,11 @@ export class ChildExperienceBar extends React.Component {
           <View style={[{ left: '50%' }, styles.progressBarDivider]} />
           <View style={[{ left: '75%' }, styles.progressBarDivider]} />
         </View>
-        <View style={styles.experienceBarCircle}>
+        {this.props.photo !== undefined && <View style={styles.experienceBarCircle}>
           <TouchableWithoutFeedback onPress={this.props.onPress}>
-            <Image style={styles.rewardImage} source={Images.pool} resizeMode={'cover'} />
+            <Image style={styles.rewardImage} source={{ uri: this.props.photo }} resizeMode={'cover'} />
           </TouchableWithoutFeedback>
-        </View>
+        </View>}
         <Text style={styles.levelText}>Nível {this.props.level}</Text>
       </View>
     )
@@ -41,7 +39,8 @@ export class ChildExperienceBar extends React.Component {
 ChildExperienceBar.propTypes = {
   progress: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  photo: PropTypes.string
 }
 
 const styles = StyleSheet.create({

@@ -12,64 +12,18 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
     }
   }
 >
-  <Component
-    style={
+  <ScrollViewMock
+    contentContainerStyle={
       Object {
-        "alignItems": "center",
         "flexGrow": 1,
         "justifyContent": "center",
       }
     }
   >
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "borderRadius": 225,
-          "elevation": 10,
-          "height": 450,
-          "justifyContent": "center",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": 450,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-        source={1}
-        style={
-          Object {
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      />
-    </TouchableOpacity>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#ffffff",
-          "fontFamily": "LinotteBold",
-          "fontSize": 30,
-          "marginTop": 15,
-          "textShadowColor": "rgba(0, 0, 0, 0.2)",
-          "textShadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "textShadowRadius": 3,
-        }
-      }
-    >
-      Miguel
-    </Text>
-  </Component>
+    <Styled(Spinner)
+      color="#FFA23D"
+    />
+  </ScrollViewMock>
   <Component
     style={
       Object {
@@ -118,5 +72,29 @@ exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
       </Text>
     </TouchableOpacity>
   </Component>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 30,
+        "position": "absolute",
+        "right": 20,
+        "top": 20,
+        "width": 30,
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </TouchableOpacity>
 </Component>
 `;

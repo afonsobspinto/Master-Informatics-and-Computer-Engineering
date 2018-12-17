@@ -5,7 +5,8 @@ export const settingTypes = {
   toggleActivityTimer: 'settings:toggleActivityTimer',
   toggleActivityFeedback: 'settings:toggleActivityFeedback',
   changeFeedbackFrequency: 'settings:changeFeedbackFrequency',
-  toggleRoutinePlayType: 'settings:toggleRoutinePlayType'
+  toggleRoutinePlayType: 'settings:toggleRoutinePlayType',
+  togglePlaySounds: 'settings:togglePlaySounds'
 }
 
 export const gameTypes = {
@@ -18,7 +19,15 @@ export const gameTypes = {
 }
 
 export const childTypes = {
+  addChild: 'child:addChild',
   addStars: 'child:addStars',
   purchaseItem: 'child:purchaseItem',
+  toggleItem: 'child:toggleItem',
   toggleLevelUpModal: 'child:toggleLevelUpModal'
+}
+
+export const userTypes = {
+  login: 'user:login',
+  logout: 'user:logout',
+  setRoutines: 'user:setRoutines'
 }

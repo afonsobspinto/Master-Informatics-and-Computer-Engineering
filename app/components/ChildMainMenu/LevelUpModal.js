@@ -25,9 +25,9 @@ export class LevelUpModal extends React.Component {
             {!this.props.isReward && <Text style={styles.levelUpCardTitle}> para</Text>}
           </View>
           <View style={styles.levelUpCard}>
-            <Image style={styles.levelUpRewardImage} source={Images.pool} resizeMode={'cover'} />
+            <Image style={styles.levelUpRewardImage} source={{ uri: this.props.reward.photo }} resizeMode={'cover'} />
             <View style={styles.levelUpCardBottomContainer}>
-              <Text style={styles.levelUpText}>Dia na piscina</Text>
+              <Text style={styles.levelUpText}>{this.props.reward.name}</Text>
               {this.props.isReward && <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.levelUpButton}
@@ -40,7 +40,7 @@ export class LevelUpModal extends React.Component {
             </View>
           </View>
         </Modal>
-        {this.props.isReward && <RewardSound success />}
+        {this.props.isReward && <RewardSound success playSounds={this.props.playSounds} />}
       </View>
     )
   }
@@ -51,5 +51,7 @@ LevelUpModal.propTypes = {
   level: PropTypes.number.isRequired,
   xp: PropTypes.number.isRequired,
   isReward: PropTypes.bool.isRequired,
-  onClosed: PropTypes.func.isRequired
+  onClosed: PropTypes.func.isRequired,
+  playSounds: PropTypes.bool.isRequired,
+  reward: PropTypes.object.isRequired
 }
