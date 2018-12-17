@@ -6,10 +6,10 @@ import Adapter from 'enzyme-adapter-react-16'
 import '../../../__mock__/xhr-mock'
 
 import { ActivityScreen } from '../../../screens/parent/ActivityScreen'
-import { SelectChildPicker } from '../../../components/Parent/SelectChildPicker'
-import { InvalidateList } from '../../../components/Parent/InvalidateList'
+// import { SelectChildPicker } from '../../../components/Parent/SelectChildPicker'
+// import { InvalidateList } from '../../../components/Parent/InvalidateList'
 
-import { activitiesDone } from '../../../constants/mockTestData'
+// import { activitiesDone } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
 
