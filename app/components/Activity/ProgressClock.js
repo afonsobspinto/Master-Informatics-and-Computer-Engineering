@@ -35,6 +35,7 @@ export class ProgressClock extends React.Component {
 
   playSound = async () => {
     const soundObject = new Audio.Sound()
+    /* istanbul ignore next */
     try {
       await soundObject.loadAsync(require('../../assets/sounds/alarmclockbeeps.mp3'))
       this.audioPlayer1 = soundObject

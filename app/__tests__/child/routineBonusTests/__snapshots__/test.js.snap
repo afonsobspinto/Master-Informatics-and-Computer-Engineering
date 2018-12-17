@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoutineBonusScreen snapshot renders RoutineBonusScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#FFA23D",
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "height": "100%",
+        "position": "absolute",
+        "width": "50%",
+      }
+    }
+  >
+    <ConfettiView
+      confettiCount={20}
+      size={2}
+      timeout={30}
+      untilStopped={false}
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "height": "100%",
+        "left": "50%",
+        "position": "absolute",
+        "width": "50%",
+      }
+    }
+  >
+    <ConfettiView
+      confettiCount={20}
+      size={2}
+      timeout={30}
+      untilStopped={false}
+    />
+  </Component>
+  <BonusModal
+    level={1}
+    nextPress={[Function]}
+    playSounds={true}
+    xp={0}
+  />
+</Component>
+`;

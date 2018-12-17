@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slide components renders DurationModal correctly 1`] = `
+<Component
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+      }
+    }
+  >
+    Escolha a duração da atividade
+  </Text>
+  <Component
+    style={
+      Array [
+        Object {
+          "alignSelf": "center",
+        },
+        Object {
+          "justifyContent": "flex-end",
+        },
+      ]
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[MockFunction]}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        EXIT
+      </Text>
+    </TouchableOpacity>
+  </Component>
+</Component>
+`;

@@ -3,6 +3,7 @@ import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
 import { TouchableOpacity } from 'react-native'
+import '../../../__mock__/xhr-mock'
 
 import { ChildMainMenuScreen } from '../../../screens/child/ChildMainMenuScreen'
 

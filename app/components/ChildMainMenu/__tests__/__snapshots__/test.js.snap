@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MainMenu components renders Avatar correctly 1`] = `
+<Component
+  style={
+    Object {
+      "height": "100%",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    key="0"
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "aspectRatio": 1,
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+  <Image
+    key="1"
+    resizeMode="cover"
+    source={1}
+    style={
+      Object {
+        "aspectRatio": 1,
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+</Component>
+`;
+
 exports[`MainMenu components renders ChildExperienceBar correctly 1`] = `
 <Component
   style={

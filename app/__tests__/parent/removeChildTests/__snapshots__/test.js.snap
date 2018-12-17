@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveChildScreen snapshot renders RemoveChildScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)>
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Remover Criança
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)>
+    <Styled(List)
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Styled(Spinner)
+        color="#FFA23D"
+      />
+    </Styled(List)>
+  </Styled(Content)>
+</Styled(Container)>
+`;

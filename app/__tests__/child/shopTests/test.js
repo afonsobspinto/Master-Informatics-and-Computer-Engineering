@@ -1,9 +1,9 @@
-// Commented while shop uses random values
 import 'react-native'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Adapter from 'enzyme-adapter-react-16'
+import '../../../__mock__/xhr-mock'
 
 import { ShopScreen } from '../../../screens/child/ShopScreen'
 

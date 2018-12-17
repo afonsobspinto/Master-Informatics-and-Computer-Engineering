@@ -8,6 +8,8 @@ import { PastActivityIcons } from '../PastActivityIcons'
 import { RewardsModal } from '../RewardsModal'
 import { RewardModalExperienceBar } from '../RewardModalExperienceBar'
 import { RewardModalStars } from '../RewardModalStars'
+import { BonusModal } from '../BonusModal'
+import { RewardSound } from '../RewardSound'
 import { activities, activitiesWithStatus } from '../../../constants/mockTestData'
 
 configure({ adapter: new Adapter() })
@@ -50,6 +52,37 @@ describe('RewardsModal components', () => {
       activities={activities}
       increaseProgress={jest.fn()} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
+  })
+
+  it('renders BonusModal correctly', () => {
+    jest.useFakeTimers()
+    const wrapper = shallow(<BonusModal
+      xp={0}
+      level={1}
+      nextPress={jest.fn()}
+      playSounds />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().increaseProgress()
+    wrapper.unmount()
+  })
+
+  it('renders RewardSound correctly 1', () => {
+    jest.useFakeTimers()
+    const wrapper = shallow(<RewardSound
+      success={false}
+      playSounds={false} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.unmount()
+  })
+
+  it('renders RewardSound correctly 2', () => {
+    jest.useFakeTimers()
+    const wrapper = shallow(<RewardSound
+      success
+      playSounds />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper.instance().playSound()
     wrapper.unmount()
   })
 })

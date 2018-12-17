@@ -86,6 +86,7 @@ export class ShopScreen extends Component {
 }
 
 export default connect(
+  /* istanbul ignore next */
   state => ({
     stars: state.child.stars,
     itemsOwned: state.child.itemsOwned,
@@ -93,6 +94,7 @@ export default connect(
     gender: state.child.gender,
     id: state.child.id
   }),
+  /* istanbul ignore next */
   dispatch => ({
     purchaseItem: (cost, id) => dispatch(purchaseItem(cost, id)),
     toggleItem: id => dispatch(toggleItem(id))

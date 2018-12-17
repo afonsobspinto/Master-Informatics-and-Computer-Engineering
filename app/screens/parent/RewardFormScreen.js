@@ -21,7 +21,6 @@ export default class RewardFormScreen extends Component {
   async uploadImageAsync (uri) {
     let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
     let formData = new FormData()
-    console.log(this.state.fileType)
     formData.append('photo', {
       uri,
       name: `${this.state.imageHash}.${this.state.fileType}`,

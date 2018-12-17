@@ -155,6 +155,7 @@ exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        className="login"
         ellipsizeMode="tail"
         onPress={[Function]}
         style={

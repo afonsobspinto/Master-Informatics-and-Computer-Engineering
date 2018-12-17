@@ -12,7 +12,7 @@ import { BottomButton } from '../../components/Parent/BottomButton'
 import { availableColors } from '../../styles/Colors'
 import { connect } from 'react-redux'
 
-class ActivityFormScreen extends Component {
+export class ActivityFormScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -216,9 +216,11 @@ class ActivityFormScreen extends Component {
         }
         return responseJson
       })
-      .catch((error) => {
-        console.error(error)
-      })
+      .catch(
+        /* istanbul ignore next */
+        (error) => {
+          console.error(error)
+        })
   }
 
   render () {
@@ -226,7 +228,7 @@ class ActivityFormScreen extends Component {
       <Container>
         <Header style={{ backgroundColor: this.state.color }} androidStatusBarColor={this.state.color}>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.pop()}>
+            <Button className='back' transparent onPress={() => this.props.navigation.pop()}>
               <Icon name='arrow-back' />
             </Button>
           </Left>
@@ -234,7 +236,7 @@ class ActivityFormScreen extends Component {
             <Title>{this.state.title}</Title>
           </Body>
           <Right>
-            {!this.state.createActivity && <Button transparent onPress={this.removeActivity}>
+            {!this.state.createActivity && <Button className='delete' transparent onPress={this.removeActivity}>
               <Icon name='md-trash' />
             </Button>}
           </Right>
@@ -243,7 +245,7 @@ class ActivityFormScreen extends Component {
           <Form>
             <Item stackedLabel>
               <Label>Nome</Label>
-              <Input value={this.state.title} onChangeText={text => this.setState({ title: text })} />
+              <Input className='input' value={this.state.title} onChangeText={text => this.setState({ title: text })} />
             </Item>
             <Item stackedLabel>
               <Label>Rotina</Label>

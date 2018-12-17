@@ -55,17 +55,17 @@ export class RewardModalStars extends React.Component {
     return (
       <View style={styles.rewardContainer}>
         <Animatable.Image
-          ref={ref => (this.stars.push(ref))}
+          ref={/* istanbul ignore next */ref => (this.stars.push(ref))}
           style={styles.icon}
           resizeMode={'center'}
           source={Images.ui.star} />
         <Animatable.Image
-          ref={ref => (this.stars.push(ref))}
+          ref={/* istanbul ignore next */ref => (this.stars.push(ref))}
           style={[styles.icon, styles.iconCenter]}
           resizeMode={'center'}
           source={Images.ui.star} />
         <Animatable.Image
-          ref={ref => (this.stars.push(ref))}
+          ref={/* istanbul ignore next */ref => (this.stars.push(ref))}
           style={styles.icon}
           resizeMode={'center'}
           source={Images.ui.star} />

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChildFormScreen snapshot renders ChildFormScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)
+    androidStatusBarColor="#0074D9"
+    style={
+      Object {
+        "backgroundColor": "#0074D9",
+      }
+    }
+  >
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Adicionar Criança
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)>
+    <Styled(Form)>
+      <Styled(Item)
+        stackedLabel={true}
+      >
+        <Styled(Label)>
+          Nome
+        </Styled(Label)>
+        <Styled(Input)
+          onChangeText={[Function]}
+          value=""
+        />
+      </Styled(Item)>
+      <Styled(Item)
+        stackedLabel={true}
+      >
+        <Styled(Label)>
+          Género
+        </Styled(Label)>
+        <ItemPicker
+          items={
+            Array [
+              "Masculino",
+              "Feminino",
+            ]
+          }
+          onValueChange={[Function]}
+          selected="Masculino"
+        />
+      </Styled(Item)>
+      <PhotoPickerButton
+        color="#0074D9"
+        onPhotoChange={[Function]}
+      />
+      <BottomButton
+        color="#0074D9"
+        onPress={[Function]}
+        text="Adicionar Criança"
+      />
+    </Styled(Form)>
+  </Styled(Content)>
+</Styled(Container)>
+`;
