@@ -35,7 +35,7 @@ describe('game reducer', () => {
         payload: [{ title: 'test2' }]
       }))
       .toEqual({
-        routines: [{ title: 'test' }, { title: 'test2' }]
+        routines: [{ title: 'test2' }]
       })
   })
 

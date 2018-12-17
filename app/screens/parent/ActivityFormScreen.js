@@ -44,6 +44,9 @@ class ActivityFormScreen extends Component {
       }
     }
 
+    this.state.imageHash = Math.random().toString(36).substr(2, 10)
+    this.state.fileType = undefined
+
     this.onColorChange = this.onColorChange.bind(this)
     this.onImageChange = this.onImageChange.bind(this)
     this.onPhotoChange = this.onPhotoChange.bind(this)
@@ -68,7 +71,7 @@ class ActivityFormScreen extends Component {
   }
 
   onPhotoChange = uri => {
-    this.setState({ photo: uri })
+    this.setState({ photo: uri, fileType: uri.split('.')[uri.split('.').length - 1] })
   }
 
   onImageChange = image => {
@@ -116,8 +119,16 @@ class ActivityFormScreen extends Component {
       })
   }
 
+  handleServerRequests = () => {
+    if (this.state.photo) {
+      this.uploadImageAsync(this.state.photo)
+        .then(this.createActivity())
+    } else {
+      this.createActivity()
+    }
+  }
+
   createActivity = () => {
-    console.log('Create Activity')
     fetch(EnvVars.apiUrl + 'routine_manager/add-activity/', {
       method: 'POST',
       headers: {
@@ -125,12 +136,11 @@ class ActivityFormScreen extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        activityID: this.state.id,
         routineID: this.state.routine,
         title: this.state.title,
         color: this.state.color,
-        image: this.state.image,
-        photo: this.state.photo,
+        image: this.state.image === undefined ? null : this.state.image,
+        photo: this.state.photo === undefined ? null : `${this.state.imageHash}.${this.state.fileType}`,
         timeGoal: parseFloat(this.state.time.goal) * 60,
         timeMin: parseFloat(this.state.time.min) * 60,
         timeMax: parseFloat(this.state.time.max) * 60
@@ -138,7 +148,7 @@ class ActivityFormScreen extends Component {
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.status === '200') {
-          console.log('ok')
+          this.props.navigation.pop()
         } else {
           console.log('not ok')
         }
@@ -149,7 +159,36 @@ class ActivityFormScreen extends Component {
       })
   }
 
+  async uploadImageAsync (uri) {
+    let apiUrl = EnvVars.apiUrl + 'routine_manager/assets/images/'
+    let formData = new FormData()
+    formData.append('photo', {
+      uri,
+      name: `${this.state.imageHash}.${this.state.fileType}`,
+      type: `image/${this.state.fileType}`
+    })
+
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return fetch(apiUrl, options)
+  }
+
   editActivity = () => {
+    if (this.state.photo !== null && this.state.photo.includes('file://')) {
+      this.uploadImageAsync(this.state.photo)
+        .then(this.sendEditRequest(true))
+    } else {
+      this.sendEditRequest(false)
+    }
+  }
+
+  sendEditRequest = photoChanged => {
     fetch(EnvVars.apiUrl + 'routine_manager/edit-activity/', {
       method: 'POST',
       headers: {
@@ -161,9 +200,8 @@ class ActivityFormScreen extends Component {
         routineID: this.state.routine,
         title: this.state.title,
         color: this.state.color,
-        // TODO: adicionar foto/imagem aos edits
         image: this.state.image,
-        photo: this.state.photo,
+        photo: photoChanged ? `${this.state.imageHash}.${this.state.fileType}` : this.state.photo,
         timeGoal: parseFloat(this.state.time.goal) * 60,
         timeMin: parseFloat(this.state.time.min) * 60,
         timeMax: parseFloat(this.state.time.max) * 60
@@ -217,7 +255,7 @@ class ActivityFormScreen extends Component {
             </Item>
             <DurationPickers color={this.state.color} time={this.state.time} onDurationChange={this.onDurationChange} />
             <ImagePickerButtons color={this.state.color} onImageChange={this.onImageChange} onPhotoChange={this.onPhotoChange} photo={this.state.photo} image={this.state.image} />
-            <BottomButton color={this.state.color} text={this.state.createActivity ? 'Criar Atividade' : 'Editar Atividade'} onPress={this.state.createActivity ? this.createActivity : this.editActivity} />
+            <BottomButton color={this.state.color} text={this.state.createActivity ? 'Criar Atividade' : 'Editar Atividade'} onPress={this.state.createActivity ? this.handleServerRequests : this.editActivity} />
           </Form>
         </Content>
       </Container>

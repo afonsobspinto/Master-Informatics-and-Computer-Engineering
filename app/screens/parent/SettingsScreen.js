@@ -133,7 +133,7 @@ class SettingsScreen extends React.Component {
             <Text>CONTA</Text>
           </Separator>
           <ListItem button icon onPress={this.logout}>
-            <Body><Text>Log out</Text></Body>
+            <Body><Text>Sair da Aplicação</Text></Body>
           </ListItem>
         </List>
       </Content>

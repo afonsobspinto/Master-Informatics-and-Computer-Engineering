@@ -48,6 +48,7 @@ export class RoutinesScreen extends React.Component {
   }
 
   fetchChildRoutine = () => {
+    this.props.setChildID(this.state.children[this.state.selectedChild].id)
     let url = `${EnvVars.apiUrl}routine_manager/routine?selectedChildID=${this.state.children[this.state.selectedChild].id}`
     fetch(url)
       .then((response) => response.json())
@@ -124,5 +125,6 @@ export class RoutinesScreen extends React.Component {
 RoutinesScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   loggedUserEmail: PropTypes.string.isRequired,
-  setRoutines: PropTypes.func.isRequired
+  setRoutines: PropTypes.func.isRequired,
+  setChildID: PropTypes.func.isRequired
 }

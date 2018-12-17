@@ -17,7 +17,8 @@ describe('ShopScreen snapshot', () => {
       purchaseItem={jest.fn()}
       gender={'M'}
       toggleItem={jest.fn()}
-      itemsEquiped={[0, 1]} />)
+      itemsEquiped={[0, 1]}
+      id={0} />)
     expect(toJson(wrapper)).toMatchSnapshot()
     wrapper.unmount()
   })

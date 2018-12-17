@@ -34,7 +34,6 @@ export class RemoveChildScreen extends Component {
       .then((responseJson) => {
         if (responseJson.status === '200') {
           this.setState({ kids: JSON.parse(responseJson.response), loading: false })
-          console.log(this.state.kids)
         } else {
 
         }

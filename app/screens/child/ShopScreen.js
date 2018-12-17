@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, ScrollView, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
+import EnvVars from '../../constants/EnviromentVars'
 
 import Images, { avatarItems, avatarCategories } from '../../assets/images/images'
 import { ShopItem } from '../../components/ChildMainMenu/ShopItem'
@@ -12,6 +13,32 @@ import styles from '../../styles/Shop.style'
 import { purchaseItem, toggleItem } from '../../actions/childActions'
 
 export class ShopScreen extends Component {
+  componentWillUnmount () {
+    fetch(EnvVars.apiUrl + 'routine_manager/update-avatar/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        childID: this.props.id,
+        stars: this.props.stars,
+        avatar: JSON.stringify({ itemsOwned: this.props.itemsOwned, itemsEquiped: this.props.itemsEquiped })
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.status === '200') {
+          console.log('avatar updated')
+        } else {
+          console.log('avatar not updated')
+        }
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   render () {
     let shopItems = []
 
@@ -63,7 +90,8 @@ export default connect(
     stars: state.child.stars,
     itemsOwned: state.child.itemsOwned,
     itemsEquiped: state.child.itemsEquiped,
-    gender: state.child.gender
+    gender: state.child.gender,
+    id: state.child.id
   }),
   dispatch => ({
     purchaseItem: (cost, id) => dispatch(purchaseItem(cost, id)),
@@ -77,5 +105,6 @@ ShopScreen.propTypes = {
   itemsOwned: PropTypes.array.isRequired,
   purchaseItem: PropTypes.func.isRequired,
   toggleItem: PropTypes.func.isRequired,
-  itemsEquiped: PropTypes.array.isRequired
+  itemsEquiped: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired
 }

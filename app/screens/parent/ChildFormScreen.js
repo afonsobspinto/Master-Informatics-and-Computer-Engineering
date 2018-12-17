@@ -87,8 +87,8 @@ export class ChildFormScreen extends Component {
   }
 
   handleServerRequests () {
-    this.handlePress()
     this.uploadImageAsync(this.state.photo.uri)
+      .then(this.handlePress())
   }
 
   render () {

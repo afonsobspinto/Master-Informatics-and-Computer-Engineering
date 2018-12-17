@@ -9,12 +9,11 @@ const initialState = {
 export default function (state = initialState, { type, payload }) {
   switch (type) {
     case childTypes.addChild:
-      if (payload.avatar == null) {
-        delete payload.avatar
-      } else {
+      if (payload.avatar != null) {
         payload.itemsEquiped = JSON.parse(payload.avatar).itemsEquiped
         payload.itemsOwned = JSON.parse(payload.avatar).itemsOwned
       }
+      delete payload.avatar
       return { ...state, ...payload }
     case childTypes.addStars:
       let stars = state.stars + payload
