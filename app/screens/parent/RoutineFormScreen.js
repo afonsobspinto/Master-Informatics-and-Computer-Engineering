@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right } from 'native-base'
+import { Body, Header, Icon, Left, Label, Title, Button, Form, Content, Container, Item, Input, Right, Toast } from 'native-base'
 import { Alert } from 'react-native'
 import PropTypes from 'prop-types'
 
@@ -86,6 +86,7 @@ export default class RoutineFormScreen extends Component {
   }
 
   handleServerRequests = () => {
+    if (!this.checkInputs()) return
     if (this.state.photo) {
       this.uploadImageAsync(this.state.photo)
         .then(this.createRoutine())
@@ -145,6 +146,7 @@ export default class RoutineFormScreen extends Component {
   }
 
   editRoutine = () => {
+    if (!this.checkInputs()) return
     if (this.state.photo !== null && this.state.photo.includes('file://')) {
       this.uploadImageAsync(this.state.photo)
         .then(this.sendEditRequest(true))
@@ -253,6 +255,20 @@ export default class RoutineFormScreen extends Component {
           console.error(error)
         })
     })
+  }
+
+  showToast = message => (Toast.show({ text: message, buttonText: 'OK' }))
+
+  checkInputs = () => {
+    if (this.state.title === '') {
+      this.showToast('O nome da rotina não deverá estar vazio!')
+      return false
+    }
+    if (this.state.photo === undefined && this.state.image === undefined) {
+      this.showToast('A imagem da rotina não deverá estar vazia!')
+      return false
+    }
+    return true
   }
 
   render () {
