@@ -32,9 +32,11 @@ LOCALIP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname
                                                                s.getsockname()[0], s.close()) for s in
                                                               [socket.socket(socket.AF_INET,
                                                                              socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
+ALLOW_HOST = LOCALIP
 
 # Path to save the file containing the local IP address
 __DEV__ = config('DEV_MODE', default=False, cast=bool)
+__PROD__ = config('PROD_MODE', default=False, cast=bool)
 
 if __DEV__:
     pathToSaveFile = os.getcwd() + "/../app/constants/"
@@ -43,10 +45,17 @@ if __DEV__:
 
     data = {'localIP': LOCALIP}
 
+    LOCALIP += ":8000"
+
     with open(completeFilePath, 'w') as outfile:
         json.dump(data, outfile)
+elif __PROD__:
+    LOCALIP = '167.99.128.178:8000'
+else:
+    LOCALIP = '167.99.128.178:8080'
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', LOCALIP, '167.99.128.178', '10.0.2.2']
+
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', ALLOW_HOST, '167.99.128.178', '10.0.2.2']
 
 # Application definition
 

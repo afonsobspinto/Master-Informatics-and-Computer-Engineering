@@ -391,7 +391,7 @@ def get_child_routines(request):
                     "id": routine.id,
                     "title": routine.title,
                     "image": routine.image,
-                    "photo": None if routine.photo == 'null' or routine.photo == None else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + routine.photo,
+                    "photo": None if routine.photo == 'null' or routine.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + routine.photo,
                     "color": routine.color,
                     "weight": int(routine.weight),
                     "periodicity": routine.periodicity,
@@ -477,7 +477,7 @@ def get_daily_routines(request):
                         "id": activity.id,
                         "title": activity.title,
                         "image": activity.image,
-                        "photo": None if activity.photo == 'null' or activity.photo == None else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + activity.photo,
+                        "photo": None if activity.photo == 'null' or activity.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + activity.photo,
                         "color": activity.color,
                         "weight": int(activity.weight),
                         "time": {
@@ -490,7 +490,7 @@ def get_daily_routines(request):
                     "id": routine.id,
                     "title": routine.title,
                     "image": routine.image,
-                    "photo": None if routine.photo == 'null' or routine.photo == None else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + routine.photo,
+                    "photo": None if routine.photo == 'null' or routine.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + routine.photo,
                     "color": routine.color,
                     "weight": int(routine.weight),
                     "periodicity": routine.periodicity,
@@ -574,7 +574,7 @@ def get_reward(request):
             dict_reward_wrapper.append({
                 "id": reward.id,
                 "name": reward.name,
-                "photo": None if reward.photo == 'null' or reward.photo == None else "http://" + settings.LOCALIP + ':8000/static/assets/images/' + reward.photo,
+                "photo": None if reward.photo == 'null' or reward.photo == None else "http://" + settings.LOCALIP + '/static/assets/images/' + reward.photo,
                 "weight": reward.weight
             })
         response = json.dumps(dict_reward_wrapper)
