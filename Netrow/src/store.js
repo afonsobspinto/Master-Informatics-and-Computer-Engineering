@@ -15,7 +15,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Lorem",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 2,
@@ -26,7 +27,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Lorem",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 3,
@@ -37,7 +39,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Ipsum",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 4,
@@ -52,7 +55,8 @@ export default new Vuex.Store({
         orderStatus: "Shipped",
         amountOrdered: 2,
         date: "02/12/2018",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 5,
@@ -67,7 +71,8 @@ export default new Vuex.Store({
         orderStatus: "Not Shipped",
         amountOrdered: 3,
         date: "04/12/2018",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 6,
@@ -78,7 +83,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Ipsum",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 7,
@@ -89,7 +95,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Dolor",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 8,
@@ -100,7 +107,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Ipsum",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       },
       {
         id: 9,
@@ -111,7 +119,8 @@ export default new Vuex.Store({
         isAddedToCart: false,
         isAddedBtn: false,
         category: "Dolor",
-        quantity: 1
+        quantity: 1,
+        image: "https://bulma.io/images/placeholders/480x480.png"
       }
     ],
     categories: [],

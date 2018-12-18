@@ -98,7 +98,7 @@ export class HttpClient {
     }
 
     public getProduct(product: string) {
-        const path = `Base/Clientes/DaValorAtributos/${product}`;
+        const path = `Base/Artigos/Edita/${product}`;
         return new Promise<Object>((resolve, reject) => {
             this.getJson(path)
                 .then(retObj => {
@@ -106,6 +106,7 @@ export class HttpClient {
                         reject(retObj);
                         return;
                     }
+
                     resolve(retObj);
                 })
                 .catch(e =>
@@ -176,7 +177,6 @@ export class HttpClient {
             },
             redirect: "follow",
         }).then(data => {
-            console.log(data)
             let sendPromise = (obj1, obj2 = obj1) => {
                 if (this.isStatusValid(data.status)) {
                     resolve(obj1);
