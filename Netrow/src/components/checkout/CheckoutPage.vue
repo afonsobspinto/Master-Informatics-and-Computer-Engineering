@@ -123,28 +123,20 @@
                     </tr>
                     </thead>
                     <tbody>
-
-                    <tr>
+                    <tr v-for="product in products" :key="product.id">
                         <th scope="row">1</th>
-                        <td>Product 1</td>
-                        <td>3</td>
-                        <td>30€</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Product 2</td>
-                        <td>1</td>
-                        <td>10€</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td>TOTAL:</td>
-                        <td>100€</td>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }} &euro;</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="column button is-offset-7">
+        <router-link :to="{ path: '/CheckoutPage', name: 'checkout-page-component' } ">
+            <span v-on:click="goToCheckout()">{{buyLabel}}</span>
+        </router-link>
         </div>
         <br>
         <div class="column button is-offset-11">
@@ -179,11 +171,54 @@
                     Pais: "",
                     NumContribuinte: "",
                     CDU_CampoVar1: "",
-                }
+                },
+                quantityArray: []
             };
         },
 
+        computed: {
+            products() {
+                return this.$store.getters.productsAdded;
+            },
+            buyLabel() {
+                let totalProducts = this.products.length,
+                    productsAdded = this.$store.getters.productsAdded,
+                    pricesArray = [],
+                    productLabel = "",
+                    finalPrice = "",
+                    quantity = 1;
+
+                productsAdded.forEach(product => {
+                    if (product.quantity >= 1) {
+                        quantity = product.quantity;
+                    }
+
+                    pricesArray.push(product.price * quantity); // get the price of every product added and multiply quantity
+                });
+
+                finalPrice = pricesArray.reduce((a, b) => a + b, 0); // sum the prices
+
+                if (totalProducts > 1) {
+                    // set plural or singular
+                    productLabel = "products";
+                } else {
+                    productLabel = "product";
+                }
+                return `Total: ${finalPrice}€`;
+            },
+            isUserLoggedIn() {
+                return this.$store.getters.isUserLoggedIn;
+            }
+        },
+
         methods: {
+            closeModal(reloadPage) {
+                this.$store.commit("showCheckoutModal", false);
+
+                if (reloadPage) {
+                    window.location.reload();
+                }
+            },
             createOrder() {
                 let requestData = {
                     ... this.profile,

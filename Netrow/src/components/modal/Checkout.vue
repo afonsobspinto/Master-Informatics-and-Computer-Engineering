@@ -131,11 +131,7 @@ export default {
       }
     },
     goToCheckout() {
-      if (this.isUserLoggedIn) {
-          this.$store.commit("showCheckoutModal", false);
-      }
-      else{
-      }
+        this.$store.commit("showCheckoutModal", false);
     },
     removeFromCart(id) {
       let data = {
