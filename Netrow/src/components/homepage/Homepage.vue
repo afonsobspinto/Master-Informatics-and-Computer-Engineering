@@ -17,7 +17,6 @@ export default {
     'hero': HeroSection
   },
   beforeRouteEnter (to, from, next) {
-    let products = []
     next(vm => {
       HttpClient.instance(console.error, instance => {
         instance.getProducts()
@@ -40,9 +39,7 @@ export default {
                                 image: p.CamposUtil.url ? p.CamposUtil.url :"https://bulma.io/images/placeholders/480x480.png"
                               };
 
-                              console.log(prod)
-
-                              products.push(prod); // TODO: push to Store
+                              vm.$store.commit("addProduct", prod)
                                     }
                             ).catch(e => {
                       console.error(e);
