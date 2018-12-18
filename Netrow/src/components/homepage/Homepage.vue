@@ -18,16 +18,23 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      HttpClient.instance(console.error)
-          .getProducts()
-          .then(prods => {
-              console.log(prods)
-          })
-          .catch(e => {
-        console.error(e);
-        vm.$toaster.error("Failed to fetch profile data");
-      })
+      HttpClient.instance(console.error, instance => {
+        instance
+                .getProducts()
+                .then(obj => {
+                  let products = obj.DataSet.Table;
+                  products.forEach(prod => {
+                    console.log(prod)
+                          }
+                  )
+                })
+                .catch(e => {
+                  console.error(e);
+                  console.error("Failed to fetch products data");
+                  vm.$toaster.error("Failed to fetch products data");
+                })
+      });
     })
   }
-};
+}
 </script>

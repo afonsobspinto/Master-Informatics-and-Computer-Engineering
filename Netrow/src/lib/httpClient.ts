@@ -97,6 +97,24 @@ export class HttpClient {
         });
     }
 
+    public getProduct(product: string) {
+        const path = `Base/Clientes/DaValorAtributos/${product}`;
+        return new Promise<Object>((resolve, reject) => {
+            this.getJson(path)
+                .then(retObj => {
+                    if (retObj === null ) {
+                        reject(retObj);
+                        return;
+                    }
+                    resolve(retObj);
+                })
+                .catch(e =>
+                {
+                    reject(e);
+                })
+        });
+    }
+
     public getCategories() {
         const SQLquery =
           "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
