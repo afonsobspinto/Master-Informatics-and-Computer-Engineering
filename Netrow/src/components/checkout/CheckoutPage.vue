@@ -101,7 +101,7 @@
                 <label class="label">Payment Options</label>
                 <div class="select">
                     <label>
-                        <select class="is-hovered">
+                        <select class="is-hovered" v-model="paymentOption">
                             <option>Bank Transfer</option>
                             <option>Credit Card</option>
                             <option>PayPal</option>
@@ -172,6 +172,7 @@
                     NumContribuinte: "",
                     CDU_CampoVar1: "",
                 },
+                paymentOption: "",
                 quantityArray: []
             };
         },
@@ -221,23 +222,23 @@
             },
             createOrder() {
                 let requestData = {
-                    ... this.profile,
-                    Moeda: 'EUR',
+                    Linhas: [
+                       /* for(let i=0; i < this.products().length(); i++)
+                        {
+                            Artigo: this.products()[i].title,
+                            Quantidade: this.products()[i].quantity
+                        }*/
+                    ],
                     Tipodoc: 'FA',
                     Serie: 'C',
                     Entidade: 'Sofrio',
                     TipoEntidade: 'C',
                     DataDoc:'12/11/2018',
                     DataVenc:'12/12/2018',
-                    Nome: this.name,
                     CamposUtil: [
                         {
-                            "Nome": "CDU_CampoVar1",
-                            "Valor": this.email
-                        },
-                        {
-                            "Nome": "CDU_CampoVar2",
-                            "Valor": this.password
+                            "Nome": "Payment_Option",
+                            "Valor": this.paymentOption
                         }
                     ]
                 };
