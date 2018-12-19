@@ -35,6 +35,7 @@ export default {
                                 isAddedToCart: false,
                                 isAddedBtn: false,
                                 category: p.Familia ? p.Familia : "Sem Categoria",
+                                subCategory: p.SubFamilia ? p.SubFamilia : "Sem SubCategoria",
                                 quantity: 1,
                                 image: p.CamposUtil.url ? p.CamposUtil.url : "https://bulma.io/images/placeholders/1280x960.png" // TODO: Testar isto
                               };
