@@ -11,12 +11,14 @@
                     <div class="field column is-one-third">
                         <label class="label">Name</label>
                         <p class="control has-icons-left has-icons-right">
-                            <input
-                                    :class="[highlightNameWithError ? 'input is-danger' : 'input']"
-                                    type="text"
-                                    v-model="profile.Nome"
-                                    @keyup="checkNameOnKeyUp(name)"
-                            >
+                            <label>
+                                <input
+                                        :class="[highlightNameWithError ? 'input is-danger' : 'input']"
+                                        type="text"
+                                        v-model="profile.Nome"
+                                        @keyup="checkNameOnKeyUp(name)"
+                                >
+                            </label>
                             <!-- <span class="icon is-small is-left">
                               <i class="fas fa-user"></i>
                             </span> -->
@@ -29,14 +31,16 @@
                     <div class="field column is-one-third">
                         <label class="label">Email</label>
                         <p class="control has-icons-left has-icons-right">
-                            <input
-                                    :class="[highlightEmailWithError ? 'input is-danger' : 'input']"
-                                    type="email"
-                                    name="emailName"
-                                    v-model="profile.CDU_CampoVar1"
-                                    @keyup="checkEmailOnKeyUp(email)"
-                                    value="alexsmith@gmail.com"
-                            >
+                            <label>
+                                <input
+                                        :class="[highlightEmailWithError ? 'input is-danger' : 'input']"
+                                        type="email"
+                                        name="emailName"
+                                        v-model="profile.CDU_CampoVar1"
+                                        @keyup="checkEmailOnKeyUp(email)"
+                                        value="alexsmith@gmail.com"
+                                >
+                            </label>
                             <!-- <span class="icon is-small is-left">
                               <i class="fas fa-envelope"></i>
                             </span> -->
@@ -151,7 +155,6 @@
 
 <script>
     import { isValidEmail } from '../../validators';
-    import { isAnyObjectEmpty } from '../../lib/utils';
     import { HttpClient } from '../../lib/httpClient';
 
     export default {
@@ -291,11 +294,7 @@
                 this.createOrder();
             },
             checkNameOnKeyUp (nameValue) {
-                if (nameValue) {
-                    this.highlightNameWithError = false;
-                } else {
-                    this.highlightNameWithError = true;
-                }
+                this.highlightNameWithError = !nameValue;
             },
             checkEmailOnKeyUp (emailValue) {
                 if (emailValue && isValidEmail(emailValue)) {
