@@ -235,8 +235,27 @@
                 }
                 return productsList;
             },
+            getDate(day){
+                var today = new Date();
+                var dd = today.getDate() + day;
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+
+                if(dd<10) {
+                    dd = '0'+dd
+                }
+
+                if(mm<10) {
+                    mm = '0'+mm
+                }
+
+                today = mm + '/' + dd + '/' + yyyy;
+                return today;
+            },
             createOrder() {
                 let productsList = this.getProducts();
+                let todayDate = this.getDate(0);
+                let tomorrowDate = this.getDate(1);
                 let requestData = {
                     Linhas: [
                         productsList
@@ -245,8 +264,8 @@
                     Serie: 'C',
                     Entidade: 'Sofrio',
                     TipoEntidade: 'C',
-                    DataDoc:'12/11/2018',
-                    DataVenc:'12/12/2018',
+                    DataDoc: todayDate,
+                    DataVenc: tomorrowDate,
                     CamposUtil: [
                         {
                             "Nome": "Payment_Option",
@@ -258,7 +277,6 @@
                 return HttpClient.instance(console.error)
                     .postJson("Compras/Docs/CreateDocument", requestData);
             },
-
             checkForm (e) {
                 e.preventDefault();
 
