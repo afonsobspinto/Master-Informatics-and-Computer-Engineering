@@ -2,7 +2,7 @@
   <div class="section">
     <div class="card is-clearfix columns">
         <figure class="card-image is-480x480 column is-one-thirds">
-          <img src="https://bulma.io/images/placeholders/480x480.png">
+          <img :src=product.image style="max-width: 480px; max-height: 480px">
         </figure>
         <div class="card-content column is-two-thirds">
           <h2 class="title is-4">{{ product.title }}</h2>

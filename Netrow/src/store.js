@@ -158,7 +158,8 @@ export default new Vuex.Store({
       });
     },
     addProduct: (state, data) => {
-      state.products.push(data);
+      if(state.products.filter( prod => prod.id === data.id ).length === 0 || state.products.length === 0 )
+        state.products.push(data);
     },
   },
 
