@@ -199,6 +199,7 @@
                     finalPrice = "",
                     quantity = 1;
 
+                console.log(productsAdded);
                 productsAdded.forEach(product => {
                     if (product.quantity >= 1) {
                         quantity = product.quantity;
@@ -232,7 +233,7 @@
                 for(i; i< this.products.size; i++){
                     productsList.push(
                         {
-                            Artigo: this.products()[i].title,
+                            Artigo: this.products()[i].Artigo,
                             Quantidade: this.products()[i].quantity
                         }
                     )
@@ -307,23 +308,6 @@
                     }
                 }
             },
-        },
-        beforeRouteEnter (to, from, next) {
-            next(vm => {
-                const username = vm.$store.getters.username;
-                HttpClient.instance(console.error)
-                    .getProfile(username)
-                    .then(profile => {
-                        vm.profile = {
-                            ... vm.profile,
-                            Cliente: username,
-                            ... profile
-                        }
-                    }).catch(e => {
-                    console.error(e);
-                    vm.$toaster.error("Failed to fetch profile data");
-                })
-            })
         }
     };
 
