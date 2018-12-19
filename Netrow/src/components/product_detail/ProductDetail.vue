@@ -25,15 +25,24 @@
             <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="isAddedBtn" @click="removeFromCart(product.id)">{{ removeFromCartLabel }}</button>
           </div>
+          <h2 class="subtitle" style="margin-top: 50px"> Produtos Substitutos: </h2>
+          <div class="card column is-one-fifth" :key="product.id">
+            <products-related :product="product"></products-related>
+          </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'product-detail-component',
-  
+import ProductsRelated from "./ProductRelated";
+
+  export default {
+    name: 'product-detail-component',
+    components: {
+      "products-related": ProductsRelated
+    },
+
   data () {
     return {
       addToCartLabel: 'Add to cart',
