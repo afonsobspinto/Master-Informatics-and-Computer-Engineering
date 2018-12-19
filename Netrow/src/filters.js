@@ -13,7 +13,7 @@ export function getByCategory(list, category) {
     );
   }
   return list.filter(
-    item => item.subCategory.toLowerCase() === cat.toLowerCase()
+    item => item.subCategory.toLowerCase() === category.toLowerCase()
   );
 }
 
