@@ -172,6 +172,9 @@
                     NumContribuinte: "",
                     CDU_CampoVar1: "",
                 },
+                allProducts: {
+
+                },
                 paymentOption: "",
                 quantityArray: []
             };
@@ -220,14 +223,23 @@
                     window.location.reload();
                 }
             },
-            createOrder() {
-                let requestData = {
-                    Linhas: [
-                       /* for(let i=0; i < this.products().length(); i++)
+            getProducts() {
+                let productsList = [];
+                for(i=0; i<this.products().length(); i++){
+                    productsList.push(
                         {
                             Artigo: this.products()[i].title,
                             Quantidade: this.products()[i].quantity
-                        }*/
+                        }
+                    )
+                }
+                return productsList;
+            },
+            createOrder() {
+                let productsList = this.getProducts();
+                let requestData = {
+                    Linhas: [
+                        productsList
                     ],
                     Tipodoc: 'FA',
                     Serie: 'C',
