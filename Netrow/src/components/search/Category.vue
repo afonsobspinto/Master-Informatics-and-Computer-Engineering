@@ -4,7 +4,7 @@
       <option value="all" selected>All categories</option>
 
       <optgroup v-for="cat in categoriesList" :key="cat.familia" :label="cat.descricao">
-        <option :value="'cat_'+cat.descricao" selected>all {{cat.descricao.toLowerCase()}}</option>
+        <option :value="'cat_'+cat.familia" selected>all {{cat.descricao.toLowerCase()}}</option>
         <option
           v-for="sub in cat.subCategories"
           :key="sub.subFamilia"

@@ -5,10 +5,15 @@ export function getByTitle(list, keyword) {
 }
 
 export function getByCategory(list, category) {
-  // console.log(category); TODO check how sub fams are saved to filter
   if (category === "all") return list;
+  const cat = category.split("_");
+  if (cat[0] === "cat") {
+    return list.filter(
+      item => item.category.toLowerCase() === cat[1].toLowerCase()
+    );
+  }
   return list.filter(
-    item => item.category.toLowerCase() === category.toLowerCase()
+    item => item.subCategory.toLowerCase() === category.toLowerCase()
   );
 }
 

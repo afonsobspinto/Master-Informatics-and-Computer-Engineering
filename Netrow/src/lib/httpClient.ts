@@ -79,6 +79,26 @@ export class HttpClient {
         });
     }
 
+    public getProducts() {
+        const SQLquery =
+          "Select * from Artigo";
+    
+        const path = `Administrador/Consulta`;
+        return new Promise<Object>((resolve, reject) => {
+          this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+    }
+
     public getCategories() {
         const SQLquery =
           "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
@@ -111,6 +131,34 @@ export class HttpClient {
             },
             redirect: "follow",
             body: JSON.stringify(body)
+        }).then(data => {
+            let sendPromise = (obj1, obj2 = obj1) => {
+                if (this.isStatusValid(data.status)) {
+                    resolve(obj1);
+                } else {
+                    reject(obj2);
+                }
+            }
+            data.json()
+                .then(obj => sendPromise(obj))
+                .catch(e => sendPromise(null, e));
+        })
+            .catch(error => {
+                reject(error);
+            }));
+    }
+
+    public getJson(path: string) {
+        const url = `${ADRESS}/${path}`;
+
+        return new Promise<Object>((resolve, reject) => fetch(url, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${this.token}`,
+                'Accept': jsonValue,
+                'Content-Type': jsonValue
+            },
+            redirect: "follow",
         }).then(data => {
             let sendPromise = (obj1, obj2 = obj1) => {
                 if (this.isStatusValid(data.status)) {
