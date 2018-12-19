@@ -36,7 +36,7 @@ export default {
                                 isAddedBtn: false,
                                 category: p.Familia ? p.Familia : "Sem Categoria",
                                 quantity: 1,
-                                image: p.CamposUtil.url ? p.CamposUtil.url :"https://bulma.io/images/placeholders/480x480.png"
+                                image: p.CamposUtil.url ? p.CamposUtil.url : "https://bulma.io/images/placeholders/1280x960.png" // TODO: Testar isto
                               };
 
                               vm.$store.commit("addProduct", prod)
