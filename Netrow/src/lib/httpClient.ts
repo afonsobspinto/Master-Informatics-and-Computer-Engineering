@@ -80,39 +80,22 @@ export class HttpClient {
     }
 
     public getProducts() {
-        const path = `Base/Artigos/LstArtigos`;
+        const SQLquery =
+          "Select * from Artigo";
+    
+        const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
-            this.getJson(path)
-                .then(retObj => {
-                    if (retObj === null ) {
-                        reject(retObj);
-                        return;
-                    }
-                    resolve(retObj);
-                })
-                .catch(e =>
-                {
-                    reject(e);
-                })
-        });
-    }
-
-    public getProduct(product: string) {
-        const path = `Base/Artigos/Edita/${product}`;
-        return new Promise<Object>((resolve, reject) => {
-            this.getJson(path)
-                .then(retObj => {
-                    if (retObj === null ) {
-                        reject(retObj);
-                        return;
-                    }
-
-                    resolve(retObj);
-                })
-                .catch(e =>
-                {
-                    reject(e);
-                })
+          this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
         });
     }
 
