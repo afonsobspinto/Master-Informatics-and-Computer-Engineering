@@ -96,7 +96,7 @@ export class HttpClient {
               reject(e);
             });
         });
-    }*/
+    }
 
     public getOrderHistory(number) {
         //const path = `/Compras/Docs/Edita/000/ECF/A/`+number;
