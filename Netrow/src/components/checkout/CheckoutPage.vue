@@ -4,10 +4,10 @@
     <div class="section">
         <h3 class="title">Order Details</h3>
         <br>
-        <h4 class="subtitle">Shipping Info</h4>
+        <!-- <h4 class="subtitle">Shipping Info</h4> -->
         <form @submit="checkForm" action="#" method="post">
-            <div v-if="isUserLoggedIn">
-                <div class="columns is-multiline is-centered">
+            <!-- <div v-if="isUserLoggedIn"> -->
+                <!-- <div class="columns is-multiline is-centered">
                     <div class="field column is-one-third">
                         <label class="label">Name</label>
                         <p class="control has-icons-left has-icons-right">
@@ -19,9 +19,6 @@
                                         @keyup="checkNameOnKeyUp(name)"
                                 >
                             </label>
-                            <!-- <span class="icon is-small is-left">
-                              <i class="fas fa-user"></i>
-                            </span> -->
                             <span v-if="highlightNameWithError !== null" class="icon is-small is-right">
                             <i :class="[highlightNameWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                           </span>
@@ -41,9 +38,6 @@
                                         value="alexsmith@gmail.com"
                                 >
                             </label>
-                            <!-- <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
-                            </span> -->
                             <span v-if="highlightEmailWithError !== null" class="icon is-small is-right">
                             <i :class="[highlightEmailWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i>
                           </span>
@@ -98,7 +92,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <div class="columns is-multiline is-centered">
                     <div class="control column is-one-fifth"></div>
@@ -145,7 +139,6 @@
                 </router-link>
                 </div>
                 <br>
-            </div>
             <div>
                 <button class="column button is-success is-offset-10">Place Order</button>
             </div>
@@ -262,8 +255,6 @@
                 let productsList = this.getProducts();
                 let todayDate = this.getDate(0);
                 let tomorrowDate = this.getDate(1);
-                console.log(todayDate)
-                console.log(tomorrowDate)
                 let requestData = {
                     Linhas: productsList,
                     Tipodoc: 'FA',
