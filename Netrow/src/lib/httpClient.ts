@@ -120,7 +120,8 @@ export class HttpClient {
     }*/
 
     public getOrderHistory(number) {
-        const path = `/Compras/Docs/Edita/000/ECF/A/`+number;
+        //const path = `/Compras/Docs/Edita/000/ECF/A/`+number;
+        const path = `/Vendas/Docs/Edita/000/FA/A/`+number;
 
         return new Promise<Object>((resolve, reject) => {
           this.getJson(path)
