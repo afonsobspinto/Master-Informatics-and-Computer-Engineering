@@ -14,7 +14,7 @@ export default new Vuex.Store({
       isSignedUp: false,
       hasSearched: false,
       showMoreFilters: false,
-      selectedPriceRange: [0, 500],
+      selectedPriceRange: [0, 10000],
       categoryFilter: "all",
       name: "",
       productTitleSearched: "",
