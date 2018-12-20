@@ -131,7 +131,7 @@ export default {
             this.highlightPasswordWithError = false;
             this.isFormSuccess = true;
             this.$store.commit('isUserLoggedIn', this.isFormSuccess);
-            this.$store.commit('addUsername', this.email);
+            this.$store.commit('addUsername', this.email); // TODO: Make sure this is Client id 'C0001' f.e.
           }).catch(e => {
             console.error(e);
             this.$toaster.error("Failed to login");

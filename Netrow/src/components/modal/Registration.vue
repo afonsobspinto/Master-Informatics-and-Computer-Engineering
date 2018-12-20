@@ -223,7 +223,7 @@ export default {
       }
 
       return HttpClient.instance(console.error)
-        .postJson("Base/Clientes/Actualiza", requestData);
+        .postJson("Base/Clientes/Actualiza", requestData); // TODO: Não funciona no meu PC, talvez tenha alguma regra que não seja óbvia
     },
 
     checkForm (e) {
@@ -239,7 +239,7 @@ export default {
             this.$store.commit('setUserName', this.name);
             this.$store.commit('isUserSignedUp', this.isFormSuccess);
             this.$store.commit('isUserLoggedIn', this.isFormSuccess);
-            this.$store.commit('addUsername', this.profile.Cliente);
+            this.$store.commit('addUsername', this.profile.Cliente); // TODO: Make sure this is Client id 'C0001' f.e.
           }).catch(e => {
             console.error(e);
             this.$toaster.error("Failed to Update Profile.");

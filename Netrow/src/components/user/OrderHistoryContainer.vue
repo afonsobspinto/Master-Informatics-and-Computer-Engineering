@@ -12,22 +12,19 @@
                   <th scope="col">Price</th>
               </tr>
               </thead>
-              <tbody>
-
-              <tr v-for="product in orderHistoryList.Linhas" :key="">
+              <tbody v-for="product in orderHistoryList" :key=""> <!-- TODO: Fix this UI -->
+              <tr>
                   <th scope="row">1</th>
-                  <td>{{product.Descricao}}</td>
-                  <td>{{product.Quantidade}}</td>
-                  <td>{{product.PrecUnit}}€</td>
+                  <td>{{product.Documento}}</td>
               </tr>
               <tr>
                 <td>Date:</td>
-                <td>{{orderHistoryList.DataDoc}}</td>
+                <td>{{product.Data}}</td>
                 <td>TOTAL:</td>
-                <td>{{orderHistoryList.TotalMerc}}€</td>
+                <td>{{product.TotalDocumento}}€</td>
               </tr>
               <tr>
-                <td>Shipped</td>
+                <td>{{product.Estado}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -82,10 +79,10 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       HttpClient.instance(console.error, instance => {
-        instance.getOrderHistory(1)
+        instance.getOrderHistory(vm.$store.getters.username)
                 .then(obj => {
                     let orderHistoryList = obj;
-                    vm.orderHistoryList = orderHistoryList;
+                    vm.orderHistoryList = orderHistoryList.DataSet.Table;
                     console.log(vm.orderHistoryList);
                 })
                 .catch(e => {
@@ -94,26 +91,6 @@ export default {
                   vm.$toaster.error("Failed to fetch order history data");
                 })
 
-                  /*let orderAcc = null;
-                  let counter = 1;
-
-                  do {
-                        instance.getOrderHistory(counter)
-                                .then(obj => {
-                                    orderAcc = obj;
-                                })
-                                .catch(e => {
-                                  console.error(e);
-                                  console.error("Failed to fetch order history data");
-                                  vm.$toaster.error("Failed to fetch order history data");
-                                });
-
-                        counter++;
-
-                        if(orderAcc != null){
-                            vm.orderHistoryList = vm.orderHistoryList.concat(orderAcc);
-                        }
-                    } while(orderAcc != null);*/
       });
     })
   }

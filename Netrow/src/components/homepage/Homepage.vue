@@ -34,7 +34,8 @@ export default {
                       category: p.Familia ? p.Familia : "Sem Categoria",
                       subCategory: p.SubFamilia ? p.SubFamilia : "Sem SubCategoria",
                       quantity: 1,
-                      image: p.Image ? 'http://' + p.Image : "https://bulma.io/images/placeholders/1280x960.png" // TODO: Testar isto
+                      image: p.Image ? 'http://' + p.Image : "https://bulma.io/images/placeholders/1280x960.png",
+                      artSubst: p.ArtSubst
                     };
                     vm.$store.commit("addProduct", prod);
                   });

@@ -25,9 +25,11 @@
             <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="isAddedBtn" @click="removeFromCart(product.id)">{{ removeFromCartLabel }}</button>
           </div>
+          <div v-if="product.artSubst!=null">
           <h2 class="subtitle" style="margin-top: 50px"> Produtos Substitutos: </h2>
           <div class="card column is-one-fifth" :key="product.id">
-            <products-related :product="product"></products-related>
+            <products-related :product="this.$store.getters.getProductById(product.artSubst)"></products-related>
+          </div>
           </div>
       </div>
     </div>

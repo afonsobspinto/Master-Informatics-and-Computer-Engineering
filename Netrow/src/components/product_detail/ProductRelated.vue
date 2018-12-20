@@ -28,7 +28,7 @@
           isAddedBtn: product.isAddedBtn
         }
       }"
-        ></router-link>
+        ></router-link> <!-- TODO: Fix router -->
     </div>
 </template>
 
