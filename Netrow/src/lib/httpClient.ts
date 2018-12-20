@@ -34,7 +34,7 @@ export class HttpClient {
             }
         }
 
-    
+
 
         return instance;
     }
@@ -82,7 +82,7 @@ export class HttpClient {
     public getProducts() {
         const SQLquery =
           "Select * from Artigo";
-    
+
         const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
           this.postJson(path, SQLquery)
@@ -99,10 +99,48 @@ export class HttpClient {
         });
     }
 
+  /*  public getOrderHistory() {
+        const SQLquery =
+          "Select * from Historico";
+
+        const path = `Administrador/Consulta`;
+        return new Promise<Object>((resolve, reject) => {
+          this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+    }*/
+
+    public getOrderHistory(number) {
+        const path = `/Compras/Docs/Edita/000/ECF/A/`+number;
+
+        return new Promise<Object>((resolve, reject) => {
+          this.getJson(path)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+    }
+
     public getCategories() {
         const SQLquery =
           "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
-    
+
         const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
           this.postJson(path, SQLquery)
