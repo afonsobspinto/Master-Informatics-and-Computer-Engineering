@@ -80,9 +80,8 @@ export class HttpClient {
     }
 
     public getProducts() {
-        const SQLquery =
-          "Select * from Artigo";
-    
+       
+        const SQLquery = "Select Distinct Tbl1.Artigo as Artigo, Tbl1.Descricao as Descricao, Tbl1.DescricaoComercial as DescricaoComercial, ArtigoMoeda.PVP1 as Price, Tbl1.Stock as Stock, Tbl1.Familia as Familia, Tbl1.SubFamilia as SubFamilia, Tbl1.Image as Image From ( (Select Distinct Tbl.Artigo as Artigo, Tbl.Descricao as Descricao, ArtigoIdioma.DescricaoComercial as DescricaoComercial, Tbl.Stock as Stock, Tbl.Familia as Familia, Tbl.SubFamilia as SubFamilia, Tbl.Image as Image From ( (Select Artigo.Artigo as Artigo, Artigo.Descricao as Descricao, INV_Custeio.Quantidade as Stock, Artigo.Familia as Familia, Artigo.SubFamilia as SubFamilia, Artigo.CDU_CampoVar1 as Image from (Artigo Left JOIN INV_Custeio on Artigo.Artigo = INV_Custeio.Artigo)) as Tbl JOIN ArtigoIdioma on Tbl.Artigo = ArtigoIdioma.Artigo)) as Tbl1 JOIN ArtigoMoeda on Tbl1.Artigo = ArtigoMoeda.Artigo)"
         const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
           this.postJson(path, SQLquery)

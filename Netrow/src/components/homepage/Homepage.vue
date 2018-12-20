@@ -27,14 +27,14 @@ export default {
                       id: p.Artigo,
                       title: p.Descricao,
                       description: p.DescricaoComercial ? p.DescricaoComercial : "Sem descrição adicional",
-                      price: p.PCUltimo,
-                      stock: p.StkActual,
+                      price: p.Price,
+                      stock: p.Stock ? p.Stock : 0,
                       isAddedToCart: false,
                       isAddedBtn: false,
                       category: p.Familia ? p.Familia : "Sem Categoria",
                       subCategory: p.SubFamilia ? p.SubFamilia : "Sem SubCategoria",
                       quantity: 1,
-                      image: p.CDU_CampoVar1 ? 'http://' + p.CDU_CampoVar1 : "https://bulma.io/images/placeholders/1280x960.png" // TODO: Testar isto
+                      image: p.Image ? 'http://' + p.Image : "https://bulma.io/images/placeholders/1280x960.png" // TODO: Testar isto
                     };
                     vm.$store.commit("addProduct", prod);
                   });
