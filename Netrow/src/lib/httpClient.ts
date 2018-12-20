@@ -34,7 +34,7 @@ export class HttpClient {
             }
         }
 
-    
+
 
         return instance;
     }
@@ -80,11 +80,30 @@ export class HttpClient {
     }
 
     public getProducts() {
-       
+
         const SQLquery = "Select Distinct Tbl1.Artigo as Artigo, Tbl1.Descricao as Descricao, Tbl1.DescricaoComercial as DescricaoComercial, ArtigoMoeda.PVP1 as Price, Tbl1.Stock as Stock, Tbl1.Familia as Familia, Tbl1.SubFamilia as SubFamilia, Tbl1.Image as Image From ( (Select Distinct Tbl.Artigo as Artigo, Tbl.Descricao as Descricao, ArtigoIdioma.DescricaoComercial as DescricaoComercial, Tbl.Stock as Stock, Tbl.Familia as Familia, Tbl.SubFamilia as SubFamilia, Tbl.Image as Image From ( (Select Artigo.Artigo as Artigo, Artigo.Descricao as Descricao, INV_Custeio.Quantidade as Stock, Artigo.Familia as Familia, Artigo.SubFamilia as SubFamilia, Artigo.CDU_CampoVar1 as Image from (Artigo Left JOIN INV_Custeio on Artigo.Artigo = INV_Custeio.Artigo)) as Tbl JOIN ArtigoIdioma on Tbl.Artigo = ArtigoIdioma.Artigo)) as Tbl1 JOIN ArtigoMoeda on Tbl1.Artigo = ArtigoMoeda.Artigo)"
         const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
           this.postJson(path, SQLquery)
+            .then(retObj => {
+              if (retObj === null) {
+                reject(retObj);
+                return;
+              }
+              resolve(retObj);
+            })
+            .catch(e => {
+              reject(e);
+            });
+        });
+    }*/
+
+    public getOrderHistory(number) {
+        //const path = `/Compras/Docs/Edita/000/ECF/A/`+number;
+        const path = `/Vendas/Docs/Edita/000/FA/A/`+number;
+
+        return new Promise<Object>((resolve, reject) => {
+          this.getJson(path)
             .then(retObj => {
               if (retObj === null) {
                 reject(retObj);
@@ -101,7 +120,7 @@ export class HttpClient {
     public getCategories() {
         const SQLquery =
           "Select Familias.Familia, Familias.Descricao, SubFamilia, SubFamilias.Descricao as SubDescricao from ( Familias JOIN SubFamilias on SubFamilias.Familia = Familias.Familia)";
-    
+
         const path = `Administrador/Consulta`;
         return new Promise<Object>((resolve, reject) => {
           this.postJson(path, SQLquery)
