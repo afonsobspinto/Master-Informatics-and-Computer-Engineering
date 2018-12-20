@@ -272,22 +272,16 @@
                     Linhas: [
                         productsList
                     ],
-                    Tipodoc: 'FA',
-                    Serie: 'C',
-                    Entidade: 'Sofrio',
+                    Tipodoc: 'FS',
+                    Serie: 'A',
+                    Entidade: 'C0001',
                     TipoEntidade: 'C',
                     DataDoc: todayDate,
-                    DataVenc: tomorrowDate,
-                    CamposUtil: [
-                        {
-                            "Nome": "Payment_Option",
-                            "Valor": this.paymentOption
-                        }
-                    ]
+                    DataVenc: tomorrowDate
                 };
 
                 return HttpClient.instance(console.error)
-                    .postJson("Compras/Docs/CreateDocument", requestData);
+                    .postJson("Vendas/Docs/CreateDocument", requestData);
             },
             checkForm (e) {
                 e.preventDefault();
