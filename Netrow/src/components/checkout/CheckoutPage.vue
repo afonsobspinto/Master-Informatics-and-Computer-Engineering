@@ -154,8 +154,8 @@
 </template>
 
 <script>
-    import { isValidEmail } from '../../validators';
-    import { HttpClient } from '../../lib/httpClient';
+    import {isValidEmail} from '../../validators';
+    import {HttpClient} from '../../lib/httpClient';
 
     export default {
         name: 'checkout-page-component',
@@ -199,7 +199,6 @@
                     finalPrice = "",
                     quantity = 1;
 
-                console.log(productsAdded);
                 productsAdded.forEach(product => {
                     if (product.quantity >= 1) {
                         quantity = product.quantity;
@@ -228,17 +227,12 @@
 
         methods: {
             getProducts() {
-                let productsList = [];
-                let i = 0;
-                for(i; i< this.products.size; i++){
-                    productsList.push(
-                        {
-                            Artigo: this.products()[i].Artigo,
-                            Quantidade: this.products()[i].quantity
-                        }
-                    )
-                }
-                return productsList;
+                return this.products.map(function (element) {
+                    return {
+                        Artigo: element.id,
+                        Quantidade: element.quantity
+                    }
+                })
             },
             closeModal(reloadPage) {
                 this.$store.commit("showCheckoutModal", false);
@@ -268,13 +262,13 @@
                 let productsList = this.getProducts();
                 let todayDate = this.getDate(0);
                 let tomorrowDate = this.getDate(1);
+                console.log(todayDate)
+                console.log(tomorrowDate)
                 let requestData = {
-                    Linhas: [
-                        productsList
-                    ],
-                    Tipodoc: 'FS',
+                    Linhas: productsList,
+                    Tipodoc: 'FA',
                     Serie: 'A',
-                    Entidade: 'C0001',
+                    Entidade: 'C0001', //TODO: Change for the client ID
                     TipoEntidade: 'C',
                     DataDoc: todayDate,
                     DataVenc: tomorrowDate
