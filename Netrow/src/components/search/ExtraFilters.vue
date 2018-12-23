@@ -18,7 +18,7 @@ export default {
         height: 8,
         dotSize: 16,
         min: 0,
-        max: 10000,
+        max: 100,
         tooltip: "always",
         formatter: "{value}€",
         mergeFormatter: "{value1}€ < price < {value2}€"

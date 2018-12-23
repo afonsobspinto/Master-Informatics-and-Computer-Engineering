@@ -7,8 +7,7 @@
         <div class="card-content column is-two-thirds">
           <h2 class="title is-4">{{ product.title }}</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud
+            {{product.description}}
           </p>
           <div>
             <p>{{ product.stock > 0 ? `${product.stock} stock` : 'No stock' }}</p>
