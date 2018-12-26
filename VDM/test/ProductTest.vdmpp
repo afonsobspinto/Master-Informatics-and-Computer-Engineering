@@ -23,7 +23,7 @@ class ProductTest
 			assertTrue(p.getDescription() = "desc");
 		);
 		
-		testSetCategory()==
+		private testSetCategory()==
 		(
 			dcl cat1:Category := new Category("office");
 			dcl p:Product := new Product("", "", cat1);
@@ -33,6 +33,13 @@ class ProductTest
 			p.setCategory(cat2);
 			assertTrue(p not in set cat1.getProducts());
 			assertTrue(p in set cat2.getProducts());
+		);
+		
+		private testImages()==
+		(
+			dcl p:Product := emptyProduct();
+			p.setImageUrls(["abc"]);
+			assertTrue("abc" in set elems p.getImageUrls());
 		);
 		
 		public static emptyProduct() res: Product==
@@ -47,6 +54,7 @@ class ProductTest
 			p.testConstructor();
 			p.testSetCategory();
 			p.testSimpleSetters();
+			p.testImages();
     );
 	    
 end ProductTest

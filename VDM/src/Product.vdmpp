@@ -6,6 +6,7 @@ class Product
 		private name: String;
 		private description: String;
 		private category: Category;
+		private imageUrls: seq of String;
 	
 	operations
 		public Product(nam: String, desc: String, cat: Category) res: Product == 
@@ -34,5 +35,9 @@ class Product
 		public setName(nam: String)==(name:=nam);
 		
 		public setDescription(desc:String)==(description:=desc);
+		
+		public setImageUrls(images: seq of String)==(imageUrls:=images);
+		
+		public getImageUrls() res: seq of String==(return imageUrls);
 		
 end Product
