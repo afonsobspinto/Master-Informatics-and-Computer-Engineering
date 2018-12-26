@@ -14,11 +14,29 @@ class ProductTest
 			assertTrue(p in set cat.getProducts());
 		);
 		
-		public static main: () ==> ()
-	    main() ==
-	    (
-				dcl p:ProductTest := new ProductTest();
-				p.testConstructor();
-	    );
+		testSetCategory()==
+		(
+			dcl cat1:Category := new Category("office");
+			dcl p:Product := new Product("", "", cat1);
+			dcl cat2:Category := new Category("space");
+			assertTrue(p in set cat1.getProducts());
+			assertTrue(p not in set cat2.getProducts());
+			p.setCategory(cat2);
+			assertTrue(p not in set cat1.getProducts());
+			assertTrue(p in set cat2.getProducts());
+		);
+		
+		public static emptyProduct() res: Product==
+		(
+			dcl cat:Category := new Category("");
+			return new Product("", "", cat);
+		); 
+		
+		public static main()==
+    (
+			dcl p:ProductTest := new ProductTest();
+			p.testConstructor();
+			p.testSetCategory();
+    );
 	    
 end ProductTest

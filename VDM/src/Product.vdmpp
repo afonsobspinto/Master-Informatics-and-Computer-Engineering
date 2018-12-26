@@ -1,13 +1,13 @@
 class Product
 	types 
 		public String = seq of char;
+		
 	instance variables
 		private name: String;
 		private description: String;
 		private category: Category;
-		
+	
 	operations
-
 		public Product(nam: String, desc: String, cat: Category) res: Product == 
 		(
 				name := nam;
@@ -22,4 +22,14 @@ class Product
 		pure public getDescription() res: String ==(return self.description);
 		
 		pure public getCategory() res: Category ==(return category);
+		
+		public setCategory(cat: Category)==
+		(
+			category.removeProduct(self);
+			category := cat;
+			cat.addProduct(self);
+		)
+		post self in set cat.getProducts();
+		
+		
 end Product

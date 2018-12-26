@@ -11,18 +11,23 @@ class CategoryTest
 			assertTrue(cat.getProducts() = {});
 		);
 		
-		private testAddRemoveProdcuts()==
+		private testAddRemoveProducts()==
 		(
 			dcl cat:Category := new Category("office");
-			dcl p1: Product := new Product("1","1",cat);
-			assertTrue(cat.getName() = "office");
+			dcl p1: Product := ProductTest`emptyProduct();
+			
+			assertTrue(p1 not in set cat.getProducts());
+			cat.addProduct(p1);
+			assertTrue(p1 in set cat.getProducts());
+			cat.removeProduct(p1);
+			assertTrue(p1 not in set cat.getProducts());
 		);
 		
-		public static main: () ==> ()
-	    main() ==
-	    (
-				dcl c:CategoryTest := new CategoryTest();
-				c.testConstructor();
-	    );
+		public static main()==
+    (
+			dcl c:CategoryTest := new CategoryTest();
+			c.testConstructor();
+			c.testAddRemoveProducts();
+    );
 	    
 end CategoryTest
