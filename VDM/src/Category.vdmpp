@@ -1,0 +1,5 @@
+class Category
+instance variables
+  product:set of (Product);
+
+end Category

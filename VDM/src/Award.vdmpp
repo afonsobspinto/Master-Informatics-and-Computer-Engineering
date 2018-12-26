@@ -1,0 +1,6 @@
+class Award
+instance variables
+  product:Product;
+  entity:Entity;
+
+end Award

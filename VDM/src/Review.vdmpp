@@ -1,0 +1,5 @@
+class Review
+instance variables
+  product:Product;
+
+end Review

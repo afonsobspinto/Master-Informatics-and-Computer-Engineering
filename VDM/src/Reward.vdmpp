@@ -1,0 +1,5 @@
+class Reward
+instance variables
+  product:Product;
+
+end Reward

@@ -1,0 +1,7 @@
+class User
+instance variables
+  review:set of (Review);
+  competition:set of (Promotion);
+  Name:seq of (char);
+
+end User

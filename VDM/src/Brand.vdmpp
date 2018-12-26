@@ -1,0 +1,6 @@
+class Brand
+instance variables
+  product:set of (Product);
+  company:Company;
+
+end Brand
