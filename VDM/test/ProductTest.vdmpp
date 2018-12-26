@@ -1,0 +1,24 @@
+class ProductTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl cat:Category := new Category("office");
+			dcl p:Product := new Product("pencil", "black pencil", cat);
+			assertTrue(p.getName() = "pencil");
+			assertTrue(p.getDescription() = "black pencil");
+			assertTrue(p.getCategory() = cat);
+			assertTrue(p in set cat.getProducts());
+		);
+		
+		public static main: () ==> ()
+	    main() ==
+	    (
+				dcl p:ProductTest := new ProductTest();
+				p.testConstructor();
+	    );
+	    
+end ProductTest

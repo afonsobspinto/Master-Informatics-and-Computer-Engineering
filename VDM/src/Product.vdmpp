@@ -1,2 +1,25 @@
 class Product
+	types 
+		public String = seq of char;
+	instance variables
+		private name: String;
+		private description: String;
+		private category: Category;
+		
+	operations
+
+		public Product(nam: String, desc: String, cat: Category) res: Product == 
+		(
+				name := nam;
+				description := desc;
+				category := cat;
+				cat.addProduct(self);
+		)
+		post self in set cat.getProducts();
+		
+		pure public getName() res: String ==(return self.name);
+		
+		pure public getDescription() res: String ==(return self.description);
+		
+		pure public getCategory() res: Category ==(return category);
 end Product
