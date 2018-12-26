@@ -31,5 +31,8 @@ class Product
 		)
 		post self in set cat.getProducts();
 		
+		public setName(nam: String)==(name:=nam);
+		
+		public setDescription(desc:String)==(description:=desc);
 		
 end Product

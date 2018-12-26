@@ -14,6 +14,15 @@ class ProductTest
 			assertTrue(p in set cat.getProducts());
 		);
 		
+		private testSimpleSetters()==
+		(
+			dcl p:Product := emptyProduct();
+			p.setName("name");
+			p.setDescription("desc");
+			assertTrue(p.getName() = "name");
+			assertTrue(p.getDescription() = "desc");
+		);
+		
 		testSetCategory()==
 		(
 			dcl cat1:Category := new Category("office");
@@ -37,6 +46,7 @@ class ProductTest
 			dcl p:ProductTest := new ProductTest();
 			p.testConstructor();
 			p.testSetCategory();
+			p.testSimpleSetters();
     );
 	    
 end ProductTest
