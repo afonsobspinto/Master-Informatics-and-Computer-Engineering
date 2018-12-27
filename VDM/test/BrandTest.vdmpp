@@ -7,11 +7,13 @@ class BrandTest
 		private testConstructor()==
 		(
 			dcl c: Company := new Company("1", "2", "3", "4");
-			dcl b: Brand := new Brand("abc", c);			
+			dcl b: Brand := new Brand("abc", c);
+			dcl b2: Brand := new Brand("abc2", c);
 
 			assertTrue(b.getCompany() = c);
 			assertTrue(b.getName() = "abc");
 			assertTrue(b in set c.getBrands());
+			assertTrue(b2 in set c.getBrands());
 		);
 	
 		public static main()==

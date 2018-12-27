@@ -11,9 +11,6 @@ class CompanyTest
 			assertTrue(c.getAddress() = "2");
 			assertTrue(c.getEmail() = "3");
 			assertTrue(c.getWebsite() = "4");
-			
-			
-			
 		);
 	
 		public static main()==

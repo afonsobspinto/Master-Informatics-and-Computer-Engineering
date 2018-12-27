@@ -50,11 +50,12 @@ class ProductTest
 		(
 			dcl p:Product := emptyProduct();
 			dcl usr: User := UserTest`buildInstance();
-			dcl r1: Review := new Review(usr, p, 1, "1");
+			dcl r1: Review := new Review(usr, p, 2, "1");
 			dcl r2: Review := new Review(usr, p, 5, "2");
+			dcl r3: Review := new Review(usr, p, 5, "3");
 			
 			assertTrue(p.hasReviews());
-			assertTrue(p.reviewAverage() = 3.0);
+			assertTrue(p.reviewAverage() = 4.0);
 		);
 		
 		public static buildBrandInstance() res: Brand==

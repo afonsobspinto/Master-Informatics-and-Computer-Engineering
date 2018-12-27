@@ -53,9 +53,9 @@ class Product
 		
 		public addReview(review: Review)==(reviews := reviews union {review});
 		
-		public hasReviews() res: bool==(return reviews <> {});
+		pure public hasReviews() res: bool==(return reviews <> {});
 		
-		public reviewAverage() res: real==
+		pure public reviewAverage() res: real==
 		(
 			dcl sum: real := 0;
 			for all r in set reviews do
