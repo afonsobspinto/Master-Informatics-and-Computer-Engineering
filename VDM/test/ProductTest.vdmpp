@@ -7,11 +7,14 @@ class ProductTest
 		private testConstructor()==
 		(
 			dcl cat:Category := new Category("office");
-			dcl p:Product := new Product("pencil", "black pencil", cat);
+			dcl c: Company := new Company("Asus", "", "", "");
+			dcl b:Brand := new Brand("compaq", c);
+			dcl p:Product := new Product("pencil", "black pencil", cat, b);
 			assertTrue(p.getName() = "pencil");
 			assertTrue(p.getDescription() = "black pencil");
 			assertTrue(p.getCategory() = cat);
 			assertTrue(p in set cat.getProducts());
+			assertTrue(b = p.getBrand());
 		);
 		
 		private testSimpleSetters()==
@@ -26,7 +29,7 @@ class ProductTest
 		private testSetCategory()==
 		(
 			dcl cat1:Category := new Category("office");
-			dcl p:Product := new Product("", "", cat1);
+			dcl p:Product := buildProductWithCategory(cat1);
 			dcl cat2:Category := new Category("space");
 			assertTrue(p in set cat1.getProducts());
 			assertTrue(p not in set cat2.getProducts());
@@ -42,10 +45,20 @@ class ProductTest
 			assertTrue("abc" in set elems p.getImageUrls());
 		);
 		
-		public static emptyProduct() res: Product==
+		public static buildBrandInstance() res: Brand==
 		(
-			dcl cat:Category := new Category("");
-			return new Product("", "", cat);
+			dcl c:Company := new Company("","","","");
+			return new Brand("", c);
+		);
+		
+		public static buildProductWithCategory(cat: Category) res: Product==
+		(
+			dcl b: Brand := buildBrandInstance();
+			return new Product("", "", cat, b);
+		);
+		
+		public static emptyProduct() res: Product==(
+			return buildProductWithCategory(new Category(""))
 		); 
 		
 		public static main()==

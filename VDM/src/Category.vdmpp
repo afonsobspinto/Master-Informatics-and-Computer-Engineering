@@ -1,10 +1,9 @@
-class Category
+class Category is subclass of ContainingProducts
 	types 
 		public String = seq of char;
 		
 	instance variables
 		private name: String;
-	  private products: set of Product;
 	  
 	operations
 		public Category(nam: String) res: Category ==
@@ -13,11 +12,5 @@ class Category
 			products := {};
 		);
 		
-		public addProduct(prod: Product)==(products := products union {prod});
-		
-		public removeProduct(prod: Product)==(products := products \ {prod});
-		
-		pure public getProducts() res: set of Product ==(return products);
-
 		pure public getName() res:String ==(return name);
 end Category

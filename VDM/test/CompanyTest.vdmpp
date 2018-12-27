@@ -1,0 +1,25 @@
+class CompanyTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl c: Company := new Company("1", "2", "3", "4");
+			assertTrue(c.getName() = "1");
+			assertTrue(c.getAddress() = "2");
+			assertTrue(c.getEmail() = "3");
+			assertTrue(c.getWebsite() = "4");
+			
+			
+			
+		);
+	
+		public static main()==
+    (
+			dcl c:CompanyTest := new CompanyTest();
+			c.testConstructor();
+    );
+
+end CompanyTest

@@ -1,6 +1,23 @@
-class Brand
-instance variables
-  product:set of (Product);
-  company:Company;
-
+class Brand is subclass of ContainingProducts
+	types
+		public String = seq of char;
+		
+	instance variables
+		name: String;
+	  company: Company;
+  
+  operations 
+	  public Brand(nam: String, compan: Company) res: Brand==
+	  (
+	  	products := {};
+	  	name := nam;
+	  	company := compan;
+	  	company.addBrand(self);
+	  )
+	  post self in set company.getBrands();
+	  
+	  pure public getCompany() res: Company==(return company);
+	  
+	  pure public getName() res: String==(return name);
+	  
 end Brand

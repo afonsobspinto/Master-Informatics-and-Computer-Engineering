@@ -7,16 +7,20 @@ class Product
 		private description: String;
 		private category: Category;
 		private imageUrls: seq of String;
+		private brand: Brand;
 	
 	operations
-		public Product(nam: String, desc: String, cat: Category) res: Product == 
+		public Product(nam: String, desc: String, cat: Category, bran: Brand) res: Product == 
 		(
 				name := nam;
 				description := desc;
 				category := cat;
 				cat.addProduct(self);
+				brand := bran;
+				brand.addProduct(self);
 		)
-		post self in set cat.getProducts();
+		post self in set cat.getProducts() and 
+					self in set bran.getProducts();
 		
 		pure public getName() res: String ==(return self.name);
 		
@@ -39,5 +43,7 @@ class Product
 		public setImageUrls(images: seq of String)==(imageUrls:=images);
 		
 		public getImageUrls() res: seq of String==(return imageUrls);
+		
+		pure public getBrand() res: Brand==(return brand);
 		
 end Product
