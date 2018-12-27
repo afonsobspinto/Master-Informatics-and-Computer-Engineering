@@ -1,0 +1,7 @@
+class UserTest
+	operations
+		public static buildInstance() res: User==
+		(
+			return new User("", "");
+		)
+end UserTest

@@ -1,7 +1,21 @@
 class User
-instance variables
-  review:set of (Review);
-  competition:set of (Promotion);
-  Name:seq of (char);
+	types 
+		public String = seq of char;
+	instance variables
+	  private reviews: set of (Review);
+	  private name: String;
+	  private email: String;
+		
+	operations
+		public User(nam: String, em: String) res:User ==
+		(
+			name := nam;
+			email := em;
+			reviews := {};
+		);
+	
+		public addReview(review: Review)==(reviews := reviews union {review});
+
+		pure public getReviews() res: set of Review==(return reviews);
 
 end User

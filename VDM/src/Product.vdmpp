@@ -8,6 +8,7 @@ class Product
 		private category: Category;
 		private imageUrls: seq of String;
 		private brand: Brand;
+		private reviews: set of Review;
 	
 	operations
 		public Product(nam: String, desc: String, cat: Category, bran: Brand) res: Product == 
@@ -18,6 +19,8 @@ class Product
 				cat.addProduct(self);
 				brand := bran;
 				brand.addProduct(self);
+				imageUrls := [];
+				reviews := {};	
 		)
 		post self in set cat.getProducts() and 
 					self in set bran.getProducts();
@@ -45,5 +48,20 @@ class Product
 		public getImageUrls() res: seq of String==(return imageUrls);
 		
 		pure public getBrand() res: Brand==(return brand);
+		
+		pure public getReviews() res: set of Review==(return reviews);
+		
+		public addReview(review: Review)==(reviews := reviews union {review});
+		
+		public hasReviews() res: bool==(return reviews <> {});
+		
+		public reviewAverage() res: real==
+		(
+			dcl sum: real := 0;
+			for all r in set reviews do
+				sum := sum + ( r.getRating() / card reviews );
+			return sum;
+		) pre reviews <> {}
+			post res >= 1.0 and res <= 5.0;
 		
 end Product

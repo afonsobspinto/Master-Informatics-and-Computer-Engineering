@@ -1,5 +1,33 @@
 class Review
-instance variables
-  product:Product;
+	types
+		public Rating = nat 
+			inv r == r in set {1, 2, 3, 4, 5};
+		public String = seq of char;
 
+	instance variables
+	  private user: User;
+	  private product: Product;
+		private rating: Rating;
+		private description: String;
+		
+	operations
+		public Review(usr:User, prod:Product, ratng: Rating, desc: String) res: Review ==
+		(
+			user := usr;
+			user.addReview(self);
+			product := prod;
+			product.addReview(self);
+			rating := ratng;
+			description := desc;
+		) post self in set product.getReviews() and 
+			self in set user.getReviews();
+	
+		pure public getProduct() res: Product==(return product);
+		
+		pure public getUser() res: User==(return user);
+		
+		pure public getRating() res: Rating==(return rating);
+		
+		pure public getDescription() res: String==(return description);
+	
 end Review

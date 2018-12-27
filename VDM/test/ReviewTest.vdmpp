@@ -1,0 +1,24 @@
+class ReviewTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl p: Product := ProductTest`emptyProduct();
+			dcl usr: User := UserTest`buildInstance();
+			dcl r:Review := new Review(usr, p, 1, "abc");
+			assertTrue(r.getProduct() = p);
+			assertTrue(r.getUser() = usr);
+			assertTrue(r.getRating() = 1);
+			assertTrue(r.getDescription() = "abc");
+		);
+		
+		public static main()==
+    (
+			dcl r:ReviewTest := new ReviewTest();
+			r.testConstructor();
+    );
+		
+end ReviewTest

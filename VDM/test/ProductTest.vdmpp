@@ -15,6 +15,7 @@ class ProductTest
 			assertTrue(p.getCategory() = cat);
 			assertTrue(p in set cat.getProducts());
 			assertTrue(b = p.getBrand());
+			assertTrue(not p.hasReviews());
 		);
 		
 		private testSimpleSetters()==
@@ -45,6 +46,17 @@ class ProductTest
 			assertTrue("abc" in set elems p.getImageUrls());
 		);
 		
+		private testReviews()==
+		(
+			dcl p:Product := emptyProduct();
+			dcl usr: User := UserTest`buildInstance();
+			dcl r1: Review := new Review(usr, p, 1, "1");
+			dcl r2: Review := new Review(usr, p, 5, "2");
+			
+			assertTrue(p.hasReviews());
+			assertTrue(p.reviewAverage() = 3.0);
+		);
+		
 		public static buildBrandInstance() res: Brand==
 		(
 			dcl c:Company := new Company("","","","");
@@ -68,6 +80,7 @@ class ProductTest
 			p.testSetCategory();
 			p.testSimpleSetters();
 			p.testImages();
+			p.testReviews();
     );
 	    
 end ProductTest
