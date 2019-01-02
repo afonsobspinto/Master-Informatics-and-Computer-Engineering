@@ -29,7 +29,20 @@ public class ProductsCategories extends SimplifiedAction {
   public void createProduct() {
     String name = this.prompt("name: ", String.class);
     String description = this.prompt("description: ", String.class);
-    Product product = new Product(name, description, new Category("aw"), new Brand());
+    int categoryId = this.prompt("category id: ", Integer.class);
+    if (! Utils.indexInBounds(categoryId, ProgramState.categories)) {
+      return;
+    }
+
+    int brandId = this.prompt("brand id: ", Integer.class);
+    if (! Utils.indexInBounds(brandId, ProgramState.brands)) {
+      return;
+    }
+
+    Category category = ProgramState.categories.get(categoryId);
+    Brand brand = ProgramState.brands.get(brandId);
+
+    Product product = new Product(name, description, category, brand);
     ProgramState.products.add(product);
 
     this.println("created new product: " + product.toString());
