@@ -11,7 +11,8 @@ class Product
 		private reviews: set of Review;
 	
 	operations
-		public Product(nam: String, desc: String, cat: Category, bran: Brand) res: Product == 
+		public Product: String * String * Category * Brand ==> Product
+		Product(nam, desc, cat, bran)== 
 		(
 				name := nam;
 				description := desc;
@@ -25,13 +26,17 @@ class Product
 		post self in set cat.getProducts() and 
 					self in set bran.getProducts();
 		
-		pure public getName() res: String ==(return self.name);
+		pure public getName: () ==> String 
+		getName()==(return self.name);
 		
-		pure public getDescription() res: String ==(return self.description);
+		pure public getDescription: () ==> String
+		getDescription()==(return self.description);
 		
-		pure public getCategory() res: Category ==(return category);
+		pure public getCategory:() ==> Category
+		getCategory()==(return category);
 		
-		public setCategory(cat: Category)==
+		public setCategory: Category ==> ()
+		setCategory(cat)==
 		(
 			category.removeProduct(self);
 			category := cat;
@@ -39,29 +44,39 @@ class Product
 		)
 		post self in set cat.getProducts();
 		
-		public setName(nam: String)==(name:=nam);
+		public setName: String ==> ()
+		setName(nam)==(name:=nam);
 		
-		public setDescription(desc:String)==(description:=desc);
 		
-		public setImageUrls(images: seq of String)==(imageUrls:=images);
+		public setDescription: String ==> ()
+		setDescription(desc)==(description:=desc);
 		
-		public getImageUrls() res: seq of String==(return imageUrls);
+		public setImageUrls: seq of String ==> ()
+		setImageUrls(images)==(imageUrls:=images);
 		
-		pure public getBrand() res: Brand==(return brand);
+		public getImageUrls:() ==> seq of String
+		getImageUrls()==(return imageUrls);
 		
-		pure public getReviews() res: set of Review==(return reviews);
+		pure public getBrand:() ==> Brand
+		getBrand()==(return brand);
 		
-		public addReview(review: Review)==(reviews := reviews union {review});
+		pure public getReviews:() ==> set of Review
+		getReviews()==(return reviews);
 		
-		pure public hasReviews() res: bool==(return reviews <> {});
+		public addReview:(Review) ==> ()
+		addReview(review)==(reviews := reviews union {review});
 		
-		pure public reviewAverage() res: real==
+		pure public hasReviews:() ==> bool
+		hasReviews()==(return reviews <> {});
+		
+		pure public reviewAverage:() ==> real
+		reviewAverage()==
 		(
 			dcl sum: real := 0;
 			for all r in set reviews do
 				sum := sum + ( r.getRating() / card reviews );
 			return sum;
-		) pre reviews <> {}
-			post res >= 1.0 and res <= 5.0;
+		) pre reviews <> {};
+--			post res >= 1.0 and res <= 5.0;
 		
 end Product
