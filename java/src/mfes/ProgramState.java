@@ -1,4 +1,4 @@
-package mfes.cli;
+package mfes;
 
 import mfes.models.Product;
 

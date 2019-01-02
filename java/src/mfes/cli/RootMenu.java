@@ -2,6 +2,7 @@ package mfes.cli;
 
 import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
+import mfes.Pair;
 import mfes.cli.methods.Products;
 
 public class RootMenu extends ActionView {
@@ -14,21 +15,26 @@ public class RootMenu extends ActionView {
   public void executeCustomAction() {
     MenuView rootMenu = new MenuView("Select CRUD category", "CRUD");
 
-      MenuView productsMenu = buildProductsMenu();
+    MenuView productsMenu = buildProductsMenu();
 
-      rootMenu.addMenuItem(productsMenu);
-      rootMenu.display();
+    rootMenu.addMenuItem(productsMenu);
+    rootMenu.display();
   }
 
+  public static MenuView buildProductsMenu() {
+    Products products = new Products();
+    return buildMenuView("Products CRUD",
+            Pair.of("List Products", products::listProducts),
+            Pair.of("Create New Product", products::registerNewProduct));
+  }
 
-    public static MenuView buildProductsMenu() {
-        Products products = new Products();
-        MenuView menuView = new MenuView("Products CRUD", "Products CRUD");
+  private static MenuView buildMenuView(String menuTitle, Pair<String, Runnable>... menuItems) {
+    MenuView menuView = new MenuView(menuTitle, menuTitle);
 
-        menuView.addMenuItem(new SimplifiedAction("List Products", products::listProducts));
-        menuView.addMenuItem(new SimplifiedAction("Create New Product", products::registerNewProduct));
-
-        return menuView;
+    for (Pair<String, Runnable> item : menuItems) {
+      menuView.addMenuItem(new SimplifiedAction(item.first, item.second));
     }
 
+    return menuView;
+  }
 }

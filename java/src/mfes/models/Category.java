@@ -8,7 +8,7 @@ public class Category extends ContainingProducts {
 
   public Category(final String nam) {
 
-    throw new UnsupportedOperationException();
+//    throw new UnsupportedOperationException();
   }
 
   public String getName() {
