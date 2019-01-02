@@ -9,16 +9,16 @@ import mfes.models.Brand;
 import mfes.models.Category;
 import mfes.models.Product;
 
-public class Products extends SimplifiedAction {
+public class ProductsCategories extends SimplifiedAction {
 
-  public static MenuView buildProductsMenu() {
-    Products products = new Products();
+  public static MenuView buildMenu() {
+    ProductsCategories items = new ProductsCategories();
     return Utils.buildMenuView(
         "Products, Category CRUD",
-        Pair.of("List Products", products::listProducts),
-        Pair.of("Create New Product", products::createProduct),
-        Pair.of("List Categories", products::listCategories),
-        Pair.of("Create New Category", products::createCategory));
+        Pair.of("List Products", items::listProducts),
+        Pair.of("Create New Product", items::createProduct),
+        Pair.of("List Categories", items::listCategories),
+        Pair.of("Create New Category", items::createCategory));
   }
 
   public void listProducts() {

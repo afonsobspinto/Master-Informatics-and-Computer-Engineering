@@ -39,7 +39,7 @@ public class Brand extends ContainingProducts {
         + "name := "
         + Utils.toString(name)
         + ", company := "
-        + Utils.toString(company)
+        + Utils.toString(company.getName())
         + "}";
   }
 }

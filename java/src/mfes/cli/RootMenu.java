@@ -2,7 +2,8 @@ package mfes.cli;
 
 import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
-import mfes.cli.methods.Products;
+import mfes.cli.methods.CompaniesBrands;
+import mfes.cli.methods.ProductsCategories;
 
 public class RootMenu extends ActionView {
 
@@ -14,8 +15,10 @@ public class RootMenu extends ActionView {
   public void executeCustomAction() {
     MenuView rootMenu = new MenuView("Select CRUD category", "CRUD");
 
-    MenuView productsMenu = Products.buildProductsMenu();
+    MenuView productsMenu = ProductsCategories.buildMenu();
+    MenuView companiesMenu = CompaniesBrands.buildMenu();
 
+    rootMenu.addMenuItem(companiesMenu);
     rootMenu.addMenuItem(productsMenu);
     rootMenu.display();
   }
