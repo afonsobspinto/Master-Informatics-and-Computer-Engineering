@@ -15,26 +15,10 @@ public class RootMenu extends ActionView {
   public void executeCustomAction() {
     MenuView rootMenu = new MenuView("Select CRUD category", "CRUD");
 
-    MenuView productsMenu = buildProductsMenu();
+    MenuView productsMenu = Products.buildProductsMenu();
 
     rootMenu.addMenuItem(productsMenu);
     rootMenu.display();
   }
 
-  public static MenuView buildProductsMenu() {
-    Products products = new Products();
-    return buildMenuView("Products CRUD",
-            Pair.of("List Products", products::listProducts),
-            Pair.of("Create New Product", products::registerNewProduct));
-  }
-
-  private static MenuView buildMenuView(String menuTitle, Pair<String, Runnable>... menuItems) {
-    MenuView menuView = new MenuView(menuTitle, menuTitle);
-
-    for (Pair<String, Runnable> item : menuItems) {
-      menuView.addMenuItem(new SimplifiedAction(item.first, item.second));
-    }
-
-    return menuView;
-  }
 }
