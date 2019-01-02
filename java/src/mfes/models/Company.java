@@ -1,5 +1,6 @@
 package mfes.models;
 
+import java.util.*;
 import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
@@ -10,39 +11,49 @@ public class Company {
   private String website;
   private VDMSet brands;
 
+  public void cg_init_Company_1(
+      final String nam, final String addr, final String em, final String webs) {
+
+    name = nam;
+    address = addr;
+    email = em;
+    website = webs;
+    brands = SetUtil.set();
+  }
+
   public Company(final String nam, final String addr, final String em, final String webs) {
 
-    throw new UnsupportedOperationException();
+    cg_init_Company_1(nam, addr, em, webs);
   }
 
   public void addBrand(final Brand bran) {
 
-    throw new UnsupportedOperationException();
+    brands = SetUtil.union(Utils.copy(brands), SetUtil.set(bran));
   }
 
   public VDMSet getBrands() {
 
-    throw new UnsupportedOperationException();
+    return Utils.copy(brands);
   }
 
   public String getName() {
 
-    throw new UnsupportedOperationException();
+    return name;
   }
 
   public String getAddress() {
 
-    throw new UnsupportedOperationException();
+    return address;
   }
 
   public String getEmail() {
 
-    throw new UnsupportedOperationException();
+    return email;
   }
 
   public String getWebsite() {
 
-    throw new UnsupportedOperationException();
+    return website;
   }
 
   public Company() {}

@@ -2,7 +2,6 @@ package mfes.cli;
 
 import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
-import mfes.Pair;
 import mfes.cli.methods.Products;
 
 public class RootMenu extends ActionView {

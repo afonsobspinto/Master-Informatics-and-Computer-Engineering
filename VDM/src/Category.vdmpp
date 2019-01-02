@@ -6,11 +6,13 @@ class Category is subclass of ContainingProducts
 		private name: String;
 	  
 	operations
-		public Category(nam: String) res: Category ==
+		public Category: String ==> Category
+		Category(nam)==
 		(
 			name := nam;
 			products := {};
 		);
 		
-		pure public getName() res:String ==(return name);
+		pure public getName:() ==> String
+		getName()==(return name);
 end Category

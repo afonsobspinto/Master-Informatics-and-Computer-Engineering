@@ -10,7 +10,8 @@ class Company
 		private brands: set of Brand;
 		
 	operations
-		public Company(nam: String, addr: String, em: String, webs: String) res:Company ==
+		public Company: String * String * String * String ==> Company 
+		Company(nam, addr, em, webs)==
 		(
 			name := nam;
 			address := addr;
@@ -19,16 +20,22 @@ class Company
 			brands := {};
 		);
 		
-		public addBrand(bran: Brand)==(brands := brands union {bran});
+		public addBrand: Brand ==> ()
+		addBrand(bran)==(brands := brands union {bran});
 		
-		pure public getBrands() res: set of Brand==(return brands);
+		pure public getBrands:() ==> set of Brand
+		getBrands()==(return brands);
 
-		pure public getName() res: String==(return name);
+		pure public getName:() ==> String
+		getName()==(return name);
 		
-		pure public getAddress() res: String==(return address);
+		pure public getAddress:() ==> String
+		getAddress()==(return address);
 		
-		pure public getEmail() res: String==(return email);
+		pure public getEmail:() ==> String
+		getEmail()==(return email);
 		
-		pure public getWebsite() res: String==(return website);
+		pure public getWebsite:() ==> String
+		getWebsite()==(return website);
 		
 end Company

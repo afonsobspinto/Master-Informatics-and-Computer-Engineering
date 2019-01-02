@@ -19,7 +19,7 @@ public class Utils {
     public static String listOrderedList(List list) {
         String acum = "";
         for (int i = 0; i < list.size(); i++) {
-            acum += i + " - " + list.get(i).toString() + "\n\n";
+            acum += "id:" + i + " - " + list.get(i).toString() + "\n\n";
         }
 
         return acum;

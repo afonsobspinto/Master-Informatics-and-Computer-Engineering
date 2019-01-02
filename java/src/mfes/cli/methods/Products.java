@@ -9,16 +9,16 @@ import mfes.models.Brand;
 import mfes.models.Category;
 import mfes.models.Product;
 
-import java.util.stream.Collectors;
-
 public class Products extends SimplifiedAction {
 
   public static MenuView buildProductsMenu() {
     Products products = new Products();
     return Utils.buildMenuView(
-        "Products, Brand, Cateogry, Brand CRUD",
+        "Products, Category CRUD",
         Pair.of("List Products", products::listProducts),
-        Pair.of("Create New Product", products::registerNewProduct));
+        Pair.of("Create New Product", products::createProduct),
+        Pair.of("List Categories", products::listCategories),
+        Pair.of("Create New Category", products::createCategory));
   }
 
   public void listProducts() {
@@ -26,7 +26,7 @@ public class Products extends SimplifiedAction {
     this.println(text);
   }
 
-  public void registerNewProduct() {
+  public void createProduct() {
     String name = this.prompt("name: ", String.class);
     String description = this.prompt("description: ", String.class);
     Product product = new Product(name, description, new Category("aw"), new Brand());

@@ -6,12 +6,16 @@ class ContainingProducts
 	  protected products: set of Product;
 	  
 	operations
-		public ContainingProducts() res:ContainingProducts ==(products:={});
+		public ContainingProducts:() ==> ContainingProducts 
+		ContainingProducts()==(products:={});
 	
-		public addProduct(prod: Product)==(products := products union {prod});
+		public addProduct: Product ==> ()
+		addProduct(prod)==(products := products union {prod});
 		
-		public removeProduct(prod: Product)==(products := products \ {prod});
+		public removeProduct:Product ==> () 
+		removeProduct(prod)==(products := products \ {prod});
 		
-		pure public getProducts() res: set of Product ==(return products);
+		pure public getProducts:() ==> set of Product 
+		getProducts()==(return products);
 
 end ContainingProducts

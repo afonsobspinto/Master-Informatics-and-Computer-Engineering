@@ -7,7 +7,8 @@ class Brand is subclass of ContainingProducts
 	  company: Company;
   
   operations 
-	  public Brand(nam: String, compan: Company) res: Brand==
+	  public Brand: String * Company ==> Brand
+	  Brand(nam, compan)==
 	  (
 	  	products := {};
 	  	name := nam;
@@ -16,8 +17,10 @@ class Brand is subclass of ContainingProducts
 	  )
 	  post self in set company.getBrands();
 	  
-	  pure public getCompany() res: Company==(return company);
+	  pure public getCompany:() ==> Company
+	  getCompany()==(return company);
 	  
-	  pure public getName() res: String==(return name);
+	  pure public getName:() ==> String
+	  getName()==(return name);
 	  
 end Brand
