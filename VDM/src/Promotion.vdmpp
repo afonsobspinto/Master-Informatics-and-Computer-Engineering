@@ -15,5 +15,9 @@ class Promotion
 				rewards := sor;
 				brand := b;
 		)
+		
+		pure public getName:() ==> String
+	    getName()==(return name);
+	    
 
 end Promotion

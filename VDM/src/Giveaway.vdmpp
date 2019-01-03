@@ -19,9 +19,6 @@ class Giveaway is subclass of Promotion
 	  		math := new MATH()
 	  	 );
             
-      pure public getName:() ==> String
-	    getName()==(return name);
-	    
 	    pure public getPercentage:() ==> int
 	    getPercentage()==(return percentage);
 	    
