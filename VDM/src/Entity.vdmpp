@@ -1,2 +1,18 @@
-class Entity
+class Entity 
+	types 
+		public String = seq of char;
+		
+	instance variables
+		private name: String;
+	  
+	operations
+		public Entity: String ==> Entity
+		Entity(nam)==
+		(
+			name := nam;
+		);
+		
+		pure public getName:() ==> String
+		getName()==(return name);
+		
 end Entity

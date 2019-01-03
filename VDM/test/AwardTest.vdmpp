@@ -1,0 +1,26 @@
+class AwardTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl e:Entity := new Entity("Certificado de qualidade");
+			dcl cat:Category := new Category("vegetables");	
+      dcl c: Company := new Company("Sonae MC", "", "", "");
+			dcl b:Brand := new Brand("Continente", c);
+			dcl p:Product := new Product("carrot", "certified fresh", cat, b);
+			dcl a:Award := new Award(p, e, cat);
+			assertTrue(a.getProduct() = p);
+			assertTrue(a.getEntity() = e);
+			assertTrue(a.getCategory() = cat);
+		);
+		
+		public static main()==
+    (
+			dcl a:AwardTest := new AwardTest();
+			a.testConstructor();
+    );
+	    
+end AwardTest

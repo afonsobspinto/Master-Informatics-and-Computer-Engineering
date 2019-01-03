@@ -1,6 +1,29 @@
 class Award
-instance variables
-  product:Product;
-  entity:Entity;
+	types
+    public String = seq of char;
+
+	instance variables
+		private product: Product;
+		private entity: Entity;
+		private category: Category;
+
+	operations
+		public Award: Product * Entity * Category ==> Award
+		Award(prod, ent, cat)== 
+		(
+				product := prod;
+				entity := ent;
+				category := cat;
+		);
+		
+		pure public getProduct:() ==> Product
+	    getProduct()==(return product);
+	    
+	 	pure public getEntity:() ==> Entity
+	 		getEntity()==(return entity);
+	 	
+	 	pure public getCategory:() ==> Category
+	 		getCategory()==(return category);	
+	    
 
 end Award
