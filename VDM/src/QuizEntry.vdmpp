@@ -2,7 +2,7 @@ class QuizEntry
 	types 
 		public String = seq of char;
 	instance variables
-		private answers:map QA to String;
+		private answers: map QA to String;
 		private quiz: set of (QA);
 		private result: bool;
 	operations
@@ -17,8 +17,17 @@ class QuizEntry
 		public addAnswer:QA * String ==> ()
 			addAnswer(qa, ans)==(answers := answers ++ {qa |-> ans});
 			
-		public getResult:() ==> bool
-		  getResult()==(
+		pure public getQuiz:() ==> set of (QA)
+			getQuiz()==(return quiz);
+			
+		pure public getAnswers:() ==> map QA to String
+			getAnswers()==(return answers);				
+		
+		pure public getResult:() ==> bool
+			getResult()==(return result);			
+		
+		public calculateResult:() ==> bool
+		  calculateResult()==(
 		    for all qa in set quiz do
 		    	if not qa.evalAnswer(answers(qa))
 		    	then	(result := false; return false)
