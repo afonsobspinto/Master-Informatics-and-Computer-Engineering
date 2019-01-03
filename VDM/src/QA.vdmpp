@@ -19,5 +19,5 @@ class QA
 	    
 	    pure public getAnswer:() ==> String
 	    getAnswer()==(return answer);
-	    
+
 end QA

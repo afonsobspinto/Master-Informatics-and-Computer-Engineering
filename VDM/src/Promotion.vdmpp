@@ -19,7 +19,7 @@ class Promotion
 		pure public getName:() ==> String
 	    getName()==(return name);
 	    
-	 	pure public getRewards:() ==> set of Reward
+	 	pure public getRewards:() ==> set of (Reward)
 	 		getRewards()==(return rewards);
 	 	
 	 	pure public getBrand:() ==> Brand
