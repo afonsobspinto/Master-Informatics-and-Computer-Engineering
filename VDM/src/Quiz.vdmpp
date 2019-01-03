@@ -1,9 +1,9 @@
-class Quiz is subclass of Promotion			
+class Quiz is subclass of Competition			
 		instance variables
-			private quiz: seq of (QA);
+			private quiz: set of (QA);
 		
 		operations
-			public Quiz: String * set of Reward * Brand * seq of QA ==> Quiz
+			public Quiz: String * set of Reward * Brand * set of QA ==> Quiz
 			Quiz(nam, sor, b, qas)== 
 			(
 					name := nam;
@@ -12,7 +12,17 @@ class Quiz is subclass of Promotion
 					quiz := qas;
 			);
 			
-			pure public getQuiz:() ==> seq of (QA)
+			pure public getQuiz:() ==> set of (QA)
 	 		getQuiz()==(return quiz);	
+	 		
+	 		public learnResult:() ==> bool
+		  learnResult()==(
+		    for all qa in set quiz do
+		    	if not qa.isCorrect()
+		    	then	(result := false; return false)
+		    	else result := true;
+		    	return result;
+		  ); 
+		  
 
 end Quiz

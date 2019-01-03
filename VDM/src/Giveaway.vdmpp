@@ -1,10 +1,10 @@
-class Giveaway is subclass of Promotion
+class Giveaway is subclass of Competition
 	types
     public String = seq of char;
         
     instance variables
         private percentage: int;
-        private result: int;
+        private number: int;
         private math: MATH
     
   operations 
@@ -15,20 +15,21 @@ class Giveaway is subclass of Promotion
 	  		rewards := sor;
 	  		brand := b;
 	  		percentage := p;
-	  		result := 0;
+	  		number := -1;
 	  		math := new MATH()
 	  	 );
             
 	    pure public getPercentage:() ==> int
 	    getPercentage()==(return percentage);
 	    
-	    pure public getResult:() ==> int
-	    getResult()==(return result);
+	   	pure public getNumber:() ==> int
+	    getNumber()==(return number);
 	    
       public learnResult:() ==> bool
 		  learnResult()==(
-		    result := math.rand(100);
-		  	return result <= percentage;
+		  	number := math.rand(100);
+		    result := number <= percentage;
+		  	return result;
 		  ); 
 		  
 end Giveaway

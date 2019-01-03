@@ -5,6 +5,7 @@ class QA
 		instance variables
 			private question: String;
 			private answer: String;
+			private correct: bool;
 		
 		operations
 			public QA: String * String ==> QA
@@ -12,6 +13,7 @@ class QA
 			(
 					question := q;
 					answer := a;
+					correct := false;
 			);
 			
 			pure public getQuestion:() ==> String
@@ -20,9 +22,13 @@ class QA
 	 		pure public getAnswer:() ==> String
 	 		getAnswer()==(return answer);	
 			
+			pure public isCorrect:() ==> bool
+	 		isCorrect()==(return correct);	
+			
 			public evalAnswer:String ==> bool
 		  evalAnswer(ans)==(
-		  	return ans = answer;
+		  	correct := ans = answer;
+		  	return correct;
 		  ); 
 
 end QA
