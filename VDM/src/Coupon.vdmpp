@@ -1,2 +1,27 @@
-class Coupon
+class Coupon is subclass of Reward
+
+		types
+		public String = seq of char;
+		
+	instance variables
+		private name: String;
+    private discount: int;
+    
+  operations 
+	  public Coupon: String * int ==> Coupon
+	  	 Coupon(nam, dis)==
+	  	 (
+	  		name := nam;
+	  		discount := dis;
+	  	 );
+	  	 
+	  pure public getName:() ==> String
+	  getName()==(return name);
+	  	 
+	  pure public getDiscount:() ==> int
+	  getDiscount()==(return discount);
+	  
+	  public setDiscount: int ==> ()
+		setDiscount(dis)==(discount:=dis);
+	  	 
 end Coupon
