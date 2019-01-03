@@ -1,6 +1,6 @@
 class Promotion
 instance variables
   reward:set of (Reward);
-  retailer:Retailer;
+  brand:Brand;
 
 end Promotion

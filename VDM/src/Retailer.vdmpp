@@ -1,5 +1,17 @@
-class Retailer
-instance variables
-  product:set of (Product);
+class Retailer is subclass of ContainingProducts
+  types
+        public String = seq of char;
+        
+    instance variables
+        name: String;
+    
+  operations 
+      public Retailer(nam: String) res: Retailer==
+      (
+          products := {};
+          name := nam;
+      );
+            
+      pure public getName() res: String==(return name);
 
 end Retailer

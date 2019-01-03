@@ -1,2 +1,2 @@
-class Giveaway
+class Giveaway is subclass of Promotion
 end Giveaway
