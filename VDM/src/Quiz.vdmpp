@@ -3,9 +3,12 @@ class Quiz is subclass of Promotion
 			private quiz: seq of QA;
 		
 		operations
-			public Quiz: seq of QA ==> Quiz
-			Quiz(qas)== 
+			public Quiz: String * set of Reward * Brand * seq of QA ==> Quiz
+			Quiz(nam, sor, b, qas)== 
 			(
+					name := nam;
+					rewards := sor;
+					brand := b;
 					quiz := qas;
 			)
 end Quiz

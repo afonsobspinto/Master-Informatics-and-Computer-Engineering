@@ -1,14 +1,23 @@
 class Promotion
+	types
+    public String = seq of char;
+
 	instance variables
-	  reward:set of (Reward);
-	  brand:Brand;
+		protected name:String; 
+	  protected rewards:set of (Reward);
+	  protected brand:Brand;
 
 	operations
-		public Promotion: set of Reward * Brand ==> Promotion
-		Promotion(sor, b)== 
+		public Promotion: String * set of Reward * Brand ==> Promotion
+		Promotion(nam, sor, b)== 
 		(
-				reward := sor;
+				name := nam;
+				rewards := sor;
 				brand := b;
-		)
+		);
+		
+		pure public getName:() ==> String
+	    getName()==(return name);
+	    
 
 end Promotion
