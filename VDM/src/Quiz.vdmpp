@@ -1,6 +1,9 @@
-class Quiz is subclass of Competition			
+class Quiz is subclass of Competition
+		types 
+			public String = seq of char;			
 		instance variables
 			private quiz: set of (QA);
+			private quizEntries: seq of QuizEntry;
 		
 		operations
 			public Quiz: String * set of Reward * Brand * set of QA ==> Quiz
@@ -10,18 +13,14 @@ class Quiz is subclass of Competition
 					rewards := sor;
 					brand := b;
 					quiz := qas;
+					quizEntries := [];
 			);
 			
 			pure public getQuiz:() ==> set of (QA)
 	 		getQuiz()==(return quiz);	
 	 		
-	 		public learnResult:() ==> bool
-		  learnResult()==(
-		    for all qa in set quiz do
-		    	if not qa.isCorrect()
-		    	then	(result := false; return false)
-		    	else result := true;
-		    	return result;
-		  ); 
+	 		public addEntry:(QuizEntry) ==> ()
+			addEntry(entry)==(quizEntries := quizEntries ^ [entry]);
+
 
 end Quiz

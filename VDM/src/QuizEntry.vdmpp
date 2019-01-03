@@ -1,0 +1,29 @@
+class QuizEntry
+	types 
+		public String = seq of char;
+	instance variables
+		private answers:map QA to String;
+		private quiz: set of (QA);
+		private result: bool;
+	operations
+		public QuizEntry: set of (QA) ==> QuizEntry
+			QuizEntry(q)== 
+			(
+				quiz := q;
+				answers := { |-> };
+				result := false;
+			);
+			
+		public addAnswer:QA * String ==> ()
+			addAnswer(qa, ans)==(answers := answers ++ {qa |-> ans});
+			
+		public getResult:() ==> bool
+		  getResult()==(
+		    for all qa in set quiz do
+		    	if not qa.evalAnswer(answers(qa))
+		    	then	(result := false; return false)
+		    	else result := true;
+		    	return result;
+); 
+
+end QuizEntry
