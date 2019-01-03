@@ -1,6 +1,14 @@
 class Promotion
-instance variables
-  reward:set of (Reward);
-  brand:Brand;
+	instance variables
+	  reward:set of (Reward);
+	  brand:Brand;
+
+	operations
+		public Promotion: set of Reward * Brand ==> Promotion
+		Promotion(sor, b)== 
+		(
+				reward := sor;
+				brand := b;
+		)
 
 end Promotion

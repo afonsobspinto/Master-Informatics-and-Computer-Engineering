@@ -1,0 +1,16 @@
+class QA
+	types 
+			public String = seq of char;
+			
+		instance variables
+			private question: String;
+			private answer: String;
+		
+		operations
+			public QA: String * String ==> QA
+			QA(q, a)== 
+			(
+					question := q;
+					answer := a;
+			)
+end QA

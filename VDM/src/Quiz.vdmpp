@@ -1,2 +1,11 @@
-class Quiz is subclass of Promotion
+class Quiz is subclass of Promotion			
+		instance variables
+			private quiz: seq of QA;
+		
+		operations
+			public Quiz: seq of QA ==> Quiz
+			Quiz(qas)== 
+			(
+					quiz := qas;
+			)
 end Quiz
