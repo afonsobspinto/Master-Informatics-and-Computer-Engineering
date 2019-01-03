@@ -3,16 +3,17 @@ class Giveaway is subclass of Promotion
     public String = seq of char;
         
     instance variables
-        private name: String;
         private percentage: int;
         private result: int;
         private math: MATH
     
   operations 
-      public Giveaway: String * int ==> Giveaway
-	  	 Giveaway(nam, p)==
+      public Giveaway: String * set of Reward * Brand * int ==> Giveaway
+	  	 Giveaway(nam, sor, b, p)==
 	  	 (
 	  		name := nam;
+	  		rewards := sor;
+	  		brand := b;
 	  		percentage := p;
 	  		result := 0;
 	  		math := new MATH()
