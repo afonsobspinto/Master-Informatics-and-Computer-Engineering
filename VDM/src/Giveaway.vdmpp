@@ -8,11 +8,11 @@ class Giveaway is subclass of Promotion
         private result: int;
     
   operations 
-      public Giveaway: String ==> Giveaway
-	  	 Giveaway(nam)==
+      public Giveaway: String * int ==> Giveaway
+	  	 Giveaway(nam, p)==
 	  	 (
 	  		name := nam;
-	  		percentage := 30; -- Change to MATH.rand(50);
+	  		percentage := p;
 	  		result := 0;
 	  	 );
             
@@ -27,7 +27,7 @@ class Giveaway is subclass of Promotion
 	    
       public learnResult:() ==> bool
 		  learnResult()==(
-		    result := 28; -- Change to MATH.rand(100);
+		    result := MATH.rand(100);
 		  	return result <= percentage;
 		  ); 
 		  

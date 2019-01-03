@@ -6,8 +6,7 @@ class GiveawayTest
     
 		private testConstructor()==
 		(
-			dcl g: Giveaway := new Giveaway("gv");
-
+			dcl g: Giveaway := new Giveaway("gv", 30);
 			assertTrue(g.getName() = "gv");
 			assertTrue(g.getPercentage() <= 50);
 		);
