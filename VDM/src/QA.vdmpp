@@ -12,5 +12,12 @@ class QA
 			(
 					question := q;
 					answer := a;
-			)
+			);
+			
+			pure public getQuestion:() ==> String
+	 		getQuestion()==(return question);	
+	 		
+	 		pure public getAnswer:() ==> String
+	 		getAnswer()==(return answer);	
+			
 end QA

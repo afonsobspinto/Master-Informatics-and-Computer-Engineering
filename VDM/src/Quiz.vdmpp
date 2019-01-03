@@ -1,6 +1,6 @@
 class Quiz is subclass of Promotion			
 		instance variables
-			private quiz: seq of QA;
+			private quiz: seq of (QA);
 		
 		operations
 			public Quiz: String * set of Reward * Brand * seq of QA ==> Quiz
@@ -12,8 +12,7 @@ class Quiz is subclass of Promotion
 					quiz := qas;
 			);
 			
-			pure public getQuiz:() ==> String
+			pure public getQuiz:() ==> seq of (QA)
 	 		getQuiz()==(return quiz);	
-			
 
 end Quiz
