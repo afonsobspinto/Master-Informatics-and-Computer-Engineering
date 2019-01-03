@@ -1,17 +1,19 @@
 class Retailer is subclass of ContainingProducts
   types
-        public String = seq of char;
+    public String = seq of char;
         
     instance variables
-        name: String;
+        private name: String;
     
   operations 
-      public Retailer(nam: String) res: Retailer==
-      (
-          products := {};
-          name := nam;
-      );
+       public Retailer: String ==> Retailer
+	  	 Retailer(nam)==
+	  	 (
+	  		products := {};
+	  		name := nam;
+	  	 );
             
-      pure public getName() res: String==(return name);
+      pure public getName:() ==> String
+	    getName()==(return name);
 
 end Retailer

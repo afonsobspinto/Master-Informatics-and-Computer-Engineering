@@ -1,0 +1,21 @@
+class GiveawayTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl g: Giveaway := new Giveaway("gv");
+
+			assertTrue(g.getName() = "gv");
+			assertTrue(g.getPercentage() <= 50);
+		);
+	
+		public static main()==
+    (
+			dcl g:GiveawayTest := new GiveawayTest();
+			g.testConstructor();
+    );
+
+end GiveawayTest

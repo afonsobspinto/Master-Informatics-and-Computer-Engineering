@@ -1,2 +1,34 @@
 class Giveaway is subclass of Promotion
+	types
+    public String = seq of char;
+        
+    instance variables
+        private name: String;
+        private percentage: int;
+        private result: int;
+    
+  operations 
+      public Giveaway: String ==> Giveaway
+	  	 Giveaway(nam)==
+	  	 (
+	  		name := nam;
+	  		percentage := 30; -- Change to MATH.rand(50);
+	  		result := 0;
+	  	 );
+            
+      pure public getName:() ==> String
+	    getName()==(return name);
+	    
+	    pure public getPercentage:() ==> int
+	    getPercentage()==(return percentage);
+	    
+	    pure public getResult:() ==> int
+	    getResult()==(return result);
+	    
+      public learnResult:() ==> bool
+		  learnResult()==(
+		    result := 28; -- Change to MATH.rand(100);
+		  	return result <= percentage;
+		  ); 
+		  
 end Giveaway
