@@ -23,6 +23,5 @@ class Quiz is subclass of Competition
 		    	else result := true;
 		    	return result;
 		  ); 
-		  
 
 end Quiz
