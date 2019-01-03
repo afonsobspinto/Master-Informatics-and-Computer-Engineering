@@ -20,4 +20,9 @@ class QA
 	 		pure public getAnswer:() ==> String
 	 		getAnswer()==(return answer);	
 			
+			public evalAnswer:String ==> bool
+		  evalAnswer(ans)==(
+		  	return ans = answer;
+		  ); 
+			
 end QA

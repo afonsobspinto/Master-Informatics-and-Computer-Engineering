@@ -15,4 +15,5 @@ class Category is subclass of ContainingProducts
 		
 		pure public getName:() ==> String
 		getName()==(return name);
+		
 end Category

@@ -1,0 +1,21 @@
+class QATest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl qa1:QA := new QA("Date of foundation?", "1997");
+			assertTrue(qa1.getQuestion() = "Date of foundation?");
+			assertTrue(qa1.getAnswer() = "1997");
+
+		);
+		
+		public static main()==
+    (
+			dcl qat:QATest := new QATest();
+			qat.testConstructor();
+    );
+	    
+end QATest
