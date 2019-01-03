@@ -7,10 +7,11 @@ class FreeProduct is subclass of Reward
     private discount: int; 
     
   operations 
-	  public FreeProduct: String ==> FreeProduct
-	  	 FreeProduct(nam)==
+	  public FreeProduct: String * Product ==> FreeProduct
+	  	 FreeProduct(nam, prod)==
 	  	 (
 	  		name := nam;
+	  		product := prod;
 	  		discount := 100;
 	  	 );
 	  	 

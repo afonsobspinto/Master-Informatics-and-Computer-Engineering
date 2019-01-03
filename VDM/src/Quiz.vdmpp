@@ -12,7 +12,7 @@ class Quiz is subclass of Promotion
 					quiz := qas;
 			);
 			
-			pure public getQuiz:() ==> String
+			pure public getQuiz:() ==> seq of QA
 	 		getQuiz()==(return quiz);	
 			
 

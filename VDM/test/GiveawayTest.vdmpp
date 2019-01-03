@@ -6,16 +6,29 @@ class GiveawayTest
     
 		private testConstructor()==
 		(
-			--dcl g: Giveaway := new Giveaway("gv", 30);
-			--assertTrue(g.getName() = "gv");
-			--assertTrue(g.getPercentage() <= 50);
+      dcl c: Company := new Company("Asus", "", "", "");
+      dcl b:Brand := new Brand("compaq", c);
+      dcl cat: Category := new Category("office");
+      dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+      dcl r: Reward := new Reward("rwrd", p);
+			dcl g: Giveaway := new Giveaway("gv", {r}, b, 30);
+			assertTrue(g.getName() = "gv");
+			assertTrue(g.getRewards() = {r});
+			assertTrue(g.getBrand() = b);
+			assertTrue(g.getPercentage() = 30);
 		);
 		
 		private testResult()==
 		(
-			--dcl g: Giveaway := new Giveaway("gv", 30);
-			--dcl something: bool := g.learnResult();
-			--assertTrue(g.getResult() > 0);
+			dcl c: Company := new Company("Asus", "", "", "");
+      dcl b:Brand := new Brand("compaq", c);
+      dcl cat: Category := new Category("office");
+      dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+      dcl r: Reward := new Reward("rwrd", p);
+			dcl g: Giveaway := new Giveaway("gv", {r}, b, 30);
+			dcl something: bool := g.learnResult();
+			assertTrue(g.getResult() > 0);
+			assertTrue(g.getResult() < 100);
 		);
 		
 	
