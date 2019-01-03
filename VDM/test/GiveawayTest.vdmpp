@@ -10,11 +10,20 @@ class GiveawayTest
 			assertTrue(g.getName() = "gv");
 			assertTrue(g.getPercentage() <= 50);
 		);
+		
+		private testResult()==
+		(
+			dcl g: Giveaway := new Giveaway("gv", 30);
+			dcl something: bool := g.learnResult();
+			assertTrue(g.getResult() > 0);
+		);
+		
 	
 		public static main()==
     (
 			dcl g:GiveawayTest := new GiveawayTest();
 			g.testConstructor();
+			g.testResult();
     );
 
 end GiveawayTest
