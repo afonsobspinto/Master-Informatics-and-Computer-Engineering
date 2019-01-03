@@ -4,7 +4,7 @@ class Coupon is subclass of Reward
 		public String = seq of char;
 		
 	instance variables
-    private discount: int;
+    protected discount: int;
     
   operations 
 	  public Coupon: String * Product * int ==> Coupon
@@ -14,9 +14,6 @@ class Coupon is subclass of Reward
 	  		product := prod;
 	  		discount := dis;
 	  	 );
-	  	 
-	  pure public getName:() ==> String
-	  getName()==(return name);
 	  	 
 	  pure public getDiscount:() ==> int
 	  getDiscount()==(return discount);
