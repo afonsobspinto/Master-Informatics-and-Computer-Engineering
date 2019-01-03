@@ -10,6 +10,9 @@ class QuizTest
 			dcl qa2:QA := new QA("Company full name?", "Asus, lda");
 			dcl c: Company := new Company("Asus", "", "", "");
 			dcl b:Brand := new Brand("compaq", c);
+			dcl cat: Category := new Category("office");
+			dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+			dcl r: Reward := new Reward("rwrd", p);
 			--dcl quiz: Quiz := new Quiz(,b, [qa1, qa2]);
 			assertTrue(true = true);
 		);

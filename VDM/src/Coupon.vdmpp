@@ -4,14 +4,14 @@ class Coupon is subclass of Reward
 		public String = seq of char;
 		
 	instance variables
-		private name: String;
     private discount: int;
     
   operations 
-	  public Coupon: String * int ==> Coupon
-	  	 Coupon(nam, dis)==
+	  public Coupon: String * Product * int ==> Coupon
+	  	 Coupon(nam, prod, dis)==
 	  	 (
 	  		name := nam;
+	  		product := prod;
 	  		discount := dis;
 	  	 );
 	  	 
