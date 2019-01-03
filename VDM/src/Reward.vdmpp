@@ -1,5 +1,25 @@
 class Reward
-instance variables
-  product:Product;
+	types
+		public String = seq of char;
+		
+	instance variables
+		private name: String;
+	  private product: Product;
+    
+  operations 
+	  public Reward: String * Product ==> Reward
+	  	 Reward(nam, prod)==
+	  	 (
+	  		name := nam;
+	  		product := prod;
+	  	 );
+	  
+	  pure public getName:() ==> String
+	  getName()==(return name);
+	  
+	  pure public getProduct:() ==> Product
+	  getProduct()==(return product);
+	 
 
+	  
 end Reward

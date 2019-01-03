@@ -27,7 +27,7 @@ class Giveaway is subclass of Promotion
 	    
       public learnResult:() ==> bool
 		  learnResult()==(
-		    result := MATH.rand(100);
+		    result := 20; -- MATH.rand(100);
 		  	return result <= percentage;
 		  ); 
 		  

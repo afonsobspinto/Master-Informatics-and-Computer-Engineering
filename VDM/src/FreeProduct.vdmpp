@@ -1,2 +1,24 @@
-class FreeProduct
+class FreeProduct is subclass of Reward
+
+		types
+		public String = seq of char;
+		
+	instance variables
+		private name: String;
+    private discount: int; 
+    
+  operations 
+	  public FreeProduct: String ==> FreeProduct
+	  	 FreeProduct(nam)==
+	  	 (
+	  		name := nam;
+	  		discount := 100;
+	  	 );
+	  	 
+	  pure public getName:() ==> String
+	  getName()==(return name);
+	  	 
+	  pure public getDiscount:() ==> int
+	  getDiscount()==(return discount);
+	  
 end FreeProduct
