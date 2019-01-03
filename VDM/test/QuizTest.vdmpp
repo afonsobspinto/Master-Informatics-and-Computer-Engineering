@@ -13,17 +13,39 @@ class QuizTest
 			dcl cat: Category := new Category("office");
 			dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
 			dcl r: Reward := new Reward("rwrd", p);
-			dcl quiz: Quiz := new Quiz("Quiz1",{r},b, [qa1, qa2]);
+			dcl quiz: Quiz := new Quiz("Quiz1",{r},b,{qa1, qa2});
 			assertTrue(quiz.getName() = "Quiz1");
 			assertTrue(quiz.getRewards() = {r});
 			assertTrue(quiz.getBrand() = b);
-			assertTrue(quiz.getQuiz() = [qa1,qa2]);
+			assertTrue(quiz.getQuiz() = {qa1,qa2});
+		);
+		private testResult()==
+			(
+			dcl qa1:QA := new QA("Date of foundation?", "1997");
+			dcl qa2:QA := new QA("Company full name?", "Asus, lda");
+			dcl qa3:QA := new QA("Date of foundation?", "1997");
+			dcl qa4:QA := new QA("Company full name?", "Asus, lda");
+			dcl c: Company := new Company("Asus", "", "", "");
+			dcl b:Brand := new Brand("compaq", c);
+			dcl cat: Category := new Category("office");
+			dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+			dcl r: Reward := new Reward("rwrd", p);
+			dcl quiz1: Quiz := new Quiz("Quiz1",{r},b,{qa1, qa2});
+			dcl quiz2: Quiz := new Quiz("Quiz2",{r},b,{qa3, qa4});
+			dcl answer1: bool := qa1.evalAnswer("1997");
+			dcl answer2: bool := qa2.evalAnswer("Asus, lda");
+			dcl answer3: bool := qa3.evalAnswer("1998");
+			dcl answer4: bool := qa4.evalAnswer("Asus, lda");
+			assertTrue(quiz1.learnResult());
+			assertTrue(not quiz2.learnResult());
+			
 		);
 		
 		public static main()==
     (
 			dcl qt:QuizTest := new QuizTest();
 			qt.testConstructor();
+			qt.testResult();
     );
 	    
 end QuizTest

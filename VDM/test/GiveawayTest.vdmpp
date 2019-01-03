@@ -27,8 +27,8 @@ class GiveawayTest
       dcl r: Reward := new Reward("rwrd", p);
 			dcl g: Giveaway := new Giveaway("gv", {r}, b, 30);
 			dcl something: bool := g.learnResult();
-			assertTrue(g.getResult() > 0);
-			assertTrue(g.getResult() < 100);
+			assertTrue(g.getNumber() > 0);
+			assertTrue(g.getNumber() < 100);
 		);
 		
 	
