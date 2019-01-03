@@ -10,5 +10,10 @@ class Quiz is subclass of Promotion
 					rewards := sor;
 					brand := b;
 					quiz := qas;
-			)
+			);
+			
+			pure public getQuiz:() ==> String
+	 		getQuiz()==(return quiz);	
+			
+
 end Quiz

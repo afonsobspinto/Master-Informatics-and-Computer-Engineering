@@ -13,7 +13,7 @@ class QuizTest
 			dcl cat: Category := new Category("office");
 			dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
 			dcl r: Reward := new Reward("rwrd", p);
-			--dcl quiz: Quiz := new Quiz(,b, [qa1, qa2]);
+			dcl quiz: Quiz := new Quiz("Quiz1",r,b, [qa1, qa2]);
 			assertTrue(true = true);
 		);
 		
