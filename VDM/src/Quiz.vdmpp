@@ -21,6 +21,9 @@ class Quiz is subclass of Competition
 	 		
 	 		public addEntry:(QuizEntry) ==> ()
 			addEntry(entry)==(quizEntries := quizEntries ^ [entry]);
-
+			
+			pure public getQuizEntries:() ==> seq of QuizEntry
+	 		getQuizEntries()==(return quizEntries);	
+	 		
 
 end Quiz

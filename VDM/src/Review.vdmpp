@@ -1,7 +1,7 @@
 class Review
 	types
 		public Rating = nat 
-			inv r == r in set {1, 2, 3, 4, 5};
+		inv r == r in set {1, 2, 3, 4, 5};
 		public String = seq of char;
 
 	instance variables
