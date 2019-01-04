@@ -1,0 +1,20 @@
+class GiveawayEntryTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl g: GiveawayEntry := new GiveawayEntry(30);
+			assertTrue(g.hasWon() = false);
+		);
+
+		public static main()==
+    (
+			dcl get:GiveawayEntryTest := new GiveawayEntryTest();
+			get.testConstructor();
+
+    );
+	    
+end GiveawayEntryTest

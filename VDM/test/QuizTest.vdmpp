@@ -31,7 +31,7 @@ class QuizTest
 			dcl quiz: Quiz := new Quiz("Quiz1",{r},b,{qa1, qa2});
 			dcl quizEntry: QuizEntry := new QuizEntry({qa1, qa2});
 			quiz.addEntry(quizEntry);
-			assertTrue(quiz.getQuizEntries() = [quizEntry]);
+			assertTrue(quiz.getEntries() = [quizEntry]);
 						
 		);
 		
