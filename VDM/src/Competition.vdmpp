@@ -1,0 +1,45 @@
+-- Subclass of Promotion
+-- Represents a Promotion only available through winning a Competition
+-- Contains a name which identifies the competition
+-- 					a set of rewards
+--          the brand responsible for the competition
+-- 					the state of the competition (open / closed)
+
+class Competition is subclass of Promotion			
+	instance variables
+	
+		-- the the state of the competition (open / closed)
+		protected active:bool;
+		 
+		-- List of all the entries for the present Competition
+		protected competitionEntries: seq of CompetitionEntry;
+
+	operations
+		public Competition: String * set of Reward * Brand ==> Competition
+		Competition(nam, sor, b)== 
+		(
+				name := nam;
+				rewards := sor;
+				brand := b;
+				active := true;
+				competitionEntries := [];
+		);
+		
+		-- Returns the state of the competition (open / closed)
+		pure public isActive:() ==> bool
+	   isActive()==(return active);
+	   
+	  -- Returns the Competition's entries
+		pure public getEntries:() ==> seq of CompetitionEntry
+	 		getEntries()==(return competitionEntries);	 
+	   	
+	  -- Sets the state of the competition (open / closed)
+	  public setActive: bool ==> ()
+			setActive(act)==(active:=act);
+
+		-- Adds an entry to Competition's entries
+	 	public addEntry: CompetitionEntry ==> ()
+			addEntry(entry)==(competitionEntries := competitionEntries ^ [entry])
+			post entry in set elems competitionEntries;
+
+end Competition

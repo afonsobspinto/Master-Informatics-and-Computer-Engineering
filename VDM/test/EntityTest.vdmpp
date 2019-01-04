@@ -1,0 +1,19 @@
+class EntityTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl e:Entity := new Entity("Certificado de qualidade");
+			assertTrue(e.getName() = "Certificado de qualidade");
+		);
+		
+		public static main()==
+    (
+			dcl e:EntityTest := new EntityTest();
+			e.testConstructor();
+    );
+	    
+end EntityTest

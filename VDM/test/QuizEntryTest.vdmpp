@@ -1,0 +1,50 @@
+class QuizEntryTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl qa1:QA := new QA("Date of foundation?", "1997");
+			dcl qa2:QA := new QA("Company full name?", "Asus, lda");
+			dcl quizEntry: QuizEntry := new QuizEntry({qa1, qa2});
+			assertTrue(quizEntry.getQuiz() = {qa1, qa2});
+			assertTrue(quizEntry.getAnswers() = { |-> });
+			assertTrue(quizEntry.hasWon() = false);
+		);
+		private testAddAnswer()==
+		(
+			dcl qa1:QA := new QA("Date of foundation?", "1997");
+			dcl qa2:QA := new QA("Company full name?", "Asus, lda");
+			dcl quizEntry: QuizEntry := new QuizEntry({qa1, qa2});
+			quizEntry.addAnswer(qa1, "1997");
+			quizEntry.addAnswer(qa2, "Asus, lda");
+			assertTrue(quizEntry.getAnswers() = { qa1 |-> "1997", qa2 |-> "Asus, lda" });
+			
+		);
+		private testCalculateResult()==
+		(
+			dcl qa1:QA := new QA("Date of foundation?", "1997");
+			dcl qa2:QA := new QA("Company full name?", "Asus, lda");
+			dcl quizEntry1: QuizEntry := new QuizEntry({qa1, qa2});
+			dcl quizEntry2: QuizEntry := new QuizEntry({qa1, qa2});
+			quizEntry1.addAnswer(qa1, "1997");
+			quizEntry1.addAnswer(qa2, "Asus, lda");
+			quizEntry2.addAnswer(qa1, "1998");
+			quizEntry2.addAnswer(qa2, "Asus, lda");
+			assertTrue(quizEntry1.calculateResult());
+			assertTrue(not quizEntry2.calculateResult());
+			
+		);
+		
+		public static main()==
+    (
+			dcl qet:QuizEntryTest := new QuizEntryTest();
+			qet.testConstructor();
+			qet.testAddAnswer();
+			qet.testCalculateResult();
+
+    );
+	    
+end QuizEntryTest

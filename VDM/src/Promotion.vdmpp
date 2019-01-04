@@ -1,6 +1,44 @@
+-- Represents a Promotion
+-- Contains a name which identifies the promotion
+-- 					a set of rewards
+--          the brand responsible for the promotion
+
 class Promotion
-instance variables
-  reward:set of (Reward);
-  retailer:Retailer;
+	types
+    public String = seq of char;
+
+	instance variables
+	
+		-- name which identifies the promotion
+		protected name:String; 
+		
+		-- set of rewards
+	  protected rewards:set of Reward;
+	  
+	  -- brand responsible for the promotion
+	  protected brand:Brand;
+
+	operations
+		public Promotion: String * set of Reward * Brand ==> Promotion
+		Promotion(nam, sor, b)== 
+		(
+				name := nam;
+				rewards := sor;
+				brand := b;
+		)
+		post name <> "" and rewards <> {};
+		
+		-- Returns the name which identifies the promotion
+		pure public getName:() ==> String
+	    getName()==(return name);
+	    
+	  -- Returns a set of rewards 
+	 	pure public getRewards:() ==> set of Reward
+	 		getRewards()==(return rewards);
+	 
+	 -- Returns the brand responsible for the promotion	
+	 	pure public getBrand:() ==> Brand
+	 		getBrand()==(return brand);	
+	    
 
 end Promotion
