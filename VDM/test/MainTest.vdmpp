@@ -1,0 +1,13 @@
+class MainTest
+	operations
+		public static main()==
+    (
+			BrandTest`main();
+			CategoryTest`main();
+			CompanyTest`main();
+			ProductTest`main();
+			ReviewTest`main();
+--			UserTest`main();
+			
+    );
+end MainTest

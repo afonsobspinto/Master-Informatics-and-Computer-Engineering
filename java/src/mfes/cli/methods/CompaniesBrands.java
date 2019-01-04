@@ -15,8 +15,10 @@ public class CompaniesBrands extends SimplifiedAction {
         "Companies, Brands CRUD",
         Pair.of("List companies", items::listCompanies),
         Pair.of("Create company", items::createCompany),
+        Pair.of("Delete company", items::deleteCompany),
         Pair.of("List brands", items::listBrands),
-        Pair.of("Create brand", items::createBrand));
+        Pair.of("Create brand", items::createBrand),
+        Pair.of("Delete brand", items::deleteBrand));
   }
 
   public void createCompany() {
@@ -35,11 +37,22 @@ public class CompaniesBrands extends SimplifiedAction {
     this.println(text);
   }
 
+  public void deleteCompany() {
+    int companyIndex = this.prompt("company id: ", Integer.class);
+
+    if (!Utils.indexInBounds(companyIndex, ProgramState.companies)) {
+      return;
+    }
+
+    ProgramState.companies.remove(companyIndex);
+    this.println("Removed company");
+  }
+
   public void createBrand() {
     String name = this.prompt("name: ", String.class);
     int companyIndex = this.prompt("company id: ", Integer.class);
 
-    if (! Utils.indexInBounds(companyIndex, ProgramState.companies)) {
+    if (!Utils.indexInBounds(companyIndex, ProgramState.companies)) {
       return;
     }
 
@@ -53,5 +66,16 @@ public class CompaniesBrands extends SimplifiedAction {
   public void listBrands() {
     String text = Utils.listOrderedList(ProgramState.brands);
     this.println(text);
+  }
+
+  public void deleteBrand() {
+    int brandIndex = this.prompt("brand id: ", Integer.class);
+
+    if (!Utils.indexInBounds(brandIndex, ProgramState.brands)) {
+      return;
+    }
+
+    ProgramState.brands.remove(brandIndex);
+    this.println("Removed brand");
   }
 }
