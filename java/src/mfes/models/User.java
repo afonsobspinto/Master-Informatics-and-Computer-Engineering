@@ -9,19 +9,36 @@ public class User {
   private String name;
   private String email;
 
+  public void cg_init_User_1(final String nam, final String em) {
+
+    name = nam;
+    email = em;
+    reviews = SetUtil.set();
+  }
+
   public User(final String nam, final String em) {
 
-    throw new UnsupportedOperationException();
+    cg_init_User_1(nam, em);
   }
 
   public void addReview(final Review review) {
 
-    throw new UnsupportedOperationException();
+    reviews = SetUtil.union(Utils.copy(reviews), SetUtil.set(review));
   }
 
   public VDMSet getReviews() {
 
-    throw new UnsupportedOperationException();
+    return Utils.copy(reviews);
+  }
+
+  public String getName() {
+
+    return name;
+  }
+
+  public String getEmail() {
+
+    return email;
   }
 
   public User() {}

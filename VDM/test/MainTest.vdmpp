@@ -7,7 +7,7 @@ class MainTest
 			CompanyTest`main();
 			ProductTest`main();
 			ReviewTest`main();
---			UserTest`main();
+			UserTest`main();
 			
     );
 end MainTest

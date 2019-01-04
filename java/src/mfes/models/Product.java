@@ -119,6 +119,7 @@ public class Product {
         + Utils.toString(brand)
         + ", reviews := "
         + Utils.toString(reviews)
+            +", reviewAverage :=" + Utils.toString(reviewAverage())
         + "}";
   }
 }

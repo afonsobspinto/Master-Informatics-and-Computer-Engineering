@@ -3,5 +3,22 @@ class UserTest
 		public static buildInstance() res: User==
 		(
 			return new User("", "");
-		)
+		);
+		
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl usr: User := new User("1", "2");
+			assertTrue(usr.getName() = "1");
+			assertTrue(usr.getEmail() = "2");
+		);
+		
+		public static main()==
+    (
+			dcl r:UserTest := new UserTest();
+			r.testConstructor();
+    );
 end UserTest

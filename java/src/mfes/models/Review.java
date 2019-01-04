@@ -10,29 +10,40 @@ public class Review {
   private Number rating;
   private String description;
 
+  public void cg_init_Review_1(
+      final User usr, final Product prod, final Number ratng, final String desc) {
+
+    user = usr;
+    user.addReview(this);
+    product = prod;
+    product.addReview(this);
+    rating = ratng;
+    description = desc;
+  }
+
   public Review(final User usr, final Product prod, final Number ratng, final String desc) {
 
-    throw new UnsupportedOperationException();
+    cg_init_Review_1(usr, prod, ratng, desc);
   }
 
   public Product getProduct() {
 
-    throw new UnsupportedOperationException();
+    return product;
   }
 
   public User getUser() {
 
-    throw new UnsupportedOperationException();
+    return user;
   }
 
   public Number getRating() {
 
-    throw new UnsupportedOperationException();
+    return rating;
   }
 
   public String getDescription() {
 
-    throw new UnsupportedOperationException();
+    return description;
   }
 
   public Review() {}
@@ -41,9 +52,9 @@ public class Review {
 
     return "Review{"
         + "user := "
-        + Utils.toString(user)
+        + Utils.toString(user.getName())
         + ", product := "
-        + Utils.toString(product)
+        + Utils.toString(product.getName())
         + ", rating := "
         + Utils.toString(rating)
         + ", description := "

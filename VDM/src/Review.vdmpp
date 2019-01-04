@@ -11,7 +11,8 @@ class Review
 		private description: String;
 		
 	operations
-		public Review(usr:User, prod:Product, ratng: Rating, desc: String) res: Review ==
+		public Review: User * Product * Rating * String ==> Review
+		Review(usr, prod, ratng, desc)==
 		(
 			user := usr;
 			user.addReview(self);
@@ -22,12 +23,16 @@ class Review
 		) post self in set product.getReviews() and 
 			self in set user.getReviews();
 	
-		pure public getProduct() res: Product==(return product);
+		pure public getProduct: () ==> Product
+		getProduct()==(return product);
 		
-		pure public getUser() res: User==(return user);
+		pure public getUser:() ==> User
+		getUser()==(return user);
 		
-		pure public getRating() res: Rating==(return rating);
+		pure public getRating:() ==> Rating
+		getRating()==(return rating);
 		
-		pure public getDescription() res: String==(return description);
+		pure public getDescription:() ==> String
+		getDescription()==(return description);
 	
 end Review

@@ -7,15 +7,24 @@ class User
 	  private email: String;
 		
 	operations
-		public User(nam: String, em: String) res:User ==
+		public User: String * String ==> User
+		User(nam, em)==
 		(
 			name := nam;
 			email := em;
 			reviews := {};
 		);
 	
-		public addReview(review: Review)==(reviews := reviews union {review});
+		public addReview: Review ==> ()
+		addReview(review)==(reviews := reviews union {review});
 
-		pure public getReviews() res: set of Review==(return reviews);
+		pure public getReviews:() ==> set of Review
+		getReviews()==(return reviews);
+		
+		pure public getName:() ==> String
+		getName()==(return name);
+		
+		pure public getEmail:() ==> String
+		getEmail()==(return email);
 
 end User

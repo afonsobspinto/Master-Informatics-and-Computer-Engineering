@@ -1,9 +1,6 @@
 package mfes;
 
-import mfes.models.Brand;
-import mfes.models.Category;
-import mfes.models.Company;
-import mfes.models.Product;
+import mfes.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,4 +10,6 @@ public class ProgramState {
     public static final List<Category> categories = new ArrayList<>();
     public static final List<Company> companies = new ArrayList<>();
     public static final List<Brand> brands = new ArrayList<>();
+    public static final List<User> users = new ArrayList<>();
+    public static final List<Review> reviews = new ArrayList<>();
 }
