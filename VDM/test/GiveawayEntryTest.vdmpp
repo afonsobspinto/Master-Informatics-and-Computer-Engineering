@@ -8,13 +8,23 @@ class GiveawayEntryTest
 		(
 			dcl g: GiveawayEntry := new GiveawayEntry(30);
 			assertTrue(g.hasWon() = false);
+			assertTrue(g.getNumber() = -1);
+			assertTrue(g.getPercentage() = 30);
 		);
 
+		private testCalculateResult()==
+		(
+			dcl g: GiveawayEntry := new GiveawayEntry(30);
+			if g.calculateResult() = true
+		  then assertTrue(g.getNumber() <= 30)
+		  else assertTrue(g.getNumber() > 30);
+		);
+		
 		public static main()==
     (
 			dcl get:GiveawayEntryTest := new GiveawayEntryTest();
 			get.testConstructor();
-
+			get.testCalculateResult();
     );
 	    
 end GiveawayEntryTest
