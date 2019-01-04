@@ -17,6 +17,9 @@ class Promotion
 	  
 	  -- brand responsible for the promotion
 	  protected brand:Brand;
+	  
+	  -- the the state of the competition (open / closed)
+		protected active:bool;
 
 	operations
 		public Promotion: String * set of Reward * Brand ==> Promotion
@@ -25,6 +28,7 @@ class Promotion
 				name := nam;
 				rewards := sor;
 				brand := b;
+				active := true;
 		)
 		post name <> "" and rewards <> {};
 		
@@ -40,5 +44,12 @@ class Promotion
 	 	pure public getBrand:() ==> Brand
 	 		getBrand()==(return brand);	
 	    
+	 -- Returns the state of the competition (open / closed)
+		pure public isActive:() ==> bool
+	   isActive()==(return active);
+	   
+	  -- Sets the state of the competition (open / closed)
+	  public setActive: bool ==> ()
+			setActive(act)==(active:=act);
 
 end Promotion

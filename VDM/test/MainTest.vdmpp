@@ -7,6 +7,7 @@ class MainTest
 			CategoryTest`main();
 			CompanyTest`main();
 			CompetitionEntryTest`main();
+			CompetitionTest`main();
 			CouponTest`main();
 			EntityTest`main();
 			FreeProductTest`main();
