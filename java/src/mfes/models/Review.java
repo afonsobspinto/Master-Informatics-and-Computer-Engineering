@@ -11,7 +11,7 @@ public class Review {
   private String description;
 
   public void cg_init_Review_1(
-      final User usr, final Product prod, final Number ratng, final String desc) {
+          final User usr, final Product prod, final Number ratng, final String desc) {
 
     user = usr;
     user.addReview(this);
@@ -51,14 +51,14 @@ public class Review {
   public String toString() {
 
     return "Review{"
-        + "user := "
-        + Utils.toString(user.getName())
-        + ", product := "
-        + Utils.toString(product.getName())
-        + ", rating := "
-        + Utils.toString(rating)
-        + ", description := "
-        + Utils.toString(description)
-        + "}";
+            + "user := "
+            + Utils.toString(user.getName())
+            + ", product := "
+            + Utils.toString(product.getName())
+            + ", rating := "
+            + Utils.toString(rating)
+            + ", description := "
+            + Utils.toString(description)
+            + "}";
   }
 }
