@@ -13,6 +13,12 @@ class QA
 			
 			-- The correct answer
 			private answer: String;
+			
+			-- invariant wich forces a question of at least 5 chars
+			inv len question > 5;
+			
+			-- invariant wich forces the answer to not be empty
+			inv len answer > 0;
 		
 		operations
 			public QA: String * String ==> QA

@@ -14,6 +14,8 @@ class QuizEntry is subclass of CompetitionEntry
 		-- all the qas which define the Quiz
 		private quiz: set of QA;
 		
+		-- ensures the map is consistent with the questions of the quiz.
+		inv forall qa in set dom answers & qa in set quiz; 
 		
 	operations
 		public QuizEntry: set of QA ==> QuizEntry

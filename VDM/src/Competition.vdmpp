@@ -23,7 +23,8 @@ class Competition is subclass of Promotion
 				brand := b;
 				active := true;
 				competitionEntries := [];
-		);
+		)
+		post name <> "" and rewards <> {};
 		
 		-- Returns the state of the competition (open / closed)
 		pure public isActive:() ==> bool

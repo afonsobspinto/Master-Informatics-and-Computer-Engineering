@@ -14,7 +14,10 @@ class GiveawayEntry is subclass of CompetitionEntry
     private math: MATH;
     
     -- the winning chances in percentage of the giveaway
-		private percentage: int
+		private percentage: int;
+		
+		-- invariant wich forces the value of percentage to always be between 0 and 100
+		inv percentage >= 0 and percentage <= 100;
 		
 operations
 		public GiveawayEntry: int  ==> GiveawayEntry
@@ -25,7 +28,7 @@ operations
 	  		math := new MATH();
 	  		percentage := percent
 		)
-		post percentage > 0 and percentage < 100;
+		post percentage >= 0 and percentage <= 100;
 		
 		-- Returns the number generated randomly to attribute the winning state
 		pure public getNumber:() ==> int

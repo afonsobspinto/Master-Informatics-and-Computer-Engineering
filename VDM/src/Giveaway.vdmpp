@@ -9,6 +9,9 @@ class Giveaway is subclass of Competition
     instance variables
     -- The winning chances in percentage of the giveaway
     	private percentage: int;
+    	
+   	-- invariant wich forces the value of percentage to always be between 0 and 100
+		inv percentage >= 0 and percentage <= 100;
     
   operations 
       public Giveaway: String * set of Reward * Brand * int ==> Giveaway
