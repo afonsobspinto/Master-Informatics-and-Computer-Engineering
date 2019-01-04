@@ -1,9 +1,17 @@
+-- Subclass of Reward
+-- Represents a Coupon that is given to the winners of the promotion
+-- Contains a name which identifies the coupon
+-- 					the product that the winners receive a discount to
+--          the percentage of the discount
+
 class Coupon is subclass of Reward
 
 		types
 		public String = seq of char;
 		
 	instance variables
+	
+	  -- the percentage of the discount
     protected discount: int;
     
   operations 
@@ -15,9 +23,11 @@ class Coupon is subclass of Reward
 	  		discount := dis;
 	  	 );
 	  	 
+	  -- Returns the percentage of the discount      	 
 	  pure public getDiscount:() ==> int
 	  getDiscount()==(return discount);
 	  
+	  -- Sets the percentage of the discount    
 	  public setDiscount: int ==> ()
 		setDiscount(dis)==(discount:=dis);
 	  	 
