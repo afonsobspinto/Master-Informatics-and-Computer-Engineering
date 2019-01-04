@@ -8,7 +8,7 @@ class Quiz is subclass of Competition
 		instance variables
 		
 			-- Set of questions -> answers of the present quiz
-			private quiz: set of (QA);
+			private quiz: set of QA;
 			
 		
 		operations
@@ -19,11 +19,12 @@ class Quiz is subclass of Competition
 					rewards := sor;
 					brand := b;
 					quiz := qas;
+					competitionEntries := [];
 			)
 			post quiz <> {};
 			
 			-- Returns the Quiz's qas
-			pure public getQuiz:() ==> set of (QA)
+			pure public getQuiz:() ==> set of QA
 	 		getQuiz()==(return quiz);	
 	 		
 

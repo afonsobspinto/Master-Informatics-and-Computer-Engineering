@@ -38,7 +38,7 @@ class Competition is subclass of Promotion
 			setActive(act)==(active:=act);
 
 		-- Adds an entry to Competition's entries
-	 	public addEntry:(CompetitionEntry) ==> ()
+	 	public addEntry: CompetitionEntry ==> ()
 			addEntry(entry)==(competitionEntries := competitionEntries ^ [entry])
 			post entry in set elems competitionEntries;
 

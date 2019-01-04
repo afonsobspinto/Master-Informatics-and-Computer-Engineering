@@ -13,7 +13,7 @@ class Promotion
 		protected name:String; 
 		
 		-- set of rewards
-	  protected rewards:set of (Reward);
+	  protected rewards:set of Reward;
 	  
 	  -- brand responsible for the promotion
 	  protected brand:Brand;
@@ -33,7 +33,7 @@ class Promotion
 	    getName()==(return name);
 	    
 	  -- Returns a set of rewards 
-	 	pure public getRewards:() ==> set of (Reward)
+	 	pure public getRewards:() ==> set of Reward
 	 		getRewards()==(return rewards);
 	 
 	 -- Returns the brand responsible for the promotion	

@@ -18,6 +18,7 @@ class Giveaway is subclass of Competition
 	  		rewards := sor;
 	  		brand := b;
 	  		percentage := p;
+	  		competitionEntries := [];
 	  	 )
 	  	 post percentage > 0 and percentage < 100;
       
