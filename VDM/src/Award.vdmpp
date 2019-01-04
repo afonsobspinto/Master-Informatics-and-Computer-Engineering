@@ -1,10 +1,21 @@
+-- Represents an Award
+-- Contains the product that receives the award
+-- 					the entity that gives the award
+--          the category of the award
+
 class Award
 	types
     public String = seq of char;
 
 	instance variables
+	
+	  -- the product that receives the award
 		private product: Product;
+		
+	  -- the entity that gives the award
 		private entity: Entity;
+		
+	  -- the category of the award
 		private category: Category;
 
 	operations
@@ -16,12 +27,15 @@ class Award
 				category := cat;
 		);
 		
+		-- Returns the product that receives the award
 		pure public getProduct:() ==> Product
 	    getProduct()==(return product);
 	    
+		-- Returns the entity that gives the award
 	 	pure public getEntity:() ==> Entity
 	 		getEntity()==(return entity);
 	 	
+		-- Returns the category of the award
 	 	pure public getCategory:() ==> Category
 	 		getCategory()==(return category);	
 	    

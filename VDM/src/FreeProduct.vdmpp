@@ -1,9 +1,16 @@
+-- Subclass of Reward
+-- Represents a FreeProduct that is given to the winners of the promotion
+-- Contains a name which identifies the coupon
+-- 					the product that the winners receive a discount to
+
 class FreeProduct is subclass of Reward
 
 		types
 		public String = seq of char;
 		
 	instance variables
+	  
+	  -- the percentage of the discount
     private discount: int; 
     
   operations 
@@ -15,9 +22,11 @@ class FreeProduct is subclass of Reward
 	  		discount := 100;
 	  	 );
 	  	 
+	  -- Returns the name which identifies the reward	 
 	  pure public getName:() ==> String
 	  getName()==(return name);
 	  	 
+	  -- Returns the percentage of the discount
 	  pure public getDiscount:() ==> int
 	  getDiscount()==(return discount);
 	  

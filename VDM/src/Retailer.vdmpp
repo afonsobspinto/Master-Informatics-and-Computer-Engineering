@@ -1,8 +1,14 @@
+-- Subclass of ContainingProducts
+-- Represents a Retailer
+-- Contains a name which identifies the retailer
+
 class Retailer is subclass of ContainingProducts
   types
     public String = seq of char;
         
     instance variables
+    
+        -- the name which identifies the retailer
         private name: String;
     
   operations 
@@ -13,6 +19,7 @@ class Retailer is subclass of ContainingProducts
 	  		name := nam;
 	  	 );
             
+      -- Returns the name which identifies the retailer      
       pure public getName:() ==> String
 	    getName()==(return name);
 

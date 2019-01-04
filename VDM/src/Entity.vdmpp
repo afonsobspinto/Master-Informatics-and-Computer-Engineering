@@ -1,8 +1,13 @@
+-- Represents an Entity
+-- Contains the name of the Entity
+
 class Entity 
 	types 
 		public String = seq of char;
 		
 	instance variables
+	
+	  -- the name of the Entity
 		private name: String;
 	  
 	operations
@@ -12,6 +17,7 @@ class Entity
 			name := nam;
 		);
 		
+		-- Returns the name of the Entity
 		pure public getName:() ==> String
 		getName()==(return name);
 		
