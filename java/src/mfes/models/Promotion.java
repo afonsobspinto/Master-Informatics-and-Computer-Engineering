@@ -5,6 +5,7 @@ import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
 public class Promotion {
+  protected Boolean active;
   protected String name;
   protected VDMSet rewards;
   protected Brand brand;
@@ -19,6 +20,16 @@ public class Promotion {
   public Promotion(final String nam, final VDMSet sor, final Brand b) {
 
     cg_init_Promotion_1(nam, Utils.copy(sor), b);
+  }
+
+  public Boolean isActive() {
+
+    return active;
+  }
+
+  public void setActive(final Boolean act) {
+
+    active = act;
   }
 
   public String getName() {
@@ -47,6 +58,8 @@ public class Promotion {
         + Utils.toString(rewards)
         + ", brand := "
         + Utils.toString(brand)
+        + "active := "
+        + Utils.toString(active)
         + "}";
   }
 }

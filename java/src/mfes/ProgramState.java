@@ -12,4 +12,7 @@ public class ProgramState {
     public static final List<Brand> brands = new ArrayList<>();
     public static final List<User> users = new ArrayList<>();
     public static final List<Review> reviews = new ArrayList<>();
+    public static final List<Promotion> promotions = new ArrayList<>();
+    public static final List<Competition> competitions = new ArrayList<>();
+    public static final List<Reward> rewards = new ArrayList<>();
 }
