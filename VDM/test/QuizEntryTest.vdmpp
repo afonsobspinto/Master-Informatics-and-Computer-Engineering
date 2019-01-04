@@ -11,7 +11,7 @@ class QuizEntryTest
 			dcl quizEntry: QuizEntry := new QuizEntry({qa1, qa2});
 			assertTrue(quizEntry.getQuiz() = {qa1, qa2});
 			assertTrue(quizEntry.getAnswers() = { |-> });
-			assertTrue(quizEntry.hasWon() = false);
+			assertTrue(not quizEntry.hasWon());
 		);
 		private testAddAnswer()==
 		(
