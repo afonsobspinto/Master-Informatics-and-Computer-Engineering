@@ -1,9 +1,15 @@
+-- Subclass of Competition
+-- Represents an example of Competition namely a Quiz
+-- Contains a set of QA which define the Quiz
+
 class Quiz is subclass of Competition
 		types 
 			public String = seq of char;			
 		instance variables
+		
+			-- Set of questions -> answers of the present quiz
 			private quiz: set of (QA);
-			private quizEntries: seq of QuizEntry;
+			
 		
 		operations
 			public Quiz: String * set of Reward * Brand * set of QA ==> Quiz
@@ -13,17 +19,12 @@ class Quiz is subclass of Competition
 					rewards := sor;
 					brand := b;
 					quiz := qas;
-					quizEntries := [];
-			);
+			)
+			post quiz <> {};
 			
+			-- Returns the Quiz's qas
 			pure public getQuiz:() ==> set of (QA)
 	 		getQuiz()==(return quiz);	
-	 		
-	 		public addEntry:(QuizEntry) ==> ()
-			addEntry(entry)==(quizEntries := quizEntries ^ [entry]);
-			
-			pure public getQuizEntries:() ==> seq of QuizEntry
-	 		getQuizEntries()==(return quizEntries);	
 	 		
 
 end Quiz

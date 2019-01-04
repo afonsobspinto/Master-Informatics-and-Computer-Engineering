@@ -1,11 +1,14 @@
+-- Subclass of Competition
+-- Represents an example of Competition namely a Giveaway
+-- Contains the winning chances in percentage of the giveaway
+
 class Giveaway is subclass of Competition
 	types
     public String = seq of char;
         
     instance variables
-        private percentage: int;
-        private number: int;
-        private math: MATH
+    -- The winning chances in percentage of the giveaway
+    	private percentage: int;
     
   operations 
       public Giveaway: String * set of Reward * Brand * int ==> Giveaway
@@ -15,21 +18,11 @@ class Giveaway is subclass of Competition
 	  		rewards := sor;
 	  		brand := b;
 	  		percentage := p;
-	  		number := -1;
-	  		math := new MATH()
-	  	 );
-            
+	  	 )
+	  	 post percentage > 0 and percentage < 100;
+      
+      -- Returns the percentage o winning the giveaway qas      
 	    pure public getPercentage:() ==> int
 	    getPercentage()==(return percentage);
 	    
-	   	pure public getNumber:() ==> int
-	    getNumber()==(return number);
-	    
-      public learnResult:() ==> bool
-		  learnResult()==(
-		  	number := math.rand(100);
-		    result := number <= percentage;
-		  	return result;
-		  ); 
-		  
 end Giveaway
