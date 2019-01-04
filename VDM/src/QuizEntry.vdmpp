@@ -12,11 +12,11 @@ class QuizEntry is subclass of CompetitionEntry
 		private answers: map QA to String;
 		
 		-- all the qas which define the Quiz
-		private quiz: set of (QA);
+		private quiz: set of QA;
 		
 		
 	operations
-		public QuizEntry: set of (QA) ==> QuizEntry
+		public QuizEntry: set of QA ==> QuizEntry
 			QuizEntry(q)== 
 			(
 				quiz := q;
@@ -31,7 +31,7 @@ class QuizEntry is subclass of CompetitionEntry
 		post qa in set dom answers and ans in set rng answers;
 			
 		-- Returns the QuizEntry's qas
-		pure public getQuiz:() ==> set of (QA)
+		pure public getQuiz:() ==> set of QA
 			getQuiz()==(return quiz);
 			
 		-- Returns the answers to the set of qas which define the QuizEntry
