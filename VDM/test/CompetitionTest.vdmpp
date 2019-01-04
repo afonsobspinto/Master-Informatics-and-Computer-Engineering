@@ -41,6 +41,7 @@ class CompetitionTest
     (
 			dcl ct:CompetitionTest := new CompetitionTest();
 			ct.testConstructor();
+			ct.testAddEntry();
     );
 	    
 end CompetitionTest
