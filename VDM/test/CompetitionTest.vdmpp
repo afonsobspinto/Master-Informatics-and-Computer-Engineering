@@ -1,0 +1,46 @@
+class CompetitionTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl c: Company := new Company("1", "2", "3", "4");
+			dcl b: Brand := new Brand("abc", c);
+			dcl cat: Category := new Category("office");
+		  dcl p: Product := new Product("pencil", "black pencil", cat, b);
+			dcl r1: Reward := new Reward("rwrd1", p);
+			dcl r2: Reward := new Reward("rwrd2", p);
+			dcl com: Competition := new Competition("comp", {r1, r2}, b);
+			assertTrue(com.getName() = "comp");
+			assertTrue(com.getRewards() = {r1, r2}); 
+			assertTrue(com.getBrand() = b);
+			assertTrue(com.getEntries() = []);
+			assertTrue(com.isActive() = true);
+			com.setActive(false);
+			assertTrue(com.isActive() = false);
+		);
+		
+		private testAddEntry()==
+			(
+			dcl c: Company := new Company("1", "2", "3", "4");
+			dcl b: Brand := new Brand("abc", c);
+			dcl cat: Category := new Category("office");
+		  dcl p: Product := new Product("pencil", "black pencil", cat, b);
+			dcl r1: Reward := new Reward("rwrd1", p);
+			dcl r2: Reward := new Reward("rwrd2", p);
+			dcl com: Competition := new Competition("comp", {r1, r2}, b);
+			dcl comEntry: CompetitionEntry := new CompetitionEntry();
+			com.addEntry(comEntry);
+			assertTrue(com.getEntries() = [comEntry]);
+						
+		);
+		
+		public static main()==
+    (
+			dcl ct:CompetitionTest := new CompetitionTest();
+			ct.testConstructor();
+    );
+	    
+end CompetitionTest
