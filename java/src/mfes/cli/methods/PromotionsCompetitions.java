@@ -22,8 +22,11 @@ public class PromotionsCompetitions extends SimplifiedAction {
                 Pair.of("Create Quiz", items::createQuiz),
                 Pair.of("Create Giveaway", items::createGiveaway),
                 Pair.of("Stop Promotion", items::stopPromotion),
-                Pair.of("Stop Competition", items::stopCompetition)
-
+                Pair.of("Stop Competition", items::stopCompetition),
+                Pair.of("Create Coupon", items::createCoupon),
+                Pair.of("Create FreeProduct", items::createFreeProduct),
+                Pair.of("Remove Reward", items::removeReward),
+                Pair.of("List Rewards", items::listRewards)
         );}
 
     private void listPromotions() {
@@ -92,11 +95,19 @@ public class PromotionsCompetitions extends SimplifiedAction {
         String rewardsIndex = this.prompt("reward ids (separated by , without spaces): ", String.class);
         String[] rewardsIds = rewardsIndex.split(",");
         VDMSet vdmSet = new VDMSet();
+
         for(String index: rewardsIds){
-            if (!Utils.indexInBounds(Integer.getInteger(index), ProgramState.rewards)) {
+            int intIndex;
+            try {
+                intIndex = Integer.getInteger(index);
+            }catch (Exception e){
                 return null;
             }
-            vdmSet.add(ProgramState.rewards.get(Integer.getInteger(index)));
+
+            if (!Utils.indexInBounds(intIndex, ProgramState.rewards)) {
+                return null;
+            }
+            vdmSet.add(ProgramState.rewards.get(intIndex));
         }
 
         int brandIndex = this.prompt("brand id: ", Integer.class);
@@ -124,6 +135,9 @@ public class PromotionsCompetitions extends SimplifiedAction {
 
     private void stopPromotion() {
         int promotionIndex = this.prompt("promotion id: ", Integer.class);
+        if (!Utils.indexInBounds(promotionIndex, ProgramState.promotions)) {
+            return ;
+        }
         Promotion promotion = ProgramState.promotions.get(promotionIndex);
         promotion.setActive(false);
         this.println("Promotion Stopped: " + promotion.toString());
@@ -135,5 +149,75 @@ public class PromotionsCompetitions extends SimplifiedAction {
         competition.setActive(false);
         this.println("Competition Stopped: " + competition.toString());
     }
+
+    private void createCoupon() {
+        Rwd rwd = createRwd();
+        if (rwd==null)
+            return;
+
+        Validator<Integer> percentageValidator = input -> {
+            // valid percentage must be between 0 and 100s
+            return input >= 0 && input <= 100;
+        };
+
+        int discount = this.prompt("discount percentage: ", Integer.class, percentageValidator);
+
+        Coupon coupon = new Coupon(rwd.name, rwd.product, discount);
+
+        ProgramState.rewards.add(coupon);
+        this.println("Coupon created: " + coupon.toString());
+
+    }
+
+    private void createFreeProduct() {
+
+        Rwd rwd = createRwd();
+        if (rwd==null)
+            return;
+
+        FreeProduct freeProduct = new FreeProduct(rwd.name, rwd.product);
+
+        ProgramState.rewards.add(freeProduct);
+        this.println("Free Product created: " + freeProduct.toString());
+    }
+
+    private Rwd createRwd(){
+        String name = this.prompt("name: ", String.class);
+        int productIndex = this.prompt("product id: ", Integer.class);
+        if (!Utils.indexInBounds(productIndex, ProgramState.products)) {
+            return null;
+        }
+
+        Product product = ProgramState.products.get(productIndex);
+
+        return new Rwd(name, product);
+    }
+
+
+    private class Rwd{
+        String name;
+        Product product;
+
+
+        Rwd(String name, Product product) {
+            this.name = name;
+            this.product = product;
+        }
+    }
+    private void removeReward() {
+        int rewardIndex = this.prompt("reward id: ", Integer.class);
+        if (!Utils.indexInBounds(rewardIndex, ProgramState.rewards)) {
+            return ;
+        }
+        ProgramState.rewards.remove(rewardIndex);
+        this.println("Reward Removed");
+    }
+
+    private void listRewards() {
+        String text = Utils.listOrderedList(ProgramState.rewards);
+        this.println(text);
+    }
+
+
 
 }

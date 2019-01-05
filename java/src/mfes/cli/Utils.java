@@ -26,9 +26,9 @@ public class Utils {
     return acum;
   }
 
-  public static boolean indexInBounds(int companyIndex, List bounds) {
-    if (companyIndex < 0 || companyIndex >= bounds.size()) {
-      System.out.println("Invalid company id");
+  public static boolean indexInBounds(int index, List bounds) {
+    if (index < 0 || index >= bounds.size()) {
+      System.out.println("Invalid id");
       return false;
     }
 
