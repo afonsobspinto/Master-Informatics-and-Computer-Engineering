@@ -29,7 +29,10 @@ class QuizEntry is subclass of CompetitionEntry
 		
 		-- Adds an answer to QuizEntry's answers	
 		public addAnswer:QA * String ==> ()
-			addAnswer(qa, ans)==(answers := answers ++ {qa |-> ans})
+			addAnswer(qa, ans)==(
+			if qa in set quiz 
+			then answers := answers ++ {qa |-> ans}
+			)
 		post qa in set dom answers and ans in set rng answers;
 			
 		-- Returns the QuizEntry's qas
@@ -44,7 +47,7 @@ class QuizEntry is subclass of CompetitionEntry
 		public calculateResult:() ==> bool
 		  calculateResult()==(
 		    for all qa in set quiz do
-		    	if not qa.evalAnswer(answers(qa))
+		    	if not qa.evalAnswer(answers(qa	))
 		    	then	(won := false; return false)
 		    	else won := true;
 		    	return won;
