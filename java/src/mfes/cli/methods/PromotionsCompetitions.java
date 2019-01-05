@@ -84,7 +84,7 @@ public class PromotionsCompetitions extends SimplifiedAction {
             return input >= 0 && input <= 100;
         };
 
-        int winningChances = this.prompt("Winning Changes (%): ", Integer.class, percentageValidator);
+        int winningChances = this.prompt("Winning Chances (%): ", Integer.class, percentageValidator);
 
         Giveaway giveaway = new Giveaway(promo.name, promo.rewards, promo.brand, winningChances);
 
