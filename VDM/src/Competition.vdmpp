@@ -7,9 +7,6 @@
 
 class Competition is subclass of Promotion			
 	instance variables
-	
-		-- the the state of the competition (open / closed)
-		protected active:bool;
 		 
 		-- List of all the entries for the present Competition
 		protected competitionEntries: seq of CompetitionEntry;
@@ -25,18 +22,10 @@ class Competition is subclass of Promotion
 				competitionEntries := [];
 		)
 		post name <> "" and rewards <> {};
-		
-		-- Returns the state of the competition (open / closed)
-		pure public isActive:() ==> bool
-	   isActive()==(return active);
 	   
 	  -- Returns the Competition's entries
 		pure public getEntries:() ==> seq of CompetitionEntry
 	 		getEntries()==(return competitionEntries);	 
-	   	
-	  -- Sets the state of the competition (open / closed)
-	  public setActive: bool ==> ()
-			setActive(act)==(active:=act);
 
 		-- Adds an entry to Competition's entries
 	 	public addEntry: CompetitionEntry ==> ()
