@@ -25,7 +25,6 @@ public class PromotionsCompetitions extends SimplifiedAction {
                 Pair.of("Stop Competition", items::stopCompetition),
                 Pair.of("Create Coupon", items::createCoupon),
                 Pair.of("Create FreeProduct", items::createFreeProduct),
-                Pair.of("Remove Reward", items::removeReward),
                 Pair.of("List Rewards", items::listRewards)
         );}
 
@@ -42,8 +41,9 @@ public class PromotionsCompetitions extends SimplifiedAction {
     private void createPromotion() {
 
         Promo promo = createPromo();
-        if(promo==null)
+        if(promo==null){
             return;
+        }
 
         Promotion promotion = new Promotion(promo.name, promo.rewards , promo.brand);
 
@@ -53,12 +53,13 @@ public class PromotionsCompetitions extends SimplifiedAction {
 
     private void createQuiz() {
         Promo promo = createPromo();
-        if(promo==null)
+        if(promo==null){
             return;
+        }
 
         int quizQuestions = this.prompt("#quiz questions: ", Integer.class);
         VDMSet vdmSet = new VDMSet();
-        for(int i = 0; i < quizQuestions; quizQuestions++){
+        for(int i = 0; i < quizQuestions; i++){
             String question = this.prompt("question: ", String.class);
             String answer = this.prompt("answer: ", String.class);
 
@@ -74,15 +75,16 @@ public class PromotionsCompetitions extends SimplifiedAction {
 
     private void createGiveaway() {
         Promo promo = createPromo();
-        if(promo==null)
+        if(promo==null){
             return;
+        }
 
         Validator<Integer> percentageValidator = input -> {
             // valid percentage must be between 0 and 100s
             return input >= 0 && input <= 100;
         };
 
-        int winningChances = this.prompt("#quiz questions: ", Integer.class, percentageValidator);
+        int winningChances = this.prompt("Winning Changes (%): ", Integer.class, percentageValidator);
 
         Giveaway giveaway = new Giveaway(promo.name, promo.rewards, promo.brand, winningChances);
 
@@ -99,8 +101,9 @@ public class PromotionsCompetitions extends SimplifiedAction {
         for(String index: rewardsIds){
             int intIndex;
             try {
-                intIndex = Integer.getInteger(index);
+                intIndex = Integer.parseInt(index);
             }catch (Exception e){
+                System.out.println("Invalid id");
                 return null;
             }
 
@@ -109,6 +112,7 @@ public class PromotionsCompetitions extends SimplifiedAction {
             }
             vdmSet.add(ProgramState.rewards.get(intIndex));
         }
+
 
         int brandIndex = this.prompt("brand id: ", Integer.class);
         if (!Utils.indexInBounds(brandIndex, ProgramState.brands)) {
@@ -152,8 +156,9 @@ public class PromotionsCompetitions extends SimplifiedAction {
 
     private void createCoupon() {
         Rwd rwd = createRwd();
-        if (rwd==null)
+        if (rwd==null) {
             return;
+        }
 
         Validator<Integer> percentageValidator = input -> {
             // valid percentage must be between 0 and 100s
@@ -172,8 +177,9 @@ public class PromotionsCompetitions extends SimplifiedAction {
     private void createFreeProduct() {
 
         Rwd rwd = createRwd();
-        if (rwd==null)
+        if (rwd==null){
             return;
+        }
 
         FreeProduct freeProduct = new FreeProduct(rwd.name, rwd.product);
 
@@ -203,14 +209,6 @@ public class PromotionsCompetitions extends SimplifiedAction {
             this.name = name;
             this.product = product;
         }
-    }
-    private void removeReward() {
-        int rewardIndex = this.prompt("reward id: ", Integer.class);
-        if (!Utils.indexInBounds(rewardIndex, ProgramState.rewards)) {
-            return ;
-        }
-        ProgramState.rewards.remove(rewardIndex);
-        this.println("Reward Removed");
     }
 
     private void listRewards() {

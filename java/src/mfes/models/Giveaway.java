@@ -15,6 +15,7 @@ public class Giveaway extends Competition {
     brand = b;
     percentage = p;
     competitionEntries = SeqUtil.seq();
+    active = true;
   }
 
   public Giveaway(final String nam, final VDMSet sor, final Brand b, final Number p) {
@@ -31,6 +32,6 @@ public class Giveaway extends Competition {
 
   public String toString() {
 
-    return "Giveaway{" + "percentage := " + Utils.toString(percentage) + "}";
+    return "Giveaway{" + "percentage := " + Utils.toString(percentage) + " active := " + Utils.toString(active) + "}";
   }
 }

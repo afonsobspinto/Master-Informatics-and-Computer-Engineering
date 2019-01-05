@@ -15,6 +15,7 @@ public class Promotion {
     name = nam;
     rewards = Utils.copy(sor);
     brand = b;
+    active = true;
   }
 
   public Promotion(final String nam, final VDMSet sor, final Brand b) {
@@ -58,7 +59,7 @@ public class Promotion {
         + Utils.toString(rewards)
         + ", brand := "
         + Utils.toString(brand)
-        + "active := "
+        + " active := "
         + Utils.toString(active)
         + "}";
   }

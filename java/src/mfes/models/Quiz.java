@@ -14,6 +14,7 @@ public class Quiz extends Competition {
     brand = b;
     quiz = Utils.copy(qas);
     competitionEntries = SeqUtil.seq();
+    active = true;
   }
 
   public Quiz(final String nam, final VDMSet sor, final Brand b, final VDMSet qas) {
@@ -30,6 +31,6 @@ public class Quiz extends Competition {
 
   public String toString() {
 
-    return "Quiz{" + "quiz := " + Utils.toString(quiz) + "}";
+    return "Quiz{" + "quiz := " + Utils.toString(quiz) + " active := " + Utils.toString(active) + "}";
   }
 }
