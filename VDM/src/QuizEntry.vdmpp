@@ -33,6 +33,7 @@ class QuizEntry is subclass of CompetitionEntry
 			if qa in set quiz 
 			then answers := answers ++ {qa |-> ans}
 			)
+		pre forall qa in set dom answers & qa in set quiz 
 		post qa in set dom answers and ans in set rng answers;
 			
 		-- Returns the QuizEntry's qas
