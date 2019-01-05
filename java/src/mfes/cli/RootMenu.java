@@ -20,7 +20,9 @@ public class RootMenu extends ActionView {
     MenuView promotionsMenu = PromotionsCompetitions.buildMenu();
     MenuView awardsMenu = AwardsEntities.buildMenu();
     MenuView competitionsMenu = GiveawaysQuizes.buildMenu();
+    MenuView loginMenu = Login.buildMenu();
 
+    rootMenu.addMenuItem(loginMenu);
     rootMenu.addMenuItem(companiesMenu);
     rootMenu.addMenuItem(productsMenu);
     rootMenu.addMenuItem(usersMenu);

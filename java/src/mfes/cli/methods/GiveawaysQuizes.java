@@ -6,6 +6,7 @@ import mfes.ProgramState;
 import mfes.cli.SimplifiedAction;
 import mfes.cli.Utils;
 import mfes.models.*;
+import org.overture.codegen.runtime.VDMSet;
 
 public class GiveawaysQuizes extends SimplifiedAction {
 
@@ -13,7 +14,8 @@ public class GiveawaysQuizes extends SimplifiedAction {
     GiveawaysQuizes items = new GiveawaysQuizes();
     return Utils.buildMenuView(
         "Competitions PLAY",
-        Pair.of("Play giveaway", items::playGiveaway));
+        Pair.of("Play giveaway", items::playGiveaway),
+        Pair.of("Play quiz", items::playQuiz));
   }
 
   private void playGiveaway() {
@@ -37,11 +39,51 @@ public class GiveawaysQuizes extends SimplifiedAction {
 
     GiveawayEntry giveawayEntry = new GiveawayEntry(winningChanges);
 
-    if(giveawayEntry.calculateResult())
+    if(giveawayEntry.calculateResult()){
+      if (ProgramState.currentuser != null)
+        ProgramState.currentuser.addPromotion(giveaway);
       System.out.println("Congratulations! You won");
+    }
     else
       System.out.println("Oh, you lost! Better luck next time...");
   }
 
+  private void playQuiz() {
+    int quizIndex = this.prompt("quiz id: ", Integer.class);
+    if (!Utils.indexInBounds(quizIndex, ProgramState.competitions)) {
+      return;
+    }
+
+    Competition competition = ProgramState.competitions.get(quizIndex);
+
+    Quiz quiz = null;
+    if(competition instanceof Quiz) {
+      quiz = (Quiz) competition;
+    }
+    else{
+      System.out.println("Invalid ID");
+      return;
+    }
+
+    VDMSet vdmset = quiz.getQuiz();
+
+    QuizEntry quizEntry = new QuizEntry(vdmset);
+
+    for(Object obj:vdmset){
+      QA qa = (QA) obj;
+
+      String answer = this.prompt(qa.getQuestion() + "? \n", String.class);
+
+      quizEntry.addAnswer(qa, answer);
+    }
+
+    if(quizEntry.calculateResult()){
+      if (ProgramState.currentuser != null)
+        ProgramState.currentuser.addPromotion(quiz);
+      System.out.println("Congratulations! You answered all questions correctly!");
+    }
+    else
+      System.out.println("Oh, you lost! Better luck next time...");
+  }
 
 }

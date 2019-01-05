@@ -19,4 +19,6 @@ public class ProgramState {
     public static final List<Award> awards = new ArrayList<>();
     public static final List<Entity> entities = new ArrayList<>();
     public static final List<Retailer> retailers = new ArrayList<>();
+
+    public static User currentuser;
 }

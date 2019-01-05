@@ -7,6 +7,7 @@ import mfes.ProgramState;
 import mfes.cli.SimplifiedAction;
 import mfes.cli.Utils;
 import mfes.models.Product;
+import mfes.models.Promotion;
 import mfes.models.Review;
 import mfes.models.User;
 
@@ -21,7 +22,8 @@ public class UsersReviews extends SimplifiedAction {
         Pair.of("Delete User", items::deleteUser),
         Pair.of("List Reviews", items::listReviews),
         Pair.of("Create Review", items::createReview),
-        Pair.of("Delete Review", items::deleteReview));
+        Pair.of("Delete Review", items::deleteReview),
+        Pair.of("List User Promotions", items::listPromotions));
   }
 
   private void createUser() {
@@ -94,5 +96,16 @@ public class UsersReviews extends SimplifiedAction {
 
     ProgramState.reviews.remove(reviewIndex);
     this.println("Removed Review");
+  }
+
+  private void listPromotions() {
+    if(ProgramState.currentuser != null){
+      for(Object obj : ProgramState.currentuser.getPromotions()){
+        Promotion promotion = (Promotion) obj;
+        this.println(promotion);
+      }
+    }
+    else
+      this.println("You're not logged in");
   }
 }
