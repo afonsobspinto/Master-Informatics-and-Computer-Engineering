@@ -24,7 +24,7 @@ public class UsersReviews extends SimplifiedAction {
         Pair.of("Delete Review", items::deleteReview));
   }
 
-  public void createUser() {
+  private void createUser() {
     String name = this.prompt("name: ", String.class);
     String email = this.prompt("email: ", String.class);
 
@@ -33,12 +33,12 @@ public class UsersReviews extends SimplifiedAction {
     ProgramState.users.add(user);
   }
 
-  public void listUsers() {
+  private void listUsers() {
     String text = Utils.listOrderedList(ProgramState.users);
     this.println(text);
   }
 
-  public void deleteUser() {
+  private void deleteUser() {
     int userIndex = this.prompt("user id: ", Integer.class);
 
     if (!Utils.indexInBounds(userIndex, ProgramState.users)) {
@@ -49,7 +49,7 @@ public class UsersReviews extends SimplifiedAction {
     this.println("Removed User");
   }
 
-  public void createReview() {
+  private void createReview() {
     int rating = this.prompt("rating: ", Integer.class);
 
     if (rating < 1 || rating > 5) {
@@ -80,12 +80,12 @@ public class UsersReviews extends SimplifiedAction {
     ProgramState.reviews.add(review);
   }
 
-  public void listReviews() {
+  private void listReviews() {
     String text = Utils.listOrderedList(ProgramState.reviews);
     this.println(text);
   }
 
-  public void deleteReview() {
+  private void deleteReview() {
     int reviewIndex = this.prompt("review id: ", Integer.class);
 
     if (!Utils.indexInBounds(reviewIndex, ProgramState.reviews)) {
