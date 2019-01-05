@@ -5,6 +5,7 @@ class User
 	  private reviews: set of (Review);
 	  private name: String;
 	  private email: String;
+	  private wonPromotions: set of Promotion;
 		
 	operations
 		public User: String * String ==> User
@@ -13,6 +14,7 @@ class User
 			name := nam;
 			email := em;
 			reviews := {};
+			wonPromotions := {};
 		);
 	
 		public addReview: Review ==> ()
@@ -26,5 +28,11 @@ class User
 		
 		pure public getEmail:() ==> String
 		getEmail()==(return email);
+		
+		public addPromotion: Promotion ==> ()
+		addPromotion(wonPromotion)==(wonPromotions := wonPromotions union {wonPromotion});
+		
+		pure public getPromotions:() ==> set of Promotion
+		getPromotions()==(return wonPromotions);
 
 end User
