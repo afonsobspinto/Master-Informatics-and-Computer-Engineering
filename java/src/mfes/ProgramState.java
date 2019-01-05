@@ -15,4 +15,7 @@ public class ProgramState {
     public static final List<Promotion> promotions = new ArrayList<>();
     public static final List<Competition> competitions = new ArrayList<>();
     public static final List<Reward> rewards = new ArrayList<>();
+    public static final List<Award> awards = new ArrayList<>();
+    public static final List<Entity> entities = new ArrayList<>();
+    public static final List<Retailer> retailers = new ArrayList<>();
 }

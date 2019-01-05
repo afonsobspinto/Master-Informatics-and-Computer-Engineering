@@ -23,12 +23,12 @@ public class ProductsCategories extends SimplifiedAction {
             Pair.of("Delete Category", items::deleteCategory));
   }
 
-  public void listProducts() {
+  private void listProducts() {
     String text = Utils.listOrderedList(ProgramState.products);
     this.println(text);
   }
 
-  public void createProduct() {
+  private void createProduct() {
     String name = this.prompt("name: ", String.class);
     String description = this.prompt("description: ", String.class);
     int categoryId = this.prompt("category id: ", Integer.class);
@@ -50,7 +50,7 @@ public class ProductsCategories extends SimplifiedAction {
     this.println("created new product: " + product.toString());
   }
 
-  public void deleteProduct() {
+  private void deleteProduct() {
     int productIndex = this.prompt("product id: ", Integer.class);
 
     if (!Utils.indexInBounds(productIndex, ProgramState.products)) {
@@ -61,12 +61,12 @@ public class ProductsCategories extends SimplifiedAction {
     this.println("Removed Product");
   }
 
-  public void listCategories() {
+  private void listCategories() {
     String text = Utils.listOrderedList(ProgramState.categories);
     this.println(text);
   }
 
-  public void createCategory() {
+  private void createCategory() {
     String category = this.prompt("category: ", String.class);
     Category categoryModel = new Category(category);
 
@@ -75,7 +75,7 @@ public class ProductsCategories extends SimplifiedAction {
     ProgramState.categories.add(categoryModel);
   }
 
-  public void deleteCategory() {
+  private void deleteCategory() {
     int categoryIndex = this.prompt("category id: ", Integer.class);
 
     if (!Utils.indexInBounds(categoryIndex, ProgramState.categories)) {
