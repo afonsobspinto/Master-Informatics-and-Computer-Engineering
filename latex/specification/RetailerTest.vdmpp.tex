@@ -13,13 +13,15 @@ class RetailerTest
 @*)
   private testConstructor()==
   (
+    -- Normal scenario for creating and listing retailers,
+     -- as described in section 2.1 of the report, covering requirement R04 and R06.
    dcl r: Retailer := new Retailer("ret");
    assertTrue(r.getName() = "ret");
-  );
- 
 (*@
 \label{main:13}
 @*)
+  );
+ 
   public static main()==
     (
    dcl r:RetailerTest := new RetailerTest();

@@ -9,9 +9,6 @@ class User
   -- the reviews of the user
    private reviews: set of (Review);
    
-(*@
-\label{User:11}
-@*)
    -- the name
    private name: String;
    
@@ -21,57 +18,85 @@ class User
    -- the won promotions
    private wonPromotions: set of Promotion;
   
-(*@
-\label{addReview:20}
-@*)
  operations
+(*@
+\label{User:21}
+@*)
   public User: String * String ==> User
   User(nam, em)==
-(*@
-\label{getReviews:23}
-@*)
   (
    name := nam;
    email := em;
-(*@
-\label{getName:26}
-@*)
    reviews := {};
    wonPromotions := {};
   );
-(*@
-\label{getEmail:29}
-@*)
  
   -- Adds a reviews to the user
-  public addReview: Review ==> ()
 (*@
-\label{addPromotion:32}
+\label{addReview:31}
 @*)
+  public addReview: Review ==> ()
   addReview(review)==(reviews := reviews union {review});
 
   -- Returns the user reviews
 (*@
-\label{getPromotions:35}
+\label{getReviews:35}
 @*)
   pure public getReviews:() ==> set of Review
   getReviews()==(return reviews);
   
   -- Returns the user name
+(*@
+\label{getName:39}
+@*)
   pure public getName:() ==> String
   getName()==(return name);
   
   -- Returns the user email
+(*@
+\label{getEmail:43}
+@*)
   pure public getEmail:() ==> String
   getEmail()==(return email);
   
   -- Adds a won promotion to the user
+(*@
+\label{addPromotion:47}
+@*)
   public addPromotion: Promotion ==> ()
-  addPromotion(wonPromotion)==(wonPromotions := wonPromotions union {wonPromotion});
+  addPromotion(wonPromotion)==(wonPromotions := wonPromotions union (*@\vdmnotcovered{\{}@*)(*@\vdmnotcovered{wonPromotion}@*)});
   
   -- Returns the user promotions
+(*@
+\label{getPromotions:51}
+@*)
   pure public getPromotions:() ==> set of Promotion
-  getPromotions()==(return wonPromotions);
+  getPromotions()==(*@\vdmnotcovered{(}@*)(*@\vdmnotcovered{return}@*) (*@\vdmnotcovered{wonPromotions}@*));
 
 end User
 \end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[User:21]{User} & 21&100.0\% & 3 \\
+\hline
+\hyperref[addPromotion:47]{addPromotion} & 47&0.0\% & 0 \\
+\hline
+\hyperref[addReview:31]{addReview} & 31&100.0\% & 4 \\
+\hline
+\hyperref[getEmail:43]{getEmail} & 43&100.0\% & 1 \\
+\hline
+\hyperref[getName:39]{getName} & 39&100.0\% & 1 \\
+\hline
+\hyperref[getPromotions:51]{getPromotions} & 51&0.0\% & 0 \\
+\hline
+\hyperref[getReviews:35]{getReviews} & 35&100.0\% & 4 \\
+\hline
+\hline
+User.vdmpp & & 72.7\% & 13 \\
+\hline
+\end{longtable}
+

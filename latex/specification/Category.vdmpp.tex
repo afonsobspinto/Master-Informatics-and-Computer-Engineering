@@ -7,26 +7,41 @@ class Category is subclass of ContainingProducts
   
  instance variables
    
-(*@
-\label{Category:9}
-@*)
    -- the category name
   private name: String;
    
  operations
+(*@
+\label{Category:13}
+@*)
   public Category: String ==> Category
   Category(nam)==
   (
-(*@
-\label{getName:16}
-@*)
    name := nam;
    products := {};
   );
   
   -- Return the category name
+(*@
+\label{getName:21}
+@*)
   pure public getName:() ==> String
   getName()==(return name);
   
 end Category
 \end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Category:13]{Category} & 13&100.0\% & 20 \\
+\hline
+\hyperref[getName:21]{getName} & 21&100.0\% & 1 \\
+\hline
+\hline
+Category.vdmpp & & 100.0\% & 21 \\
+\hline
+\end{longtable}
+

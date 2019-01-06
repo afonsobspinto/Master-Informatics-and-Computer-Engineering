@@ -13,6 +13,8 @@ class ReviewTest
 @*)
   private testConstructor()==
   (
+    -- Normal scenario for creating and listing reviews,
+     -- as described in section 2.1 of the report, covering requirement R13 and R15.
    dcl p: Product := ProductTest`emptyProduct();
    dcl usr: User := UserTest`buildInstance();
    dcl r:Review := new Review(usr, p, 1, "abc");
@@ -20,11 +22,11 @@ class ReviewTest
    assertTrue(r.getUser() = usr);
    assertTrue(r.getRating() = 1);
    assertTrue(r.getDescription() = "abc");
-  );
-  
 (*@
 \label{main:18}
 @*)
+  );
+  
   public static main()==
     (
    dcl r:ReviewTest := new ReviewTest();

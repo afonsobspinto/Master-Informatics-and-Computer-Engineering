@@ -8,38 +8,55 @@ class Brand is subclass of ContainingProducts
  instance variables
  
    -- the brand name
-(*@
-\label{Brand:10}
-@*)
   name: String;
   
   -- the owning company
    company: Company;
   
   operations 
+(*@
+\label{Brand:16}
+@*)
    public Brand: String * Company ==> Brand
    Brand(nam, compan)==
    (
     products := {};
-(*@
-\label{getCompany:20}
-@*)
     name := nam;
     company := compan;
     company.addBrand(self);
-(*@
-\label{getName:23}
-@*)
    )
    post self in set company.getBrands();
    
    -- return the owning company
+(*@
+\label{getCompany:27}
+@*)
    pure public getCompany:() ==> Company
    getCompany()==(return company);
    
    -- return the name
+(*@
+\label{getName:31}
+@*)
    pure public getName:() ==> String
    getName()==(return name);
    
 end Brand
 \end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Brand:16]{Brand} & 16&100.0\% & 19 \\
+\hline
+\hyperref[getCompany:27]{getCompany} & 27&100.0\% & 1 \\
+\hline
+\hyperref[getName:31]{getName} & 31&100.0\% & 1 \\
+\hline
+\hline
+Brand.vdmpp & & 100.0\% & 21 \\
+\hline
+\end{longtable}
+

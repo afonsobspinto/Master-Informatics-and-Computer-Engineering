@@ -13,6 +13,8 @@ class ProductTest
 @*)
   private testConstructor()==
   (
+    -- Normal scenario for creating and listing products,
+     -- as described in section 2.1 of the report, covering requirement R07 and R09.
    dcl cat:Category := new Category("office");
    dcl c: Company := new Company("Asus", "", "", "");
    dcl b:Brand := new Brand("compaq", c);
@@ -23,11 +25,11 @@ class ProductTest
    assertTrue(p in set cat.getProducts());
    assertTrue(b = p.getBrand());
    assertTrue(not p.hasReviews());
-  );
-  
 (*@
 \label{testSimpleSetters:21}
 @*)
+  );
+  
   private testSimpleSetters()==
   (
    dcl p:Product := emptyProduct();
@@ -35,11 +37,11 @@ class ProductTest
    p.setDescription("desc");
    assertTrue(p.getName() = "name");
    assertTrue(p.getDescription() = "desc");
-  );
-  
 (*@
 \label{testSetCategory:30}
 @*)
+  );
+  
   private testSetCategory()==
   (
    dcl cat1:Category := new Category("office");
@@ -50,21 +52,21 @@ class ProductTest
    p.setCategory(cat2);
    assertTrue(p not in set cat1.getProducts());
    assertTrue(p in set cat2.getProducts());
-  );
-  
 (*@
 \label{testImages:42}
 @*)
+  );
+  
   private testImages()==
   (
    dcl p:Product := emptyProduct();
    p.setImageUrls(["abc"]);
    assertTrue("abc" in set elems p.getImageUrls());
-  );
-  
 (*@
 \label{testReviews:49}
 @*)
+  );
+  
   private testReviews()==
   (
    dcl p:Product := emptyProduct();
@@ -75,36 +77,36 @@ class ProductTest
    
    assertTrue(p.hasReviews());
    assertTrue(p.reviewAverage() = 4.0);
-  );
-  
 (*@
 \label{buildBrandInstance:61}
 @*)
+  );
+  
   public static buildBrandInstance() res: Brand==
   (
    dcl c:Company := new Company("","","","");
    return new Brand("", c);
-  );
-  
 (*@
 \label{buildProductWithCategory:67}
 @*)
+  );
+  
   public static buildProductWithCategory(cat: Category) res: Product==
   (
    dcl b: Brand := buildBrandInstance();
    return new Product("", "", cat, b);
-  );
-  
 (*@
 \label{emptyProduct:73}
 @*)
+  );
+  
   public static emptyProduct() res: Product==(
    return buildProductWithCategory(new Category(""))
-  ); 
-  
 (*@
 \label{main:77}
 @*)
+  ); 
+  
   public static main()==
     (
    dcl p:ProductTest := new ProductTest();

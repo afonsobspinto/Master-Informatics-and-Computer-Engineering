@@ -12,9 +12,6 @@ class Review
   -- the author
    private user: User;
    
-(*@
-\label{Review:14}
-@*)
    -- the product under review
    private product: Product;
    
@@ -25,45 +22,69 @@ class Review
   private description: String;
   
  operations
+(*@
+\label{Review:24}
+@*)
   public Review: User * Product * Rating * String ==> Review
   Review(usr, prod, ratng, desc)==
-(*@
-\label{getProduct:26}
-@*)
   (
    user := usr;
    user.addReview(self);
-(*@
-\label{getUser:29}
-@*)
    product := prod;
    product.addReview(self);
    rating := ratng;
-(*@
-\label{getRating:32}
-@*)
    description := desc;
   ) post self in set product.getReviews() and 
    self in set user.getReviews();
-(*@
-\label{getDescription:35}
-@*)
  
   -- Returns the product under review
+(*@
+\label{getProduct:37}
+@*)
   pure public getProduct: () ==> Product
   getProduct()==(return product);
   
   -- Return the author
+(*@
+\label{getUser:41}
+@*)
   pure public getUser:() ==> User
   getUser()==(return user);
   
   -- Returns the rating
+(*@
+\label{getRating:45}
+@*)
   pure public getRating:() ==> Rating
   getRating()==(return rating);
   
   -- Returns the description
+(*@
+\label{getDescription:49}
+@*)
   pure public getDescription:() ==> String
   getDescription()==(return description);
  
 end Review
 \end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Review:24]{Review} & 24&100.0\% & 4 \\
+\hline
+\hyperref[getDescription:49]{getDescription} & 49&100.0\% & 1 \\
+\hline
+\hyperref[getProduct:37]{getProduct} & 37&100.0\% & 1 \\
+\hline
+\hyperref[getRating:45]{getRating} & 45&100.0\% & 4 \\
+\hline
+\hyperref[getUser:41]{getUser} & 41&100.0\% & 1 \\
+\hline
+\hline
+Review.vdmpp & & 100.0\% & 11 \\
+\hline
+\end{longtable}
+
