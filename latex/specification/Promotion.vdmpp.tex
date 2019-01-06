@@ -1,0 +1,75 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a Promotion
+-- Contains a name which identifies the promotion
+--      a set of rewards
+--          the brand responsible for the promotion
+
+class Promotion
+ types
+    public String = seq of char;
+
+ instance variables
+ 
+  -- name which identifies the promotion
+  protected name:String; 
+  
+  -- set of rewards
+   protected rewards:set of Reward;
+   
+   -- brand responsible for the promotion
+   protected brand:Brand;
+   
+   -- the the state of the competition (open / closed)
+  protected active:bool;
+
+ operations
+(*@
+\label{Promotion:25}
+@*)
+  public Promotion: String * set of Reward * Brand ==> Promotion
+  Promotion(nam, sor, b)== 
+  (
+    name := nam;
+    rewards := sor;
+    brand := b;
+    active := true;
+  )
+  post name <> "" and rewards <> {};
+  
+  -- Returns the name which identifies the promotion
+(*@
+\label{getName:36}
+@*)
+  pure public getName:() ==> String
+     getName()==(return name);
+     
+   -- Returns a set of rewards 
+(*@
+\label{getRewards:40}
+@*)
+   pure public getRewards:() ==> set of Reward
+    getRewards()==(return rewards);
+  
+  -- Returns the brand responsible for the promotion 
+(*@
+\label{getBrand:44}
+@*)
+   pure public getBrand:() ==> Brand
+    getBrand()==(return brand); 
+     
+  -- Returns the state of the competition (open / closed)
+(*@
+\label{isActive:48}
+@*)
+  pure public isActive:() ==> bool
+    isActive()==(return active);
+    
+   -- Sets the state of the competition (open / closed)
+(*@
+\label{setActive:52}
+@*)
+   public setActive: bool ==> ()
+   setActive(act)==(active:=act);
+
+end Promotion
+\end{vdmpp}

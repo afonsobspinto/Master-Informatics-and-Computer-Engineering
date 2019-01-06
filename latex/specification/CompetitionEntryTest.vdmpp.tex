@@ -1,0 +1,41 @@
+\begin{vdmpp}[breaklines=true]
+class CompetitionEntryTest
+ operations
+(*@
+\label{assertTrue:3}
+@*)
+  private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+(*@
+\label{testConstructor:7}
+@*)
+  private testConstructor()==
+  (
+   dcl competitionEntry: CompetitionEntry := new CompetitionEntry();
+   assertTrue(not competitionEntry.hasWon());
+  );
+  
+(*@
+\label{testSetter:13}
+@*)
+  private testSetter()==
+  (
+   dcl competitionEntry: CompetitionEntry := new CompetitionEntry();
+   competitionEntry.setWon(true);
+   assertTrue(competitionEntry.hasWon());
+  );
+  
+(*@
+\label{main:20}
+@*)
+  public static main()==
+    (
+   dcl cet:CompetitionEntryTest := new CompetitionEntryTest();
+   cet.testConstructor();
+   cet.testSetter();
+    );
+     
+end CompetitionEntryTest
+\end{vdmpp}

@@ -1,0 +1,30 @@
+\begin{vdmpp}[breaklines=true]
+class RetailerTest
+ operations
+(*@
+\label{assertTrue:3}
+@*)
+  private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+(*@
+\label{testConstructor:7}
+@*)
+  private testConstructor()==
+  (
+   dcl r: Retailer := new Retailer("ret");
+   assertTrue(r.getName() = "ret");
+  );
+ 
+(*@
+\label{main:13}
+@*)
+  public static main()==
+    (
+   dcl r:RetailerTest := new RetailerTest();
+   r.testConstructor();
+    );
+
+end RetailerTest
+\end{vdmpp}

@@ -1,0 +1,40 @@
+\begin{vdmpp}[breaklines=true]
+-- Subclass of Competition
+-- Represents an example of Competition namely a Giveaway
+-- Contains the winning chances in percentage of the giveaway
+
+class Giveaway is subclass of Competition
+ types
+    public String = seq of char;
+        
+    instance variables
+    -- The winning chances in percentage of the giveaway
+     private percentage: int;
+     
+    -- invariant wich forces the value of percentage to always be between 0 and 100
+  inv percentage >= 0 and percentage <= 100;
+    
+  operations 
+(*@
+\label{Giveaway:17}
+@*)
+      public Giveaway: String * set of Reward * Brand * int ==> Giveaway
+     Giveaway(nam, sor, b, p)==
+     (
+     name := nam;
+     rewards := sor;
+     brand := b;
+     percentage := p;
+     competitionEntries := [];
+     )
+     post percentage > 0 and percentage < 100;
+      
+      -- Returns the percentage o winning the giveaway qas      
+(*@
+\label{getPercentage:29}
+@*)
+     pure public getPercentage:() ==> int
+     getPercentage()==(return percentage);
+     
+end Giveaway
+\end{vdmpp}
