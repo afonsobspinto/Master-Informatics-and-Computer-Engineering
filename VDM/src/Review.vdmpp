@@ -1,3 +1,5 @@
+-- Represents a product review
+-- Contains the authro, product, description and rating
 class Review
 	types
 		public Rating = nat 
@@ -5,9 +7,17 @@ class Review
 		public String = seq of char;
 
 	instance variables
+	
+		-- the author
 	  private user: User;
+	  
+	  -- the product under review
 	  private product: Product;
+	  
+	  -- the review ratig
 		private rating: Rating;
+		
+		-- the review description
 		private description: String;
 		
 	operations
@@ -23,15 +33,19 @@ class Review
 		) post self in set product.getReviews() and 
 			self in set user.getReviews();
 	
+		-- Returns the product under review
 		pure public getProduct: () ==> Product
 		getProduct()==(return product);
 		
+		-- Return the author
 		pure public getUser:() ==> User
 		getUser()==(return user);
 		
+		-- Returns the rating
 		pure public getRating:() ==> Rating
 		getRating()==(return rating);
 		
+		-- Returns the description
 		pure public getDescription:() ==> String
 		getDescription()==(return description);
 	

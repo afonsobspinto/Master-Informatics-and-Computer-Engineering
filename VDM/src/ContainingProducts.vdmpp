@@ -1,20 +1,25 @@
+-- Represents a class that contains product
 class ContainingProducts
 	types 
 			protected String = seq of char;
 
 	instance variables
+		-- the set of products
 	  protected products: set of Product;
 	  
 	operations
 		public ContainingProducts:() ==> ContainingProducts 
 		ContainingProducts()==(products:={});
 	
+		-- Adds a product to the set
 		public addProduct: Product ==> ()
 		addProduct(prod)==(products := products union {prod});
 		
+		-- Removes a product
 		public removeProduct:Product ==> () 
 		removeProduct(prod)==(products := products \ {prod});
 		
+		-- Returns the set of products
 		pure public getProducts:() ==> set of Product 
 		getProducts()==(return products);
 

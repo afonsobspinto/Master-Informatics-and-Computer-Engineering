@@ -1,8 +1,12 @@
+-- Represents the product category
+-- Contains the category name and products with the cateogry
 class Category is subclass of ContainingProducts
 	types 
 		public String = seq of char;
 		
 	instance variables
+	  
+	  -- the category name
 		private name: String;
 	  
 	operations
@@ -13,6 +17,7 @@ class Category is subclass of ContainingProducts
 			products := {};
 		);
 		
+		-- Return the category name
 		pure public getName:() ==> String
 		getName()==(return name);
 		

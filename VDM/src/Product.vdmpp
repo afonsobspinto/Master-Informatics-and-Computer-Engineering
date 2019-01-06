@@ -1,13 +1,27 @@
+-- Represents a Product
+-- Contains the name, description, category, images, company brand and reviews 
 class Product
 	types 
 		public String = seq of char;
 		
 	instance variables
+	
+	  -- the product name
 		private name: String;
+		
+		-- the product description
 		private description: String;
+		
+		-- the product category
 		private category: Category;
+		
+		-- the product image urls
 		private imageUrls: seq of String;
+		
+		-- the product brand
 		private brand: Brand;
+		
+		-- the product reviews
 		private reviews: set of Review;
 	
 	operations
@@ -26,15 +40,19 @@ class Product
 		post self in set cat.getProducts() and 
 					self in set bran.getProducts();
 		
+		-- Return the product name
 		pure public getName: () ==> String 
 		getName()==(return self.name);
 		
+		-- Returns the product description
 		pure public getDescription: () ==> String
 		getDescription()==(return self.description);
 		
+		-- Returns the category
 		pure public getCategory:() ==> Category
 		getCategory()==(return category);
 		
+		-- Sets the product cateogry
 		public setCategory: Category ==> ()
 		setCategory(cat)==
 		(
@@ -44,31 +62,39 @@ class Product
 		)
 		post self in set cat.getProducts();
 		
+		-- Sets the product name
 		public setName: String ==> ()
 		setName(nam)==(name:=nam);
 		
-		
+		-- Sets the product description
 		public setDescription: String ==> ()
 		setDescription(desc)==(description:=desc);
 		
+		-- Sets the image urls
 		public setImageUrls: seq of String ==> ()
 		setImageUrls(images)==(imageUrls:=images);
 		
+		-- Returns the image urls
 		public getImageUrls:() ==> seq of String
 		getImageUrls()==(return imageUrls);
 		
+		-- Returns the product brand
 		pure public getBrand:() ==> Brand
 		getBrand()==(return brand);
 		
+		-- Returns the reviews on the product
 		pure public getReviews:() ==> set of Review
 		getReviews()==(return reviews);
 		
+		-- Add a product review
 		public addReview:(Review) ==> ()
 		addReview(review)==(reviews := reviews union {review});
 		
+		-- Returns wheter the product has any reviews
 		pure public hasReviews:() ==> bool
 		hasReviews()==(return reviews <> {});
 		
+		-- Returns the product reviews average score (1 to 5)
 		pure public reviewAverage:() ==> real
 		reviewAverage()==
 		(

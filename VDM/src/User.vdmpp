@@ -1,10 +1,20 @@
+-- Represents a user
+-- Contains the name, email, reviews made by the user, and won promotions
 class User
 	types 
 		public String = seq of char;
 	instance variables
+	
+		-- the reviews of the user
 	  private reviews: set of (Review);
+	  
+	  -- the name
 	  private name: String;
+	  
+	  -- the email
 	  private email: String;
+	  
+	  -- the won promotions
 	  private wonPromotions: set of Promotion;
 		
 	operations
@@ -17,21 +27,27 @@ class User
 			wonPromotions := {};
 		);
 	
+		-- Adds a reviews to the user
 		public addReview: Review ==> ()
 		addReview(review)==(reviews := reviews union {review});
 
+		-- Returns the user reviews
 		pure public getReviews:() ==> set of Review
 		getReviews()==(return reviews);
 		
+		-- Returns the user name
 		pure public getName:() ==> String
 		getName()==(return name);
 		
+		-- Returns the user email
 		pure public getEmail:() ==> String
 		getEmail()==(return email);
 		
+		-- Adds a won promotion to the user
 		public addPromotion: Promotion ==> ()
 		addPromotion(wonPromotion)==(wonPromotions := wonPromotions union {wonPromotion});
 		
+		-- Returns the user promotions
 		pure public getPromotions:() ==> set of Promotion
 		getPromotions()==(return wonPromotions);
 
