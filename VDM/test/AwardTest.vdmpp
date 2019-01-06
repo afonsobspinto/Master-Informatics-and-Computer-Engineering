@@ -6,6 +6,8 @@ class AwardTest
     
 		private testConstructor()==
 		(
+		  -- Normal scenario for creating and listing rewards,
+	    -- as described in section 2.1 of the report, covering requirement R27 and R30.
 			dcl e:Entity := new Entity("Certificado de qualidade");
 			dcl cat:Category := new Category("vegetables");	
       dcl c: Company := new Company("Sonae MC", "", "", "");

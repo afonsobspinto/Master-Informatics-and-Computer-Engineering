@@ -6,6 +6,8 @@ class GiveawayTest
     
 		private testConstructor()==
 		(
+		  -- Normal scenario for creating giveaways,
+	    -- as described in section 2.1 of the report, covering requirement R21.
       dcl c: Company := new Company("Asus", "", "", "");
       dcl b:Brand := new Brand("compaq", c);
       dcl cat: Category := new Category("office");
