@@ -13,6 +13,8 @@ class FreeProductTest
 @*)
   private testConstructor()==
   (
+    -- Normal scenario for creating free products as rewards,
+     -- as described in section 2.1 of the report, covering requirement R25.
     dcl cat: Category := new Category("office");
    dcl c: Company := new Company("Asus", "", "", "");
    dcl b: Brand := new Brand("compaq", c);
@@ -21,11 +23,11 @@ class FreeProductTest
    assertTrue(f.getName() = "fp");
    assertTrue(f.getProduct() = p);
    assertTrue(f.getDiscount() = 100);
-  );
- 
 (*@
 \label{main:19}
 @*)
+  );
+ 
   public static main()==
     (
    dcl f:FreeProductTest := new FreeProductTest();

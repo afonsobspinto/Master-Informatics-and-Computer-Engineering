@@ -12,9 +12,6 @@ class Product
   
   -- the product description
   private description: String;
-(*@
-\label{Product:14}
-@*)
   
   -- the product category
   private category: Category;
@@ -29,115 +26,118 @@ class Product
   private reviews: set of Review;
  
  operations
-  public Product: String * String * Category * Brand ==> Product
 (*@
-\label{getName:29}
+\label{Product:28}
 @*)
+  public Product: String * String * Category * Brand ==> Product
   Product(nam, desc, cat, bran)== 
   (
     name := nam;
-(*@
-\label{getDescription:32}
-@*)
     description := desc;
     category := cat;
     cat.addProduct(self);
-(*@
-\label{getCategory:35}
-@*)
     brand := bran;
     brand.addProduct(self);
     imageUrls := [];
-(*@
-\label{setCategory:38}
-@*)
     reviews := {}; 
   )
   post self in set cat.getProducts() and 
      self in set bran.getProducts();
   
   -- Return the product name
+(*@
+\label{getName:44}
+@*)
   pure public getName: () ==> String 
   getName()==(return self.name);
   
-(*@
-\label{setName:47}
-@*)
   -- Returns the product description
+(*@
+\label{getDescription:48}
+@*)
   pure public getDescription: () ==> String
   getDescription()==(return self.description);
   
-(*@
-\label{setDescription:51}
-@*)
   -- Returns the category
+(*@
+\label{getCategory:52}
+@*)
   pure public getCategory:() ==> Category
   getCategory()==(return category);
-(*@
-\label{setImageUrls:54}
-@*)
   
   -- Sets the product cateogry
-  public setCategory: Category ==> ()
 (*@
-\label{getImageUrls:57}
+\label{setCategory:56}
 @*)
+  public setCategory: Category ==> ()
   setCategory(cat)==
   (
    category.removeProduct(self);
-(*@
-\label{getBrand:60}
-@*)
    category := cat;
    cat.addProduct(self);
   )
-(*@
-\label{getReviews:63}
-@*)
   post self in set cat.getProducts();
   
   -- Sets the product name
 (*@
-\label{addReview:66}
+\label{setName:66}
 @*)
   public setName: String ==> ()
   setName(nam)==(name:=nam);
   
-(*@
-\label{hasReviews:69}
-@*)
   -- Sets the product description
+(*@
+\label{setDescription:70}
+@*)
   public setDescription: String ==> ()
   setDescription(desc)==(description:=desc);
-(*@
-\label{reviewAverage:72}
-@*)
   
   -- Sets the image urls
+(*@
+\label{setImageUrls:74}
+@*)
   public setImageUrls: seq of String ==> ()
   setImageUrls(images)==(imageUrls:=images);
   
   -- Returns the image urls
+(*@
+\label{getImageUrls:78}
+@*)
   public getImageUrls:() ==> seq of String
   getImageUrls()==(return imageUrls);
   
   -- Returns the product brand
+(*@
+\label{getBrand:82}
+@*)
   pure public getBrand:() ==> Brand
   getBrand()==(return brand);
   
   -- Returns the reviews on the product
+(*@
+\label{getReviews:86}
+@*)
   pure public getReviews:() ==> set of Review
   getReviews()==(return reviews);
   
   -- Add a product review
+(*@
+\label{addReview:90}
+@*)
   public addReview:(Review) ==> ()
   addReview(review)==(reviews := reviews union {review});
   
   -- Returns wheter the product has any reviews
+(*@
+\label{hasReviews:94}
+@*)
   pure public hasReviews:() ==> bool
   hasReviews()==(return reviews <> {});
   
   -- Returns the product reviews average score (1 to 5)
+(*@
+\label{reviewAverage:98}
+@*)
   pure public reviewAverage:() ==> real
   reviewAverage()==
   (
@@ -150,3 +150,42 @@ class Product
   
 end Product
 \end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Product:28]{Product} & 28&100.0\% & 17 \\
+\hline
+\hyperref[addReview:90]{addReview} & 90&100.0\% & 4 \\
+\hline
+\hyperref[getBrand:82]{getBrand} & 82&100.0\% & 1 \\
+\hline
+\hyperref[getCategory:52]{getCategory} & 52&100.0\% & 1 \\
+\hline
+\hyperref[getDescription:48]{getDescription} & 48&100.0\% & 2 \\
+\hline
+\hyperref[getImageUrls:78]{getImageUrls} & 78&100.0\% & 1 \\
+\hline
+\hyperref[getName:44]{getName} & 44&100.0\% & 4 \\
+\hline
+\hyperref[getReviews:86]{getReviews} & 86&100.0\% & 4 \\
+\hline
+\hyperref[hasReviews:94]{hasReviews} & 94&100.0\% & 2 \\
+\hline
+\hyperref[reviewAverage:98]{reviewAverage} & 98&100.0\% & 1 \\
+\hline
+\hyperref[setCategory:56]{setCategory} & 56&100.0\% & 1 \\
+\hline
+\hyperref[setDescription:70]{setDescription} & 70&100.0\% & 1 \\
+\hline
+\hyperref[setImageUrls:74]{setImageUrls} & 74&100.0\% & 1 \\
+\hline
+\hyperref[setName:66]{setName} & 66&100.0\% & 1 \\
+\hline
+\hline
+Product.vdmpp & & 100.0\% & 41 \\
+\hline
+\end{longtable}
+
