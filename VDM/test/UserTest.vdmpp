@@ -16,11 +16,28 @@ class UserTest
 			dcl usr: User := new User("1", "2");
 			assertTrue(usr.getName() = "1");
 			assertTrue(usr.getEmail() = "2");
+			assertTrue(usr.getPromotions() = {});
+		);
+		
+		private testAddPromotion()==
+		(
+			-- Normal scenario for adding won promotions
+	    -- as described in section 2.1 of the report, covering requirement R16.
+	    dcl usr: User := new User("1", "2");
+	    dcl c: Company := new Company("Asus", "", "", "");
+      dcl b:Brand := new Brand("compaq", c);
+      dcl cat: Category := new Category("office");
+      dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+      dcl r: Reward := new Reward("rwrd", p);
+			dcl g: Promotion := new Promotion("prom", {r}, b);
+			usr.addPromotion(g);
+			assertTrue(usr.getPromotions() = {g});
 		);
 		
 		public static main()==
     (
 			dcl r:UserTest := new UserTest();
 			r.testConstructor();
+			r.testAddPromotion();
     );
 end UserTest
