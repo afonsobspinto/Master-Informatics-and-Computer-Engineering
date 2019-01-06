@@ -1,0 +1,152 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a Product
+-- Contains the name, description, category, images, company brand and reviews 
+class Product
+ types 
+  public String = seq of char;
+  
+ instance variables
+ 
+   -- the product name
+  private name: String;
+  
+  -- the product description
+  private description: String;
+(*@
+\label{Product:14}
+@*)
+  
+  -- the product category
+  private category: Category;
+  
+  -- the product image urls
+  private imageUrls: seq of String;
+  
+  -- the product brand
+  private brand: Brand;
+  
+  -- the product reviews
+  private reviews: set of Review;
+ 
+ operations
+  public Product: String * String * Category * Brand ==> Product
+(*@
+\label{getName:29}
+@*)
+  Product(nam, desc, cat, bran)== 
+  (
+    name := nam;
+(*@
+\label{getDescription:32}
+@*)
+    description := desc;
+    category := cat;
+    cat.addProduct(self);
+(*@
+\label{getCategory:35}
+@*)
+    brand := bran;
+    brand.addProduct(self);
+    imageUrls := [];
+(*@
+\label{setCategory:38}
+@*)
+    reviews := {}; 
+  )
+  post self in set cat.getProducts() and 
+     self in set bran.getProducts();
+  
+  -- Return the product name
+  pure public getName: () ==> String 
+  getName()==(return self.name);
+  
+(*@
+\label{setName:47}
+@*)
+  -- Returns the product description
+  pure public getDescription: () ==> String
+  getDescription()==(return self.description);
+  
+(*@
+\label{setDescription:51}
+@*)
+  -- Returns the category
+  pure public getCategory:() ==> Category
+  getCategory()==(return category);
+(*@
+\label{setImageUrls:54}
+@*)
+  
+  -- Sets the product cateogry
+  public setCategory: Category ==> ()
+(*@
+\label{getImageUrls:57}
+@*)
+  setCategory(cat)==
+  (
+   category.removeProduct(self);
+(*@
+\label{getBrand:60}
+@*)
+   category := cat;
+   cat.addProduct(self);
+  )
+(*@
+\label{getReviews:63}
+@*)
+  post self in set cat.getProducts();
+  
+  -- Sets the product name
+(*@
+\label{addReview:66}
+@*)
+  public setName: String ==> ()
+  setName(nam)==(name:=nam);
+  
+(*@
+\label{hasReviews:69}
+@*)
+  -- Sets the product description
+  public setDescription: String ==> ()
+  setDescription(desc)==(description:=desc);
+(*@
+\label{reviewAverage:72}
+@*)
+  
+  -- Sets the image urls
+  public setImageUrls: seq of String ==> ()
+  setImageUrls(images)==(imageUrls:=images);
+  
+  -- Returns the image urls
+  public getImageUrls:() ==> seq of String
+  getImageUrls()==(return imageUrls);
+  
+  -- Returns the product brand
+  pure public getBrand:() ==> Brand
+  getBrand()==(return brand);
+  
+  -- Returns the reviews on the product
+  pure public getReviews:() ==> set of Review
+  getReviews()==(return reviews);
+  
+  -- Add a product review
+  public addReview:(Review) ==> ()
+  addReview(review)==(reviews := reviews union {review});
+  
+  -- Returns wheter the product has any reviews
+  pure public hasReviews:() ==> bool
+  hasReviews()==(return reviews <> {});
+  
+  -- Returns the product reviews average score (1 to 5)
+  pure public reviewAverage:() ==> real
+  reviewAverage()==
+  (
+   dcl sum: real := 0;
+   for all r in set reviews do
+    sum := sum + ( r.getRating() / card reviews );
+   return sum;
+  ) pre reviews <> {};
+--   post res >= 1.0 and res <= 5.0;
+  
+end Product
+\end{vdmpp}

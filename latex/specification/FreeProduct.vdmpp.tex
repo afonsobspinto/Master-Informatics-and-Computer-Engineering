@@ -1,0 +1,44 @@
+\begin{vdmpp}[breaklines=true]
+-- Subclass of Reward
+-- Represents a FreeProduct that is given to the winners of the promotion
+-- Contains a name which identifies the coupon
+--      the product that the winners receive a discount to
+
+class FreeProduct is subclass of Reward
+
+  types
+  public String = seq of char;
+  
+ instance variables
+   
+   -- the percentage of the discount
+    private discount: int; 
+    
+  operations 
+(*@
+\label{FreeProduct:17}
+@*)
+   public FreeProduct: String * Product ==> FreeProduct
+     FreeProduct(nam, prod)==
+     (
+     name := nam;
+     product := prod;
+     discount := 100;
+     );
+     
+   -- Returns the name which identifies the reward  
+(*@
+\label{getName:26}
+@*)
+   pure public getName:() ==> String
+   getName()==(return name);
+     
+   -- Returns the percentage of the discount
+(*@
+\label{getDiscount:30}
+@*)
+   pure public getDiscount:() ==> int
+   getDiscount()==(return discount);
+   
+end FreeProduct
+\end{vdmpp}

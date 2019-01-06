@@ -1,0 +1,82 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a company, that owns products
+-- Contains various information including the set of brands
+class Company
+ types
+  public String = seq of char;
+ 
+ instance variables
+ 
+   -- the company name
+  private name: String;
+  
+  -- the company address
+(*@
+\label{Company:13}
+@*)
+  private address: String;
+  
+  -- the company email
+  private email: String;
+  
+  -- the company website
+  private website: String;
+  
+  -- the set of brands owned by the company
+  private brands: set of Brand;
+(*@
+\label{addBrand:23}
+@*)
+  
+ operations
+  public Company: String * String * String * String ==> Company 
+(*@
+\label{getBrands:26}
+@*)
+  Company(nam, addr, em, webs)==
+  (
+   name := nam;
+(*@
+\label{getName:29}
+@*)
+   address := addr;
+   email := em;
+   website := webs;
+(*@
+\label{getAddress:32}
+@*)
+   brands := {};
+  );
+  
+(*@
+\label{getEmail:35}
+@*)
+  -- Add a brand
+  public addBrand: Brand ==> ()
+  addBrand(bran)==(brands := brands union {bran});
+(*@
+\label{getWebsite:38}
+@*)
+  
+  -- Get the set of brands owned by the company
+  pure public getBrands:() ==> set of Brand
+  getBrands()==(return brands);
+
+  -- Return the company name
+  pure public getName:() ==> String
+  getName()==(return name);
+  
+  -- Returns the company address
+  pure public getAddress:() ==> String
+  getAddress()==(return address);
+  
+  -- Returns the company email
+  pure public getEmail:() ==> String
+  getEmail()==(return email);
+  
+  -- Returns the company website
+  pure public getWebsite:() ==> String
+  getWebsite()==(return website);
+  
+end Company
+\end{vdmpp}

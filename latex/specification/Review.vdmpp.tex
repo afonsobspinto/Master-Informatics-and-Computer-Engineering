@@ -1,0 +1,69 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a product review
+-- Contains the authro, product, description and rating
+class Review
+ types
+  public Rating = nat 
+  inv r == r in set {1, 2, 3, 4, 5};
+  public String = seq of char;
+
+ instance variables
+ 
+  -- the author
+   private user: User;
+   
+(*@
+\label{Review:14}
+@*)
+   -- the product under review
+   private product: Product;
+   
+   -- the review ratig
+  private rating: Rating;
+  
+  -- the review description
+  private description: String;
+  
+ operations
+  public Review: User * Product * Rating * String ==> Review
+  Review(usr, prod, ratng, desc)==
+(*@
+\label{getProduct:26}
+@*)
+  (
+   user := usr;
+   user.addReview(self);
+(*@
+\label{getUser:29}
+@*)
+   product := prod;
+   product.addReview(self);
+   rating := ratng;
+(*@
+\label{getRating:32}
+@*)
+   description := desc;
+  ) post self in set product.getReviews() and 
+   self in set user.getReviews();
+(*@
+\label{getDescription:35}
+@*)
+ 
+  -- Returns the product under review
+  pure public getProduct: () ==> Product
+  getProduct()==(return product);
+  
+  -- Return the author
+  pure public getUser:() ==> User
+  getUser()==(return user);
+  
+  -- Returns the rating
+  pure public getRating:() ==> Rating
+  getRating()==(return rating);
+  
+  -- Returns the description
+  pure public getDescription:() ==> String
+  getDescription()==(return description);
+ 
+end Review
+\end{vdmpp}

@@ -1,0 +1,38 @@
+\begin{vdmpp}[breaklines=true]
+class GiveawayTest
+ operations
+(*@
+\label{assertTrue:3}
+@*)
+  private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+(*@
+\label{testConstructor:7}
+@*)
+  private testConstructor()==
+  (
+      dcl c: Company := new Company("Asus", "", "", "");
+      dcl b:Brand := new Brand("compaq", c);
+      dcl cat: Category := new Category("office");
+      dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+      dcl r: Reward := new Reward("rwrd", p);
+   dcl g: Giveaway := new Giveaway("gv", {r}, b, 30);
+   assertTrue(g.getName() = "gv");
+   assertTrue(g.getRewards() = {r});
+   assertTrue(g.getBrand() = b);
+   assertTrue(g.getPercentage() = 30);
+  );
+  
+(*@
+\label{main:21}
+@*)
+  public static main()==
+    (
+   dcl g:GiveawayTest := new GiveawayTest();
+   g.testConstructor();
+    );
+
+end GiveawayTest
+\end{vdmpp}

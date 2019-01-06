@@ -1,0 +1,65 @@
+\begin{vdmpp}[breaklines=true]
+-- Subclass of CompetitionEntry
+-- Represents a Giveaway Entry entry
+-- Contains the number generated randomly to attribute the winning state
+--      the module used to generate random numbers
+--      the winning chances of the giveaway
+
+class GiveawayEntry is subclass of CompetitionEntry
+ instance variables
+ 
+  -- the number generated randomly to attribute the winning state
+    private number: int;
+    
+    -- the module used to generate random numbers
+    private math: MATH;
+    
+    -- the winning chances in percentage of the giveaway
+  private percentage: int;
+  
+  -- invariant wich forces the value of percentage to always be between 0 and 100
+  inv percentage >= 0 and percentage <= 100;
+  
+operations
+(*@
+\label{GiveawayEntry:23}
+@*)
+  public GiveawayEntry: int  ==> GiveawayEntry
+  GiveawayEntry(percent)== 
+  (
+    won := false;
+    number := -1;
+     math := new MATH();
+     percentage := percent
+  )
+  post percentage >= 0 and percentage <= 100;
+  
+  -- Returns the number generated randomly to attribute the winning state
+(*@
+\label{getNumber:34}
+@*)
+  pure public getNumber:() ==> int
+     getNumber()==(return number);
+     
+   -- Returns the winning chances in percentage of the giveaway
+(*@
+\label{getPercentage:38}
+@*)
+   pure public getPercentage:() ==> int
+     getPercentage()==(return percentage);
+     
+   -- Calculates the won state based on the probabilities of winning  
+(*@
+\label{calculateResult:42}
+@*)
+   public calculateResult:() ==> bool
+    calculateResult()==(
+     number := math.rand(100);
+      won := number <= percentage;
+     return won;
+    ) 
+    pre number < 0
+    post number > 0 and number < 100;
+   
+end GiveawayEntry
+\end{vdmpp}

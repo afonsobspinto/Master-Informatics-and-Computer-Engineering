@@ -1,0 +1,47 @@
+\begin{vdmpp}[breaklines=true]
+class CategoryTest
+ operations
+(*@
+\label{assertTrue:3}
+@*)
+  private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+(*@
+\label{testConstructor:7}
+@*)
+  private testConstructor()==
+  (
+   dcl cat:Category := new Category("office");
+   assertTrue(cat.getName() = "office");
+   assertTrue(cat.getProducts() = {});
+  );
+  
+(*@
+\label{testAddRemoveProducts:14}
+@*)
+  private testAddRemoveProducts()==
+  (
+   dcl cat:Category := new Category("office");
+   dcl p1: Product := ProductTest`emptyProduct();
+   
+   assertTrue(p1 not in set cat.getProducts());
+   cat.addProduct(p1);
+   assertTrue(p1 in set cat.getProducts());
+   cat.removeProduct(p1);
+   assertTrue(p1 not in set cat.getProducts());
+  );
+  
+(*@
+\label{main:26}
+@*)
+  public static main()==
+    (
+   dcl c:CategoryTest := new CategoryTest();
+   c.testConstructor();
+   c.testAddRemoveProducts();
+    );
+     
+end CategoryTest
+\end{vdmpp}

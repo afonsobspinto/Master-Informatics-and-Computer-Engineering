@@ -1,0 +1,77 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a user
+-- Contains the name, email, reviews made by the user, and won promotions
+class User
+ types 
+  public String = seq of char;
+ instance variables
+ 
+  -- the reviews of the user
+   private reviews: set of (Review);
+   
+(*@
+\label{User:11}
+@*)
+   -- the name
+   private name: String;
+   
+   -- the email
+   private email: String;
+   
+   -- the won promotions
+   private wonPromotions: set of Promotion;
+  
+(*@
+\label{addReview:20}
+@*)
+ operations
+  public User: String * String ==> User
+  User(nam, em)==
+(*@
+\label{getReviews:23}
+@*)
+  (
+   name := nam;
+   email := em;
+(*@
+\label{getName:26}
+@*)
+   reviews := {};
+   wonPromotions := {};
+  );
+(*@
+\label{getEmail:29}
+@*)
+ 
+  -- Adds a reviews to the user
+  public addReview: Review ==> ()
+(*@
+\label{addPromotion:32}
+@*)
+  addReview(review)==(reviews := reviews union {review});
+
+  -- Returns the user reviews
+(*@
+\label{getPromotions:35}
+@*)
+  pure public getReviews:() ==> set of Review
+  getReviews()==(return reviews);
+  
+  -- Returns the user name
+  pure public getName:() ==> String
+  getName()==(return name);
+  
+  -- Returns the user email
+  pure public getEmail:() ==> String
+  getEmail()==(return email);
+  
+  -- Adds a won promotion to the user
+  public addPromotion: Promotion ==> ()
+  addPromotion(wonPromotion)==(wonPromotions := wonPromotions union {wonPromotion});
+  
+  -- Returns the user promotions
+  pure public getPromotions:() ==> set of Promotion
+  getPromotions()==(return wonPromotions);
+
+end User
+\end{vdmpp}
