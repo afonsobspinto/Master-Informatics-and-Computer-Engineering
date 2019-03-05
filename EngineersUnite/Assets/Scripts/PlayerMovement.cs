@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour 
+{
     public CharacterController2D controller;
     public Animator animator;
 
@@ -12,11 +13,13 @@ public class PlayerMovement : MonoBehaviour {
     bool jump, crouch = false;
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump")) 
+        {
             animator.SetBool("IsJumping", true);
             jump = true;
         }
@@ -27,17 +30,21 @@ public class PlayerMovement : MonoBehaviour {
             crouch = false;
     }
 
-    public void OnLanding() {
+    public void OnLanding() 
+    {
         animator.SetBool("IsJumping", false);
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false; crouch = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Coin")) {
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("Coin")) 
+        {
             other.gameObject.SetActive(false);
         }
     }
