@@ -12,9 +12,19 @@ public class PlayerMovement : MonoBehaviour
 
     bool jump, crouch = false;
 
-    // Update is called once per frame
-    void Update() 
+    private CharacterSwitcher charSwitchScript;
+
+    void Start() 
     {
+        charSwitchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
+    }
+
+    void Update() 
+    {  
+        // Check whether this student is active.
+        if (!name.Equals(this.charSwitchScript.getActiveCharacter()))
+            return;
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
