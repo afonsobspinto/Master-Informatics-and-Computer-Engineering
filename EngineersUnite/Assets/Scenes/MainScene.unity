@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 304688127}
   - component: {fileID: 304688129}
   - component: {fileID: 304688128}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BgTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 859470363}
   m_Layer: 0
   m_Name: Players
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,6 +592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873844, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 173503382808873833, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
@@ -658,6 +663,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0fa058673a4d39f40b5ec631dcefb3e4, type: 2}
+    - target: {fileID: 173503382808873837, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 173503382808873839, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_Offset.y
@@ -693,6 +703,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.13491154
       objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873838, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_WhatIsGround.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
 --- !u!1 &1040370719
@@ -705,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040370721}
   - component: {fileID: 1040370720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,6 +836,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873844, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 173503382808873833, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -886,6 +906,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0fa058673a4d39f40b5ec631dcefb3e4, type: 2}
+    - target: {fileID: 173503382808873837, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 173503382808873839, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_Offset.y
@@ -921,6 +946,16 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.67788315
       objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873838, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_AirControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873838, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_WhatIsGround.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
 --- !u!4 &1239740611 stripped
@@ -955,7 +990,7 @@ GameObject:
   - component: {fileID: 1552901163}
   - component: {fileID: 1552901162}
   - component: {fileID: 1552901161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FgTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1867,6 +1902,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 173503382808873844, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 173503382808873833, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1932,6 +1972,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0fa058673a4d39f40b5ec631dcefb3e4, type: 2}
+    - target: {fileID: 173503382808873837, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 173503382808873839, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_Offset.y
@@ -1952,5 +1997,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0fa058673a4d39f40b5ec631dcefb3e4, type: 2}
+    - target: {fileID: 173503382808873838, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: m_WhatIsGround.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
