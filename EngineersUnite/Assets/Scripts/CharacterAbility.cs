@@ -24,7 +24,7 @@ public class CharacterAbility : MonoBehaviour {
         }
             
     }
-
+    
     private void TriggerInformaticsAbility() {
         this.computerHandler.FlipSprite();
         GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");

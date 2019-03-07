@@ -16,7 +16,7 @@ public class TubeHandler : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && name == "Player (1)")
+        if (Input.GetKeyDown(KeyCode.P))
         {
                 animator.SetBool("IsPowerOn", true);
                 TriggerChemistryAbility();
