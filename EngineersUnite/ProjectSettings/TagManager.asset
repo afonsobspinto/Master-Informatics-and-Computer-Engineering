@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Coin
   - Platform
+  - Computer
+  - Fire
   layers:
   - Default
   - TransparentFX

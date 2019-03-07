@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterAbility : MonoBehaviour {
 
+    public ComputerHandler computerHandler;
     private Material material;
 
     void Start() {
@@ -13,6 +14,23 @@ public class CharacterAbility : MonoBehaviour {
 
     void Update() {
         
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (!Input.GetKeyDown(KeyCode.X)) return;
+
+        if (other.gameObject.CompareTag("Computer") && name == "Player (1)") {
+            TriggerInformaticsAbility();
+        }
+            
+    }
+
+    private void TriggerInformaticsAbility() {
+        this.computerHandler.FlipSprite();
+        GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
+
+        foreach (var fire in fires)
+            fire.SetActive(false);  // Extinguishes every fire object on the scene.
     }
 
     private void StudentColorOverlay() {

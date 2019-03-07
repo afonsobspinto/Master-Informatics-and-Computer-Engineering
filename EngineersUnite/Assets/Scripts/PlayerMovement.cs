@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour 
 {
@@ -50,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Coin")) 
             other.gameObject.SetActive(false);
+
+        if (other.gameObject.CompareTag("Fire")) {
+            Debug.Log("Entered fire, restarting level.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other) {
