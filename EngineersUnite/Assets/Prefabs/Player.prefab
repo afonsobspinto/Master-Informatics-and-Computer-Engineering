@@ -74,8 +74,9 @@ GameObject:
   - component: {fileID: 173503382808873837}
   - component: {fileID: 173503382808873839}
   - component: {fileID: 173503382808873838}
-  - component: {fileID: 173503382808873827}
   - component: {fileID: 173503382808873835}
+  - component: {fileID: 173503382808873827}
+  - component: {fileID: 1453742380290419025}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -116,7 +117,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 80e88ea5abc16ab4eb6f8ee446c8df20, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,10 +229,11 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 1591
   m_GroundCheck: {fileID: 173503381759496322}
   m_CeilingCheck: {fileID: 173503381966885917}
   m_CrouchDisableCollider: {fileID: 0}
+  grounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -253,21 +255,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: CharacterController2D+BoolEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &173503382808873827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173503382808873844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b128236d440230144810851a2d4aeb91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 173503382808873838}
-  animator: {fileID: 173503382808873835}
-  runSpeed: 40
 --- !u!95 &173503382808873835
 Animator:
   serializedVersion: 3
@@ -287,3 +274,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &173503382808873827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173503382808873844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b128236d440230144810851a2d4aeb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 173503382808873838}
+  animator: {fileID: 173503382808873835}
+  runSpeed: 40
+--- !u!114 &1453742380290419025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173503382808873844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288ebb0cf0d9ddc4e909a7d448e96ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

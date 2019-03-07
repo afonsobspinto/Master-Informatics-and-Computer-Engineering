@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+	private SpriteRenderer m_SpriteRenderer;
+
 	[Header("Events")]
 	[Space]
 
@@ -29,6 +31,10 @@ public class CharacterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
+
+	private void Start() {
+		this.m_SpriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	private void Awake()
 	{
@@ -133,11 +139,10 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	private void Flip()
-	{
+	private void Flip() {
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
-
+		
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
