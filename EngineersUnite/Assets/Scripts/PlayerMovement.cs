@@ -56,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Entered fire, restarting level.");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (other.gameObject.CompareTag("Door")) {
+            Debug.Log("Level complete!");
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other) {
