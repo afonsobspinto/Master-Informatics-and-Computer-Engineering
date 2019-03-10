@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Computer
   - Fire
+  - Door
   layers:
   - Default
   - TransparentFX
