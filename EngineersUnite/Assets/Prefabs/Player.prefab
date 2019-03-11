@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 173503382808873832}
   - component: {fileID: 173503382808873837}
   - component: {fileID: 173503382808873839}
+  - component: {fileID: 8807409270214973990}
   - component: {fileID: 173503382808873838}
   - component: {fileID: 173503382808873835}
   - component: {fileID: 173503382808873827}
@@ -136,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300042, guid: 420ada6ab8080bd4f93bde64acc3dbd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -211,6 +212,22 @@ CircleCollider2D:
   m_Offset: {x: 0.08, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.26
+--- !u!58 &8807409270214973990
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173503382808873844}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!114 &173503382808873838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,13 +240,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b2dec091f182d408369981a105cf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
+  m_JumpForce: 575
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 1590
+    m_Bits: 5686
   m_GroundCheck: {fileID: 173503381759496322}
   m_CeilingCheck: {fileID: 173503381966885917}
   m_CrouchDisableCollider: {fileID: 0}
@@ -288,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 173503382808873838}
   animator: {fileID: 173503382808873835}
-  runSpeed: 40
+  runSpeed: 30
 --- !u!114 &1453742380290419025
 MonoBehaviour:
   m_ObjectHideFlags: 0

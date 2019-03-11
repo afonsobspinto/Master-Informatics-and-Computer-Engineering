@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     private CharacterSwitcher charSwitchScript;
@@ -14,13 +14,21 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jump, crouch = false;
 
-    void Start() {
-        charSwitchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
+    private Rigidbody2D m_rigidbody2D;
+    private bool isFrozen = false, alreadyCollided = false;
+
+
+
+    void Start()
+    {
+        charSwitchScript = (CharacterSwitcher)FindObjectOfType(typeof(CharacterSwitcher));
+        m_rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {  
+    void Update()
+    {
         // Check whether this student is active.
-        if (!name.Equals(this.charSwitchScript.getActiveCharacter()))
+        if (!name.Equals(this.charSwitchScript.GetActivePlayer()))
             return;
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -33,6 +41,26 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Crouch"))
             FallThroughPlatform();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            HandlePauseAbility();
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // Register the object for collisions after the frame has elapsed.
+        this.alreadyCollided = false;
+    }
+
+    public void HandlePauseAbility() {
+        if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
+            m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            this.charSwitchScript.ModifyPauseCount(-1);
+        }
+        else if (this.isFrozen) {
+            m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        this.isFrozen = !this.isFrozen;
     }
 
     public void FallThroughPlatform() {
@@ -49,16 +77,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Coin")) 
+        // Check whether another collider was already triggered in this frame.
+        if (this.alreadyCollided) return;
+
+        if (other.gameObject.CompareTag("Coin")) {
             other.gameObject.SetActive(false);
+            this.charSwitchScript.ModifyPauseCount(1);
+        }
 
         if (other.gameObject.CompareTag("Fire")) {
             Debug.Log("Entered fire, restarting level.");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (other.gameObject.CompareTag("Door")) {
+            SceneManager.LoadScene(0);
+        }
+
+        this.alreadyCollided = true;    // Register this collider.
     }
 
     private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            return;
+
         if (other.gameObject.layer != LayerMask.NameToLayer("Platform"))
             gameObject.layer = LayerMask.NameToLayer("Player");
     }

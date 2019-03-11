@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Computer
   - Fire
+  - Door
   - Tube
   layers:
   - Default
@@ -22,7 +23,7 @@ TagManager:
   - Ground
   - Platform
   - Tube
-  - 
+  - HelmetPlayer
   - 
   - 
   - 
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2512363253
     locked: 0
