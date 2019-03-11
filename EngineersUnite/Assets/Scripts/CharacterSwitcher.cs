@@ -5,12 +5,10 @@ using UnityEngine;
 public class CharacterSwitcher : MonoBehaviour
 {
     private int activeCharacter = 1;
+    private int pauseCount = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) 
-        {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
             if (activeCharacter >= transform.childCount) 
                 activeCharacter = 1;
             else 
@@ -18,8 +16,15 @@ public class CharacterSwitcher : MonoBehaviour
         }
     }
 
-    public string getActiveCharacter() 
-    {
+    public void ModifyPauseCount(int count) {
+        this.pauseCount += count;
+    }
+
+    public string getActiveCharacter() {
         return "Player (" + activeCharacter + ")";
+    }
+
+    public int GetPauseCount() {
+        return this.pauseCount;
     }
 }

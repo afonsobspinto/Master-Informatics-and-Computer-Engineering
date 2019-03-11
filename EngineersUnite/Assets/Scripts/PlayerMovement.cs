@@ -15,8 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump, crouch = false;
 
     private Rigidbody2D m_rigidbody2D;
-    private bool isfrozen = false;
-    private bool hasFrozenPowerUp = true;
+    private bool isFrozen = false;
 
 
 
@@ -46,24 +45,15 @@ public class PlayerMovement : MonoBehaviour
             FallThroughPlatform();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print("T pressed");
-
-            if (hasFrozenPowerUp)
-            {
-                if (isfrozen)
-                {
-                    hasFrozenPowerUp = false;
-                    m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-                }
-                else
-                {
-                    hasFrozenPowerUp = true;
-                    m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-                }
-                isfrozen = !isfrozen;
+        if (Input.GetKeyDown(KeyCode.T)) {
+            if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
+                m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+                this.charSwitchScript.ModifyPauseCount(-1);
             }
+            else if (this.isFrozen) {
+                m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+            this.isFrozen = !this.isFrozen;
         }
     }
 
@@ -85,8 +75,10 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Coin")) {
             other.gameObject.SetActive(false);
+            this.charSwitchScript.ModifyPauseCount(1);
+        }
 
         if (other.gameObject.CompareTag("Fire"))
         {
