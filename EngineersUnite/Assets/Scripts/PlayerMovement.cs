@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
             HandlePauseAbility();
 
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         // Register the object for collisions after the frame has elapsed.
         this.alreadyCollided = false;
     }

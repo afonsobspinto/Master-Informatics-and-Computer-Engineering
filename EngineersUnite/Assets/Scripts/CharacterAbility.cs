@@ -15,6 +15,9 @@ public class CharacterAbility : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv")
             TriggerCivilAbility();
+
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe")
+            TriggerChemistryAbility();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -37,6 +40,14 @@ public class CharacterAbility : MonoBehaviour {
     // Probably set this ability on a timer.
     private void TriggerCivilAbility() {
         gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
+    }
+
+    private void TriggerChemistryAbility() {
+        
+
+        Debug.Log("force applied");
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(transform.up * 500.0f);
     }
  
     private void StudentColorOverlay() {
