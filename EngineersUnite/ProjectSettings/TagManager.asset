@@ -9,6 +9,7 @@ TagManager:
   - Computer
   - Fire
   - Door
+  - Tube
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - Ground
   - Platform
-  - 
+  - Tube
   - 
   - 
   - 

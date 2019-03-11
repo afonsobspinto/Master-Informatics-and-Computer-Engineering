@@ -20,8 +20,7 @@ public class MainMenu : MonoBehaviour
     // Runs Main Scene
     public void PlayChemScene()
     {
-        Debug.Log("Not implement yet");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
     // Runs Main Scene
