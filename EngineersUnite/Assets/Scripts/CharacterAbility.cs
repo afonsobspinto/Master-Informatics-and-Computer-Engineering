@@ -17,6 +17,7 @@ public class CharacterAbility : MonoBehaviour {
     private CharacterSwitcher switchScript;
 
     void Start() {
+        this.switchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
         this.material = gameObject.GetComponent<Renderer>().material;
         StudentColorOverlay();
         explosionPos = transform.position;
@@ -26,7 +27,7 @@ public class CharacterAbility : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             TriggerCivilAbility();
 
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
             TriggerChemistryAbility();
     }
 
