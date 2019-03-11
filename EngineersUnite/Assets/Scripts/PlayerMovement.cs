@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump, crouch = false;
 
     private Rigidbody2D m_rigidbody2D;
-    private bool isFrozen = false;
+    private bool isFrozen = false, alreadyCollided = false;
 
 
 
@@ -34,65 +34,67 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump"))
-        {
+        if (Input.GetButtonDown("Jump")) {
             animator.SetBool("IsJumping", true);
             jump = true;
         }
 
         if (Input.GetButtonDown("Crouch"))
-        {
             FallThroughPlatform();
-        }
 
-        if (Input.GetKeyDown(KeyCode.T)) {
-            if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
-                m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-                this.charSwitchScript.ModifyPauseCount(-1);
-            }
-            else if (this.isFrozen) {
-                m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
-            this.isFrozen = !this.isFrozen;
-        }
+        if (Input.GetKeyDown(KeyCode.T))
+            HandlePauseAbility();
+
+        // Register the object for collisions after the frame has elapsed.
+        this.alreadyCollided = false;
     }
 
-    public void FallThroughPlatform()
-    {
+    public void HandlePauseAbility() {
+        if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
+            m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            this.charSwitchScript.ModifyPauseCount(-1);
+        }
+        else if (this.isFrozen) {
+            m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        this.isFrozen = !this.isFrozen;
+    }
+
+    public void FallThroughPlatform() {
         gameObject.layer = LayerMask.NameToLayer("Platform");
     }
 
-    public void OnLanding()
-    {
+    public void OnLanding() {
         animator.SetBool("IsJumping", false);
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false; crouch = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+    void OnTriggerEnter2D(Collider2D other) {
+        // Check whether another collider was already triggered in this frame.
+        if (this.alreadyCollided) return;
+
         if (other.gameObject.CompareTag("Coin")) {
             other.gameObject.SetActive(false);
             this.charSwitchScript.ModifyPauseCount(1);
         }
 
-        if (other.gameObject.CompareTag("Fire"))
-        {
+        if (other.gameObject.CompareTag("Fire")) {
             Debug.Log("Entered fire, restarting level.");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (other.gameObject.CompareTag("Door")) {
-            Debug.Log("Level complete!");
+            SceneManager.LoadScene(0);
         }
+
+        this.alreadyCollided = true;    // Register this collider.
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
+    private void OnCollisionStay2D(Collision2D other) {
         if (other.gameObject.layer != LayerMask.NameToLayer("Platform"))
             gameObject.layer = LayerMask.NameToLayer("Player");
     }
