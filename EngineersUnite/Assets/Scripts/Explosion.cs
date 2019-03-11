@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
 {
     public float explosion_rate = 10f;
     public float current_radius = 10f;
-    public float explosion = 60f;
+    public float explosion = 20f;
 
     bool exploded = false;
     Vector3 explosionPos;
@@ -32,7 +32,7 @@ public class Explosion : MonoBehaviour
 
                 Vector2 direction = explosion * (target - pos); 
                 Debug.Log(colliders[i].name);
-                colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 15f));
+                colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 8f));
             }
             exploded = true;
         }
