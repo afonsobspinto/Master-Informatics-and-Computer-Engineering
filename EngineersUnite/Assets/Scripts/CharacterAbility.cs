@@ -14,24 +14,27 @@ public class CharacterAbility : MonoBehaviour {
     Vector3 explosionPos;
     Collider2D[] colliders;
 
+    private CharacterSwitcher switchScript;
+
     void Start() {
+        this.switchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
         this.material = gameObject.GetComponent<Renderer>().material;
         StudentColorOverlay();
         explosionPos = transform.position;
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             TriggerCivilAbility();
 
-        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
             TriggerChemistryAbility();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (!Input.GetKeyDown(KeyCode.X)) return;
 
-        if (other.gameObject.CompareTag("Computer") && name == "PlayerInf") {
+        if (other.gameObject.CompareTag("Computer") && name == "PlayerInf" && this.switchScript.GetActivePlayer() == "PlayerInf") {
             TriggerInformaticsAbility();
         }
             
