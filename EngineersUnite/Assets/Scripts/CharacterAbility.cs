@@ -6,17 +6,25 @@ public class CharacterAbility : MonoBehaviour {
 
     public ComputerHandler computerHandler;
     private Material material;
+    public float explosion_rate = 10f;
+    public float current_radius = 10f;
+    public float explosion = 20f;
+
+    bool exploded = false;
+    Vector3 explosionPos;
+    Collider2D[] colliders;
 
     void Start() {
         this.material = gameObject.GetComponent<Renderer>().material;
         StudentColorOverlay();
+        explosionPos = transform.position;
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv")
             TriggerCivilAbility();
 
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe")
             TriggerChemistryAbility();
     }
 
@@ -43,11 +51,20 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     private void TriggerChemistryAbility() {
-        
 
-        Debug.Log("force applied");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.up * 500.0f);
+            Debug.Log("Explode");
+            var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));
+            for (var i = 0; i < colliders.Length; i++)
+            {
+                Vector2 target = colliders[i].gameObject.transform.position;
+                Vector2 pos = gameObject.transform.position;
+
+                Vector2 direction = explosion * (target - pos);
+                Debug.Log(colliders[i].name);
+                colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 8f));
+            }
+            exploded = true;
+        
     }
  
     private void StudentColorOverlay() {
