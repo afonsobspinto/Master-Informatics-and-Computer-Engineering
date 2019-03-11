@@ -25,9 +25,9 @@ public class CharacterAbility : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
-            TriggerCivilAbility();
+            StartCoroutine(TriggerCivilAbility());
 
-        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
             TriggerChemistryAbility();
     }
 
@@ -48,9 +48,10 @@ public class CharacterAbility : MonoBehaviour {
             fire.SetActive(false);  // Extinguishes every fire object on the scene.
     }
 
-    // Probably set this ability on a timer.
-    private void TriggerCivilAbility() {
+    private IEnumerator TriggerCivilAbility(){
         gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
+        yield return new WaitForSeconds(3);
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private void TriggerChemistryAbility() {
