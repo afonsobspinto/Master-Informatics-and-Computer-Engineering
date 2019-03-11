@@ -98,9 +98,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D other) {
+        if (gameObject.layer == LayerMask.NameToLayer("Platform") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            gameObject.layer = LayerMask.NameToLayer("Player");
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             return;
-
+    
         if (other.gameObject.layer != LayerMask.NameToLayer("Platform"))
             gameObject.layer = LayerMask.NameToLayer("Player");
     }

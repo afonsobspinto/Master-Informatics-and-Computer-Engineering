@@ -9,11 +9,13 @@ public class CharacterSwitcher : MonoBehaviour
     private int activePlayer = 0;
     private int pauseCount = 0;
 
-    private List<string> playerTypes = new List<string>();
+    private List<GameObject> playerTypes = new List<GameObject>();
 
     void Start() {
         foreach (Transform player in transform)
-            this.playerTypes.Add(player.name);
+            this.playerTypes.Add(player.gameObject);
+
+        StartCoroutine(ShowCharacterSwitch());
     }
 
     void Update() {
@@ -22,7 +24,21 @@ public class CharacterSwitcher : MonoBehaviour
                 this.activePlayer = 0;
             else 
                 this.activePlayer++;
+
+            StartCoroutine(ShowCharacterSwitch());
         }
+    }
+
+    private IEnumerator ShowCharacterSwitch() {
+        GameObject currPlayer = this.playerTypes[this.activePlayer];
+
+        DisplaySelection(currPlayer, true);
+        yield return new WaitForSeconds(1);
+        DisplaySelection(currPlayer, false);
+    }
+
+    public void DisplaySelection(GameObject obj, bool isActive) {
+        obj.GetComponentsInChildren<SpriteRenderer>()[1].enabled = isActive;
     }
 
     public void ModifyPauseCount(int count) {
@@ -31,7 +47,7 @@ public class CharacterSwitcher : MonoBehaviour
     }
 
     public string GetActivePlayer() {
-        return this.playerTypes[this.activePlayer];
+        return this.playerTypes[this.activePlayer].name;
     }
 
     public int GetPauseCount() {
