@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump, crouch = false;
 
     private Rigidbody2D m_rigidbody2D;
-    private bool isFrozen = false, alreadyCollided = false;
+    public bool isFrozen = false, alreadyCollided = false;
 
 
 

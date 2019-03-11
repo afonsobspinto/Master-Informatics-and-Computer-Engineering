@@ -14,6 +14,8 @@ public class CharacterAbility : MonoBehaviour {
     Vector3 explosionPos;
     Collider2D[] colliders;
 
+    private CharacterSwitcher switchScript;
+
     void Start() {
         this.material = gameObject.GetComponent<Renderer>().material;
         StudentColorOverlay();
@@ -21,17 +23,17 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             TriggerCivilAbility();
 
-        if (Input.GetKeyDown(KeyCode.E) && name == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
             TriggerChemistryAbility();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (!Input.GetKeyDown(KeyCode.X)) return;
 
-        if (other.gameObject.CompareTag("Computer") && name == "PlayerInf") {
+        if (other.gameObject.CompareTag("Computer") && name == "PlayerInf" && this.switchScript.GetActivePlayer() == "PlayerInf") {
             TriggerInformaticsAbility();
         }
             
@@ -51,7 +53,7 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     private void TriggerChemistryAbility() {
-
+        if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
             Debug.Log("Explode");
             var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));
             for (var i = 0; i < colliders.Length; i++)
@@ -64,7 +66,7 @@ public class CharacterAbility : MonoBehaviour {
                 colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 8f));
             }
             exploded = true;
-        
+        }
     }
  
     private void StudentColorOverlay() {
