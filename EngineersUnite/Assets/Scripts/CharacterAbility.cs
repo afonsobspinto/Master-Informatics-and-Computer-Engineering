@@ -55,7 +55,7 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     private void TriggerChemistryAbility() {
-
+        if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
             Debug.Log("Explode");
             var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));
             for (var i = 0; i < colliders.Length; i++)
@@ -68,7 +68,7 @@ public class CharacterAbility : MonoBehaviour {
                 colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 8f));
             }
             exploded = true;
-        
+        }
     }
  
     private void StudentColorOverlay() {
