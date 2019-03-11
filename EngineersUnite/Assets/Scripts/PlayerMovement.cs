@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Check whether this student is active.
-        if (!name.Equals(this.charSwitchScript.getActiveCharacter()))
+        if (!name.Equals(this.charSwitchScript.GetActivePlayer()))
             return;
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -95,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            return;
+
         if (other.gameObject.layer != LayerMask.NameToLayer("Platform"))
             gameObject.layer = LayerMask.NameToLayer("Player");
     }

@@ -223,13 +223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b2dec091f182d408369981a105cf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
+  m_JumpForce: 575
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 1590
+    m_Bits: 5686
   m_GroundCheck: {fileID: 173503381759496322}
   m_CeilingCheck: {fileID: 173503381966885917}
   m_CrouchDisableCollider: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 173503382808873838}
   animator: {fileID: 173503382808873835}
-  runSpeed: 40
+  runSpeed: 30
 --- !u!114 &1453742380290419025
 MonoBehaviour:
   m_ObjectHideFlags: 0

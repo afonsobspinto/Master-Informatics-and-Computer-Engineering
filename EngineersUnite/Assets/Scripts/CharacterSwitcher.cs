@@ -6,15 +6,22 @@ using UnityEngine.UI;
 public class CharacterSwitcher : MonoBehaviour
 {
     public Text pauseText;
-    private int activeCharacter = 1;
+    private int activePlayer = 0;
     private int pauseCount = 0;
+
+    private List<string> playerTypes = new List<string>();
+
+    void Start() {
+        foreach (Transform player in transform)
+            this.playerTypes.Add(player.name);
+    }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.C)) {
-            if (activeCharacter >= transform.childCount) 
-                activeCharacter = 1;
+            if (this.activePlayer >= transform.childCount - 1) 
+                this.activePlayer = 0;
             else 
-                activeCharacter++;
+                this.activePlayer++;
         }
     }
 
@@ -23,8 +30,8 @@ public class CharacterSwitcher : MonoBehaviour
         this.pauseText.text = this.pauseCount.ToString();
     }
 
-    public string getActiveCharacter() {
-        return "Player (" + activeCharacter + ")";
+    public string GetActivePlayer() {
+        return this.playerTypes[this.activePlayer];
     }
 
     public int GetPauseCount() {

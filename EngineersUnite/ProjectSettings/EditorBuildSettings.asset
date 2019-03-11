@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 012ceb3d211c219459cf56c81f9fab72
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: f85d96436e6eb204f8a359fe5f86820a
-  - enabled: 1
     path: Assets/Scenes/InfDemoScene.unity
     guid: ca1f2935b424fcc449fdbab19ffe605e
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: f85d96436e6eb204f8a359fe5f86820a
   - enabled: 1
     path: Assets/Scenes/ChemDemoScene.unity
     guid: 91a1dceaf46492740810d11bd885ddc4

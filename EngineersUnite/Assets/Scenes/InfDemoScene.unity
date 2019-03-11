@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 173503382808873844, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: PlayerInf
       objectReference: {fileID: 0}
     - target: {fileID: 173503382808873833, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
@@ -688,7 +688,7 @@ PrefabInstance:
     - target: {fileID: 8068993909636732176, guid: 64da9394ee3a23a45851b502fa03c83e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8068993909636732176, guid: 64da9394ee3a23a45851b502fa03c83e,
         type: 3}
