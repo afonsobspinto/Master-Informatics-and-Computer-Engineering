@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Runs Menu Scene
+    public void PlayMenuScene()
+    {
+        Debug.Log("Clicking");
+        SceneManager.LoadScene("MenuScene");
+    }
+
     // Runs Main Scene
     public void PlayMainScene()
     {
@@ -14,7 +21,7 @@ public class MainMenu : MonoBehaviour
     // Runs Informatic Scene
     public void PlayInfScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
     // Runs Main Scene
@@ -27,7 +34,6 @@ public class MainMenu : MonoBehaviour
     public void PlayCivilScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
     }
 
     // Quits the app

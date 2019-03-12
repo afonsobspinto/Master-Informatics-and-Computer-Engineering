@@ -273,7 +273,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8068993909636732179}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 831693931851166542}
+        m_MethodName: PlayMenuScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &8068993911076287167
@@ -369,6 +380,7 @@ GameObject:
   - component: {fileID: 8068993911146366269}
   - component: {fileID: 8068993911146366258}
   - component: {fileID: 8068993911146366259}
+  - component: {fileID: 831693931851166542}
   m_Layer: 5
   m_Name: GUI
   m_TagString: Untagged
@@ -458,3 +470,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &831693931851166542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068993911146366256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf9189af8f009e4dab7168dbba91790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
