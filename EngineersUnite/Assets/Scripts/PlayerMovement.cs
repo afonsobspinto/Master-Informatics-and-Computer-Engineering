@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D m_rigidbody2D;
     public bool isFrozen = false, alreadyCollided = false;
+    public Vector2 frozenVelocity = new Vector2();
 
 
 
@@ -56,9 +57,11 @@ public class PlayerMovement : MonoBehaviour
         if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
             m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             this.charSwitchScript.ModifyPauseCount(-1);
+            frozenVelocity = m_rigidbody2D.velocity;
         }
         else if (this.isFrozen) {
             m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            m_rigidbody2D.velocity = frozenVelocity;
         }
         this.isFrozen = !this.isFrozen;
     }
