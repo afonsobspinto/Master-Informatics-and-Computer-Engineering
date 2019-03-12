@@ -56,15 +56,22 @@ public class CharacterAbility : MonoBehaviour {
 
     private void TriggerChemistryAbility() {
         if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
-            Debug.Log("Explode");
             var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));
             for (var i = 0; i < colliders.Length; i++)
             {
                 Vector2 target = colliders[i].gameObject.transform.position;
                 Vector2 pos = gameObject.transform.position;
+                Vector2 distance = target - pos;
+                Vector2 direction;
+                if(distance.magnitude == 0)
+                {
+                    direction = explosion * new Vector2(0, -1);
+                }
+                else
+                {
+                    direction = explosion * (distance / distance.magnitude) / distance.magnitude;
+                }
 
-                Vector2 direction = explosion * (target - pos);
-                Debug.Log(colliders[i].name);
                 colliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * 8f, direction.y * 8f));
             }
             exploded = true;
