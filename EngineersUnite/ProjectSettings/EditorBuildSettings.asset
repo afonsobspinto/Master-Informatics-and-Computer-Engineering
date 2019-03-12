@@ -19,5 +19,11 @@ EditorBuildSettings:
     guid: f85d96436e6eb204f8a359fe5f86820a
   - enabled: 1
     path: Assets/Scenes/ChemDemoScene.unity
-    guid: 91a1dceaf46492740810d11bd885ddc4
+    guid: 5b7017ec5428fbf458e0fd12a2f97fc8
+  - enabled: 1
+    path: Assets/Scenes/CivilDemoScene.unity
+    guid: 23ea1a025cabe9e46b3b0b1b44e44a04
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

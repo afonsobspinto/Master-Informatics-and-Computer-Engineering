@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     // Runs Main Scene
     public void PlayCivilScene()
     {
-        Debug.Log("Not implement yet");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
     }
 
