@@ -307,6 +307,8 @@ MonoBehaviour:
   controller: {fileID: 173503382808873838}
   animator: {fileID: 173503382808873835}
   runSpeed: 30
+  isFrozen: 0
+  alreadyCollided: 0
 --- !u!114 &1453742380290419025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computerHandler: {fileID: 0}
+  explosion_rate: 10
+  current_radius: 10
+  explosion: 50
 --- !u!1 &497339379085608650
 GameObject:
   m_ObjectHideFlags: 0
