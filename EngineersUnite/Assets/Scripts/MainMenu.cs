@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     // Runs Menu Scene
     public void PlayMenuScene()
     {
-        Debug.Log("Clicking");
         SceneManager.LoadScene("MenuScene");
     }
 
