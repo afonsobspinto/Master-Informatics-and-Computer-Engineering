@@ -14,7 +14,7 @@ public class CharacterAbility : MonoBehaviour {
     Vector3 explosionPos;
     Collider2D[] colliders;
 
-    private CharacterSwitcher switchScript;
+    public CharacterSwitcher switchScript;
 
     void Start() {
         this.switchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
@@ -54,7 +54,7 @@ public class CharacterAbility : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
-    private void TriggerChemistryAbility() {
+    public void TriggerChemistryAbility() {
         if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
             var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));
             for (var i = 0; i < colliders.Length; i++)

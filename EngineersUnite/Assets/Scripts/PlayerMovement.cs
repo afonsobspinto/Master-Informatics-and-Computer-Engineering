@@ -46,11 +46,30 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
             HandlePauseAbility();
 
+        if (Input.GetKeyDown(KeyCode.Z))
+            UnPauseAndAbility();
+
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         // Register the object for collisions after the frame has elapsed.
         this.alreadyCollided = false;
+    }
+
+    public void UnPauseAndAbility(){
+        PlayerMovement[] playerMovements = (PlayerMovement[])FindObjectsOfType(typeof(PlayerMovement));
+        foreach (PlayerMovement pm in playerMovements)
+        {
+            if (pm.isFrozen)
+            {
+                CharacterAbility ability = pm.GetComponent<CharacterAbility>();
+                if(ability.gameObject.name == "PlayerChe")
+                {
+                    pm.HandlePauseAbility();
+                    ability.TriggerChemistryAbility();
+                }
+            }
+        }
     }
 
     public void HandlePauseAbility() {
