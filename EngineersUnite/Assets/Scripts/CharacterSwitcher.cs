@@ -32,6 +32,9 @@ public class CharacterSwitcher : MonoBehaviour
     private IEnumerator ShowCharacterSwitch() {
         GameObject currPlayer = this.playerTypes[this.activePlayer];
 
+        foreach (Transform player in transform)
+            DisplaySelection(player.gameObject, false);
+
         DisplaySelection(currPlayer, true);
         yield return new WaitForSeconds(1);
         DisplaySelection(currPlayer, false);
