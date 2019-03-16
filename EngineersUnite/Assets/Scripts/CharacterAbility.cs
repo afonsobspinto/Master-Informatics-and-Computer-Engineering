@@ -10,7 +10,10 @@ public class CharacterAbility : MonoBehaviour {
     public float current_radius = 10f;
     public float explosion = 20f;
 
-    bool exploded = false;
+    public bool exploded = false;
+    public bool helmet = false;
+    public bool extinguished = false;
+
     Vector3 explosionPos;
     Collider2D[] colliders;
 
@@ -41,17 +44,25 @@ public class CharacterAbility : MonoBehaviour {
     }
     
     private void TriggerInformaticsAbility() {
-        this.computerHandler.FlipSprite();
-        GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
+        if(extinguished == false)
+        {
+            this.computerHandler.FlipSprite();
+            GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
 
-        foreach (var fire in fires)
-            fire.SetActive(false);  // Extinguishes every fire object on the scene.
+            foreach (var fire in fires)
+                fire.SetActive(false);  // Extinguishes every fire object on the scene.
+            extinguished = true;
+        }
     }
 
     private IEnumerator TriggerCivilAbility(){
-        gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
-        yield return new WaitForSeconds(3);
-        gameObject.layer = LayerMask.NameToLayer("Player");
+        if (helmet == false)
+        {
+            gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
+            yield return new WaitForSeconds(3);
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            helmet = true;
+        }
     }
 
     private void TriggerChemistryAbility() {
