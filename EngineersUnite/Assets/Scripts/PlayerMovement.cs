@@ -45,10 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
             HandlePauseAbility();
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Z))
             UnPauseAndAbility();
-            */
+          
 
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         this.alreadyCollided = false;
     }
 
-    /*
+   
     public void UnPauseAndAbility(){
         PlayerMovement[] playerMovements = (PlayerMovement[])FindObjectsOfType(typeof(PlayerMovement));
         foreach (PlayerMovement pm in playerMovements)
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    */
+  
 
     public void HandlePauseAbility() {
         if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {

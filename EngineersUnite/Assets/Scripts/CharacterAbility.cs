@@ -74,7 +74,7 @@ public class CharacterAbility : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
-    private void TriggerChemistryAbility() {
+    public void TriggerChemistryAbility() {
         if (!this.isAbilityAvailable[1]) return;
 
         if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
