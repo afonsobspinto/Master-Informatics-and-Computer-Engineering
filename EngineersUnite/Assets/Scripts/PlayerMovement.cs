@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Door")) {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("MenuScene");
         }
 
         this.alreadyCollided = true;    // Register this collider.
