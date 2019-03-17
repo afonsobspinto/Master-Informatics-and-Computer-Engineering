@@ -10,7 +10,8 @@ public class CharacterAbility : MonoBehaviour {
     public float current_radius = 10f;
     public float explosion = 20f;
 
-    bool exploded = false;
+    public bool exploded = false;
+
     Vector3 explosionPos;
     Collider2D[] colliders;
 
@@ -25,7 +26,6 @@ public class CharacterAbility : MonoBehaviour {
         this.indicators = new GameObject[] {GameObject.Find("IndicatorInf"), GameObject.Find("IndicatorChe"), GameObject.Find("IndicatorCiv")};
         this.isAbilityAvailable = new bool[] { true, true, true };
 
-        Debug.Log(this.indicators);
         StudentColorOverlay();
         explosionPos = transform.position;
     }

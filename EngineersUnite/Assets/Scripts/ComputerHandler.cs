@@ -10,7 +10,7 @@ public class ComputerHandler : MonoBehaviour {
     public void FlipSprite() {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (completed) spriteRenderer.sprite = this.CompletedSprite;
+        if (!completed) spriteRenderer.sprite = this.CompletedSprite;
         else spriteRenderer.sprite = this.PendingSprite;
 
         completed = !completed;

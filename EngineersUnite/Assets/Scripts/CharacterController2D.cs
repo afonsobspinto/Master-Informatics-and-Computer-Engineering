@@ -130,7 +130,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 		// If the player should jump...
-		if (grounded && jump)
+		if (grounded && jump && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0)
 		{
 			// Add a vertical force to the player.
 			grounded = false;

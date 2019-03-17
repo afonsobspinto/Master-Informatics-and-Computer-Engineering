@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     // Runs Menu Scene
     public void PlayMenuScene()
     {
-        Debug.Log("Clicking");
         SceneManager.LoadScene("MenuScene");
     }
 
@@ -39,7 +38,7 @@ public class MainMenu : MonoBehaviour
     // Quits the app
     public void QuitGame()
     {
-        Debug.Log("Quit");
+        Debug.Log("User has exited the game");
         Application.Quit();
     }
 }
