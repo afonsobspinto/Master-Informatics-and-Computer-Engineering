@@ -11,9 +11,11 @@ public class TextTypewriterEffect : MonoBehaviour {
 
     private IEnumerator scroller;
 
-    private bool hasScrolled = false;
+    private bool hasScrolled = false, hasCountdown = false;
+    private Image m_Image;
 
     void Start() {
+        FadeInSlideImage(GameObject.Find("SlideImage").GetComponent<Image>());
         this.scroller = ShowText();
         StartCoroutine(this.scroller);
     }
@@ -27,13 +29,29 @@ public class TextTypewriterEffect : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.X) && this.hasScrolled) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        else if (this.hasScrolled && !this.hasCountdown) {
+            StartCoroutine(StartCountdown());
+            this.hasCountdown = true;
+        }
+    }
+
+    private void FadeInSlideImage(Image m_Image) {
+        m_Image.canvasRenderer.SetAlpha(0.0f);
+        m_Image.CrossFadeAlpha(1, 3.0f, false);
+    }
+
+    private IEnumerator StartCountdown() {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private IEnumerator ShowText() {
         for (int i = 0; i <= full.text.Length; i++) {
             curr = full.text.Substring(0, i);
             this.GetComponent<Text>().text = curr;
-            yield return new WaitForSeconds(speed);
+
+            if (curr.Length > 0 && curr[i-1] == '.') yield return new WaitForSeconds(speed * 10);
+            else yield return new WaitForSeconds(speed);
         }
         this.hasScrolled = true;
     }

@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6239600335965330399}
   - component: {fileID: 6239600335965330396}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SlideImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030518, y: 84}
-  m_SizeDelta: {x: 575.7, y: 298.9}
+  m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6239600335965330399
 CanvasRenderer:
@@ -290,7 +290,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -202.4}
-  m_SizeDelta: {x: 575.7, y: 156.8}
+  m_SizeDelta: {x: 575.7, y: 172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6239600336446414929
 CanvasRenderer:
@@ -322,7 +322,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 90860d08fe3e65f4f9061f1b4c7eeca9, type: 3}
-    m_FontSize: 31
+    m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -347,4 +347,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.08
-  full: {fileID: 4900000, guid: 3f8aedcdc600a614788cbed7a383a684, type: 3}
+  full: {fileID: 4900000, guid: 07310679c7b7db84f8651418742df8e6, type: 3}
