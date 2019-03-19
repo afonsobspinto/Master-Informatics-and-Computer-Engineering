@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterSwitcher charSwitchScript;
     public Animator animator;
 
-    private float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     public float runSpeed = 30f;
 
     private bool jump, crouch = false;
@@ -45,10 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
             HandlePauseAbility();
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Z))
             UnPauseAndAbility();
-            */
+          
 
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -57,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
         this.alreadyCollided = false;
     }
 
-    /*
+   
     public void UnPauseAndAbility(){
         PlayerMovement[] playerMovements = (PlayerMovement[])FindObjectsOfType(typeof(PlayerMovement));
         foreach (PlayerMovement pm in playerMovements)
         {
-            if (pm.isFrozen)
+            if (pm.isFrozen && !(this.gameObject.name == "PlayerChe"))
             {
                 CharacterAbility ability = pm.GetComponent<CharacterAbility>();
                 if(ability.gameObject.name == "PlayerChe")
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    */
+  
 
     public void HandlePauseAbility() {
         if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {

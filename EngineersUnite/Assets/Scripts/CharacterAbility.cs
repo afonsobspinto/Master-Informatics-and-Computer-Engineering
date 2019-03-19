@@ -6,6 +6,7 @@ public class CharacterAbility : MonoBehaviour {
 
     public ComputerHandler computerHandler;
     private Material material;
+    public Animator animator;
     public float explosion_rate = 10f;
     public float current_radius = 10f;
     public float explosion = 20f;
@@ -34,8 +35,17 @@ public class CharacterAbility : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             StartCoroutine(TriggerCivilAbility());
 
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe" && !this.gameObject.GetComponent<PlayerMovement>().isFrozen)
+        {
             TriggerChemistryAbility();
+        }
+    }
+
+    private IEnumerator StartExplosion()
+    {
+        animator.SetBool("Power", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Power", false);
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -74,7 +84,7 @@ public class CharacterAbility : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
-    private void TriggerChemistryAbility() {
+    public void TriggerChemistryAbility() {
         if (!this.isAbilityAvailable[1]) return;
 
         if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
@@ -100,8 +110,10 @@ public class CharacterAbility : MonoBehaviour {
 
             DimIndicator(this.indicators[1], 1);   // Show ability has been consumed.
         }
+
+        StartCoroutine(StartExplosion());
     }
- 
+
     private void StudentColorOverlay() {
         if (name == "PlayerInf") 
             this.material.SetColor("_Color", Color.red);

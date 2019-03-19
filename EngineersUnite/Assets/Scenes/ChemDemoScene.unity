@@ -523,6 +523,11 @@ PrefabInstance:
       propertyPath: explosion
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2030013855}
     - target: {fileID: 2400530432176462769, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: explosion_rate
@@ -1950,6 +1955,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2030013855 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 308574722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2075592948
 PrefabInstance:
   m_ObjectHideFlags: 0
