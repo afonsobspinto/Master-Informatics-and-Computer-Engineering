@@ -32,14 +32,12 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     void Update() {
-        animator.SetBool("Power", false);
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             StartCoroutine(TriggerCivilAbility());
 
-        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
+        if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe" && !this.gameObject.GetComponent<PlayerMovement>().isFrozen)
         {
             TriggerChemistryAbility();
-            animator.SetBool("Power", true);
         }
     }
 
@@ -112,8 +110,10 @@ public class CharacterAbility : MonoBehaviour {
 
             DimIndicator(this.indicators[1], 1);   // Show ability has been consumed.
         }
+
+        StartCoroutine(StartExplosion());
     }
- 
+
     private void StudentColorOverlay() {
         if (name == "PlayerInf") 
             this.material.SetColor("_Color", Color.red);
