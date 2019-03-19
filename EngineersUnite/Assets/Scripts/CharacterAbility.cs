@@ -6,6 +6,7 @@ public class CharacterAbility : MonoBehaviour {
 
     public ComputerHandler computerHandler;
     private Material material;
+    public Animator animator;
     public float explosion_rate = 10f;
     public float current_radius = 10f;
     public float explosion = 20f;
@@ -31,11 +32,22 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     void Update() {
+        animator.SetBool("Power", false);
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerCiv" && this.switchScript.GetActivePlayer() == "PlayerCiv")
             StartCoroutine(TriggerCivilAbility());
 
         if (Input.GetKeyDown(KeyCode.X) && name == "PlayerChe" && this.switchScript.GetActivePlayer() == "PlayerChe")
+        {
             TriggerChemistryAbility();
+            animator.SetBool("Power", true);
+        }
+    }
+
+    private IEnumerator StartExplosion()
+    {
+        animator.SetBool("Power", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Power", false);
     }
 
     private void OnTriggerStay2D(Collider2D other) {
