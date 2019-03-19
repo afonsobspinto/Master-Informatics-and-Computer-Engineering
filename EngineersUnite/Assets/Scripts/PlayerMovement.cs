@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerMovement[] playerMovements = (PlayerMovement[])FindObjectsOfType(typeof(PlayerMovement));
         foreach (PlayerMovement pm in playerMovements)
         {
-            if (pm.isFrozen)
+            if (pm.isFrozen && !(this.gameObject.name == "PlayerChe"))
             {
                 CharacterAbility ability = pm.GetComponent<CharacterAbility>();
                 if(ability.gameObject.name == "PlayerChe")
