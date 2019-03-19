@@ -20,10 +20,15 @@ public class CharacterSwitcher : MonoBehaviour
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.C)) {
+            GameObject currentPlayer = this.playerTypes[this.activePlayer];
+            currentPlayer.gameObject.GetComponent<PlayerMovement>().horizontalMove = 0;
+            currentPlayer.gameObject.GetComponent<Animator>().SetFloat("Speed", 0);
+            
             if (this.activePlayer >= transform.childCount - 1) 
                 this.activePlayer = 0;
-            else 
+            else {
                 this.activePlayer++;
+            }
 
             StartCoroutine(ShowCharacterSwitch());
         }

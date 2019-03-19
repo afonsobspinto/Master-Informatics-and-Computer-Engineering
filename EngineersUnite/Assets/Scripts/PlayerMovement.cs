@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterSwitcher charSwitchScript;
     public Animator animator;
 
-    private float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     public float runSpeed = 30f;
 
     private bool jump, crouch = false;
