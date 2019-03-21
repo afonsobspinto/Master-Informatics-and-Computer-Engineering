@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -616,8 +616,19 @@ PrefabInstance:
       propertyPath: computerHandler
       value: 
       objectReference: {fileID: 1537362367}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 829563739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &829563739 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 829563738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832991224
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +824,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1049487100}
     - target: {fileID: 173503382808873827, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: runSpeed
@@ -820,6 +836,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &1049487100 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1049487099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1112393103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6769416414118509269, guid: 54d96c2eb728480439254b26df2a416a,
@@ -1158,6 +1180,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1344109161}
     - target: {fileID: 173503382808873827, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: runSpeed
@@ -1165,6 +1192,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &1344109161 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344109160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1491363780
 PrefabInstance:
   m_ObjectHideFlags: 0

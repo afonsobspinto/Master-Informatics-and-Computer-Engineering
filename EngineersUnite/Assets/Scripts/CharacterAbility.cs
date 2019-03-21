@@ -6,7 +6,7 @@ public class CharacterAbility : MonoBehaviour {
 
     public ComputerHandler computerHandler;
     private Material material;
-    public Animator animator;
+    private Animator animator;
     public float explosion_rate = 10f;
     public float current_radius = 10f;
     public float explosion = 20f;
@@ -18,6 +18,7 @@ public class CharacterAbility : MonoBehaviour {
 
     private CharacterSwitcher switchScript;
     private GameObject[] indicators;
+    private GameObject explosionObj;
     private bool[] isAbilityAvailable;
 
     void Start() {
@@ -29,6 +30,8 @@ public class CharacterAbility : MonoBehaviour {
 
         StudentColorOverlay();
         explosionPos = transform.position;
+        explosionObj = this.gameObject.transform.GetChild(3).gameObject;
+        this.animator = explosionObj.gameObject.GetComponent<Animator>();
     }
 
     void Update() {

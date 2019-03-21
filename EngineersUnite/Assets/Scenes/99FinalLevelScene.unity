@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -445,8 +445,19 @@ PrefabInstance:
       propertyPath: computerHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 308574723}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &308574723 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 308574722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &349920719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,8 +1140,19 @@ PrefabInstance:
       propertyPath: computerHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1371383338}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &1371383338 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1371383337}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1456020098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2709,8 +2731,19 @@ PrefabInstance:
       propertyPath: computerHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1732781364}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &1732781364 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1732781363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1874150508
 PrefabInstance:
   m_ObjectHideFlags: 0

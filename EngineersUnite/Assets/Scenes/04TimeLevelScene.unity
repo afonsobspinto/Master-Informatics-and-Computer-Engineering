@@ -1031,8 +1031,19 @@ PrefabInstance:
       propertyPath: computerHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 829563739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &829563739 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 829563738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832991224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1842,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1344109161}
     - target: {fileID: 173503382808873827, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: runSpeed
@@ -1838,6 +1854,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+--- !u!95 &1344109161 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 173503382808873835, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344109160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1353225945
 GameObject:
   m_ObjectHideFlags: 0
