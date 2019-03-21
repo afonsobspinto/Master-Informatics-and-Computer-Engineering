@@ -84,16 +84,17 @@ public class CharacterAbility : MonoBehaviour {
         this.audioSource.PlayOneShot(this.fire);
     }
 
-    private IEnumerator TriggerCivilAbility(){
+    private IEnumerator TriggerCivilAbility()
+    {
         if (!this.isAbilityAvailable[2]) yield break;
 
         this.audioSource.PlayOneShot(this.helmet);
-        
-        gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
+        GameObject helmet = this.transform.Find("Helmet").gameObject;
+        helmet.SetActive(true);
         DimIndicator(this.indicators[2], 2);   // Show ability has been consumed.
-        
+
         yield return new WaitForSeconds(3);
-        gameObject.layer = LayerMask.NameToLayer("Player");
+        helmet.SetActive(false);
     }
 
     public void TriggerChemistryAbility() {
