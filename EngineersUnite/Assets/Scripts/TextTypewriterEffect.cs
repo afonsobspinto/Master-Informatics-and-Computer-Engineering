@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TextTypewriterEffect : MonoBehaviour {
-    public float speed = 0.1f;
+    public float speed = 0.5f;
     public TextAsset full;
     private string curr = "";
 
