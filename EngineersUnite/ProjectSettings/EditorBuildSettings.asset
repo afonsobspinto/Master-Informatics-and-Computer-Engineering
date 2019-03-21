@@ -27,17 +27,23 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 012ceb3d211c219459cf56c81f9fab72
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: f85d96436e6eb204f8a359fe5f86820a
-  - enabled: 1
-    path: Assets/Scenes/InfDemoScene.unity
+    path: Assets/Scenes/01InformaticsLevelScene.unity
     guid: ca1f2935b424fcc449fdbab19ffe605e
   - enabled: 1
-    path: Assets/Scenes/ChemDemoScene.unity
-    guid: 5b7017ec5428fbf458e0fd12a2f97fc8
+    path: Assets/Scenes/02CivilLevelScene.unity
+    guid: 0d3b59418316c374c8039491667078cc
   - enabled: 1
-    path: Assets/Scenes/CivilDemoScene.unity
+    path: Assets/Scenes/03ChemistryLevelScene.unity
+    guid: abd237726a60a5142872311a4a06c389
+  - enabled: 1
+    path: Assets/Scenes/04TimeLevelScene.unity
     guid: 23ea1a025cabe9e46b3b0b1b44e44a04
+  - enabled: 1
+    path: Assets/Scenes/05ImpulseLevelScene.unity
+    guid: 7322d6856a3cff344809b99b537347a4
+  - enabled: 1
+    path: Assets/Scenes/99FinalLevelScene.unity
+    guid: a717299bec24e7c47963d769a38cb250
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
