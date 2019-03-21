@@ -79,12 +79,13 @@ public class CharacterAbility : MonoBehaviour {
 
     private IEnumerator TriggerCivilAbility(){
         if (!this.isAbilityAvailable[2]) yield break;
-        
-        gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
+
+        GameObject helmet = this.transform.Find("Helmet").gameObject;
+        helmet.SetActive(true);
         DimIndicator(this.indicators[2], 2);   // Show ability has been consumed.
         
         yield return new WaitForSeconds(3);
-        gameObject.layer = LayerMask.NameToLayer("Player");
+        helmet.SetActive(false);
     }
 
     public void TriggerChemistryAbility() {
