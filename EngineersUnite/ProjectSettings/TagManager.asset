@@ -11,6 +11,7 @@ TagManager:
   - Door
   - Tube
   - Lever
+  - Helmet
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Platform
   - Tube
   - HelmetPlayer
-  - 
+  - Helmet
   - 
   - 
   - 
