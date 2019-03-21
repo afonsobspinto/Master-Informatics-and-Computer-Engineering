@@ -18,10 +18,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isFrozen = false, alreadyCollided = false;
     public Vector2 frozenVelocity = new Vector2();
 
+    private AudioSource audioSource;
+    public AudioClip coin, fire, door, jumpClip, timeFreeze;
+
 
 
     void Start()
     {
+        this.audioSource = gameObject.GetComponent<AudioSource>();
         charSwitchScript = (CharacterSwitcher)FindObjectOfType(typeof(CharacterSwitcher));
         m_rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump")) {
+            this.audioSource.PlayOneShot(this.jumpClip);
             animator.SetBool("IsJumping", true);
             jump = true;
         }
@@ -82,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
   
 
     public void HandlePauseAbility() {
+        this.audioSource.PlayOneShot(this.timeFreeze);
         if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
             m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             this.charSwitchScript.ModifyPauseCount(-1);
@@ -114,18 +120,33 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Coin")) {
             other.gameObject.SetActive(false);
             this.charSwitchScript.ModifyPauseCount(1);
+            this.audioSource.PlayOneShot(this.coin);
         }
 
         if (other.gameObject.CompareTag("Fire")) {
-            GameObject.Find("UITracker").GetComponent<DontDestroy>().incrementDeathCount();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(DieByFire());
         }
 
         if (other.gameObject.CompareTag("Door")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(CompleteLevel());
         }
 
         this.alreadyCollided = true;    // Register this collider.
+    }
+
+    private IEnumerator CompleteLevel() {
+        this.audioSource.PlayOneShot(this.door);
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private IEnumerator DieByFire() {
+        GameObject.Find("UITracker").GetComponent<DontDestroy>().incrementDeathCount();
+        this.audioSource.PlayOneShot(this.fire);
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnTriggerStay2D(Collider2D other) {

@@ -21,7 +21,11 @@ public class CharacterAbility : MonoBehaviour {
     private GameObject explosionObj;
     private bool[] isAbilityAvailable;
 
+    private AudioSource audioSource;
+    public AudioClip hacking, chemical, helmet, fire;
+
     void Start() {
+        this.audioSource = this.GetComponent<AudioSource>();
         this.switchScript = (CharacterSwitcher) FindObjectOfType(typeof(CharacterSwitcher));
         this.material = gameObject.GetComponent<Renderer>().material;
         
@@ -67,6 +71,7 @@ public class CharacterAbility : MonoBehaviour {
     
     private void TriggerInformaticsAbility() {
         if (!this.isAbilityAvailable[0]) return;
+        this.audioSource.PlayOneShot(this.hacking);
 
         this.computerHandler.FlipSprite();
         GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
@@ -75,10 +80,14 @@ public class CharacterAbility : MonoBehaviour {
             fire.SetActive(false);  // Extinguishes every fire object on the scene.
         
         DimIndicator(this.indicators[0], 0);   // Show ability has been consumed.
+
+        this.audioSource.PlayOneShot(this.fire);
     }
 
     private IEnumerator TriggerCivilAbility(){
         if (!this.isAbilityAvailable[2]) yield break;
+
+        this.audioSource.PlayOneShot(this.helmet);
         
         gameObject.layer = LayerMask.NameToLayer("HelmetPlayer");
         DimIndicator(this.indicators[2], 2);   // Show ability has been consumed.
@@ -89,6 +98,8 @@ public class CharacterAbility : MonoBehaviour {
 
     public void TriggerChemistryAbility() {
         if (!this.isAbilityAvailable[1]) return;
+
+        this.audioSource.PlayOneShot(this.chemical);
 
         if (!gameObject.GetComponent<PlayerMovement>().isFrozen && exploded == false) {
             var colliders = Physics2D.OverlapCircleAll(explosionPos, current_radius, 1 << LayerMask.NameToLayer("Player"));

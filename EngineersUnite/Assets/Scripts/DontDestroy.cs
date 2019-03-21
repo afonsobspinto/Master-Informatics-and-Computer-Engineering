@@ -12,6 +12,7 @@ public class DontDestroy : MonoBehaviour {
     void Awake() {
         DontDestroyOnLoad(this.gameObject);
         this.audioSource = GameObject.Find("UITracker").GetComponent<AudioSource>();
+        this.audioSource.volume = 0.5f;
     }
 
     void Update() {
