@@ -11,7 +11,7 @@ public class DontDestroy : MonoBehaviour {
 
     void Awake() {
         DontDestroyOnLoad(this.gameObject);
-        this.audioSource = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
+        this.audioSource = GameObject.Find("UITracker").GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -21,7 +21,7 @@ public class DontDestroy : MonoBehaviour {
         else if (SceneManager.GetActiveScene().name == "MenuScene") {
             audioSource.clip = this.levelMusic;
         }
-        else if (SceneManager.GetActiveScene().name == "Level 99") {
+        else if (SceneManager.GetActiveScene().name == "Level 18") {
             audioSource.clip = this.endLevelMusic;
         }
         if (!audioSource.isPlaying) audioSource.Play();
