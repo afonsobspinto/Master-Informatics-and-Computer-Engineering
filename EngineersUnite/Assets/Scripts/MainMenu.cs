@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     }
 
     // Runs Menu Scene
+    
     public void PlayMenuScene()
     {
         SceneManager.LoadScene("MenuScene");
