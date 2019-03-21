@@ -116,10 +116,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Door")) {
-            SceneManager.LoadScene("MenuScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         this.alreadyCollided = true;    // Register this collider.
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Lever") && Input.GetKeyDown(KeyCode.X)) {
+            StartCoroutine(EndGame(other));
+        }
+    }
+
+    private IEnumerator EndGame(Collider2D other) {
+        other.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
     }
 
     private void OnCollisionStay2D(Collision2D other) {
