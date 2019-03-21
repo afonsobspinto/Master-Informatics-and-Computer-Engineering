@@ -87,13 +87,19 @@ public class PlayerMovement : MonoBehaviour
   
 
     public void HandlePauseAbility() {
-        this.audioSource.PlayOneShot(this.timeFreeze);
         if (this.charSwitchScript.GetPauseCount() > 0 && !this.isFrozen) {
+            this.audioSource.PlayOneShot(this.timeFreeze);
+
             m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             this.charSwitchScript.ModifyPauseCount(-1);
             frozenVelocity = m_rigidbody2D.velocity;
         }
         else if (this.isFrozen) {
+            this.audioSource.clip = this.timeFreeze;
+            this.audioSource.timeSamples = this.audioSource.clip.samples - 1;
+            this.audioSource.pitch = -1;
+            this.audioSource.Play();
+
             m_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             m_rigidbody2D.velocity = frozenVelocity;
         }
