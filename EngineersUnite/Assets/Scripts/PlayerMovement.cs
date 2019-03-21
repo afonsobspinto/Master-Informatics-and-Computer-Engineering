@@ -55,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("MenuScene");
+        }
+
         // Register the object for collisions after the frame has elapsed.
         this.alreadyCollided = false;
     }
