@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    void Start() {
+        Text deathCount = GameObject.Find("DeathCount").GetComponent<Text>();
+        deathCount.text = GameObject.Find("UITracker").GetComponent<DontDestroy>().getDeathCount();
+
+        GameObject.Find("LevelCount").GetComponent<Text>().text = SceneManager.GetActiveScene().name;
+    }
+
     // Runs Menu Scene
     public void PlayMenuScene()
     {

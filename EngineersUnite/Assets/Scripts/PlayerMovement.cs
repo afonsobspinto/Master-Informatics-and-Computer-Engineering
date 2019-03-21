@@ -50,8 +50,10 @@ public class PlayerMovement : MonoBehaviour
             UnPauseAndAbility();
           
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R)) {
+            GameObject.Find("UITracker").GetComponent<DontDestroy>().incrementDeathCount();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
         // Register the object for collisions after the frame has elapsed.
         this.alreadyCollided = false;
@@ -111,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Fire")) {
-            Debug.Log("Entered fire, restarting level.");
+            GameObject.Find("UITracker").GetComponent<DontDestroy>().incrementDeathCount();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
