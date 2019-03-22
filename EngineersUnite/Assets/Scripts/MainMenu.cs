@@ -5,9 +5,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     void Start() {
-        GameObject.Find("LevelCount").GetComponent<Text>().text = SceneManager.GetActiveScene().name;
-        GameObject.Find("DeathCount").GetComponent<Text>().text = GameObject.Find("UITracker").GetComponent<DontDestroy>().getDeathCount();
+        if (SceneManager.GetActiveScene().name.StartsWith("Level")) {
+            GameObject.Find("LevelCount").GetComponent<Text>().text = SceneManager.GetActiveScene().name;
+            GameObject.Find("DeathCount").GetComponent<Text>().text = GameObject.Find("UITracker").GetComponent<DontDestroy>().getDeathCount();
+        }
     }
+
     // Runs Menu Scene
     public void PlayMenuScene()
     {
