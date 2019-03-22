@@ -193,7 +193,7 @@ PrefabInstance:
         type: 3}
       propertyPath: computerHandler
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1960121586}
     - target: {fileID: 1453742380290419025, guid: 19bef5d169d0efe479d5f94c02ed00c1,
         type: 3}
       propertyPath: animator
@@ -2123,6 +2123,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1662909362}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1960121586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4651145639170459999, guid: 3b8ed2e1a8a3aa4499b6eb92a8b8a463,
+    type: 3}
+  m_PrefabInstance: {fileID: 2075249525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56571d2f0358c64db2ced991e05af3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2071949916
 PrefabInstance:
   m_ObjectHideFlags: 0
