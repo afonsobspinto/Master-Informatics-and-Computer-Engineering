@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterAbility : MonoBehaviour {
 
@@ -65,7 +66,7 @@ public class CharacterAbility : MonoBehaviour {
     }
 
     private void DimIndicator(GameObject indicator, int index) {
-        indicator.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+        indicator.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
         this.isAbilityAvailable[index] = false;
     }
     

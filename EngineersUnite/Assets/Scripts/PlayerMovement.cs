@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump, crouch = false;
 
     private Rigidbody2D m_rigidbody2D;
-    public bool isFrozen = false, alreadyCollided = false;
+    public bool isFrozen = false, alreadyCollided = false, alreadyDied = false;
     public Vector2 frozenVelocity = new Vector2();
 
     private AudioSource audioSource;
@@ -130,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Fire")) {
-            StartCoroutine(DieByFire());
+            if (!this.alreadyDied)
+                StartCoroutine(DieByFire());
         }
 
         if (other.gameObject.CompareTag("Door")) {
@@ -148,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private IEnumerator DieByFire() {
+        this.alreadyDied = true;
         GameObject.Find("UITracker").GetComponent<DontDestroy>().incrementDeathCount();
         this.audioSource.PlayOneShot(this.fire);
         this.GetComponent<SpriteRenderer>().enabled = false;
