@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 6f2f8dbf9d2d9f24992c7574cdf5267e
+guid: cf13c6e4eaf26a642b44546be345d78f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: explosion_0
-    21300002: explosion_1
-    21300004: explosion_2
-    21300006: explosion_3
-    21300008: explosion_4
-    21300010: explosion_5
-    21300012: explosion_6
-    21300014: explosion_7
-    21300016: explosion_8
-    21300018: explosion_9
-    21300020: explosion_10
-    21300022: explosion_11
-    21300024: explosion_12
-    21300026: explosion_13
-    21300028: explosion_14
-    21300030: explosion_15
+    21300000: explosionB&W_0
+    21300002: explosionB&W_1
+    21300004: explosionB&W_2
+    21300006: explosionB&W_3
+    21300008: explosionB&W_4
+    21300010: explosionB&W_5
+    21300012: explosionB&W_6
+    21300014: explosionB&W_7
+    21300016: explosionB&W_8
+    21300018: explosionB&W_9
+    21300020: explosionB&W_10
+    21300022: explosionB&W_11
+    21300024: explosionB&W_12
+    21300026: explosionB&W_13
+    21300028: explosionB&W_14
+    21300030: explosionB&W_15
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: explosion_0
+      name: explosionB&W_0
       rect:
         serializedVersion: 2
         x: 34
@@ -108,19 +108,19 @@ TextureImporter:
         width: 61
         height: 69
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3c48379aa1aeb0499abcb439fef47ce
+      spriteID: a9f34b4716aec7641a261223572e1d8f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_1
+      name: explosionB&W_1
       rect:
         serializedVersion: 2
         x: 159
@@ -128,19 +128,19 @@ TextureImporter:
         width: 68
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a44db9f484cf060498b022c9c4ce2b13
+      spriteID: e70f697f1131c5f4890bdb8e994bbb52
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_2
+      name: explosionB&W_2
       rect:
         serializedVersion: 2
         x: 283
@@ -148,19 +148,19 @@ TextureImporter:
         width: 75
         height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fa2ed821cb9df14a8ba8ed7a8c33327
+      spriteID: 711589ddf33ef4746823a0747a01343d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_3
+      name: explosionB&W_3
       rect:
         serializedVersion: 2
         x: 407
@@ -168,19 +168,19 @@ TextureImporter:
         width: 83
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9b647f3b16f4ad41b6dbda529674401
+      spriteID: a614e36f7c3d2444c9088af132e238c5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_4
+      name: explosionB&W_4
       rect:
         serializedVersion: 2
         x: 20
@@ -188,19 +188,19 @@ TextureImporter:
         width: 89
         height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0834c0ef1f0c9ca428a6ea3559aae48f
+      spriteID: 97866c386c5830b4d8874cbae9b2fa0f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_5
+      name: explosionB&W_5
       rect:
         serializedVersion: 2
         x: 143
@@ -208,19 +208,19 @@ TextureImporter:
         width: 98
         height: 105
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91804898ac783df4191ad3b1f41f4516
+      spriteID: feb72ed90bbd74649a2e93d56699ecf2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_6
+      name: explosionB&W_6
       rect:
         serializedVersion: 2
         x: 267
@@ -228,19 +228,19 @@ TextureImporter:
         width: 105
         height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3df2a03285ce6424e8fdc176aa2b8362
+      spriteID: ac3436a283dd9d2458e02fc7eb1697dd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_7
+      name: explosionB&W_7
       rect:
         serializedVersion: 2
         x: 394
@@ -248,19 +248,19 @@ TextureImporter:
         width: 110
         height: 119
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73bedcd2d3533ba4fae4c57d2bb34129
+      spriteID: 44362d8827651b34d84afee7f3e29fc2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_8
+      name: explosionB&W_8
       rect:
         serializedVersion: 2
         x: 6
@@ -268,19 +268,19 @@ TextureImporter:
         width: 117
         height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca561d1a8554f0e45be50537d1b95303
+      spriteID: ebfbfb98d633c904e9d44d627f8017ea
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_9
+      name: explosionB&W_9
       rect:
         serializedVersion: 2
         x: 132
@@ -288,19 +288,19 @@ TextureImporter:
         width: 122
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6087b551e41b8494282ac5a822dc6631
+      spriteID: 1e9bcf35c1586f34e8120317c74ff3ad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_10
+      name: explosionB&W_10
       rect:
         serializedVersion: 2
         x: 273
@@ -308,39 +308,39 @@ TextureImporter:
         width: 96
         height: 103
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 429faf47395deb34ebd45445fcd459c5
+      spriteID: bfd2f5ad4d7203443a52a6c45ec37930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_11
+      name: explosionB&W_11
       rect:
         serializedVersion: 2
-        x: 414
-        y: 154
+        x: 417
+        y: 150
         width: 65
         height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac838b2ac3a98d74d9f30962885820cb
+      spriteID: 34886de83f739c646997f44370ba2383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_12
+      name: explosionB&W_12
       rect:
         serializedVersion: 2
         x: 29
@@ -348,19 +348,19 @@ TextureImporter:
         width: 67
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd69e1b56e700ff44b9d86e03335a3fa
+      spriteID: ceb35ab5d3a8d5746b00b5c8e30add6d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_13
+      name: explosionB&W_13
       rect:
         serializedVersion: 2
         x: 161
@@ -368,39 +368,39 @@ TextureImporter:
         width: 63
         height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 714fa63fe0c9e5c4a9764a720dc2143e
+      spriteID: b4c817dd13b38184889ef9a31c82d958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_14
+      name: explosionB&W_14
       rect:
         serializedVersion: 2
-        x: 292
+        x: 290
         y: 33
         width: 62
         height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bd25be7420bd3c4ab04ca6b9dc650e6
+      spriteID: 03e49d394d379c54799e14bde9001328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_15
+      name: explosionB&W_15
       rect:
         serializedVersion: 2
         x: 421
@@ -408,13 +408,13 @@ TextureImporter:
         width: 48
         height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3af0a0c75247645a3e40f16b7577bc
+      spriteID: 1775a014f7ea9a5459c7ea7b5f46a4dc
       vertices: []
       indices: 
       edges: []
@@ -422,7 +422,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1f4dbfdbaa977184fbc974be7b6bf7c4
+    spriteID: 32b4265b7c1b37e44a0c4680095507aa
     vertices: []
     indices: 
     edges: []

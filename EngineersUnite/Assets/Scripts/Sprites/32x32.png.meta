@@ -1,23 +1,25 @@
 fileFormatVersion: 2
-guid: 6f2f8dbf9d2d9f24992c7574cdf5267e
+guid: f19658ac4397d6f45b7d3c943d0df58e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: explosion_0
-    21300002: explosion_1
-    21300004: explosion_2
-    21300006: explosion_3
-    21300008: explosion_4
-    21300010: explosion_5
-    21300012: explosion_6
-    21300014: explosion_7
-    21300016: explosion_8
-    21300018: explosion_9
-    21300020: explosion_10
-    21300022: explosion_11
-    21300024: explosion_12
-    21300026: explosion_13
-    21300028: explosion_14
-    21300030: explosion_15
+    21300000: 32x32_0
+    21300002: 32x32_1
+    21300004: 32x32_2
+    21300006: 32x32_3
+    21300008: 32x32_4
+    21300010: 32x32_5
+    21300012: 32x32_6
+    21300014: 32x32_7
+    21300016: 32x32_8
+    21300018: 32x32_9
+    21300020: 32x32_10
+    21300022: 32x32_11
+    21300024: 32x32_12
+    21300026: 32x32_13
+    21300028: 32x32_14
+    21300030: 32x32_15
+    21300032: 32x32_16
+    21300034: 32x32_17
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -61,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 33
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -76,10 +78,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -87,10 +89,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,321 +102,361 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: explosion_0
+      name: 32x32_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 413
-        width: 61
-        height: 69
+        x: 3
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3c48379aa1aeb0499abcb439fef47ce
+      spriteID: 07cdc50a5b908214d87a27cef78d734a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_1
+      name: 32x32_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 410
-        width: 68
-        height: 76
+        x: 41
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a44db9f484cf060498b022c9c4ce2b13
+      spriteID: f52cb7cffeabfd247af3a95d26d950bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_2
+      name: 32x32_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 406
-        width: 75
-        height: 83
+        x: 79
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fa2ed821cb9df14a8ba8ed7a8c33327
+      spriteID: 296f2204e05d6b349a2681033871fbdc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_3
+      name: 32x32_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 402
-        width: 83
-        height: 91
+        x: 117
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9b647f3b16f4ad41b6dbda529674401
+      spriteID: 8b43fa1cea238ad4cb9d6378aea72f22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_4
+      name: 32x32_4
       rect:
         serializedVersion: 2
-        x: 20
-        y: 271
-        width: 89
-        height: 97
+        x: 155
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0834c0ef1f0c9ca428a6ea3559aae48f
+      spriteID: 5a47f23d6e06d0b4aa317805430a7cdc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_5
+      name: 32x32_5
       rect:
         serializedVersion: 2
-        x: 143
-        y: 267
-        width: 98
-        height: 105
+        x: 193
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91804898ac783df4191ad3b1f41f4516
+      spriteID: 94d26d5257b6976488e301a32af6de4c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_6
+      name: 32x32_6
       rect:
         serializedVersion: 2
-        x: 267
-        y: 264
-        width: 105
-        height: 111
+        x: 231
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3df2a03285ce6424e8fdc176aa2b8362
+      spriteID: 18b0b05c50bcbbd42821901dfd7630ab
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_7
+      name: 32x32_7
       rect:
         serializedVersion: 2
-        x: 394
-        y: 260
-        width: 110
-        height: 119
+        x: 269
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73bedcd2d3533ba4fae4c57d2bb34129
+      spriteID: d31c187b781f0334194a3d38bfb732cc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_8
+      name: 32x32_8
       rect:
         serializedVersion: 2
-        x: 6
-        y: 129
-        width: 117
-        height: 125
+        x: 307
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca561d1a8554f0e45be50537d1b95303
+      spriteID: cdd0146c3903d364abca05f57eae712f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_9
+      name: 32x32_9
       rect:
         serializedVersion: 2
-        x: 132
-        y: 128
-        width: 122
-        height: 128
+        x: 3
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6087b551e41b8494282ac5a822dc6631
+      spriteID: ce040712110c31549bf41fb5d92040e4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_10
+      name: 32x32_10
       rect:
         serializedVersion: 2
-        x: 273
-        y: 140
-        width: 96
-        height: 103
+        x: 41
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 429faf47395deb34ebd45445fcd459c5
+      spriteID: d3a209ea492649340be62a6048a2805e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_11
+      name: 32x32_11
       rect:
         serializedVersion: 2
-        x: 414
-        y: 154
-        width: 65
-        height: 74
+        x: 79
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac838b2ac3a98d74d9f30962885820cb
+      spriteID: b6e0e1ce9910dfa4d8b9178888391a8d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_12
+      name: 32x32_12
       rect:
         serializedVersion: 2
-        x: 29
-        y: 25
-        width: 67
-        height: 76
+        x: 117
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd69e1b56e700ff44b9d86e03335a3fa
+      spriteID: 90e7ba1a564c06446b3b52646056cd54
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_13
+      name: 32x32_13
       rect:
         serializedVersion: 2
-        x: 161
-        y: 24
-        width: 63
-        height: 77
+        x: 155
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 714fa63fe0c9e5c4a9764a720dc2143e
+      spriteID: 99ede1aef7ce0944cb8542e32ab73058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_14
+      name: 32x32_14
       rect:
         serializedVersion: 2
-        x: 292
-        y: 33
-        width: 62
-        height: 61
+        x: 193
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bd25be7420bd3c4ab04ca6b9dc650e6
+      spriteID: 99718eca4bb3a8d47beabf543331a7b2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: explosion_15
+      name: 32x32_15
       rect:
         serializedVersion: 2
-        x: 421
-        y: 48
-        width: 48
-        height: 47
+        x: 231
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3af0a0c75247645a3e40f16b7577bc
+      spriteID: a86924e77c503b841b7dde6f7b579142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32_16
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 3
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924c121e238a73c488ce3e778174c591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32_17
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 3
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccaa242771a50040af8d9a529f38f27
       vertices: []
       indices: 
       edges: []
@@ -422,7 +464,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1f4dbfdbaa977184fbc974be7b6bf7c4
+    spriteID: 3a0e2eba3718a4f4f90725ace72c4a14
     vertices: []
     indices: 
     edges: []

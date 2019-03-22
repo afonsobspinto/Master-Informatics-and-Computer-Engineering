@@ -1,247 +1,215 @@
 fileFormatVersion: 2
-guid: bb13ddb5e1af35647b0dc9a05fb33556
+guid: 1d7a79c21beaa9f42b56219726ddcf0b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 16x16_various_0
-    21300002: 16x16_various_1
-    21300004: 16x16_various_2
-    21300006: 16x16_various_3
-    21300008: 16x16_various_4
-    21300010: 16x16_various_5
-    21300012: 16x16_various_6
-    21300014: 16x16_various_7
-    21300016: 16x16_various_8
-    21300018: 16x16_various_9
-    21300020: 16x16_various_10
-    21300022: 16x16_various_11
-    21300024: 16x16_various_12
-    21300026: 16x16_various_13
-    21300028: 16x16_various_14
-    21300030: 16x16_various_15
-    21300032: 16x16_various_16
-    21300034: 16x16_various_17
-    21300036: 16x16_various_18
-    21300038: 16x16_various_19
-    21300040: 16x16_various_20
-    21300042: 16x16_various_21
-    21300044: 16x16_various_22
-    21300046: 16x16_various_23
-    21300048: 16x16_various_24
-    21300050: 16x16_various_25
-    21300052: 16x16_various_26
-    21300054: 16x16_various_27
-    21300056: 16x16_various_28
-    21300058: 16x16_various_29
-    21300060: 16x16_various_30
-    21300062: 16x16_various_31
-    21300064: 16x16_various_32
-    21300066: 16x16_various_33
-    21300068: 16x16_various_34
-    21300070: 16x16_various_35
-    21300072: 16x16_various_36
-    21300074: 16x16_various_37
-    21300076: 16x16_various_38
-    21300078: 16x16_various_39
-    21300080: 16x16_various_40
-    21300082: 16x16_various_41
-    21300084: 16x16_various_42
-    21300086: 16x16_various_43
-    21300088: 16x16_various_44
-    21300090: 16x16_various_45
-    21300092: 16x16_various_46
-    21300094: 16x16_various_47
-    21300096: 16x16_various_48
-    21300098: 16x16_various_49
-    21300100: 16x16_various_50
-    21300102: 16x16_various_51
-    21300104: 16x16_various_52
-    21300106: 16x16_various_53
-    21300108: 16x16_various_54
-    21300110: 16x16_various_55
-    21300112: 16x16_various_56
-    21300114: 16x16_various_57
-    21300116: 16x16_various_58
-    21300118: 16x16_various_59
-    21300120: 16x16_various_60
-    21300122: 16x16_various_61
-    21300124: 16x16_various_62
-    21300126: 16x16_various_63
-    21300128: 16x16_various_64
-    21300130: 16x16_various_65
-    21300132: 16x16_various_66
-    21300134: 16x16_various_67
-    21300136: 16x16_various_68
-    21300138: 16x16_various_69
-    21300140: 16x16_various_70
-    21300142: 16x16_various_71
-    21300144: 16x16_various_72
-    21300146: 16x16_various_73
-    21300148: 16x16_various_74
-    21300150: 16x16_various_75
-    21300152: 16x16_various_76
-    21300154: 16x16_various_77
-    21300156: 16x16_various_78
-    21300158: 16x16_various_79
-    21300160: 16x16_various_80
-    21300162: 16x16_various_81
-    21300164: 16x16_various_82
-    21300166: 16x16_various_83
-    21300168: 16x16_various_84
-    21300170: 16x16_various_85
-    21300172: 16x16_various_86
-    21300174: 16x16_various_87
-    21300176: 16x16_various_88
-    21300178: 16x16_various_89
-    21300180: 16x16_various_90
-    21300182: 16x16_various_91
-    21300184: 16x16_various_92
-    21300186: 16x16_various_93
-    21300188: 16x16_various_94
-    21300190: 16x16_various_95
-    21300192: 16x16_various_96
-    21300194: 16x16_various_97
-    21300196: 16x16_various_98
-    21300198: 16x16_various_99
-    21300200: 16x16_various_100
-    21300202: 16x16_various_101
-    21300204: 16x16_various_102
-    21300206: 16x16_various_103
-    21300208: 16x16_various_104
-    21300210: 16x16_various_105
-    21300212: 16x16_various_106
-    21300214: 16x16_various_107
-    21300216: 16x16_various_108
-    21300218: 16x16_various_109
-    21300220: 16x16_various_110
-    21300222: 16x16_various_111
-    21300224: 16x16_various_112
-    21300226: 16x16_various_113
-    21300228: 16x16_various_114
-    21300230: 16x16_various_115
-    21300232: 16x16_various_116
-    21300234: 16x16_various_117
-    21300236: 16x16_various_118
-    21300238: 16x16_various_119
-    21300240: 16x16_various_120
-    21300242: 16x16_various_121
-    21300244: 16x16_various_122
-    21300246: 16x16_various_123
-    21300248: 16x16_various_124
-    21300250: 16x16_various_125
-    21300252: 16x16_various_126
-    21300254: 16x16_various_127
-    21300256: 16x16_various_128
-    21300258: 16x16_various_129
-    21300260: 16x16_various_130
-    21300262: 16x16_various_131
-    21300264: 16x16_various_132
-    21300266: 16x16_various_133
-    21300268: 16x16_various_134
-    21300270: 16x16_various_135
-    21300272: 16x16_various_136
-    21300274: 16x16_various_137
-    21300276: 16x16_various_138
-    21300278: 16x16_various_139
-    21300280: 16x16_various_140
-    21300282: 16x16_various_141
-    21300284: 16x16_various_142
-    21300286: 16x16_various_143
-    21300288: 16x16_various_144
-    21300290: 16x16_various_145
-    21300292: 16x16_various_146
-    21300294: 16x16_various_147
-    21300296: 16x16_various_148
-    21300298: 16x16_various_149
-    21300300: 16x16_various_150
-    21300302: 16x16_various_151
-    21300304: 16x16_various_152
-    21300306: 16x16_various_153
-    21300308: 16x16_various_154
-    21300310: 16x16_various_155
-    21300312: 16x16_various_156
-    21300314: 16x16_various_157
-    21300316: 16x16_various_158
-    21300318: 16x16_various_159
-    21300320: 16x16_various_160
-    21300322: 16x16_various_161
-    21300324: 16x16_various_162
-    21300326: 16x16_various_163
-    21300328: 16x16_various_164
-    21300330: 16x16_various_165
-    21300332: 16x16_various_166
-    21300334: 16x16_various_167
-    21300336: 16x16_various_168
-    21300338: 16x16_various_169
-    21300340: 16x16_various_170
-    21300342: 16x16_various_171
-    21300344: 16x16_various_172
-    21300346: 16x16_various_173
-    21300348: 16x16_various_174
-    21300350: 16x16_various_175
-    21300352: 16x16_various_176
-    21300354: 16x16_various_177
-    21300356: 16x16_various_178
-    21300358: 16x16_various_179
-    21300360: 16x16_various_180
-    21300362: 16x16_various_181
-    21300364: 16x16_various_182
-    21300366: 16x16_various_183
-    21300368: 16x16_various_184
-    21300370: 16x16_various_185
-    21300372: 16x16_various_186
-    21300374: 16x16_various_187
-    21300376: 16x16_various_188
-    21300378: 16x16_various_189
-    21300380: 16x16_various_190
-    21300382: 16x16_various_191
-    21300384: 16x16_various_192
-    21300386: 16x16_various_193
-    21300388: 16x16_various_194
-    21300390: 16x16_various_195
-    21300392: 16x16_various_196
-    21300394: 16x16_various_197
-    21300396: 16x16_various_198
-    21300398: 16x16_various_199
-    21300400: 16x16_various_200
-    21300402: 16x16_various_201
-    21300404: 16x16_various_202
-    21300406: 16x16_various_203
-    21300408: 16x16_various_204
-    21300410: 16x16_various_205
-    21300412: 16x16_various_206
-    21300414: 16x16_various_207
-    21300416: 16x16_various_208
-    21300418: 16x16_various_209
-    21300420: 16x16_various_210
-    21300422: 16x16_various_211
-    21300424: 16x16_various_212
-    21300426: 16x16_various_213
-    21300428: 16x16_various_214
-    21300430: 16x16_various_215
-    21300432: 16x16_various_216
-    21300434: 16x16_various_217
-    21300436: 16x16_various_218
-    21300438: 16x16_various_219
-    21300440: 16x16_various_220
-    21300442: 16x16_various_221
-    21300444: 16x16_various_222
-    21300446: 16x16_various_223
-    21300448: 16x16_various_224
-    21300450: 16x16_various_225
-    21300452: 16x16_various_226
-    21300454: 16x16_various_227
-    21300456: 16x16_various_228
-    21300458: 16x16_various_229
-    21300460: 16x16_various_230
-    21300462: 16x16_various_231
-    21300464: 16x16_various_232
-    21300466: 16x16_various_233
-    21300468: 16x16_various_234
-    21300470: 16x16_various_235
-    21300472: 16x16_various_236
-    21300474: 16x16_various_237
-    21300476: 16x16_various_238
-    21300478: 16x16_various_239
+    21300000: 16x16_accesories_books_diamons_hair_0
+    21300002: 16x16_accesories_books_diamons_hair_1
+    21300004: 16x16_accesories_books_diamons_hair_2
+    21300006: 16x16_accesories_books_diamons_hair_3
+    21300008: 16x16_accesories_books_diamons_hair_4
+    21300010: 16x16_accesories_books_diamons_hair_5
+    21300012: 16x16_accesories_books_diamons_hair_6
+    21300014: 16x16_accesories_books_diamons_hair_7
+    21300016: 16x16_accesories_books_diamons_hair_8
+    21300018: 16x16_accesories_books_diamons_hair_9
+    21300020: 16x16_accesories_books_diamons_hair_10
+    21300022: 16x16_accesories_books_diamons_hair_11
+    21300024: 16x16_accesories_books_diamons_hair_12
+    21300026: 16x16_accesories_books_diamons_hair_13
+    21300028: 16x16_accesories_books_diamons_hair_14
+    21300030: 16x16_accesories_books_diamons_hair_15
+    21300032: 16x16_accesories_books_diamons_hair_16
+    21300034: 16x16_accesories_books_diamons_hair_17
+    21300036: 16x16_accesories_books_diamons_hair_18
+    21300038: 16x16_accesories_books_diamons_hair_19
+    21300040: 16x16_accesories_books_diamons_hair_20
+    21300042: 16x16_accesories_books_diamons_hair_21
+    21300044: 16x16_accesories_books_diamons_hair_22
+    21300046: 16x16_accesories_books_diamons_hair_23
+    21300048: 16x16_accesories_books_diamons_hair_24
+    21300050: 16x16_accesories_books_diamons_hair_25
+    21300052: 16x16_accesories_books_diamons_hair_26
+    21300054: 16x16_accesories_books_diamons_hair_27
+    21300056: 16x16_accesories_books_diamons_hair_28
+    21300058: 16x16_accesories_books_diamons_hair_29
+    21300060: 16x16_accesories_books_diamons_hair_30
+    21300062: 16x16_accesories_books_diamons_hair_31
+    21300064: 16x16_accesories_books_diamons_hair_32
+    21300066: 16x16_accesories_books_diamons_hair_33
+    21300068: 16x16_accesories_books_diamons_hair_34
+    21300070: 16x16_accesories_books_diamons_hair_35
+    21300072: 16x16_accesories_books_diamons_hair_36
+    21300074: 16x16_accesories_books_diamons_hair_37
+    21300076: 16x16_accesories_books_diamons_hair_38
+    21300078: 16x16_accesories_books_diamons_hair_39
+    21300080: 16x16_accesories_books_diamons_hair_40
+    21300082: 16x16_accesories_books_diamons_hair_41
+    21300084: 16x16_accesories_books_diamons_hair_42
+    21300086: 16x16_accesories_books_diamons_hair_43
+    21300088: 16x16_accesories_books_diamons_hair_44
+    21300090: 16x16_accesories_books_diamons_hair_45
+    21300092: 16x16_accesories_books_diamons_hair_46
+    21300094: 16x16_accesories_books_diamons_hair_47
+    21300096: 16x16_accesories_books_diamons_hair_48
+    21300098: 16x16_accesories_books_diamons_hair_49
+    21300100: 16x16_accesories_books_diamons_hair_50
+    21300102: 16x16_accesories_books_diamons_hair_51
+    21300104: 16x16_accesories_books_diamons_hair_52
+    21300106: 16x16_accesories_books_diamons_hair_53
+    21300108: 16x16_accesories_books_diamons_hair_54
+    21300110: 16x16_accesories_books_diamons_hair_55
+    21300112: 16x16_accesories_books_diamons_hair_56
+    21300114: 16x16_accesories_books_diamons_hair_57
+    21300116: 16x16_accesories_books_diamons_hair_58
+    21300118: 16x16_accesories_books_diamons_hair_59
+    21300120: 16x16_accesories_books_diamons_hair_60
+    21300122: 16x16_accesories_books_diamons_hair_61
+    21300124: 16x16_accesories_books_diamons_hair_62
+    21300126: 16x16_accesories_books_diamons_hair_63
+    21300128: 16x16_accesories_books_diamons_hair_64
+    21300130: 16x16_accesories_books_diamons_hair_65
+    21300132: 16x16_accesories_books_diamons_hair_66
+    21300134: 16x16_accesories_books_diamons_hair_67
+    21300136: 16x16_accesories_books_diamons_hair_68
+    21300138: 16x16_accesories_books_diamons_hair_69
+    21300140: 16x16_accesories_books_diamons_hair_70
+    21300142: 16x16_accesories_books_diamons_hair_71
+    21300144: 16x16_accesories_books_diamons_hair_72
+    21300146: 16x16_accesories_books_diamons_hair_73
+    21300148: 16x16_accesories_books_diamons_hair_74
+    21300150: 16x16_accesories_books_diamons_hair_75
+    21300152: 16x16_accesories_books_diamons_hair_76
+    21300154: 16x16_accesories_books_diamons_hair_77
+    21300156: 16x16_accesories_books_diamons_hair_78
+    21300158: 16x16_accesories_books_diamons_hair_79
+    21300160: 16x16_accesories_books_diamons_hair_80
+    21300162: 16x16_accesories_books_diamons_hair_81
+    21300164: 16x16_accesories_books_diamons_hair_82
+    21300166: 16x16_accesories_books_diamons_hair_83
+    21300168: 16x16_accesories_books_diamons_hair_84
+    21300170: 16x16_accesories_books_diamons_hair_85
+    21300172: 16x16_accesories_books_diamons_hair_86
+    21300174: 16x16_accesories_books_diamons_hair_87
+    21300176: 16x16_accesories_books_diamons_hair_88
+    21300178: 16x16_accesories_books_diamons_hair_89
+    21300180: 16x16_accesories_books_diamons_hair_90
+    21300182: 16x16_accesories_books_diamons_hair_91
+    21300184: 16x16_accesories_books_diamons_hair_92
+    21300186: 16x16_accesories_books_diamons_hair_93
+    21300188: 16x16_accesories_books_diamons_hair_94
+    21300190: 16x16_accesories_books_diamons_hair_95
+    21300192: 16x16_accesories_books_diamons_hair_96
+    21300194: 16x16_accesories_books_diamons_hair_97
+    21300196: 16x16_accesories_books_diamons_hair_98
+    21300198: 16x16_accesories_books_diamons_hair_99
+    21300200: 16x16_accesories_books_diamons_hair_100
+    21300202: 16x16_accesories_books_diamons_hair_101
+    21300204: 16x16_accesories_books_diamons_hair_102
+    21300206: 16x16_accesories_books_diamons_hair_103
+    21300208: 16x16_accesories_books_diamons_hair_104
+    21300210: 16x16_accesories_books_diamons_hair_105
+    21300212: 16x16_accesories_books_diamons_hair_106
+    21300214: 16x16_accesories_books_diamons_hair_107
+    21300216: 16x16_accesories_books_diamons_hair_108
+    21300218: 16x16_accesories_books_diamons_hair_109
+    21300220: 16x16_accesories_books_diamons_hair_110
+    21300222: 16x16_accesories_books_diamons_hair_111
+    21300224: 16x16_accesories_books_diamons_hair_112
+    21300226: 16x16_accesories_books_diamons_hair_113
+    21300228: 16x16_accesories_books_diamons_hair_114
+    21300230: 16x16_accesories_books_diamons_hair_115
+    21300232: 16x16_accesories_books_diamons_hair_116
+    21300234: 16x16_accesories_books_diamons_hair_117
+    21300236: 16x16_accesories_books_diamons_hair_118
+    21300238: 16x16_accesories_books_diamons_hair_119
+    21300240: 16x16_accesories_books_diamons_hair_120
+    21300242: 16x16_accesories_books_diamons_hair_121
+    21300244: 16x16_accesories_books_diamons_hair_122
+    21300246: 16x16_accesories_books_diamons_hair_123
+    21300248: 16x16_accesories_books_diamons_hair_124
+    21300250: 16x16_accesories_books_diamons_hair_125
+    21300252: 16x16_accesories_books_diamons_hair_126
+    21300254: 16x16_accesories_books_diamons_hair_127
+    21300256: 16x16_accesories_books_diamons_hair_128
+    21300258: 16x16_accesories_books_diamons_hair_129
+    21300260: 16x16_accesories_books_diamons_hair_130
+    21300262: 16x16_accesories_books_diamons_hair_131
+    21300264: 16x16_accesories_books_diamons_hair_132
+    21300266: 16x16_accesories_books_diamons_hair_133
+    21300268: 16x16_accesories_books_diamons_hair_134
+    21300270: 16x16_accesories_books_diamons_hair_135
+    21300272: 16x16_accesories_books_diamons_hair_136
+    21300274: 16x16_accesories_books_diamons_hair_137
+    21300276: 16x16_accesories_books_diamons_hair_138
+    21300278: 16x16_accesories_books_diamons_hair_139
+    21300280: 16x16_accesories_books_diamons_hair_140
+    21300282: 16x16_accesories_books_diamons_hair_141
+    21300284: 16x16_accesories_books_diamons_hair_142
+    21300286: 16x16_accesories_books_diamons_hair_143
+    21300288: 16x16_accesories_books_diamons_hair_144
+    21300290: 16x16_accesories_books_diamons_hair_145
+    21300292: 16x16_accesories_books_diamons_hair_146
+    21300294: 16x16_accesories_books_diamons_hair_147
+    21300296: 16x16_accesories_books_diamons_hair_148
+    21300298: 16x16_accesories_books_diamons_hair_149
+    21300300: 16x16_accesories_books_diamons_hair_150
+    21300302: 16x16_accesories_books_diamons_hair_151
+    21300304: 16x16_accesories_books_diamons_hair_152
+    21300306: 16x16_accesories_books_diamons_hair_153
+    21300308: 16x16_accesories_books_diamons_hair_154
+    21300310: 16x16_accesories_books_diamons_hair_155
+    21300312: 16x16_accesories_books_diamons_hair_156
+    21300314: 16x16_accesories_books_diamons_hair_157
+    21300316: 16x16_accesories_books_diamons_hair_158
+    21300318: 16x16_accesories_books_diamons_hair_159
+    21300320: 16x16_accesories_books_diamons_hair_160
+    21300322: 16x16_accesories_books_diamons_hair_161
+    21300324: 16x16_accesories_books_diamons_hair_162
+    21300326: 16x16_accesories_books_diamons_hair_163
+    21300328: 16x16_accesories_books_diamons_hair_164
+    21300330: 16x16_accesories_books_diamons_hair_165
+    21300332: 16x16_accesories_books_diamons_hair_166
+    21300334: 16x16_accesories_books_diamons_hair_167
+    21300336: 16x16_accesories_books_diamons_hair_168
+    21300338: 16x16_accesories_books_diamons_hair_169
+    21300340: 16x16_accesories_books_diamons_hair_170
+    21300342: 16x16_accesories_books_diamons_hair_171
+    21300344: 16x16_accesories_books_diamons_hair_172
+    21300346: 16x16_accesories_books_diamons_hair_173
+    21300348: 16x16_accesories_books_diamons_hair_174
+    21300350: 16x16_accesories_books_diamons_hair_175
+    21300352: 16x16_accesories_books_diamons_hair_176
+    21300354: 16x16_accesories_books_diamons_hair_177
+    21300356: 16x16_accesories_books_diamons_hair_178
+    21300358: 16x16_accesories_books_diamons_hair_179
+    21300360: 16x16_accesories_books_diamons_hair_180
+    21300362: 16x16_accesories_books_diamons_hair_181
+    21300364: 16x16_accesories_books_diamons_hair_182
+    21300366: 16x16_accesories_books_diamons_hair_183
+    21300368: 16x16_accesories_books_diamons_hair_184
+    21300370: 16x16_accesories_books_diamons_hair_185
+    21300372: 16x16_accesories_books_diamons_hair_186
+    21300374: 16x16_accesories_books_diamons_hair_187
+    21300376: 16x16_accesories_books_diamons_hair_188
+    21300378: 16x16_accesories_books_diamons_hair_189
+    21300380: 16x16_accesories_books_diamons_hair_190
+    21300382: 16x16_accesories_books_diamons_hair_191
+    21300384: 16x16_accesories_books_diamons_hair_192
+    21300386: 16x16_accesories_books_diamons_hair_193
+    21300388: 16x16_accesories_books_diamons_hair_194
+    21300390: 16x16_accesories_books_diamons_hair_195
+    21300392: 16x16_accesories_books_diamons_hair_196
+    21300394: 16x16_accesories_books_diamons_hair_197
+    21300396: 16x16_accesories_books_diamons_hair_198
+    21300398: 16x16_accesories_books_diamons_hair_199
+    21300400: 16x16_accesories_books_diamons_hair_200
+    21300402: 16x16_accesories_books_diamons_hair_201
+    21300404: 16x16_accesories_books_diamons_hair_202
+    21300406: 16x16_accesories_books_diamons_hair_203
+    21300408: 16x16_accesories_books_diamons_hair_204
+    21300410: 16x16_accesories_books_diamons_hair_205
+    21300412: 16x16_accesories_books_diamons_hair_206
+    21300414: 16x16_accesories_books_diamons_hair_207
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -324,4801 +292,4161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 16x16_various_0
+      name: 16x16_accesories_books_diamons_hair_0
       rect:
         serializedVersion: 2
         x: 3
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05e603b96dee2a94b8cc97070d825839
+      spriteID: f027cdb68648a724daf2ad3987b2ca2d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_1
+      name: 16x16_accesories_books_diamons_hair_1
       rect:
         serializedVersion: 2
         x: 25
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f439913427104a4fad38c2ce79f4276
+      spriteID: 1100b0e0913c10048ab8d7f94571dde2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_2
+      name: 16x16_accesories_books_diamons_hair_2
       rect:
         serializedVersion: 2
         x: 47
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af3c435617c6ea74d9afcb92cc67f6cc
+      spriteID: e4088c2e9c53df349845f29cb43c5f70
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_3
+      name: 16x16_accesories_books_diamons_hair_3
       rect:
         serializedVersion: 2
         x: 69
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc4131a7b90a5e84abe9e0725201e942
+      spriteID: 0897bb6b7d0988d41b9e9c11608b66e8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_4
+      name: 16x16_accesories_books_diamons_hair_4
       rect:
         serializedVersion: 2
         x: 91
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb538c7062fa4494ba61dd7a4070af87
+      spriteID: 6dcbbdafa08634b43bb350018904c3bf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_5
+      name: 16x16_accesories_books_diamons_hair_5
       rect:
         serializedVersion: 2
         x: 113
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4031541dd5e9f7946a933f2c6f2189c0
+      spriteID: 74e6419fc4b0ff046b41c2eb7f60d6bd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_6
+      name: 16x16_accesories_books_diamons_hair_6
       rect:
         serializedVersion: 2
         x: 135
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9015a5c12c093bd4b97898513242dab7
+      spriteID: 0cf1633023c247d46bc015ba1b9d8011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_7
+      name: 16x16_accesories_books_diamons_hair_7
       rect:
         serializedVersion: 2
         x: 157
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d52e1e3c303268941813ff198b3cd928
+      spriteID: 31ba7e7188a6d684782b4cc92cc9c117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_8
+      name: 16x16_accesories_books_diamons_hair_8
       rect:
         serializedVersion: 2
         x: 179
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ef8444b77cfac84bbe8c9abcd7c6c94
+      spriteID: e5cc13d139edab246be3157554793f41
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_9
+      name: 16x16_accesories_books_diamons_hair_9
       rect:
         serializedVersion: 2
         x: 201
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1e9ff3f1c8028241bfbb9787df131c0
+      spriteID: 36ba95013cda7b84ab00615d80ec5076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_10
+      name: 16x16_accesories_books_diamons_hair_10
       rect:
         serializedVersion: 2
         x: 223
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cff9b6c23c878b4e88764542715044f
+      spriteID: 9488a32346ae18542aa703f7e0c041af
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_11
+      name: 16x16_accesories_books_diamons_hair_11
       rect:
         serializedVersion: 2
         x: 245
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dab44043c7f1af48b714d71ea18872d
+      spriteID: e976b52e9c1673b4795170287ff5b103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_12
+      name: 16x16_accesories_books_diamons_hair_12
       rect:
         serializedVersion: 2
         x: 267
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f785af59aefb1b54fa4109be350f0401
+      spriteID: e9c660566076ad34baadb3eba3a9bcf7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_13
+      name: 16x16_accesories_books_diamons_hair_13
       rect:
         serializedVersion: 2
         x: 289
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d97da463ad324ef4ea4864c56f9d78c0
+      spriteID: 23aea54e51e51e249a90850ccfeb2d7b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_14
+      name: 16x16_accesories_books_diamons_hair_14
       rect:
         serializedVersion: 2
         x: 311
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e7f7cf773a04ea4dabf40dd63540c2c
+      spriteID: 59afc4fd91cd7cb4a905d195d8e04688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_15
+      name: 16x16_accesories_books_diamons_hair_15
       rect:
         serializedVersion: 2
         x: 333
-        y: 312
+        y: 267
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db0dfb872fef68746b359d7ec678d52d
+      spriteID: 8d629d884819a734f93c94dee3693af9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_16
+      name: 16x16_accesories_books_diamons_hair_16
       rect:
         serializedVersion: 2
         x: 3
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ea6da341915314c9ab5d676565ddaa
+      spriteID: 7490f44610f5ea74aa39ba96fb6d31c2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_17
+      name: 16x16_accesories_books_diamons_hair_17
       rect:
         serializedVersion: 2
         x: 25
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4e3d30d4454f884c812858ce1ec6af4
+      spriteID: cdb242e2f8c31c1479cc9c0bc35116c7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_18
+      name: 16x16_accesories_books_diamons_hair_18
       rect:
         serializedVersion: 2
         x: 47
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6824c57fea03844d96efc282c621e8a
+      spriteID: 9f43d0139b9c61949b4f58f9936b87d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_19
+      name: 16x16_accesories_books_diamons_hair_19
       rect:
         serializedVersion: 2
         x: 69
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ac14c81718cb404aa2d052c2921f754
+      spriteID: edc835ccd46110e42afe9251bb0ada98
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_20
+      name: 16x16_accesories_books_diamons_hair_20
       rect:
         serializedVersion: 2
         x: 91
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 422dbfce401909e49ae85e757e84702f
+      spriteID: f2ff8c5212630d7468beaf435c508691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_21
+      name: 16x16_accesories_books_diamons_hair_21
       rect:
         serializedVersion: 2
         x: 113
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91e91d93f8e917c4ebe4dc997def50d2
+      spriteID: 7476a5fa430e54c4d9a48d74c049b7a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_22
+      name: 16x16_accesories_books_diamons_hair_22
       rect:
         serializedVersion: 2
         x: 135
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5adfb1f3a2995754bbd7b904a6e1c1e4
+      spriteID: f8d027fa346ddd944811ba3489c8e31f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_23
+      name: 16x16_accesories_books_diamons_hair_23
       rect:
         serializedVersion: 2
         x: 157
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c81a3a9705644744db3298b9a4dfe24f
+      spriteID: 13d33fe9c9d8e3140968d947fc090961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_24
+      name: 16x16_accesories_books_diamons_hair_24
       rect:
         serializedVersion: 2
         x: 179
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4fb7695d1b360c4d90548209ebb1c5a
+      spriteID: 7940d07b5c35a0f4a8599f71398ead0c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_25
+      name: 16x16_accesories_books_diamons_hair_25
       rect:
         serializedVersion: 2
         x: 201
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1048ba42b28fbb43a1a6e051e6f2cac
+      spriteID: 83953200f3ff52441a1a926e638f13d9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_26
+      name: 16x16_accesories_books_diamons_hair_26
       rect:
         serializedVersion: 2
         x: 223
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f345a83cc826424e9df99b472c2193b
+      spriteID: 8ffe45d08eb1ee142a669775fbca273b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_27
+      name: 16x16_accesories_books_diamons_hair_27
       rect:
         serializedVersion: 2
         x: 245
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6a3430be2832a646aacb054e5d14c34
+      spriteID: 0fe76d5b33dcbe4429a96e257bdcfc2f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_28
+      name: 16x16_accesories_books_diamons_hair_28
       rect:
         serializedVersion: 2
         x: 267
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da03421229bb47d45a15960c7b1f41f5
+      spriteID: d9d1ac05fa4e9f3409b4ef573aaac434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_29
+      name: 16x16_accesories_books_diamons_hair_29
       rect:
         serializedVersion: 2
         x: 289
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c69861bb47801543b83b5d66d35718d
+      spriteID: c08fbbc83fefff14a8635cf8c8a4acc3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_30
+      name: 16x16_accesories_books_diamons_hair_30
       rect:
         serializedVersion: 2
         x: 311
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7953659e28f8d55428340db5324684a0
+      spriteID: 358b20521b6db8b41a420152373a53de
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_31
+      name: 16x16_accesories_books_diamons_hair_31
       rect:
         serializedVersion: 2
         x: 333
-        y: 290
+        y: 245
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41a49bfd7b25b5046a0cc0f7f050be9f
+      spriteID: 24053033a0857134ebdf89eee67bca02
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_32
+      name: 16x16_accesories_books_diamons_hair_32
       rect:
         serializedVersion: 2
         x: 3
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5121ad722c588e44db9224b7b7630319
+      spriteID: b5dd543180bcd294393874cf3cc100d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_33
+      name: 16x16_accesories_books_diamons_hair_33
       rect:
         serializedVersion: 2
         x: 25
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8b7abcce260f2f44b942f90e3b15dba
+      spriteID: 1503dc362a740114687f2241bf4858df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_34
+      name: 16x16_accesories_books_diamons_hair_34
       rect:
         serializedVersion: 2
         x: 47
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d08dc3fa4f9466f47a70575201dc09d7
+      spriteID: 492bdec52933f4442b9a903c99f899f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_35
+      name: 16x16_accesories_books_diamons_hair_35
       rect:
         serializedVersion: 2
         x: 69
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 213b5d4f8bd785a4aa96ab7eb9eeae26
+      spriteID: f5e090823472c8c49b68da44b5b2cd24
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_36
+      name: 16x16_accesories_books_diamons_hair_36
       rect:
         serializedVersion: 2
         x: 91
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dc03f3e9cdc34b4ba6d26f28bb5171c
+      spriteID: 3774294c7ec246940acd4b7c9bfad979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_37
+      name: 16x16_accesories_books_diamons_hair_37
       rect:
         serializedVersion: 2
         x: 113
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bcc014d620025549b12b43ab42444bc
+      spriteID: ca74f3a3179993646843f0311cb2ae4d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_38
+      name: 16x16_accesories_books_diamons_hair_38
       rect:
         serializedVersion: 2
         x: 135
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac7ffabe371599f479ba6cbc7a1ed043
+      spriteID: f85f0c719b35e874caef1b4f4800c455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_39
+      name: 16x16_accesories_books_diamons_hair_39
       rect:
         serializedVersion: 2
         x: 157
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a129039bf9e71a49b015993d2634b23
+      spriteID: 785c4013c736eba44933a08f7bedc8c9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_40
+      name: 16x16_accesories_books_diamons_hair_40
       rect:
         serializedVersion: 2
         x: 179
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a581b1cee736de428936c9147583c82
+      spriteID: 7e04bb2a69e53eb4fa80c4ad37e21477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_41
+      name: 16x16_accesories_books_diamons_hair_41
       rect:
         serializedVersion: 2
         x: 201
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8ac207d91a1bc34e992b1e6533c194a
+      spriteID: 98ab2f86705abc64bae39052b70a8e22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_42
+      name: 16x16_accesories_books_diamons_hair_42
       rect:
         serializedVersion: 2
         x: 223
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 921c2a518e6d5144389bc104eb2a9150
+      spriteID: e8e33d8eeaeb29447811d2771a9c7bb2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_43
+      name: 16x16_accesories_books_diamons_hair_43
       rect:
         serializedVersion: 2
         x: 245
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98475b6eb1b933c4c8a4d11b353c5437
+      spriteID: 2977cd88c295bf44f9e5b7ecfde797fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_44
+      name: 16x16_accesories_books_diamons_hair_44
       rect:
         serializedVersion: 2
         x: 267
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84c74e2753158c648b0386a9dbb18d3a
+      spriteID: 8959cbf844d636449a650ee9a997ddee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_45
+      name: 16x16_accesories_books_diamons_hair_45
       rect:
         serializedVersion: 2
         x: 289
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffa4f17cad827674a8dd57193ff6e56e
+      spriteID: 0252cc0e666843740afb72cbac6879b6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_46
+      name: 16x16_accesories_books_diamons_hair_46
       rect:
         serializedVersion: 2
         x: 311
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d9dc20b0e89cc54582c8526a5a0fa55
+      spriteID: c4adfcec36c80e141a2deac01f90db7f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_47
+      name: 16x16_accesories_books_diamons_hair_47
       rect:
         serializedVersion: 2
         x: 333
-        y: 268
+        y: 223
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85bb6921dd76f794ca825b82e18d16a9
+      spriteID: 358bcbc3763c9a54ead3cec06b271dc7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_48
+      name: 16x16_accesories_books_diamons_hair_48
       rect:
         serializedVersion: 2
         x: 3
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ae51c74d911e7b45a62df99bede618e
+      spriteID: 329bb34ca777d39498cd581cea61c364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_49
+      name: 16x16_accesories_books_diamons_hair_49
       rect:
         serializedVersion: 2
         x: 25
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 450422fa002e5b34cbbb9322e852e52b
+      spriteID: 5f0cfb47474eef1438477c5d4d68ea8b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_50
+      name: 16x16_accesories_books_diamons_hair_50
       rect:
         serializedVersion: 2
         x: 47
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8a7cb5c362bd624d91ea059f6e286b0
+      spriteID: fc3b50ec8b8e4fb41a49bae2c3a99555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_51
+      name: 16x16_accesories_books_diamons_hair_51
       rect:
         serializedVersion: 2
         x: 69
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e067e0ed2093c14a9f3f3dc97d25052
+      spriteID: 394894d01cacccd408e10ca267b8d285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_52
+      name: 16x16_accesories_books_diamons_hair_52
       rect:
         serializedVersion: 2
         x: 91
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab53d522b1722b1408d6f41ecdf77bab
+      spriteID: 042ae7fc5ada854498824ce38dea9b79
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_53
+      name: 16x16_accesories_books_diamons_hair_53
       rect:
         serializedVersion: 2
         x: 113
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b33c9ee52ae8b84ca6889c328a8af39
+      spriteID: f2f83e1e75f7e844db72f71121c4006b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_54
+      name: 16x16_accesories_books_diamons_hair_54
       rect:
         serializedVersion: 2
         x: 135
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4eae8997101d7c9499f28e77b8939d90
+      spriteID: 34899723001798743b648fa23fa01bc6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_55
+      name: 16x16_accesories_books_diamons_hair_55
       rect:
         serializedVersion: 2
         x: 157
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bf09630b946db440a263585cc85c104
+      spriteID: b5320a72c40369f4e85b62c9a66db7df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_56
+      name: 16x16_accesories_books_diamons_hair_56
       rect:
         serializedVersion: 2
         x: 179
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a771cf93fd765b94694e3d1b7fe3b786
+      spriteID: 121489f7aa1171246a389a0176c898e5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_57
+      name: 16x16_accesories_books_diamons_hair_57
       rect:
         serializedVersion: 2
         x: 201
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69356d0241ef5f445b8f61d817407b8e
+      spriteID: 6f9d0859eceb11c48b8873fa351aacfe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_58
+      name: 16x16_accesories_books_diamons_hair_58
       rect:
         serializedVersion: 2
         x: 223
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d868da6ec7de4d44f96c1e9a46f1bc1e
+      spriteID: 9188618b1f57a94458ab36f31a673187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_59
+      name: 16x16_accesories_books_diamons_hair_59
       rect:
         serializedVersion: 2
         x: 245
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97d440dde8a957b439d0786e02a0289e
+      spriteID: eef8cc0f5cdcf4e4da73948131d81dee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_60
+      name: 16x16_accesories_books_diamons_hair_60
       rect:
         serializedVersion: 2
         x: 267
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b5b55a781b5b6e49a24002d91721893
+      spriteID: c7bf9270f701d144992d6754896a82a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_61
+      name: 16x16_accesories_books_diamons_hair_61
       rect:
         serializedVersion: 2
         x: 289
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f7a5d306b2c37a4f9900da57003e886
+      spriteID: 71e66e8c30daa0b45b43feae57437cbd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_62
+      name: 16x16_accesories_books_diamons_hair_62
       rect:
         serializedVersion: 2
         x: 311
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f03c2f00cbfe57b4d86be5c51ac15901
+      spriteID: 8d1c3bb032b836b4abd97b4959d405d9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_63
+      name: 16x16_accesories_books_diamons_hair_63
       rect:
         serializedVersion: 2
         x: 333
-        y: 246
+        y: 201
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fe26ccb4755654419c109aff7be6921
+      spriteID: 46ebf960ae88e0a45bea22efd10ae4fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_64
+      name: 16x16_accesories_books_diamons_hair_64
       rect:
         serializedVersion: 2
         x: 3
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69a3a95692cc6b049ad8ccf5d8e9d0df
+      spriteID: 5f996411766a8f5478465bc30a8632d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_65
+      name: 16x16_accesories_books_diamons_hair_65
       rect:
         serializedVersion: 2
         x: 25
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d05c91fb378fdf48ad4150df91ce0c1
+      spriteID: fc43a54eeef1145489efe629977db8de
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_66
+      name: 16x16_accesories_books_diamons_hair_66
       rect:
         serializedVersion: 2
         x: 47
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d7ff0dec0243d241a25e10ffc560f6e
+      spriteID: c433b61b8643abc40b7b94235780b581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_67
+      name: 16x16_accesories_books_diamons_hair_67
       rect:
         serializedVersion: 2
         x: 69
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 349cec99579e18349b21e63392832fbb
+      spriteID: 5e024ca4b55f76045811ea62381e9ef5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_68
+      name: 16x16_accesories_books_diamons_hair_68
       rect:
         serializedVersion: 2
         x: 91
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51933281e77c2bd43be5b005aeaa4248
+      spriteID: de357386c2139654fb4b43e570d47141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_69
+      name: 16x16_accesories_books_diamons_hair_69
       rect:
         serializedVersion: 2
         x: 113
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6e89ec5de6209645b2ff92dfe5ac39a
+      spriteID: 6273e7bb4c5bf2648bcd5f6e01a20052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_70
+      name: 16x16_accesories_books_diamons_hair_70
       rect:
         serializedVersion: 2
         x: 135
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2aae07592fe02d49bab64e55dc366ed
+      spriteID: 5491d9c23ed696649b42258b7e94e4ba
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_71
+      name: 16x16_accesories_books_diamons_hair_71
       rect:
         serializedVersion: 2
         x: 157
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a30c4f6d30f99294298b96b44f076b70
+      spriteID: 23675aca344e3ad4e865a5283eff6881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_72
+      name: 16x16_accesories_books_diamons_hair_72
       rect:
         serializedVersion: 2
         x: 179
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 633eed31d7b01594eb7425e5f7ce4488
+      spriteID: 8de965725f8e33b4886cdadd3011f539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_73
+      name: 16x16_accesories_books_diamons_hair_73
       rect:
         serializedVersion: 2
         x: 201
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eb313bc0f6f81647b0a2819ba056a1d
+      spriteID: e158d15dc0bc9fd44a613e22ae4d6430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_74
+      name: 16x16_accesories_books_diamons_hair_74
       rect:
         serializedVersion: 2
         x: 223
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10c5ad4226caf7a41981b913bd9cd90f
+      spriteID: 0e583d7a75440894c868316bd0335fde
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_75
+      name: 16x16_accesories_books_diamons_hair_75
       rect:
         serializedVersion: 2
         x: 245
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 284a4f5a4526bcc478e614116406160a
+      spriteID: 3481adb4980c57c4b857b576040e41f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_76
+      name: 16x16_accesories_books_diamons_hair_76
       rect:
         serializedVersion: 2
         x: 267
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43c397ff26fd9f942b899a2065c41af8
+      spriteID: 4e7a37efbc545444ea5b56f63fa9673e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_77
+      name: 16x16_accesories_books_diamons_hair_77
       rect:
         serializedVersion: 2
         x: 289
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aea8a5b97ca195042a802356d897b252
+      spriteID: f21ece41e15c28e4eb429f3dc47f1df1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_78
+      name: 16x16_accesories_books_diamons_hair_78
       rect:
         serializedVersion: 2
         x: 311
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8b5cb3b7c0df574497e353e8349f564
+      spriteID: af1382c2eb61225439a94f875d76aabf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_79
+      name: 16x16_accesories_books_diamons_hair_79
       rect:
         serializedVersion: 2
         x: 333
-        y: 224
+        y: 179
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1145961270c11a54dad2fb796bab2a16
+      spriteID: 356d7b11084a84a46822698310fceb54
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_80
+      name: 16x16_accesories_books_diamons_hair_80
       rect:
         serializedVersion: 2
         x: 3
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dcc9fff87db8ea4fa918b4cc431d3fa
+      spriteID: 891a97632b67a31429d426850e14c80c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_81
+      name: 16x16_accesories_books_diamons_hair_81
       rect:
         serializedVersion: 2
         x: 25
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad247b82a9b6bf44b9dc211401b5300c
+      spriteID: a5d8155d45eaf6e49986ad9d0e0ccabd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_82
+      name: 16x16_accesories_books_diamons_hair_82
       rect:
         serializedVersion: 2
         x: 47
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5225e511cdd383f44832ac3b9dd0c29a
+      spriteID: f7d7eeed77288b6458c5159db76d8f0e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_83
+      name: 16x16_accesories_books_diamons_hair_83
       rect:
         serializedVersion: 2
         x: 69
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d097ec17f66bdb14fbd54e2fd0bc1e26
+      spriteID: 3f31e7c85d49e75438b844555587b961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_84
+      name: 16x16_accesories_books_diamons_hair_84
       rect:
         serializedVersion: 2
         x: 91
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a4610b2852b1d947b4a3ec3519250e9
+      spriteID: 9f4c5804403935e4c95d631d7fd8e402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_85
+      name: 16x16_accesories_books_diamons_hair_85
       rect:
         serializedVersion: 2
         x: 113
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9e1736f14fdd614ca384a8cd0f1e48c
+      spriteID: d5484198f7fa1604fa88165abb046168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_86
+      name: 16x16_accesories_books_diamons_hair_86
       rect:
         serializedVersion: 2
         x: 135
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7ad0f3ad5850a546a5fe1323e40a853
+      spriteID: 2de88875e592f8e4094c5045f87212bd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_87
+      name: 16x16_accesories_books_diamons_hair_87
       rect:
         serializedVersion: 2
         x: 157
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f52334006e55e547bb9888f8ab53d28
+      spriteID: 34055bd144210ad4f84da342cb02d1ed
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_88
+      name: 16x16_accesories_books_diamons_hair_88
       rect:
         serializedVersion: 2
         x: 179
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9dcc10d4b307b14aa8375efd9190f2d
+      spriteID: dc0ad9811a11b274aa7b95c787613305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_89
+      name: 16x16_accesories_books_diamons_hair_89
       rect:
         serializedVersion: 2
         x: 201
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84ce0f6a7b1cc544ba8c94e5aadd499b
+      spriteID: 5056d5b727bd72e4196ac0c47fbe34b4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_90
+      name: 16x16_accesories_books_diamons_hair_90
       rect:
         serializedVersion: 2
         x: 223
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bca86878fccb564c80e69357c3cac36
+      spriteID: bfcb8639b31c35c4f9cd3bb20f7d4f80
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_91
+      name: 16x16_accesories_books_diamons_hair_91
       rect:
         serializedVersion: 2
         x: 245
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024905531a26a9e4b89a2c8fe808d59f
+      spriteID: 91a0431794b5a1f408ad1f947bc2e9fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_92
+      name: 16x16_accesories_books_diamons_hair_92
       rect:
         serializedVersion: 2
         x: 267
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b2b1b50ec3b5fe4f80bae59bbddb0f8
+      spriteID: 88010ec118077e3419d998debf9bec2c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_93
+      name: 16x16_accesories_books_diamons_hair_93
       rect:
         serializedVersion: 2
         x: 289
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7a4f72ec997fab4493a8c0ce38ca33e
+      spriteID: 2ab4a6680972dad488efc3fbe4f0b4b6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_94
+      name: 16x16_accesories_books_diamons_hair_94
       rect:
         serializedVersion: 2
         x: 311
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75f95424b78065f43933050aa3adb4b8
+      spriteID: 1f11f987a66b61d4a824b481d38a269f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_95
+      name: 16x16_accesories_books_diamons_hair_95
       rect:
         serializedVersion: 2
         x: 333
-        y: 202
+        y: 157
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41d22e5aee5970a4b8e917b43b565638
+      spriteID: 81d079e0e4ee0044f99833104b3a1588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_96
+      name: 16x16_accesories_books_diamons_hair_96
       rect:
         serializedVersion: 2
         x: 3
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65232b65afb6cd14aae5987062ef9161
+      spriteID: ae8778bc81c2d7b44b9c35c95490c0ee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_97
+      name: 16x16_accesories_books_diamons_hair_97
       rect:
         serializedVersion: 2
         x: 25
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 569b326e0b1f93242b1f5197d12801e8
+      spriteID: 3d641743eed2ae84fa1cddb152d00852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_98
+      name: 16x16_accesories_books_diamons_hair_98
       rect:
         serializedVersion: 2
         x: 47
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d64f5c8208fae04f8018fdf935fcbcd
+      spriteID: 56b85cba5d7ddc54c90313b175e9902a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_99
+      name: 16x16_accesories_books_diamons_hair_99
       rect:
         serializedVersion: 2
         x: 69
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3ec8a7cb23298146986db44a54b6f4a
+      spriteID: 9324ea1a2d87d7545829cf099b3d5bc8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_100
+      name: 16x16_accesories_books_diamons_hair_100
       rect:
         serializedVersion: 2
         x: 91
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02f702dc32a4b29418f412fea1b77c15
+      spriteID: 93e2abd8ce97c36458adec462ea58f65
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_101
+      name: 16x16_accesories_books_diamons_hair_101
       rect:
         serializedVersion: 2
         x: 113
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94bda73c0b6e91b4ea34663dd5d32523
+      spriteID: 025de4cbd19f2ef4ea13d4037e8024b3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_102
+      name: 16x16_accesories_books_diamons_hair_102
       rect:
         serializedVersion: 2
         x: 135
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 468fcfd4b4a31b14e8c8eb8d1b150d0b
+      spriteID: bc51ae48ad5352d4eb1358e20b8b7946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_103
+      name: 16x16_accesories_books_diamons_hair_103
       rect:
         serializedVersion: 2
         x: 157
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dcecaea7fa993d4aabe131c613aeb24
+      spriteID: deee29b21c91fdd48ab7b13217740989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_104
+      name: 16x16_accesories_books_diamons_hair_104
       rect:
         serializedVersion: 2
         x: 179
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 723f0e5a1b838f24698ae913573d8170
+      spriteID: 11414f550258b1840919e35c8e42ce6f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_105
+      name: 16x16_accesories_books_diamons_hair_105
       rect:
         serializedVersion: 2
         x: 201
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 513fd443bd5d9ce42aa08db84716f69a
+      spriteID: 6271088127cef3c4b9801c4e375f8189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_106
+      name: 16x16_accesories_books_diamons_hair_106
       rect:
         serializedVersion: 2
         x: 223
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b37f9645b8bd693449781bde9613b482
+      spriteID: 60b12aaf534ac3c4aac2aea5a0eb9dd3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_107
+      name: 16x16_accesories_books_diamons_hair_107
       rect:
         serializedVersion: 2
         x: 245
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac15d63dbe4ee474db8f9d09de671e78
+      spriteID: 12bb858ef9be01047be65ba0d1181dc3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_108
+      name: 16x16_accesories_books_diamons_hair_108
       rect:
         serializedVersion: 2
         x: 267
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3660f78ec1ca83f438a74745a8c28d5f
+      spriteID: 705b16744e2b3804bb447725903da293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_109
+      name: 16x16_accesories_books_diamons_hair_109
       rect:
         serializedVersion: 2
         x: 289
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53507e186a56c8a4d97c47326bbb3a84
+      spriteID: 69ed9d0978cd5b843af05088062a271a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_110
+      name: 16x16_accesories_books_diamons_hair_110
       rect:
         serializedVersion: 2
         x: 311
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0db8eb8084b36fa4bb0112b47ded4f53
+      spriteID: cd80cdc677666e0479de7cb353313447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_111
+      name: 16x16_accesories_books_diamons_hair_111
       rect:
         serializedVersion: 2
         x: 333
-        y: 180
+        y: 135
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c424b56ff87d5f49b7db8299cc29916
+      spriteID: 0e6d93ba635305045b33e398ddf2199e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_112
+      name: 16x16_accesories_books_diamons_hair_112
       rect:
         serializedVersion: 2
         x: 3
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bd9bc99a6581ed44b82fecbb813caf0
+      spriteID: 931f1f61574b85a409659014ece0912e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_113
+      name: 16x16_accesories_books_diamons_hair_113
       rect:
         serializedVersion: 2
         x: 25
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a731a36157eb97847be23800dc13dca7
+      spriteID: 243f4fc4bc5eb3544b53d673c647b5d4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_114
+      name: 16x16_accesories_books_diamons_hair_114
       rect:
         serializedVersion: 2
         x: 47
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b06b5e26ab1449438550a9afa290dbf
+      spriteID: e7f91f4d60e96744388edf0567cf2903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_115
+      name: 16x16_accesories_books_diamons_hair_115
       rect:
         serializedVersion: 2
         x: 69
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8079a73fa8183749bcbdeadc8fffb10
+      spriteID: 9b4115f78b9f95c4e923ece4c6b9bf2c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_116
+      name: 16x16_accesories_books_diamons_hair_116
       rect:
         serializedVersion: 2
         x: 91
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa46a864f5be3084aa2d637fbf260f1a
+      spriteID: 943b8435b0bed544b9795b4570c98d91
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_117
+      name: 16x16_accesories_books_diamons_hair_117
       rect:
         serializedVersion: 2
         x: 113
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75b6b8aee8d3c95428072506dcac126d
+      spriteID: f890d5023ae836d4b9f179ea648eadaf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_118
+      name: 16x16_accesories_books_diamons_hair_118
       rect:
         serializedVersion: 2
         x: 135
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7121b47264c1b4445b1959d6ef4c4338
+      spriteID: 0b663b923c680e74ea1a7a0cc334f016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_119
+      name: 16x16_accesories_books_diamons_hair_119
       rect:
         serializedVersion: 2
         x: 157
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a503e377c8863bc4e9a91b058727cb89
+      spriteID: cce98e7400c3e7c4a819e19c785d52e4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_120
+      name: 16x16_accesories_books_diamons_hair_120
       rect:
         serializedVersion: 2
         x: 179
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eac7a89ac0c62f344ac57bbff16b7951
+      spriteID: bb98b14494aaf6d4eb133da0e14bf54c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_121
+      name: 16x16_accesories_books_diamons_hair_121
       rect:
         serializedVersion: 2
         x: 201
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39c6c9e239d0e2241b74e55608795cbf
+      spriteID: 4933111ba4f04ba44aae63597639d7fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_122
+      name: 16x16_accesories_books_diamons_hair_122
       rect:
         serializedVersion: 2
         x: 223
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68586c781fc329745b2d714fdb8ab95b
+      spriteID: 42bf0ed824bde564695a7b77c8d0a799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_123
+      name: 16x16_accesories_books_diamons_hair_123
       rect:
         serializedVersion: 2
         x: 245
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e488ba14b2a78ee4bad927f36f5d870d
+      spriteID: 57b6b67cade3d8347ab2349fb0800e37
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_124
+      name: 16x16_accesories_books_diamons_hair_124
       rect:
         serializedVersion: 2
         x: 267
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dca240bbeafa8ce47a45322915241eb0
+      spriteID: 610d65e2f4714d84583b6bb04ceba9fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_125
+      name: 16x16_accesories_books_diamons_hair_125
       rect:
         serializedVersion: 2
         x: 289
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11f5cd3ea522922429301a3e08e3fe79
+      spriteID: 4fca43693c58389478e5891e0b8470b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_126
+      name: 16x16_accesories_books_diamons_hair_126
       rect:
         serializedVersion: 2
         x: 311
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96cd276a30df52e49917899babf71f6a
+      spriteID: 9575d23de857536408d0692dcc7fcfc6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_127
+      name: 16x16_accesories_books_diamons_hair_127
       rect:
         serializedVersion: 2
         x: 333
-        y: 158
+        y: 113
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 185d35d629d68154db390d54a383b8ea
+      spriteID: 862481ad405f7204b867bef71c2f070e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_128
+      name: 16x16_accesories_books_diamons_hair_128
       rect:
         serializedVersion: 2
         x: 3
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3461cb63dec81b24db93d5553aca722b
+      spriteID: bc25b5b45c4ee8041bb0a78ec7b4c1f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_129
+      name: 16x16_accesories_books_diamons_hair_129
       rect:
         serializedVersion: 2
         x: 25
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 796777f9a6dae5a428983092df8257c8
+      spriteID: 2e27c576c88b0e443ad9a9c9be37a252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_130
+      name: 16x16_accesories_books_diamons_hair_130
       rect:
         serializedVersion: 2
         x: 47
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b59e47cc1cbe1942a15f87387decd67
+      spriteID: 2c18ee6cc74fcda469d3c0728ffdab2a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_131
+      name: 16x16_accesories_books_diamons_hair_131
       rect:
         serializedVersion: 2
         x: 69
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbba0af0bd339f349b801611f2cfafd8
+      spriteID: 62622a110d05fe44d8f536f2a0e496ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_132
+      name: 16x16_accesories_books_diamons_hair_132
       rect:
         serializedVersion: 2
         x: 91
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09de842e82a9f664b80f0482df9f6407
+      spriteID: d070c02113b2cb246a865efafec0cd5b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_133
+      name: 16x16_accesories_books_diamons_hair_133
       rect:
         serializedVersion: 2
         x: 113
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c232ec1a79949a49b5a2b676f85037c
+      spriteID: 92b59a0e07cd3484193a26c9b632973b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_134
+      name: 16x16_accesories_books_diamons_hair_134
       rect:
         serializedVersion: 2
         x: 135
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9fbff61c41873046b249a15d0733eaf
+      spriteID: 1fe1d8a9b77bbd54ca0283fa5cf364d1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_135
+      name: 16x16_accesories_books_diamons_hair_135
       rect:
         serializedVersion: 2
         x: 157
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bb7cb0d42153a498a3474885fa5540
+      spriteID: ddecc6ae13d185f4cab8ce97e9a21b59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_136
+      name: 16x16_accesories_books_diamons_hair_136
       rect:
         serializedVersion: 2
         x: 179
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bead5e2071609134cba5d3717d40e296
+      spriteID: 8a15bcc96bfc26549a3a276bab3d356c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_137
+      name: 16x16_accesories_books_diamons_hair_137
       rect:
         serializedVersion: 2
         x: 201
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 301ea085e7ba09a41bce09406a38f10c
+      spriteID: 87acebd57a61eee478eda89a2b9d602d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_138
+      name: 16x16_accesories_books_diamons_hair_138
       rect:
         serializedVersion: 2
         x: 223
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ec4d45cd94127147b2a906b8471bd8d
+      spriteID: 13aaa493b2a163949b71e330d30248f8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_139
+      name: 16x16_accesories_books_diamons_hair_139
       rect:
         serializedVersion: 2
         x: 245
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08f8c5af2baa7aa468cea00c811b4e1e
+      spriteID: 899a0083b58563144abf42f72e02bdc4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_140
+      name: 16x16_accesories_books_diamons_hair_140
       rect:
         serializedVersion: 2
         x: 267
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f66894170a25bad4ab54e381d645bd38
+      spriteID: 3c1394efca01eb34e87e55f23d0d616f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_141
+      name: 16x16_accesories_books_diamons_hair_141
       rect:
         serializedVersion: 2
         x: 289
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a166439534ed3f49aa64c691ff872c8
+      spriteID: 88a5519df45a06d4ca45be4a9ab76969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_142
+      name: 16x16_accesories_books_diamons_hair_142
       rect:
         serializedVersion: 2
         x: 311
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f08f7a8ce8bf768499ca0db00c6def37
+      spriteID: 530479b28b9a16e4f9b3b9426dad063f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_143
+      name: 16x16_accesories_books_diamons_hair_143
       rect:
         serializedVersion: 2
         x: 333
-        y: 136
+        y: 91
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 861b6776394c2b4438252fd1d3d617a8
+      spriteID: 83340ea965da8a146a5b89e232cbb74c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_144
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3af351fcf7fd0384bb44112dab853c66
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_145
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c06ff50304abb3d4eaadb3107515b4b9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_146
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34d67a12069a95e4181f702b5fb2662e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_147
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a86fcecbf4f2e5241920df6191cca963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_148
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e16188f70218ef40befdff029b544f3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_149
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c46219f7640a2de4e9ef9b51a67d64e0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_150
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a00c7688db98234a8811c294de1eb6e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_151
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abcceb4adbc52ed4eaa0e14ad873771c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_152
-      rect:
-        serializedVersion: 2
-        x: 179
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: baafcb53f0d19a34ab334cd3aefd9da5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_153
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12504516c60994048a87bd01575dca51
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_154
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb43a83370a7e6f4087aff1e14b49ce1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_155
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12772b006d90a7d44ae04c9214fd09c9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_156
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f3ebafcc7c30a44985b1bc36b755385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_157
-      rect:
-        serializedVersion: 2
-        x: 289
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7b673748f04d0943b79f5b28a63944e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_158
-      rect:
-        serializedVersion: 2
-        x: 311
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2465107b113b83e46b04be82a00560c3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_159
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 114
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f22cb9419fdfde44cb46a08bedfdbc6a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_160
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 842330fe11172df40a9f41675553c588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_161
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9478629db0672a646808afc3cb953d8a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_162
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91cb354886e064844ac10422187cabfa
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_163
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94c1dee1273748c408500912edbf9286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_164
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d086ce17aeef9924387bdc03022d0959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_165
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8cb51a63f0112742a339eb5e7abbd60
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_166
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c350076e53f6124ca88a7f3c6bb2984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_167
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2aa30248bfc8a1e419df68587f3d4b5d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_168
-      rect:
-        serializedVersion: 2
-        x: 179
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ba906622b8c1394eadda1ec33f03346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_169
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aabd45c47cc82c040b05b59854a005e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_170
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3b7a7ea282abb2438bf34916bba47b4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_171
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2ff00571da22904785eb4cab0015a3f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_172
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75be018426abb3142932a84ddecd004e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_173
-      rect:
-        serializedVersion: 2
-        x: 289
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14aa12191a27900458b2a144f6c0b9e6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_174
-      rect:
-        serializedVersion: 2
-        x: 311
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e8f7a800293b8440b3cd4d8eeff5287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_175
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 92
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4e49b25d792fba42afa68e9d9951f82
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16x16_various_176
+      name: 16x16_accesories_books_diamons_hair_144
       rect:
         serializedVersion: 2
         x: 3
         y: 69
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70c164e2057fd3d44b3c816ab2adb1f4
+      spriteID: 23ea9c68bd53c6e40a9fc2e295f93022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_177
+      name: 16x16_accesories_books_diamons_hair_145
       rect:
         serializedVersion: 2
         x: 25
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12e42f4c2a634674f8f5fa7b39b3e449
+      spriteID: dccb8e6c7b1cf544cb4b9055e860e518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_178
+      name: 16x16_accesories_books_diamons_hair_146
       rect:
         serializedVersion: 2
         x: 47
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 109529c261eec0d469a09db144708778
+      spriteID: 7c55756994608e14da2f0a673227c931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_179
+      name: 16x16_accesories_books_diamons_hair_147
       rect:
         serializedVersion: 2
         x: 69
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61953542b15b1b441b18cb2a0cc9000c
+      spriteID: 8ea058b9ddadce442b65df9a3cba3472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_180
+      name: 16x16_accesories_books_diamons_hair_148
       rect:
         serializedVersion: 2
         x: 91
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3109c206e568d449baa9eb06957e8a4
+      spriteID: 2319252899baa054192b8c59fce0a65c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_181
+      name: 16x16_accesories_books_diamons_hair_149
       rect:
         serializedVersion: 2
         x: 113
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d5811767fbc67043871da646403c725
+      spriteID: a4660dfa4184d694a915b169fa543e95
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_182
+      name: 16x16_accesories_books_diamons_hair_150
       rect:
         serializedVersion: 2
         x: 135
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fd3062aa6d98a3439934bf324a30b08
+      spriteID: 91e435c73d6522b40a38a37cff54fe42
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_183
+      name: 16x16_accesories_books_diamons_hair_151
       rect:
         serializedVersion: 2
         x: 157
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf358aa537278a14e9b5eb0a4c6e6af9
+      spriteID: 125cc7c8c138ac043859d07dcf481b80
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_184
+      name: 16x16_accesories_books_diamons_hair_152
       rect:
         serializedVersion: 2
         x: 179
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d24e33293628134fa356c418f7a60de
+      spriteID: fd569de48f78d5447ac2476f4c619729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_185
+      name: 16x16_accesories_books_diamons_hair_153
       rect:
         serializedVersion: 2
         x: 201
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8292d62cdfbe08f4aa27b8f23e1f2a2d
+      spriteID: 15bda392f940fd045b6e506c51cba24c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_186
+      name: 16x16_accesories_books_diamons_hair_154
       rect:
         serializedVersion: 2
         x: 223
         y: 69
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74a6255deec56dd48bf87b90db2ae4c4
+      spriteID: 714d65fc955feeb40b34ea5180830cce
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_187
+      name: 16x16_accesories_books_diamons_hair_155
       rect:
         serializedVersion: 2
         x: 245
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deff118bcc409894b9f124a2af651916
+      spriteID: d0c2f9499d39b9d41aa690a7f1e077e1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_188
+      name: 16x16_accesories_books_diamons_hair_156
       rect:
         serializedVersion: 2
         x: 267
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 246d8c0b5a48a3b4cb06d23e7e3518ee
+      spriteID: 0916f17e5ff6a67409a8f121466ce6f2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_189
+      name: 16x16_accesories_books_diamons_hair_157
       rect:
         serializedVersion: 2
         x: 289
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 880c6676593c8b340b5a4f2f622fe3ec
+      spriteID: 39547940a1fb2674fb8f631f8aaabf88
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_190
+      name: 16x16_accesories_books_diamons_hair_158
       rect:
         serializedVersion: 2
         x: 311
-        y: 70
+        y: 69
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63a017b26dcdc3c41be8b3a201ff5776
+      spriteID: 37b8f6ad7bf63a2478f0136816da4187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_191
+      name: 16x16_accesories_books_diamons_hair_159
       rect:
         serializedVersion: 2
         x: 333
         y: 69
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4151fc21253e4b94297ca2373467265e
+      spriteID: 938def5968f075d45aec74eb2088cc62
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_192
+      name: 16x16_accesories_books_diamons_hair_160
       rect:
         serializedVersion: 2
         x: 3
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e4d954ad8f6f1e4fb8eb8298eefc4da
+      spriteID: 107a179aa0b97ed41aaeb05ca33451f1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_193
+      name: 16x16_accesories_books_diamons_hair_161
       rect:
         serializedVersion: 2
         x: 25
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e32b1ee6dc8fc04cb58aa8dfaf355d6
+      spriteID: 8f0e7c7550b5b3e408daf7ab6cd62a37
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_194
+      name: 16x16_accesories_books_diamons_hair_162
       rect:
         serializedVersion: 2
         x: 47
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97cf239668b95d54599a5adebabd08eb
+      spriteID: d7549e2ff02a635439ff43d9d85cff0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_195
+      name: 16x16_accesories_books_diamons_hair_163
       rect:
         serializedVersion: 2
         x: 69
         y: 47
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29e594c5097af584d99b2d215905d1a8
+      spriteID: 24721abe44bce1743a83f66567a8cbd3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_196
+      name: 16x16_accesories_books_diamons_hair_164
       rect:
         serializedVersion: 2
         x: 91
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cfbc37a91e680b40862e4555c9beddf
+      spriteID: 90acc96994c64ee46bbccabf72636f08
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_197
+      name: 16x16_accesories_books_diamons_hair_165
       rect:
         serializedVersion: 2
         x: 113
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a3cb5d2cda438341919723eba39193b
+      spriteID: 78064a23b325a2e42ac1e5bc061a56ad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_198
+      name: 16x16_accesories_books_diamons_hair_166
       rect:
         serializedVersion: 2
         x: 135
         y: 47
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f808e1c1202ed6a419d54c980a3dffb7
+      spriteID: ee7c0e6da52eb154eb13919ce529759b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_199
+      name: 16x16_accesories_books_diamons_hair_167
       rect:
         serializedVersion: 2
         x: 157
         y: 47
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a10feb975cab3246a11b193ea88c9da
+      spriteID: c4c9551a7c3b55448af74f942ff4ae4f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_200
+      name: 16x16_accesories_books_diamons_hair_168
       rect:
         serializedVersion: 2
         x: 179
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef37b19923ce95e468785c4669ea7ce7
+      spriteID: b6b5f9391507e6d40bb79c6449170bf9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_201
+      name: 16x16_accesories_books_diamons_hair_169
       rect:
         serializedVersion: 2
         x: 201
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3954ffd7ee2abab46a50018ede4c81f1
+      spriteID: c50503047abfe954589111faf489359b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_202
+      name: 16x16_accesories_books_diamons_hair_170
       rect:
         serializedVersion: 2
         x: 223
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9360e7ff14ec824082382cf7fbd2402
+      spriteID: ae6f39ee80320024d9af99de439c6d1d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_203
+      name: 16x16_accesories_books_diamons_hair_171
       rect:
         serializedVersion: 2
         x: 245
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dbd00b4a48c87c4e9512fb601a19cb4
+      spriteID: d9b0a8d1d489c4e43ab08aa42d12a99e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_204
+      name: 16x16_accesories_books_diamons_hair_172
       rect:
         serializedVersion: 2
         x: 267
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e968393b1f475994f89c0e8e618263a8
+      spriteID: 0c1d45289643d324990bb62cc402d259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_205
+      name: 16x16_accesories_books_diamons_hair_173
       rect:
         serializedVersion: 2
         x: 289
         y: 47
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa17a607db6297f4995a48c35e7e0abc
+      spriteID: 18259fdca6b777b429cfcc6502f32a54
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_206
+      name: 16x16_accesories_books_diamons_hair_174
       rect:
         serializedVersion: 2
         x: 311
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c77ee5415c02b0e4c87cd18007e2e3f2
+      spriteID: f59b8d26f795ec9499ef8833390f016b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_207
+      name: 16x16_accesories_books_diamons_hair_175
       rect:
         serializedVersion: 2
         x: 333
-        y: 48
+        y: 47
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aac5a0f82f553554bb83e4d2b20637f9
+      spriteID: c50147d59f81ed547b0ef1278eed0efa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_208
+      name: 16x16_accesories_books_diamons_hair_176
       rect:
         serializedVersion: 2
         x: 3
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73703c94e41d842449cf52410f70626c
+      spriteID: 025ee9dd452a21046bfb553e55b89669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_209
+      name: 16x16_accesories_books_diamons_hair_177
       rect:
         serializedVersion: 2
         x: 25
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e5c9a754f3dea340b4783fba2460d2d
+      spriteID: 663a38d59ee93a74bb2650f9d7bf9680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_210
+      name: 16x16_accesories_books_diamons_hair_178
       rect:
         serializedVersion: 2
         x: 47
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e973e69f9d35d69499fd5185d1eb291b
+      spriteID: dfe23a8eebf68df46a7631aec1cff4d6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_211
+      name: 16x16_accesories_books_diamons_hair_179
       rect:
         serializedVersion: 2
         x: 69
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a00545b965cbb0e4a90e8c87beb0d345
+      spriteID: 7e43279324e63cf4b944652fc2c298f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_212
+      name: 16x16_accesories_books_diamons_hair_180
       rect:
         serializedVersion: 2
         x: 91
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d083f10de4e4a344bbca7f402c4210f
+      spriteID: 0f8d5e4e92c7f0c46baede46e628537d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_213
+      name: 16x16_accesories_books_diamons_hair_181
       rect:
         serializedVersion: 2
         x: 113
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 395052b8187080e4c946d6fe78ca901d
+      spriteID: 951df0fac54829347b496c5ae10b807f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_214
+      name: 16x16_accesories_books_diamons_hair_182
       rect:
         serializedVersion: 2
         x: 135
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c30915a88831df442a61ec3c3c9a95ae
+      spriteID: 898c73504c5d01042bb45e7b480a091f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_215
+      name: 16x16_accesories_books_diamons_hair_183
       rect:
         serializedVersion: 2
         x: 157
         y: 25
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8082e2d4393f86c479290804cf3ac246
+      spriteID: 7128c052ea313584b9fa2a2dd83fd38e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_216
+      name: 16x16_accesories_books_diamons_hair_184
       rect:
         serializedVersion: 2
         x: 179
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b87b28757ec3804d88a8ba998b53001
+      spriteID: 161cc45430f981e41993da388137b719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_217
+      name: 16x16_accesories_books_diamons_hair_185
       rect:
         serializedVersion: 2
         x: 201
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c3c146fb73ab194db3f7092041e99e3
+      spriteID: a36b6656832cbed41975ded4f7bcbef4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_218
+      name: 16x16_accesories_books_diamons_hair_186
       rect:
         serializedVersion: 2
         x: 223
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e71580e64af01e646a08ac0df4bbe49b
+      spriteID: 21f967a9484671e4ebbe126cb386205f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_219
+      name: 16x16_accesories_books_diamons_hair_187
       rect:
         serializedVersion: 2
         x: 245
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a330a020f980a3a48a0db2eeaf0e27a1
+      spriteID: dd1c1967709b4224ca631f0d55f45df8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_220
+      name: 16x16_accesories_books_diamons_hair_188
       rect:
         serializedVersion: 2
         x: 267
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 525a8255ebe05c146b3cd28062f7eaa0
+      spriteID: 4ea32b17a690ad84aa06d1908e987499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_221
+      name: 16x16_accesories_books_diamons_hair_189
       rect:
         serializedVersion: 2
         x: 289
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b9488fb70228f4cbbd3023dff736c1
+      spriteID: 56a3e75b86fbfbe44b95a52d7b7cb2d5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_222
+      name: 16x16_accesories_books_diamons_hair_190
       rect:
         serializedVersion: 2
         x: 311
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a60c4bb98802a0742bc39dec9100cf9f
+      spriteID: 31bb298326b967849abb409d47c37c1e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_223
+      name: 16x16_accesories_books_diamons_hair_191
       rect:
         serializedVersion: 2
         x: 333
-        y: 26
+        y: 25
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3140b17ec2d64644a93512c6a6632d89
+      spriteID: 6ae7230ed73ac284292fadec09948323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_224
+      name: 16x16_accesories_books_diamons_hair_192
       rect:
         serializedVersion: 2
         x: 3
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5817fee3a371de45aac4bf4cee69b8e
+      spriteID: af94a4f5a792b294bb965d40b5519d8c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_225
+      name: 16x16_accesories_books_diamons_hair_193
       rect:
         serializedVersion: 2
         x: 25
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed6365c1cfcc19648943750a6837dbbc
+      spriteID: 6c9560a34297f6e438180597863ca6bb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_226
+      name: 16x16_accesories_books_diamons_hair_194
       rect:
         serializedVersion: 2
         x: 47
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d81bb19d72c2db4490c3e994b9caa2f
+      spriteID: a631cced2008f9b4aa97a9783f24606e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_227
+      name: 16x16_accesories_books_diamons_hair_195
       rect:
         serializedVersion: 2
         x: 69
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c896521c2b2ba342913ad2efe0123f0
+      spriteID: 4bce8f52e618c564990e704ff6af4689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_228
+      name: 16x16_accesories_books_diamons_hair_196
       rect:
         serializedVersion: 2
         x: 91
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6c824f11a9cc084b97a43513188b5fe
+      spriteID: 05f8225d3ac96284bbdef97af9d9bd56
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_229
+      name: 16x16_accesories_books_diamons_hair_197
       rect:
         serializedVersion: 2
         x: 113
-        y: 4
+        y: 3
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffb635d71c89a10439cadeb4824f7846
+      spriteID: 45cddfabe60f9054da1d3393566d54bb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_230
+      name: 16x16_accesories_books_diamons_hair_198
       rect:
         serializedVersion: 2
         x: 135
-        y: 4
+        y: 3
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9451baf985b4be428f476fd75c6bf6c
+      spriteID: 74960e19b67a2df45acdbbf1cf5bc04c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_231
+      name: 16x16_accesories_books_diamons_hair_199
       rect:
         serializedVersion: 2
         x: 157
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 645c157fa2da9344b8b2877f89c65e1f
+      spriteID: e3284a6354984ee4da6ea2bc3c64b0b4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_232
+      name: 16x16_accesories_books_diamons_hair_200
       rect:
         serializedVersion: 2
         x: 179
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96fe3166d15efb945b8d6a9cf3994d23
+      spriteID: 324c22cc7e1f08c4bac467bb0758891a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_233
+      name: 16x16_accesories_books_diamons_hair_201
       rect:
         serializedVersion: 2
         x: 201
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b250aa8cd7ba034bb2e30d25857399a
+      spriteID: b53781587a5e7a449895d0dec4c239a3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_234
+      name: 16x16_accesories_books_diamons_hair_202
       rect:
         serializedVersion: 2
         x: 223
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8823bfc3e227f264aa34cf3560b37002
+      spriteID: 1c311033f7dcf7a468abf5b568217ebd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_235
+      name: 16x16_accesories_books_diamons_hair_203
       rect:
         serializedVersion: 2
         x: 245
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 391260bed8e56784e960f88b9504348b
+      spriteID: 10f4b54f43b39254ebb6381279d9de99
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_236
+      name: 16x16_accesories_books_diamons_hair_204
       rect:
         serializedVersion: 2
         x: 267
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1b8595d750a3a3418a3d6aa0060069b
+      spriteID: 85869950191dd02488ac5aa31807d4b7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_237
+      name: 16x16_accesories_books_diamons_hair_205
       rect:
         serializedVersion: 2
         x: 289
-        y: 4
+        y: 3
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aff2aa18c09e3884998de791908403dd
+      spriteID: 1d6dd50e61b58214992b47954e8e4630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_238
+      name: 16x16_accesories_books_diamons_hair_206
       rect:
         serializedVersion: 2
         x: 311
-        y: 4
+        y: 3
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbefab166ca745e4bb18048a7982545c
+      spriteID: 42416540165b76a4b8dfcec37bcd7197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16x16_various_239
+      name: 16x16_accesories_books_diamons_hair_207
       rect:
         serializedVersion: 2
         x: 333
         y: 3
         width: 16
-        height: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c58a2c695c9e2946b081eff9f8fe485
+      spriteID: ed8f3641185b79143aaef53fbaab91f0
       vertices: []
       indices: 
       edges: []
@@ -5126,7 +4454,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ed6c02b3537d5bf4fb58e917a5038c56
+    spriteID: 669d4f15565461248b827ec67756a4c3
     vertices: []
     indices: 
     edges: []
