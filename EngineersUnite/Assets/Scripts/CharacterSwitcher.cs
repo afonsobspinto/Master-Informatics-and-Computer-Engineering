@@ -19,15 +19,25 @@ public class CharacterSwitcher : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.V)) {
             GameObject currentPlayer = this.playerTypes[this.activePlayer];
             currentPlayer.gameObject.GetComponent<PlayerMovement>().horizontalMove = 0;
             currentPlayer.gameObject.GetComponent<Animator>().SetFloat("Speed", 0);
-            
-            if (this.activePlayer >= transform.childCount - 1) 
-                this.activePlayer = 0;
-            else {
-                this.activePlayer++;
+
+            if (Input.GetKeyDown(KeyCode.C)) { 
+                if (this.activePlayer == transform.childCount - 1) 
+                    this.activePlayer = 0;
+                else {
+                    this.activePlayer++;
+                }
+            }else
+            {
+                if (this.activePlayer == 0)
+                    this.activePlayer = transform.childCount - 1;
+                else
+                {
+                    this.activePlayer--;
+                }
             }
 
             StartCoroutine(ShowCharacterSwitch());
