@@ -614,6 +614,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseText: {fileID: 1605553210}
+--- !u!1 &919747037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 734948866, guid: 19bef5d169d0efe479d5f94c02ed00c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344109160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!251 &919747041
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919747037}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1040370719
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +933,26 @@ PrefabInstance:
     - target: {fileID: 734948866, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734948870, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.17091548
+      objectReference: {fileID: 0}
+    - target: {fileID: 734948870, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62280357
+      objectReference: {fileID: 0}
+    - target: {fileID: 734948870, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 734948870, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0046280026
+      objectReference: {fileID: 0}
+    - target: {fileID: 734948870, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75008714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19bef5d169d0efe479d5f94c02ed00c1, type: 3}

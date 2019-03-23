@@ -2028,8 +2028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.70000076, y: 1.5999985}
-  m_SizeDelta: {x: 329.37, y: -34.22}
+  m_AnchoredPosition: {x: 2.1324997, y: 2.7000008}
+  m_SizeDelta: {x: 329.37, y: -24.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571341253
 MonoBehaviour:
@@ -2068,9 +2068,10 @@ MonoBehaviour:
     Left                                                                            \nW:
     Jump                                                                        \nS:
     Move down from the platform                              \nR: Reset                                                                         \nC:
-    Switch character                                                    \nT: Stop
-    time (Only after getting a time power-up) \nX: Trigger ability from active student
-    (Only once)\nZ: Help with chemistry ability                                 "
+    Switch character                                                   \nV: Switch
+    Character (Inverted)                                \nT: Stop time (Only after
+    getting a time power-up) \nX: Trigger ability from active student (Only once)\nZ:
+    Help with chemistry ability                                 "
 --- !u!222 &571341254
 CanvasRenderer:
   m_ObjectHideFlags: 0
