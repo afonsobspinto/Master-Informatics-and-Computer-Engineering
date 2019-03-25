@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -398,8 +398,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 205, y: -114}
-  m_SizeDelta: {x: 118.5, y: 120.4}
+  m_AnchoredPosition: {x: 205, y: -124.3}
+  m_SizeDelta: {x: 118.5, y: 141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826623083
 MonoBehaviour:
@@ -434,7 +434,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The civil student's hard hat (X) may serve as a stepping stone.
+  m_Text: The civil student's hard hat (X) may serve as a stepping stone. Careful
+    though! You have 3 seconds
 --- !u!222 &826623084
 CanvasRenderer:
   m_ObjectHideFlags: 0
