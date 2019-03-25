@@ -29,13 +29,20 @@ The engineering council scattered their patented **time freezing coins** across 
 ## Development process
 
 
-### Resources used
-* Unity
-* [1 Bit Assets]
-* [Sound / Music assets]
-* [Fonts]
+## Resources used
+### Game Engine
+*Engineers, Unite!* was fully developed on [**Unity**](https://unity.com/) free edition across 2018.3 versions. The last being **2018.3.9f1**.
 
-## The team behind
-* Afonso Pinto - up201503316@fe.up.pt
-* Miguel Mano - up201503538@fe.up.pt
-* Tomás Oliveira - up201504746@fe.up.pt
+### Assets
+Every visual asset used in the game is extracted from [**Dunjo Free Platformer Tileset**](https://arks.itch.io/dungeon-platform-tileset) and [**1700+ 1Bit Game Assets**](https://kronbits.itch.io/1bit-game-assets).  
+The two fonts present on *Engineers, Unite!* are [**Pixellari**](https://www.dafont.com/pixellari.font) and [**Xilla Regular**](https://www.dafont.com/xilla.font), both downloaded from [**DaFont**](https://www.dafont.com/).
+
+### Soundtrack 
+The soundtrack is property of [**George Shaw, aka "AdhesiveWombat"**](https://soundcloud.com/adhesivewombat). The three tracks featured are [**Outset**](https://soundcloud.com/adhesivewombat/outset) (main theme), [**Slime Time**](https://soundcloud.com/adhesivewombat/slime) (intro title), [**Hourglass**](https://soundcloud.com/adhesivewombat/hourglass) (final level).  
+Every sound effect in this project is downloaded for free from [**Freesound**](https://freesound.org/).
+
+## The team
+*Engineers, Unite!* was proudly created by:
+* **Afonso Pinto**, up201503316@fe.up.pt
+* **Miguel Mano**, up201503538@fe.up.pt
+* **Tomás Oliveira**, up201504746@fe.up.pt
