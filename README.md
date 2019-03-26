@@ -42,6 +42,9 @@ X: Trigger ability from active student (Only once)
 Z: Restart time and trigger chemistry ability simultaneously
 
 ## Installation instructions
+1. Download the game [here](https://drive.google.com/file/d/1OX8ffoSk0Gglx6kyIm-KT8QCv9HjZ8Ke/view?usp=sharing) (Windows)
+2. Unzip the downloaded folder
+3. Run the 'EngineersUnite' application
 
 
 ## Development process
