@@ -1,9 +1,11 @@
 # Engineers, Unite!
-
-## The premise
 A renowned FEUP teacher’s evil twin, jealous of his brothers’ stardom, has infiltrated the university’s secret control room and pulled a lever which stacks every room in the building on top of eachother in an attempt to disrupt the college. 
 A group of three students take matters into their hands. Enriched with knowledge from FEUP’s different masters, combine special abilities to traverse through the rooms’ obstacles and hazards the evil twin has carefully placed.  
 **Reach the top of the tower and restore order to the university.**
+
+<p align=center>
+<img src="https://media.giphy.com/media/3XH30mw4yTrA1CWgQF/giphy.gif"/>
+</p>
 
 ## How to play
 You will control students from FEUP, each from a different master course and with a special ability. Traverse through the classroom’s obstacles and combine their special abilities to exit the room.
