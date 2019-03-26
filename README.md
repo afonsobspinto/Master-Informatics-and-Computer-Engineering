@@ -66,6 +66,6 @@ Every sound effect in this project is downloaded for free from [**Freesound**](h
 
 ## The team
 *Engineers, Unite!* was proudly created by:
-* **Afonso Pinto**, up201503316@fe.up.pt
-* **Miguel Mano**, up201503538@fe.up.pt
-* **Tomás Oliveira**, up201504746@fe.up.pt
+- **Afonso Pinto**, up201503316@fe.up.pt
+- **Miguel Mano**, up201503538@fe.up.pt
+- **Tomás Oliveira**, up201504746@fe.up.pt
