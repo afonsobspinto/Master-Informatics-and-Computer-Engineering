@@ -45,7 +45,10 @@ Z: Restart time and trigger chemistry ability simultaneously
 
 
 ## Development process
-
+We followed a [Rapid Application Development](https://en.wikipedia.org/wiki/Rapid_application_development) paradigma which allowed us to  write the game much faster, and made it easier to change requirements on the fly. 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/RADModel.JPG/440px-RADModel.JPG" alt="(RAD) Model"/>
+</p>
 
 ## Resources used
 ### Game Engine
