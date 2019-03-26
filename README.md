@@ -21,7 +21,16 @@ Represented in **green**, he equips a hard hat on his head, allowing others to s
 The engineering council scattered their patented **time freezing coins** across the levels to aid you on the evil twin's challenges. Consume a time coin and freeze the selected student.
 
 ## Keybindings
-
+A: Right
+D: Left
+W: Jump
+S: Move down from the platform
+R: Reset
+C: Switch character
+V: Switch character (Inverted)
+T: Stop/Restart time (Only available after getting the time power up)
+X: Trigger ability from active student (Only once)
+Z: Restart time and trigger chemistry ability simultaneously
 
 ## Installation instructions
 
