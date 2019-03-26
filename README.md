@@ -4,8 +4,8 @@ A group of three students take matters into their hands. Enriched with knowledge
 **Reach the top of the tower and restore order to the university.**
 
 <p align=center>
-<img src="https://media.giphy.com/media/nItXtiHhoXj2wjVeSf/giphy.gif" width=40% height=40%/>
-<img src="https://media.giphy.com/media/3XH30mw4yTrA1CWgQF/giphy.gif" width=40% height=40%/>
+<img src="https://media.giphy.com/media/nItXtiHhoXj2wjVeSf/giphy.gif" width=45% height=45%/>
+<img src="https://media.giphy.com/media/3XH30mw4yTrA1CWgQF/giphy.gif" width=45% height=45%/>
 </p>
 
 ## How to play
