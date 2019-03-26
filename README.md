@@ -8,6 +8,8 @@ A group of three students take matters into their hands. Enriched with knowledge
 <img src="https://media.giphy.com/media/3XH30mw4yTrA1CWgQF/giphy.gif" width=45% height=45%/>
 </p>
 
+A quick video trailer was made available on [**YouTube**](https://youtu.be/Jb8YH89phiI).
+
 ## How to play
 You will control students from FEUP, each from a different master course and with a special ability. Traverse through the classroom’s obstacles and combine their special abilities to exit the room.
 
