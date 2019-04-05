@@ -302,7 +302,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints: []
-  WaypointsLinq: []
+  AIObject:
+  - m_aiGroupName: Puffer Fish
+    m_prefab: {fileID: 0}
+    m_maxAI: 10
+    m_spawnRate: 8
+    m_maxSpawnAmount: 1
+    m_randomizeStats: 0
+  - m_aiGroupName: Clown Fish
+    m_prefab: {fileID: 0}
+    m_maxAI: 0
+    m_spawnRate: 0
+    m_maxSpawnAmount: 0
+    m_randomizeStats: 1
+  - m_aiGroupName: Shark
+    m_prefab: {fileID: 0}
+    m_maxAI: 30
+    m_spawnRate: 20
+    m_maxSpawnAmount: 10
+    m_randomizeStats: 1
 --- !u!4 &359986612
 Transform:
   m_ObjectHideFlags: 0
