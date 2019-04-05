@@ -12,6 +12,7 @@ public class AIObjects
     public int spawnRate { get { return m_spawnRate; } }
     public int spawnAmount { get { return m_maxSpawnAmount; } }
     public bool randomizeStats { get { return m_randomizeStats; } }
+    public bool enableSpawner { get { return m_enableSpawner; } }
 
     [Header("AI Group Stats")]
     // Name of the Group
@@ -34,6 +35,10 @@ public class AIObjects
     // Random values for each variable
     [SerializeField]
     private bool m_randomizeStats;
+    // Enable spawner
+    [SerializeField]
+    private bool m_enableSpawner;
+
 
     public AIObjects(string Name, GameObject Prefab, int MaxAI, int SpawnRate, int SpawnAmount, bool RandomiseStats)
     {
@@ -59,6 +64,19 @@ public class AISpawner : MonoBehaviour
     // Waypoints for the fishes to go
     public List<Transform> Waypoints = new List<Transform>();
 
+    public float spawnTimer { get { return m_SpawnTimer;  } }
+    public Vector3 spawnArea { get { return m_SpawnArea;  } }
+
+    [Header("Global Stats")]
+    [Range(0f, 600f)]
+    // How often the spawner is used
+    [SerializeField]
+    private float m_SpawnTimer;
+    [SerializeField]
+    private Color m_SpawnColor = new Color(1.000f, 0.000f, 0.000f, 0.300f);
+    [SerializeField]
+    private Vector3 m_SpawnArea = new Vector3(20f, 10f, 20f);
+
     // Create array from new class
     [Header("AI Group Settings")]
     public AIObjects[] AIObject = new AIObjects[5];
@@ -69,6 +87,59 @@ public class AISpawner : MonoBehaviour
         GetWaypoints();
         RandomiseGroups();
         CreateAIGroups();
+        InvokeRepeating("SpawnNPC", 0.5f, spawnTimer);
+    }
+
+    void SpawnNPC()
+    {
+        // Loop through all the AI groups
+        for(int i = 0; i < AIObject.Count(); i++)
+        {
+            // Check to make sure spawner is enabled
+            if (AIObject[i].enableSpawner && AIObject[i].objectPrefab != null)
+            {
+                // Make sure that AI group doesnt have max NPCs 
+                GameObject tempGroup = GameObject.Find(AIObject[i].AIGroupName);
+                if(tempGroup.GetComponentInChildren<Transform>().childCount < AIObject[i].maxAI)
+                {
+                    // Spawn random number of NPCs from 0 to Max Spawn Amount
+                    for(int j = 0; j < Random.Range(0, AIObject[i].spawnAmount); j++)
+                    {
+                        // Get random rotation
+                        Quaternion randomRotation = Quaternion.Euler(Random.Range(-20, 20), Random.Range(0, 360), 0);
+                        // Create spawned gameObject
+                        GameObject tempSpawn;
+                        tempSpawn = Instantiate(AIObject[i].objectPrefab, RandomPosition(), randomRotation);
+                        // Put spawned NPC as child of group
+                        tempSpawn.transform.parent = tempGroup.transform;
+                        // Add the AIMove script and class to the new NPC
+                        tempSpawn.AddComponent<AIMove>();
+                    }
+                }
+            }
+        }
+    }
+
+    // Public method for Random Position within the Spawn Area
+    public Vector3 RandomPosition()
+    {
+        // Get a random position within our Spawn Area
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-spawnArea.x, spawnArea.x),
+            Random.Range(-spawnArea.y, spawnArea.y),
+            Random.Range(-spawnArea.z, spawnArea.z)
+            );
+
+        randomPosition = transform.TransformPoint(randomPosition * .5f);
+        return randomPosition;
+    }
+
+    // Public method for getting a Random Waypoint
+    public Vector3 RandomWaypoint()
+    {
+        int randomWP = Random.Range(0, (Waypoints.Count - 1));
+        Vector3 randomWaypoint = Waypoints[randomWP].transform.position;
+        return randomWaypoint;
     }
 
     // Update is called once per frame
@@ -106,6 +177,7 @@ public class AISpawner : MonoBehaviour
 
     void GetWaypoints()
     {
+        // Look through nested children
         Transform[] wpList = transform.GetComponentsInChildren<Transform>();
 
         for (int i = 0; i < wpList.Length; i++)
@@ -113,5 +185,13 @@ public class AISpawner : MonoBehaviour
             if (wpList[i].tag == "Waypoint")
                 Waypoints.Add(wpList[i]);
         }
+    }
+
+    // Show the gizmos in colour
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = m_SpawnColor;
+        Gizmos.DrawCube(transform.position, spawnArea);
+        
     }
 }
