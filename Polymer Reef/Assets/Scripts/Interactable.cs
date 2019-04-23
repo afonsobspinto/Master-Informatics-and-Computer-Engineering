@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float interactRadius = 1f;
-    public Transform player = null;
+    public GameObject player = null;
     private bool hasInteracted = false;
 
 
@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour
     {
         if (!hasInteracted)
         {
-            float distance = Vector3.Distance(transform.position, player.position);
+            float distance = Vector3.Distance(transform.position, player.transform.position);
 
             if(distance <= interactRadius)
             {
