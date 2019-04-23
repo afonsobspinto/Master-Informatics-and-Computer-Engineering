@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class Collectable : MonoBehaviour
 {
     private bool hasInteracted = false;
     public GameObject player = null;

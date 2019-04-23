@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : Interactable
+public class PowerUp : Collectable
 {
     public override void Interact()
     {
