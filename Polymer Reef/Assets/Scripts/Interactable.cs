@@ -4,36 +4,16 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float interactRadius = 1f;
-    public GameObject player = null;
     private bool hasInteracted = false;
+    public GameObject player = null;
 
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    private void Update()
+    private void OnTriggerEnter(Collider c)
     {
         if (!hasInteracted)
         {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-
-            if(distance <= interactRadius)
-            {
-                hasInteracted = true;
-                Interact();
-            }
+            hasInteracted = true;
+            Interact();
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactRadius);
     }
 
     public virtual void Interact()
