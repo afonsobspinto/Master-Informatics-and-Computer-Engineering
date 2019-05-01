@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9100004822930504073}
   - component: {fileID: 9100004822930504072}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,3 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  selectsound: event:/chemical
