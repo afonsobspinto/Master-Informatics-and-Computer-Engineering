@@ -2393,6 +2393,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285384130}
   m_CullTransparentMesh: 0
+--- !u!1 &1327847563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9100004822930504071, guid: 1367ea0c0b35fa749b0e2e82eb6b9c77,
+    type: 3}
+  m_PrefabInstance: {fileID: 1189623221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1327847564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327847563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdf221311eba664697369b7fb52b787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1510624928}
+  type: 1
+  amount: 100
 --- !u!1 &1338240128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9100004822930504071, guid: 1367ea0c0b35fa749b0e2e82eb6b9c77,
@@ -2655,9 +2676,9 @@ MonoBehaviour:
   speedModifier: 1
   lookSensitivity: 3
   initialHealthValue: 100
-  initialHealthLossStep: 0.5
+  initialHealthLossStep: 1
   initialEnergyValue: 100
-  initialEnergyLossStep: 0.5
+  initialEnergyLossStep: 1
 --- !u!114 &1510624930
 MonoBehaviour:
   m_ObjectHideFlags: 0
