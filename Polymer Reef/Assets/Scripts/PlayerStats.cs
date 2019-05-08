@@ -32,7 +32,7 @@ public class PlayerStats
         this.value = value;
     }
 
-    public void IncreaseCurrentValue(float amount)
+    public void changeCurrentValue(float amount)
     {
         float value = this.value;
 
@@ -41,6 +41,9 @@ public class PlayerStats
         if (value > this.maxValue)
         {
             value = this.maxValue;
+        } else if (value < 0.0f)
+        {
+            value = 0.0f;
         }
 
         this.value = value;
@@ -54,5 +57,10 @@ public class PlayerStats
     public float getMaxValue()
     {
         return this.maxValue;
+    }
+
+    public void changeMaxValue(float amount)
+    {
+        this.maxValue += amount;
     }
 }
