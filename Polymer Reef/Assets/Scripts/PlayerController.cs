@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private float initialEnergyValue = 100f;
 
     [SerializeField]
-    private float initialEnergyLossStep = 100f;
+    private float initialEnergyLossStep = 5f;
 
     public static PlayerStats energy;
     
