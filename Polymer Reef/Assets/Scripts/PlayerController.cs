@@ -13,13 +13,37 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMotor motor;
 
+    [SerializeField]
+    private float initialHealthValue = 100f;
+
+    [SerializeField]
+    private float initialHealthLossStep = 5f;
+
+    public static PlayerStats health;
+
+    [SerializeField]
+    private float initialEnergyValue = 100f;
+
+    [SerializeField]
+    private float initialEnergyLossStep = 100f;
+
+    public static PlayerStats energy;
+    
+
+
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
+        health = new PlayerStats(this.initialHealthValue, this.initialHealthLossStep);
+        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyLossStep);
     }
 
     private void Update()
     {
+        PlayerController.health.Update();
+        PlayerController.energy.Update();
+
+
         // Calculate movement velocity as a 3D vector
         float _xMov = Input.GetAxisRaw("Horizontal");
         float _zMov = Input.GetAxisRaw("Vertical");
