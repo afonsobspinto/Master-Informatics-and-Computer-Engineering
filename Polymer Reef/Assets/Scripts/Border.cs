@@ -30,7 +30,7 @@ public class Border : MonoBehaviour
     {
         if (other.gameObject.name == "Player" && healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue > 0)
         {
-            healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue = healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue - 0.5f;
+            healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue = healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue - 0.05f;
         }
     }
 
