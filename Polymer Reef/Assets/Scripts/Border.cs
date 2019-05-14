@@ -28,9 +28,10 @@ public class Border : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue > 0)
+        if (other.gameObject.name == "Player" && PlayerController.health.getCurrentValue() > 0)
         {
-            healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue = healthBar.gameObject.GetComponent<CircleHealthBar>()._actualValue - 0.05f;
+            PlayerController p = other.gameObject.GetComponent<PlayerController>();
+            p.changeHealth(-0.05f);
         }
     }
 

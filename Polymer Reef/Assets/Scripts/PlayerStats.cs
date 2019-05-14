@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats
 {
-    private float value = 0;
+    public float value = 0;
     private float maxValue = 0;
     private float valueLossStep = 0;
 
