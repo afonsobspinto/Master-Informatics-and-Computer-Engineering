@@ -5,26 +5,46 @@ using UnityEngine.UI;
 
 public class CircleUIBar : MonoBehaviour
 {
-    public Image _bar;
+    [SerializeField]
+    protected Image _bar;
 
-    public float _actualValue; 
+    [SerializeField]
+    protected float _actualValue; 
     private float _lastValue = 0;
 
-    public float _maxValue; 
+    [SerializeField]
+    protected float _maxValue;
 
-    public float _valueDecreaseStep; 
+    [SerializeField]
+    protected float _valueDecreaseStep;
 
-    public float _valueIncreaseStep; 
+    [SerializeField]
+    protected float _valueIncreaseStep;
 
+    private bool initialSet = false;
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         ValueChange(_actualValue, Time.deltaTime);
     }
 
-    void ValueChange(float energyValue, float deltaTime)
+    public void setInitial(float initialValue)
     {
-        float offset = energyValue - _lastValue;
+        if(initialSet)
+        {
+            return;
+        }
+
+        _lastValue = initialValue;
+
+        _bar.fillAmount = 100;
+
+        initialSet = true;
+    }
+
+    void ValueChange(float actualValue, float deltaTime)
+    {
+        float offset = actualValue - _lastValue;
         float direction = Mathf.Sign(offset);
 
         if (Mathf.Abs(offset) > 0.0001f)
