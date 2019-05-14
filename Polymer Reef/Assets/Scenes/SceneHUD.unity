@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 642860492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb0fa3e1ddb5364b9f8b951cea24d5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 843e8469d35770f46ad5549808d47f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 2073179071}
@@ -2669,16 +2669,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1510624928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1b8fc4afa68654092febe06849eb76, type: 3}
+  m_Script: {fileID: 11500000, guid: 371b10d337d228442a8dc1af134bc926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   speedModifier: 1
   lookSensitivity: 3
   initialHealthValue: 100
-  initialHealthLossStep: 1
+  initialHealthLossStep: 5
   initialEnergyValue: 100
-  initialEnergyLossStep: 1
+  initialEnergyLossStep: 5
 --- !u!114 &1510624930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2729,7 +2729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510624928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.471, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 125341112}
@@ -3807,7 +3807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2011718704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2960f6f187baa334c812703451597276, type: 3}
+  m_Script: {fileID: 11500000, guid: c65ddd95e0186164982731d2e642cb6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 980071451}
