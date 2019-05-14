@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{6f856f07-05ef-46ca-a3a2-3e00ddb117d6}">
+        <property name="assetPath">
+            <value>chemical.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.6979591836734693</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d0964bed-4659-44d8-b56a-7b1279a45df2}</destination>
+        </relationship>
+    </object>
+</objects>
