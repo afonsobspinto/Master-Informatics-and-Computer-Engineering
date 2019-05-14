@@ -1880,11 +1880,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 972747016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1b8fc4afa68654092febe06849eb76, type: 3}
+  m_Script: {fileID: 11500000, guid: 371b10d337d228442a8dc1af134bc926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   lookSensitivity: 3
+  initialHealthValue: 100
+  initialHealthLossStep: 5
+  initialEnergyValue: 100
+  initialEnergyLossStep: 5
 --- !u!114 &972747018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,11 +2663,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1288506120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2960f6f187baa334c812703451597276, type: 3}
+  m_Script: {fileID: 11500000, guid: c65ddd95e0186164982731d2e642cb6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 1272736390}
-  _actualValue: 0
+  _actualValue: 100
   _maxValue: 100
   _valueDecreaseStep: 4.5
   _valueIncreaseStep: 20
@@ -3259,8 +3263,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513270243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 308.14, z: 0}
+  m_LocalRotation: {x: 0.06287231, y: 0.92364615, z: 0.17266907, w: -0.33631882}
+  m_LocalPosition: {x: 207.3056, y: 162.06331, z: 349.7343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3323,11 +3327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1525867575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb0fa3e1ddb5364b9f8b951cea24d5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 843e8469d35770f46ad5549808d47f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 1893809949}
-  _actualValue: 0
+  _actualValue: 100
   _maxValue: 100
   _valueDecreaseStep: 4.5
   _valueIncreaseStep: 7
