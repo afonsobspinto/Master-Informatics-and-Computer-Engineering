@@ -16,9 +16,9 @@ MonoBehaviour:
   HasPlatforms: 1
   sourceProjectPath: Assets\FMOD\FMOD\FMOD.fspro
   SourceProjectPathUnformatted: Assets\FMOD\FMOD\FMOD.fspro
-  SourceBankPathUnformatted: Assets\FMOD\FMOD\Build
+  SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
-  AutomaticSampleLoading: 1
+  AutomaticSampleLoading: 0
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
