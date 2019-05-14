@@ -26,8 +26,8 @@ Material:
     m_Floats:
     - _DepthDistance: 131.9
     - _DepthStart: -23
-    - _NoiseFrequency: 3.4
-    - _NoiseScale: 2.3
+    - _NoiseFrequency: 2.2
+    - _NoiseScale: 6.8
     - _NoiseSpeed: 4.6
     - _PixelOffset: 0.002
     m_Colors: []
