@@ -11,6 +11,7 @@ public class PowerUp : Collectable
     void Start()
     {
         soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
+        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
     }
 
     public override void Interact()
