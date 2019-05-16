@@ -32,6 +32,15 @@ public class Border : MonoBehaviour
         {
             PlayerController p = other.gameObject.GetComponent<PlayerController>();
             p.changeHealth(-0.05f);
+            other.gameObject.GetComponentInChildren<FogEffect>().enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player" && PlayerController.health.getCurrentValue() > 0)
+        {
+            other.gameObject.GetComponentInChildren<FogEffect>().enabled = false;
         }
     }
 
