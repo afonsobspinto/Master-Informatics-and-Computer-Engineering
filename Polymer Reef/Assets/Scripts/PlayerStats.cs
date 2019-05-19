@@ -48,8 +48,6 @@ public class PlayerStats
         }
 
         this.value = value;
-
-        Debug.Log("Value: " + value);
     }
 
     public float getCurrentValue()
