@@ -19,7 +19,10 @@ public class PowerUp : Collectable
     public override void Interact()
     {
         PlayerController p = player.gameObject.GetComponent<PlayerController>();
-        p.changeEnergy(50f);
+        if (this.gameObject.tag == "Energy")
+            p.changeEnergy(50f);
+        else if (this.gameObject.tag == "Health")
+            p.changeHealth(50f);
 
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();
