@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-350232185393486742
+--- !u!114 &-8130402041433152490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,15 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
+  m_Name: bank:/Master Bank.bank
   m_EditorClassIdentifier: 
-  Path: Assets\FMOD\FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636934705501041417
+  Path: D:\FEUP\feup-djco2\Polymer Reef\Assets\FMOD\axel_game_sound\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636936028948568471
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 718
+    Value: 264704
   Exists: 1
+--- !u!114 &-1992780296475620073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/soundscape
+  m_EditorClassIdentifier: 
+  Path: event:/soundscape
+  guid: 628e2bc79599c648879e00787f4f3d22
+  Banks:
+  - {fileID: -8130402041433152490}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,36 +56,18 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -350232185393486742}
-  - {fileID: 3444684560084332364}
+  - {fileID: 7453708862121882989}
+  - {fileID: -8130402041433152490}
   EditorEvents:
-  - {fileID: 2517797099925958837}
+  - {fileID: -1992780296475620073}
+  - {fileID: 2216095295059938929}
   MasterBanks:
-  - {fileID: 3444684560084332364}
+  - {fileID: -8130402041433152490}
   StringsBanks:
-  - {fileID: -350232185393486742}
-  stringsBankWriteTime: 636934705501041417
+  - {fileID: 7453708862121882989}
+  stringsBankWriteTime: 636936028948608573
   cacheVersion: 3
---- !u!114 &243583146126504907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: Assets\FMOD\FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636934702954594574
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 672
-  Exists: 1
---- !u!114 &2517797099925958837
+--- !u!114 &2216095295059938929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,12 +77,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
+  m_Name: event:/chemical
   m_EditorClassIdentifier: 
   Path: event:/chemical
-  guid: 5a5710acc7e3104e9e83df5b2214908d
+  guid: 87b3302d0242d242a614faec17db4911
   Banks:
-  - {fileID: 3444684560084332364}
+  - {fileID: -8130402041433152490}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -84,7 +90,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1697
---- !u!114 &3444684560084332364
+--- !u!114 &7453708862121882989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,31 +100,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
+  m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
-  Path: D:\FEUP\feup-djco2\Polymer Reef\Assets\FMOD\FMOD\Build\Desktop\Master Bank.bank
-  lastModified: 636934705501011508
+  Path: Assets\FMOD\axel_game_sound\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636936028948608573
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 33824
-  Exists: 1
---- !u!114 &7003168969515795571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: D:\FEUP\feup-djco2\Polymer Reef\Assets\FMOD\FMOD\Build\Desktop\Master Bank.bank
-  lastModified: 636934702954564698
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 12474
+    Value: 772
   Exists: 1

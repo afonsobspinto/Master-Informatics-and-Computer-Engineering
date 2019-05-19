@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
+  m_Script: {fileID: 0}
   m_Name: FMODStudioSettings
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass:FMODUnity:Settings
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\FMOD\FMOD\FMOD.fspro
-  SourceProjectPathUnformatted: Assets\FMOD\FMOD\FMOD.fspro
-  SourceBankPathUnformatted: Assets\FMOD\FMOD\Build
+  sourceProjectPath: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
+  SourceProjectPathUnformatted: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
+  SourceBankPathUnformatted: Assets\FMOD\axel_game_sound\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 1
   ImportType: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
     Value: 0
   OverlaySettings:
   - Platform: 1
-    Value: 1
+    Value: 0
   - Platform: 2
     Value: 0
   LoggingSettings:

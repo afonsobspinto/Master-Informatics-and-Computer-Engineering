@@ -10,7 +10,6 @@ public class CircleHealthBar : CircleUIBar
     {
         _bar.fillAmount = 0;
         
-
         _actualValue = PlayerController.health.getCurrentValue();
         _maxValue = PlayerController.health.getMaxValue();
         _valueDecreaseStep = 4.5f;  //this step is merely visual, doesn't relate to step in player stats
