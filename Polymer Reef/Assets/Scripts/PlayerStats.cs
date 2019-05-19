@@ -30,6 +30,7 @@ public class PlayerStats
         }
 
         this.value = value;
+
     }
 
     public void changeCurrentValue(float amount)
@@ -47,6 +48,8 @@ public class PlayerStats
         }
 
         this.value = value;
+
+        Debug.Log("Value: " + value);
     }
 
     public float getCurrentValue()
