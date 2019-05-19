@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
   m_Name: FMODStudioSettings
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass:FMODUnity:Settings
+  m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
   SourceProjectPathUnformatted: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
   SourceBankPathUnformatted: Assets\FMOD\axel_game_sound\Build
   AutomaticEventLoading: 1
-  AutomaticSampleLoading: 1
+  AutomaticSampleLoading: 0
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
@@ -59,7 +59,6 @@ MonoBehaviour:
   - Platform: 2
     Value: 32
   Plugins: []
-  MasterBanks:
-  - Master Bank
+  MasterBanks: []
   Banks: []
   LiveUpdatePort: 9264
