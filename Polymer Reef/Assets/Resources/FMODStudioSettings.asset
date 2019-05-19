@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\FMOD\FMOD\FMOD.fspro
-  SourceProjectPathUnformatted: Assets\FMOD\FMOD\FMOD.fspro
-  SourceBankPathUnformatted: Assets\FMOD\FMOD\Build
+  sourceProjectPath: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
+  SourceProjectPathUnformatted: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
+  SourceBankPathUnformatted: Assets\FMOD\axel_game_sound\Build
   AutomaticEventLoading: 1
-  AutomaticSampleLoading: 1
+  AutomaticSampleLoading: 0
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
@@ -37,7 +37,7 @@ MonoBehaviour:
     Value: 0
   OverlaySettings:
   - Platform: 1
-    Value: 1
+    Value: 0
   - Platform: 2
     Value: 0
   LoggingSettings:

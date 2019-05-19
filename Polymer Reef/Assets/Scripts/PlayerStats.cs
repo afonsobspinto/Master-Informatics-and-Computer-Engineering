@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats
 {
-    private float value = 0;
+    public float value = 0;
     private float maxValue = 0;
     private float valueLossStep = 0;
 
@@ -30,6 +30,7 @@ public class PlayerStats
         }
 
         this.value = value;
+
     }
 
     public void changeCurrentValue(float amount)
@@ -47,6 +48,8 @@ public class PlayerStats
         }
 
         this.value = value;
+
+        Debug.Log("Value: " + value);
     }
 
     public float getCurrentValue()

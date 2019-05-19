@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        PlayerController.health.Update();
+        //PlayerController.health.Update();
         PlayerController.energy.Update();
 
 
