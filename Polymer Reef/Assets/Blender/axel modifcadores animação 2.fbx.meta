@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -1422011007694221501
-    second: Armature|ArmatureAction.001
+    second: ArmatureArmatureAction.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction.001
+      name: ArmatureArmatureAction.001
       takeName: Armature|ArmatureAction.001
       internalID: -1422011007694221501
       firstFrame: 0
