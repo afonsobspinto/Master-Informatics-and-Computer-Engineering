@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
+  - Health
+  - Energy
+  - Food
   layers:
   - Default
   - TransparentFX

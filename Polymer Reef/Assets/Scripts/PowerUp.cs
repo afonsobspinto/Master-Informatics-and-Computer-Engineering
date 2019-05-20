@@ -7,15 +7,28 @@ public class PowerUp : Collectable
     [FMODUnity.EventRef]
     public string selectsound;
     FMOD.Studio.EventInstance soundevent;
+    private GameObject player;
 
     void Start()
     {
         soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
+        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
+        player = GameObject.Find("Player");
     }
 
     public override void Interact()
     {
-        Debug.Log("Interaction detected\nPlease implement interact method");
+        PlayerController p = player.gameObject.GetComponent<PlayerController>();
+        if (this.gameObject.tag == "Energy")
+            p.changeEnergy(50f);
+        else if (this.gameObject.tag == "Health")
+            p.changeHealth(50f);
+        else if (this.gameObject.tag == "Food")
+        {
+            p.changeHealth(25f);
+            p.changeEnergy(25f);
+        }
+
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();
         Destroy(gameObject);

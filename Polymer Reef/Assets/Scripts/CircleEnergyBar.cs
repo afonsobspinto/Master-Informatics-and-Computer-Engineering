@@ -10,10 +10,18 @@ public class CircleEnergyBar : CircleUIBar
     {
         _bar.fillAmount = 0;
 
-        //TODO Get values here
-        _actualValue = 0; //TODO replace value with some call to the health mechanic
-        _maxValue = 100.0f; //TODO replace value with some call to the energy mechanic
-        _valueDecreaseStep = 4.5f; // TODO get energy spent per second
-        _valueIncreaseStep = 20.0f; // TODO get/set energy gained per second (energy mechanics)
+        _actualValue = PlayerController.energy.getCurrentValue();
+        _maxValue = PlayerController.energy.getMaxValue();
+        _valueDecreaseStep = 4.5f;  //this step is merely visual, doesn't relate to step in player stats
+        _valueIncreaseStep = 20.0f; //this step is merely visual, doesn't relate to step in player stats
+
+        setInitial(_maxValue);
+    }
+
+    protected override void Update()
+    {
+        _actualValue = PlayerController.energy.getCurrentValue();
+        _maxValue = PlayerController.energy.getMaxValue();
+        base.Update();
     }
 }
