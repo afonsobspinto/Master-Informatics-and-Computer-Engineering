@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -1976627469009157752
-    second: ENERGIA|LightAction
+    second: ENERGIALightAction
   - first:
       74: -8033556521611571830
     second: ENERGIA|PlaneAction
@@ -38,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ENERGIA|LightAction
+      name: ENERGIALightAction
       takeName: ENERGIA|LightAction
       internalID: -1976627469009157752
       firstFrame: 0

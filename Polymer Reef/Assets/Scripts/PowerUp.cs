@@ -30,6 +30,8 @@ public class PowerUp : Collectable
         }
         else if (this.gameObject.tag == "Speed")
             p.changeSpeed(1.5f);
+        else if (this.gameObject.tag == "Trash")
+            p.changeHealth(-25f);
 
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();
