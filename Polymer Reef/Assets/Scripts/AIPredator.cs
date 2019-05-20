@@ -41,6 +41,15 @@ public class AIPredator : MonoBehaviour
     // Run every physics iteration
     void FixedUpdate()
     {
+        if (CanSeePlayer())
+        {
+            Debug.Log("Chasing");
+        }
+        else
+        {
+            Debug.Log("Not Chasing");
+        }
+
         bool shouldChase = CanSeePlayer() && !debugNeverSeePlayer;
         if (shouldChase != wasChasing)
         {
@@ -95,7 +104,7 @@ public class AIPredator : MonoBehaviour
 
     private void UpdateTransform(float deltaTime)
     {
-        Debug.Log("AI movement direction: " + direction + "AI body rotation: " + rotation.eulerAngles);
+        //Debug.Log("AI movement direction: " + direction + "AI body rotation: " + rotation.eulerAngles);
 
         float rotationTime = Quaternion.Angle(body.rotation, rotation) / angularVelocity;
         if (Mathf.Approximately(rotationTime, 0.0f))
