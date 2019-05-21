@@ -13,18 +13,18 @@ public class CircleHealthBar : CircleUIBar
         _bar.fillAmount = 0;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        /*_actualValue = playerController.getHealth();
+        _actualValue = playerController.getHealth();
         _maxValue = playerController.getHealthMax();
         _valueDecreaseStep = 4.5f;  //this step is merely visual, doesn't relate to step in player stats
         _valueIncreaseStep = 20.0f; //this step is merely visual, doesn't relate to step in player stats
         
-        setInitial(_maxValue);*/
+        setInitial(_maxValue);
     }
 
     protected override void Update()
     {
-       /* _actualValue = playerController.getHealth();
+       _actualValue = playerController.getHealth();
         _maxValue = playerController.getHealthMax();
-       base.Update();*/
+       base.Update();
     }
 }

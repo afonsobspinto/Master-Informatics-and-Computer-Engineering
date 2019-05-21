@@ -62,7 +62,7 @@ public class AIPredator : MonoBehaviour
 
     private float Wander()
     {
-        if (IsNearlyEqual(wanderPosition, body.position, 1.0f))
+        if (IsNearlyEqual(wanderPosition, body.position, 5.0f))
         {
             Vector3 radius = Vector3.one * wanderDistance;
             Vector3 minPosition = idlePosition - radius;
@@ -70,7 +70,8 @@ public class AIPredator : MonoBehaviour
 
             wanderPosition.Set(
                 Random.Range(minPosition.x, maxPosition.x),
-                Random.Range(minPosition.y, maxPosition.y),
+                idlePosition.y,
+                //Random.Range(minPosition.y, maxPosition.y),
                 Random.Range(minPosition.z, maxPosition.z)
                 );
 
