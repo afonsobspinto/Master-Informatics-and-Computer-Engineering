@@ -7,6 +7,9 @@ TagManager:
   - Waypoint
   - Health
   - Energy
+  - Food
+  - Speed
+  - Trash
   layers:
   - Default
   - TransparentFX

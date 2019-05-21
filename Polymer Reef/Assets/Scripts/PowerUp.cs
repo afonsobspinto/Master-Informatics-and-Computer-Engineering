@@ -23,6 +23,15 @@ public class PowerUp : Collectable
             p.changeEnergy(50f);
         else if (this.gameObject.tag == "Health")
             p.changeHealth(50f);
+        else if (this.gameObject.tag == "Food")
+        {
+            p.changeHealth(25f);
+            p.changeEnergy(25f);
+        }
+        else if (this.gameObject.tag == "Speed")
+            p.changeSpeed(1.5f);
+        else if (this.gameObject.tag == "Trash")
+            p.changeHealth(-25f);
 
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();
