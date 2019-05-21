@@ -31,7 +31,9 @@ public class PlayerController : MonoBehaviour
     private float initialEnergyLossStep = 5f;
 
     public static PlayerStats energy;
-    
+
+    [SerializeField]
+    private Camera cam;
 
 
     private void Start()
@@ -52,10 +54,9 @@ public class PlayerController : MonoBehaviour
         float _zMov = Input.GetAxisRaw("Vertical");
 
         Vector3 _movHorizontal = transform.right * _xMov;
-        Vector3 _movVertical = transform.forward * _zMov;
 
         // Final movement vector
-        Vector3 _velocity = (_movHorizontal + _movVertical).normalized * speed * speedModifier;
+        Vector3 _velocity = (cam.transform.forward * _zMov + _movHorizontal).normalized * speed * speedModifier;
 
         // Apply movement
         motor.Move(_velocity);
@@ -81,6 +82,27 @@ public class PlayerController : MonoBehaviour
     {
         this.speedModifier += amount;
     }
+
+    public float getHealth()
+    {
+        return health.getCurrentValue();
+    }
+
+    public float getHealthMax()
+    {
+        return health.getMaxValue();
+    }
+
+    public float getEnergy()
+    {
+        return energy.getCurrentValue();
+    }
+
+    public float getEnergyMax()
+    {
+        return energy.getMaxValue();
+    }
+
 
     public void changeHealth(float amount)
     {
