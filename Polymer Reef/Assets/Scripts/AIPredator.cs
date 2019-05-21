@@ -41,15 +41,6 @@ public class AIPredator : MonoBehaviour
     // Run every physics iteration
     void FixedUpdate()
     {
-        if (CanSeePlayer())
-        {
-            Debug.Log("Chasing");
-        }
-        else
-        {
-            Debug.Log("Not Chasing");
-        }
-
         bool shouldChase = CanSeePlayer() && !debugNeverSeePlayer;
         if (shouldChase != wasChasing)
         {
