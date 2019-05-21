@@ -18,7 +18,7 @@ MonoBehaviour:
   SourceProjectPathUnformatted: Assets\FMOD\axel_game_sound\axel_game_sound.fspro
   SourceBankPathUnformatted: Assets\FMOD\axel_game_sound\Build
   AutomaticEventLoading: 1
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
