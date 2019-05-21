@@ -83,6 +83,27 @@ public class PlayerController : MonoBehaviour
         this.speedModifier += amount;
     }
 
+    public float getHealth()
+    {
+        return health.getCurrentValue();
+    }
+
+    public float getHealthMax()
+    {
+        return health.getMaxValue();
+    }
+
+    public float getEnergy()
+    {
+        return energy.getCurrentValue();
+    }
+
+    public float getEnergyMax()
+    {
+        return energy.getMaxValue();
+    }
+
+
     public void changeHealth(float amount)
     {
         PlayerController.health.changeCurrentValue(amount);
