@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -8963547841266720063
-    second: palhinha|Circle.001Action
+    second: palhinhaCircle.001Action
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: palhinha|Circle.001Action
+      name: palhinhaCircle.001Action
       takeName: palhinha|Circle.001Action
       internalID: -8963547841266720063
       firstFrame: 0
@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

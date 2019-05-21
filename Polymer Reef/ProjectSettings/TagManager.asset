@@ -8,6 +8,8 @@ TagManager:
   - Health
   - Energy
   - Food
+  - Speed
+  - Trash
   layers:
   - Default
   - TransparentFX

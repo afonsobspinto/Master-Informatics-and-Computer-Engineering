@@ -8,7 +8,7 @@ ModelImporter:
     second: SEPEED|CameraAction
   - first:
       74: 638542822121991749
-    second: SEPEED|PlaneAction.001
+    second: SEPEEDPlaneAction.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -67,7 +67,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: SEPEED|PlaneAction.001
+      name: SEPEEDPlaneAction.001
       takeName: SEPEED|PlaneAction.001
       internalID: 638542822121991749
       firstFrame: 0
