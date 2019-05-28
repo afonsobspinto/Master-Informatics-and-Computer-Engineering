@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{319c3e29-0b35-4ee8-84f9-2dcf2afa93ac}">
+        <property name="assetPath">
+            <value>Design #2 - Espacialização.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>48</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c5c84513-5b7c-4e64-bf66-989be1c8b4b0}</destination>
+        </relationship>
+    </object>
+</objects>
