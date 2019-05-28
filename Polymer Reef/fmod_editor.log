@@ -1,0 +1,268 @@
+[LOG] System::create                           : Header version = 1.10.13. Current version = 1.10.13.
+[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
+[LOG] SystemI::init                            : Initialize version=11013 (102169), maxchannels=256, flags=0x00020000
+[LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=8, nSamplesPerSec=48000, nAvgBytesPerSec=1536000, nBlockAlign=32, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x0000063F, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+[WRN] OutputWASAPI::init                       : IAudioClient::Initialize returned AUDCLNT_E_UNSUPPORTED_FORMAT, attempting stereo workaround.
+[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncManager::init                       : manager 0000023DC230B538 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : done
+[LOG] PlaybackSystem::init                     : 
+[LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] PlaybackSystem::init                     : done
+[LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] Manager::init                            : done.
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DB6FC1A38 : node = 0000023D8498B320
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DB6FC1A38
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498B438
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba4', format=2, channels=2, frequency=48000, lengthbytes=188000, lengthpcm=1032000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.080020.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DB6FC1A38
+[LOG] SoundI::getSubSound                      : sound 0000023DB6FC1A38.  Subsound index 0 / 1
+[LOG] SoundI::release                          : kalimba6 (0000023DC18D8078)
+[LOG] SoundI::release                          :     kalimba6 (0000023DE7284C88)
+[LOG] SoundI::release                          :     kalimba6 (0000023DC18D94B8)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DB6FC22A8 : node = 0000023D8498B9B0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DB6FC22A8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498BAC8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba3', format=2, channels=2, frequency=48000, lengthbytes=351840, lengthpcm=1968000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.052080.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DB6FC22A8
+[LOG] SoundI::getSubSound                      : sound 0000023DB6FC22A8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : kalimba4 (0000023DB6FC1A38)
+[LOG] SoundI::release                          :     kalimba4 (0000023DAA5263B8)
+[LOG] SoundI::release                          :     kalimba4 (0000023DB6FC2B18)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D8078 : node = 0000023D8498A210
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D8078
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498A328
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Design #2 - Espacialização', format=2, channels=2, frequency=48000, lengthbytes=163936, lengthpcm=2304000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.053253.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D8078
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D8078.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Design #2 - Espacialização (0000023DC18D9308)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DE7283288)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DC18D88E8)
+[LOG] SoundI::release                          : kalimba3 (0000023DB6FC22A8)
+[LOG] SoundI::release                          :     kalimba3 (0000023DAA526558)
+[LOG] SoundI::release                          :     kalimba3 (0000023DC18D8228)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D8228 : node = 0000023D8498ADE0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D8228
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498AEF8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba2', format=2, channels=2, frequency=48000, lengthbytes=113920, lengthpcm=648000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.128461.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D8228
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D8228.  Subsound index 0 / 1
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D88E8 : node = 0000023D8498B080
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D88E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498B198
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Design #2 - Espacialização', format=2, channels=2, frequency=48000, lengthbytes=163936, lengthpcm=2304000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.053253.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D88E8
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D88E8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Design #2 - Espacialização (0000023DC18D8078)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DAA5263B8)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DC18D94B8)
+[LOG] SoundI::release                          : kalimba2 (0000023DC18D8228)
+[LOG] SoundI::release                          :     kalimba2 (0000023DAA526A38)
+[LOG] SoundI::release                          :     kalimba2 (0000023DC18D83D8)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D83D8 : node = 0000023D8498ADE0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D83D8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498AEF8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba6', format=2, channels=2, frequency=48000, lengthbytes=116192, lengthpcm=648000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.071363.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D83D8
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D83D8.  Subsound index 0 / 1
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D94B8 : node = 0000023D8498B320
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D94B8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498B438
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba2', format=2, channels=2, frequency=48000, lengthbytes=113920, lengthpcm=648000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.128461.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D94B8
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D94B8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : kalimba6 (0000023DC18D83D8)
+[LOG] SoundI::release                          :     kalimba6 (0000023DAA526D78)
+[LOG] SoundI::release                          :     kalimba6 (0000023DC18D8078)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D8078 : node = 0000023D8498ADE0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D8078
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498AEF8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba4', format=2, channels=2, frequency=48000, lengthbytes=188000, lengthpcm=1032000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.080020.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D8078
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D8078.  Subsound index 0 / 1
+[LOG] SoundI::release                          : kalimba2 (0000023DC18D94B8)
+[LOG] SoundI::release                          :     kalimba2 (0000023DAA5263B8)
+[LOG] SoundI::release                          :     kalimba2 (0000023DC18D8228)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D8228 : node = 0000023D8498B320
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D8228
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498B438
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Design #2 - Espacialização', format=2, channels=2, frequency=48000, lengthbytes=163936, lengthpcm=2304000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.053253.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D8228
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D8228.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Design #2 - Espacialização (0000023DC18D88E8)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DAA526558)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DC18D9308)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DC18D88E8 : node = 0000023D8498A210
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DC18D88E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498A328
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='kalimba3', format=2, channels=2, frequency=48000, lengthbytes=351840, lengthpcm=1968000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.052080.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DC18D88E8
+[LOG] SoundI::getSubSound                      : sound 0000023DC18D88E8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : kalimba4 (0000023DC18D8078)
+[LOG] SoundI::release                          :     kalimba4 (0000023DAA526A38)
+[LOG] SoundI::release                          :     kalimba4 (0000023DC18D83D8)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000023DAD90A4A8 : node = 0000023D8498ADE0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000023DE72840D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000023DAD90A4A8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD\axel_game_sound\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1100576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 17216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000023D8498AEF8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Design #2 - Espacialização', format=2, channels=2, frequency=48000, lengthbytes=163936, lengthpcm=2304000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.053253.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000023DAD90A4A8
+[LOG] SoundI::getSubSound                      : sound 0000023DAD90A4A8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Design #2 - Espacialização (0000023DC18D8228)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DAA526D78)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DC18D94B8)
+[LOG] SoundI::release                          : kalimba3 (0000023DC18D88E8)
+[LOG] SoundI::release                          :     kalimba3 (0000023DAA5263B8)
+[LOG] SoundI::release                          :     kalimba3 (0000023DC18D9308)
+[LOG] SoundI::release                          : Design #2 - Espacialização (0000023DAD90A4A8)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DCB356D38)
+[LOG] SoundI::release                          :     Design #2 - Espacialização (0000023DAD90B228)
+[LOG] SoundI::release                          :  (0000023DB68A9018)
+[LOG] SoundI::release                          :     kalimba1 (0000023DE7283DE8)
+[LOG] SoundI::release                          :  (0000023DB68A7918)
+[LOG] SoundI::release                          :     kalimba5 (0000023DE7286EA8)
+[LOG] SoundI::release                          :  (0000023DB68AA9F8)
+[LOG] SoundI::release                          :     chemical (0000023DE7285648)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
+[LOG] SystemI::close                           : Closed.
