@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 331a4dc84c9ec55459f51ac471419953
+guid: f0f891d884672ab4b9b64286332ee03d
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: -8033556521611571830
-    second: ENERGIAPlaneAction
+      74: -1422011007694221501
+    second: Armature|ArmatureAction.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,18 +35,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ENERGIAPlaneAction
-      takeName: ENERGIA|PlaneAction
-      internalID: -8033556521611571830
+      name: Armature|ArmatureAction.001
+      takeName: Armature|ArmatureAction.001
+      internalID: -1422011007694221501
       firstFrame: 0
-      lastFrame: 159
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
