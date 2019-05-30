@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: f0f891d884672ab4b9b64286332ee03d
+guid: 018cdd82faa2d1246b534d180a4f6432
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -1422011007694221501
-    second: Armature|ArmatureAction.001
+    second: DoctorfishAnimation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction.001
+      name: DoctorfishAnimation
       takeName: Armature|ArmatureAction.001
       internalID: -1422011007694221501
       firstFrame: 0
@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
