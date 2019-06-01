@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
+  - Health
+  - Energy
+  - Food
+  - Speed
+  - Trash
   layers:
   - Default
   - TransparentFX
@@ -15,7 +20,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Obstacle
   - 
   - 
   - 

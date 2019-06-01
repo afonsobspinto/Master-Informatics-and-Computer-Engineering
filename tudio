@@ -1,0 +1,505 @@
+[33mcommit 65fd342f5795285582b3d8df80fe47fa3ef3e54e[m[33m ([m[1;36mHEAD -> [m[1;32m27-build-scene-one[m[33m, [m[1;31morigin/27-build-scene-one[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 21 14:33:21 2019 +0100
+
+    Remove logs
+
+[33mcommit d5333cf04565f5c1a2027f37d2abdf472b67e247[m[33m ([m[1;31morigin/21-predator-merge[m[33m, [m[1;32m21-predator-merge[m[33m)[m
+Merge: fbdc528 fdb283f
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 21 12:41:43 2019 +0100
+
+    Merge branch '27-build-scene-one' into 21-predator-merge
+
+[33mcommit fbdc528ea3a5dfe8e7d9bbade5fc83ee43ed7f0a[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Mon May 20 18:25:37 2019 +0100
+
+    forgot to save
+
+[33mcommit 7a18f1da96f4c23006c5552e43c597270f93f083[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Mon May 20 18:24:51 2019 +0100
+
+    add scene with predator
+
+[33mcommit fdb283f3b5aeda6712e4a64f0beda1b51f5b51c6[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Mon May 20 18:02:36 2019 +0100
+
+    Add plants
+
+[33mcommit d4992035fd8281c8f018eb5ba131f526eda222b9[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Mon May 20 17:58:55 2019 +0100
+
+    Add trash
+
+[33mcommit 381e611150f9fa3b023e0384c57f752d7726721e[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Mon May 20 17:33:00 2019 +0100
+
+    Add speed
+
+[33mcommit 9d719b88d68cb08991d331392a8c1565afe8a97e[m
+Merge: 299a7bc fbf35d4
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Mon May 20 17:23:51 2019 +0100
+
+    Merge branch '27-build-scene-one' into 21-predator-merge
+
+[33mcommit fbf35d41a5242adda1bf7c591cb424ed7438e1ae[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Mon May 20 17:20:51 2019 +0100
+
+    Add Reefs
+
+[33mcommit afa8633c93915e97dcd59f5c7eceeeffe324daf6[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Mon May 20 17:11:42 2019 +0100
+
+    Add worms and update axel
+
+[33mcommit 97fecfc645a9bc7dc0c00c0d959b0ec9769c4536[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 23:00:05 2019 +0100
+
+    Add health and update axel
+
+[33mcommit 98644485f086a68040d4af6e6e9b3a7324436b89[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 22:02:54 2019 +0100
+
+    Add axolotl model
+
+[33mcommit c214cfc619732ea1dbc419b208409bf133d38f5f[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 21:03:16 2019 +0100
+
+    Add energy model
+
+[33mcommit 784056121a39b59ceed86a334c05a0c97856c2b5[m
+Merge: 15f4cf0 70a8e01
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 18:19:11 2019 +0100
+
+    Merge with master
+
+[33mcommit 15f4cf02744dd588b8b269399230d880c525f655[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 18:13:33 2019 +0100
+
+    fmod
+
+[33mcommit 70a8e015b9e5660b04c7dd74e502a9eb8e34a224[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 18:12:50 2019 +0100
+
+    Update git ignore
+
+[33mcommit f0ced143a3599df73f76645871ae75859a54d842[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 18:09:20 2019 +0100
+
+    Update git ignore
+
+[33mcommit a4411f12dd54532c15e6d64b87c59b9f4ac17eae[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 17:30:41 2019 +0100
+
+    Fix border error
+
+[33mcommit d224165d009cc51a2ec41e8f2e432b86e6deaf6d[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sun May 19 12:11:04 2019 +0100
+
+    Add FMOD Studio
+
+[33mcommit afa313dee8f2b18536365587f8f74c3cffc49e6a[m
+Merge: 50fad74 1fbce5f
+Author: Tomás Oliveira <up201504746@fe.up.pt>
+Date:   Sun May 19 12:54:56 2019 +0200
+
+    Merge pull request #28 from afonsobspinto/5-create-borders
+    
+    5 create borders
+
+[33mcommit e1058230161a273f83799781e0dec731c714b569[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Fri May 17 14:12:06 2019 +0100
+
+    added firsts plants and corals to scene
+
+[33mcommit 1fbce5fdf0e0099f2817742f52fff1c491e735fd[m[33m ([m[1;31morigin/5-create-borders[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Thu May 16 12:48:10 2019 +0100
+
+    Add fog effect when passing borders
+
+[33mcommit dc87acf0608904df9fd89f7b12875d07faf2f6fe[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Thu May 16 12:37:31 2019 +0100
+
+    Add underwater sound and update FMOD
+
+[33mcommit cb3efbeadbbdba24632e81e6e4b15e6bb60471ac[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 15 00:48:07 2019 +0100
+
+    Merge with master
+
+[33mcommit 10769afcb55b0091c47ac105f0386c81870d3bfb[m
+Merge: d008b21 50fad74
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 15 00:22:54 2019 +0100
+
+    Fix conflicts
+
+[33mcommit 50fad748356eb7320a321f7042205d77e5eb7bd8[m
+Merge: c14276e c6547ab
+Author: Tomás Oliveira <toliveira_97@hotmail.com>
+Date:   Wed May 15 00:53:23 2019 +0200
+
+    Merge pull request #26 from afonsobspinto/15-power-ups
+    
+    15 power ups
+
+[33mcommit c6547ab523e714985bbd70b0b87b71a78348222a[m[33m ([m[1;31morigin/15-power-ups[m[33m, [m[1;32m15-power-ups[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 14 23:52:46 2019 +0100
+
+    Fix merge
+
+[33mcommit 759e4be7b8fb1fbc2eaf7542afff5e122c1a8b5c[m
+Merge: 928d4a4 c14276e
+Author: Ricardo Carvalho <up201503717@fe.up.pt>
+Date:   Tue May 14 23:23:07 2019 +0100
+
+    Merge branch 'master' into 15-power-ups
+
+[33mcommit c14276e31ae97d899ae7fd5a90462ac1a5d01871[m
+Merge: 43b3df1 4e5fba5
+Author: Tomás Oliveira <toliveira_97@hotmail.com>
+Date:   Wed May 15 00:22:00 2019 +0200
+
+    Merge pull request #25 from afonsobspinto/23-make-the-map
+    
+    23 make the map
+
+[33mcommit 4e5fba5d3af998bd685f48198780ea31d5e1769b[m[33m ([m[1;31morigin/23-make-the-map[m[33m, [m[1;32m23-make-the-map[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 14 23:20:41 2019 +0100
+
+    Merge with master
+
+[33mcommit be3d341488c6fb71f10d5ceb433e5c92edb495b7[m
+Merge: fa3ea77 43b3df1
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 14 22:48:20 2019 +0100
+
+    Merge remote-tracking branch 'origin/master' into 23-make-the-map
+
+[33mcommit fa3ea77370aa1b7c175f3e066a923b7ec8c923a2[m
+Merge: 3b48a2c 9fa480e
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 14 22:44:58 2019 +0100
+
+    Merge branch '23-make-the-map' of https://github.com/afonsobspinto/feup-djco2 into 23-make-the-map
+
+[33mcommit 3b48a2ca5ff2c63e41249b67154ebb43c7430cc2[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue May 14 22:43:33 2019 +0100
+
+    Update FMOD
+
+[33mcommit 43b3df1f06e05ae7c11661fdec773f98309149a2[m
+Merge: 8414990 b822c53
+Author: Tomás Oliveira <toliveira_97@hotmail.com>
+Date:   Tue May 14 23:24:32 2019 +0200
+
+    Merge pull request #24 from afonsobspinto/17-connect-player-to-hud
+    
+    17 connect player to hud
+
+[33mcommit 299a7bce3146821e038bee0d015761b237eac2aa[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue May 14 18:57:56 2019 +0100
+
+    improved movement
+
+[33mcommit 9fa480ea1ed59fffb2e4adbf47b997d579501e23[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Tue May 14 16:15:20 2019 +0100
+
+    changed textures of terrain
+
+[33mcommit a72f40a838a67729acdeb86ad1bdc28ddf387730[m
+Merge: a11da3a 9770761
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue May 14 15:04:41 2019 +0100
+
+    Merge remote-tracking branch 'origin/9-predator-mechanic' into 21-predator-merge
+
+[33mcommit 40d4edd2438821a1a22da4071cc5e4fc77f8870b[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Tue May 14 14:02:00 2019 +0100
+
+    added water effects
+
+[33mcommit 80dc37e42659f4730d5c8a91f7b5eb654425e02c[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Mon May 13 11:25:00 2019 +0100
+
+    added basic water effects
+
+[33mcommit 9770761c5984333ffa3bd234132b88ea75a7da14[m[33m ([m[1;31morigin/9-predator-mechanic[m[33m)[m
+Author: ShinuziKyura <rj.santos.pereira@gmail.com>
+Date:   Mon May 13 03:42:05 2019 +0100
+
+    Implement basic AI capable of chasing or wandering when not chasing
+    
+    Still needs adjustments to movement when wandering, mostly.
+    Also added helper behavior to print debug logs to screen, and added one to main scene.
+    
+    9-predator-mechanic
+
+[33mcommit a11da3a42086f1fb8fc29b268c54b25ac2e4cf61[m[33m ([m[1;31morigin/21-add-predator-logic-hide-seek[m[33m)[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Sun May 12 23:19:27 2019 +0100
+
+    forgot to save
+
+[33mcommit 26ca6030f9c309f70a51b1f66a215a3999b20107[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Sun May 12 23:13:10 2019 +0100
+
+    add player detection
+
+[33mcommit d008b21e7b45213f6e5edc9370bcbffe6420e661[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri May 10 23:56:34 2019 +0100
+
+    Finish borders
+
+[33mcommit 62e6b57339d835ca816a62f5076b4b09d1c29d0a[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri May 10 19:04:08 2019 +0100
+
+    Player health decreases when entering border
+
+[33mcommit 20f700a0af3f76d1346c5ead097f7e3b01459187[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Fri May 10 14:30:55 2019 +0100
+
+    fix last commit
+
+[33mcommit cfc197b9e4102d4c7e3815fd35d47de51a57c854[m
+Author: Ana Santos <anaezes@gmail.com>
+Date:   Thu May 9 17:22:56 2019 +0100
+
+    added first terrain model
+
+[33mcommit 928d4a4008af673cacb32703a68ece106f142c23[m
+Author: Ricardo Carvalho <up201503717@fe.up.pt>
+Date:   Wed May 8 17:05:41 2019 +0100
+
+    Update SceneHUD.unity
+
+[33mcommit 5c1018967ad5761926c563fcf5fb22c5acef049d[m
+Author: Ricardo Carvalho <up201503717@fe.up.pt>
+Date:   Wed May 8 17:04:43 2019 +0100
+
+    power ups work for defined functionlity
+    
+    there is still need to find appropriate steps to be used in updating both the values and what is displayed in the HUD
+
+[33mcommit b822c53b382f303dcb59017380ac6263e7dbffc2[m[33m ([m[1;31morigin/17-connect-player-to-hud[m[33m, [m[1;32m17-connect-player-to-hud[m[33m)[m
+Author: Ricardo Carvalho <up201503717@fe.up.pt>
+Date:   Wed May 8 13:29:40 2019 +0100
+
+    fix initial value for energy loss step
+
+[33mcommit 908c56015c2c51051eea4683961b9fd833b60f96[m
+Author: Ricardo Carvalho <up201503717@fe.up.pt>
+Date:   Wed May 8 13:23:01 2019 +0100
+
+    player health and energy are connected to the hud
+    
+    created a class to keep information (current value, max value and loss step) about a single stat (energy or health)
+    created in player controller a static instance of PlayerStats for both health and energy
+    made circle bar classes get their initial and updated values from the player class
+
+[33mcommit 841499061cdcca454f9bc739c1df85e79e754efd[m
+Merge: 53c7624 8d265f8
+Author: Tomás Oliveira <toliveira_97@hotmail.com>
+Date:   Wed May 1 19:07:41 2019 +0200
+
+    Merge pull request #22 from afonsobspinto/19-integrate-fmod-studio
+    
+    Integrate Audio and Add Assets
+
+[33mcommit 8d265f8365a010aace139edf866ec36332547586[m[33m ([m[1;31morigin/19-integrate-fmod-studio[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 1 16:57:03 2019 +0100
+
+    Added assets and materials
+
+[33mcommit e8f696629671f8397cb587f5f086d6963ebc5a70[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 1 14:28:06 2019 +0100
+
+    Sound working
+
+[33mcommit e23547482debe440b3047e53b8d8280c7385f116[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 1 13:19:34 2019 +0100
+
+    Integrate FMOD
+
+[33mcommit 53c76247e6ba37022ce352a6fbdfdd551ec43fce[m
+Merge: 793c605 fb9e4f2
+Author: Tomás Oliveira <toliveira_97@hotmail.com>
+Date:   Wed May 1 13:44:11 2019 +0200
+
+    Merge pull request #18 from afonsobspinto/007-add-catch-power-up-mechanic
+    
+    007 add catch power up mechanic
+
+[33mcommit fb9e4f2b5eea39ca13a69f34a757ac9d2ccaaa2f[m[33m ([m[1;31morigin/007-add-catch-power-up-mechanic[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 1 12:40:32 2019 +0100
+
+    Add power-ups to main scene
+
+[33mcommit 01aec9d84e24b3c1b383f3b5d497eb3846be7372[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Wed May 1 12:39:45 2019 +0100
+
+    Change prefab name
+
+[33mcommit 9fafd073655c6689d90d574bd8f49d2b1a3506b1[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue Apr 30 16:21:04 2019 +0100
+
+    add prefab
+
+[33mcommit 5627b40839c7b773589115d607de384d56a76d8e[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue Apr 23 21:31:28 2019 +0100
+
+    changed class name
+
+[33mcommit f55335e4033990a0907cf1c1649e42b7ac5693f7[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue Apr 23 17:52:48 2019 +0100
+
+    using collider
+
+[33mcommit 5bfbb8020e87884cbf02794b9b7acb07bd7bb874[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Tue Apr 23 17:16:56 2019 +0100
+
+    update scene and player object in interactable class
+
+[33mcommit 793c605edbc1a50b5b9ce238fc4f7f90368a6395[m[33m ([m[1;31morigin/sound[m[33m)[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue Apr 23 16:08:05 2019 +0100
+
+    Move scripts to its folder
+
+[33mcommit add0d7756fd821bcf3c3d019421bf23858c51a6d[m
+Author: up201503708 <up201503708@fe.up.pt>
+Date:   Mon Apr 22 19:47:15 2019 +0100
+
+    added power up objects collision detection
+
+[33mcommit 05b5383b108ffb094a3b1bce4648cf3384382073[m
+Merge: 26cf92a 3587207
+Author: Tomás Oliveira <up201504746@fe.up.pt>
+Date:   Tue Apr 9 16:29:50 2019 +0100
+
+    Merge pull request #13 from afonsobspinto/2-add-fishes-mechanic
+    
+    Resolve Add fishes mechanic
+
+[33mcommit 3587207d605c464757ca56e0667595fb9fc35a5f[m[33m ([m[1;31morigin/2-add-fishes-mechanic[m[33m)[m
+Merge: 208a081 26cf92a
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue Apr 9 16:28:57 2019 +0000
+
+    Merge HUD and fishes
+
+[33mcommit 26cf92a9dbff061c486d2223eca1c472116abcd2[m
+Merge: cd2dc19 8cf7ca8
+Author: Tomás Oliveira <up201504746@fe.up.pt>
+Date:   Tue Apr 9 16:20:14 2019 +0100
+
+    Merge pull request #14 from afonsobspinto/004-createHUD
+    
+    004 create hud
+
+[33mcommit 208a081407fd452a11b8f15f736177d9cea90948[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Sat Apr 6 17:51:54 2019 +0000
+
+    Change structure
+
+[33mcommit 8cf7ca8698ac40369d918b91a93383f952701889[m
+Author: rmcarvalho <rmcarvalho@users.noreply.github.com>
+Date:   Sat Apr 6 16:06:46 2019 +0100
+
+    move 'bars' to top left
+
+[33mcommit 798d145b9939b87a5cdc587edd2224ca03ddee8a[m
+Author: rmcarvalho <rmcarvalho@users.noreply.github.com>
+Date:   Sat Apr 6 16:00:55 2019 +0100
+
+    add HUD to screen with the bars
+
+[33mcommit 872fa68eab9a01e29dc8c027f435c694370c549b[m
+Author: rmcarvalho <rmcarvalho@users.noreply.github.com>
+Date:   Sat Apr 6 14:20:11 2019 +0100
+
+    add sprites to be used in hud circle bars
+
+[33mcommit 27d43a3b27943e77750820213d54ccd926bbb6e7[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri Apr 5 13:10:05 2019 +0000
+
+    Finished fish mechanic with sardine example
+
+[33mcommit a987836682096e68148871b4be3b13ce614afdbf[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri Apr 5 11:50:00 2019 +0000
+
+    Create AI Spawner
+
+[33mcommit 88640fd8f2b1518701a022357745568959518b5c[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri Apr 5 11:19:20 2019 +0000
+
+    Add waypoints
+
+[33mcommit cd2dc1987984d8a0219c354a9e31373d8cba2ce0[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri Mar 29 21:51:40 2019 +0000
+
+    Add hand model
+
+[33mcommit f8256217b34b29a809503648b9403daae48d1da7[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Fri Mar 29 21:33:55 2019 +0000
+
+    Add player movement and player and camera rotation
+
+[33mcommit e1a55e70d7b2fc1fbe0d8b72344fee5f6baccb9c[m
+Author: Toliveira97 <toliveira_97@hotmail.com>
+Date:   Tue Mar 26 15:29:15 2019 +0000
+
+    First commit
+
+[33mcommit 8860e513fffd4c11936893fd49f4fd8b81aadef7[m
+Author: Afonso Pinto <afonsobspinto@gmail.com>
+Date:   Sat Mar 23 14:54:43 2019 +0000
+
+    Initial commit
