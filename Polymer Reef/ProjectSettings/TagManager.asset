@@ -10,6 +10,7 @@ TagManager:
   - Food
   - Speed
   - Trash
+  - Camera
   layers:
   - Default
   - TransparentFX

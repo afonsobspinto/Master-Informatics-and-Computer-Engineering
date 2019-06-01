@@ -5,23 +5,45 @@ using UnityEngine;
 public class LightControl : MonoBehaviour
 {
     private GameObject energyCircle;
-    private CircleEnergyBar energyBar;
+    private PlayerController playerController;
+    private bool lightOn = true;
+    private FogEffect fogEffect;
 
     // Start is called before the first frame update
     void Start()
     {
         energyCircle = GameObject.Find("EnergyBar");
-        energyBar = energyCircle.GetComponent<CircleEnergyBar>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        fogEffect = GameObject.FindGameObjectWithTag("Camera").GetComponent<FogEffect>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (Transform child in transform)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            Light light = child.GetComponent<Light>();
-            float intens = light.intensity;
-            light.intensity = energyBar._actualValue/33;
+            lightOn = !lightOn;
+            foreach (Transform child in transform)
+            {
+                Light light = child.GetComponent<Light>();
+                light.enabled = lightOn;
+            }
+        }
+
+        if (!lightOn)
+        {
+            fogEffect._depthStart = -25f;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                Debug.Log("energy " + playerController.getEnergy());
+                Light light = child.GetComponent<Light>();
+                float intens = light.intensity;
+                light.intensity = playerController.getEnergy() / 33;
+                fogEffect._depthStart = playerController.getEnergy() - 25;
+            }
         }
     }
 }
