@@ -38,7 +38,6 @@ public class LightControl : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
-                Debug.Log("energy " + playerController.getEnergy());
                 Light light = child.GetComponent<Light>();
                 float intens = light.intensity;
                 light.intensity = playerController.getEnergy() / 33;
