@@ -13,7 +13,6 @@ public class PlayerStats
         this.value = initialValue;
         this.maxValue = initialValue;
         this.valueLossStep = valueLossStep;
-        Debug.Log("Create " + initialValue + " for value and for step " + valueLossStep);
     }
 
 
