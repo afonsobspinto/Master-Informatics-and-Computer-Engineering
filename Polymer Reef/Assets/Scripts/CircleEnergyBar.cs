@@ -21,10 +21,10 @@ public class CircleEnergyBar : CircleUIBar
         setInitial(_maxValue);
     }
 
-   /*protected override void Update()
+   protected override void Update()
     {
         _currentValue = playerController.getEnergy();
         _maxValue = playerController.getEnergyMax();
         base.Update();
-    }*/
+    }
 }
