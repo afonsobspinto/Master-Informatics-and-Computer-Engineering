@@ -35,10 +35,6 @@ public class AIMove : MonoBehaviour
 
     void SetUpNPC()
     {
-        // Randomly scale each NPC
-        float m_scale = Random.Range(0f, 4f);
-        transform.localScale += new Vector3(m_scale * 1.5f, m_scale, m_scale);
-
         if (transform.GetComponent<Collider>() != null && transform.GetComponent<Collider>().enabled == true)
             m_collider = transform.GetComponent<Collider>();
         else if (transform.GetComponentInChildren<Collider>() != null && transform.GetComponentInChildren<Collider>().enabled == true)
@@ -95,7 +91,7 @@ public class AIMove : MonoBehaviour
             return m_AIManager.RandomWaypoint();
     }
 
-    bool CanFindTarget(float start = 1f, float end = 7f){
+    bool CanFindTarget(float speed = 2f){
 
         // Make sure we dont set the same waypoint twice
         if(m_lastWaypoint == m_wayPoint)
@@ -109,7 +105,7 @@ public class AIMove : MonoBehaviour
             // Set the new waypoint as the last waypoint
             m_lastWaypoint = m_wayPoint;
             // Get random speed for movement and animation
-            m_speed = Random.Range(start, end);
+            m_speed = speed;
             m_animator.speed = m_speed;
             // Set bool to true to say we found a WP
             return true;
