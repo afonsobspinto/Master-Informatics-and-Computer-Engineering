@@ -2783,6 +2783,16 @@ PrefabInstance:
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4839772480395341763, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 633056188}
+    - target: {fileID: 4839772480395341763, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: energyUI
+      value: 
+      objectReference: {fileID: 293377849}
     - target: {fileID: 4839772480395341765, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_Size.y
