@@ -6,13 +6,13 @@ public class PlayerStats
 {
     public float value = 0;
     private float maxValue = 0;
-    private float valueLossStep = 0;
+    private float decreaseOverTime = 0;
 
-    public PlayerStats(float initialValue, float valueLossStep)
+    public PlayerStats(float initialValue, float decreaseOverTime)
     {
         this.value = initialValue;
         this.maxValue = initialValue;
-        this.valueLossStep = valueLossStep;
+        this.decreaseOverTime = decreaseOverTime;
     }
 
 
@@ -21,7 +21,7 @@ public class PlayerStats
         float deltaTime = Time.deltaTime;
         float value = this.value;
 
-        value = value - this.valueLossStep * deltaTime;
+        value = value - this.decreaseOverTime * deltaTime;
 
         if (value <= 0.0f)
         {
@@ -30,23 +30,6 @@ public class PlayerStats
 
         this.value = value;
 
-    }
-
-    public void changeCurrentValue(float amount)
-    {
-        float value = this.value;
-
-        value = value + amount;
-
-        if (value > this.maxValue)
-        {
-            value = this.maxValue;
-        } else if (value < 0.0f)
-        {
-            value = 0.0f;
-        }
-
-        this.value = value;
     }
 
     public float getCurrentValue()
@@ -62,5 +45,34 @@ public class PlayerStats
     public void changeMaxValue(float amount)
     {
         this.maxValue += amount;
+    }
+
+    public void decreaseValue(float amount)
+    {
+        float nextValue = this.value - amount;
+
+        this.value = valueIsBound(nextValue);
+    }
+
+    public void increaseValue(float amount)
+    {
+        float nextValue = this.value + amount;
+
+        this.value = valueIsBound(nextValue);
+    }
+
+
+    private float valueIsBound(float value)
+    {
+        if (value > this.maxValue)
+        {
+            value = this.maxValue;
+        }
+        else if (value < 0.0f)
+        {
+            value = 0.0f;
+        }
+
+        return value;
     }
 }

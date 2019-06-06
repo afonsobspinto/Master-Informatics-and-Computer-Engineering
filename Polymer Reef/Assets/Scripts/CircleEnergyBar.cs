@@ -10,10 +10,10 @@ public class CircleEnergyBar : CircleUIBar
     // Start is called before the first frame update
     void Start()
     {
-        _bar.fillAmount = 0;
+        _mainBar.fillAmount = 0;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        _actualValue = playerController.getEnergy();
+        _currentValue = playerController.getEnergy();
         _maxValue = playerController.getEnergyMax();
         _valueDecreaseStep = 4.5f;  //this step is merely visual, doesn't relate to step in player stats
         _valueIncreaseStep = 20.0f; //this step is merely visual, doesn't relate to step in player stats
@@ -21,10 +21,10 @@ public class CircleEnergyBar : CircleUIBar
         setInitial(_maxValue);
     }
 
-    protected override void Update()
+   /*protected override void Update()
     {
-        _actualValue = playerController.getEnergy();
+        _currentValue = playerController.getEnergy();
         _maxValue = playerController.getEnergyMax();
         base.Update();
-    }
+    }*/
 }

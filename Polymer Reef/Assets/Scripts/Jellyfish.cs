@@ -25,7 +25,7 @@ public class Jellyfish : MonoBehaviour
         {
             Debug.Log("Touching Player");
             //decrease health using player object
-            this.player.GetComponent<PlayerController>().changeHealth(-this.damage);
+            this.player.GetComponent<PlayerController>().doDamage(this.damage);
         }
     }
 }

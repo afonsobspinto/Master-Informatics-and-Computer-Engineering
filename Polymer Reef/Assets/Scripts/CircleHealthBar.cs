@@ -10,10 +10,10 @@ public class CircleHealthBar : CircleUIBar
     // Start is called before the first frame update
     void Start()
     {
-        _bar.fillAmount = 0;
+        _mainBar.fillAmount = 0;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        _actualValue = playerController.getHealth();
+        _currentValue = playerController.getHealth();
         _maxValue = playerController.getHealthMax();
         _valueDecreaseStep = 4.5f;  //this step is merely visual, doesn't relate to step in player stats
         _valueIncreaseStep = 20.0f; //this step is merely visual, doesn't relate to step in player stats
@@ -21,10 +21,10 @@ public class CircleHealthBar : CircleUIBar
         setInitial(_maxValue);
     }
 
-    protected override void Update()
+    /*protected override void Update()
     {
-       _actualValue = playerController.getHealth();
-        _maxValue = playerController.getHealthMax();
+       _currentValue = playerController.getHealth();
+       _maxValue = playerController.getHealthMax();
        base.Update();
-    }
+    }*/
 }

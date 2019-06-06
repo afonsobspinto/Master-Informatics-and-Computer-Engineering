@@ -31,7 +31,7 @@ public class Border : MonoBehaviour
         if (other.gameObject.name == "Player" && PlayerController.health.getCurrentValue() > 0)
         {
             PlayerController p = other.gameObject.GetComponent<PlayerController>();
-            p.changeHealth(-0.1f);
+            p.doDamageOverTime(0.1f);
             other.gameObject.GetComponentInChildren<FogEffect>().enabled = true;
         }
     }
