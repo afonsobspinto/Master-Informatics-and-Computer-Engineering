@@ -20,11 +20,4 @@ public class CircleHealthBar : CircleUIBar
         
         setInitial(_maxValue);
     }
-
-    protected override void Update()
-    {
-       _currentValue = playerController.getHealth();
-       _maxValue = playerController.getHealthMax();
-       base.Update();
-    }
 }

@@ -14,12 +14,13 @@ public class CircleUIBar : MonoBehaviour
     [SerializeField]
     protected float _currentValue;
 
-    private float _lastCurrentValue = 0;
+    private float _lastValue = 0;
 
-    private float _lastUpdatedValue = 0;
+    private float _mainBarAmount = 0;
 
-    private float damage = 0;
-    private float damageOverTime = 0;
+    private float _backBarAmount = 0;
+
+    public bool isIncreasing = false;
 
     [SerializeField]
     protected float _maxValue;
@@ -38,6 +39,7 @@ public class CircleUIBar : MonoBehaviour
     protected virtual void Update()
     {
         ValueChange(Time.deltaTime);
+
     }
 
     public void setInitial(float initialValue)
@@ -47,64 +49,70 @@ public class CircleUIBar : MonoBehaviour
             return;
         }
         _currentValue = initialValue;
+        _lastValue = initialValue;
+        _mainBarAmount = initialValue;
+        _backBarAmount = initialValue;
 
-        _lastCurrentValue = initialValue;
-
-        _lastUpdatedValue = initialValue;
-
-        _mainBar.fillAmount = 100;
+        _mainBar.fillAmount = 1;
+        _backgroundBar.fillAmount = 1;
 
         initialSet = true;
     }
 
     void ValueChange(float deltaTime)
     {
-        float offset = _currentValue - _lastCurrentValue;
+        float offset = _currentValue - _mainBarAmount;
         float direction = Mathf.Sign(offset);
 
-        if (Mathf.Abs(offset) > valueSensitivity) // value has just changed, update main bar
+        if (Mathf.Abs(offset) > valueSensitivity)
         {
-            boundValue(_currentValue);
-
+            //update main bar
             if (direction < 0) // decrease
             {
-                _mainBar.fillAmount = _currentValue / _maxValue;
+                _mainBarAmount -= _valueDecreaseStep * deltaTime;
             }
-            else //increase
+            else // increase
             {
-                _backgroundBar.fillAmount = _currentValue / _maxValue;
+                _mainBarAmount += _valueIncreaseStep * deltaTime;
             }
-            _lastCurrentValue = _currentValue;
+
+            _mainBarAmount = boundValue(_mainBarAmount);
+            _mainBar.fillAmount = _mainBarAmount / _maxValue;
+        } else
+        {
+            _mainBarAmount = _currentValue;
         }
 
-        offset = _currentValue - _lastUpdatedValue;
+        offset = _currentValue - _backBarAmount;
         direction = Mathf.Sign(offset);
 
         if (Mathf.Abs(offset) > valueSensitivity)
         {
+            //update back bar
             if (direction < 0) // decrease
             {
-                _lastUpdatedValue = _lastUpdatedValue - _valueDecreaseStep * deltaTime;
+                _backBarAmount -= _valueDecreaseStep * deltaTime;
             }
             else // increase
             {
-                _lastUpdatedValue = _lastUpdatedValue + _valueIncreaseStep * deltaTime;
+                _backBarAmount += _valueIncreaseStep * deltaTime;
             }
 
-            boundValue(_lastUpdatedValue);
+            _backBarAmount = boundValue(_backBarAmount);
+            _backgroundBar.fillAmount = _backBarAmount / _maxValue;
+        }
+        else
+        {
+            _backBarAmount = _currentValue;
+        }
 
-            if (direction < 0) // decrease
-            {
-                _backgroundBar.fillAmount = _lastUpdatedValue / _maxValue;
-            }
-            else //increase
-            {
-                _mainBar.fillAmount = _lastUpdatedValue / _maxValue;
-            }
+        if (isIncreasing && _mainBarAmount == _currentValue)
+        {
+            isIncreasing = false;
         }
     }
 
-    void boundValue(float value)
+    float boundValue(float value)
     {
         if (value >= _maxValue)
         {
@@ -114,29 +122,46 @@ public class CircleUIBar : MonoBehaviour
         {
             value = 0;
         }
+
+        return value;
     }
 
 
-    void decrease(float amount) // bars move seperately (health only)
+    public void decrease(float amount) // bars move seperately (health only)
     {
-        damage += amount;
+        _currentValue -= amount;
+
+        _currentValue = boundValue(_currentValue);
+
+        // main Bar moves to target
+        _mainBarAmount = _currentValue;
+        _mainBar.fillAmount = _mainBarAmount / _maxValue;
     }
 
 
-    void increase(float amount) // bars move seperately
+    public void increase(float amount) // bars move seperately
     {
-        damage -= amount;
+        _currentValue += amount;
+        _currentValue = boundValue(_currentValue);
+
+        // back bar moves to target
+        _backBarAmount = _currentValue;
+        _backgroundBar.fillAmount = _backBarAmount / _maxValue;
+
+        isIncreasing = true;
     }
 
-    void decreaseOverTime(float amount) // both bars move simultaneously
+    public void decreaseOverTime(float amount) // both bars move simultaneously
     {
-        damageOverTime += amount;
+        _currentValue -= amount;
 
-        _currentValue -= damageOverTime;
-
-        boundValue(_currentValue);
-
-        _mainBar.fillAmount = _currentValue / _maxValue;
-        _backgroundBar.fillAmount = _currentValue / _maxValue;
+        _currentValue = boundValue(_currentValue);
+        _backBarAmount = _currentValue;
+        _mainBarAmount = _currentValue;
+        if (!isIncreasing)
+        {
+            _mainBar.fillAmount = _mainBarAmount / _maxValue;
+        }
+        _backgroundBar.fillAmount = _backBarAmount / _maxValue;
     }
 }

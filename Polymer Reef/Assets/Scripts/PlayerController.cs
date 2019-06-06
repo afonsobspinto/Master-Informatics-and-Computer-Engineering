@@ -111,19 +111,19 @@ public class PlayerController : MonoBehaviour
     public void gainHealth(float amount)
     {
        PlayerController.health.increaseValue(amount);
-        // TODO HUD
+        healthUI.increase(amount);
     }
 
     public void doDamage(float amount)
     {
         PlayerController.health.decreaseValue(amount);
-        // TODO HUD
+        healthUI.decrease(amount);
     }
 
     public void doDamageOverTime(float amount)
     {
         PlayerController.health.decreaseValue(amount);
-        //TODO HUD
+        healthUI.decreaseOverTime(amount);
     }
 
     public void changeMaxHealth(float amount)
@@ -134,12 +134,18 @@ public class PlayerController : MonoBehaviour
     public void increaseEnergy(float amount)
     {
         PlayerController.energy.increaseValue(amount);
-        // TODO HUD
+        energyUI.increase(amount);
     }
 
     public void updateEnergy()
     {
-        PlayerController.energy.Update();
+        if (!energyUI.isIncreasing)
+        {
+            float energyDelta = PlayerController.energy.getUpdateLoss();
+            PlayerController.energy.updateValue(energyDelta);
+            energyUI.decreaseOverTime(energyDelta);
+
+        }
     }
 
     public void changeMaxEnergy(float amount)

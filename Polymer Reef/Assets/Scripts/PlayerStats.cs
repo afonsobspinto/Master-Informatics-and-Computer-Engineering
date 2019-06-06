@@ -15,21 +15,24 @@ public class PlayerStats
         this.decreaseOverTime = decreaseOverTime;
     }
 
-
-    public void Update()
+    public float getUpdateLoss()
     {
         float deltaTime = Time.deltaTime;
-        float value = this.value;
 
-        value = value - this.decreaseOverTime * deltaTime;
+        return this.decreaseOverTime * deltaTime;
+    }
+
+    public float updateValue(float delta)
+    {
+        float deltaTime = Time.deltaTime;
+
+        value -= delta;
 
         if (value <= 0.0f)
         {
             value = 0.0f;
         }
-
-        this.value = value;
-
+        return value;
     }
 
     public float getCurrentValue()
