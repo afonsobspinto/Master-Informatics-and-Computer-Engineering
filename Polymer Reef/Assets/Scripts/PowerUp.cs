@@ -20,7 +20,7 @@ public class PowerUp : Collectable
     {
         PlayerController p = player.gameObject.GetComponent<PlayerController>();
         if (this.gameObject.tag == "Energy")
-            p.increaseEnergy(50f);
+            p.increaseEnergy(25f);
         else if (this.gameObject.tag == "Health")
             p.gainHealth(50f);
         else if (this.gameObject.tag == "Food")
@@ -32,6 +32,9 @@ public class PowerUp : Collectable
             p.changeSpeed(1.5f);
         else if (this.gameObject.tag == "Trash")
             p.doDamage(25f);
+        else if (this.gameObject.tag == "Particle"){
+            p.increaseEnergy(25f);    
+        }
 
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();

@@ -11,6 +11,7 @@ TagManager:
   - Speed
   - Trash
   - Camera
+  - Particle
   layers:
   - Default
   - TransparentFX

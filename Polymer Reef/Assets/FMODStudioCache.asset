@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\axel_game_sound\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636946587609304286
+  lastModified: 636940465949882270
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -98,6 +98,26 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1117792
+  Exists: 1
+--- !u!114 &-3547706507680580246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: C:\Users\ana\Documents\faculdade\feup-djco2\Polymer Reef\Assets\FMOD\axel_game_sound\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636940465949811796
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 264704
   Exists: 1
 --- !u!114 &-3346604466161002204
 MonoBehaviour:
@@ -178,15 +198,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -6349580948340878886}
-  - {fileID: 5476062160890323196}
+  - {fileID: -3547706507680580246}
   EditorEvents:
   - {fileID: 6769211219011973686}
   - {fileID: 8696636391407078738}
   MasterBanks:
-  - {fileID: 5476062160890323196}
+  - {fileID: -3547706507680580246}
   StringsBanks:
   - {fileID: -6349580948340878886}
-  stringsBankWriteTime: 636946587609304286
+  stringsBankWriteTime: 636940465949882270
   cacheVersion: 3
 --- !u!114 &2216095295059938929
 MonoBehaviour:
@@ -269,14 +289,14 @@ MonoBehaviour:
   Path: event:/soundscape
   guid: 628e2bc79599c648879e00787f4f3d22
   Banks:
-  - {fileID: 5476062160890323196}
-  IsStream: 1
+  - {fileID: -3547706507680580246}
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 48000
+  Length: 4000
 --- !u!114 &7453708862121882989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,9 +329,9 @@ MonoBehaviour:
   m_Name: event:/chemical
   m_EditorClassIdentifier: 
   Path: event:/chemical
-  guid: a9566b5c916873458d5f1ca5f1d52d1b
+  guid: 87b3302d0242d242a614faec17db4911
   Banks:
-  - {fileID: 5476062160890323196}
+  - {fileID: -3547706507680580246}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
