@@ -24,10 +24,12 @@ public class SceneLoader : MonoBehaviour
     {
         if(insidePrevious)
         {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             Debug.Log("Load Next Scene");
         }
         else if(insideNext)
         {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(prevSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             Debug.Log("Load Previous Scene");
         }
     }
@@ -36,10 +38,14 @@ public class SceneLoader : MonoBehaviour
     {
         if (insidePrevious)
         {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(nextSceneIndex);
+            Resources.UnloadUnusedAssets();
             Debug.Log("Unload Next Scene");
         }
         else if (insideNext)
         {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(prevSceneIndex);
+            Resources.UnloadUnusedAssets();
             Debug.Log("Unload Previous Scene");
         }
     }
