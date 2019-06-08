@@ -2753,8 +2753,7 @@ MonoBehaviour:
   m_SpawnArea: {x: 26.6, y: 11.5, z: 8.8}
   AIObject:
   - m_aiGroupName: Fish3
-    m_prefab: {fileID: 5634886858043718397, guid: 40a1dadaf1bf4184c9d274fe0cd2d078,
-      type: 3}
+    m_prefab: {fileID: 677096180}
     m_maxAI: 12
     m_spawnRate: 7
     m_maxSpawnAmount: 5
@@ -5162,7 +5161,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.27e-43, y: 3e-44, z: 0, w: 0.000000001865896}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

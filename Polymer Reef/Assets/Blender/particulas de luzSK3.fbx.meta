@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: bc363b328b11183418780c1fb47d582e
+guid: 76314a305436c8444a465869bcdc589a
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: ass
+      74: -7579029537026339982
+    second: LightsAnimation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ass
-      takeName: Armature|ArmatureAction
-      internalID: 4781951162920444690
+      name: LightsAnimation
+      takeName: LUZINHA |Sphere.001Action
+      internalID: -7579029537026339982
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
