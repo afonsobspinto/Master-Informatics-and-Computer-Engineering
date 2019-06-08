@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: cd6e19a4349fdb6449fc51ac535d9a70
+guid: 7b45a253d2001d54ab5732b5b0427135
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: -1422011007694221501
-    second: DoctorfishAnimation
+      74: 4781951162920444690
+    second: MorayAnimation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: DoctorfishAnimation
-      takeName: Armature|ArmatureAction.001
-      internalID: -1422011007694221501
+      name: MorayAnimation
+      takeName: Armature|ArmatureAction
+      internalID: 4781951162920444690
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 170
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

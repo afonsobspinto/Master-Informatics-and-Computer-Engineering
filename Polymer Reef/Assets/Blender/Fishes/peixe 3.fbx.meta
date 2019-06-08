@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 0fe6619ba7fe7654ea3495d5c7ca223c
+guid: 13c97ab74a2934749b201d4265425d91
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: 4781951162920444690
-    second: MorayAnimation
+    second: Fish3Animation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: MorayAnimation
+      name: Fish3Animation
       takeName: Armature|ArmatureAction
       internalID: 4781951162920444690
       firstFrame: 0
-      lastFrame: 170
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

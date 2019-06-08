@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbe289833db764c41b555f5a921f79f7
+guid: 5f2ef50c0d088db4283aec3a2151a6c7
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -8,7 +8,7 @@ ModelImporter:
     second: Armature.001|Armature.001Action
   - first:
       74: -5784005261616917065
-    second: ParadisefishAnimation
+    second: ParadiseFishAnimation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -49,7 +49,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -67,7 +67,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ParadisefishAnimation
+      name: ParadiseFishAnimation
       takeName: Armature.001|Armature.001Action.001
       internalID: -5784005261616917065
       firstFrame: 0
