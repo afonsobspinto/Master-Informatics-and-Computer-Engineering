@@ -11,7 +11,7 @@ public class CollectableEnergy : Collectable
     {
         PlayerController controller = player.GetComponent<PlayerController>();
         
-        controller.changeEnergy(amount);
+        controller.increaseEnergy(amount);
         base.Interact();
     }
 }
