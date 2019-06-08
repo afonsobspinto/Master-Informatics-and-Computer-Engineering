@@ -8,12 +8,17 @@ public class PowerUp : Collectable
     public string selectsound;
     FMOD.Studio.EventInstance soundevent;
     private GameObject player;
+    private Light directionalLight;
+    private GameObject camera;
 
     void Start()
     {
         soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
         soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
         player = GameObject.Find("Player");
+
+        directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
+        camera = GameObject.Find("Camera");
     }
 
     public override void Interact()
@@ -33,7 +38,12 @@ public class PowerUp : Collectable
         else if (this.gameObject.tag == "Trash")
             p.doDamage(25f);
         else if (this.gameObject.tag == "Particle"){
-            p.increaseEnergy(25f);    
+            p.increaseEnergy(50f);    
+            directionalLight.color = Color.white;
+            directionalLight.intensity = 1;
+            camera.GetComponent<FogEffect>()._fogColor = Color.blue;
+            camera.GetComponent<FogEffect>()._depthStart = 30f;
+            camera.GetComponent<FogEffect>()._depthDistance = 450f;
         }
 
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());

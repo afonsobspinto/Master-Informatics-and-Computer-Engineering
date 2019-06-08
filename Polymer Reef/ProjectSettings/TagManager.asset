@@ -12,6 +12,7 @@ TagManager:
   - Trash
   - Camera
   - Particle
+  - DirectionalLight
   layers:
   - Default
   - TransparentFX
