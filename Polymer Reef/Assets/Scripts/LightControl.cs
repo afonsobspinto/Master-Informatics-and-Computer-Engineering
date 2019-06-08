@@ -36,6 +36,7 @@ public class LightControl : MonoBehaviour
         }
         else
         {
+            playerController.LoseEnergy(0.1f);
             foreach (Transform child in transform)
             {
                 Light light = child.GetComponent<Light>();

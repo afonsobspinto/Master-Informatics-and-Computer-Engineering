@@ -137,13 +137,19 @@ public class PlayerController : MonoBehaviour
         energyUI.increase(amount);
     }
 
+    public void LoseEnergy(float amount)
+    {
+        PlayerController.energy.decreaseValue(amount);
+        energyUI.decrease(amount);
+    }
+
     public void updateEnergy()
     {
         if (!energyUI.isIncreasing)
         {
             float energyDelta = PlayerController.energy.getUpdateLoss();
             PlayerController.energy.updateValue(energyDelta);
-            energyUI.decreaseOverTime(energyDelta);
+            //energyUI.decreaseOverTime(energyDelta);
 
         }
     }
