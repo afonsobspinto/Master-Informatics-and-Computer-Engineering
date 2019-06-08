@@ -23,7 +23,6 @@ public class Jellyfish : MonoBehaviour
     {
         if (c.gameObject == this.player)
         {
-            Debug.Log("Touching Player");
             //decrease health using player object
             this.player.GetComponent<PlayerController>().doDamage(this.damage);
         }

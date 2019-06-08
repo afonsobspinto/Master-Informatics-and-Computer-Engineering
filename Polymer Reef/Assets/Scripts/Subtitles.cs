@@ -7,6 +7,9 @@ public class Subtitles : MonoBehaviour
 {
     private Text text;
 
+    [Header("Subtitles")]
+    public string[] subtitles = new string[3];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +19,12 @@ public class Subtitles : MonoBehaviour
 
     IEnumerator Sequence()
     {
-        yield return new WaitForSeconds(1);
-        text.text = "It looks very dark here, you should find some energy to increase your lights!";
-        yield return new WaitForSeconds(4);
-        text.text = "";
-        yield return new WaitForSeconds(1);
-        text.text = "Find them scattered around the area...";
-        yield return new WaitForSeconds(3);
-        text.text = "";
-        yield return new WaitForSeconds(2);
-        this.gameObject.GetComponent<Text>().fontStyle = FontStyle.BoldAndItalic;
-        text.text = "\"Where are my parents...\"";
-        yield return new WaitForSeconds(3);
-        text.text = "";
+        for(int i=0; i < subtitles.Length; i++)
+        {
+            yield return new WaitForSeconds(1);
+            text.text = subtitles[i];
+            yield return new WaitForSeconds(4);
+            text.text = "";
+        }
     }
 }
