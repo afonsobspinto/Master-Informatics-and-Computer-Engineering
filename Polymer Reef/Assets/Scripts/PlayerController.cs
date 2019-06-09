@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     public void LoseEnergy(float amount)
     {
         PlayerController.energy.decreaseValue(amount);
-        energyUI.decrease(amount);
+        energyUI.decreaseOverTime(amount);
     }
 
     public void updateEnergy()
