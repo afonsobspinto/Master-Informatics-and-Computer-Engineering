@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104843684156461182}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 24.812164, y: -0.5060832, z: -41.05167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 7275507563239873527}
@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4322265466522227393}
   m_LocalRotation: {x: 0.000000017166524, y: 0.61892736, z: -0.000000013527091, w: 0.7854483}
-  m_LocalPosition: {x: 24.845345, y: 2.9518924, z: -41.068577}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20.808983, y: 20.808977, z: 20.808983}
   m_Children: []
   m_Father: {fileID: 5303470318953495237}
@@ -279,8 +279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5303470318953495237}
   - component: {fileID: 2815794192961787839}
+  - component: {fileID: 9206184467223939287}
   m_Layer: 0
-  m_Name: seaweed1
+  m_Name: Seaweed1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,3 +322,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &9206184467223939287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206184467223939286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6.66, z: 2.53}
+  m_Center: {x: -0.1, y: 3.37, z: -0.01}

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: f8d29211cffd71a42adef39979c735db
+guid: 6902259b744aa654ea6122715e8eb6be
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: 2264077025236624520
-    second: SeaweedAnimation
+      74: -1422011007694221501
+    second: AxelAnimation3
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: SeaweedAnimation
-      takeName: Armature.001|Armature.001Action
-      internalID: 2264077025236624520
+      name: AxelAnimation3
+      takeName: Armature|ArmatureAction.001
+      internalID: -1422011007694221501
       firstFrame: 0
-      lastFrame: 79
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

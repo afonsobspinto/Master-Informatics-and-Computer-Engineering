@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 7709686125681325085
-    second: Armature|Armature.001Action
+    second: MiniSeaweed1Animation
   - first:
       74: 4781951162920444690
     second: Armature|ArmatureAction
@@ -44,11 +44,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Armature.001Action
-      takeName: Armature|Armature.001Action
+      name: MiniSeaweed1Animation
+      takeName: Armature|ArmatureAction
       internalID: 7709686125681325085
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
