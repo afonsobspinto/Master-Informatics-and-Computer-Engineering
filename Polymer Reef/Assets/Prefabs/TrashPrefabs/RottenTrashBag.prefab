@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4192297992474313835, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
+  - {fileID: 2100000, guid: c75d5e8b9b7a03048be59b5181c57b9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,16 +126,16 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -6087771358165109452, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
-  - {fileID: -6629797300637803691, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
-  - {fileID: -2813467912831258332, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
-  - {fileID: -354735261257320667, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
+  - {fileID: 2100000, guid: 8030092bacf3feb48a9116875ea7a89c, type: 2}
+  - {fileID: 2100000, guid: 1fbda335748c59d469222c5bc5a0a6f3, type: 2}
+  - {fileID: 2100000, guid: ceaf776b3b86d124db30ac902172bef9, type: 2}
   - {fileID: 1616631391813270657, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
-  - {fileID: 3548951601036501923, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
+  - {fileID: 2100000, guid: e1c0cec1c64b9ca41b84d823a9bcbb36, type: 2}
   - {fileID: 1110233775959259594, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
   - {fileID: -1816969121316012401, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
   - {fileID: -3522955778539423533, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
   - {fileID: -4679620533103059447, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
-  - {fileID: 1129505859253339258, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
+  - {fileID: 2100000, guid: d72f72249aef3394ca23d4d2f75fc599, type: 2}
   - {fileID: -4396186578377475905, guid: 98df0bf36161d0a42acbf30774987a95, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -193,7 +193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5892493482137992918}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.71, y: -1.7, z: -15.38}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
