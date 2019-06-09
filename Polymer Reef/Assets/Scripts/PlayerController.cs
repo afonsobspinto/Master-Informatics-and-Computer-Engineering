@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         health = new PlayerStats(this.initialHealthValue, this.initialHealthDecreaseOverTime);
         energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyDecreaseOverTime);
+
+        energyUI.setInitial(energy.getMaxValue());
+        healthUI.setInitial(health.getMaxValue());
     }
 
     private void Update()
