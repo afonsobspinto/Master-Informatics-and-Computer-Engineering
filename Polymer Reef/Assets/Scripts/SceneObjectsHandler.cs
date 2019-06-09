@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneObjectsHandler : MonoBehaviour
 {
+    public int sceneNoPlayer = -1;
     public int prevSceneIndex;
     public int nextSceneIndex;
 
@@ -27,6 +28,12 @@ public class SceneObjectsHandler : MonoBehaviour
         if (insidePrevious)
         {
             UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(prevSceneIndex);
+
+            //loaded scene 1 without player instead of the original scene 1 (with the player)
+            if(!scene.IsValid())
+            {
+                scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(sceneNoPlayer);
+            }
 
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);

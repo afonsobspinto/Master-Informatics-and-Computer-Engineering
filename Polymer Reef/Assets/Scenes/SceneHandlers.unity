@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 5559737181771360331, guid: bceb9ccb24bb4074fbdd78f8615790e3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5559737181771360331, guid: bceb9ccb24bb4074fbdd78f8615790e3,
         type: 3}
@@ -185,6 +185,36 @@ PrefabInstance:
     - target: {fileID: 5559737181771360331, guid: bceb9ccb24bb4074fbdd78f8615790e3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737182107657131, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: prevSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737182107657131, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: nextSceneIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737182107657131, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: sceneNoPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737183345686340, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: prevSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737183345686340, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: nextSceneIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559737183345686340, guid: bceb9ccb24bb4074fbdd78f8615790e3,
+        type: 3}
+      propertyPath: sceneNoPlayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
