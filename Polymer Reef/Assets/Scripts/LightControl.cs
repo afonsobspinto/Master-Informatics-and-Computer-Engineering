@@ -6,7 +6,7 @@ public class LightControl : MonoBehaviour
 {
     private GameObject energyCircle;
     private PlayerController playerController;
-    private bool lightOn = true;
+    private bool lightOn = false;
     private FogEffect fogEffect;
 
     // Start is called before the first frame update
