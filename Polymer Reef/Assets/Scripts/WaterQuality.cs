@@ -10,7 +10,7 @@ public class WaterQuality : MonoBehaviour
     [SerializeField]
     private Color m_SpawnColor = new Color(0.000f, 0.000f, 0.000f, 0.000f);
     [SerializeField]
-    private Vector3 m_BorderArea = new Vector3(20f, 5f, 20f);
+    private Vector3 m_BorderArea = new Vector3(1f, 1f, 1f);
 
     private BoxCollider boxCollider;
 
@@ -29,7 +29,7 @@ public class WaterQuality : MonoBehaviour
         boxCollider.size = m_BorderArea;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player" && PlayerController.health.getCurrentValue() > 0)
         {

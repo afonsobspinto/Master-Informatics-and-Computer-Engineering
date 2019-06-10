@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
 
     public void setWaterQuality(float quality)
     {
+        waterQualityUI.setInitial(quality);
         if(waterQuality > quality)
         {
             waterQualityUI.decrease(waterQuality - quality);
