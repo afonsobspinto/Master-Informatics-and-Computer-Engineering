@@ -120,6 +120,247 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &27968192
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mat_water_surface
+  m_Shader: {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
+  m_ShaderKeywords: SUIMONO_CAUST_ON SUIMONO_DYNREFL_ON SUIMONO_REFL_OFF SUIMONO_TESS_ON
+    SUIMONO_TRANS_ON
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BlurRamp:
+        m_Texture: {fileID: 2800000, guid: e607ea0d8431dc64c8f345a02a1028e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeBDRF:
+        m_Texture: {fileID: 8900000, guid: 01c62ce94e46dcf4ea217e771c6da1b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeMobile:
+        m_Texture: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeTex:
+        m_Texture: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DepthRamp:
+        m_Texture: {fileID: 2800000, guid: aa1f666bea9a5b2409ff3dcfc008a57c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlowMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamOverlay:
+        m_Texture: {fileID: 2800000, guid: dd5f830482b013a43b967ea68de614d7, type: 3}
+        m_Scale: {x: 0.781425, y: 0.781425}
+        m_Offset: {x: 0, y: 0}
+    - _FoamRamp:
+        m_Texture: {fileID: 2800000, guid: 01757909dcbf805408fe7867004a31a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamTex:
+        m_Texture: {fileID: 2800000, guid: 14c55ed649175884784db6c178f4e654, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightTex:
+        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _HeightTexD:
+        m_Texture: {fileID: 2800000, guid: 5068c41d8b2d8474a855de152aea3721, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightTexR:
+        m_Texture: {fileID: 2800000, guid: 17e80c508914f384083dc7e9d438652f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTexD:
+        m_Texture: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTexR:
+        m_Texture: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTexS:
+        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _OceanBlendTex:
+        m_Texture: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Surface1:
+        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
+        m_Scale: {x: 4.62, y: 4.62}
+        m_Offset: {x: 0, y: 0.038000003}
+    - _Surface2:
+        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
+        m_Scale: {x: 5.25, y: 5.25}
+        m_Offset: {x: 0, y: 0}
+    - _WaveLargeTex:
+        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+        m_Scale: {x: 5.25, y: 5.25}
+        m_Offset: {x: 0, y: 1}
+    - _WaveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaveRamp:
+        m_Texture: {fileID: 2800000, guid: 7d47d30a7e6fff544a72f826670ef31b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaveTex:
+        m_Texture: {fileID: 2800000, guid: 9e0b039b60bba5c4ea73849d69af386a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _testTransTex:
+        m_Texture: {fileID: 8400000, guid: 4cbb053dd78893346b31535310230dc4, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AnimSpeed: 1
+    - _BlurSpread: 0
+    - _BumpStrength: 0.084
+    - _CausticsFade: 61.878002
+    - _CenterHeight: 1
+    - _DepthAmt: 45
+    - _DepthFade: 12.8936
+    - _DetailHeight: 1.63
+    - _Displacement: 1
+    - _EdgeBlend: 1
+    - _EdgeFade: 73.36
+    - _EdgeFoamFade: 105.164955
+    - _EdgeSpread: 0.02
+    - _FlowScale: 6.0895004
+    - _FoamFade: 1
+    - _FoamHeight: 0
+    - _FoamSpread: 0.85
+    - _HeightFoamAmount: 0
+    - _HeightFoamAmt: 0.85
+    - _HeightFoamHeight: 0.65
+    - _HeightFoamSpread: 0.276
+    - _MaskAmt: 8
+    - _MasterScale: 2.25
+    - _MaxVariance: 8.299999
+    - _NormalStrength: 1
+    - _ReflBlend: 0.015
+    - _ReflBlur: 0.01
+    - _ReflDist: 200
+    - _ReflectStrength: 1
+    - _RefrScale: 2.25
+    - _RefrSpeed: 15.2
+    - _RefrStrength: 0
+    - _RefractFade: 1
+    - _RefractStrength: 0.5
+    - _RimPower: 1
+    - _ShallowFade: 45.6943
+    - _ShallowFoamAmt: 1
+    - _ShoreAmt: -3.5
+    - _ShoreAmtDk: 1
+    - _SpecScatterAmt: 0.5
+    - _SpecScatterWidth: 0.1
+    - _Tess: 8
+    - _TideAmount: 0.3
+    - _TideSpread: 0.513
+    - _UnderFogDist: -0.054
+    - _UnderReflDist: -4.28
+    - _WaveHeight: 0.63
+    - _WaveScale: 0.605
+    - _WaveShoreHeight: 0
+    - _castshadowEnabled: 1
+    - _castshadowFade: 1
+    - _castshadowStrength: 1
+    - _foamScale: 10.54
+    - _maxDist: 58.399998
+    - _minDist: -180
+    - _reflecTerm: 0
+    - _shorelineFrequency: 1
+    - _shorelineHeight: 0.25
+    - _shorelineScale: 0.1
+    - _shorelineSpeed: 4
+    - _suimono_DeepWaveHeight: 0.945
+    - _suimono_DetailHeight: 1.63
+    - _suimono_detScale: 0.19
+    - _suimono_uv2x: 0
+    - _suimono_uv2y: 0
+    - _suimono_uv3x: 0
+    - _suimono_uv3y: 0
+    - _suimono_uv4x: 0
+    - _suimono_uv4y: 0
+    - _suimono_uv5x: 0
+    - _suimono_uv5y: 0
+    - _suimono_uv6x: 0
+    - _suimono_uv6y: 0
+    - _suimono_uv7x: 0
+    - _suimono_uv7y: 0
+    - _suimono_uv8x: 1
+    - _suimono_uv8y: 1
+    - _suimono_uvx: 0
+    - _suimono_uvy: 0
+    - _temp: 1
+    - _useDynamicReflections: 1
+    - normalShore: 1
+    m_Colors:
+    - _BlendColor: {r: 0.36, g: 1, b: 0.867, a: 0.22}
+    - _CausticsColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DepthColor: {r: 0, g: 0, b: 0, a: 0}
+    - _DepthColorB: {r: 1, g: 0.44, b: 0, a: 1}
+    - _DepthColorG: {r: 1, g: 1, b: 1, a: 0}
+    - _DepthColorR: {r: 1, g: 1, b: 1, a: 0}
+    - _DynReflColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _EdgeColor: {r: 0.73, g: 1, b: 0.94, a: 0}
+    - _FoamColor: {r: 0.912, g: 0.874, b: 0.791, a: 1}
+    - _HighColor: {r: 0, g: 0, b: 0, a: 0.9}
+    - _LowColor: {r: 0.34, g: 0.26, b: 0.18, a: 0.15}
+    - _OverlayColor: {r: 0, g: 0, b: 0, a: 0}
+    - _ReflectionColor: {r: 1, g: 1, b: 1, a: 0.376}
+    - _SSSColor: {r: 0, g: 0.324, b: 0.015, a: 0.239}
+    - _SpecColorH: {r: 1, g: 0.48, b: 0, a: 1}
+    - _SpecColorL: {r: 1, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 0.063, g: 0.326, b: 0.375, a: 0.161}
+    - _TideColor: {r: 0.24, g: 0.34, b: 0.32, a: 0}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _UnderColor: {r: 1, g: 0.62, b: 0.17, a: 1}
+    - _UnderwaterColor: {r: 0.034, g: 0.102, b: 0.154, a: 0.404}
+    - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
+    - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
+    - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
 --- !u!1 &36778344
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2134248762}
+  - {fileID: 274200228}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -643,7 +884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134564361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 249, y: 11.589, z: 251.4}
+  m_LocalPosition: {x: 249, y: 20, z: 251.4}
   m_LocalScale: {x: 15.00558, y: 1, z: 17.785475}
   m_Children:
   - {fileID: 1547563076}
@@ -1011,6 +1252,65 @@ Transform:
   m_Father: {fileID: 122257716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &272750159
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+--- !u!21 &274200228
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Suimono2/Suimono2_FX_ShorelineObject
+  m_Shader: {fileID: 4800000, guid: fd654610d0032bc41bacb0ff65c265bb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 485839761}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &292129567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 569774688}
+  - {fileID: 27968192}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2036,40 +2336,6 @@ MonoBehaviour:
   wetAmount: 0
   gSlope: 0
   useSlope: 0
---- !u!84 &392407161
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &394519989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2607,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 268433663
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1269511090}
+  m_TargetTexture: {fileID: 1244064966}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -2402,7 +2668,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 1269511090}
+  renderTexDiff: {fileID: 1244064966}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -2803,6 +3069,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477324906}
   m_Mesh: {fileID: 4300002, guid: 2cfc4dc1e5be87244b8dfe4207921a7a, type: 3}
+--- !u!84 &485839761
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &496983262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,7 +3421,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 1
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 392407161}
+  m_TargetTexture: {fileID: 272750159}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -3187,7 +3487,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 392407161}
+  renderTexDiff: {fileID: 272750159}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -3523,247 +3823,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569745269}
   m_Mesh: {fileID: 4300008, guid: 2cfc4dc1e5be87244b8dfe4207921a7a, type: 3}
---- !u!21 &569774688
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: mat_water_surface
-  m_Shader: {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
-  m_ShaderKeywords: SUIMONO_CAUST_ON SUIMONO_DYNREFL_ON SUIMONO_REFL_OFF SUIMONO_TESS_ON
-    SUIMONO_TRANS_ON
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BlurRamp:
-        m_Texture: {fileID: 2800000, guid: e607ea0d8431dc64c8f345a02a1028e9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubeBDRF:
-        m_Texture: {fileID: 8900000, guid: 01c62ce94e46dcf4ea217e771c6da1b2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubeMobile:
-        m_Texture: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubeTex:
-        m_Texture: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DepthRamp:
-        m_Texture: {fileID: 2800000, guid: aa1f666bea9a5b2409ff3dcfc008a57c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FlowMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FoamOverlay:
-        m_Texture: {fileID: 2800000, guid: dd5f830482b013a43b967ea68de614d7, type: 3}
-        m_Scale: {x: 0.781425, y: 0.781425}
-        m_Offset: {x: 0, y: 0}
-    - _FoamRamp:
-        m_Texture: {fileID: 2800000, guid: 01757909dcbf805408fe7867004a31a3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FoamTex:
-        m_Texture: {fileID: 2800000, guid: 14c55ed649175884784db6c178f4e654, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _HeightTex:
-        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
-        m_Scale: {x: 2, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - _HeightTexD:
-        m_Texture: {fileID: 2800000, guid: 5068c41d8b2d8474a855de152aea3721, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _HeightTexR:
-        m_Texture: {fileID: 2800000, guid: 17e80c508914f384083dc7e9d438652f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalTexD:
-        m_Texture: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalTexR:
-        m_Texture: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalTexS:
-        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-        m_Scale: {x: 2, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - _OceanBlendTex:
-        m_Texture: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Ramp2D:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ReflectionTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Surface1:
-        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
-        m_Scale: {x: 4.62, y: 4.62}
-        m_Offset: {x: 0, y: 0.038000003}
-    - _Surface2:
-        m_Texture: {fileID: 2800000, guid: 51323bc64857e644fac7400eb7305b36, type: 3}
-        m_Scale: {x: 5.25, y: 5.25}
-        m_Offset: {x: 0, y: 0}
-    - _WaveLargeTex:
-        m_Texture: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-        m_Scale: {x: 5.25, y: 5.25}
-        m_Offset: {x: 0, y: 1}
-    - _WaveMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WaveRamp:
-        m_Texture: {fileID: 2800000, guid: 7d47d30a7e6fff544a72f826670ef31b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WaveTex:
-        m_Texture: {fileID: 2800000, guid: 9e0b039b60bba5c4ea73849d69af386a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _testTransTex:
-        m_Texture: {fileID: 8400000, guid: 4cbb053dd78893346b31535310230dc4, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _AnimSpeed: 1
-    - _BlurSpread: 0
-    - _BumpStrength: 0.084
-    - _CausticsFade: 61.878002
-    - _CenterHeight: 1
-    - _DepthAmt: 45
-    - _DepthFade: 12.8936
-    - _DetailHeight: 1.63
-    - _Displacement: 1
-    - _EdgeBlend: 1
-    - _EdgeFade: 73.36
-    - _EdgeFoamFade: 105.164955
-    - _EdgeSpread: 0.02
-    - _FlowScale: 6.0895004
-    - _FoamFade: 1
-    - _FoamHeight: 0
-    - _FoamSpread: 0.85
-    - _HeightFoamAmount: 0
-    - _HeightFoamAmt: 0.85
-    - _HeightFoamHeight: 0.65
-    - _HeightFoamSpread: 0.276
-    - _MaskAmt: 8
-    - _MasterScale: 2.25
-    - _MaxVariance: 8.299999
-    - _NormalStrength: 1
-    - _ReflBlend: 0.015
-    - _ReflBlur: 0.01
-    - _ReflDist: 200
-    - _ReflectStrength: 1
-    - _RefrScale: 2.25
-    - _RefrSpeed: 15.2
-    - _RefrStrength: 0
-    - _RefractFade: 1
-    - _RefractStrength: 0.5
-    - _RimPower: 1
-    - _ShallowFade: 45.6943
-    - _ShallowFoamAmt: 1
-    - _ShoreAmt: -3.5
-    - _ShoreAmtDk: 1
-    - _SpecScatterAmt: 0.5
-    - _SpecScatterWidth: 0.1
-    - _Tess: 8
-    - _TideAmount: 0.3
-    - _TideSpread: 0.513
-    - _UnderFogDist: -0.054
-    - _UnderReflDist: -4.28
-    - _WaveHeight: 0.63
-    - _WaveScale: 0.605
-    - _WaveShoreHeight: 0
-    - _castshadowEnabled: 1
-    - _castshadowFade: 1
-    - _castshadowStrength: 1
-    - _foamScale: 10.54
-    - _maxDist: 58.399998
-    - _minDist: -180
-    - _reflecTerm: 0
-    - _shorelineFrequency: 1
-    - _shorelineHeight: 0.25
-    - _shorelineScale: 0.1
-    - _shorelineSpeed: 4
-    - _suimono_DeepWaveHeight: 0.945
-    - _suimono_DetailHeight: 1.63
-    - _suimono_detScale: 0.19
-    - _suimono_uv2x: 0
-    - _suimono_uv2y: 0
-    - _suimono_uv3x: 0
-    - _suimono_uv3y: 0
-    - _suimono_uv4x: 0
-    - _suimono_uv4y: 0
-    - _suimono_uv5x: 0
-    - _suimono_uv5y: 0
-    - _suimono_uv6x: 0
-    - _suimono_uv6y: 0
-    - _suimono_uv7x: 0
-    - _suimono_uv7y: 0
-    - _suimono_uv8x: 1
-    - _suimono_uv8y: 1
-    - _suimono_uvx: 0
-    - _suimono_uvy: 0
-    - _temp: 1
-    - _useDynamicReflections: 1
-    - normalShore: 1
-    m_Colors:
-    - _BlendColor: {r: 0.36, g: 1, b: 0.867, a: 0.22}
-    - _CausticsColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthColor: {r: 0, g: 0, b: 0, a: 0}
-    - _DepthColorB: {r: 1, g: 0.44, b: 0, a: 1}
-    - _DepthColorG: {r: 1, g: 1, b: 1, a: 0}
-    - _DepthColorR: {r: 1, g: 1, b: 1, a: 0}
-    - _DynReflColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _EdgeColor: {r: 0.73, g: 1, b: 0.94, a: 0}
-    - _FoamColor: {r: 0.912, g: 0.874, b: 0.791, a: 1}
-    - _HighColor: {r: 0, g: 0, b: 0, a: 0.9}
-    - _LowColor: {r: 0.34, g: 0.26, b: 0.18, a: 0.15}
-    - _OverlayColor: {r: 0, g: 0, b: 0, a: 0}
-    - _ReflectionColor: {r: 1, g: 1, b: 1, a: 0.376}
-    - _SSSColor: {r: 0, g: 0.324, b: 0.015, a: 0.239}
-    - _SpecColorH: {r: 1, g: 0.48, b: 0, a: 1}
-    - _SpecColorL: {r: 1, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 0.063, g: 0.326, b: 0.375, a: 0.161}
-    - _TideColor: {r: 0.24, g: 0.34, b: 0.32, a: 0}
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-    - _UnderColor: {r: 1, g: 0.62, b: 0.17, a: 1}
-    - _UnderwaterColor: {r: 0.034, g: 0.102, b: 0.154, a: 0.404}
-    - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
-    - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
-    - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
 --- !u!1 &570179314
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,7 +3997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1748d1bd453a241887f476036939c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingMode: 0
 --- !u!114 &605840935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4076,7 +4134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1.2951896
+  systemTime: 3.735188
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -4292,7 +4350,7 @@ Transform:
   m_Father: {fileID: 701263829}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &625718824
+--- !u!84 &634127336
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4305,8 +4363,8 @@ RenderTexture:
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
+  m_Width: 128
+  m_Height: 128
   m_AntiAliasing: 1
   m_DepthFormat: 2
   m_ColorFormat: 52
@@ -4725,6 +4783,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731661467}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &737282004
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &738955961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,7 +5664,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 1024
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1337709417}
+  m_TargetTexture: {fileID: 1386281097}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -5603,7 +5695,7 @@ MonoBehaviour:
   resolution: 128
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 1337709417}
+  renderTexDiff: {fileID: 1386281097}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -5771,40 +5863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88cc1c8381dbfd41bf13e2888562e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!84 &1026556224
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1039573278
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,7 +6112,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 1024
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1194558494}
+  m_TargetTexture: {fileID: 634127336}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -6085,7 +6143,7 @@ MonoBehaviour:
   resolution: 128
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 1194558494}
+  renderTexDiff: {fileID: 634127336}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -6465,40 +6523,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181388975}
   m_Mesh: {fileID: 4300004, guid: 2cfc4dc1e5be87244b8dfe4207921a7a, type: 3}
---- !u!84 &1194558494
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1198006557
 GameObject:
   m_ObjectHideFlags: 0
@@ -6631,7 +6655,7 @@ Transform:
   m_Father: {fileID: 595789079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1269511090
+--- !u!84 &1244064966
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6876,40 +6900,6 @@ Transform:
   m_Father: {fileID: 1464369884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1337709417
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1348853748
 GameObject:
   m_ObjectHideFlags: 0
@@ -7010,7 +7000,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 512
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1026556224}
+  m_TargetTexture: {fileID: 1512010602}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -7041,7 +7031,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 1026556224}
+  renderTexDiff: {fileID: 1512010602}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -7240,6 +7230,40 @@ Transform:
   m_Father: {fileID: 1129858614}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1386281097
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 128
+  m_Height: 128
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1396889936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7272,7 +7296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1.2951896
+  systemLocalTime: 3.735188
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -7343,7 +7367,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 0.12951897
+  localTime: 0.3735188
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -7654,7 +7678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396889936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 235.79, y: 11.589, z: 209.59}
+  m_LocalPosition: {x: 235.79, y: 20, z: 209.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 292129571}
@@ -7891,6 +7915,40 @@ Transform:
   m_Father: {fileID: 137560689}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1512010602
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1531650249
 GameObject:
   m_ObjectHideFlags: 0
@@ -8090,7 +8148,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4096
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 2076552634}
+  m_TargetTexture: {fileID: 485839761}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -8136,7 +8194,7 @@ MonoBehaviour:
   resolution: 1024
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 2076552634}
+  renderTexDiff: {fileID: 485839761}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -14702,7 +14760,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 268433663
   m_RenderingPath: 2
-  m_TargetTexture: {fileID: 625718824}
+  m_TargetTexture: {fileID: 737282004}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -14763,7 +14821,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 625718824}
+  renderTexDiff: {fileID: 737282004}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -15299,40 +15357,6 @@ Transform:
   m_Father: {fileID: 409034022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &2076552634
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2078423330
 GameObject:
   m_ObjectHideFlags: 0
@@ -15879,31 +15903,6 @@ Transform:
   m_Father: {fileID: 361365487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &2134248762
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Suimono2/Suimono2_FX_ShorelineObject
-  m_Shader: {fileID: 4800000, guid: fd654610d0032bc41bacb0ff65c265bb, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2076552634}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &2141335580
 GameObject:
   m_ObjectHideFlags: 0
