@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &36863254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8183988463812983608, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1543579259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04c2a08fa5acf049a716690ad57ef27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &142508255
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,11 +641,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 554942218, guid: e4fcc5a077df6d2449d0a8be1167fb40, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306026831166741221, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6201491299038683911, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4839772480395341763, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: waterQualityUI
+      value: 
+      objectReference: {fileID: 36863254}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4fcc5a077df6d2449d0a8be1167fb40, type: 3}
 --- !u!1 &1548648224
@@ -805,8 +831,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689570716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.987, y: 303.32, z: -16.599998}
+  m_LocalRotation: {x: 0.06903227, y: 0.0798203, z: 0.0055439016, w: -0.9944006}
+  m_LocalPosition: {x: 16.458635, y: 292.78653, z: -65.73571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1173323323}

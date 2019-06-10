@@ -20,7 +20,13 @@ public class PlayerController : MonoBehaviour
     private float initialHealthValue = 100f;
 
     [SerializeField]
-    private float initialHealthDecreaseOverTime = 0f;
+    private float healthLossOverTimeHunger = 0f;
+
+    [SerializeField]
+    private float healthLossOverTimeWaterQuality = 0f;
+
+    [SerializeField]
+    private float healthGainOverTimeWaterQuality = 0f;
 
     public static PlayerStats health;
 
@@ -30,13 +36,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float initialEnergyValue = 100f;
 
-    [SerializeField]
-    private float initialEnergyDecreaseOverTime = 5f;
-
     public static PlayerStats energy;
 
     [SerializeField]
     private CircleEnergyBar energyUI;
+
+    public float waterQuality = 100f;
+
+    [SerializeField]
+    private CircleWaterQualityBar waterQualityUI;
+
 
     [SerializeField]
     private Camera cam;
@@ -45,17 +54,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        health = new PlayerStats(this.initialHealthValue, this.initialHealthDecreaseOverTime);
-        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyDecreaseOverTime);
+        health = new PlayerStats(initialHealthValue);
+        energy = new PlayerStats(initialEnergyValue);
 
         energyUI.setInitial(energy.getMaxValue());
         healthUI.setInitial(health.getMaxValue());
+
+        waterQualityUI.setInitial(waterQuality);
     }
 
     private void Update()
     {
-        updateEnergy();
-
+        updateHealth();
 
         // Calculate movement velocity as a 3D vector
         float _xMov = Input.GetAxisRaw("Horizontal");
@@ -146,15 +156,27 @@ public class PlayerController : MonoBehaviour
         energyUI.decreaseOverTime(amount);
     }
 
-    public void updateEnergy()
+    public void updateHealth()
     {
-        if (!energyUI.isIncreasing)
+        if (!healthUI.isIncreasing)
         {
-            float energyDelta = PlayerController.energy.getUpdateLoss();
-            PlayerController.energy.updateValue(energyDelta);
-            //energyUI.decreaseOverTime(energyDelta);
+            // TODO apply formula to loose health
 
         }
+    }
+
+    public void setWaterQuality(float quality)
+    {
+        if(waterQuality > quality)
+        {
+            waterQualityUI.decrease(waterQuality - quality);
+
+        } else if(waterQuality < quality)
+        {
+            waterQualityUI.increase(quality - waterQuality);
+        }
+
+        waterQuality = quality;
     }
 
     public void changeMaxEnergy(float amount)
