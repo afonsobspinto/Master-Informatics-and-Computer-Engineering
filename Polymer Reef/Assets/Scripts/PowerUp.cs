@@ -7,16 +7,45 @@ public class PowerUp : Collectable
     [FMODUnity.EventRef]
     public string selectsound;
     FMOD.Studio.EventInstance soundevent;
+    private GameObject player;
+    private Light directionalLight;
+    private GameObject camera;
 
     void Start()
     {
         soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
         soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
+        player = GameObject.Find("Player");
+
+        directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
+        camera = GameObject.Find("Camera");
     }
 
     public override void Interact()
     {
-        Debug.Log("Interaction detected\nPlease implement interact method");
+        PlayerController p = player.gameObject.GetComponent<PlayerController>();
+        if (this.gameObject.tag == "Energy")
+            p.increaseEnergy(25f);
+        else if (this.gameObject.tag == "Health")
+            p.gainHealth(50f);
+        else if (this.gameObject.tag == "Food")
+        {
+            p.gainHealth(25f);
+            p.increaseEnergy(25f);
+        }
+        else if (this.gameObject.tag == "Speed")
+            p.changeSpeed(1.5f);
+        else if (this.gameObject.tag == "Trash")
+            p.doDamage(25f);
+        else if (this.gameObject.tag == "Particle"){
+            p.increaseEnergy(50f);    
+            directionalLight.color = Color.white;
+            directionalLight.intensity = 1;
+            camera.GetComponent<FogEffect>()._fogColor = Color.blue;
+            camera.GetComponent<FogEffect>()._depthStart = 30f;
+            camera.GetComponent<FogEffect>()._depthDistance = 450f;
+        }
+
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
         PlaySound();
         Destroy(gameObject);

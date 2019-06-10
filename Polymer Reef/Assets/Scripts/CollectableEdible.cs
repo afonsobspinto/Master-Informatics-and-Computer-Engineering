@@ -14,15 +14,17 @@ public class CollectableEdible : Collectable
 
     public override void Interact()
     {
-        int sign = 1;
+        PlayerController controller = player.GetComponent<PlayerController>();
 
         if (type == edibleType.plastic)
         {
-            sign = -1;
+            controller.doDamage(amount);
+        }
+        else
+        {
+            controller.gainHealth(amount);
         }
 
-        PlayerController controller = player.GetComponent<PlayerController>();
-        controller.changeHealth(amount * sign);
         base.Interact();
     }
 }

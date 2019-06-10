@@ -20,31 +20,41 @@ public class PlayerController : MonoBehaviour
     private float initialHealthValue = 100f;
 
     [SerializeField]
-    private float initialHealthLossStep = 5f;
+    private float initialHealthDecreaseOverTime = 0f;
 
     public static PlayerStats health;
+
+    [SerializeField]
+    private CircleHealthBar healthUI;
 
     [SerializeField]
     private float initialEnergyValue = 100f;
 
     [SerializeField]
-    private float initialEnergyLossStep = 5f;
+    private float initialEnergyDecreaseOverTime = 5f;
 
     public static PlayerStats energy;
-    
+
+    [SerializeField]
+    private CircleEnergyBar energyUI;
+
+    [SerializeField]
+    private Camera cam;
 
 
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        health = new PlayerStats(this.initialHealthValue, this.initialHealthLossStep);
-        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyLossStep);
+        health = new PlayerStats(this.initialHealthValue, this.initialHealthDecreaseOverTime);
+        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyDecreaseOverTime);
+
+        energyUI.setInitial(energy.getMaxValue());
+        healthUI.setInitial(health.getMaxValue());
     }
 
     private void Update()
     {
-        //PlayerController.health.Update();
-        PlayerController.energy.Update();
+        updateEnergy();
 
 
         // Calculate movement velocity as a 3D vector
@@ -52,10 +62,9 @@ public class PlayerController : MonoBehaviour
         float _zMov = Input.GetAxisRaw("Vertical");
 
         Vector3 _movHorizontal = transform.right * _xMov;
-        Vector3 _movVertical = transform.forward * _zMov;
 
         // Final movement vector
-        Vector3 _velocity = (_movHorizontal + _movVertical).normalized * speed * speedModifier;
+        Vector3 _velocity = (cam.transform.forward * _zMov + _movHorizontal).normalized * speed * speedModifier;
 
         // Apply movement
         motor.Move(_velocity);
@@ -82,9 +91,42 @@ public class PlayerController : MonoBehaviour
         this.speedModifier += amount;
     }
 
-    public void changeHealth(float amount)
+    public float getHealth()
     {
-        PlayerController.health.changeCurrentValue(amount);
+        return health.getCurrentValue();
+    }
+
+    public float getHealthMax()
+    {
+        return health.getMaxValue();
+    }
+
+    public float getEnergy()
+    {
+        return energy.getCurrentValue();
+    }
+
+    public float getEnergyMax()
+    {
+        return energy.getMaxValue();
+    }
+
+    public void gainHealth(float amount)
+    {
+       PlayerController.health.increaseValue(amount);
+        healthUI.increase(amount);
+    }
+
+    public void doDamage(float amount)
+    {
+        PlayerController.health.decreaseValue(amount);
+        healthUI.decrease(amount);
+    }
+
+    public void doDamageOverTime(float amount)
+    {
+        PlayerController.health.decreaseValue(amount);
+        healthUI.decreaseOverTime(amount);
     }
 
     public void changeMaxHealth(float amount)
@@ -92,9 +134,27 @@ public class PlayerController : MonoBehaviour
         PlayerController.health.changeMaxValue(amount);
     }
 
-    public void changeEnergy(float amount)
+    public void increaseEnergy(float amount)
     {
-        PlayerController.energy.changeCurrentValue(amount);
+        PlayerController.energy.increaseValue(amount);
+        energyUI.increase(amount);
+    }
+
+    public void LoseEnergy(float amount)
+    {
+        PlayerController.energy.decreaseValue(amount);
+        energyUI.decreaseOverTime(amount);
+    }
+
+    public void updateEnergy()
+    {
+        if (!energyUI.isIncreasing)
+        {
+            float energyDelta = PlayerController.energy.getUpdateLoss();
+            PlayerController.energy.updateValue(energyDelta);
+            //energyUI.decreaseOverTime(energyDelta);
+
+        }
     }
 
     public void changeMaxEnergy(float amount)

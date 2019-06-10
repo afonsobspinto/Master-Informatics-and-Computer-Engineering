@@ -26,7 +26,7 @@ public class PlayerSound : MonoBehaviour
     {
         if (playerInWater)
         {
-            FMODUnity.RuntimeManager.PlayOneShotAttached(selectsound, this.gameObject);
+            //FMODUnity.RuntimeManager.PlayOneShotAttached(selectsound, this.gameObject);
             playerInWater = false;
         }
     }
