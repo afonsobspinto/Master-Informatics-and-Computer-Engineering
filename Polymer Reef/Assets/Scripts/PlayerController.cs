@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         energyUI.setInitial(energy.getMaxValue());
         healthUI.setInitial(health.getMaxValue());
-
+        
         waterQualityUI.setInitial(waterQuality);
     }
 
@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
     public void setWaterQuality(float quality)
     {
         waterQualityUI.setInitial(quality);
+
         if(waterQuality > quality)
         {
             waterQualityUI.decrease(waterQuality - quality);
