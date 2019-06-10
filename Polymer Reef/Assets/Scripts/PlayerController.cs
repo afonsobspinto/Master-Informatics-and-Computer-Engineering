@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,13 +21,10 @@ public class PlayerController : MonoBehaviour
     private float initialHealthValue = 100f;
 
     [SerializeField]
-    private float healthLossOverTimeHunger = 0f;
+    private float healthHungerConstant = 1f;
 
     [SerializeField]
-    private float healthLossOverTimeWaterQuality = 0f;
-
-    [SerializeField]
-    private float healthGainOverTimeWaterQuality = 0f;
+    private float healthWaterQualityConstant = 1f;
 
     public static PlayerStats health;
 
@@ -45,6 +43,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private CircleWaterQualityBar waterQualityUI;
+
+    [SerializeField]
+    private float minWaterQualityNeutralThreshhold = 60; // value that seperates loosing from neutral
+
+    [SerializeField]
+    private float maxWaterQualityNeutralThreshold = 80; // value that seperates neutral from gaining
 
 
     [SerializeField]
@@ -160,8 +164,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!healthUI.isIncreasing)
         {
-            // TODO apply formula to loose health
+            // TODO apply formula to loose health (qualidade da agua * constate1 + constante2 de perda de energia com tempo/fome)
+            float qualityImpact = 0;
+            if(waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
+            {
+                qualityImpact = minWaterQualityNeutralThreshhold / waterQuality;
+            } else if(waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
+            {
+                qualityImpact = - waterQuality / maxWaterQualityNeutralThreshold;
+            }
+            float healthLoss = qualityImpact*healthWaterQualityConstant + Time.deltaTime * healthHungerConstant;
 
+            doDamageOverTime(healthLoss);
         }
     }
 
