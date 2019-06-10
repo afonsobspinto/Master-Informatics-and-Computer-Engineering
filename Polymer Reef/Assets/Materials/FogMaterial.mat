@@ -31,4 +31,4 @@ Material:
     - _NoiseSpeed: 1
     - _PixelOffset: 0.005
     m_Colors:
-    - _FogColor: {r: 0.03529412, g: 0.101960786, b: 0.15294118, a: 0}
+    - _FogColor: {r: 0.48309007, g: 0.5512574, b: 0.5566038, a: 0}
