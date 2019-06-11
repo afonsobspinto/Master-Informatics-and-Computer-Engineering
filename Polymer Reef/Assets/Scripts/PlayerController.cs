@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float healthHungerConstant = 1f;
 
     [SerializeField]
-    private float healthWaterQualityConstant = 1f;
+    private float healthWaterQualityConstant = 2.5f;
 
     public static PlayerStats health;
 
