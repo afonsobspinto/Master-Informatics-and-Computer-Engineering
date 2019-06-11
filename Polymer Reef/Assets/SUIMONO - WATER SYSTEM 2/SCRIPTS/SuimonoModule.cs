@@ -771,7 +771,7 @@ namespace Suimono.Core
 			if (enableAdvancedDistort){
 				isAdvDist = 1.0f;
 				//suimonoModuleLibrary.wakeObject.SetActive(true);
-				suimonoModuleLibrary.normalsObject.SetActive(true);
+				//suimonoModuleLibrary.normalsObject.SetActive(true);
 			} else {
 				isAdvDist = 0.0f;
 				suimonoModuleLibrary.wakeObject.SetActive(false);
@@ -1063,16 +1063,16 @@ namespace Suimono.Core
 					if (enableUnderwaterFX && suimonoObject.enableUnderwater && objectEnableUnderwaterFX==1.0f){
 
 						if (suimonoObject.enableUnderDebris){
-				       		suimonoModuleLibrary.underwaterDebrisTransform.position = setCamera.transform.position;
-						    suimonoModuleLibrary.underwaterDebrisTransform.rotation = setCamera.transform.rotation;
-						    suimonoModuleLibrary.underwaterDebrisTransform.Translate(Vector3.forward * 5.0f);
+				       		//suimonoModuleLibrary.underwaterDebrisTransform.position = setCamera.transform.position;
+						    //suimonoModuleLibrary.underwaterDebrisTransform.rotation = setCamera.transform.rotation;
+						    //suimonoModuleLibrary.underwaterDebrisTransform.Translate(Vector3.forward * 5.0f);
 
-							suimonoModuleLibrary.underwaterDebrisRendererComponent.enabled=true;
+							//suimonoModuleLibrary.underwaterDebrisRendererComponent.enabled=true;
 
 							
 							#if UNITY_5_4_OR_NEWER
 								debrisEmission = suimonoModuleLibrary.underwaterDebris.emission;
-								debrisEmission.enabled = isUnderwater;
+								//debrisEmission.enabled = isUnderwater;
 							#else
 								suimonoModuleLibrary.underwaterDebris.enableEmission = isUnderwater;
 							#endif
