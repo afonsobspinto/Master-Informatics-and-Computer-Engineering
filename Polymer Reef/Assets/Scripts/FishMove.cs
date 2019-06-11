@@ -23,12 +23,15 @@ public class FishMove : MonoBehaviour
         {
             current++;
             if (current == waypoints.Length)
+            {
                 Destroy(gameObject);
+                return;
+            }
             else if (current >= waypoints.Length)
                 current = 0;
         }
         RotateNPC(waypoints[current].transform.position, speed);
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * Random.Range(speed-2, speed+2));
     }
 
     // Rotate the NPC to face new waypoint
