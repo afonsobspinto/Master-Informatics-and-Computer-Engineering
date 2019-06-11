@@ -13,7 +13,7 @@ public class SceneTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.sceneLoader = this.transform.parent.gameObject.GetComponent<SceneLoader>();
+        this.sceneLoader = this.transform.parent.parent.gameObject.GetComponent<SceneLoader>();
     }
 
     private void OnTriggerEnter(Collider c)
