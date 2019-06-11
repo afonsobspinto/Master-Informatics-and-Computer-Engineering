@@ -221,17 +221,17 @@ PrefabInstance:
     - target: {fileID: 615307493339917086, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
       propertyPath: sceneNoPlayer
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 615307493339917086, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
       propertyPath: prevSceneIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 615307493339917086, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
       propertyPath: nextSceneIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 615307494221857944, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
@@ -331,12 +331,22 @@ PrefabInstance:
     - target: {fileID: 5132562001020033249, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: -234.3
       objectReference: {fileID: 0}
     - target: {fileID: 5132562001020033249, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.21
+      value: 111.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132562001020033249, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132562001020033249, guid: 47f40ae9d1d8068479f5a5b63cc41ca0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47f40ae9d1d8068479f5a5b63cc41ca0, type: 3}

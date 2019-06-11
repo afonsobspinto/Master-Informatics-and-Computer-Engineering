@@ -34,15 +34,7 @@ public class SceneLoader : MonoBehaviour
         }
         else if(insideNext)
         {
-            if(this.sceneHandler.sceneNoPlayer == -1)
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.sceneHandler.prevSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            }
-            else
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.sceneHandler.sceneNoPlayer, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            }
-            
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.sceneHandler.prevSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             Debug.Log("Load Previous Scene");
         }
     }
@@ -60,18 +52,7 @@ public class SceneLoader : MonoBehaviour
         }
         else if (insideNext)
         {
-            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.prevSceneIndex);
-
-            //loaded scene 1 without player instead of the original scene 1 (with the player)
-            if (scene.IsValid())
-            {
-                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.prevSceneIndex);
-            }
-            else
-            {
-                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.sceneNoPlayer);
-            }
-
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.prevSceneIndex);
             Resources.UnloadUnusedAssets();
 
             sceneHandlerActivation(true);
