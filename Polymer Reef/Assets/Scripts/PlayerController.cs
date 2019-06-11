@@ -164,16 +164,22 @@ public class PlayerController : MonoBehaviour
     {
         if (!healthUI.isIncreasing)
         {
-            // TODO apply formula to loose health (qualidade da agua * constate1 + constante2 de perda de energia com tempo/fome)
+            // formula to health loss: time * (qualityImpact * qualityConstant + hungerConstant)
+
+            // formula to quality impact: 
+            //      * 0 if water quality between 60% and 80% (including 80)
+            //      * 60/waterQuality if water quality bellow or equal to 60% (0 is instant kill)
+            //      * waterQuality/80 if water quality greater than 80%
+
             float qualityImpact = 0;
             if(waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
             {
                 qualityImpact = minWaterQualityNeutralThreshhold / waterQuality;
             } else if(waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
             {
-                qualityImpact = - waterQuality / maxWaterQualityNeutralThreshold;
+                qualityImpact = -waterQuality / maxWaterQualityNeutralThreshold;
             }
-            float healthLoss = qualityImpact*healthWaterQualityConstant + Time.deltaTime * healthHungerConstant;
+            float healthLoss = Time.deltaTime * (qualityImpact * healthWaterQualityConstant + healthHungerConstant);
 
             doDamageOverTime(healthLoss);
         }

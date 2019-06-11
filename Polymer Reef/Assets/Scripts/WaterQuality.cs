@@ -31,7 +31,7 @@ public class WaterQuality : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player" && PlayerController.health.getCurrentValue() > 0)
+        if (other.gameObject.name == "Player")
         {
             PlayerController p = other.gameObject.GetComponent<PlayerController>();
             p.setWaterQuality(quality);
