@@ -841,7 +841,7 @@ namespace Suimono.Core
 
 					//Force shoreline foam scale
 					surfaceRenderer.sharedMaterial.SetTextureScale("_WaveTex", Vector2.one);
-					scaleRenderer.sharedMaterial.SetTextureScale("_WaveTex", Vector2.one);
+					//scaleRenderer.sharedMaterial.SetTextureScale("_WaveTex", Vector2.one);
 
 
 					/*
@@ -925,14 +925,14 @@ namespace Suimono.Core
 					}
 
 					if (scaleRenderer != null && typeIndex == 0){
-						scaleRenderer.sharedMaterial.SetFloat("suimono_tess_on", enableTess?1.0f:0.0f);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_trans_on", moduleObject.enableTransparency?1.0f:0.0f);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_caust_on", moduleObject.enableCaustics?1.0f:0.0f);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_dynrefl_on", useDynReflections?1.0f:0.0f);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_refl_off", suimono_refl_off);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_refl_sky", suimono_refl_sky);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_refl_cube", suimono_refl_cube);
-						scaleRenderer.sharedMaterial.SetFloat("suimono_refl_color", suimono_refl_color);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_tess_on", enableTess?1.0f:0.0f);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_trans_on", moduleObject.enableTransparency?1.0f:0.0f);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_caust_on", moduleObject.enableCaustics?1.0f:0.0f);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_dynrefl_on", useDynReflections?1.0f:0.0f);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_refl_off", suimono_refl_off);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_refl_sky", suimono_refl_sky);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_refl_cube", suimono_refl_cube);
+						//scaleRenderer.sharedMaterial.SetFloat("suimono_refl_color", suimono_refl_color);
 					}
 
 				}

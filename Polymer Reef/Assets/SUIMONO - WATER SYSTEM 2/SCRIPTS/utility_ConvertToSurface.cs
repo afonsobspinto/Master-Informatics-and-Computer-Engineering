@@ -46,11 +46,6 @@ public class utility_ConvertToSurface : MonoBehaviour {
 					if (moduleObject.suimonoModuleLibrary != null){
 						if (moduleObject.suimonoModuleLibrary.surfaceObject != null){
 
-							//Disconnect from prefab;
-							#if UNITY_EDITOR
-								PrefabUtility.DisconnectPrefabInstance(this.gameObject);
-							#endif
-
 							Debug.Log("Passed!");
 
 							//instantiate new surface object with current object settings

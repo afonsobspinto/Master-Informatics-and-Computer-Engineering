@@ -284,11 +284,6 @@ namespace Suimono.Core
 
 
 		void Start () {
-
-			//### DISCONNECT FROM PREFAB ###;
-			#if UNITY_EDITOR
-				PrefabUtility.DisconnectPrefabInstance(this.gameObject);
-			#endif
 		    
 		    //set random
 			randSeed = System.Environment.TickCount;
@@ -693,7 +688,7 @@ namespace Suimono.Core
 				}
 
 				//remove caustics from transparency function
-				suimonoModuleLibrary.causticHandlerObjectTrans.enabled = !enableCausticsBlending;
+				//suimonoModuleLibrary.causticHandlerObjectTrans.enabled = !enableCausticsBlending;
 			} else {
 				suimonoModuleLibrary.causticCamObject = this.transform.Find("cam_SuimonoCaustic").gameObject.GetComponent<Camera>() as Camera;
 			}
@@ -775,7 +770,7 @@ namespace Suimono.Core
 			//######## HANDLE ADVANCED DISTORTION SWITCH #######
 			if (enableAdvancedDistort){
 				isAdvDist = 1.0f;
-				suimonoModuleLibrary.wakeObject.SetActive(true);
+				//suimonoModuleLibrary.wakeObject.SetActive(true);
 				suimonoModuleLibrary.normalsObject.SetActive(true);
 			} else {
 				isAdvDist = 0.0f;
