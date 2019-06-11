@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private CircleEnergyBar energyUI;
 
+    [Range(0f, 100f)]
     public float waterQuality = 100f;
 
     private CircleWaterQualityBar waterQualityUI;

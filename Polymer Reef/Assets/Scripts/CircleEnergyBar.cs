@@ -10,7 +10,7 @@ public class CircleEnergyBar : CircleUIBar
     // Start is called before the first frame update
     void Start()
     {
-        _mainBar.fillAmount = 0;
+        //_mainBar.fillAmount = 0;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 

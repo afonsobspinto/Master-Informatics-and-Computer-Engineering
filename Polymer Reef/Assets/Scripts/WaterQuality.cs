@@ -14,6 +14,7 @@ public class WaterQuality : MonoBehaviour
 
     private BoxCollider boxCollider;
 
+    [Range(0f, 100f)]
     [SerializeField]
     private float quality; // between 0% and 100%
 

@@ -15,6 +15,7 @@ TagManager:
   - DirectionalLight
   - concrete
   - dirt
+  - Environment
   layers:
   - Default
   - TransparentFX
