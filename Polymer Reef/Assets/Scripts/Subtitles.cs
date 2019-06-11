@@ -11,6 +11,7 @@ public class Subtitles : MonoBehaviour
     public int startTime = 0;
     public string[] subtitles = new string[3];
     public int[] durations;
+    private int[] subDurations;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Subtitles : MonoBehaviour
 
     void OnValidate()
     {
+        subDurations = durations;
         if (subtitles.Length != durations.Length)
             System.Array.Resize(ref durations, subtitles.Length);
     }
@@ -31,9 +33,9 @@ public class Subtitles : MonoBehaviour
         yield return new WaitForSeconds(startTime);
         for (int i=0; i < subtitles.Length; i++)
         {
-            yield return new WaitForSeconds(durations[i]);
-            text.text = subtitles[i];
             yield return new WaitForSeconds(1);
+            text.text = subtitles[i];
+            yield return new WaitForSeconds(subDurations[i]);
             text.text = "";
         }
     }
