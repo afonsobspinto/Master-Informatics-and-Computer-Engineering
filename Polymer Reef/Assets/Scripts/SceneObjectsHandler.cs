@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SceneObjectsHandler : MonoBehaviour
 {
-    public int sceneNoPlayer = -1;
-    public int prevSceneIndex;
-    public int nextSceneIndex;
-
     private bool insidePrevious = false;
     private bool insideNext = false;
+
+    private SceneHandler sceneHandler;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.sceneHandler = this.transform.parent.gameObject.GetComponent<SceneHandler>();
+    }
 
     public void setInsidePrevious(bool value)
     {
@@ -27,12 +31,12 @@ public class SceneObjectsHandler : MonoBehaviour
 
         if (insidePrevious)
         {
-            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(prevSceneIndex);
+            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.prevSceneIndex);
 
             //loaded scene 1 without player instead of the original scene 1 (with the player)
             if(!scene.IsValid())
             {
-                scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(sceneNoPlayer);
+                scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.sceneNoPlayer);
             }
 
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, scene);
@@ -41,7 +45,7 @@ public class SceneObjectsHandler : MonoBehaviour
         }
         else if (insideNext)
         {
-            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(nextSceneIndex);
+            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.nextSceneIndex);
             
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
