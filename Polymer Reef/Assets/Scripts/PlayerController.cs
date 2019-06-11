@@ -24,11 +24,10 @@ public class PlayerController : MonoBehaviour
     private float healthHungerConstant = 1f;
 
     [SerializeField]
-    private float healthWaterQualityConstant = 1f;
+    private float healthWaterQualityConstant = 2.5f;
 
     public static PlayerStats health;
 
-    [SerializeField]
     private CircleHealthBar healthUI;
 
     [SerializeField]
@@ -36,12 +35,10 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerStats energy;
 
-    [SerializeField]
     private CircleEnergyBar energyUI;
 
     public float waterQuality = 100f;
 
-    [SerializeField]
     private CircleWaterQualityBar waterQualityUI;
 
     [SerializeField]
@@ -61,9 +58,13 @@ public class PlayerController : MonoBehaviour
         health = new PlayerStats(initialHealthValue);
         energy = new PlayerStats(initialEnergyValue);
 
+        energyUI = GameObject.Find("EnergyUI").GetComponent<CircleEnergyBar>();
         energyUI.setInitial(energy.getMaxValue());
+
+        healthUI = GameObject.Find("HealthUI").GetComponent<CircleHealthBar>();
         healthUI.setInitial(health.getMaxValue());
 
+        waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
         waterQualityUI.setInitial(waterQuality);
     }
 
@@ -167,7 +168,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!healthUI.isIncreasing)
         {
-            // TODO apply formula to loose health (qualidade da agua * constate1 + constante2 de perda de energia com tempo/fome)
+            // formula to health loss: time * (qualityImpact * qualityConstant + hungerConstant)
+
+            // formula to quality impact:
+            //      * 0 if water quality between 60% and 80% (including 80)
+            //      * 60/waterQuality if water quality bellow or equal to 60% (0 is instant kill)
+            //      * waterQuality/80 if water quality greater than 80%
+
             float qualityImpact = 0;
             if (waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
             {
@@ -177,7 +184,7 @@ public class PlayerController : MonoBehaviour
             {
                 qualityImpact = -waterQuality / maxWaterQualityNeutralThreshold;
             }
-            float healthLoss = qualityImpact * healthWaterQualityConstant + Time.deltaTime * healthHungerConstant;
+            float healthLoss = Time.deltaTime * (qualityImpact * healthWaterQualityConstant + healthHungerConstant);
 
             doDamageOverTime(healthLoss);
         }
