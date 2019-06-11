@@ -11,6 +11,10 @@ TagManager:
   - Speed
   - Trash
   - Camera
+  - Particle
+  - DirectionalLight
+  - concrete
+  - dirt
   layers:
   - Default
   - TransparentFX
@@ -22,9 +26,9 @@ TagManager:
   - 
   - PostProcessing
   - Obstacle
-  - 
-  - 
-  - 
+  - Suimono_Water
+  - Suimono_Depth
+  - Suimono_Screen
   - 
   - 
   - 

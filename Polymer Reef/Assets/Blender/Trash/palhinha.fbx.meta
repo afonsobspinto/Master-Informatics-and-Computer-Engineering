@@ -4,8 +4,8 @@ ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: -8963547841266720063
-    second: palhinhaCircle.001Action
+      74: 8971653179785726973
+    second: StrawAnimation
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: palhinhaCircle.001Action
-      takeName: palhinha|Circle.001Action
-      internalID: -8963547841266720063
+      name: StrawAnimation
+      takeName: Circle.001|Circle.001Action
+      internalID: 8971653179785726973
       firstFrame: 0
-      lastFrame: 160
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
