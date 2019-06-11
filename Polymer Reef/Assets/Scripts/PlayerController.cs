@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        print(health.value);
         //updateEnergy();
 
         // Calculate movement velocity as a 3D vector

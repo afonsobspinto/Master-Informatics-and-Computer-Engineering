@@ -13,9 +13,10 @@ public class PowerUp : Collectable
 
     void Start()
     {
-        soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
-        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
+        //soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
+        //soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
         player = GameObject.Find("Player");
+        print(player);
 
         directionalLight = GameObject.Find("light_sun").GetComponent<Light>();
         camera = GameObject.Find("Camera");
