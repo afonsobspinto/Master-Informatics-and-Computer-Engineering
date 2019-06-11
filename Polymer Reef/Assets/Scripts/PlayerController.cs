@@ -54,8 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        updateEnergy();
-
+        //updateEnergy();
 
         // Calculate movement velocity as a 3D vector
         float _xMov = Input.GetAxisRaw("Horizontal");
@@ -84,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
+
     }
 
     void increaseSpeedModifier(float amount)
@@ -146,16 +146,19 @@ public class PlayerController : MonoBehaviour
         energyUI.decreaseOverTime(amount);
     }
 
+/*
     public void updateEnergy()
     {
         if (!energyUI.isIncreasing)
         {
             float energyDelta = PlayerController.energy.getUpdateLoss();
+            print(energyDelta);
             PlayerController.energy.updateValue(energyDelta);
             //energyUI.decreaseOverTime(energyDelta);
 
         }
     }
+ */
 
     public void changeMaxEnergy(float amount)
     {

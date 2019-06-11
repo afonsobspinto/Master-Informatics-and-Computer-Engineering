@@ -45,9 +45,7 @@ public class LightControl : MonoBehaviour
             foreach (Transform child in transform)
             {
                 Light light = child.GetComponent<Light>();
-                print(playerController.getEnergy());
                 light.intensity = playerController.getEnergy() * this.light_intensity / 100;
-                print(light.intensity);
                 fogEffect._depthStart = playerController.getEnergy() - this.fog_shift;
             }
         }
