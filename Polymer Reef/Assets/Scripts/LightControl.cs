@@ -6,8 +6,11 @@ public class LightControl : MonoBehaviour
 {
     private GameObject energyCircle;
     private PlayerController playerController;
-    private bool lightOn = true;
+    private bool lightOn = false;
     private FogEffect fogEffect;
+    private float fogEffec_depthStart;
+    private readonly float fog_shift = 25;
+    private float light_intensity;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,8 @@ public class LightControl : MonoBehaviour
         energyCircle = GameObject.Find("EnergyBar");
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         fogEffect = GameObject.FindGameObjectWithTag("Camera").GetComponent<FogEffect>();
+        this.fogEffec_depthStart = fogEffect._depthStart;
+        this.light_intensity = this.transform.GetChild(0).GetComponent<Light>().intensity;
     }
 
     // Update is called once per frame
@@ -32,7 +37,7 @@ public class LightControl : MonoBehaviour
 
         if (!lightOn)
         {
-            fogEffect._depthStart = -25f;
+            fogEffect._depthStart = this.fogEffec_depthStart;
         }
         else
         {
@@ -40,9 +45,8 @@ public class LightControl : MonoBehaviour
             foreach (Transform child in transform)
             {
                 Light light = child.GetComponent<Light>();
-                float intens = light.intensity;
-                light.intensity = playerController.getEnergy() / 33;
-                fogEffect._depthStart = playerController.getEnergy() - 25;
+                light.intensity = playerController.getEnergy() * this.light_intensity / 100;
+                fogEffect._depthStart = playerController.getEnergy() - this.fog_shift;
             }
         }
     }

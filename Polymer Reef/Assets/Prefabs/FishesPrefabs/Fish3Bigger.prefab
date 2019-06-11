@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836041317866688940}
   - component: {fileID: 159092521034513622}
+  - component: {fileID: 5696480904456266566}
   m_Layer: 0
   m_Name: Fish3Bigger
   m_TagString: Untagged
@@ -325,6 +326,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5696480904456266566
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549482728707630015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49, y: 1.99, z: 4.41}
+  m_Center: {x: 0, y: -0.09, z: -1.45}
 --- !u!1 &8022873969070259130
 GameObject:
   m_ObjectHideFlags: 0

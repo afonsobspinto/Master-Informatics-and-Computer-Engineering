@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y > 20)
+            transform.position = new Vector3(transform.position.x, 20, transform.position.z);
+
         updateHealth();
 
         // Calculate movement velocity as a 3D vector
@@ -128,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     public void gainHealth(float amount)
     {
-       PlayerController.health.increaseValue(amount);
+        PlayerController.health.increaseValue(amount);
         healthUI.increase(amount);
     }
 
@@ -167,16 +170,17 @@ public class PlayerController : MonoBehaviour
         {
             // formula to health loss: time * (qualityImpact * qualityConstant + hungerConstant)
 
-            // formula to quality impact: 
+            // formula to quality impact:
             //      * 0 if water quality between 60% and 80% (including 80)
             //      * 60/waterQuality if water quality bellow or equal to 60% (0 is instant kill)
             //      * waterQuality/80 if water quality greater than 80%
 
             float qualityImpact = 0;
-            if(waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
+            if (waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
             {
                 qualityImpact = minWaterQualityNeutralThreshhold / waterQuality;
-            } else if(waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
+            }
+            else if (waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
             {
                 qualityImpact = -waterQuality / maxWaterQualityNeutralThreshold;
             }
@@ -190,11 +194,12 @@ public class PlayerController : MonoBehaviour
     {
         waterQualityUI.setInitial(quality);
 
-        if(waterQuality > quality)
+        if (waterQuality > quality)
         {
             waterQualityUI.decrease(waterQuality - quality);
 
-        } else if(waterQuality < quality)
+        }
+        else if (waterQuality < quality)
         {
             waterQualityUI.increase(quality - waterQuality);
         }
