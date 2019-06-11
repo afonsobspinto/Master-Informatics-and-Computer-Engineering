@@ -27,13 +27,13 @@ public class SceneObjectsHandler : MonoBehaviour
 
     public void changeActiveScene()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject environment = GameObject.FindGameObjectWithTag("Environment");
 
         if (insidePrevious)
         {
             UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.prevSceneIndex);
 
-            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, scene);
+            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(environment, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
             Debug.Log("Move Objects to Previous Scene");
         }
@@ -41,7 +41,7 @@ public class SceneObjectsHandler : MonoBehaviour
         {
             UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(this.sceneHandler.nextSceneIndex);
             
-            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, scene);
+            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(environment, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
             Debug.Log("Move Objects to Next Scene");
         }
