@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerStats health;
 
-    [SerializeField]
     private CircleHealthBar healthUI;
 
     [SerializeField]
@@ -36,12 +35,10 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerStats energy;
 
-    [SerializeField]
     private CircleEnergyBar energyUI;
 
     public float waterQuality = 100f;
 
-    [SerializeField]
     private CircleWaterQualityBar waterQualityUI;
 
     [SerializeField]
@@ -61,9 +58,13 @@ public class PlayerController : MonoBehaviour
         health = new PlayerStats(initialHealthValue);
         energy = new PlayerStats(initialEnergyValue);
 
+        energyUI = GameObject.Find("EnergyUI").GetComponent<CircleEnergyBar>();
         energyUI.setInitial(energy.getMaxValue());
+
+        healthUI = GameObject.Find("HealthUI").GetComponent<CircleHealthBar>();
         healthUI.setInitial(health.getMaxValue());
-        
+
+        waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
         waterQualityUI.setInitial(waterQuality);
     }
 
