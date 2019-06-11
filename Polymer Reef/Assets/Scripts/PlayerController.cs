@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,10 @@ public class PlayerController : MonoBehaviour
     private float initialHealthValue = 100f;
 
     [SerializeField]
-    private float initialHealthDecreaseOverTime = 0f;
+    private float healthHungerConstant = 1f;
+
+    [SerializeField]
+    private float healthWaterQualityConstant = 1f;
 
     public static PlayerStats health;
 
@@ -30,13 +34,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float initialEnergyValue = 100f;
 
-    [SerializeField]
-    private float initialEnergyDecreaseOverTime = 5f;
-
     public static PlayerStats energy;
 
     [SerializeField]
     private CircleEnergyBar energyUI;
+
+    public float waterQuality = 100f;
+
+    [SerializeField]
+    private CircleWaterQualityBar waterQualityUI;
+
+    [SerializeField]
+    private float minWaterQualityNeutralThreshhold = 60; // value that seperates loosing from neutral
+
+    [SerializeField]
+    private float maxWaterQualityNeutralThreshold = 80; // value that seperates neutral from gaining
+
 
     [SerializeField]
     private Camera cam;
@@ -45,18 +58,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        health = new PlayerStats(this.initialHealthValue, this.initialHealthDecreaseOverTime);
-        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyDecreaseOverTime);
+        health = new PlayerStats(initialHealthValue);
+        energy = new PlayerStats(initialEnergyValue);
 
         energyUI.setInitial(energy.getMaxValue());
         healthUI.setInitial(health.getMaxValue());
+
+        waterQualityUI.setInitial(waterQuality);
     }
 
     private void Update()
     {
-
-        print(health.value);
-        //updateEnergy();
+        updateHealth();
 
         // Calculate movement velocity as a 3D vector
         float _xMov = Input.GetAxisRaw("Horizontal");
@@ -85,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
-
     }
 
     void increaseSpeedModifier(float amount)
@@ -115,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void gainHealth(float amount)
     {
-       PlayerController.health.increaseValue(amount);
+        PlayerController.health.increaseValue(amount);
         healthUI.increase(amount);
     }
 
@@ -148,19 +160,42 @@ public class PlayerController : MonoBehaviour
         energyUI.decreaseOverTime(amount);
     }
 
-/*
-    public void updateEnergy()
+    public void updateHealth()
     {
-        if (!energyUI.isIncreasing)
+        if (!healthUI.isIncreasing)
         {
-            float energyDelta = PlayerController.energy.getUpdateLoss();
-            print(energyDelta);
-            PlayerController.energy.updateValue(energyDelta);
-            //energyUI.decreaseOverTime(energyDelta);
+            // TODO apply formula to loose health (qualidade da agua * constate1 + constante2 de perda de energia com tempo/fome)
+            float qualityImpact = 0;
+            if (waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
+            {
+                qualityImpact = minWaterQualityNeutralThreshhold / waterQuality;
+            }
+            else if (waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
+            {
+                qualityImpact = -waterQuality / maxWaterQualityNeutralThreshold;
+            }
+            float healthLoss = qualityImpact * healthWaterQualityConstant + Time.deltaTime * healthHungerConstant;
 
+            doDamageOverTime(healthLoss);
         }
     }
- */
+
+    public void setWaterQuality(float quality)
+    {
+        waterQualityUI.setInitial(quality);
+
+        if (waterQuality > quality)
+        {
+            waterQualityUI.decrease(waterQuality - quality);
+
+        }
+        else if (waterQuality < quality)
+        {
+            waterQualityUI.increase(quality - waterQuality);
+        }
+
+        waterQuality = quality;
+    }
 
     public void changeMaxEnergy(float amount)
     {

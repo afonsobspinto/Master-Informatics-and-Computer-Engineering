@@ -33,7 +33,7 @@ public class CircleUIBar : MonoBehaviour
 
     private bool initialSet = false;
 
-    private float valueSensitivity = 0.01f;
+    protected float valueSensitivity = 0.01f;
 
     // Update is called once per frame
     protected virtual void Update()
@@ -127,7 +127,7 @@ public class CircleUIBar : MonoBehaviour
     }
 
 
-    public void decrease(float amount) // bars move seperately (health only)
+    public void decrease(float amount) // bars move seperately
     {
         _currentValue -= amount;
 

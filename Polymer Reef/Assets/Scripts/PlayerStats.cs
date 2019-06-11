@@ -6,33 +6,11 @@ public class PlayerStats
 {
     public float value = 0;
     private float maxValue = 0;
-    private float decreaseOverTime = 0;
 
-    public PlayerStats(float initialValue, float decreaseOverTime)
+    public PlayerStats(float initialValue)
     {
         this.value = initialValue;
         this.maxValue = initialValue;
-        this.decreaseOverTime = decreaseOverTime;
-    }
-
-    public float getUpdateLoss()
-    {
-        float deltaTime = Time.deltaTime;
-
-        return this.decreaseOverTime * deltaTime;
-    }
-
-    public float updateValue(float delta)
-    {
-        float deltaTime = Time.deltaTime;
-
-        value -= delta;
-
-        if (value <= 0.0f)
-        {
-            value = 0.0f;
-        }
-        return value;
     }
 
     public float getCurrentValue()
