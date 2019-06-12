@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1487.6846
+  systemLocalTime: 1513.1731
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -459,7 +459,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 148.76846
+  localTime: 151.3173
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1487.7845
+  systemTime: 1513.2731
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -919,9 +919,9 @@ MonoBehaviour:
   maxSounds: 20
   defaultSplashSound: []
   currentObjectIsOver: 1
-  currentObjectDepth: 3.281828
-  currentTransitionDepth: 3.281828
-  currentSurfaceLevel: 22.338852
+  currentObjectDepth: 3.1915417
+  currentTransitionDepth: 3.1915417
+  currentSurfaceLevel: 22.248566
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -933,16 +933,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - 22.338852
-  - 22.338852
+  - 22.248566
+  - 22.248566
   - 22.18
-  - 3.281828
+  - 3.1915417
   - 1
   - 0
   - 180
   - 0.05
-  - 478.68945
-  - 3.281828
+  - 476.75476
+  - 3.1915417
   - 1
   - 1
   isForward: 1
@@ -955,32 +955,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.332951, y: 8.357216}
-  texCoord: {x: 5091.2036, y: 0, z: -32978.543}
-  texCoord1: {x: 3818.3994, y: 0, z: 13348.26}
-  texCoordT: {x: 5091.2036, y: 0, z: -32978.543}
-  texCoordT1: {x: 2545.5994, y: 0, z: 12072.3545}
-  texCoordR: {x: 159.10022, y: 0, z: -2220.6472}
-  texCoordR1: {x: 159.10043, y: 0, z: -4600.7827}
-  heightVal0: {r: 0.46666667, g: 0.4117647, b: 1, a: 0.17060785}
-  heightVal1: {r: 0.41568628, g: 0.4, b: 1, a: 0.07409804}
-  heightValT0: {r: 0.50980395, g: 0.6, b: 0.9764706, a: 0.36362746}
-  heightValT1: {r: 0.49019608, g: 0.8862745, b: 0.8117647, a: 0.30907845}
-  heightValR0: {r: 0.36862746, g: 0.22745098, b: 0.972549, a: 0.01745098}
-  heightValR1: {r: 0.64705884, g: 0.32156864, b: 0.96862745, a: 0.11186275}
+  texCoord: {x: 5091.2036, y: 0, z: -33631.047}
+  texCoord1: {x: 3818.3994, y: 0, z: 13511.386}
+  texCoordT: {x: 5091.2036, y: 0, z: -33631.047}
+  texCoordT1: {x: 2545.5994, y: 0, z: 12235.48}
+  texCoordR: {x: 159.10022, y: 0, z: -2261.4287}
+  texCoordR1: {x: 159.10043, y: 0, z: -4682.3457}
+  heightVal0: {r: 0.5803922, g: 0.45490196, b: 1, a: 0.06570588}
+  heightVal1: {r: 0.5411765, g: 0.50980395, b: 1, a: 0.038431376}
+  heightValT0: {r: 0.58431375, g: 0.78431374, b: 0.9098039, a: 0.19368628}
+  heightValT1: {r: 0.4627451, g: 0.6392157, b: 0.96862745, a: 0.13284314}
+  heightValR0: {r: 0.49411765, g: 0.64705884, b: 0.9882353, a: 0}
+  heightValR1: {r: 0.54509807, g: 0.21568628, b: 0.95686275, a: 0.069901966}
   localTime: 0
-  row: 249
-  pixIndex: 1951
-  pixCol: {r: 0.64705884, g: 0.32156864, b: 0.96862745, a: 0.11186275}
+  row: 75
+  pixIndex: 46495
+  pixCol: {r: 0.54509807, g: 0.21568628, b: 0.95686275, a: 0.069901966}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 148.75847
+  useLocalTime: 151.30731
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000013004878, y: -148.75847}
-  flowSpeed1: {x: 0.0000032512196, y: -37.189617}
-  flowSpeed2: {x: 0.0000008128049, y: -9.297404}
-  flowSpeed3: {x: 0.0000016256098, y: -18.594809}
+  flowSpeed0: {x: 0.0000132277055, y: -151.30731}
+  flowSpeed1: {x: 0.0000033069264, y: -37.826828}
+  flowSpeed2: {x: 0.0000008267316, y: -9.456707}
+  flowSpeed3: {x: 0.0000016534632, y: -18.913414}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1993,6 +1993,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839772480395341761, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
