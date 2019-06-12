@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class AIManagement : MonoBehaviour
 {
-    public float speed;
-    public GameObject[] waypoints;
 
-    void Start()
+    bool hasPlayerPassed = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        List<GameObject> childrenList = new List<GameObject>();
-        //get all transforms in the hierarchy
-        Transform[] children = GetComponentsInChildren<Transform>(true);
-        //go through the transform array and only add their gameObjects to the list if they are not the parent (this) gameObject.
-        for (int i = 0; i < children.Length; i++)
+        if (other.tag == "Player")
         {
-            Transform child = children[i];
-            if (child != transform)
-            {
-                childrenList.Add(child.gameObject);
+            hasPlayerPassed = true;
+            for(int i =0; i < transform.parent.childCount; i++) {
+                if (transform.parent.GetChild(i).gameObject.tag == "FishGroup")
+                    transform.parent.GetChild(i).gameObject.SetActive(true);
             }
         }
-        //go thorugh the list and add the component.
-        for (int i = 0; i < childrenList.Count; i++)
-        {
-            FishMove fishMove = childrenList[i].AddComponent<FishMove>();
-            fishMove.speed = speed;
-            fishMove.waypoints = waypoints;
-        }
+    }
+
+    public bool HasPlayerPassed()
+    {
+        return hasPlayerPassed;
     }
 }

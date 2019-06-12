@@ -10,28 +10,34 @@ public class FishMove : MonoBehaviour
     public float speed;
     float wPradius = 1;
 
+    private AIManagement aIManagement;
+
     // Start is called before the first frame update
     void Start()
     {
         AnimateRandomly();
+        aIManagement = GameObject.FindWithTag("FishTrigger").GetComponent<AIManagement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(waypoints[current].transform.position, transform.position) < wPradius)
+        if (aIManagement.HasPlayerPassed())
         {
-            current++;
-            if (current == waypoints.Length)
+            if (Vector3.Distance(waypoints[current].transform.position, transform.position) < wPradius)
             {
-                Destroy(gameObject);
-                return;
+                current++;
+                if (current == waypoints.Length)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                else if (current >= waypoints.Length)
+                    current = 0;
             }
-            else if (current >= waypoints.Length)
-                current = 0;
+            RotateNPC(waypoints[current].transform.position, speed);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * Random.Range(speed - 2, speed + 2));
         }
-        RotateNPC(waypoints[current].transform.position, speed);
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * Random.Range(speed-2, speed+2));
     }
 
     // Rotate the NPC to face new waypoint

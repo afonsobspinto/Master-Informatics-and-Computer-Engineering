@@ -374,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &606583930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1480.4855
+  systemLocalTime: 1513.1731
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -459,7 +459,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 148.04855
+  localTime: 151.3173
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1488.5292
+  systemTime: 1513.2731
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -918,10 +918,10 @@ MonoBehaviour:
   maxVolume: 1
   maxSounds: 20
   defaultSplashSound: []
-  currentObjectIsOver: 0
-  currentObjectDepth: -20.057024
-  currentTransitionDepth: -20.057024
-  currentSurfaceLevel: -1
+  currentObjectIsOver: 1
+  currentObjectDepth: 3.1915417
+  currentTransitionDepth: 3.1915417
+  currentSurfaceLevel: 22.248566
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -933,16 +933,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - -1
-  - -1
-  - -1
-  - -20.057024
-  - 0
+  - 22.248566
+  - 22.248566
+  - 22.18
+  - 3.1915417
+  - 1
   - 0
   - 180
   - 0.05
-  - -21.42856
-  - -20.057024
+  - 476.75476
+  - 3.1915417
   - 1
   - 1
   isForward: 1
@@ -955,32 +955,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.332951, y: 8.357216}
-  texCoord: {x: 5091.2036, y: 0, z: -32794.246}
-  texCoord1: {x: 3818.3994, y: 0, z: 13302.186}
-  texCoordT: {x: 5091.2036, y: 0, z: -32794.246}
-  texCoordT1: {x: 2545.5994, y: 0, z: 12026.28}
-  texCoordR: {x: 159.10022, y: 0, z: -2209.1287}
-  texCoordR1: {x: 159.10042, y: 0, z: -4577.7456}
-  heightVal0: {r: 0.3647059, g: 0.50980395, b: 1, a: 0.11186275}
-  heightVal1: {r: 0.6901961, g: 0.46666667, b: 1, a: 0.042627454}
-  heightValT0: {r: 0.5764706, g: 0.3647059, b: 0.9647059, a: 0.059411768}
-  heightValT1: {r: 0.4627451, g: 0.4627451, b: 0.98039216, a: 0.14752942}
-  heightValR0: {r: 0.5411765, g: 0.3764706, b: 0.99607843, a: 0.009058825}
-  heightValR1: {r: 0.53333336, g: 0.54901963, b: 1, a: 0.10766667}
+  texCoord: {x: 5091.2036, y: 0, z: -33631.047}
+  texCoord1: {x: 3818.3994, y: 0, z: 13511.386}
+  texCoordT: {x: 5091.2036, y: 0, z: -33631.047}
+  texCoordT1: {x: 2545.5994, y: 0, z: 12235.48}
+  texCoordR: {x: 159.10022, y: 0, z: -2261.4287}
+  texCoordR1: {x: 159.10043, y: 0, z: -4682.3457}
+  heightVal0: {r: 0.5803922, g: 0.45490196, b: 1, a: 0.06570588}
+  heightVal1: {r: 0.5411765, g: 0.50980395, b: 1, a: 0.038431376}
+  heightValT0: {r: 0.58431375, g: 0.78431374, b: 0.9098039, a: 0.19368628}
+  heightValT1: {r: 0.4627451, g: 0.6392157, b: 0.96862745, a: 0.13284314}
+  heightValR0: {r: 0.49411765, g: 0.64705884, b: 0.9882353, a: 0}
+  heightValR1: {r: 0.54509807, g: 0.21568628, b: 0.95686275, a: 0.069901966}
   localTime: 0
-  row: 226
-  pixIndex: 7839
-  pixCol: {r: 0.53333336, g: 0.54901963, b: 1, a: 0.10766667}
+  row: 75
+  pixIndex: 46495
+  pixCol: {r: 0.54509807, g: 0.21568628, b: 0.95686275, a: 0.069901966}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 148.03856
+  useLocalTime: 151.30731
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000012941942, y: -148.03856}
-  flowSpeed1: {x: 0.0000032354856, y: -37.00964}
-  flowSpeed2: {x: 0.0000008088714, y: -9.25241}
-  flowSpeed3: {x: 0.0000016177428, y: -18.50482}
+  flowSpeed0: {x: 0.0000132277055, y: -151.30731}
+  flowSpeed1: {x: 0.0000033069264, y: -37.826828}
+  flowSpeed2: {x: 0.0000008267316, y: -9.456707}
+  flowSpeed3: {x: 0.0000016534632, y: -18.913414}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 1792563358}
+  renderTexDiff: {fileID: 2028402829}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -1308,7 +1308,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 268433663
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1792563358}
+  m_TargetTexture: {fileID: 2028402829}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1441,40 +1441,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!84 &1792563358
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1810221981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1562,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1980205979
+--- !u!21 &2022909832
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -1837,6 +1803,40 @@ Material:
     - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
     - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
     - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
+--- !u!84 &2028402829
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!84 &2043277652
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1980205979}
+  - {fileID: 2022909832}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1994,20 +1994,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4839772480395341761, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 357.97
+      value: 58.9
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.4
+      value: 10.25
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 480.9
+      value: 108.2
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
@@ -2057,7 +2062,7 @@ PrefabInstance:
     - target: {fileID: 4839772480395341763, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: speed
-      value: 30
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3462070177998132637, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
@@ -2152,7 +2157,7 @@ PrefabInstance:
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}

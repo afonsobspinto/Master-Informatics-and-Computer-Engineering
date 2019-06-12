@@ -16,6 +16,8 @@ TagManager:
   - concrete
   - dirt
   - Environment
+  - FishTrigger
+  - FishGroup
   layers:
   - Default
   - TransparentFX
