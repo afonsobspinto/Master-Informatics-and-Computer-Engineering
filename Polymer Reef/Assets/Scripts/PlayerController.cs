@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,23 +21,33 @@ public class PlayerController : MonoBehaviour
     private float initialHealthValue = 100f;
 
     [SerializeField]
-    private float initialHealthDecreaseOverTime = 0f;
+    private float healthHungerConstant = 1f;
+
+    [SerializeField]
+    private float healthWaterQualityConstant = 2.5f;
 
     public static PlayerStats health;
 
-    [SerializeField]
     private CircleHealthBar healthUI;
 
     [SerializeField]
     private float initialEnergyValue = 100f;
 
-    [SerializeField]
-    private float initialEnergyDecreaseOverTime = 5f;
-
     public static PlayerStats energy;
 
-    [SerializeField]
     private CircleEnergyBar energyUI;
+
+    [Range(0f, 100f)]
+    public float waterQuality = 100f;
+
+    private CircleWaterQualityBar waterQualityUI;
+
+    [SerializeField]
+    private float minWaterQualityNeutralThreshhold = 60; // value that seperates loosing from neutral
+
+    [SerializeField]
+    private float maxWaterQualityNeutralThreshold = 80; // value that seperates neutral from gaining
+
 
     [SerializeField]
     private Camera cam;
@@ -45,17 +56,25 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        health = new PlayerStats(this.initialHealthValue, this.initialHealthDecreaseOverTime);
-        energy = new PlayerStats(this.initialEnergyValue, this.initialEnergyDecreaseOverTime);
+        health = new PlayerStats(initialHealthValue);
+        energy = new PlayerStats(initialEnergyValue);
 
+        energyUI = GameObject.Find("EnergyUI").GetComponent<CircleEnergyBar>();
         energyUI.setInitial(energy.getMaxValue());
+
+        healthUI = GameObject.Find("HealthUI").GetComponent<CircleHealthBar>();
         healthUI.setInitial(health.getMaxValue());
+
+        waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
+        waterQualityUI.setInitial(waterQuality);
     }
 
     private void Update()
     {
-        updateEnergy();
+        if (transform.position.y > 20)
+            transform.position = new Vector3(transform.position.x, 20, transform.position.z);
 
+        updateHealth();
 
         // Calculate movement velocity as a 3D vector
         float _xMov = Input.GetAxisRaw("Horizontal");
@@ -113,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     public void gainHealth(float amount)
     {
-       PlayerController.health.increaseValue(amount);
+        PlayerController.health.increaseValue(amount);
         healthUI.increase(amount);
     }
 
@@ -146,15 +165,47 @@ public class PlayerController : MonoBehaviour
         energyUI.decreaseOverTime(amount);
     }
 
-    public void updateEnergy()
+    public void updateHealth()
     {
-        if (!energyUI.isIncreasing)
+        if (!healthUI.isIncreasing)
         {
-            float energyDelta = PlayerController.energy.getUpdateLoss();
-            PlayerController.energy.updateValue(energyDelta);
-            //energyUI.decreaseOverTime(energyDelta);
+            // formula to health loss: time * (qualityImpact * qualityConstant + hungerConstant)
+
+            // formula to quality impact:
+            //      * 0 if water quality between 60% and 80% (including 80)
+            //      * 60/waterQuality if water quality bellow or equal to 60% (0 is instant kill)
+            //      * waterQuality/80 if water quality greater than 80%
+
+            float qualityImpact = 0;
+            if (waterQuality <= minWaterQualityNeutralThreshhold) // loose 60% ?
+            {
+                qualityImpact = minWaterQualityNeutralThreshhold / waterQuality;
+            }
+            else if (waterQuality > maxWaterQualityNeutralThreshold) // gain 80% ?
+            {
+                qualityImpact = -waterQuality / maxWaterQualityNeutralThreshold;
+            }
+            float healthLoss = Time.deltaTime * (qualityImpact * healthWaterQualityConstant + healthHungerConstant);
+
+            doDamageOverTime(healthLoss);
+        }
+    }
+
+    public void setWaterQuality(float quality)
+    {
+        waterQualityUI.setInitial(quality);
+
+        if (waterQuality > quality)
+        {
+            waterQualityUI.decrease(waterQuality - quality);
 
         }
+        else if (waterQuality < quality)
+        {
+            waterQualityUI.increase(quality - waterQuality);
+        }
+
+        waterQuality = quality;
     }
 
     public void changeMaxEnergy(float amount)

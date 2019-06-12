@@ -13,6 +13,9 @@ TagManager:
   - Camera
   - Particle
   - DirectionalLight
+  - concrete
+  - dirt
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -24,9 +27,9 @@ TagManager:
   - 
   - PostProcessing
   - Obstacle
-  - 
-  - 
-  - 
+  - Suimono_Water
+  - Suimono_Depth
+  - Suimono_Screen
   - 
   - 
   - 
