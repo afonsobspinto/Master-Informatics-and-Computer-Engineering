@@ -1,30 +1,40 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Jellyfish : MonoBehaviour
 {
-    public GameObject player = null;
-    public float damage = 2;
+    GameObject player;
+    public float damageEnter = 20;
+    public float damageStay = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        AnimateRandomly();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
     private void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject == this.player)
+        if (c.gameObject.tag == "Player")
         {
             //decrease health using player object
-            this.player.GetComponent<PlayerController>().doDamage(this.damage);
+            this.player.GetComponent<PlayerController>().doDamage(this.damageEnter);
         }
+    }
+
+    private void OnTriggerStay(Collider c)
+    {
+        if (c.gameObject.tag == "Player")
+        {
+            //decrease health using player object
+            this.player.GetComponent<PlayerController>().doDamage(this.damageStay);
+        }
+    }
+
+    void AnimateRandomly()
+    {
+        GetComponent<BlendShape>().blendSpeed = Random.Range(20f, 50f);
     }
 }
