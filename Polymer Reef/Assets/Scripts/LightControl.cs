@@ -30,8 +30,7 @@ public class LightControl : MonoBehaviour
             lightOn = !lightOn;
             foreach (Transform child in transform)
             {
-                Light light = child.GetComponent<Light>();
-                light.enabled = lightOn;
+                child.gameObject.SetActive(lightOn);
             }
         }
 

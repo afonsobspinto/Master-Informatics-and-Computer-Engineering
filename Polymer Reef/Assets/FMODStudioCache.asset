@@ -93,11 +93,11 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\axel_game_sound\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636946587609304286
+  lastModified: 636959729518022054
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 772
+    Value: 822
   Exists: 1
 --- !u!114 &-5988206615386877333
 MonoBehaviour:
@@ -219,6 +219,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 264704
   Exists: 1
+--- !u!114 &-3469050801461116791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/apanhaLuz
+  m_EditorClassIdentifier: 
+  Path: event:/apanhaLuz
+  guid: 2c1cfc176a5c204a879d02da310a74a6
+  Banks:
+  - {fileID: 8804156574484206973}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &-3346604466161002204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +288,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4000
+--- !u!114 &-1561328800911755557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/axelote
+  m_EditorClassIdentifier: 
+  Path: event:/axelote
+  guid: e20a2c7a0e83e34491037c9a40d5c4ef
+  Banks:
+  - {fileID: 8804156574484206973}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 5046984726449325685}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &-372814512005405912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,11 +369,13 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 6769211219011973686}
   - {fileID: 8696636391407078738}
+  - {fileID: -3469050801461116791}
+  - {fileID: -1561328800911755557}
   MasterBanks:
   - {fileID: 8804156574484206973}
   StringsBanks:
   - {fileID: -6349580948340878886}
-  stringsBankWriteTime: 636946587609304286
+  stringsBankWriteTime: 636959729518022054
   cacheVersion: 3
 --- !u!114 &2216095295059938929
 MonoBehaviour:
@@ -413,6 +462,23 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 264704
+  Exists: 1
+--- !u!114 &5046984726449325685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/axelote/ligarluzes
+  m_EditorClassIdentifier: 
+  Name: ligarluzes
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
 --- !u!114 &5476062160890323196
 MonoBehaviour:
@@ -553,7 +619,6 @@ MonoBehaviour:
   guid: a9566b5c916873458d5f1ca5f1d52d1b
   Banks:
   - {fileID: -6430025125450351618}
-  - {fileID: 8804156574484206973}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -575,9 +640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:\FEUP\feup-djco2\Polymer Reef\Assets\FMOD\axel_game_sound\Build\Desktop\Master
     Bank.bank
-  lastModified: 636946587609274322
+  lastModified: 636959729518001949
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1117792
+    Value: 1155040
   Exists: 1

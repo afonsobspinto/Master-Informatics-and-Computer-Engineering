@@ -5,17 +5,16 @@ using UnityEngine;
 public class PowerUp : Collectable
 {
     [FMODUnity.EventRef]
-    public string selectsound;
-    FMOD.Studio.EventInstance soundevent;
-    private GameObject player;
+    //public string selectsound;
+    //FMOD.Studio.EventInstance soundevent;
     private Light directionalLight;
-    private GameObject camera;
+    private new GameObject camera;
 
     void Start()
     {
         //soundevent = FMODUnity.RuntimeManager.CreateInstance(selectsound);
         //soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
 
         directionalLight = GameObject.Find("light_sun").GetComponent<Light>();
         camera = GameObject.Find("Camera");
@@ -46,16 +45,16 @@ public class PowerUp : Collectable
             //camera.GetComponent<FogEffect>()._depthDistance = 450f;
         }
 
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
-        PlaySound();
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(soundevent, GetComponent<Transform>(), GetComponent<Rigidbody>());
+        //PlaySound();
         Destroy(gameObject);
     }
 
-    void PlaySound()
+   /* void PlaySound()
     {
         FMOD.Studio.PLAYBACK_STATE fmodPbState;
         soundevent.getPlaybackState(out fmodPbState);
         if(fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
             soundevent.start();
-    }
+    }*/
 }

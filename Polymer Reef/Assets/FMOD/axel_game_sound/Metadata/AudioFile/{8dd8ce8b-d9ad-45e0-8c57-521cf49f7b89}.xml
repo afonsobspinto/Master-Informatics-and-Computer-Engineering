@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
-    <object class="AudioFile" id="{0e4c703c-3425-4202-be60-09823122ac24}">
+    <object class="AudioFile" id="{8dd8ce8b-d9ad-45e0-8c57-521cf49f7b89}">
         <property name="assetPath">
-            <value>chemical.wav</value>
+            <value>luzesAxelote.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>
@@ -11,7 +11,7 @@
             <value>2</value>
         </property>
         <property name="length">
-            <value>1.6979591836734693</value>
+            <value>2.5</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{c5c84513-5b7c-4e64-bf66-989be1c8b4b0}</destination>
