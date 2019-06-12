@@ -6,7 +6,7 @@ public class Jellyfish : MonoBehaviour
 {
     GameObject player;
     public float damageEnter = 20;
-    public float damageStay = 2;
+    public float damageStay = 0.02f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,6 @@ public class Jellyfish : MonoBehaviour
 
     void AnimateRandomly()
     {
-        GetComponent<BlendShape>().blendSpeed = Random.Range(20f, 50f);
+        GetComponent<BlendShape>().blendSpeed = Random.Range(10f, 40f);
     }
 }

@@ -35,6 +35,10 @@ public class AIMove : MonoBehaviour
 
     void SetUpNPC()
     {
+        // Randomly scale each NPC
+        float m_scale = Random.Range(0f, 1f);
+        transform.localScale += new Vector3(m_scale, m_scale, m_scale);
+
         if (transform.GetComponent<Collider>() != null && transform.GetComponent<Collider>().enabled == true)
             m_collider = transform.GetComponent<Collider>();
         else if (transform.GetComponentInChildren<Collider>() != null && transform.GetComponentInChildren<Collider>().enabled == true)
