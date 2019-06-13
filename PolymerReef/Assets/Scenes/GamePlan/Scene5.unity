@@ -5065,7 +5065,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -46077,7 +46077,7 @@ PrefabInstance:
     - target: {fileID: 9003458948915138177, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125274472334332256, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
@@ -55955,6 +55955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 182169677, guid: 174f89864b8d61b499dc8ac282e37e5e, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 714120888764295664, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -56009,6 +56013,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003458948915138177, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 174f89864b8d61b499dc8ac282e37e5e, type: 3}
