@@ -389,7 +389,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!21 &159371181
+--- !u!21 &567368168
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1911.4893
+  systemLocalTime: 1928.7598
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -731,7 +731,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 191.14893
+  localTime: 192.87598
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1911.5892
+  systemTime: 1928.8597
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -1179,9 +1179,9 @@ MonoBehaviour:
   maxSounds: 20
   defaultSplashSound: []
   currentObjectIsOver: 1
-  currentObjectDepth: 3.224163
-  currentTransitionDepth: 3.224163
-  currentSurfaceLevel: 22.281187
+  currentObjectDepth: 3.2440643
+  currentTransitionDepth: 3.2440643
+  currentSurfaceLevel: 22.301088
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -1193,16 +1193,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - 22.281187
-  - 22.281187
+  - 22.301088
+  - 22.301088
   - 22.18
-  - 3.224163
+  - 3.2440643
   - 1
   - 0
   - 180
   - 0.05
-  - 477.45377
-  - 3.224163
+  - 477.88022
+  - 3.2440643
   - 1
   - 1
   isForward: 1
@@ -1215,32 +1215,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.665902, y: 8.714433}
-  texCoord: {x: 5261.676, y: 0, z: -43645.047}
-  texCoord1: {x: 3946.2524, y: 0, z: 16197.781}
-  texCoordT: {x: 5261.676, y: 0, z: -43645.047}
-  texCoordT1: {x: 2630.8347, y: 0, z: 14876.151}
-  texCoordR: {x: 164.4275, y: 0, z: -2893.0193}
-  texCoordR1: {x: 164.42776, y: 0, z: -5951.242}
-  heightVal0: {r: 0.35686275, g: 0.49803922, b: 1, a: 0.05521569}
-  heightVal1: {r: 0.6431373, g: 0.5568628, b: 1, a: 0.11186275}
-  heightValT0: {r: 0.5058824, g: 0.53333336, b: 0.99215686, a: 0.101372555}
-  heightValT1: {r: 0.5176471, g: 0.5647059, b: 0.9882353, a: 0}
-  heightValR0: {r: 0.5137255, g: 0.40392157, b: 0.99607843, a: 0}
-  heightValR1: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
+  texCoord: {x: 5261.676, y: 0, z: -44088.797}
+  texCoord1: {x: 3946.2524, y: 0, z: 16308.719}
+  texCoordT: {x: 5261.676, y: 0, z: -44088.797}
+  texCoordT1: {x: 2630.8347, y: 0, z: 14987.089}
+  texCoordR: {x: 164.4275, y: 0, z: -2920.7537}
+  texCoordR1: {x: 164.42778, y: 0, z: -6006.711}
+  heightVal0: {r: 0.5019608, g: 0.5686275, b: 1, a: 0.05101961}
+  heightVal1: {r: 0.5882353, g: 0.5529412, b: 1, a: 0.10556863}
+  heightValT0: {r: 0.54509807, g: 0.5372549, b: 0.99215686, a: 0.025843138}
+  heightValT1: {r: 0.3372549, g: 0.6039216, b: 0.9529412, a: 0.10556863}
+  heightValR0: {r: 0.43529412, g: 0.7058824, b: 0.98039216, a: 0.10976471}
+  heightValR1: {r: 0.5686275, g: 0.45490196, b: 1, a: 0.13284314}
   localTime: 0
-  row: 64
-  pixIndex: 49316
-  pixCol: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
+  row: 119
+  pixIndex: 35236
+  pixCol: {r: 0.5686275, g: 0.45490196, b: 1, a: 0.13284314}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 191.13893
+  useLocalTime: 192.87233
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000016709897, y: -191.13893}
-  flowSpeed1: {x: 0.0000041774742, y: -47.784733}
-  flowSpeed2: {x: 0.0000010443686, y: -11.946183}
-  flowSpeed3: {x: 0.0000020887371, y: -23.892366}
+  flowSpeed0: {x: 0.000016861435, y: -192.87233}
+  flowSpeed1: {x: 0.000004215359, y: -48.218082}
+  flowSpeed2: {x: 0.0000010538397, y: -12.054521}
+  flowSpeed3: {x: 0.0000021076794, y: -24.109041}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1833,7 +1833,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 159371181}
+  - {fileID: 567368168}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2078,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
@@ -2143,6 +2143,11 @@ PrefabInstance:
     - target: {fileID: 554942218, guid: e4fcc5a077df6d2449d0a8be1167fb40, type: 3}
       propertyPath: Event
       value: event:/soundscape
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201491298165006885, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4fcc5a077df6d2449d0a8be1167fb40, type: 3}

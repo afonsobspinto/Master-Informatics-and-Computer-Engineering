@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraRotation = Vector3.zero;
-
+    private readonly float[] angleRotations = new float[] { 0.0f, 50.0f, 330.0f, 380.0f };
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -61,7 +62,18 @@ public class PlayerMotor : MonoBehaviour
     void PerformRotation()
     {
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-        if (cam != null)
+        if (cam != null) { 
             cam.transform.Rotate(-cameraRotation);
+            if(!isWithin(cam.transform.localEulerAngles.x, angleRotations[0], angleRotations[1]) &&
+                !isWithin(cam.transform.localEulerAngles.x, angleRotations[2], angleRotations[3])){
+                cam.transform.Rotate(cameraRotation);
+            }
+        }
+
+    }
+
+    public static bool isWithin(float value, float minimum, float maximum)
+    {
+        return value >= minimum && value <= maximum;
     }
 }
