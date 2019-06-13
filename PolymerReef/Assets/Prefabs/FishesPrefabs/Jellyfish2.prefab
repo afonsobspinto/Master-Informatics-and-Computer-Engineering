@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7079964817787716698}
   - component: {fileID: 7079964817787716646}
   - component: {fileID: 7079964817787716699}
+  - component: {fileID: 671360124448516176}
   m_Layer: 0
   m_Name: Jellyfish2
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1252277135872887831}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 4.5228357, y: -0.54, z: 15.001599}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 50, y: 49.999924, z: 49.999924}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -142,5 +143,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278c801241f1e614bbfecee447c752e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  damage: 2
+  damageEnter: 20
+  damageStay: 0.02
+--- !u!114 &671360124448516176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252277135872887831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998cc96d37676d6478039f00cc78f8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  lowerValue: 10
+  higherValue: 20

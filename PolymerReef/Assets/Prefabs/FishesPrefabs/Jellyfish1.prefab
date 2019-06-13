@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8051587591318606793}
   - component: {fileID: 8051587591318606792}
   - component: {fileID: 8051587591318606799}
+  - component: {fileID: 1333735596}
   m_Layer: 0
   m_Name: Jellyfish1
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8051587591318606798}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 12.16, y: 0.1119833, z: 12.94}
-  m_LocalScale: {x: 100, y: 99.99997, z: 99.99997}
+  m_LocalScale: {x: 100, y: 99.99982, z: 99.99982}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278c801241f1e614bbfecee447c752e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  damage: 2
+  damageEnter: 20
+  damageStay: 0.02
 --- !u!114 &8051587591318606792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +145,18 @@ CapsuleCollider:
   m_Height: 0.04315707
   m_Direction: 1
   m_Center: {x: -0.0000000018626451, y: -0.0000000037252899, z: -0.039243538}
+--- !u!114 &1333735596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051587591318606798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998cc96d37676d6478039f00cc78f8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  lowerValue: 10
+  higherValue: 20
