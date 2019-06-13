@@ -11,4 +11,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GamePlan/Scene2.unity
     guid: db638767001fdcc488aba6da7cfb7ec4
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/Scene3.unity
+    guid: da0071df36b34194bb541cb8265728a2
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/Scene4.unity
+    guid: d49db4e6cc26e374d8423f7f2ff318ad
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/Scene5.unity
+    guid: e60782b04e34f0a47920bbcd61d268a4
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/Scene6.unity
+    guid: bc720b3025ce8d445b189c5d1a38aa7b
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/SceneHandlers.unity
+    guid: 5bc9c00947188514fa38ac78b2c9da8e
+  - enabled: 1
+    path: Assets/Scenes/GamePlan/PlayerScene.unity
+    guid: 648ee369d6c7d214faf28ae8bc7057ee
   m_configObjects: {}
