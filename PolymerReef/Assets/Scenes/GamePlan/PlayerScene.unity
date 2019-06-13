@@ -383,45 +383,13 @@ MonoBehaviour:
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
-  Params: []
+  Params:
+  - Name: ligarluzes
+    Value: 0.458
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!84 &535685777
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
---- !u!21 &551704139
+--- !u!21 &269662257
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -662,6 +630,40 @@ Material:
     - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
     - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
     - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
+--- !u!84 &577889722
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &606583929
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1861.8523
+  systemLocalTime: 1871.879
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -763,7 +765,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 186.18523
+  localTime: 187.18791
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -912,8 +914,7 @@ MonoBehaviour:
   - "<data_underDarkRange>(50)\r"
   - 
   presetDataString: "<color_depth>(0.160,0.281,0.382,1.000)\r\n<color_shallow>(0.208,0.373,0.441,0.784)\r\n<color_blend>(0.360,1.000,0.867,0.220)\r\n<color_overlay>(0.000,0.000,0.000,0.000)\r\n<color_caustics>(1.000,1.000,1.000,1.000)\r\n<color_reflection>(1.000,1.000,1.000,0.376)\r\n<color_specular>(0.063,0.326,0.375,0.161)\r\n<color_sss>(0.000,0.324,0.015,0.239)\r\n<color_foam>(0.912,0.874,0.791,1.000)\r\n<color_underwater>(0.034,0.102,0.154,0.404)\r\n<data_beaufort>(2)\r\n<data_flowdir>(180)\r\n<data_flowspeed>(0.05)\r\n<data_wavescale>(0.5)\r\n<data_customwaves>(False)\r\n<data_waveheight>(0.65)\r\n<data_heightprojection>(1)\r\n<data_turbulence>(0.24)\r\n<data_lgwaveheight>(0.04666669)\r\n<data_lgwavescale>(0.03125)\r\n<data_shorelineheight>(0.25)\r\n<data_shorelinefreq>(1)\r\n<data_shorelinescale>(3.55)\r\n<data_shorelinespeed>(4)\r\n<data_shorelinenorm>(0)\r\n<data_overallbright>(1)\r\n<data_overalltransparency>(1)\r\n<data_edgeamt>(0.064)\r\n<data_depthamt>(0.064)\r\n<data_shallowamt>(0.057)\r\n<data_refractstrength>(0.5)\r\n<data_aberrationscale>(0)\r\n<data_causticsfade>(0.122)\r\n<data_reflectprojection>(1)\r\n<data_reflectblur>(0.25)\r\n<data_reflectterm>(0)\r\n<data_reflectsharpen>(0)\r\n<data_roughness>(0.025)\r\n<data_roughness2>(0.45)\r\n<data_enablefoam>(True)\r\n<data_foamscale>(0.94)\r\n<data_foamspeed>(0)\r\n<data_edgefoamamt>(0.933)\r\n<data_shallowfoamamt>(1)\r\n<data_heightfoamamt>(0.85)\r\n<data_hfoamheight>(0.65)\r\n<data_hfoamspread>(0.276)\r\n<data_enableunderdebris>(True)\r\n<data_underlightfactor>(1)\r\n<data_underrefractionamount>(0.005)\r\n<data_underrefractionscale>(0.5)\r\n<data_underrefractionspeed>(1)\r\n<data_underbluramount>(1)\r\n<data_underwaterfogdist>(34)\r\n<data_underwaterfogspread>(0)\r\n<data_underDarkRange>(50)\r\n"
-  dir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
-    WATER SYSTEM 2/RESOURCES/
+  dir: D:/FEUP/feup-djco2/PolymerReef/Assets/SUIMONO - WATER SYSTEM 2/RESOURCES/
   baseDir: SUIMONO - WATER SYSTEM 2/RESOURCES/
   presetSaveName: my custom preset
   presetFile: 
@@ -929,8 +930,8 @@ MonoBehaviour:
   skybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   d: 2
   dn: 2
-  pdir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
-    WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets
+  pdir: D:/FEUP/feup-djco2/PolymerReef/Assets/SUIMONO - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In
+    Presets
   f: 28
   px: 14
   nx: 28
@@ -1157,7 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1861.9523
+  systemTime: 1871.979
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -1211,9 +1212,9 @@ MonoBehaviour:
   maxSounds: 20
   defaultSplashSound: []
   currentObjectIsOver: 1
-  currentObjectDepth: 3.218584
-  currentTransitionDepth: 3.218584
-  currentSurfaceLevel: 22.275608
+  currentObjectDepth: 3.2338676
+  currentTransitionDepth: 3.2338676
+  currentSurfaceLevel: 22.290892
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -1225,16 +1226,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - 22.275608
-  - 22.275608
+  - 22.290892
+  - 22.290892
   - 22.18
-  - 3.218584
+  - 3.2338676
   - 1
   - 0
   - 180
   - 0.05
-  - 477.33423
-  - 3.218584
+  - 477.66174
+  - 3.2338676
   - 1
   - 1
   isForward: 1
@@ -1247,32 +1248,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.665902, y: 8.714433}
-  texCoord: {x: 5261.676, y: 0, z: -42374.625}
-  texCoord1: {x: 3946.2527, y: 0, z: 15880.176}
-  texCoordT: {x: 5261.676, y: 0, z: -42374.625}
-  texCoordT1: {x: 2630.8347, y: 0, z: 14558.546}
-  texCoordR: {x: 164.42749, y: 0, z: -2813.618}
-  texCoordR1: {x: 164.42775, y: 0, z: -5792.4395}
-  heightVal0: {r: 0.49019608, g: 0.43529412, b: 1, a: 0.086686276}
-  heightVal1: {r: 0.2784314, g: 0.4627451, b: 1, a: 0.09717647}
-  heightValT0: {r: 0.5882353, g: 0.4, b: 0.9764706, a: 0}
-  heightValT1: {r: 0.5764706, g: 0.5058824, b: 0.9843137, a: 0.07829412}
-  heightValR0: {r: 0.59607846, g: 0.7137255, b: 0.99215686, a: 0}
-  heightValR1: {r: 0.49803922, g: 0.36078432, b: 0.99607843, a: 0}
+  texCoord: {x: 5261.676, y: 0, z: -42631.023}
+  texCoord1: {x: 3946.2527, y: 0, z: 15944.275}
+  texCoordT: {x: 5261.676, y: 0, z: -42631.023}
+  texCoordT1: {x: 2630.8347, y: 0, z: 14622.6455}
+  texCoordR: {x: 164.42749, y: 0, z: -2829.6428}
+  texCoordR1: {x: 164.42776, y: 0, z: -5824.4893}
+  heightVal0: {r: 0.52156866, g: 0.3882353, b: 1, a: 0.07829412}
+  heightVal1: {r: 0.61960787, g: 0.5882353, b: 1, a: 0.10766667}
+  heightValT0: {r: 0.58431375, g: 0.41568628, b: 0.98039216, a: 0}
+  heightValT1: {r: 0.48235294, g: 0.46666667, b: 0.99607843, a: 0}
+  heightValR0: {r: 0.35686275, g: 0.3254902, b: 0.9882353, a: 0}
+  heightValR1: {r: 0.4392157, g: 0.7490196, b: 0.9843137, a: 0.101372555}
   localTime: 0
-  row: 161
-  pixIndex: 24484
-  pixCol: {r: 0.49803922, g: 0.36078432, b: 0.99607843, a: 0}
+  row: 193
+  pixIndex: 16292
+  pixCol: {r: 0.4392157, g: 0.7490196, b: 0.9843137, a: 0.101372555}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 186.17635
+  useLocalTime: 187.1779
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000016276053, y: -186.17635}
-  flowSpeed1: {x: 0.0000040690134, y: -46.544086}
-  flowSpeed2: {x: 0.0000010172533, y: -11.636022}
-  flowSpeed3: {x: 0.0000020345067, y: -23.272043}
+  flowSpeed0: {x: 0.000016363612, y: -187.1779}
+  flowSpeed1: {x: 0.000004090903, y: -46.794476}
+  flowSpeed2: {x: 0.0000010227258, y: -11.698619}
+  flowSpeed3: {x: 0.0000020454515, y: -23.397238}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1559,7 +1560,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 535685777}
+  renderTexDiff: {fileID: 577889722}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -1600,7 +1601,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 268433663
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 535685777}
+  m_TargetTexture: {fileID: 577889722}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1968,7 +1969,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 551704139}
+  - {fileID: 269662257}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2213,7 +2214,7 @@ PrefabInstance:
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
