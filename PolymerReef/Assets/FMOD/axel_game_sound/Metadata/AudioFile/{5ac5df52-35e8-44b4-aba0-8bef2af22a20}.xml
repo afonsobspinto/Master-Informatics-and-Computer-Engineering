@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5ac5df52-35e8-44b4-aba0-8bef2af22a20}">
+        <property name="assetPath">
+            <value>fish-004.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>49</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c5c84513-5b7c-4e64-bf66-989be1c8b4b0}</destination>
+        </relationship>
+    </object>
+</objects>

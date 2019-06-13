@@ -286,7 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 554942216}
-  selectsound: event:/chemical
 --- !u!135 &25517484
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2490,6 +2489,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306026831166741223, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1633325120432713419, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_FontData.m_AlignByGeometry
@@ -2573,16 +2582,6 @@ PrefabInstance:
     - target: {fileID: 7360922195614161578, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: startTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306026831166741223, guid: e4fcc5a077df6d2449d0a8be1167fb40,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10298,17 +10297,17 @@ PrefabInstance:
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: subtitles.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: durations.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: subtitles.Array.data[2]
-      value: Ok?
+      value: Ok? Go
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
@@ -10318,22 +10317,22 @@ PrefabInstance:
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: durations.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
-        type: 3}
-      propertyPath: durations.Array.data[3]
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
-      propertyPath: durations.Array.data[1]
+      propertyPath: durations.Array.data[3]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
+      propertyPath: durations.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
       propertyPath: durations.Array.data[0]
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
@@ -10344,17 +10343,27 @@ PrefabInstance:
         type: 3}
       propertyPath: subtitles.Array.data[0]
       value: It looks very dark here, you should find some energy to increase your
-        lights!
+        lights
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: subtitles.Array.data[1]
-      value: Find them scattered around the area...
+      value: Find them scattered around the area..
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: durations.Array.data[4]
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619328, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4566882336240619328, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22479764fc38ca94ea276a229f53dc52, type: 3}
@@ -10667,16 +10676,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6955318808791821689, guid: bb7e423d62209c7439b5e72cd1a24601,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9234db32837ed144bb5f44039d41424a, type: 2}
-    - target: {fileID: 6955318808791821689, guid: bb7e423d62209c7439b5e72cd1a24601,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 21170056c3506974186a1ed0a34323ae, type: 2}
     - target: {fileID: 8642607188846380485, guid: bb7e423d62209c7439b5e72cd1a24601,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -10757,6 +10756,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[14]
       value: 
       objectReference: {fileID: 2100000, guid: 86f4b7c9e0a660c49bade66cf983fc0b, type: 2}
+    - target: {fileID: 6955318808791821689, guid: bb7e423d62209c7439b5e72cd1a24601,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9234db32837ed144bb5f44039d41424a, type: 2}
+    - target: {fileID: 6955318808791821689, guid: bb7e423d62209c7439b5e72cd1a24601,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21170056c3506974186a1ed0a34323ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7e423d62209c7439b5e72cd1a24601, type: 3}
 --- !u!1001 &6113889781942183690

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1252277135872887831
+--- !u!1 &826218524685464820
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2827032082861719044}
-  - component: {fileID: 769943665157662513}
-  - component: {fileID: 5310202950227743614}
-  - component: {fileID: 7079964817787716698}
-  - component: {fileID: 7079964817787716646}
-  - component: {fileID: 7079964817787716699}
-  - component: {fileID: 671360124448516176}
+  - component: {fileID: 4407907507061622503}
+  - component: {fileID: 1204934564934164434}
+  - component: {fileID: 6027517553658243997}
+  - component: {fileID: 826218524685464823}
+  - component: {fileID: 826218524685464822}
+  - component: {fileID: 826218524685464821}
+  - component: {fileID: 8568438052704055200}
   m_Layer: 0
-  m_Name: Jellyfish2
+  m_Name: Jellyfish3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2827032082861719044
+--- !u!4 &4407907507061622503
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 4.5228357, y: -0.54, z: 15.001599}
-  m_LocalScale: {x: 50, y: 49.999924, z: 49.999924}
+  m_LocalPosition: {x: 2.56, y: -1.55, z: 9.1}
+  m_LocalScale: {x: 75, y: 75, z: 75}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
---- !u!137 &769943665157662513
+--- !u!137 &1204934564934164434
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -53,7 +53,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70ee75832e075074ba476fdf2a0d5aaa, type: 2}
+  - {fileID: 2100000, guid: f6f22799d6aebc2409091c0fd379057a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -2124705421725058983, guid: 3d6bed61545570445be408479c6751e6, type: 3}
+  m_Mesh: {fileID: -2124705421725058983, guid: 43175b34df39ade4da1af63edd1cf014, type: 3}
   m_Bones: []
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
@@ -85,16 +85,16 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000000018626451, y: -0.0000000037252903, z: -0.03924354}
     m_Extent: {x: 0.021578535, y: 0.021578537, z: 0.044377014}
   m_DirtyAABB: 0
---- !u!95 &5310202950227743614
+--- !u!95 &6027517553658243997
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3d6bed61545570445be408479c6751e6, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 43175b34df39ade4da1af63edd1cf014, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -104,40 +104,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &7079964817787716698
+--- !u!136 &826218524685464823
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.04437701
-  m_Height: 0.04315707
+  m_Radius: 0.044377003
+  m_Height: 0.043157063
   m_Direction: 1
-  m_Center: {x: -0.0000000018626451, y: -0.0000000037252899, z: -0.039243538}
---- !u!114 &7079964817787716646
+  m_Center: {x: 1.110223e-16, y: 0.000000003725291, z: -0.039243538}
+--- !u!114 &826218524685464822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9b26d825af6f247b8e02f8d829bbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blendSpeed: 4
---- !u!114 &7079964817787716699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 278c801241f1e614bbfecee447c752e0, type: 3}
@@ -145,18 +132,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageEnter: 20
   damageStay: 0.02
---- !u!114 &671360124448516176
+--- !u!114 &826218524685464821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252277135872887831}
+  m_GameObject: {fileID: 826218524685464820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998cc96d37676d6478039f00cc78f8a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9b26d825af6f247b8e02f8d829bbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  lowerValue: 10
-  higherValue: 20
+  blendSpeed: 100
+--- !u!114 &8568438052704055200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826218524685464820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/jelifish
+  PlayEvent: 3
+  StopEvent: 0
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

@@ -14,7 +14,11 @@ GameObject:
   - component: {fileID: 826218524685464823}
   - component: {fileID: 826218524685464822}
   - component: {fileID: 826218524685464821}
+<<<<<<< HEAD
   - component: {fileID: 948368921061626047}
+=======
+  - component: {fileID: 8568438052704055200}
+>>>>>>> feature-scene4
   m_Layer: 0
   m_Name: Jellyfish3
   m_TagString: Untagged
@@ -145,7 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blendSpeed: 100
+<<<<<<< HEAD
 --- !u!114 &948368921061626047
+=======
+--- !u!114 &8568438052704055200
+>>>>>>> feature-scene4
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,9 +162,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 826218524685464820}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 998cc96d37676d6478039f00cc78f8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
   lowerValue: 10
   higherValue: 20
+=======
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/jelifish
+  PlayEvent: 3
+  StopEvent: 0
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+>>>>>>> feature-scene4
