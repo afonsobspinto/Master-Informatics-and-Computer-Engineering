@@ -7,7 +7,8 @@ public class Subtitles : MonoBehaviour
 {
     private Text text;
 
-    [Header("Type the start time, the subtitles and then a duration for each one")]
+    [Header("Type the start time, the subtitles")]
+    [Header("and then a duration for each one")]
     public int startTime = 0;
     public string[] subtitles = new string[3];
     public int[] durations;
