@@ -50,14 +50,14 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-Polymer Reef/Assets/FMODStudioCache.asset
-Polymer Reef/Assets/FMODStudioCache.asset.meta
-Polymer Reef/fmod.log
-Polymer Reef/fmod_editor.log
-Polymer Reef/Assets/FMODStudioCache.asset
-Polymer Reef/Assets/FMOD/axel_game_sound/Build/*
-Polymer Reef/Assets/FMOD/axel_game_sound/*.cache
-Polymer Reef/Assets/FMOD/axel_game_sound/*.restore
-Polymer Reef/Assets/FMOD/axel_game_sound/*.user
-Polymer Reef/Assets/Plugins/x86_64/fmodstudiol.dll
-Polymer Reef/Assets/FMOD/axel_game_sound/*.
+PolymerReef/Assets/FMODStudioCache.asset
+PolymerReef/Assets/FMODStudioCache.asset.meta
+PolymerReef/fmod.log
+PolymerReef/fmod_editor.log
+PolymerReef/Assets/FMODStudioCache.asset
+PolymerReef/Assets/FMOD/axel_game_sound/Build/*
+PolymerReef/Assets/FMOD/axel_game_sound/*.cache
+PolymerReef/Assets/FMOD/axel_game_sound/*.restore
+PolymerReef/Assets/FMOD/axel_game_sound/*.user
+PolymerReef/Assets/Plugins/x86_64/fmodstudiol.dll
+PolymerReef/Assets/FMOD/axel_game_sound/*.
