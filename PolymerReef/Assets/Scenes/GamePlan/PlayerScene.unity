@@ -389,7 +389,955 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!21 &159371181
+--- !u!1 &606583929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606583931}
+  - component: {fileID: 606583930}
+  m_Layer: 8
+  m_Name: SUIMONO_Surface_Ocean
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &606583930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606583929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caeb605cd9a3ef74f8fb2d33b6880d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  systemTime: 0
+  systemLocalTime: 3572.708
+  flowSpeed: 0.05
+  flowDirection: 180
+  useBeaufortScale: 1
+  beaufortScale: 2
+  turbulenceFactor: 0.23999998
+  waveScale: 0.5
+  lgWaveHeight: 0.04666669
+  lgWaveScale: 0.03125
+  waveHeight: 0.65
+  heightProjection: 1
+  useHeightProjection: 1
+  refractStrength: 0.5
+  reflectProjection: 1
+  reflectBlur: 0.25
+  aberrationScale: 0
+  roughness: 0.025
+  roughness2: 0.45
+  reflectTerm: 0
+  reflectSharpen: 0
+  showDepthMask: 0
+  showWorldMask: 0
+  cameraDistance: 1000
+  underwaterDepth: 5
+  useDX9Settings: 0
+  moduleObject: {fileID: 734480736}
+  suimonoVersionNumber: 2.1.6
+  showGeneral: 0
+  typeIndex: 0
+  editorIndex: 1
+  editorUseIndex: 1
+  enableCustomMesh: 0
+  lodIndex: 0
+  useLodIndex: 0
+  customMesh: {fileID: 0}
+  oceanScale: 4
+  enableCausticFX: 1
+  causticsFade: 0.122
+  causticsColor: {r: 1, g: 1, b: 1, a: 1}
+  enableTess: 1
+  useEnableTess: 1
+  waveTessAmt: 8
+  waveTessMin: 0
+  waveTessSpread: 0.08
+  enableInteraction: 1
+  dynamicReflectFlag: 1
+  enableReflections: 1
+  enableDynamicReflections: 1
+  useEnableReflections: 1
+  useEnableDynamicReflections: 1
+  useReflections: 1
+  useDynReflections: 1
+  reflectLayer: 1
+  reflectResolution: 3
+  reflectLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  reflectionDistance: 1200
+  reflectFallback: 1
+  customRefCubemap: {fileID: 0}
+  customRefColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  reflectionColor: {r: 1, g: 1, b: 1, a: 0.376}
+  enableCustomTextures: 0
+  customTexNormal1: {fileID: 0}
+  customTexNormal2: {fileID: 0}
+  customTexNormal3: {fileID: 0}
+  useTexNormal1: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+  useTexNormal2: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
+  useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
+  showWaves: 0
+  customWaves: 0
+  localTime: 357.2708
+  beaufortVal: 0.16666667
+  showShore: 0
+  shorelineHeight: 0.25
+  shorelineFreq: 1
+  shorelineScale: 3.55
+  shorelineSpeed: 4
+  shorelineNorm: 0
+  showSurface: 0
+  overallBright: 1
+  overallTransparency: 1
+  depthAmt: 0.064
+  shallowAmt: 0.057
+  depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
+  shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
+  edgeAmt: 0.064
+  specularColor: {r: 0.063, g: 0.326, b: 0.375, a: 0.161}
+  sssColor: {r: 0, g: 0.324, b: 0.015, a: 0.239}
+  blendColor: {r: 0.36, g: 1, b: 0.867, a: 0.22}
+  overlayColor: {r: 0, g: 0, b: 0, a: 0}
+  showFoam: 0
+  enableFoam: 1
+  foamColor: {r: 0.912, g: 0.874, b: 0.791, a: 1}
+  foamScale: 0.94
+  foamSpeed: 0
+  edgeFoamAmt: 0.933
+  shallowFoamAmt: 1
+  hFoamHeight: 0.65
+  hFoamSpread: 0.276
+  heightFoamAmt: 0.85
+  showUnderwater: 0
+  underwaterColor: {r: 0.034, g: 0.102, b: 0.154, a: 0.404}
+  underLightFactor: 1
+  underRefractionAmount: 0.005
+  underRefractionScale: 0.5
+  underRefractionSpeed: 1
+  underwaterFogDist: 34
+  underwaterFogSpread: 0
+  enableUnderwater: 1
+  enableUnderDebris: 1
+  underBlurAmount: 1
+  underDarkRange: 50
+  setScale: 800
+  currentAngles: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 256.09494, y: 22.18, z: 242.6016}
+  newPos: {x: 242.7769, y: 22.18, z: 228.31294}
+  spacer: 64
+  setScaleX: -3.2216
+  setScaleZ: -3.2216
+  offamt: 3.2216
+  savePos: {x: -3.2216, y: -3.2216}
+  recPos: {x: 0, y: 0}
+  _suimono_uv: {x: 0, y: 0}
+  showSimpleEditor: 0
+  useShader: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
+  currUseShader: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
+  shader_Surface: {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
+  shader_Scale: {fileID: 4800000, guid: 9cd46d8afbd9f2d488f9a1a0705f5386, type: 3}
+  shader_Under: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
+  presetFiles:
+  - Blue Ocean with Waves
+  - Buoyancy Scene Preset
+  - Calm Carribean Blue
+  - Calm Clear
+  - Calm Refraction Only
+  - Cartoon
+  - Deep Dark Ocean
+  - Demo River Example
+  - Hot Spring Murky
+  - Lava Flow
+  - Mirror Reflection
+  - Mud Thick Brown
+  - Oil Slick
+  - Swimming Pool
+  presetIndex: 0
+  presetUseIndex: 0
+  presetFileIndex: 0
+  presetFileUseIndex: 0
+  presetOptions: []
+  showPresets: 0
+  presetStartTransition: 0
+  presetTimer: 1
+  currentPresetFolder: Built-In Presets
+  currentPresetName: 
+  presetTransitionCurrent: 0
+  presetTransitionTime: 5
+  presetTransIndexFrm: 0
+  presetTransIndexTo: 0
+  presetToggleSave: 0
+  presetsLoaded: 0
+  presetDataArray:
+  - "<color_depth>(0.160,0.281,0.382,1.000)\r"
+  - "<color_shallow>(0.208,0.373,0.441,0.784)\r"
+  - "<color_blend>(0.360,1.000,0.867,0.220)\r"
+  - "<color_overlay>(0.000,0.000,0.000,0.000)\r"
+  - "<color_caustics>(1.000,1.000,1.000,1.000)\r"
+  - "<color_reflection>(1.000,1.000,1.000,0.376)\r"
+  - "<color_specular>(0.063,0.326,0.375,0.161)\r"
+  - "<color_sss>(0.000,0.324,0.015,0.239)\r"
+  - "<color_foam>(0.912,0.874,0.791,1.000)\r"
+  - "<color_underwater>(0.034,0.102,0.154,0.404)\r"
+  - "<data_beaufort>(2)\r"
+  - "<data_flowdir>(180)\r"
+  - "<data_flowspeed>(0.05)\r"
+  - "<data_wavescale>(0.5)\r"
+  - "<data_customwaves>(False)\r"
+  - "<data_waveheight>(0.65)\r"
+  - "<data_heightprojection>(1)\r"
+  - "<data_turbulence>(0.24)\r"
+  - "<data_lgwaveheight>(0.04666669)\r"
+  - "<data_lgwavescale>(0.03125)\r"
+  - "<data_shorelineheight>(0.25)\r"
+  - "<data_shorelinefreq>(1)\r"
+  - "<data_shorelinescale>(3.55)\r"
+  - "<data_shorelinespeed>(4)\r"
+  - "<data_shorelinenorm>(0)\r"
+  - "<data_overallbright>(1)\r"
+  - "<data_overalltransparency>(1)\r"
+  - "<data_edgeamt>(0.064)\r"
+  - "<data_depthamt>(0.064)\r"
+  - "<data_shallowamt>(0.057)\r"
+  - "<data_refractstrength>(0.5)\r"
+  - "<data_aberrationscale>(0)\r"
+  - "<data_causticsfade>(0.122)\r"
+  - "<data_reflectprojection>(1)\r"
+  - "<data_reflectblur>(0.25)\r"
+  - "<data_reflectterm>(0)\r"
+  - "<data_reflectsharpen>(0)\r"
+  - "<data_roughness>(0.025)\r"
+  - "<data_roughness2>(0.45)\r"
+  - "<data_enablefoam>(True)\r"
+  - "<data_foamscale>(0.94)\r"
+  - "<data_foamspeed>(0)\r"
+  - "<data_edgefoamamt>(0.933)\r"
+  - "<data_shallowfoamamt>(1)\r"
+  - "<data_heightfoamamt>(0.85)\r"
+  - "<data_hfoamheight>(0.65)\r"
+  - "<data_hfoamspread>(0.276)\r"
+  - "<data_enableunderdebris>(True)\r"
+  - "<data_underlightfactor>(1)\r"
+  - "<data_underrefractionamount>(0.005)\r"
+  - "<data_underrefractionscale>(0.5)\r"
+  - "<data_underrefractionspeed>(1)\r"
+  - "<data_underbluramount>(1)\r"
+  - "<data_underwaterfogdist>(34)\r"
+  - "<data_underwaterfogspread>(0)\r"
+  - "<data_underDarkRange>(50)\r"
+  - 
+  presetDataString: "<color_depth>(0.160,0.281,0.382,1.000)\r\n<color_shallow>(0.208,0.373,0.441,0.784)\r\n<color_blend>(0.360,1.000,0.867,0.220)\r\n<color_overlay>(0.000,0.000,0.000,0.000)\r\n<color_caustics>(1.000,1.000,1.000,1.000)\r\n<color_reflection>(1.000,1.000,1.000,0.376)\r\n<color_specular>(0.063,0.326,0.375,0.161)\r\n<color_sss>(0.000,0.324,0.015,0.239)\r\n<color_foam>(0.912,0.874,0.791,1.000)\r\n<color_underwater>(0.034,0.102,0.154,0.404)\r\n<data_beaufort>(2)\r\n<data_flowdir>(180)\r\n<data_flowspeed>(0.05)\r\n<data_wavescale>(0.5)\r\n<data_customwaves>(False)\r\n<data_waveheight>(0.65)\r\n<data_heightprojection>(1)\r\n<data_turbulence>(0.24)\r\n<data_lgwaveheight>(0.04666669)\r\n<data_lgwavescale>(0.03125)\r\n<data_shorelineheight>(0.25)\r\n<data_shorelinefreq>(1)\r\n<data_shorelinescale>(3.55)\r\n<data_shorelinespeed>(4)\r\n<data_shorelinenorm>(0)\r\n<data_overallbright>(1)\r\n<data_overalltransparency>(1)\r\n<data_edgeamt>(0.064)\r\n<data_depthamt>(0.064)\r\n<data_shallowamt>(0.057)\r\n<data_refractstrength>(0.5)\r\n<data_aberrationscale>(0)\r\n<data_causticsfade>(0.122)\r\n<data_reflectprojection>(1)\r\n<data_reflectblur>(0.25)\r\n<data_reflectterm>(0)\r\n<data_reflectsharpen>(0)\r\n<data_roughness>(0.025)\r\n<data_roughness2>(0.45)\r\n<data_enablefoam>(True)\r\n<data_foamscale>(0.94)\r\n<data_foamspeed>(0)\r\n<data_edgefoamamt>(0.933)\r\n<data_shallowfoamamt>(1)\r\n<data_heightfoamamt>(0.85)\r\n<data_hfoamheight>(0.65)\r\n<data_hfoamspread>(0.276)\r\n<data_enableunderdebris>(True)\r\n<data_underlightfactor>(1)\r\n<data_underrefractionamount>(0.005)\r\n<data_underrefractionscale>(0.5)\r\n<data_underrefractionspeed>(1)\r\n<data_underbluramount>(1)\r\n<data_underwaterfogdist>(34)\r\n<data_underwaterfogspread>(0)\r\n<data_underDarkRange>(50)\r\n"
+  dir: C:/Users/ana/Documents/faculdade/feup-djco2/PolymerReef/Assets/SUIMONO - WATER
+    SYSTEM 2/RESOURCES/
+  baseDir: SUIMONO - WATER SYSTEM 2/RESOURCES/
+  presetSaveName: my custom preset
+  presetFile: 
+  workData: 
+  workData2: 
+  materialPath: 
+  oceanUseScale: 4
+  useSc: 25
+  setSc: {x: 32, y: 32}
+  scaleOff: {x: 0, y: 0}
+  i: 32
+  layerName: 
+  skybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  d: 2
+  dn: 2
+  pdir: C:/Users/ana/Documents/faculdade/feup-djco2/PolymerReef/Assets/SUIMONO - WATER
+    SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets
+  f: 28
+  px: 14
+  nx: 28
+  ax: 14
+  n: 28
+  tempPresetDirs: []
+  tempPresetFiles: []
+  oldName: G:/PROJECTS/SUIMONO 2.0/SUIMONO_V2.1.6 (base 5.0) - Dev/Assets/SUIMONO
+    - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets/SUIMONO_PRESET_TestCartoon.txt
+  moveName: G:/PROJECTS/SUIMONO 2.0/SUIMONO_V2.1.6 (base 5.0) - Dev/Assets/SUIMONO
+    - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets/SUIMONO_PRESET_Cartoon.txt
+  setNum: 0
+  key: data_underDarkRange
+  dat: 50
+  pFrom: 22
+  pTo: 24
+  dx: 57
+  datFile: {fileID: 0}
+  dataS:
+  - 50
+  retData: 
+  retVal: 1
+--- !u!4 &606583931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606583929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: 8, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2101281888}
+  - {fileID: 819045481}
+  - {fileID: 1713391432}
+  m_Father: {fileID: 1948072309}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734480731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734480732}
+  - component: {fileID: 734480736}
+  - component: {fileID: 734480735}
+  - component: {fileID: 734480734}
+  m_Layer: 0
+  m_Name: SUIMONO_Module
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734480732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734480731}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -246.88, y: -14.18, z: -233.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1810221982}
+  - {fileID: 884797170}
+  m_Father: {fileID: 1948072309}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734480734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734480731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e37b6c61f752e246a02e2b1b6f7189f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsLabels: []
+  effectsSystems:
+  - {fileID: 400000, guid: 064f0fdf8aaf05447a5d3718018e41d6, type: 3}
+  - {fileID: 419496, guid: 00dc73c91633d20418744bc987256fac, type: 3}
+  - {fileID: 400000, guid: 8fb6775b9d1e5fd48b804573045e8c91, type: 3}
+  - {fileID: 400000, guid: 54e02a95a160d3f4e89a30b229de80a3, type: 3}
+  - {fileID: 400000, guid: 3807ff8fd914fb640b9782bb4009fe52, type: 3}
+  - {fileID: 400000, guid: edf84a7488a31c34481354c7db9f43ee, type: 3}
+  - {fileID: 400000, guid: 2283b545f844650448abdeaad2a3ebb8, type: 3}
+  - {fileID: 400000, guid: 4dedaf8c4fa157545ad71a8f07395bef, type: 3}
+  - {fileID: 400000, guid: 8466e1a003a019c448f034752011cb6d, type: 3}
+  systemClampType: 0
+  fxObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fxParticles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  clampIndex: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  clampOptions:
+  - No Clamp
+  - Clamp to Surface
+  - Keep Below Surface
+  - Keep Above Surface
+  sysNames:
+  - None
+  - fx_Splash
+  - 'fx_rippleNormals '
+  - 'fx_mist_hotspring  '
+  - 'fx_mist_waterfall   '
+  - 'fx_mist_fog    '
+  - 'fx_boatwake     '
+  - 'fx_bubbles      '
+  - 'fx_SplashSmall       '
+  - 'fx_waterfall        '
+  sN: 9
+  s: 8
+  setName: 'fx_waterfall        '
+--- !u!114 &734480735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734480731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8550fcf5aa77894ea27473123821c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texNormalC: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+  texNormalT: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
+  texNormalR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
+  texFoam: {fileID: 2800000, guid: 14c55ed649175884784db6c178f4e654, type: 3}
+  texRampWave: {fileID: 2800000, guid: 7d47d30a7e6fff544a72f826670ef31b, type: 3}
+  texRampDepth: {fileID: 2800000, guid: aa1f666bea9a5b2409ff3dcfc008a57c, type: 3}
+  texRampBlur: {fileID: 2800000, guid: e607ea0d8431dc64c8f345a02a1028e9, type: 3}
+  texRampFoam: {fileID: 2800000, guid: 01757909dcbf805408fe7867004a31a3, type: 3}
+  texWave: {fileID: 2800000, guid: 9e0b039b60bba5c4ea73849d69af386a, type: 3}
+  texCube1: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
+  texBlank: {fileID: 2800000, guid: 8bcb392cc670d0d4ab9d03298692662d, type: 3}
+  texMask: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
+  texDrops: {fileID: 2800000, guid: 4bdbc7f26da16ff489bab4fecdfe35fb, type: 3}
+  materialSurface: {fileID: 2100000, guid: 434999af31d77af4aacb107170c00ba3, type: 2}
+  materialSurfaceScale: {fileID: 2100000, guid: df4f3b7f86753fe4dbd3dc92a60ce25e,
+    type: 2}
+  materialSurfaceShadow: {fileID: 2100000, guid: ba680adc45d88d74584bcd8dfbde30e1,
+    type: 2}
+  surfaceObject: {fileID: 100008, guid: be5dd6f307215d24d93e0aa63e392a16, type: 3}
+  moduleObject: {fileID: 734480731}
+  causticObject: {fileID: 1810221983}
+  causticObjectLight: {fileID: 46983990}
+  transToolsObject: {fileID: 0}
+  transCamObject: {fileID: 0}
+  causticHandlerObjectTrans: {fileID: 0}
+  causticToolsObject: {fileID: 884797173}
+  causticCamObject: {fileID: 884797174}
+  causticHandlerObject: {fileID: 0}
+  wakeObject: {fileID: 0}
+  wakeCamObject: {fileID: 0}
+  normalsObject: {fileID: 0}
+  normalsCamObject: {fileID: 0}
+  fxObject: {fileID: 734480734}
+  sndparentobj: {fileID: 0}
+  underwaterDebris: {fileID: 0}
+  underwaterDebrisTransform: {fileID: 0}
+  underwaterDebrisRendererComponent: {fileID: 0}
+  meshLevel:
+  - {fileID: 4300000, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+  - {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+  - {fileID: 4300004, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+  - {fileID: 4300006, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+  shaderRepository:
+  - {fileID: 4800000, guid: fd654610d0032bc41bacb0ff65c265bb, type: 3}
+  - {fileID: 4800000, guid: e5880a40c6899cc48b0d4c22c09ea754, type: 3}
+  - {fileID: 4800000, guid: f83bfd70f36bb2f43b8969cce23410c8, type: 3}
+  - {fileID: 4800000, guid: 8a6409e0925f4dc47a1410043c419a2b, type: 3}
+  - {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
+  - {fileID: 4800000, guid: 2b87aa92c02dbdb4dbd71de92d0c5a86, type: 3}
+  - {fileID: 4800000, guid: 0aa78303d1e6d8347bb50e196b668886, type: 3}
+  - {fileID: 4800000, guid: 5e9003253784194439ec34bded8691e5, type: 3}
+  - {fileID: 4800000, guid: f1abdac5ee9d53848bb95f48bf9b4621, type: 3}
+  - {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
+  - {fileID: 4800000, guid: d7a77f5835824a141858313c239bbd9d, type: 3}
+  - {fileID: 4800000, guid: 85d8f5f8af78b9341b9a4cc9f66980b4, type: 3}
+  - {fileID: 4800000, guid: b07fec7a1bf2be34496f0285cfa64f66, type: 3}
+  - {fileID: 4800000, guid: 9cd46d8afbd9f2d488f9a1a0705f5386, type: 3}
+  - {fileID: 4800000, guid: b367fa9a073cd59488222924e547d77a, type: 3}
+  - {fileID: 4800000, guid: dae42f5c3db637746b7a062f809b3f3c, type: 3}
+  - {fileID: 4800000, guid: bcfefd9c8650b27498ad5f7a8e9c130e, type: 3}
+  - {fileID: 4800000, guid: b70d07ad3e9711b4d96bc207279d4ebd, type: 3}
+  - {fileID: 4800000, guid: 86fe202e13b0d7e47be39d7e0bc525bd, type: 3}
+  presetRepository: []
+--- !u!114 &734480736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734480731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c5141853cbab7438b034790b1a108f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suimonoVersionNumber: 2.1.6
+  systemTime: 3572.7974
+  autoSetLayers: 1
+  layerWater: Suimono_Water
+  layerWaterNum: 8
+  layerDepth: Suimono_Depth
+  layerDepthNum: 9
+  layerScreenFX: Suimono_Screen
+  layerScreenFXNum: 10
+  layersAreSet: 1
+  autoSetCameraFX: 1
+  manualCamera: {fileID: 0}
+  mainCamera: {fileID: 131854354}
+  cameraTypeIndex: 0
+  setCamera: {fileID: 131854354}
+  setTrack: {fileID: 131854354}
+  setLight: {fileID: 850604023}
+  enableUnderwaterFX: 1
+  enableInteraction: 1
+  objectEnableUnderwaterFX: 1
+  disableMSAA: 0
+  enableRefraction: 1
+  enableReflections: 1
+  enableDynamicReflections: 1
+  enableCaustics: 1
+  enableCausticsBlending: 1
+  enableAdvancedEdge: 1
+  enableAdvancedDistort: 1
+  enableTenkoku: 0
+  enableAutoAdvance: 1
+  showPerformance: 0
+  showGeneral: 1
+  underwaterColor: {r: 0.58, g: 0.61, b: 0.61, a: 0}
+  enableTransition: 1
+  transition_offset: 0.1
+  fxRippleObject: {fileID: 0}
+  isUnderwater: 1
+  enableTransparency: 1
+  transResolution: 3
+  transLayer: 268433663
+  transLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  causticLayer: -1
+  causticLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  transRenderDistance: 250
+  playSounds: 1
+  playSoundBelow: 1
+  playSoundAbove: 1
+  maxVolume: 1
+  maxSounds: 20
+  defaultSplashSound: []
+  currentObjectIsOver: 1
+  currentObjectDepth: 3.2771187
+  currentTransitionDepth: 3.2771187
+  currentSurfaceLevel: 22.334143
+  underwaterThreshold: 0.1
+  suimonoObject: {fileID: 606583930}
+  suimonoModuleLibrary: {fileID: 734480735}
+  setCameraComponent: {fileID: 131854358}
+  useTenkoku: 0
+  tenkokuWindDir: 0
+  tenkokuWindAmt: 0
+  tenkokuUseWind: 1
+  showTenkoku: 1
+  tenkokuUseReflect: 1
+  heightValues:
+  - 22.334143
+  - 22.334143
+  - 22.18
+  - 3.2771187
+  - 1
+  - 0
+  - 180
+  - 0.05
+  - 478.58853
+  - 3.2771187
+  - 1
+  - 1
+  isForward: 1
+  isAdvDist: 1
+  waveScale: 1
+  flowSpeed: 0.02
+  offset: 0
+  heightTex: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
+  heightTexT: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
+  heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
+  heightObject: {fileID: 2101281888}
+  relativePos: {x: 8.665902, y: 8.714433}
+  texCoord: {x: 5261.6797, y: 0, z: -86172.25}
+  texCoord1: {x: 3946.2517, y: 0, z: 26829.58}
+  texCoordT: {x: 5261.6797, y: 0, z: -86172.25}
+  texCoordT1: {x: 2630.8337, y: 0, z: 25507.951}
+  texCoordR: {x: 164.42773, y: 0, z: -5550.969}
+  texCoordR1: {x: 164.42824, y: 0, z: -11267.142}
+  heightVal0: {r: 0.53333336, g: 0.47058824, b: 1, a: 0.16850981}
+  heightVal1: {r: 0.2509804, g: 0.4627451, b: 1, a: 0.07409804}
+  heightValT0: {r: 0.5176471, g: 0.47843137, b: 0.9882353, a: 0.22515686}
+  heightValT1: {r: 0.42745098, g: 0.41568628, b: 0.98039216, a: 0}
+  heightValR0: {r: 0.45490196, g: 0.5647059, b: 0.972549, a: 0}
+  heightValR1: {r: 0.53333336, g: 0.6862745, b: 0.9764706, a: 0.17480393}
+  localTime: 0
+  row: 4
+  pixIndex: 64676
+  pixCol: {r: 0.53333336, g: 0.6862745, b: 0.9764706, a: 0.17480393}
+  t: 32
+  y: 32
+  dir: {x: -31.100004, y: 0, z: -31.488253}
+  pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
+  useLocalTime: 357.2608
+  flow_dirC: {x: 0.00000008742278, y: -1}
+  flowSpeed0: {x: 0.000031232732, y: -357.2608}
+  flowSpeed1: {x: 0.000007808183, y: -89.3152}
+  flowSpeed2: {x: 0.0000019520457, y: -22.3288}
+  flowSpeed3: {x: 0.0000039040915, y: -44.6576}
+  tScale: 2
+  oPos: {x: 3.2216, y: 3.2216}
+--- !u!1 &819045477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819045481}
+  - component: {fileID: 819045480}
+  - component: {fileID: 819045479}
+  - component: {fileID: 819045478}
+  m_Layer: 8
+  m_Name: Suimono_ObjectScale
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &819045478
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819045477}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!64 &819045479
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819045477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+--- !u!33 &819045480
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819045477}
+  m_Mesh: {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
+--- !u!4 &819045481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819045477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7850658, y: -0.1, z: -0.89841044}
+  m_LocalScale: {x: 400, y: 1, z: 400}
+  m_Children: []
+  m_Father: {fileID: 606583931}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &850604020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 850604021}
+  - component: {fileID: 850604023}
+  - component: {fileID: 850604022}
+  m_Layer: 0
+  m_Name: light_sun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &850604021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850604020}
+  m_LocalRotation: {x: 0.22509079, y: 0.8982748, z: -0.21371493, w: 0.31106672}
+  m_LocalPosition: {x: -340.88, y: 330.82, z: 462.5}
+  m_LocalScale: {x: 6.4173756, y: 6.7408133, z: 6.746205}
+  m_Children: []
+  m_Father: {fileID: 1948072309}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &850604022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850604020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d68f06ffd0d6949bc0aa5532c3be8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayIntensity: 1
+  nightIntensity: 0.01
+  sunsetDegrees: 30
+  lightDegrees: 10
+  dayColor: {r: 1, g: 0.968, b: 0.933, a: 1}
+  sunsetColor: {r: 0.77, g: 0.33, b: 0, a: 1}
+--- !u!108 &850604023
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850604020}
+  m_Enabled: 1
+  serializedVersion: 9
+  m_Type: 1
+  m_Color: {r: 1, g: 0.968, b: 0.933, a: 1}
+  m_Intensity: 0.5
+  m_Range: 3.390474
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: 3
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.029
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!1 &884797169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884797170}
+  - component: {fileID: 884797174}
+  - component: {fileID: 884797173}
+  - component: {fileID: 884797172}
+  - component: {fileID: 884797171}
+  m_Layer: 0
+  m_Name: cam_SuimonoCaustic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884797170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884797169}
+  m_LocalRotation: {x: -0.051338375, y: 0.8828642, z: -0.09937155, w: -0.45611456}
+  m_LocalPosition: {x: 242.7769, y: 19.057024, z: 228.31294}
+  m_LocalScale: {x: 1.0001974, y: 1.1419998, z: 1.1418124}
+  m_Children: []
+  m_Father: {fileID: 734480732}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884797171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884797169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5e424b8153d844fb705a36e96d6b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUnderwater: 1
+  causticLight: {fileID: 46983990}
+  causticType: 1
+--- !u!114 &884797172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884797169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236e497d1a7154743af85bdcbf06ee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useShader: {fileID: 4800000, guid: f83bfd70f36bb2f43b8969cce23410c8, type: 3}
+--- !u!114 &884797173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884797169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdfe3ca26841a84e97bd603013cc573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraType: 1
+  renderType: 0
+  hdrMode: 0
+  clearMode: 0
+  clearFlagColor: {r: 0, g: 0, b: 0, a: 1}
+  resolution: 512
+  cameraOffset: 0
+  reflectionOffset: 0
+  renderTexDiff: {fileID: 1447033272}
+  renderShader: {fileID: 0}
+  executeInEditMode: 0
+  isUnderwater: 0
+  surfaceRenderer: {fileID: 0}
+  scaleRenderer: {fileID: 0}
+  reflectionDistance: 200
+  setLayers: 0
+--- !u!20 &884797174
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884797169}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 0
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 1
+  far clip plane: 300
+  field of view: 35
+  orthographic: 0
+  orthographic size: 100
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 268433663
+  m_RenderingPath: 1
+  m_TargetTexture: {fileID: 1447033272}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!21 &950567877
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -630,851 +1578,40 @@ Material:
     - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
     - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
     - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
---- !u!1 &606583929
-GameObject:
+--- !u!84 &1447033272
+RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 606583931}
-  - component: {fileID: 606583930}
-  m_Layer: 8
-  m_Name: SUIMONO_Surface_Ocean
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &606583930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606583929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caeb605cd9a3ef74f8fb2d33b6880d8a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  systemTime: 0
-  systemLocalTime: 1911.4893
-  flowSpeed: 0.05
-  flowDirection: 180
-  useBeaufortScale: 1
-  beaufortScale: 2
-  turbulenceFactor: 0.23999998
-  waveScale: 0.5
-  lgWaveHeight: 0.04666669
-  lgWaveScale: 0.03125
-  waveHeight: 0.65
-  heightProjection: 1
-  useHeightProjection: 1
-  refractStrength: 0.5
-  reflectProjection: 1
-  reflectBlur: 0.25
-  aberrationScale: 0
-  roughness: 0.025
-  roughness2: 0.45
-  reflectTerm: 0
-  reflectSharpen: 0
-  showDepthMask: 0
-  showWorldMask: 0
-  cameraDistance: 1000
-  underwaterDepth: 5
-  useDX9Settings: 0
-  moduleObject: {fileID: 734480736}
-  suimonoVersionNumber: 2.1.6
-  showGeneral: 0
-  typeIndex: 0
-  editorIndex: 1
-  editorUseIndex: 1
-  enableCustomMesh: 0
-  lodIndex: 0
-  useLodIndex: 0
-  customMesh: {fileID: 0}
-  oceanScale: 4
-  enableCausticFX: 1
-  causticsFade: 0.122
-  causticsColor: {r: 1, g: 1, b: 1, a: 1}
-  enableTess: 1
-  useEnableTess: 1
-  waveTessAmt: 8
-  waveTessMin: 0
-  waveTessSpread: 0.08
-  enableInteraction: 1
-  dynamicReflectFlag: 1
-  enableReflections: 1
-  enableDynamicReflections: 1
-  useEnableReflections: 1
-  useEnableDynamicReflections: 1
-  useReflections: 1
-  useDynReflections: 1
-  reflectLayer: 1
-  reflectResolution: 3
-  reflectLayerMask:
+  m_ImageContentsHash:
     serializedVersion: 2
-    m_Bits: 0
-  reflectionDistance: 1200
-  reflectFallback: 1
-  customRefCubemap: {fileID: 0}
-  customRefColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
-  reflectionColor: {r: 1, g: 1, b: 1, a: 0.376}
-  enableCustomTextures: 0
-  customTexNormal1: {fileID: 0}
-  customTexNormal2: {fileID: 0}
-  customTexNormal3: {fileID: 0}
-  useTexNormal1: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-  useTexNormal2: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
-  useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
-  showWaves: 0
-  customWaves: 0
-  localTime: 191.14893
-  beaufortVal: 0.16666667
-  showShore: 0
-  shorelineHeight: 0.25
-  shorelineFreq: 1
-  shorelineScale: 3.55
-  shorelineSpeed: 4
-  shorelineNorm: 0
-  showSurface: 0
-  overallBright: 1
-  overallTransparency: 1
-  depthAmt: 0.064
-  shallowAmt: 0.057
-  depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
-  shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
-  edgeAmt: 0.064
-  specularColor: {r: 0.063, g: 0.326, b: 0.375, a: 0.161}
-  sssColor: {r: 0, g: 0.324, b: 0.015, a: 0.239}
-  blendColor: {r: 0.36, g: 1, b: 0.867, a: 0.22}
-  overlayColor: {r: 0, g: 0, b: 0, a: 0}
-  showFoam: 0
-  enableFoam: 1
-  foamColor: {r: 0.912, g: 0.874, b: 0.791, a: 1}
-  foamScale: 0.94
-  foamSpeed: 0
-  edgeFoamAmt: 0.933
-  shallowFoamAmt: 1
-  hFoamHeight: 0.65
-  hFoamSpread: 0.276
-  heightFoamAmt: 0.85
-  showUnderwater: 0
-  underwaterColor: {r: 0.034, g: 0.102, b: 0.154, a: 0.404}
-  underLightFactor: 1
-  underRefractionAmount: 0.005
-  underRefractionScale: 0.5
-  underRefractionSpeed: 1
-  underwaterFogDist: 34
-  underwaterFogSpread: 0
-  enableUnderwater: 1
-  enableUnderDebris: 1
-  underBlurAmount: 1
-  underDarkRange: 50
-  setScale: 800
-  currentAngles: {x: 0, y: 0, z: 0}
-  currentPosition: {x: 256.09494, y: 22.18, z: 242.6016}
-  newPos: {x: 242.7769, y: 22.18, z: 228.31294}
-  spacer: 64
-  setScaleX: -3.2216
-  setScaleZ: -3.2216
-  offamt: 3.2216
-  savePos: {x: -3.2216, y: -3.2216}
-  recPos: {x: 0, y: 0}
-  _suimono_uv: {x: 0, y: 0}
-  showSimpleEditor: 0
-  useShader: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
-  currUseShader: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
-  shader_Surface: {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
-  shader_Scale: {fileID: 4800000, guid: 9cd46d8afbd9f2d488f9a1a0705f5386, type: 3}
-  shader_Under: {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
-  presetFiles:
-  - Blue Ocean with Waves
-  - Buoyancy Scene Preset
-  - Calm Carribean Blue
-  - Calm Clear
-  - Calm Refraction Only
-  - Cartoon
-  - Deep Dark Ocean
-  - Demo River Example
-  - Hot Spring Murky
-  - Lava Flow
-  - Mirror Reflection
-  - Mud Thick Brown
-  - Oil Slick
-  - Swimming Pool
-  presetIndex: 0
-  presetUseIndex: 0
-  presetFileIndex: 0
-  presetFileUseIndex: 0
-  presetOptions: []
-  showPresets: 0
-  presetStartTransition: 0
-  presetTimer: 1
-  currentPresetFolder: Built-In Presets
-  currentPresetName: 
-  presetTransitionCurrent: 0
-  presetTransitionTime: 5
-  presetTransIndexFrm: 0
-  presetTransIndexTo: 0
-  presetToggleSave: 0
-  presetsLoaded: 0
-  presetDataArray:
-  - "<color_depth>(0.160,0.281,0.382,1.000)\r"
-  - "<color_shallow>(0.208,0.373,0.441,0.784)\r"
-  - "<color_blend>(0.360,1.000,0.867,0.220)\r"
-  - "<color_overlay>(0.000,0.000,0.000,0.000)\r"
-  - "<color_caustics>(1.000,1.000,1.000,1.000)\r"
-  - "<color_reflection>(1.000,1.000,1.000,0.376)\r"
-  - "<color_specular>(0.063,0.326,0.375,0.161)\r"
-  - "<color_sss>(0.000,0.324,0.015,0.239)\r"
-  - "<color_foam>(0.912,0.874,0.791,1.000)\r"
-  - "<color_underwater>(0.034,0.102,0.154,0.404)\r"
-  - "<data_beaufort>(2)\r"
-  - "<data_flowdir>(180)\r"
-  - "<data_flowspeed>(0.05)\r"
-  - "<data_wavescale>(0.5)\r"
-  - "<data_customwaves>(False)\r"
-  - "<data_waveheight>(0.65)\r"
-  - "<data_heightprojection>(1)\r"
-  - "<data_turbulence>(0.24)\r"
-  - "<data_lgwaveheight>(0.04666669)\r"
-  - "<data_lgwavescale>(0.03125)\r"
-  - "<data_shorelineheight>(0.25)\r"
-  - "<data_shorelinefreq>(1)\r"
-  - "<data_shorelinescale>(3.55)\r"
-  - "<data_shorelinespeed>(4)\r"
-  - "<data_shorelinenorm>(0)\r"
-  - "<data_overallbright>(1)\r"
-  - "<data_overalltransparency>(1)\r"
-  - "<data_edgeamt>(0.064)\r"
-  - "<data_depthamt>(0.064)\r"
-  - "<data_shallowamt>(0.057)\r"
-  - "<data_refractstrength>(0.5)\r"
-  - "<data_aberrationscale>(0)\r"
-  - "<data_causticsfade>(0.122)\r"
-  - "<data_reflectprojection>(1)\r"
-  - "<data_reflectblur>(0.25)\r"
-  - "<data_reflectterm>(0)\r"
-  - "<data_reflectsharpen>(0)\r"
-  - "<data_roughness>(0.025)\r"
-  - "<data_roughness2>(0.45)\r"
-  - "<data_enablefoam>(True)\r"
-  - "<data_foamscale>(0.94)\r"
-  - "<data_foamspeed>(0)\r"
-  - "<data_edgefoamamt>(0.933)\r"
-  - "<data_shallowfoamamt>(1)\r"
-  - "<data_heightfoamamt>(0.85)\r"
-  - "<data_hfoamheight>(0.65)\r"
-  - "<data_hfoamspread>(0.276)\r"
-  - "<data_enableunderdebris>(True)\r"
-  - "<data_underlightfactor>(1)\r"
-  - "<data_underrefractionamount>(0.005)\r"
-  - "<data_underrefractionscale>(0.5)\r"
-  - "<data_underrefractionspeed>(1)\r"
-  - "<data_underbluramount>(1)\r"
-  - "<data_underwaterfogdist>(34)\r"
-  - "<data_underwaterfogspread>(0)\r"
-  - "<data_underDarkRange>(50)\r"
-  - 
-  presetDataString: "<color_depth>(0.160,0.281,0.382,1.000)\r\n<color_shallow>(0.208,0.373,0.441,0.784)\r\n<color_blend>(0.360,1.000,0.867,0.220)\r\n<color_overlay>(0.000,0.000,0.000,0.000)\r\n<color_caustics>(1.000,1.000,1.000,1.000)\r\n<color_reflection>(1.000,1.000,1.000,0.376)\r\n<color_specular>(0.063,0.326,0.375,0.161)\r\n<color_sss>(0.000,0.324,0.015,0.239)\r\n<color_foam>(0.912,0.874,0.791,1.000)\r\n<color_underwater>(0.034,0.102,0.154,0.404)\r\n<data_beaufort>(2)\r\n<data_flowdir>(180)\r\n<data_flowspeed>(0.05)\r\n<data_wavescale>(0.5)\r\n<data_customwaves>(False)\r\n<data_waveheight>(0.65)\r\n<data_heightprojection>(1)\r\n<data_turbulence>(0.24)\r\n<data_lgwaveheight>(0.04666669)\r\n<data_lgwavescale>(0.03125)\r\n<data_shorelineheight>(0.25)\r\n<data_shorelinefreq>(1)\r\n<data_shorelinescale>(3.55)\r\n<data_shorelinespeed>(4)\r\n<data_shorelinenorm>(0)\r\n<data_overallbright>(1)\r\n<data_overalltransparency>(1)\r\n<data_edgeamt>(0.064)\r\n<data_depthamt>(0.064)\r\n<data_shallowamt>(0.057)\r\n<data_refractstrength>(0.5)\r\n<data_aberrationscale>(0)\r\n<data_causticsfade>(0.122)\r\n<data_reflectprojection>(1)\r\n<data_reflectblur>(0.25)\r\n<data_reflectterm>(0)\r\n<data_reflectsharpen>(0)\r\n<data_roughness>(0.025)\r\n<data_roughness2>(0.45)\r\n<data_enablefoam>(True)\r\n<data_foamscale>(0.94)\r\n<data_foamspeed>(0)\r\n<data_edgefoamamt>(0.933)\r\n<data_shallowfoamamt>(1)\r\n<data_heightfoamamt>(0.85)\r\n<data_hfoamheight>(0.65)\r\n<data_hfoamspread>(0.276)\r\n<data_enableunderdebris>(True)\r\n<data_underlightfactor>(1)\r\n<data_underrefractionamount>(0.005)\r\n<data_underrefractionscale>(0.5)\r\n<data_underrefractionspeed>(1)\r\n<data_underbluramount>(1)\r\n<data_underwaterfogdist>(34)\r\n<data_underwaterfogspread>(0)\r\n<data_underDarkRange>(50)\r\n"
-  dir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
-    WATER SYSTEM 2/RESOURCES/
-  baseDir: SUIMONO - WATER SYSTEM 2/RESOURCES/
-  presetSaveName: my custom preset
-  presetFile: 
-  workData: 
-  workData2: 
-  materialPath: 
-  oceanUseScale: 4
-  useSc: 25
-  setSc: {x: 32, y: 32}
-  scaleOff: {x: 0, y: 0}
-  i: 32
-  layerName: 
-  skybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  d: 2
-  dn: 2
-  pdir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
-    WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets
-  f: 28
-  px: 14
-  nx: 28
-  ax: 14
-  n: 28
-  tempPresetDirs: []
-  tempPresetFiles: []
-  oldName: G:/PROJECTS/SUIMONO 2.0/SUIMONO_V2.1.6 (base 5.0) - Dev/Assets/SUIMONO
-    - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets/SUIMONO_PRESET_TestCartoon.txt
-  moveName: G:/PROJECTS/SUIMONO 2.0/SUIMONO_V2.1.6 (base 5.0) - Dev/Assets/SUIMONO
-    - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets/SUIMONO_PRESET_Cartoon.txt
-  setNum: 0
-  key: data_underDarkRange
-  dat: 50
-  pFrom: 22
-  pTo: 24
-  dx: 57
-  datFile: {fileID: 0}
-  dataS:
-  - 50
-  retData: 
-  retVal: 1
---- !u!4 &606583931
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606583929}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 8, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2101281888}
-  - {fileID: 819045481}
-  - {fileID: 1713391432}
-  m_Father: {fileID: 1948072309}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &734480731
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 734480732}
-  - component: {fileID: 734480736}
-  - component: {fileID: 734480735}
-  - component: {fileID: 734480734}
-  m_Layer: 0
-  m_Name: SUIMONO_Module
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &734480732
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734480731}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -246.88, y: -14.18, z: -233.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1810221982}
-  - {fileID: 884797170}
-  m_Father: {fileID: 1948072309}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &734480734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734480731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e37b6c61f752e246a02e2b1b6f7189f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectsLabels: []
-  effectsSystems:
-  - {fileID: 400000, guid: 064f0fdf8aaf05447a5d3718018e41d6, type: 3}
-  - {fileID: 419496, guid: 00dc73c91633d20418744bc987256fac, type: 3}
-  - {fileID: 400000, guid: 8fb6775b9d1e5fd48b804573045e8c91, type: 3}
-  - {fileID: 400000, guid: 54e02a95a160d3f4e89a30b229de80a3, type: 3}
-  - {fileID: 400000, guid: 3807ff8fd914fb640b9782bb4009fe52, type: 3}
-  - {fileID: 400000, guid: edf84a7488a31c34481354c7db9f43ee, type: 3}
-  - {fileID: 400000, guid: 2283b545f844650448abdeaad2a3ebb8, type: 3}
-  - {fileID: 400000, guid: 4dedaf8c4fa157545ad71a8f07395bef, type: 3}
-  - {fileID: 400000, guid: 8466e1a003a019c448f034752011cb6d, type: 3}
-  systemClampType: 0
-  fxObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fxParticles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  clampIndex: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  clampOptions:
-  - No Clamp
-  - Clamp to Surface
-  - Keep Below Surface
-  - Keep Above Surface
-  sysNames:
-  - None
-  - fx_Splash
-  - 'fx_rippleNormals '
-  - 'fx_mist_hotspring  '
-  - 'fx_mist_waterfall   '
-  - 'fx_mist_fog    '
-  - 'fx_boatwake     '
-  - 'fx_bubbles      '
-  - 'fx_SplashSmall       '
-  - 'fx_waterfall        '
-  sN: 9
-  s: 8
-  setName: 'fx_waterfall        '
---- !u!114 &734480735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734480731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8550fcf5aa77894ea27473123821c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texNormalC: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-  texNormalT: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
-  texNormalR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
-  texFoam: {fileID: 2800000, guid: 14c55ed649175884784db6c178f4e654, type: 3}
-  texRampWave: {fileID: 2800000, guid: 7d47d30a7e6fff544a72f826670ef31b, type: 3}
-  texRampDepth: {fileID: 2800000, guid: aa1f666bea9a5b2409ff3dcfc008a57c, type: 3}
-  texRampBlur: {fileID: 2800000, guid: e607ea0d8431dc64c8f345a02a1028e9, type: 3}
-  texRampFoam: {fileID: 2800000, guid: 01757909dcbf805408fe7867004a31a3, type: 3}
-  texWave: {fileID: 2800000, guid: 9e0b039b60bba5c4ea73849d69af386a, type: 3}
-  texCube1: {fileID: 8900000, guid: c27d2f9a7fe1df7448a59cd7e8306390, type: 3}
-  texBlank: {fileID: 2800000, guid: 8bcb392cc670d0d4ab9d03298692662d, type: 3}
-  texMask: {fileID: 2800000, guid: e18972d51c4910d499b05f09d48dc145, type: 3}
-  texDrops: {fileID: 2800000, guid: 4bdbc7f26da16ff489bab4fecdfe35fb, type: 3}
-  materialSurface: {fileID: 2100000, guid: 434999af31d77af4aacb107170c00ba3, type: 2}
-  materialSurfaceScale: {fileID: 2100000, guid: df4f3b7f86753fe4dbd3dc92a60ce25e,
-    type: 2}
-  materialSurfaceShadow: {fileID: 2100000, guid: ba680adc45d88d74584bcd8dfbde30e1,
-    type: 2}
-  surfaceObject: {fileID: 100008, guid: be5dd6f307215d24d93e0aa63e392a16, type: 3}
-  moduleObject: {fileID: 734480731}
-  causticObject: {fileID: 1810221983}
-  causticObjectLight: {fileID: 46983990}
-  transToolsObject: {fileID: 0}
-  transCamObject: {fileID: 0}
-  causticHandlerObjectTrans: {fileID: 0}
-  causticToolsObject: {fileID: 0}
-  causticCamObject: {fileID: 0}
-  causticHandlerObject: {fileID: 0}
-  wakeObject: {fileID: 0}
-  wakeCamObject: {fileID: 0}
-  normalsObject: {fileID: 0}
-  normalsCamObject: {fileID: 0}
-  fxObject: {fileID: 734480734}
-  sndparentobj: {fileID: 0}
-  underwaterDebris: {fileID: 0}
-  underwaterDebrisTransform: {fileID: 0}
-  underwaterDebrisRendererComponent: {fileID: 0}
-  meshLevel:
-  - {fileID: 4300000, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
-  - {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
-  - {fileID: 4300004, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
-  - {fileID: 4300006, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
-  shaderRepository:
-  - {fileID: 4800000, guid: fd654610d0032bc41bacb0ff65c265bb, type: 3}
-  - {fileID: 4800000, guid: e5880a40c6899cc48b0d4c22c09ea754, type: 3}
-  - {fileID: 4800000, guid: f83bfd70f36bb2f43b8969cce23410c8, type: 3}
-  - {fileID: 4800000, guid: 8a6409e0925f4dc47a1410043c419a2b, type: 3}
-  - {fileID: 4800000, guid: 5af3fd41baf694e4db80b54ea540749f, type: 3}
-  - {fileID: 4800000, guid: 2b87aa92c02dbdb4dbd71de92d0c5a86, type: 3}
-  - {fileID: 4800000, guid: 0aa78303d1e6d8347bb50e196b668886, type: 3}
-  - {fileID: 4800000, guid: 5e9003253784194439ec34bded8691e5, type: 3}
-  - {fileID: 4800000, guid: f1abdac5ee9d53848bb95f48bf9b4621, type: 3}
-  - {fileID: 4800000, guid: 1fce65572bf3e2b4ead0b3931f2732db, type: 3}
-  - {fileID: 4800000, guid: d7a77f5835824a141858313c239bbd9d, type: 3}
-  - {fileID: 4800000, guid: 85d8f5f8af78b9341b9a4cc9f66980b4, type: 3}
-  - {fileID: 4800000, guid: b07fec7a1bf2be34496f0285cfa64f66, type: 3}
-  - {fileID: 4800000, guid: 9cd46d8afbd9f2d488f9a1a0705f5386, type: 3}
-  - {fileID: 4800000, guid: b367fa9a073cd59488222924e547d77a, type: 3}
-  - {fileID: 4800000, guid: dae42f5c3db637746b7a062f809b3f3c, type: 3}
-  - {fileID: 4800000, guid: bcfefd9c8650b27498ad5f7a8e9c130e, type: 3}
-  - {fileID: 4800000, guid: b70d07ad3e9711b4d96bc207279d4ebd, type: 3}
-  - {fileID: 4800000, guid: 86fe202e13b0d7e47be39d7e0bc525bd, type: 3}
-  presetRepository: []
---- !u!114 &734480736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734480731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c5141853cbab7438b034790b1a108f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suimonoVersionNumber: 2.1.6
-  systemTime: 1911.5892
-  autoSetLayers: 1
-  layerWater: Suimono_Water
-  layerWaterNum: 8
-  layerDepth: Suimono_Depth
-  layerDepthNum: 9
-  layerScreenFX: Suimono_Screen
-  layerScreenFXNum: 10
-  layersAreSet: 1
-  autoSetCameraFX: 1
-  manualCamera: {fileID: 0}
-  mainCamera: {fileID: 131854354}
-  cameraTypeIndex: 0
-  setCamera: {fileID: 131854354}
-  setTrack: {fileID: 131854354}
-  setLight: {fileID: 850604023}
-  enableUnderwaterFX: 1
-  enableInteraction: 1
-  objectEnableUnderwaterFX: 1
-  disableMSAA: 0
-  enableRefraction: 1
-  enableReflections: 1
-  enableDynamicReflections: 1
-  enableCaustics: 1
-  enableCausticsBlending: 1
-  enableAdvancedEdge: 1
-  enableAdvancedDistort: 1
-  enableTenkoku: 0
-  enableAutoAdvance: 1
-  showPerformance: 0
-  showGeneral: 1
-  underwaterColor: {r: 0.58, g: 0.61, b: 0.61, a: 0}
-  enableTransition: 1
-  transition_offset: 0.1
-  fxRippleObject: {fileID: 0}
-  isUnderwater: 1
-  enableTransparency: 1
-  transResolution: 3
-  transLayer: 268433663
-  transLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  causticLayer: -1
-  causticLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  transRenderDistance: 250
-  playSounds: 1
-  playSoundBelow: 1
-  playSoundAbove: 1
-  maxVolume: 1
-  maxSounds: 20
-  defaultSplashSound: []
-  currentObjectIsOver: 1
-  currentObjectDepth: 3.224163
-  currentTransitionDepth: 3.224163
-  currentSurfaceLevel: 22.281187
-  underwaterThreshold: 0.1
-  suimonoObject: {fileID: 606583930}
-  suimonoModuleLibrary: {fileID: 734480735}
-  setCameraComponent: {fileID: 131854358}
-  useTenkoku: 0
-  tenkokuWindDir: 0
-  tenkokuWindAmt: 0
-  tenkokuUseWind: 1
-  showTenkoku: 1
-  tenkokuUseReflect: 1
-  heightValues:
-  - 22.281187
-  - 22.281187
-  - 22.18
-  - 3.224163
-  - 1
-  - 0
-  - 180
-  - 0.05
-  - 477.45377
-  - 3.224163
-  - 1
-  - 1
-  isForward: 1
-  isAdvDist: 1
-  waveScale: 1
-  flowSpeed: 0.02
-  offset: 0
-  heightTex: {fileID: 2800000, guid: 48e29dc2e9488474081bc20a42a364b9, type: 3}
-  heightTexT: {fileID: 2800000, guid: fdd39131993ce804da86a2e71c17a742, type: 3}
-  heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
-  heightObject: {fileID: 2101281888}
-  relativePos: {x: 8.665902, y: 8.714433}
-  texCoord: {x: 5261.676, y: 0, z: -43645.047}
-  texCoord1: {x: 3946.2524, y: 0, z: 16197.781}
-  texCoordT: {x: 5261.676, y: 0, z: -43645.047}
-  texCoordT1: {x: 2630.8347, y: 0, z: 14876.151}
-  texCoordR: {x: 164.4275, y: 0, z: -2893.0193}
-  texCoordR1: {x: 164.42776, y: 0, z: -5951.242}
-  heightVal0: {r: 0.35686275, g: 0.49803922, b: 1, a: 0.05521569}
-  heightVal1: {r: 0.6431373, g: 0.5568628, b: 1, a: 0.11186275}
-  heightValT0: {r: 0.5058824, g: 0.53333336, b: 0.99215686, a: 0.101372555}
-  heightValT1: {r: 0.5176471, g: 0.5647059, b: 0.9882353, a: 0}
-  heightValR0: {r: 0.5137255, g: 0.40392157, b: 0.99607843, a: 0}
-  heightValR1: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
-  localTime: 0
-  row: 64
-  pixIndex: 49316
-  pixCol: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
-  t: 32
-  y: 32
-  dir: {x: -31.100004, y: 0, z: -31.488253}
-  pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 191.13893
-  flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000016709897, y: -191.13893}
-  flowSpeed1: {x: 0.0000041774742, y: -47.784733}
-  flowSpeed2: {x: 0.0000010443686, y: -11.946183}
-  flowSpeed3: {x: 0.0000020887371, y: -23.892366}
-  tScale: 2
-  oPos: {x: 3.2216, y: 3.2216}
---- !u!1 &819045477
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 819045481}
-  - component: {fileID: 819045480}
-  - component: {fileID: 819045479}
-  - component: {fileID: 819045478}
-  m_Layer: 8
-  m_Name: Suimono_ObjectScale
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &819045478
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819045477}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!64 &819045479
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819045477}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
   serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
---- !u!33 &819045480
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819045477}
-  m_Mesh: {fileID: 4300002, guid: f301f5ef8755d3d46b73665135298c4c, type: 3}
---- !u!4 &819045481
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819045477}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7850658, y: -0.1, z: -0.89841044}
-  m_LocalScale: {x: 400, y: 1, z: 400}
-  m_Children: []
-  m_Father: {fileID: 606583931}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &850604020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 850604021}
-  - component: {fileID: 850604023}
-  - component: {fileID: 850604022}
-  m_Layer: 0
-  m_Name: light_sun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &850604021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850604020}
-  m_LocalRotation: {x: 0.22509079, y: 0.8982748, z: -0.21371493, w: 0.31106672}
-  m_LocalPosition: {x: -340.88, y: 330.82, z: 462.5}
-  m_LocalScale: {x: 6.4173756, y: 6.7408133, z: 6.746205}
-  m_Children: []
-  m_Father: {fileID: 1948072309}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &850604022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850604020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d68f06ffd0d6949bc0aa5532c3be8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dayIntensity: 1
-  nightIntensity: 0.01
-  sunsetDegrees: 30
-  lightDegrees: 10
-  dayColor: {r: 1, g: 0.968, b: 0.933, a: 1}
-  sunsetColor: {r: 0.77, g: 0.33, b: 0, a: 1}
---- !u!108 &850604023
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850604020}
-  m_Enabled: 1
-  serializedVersion: 9
-  m_Type: 1
-  m_Color: {r: 1, g: 0.968, b: 0.933, a: 1}
-  m_Intensity: 0.5
-  m_Range: 3.390474
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: 3
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.029
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 1
-  m_CullingMask:
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!1 &884797169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 884797170}
-  m_Layer: 0
-  m_Name: cam_SuimonoCaustic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &884797170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884797169}
-  m_LocalRotation: {x: -0.051338375, y: 0.8828642, z: -0.09937155, w: -0.45611456}
-  m_LocalPosition: {x: 242.7769, y: 19.057024, z: 228.31294}
-  m_LocalScale: {x: 1.0001974, y: 1.1419998, z: 1.1418124}
-  m_Children: []
-  m_Father: {fileID: 734480732}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1510431512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1544679022427030042, guid: e4fcc5a077df6d2449d0a8be1167fb40,
@@ -1833,7 +1970,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 159371181}
+  - {fileID: 950567877}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1933,17 +2070,17 @@ PrefabInstance:
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.9
+      value: 162.6
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.25
+      value: 5.2
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 108.2
+      value: 484.9
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
@@ -2083,27 +2220,32 @@ PrefabInstance:
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: _fogColor.r
-      value: 0.03529412
+      value: 0.65610534
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: _fogColor.g
-      value: 0.101960786
+      value: 0.844349
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: _fogColor.b
-      value: 0.15294118
+      value: 0.9150943
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: _depthDistance
-      value: 63.2
+      value: 88.53
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: _fogColor.a
-      value: 0.32156864
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306026831166741222, guid: e4fcc5a077df6d2449d0a8be1167fb40,
+        type: 3}
+      propertyPath: _depthStart
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3306026831166741223, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
