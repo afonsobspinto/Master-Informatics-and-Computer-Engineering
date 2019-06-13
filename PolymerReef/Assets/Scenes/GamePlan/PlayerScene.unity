@@ -389,7 +389,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!21 &269662257
+--- !u!21 &159371181
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -630,40 +630,6 @@ Material:
     - _castshadowColor: {r: 0, g: 1, b: 0.79, a: 0.18}
     - _depthColor: {r: 0.16, g: 0.281, b: 0.382, a: 1}
     - _shallowColor: {r: 0.208, g: 0.373, b: 0.441, a: 0.784}
---- !u!84 &577889722
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &606583929
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 1871.879
+  systemLocalTime: 1911.4893
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -765,7 +731,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 187.18791
+  localTime: 191.14893
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -914,7 +880,8 @@ MonoBehaviour:
   - "<data_underDarkRange>(50)\r"
   - 
   presetDataString: "<color_depth>(0.160,0.281,0.382,1.000)\r\n<color_shallow>(0.208,0.373,0.441,0.784)\r\n<color_blend>(0.360,1.000,0.867,0.220)\r\n<color_overlay>(0.000,0.000,0.000,0.000)\r\n<color_caustics>(1.000,1.000,1.000,1.000)\r\n<color_reflection>(1.000,1.000,1.000,0.376)\r\n<color_specular>(0.063,0.326,0.375,0.161)\r\n<color_sss>(0.000,0.324,0.015,0.239)\r\n<color_foam>(0.912,0.874,0.791,1.000)\r\n<color_underwater>(0.034,0.102,0.154,0.404)\r\n<data_beaufort>(2)\r\n<data_flowdir>(180)\r\n<data_flowspeed>(0.05)\r\n<data_wavescale>(0.5)\r\n<data_customwaves>(False)\r\n<data_waveheight>(0.65)\r\n<data_heightprojection>(1)\r\n<data_turbulence>(0.24)\r\n<data_lgwaveheight>(0.04666669)\r\n<data_lgwavescale>(0.03125)\r\n<data_shorelineheight>(0.25)\r\n<data_shorelinefreq>(1)\r\n<data_shorelinescale>(3.55)\r\n<data_shorelinespeed>(4)\r\n<data_shorelinenorm>(0)\r\n<data_overallbright>(1)\r\n<data_overalltransparency>(1)\r\n<data_edgeamt>(0.064)\r\n<data_depthamt>(0.064)\r\n<data_shallowamt>(0.057)\r\n<data_refractstrength>(0.5)\r\n<data_aberrationscale>(0)\r\n<data_causticsfade>(0.122)\r\n<data_reflectprojection>(1)\r\n<data_reflectblur>(0.25)\r\n<data_reflectterm>(0)\r\n<data_reflectsharpen>(0)\r\n<data_roughness>(0.025)\r\n<data_roughness2>(0.45)\r\n<data_enablefoam>(True)\r\n<data_foamscale>(0.94)\r\n<data_foamspeed>(0)\r\n<data_edgefoamamt>(0.933)\r\n<data_shallowfoamamt>(1)\r\n<data_heightfoamamt>(0.85)\r\n<data_hfoamheight>(0.65)\r\n<data_hfoamspread>(0.276)\r\n<data_enableunderdebris>(True)\r\n<data_underlightfactor>(1)\r\n<data_underrefractionamount>(0.005)\r\n<data_underrefractionscale>(0.5)\r\n<data_underrefractionspeed>(1)\r\n<data_underbluramount>(1)\r\n<data_underwaterfogdist>(34)\r\n<data_underwaterfogspread>(0)\r\n<data_underDarkRange>(50)\r\n"
-  dir: D:/FEUP/feup-djco2/PolymerReef/Assets/SUIMONO - WATER SYSTEM 2/RESOURCES/
+  dir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
+    WATER SYSTEM 2/RESOURCES/
   baseDir: SUIMONO - WATER SYSTEM 2/RESOURCES/
   presetSaveName: my custom preset
   presetFile: 
@@ -930,8 +897,8 @@ MonoBehaviour:
   skybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   d: 2
   dn: 2
-  pdir: D:/FEUP/feup-djco2/PolymerReef/Assets/SUIMONO - WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In
-    Presets
+  pdir: C:/Users/afonso/Projects/FEUP/DJCO/feup-djco2/PolymerReef/Assets/SUIMONO -
+    WATER SYSTEM 2/RESOURCES//SUIMONO_PRESETS_Built-In Presets
   f: 28
   px: 14
   nx: 28
@@ -1107,8 +1074,8 @@ MonoBehaviour:
   transToolsObject: {fileID: 0}
   transCamObject: {fileID: 0}
   causticHandlerObjectTrans: {fileID: 0}
-  causticToolsObject: {fileID: 884797173}
-  causticCamObject: {fileID: 884797174}
+  causticToolsObject: {fileID: 0}
+  causticCamObject: {fileID: 0}
   causticHandlerObject: {fileID: 0}
   wakeObject: {fileID: 0}
   wakeCamObject: {fileID: 0}
@@ -1158,7 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 1871.979
+  systemTime: 1911.5892
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -1212,9 +1179,9 @@ MonoBehaviour:
   maxSounds: 20
   defaultSplashSound: []
   currentObjectIsOver: 1
-  currentObjectDepth: 3.2338676
-  currentTransitionDepth: 3.2338676
-  currentSurfaceLevel: 22.290892
+  currentObjectDepth: 3.224163
+  currentTransitionDepth: 3.224163
+  currentSurfaceLevel: 22.281187
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -1226,16 +1193,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - 22.290892
-  - 22.290892
+  - 22.281187
+  - 22.281187
   - 22.18
-  - 3.2338676
+  - 3.224163
   - 1
   - 0
   - 180
   - 0.05
-  - 477.66174
-  - 3.2338676
+  - 477.45377
+  - 3.224163
   - 1
   - 1
   isForward: 1
@@ -1248,32 +1215,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.665902, y: 8.714433}
-  texCoord: {x: 5261.676, y: 0, z: -42631.023}
-  texCoord1: {x: 3946.2527, y: 0, z: 15944.275}
-  texCoordT: {x: 5261.676, y: 0, z: -42631.023}
-  texCoordT1: {x: 2630.8347, y: 0, z: 14622.6455}
-  texCoordR: {x: 164.42749, y: 0, z: -2829.6428}
-  texCoordR1: {x: 164.42776, y: 0, z: -5824.4893}
-  heightVal0: {r: 0.52156866, g: 0.3882353, b: 1, a: 0.07829412}
-  heightVal1: {r: 0.61960787, g: 0.5882353, b: 1, a: 0.10766667}
-  heightValT0: {r: 0.58431375, g: 0.41568628, b: 0.98039216, a: 0}
-  heightValT1: {r: 0.48235294, g: 0.46666667, b: 0.99607843, a: 0}
-  heightValR0: {r: 0.35686275, g: 0.3254902, b: 0.9882353, a: 0}
-  heightValR1: {r: 0.4392157, g: 0.7490196, b: 0.9843137, a: 0.101372555}
+  texCoord: {x: 5261.676, y: 0, z: -43645.047}
+  texCoord1: {x: 3946.2524, y: 0, z: 16197.781}
+  texCoordT: {x: 5261.676, y: 0, z: -43645.047}
+  texCoordT1: {x: 2630.8347, y: 0, z: 14876.151}
+  texCoordR: {x: 164.4275, y: 0, z: -2893.0193}
+  texCoordR1: {x: 164.42776, y: 0, z: -5951.242}
+  heightVal0: {r: 0.35686275, g: 0.49803922, b: 1, a: 0.05521569}
+  heightVal1: {r: 0.6431373, g: 0.5568628, b: 1, a: 0.11186275}
+  heightValT0: {r: 0.5058824, g: 0.53333336, b: 0.99215686, a: 0.101372555}
+  heightValT1: {r: 0.5176471, g: 0.5647059, b: 0.9882353, a: 0}
+  heightValR0: {r: 0.5137255, g: 0.40392157, b: 0.99607843, a: 0}
+  heightValR1: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
   localTime: 0
-  row: 193
-  pixIndex: 16292
-  pixCol: {r: 0.4392157, g: 0.7490196, b: 0.9843137, a: 0.101372555}
+  row: 64
+  pixIndex: 49316
+  pixCol: {r: 0.45882353, g: 0.5803922, b: 0.9882353, a: 0.09088235}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 187.1779
+  useLocalTime: 191.13893
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.000016363612, y: -187.1779}
-  flowSpeed1: {x: 0.000004090903, y: -46.794476}
-  flowSpeed2: {x: 0.0000010227258, y: -11.698619}
-  flowSpeed3: {x: 0.0000020454515, y: -23.397238}
+  flowSpeed0: {x: 0.000016709897, y: -191.13893}
+  flowSpeed1: {x: 0.0000041774742, y: -47.784733}
+  flowSpeed2: {x: 0.0000010443686, y: -11.946183}
+  flowSpeed3: {x: 0.0000020887371, y: -23.892366}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1487,10 +1454,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884797170}
-  - component: {fileID: 884797174}
-  - component: {fileID: 884797173}
-  - component: {fileID: 884797172}
-  - component: {fileID: 884797171}
   m_Layer: 0
   m_Name: cam_SuimonoCaustic
   m_TagString: Untagged
@@ -1512,105 +1475,6 @@ Transform:
   m_Father: {fileID: 734480732}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &884797171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884797169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5e424b8153d844fb705a36e96d6b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isUnderwater: 1
-  causticLight: {fileID: 46983990}
-  causticType: 1
---- !u!114 &884797172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884797169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236e497d1a7154743af85bdcbf06ee23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useShader: {fileID: 4800000, guid: f83bfd70f36bb2f43b8969cce23410c8, type: 3}
---- !u!114 &884797173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884797169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdfe3ca26841a84e97bd603013cc573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraType: 1
-  renderType: 0
-  hdrMode: 0
-  clearMode: 0
-  clearFlagColor: {r: 0, g: 0, b: 0, a: 1}
-  resolution: 512
-  cameraOffset: 0
-  reflectionOffset: 0
-  renderTexDiff: {fileID: 577889722}
-  renderShader: {fileID: 0}
-  executeInEditMode: 0
-  isUnderwater: 0
-  surfaceRenderer: {fileID: 0}
-  scaleRenderer: {fileID: 0}
-  reflectionDistance: 200
-  setLayers: 0
---- !u!20 &884797174
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884797169}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 0
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 1
-  far clip plane: 300
-  field of view: 35
-  orthographic: 0
-  orthographic size: 100
-  m_Depth: 1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 268433663
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 577889722}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &1510431512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1544679022427030042, guid: e4fcc5a077df6d2449d0a8be1167fb40,
@@ -1969,7 +1833,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 269662257}
+  - {fileID: 159371181}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
