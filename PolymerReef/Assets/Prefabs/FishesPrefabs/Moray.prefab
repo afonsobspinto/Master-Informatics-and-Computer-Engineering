@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 2617990461031844479}
   - component: {fileID: 229883562876352269}
   - component: {fileID: 3061413244291007993}
+  - component: {fileID: 9209278021587969412}
   m_Layer: 0
   m_Name: Moray
   m_TagString: Untagged
@@ -492,3 +493,16 @@ MonoBehaviour:
     m_Bits: 512
   debugNeverSeePlayer: 0
   player: {fileID: 0}
+--- !u!65 &9209278021587969412
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972756423228806422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.52, z: 10.03}
+  m_Center: {x: 1.49, y: 1.4, z: 2.31}
