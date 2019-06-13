@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallScript : MonoBehaviour
 {
-    public float fallSpeed = 10.0f;      //How fast should the object fall
+    public float fallSpeed = 3.0f;      //How fast should the object fall
     public float height = 1.0f;      //How height should the object stay
 
     // Update is called once per frame
