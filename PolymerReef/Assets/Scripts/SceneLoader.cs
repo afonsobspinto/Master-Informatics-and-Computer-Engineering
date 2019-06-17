@@ -12,7 +12,6 @@ public class SceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Load Previous Scene");
         this.sceneHandler = this.transform.parent.gameObject.GetComponent<SceneHandler>();
     }
 
@@ -31,12 +30,10 @@ public class SceneLoader : MonoBehaviour
         if(insidePrevious)
         {
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.sceneHandler.nextSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            Debug.Log("Load Next Scene");
         }
         else if(insideNext)
         {
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.sceneHandler.prevSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            Debug.Log("Load Previous Scene");
         }
     }
 
@@ -46,15 +43,11 @@ public class SceneLoader : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.nextSceneIndex);
             Resources.UnloadUnusedAssets();
-
-            Debug.Log("Unload Next Scene");
         }
         else if (insideNext)
         {
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.prevSceneIndex);
             Resources.UnloadUnusedAssets();
-
-            Debug.Log("Unload Previous Scene");
         }
     }
 }

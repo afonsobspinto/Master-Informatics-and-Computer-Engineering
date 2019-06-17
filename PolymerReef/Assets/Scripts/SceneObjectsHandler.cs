@@ -37,8 +37,6 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(false);
-
-            Debug.Log("Move Objects to Previous Scene");
         }
         else if (insideNext)
         {
@@ -48,8 +46,6 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(true);
-
-            Debug.Log("Move Objects to Next Scene");
         }
     }
 
