@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 30.5, y: 11.5, z: 40.8}
   AIObject:
-  - m_aiGroupName: Paradisefish
+  - m_aiGroupName: ParadisefishScene2
     m_prefab: {fileID: 589869518200602336, guid: 96b109161f105974d91f130d5d2495ba,
       type: 3}
     m_maxAI: 17
@@ -6970,7 +6970,7 @@ MonoBehaviour:
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 30.5, y: 11.5, z: 40.8}
   AIObject:
-  - m_aiGroupName: Doctorfish
+  - m_aiGroupName: DoctorfishScene2
     m_prefab: {fileID: 5207489718330277609, guid: 3626383f65f76bc4c94ff0f34ee41b20,
       type: 3}
     m_maxAI: 17
@@ -10984,7 +10984,7 @@ MonoBehaviour:
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 48.17, y: 26.4, z: 57.2}
   AIObject:
-  - m_aiGroupName: Doctorfish
+  - m_aiGroupName: DoctorfishScene2
     m_prefab: {fileID: 2180924395103466072, guid: 40a1dadaf1bf4184c9d274fe0cd2d078,
       type: 3}
     m_maxAI: 17

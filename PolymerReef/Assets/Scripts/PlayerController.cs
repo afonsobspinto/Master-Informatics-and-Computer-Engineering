@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private CircleHealthBar healthUI;
 
     [SerializeField]
-    private float initialEnergyValue = 100f;
+    public float initialEnergyValue = 100f;
 
     public static PlayerStats energy;
 
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float maxWaterQualityNeutralThreshold = 80; // value that seperates neutral from gaining
 
+    private bool energyDecreased = false;
 
     [SerializeField]
     private Camera cam = null;
@@ -67,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
         waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
         waterQualityUI.setInitial(waterQuality);
+
+        LoseEnergy(75f);
     }
 
     private void Update()
@@ -103,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
+
     }
 
     void increaseSpeedModifier(float amount)
@@ -156,6 +160,8 @@ public class PlayerController : MonoBehaviour
     public void increaseEnergy(float amount)
     {
         PlayerController.energy.increaseValue(amount);
+        Debug.Log("amount " + amount);
+        Debug.Log("energy " + energy.getCurrentValue());
         energyUI.increase(amount);
     }
 

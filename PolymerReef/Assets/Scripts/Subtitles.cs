@@ -11,37 +11,52 @@ public class Subtitles : MonoBehaviour
     public string subtitle = "";
     public int duration = 5;
     public KeyCode keycode = KeyCode.E;
+    public string ranOutOf = "None";
     private int[] subDurations;
     public bool subtitleEnabled = false;
+    public bool subtitlePassed = false;
+    private PlayerController playerController;
+    public GameObject passedTrigger = null;
 
     // Start is called before the first frame update
     void Start()
     {
         text = this.gameObject.GetComponent<Text>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
         if (subtitleEnabled)
         {
-            subtitleEnabled = false;
-            Debug.Log("n " + gameObject.name);
-            StartCoroutine(Sequence());
+            if (ranOutOf == "None" && passedTrigger == null)
+            {
+                StartCoroutine(Sequence());
+            }
+            else if (ranOutOf == "Energy" && playerController.getEnergy() == 0 && passedTrigger == null)
+            {
+                StartCoroutine(Sequence());
+            } else if (passedTrigger != null)
+            {
+                if (passedTrigger.GetComponent<AIManagement>().HasPlayerPassed())
+                    StartCoroutine(Sequence());
+            }
         }
-        if (Input.GetKeyDown(keycode))
+        if (Input.GetKeyDown(keycode) && subtitlePassed)
         {
-            subtitleEnabled = true;
-            Debug.Log("n " + gameObject.name);
-            gameObject.SetActive(!gameObject.activeSelf);
+            gameObject.SetActive(false);
+            subtitleEnabled = false;
         }
     }
 
     IEnumerator Sequence()
     {
-            Debug.Log("n " + gameObject.name);
-            yield return new WaitForSeconds(1);
-            text.text = subtitle;
-            yield return new WaitForSeconds(duration);
-            text.text = "";
+        yield return new WaitForSeconds(1);
+        text.text = subtitle;
+        subtitlePassed = true;
+        yield return new WaitForSeconds(duration);
+        text.text = "";
+        gameObject.SetActive(false);
+        subtitleEnabled = false;
     }
 }
