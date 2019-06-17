@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints: []
-  m_SpawnTimer: 1
+  m_SpawnTimer: 0.1
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 30.5, y: 11.5, z: 40.8}
   AIObject:
@@ -6966,7 +6966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints: []
-  m_SpawnTimer: 1
+  m_SpawnTimer: 0.1
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 30.5, y: 11.5, z: 40.8}
   AIObject:
@@ -10980,7 +10980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints: []
-  m_SpawnTimer: 1
+  m_SpawnTimer: 0.1
   m_SpawnColor: {r: 0.68787605, g: 0.26366144, b: 0.7075472, a: 0.3}
   m_SpawnArea: {x: 48.17, y: 26.4, z: 57.2}
   AIObject:

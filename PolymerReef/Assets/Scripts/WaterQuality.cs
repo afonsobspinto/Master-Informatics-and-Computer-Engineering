@@ -16,7 +16,7 @@ public class WaterQuality : MonoBehaviour
 
     [Range(0f, 100f)]
     [SerializeField]
-    private float quality; // between 0% and 100%
+    private float quality = 0; // between 0% and 100%
 
     // Start is called before the first frame update
     void Start()

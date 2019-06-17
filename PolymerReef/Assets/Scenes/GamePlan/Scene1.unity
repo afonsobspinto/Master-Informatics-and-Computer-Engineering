@@ -424,6 +424,79 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619328, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619328, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: durations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitles.Array.data[0]
+      value: sdsdsds
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitles.Array.data[1]
+      value: Hello. It's a bit dark in here. Let's do something about it. Click on
+        E to turn the lights on.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitles.Array.data[2]
+      value: Take a look around. But don't take long. This place is a mess and the
+        water quality here is dangerous. You are losing health.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitles.Array.data[3]
+      value: Hey I see an exit. Let's go.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: durations.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitle
+      value: Hello. It's a bit dark in here. Let's do something about it. Click on
+        E to turn the lights on.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: keycode
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: duration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: subtitleEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619341, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_Name
+      value: Subtitle (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22479764fc38ca94ea276a229f53dc52, type: 3}
 --- !u!1001 &51236125
@@ -1132,6 +1205,104 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 74750735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &79419917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79419918}
+  - component: {fileID: 79419921}
+  - component: {fileID: 79419920}
+  - component: {fileID: 79419919}
+  m_Layer: 0
+  m_Name: Subtitle (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &79419918
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79419917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 447796863}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 101}
+  m_SizeDelta: {x: 715.1, y: 90.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &79419919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79419917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434bd15301dc9804e816913adb164928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 1
+  subtitle: Take a look around. But don't take long. This place is a mess and the
+    water quality here is dangerous. You are losing health.
+  duration: 4
+  keycode: 101
+  subtitleEnabled: 0
+--- !u!114 &79419920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79419917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 285
+    m_Alignment: 1
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &79419921
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79419917}
+  m_CullTransparentMesh: 0
 --- !u!1 &82464431 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5207489718330277609, guid: 3626383f65f76bc4c94ff0f34ee41b20,
@@ -4883,6 +5054,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00fc0d180e5296141abaefdf22719b13, type: 3}
+--- !u!1 &447796858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4566882336008578707, guid: 22479764fc38ca94ea276a229f53dc52,
+    type: 3}
+  m_PrefabInstance: {fileID: 51022820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &447796859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447796858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65db4e5dd3e66914ea6b8907c0a221e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitles:
+  - 
+  - 
+  - 
+  durations: 
+--- !u!224 &447796863 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4566882336008578711, guid: 22479764fc38ca94ea276a229f53dc52,
+    type: 3}
+  m_PrefabInstance: {fileID: 51022820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &453601849
 PrefabInstance:
   m_ObjectHideFlags: 0

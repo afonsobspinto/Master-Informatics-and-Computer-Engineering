@@ -37,7 +37,7 @@ public class AIObjects
     private bool m_randomizeStats;
     // Enable spawner
     [SerializeField]
-    private bool m_enableSpawner;
+    private bool m_enableSpawner = false;
 
 
     public AIObjects(string Name, GameObject Prefab, int MaxAI, int SpawnRate, int SpawnAmount, bool RandomiseStats)
@@ -71,7 +71,7 @@ public class AISpawner : MonoBehaviour
     [Range(0f, 600f)]
     // How often the spawner is used
     [SerializeField]
-    private float m_SpawnTimer;
+    private float m_SpawnTimer = 0.1f;
     [SerializeField]
     private Color m_SpawnColor = new Color(1.000f, 0.000f, 0.000f, 0.300f);
     [SerializeField]

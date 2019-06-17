@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField]
-    private Camera cam;
+    private Camera cam = null;
 
 
     private void Start()

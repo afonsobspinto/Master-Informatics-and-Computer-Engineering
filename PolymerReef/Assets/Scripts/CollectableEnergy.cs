@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectableEnergy : Collectable
 {
     [SerializeField]
-    private float amount;
+    private float amount = 0;
 
     public override void Interact()
     {

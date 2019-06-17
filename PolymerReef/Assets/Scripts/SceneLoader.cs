@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Load Previous Scene");
         this.sceneHandler = this.transform.parent.gameObject.GetComponent<SceneHandler>();
     }
 

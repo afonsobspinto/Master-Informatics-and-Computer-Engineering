@@ -7,10 +7,10 @@ public class CollectableEdible : Collectable
     public enum edibleType { food, plastic }
 
     [SerializeField]
-    private edibleType type;
+    private edibleType type = edibleType.plastic;
 
     [SerializeField]
-    private float amount;
+    private float amount = 0;
 
     public override void Interact()
     {

@@ -7,37 +7,41 @@ public class Subtitles : MonoBehaviour
 {
     private Text text;
 
-    [Header("Type the start time, the subtitles")]
-    [Header("and then a duration for each one")]
     public int startTime = 0;
-    public string[] subtitles = new string[3];
-    public int[] durations;
+    public string subtitle = "";
+    public int duration = 5;
+    public KeyCode keycode = KeyCode.E;
     private int[] subDurations;
+    public bool subtitleEnabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        durations = new int[subtitles.Length];
         text = this.gameObject.GetComponent<Text>();
-        StartCoroutine(Sequence());
     }
 
-    void OnValidate()
+    private void Update()
     {
-        subDurations = durations;
-        if (subtitles.Length != durations.Length)
-            System.Array.Resize(ref durations, subtitles.Length);
+        if (subtitleEnabled)
+        {
+            subtitleEnabled = false;
+            Debug.Log("n " + gameObject.name);
+            StartCoroutine(Sequence());
+        }
+        if (Input.GetKeyDown(keycode))
+        {
+            subtitleEnabled = true;
+            Debug.Log("n " + gameObject.name);
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
     }
 
     IEnumerator Sequence()
     {
-        yield return new WaitForSeconds(startTime);
-        for (int i=0; i < subtitles.Length; i++)
-        {
+            Debug.Log("n " + gameObject.name);
             yield return new WaitForSeconds(1);
-            text.text = subtitles[i];
-            yield return new WaitForSeconds(subDurations[i]);
+            text.text = subtitle;
+            yield return new WaitForSeconds(duration);
             text.text = "";
-        }
     }
 }

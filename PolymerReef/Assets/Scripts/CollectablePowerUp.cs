@@ -7,10 +7,10 @@ public class CollectablePowerUp : Collectable
     public enum powerUpType { maxHealth, maxEnergy, speed }
 
     [SerializeField]
-    private powerUpType type;
+    private powerUpType type = powerUpType.maxEnergy;
 
     [SerializeField]
-    private float amount;
+    private float amount = 0;
 
     public override void Interact()
     {
