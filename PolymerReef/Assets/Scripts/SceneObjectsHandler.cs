@@ -35,6 +35,9 @@ public class SceneObjectsHandler : MonoBehaviour
 
             //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(environment, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
+
+            sceneHandlerActivation(false);
+
             Debug.Log("Move Objects to Previous Scene");
         }
         else if (insideNext)
@@ -43,7 +46,31 @@ public class SceneObjectsHandler : MonoBehaviour
             
             //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(environment, scene);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
+
+            sceneHandlerActivation(true);
+
             Debug.Log("Move Objects to Next Scene");
+        }
+    }
+
+    private void sceneHandlerActivation(bool activateNext)
+    {
+        Transform parent = this.transform.parent.parent;
+
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            if (parent.GetChild(i) == this.transform.parent)
+            {
+                if (i + 1 < parent.childCount)
+                {
+                    parent.GetChild(i + 1).gameObject.SetActive(activateNext);
+                }
+
+                if (i - 1 >= 0)
+                {
+                    parent.GetChild(i - 1).gameObject.SetActive(!activateNext);
+                }
+            }
         }
     }
 }

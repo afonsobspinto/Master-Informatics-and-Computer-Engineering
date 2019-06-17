@@ -46,8 +46,6 @@ public class SceneLoader : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.nextSceneIndex);
             Resources.UnloadUnusedAssets();
 
-            sceneHandlerActivation(false);
-
             Debug.Log("Unload Next Scene");
         }
         else if (insideNext)
@@ -55,30 +53,7 @@ public class SceneLoader : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(this.sceneHandler.prevSceneIndex);
             Resources.UnloadUnusedAssets();
 
-            sceneHandlerActivation(true);
-
             Debug.Log("Unload Previous Scene");
-        }
-    }
-
-    private void sceneHandlerActivation(bool activateNext)
-    {
-        Transform parent = this.transform.parent.parent;
-
-        for (int i = 0; i < parent.childCount; i++)
-        {
-            if (parent.GetChild(i) == this.transform.parent)
-            {
-                if(i + 1 < parent.childCount)
-                {
-                    parent.GetChild(i + 1).gameObject.SetActive(activateNext);
-                }
-
-                if(i - 1 >= 0)
-                {
-                    parent.GetChild(i - 1).gameObject.SetActive(!activateNext);
-                }
-            }
         }
     }
 }
