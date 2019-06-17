@@ -18,29 +18,35 @@ public class SceneObjectsTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider c)
     {
-        if (isPrevious)
+        if(c.gameObject.tag == "Player")
         {
-            this.sceneObjectsHandler.setInsidePrevious(true);
-        }
-        else if (isNext)
-        {
-            this.sceneObjectsHandler.setInsideNext(true);
+            if (isPrevious)
+            {
+                this.sceneObjectsHandler.setInsidePrevious(true);
+            }
+            else if (isNext)
+            {
+                this.sceneObjectsHandler.setInsideNext(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider c)
     {
-        if (isPrevious)
+        if (c.gameObject.tag == "Player")
         {
-            this.sceneObjectsHandler.setInsidePrevious(false);
-        }
-        else if (isCenter)
-        {
-            this.sceneObjectsHandler.changeActiveScene();
-        }
-        else if (isNext)
-        {
-            this.sceneObjectsHandler.setInsideNext(false);
+            if (isPrevious)
+            {
+                this.sceneObjectsHandler.setInsidePrevious(false);
+            }
+            else if (isCenter)
+            {
+                this.sceneObjectsHandler.changeActiveScene();
+            }
+            else if (isNext)
+            {
+                this.sceneObjectsHandler.setInsideNext(false);
+            }
         }
     }
 }
