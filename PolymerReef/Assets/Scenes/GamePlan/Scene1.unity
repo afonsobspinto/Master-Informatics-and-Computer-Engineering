@@ -3412,37 +3412,37 @@ PrefabInstance:
     - target: {fileID: 3256983090910159600, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_BorderArea.x
-      value: 10
+      value: 458.58
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159600, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_BorderArea.y
-      value: 10
+      value: 27.68
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159600, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_BorderArea.z
-      value: 10
+      value: 242.84
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159600, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: quality
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159601, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_Size.z
-      value: 10
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159601, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_Size.x
-      value: 10
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159601, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: m_Size.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0708942c1c4d6264dbf520f642e330db, type: 3}
@@ -10416,6 +10416,106 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f55128b76eed40c47a635a89c488ebf8, type: 3}
+--- !u!1 &915031437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915031438}
+  - component: {fileID: 915031441}
+  - component: {fileID: 915031440}
+  - component: {fileID: 915031439}
+  m_Layer: 0
+  m_Name: Subtitle (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &915031438
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915031437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 447796863}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 101}
+  m_SizeDelta: {x: 715.1, y: 90.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &915031439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915031437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434bd15301dc9804e816913adb164928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 1
+  subtitle: Press E again to turn the lights off and save your energy!
+  duration: 5
+  keycode: 32
+  ranOutOf: None
+  subtitleEnabled: 0
+  subtitlePassed: 0
+  passedTrigger: {fileID: 0}
+--- !u!114 &915031440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915031437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 12
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 45
+    m_Alignment: 1
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &915031441
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915031437}
+  m_CullTransparentMesh: 0
 --- !u!1001 &915705895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24420,7 +24520,7 @@ GameObject:
   - component: {fileID: 1945789526}
   - component: {fileID: 1945789525}
   m_Layer: 0
-  m_Name: Subtitle (4)
+  m_Name: Subtitle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24438,7 +24538,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 447796863}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

@@ -35,7 +35,7 @@ public class PowerUp : Collectable
         else if (this.gameObject.tag == "Speed")
             p.changeSpeed(1.5f);
         else if (this.gameObject.tag == "Trash")
-            p.LoseEnergy(25f);
+            p.doDamage(25f);
         else if (this.gameObject.tag == "Particle"){
             p.increaseEnergy(50f);    
             directionalLight.color = Color.white;

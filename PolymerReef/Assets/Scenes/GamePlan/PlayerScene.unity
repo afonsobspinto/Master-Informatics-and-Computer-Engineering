@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTime: 0
-  systemLocalTime: 3664.3994
+  systemLocalTime: 3782.647
   flowSpeed: 0.05
   flowDirection: 180
   useBeaufortScale: 1
@@ -490,7 +490,7 @@ MonoBehaviour:
   useTexNormal3: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   showWaves: 0
   customWaves: 0
-  localTime: 366.43994
+  localTime: 378.2647
   beaufortVal: 0.16666667
   showShore: 0
   shorelineHeight: 0.25
@@ -696,40 +696,6 @@ Transform:
   m_Father: {fileID: 1948072309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &612032612
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 0
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &734480731
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suimonoVersionNumber: 2.1.6
-  systemTime: 3664.4995
+  systemTime: 3782.747
   autoSetLayers: 1
   layerWater: Suimono_Water
   layerWaterNum: 8
@@ -971,9 +937,9 @@ MonoBehaviour:
   maxSounds: 20
   defaultSplashSound: []
   currentObjectIsOver: 1
-  currentObjectDepth: 3.2725945
-  currentTransitionDepth: 3.2725945
-  currentSurfaceLevel: 22.329618
+  currentObjectDepth: 3.2893448
+  currentTransitionDepth: 3.2893448
+  currentSurfaceLevel: 22.346369
   underwaterThreshold: 0.1
   suimonoObject: {fileID: 606583930}
   suimonoModuleLibrary: {fileID: 734480735}
@@ -985,16 +951,16 @@ MonoBehaviour:
   showTenkoku: 1
   tenkokuUseReflect: 1
   heightValues:
-  - 22.329618
-  - 22.329618
+  - 22.346369
+  - 22.346369
   - 22.18
-  - 3.2725945
+  - 3.2893448
   - 1
   - 0
   - 180
   - 0.05
-  - 478.4916
-  - 3.2725945
+  - 478.85052
+  - 3.2893448
   - 1
   - 1
   isForward: 1
@@ -1007,32 +973,32 @@ MonoBehaviour:
   heightTexR: {fileID: 2800000, guid: fb77700eb10ac344db495df815b29823, type: 3}
   heightObject: {fileID: 2101281888}
   relativePos: {x: 8.665902, y: 8.714433}
-  texCoord: {x: 5261.6797, y: 0, z: -88520.18}
-  texCoord1: {x: 3946.2515, y: 0, z: 27416.562}
-  texCoordT: {x: 5261.6797, y: 0, z: -88520.18}
-  texCoordT1: {x: 2630.8337, y: 0, z: 26094.934}
-  texCoordR: {x: 164.42775, y: 0, z: -5697.715}
-  texCoordR1: {x: 164.42825, y: 0, z: -11560.633}
-  heightVal0: {r: 0.39215687, g: 0.5921569, b: 1, a: 0.13284314}
-  heightVal1: {r: 0.44313726, g: 0.49411765, b: 1, a: 0.10556863}
-  heightValT0: {r: 0.47058824, g: 0.47843137, b: 0.99215686, a: 0.044725493}
-  heightValT1: {r: 0.34117648, g: 0.39215687, b: 0.9529412, a: 0.05311765}
-  heightValR0: {r: 0.49411765, g: 0.70980394, b: 0.9764706, a: 0.13284314}
-  heightValR1: {r: 0.5882353, g: 0.5058824, b: 0.99607843, a: 0}
+  texCoord: {x: 5261.68, y: 0, z: -91546.69}
+  texCoord1: {x: 3946.2515, y: 0, z: 28173.19}
+  texCoordT: {x: 5261.68, y: 0, z: -91546.69}
+  texCoordT1: {x: 2630.8337, y: 0, z: 26851.56}
+  texCoordR: {x: 164.42776, y: 0, z: -5886.8716}
+  texCoordR1: {x: 164.4283, y: 0, z: -11938.946}
+  heightVal0: {r: 0.6039216, g: 0.5803922, b: 1, a: 0.16641177}
+  heightVal1: {r: 0.24705882, g: 0.45882353, b: 1, a: 0.13913725}
+  heightValT0: {r: 0.54901963, g: 0.4745098, b: 0.99215686, a: 0.24403924}
+  heightValT1: {r: 0.5568628, g: 0.42745098, b: 0.9764706, a: 0.05311765}
+  heightValR0: {r: 0.627451, g: 0.6117647, b: 0.99607843, a: 0.015352942}
+  heightValR1: {r: 0.4392157, g: 0.52156866, b: 1, a: 0}
   localTime: 0
-  row: 41
-  pixIndex: 55204
-  pixCol: {r: 0.5882353, g: 0.5058824, b: 0.99607843, a: 0}
+  row: 163
+  pixIndex: 23972
+  pixCol: {r: 0.4392157, g: 0.52156866, b: 1, a: 0}
   t: 32
   y: 32
   dir: {x: -31.100004, y: 0, z: -31.488253}
   pivotPoint: {x: 128.00003, y: 0, z: -260.54294}
-  useLocalTime: 366.4324
+  useLocalTime: 378.2547
   flow_dirC: {x: 0.00000008742278, y: -1}
-  flowSpeed0: {x: 0.00003203454, y: -366.4324}
-  flowSpeed1: {x: 0.000008008635, y: -91.6081}
-  flowSpeed2: {x: 0.0000020021587, y: -22.902025}
-  flowSpeed3: {x: 0.0000040043174, y: -45.80405}
+  flowSpeed0: {x: 0.000033068078, y: -378.2547}
+  flowSpeed1: {x: 0.000008267019, y: -94.563675}
+  flowSpeed2: {x: 0.0000020667549, y: -23.640919}
+  flowSpeed3: {x: 0.0000041335097, y: -47.281837}
   tScale: 2
   oPos: {x: 3.2216, y: 3.2216}
 --- !u!1 &819045477
@@ -1319,7 +1285,7 @@ MonoBehaviour:
   resolution: 512
   cameraOffset: 0
   reflectionOffset: 0
-  renderTexDiff: {fileID: 612032612}
+  renderTexDiff: {fileID: 1204861512}
   renderShader: {fileID: 0}
   executeInEditMode: 0
   isUnderwater: 0
@@ -1360,7 +1326,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 268433663
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 612032612}
+  m_TargetTexture: {fileID: 1204861512}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1370,7 +1336,41 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!21 &1370619959
+--- !u!84 &1204861512
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 0
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+--- !u!21 &1354568178
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -1969,7 +1969,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1370619959}
+  - {fileID: 1354568178}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2407,7 +2407,7 @@ PrefabInstance:
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 63.39
+      value: 531
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
@@ -2417,7 +2417,7 @@ PrefabInstance:
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 120.8
+      value: 544
       objectReference: {fileID: 0}
     - target: {fileID: 8462556948657216978, guid: e4fcc5a077df6d2449d0a8be1167fb40,
         type: 3}
