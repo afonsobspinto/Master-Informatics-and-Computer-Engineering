@@ -21,6 +21,7 @@ TagManager:
   - Subtitles
   - PredatorMusic
   - Predator
+  - SubtitleTrigger
   layers:
   - Default
   - TransparentFX

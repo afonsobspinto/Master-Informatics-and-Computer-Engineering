@@ -69,6 +69,11 @@ public class StartButton : MenuButton
     {
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(1);
         if (initialSceneIndex != 4)
+        {
             player.increaseEnergy(75);
+            GameObject.Find("SubtitlesLevel1").SetActive(false);
+        }
+        string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);
+        GameObject.Find("Subtitles").transform.Find(subtitlesLevel).gameObject.SetActive(true);
     }
 }

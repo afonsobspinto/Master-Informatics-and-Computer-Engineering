@@ -68,5 +68,14 @@ public class SceneObjectsHandler : MonoBehaviour
                 }
             }
         }
+
+        if(activateNext)
+        {
+            string subtitlesLevelNext = "SubtitlesLevel" + (this.sceneHandler.nextSceneIndex - 3);
+            int diff = this.sceneHandler.nextSceneIndex - this.sceneHandler.prevSceneIndex;
+            string subtitlesLevelPrevious = "SubtitlesLevel" + (this.sceneHandler.nextSceneIndex - 3 - diff);
+            GameObject.Find("Subtitles").transform.Find(subtitlesLevelNext).gameObject.SetActive(true);
+            GameObject.Find("Subtitles").transform.Find(subtitlesLevelPrevious).gameObject.SetActive(false);
+        }
     }
 }
