@@ -120,21 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &10542283
+--- !u!4 &10542283 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 863792818}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653407038}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 863792819}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &30267017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +133,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -212,11 +208,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -224,22 +215,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &30267018
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 30267017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507155287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 796680696}
-  - {fileID: 414873059}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &41477632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1974938283408524432, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -502,22 +477,6 @@ Transform:
   m_Father: {fileID: 1817449886}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 345.08, z: 0}
---- !u!1 &129881139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 718674787}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1198818371}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &131660563
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +863,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -959,11 +923,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -971,22 +930,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &197900261
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 197900260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476753617}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1728461063}
-  - {fileID: 987092379}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &206243024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6782454235721277798, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -1181,22 +1124,6 @@ CapsuleCollider:
   m_Height: 0.01850421
   m_Direction: 1
   m_Center: {x: -0.005393868, y: 0.005084237, z: 0.0037752707}
---- !u!1 &316970654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 718674787}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 718674788}
-  m_Layer: 0
-  m_Name: Jellyfish3 (3) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &325155441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6413680955073618380, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -1390,21 +1317,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020000005, y: 0.020000005, z: 0.020000003}
   m_Center: {x: 0.00000023841858, y: 0, z: 0.00000047683716}
---- !u!4 &414873059
+--- !u!4 &414873059 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 30267017}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885806747}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 30267018}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &415375889 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3638321103466963496, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -1800,22 +1718,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &569876975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 863792818}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 863792819}
-  m_Layer: 0
-  m_Name: Jellyfish3 (1) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &576003788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1930,22 +1832,6 @@ Transform:
   m_Father: {fileID: 1390029364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &637555013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 932210785}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 932210786}
-  m_Layer: 0
-  m_Name: Jellyfish3 (4) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &653161783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4598687008280625221, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -1966,22 +1852,6 @@ CapsuleCollider:
   m_Height: 0.02965416
   m_Direction: 1
   m_Center: {x: -0.0016047907, y: 0.0029642428, z: -0.000043916993}
---- !u!1 &653407038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 863792818}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10542283}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &667336103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4221748015711509990, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -2101,6 +1971,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2171,11 +2046,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 60
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -2183,54 +2053,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &718674788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 718674787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316970654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1403533956}
-  - {fileID: 1198818371}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &737669852
+--- !u!1 &737669852 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 932210785}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 737669853}
-  - component: {fileID: 737669858}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &737669853
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 932210785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737669852}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 932210786}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &737669858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2615,38 +2443,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020000001, y: 0.02, z: 0.019999994}
   m_Center: {x: 0.00000011920929, y: 0, z: 0.000000029802322}
---- !u!1 &796680695
+--- !u!1 &796680695 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 30267017}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 796680696}
-  - component: {fileID: 796680701}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &796680696
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 30267017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796680695}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 30267018}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &796680701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2796,6 +2598,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2866,11 +2673,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -2878,38 +2680,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &863792819
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 863792818}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569876975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1923453855}
-  - {fileID: 10542283}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &885806747
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 30267017}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 414873059}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &891853553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3045,22 +2815,6 @@ CapsuleCollider:
   m_Height: 0.018504215
   m_Direction: 1
   m_Center: {x: -0.0053942264, y: 0.0050843647, z: 0.0037752108}
---- !u!1 &919258462
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1800346334}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953049299}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &920621777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4924166804789284018, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -3108,6 +2862,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3163,11 +2922,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -3175,22 +2929,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &932210786
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 932210785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637555013}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 737669853}
-  - {fileID: 1489034210}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935817692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3319619469419050018, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -3211,21 +2949,12 @@ CapsuleCollider:
   m_Height: 0.02965417
   m_Direction: 1
   m_Center: {x: -0.0016045524, y: 0.0029642435, z: -0.00004391691}
---- !u!4 &953049299
+--- !u!4 &953049299 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 1800346334}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919258462}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1800346335}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956281826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2420866078317388914, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -3357,21 +3086,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984873808}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &987092379
+--- !u!4 &987092379 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 197900260}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580185404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 197900261}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &992748410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4168,38 +3888,12 @@ CapsuleCollider:
   m_Height: 0.02965416
   m_Direction: 1
   m_Center: {x: -0.0016047161, y: 0.0029641832, z: -0.00004415514}
---- !u!1 &1130741758
+--- !u!1 &1130741758 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 1800346334}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1130741759}
-  - component: {fileID: 1130741764}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1130741759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1800346334}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130741758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1800346335}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1130741764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4393,52 +4087,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1198485087}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1198818371
+--- !u!4 &1198818371 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 718674787}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129881139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 718674788}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1207706501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1792563358}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1207706502}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1207706502
+--- !u!4 &1207706502 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 1792563358}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207706501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1792563359}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1235843074 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5969224402746758760, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -4618,38 +4278,12 @@ CapsuleCollider:
   m_Height: 0.018504212
   m_Direction: 1
   m_Center: {x: -0.005393987, y: 0.005084245, z: 0.0037750325}
---- !u!1 &1302735893
+--- !u!1 &1302735893 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 1792563358}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1302735894}
-  - component: {fileID: 1302735899}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1302735894
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1792563358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302735893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1792563359}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1302735899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5231,38 +4865,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1403366240}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1403533955
+--- !u!1 &1403533955 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 718674787}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1403533956}
-  - component: {fileID: 1403533961}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1403533956
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 718674787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403533955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 718674788}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1403533961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,22 +5049,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1413282449}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1416727745
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 932210785}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1489034210}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &1424574107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5723,22 +5315,6 @@ CapsuleCollider:
   m_Height: 0.029654164
   m_Direction: 1
   m_Center: {x: -0.0016047907, y: 0.0029642433, z: -0.00004391711}
---- !u!1 &1476753617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 197900260}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 197900261}
-  m_Layer: 0
-  m_Name: Jellyfish3 (6) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1487306997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3260623377706129483, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -5758,21 +5334,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020000005, y: 0.02, z: 0.019999998}
   m_Center: {x: 0, y: 0, z: -0.000000059604645}
---- !u!4 &1489034210
+--- !u!4 &1489034210 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 932210785}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416727745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 932210786}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492232322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3590486893136937151, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -5812,22 +5379,6 @@ CapsuleCollider:
   m_Height: 0.01850421
   m_Direction: 1
   m_Center: {x: -0.005394168, y: 0.0050842594, z: 0.0037752718}
---- !u!1 &1507155287
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 30267017}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 30267018}
-  m_Layer: 0
-  m_Name: Jellyfish3 (5) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1521590642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,22 +5490,6 @@ CapsuleCollider:
   m_Height: 0.018504212
   m_Direction: 1
   m_Center: {x: -0.005393987, y: 0.005084215, z: 0.00377539}
---- !u!1 &1580185404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 197900260}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 987092379}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1583660419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6089,32 +5624,16 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1792563359}
-  - {fileID: 863792819}
-  - {fileID: 1800346335}
-  - {fileID: 718674788}
-  - {fileID: 932210786}
-  - {fileID: 30267018}
-  - {fileID: 197900261}
+  - {fileID: 1207706502}
+  - {fileID: 10542283}
+  - {fileID: 953049299}
+  - {fileID: 1198818371}
+  - {fileID: 1489034210}
+  - {fileID: 414873059}
+  - {fileID: 987092379}
   m_Father: {fileID: 1583660420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1607329081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1792563358}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1792563359}
-  m_Layer: 0
-  m_Name: Jellyfish3 (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &1612211003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6551,22 +6070,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1689723382}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1696077120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1800346334}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1800346335}
-  m_Layer: 0
-  m_Name: Jellyfish3 (2) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1705089097
 GameObject:
   m_ObjectHideFlags: 0
@@ -6620,38 +6123,12 @@ CapsuleCollider:
   m_Height: 0.029654158
   m_Direction: 1
   m_Center: {x: -0.0016047909, y: 0.0029642426, z: -0.000043916996}
---- !u!1 &1728461062
+--- !u!1 &1728461062 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 197900260}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1728461063}
-  - component: {fileID: 1728461068}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1728461063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 197900260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728461062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 197900261}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1728461068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6964,6 +6441,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7019,11 +6501,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -7031,22 +6508,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &1792563359
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1792563358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607329081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1302735894}
-  - {fileID: 1207706502}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798854397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 142844509054246704, guid: 8e4b1d4e0d8cf8744aad50eca7c37f6a,
@@ -7074,6 +6535,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1599518207}
     m_Modifications:
+    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
+        type: 3}
+      propertyPath: m_Name
+      value: Jellyfish3 (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4407907507061622503, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7144,11 +6610,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
-        type: 3}
-      propertyPath: m_Name
-      value: Jellyfish3 (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 826218524685464822, guid: 50244beb9ded11f488d65d5c35c26683,
         type: 3}
       propertyPath: player
@@ -7156,22 +6617,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50244beb9ded11f488d65d5c35c26683, type: 3}
---- !u!4 &1800346335
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1800346334}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696077120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1130741759}
-  - {fileID: 953049299}
-  m_Father: {fileID: 1599518207}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1801742450
 GameObject:
   m_ObjectHideFlags: 0
@@ -7588,38 +7033,12 @@ CapsuleCollider:
   m_Height: 0.015567743
   m_Direction: 1
   m_Center: {x: 0.0007285034, y: 0.00006717468, z: -0.0016070021}
---- !u!1 &1923453854
+--- !u!1 &1923453854 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 826218524685464820, guid: 50244beb9ded11f488d65d5c35c26683,
     type: 3}
   m_PrefabInstance: {fileID: 863792818}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1923453855}
-  - component: {fileID: 1923453860}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1923453855
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 863792818}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923453854}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 863792819}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1923453860
 MonoBehaviour:
   m_ObjectHideFlags: 0

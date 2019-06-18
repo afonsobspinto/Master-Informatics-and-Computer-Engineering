@@ -36,7 +36,7 @@ public class Subtitles : MonoBehaviour
         zPos = playerController.transform.position.z;
         if (xPos < 290 && zPos < 230)
             playerOnLevel = 1;
-        else if (xPos >= 290 && zPos < 230)
+        else if (xPos >= 290 && zPos < 200)
             playerOnLevel = 2;
         else if (xPos >= 400 && zPos >= 230 && zPos < 400)
             playerOnLevel = 3;

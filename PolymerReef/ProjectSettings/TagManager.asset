@@ -19,6 +19,7 @@ TagManager:
   - FishTrigger
   - FishGroup
   - Subtitles
+  - PredatorMusic
   layers:
   - Default
   - TransparentFX

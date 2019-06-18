@@ -14,6 +14,8 @@ public class StartButton : MenuButton
     private int mainMenuIndex = 1;
     private int systemScenesLoaded = 0;
 
+    private PlayerController player;
+
     private void Start()
     {
         mainMenuIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
@@ -31,13 +33,14 @@ public class StartButton : MenuButton
 
         if (systemScenesLoaded == 2)
         {
-            PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             switch (initialSceneIndex)
             {
                 case 4: // Scene 1
                     break;
                 case 5: // Scene 2
-                    player.transform.position = new Vector3(315, 3.2f, 32);
+                    player.transform.position = new Vector3(290, 3.2f, 32);
+                    player.transform.Rotate(new Vector3(player.transform.rotation.x, 180.0f, player.transform.rotation.z));
                     break;
                 case 6: // Scene 3
                     player.transform.position = new Vector3(510, 3.2f, 228);
@@ -65,5 +68,7 @@ public class StartButton : MenuButton
     private void OnSceneLoaded(AsyncOperation obj)
     {
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(1);
+        if (initialSceneIndex != 4)
+            player.increaseEnergy(75);
     }
 }
