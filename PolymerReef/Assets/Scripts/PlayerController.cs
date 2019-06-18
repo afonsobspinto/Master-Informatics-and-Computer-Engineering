@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera cam = null;
 
+    private bool isDead = false;
+
 
     private void Start()
     {
@@ -73,6 +75,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        manageDeath(false);
+
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
        
@@ -122,7 +126,23 @@ public class PlayerController : MonoBehaviour
                 SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
         }
     }
-    
+
+    private void manageDeath(bool touchedPredator)
+    {
+        if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
+        {
+            Debug.Log("You died!!!! "); // Commented to test without always dying
+            /*isDead = true;
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;*/
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Predator")
+            manageDeath(true);
+    }
+
     void increaseSpeedModifier(float amount)
     {
         this.speedModifier += amount;

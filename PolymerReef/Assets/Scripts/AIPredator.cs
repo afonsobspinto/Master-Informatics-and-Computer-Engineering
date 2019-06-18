@@ -25,16 +25,13 @@ public class AIPredator : MonoBehaviour
     private float idleWait = 0.0f;
 
     // Cached objects
-    public GameObject player;
+    private GameObject player;
     private Rigidbody body;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null)
-        {
-            player = GameObject.FindWithTag("Player"); // TODO Doubt we'll need to change this too much, but reminder to make it better anyways (maybe save Rigidbody as well?)
-        }
+        player = GameObject.FindWithTag("Player"); 
         body = GetComponent<Rigidbody>();
     }
 

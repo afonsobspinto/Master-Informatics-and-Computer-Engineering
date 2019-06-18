@@ -166,9 +166,10 @@ GameObject:
   - component: {fileID: 4597926177665814008}
   - component: {fileID: 7168848035812433238}
   - component: {fileID: 2150084137832439429}
+  - component: {fileID: 999065513465230461}
   m_Layer: 0
   m_Name: ZebraFish
-  m_TagString: Untagged
+  m_TagString: Predator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +231,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   debugNeverSeePlayer: 0
-  player: {fileID: 0}
 --- !u!54 &2150084137832439429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -247,6 +247,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &999065513465230461
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430454939337347729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.59
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.87}
 --- !u!1 &7600214760442599662
 GameObject:
   m_ObjectHideFlags: 0

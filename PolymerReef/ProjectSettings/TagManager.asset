@@ -20,6 +20,7 @@ TagManager:
   - FishGroup
   - Subtitles
   - PredatorMusic
+  - Predator
   layers:
   - Default
   - TransparentFX
