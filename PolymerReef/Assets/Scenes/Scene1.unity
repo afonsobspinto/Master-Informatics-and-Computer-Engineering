@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &10480068
 PrefabInstance:
@@ -318,6 +317,16 @@ PrefabInstance:
     - target: {fileID: 4566882336008578707, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: m_Name
+      value: Subtitles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336008578707, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336008578707, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: m_TagString
       value: Subtitles
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336008578711, guid: 22479764fc38ca94ea276a229f53dc52,
@@ -502,6 +511,11 @@ PrefabInstance:
     - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
         type: 3}
       propertyPath: subtitleEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566882336240619331, guid: 22479764fc38ca94ea276a229f53dc52,
+        type: 3}
+      propertyPath: level
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4566882336240619341, guid: 22479764fc38ca94ea276a229f53dc52,
@@ -1276,6 +1290,7 @@ MonoBehaviour:
   subtitleEnabled: 0
   subtitlePassed: 0
   passedTrigger: {fileID: 0}
+  level: 1
 --- !u!114 &79419920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,7 +1359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!4 &84318947 stripped
 Transform:
@@ -2138,7 +2152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &148276313
 PrefabInstance:
@@ -2334,7 +2347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &168538262
 PrefabInstance:
@@ -2891,7 +2903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &228958331
 PrefabInstance:
@@ -3633,7 +3644,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1 &303906077
 GameObject:
@@ -5375,11 +5385,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 714120888764295664, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5435,10 +5440,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
+    - target: {fileID: 3125274472334332256, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
-      propertyPath: player
-      value: 
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6516297576266821988, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
@@ -5460,7 +5465,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -180.859
       objectReference: {fileID: 0}
+    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3479976226525879100, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -5473,11 +5488,6 @@ PrefabInstance:
     - target: {fileID: 9003458948915138177, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3125274472334332256, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5946,7 +5956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &511412906
 PrefabInstance:
@@ -6588,7 +6597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &529555596
 PrefabInstance:
@@ -7039,7 +7047,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &581708778
 PrefabInstance:
@@ -7151,7 +7158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &599597420
 PrefabInstance:
@@ -7470,7 +7476,6 @@ Transform:
   - {fileID: 1668278190}
   - {fileID: 212650910}
   - {fileID: 785286517}
-  - {fileID: 1999405840}
   - {fileID: 1612185279}
   m_Father: {fileID: 863950181}
   m_RootOrder: 0
@@ -7501,7 +7506,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1 &622533678
 GameObject:
@@ -8233,7 +8237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1 &668469408 stripped
 GameObject:
@@ -8261,7 +8264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!4 &686419510 stripped
 Transform:
@@ -10489,6 +10491,7 @@ MonoBehaviour:
   subtitleEnabled: 0
   subtitlePassed: 0
   passedTrigger: {fileID: 0}
+  level: 1
 --- !u!114 &915031440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10842,7 +10845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &960608989
 PrefabInstance:
@@ -11059,7 +11061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &965513350
 PrefabInstance:
@@ -11516,7 +11517,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1037007563
 PrefabInstance:
@@ -11769,7 +11769,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &1050961182
 PrefabInstance:
@@ -11967,7 +11966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &1067073194
 PrefabInstance:
@@ -12339,7 +12337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &1105398401
 PrefabInstance:
@@ -13542,7 +13539,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!4 &1216363575 stripped
 Transform:
@@ -13576,7 +13572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1226116967
 PrefabInstance:
@@ -14120,7 +14115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1242278496
 PrefabInstance:
@@ -14476,7 +14470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &1263980380
 PrefabInstance:
@@ -16154,6 +16147,7 @@ MonoBehaviour:
   subtitleEnabled: 0
   subtitlePassed: 0
   passedTrigger: {fileID: 0}
+  level: 1
 --- !u!114 &1407193488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17092,7 +17086,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &1491875204
 PrefabInstance:
@@ -18537,7 +18530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &1531973025
 PrefabInstance:
@@ -18805,7 +18797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1 &1540846224 stripped
 GameObject:
@@ -18833,7 +18824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1552415062
 PrefabInstance:
@@ -20318,7 +20308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 614196492}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1612185280
 BoxCollider:
@@ -22115,7 +22105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!4 &1726511740 stripped
 Transform:
@@ -22495,7 +22484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1782495671
 PrefabInstance:
@@ -23255,11 +23243,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 714120888764295664, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23315,11 +23298,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6516297576266821988, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -23340,7 +23318,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -180.859
       objectReference: {fileID: 0}
+    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3479976226525879100, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -23840,7 +23828,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &1870909473
 PrefabInstance:
@@ -24454,7 +24441,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &1940689107
 PrefabInstance:
@@ -24689,6 +24675,7 @@ MonoBehaviour:
   subtitleEnabled: 1
   subtitlePassed: 0
   passedTrigger: {fileID: 785286516}
+  level: 1
 --- !u!114 &1945789526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24942,7 +24929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1001 &1962460172
 PrefabInstance:
@@ -25294,7 +25280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &1985128034
 PrefabInstance:
@@ -25455,97 +25440,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1997914532}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1999405836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1999405840}
-  - component: {fileID: 1999405839}
-  - component: {fileID: 1999405838}
-  - component: {fileID: 1999405837}
-  m_Layer: 0
-  m_Name: Waypoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1999405837
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999405836}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 8.48, z: 26.08}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1999405838
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999405836}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1999405839
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999405836}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1999405840
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999405836}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 205.90001, y: 66.6, z: -22.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 614196492}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005292367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823616752678986129, guid: f55128b76eed40c47a635a89c488ebf8,
@@ -25572,7 +25466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 7
 --- !u!1001 &2016474080
 PrefabInstance:
@@ -25929,7 +25822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 3
 --- !u!1 &2055030455 stripped
 GameObject:
@@ -25957,7 +25849,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 1612185278}
-  - {fileID: 1999405836}
   speed: 5
 --- !u!1001 &2076886163
 PrefabInstance:

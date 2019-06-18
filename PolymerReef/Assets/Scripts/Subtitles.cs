@@ -12,11 +12,16 @@ public class Subtitles : MonoBehaviour
     public int duration = 5;
     public KeyCode keycode = KeyCode.E;
     public string ranOutOf = "None";
-    private int[] subDurations;
     public bool subtitleEnabled = false;
     public bool subtitlePassed = false;
-    private PlayerController playerController;
     public GameObject passedTrigger = null;
+    public int level = 0;
+
+    private PlayerController playerController;
+    private int[] subDurations;
+    private bool playerInRightLevel = false;
+    private float xPos, zPos = 0;
+    private int playerOnLevel = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +32,25 @@ public class Subtitles : MonoBehaviour
 
     private void Update()
     {
-        if (subtitleEnabled)
+        xPos = playerController.transform.position.x;
+        zPos = playerController.transform.position.z;
+        if (xPos < 290 && zPos < 230)
+            playerOnLevel = 1;
+        else if (xPos >= 290 && zPos < 230)
+            playerOnLevel = 2;
+        else if (xPos >= 400 && zPos >= 230 && zPos < 400)
+            playerOnLevel = 3;
+        else if (xPos < 400 && zPos >= 230)
+            playerOnLevel = 4;
+        else if (xPos < 100 && zPos >= 230)
+            playerOnLevel = 5;
+        else
+            playerOnLevel = 6;
+
+        if (playerOnLevel == level)
+            playerInRightLevel = true;
+
+        if (subtitleEnabled && playerInRightLevel)
         {
             if (ranOutOf == "None" && passedTrigger == null)
             {

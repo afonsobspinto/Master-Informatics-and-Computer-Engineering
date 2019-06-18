@@ -18,6 +18,7 @@ TagManager:
   - Environment
   - FishTrigger
   - FishGroup
+  - Subtitles
   layers:
   - Default
   - TransparentFX
