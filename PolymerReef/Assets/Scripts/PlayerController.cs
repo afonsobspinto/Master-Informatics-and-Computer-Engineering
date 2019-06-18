@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -48,8 +49,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float maxWaterQualityNeutralThreshold = 80; // value that seperates neutral from gaining
 
-    private bool energyDecreased = false;
-
     [SerializeField]
     private Camera cam = null;
 
@@ -74,6 +73,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject.GetComponent<RandomizeSound>().enabled = false;
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
+        }
+       
         if (transform.position.y > 20)
             transform.position = new Vector3(transform.position.x, 20, transform.position.z);
 
@@ -109,6 +114,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void unloadCurrentScenes(AsyncOperation obj)
+    {
+        int countLoaded = SceneManager.sceneCount;
+        Scene[] loadedScenes = new Scene[countLoaded];
+
+        for (int i = 0; i < countLoaded; i++)
+        {
+            if (SceneManager.GetSceneAt(i).buildIndex != 1)
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
+        }
+    }
+    
     void increaseSpeedModifier(float amount)
     {
         this.speedModifier += amount;
@@ -160,8 +177,6 @@ public class PlayerController : MonoBehaviour
     public void increaseEnergy(float amount)
     {
         PlayerController.energy.increaseValue(amount);
-        Debug.Log("amount " + amount);
-        Debug.Log("energy " + energy.getCurrentValue());
         energyUI.increase(amount);
     }
 
