@@ -9486,6 +9486,8 @@ GameObject:
   m_Component:
   - component: {fileID: 886785095}
   - component: {fileID: 886785096}
+  - component: {fileID: 886785098}
+  - component: {fileID: 886785097}
   m_Layer: 0
   m_Name: Fish3
   m_TagString: Untagged
@@ -9533,6 +9535,42 @@ MonoBehaviour:
     m_maxSpawnAmount: 6
     m_randomizeStats: 0
     m_enableSpawner: 1
+--- !u!114 &886785097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886785094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/peixes
+  PlayEvent: 3
+  StopEvent: 4
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!65 &886785098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886785094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 151.1, y: 18.56, z: 51.8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &904375753
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2245,6 +2245,8 @@ GameObject:
   m_Component:
   - component: {fileID: 456666241}
   - component: {fileID: 456666242}
+  - component: {fileID: 456666244}
+  - component: {fileID: 456666243}
   m_Layer: 0
   m_Name: Paradisefishes
   m_TagString: Untagged
@@ -2292,6 +2294,42 @@ MonoBehaviour:
     m_maxSpawnAmount: 6
     m_randomizeStats: 0
     m_enableSpawner: 1
+--- !u!65 &456666243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456666240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.5, y: 11.5, z: 40.8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &456666244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456666240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/peixes
+  PlayEvent: 3
+  StopEvent: 4
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &456935051
 GameObject:
   m_ObjectHideFlags: 0
@@ -7167,6 +7205,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1413697272}
   - component: {fileID: 1413697273}
+  - component: {fileID: 1413697275}
+  - component: {fileID: 1413697274}
   m_Layer: 0
   m_Name: Doctorfishes
   m_TagString: Untagged
@@ -7214,6 +7254,42 @@ MonoBehaviour:
     m_maxSpawnAmount: 6
     m_randomizeStats: 0
     m_enableSpawner: 1
+--- !u!65 &1413697274
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413697271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.5, y: 11.5, z: 40.8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1413697275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413697271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/peixes
+  PlayEvent: 3
+  StopEvent: 4
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1419569994
 GameObject:
   m_ObjectHideFlags: 0
@@ -8804,7 +8880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 1
-  playerOnLevel: 0
   subtitle: Look what the ocean has come to... Fishes eating garbage, don't eat that
     or you will lose health!
   duration: 8
@@ -11284,6 +11359,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1954650452}
   - component: {fileID: 1954650453}
+  - component: {fileID: 1954650455}
+  - component: {fileID: 1954650454}
   m_Layer: 0
   m_Name: Doctorfishes (1)
   m_TagString: Untagged
@@ -11331,6 +11408,42 @@ MonoBehaviour:
     m_maxSpawnAmount: 8
     m_randomizeStats: 0
     m_enableSpawner: 1
+--- !u!65 &1954650454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954650451}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 48.17, y: 26.4, z: 57.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1954650455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954650451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/peixes
+  PlayEvent: 3
+  StopEvent: 4
+  CollisionTag: Player
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1962460172
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5982,8 +5982,8 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!135 &1686604890
-SphereCollider:
+--- !u!65 &1686604890
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5993,7 +5993,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 17.06
+  m_Size: {x: 30.5, y: 11.5, z: 40.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1689723382
 PrefabInstance:

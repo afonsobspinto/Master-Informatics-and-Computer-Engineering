@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6679815988064796843}
   - component: {fileID: 1121379078781811794}
   - component: {fileID: 1707750843182876813}
+  - component: {fileID: -8300945400496081271}
   m_Layer: 0
   m_Name: JuiceCan
   m_TagString: Untagged
@@ -92,3 +93,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.021376824, y: 0.021376826, z: 0.34776694}
   m_Center: {x: 4.742127e-10, y: 4.7421206e-10, z: 0.16313636}
+--- !u!114 &-8300945400496081271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707750843182876814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: "event:/pl\xE1stico"
+  PlayEvent: 2
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
