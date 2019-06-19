@@ -6259,7 +6259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1594201676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7618,7 +7618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -346.1}
+  m_AnchoredPosition: {x: 0, y: -315.6}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1812903028
@@ -8511,7 +8511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -334.1}
+  m_AnchoredPosition: {x: 0, y: -337.3}
   m_SizeDelta: {x: 754.4, y: 329.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902569171
@@ -8586,10 +8586,11 @@ MonoBehaviour:
 
 
 
-
     Ivo Amaro
 
-    Bruno Boaro'
+    Bruno Boaro
+
+    Gabriela ornelas'
 --- !u!222 &1902569173
 CanvasRenderer:
   m_ObjectHideFlags: 0
