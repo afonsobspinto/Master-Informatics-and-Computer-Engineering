@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FogMaterial
-  m_Shader: {fileID: 4800000, guid: 76551e2a39694124bac0e8653ffc0776, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
+  m_Name: cauda azul
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,27 +58,20 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthDistance: 63.2
-    - _DepthStart: -17.900024
     - _DetailNormalMapScale: 1
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.45
     - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 3
-    - _NoiseFrequency: 1
-    - _NoiseScale: 1
-    - _NoiseSpeed: 1
+    - _Metallic: 0.271
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PixelOffset: 0.005
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.66002136, g: 0.9619967, b: 0.9716981, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColor: {r: 0.03529412, g: 0.101960786, b: 0.15294118, a: 1}
+    - _Color: {r: 0.627451, g: 0.7449399, b: 0.8392157, a: 0.19999999}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
