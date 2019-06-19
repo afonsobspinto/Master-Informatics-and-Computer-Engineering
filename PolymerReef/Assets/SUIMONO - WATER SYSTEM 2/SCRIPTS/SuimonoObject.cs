@@ -970,7 +970,8 @@ namespace Suimono.Core
 						if (oceanScale < 1.0f) oceanScale = 1.0f;
 						offamt = (0.4027f * oceanScale)/waveScale;
 						spacer = (suimonoObject.transform.localScale.x * 4.0f);
-						newPos = new Vector3(moduleObject.setCamera.position.x,suimonoObject.transform.position.y,moduleObject.setCamera.position.z);
+						//newPos = new Vector3(moduleObject.setCamera.position.x,suimonoObject.transform.position.y,moduleObject.setCamera.position.z);
+
 						if (Mathf.Abs(suimonoObject.transform.position.x - newPos.x) > spacer){
 							if (suimonoObject.transform.position.x > newPos.x) setScaleX -= offamt;
 							if (suimonoObject.transform.position.x < newPos.x) setScaleX += offamt;
@@ -999,7 +1000,8 @@ namespace Suimono.Core
 
 						//set infinite ocean object scaling
 						if (scaleRenderer != null){
-							setScale = Mathf.Ceil(moduleObject.setCameraComponent.farClipPlane/20.0f)*suimonoObject.transform.localScale.x;
+							//setScale = Mathf.Ceil(moduleObject.setCameraComponent.farClipPlane/20.0f)*suimonoObject.transform.localScale.x;
+
 							scaleObject.transform.localScale = new Vector3(setScale*0.5f,1.0f,setScale*0.5f);
 
 							oceanUseScale = 4.0f;

@@ -105,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 8185670612520332430}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.70710677}
   m_LocalPosition: {x: 17.86, y: 0.72, z: 6.42}
-  m_LocalScale: {x: 40, y: 40, z: 40}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children:
   - {fileID: 1832478333466566348}
   m_Father: {fileID: 0}
@@ -156,4 +156,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  selectsound: event:/chemical

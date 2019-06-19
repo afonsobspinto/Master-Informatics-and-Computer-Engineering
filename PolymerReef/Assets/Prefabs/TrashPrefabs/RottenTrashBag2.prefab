@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 786453420022459302}
   - component: {fileID: 5925418995922908366}
   - component: {fileID: 2830408497551637131}
+  - component: {fileID: 2041341545874449566}
   m_Layer: 0
   m_Name: RottenTrashBag2
   m_TagString: Untagged
@@ -143,3 +144,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.09358302, y: 0.06096475, z: 0.062018648}
   m_Center: {x: 0.02998475, y: 0.01170753, z: -0.0012715636}
+--- !u!114 &2041341545874449566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925418995922908367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: "event:/pl\xE1stico"
+  PlayEvent: 2
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

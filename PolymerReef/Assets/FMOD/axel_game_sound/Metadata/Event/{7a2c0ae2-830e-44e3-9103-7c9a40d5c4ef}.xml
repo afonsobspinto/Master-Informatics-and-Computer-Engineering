@@ -31,9 +31,6 @@
         <relationship name="timeline">
             <destination>{8de27447-3e91-43f4-82fc-9a5bc4fd8b76}</destination>
         </relationship>
-        <relationship name="parameters">
-            <destination>{a135367d-7996-4dd1-9f0c-27bd070a98b5}</destination>
-        </relationship>
         <relationship name="banks">
             <destination>{edcb0e82-602a-452f-b56c-c467a01fd389}</destination>
         </relationship>
@@ -63,7 +60,6 @@
     <object class="MarkerTrack" id="{258b6bef-b41a-4f77-84ea-72dfc410aa86}"/>
     <object class="GroupTrack" id="{bda5a96e-c563-43db-aed7-4506d0f1cce5}">
         <relationship name="modules">
-            <destination>{7f7b3510-3d8c-49f6-970f-8842086ec0a5}</destination>
             <destination>{b848db7f-0456-4c55-954c-ccc20622caa9}</destination>
         </relationship>
         <relationship name="mixerGroup">
@@ -73,14 +69,6 @@
     <object class="Timeline" id="{8de27447-3e91-43f4-82fc-9a5bc4fd8b76}">
         <relationship name="modules">
             <destination>{b848db7f-0456-4c55-954c-ccc20622caa9}</destination>
-        </relationship>
-    </object>
-    <object class="ParameterProxy" id="{a135367d-7996-4dd1-9f0c-27bd070a98b5}">
-        <relationship name="modules">
-            <destination>{7f7b3510-3d8c-49f6-970f-8842086ec0a5}</destination>
-        </relationship>
-        <relationship name="preset">
-            <destination>{0424cf5c-8b43-4d3c-b6d6-908036ee382e}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{76614026-5f2d-45ce-8337-9dc5d12670ea}">
@@ -100,14 +88,6 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{08ab02b2-6563-486c-918e-8af7fff97b99}"/>
-    <object class="SingleSound" id="{7f7b3510-3d8c-49f6-970f-8842086ec0a5}">
-        <property name="length">
-            <value>0.10000000000000001</value>
-        </property>
-        <relationship name="audioFile">
-            <destination>{8dd8ce8b-d9ad-45e0-8c57-521cf49f7b89}</destination>
-        </relationship>
-    </object>
     <object class="SingleSound" id="{b848db7f-0456-4c55-954c-ccc20622caa9}">
         <property name="length">
             <value>2.5</value>

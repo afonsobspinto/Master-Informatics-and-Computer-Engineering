@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1944918623352519676}
   - component: {fileID: 4768440331781121175}
   - component: {fileID: 4768440331781121172}
+  - component: {fileID: 5136547269576782217}
   m_Layer: 0
   m_Name: Straw
   m_TagString: Trash
@@ -113,7 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  selectsound: event:/chemical
 --- !u!136 &4768440331781121172
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -128,3 +128,26 @@ CapsuleCollider:
   m_Height: 0.78
   m_Direction: 2
   m_Center: {x: -0.07590683, y: 0.003629983, z: -0.12031306}
+--- !u!114 &5136547269576782217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768440331781121173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: "event:/pl\xE1stico"
+  PlayEvent: 2
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
