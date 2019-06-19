@@ -10,6 +10,11 @@ public class MoveVertically : MonoBehaviour
 
     private bool movement = true;
 
+    private void Start()
+    {
+        movement = (Random.value > 0.5f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -20,9 +25,9 @@ public class MoveVertically : MonoBehaviour
             movement = false;
 
         if (movement)
-            transform.Translate(Vector3.down * Random.Range(speed -1, speed+1) * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.down * 1.5f*Random.Range(speed -2, speed+2) * Time.deltaTime, Space.World);
         else
-            transform.Translate(Vector3.up * Random.Range(speed - 1, speed + 1) * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.up * 1.5f*Random.Range(speed - 2, speed + 2) * Time.deltaTime, Space.World);
 
     }
 }
