@@ -24,12 +24,9 @@ public class PowerUp : Collectable
         else if (this.gameObject.tag == "Health")
             p.gainHealth(50f);
         else if (this.gameObject.tag == "Food")
-        {
             p.gainHealth(25f);
-            p.increaseEnergy(25f);
-        }
         else if (this.gameObject.tag == "Speed")
-            p.changeSpeed(1.2f);
+            p.changeSpeed(1.5f);
         else if (this.gameObject.tag == "Trash")
             p.doDamage(25f);
         else if (this.gameObject.tag == "Particle"){

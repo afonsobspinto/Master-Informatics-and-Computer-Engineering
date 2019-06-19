@@ -72,6 +72,10 @@ public class StartButton : MenuButton
         {
             player.increaseEnergy(75);
             GameObject.Find("SubtitlesLevel1").SetActive(false);
+            string sceneHandlersNext = "SceneHandler" + (initialSceneIndex-3) + (initialSceneIndex-2);
+            string sceneHandlersPrevious = "SceneHandler" + (initialSceneIndex - 4) + (initialSceneIndex - 3);
+            GameObject.Find("SceneHandlers").transform.Find(sceneHandlersNext).gameObject.SetActive(true);
+            GameObject.Find("SceneHandlers").transform.Find(sceneHandlersPrevious).gameObject.SetActive(true);
         }
         string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);
         GameObject.Find("Subtitles").transform.Find(subtitlesLevel).gameObject.SetActive(true);

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3994031341770329255}
   - component: {fileID: 8051587591318606793}
   - component: {fileID: 8051587591318606792}
-  - component: {fileID: 8051587591318606799}
   - component: {fileID: 1333735596}
   - component: {fileID: 6439903216708552866}
+  - component: {fileID: 36109123364904366}
   m_Layer: 0
   m_Name: Jellyfish1
   m_TagString: Untagged
@@ -132,20 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blendSpeed: 20
---- !u!136 &8051587591318606799
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8051587591318606798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.04437701
-  m_Height: 0.04315707
-  m_Direction: 1
-  m_Center: {x: -0.0000000018626451, y: -0.0000000037252899, z: -0.039243538}
 --- !u!114 &1333735596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8051587591318606798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998cc96d37676d6478039f00cc78f8a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c8aa982e10397754596cbb534065187b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   lowerValue: 10
   higherValue: 20
 --- !u!114 &6439903216708552866
@@ -184,3 +170,17 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!136 &36109123364904366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051587591318606798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.02
+  m_Height: 0.08
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.05}
