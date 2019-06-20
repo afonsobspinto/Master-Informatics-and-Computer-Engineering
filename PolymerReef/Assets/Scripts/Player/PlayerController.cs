@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
 
-        if(health.value < 85)
+        if(health.value < 15)
             GetComponent<LowHealth>().lowHealth = true;
     }
 
