@@ -54,11 +54,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead = false;
 
-    [FMODUnity.EventRef]
-    public string selectPredatorSound;
-    FMOD.Studio.EventInstance soundevent;
-
-
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
@@ -75,9 +70,6 @@ public class PlayerController : MonoBehaviour
         waterQualityUI.setInitial(waterQuality);
 
         LoseEnergy(85f);
-
-        soundevent = FMODUnity.RuntimeManager.CreateInstance(selectPredatorSound);
-        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
     }
 
     private void Update()
@@ -123,8 +115,10 @@ public class PlayerController : MonoBehaviour
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
 
-        if(health.value < 15)
-            GetComponent<LowHealth>().lowHealth = true;
+        if (health.value < 10)
+            GameObject.Find("Audio").transform.Find("LowHealth").gameObject.SetActive(true);
+        else
+            GameObject.Find("Audio").transform.Find("LowHealth").gameObject.SetActive(false);
     }
 
     private void unloadCurrentScenes(AsyncOperation obj)
@@ -143,8 +137,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
         {
+            Debug.Log("You died");
+            /*
             isDead = true;
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;*/
         }
     }
 
@@ -152,12 +148,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Predator")
         {
-            FMOD.Studio.PLAYBACK_STATE fmodPbState;
-            soundevent.getPlaybackState(out fmodPbState);
-            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-            {
-                soundevent.start();
-            }
+            GameObject.Find("Audio").transform.Find("Predator").gameObject.SetActive(true);
             manageDeath(true);
         }
     }

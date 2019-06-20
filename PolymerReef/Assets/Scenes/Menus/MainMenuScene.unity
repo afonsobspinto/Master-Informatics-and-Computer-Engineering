@@ -5890,7 +5890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/peixes
+  Event: "event:/M\xFAsica/peixes"
   PlayEvent: 11
   StopEvent: 12
   CollisionTag: 
