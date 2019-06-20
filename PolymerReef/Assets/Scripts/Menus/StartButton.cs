@@ -72,7 +72,7 @@ public class StartButton : MenuButton
 
     private void OnSceneLoaded(AsyncOperation obj)
     {
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(mainMenuIndex);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("MainMenuScene");
 
         // If loading chapter other than 1, make it so subtitles from chapter 1 don't show and activate necessary scene handlers
         if (initialSceneIndex != 4)
