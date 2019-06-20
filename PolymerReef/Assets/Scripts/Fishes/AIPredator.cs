@@ -52,7 +52,7 @@ public class AIPredator : MonoBehaviour
     private float Chase()
     {
         direction = (player.transform.position - body.position).normalized;
-        rotation = Quaternion.LookRotation(direction, Vector3.up);
+        rotation = Quaternion.LookRotation(direction);
 
         return Time.fixedDeltaTime;
     }
@@ -68,7 +68,6 @@ public class AIPredator : MonoBehaviour
             wanderPosition.Set(
                 Random.Range(minPosition.x, maxPosition.x),
                 idlePosition.y,
-                //Random.Range(minPosition.y, maxPosition.y),
                 Random.Range(minPosition.z, maxPosition.z)
                 );
 

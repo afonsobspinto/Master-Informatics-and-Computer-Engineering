@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="ParameterPreset" id="{c0a1a734-adaf-4d9b-af84-284ec8b59ed1}">
         <property name="name">
-            <value>ligarluzes</value>
+            <value>less</value>
         </property>
         <relationship name="folder">
             <destination>{ed285f79-93fa-4704-a753-dfa18780cb65}</destination>

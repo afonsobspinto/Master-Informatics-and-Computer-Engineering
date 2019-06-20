@@ -5,11 +5,11 @@ using UnityEngine;
 public class StartButton : MenuButton
 {
     [Header("System Scenes indexes")]
-    public int handlerSceneIndex = 1;
-    public int initialSceneIndex = 3;
+    public int handlerSceneIndex = 2;
+    public int initialSceneIndex = 4;
 
     [Header("Player Scene index")]
-    public int playerSceneIndex = 2;
+    public int playerSceneIndex = 3;
 
     private int mainMenuIndex = 1;
     private int systemScenesLoaded = 0;
@@ -19,6 +19,7 @@ public class StartButton : MenuButton
     private void Start()
     {
         mainMenuIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        systemScenesLoaded = 0;
     }
 
     public override void OnPressed()
@@ -59,24 +60,33 @@ public class StartButton : MenuButton
                 default:
                     break;
             }
+
+            // If loading chapter other than 1, load previous scene as well
             if (initialSceneIndex != 4)
+            {
                 UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(initialSceneIndex - 1, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            }
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(initialSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive).completed += OnSceneLoaded;
         }
     }
 
     private void OnSceneLoaded(AsyncOperation obj)
     {
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(1);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(mainMenuIndex);
+
+        // If loading chapter other than 1, make it so subtitles from chapter 1 don't show and activate necessary scene handlers
         if (initialSceneIndex != 4)
         {
             player.increaseEnergy(75);
             GameObject.Find("SubtitlesLevel1").SetActive(false);
-            string sceneHandlersNext = "SceneHandler" + (initialSceneIndex-3) + (initialSceneIndex-2);
+
+            string sceneHandlersNext = "SceneHandler" + (initialSceneIndex - 3) + (initialSceneIndex - 2);
             string sceneHandlersPrevious = "SceneHandler" + (initialSceneIndex - 4) + (initialSceneIndex - 3);
+
             GameObject.Find("SceneHandlers").transform.Find(sceneHandlersNext).gameObject.SetActive(true);
             GameObject.Find("SceneHandlers").transform.Find(sceneHandlersPrevious).gameObject.SetActive(true);
         }
+
         string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);
         GameObject.Find("Subtitles").transform.Find(subtitlesLevel).gameObject.SetActive(true);
     }

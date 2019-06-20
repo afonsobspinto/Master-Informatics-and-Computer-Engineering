@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 3
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &138315281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!108 &182169677 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 182169677, guid: 174f89864b8d61b499dc8ac282e37e5e,
@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1 &221264870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823616752678986129, guid: f55128b76eed40c47a635a89c488ebf8,
@@ -6150,7 +6150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &521836176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6459,7 +6459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 1
   height: 0
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &548312482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7205,7 +7205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1 &614196491
 GameObject:
   m_ObjectHideFlags: 0
@@ -9410,7 +9410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.4
   height: 1.5
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &806411034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10056,7 +10056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 3.5
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!4 &887075412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5136221618339349416, guid: d147ea2ea1d800242b100e643f5e9760,
@@ -10686,7 +10686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 5
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1 &960059191 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5207489718330277609, guid: 3626383f65f76bc4c94ff0f34ee41b20,
@@ -10829,7 +10829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.4
   height: 1.5
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &962928417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12907,7 +12907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 1
   height: 3
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!4 &1149019584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7359818791515318319, guid: 541a35a6184016948b36143234ca7bec,
@@ -13153,7 +13153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 1
   height: 3
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1181588191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13254,7 +13254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4.5
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1183260154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14188,7 +14188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1242491625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14822,7 +14822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1300039872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17060,7 +17060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1 &1494012340
 GameObject:
   m_ObjectHideFlags: 0
@@ -19392,7 +19392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 1
   height: 3
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1591942235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20263,7 +20263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.4
   height: 1.5
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1618143295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20444,7 +20444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &1637073306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25343,7 +25343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 4
   height: 1
-  selectSound: event:/ligarLuzes
+  selectSound: event:/Sound Effects/garbagebottomlake
 --- !u!1001 &2038596030
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/desligarLuzes
+  Event: event:/Sound Effects/desligarLuzes
   PlayEvent: 12
   StopEvent: 0
   CollisionTag: 
@@ -1713,6 +1713,7 @@ MonoBehaviour:
   minWaterQualityNeutralThreshhold: 60
   maxWaterQualityNeutralThreshold: 80
   cam: {fileID: 3306026831166741216}
+  selectPredatorSound: 
 --- !u!65 &4839772480395341765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2303,7 +2304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/ligarLuzes
+  Event: event:/Sound Effects/ligarLuzes
   PlayEvent: 11
   StopEvent: 0
   CollisionTag: 
