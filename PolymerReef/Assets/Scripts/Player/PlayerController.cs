@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
 
+        if(health.value < 85)
+            GetComponent<LowHealth>().lowHealth = true;
     }
 
     private void unloadCurrentScenes(AsyncOperation obj)

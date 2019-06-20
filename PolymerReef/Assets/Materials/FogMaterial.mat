@@ -59,7 +59,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DepthDistance: 63.2
-    - _DepthStart: -6.999016
+    - _DepthStart: -22.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _GlossMapScale: 1
