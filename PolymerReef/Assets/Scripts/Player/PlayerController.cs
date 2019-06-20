@@ -54,6 +54,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead = false;
 
+    [FMODUnity.EventRef]
+    public string selectPredatorSound;
+    FMOD.Studio.EventInstance soundevent;
+
 
     private void Start()
     {
@@ -71,6 +75,9 @@ public class PlayerController : MonoBehaviour
         waterQualityUI.setInitial(waterQuality);
 
         LoseEnergy(85f);
+
+        soundevent = FMODUnity.RuntimeManager.CreateInstance(selectPredatorSound);
+        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
     }
 
     private void Update()
@@ -136,16 +143,23 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
         {
-            Debug.Log("You died!!!! "); // Commented to test without always dying
-            /*isDead = true;
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;*/
+            isDead = true;
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Predator")
+        {
+            FMOD.Studio.PLAYBACK_STATE fmodPbState;
+            soundevent.getPlaybackState(out fmodPbState);
+            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                soundevent.start();
+            }
             manageDeath(true);
+        }
     }
 
     void increaseSpeedModifier(float amount)
