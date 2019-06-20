@@ -23,6 +23,7 @@ TagManager:
   - Predator
   - SubtitleTrigger
   - LastCutscene
+  - Partner
   layers:
   - Default
   - TransparentFX
