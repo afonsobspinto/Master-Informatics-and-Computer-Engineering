@@ -6,10 +6,10 @@ public class ExitButton : MenuButton
 {
     public override void OnPressed()
     {
-        // TODO associate with modal
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+#else
         Application.Quit();
+#endif
     }
 }
