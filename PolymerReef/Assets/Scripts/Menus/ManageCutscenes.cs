@@ -16,7 +16,7 @@ public class ManageCutscenes : MonoBehaviour
 
     private void Update()
     {
-        if (!pressed && Input.GetKeyDown(KeyCode.Escape))
+        if (!pressed && Input.GetKeyDown(KeyCode.Space))
         {
             LoadScene(videoPlayer);
             pressed = true;

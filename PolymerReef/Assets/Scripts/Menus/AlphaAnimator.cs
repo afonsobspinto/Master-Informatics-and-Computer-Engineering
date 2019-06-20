@@ -16,6 +16,7 @@ public class AlphaAnimator : MonoBehaviour
 
     private Color alphamask = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     private Action<float> transition;
+    private bool pressed = false;
 
     [Header("Transition target")]
     public Graphic target;
@@ -80,6 +81,11 @@ public class AlphaAnimator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!pressed && Input.GetKeyDown(KeyCode.Space))
+        {
+            transitionSpeed += 5;
+            pressed = true;
+        }
         time += Time.deltaTime * transitionSpeed;
 
         target.color -= alphamask;
