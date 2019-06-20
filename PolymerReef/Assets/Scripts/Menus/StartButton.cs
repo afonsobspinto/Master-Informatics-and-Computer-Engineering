@@ -83,8 +83,11 @@ public class StartButton : MenuButton
             string sceneHandlersNext = "SceneHandler" + (initialSceneIndex - 3) + (initialSceneIndex - 2);
             string sceneHandlersPrevious = "SceneHandler" + (initialSceneIndex - 4) + (initialSceneIndex - 3);
 
-            GameObject.Find("SceneHandlers").transform.Find(sceneHandlersNext).gameObject.SetActive(true);
-            GameObject.Find("SceneHandlers").transform.Find(sceneHandlersPrevious).gameObject.SetActive(true);
+            if(initialSceneIndex != 9)
+            {
+                GameObject.Find("SceneHandlers").transform.Find(sceneHandlersNext).gameObject.SetActive(true);
+                GameObject.Find("SceneHandlers").transform.Find(sceneHandlersPrevious).gameObject.SetActive(true);
+            }
         }
 
         string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);

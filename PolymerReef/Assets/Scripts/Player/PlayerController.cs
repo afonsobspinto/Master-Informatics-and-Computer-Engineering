@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead = false;
 
+    private bool foundPartner = false;
+
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
@@ -128,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < countLoaded; i++)
         {
-            if (SceneManager.GetSceneAt(i).buildIndex != 1)
+            if (SceneManager.GetSceneAt(i).buildIndex != 1 && SceneManager.GetSceneAt(i).buildIndex != 10)
                 SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
         }
     }
@@ -151,10 +153,9 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Audio").transform.Find("Predator").gameObject.SetActive(true);
             manageDeath(true);
         }
-        else if (other.tag == "Partner")
+        else if (other.tag == "Partner" && !foundPartner)
         {
-            Debug.Log("You partner");
-
+            foundPartner = true;
             SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive).completed += unloadCurrentScenes;
         }
     }
