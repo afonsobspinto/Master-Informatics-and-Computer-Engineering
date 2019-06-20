@@ -139,10 +139,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
         {
-            Debug.Log("You died");
-            /*
             isDead = true;
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;*/
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
         }
     }
 
