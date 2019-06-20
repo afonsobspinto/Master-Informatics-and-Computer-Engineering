@@ -5,12 +5,22 @@ using UnityEngine.Video;
 
 public class ManageCutscenes : MonoBehaviour
 {
-    private VideoPlayer videoPlayer; 
+    private VideoPlayer videoPlayer;
+    private bool pressed = false;
 
     void Start()
     {
         videoPlayer = gameObject.GetComponent<VideoPlayer>();
         videoPlayer.loopPointReached += LoadScene;
+    }
+
+    private void Update()
+    {
+        if (!pressed && Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadScene(videoPlayer);
+            pressed = true;
+        }
     }
 
     void LoadScene(VideoPlayer vp)
