@@ -37,6 +37,9 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(false);
+
+            GameObject.Find("Camera").GetComponent<FogEffect>()._depthDistance = 63.3f;
+
         }
         else if (insideNext)
         {
@@ -46,6 +49,13 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(true);
+
+            // This should be generic but
+            if (this.sceneHandler.nextSceneIndex == 9)
+            {
+                GameObject.Find("Camera").GetComponent<FogEffect>()._depthDistance = 300;
+            }
+
         }
     }
 

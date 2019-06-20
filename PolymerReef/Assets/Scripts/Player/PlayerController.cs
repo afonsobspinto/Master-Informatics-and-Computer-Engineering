@@ -151,6 +151,12 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Audio").transform.Find("Predator").gameObject.SetActive(true);
             manageDeath(true);
         }
+        else if (other.tag == "Partner")
+        {
+            Debug.Log("You partner");
+
+            SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive).completed += unloadCurrentScenes;
+        }
     }
 
     void increaseSpeedModifier(float amount)
