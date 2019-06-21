@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead = false;
     private bool foundPartner = false;
+    private bool touchedPredator = false;
 
     public bool subtitlesOn = true;
     public float musicSlider = 0.5f;
@@ -130,6 +131,10 @@ public class PlayerController : MonoBehaviour
     {
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
+        if (health.getCurrentValue() <= 0)
+            ShowDiedText("NoHealthText");
+        else if (touchedPredator)
+            ShowDiedText("BittenText");
         if (!foundPartner)
         {
             GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
@@ -147,6 +152,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ShowDiedText(string text)
+    {
+        GameObject.Find("DiedText").transform.Find(text).gameObject.SetActive(true);
+    }
+
     private void manageDeath(bool touchedPredator)
     {
         if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
@@ -161,6 +171,7 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Predator")
         {
             GameObject.Find("Audio").transform.Find("Predator").gameObject.SetActive(true);
+            touchedPredator = true;
             manageDeath(true);
         }
         else if (other.tag == "Partner" && !foundPartner)
