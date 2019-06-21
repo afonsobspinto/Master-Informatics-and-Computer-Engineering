@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -53,8 +54,10 @@ public class PlayerController : MonoBehaviour
     private Camera cam = null;
 
     private bool isDead = false;
-
     private bool foundPartner = false;
+
+    public bool subtitlesOn = true;
+    public float musicSlider = 0.5f;
 
     private void Start()
     {
@@ -127,7 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
-
+        GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
         for (int i = 0; i < countLoaded; i++)
         {
             if (SceneManager.GetSceneAt(i).buildIndex != 1 && SceneManager.GetSceneAt(i).buildIndex != 10)

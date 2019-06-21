@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartButton : MenuButton
 {
@@ -16,10 +17,13 @@ public class StartButton : MenuButton
 
     private PlayerController player;
 
+    private Toggle subtitlesToggle;
+
     private void Start()
     {
         mainMenuIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         systemScenesLoaded = 0;
+        subtitlesToggle = GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>();
     }
 
     public override void OnPressed()
@@ -78,7 +82,8 @@ public class StartButton : MenuButton
         if (initialSceneIndex != 4)
         {
             player.increaseEnergy(75);
-            GameObject.Find("SubtitlesLevel1").SetActive(false);
+            if(subtitlesToggle.isOn)
+                GameObject.Find("SubtitlesLevel1").SetActive(false);
 
             string sceneHandlersNext = "SceneHandler" + (initialSceneIndex - 3) + (initialSceneIndex - 2);
             string sceneHandlersPrevious = "SceneHandler" + (initialSceneIndex - 4) + (initialSceneIndex - 3);
@@ -90,7 +95,17 @@ public class StartButton : MenuButton
             }
         }
 
-        string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);
-        GameObject.Find("Subtitles").transform.Find(subtitlesLevel).gameObject.SetActive(true);
+        if (subtitlesToggle.isOn)
+        {
+            player.subtitlesOn = true;
+            GameObject.Find("PlayerUI").transform.Find("Subtitles").gameObject.SetActive(true);
+            string subtitlesLevel = "SubtitlesLevel" + (initialSceneIndex - 3);
+            GameObject.Find("Subtitles").transform.Find(subtitlesLevel).gameObject.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("Subtitles").SetActive(false);
+            player.subtitlesOn = false;
+        }
     }
 }
