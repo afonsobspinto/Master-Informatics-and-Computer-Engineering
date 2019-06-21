@@ -18,12 +18,14 @@ public class StartButton : MenuButton
     private PlayerController player;
 
     private Toggle subtitlesToggle;
+    private Slider audioSlider;
 
     private void Start()
     {
         mainMenuIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         systemScenesLoaded = 0;
         subtitlesToggle = GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>();
+        audioSlider = GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("Music").transform.Find("Slider").gameObject.GetComponent<Slider>();
     }
 
     public override void OnPressed()
@@ -94,6 +96,8 @@ public class StartButton : MenuButton
                 GameObject.Find("SceneHandlers").transform.Find(sceneHandlersPrevious).gameObject.SetActive(true);
             }
         }
+
+        player.musicSlider = audioSlider.value;
 
         if (subtitlesToggle.isOn)
         {

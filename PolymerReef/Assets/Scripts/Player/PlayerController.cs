@@ -131,7 +131,8 @@ public class PlayerController : MonoBehaviour
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
         GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
-        for (int i = 0; i < countLoaded; i++)
+        GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("Music").transform.Find("Slider").gameObject.GetComponent<Slider>().value = musicSlider;
+            for (int i = 0; i < countLoaded; i++)
         {
             if (SceneManager.GetSceneAt(i).buildIndex != 1 && SceneManager.GetSceneAt(i).buildIndex != 10)
                 SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
