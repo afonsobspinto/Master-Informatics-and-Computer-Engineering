@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         manageDeath(false);
 
         if (speedModifier > 1)
-            changeSpeed(-0.02f);
+            changeSpeed(-0.01f);
 
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
@@ -130,9 +130,17 @@ public class PlayerController : MonoBehaviour
     {
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
-        GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
-        GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("Music").transform.Find("Slider").gameObject.GetComponent<Slider>().value = musicSlider;
-            for (int i = 0; i < countLoaded; i++)
+        if (!foundPartner)
+        {
+            GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
+            GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("Music").transform.Find("Slider").gameObject.GetComponent<Slider>().value = musicSlider;
+        }
+        else
+        {
+            GameObject.Find("Cutscene").GetComponent<ManageCutscenes>().musicSlider = musicSlider;
+            GameObject.Find("Cutscene").GetComponent<ManageCutscenes>().subtitlesOn = subtitlesOn;
+        }
+        for (int i = 0; i < countLoaded; i++)
         {
             if (SceneManager.GetSceneAt(i).buildIndex != 1 && SceneManager.GetSceneAt(i).buildIndex != 10)
                 SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
