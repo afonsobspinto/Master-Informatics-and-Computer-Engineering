@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
         waterQualityUI.setInitial(waterQuality);
 
-        LoseEnergy(85f);
+        LoseEnergy(95f);
     }
 
     private void Update()

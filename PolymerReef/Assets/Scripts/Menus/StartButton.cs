@@ -48,14 +48,14 @@ public class StartButton : MenuButton
                     player.transform.Rotate(new Vector3(player.transform.rotation.x, 187.7f, player.transform.rotation.z));
                     break;
                 case 7: // Scene 4
-                    player.transform.position = new Vector3(383, 19, 604);
+                    player.transform.position = new Vector3(439, 5, 595);
                     player.transform.Rotate(new Vector3(player.transform.rotation.x, 75, player.transform.rotation.z));
                     break;
                 case 8: // Scene 5
                     player.transform.position = new Vector3(160, 5, 465);
                     break;
                 case 9: // Scene 6
-                    player.transform.position = new Vector3(-223, 5f, 400);
+                    player.transform.position = new Vector3(-223, 5, 400);
                     break;
                 default:
                     break;
