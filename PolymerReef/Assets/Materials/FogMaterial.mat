@@ -58,8 +58,8 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthDistance: 63.2
-    - _DepthStart: 50.000786
+    - _DepthDistance: 300
+    - _DepthStart: 65.00015
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _GlossMapScale: 1
