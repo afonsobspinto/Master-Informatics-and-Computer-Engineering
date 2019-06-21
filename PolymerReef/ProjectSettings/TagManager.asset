@@ -22,6 +22,8 @@ TagManager:
   - PredatorMusic
   - Predator
   - SubtitleTrigger
+  - LastCutscene
+  - Partner
   layers:
   - Default
   - TransparentFX

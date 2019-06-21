@@ -2776,11 +2776,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashReef (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 5156163464874757319, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2880,6 +2875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -113.23801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trash
       objectReference: {fileID: 0}
     - target: {fileID: 5587090244678182158, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
@@ -3224,7 +3224,7 @@ PrefabInstance:
     - target: {fileID: 3256983090910159600, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
       propertyPath: quality
-      value: 65
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 3256983090910159601, guid: 0708942c1c4d6264dbf520f642e330db,
         type: 3}
@@ -5196,6 +5196,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3125274472334332256, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6516297576266821988, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5216,15 +5221,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -180.859
       objectReference: {fileID: 0}
-    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3479976226525879100, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: player
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
@@ -5239,11 +5244,6 @@ PrefabInstance:
     - target: {fileID: 9003458948915138177, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3125274472334332256, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6541,11 +6541,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashReef (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 5156163464874757319, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6645,6 +6640,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -113.23801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1afb6a105047b46bcce606b0610ca9, type: 3}
@@ -9138,7 +9138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785286516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 136.8, y: 67.2, z: 64.1}
+  m_LocalPosition: {x: 110.7, y: 67.2, z: 64.1}
   m_LocalScale: {x: 1, y: 68.9, z: 309.5}
   m_Children: []
   m_Father: {fileID: 614196492}
@@ -10435,11 +10435,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 50.408
       objectReference: {fileID: 0}
-    - target: {fileID: 5798399821196106297, guid: 541a35a6184016948b36143234ca7bec,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 991673693488435994, guid: 541a35a6184016948b36143234ca7bec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10449,6 +10444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798399821196106297, guid: 541a35a6184016948b36143234ca7bec,
+        type: 3}
+      propertyPath: player
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 541a35a6184016948b36143234ca7bec, type: 3}
@@ -15468,11 +15468,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashReef (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 5156163464874757319, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15572,6 +15567,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -113.23801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trash
       objectReference: {fileID: 0}
     - target: {fileID: 5587090244678182158, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
@@ -17646,11 +17646,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashReef (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 5156163464874757319, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17750,6 +17745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -113.23801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1afb6a105047b46bcce606b0610ca9, type: 3}
@@ -17924,11 +17924,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashReef (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 5156163464874757319, guid: 0c1afb6a105047b46bcce606b0610ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18028,6 +18023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -113.23801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463362832351592023, guid: 0c1afb6a105047b46bcce606b0610ca9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1afb6a105047b46bcce606b0610ca9, type: 3}
@@ -23176,15 +23176,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -180.859
       objectReference: {fileID: 0}
-    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3479976226525879100, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661871429333035191, guid: 174f89864b8d61b499dc8ac282e37e5e,
+        type: 3}
+      propertyPath: player
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9003458948915138182, guid: 174f89864b8d61b499dc8ac282e37e5e,
         type: 3}

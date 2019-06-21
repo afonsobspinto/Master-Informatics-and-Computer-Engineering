@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -53,7 +54,11 @@ public class PlayerController : MonoBehaviour
     private Camera cam = null;
 
     private bool isDead = false;
+    private bool foundPartner = false;
+    private bool touchedPredator = false;
 
+    public bool subtitlesOn = true;
+    public float musicSlider = 0.5f;
 
     private void Start()
     {
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
         waterQualityUI = GameObject.Find("WaterQualityUI").GetComponent<CircleWaterQualityBar>();
         waterQualityUI.setInitial(waterQuality);
 
-        LoseEnergy(85f);
+        LoseEnergy(95f);
     }
 
     private void Update()
@@ -78,7 +83,7 @@ public class PlayerController : MonoBehaviour
         manageDeath(false);
 
         if (speedModifier > 1)
-            changeSpeed(-0.02f);
+            changeSpeed(-0.01f);
 
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
@@ -116,34 +121,64 @@ public class PlayerController : MonoBehaviour
         // Apply rotation
         motor.RotateCamera(_cameraRotation);
 
+        if (health.value < 10)
+            GameObject.Find("Audio").transform.Find("LowHealth").gameObject.SetActive(true);
+        else
+            GameObject.Find("Audio").transform.Find("LowHealth").gameObject.SetActive(false);
     }
 
     private void unloadCurrentScenes(AsyncOperation obj)
     {
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
-
+        if (health.getCurrentValue() <= 0)
+            ShowDiedText("NoHealthText");
+        else if (touchedPredator)
+            ShowDiedText("BittenText");
+        if (!foundPartner)
+        {
+            GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("SetSubtitles").transform.Find("SubtitlesToggle").gameObject.GetComponent<Toggle>().isOn = subtitlesOn;
+            GameObject.Find("Screens").transform.Find("SettingsScreen").transform.Find("Music").transform.Find("Slider").gameObject.GetComponent<Slider>().value = musicSlider;
+        }
+        else
+        {
+            GameObject.Find("Cutscene").GetComponent<ManageCutscenes>().musicSlider = musicSlider;
+            GameObject.Find("Cutscene").GetComponent<ManageCutscenes>().subtitlesOn = subtitlesOn;
+        }
         for (int i = 0; i < countLoaded; i++)
         {
-            if (SceneManager.GetSceneAt(i).buildIndex != 1)
+            if (SceneManager.GetSceneAt(i).buildIndex != 1 && SceneManager.GetSceneAt(i).buildIndex != 10)
                 SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).buildIndex);
         }
+    }
+
+    private void ShowDiedText(string text)
+    {
+        GameObject.Find("DiedText").transform.Find(text).gameObject.SetActive(true);
     }
 
     private void manageDeath(bool touchedPredator)
     {
         if (!isDead && (health.getCurrentValue() <= 0 || touchedPredator) )
         {
-            Debug.Log("You died!!!! "); // Commented to test without always dying
-            /*isDead = true;
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;*/
+            isDead = true;
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += unloadCurrentScenes;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Predator")
+        {
+            GameObject.Find("Audio").transform.Find("Predator").gameObject.SetActive(true);
+            touchedPredator = true;
             manageDeath(true);
+        }
+        else if (other.tag == "Partner" && !foundPartner)
+        {
+            foundPartner = true;
+            SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive).completed += unloadCurrentScenes;
+        }
     }
 
     void increaseSpeedModifier(float amount)

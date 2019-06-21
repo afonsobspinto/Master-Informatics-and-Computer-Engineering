@@ -80,6 +80,11 @@ public class AlphaAnimator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!loop && Input.GetKey(KeyCode.Space))
+        {
+            time = 1.0f;
+        }
+
         time += Time.deltaTime * transitionSpeed;
 
         target.color -= alphamask;

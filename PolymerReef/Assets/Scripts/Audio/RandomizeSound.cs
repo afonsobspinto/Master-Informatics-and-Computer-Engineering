@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class RandomizeSound : MonoBehaviour
 {
-    [FMODUnity.EventRef]
-    public string selectSound;
-    FMOD.Studio.EventInstance soundevent;
     private IEnumerator coroutine;
     [Header("Select time range")]
     public float lowerValue = 10f;
@@ -14,8 +11,6 @@ public class RandomizeSound : MonoBehaviour
 
     void Start()
     {
-        soundevent = FMODUnity.RuntimeManager.CreateInstance(selectSound);
-        soundevent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject.GetComponent<Transform>()));
         coroutine = PlaySound(Random.Range(lowerValue, upperValue));
         StartCoroutine(coroutine);
     }
@@ -25,12 +20,9 @@ public class RandomizeSound : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
-            FMOD.Studio.PLAYBACK_STATE fmodPbState;
-            soundevent.getPlaybackState(out fmodPbState);
-            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-            {
-                soundevent.start();
-            }
+            GameObject.Find("Audio").transform.Find("Axolotl").gameObject.SetActive(true);
+            yield return new WaitForSeconds(3);
+            GameObject.Find("Audio").transform.Find("Axolotl").gameObject.SetActive(false);
         }
     }
 }

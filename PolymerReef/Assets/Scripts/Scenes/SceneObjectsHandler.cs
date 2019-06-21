@@ -37,6 +37,9 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(false);
+
+            GameObject.Find("Camera").GetComponent<FogEffect>()._depthDistance = 63.3f;
+
         }
         else if (insideNext)
         {
@@ -46,6 +49,13 @@ public class SceneObjectsHandler : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
             sceneHandlerActivation(true);
+
+            // This should be generic but
+            if (this.sceneHandler.nextSceneIndex == 9)
+            {
+                GameObject.Find("Camera").GetComponent<FogEffect>()._depthDistance = 300;
+            }
+
         }
     }
 
@@ -74,8 +84,11 @@ public class SceneObjectsHandler : MonoBehaviour
             string subtitlesLevelNext = "SubtitlesLevel" + (this.sceneHandler.nextSceneIndex - 3);
             int diff = this.sceneHandler.nextSceneIndex - this.sceneHandler.prevSceneIndex;
             string subtitlesLevelPrevious = "SubtitlesLevel" + (this.sceneHandler.nextSceneIndex - 3 - diff);
-            GameObject.Find("Subtitles").transform.Find(subtitlesLevelNext).gameObject.SetActive(true);
-            GameObject.Find("Subtitles").transform.Find(subtitlesLevelPrevious).gameObject.SetActive(false);
+            if(GameObject.Find("PlayerUI").transform.Find("Subtitles").gameObject.activeSelf)
+            {
+                GameObject.Find("Subtitles").transform.Find(subtitlesLevelNext).gameObject.SetActive(true);
+                GameObject.Find("Subtitles").transform.Find(subtitlesLevelPrevious).gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: "event:/pl\xE1stico"
+  Event: "event:/Sound Effects/pl\xE1stico"
   PlayEvent: 2
   StopEvent: 0
   CollisionTag: 

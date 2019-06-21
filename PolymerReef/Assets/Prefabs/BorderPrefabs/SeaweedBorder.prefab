@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2476136197576254508}
-  m_Layer: 0
+  - component: {fileID: 5281783833284527102}
+  m_Layer: 9
   m_Name: SeaweedBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +49,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5281783833284527102
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476136197576254509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.3, y: 11.74, z: 3.39}
+  m_Center: {x: 50.5, y: 5.5, z: -61.6}
 --- !u!1001 &1390636800225338992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,6 +73,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorSeaweed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276661991245741416, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7007731911547359099, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
         type: 3}
@@ -140,6 +159,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimatedSeaweed (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1497208266472231639, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2494008089243410628, guid: a1783a78740997a44bb8ede11fd9161b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -195,6 +219,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2039505607389188263, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202837096876316104, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918536279758756008, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626321199004691677, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054368967826352096, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719435620439409532, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898837252016263201, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1783a78740997a44bb8ede11fd9161b, type: 3}
 --- !u!4 &54465288595118666 stripped
@@ -214,6 +273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AnimatedSeaweed (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497208266472231639, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2494008089243410628, guid: a1783a78740997a44bb8ede11fd9161b,
         type: 3}
@@ -270,6 +334,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2039505607389188263, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202837096876316104, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918536279758756008, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626321199004691677, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054368967826352096, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719435620439409532, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898837252016263201, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1783a78740997a44bb8ede11fd9161b, type: 3}
 --- !u!4 &54465288617715529 stripped
@@ -289,6 +388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniSeaweed1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241900523148826689, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4916317823823948370, guid: a4f2c5eafc5a7014aab816686e75e595,
         type: 3}
@@ -345,6 +449,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 39259793206906580, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181431516494780905, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936892852047647294, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418970364280825419, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496211732097101174, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024657820696873450, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997748540401654455, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f2c5eafc5a7014aab816686e75e595, type: 3}
 --- !u!4 &7378943221650056279 stripped
@@ -364,6 +503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniSeaweed2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879631827780297637, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6557604715958505910, guid: dc9078ee308592045b3d2ebe77f13c55,
         type: 3}
@@ -420,6 +564,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8244062381203060086, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336629948481167829, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150932318915897818, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479330137393290671, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592001016848963218, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945911931003351566, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900833420142354771, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9078ee308592045b3d2ebe77f13c55, type: 3}
 --- !u!4 &8744946482655125317 stripped
@@ -439,6 +618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coral1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934584860363076823, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7205962419192776388, guid: e2b0ea9f12c22094690a2ba34e30cf79,
         type: 3}
@@ -495,6 +679,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6940143464242417147, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103419342476028631, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2b0ea9f12c22094690a2ba34e30cf79, type: 3}
 --- !u!4 &5070411497641002542 stripped
@@ -514,6 +708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coral1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934584860363076823, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7205962419192776388, guid: e2b0ea9f12c22094690a2ba34e30cf79,
         type: 3}
@@ -570,6 +769,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6940143464242417147, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103419342476028631, guid: e2b0ea9f12c22094690a2ba34e30cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2b0ea9f12c22094690a2ba34e30cf79, type: 3}
 --- !u!4 &5070411497679100453 stripped
@@ -589,6 +798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniSeaweed2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879631827780297637, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6557604715958505910, guid: dc9078ee308592045b3d2ebe77f13c55,
         type: 3}
@@ -645,6 +859,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8244062381203060086, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336629948481167829, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150932318915897818, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479330137393290671, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592001016848963218, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945911931003351566, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900833420142354771, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9078ee308592045b3d2ebe77f13c55, type: 3}
 --- !u!4 &8744946483276363473 stripped
@@ -664,6 +913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AnimatedSeaweed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497208266472231639, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2494008089243410628, guid: a1783a78740997a44bb8ede11fd9161b,
         type: 3}
@@ -725,6 +979,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2039505607389188263, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202837096876316104, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918536279758756008, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626321199004691677, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054368967826352096, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719435620439409532, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898837252016263201, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1783a78740997a44bb8ede11fd9161b, type: 3}
 --- !u!4 &54465287868422480 stripped
@@ -744,6 +1033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AnimatedSeaweed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497208266472231639, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2494008089243410628, guid: a1783a78740997a44bb8ede11fd9161b,
         type: 3}
@@ -800,6 +1094,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2039505607389188263, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202837096876316104, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918536279758756008, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626321199004691677, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054368967826352096, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719435620439409532, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898837252016263201, guid: a1783a78740997a44bb8ede11fd9161b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1783a78740997a44bb8ede11fd9161b, type: 3}
 --- !u!4 &54465289351098916 stripped
@@ -819,6 +1148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coral2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503171349785856771, guid: b03cdba6d2371864a8a56b4061731dc1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2487974602279565584, guid: b03cdba6d2371864a8a56b4061731dc1,
         type: 3}
@@ -900,6 +1234,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorSeaweed
       objectReference: {fileID: 0}
+    - target: {fileID: 6276661991245741416, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7007731911547359099, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -980,6 +1319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniSeaweed1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8241900523148826689, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4916317823823948370, guid: a4f2c5eafc5a7014aab816686e75e595,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1035,6 +1379,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 39259793206906580, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181431516494780905, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936892852047647294, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418970364280825419, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496211732097101174, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024657820696873450, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997748540401654455, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f2c5eafc5a7014aab816686e75e595, type: 3}
 --- !u!4 &7834166708003600511 stripped
@@ -1054,6 +1433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorSeaweed (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276661991245741416, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7007731911547359099, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
         type: 3}
@@ -1135,6 +1519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coral2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1503171349785856771, guid: b03cdba6d2371864a8a56b4061731dc1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2487974602279565584, guid: b03cdba6d2371864a8a56b4061731dc1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1215,6 +1604,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniSeaweed2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7879631827780297637, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6557604715958505910, guid: dc9078ee308592045b3d2ebe77f13c55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1270,6 +1664,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8244062381203060086, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336629948481167829, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150932318915897818, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479330137393290671, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592001016848963218, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945911931003351566, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900833420142354771, guid: dc9078ee308592045b3d2ebe77f13c55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9078ee308592045b3d2ebe77f13c55, type: 3}
 --- !u!4 &792045545780840098 stripped
@@ -1289,6 +1718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniSeaweed1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241900523148826689, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4916317823823948370, guid: a4f2c5eafc5a7014aab816686e75e595,
         type: 3}
@@ -1345,6 +1779,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 39259793206906580, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181431516494780905, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936892852047647294, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418970364280825419, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496211732097101174, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024657820696873450, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997748540401654455, guid: a4f2c5eafc5a7014aab816686e75e595,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f2c5eafc5a7014aab816686e75e595, type: 3}
 --- !u!4 &2065402980313858753 stripped
@@ -1364,6 +1833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorSeaweed (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276661991245741416, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7007731911547359099, guid: 4494f684fd3a4fe4eb1b64b26743ba00,
         type: 3}

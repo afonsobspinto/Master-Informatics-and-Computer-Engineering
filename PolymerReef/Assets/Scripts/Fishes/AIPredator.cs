@@ -52,7 +52,7 @@ public class AIPredator : MonoBehaviour
     private float Chase()
     {
         direction = (player.transform.position - body.position).normalized;
-        rotation = Quaternion.LookRotation(direction, Vector3.up);
+        rotation = Quaternion.LookRotation(direction);
 
         return Time.fixedDeltaTime;
     }
@@ -68,7 +68,6 @@ public class AIPredator : MonoBehaviour
             wanderPosition.Set(
                 Random.Range(minPosition.x, maxPosition.x),
                 idlePosition.y,
-                //Random.Range(minPosition.y, maxPosition.y),
                 Random.Range(minPosition.z, maxPosition.z)
                 );
 
@@ -110,21 +109,26 @@ public class AIPredator : MonoBehaviour
 
     private bool CanSeePlayer()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        if (distance <= viewRadius)
+        if (player != null)
         {
-            Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
+            float distance = Vector3.Distance(player.transform.position, transform.position);
 
-            if (Vector3.Angle(transform.forward, dirToPlayer) <= viewAngle / 2)
+            if (distance <= viewRadius)
             {
-                if (!Physics.Raycast(transform.position, dirToPlayer, distance, obstacleMask))
+                Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
+
+                if (Vector3.Angle(transform.forward, dirToPlayer) <= viewAngle / 2)
                 {
-                    return true;
+                    if (!Physics.Raycast(transform.position, dirToPlayer, distance, obstacleMask))
+                    {
+                        return true;
+                    }
                 }
             }
-        }
 
+            return false;
+        }
         return false;
     }
 
