@@ -32,11 +32,11 @@ def get_english_tweets(screen_name):
         if tweet.lang == "en":
             eng_tweets.append(tweet)
 
-    tweets_array = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in eng_tweets]
+    tweets_array = [[tweet.id_str, tweet.created_at, tweet.user.screen_name, tweet.text.encode('ascii', 'ignore').decode('ascii')] for tweet in eng_tweets]
 
     with open('%s_tweets.csv' % screen_name, 'w') as f:
         writer = csv.writer(f)
-        writer.writerow(["id","created_at","text"])
+        writer.writerow(["id","created_at", "user", "text"])
         writer.writerows(tweets_array)
 
     pass
@@ -44,4 +44,4 @@ def get_english_tweets(screen_name):
 
 if __name__ == '__main__':
     # Username account
-    get_english_tweets("afonsobspinto")
+    get_english_tweets("TarinaLea")
