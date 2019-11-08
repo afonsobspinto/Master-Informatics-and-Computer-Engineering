@@ -1,5 +1,6 @@
-import tweepy as tw
 import csv
+import re
+import tweepy as tw
 from src.settings import *
 
 def get_english_tweets(screen_name):
@@ -30,6 +31,7 @@ def get_english_tweets(screen_name):
 
     for tweet in all_tweets:
         if tweet.lang == "en":
+            tweet.text = re.sub(r'http\S+', '', tweet.text)
             eng_tweets.append(tweet)
 
     tweets_array = [[tweet.id_str, tweet.created_at, tweet.user.screen_name, tweet.text.encode('ascii', 'ignore').decode('ascii')] for tweet in eng_tweets]
@@ -44,4 +46,4 @@ def get_english_tweets(screen_name):
 
 if __name__ == '__main__':
     # Username account
-    get_english_tweets("TarinaLea")
+    get_english_tweets("afonsobspinto")
