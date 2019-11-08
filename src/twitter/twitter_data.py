@@ -1,5 +1,5 @@
 import os
-import tweepy as tw
+import tweomepy as tw
 import pandas as pd
 
 
