@@ -1,11 +1,11 @@
 # Profile Anyone
 Have you ever wonder what your twitter feed tells about you? We will let you know
 
-##Topics
+## Topics
 - [Sentiment Analysis](https://en.wikipedia.org/wiki/Sentiment_analysis)
 - [Topic modelling](https://en.wikipedia.org/wiki/Topic_model)
 
-##Getting Started
+## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 1. Setup and activate a virtual environment  
@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```$bash
 git clone https://github.ugent.be/efallahm/ICT.git
 cd ICT
-pip install -r requirements.txt
+pipenv install 
 ```
 3. Run the tool
 `
