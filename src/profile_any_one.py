@@ -1,3 +1,6 @@
+from src.data_cleaning.data_cleaner import DataCleaner
+from src.settings import RAW_DATA
+
 if __name__ == "__main__":
     import argparse
 
@@ -6,4 +9,8 @@ if __name__ == "__main__":
                         help='the user to profile')
     args = parser.parse_args()
     user = args.user
-    print(user)
+    dc = DataCleaner(RAW_DATA)
+    dc.clean()
+    dc.save()
+    clean_df = dc.get_clean_df()
+    print(clean_df.head())

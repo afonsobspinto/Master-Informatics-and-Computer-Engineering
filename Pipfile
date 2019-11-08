@@ -6,6 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pandas = "*"
+beautifulsoup4 = "*"
+nltk = "*"
+lxml = "*"
+tweepy = "*"
+dotenv = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
