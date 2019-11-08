@@ -2,3 +2,4 @@
 src/__pycache__/
 src/data_cleaning/__pycache__/
 data/
+.env

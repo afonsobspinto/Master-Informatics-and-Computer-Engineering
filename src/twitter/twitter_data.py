@@ -1,15 +1,9 @@
-import os
-import tweomepy as tw
+import tweepy as tw
 import pandas as pd
+from src.settings import *
 
-
-consumer_key = 'HwUEqgF56skhAZhDzRMxv8M1z'
-consumer_secret = 'rUy8XFBtbMxvtNbuFIhMebvktsb9UYjRtqD0KTajRKEwwnXx43'
-access_token = '2285804160-8Rj0PMDmqUfvKUm9V7LF1kpCsqUrPlCP9WRu9Te'
-access_token_secret = 'PE1eRcRm76phpDc7G5OWmmOIplrVzHPUsvpukHKqi3d5f'
-
-auth = tw.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tw.API(auth, wait_on_rate_limit=True)
 
 # Post a tweet from Python
