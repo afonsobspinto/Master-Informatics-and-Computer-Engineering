@@ -1,27 +1,47 @@
 import tweepy as tw
-import pandas as pd
+import csv
 from src.settings import *
 
-auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-api = tw.API(auth, wait_on_rate_limit=True)
+def get_english_tweets(screen_name):
 
-# Post a tweet from Python
-# Your tweet has been posted!
+    auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    api = tw.API(auth)
 
-# Define the search term and the date_since date as variables
-search_words = "#brexit" + " -filter:retweets"
-date_since = "2019-10-10"
+    all_tweets = []
 
-# Collect tweets
-tweets = tw.Cursor(api.search,
-                   q=search_words,
-                   lang="en",
-                   since=date_since).items(5)
+    # Only allows 200 tweets at a time
+    new_tweets = api.user_timeline(screen_name = screen_name, count=200)
 
-# Collect a list of tweets
-users_locs = [[tweet.user.screen_name, tweet.user.location, tweet.text] for tweet in tweets]
+    all_tweets.extend(new_tweets)
 
-tweet_text = pd.DataFrame(data=users_locs,
-                          columns=['User', "Location", "Tweet"])
-print(tweet_text)
+    oldest = all_tweets[-1].id - 1
+
+    while len(new_tweets) > 0:
+        new_tweets = api.user_timeline(screen_name = screen_name, count=200, max_id=oldest)
+
+        all_tweets.extend(new_tweets)
+
+        oldest = all_tweets[-1].id - 1
+
+        print("...%s tweets checked..." % (len(all_tweets)))
+
+    eng_tweets = []
+
+    for tweet in all_tweets:
+        if tweet.lang == "en":
+            eng_tweets.append(tweet)
+
+    tweets_array = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in eng_tweets]
+
+    with open('%s_tweets.csv' % screen_name, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(["id","created_at","text"])
+        writer.writerows(tweets_array)
+
+    pass
+
+
+if __name__ == '__main__':
+    # Username account
+    get_english_tweets("afonsobspinto")
