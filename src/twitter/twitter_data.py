@@ -46,4 +46,4 @@ def get_english_tweets(screen_name):
 
 if __name__ == '__main__':
     # Username account
-    get_english_tweets("afonsobspinto")
+    get_english_tweets("nicktolhurst")

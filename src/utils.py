@@ -1,4 +1,4 @@
-from enum import Enum
+import enum
 
 
 class Polarity(Enum):
