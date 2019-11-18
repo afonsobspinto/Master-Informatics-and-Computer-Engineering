@@ -1,0 +1,38 @@
+******************** SETUP ******************** 
+		
+		---- REMOTE ----
+
+		1) sudo nano ~/.bashrc
+		2) scroll down:
+			a) ROS_MASTER_URI=http://REMOTE_IP:11311
+			b) ROS_HOSTNAME=REMOTE_IP
+		3) source ~/.bashrc
+
+
+		---- RASPBERRY PI ----
+
+		1) sudo nano ~/.bashrc
+		2) scroll down:
+			a) ROS_MASTER_URI=http://REMOTE_IP:11311
+			b) ROS_HOSTNAME=RASPBERRY_IP
+
+
+******************** RUN BASE ******************** 
+
+		---- REMOTE ----
+
+		1) export TURTLEBOT3_MODEL=burger
+		2) roscore
+
+
+		---- RASPBERRY PI ----
+
+		1) roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+
+******************** RUN CODE ******************** 
+
+		---- REMOTE ----
+
+		a) roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+		b) rosrun simple_controller controller.py
