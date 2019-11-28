@@ -8,7 +8,7 @@
 #define infrared_bottom_left 2
 #define ultrasone_bottom 4
 #define ultrasone_top_5
-S
+
 OLLO IROLLO;
 ros::NodeHandle nh;
 turtlebot3_msgs::SensorState cliff_msg;
