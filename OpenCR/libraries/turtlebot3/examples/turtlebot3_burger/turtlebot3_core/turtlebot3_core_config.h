@@ -24,6 +24,7 @@
 #include <std_msgs/Bool.h>
 #include <std_msgs/Empty.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/Float64.h>
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/JointState.h>
 #include <sensor_msgs/BatteryState.h>
@@ -174,6 +175,13 @@ ros::Publisher battery_state_pub("battery_state", &battery_state_msg);
 // Magnetic field
 sensor_msgs::MagneticField mag_msg;
 ros::Publisher mag_pub("magnetic_field", &mag_msg);
+
+
+
+// Self-defined message
+std_msgs::custom_msg custom_msg;
+ros::Publisher custom_msg_pub("custom_msg", &custom_msg);
+
 
 /*******************************************************************************
 * Transform Broadcaster

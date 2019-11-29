@@ -96,6 +96,16 @@ class Turtlebot3Sensor
   // led pattern
   void initLED(void);
   void setLedPattern(double linear_vel, double angular_vel);
+
+
+
+  // TODO: Self-defined sensors
+  float getLeftIRDate(void);
+  float getRightIRData(void);
+  float getBottomDistanceData(void);
+  float getTopDistanceData(void);
+
+
  private:
   sensor_msgs::Imu           imu_msg_;
   sensor_msgs::BatteryState  battery_state_msg_;

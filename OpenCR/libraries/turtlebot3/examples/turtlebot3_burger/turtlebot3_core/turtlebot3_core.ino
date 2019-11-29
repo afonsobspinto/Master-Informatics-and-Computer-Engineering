@@ -43,6 +43,12 @@ void setup()
   nh.advertise(battery_state_pub);
   nh.advertise(mag_pub);
 
+  // Self-defined advertisements
+  nh.advertise(leftIR_pub);
+  nh.advertise(rightIR_pub);
+  nh.advertise(bottomDist_pub);
+  nh.advertise(topDist_pub);
+
   tf_broadcaster.init(nh);
 
   // Setting for Dynamixel motors
@@ -59,6 +65,15 @@ void setup()
 
   // Setting for SLAM and navigation (odometry, joint states, TF)
   initOdom();
+
+
+
+
+  // Self-defined sensors
+
+
+
+  
 
   initJointStates();
 
@@ -100,7 +115,8 @@ void loop()
 
   if ((t-tTime[2]) >= (1000 / DRIVE_INFORMATION_PUBLISH_FREQUENCY))
   {
-    publishSensorStateMsg();
+    // publishSensorStateMsg();
+    publishCustomMsg();
     publishBatteryStateMsg();
     publishDriveInformation();
     tTime[2] = t;
@@ -143,7 +159,8 @@ void loop()
 
   // TODO
   // Update sonar data
-  // sensors.updateSonar(t);
+  // sensors.updateSonar(t)
+
 
   // Start Gyro Calibration after ROS connection
   updateGyroCali(nh.connected());
@@ -252,6 +269,7 @@ void publishMagMsg(void)
   mag_pub.publish(&mag_msg);
 }
 
+
 /*******************************************************************************
 * Publish msgs (sensor_state: bumpers, cliffs, buttons, encoders, battery)
 *******************************************************************************/
@@ -283,6 +301,33 @@ void publishSensorStateMsg(void)
   sensor_state_msg.torque = motor_driver.getTorque();
 
   sensor_state_pub.publish(&sensor_state_msg);
+
+}
+
+/*******************************************************************************
+* Custom msgs (sensor_state: leftIR, rightIR, bottomDist, topDist)
+*   // Self-defined sensor functions:        libraries/turtlebot3/include/turtlebot3
+*   // Self-defined sensor implementations:  libraries/turtlebot3/src/turtlebot3
+*******************************************************************************/
+void publishCustomMsg(void)
+{
+  custom_msg.header.stamp = rosNow();
+  custom_msg.left_infrared = sensors.getLeftIRData();
+  custom_msg.right_infrared = sensors.getRightIRData();
+  custom_msg.bottom_distance = sensors.getBottomDistanceData();
+  custom_msg.top_distance = sensors.getTopDistanceData();
+  
+  custom_msg_pub.publish(&custom_msg);
+  
+  
+  //bool dxl_comm_result = false;
+  //dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
+
+  //if (dxl_comm_result == true)
+  //  updateMotorInfo(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
+  //else
+  //  return;
+ 
 }
 
 /*******************************************************************************

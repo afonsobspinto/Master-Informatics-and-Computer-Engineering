@@ -321,6 +321,40 @@ float Turtlebot3Sensor::getIRsensorData(void)
   return ir_data;
 }
 
+
+
+
+
+
+// Self-Defined sensor functions
+// TODO: hint, look at the getIRsensorData, updateSonar en getSonarData functions
+float Turtlebot3Sensor::getLeftIRDate(void)
+{
+  return 0;
+}
+float Turtlebot3Sensor::getRightIRData(void)
+{
+  return 0;
+}
+float Turtlebot3Sensor::getBottomDistanceData(void)
+{
+  return 0;
+}
+float Turtlebot3Sensor::getTopDistanceData(void)
+{
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
 void Turtlebot3Sensor::initSonar(void)
 {
   sonar_pin_.trig = BDPIN_GPIO_1;
