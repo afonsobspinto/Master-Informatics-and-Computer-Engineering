@@ -1,4 +1,5 @@
 from navigation.grid import Grid, GridType
+from navigation.utils.astar import astar
 from navigation.utils.position import Position
 
 
@@ -15,10 +16,9 @@ class Robot:
             self._find_path()
 
     def _find_path(self):
-        self.path = [
-            Position(5, 4), Position(5, 3), Position(5, 2),
-            Position(4, 2), Position(3, 2), Position(2, 2)
-            ]
+        self.path = astar(self.grid.grid,
+                          self.current_position,
+                          self.current_target)
 
     def move(self):
         for next_pos in self.path:
