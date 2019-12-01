@@ -22,6 +22,8 @@ class Node:
         return self.position == other.position
 
 
+# todo: report impossible scenarios
+
 def astar(maze, start, end):
     """Returns a list of positions as a path from the given start to the given end in the given maze"""
 
@@ -74,7 +76,7 @@ def astar(maze, start, end):
                 continue
 
             # Make sure walkable terrain
-            if maze[node_position.row][node_position.col] == GridType.OBSTACLE:
+            if maze[node_position.col][node_position.row] == GridType.OBSTACLE.value:
                 continue
 
             # Create new node
@@ -94,7 +96,7 @@ def astar(maze, start, end):
             # Create the f, g, and h values
             child.g = current_node.g + 1
             child.h = ((child.position.row - end_node.position.row) ** 2) + (
-                        (child.position.col - end_node.position.col) ** 2)
+                    (child.position.col - end_node.position.col) ** 2)
             child.f = child.g + child.h
 
             # Child is already in the open list
