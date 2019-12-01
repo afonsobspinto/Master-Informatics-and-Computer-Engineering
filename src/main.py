@@ -1,5 +1,4 @@
-from Infrared import *
-from Grid import *
+from sensors.infrared import *
 
 
 def setup():

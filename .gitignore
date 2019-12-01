@@ -1,0 +1,4 @@
+.idea
+src/__pycache__/
+src/navigation/utils/__pycache__/
+src/navigation/__pycache__/
