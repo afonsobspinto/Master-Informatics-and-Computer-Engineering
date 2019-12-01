@@ -22,7 +22,9 @@ class Node:
         return self.position == other.position
 
 
-# todo: report impossible scenarios
+class ContinueOuter(Exception):
+    pass
+
 
 def astar(maze, start, end):
     """Returns a list of positions as a path from the given start to the given end in the given maze"""
@@ -79,6 +81,10 @@ def astar(maze, start, end):
             if maze[node_position.col][node_position.row] == GridType.OBSTACLE.value:
                 continue
 
+            # Make sure neighbour is not in the closed list
+            if Node(current_node, node_position) in closed_list:
+                continue
+
             # Create new node
             new_node = Node(current_node, node_position)
 
@@ -88,10 +94,13 @@ def astar(maze, start, end):
         # Loop through children
         for child in children:
 
-            # Child is on the closed list
-            for closed_child in closed_list:
-                if child == closed_child:
-                    continue
+            try:
+                # Child is on the closed list
+                for closed_child in closed_list:
+                    if child == closed_child:
+                        raise ContinueOuter()
+            except ContinueOuter:
+                continue
 
             # Create the f, g, and h values
             child.g = current_node.g + 1
@@ -99,10 +108,13 @@ def astar(maze, start, end):
                     (child.position.col - end_node.position.col) ** 2)
             child.f = child.g + child.h
 
-            # Child is already in the open list
-            for open_node in open_list:
-                if child == open_node and child.g > open_node.g:
-                    continue
+            try:
+                # Child is already in the open list
+                for open_node in open_list:
+                    if child == open_node and child.g > open_node.g:
+                        raise ContinueOuter()
+            except ContinueOuter:
+                continue
 
             # Add the child to the open list
             open_list.append(child)

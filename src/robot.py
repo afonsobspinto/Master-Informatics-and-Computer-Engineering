@@ -21,7 +21,8 @@ class Robot:
                           self.current_target)
 
     def move(self):
-        for next_pos in self.path:
-            self.grid.set_pos(next_pos, GridType.ROBOT, self.current_position)
-            self.current_position = next_pos
+        if self.path:
+            for next_pos in self.path:
+                self.grid.set_pos(next_pos, GridType.ROBOT, self.current_position)
+                self.current_position = next_pos
 

@@ -28,7 +28,7 @@ class Grid:
             self.grid[old_position.col][old_position.row] = old_grid_type.value
         if DEBUG:
             plt.imshow(self.grid)
-            plt.pause(1)
+            plt.pause(0.4)
 
     def get_pos(self, position):
         return self.grid[position.col][position.row]
