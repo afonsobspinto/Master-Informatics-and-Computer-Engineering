@@ -9,10 +9,10 @@ from settings import DEBUG
 
 
 class GridType(Enum):
-    SPACE = 1.0
-    OBSTACLE = 2.0
-    ROBOT = 3.0
-    TARGET = 4.0
+    SPACE = 0.0
+    OBSTACLE = 0.1
+    ROBOT = -0.1
+    TARGET = 0.05
 
 
 class Grid:
@@ -30,7 +30,6 @@ class Grid:
         self.set_pos(robot_pos, GridType.ROBOT)
 
     def update_visual(self, i):
-        print(i)
         self.matrix.set_array(self.grid)
 
     def set_pos(self, position, grid_type, old_position=None, old_grid_type=GridType.SPACE):
@@ -40,6 +39,7 @@ class Grid:
             self.grid[old_position.col][old_position.row] = old_grid_type.value
         if DEBUG:
             plt.draw()
+            plt.pause(0.3)
 
         return shift
 

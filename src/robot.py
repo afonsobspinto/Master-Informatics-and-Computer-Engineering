@@ -23,7 +23,6 @@ class Robot:
         if self.current_target != target_pos:
             self.current_target = target_pos
             shift = self.grid.set_pos(self.current_target, GridType.TARGET)
-            print("fsf")
             self._update_positions(shift)
             self._find_path()
 
@@ -43,6 +42,7 @@ class Robot:
                 # todo: add way to show orientation in plot
                 print(self.orientation.value)
                 # todo: rotate bot + move
+
                 self.grid.set_pos(next_pos, GridType.ROBOT, self.current_position)
                 self.current_position = next_pos
 
