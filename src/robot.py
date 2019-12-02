@@ -17,7 +17,7 @@ class Robot:
         self._init_sensors()
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self), Ultrasound(self)]
+        self.sensors = [Infrared(self)]
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:

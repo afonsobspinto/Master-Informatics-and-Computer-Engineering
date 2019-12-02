@@ -328,9 +328,11 @@ float Turtlebot3Sensor::getIRsensorData(void)
 
 // Self-Defined sensor functions
 // TODO: hint, look at the getIRsensorData, updateSonar en getSonarData functions
-float Turtlebot3Sensor::getLeftIRDate(void)
+float Turtlebot3Sensor::getLeftIRData(void)
 {
-  return 0;
+  // float ir_left = ollo_.read(1,IR_SENSOR)
+  float ir_left = analogRead(A0);
+  return ir_left;
 }
 float Turtlebot3Sensor::getRightIRData(void)
 {
