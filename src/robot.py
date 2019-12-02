@@ -5,7 +5,7 @@ from navigation.utils.orientation import ORIENTATION
 from navigation.utils.position import Position
 from sensors.infrared import Infrared
 from sensors.ultrasound import Ultrasound
-
+	
 
 class Robot:
     def __init__(self, initial_position=Position(25, 25), rows=50):
@@ -23,6 +23,7 @@ class Robot:
         if self.current_target != target_pos:
             self.current_target = target_pos
             shift = self.grid.set_pos(self.current_target, GridType.TARGET)
+            print("fsf")
             self._update_positions(shift)
             self._find_path()
 
@@ -46,11 +47,13 @@ class Robot:
                 self.current_position = next_pos
 
     def set_cliff(self):
-        distance_tuple = (self.orientation[0] * self.grid.scaling, self.orientation[1] * self.grid.scaling)
+        distance_tuple = (self.orientation.value[0] * self.grid.scaling, self.orientation.value[1] * self.grid.scaling)
         cliff_pos = self.current_position + distance_tuple
         self.grid.set_pos(cliff_pos, GridType.OBSTACLE)
+        self._find_path()
 
     def set_obstacle(self, distance):
-        distance_tuple = (self.orientation[0] * distance * self.grid.scaling, self.orientation[1] * distance * self.grid.scaling)
+        distance_tuple = (self.orientation.value[0] * distance * self.grid.scaling, self.orientation.value[1] * distance * self.grid.scaling)
         obstacle_pos = self.current_position + distance_tuple
         self.grid.set_pos(obstacle_pos, GridType.OBSTACLE)
+        self._find_path()

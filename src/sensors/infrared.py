@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #################################################################################
 # Copyright 2018 ROBOTIS CO., LTD.
 #
@@ -29,21 +29,16 @@ class Infrared:
         self.robot = robot
         self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
         self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handle, queue_size=1)
-	self.cliff()
+        self.cliff()
 
     def handle(self, sensor):
         if sensor.cliff > self.THRESHOLD:
-            # todo: stop robot
-            self.robot.set_cliff()
-        print("Value: ", sensor.cliff)
-        twist = Twist()
-        if sensor.cliff > THRESHOLD:
+            # Todo: stop robot + ROTATION!
             linear_vel = 0
-        else:
-            linear_vel = 0.05
-       
-        twist.linear.x = linear_vel
-        self.cmd_pub.publish(twist)
+            self.robot.set_cliff()
+            twist = Twist()
+            twist.linear.x = linear_vel
+            self.cmd_pub.publish(twist)
 
     def cliff(self):
         pass
