@@ -13,7 +13,13 @@ class Robot:
     def set_target(self, target_pos):
         if self.current_target != target_pos:
             self.current_target = target_pos
+            shift = self.grid.set_pos(self.current_target, GridType.TARGET)
+            self._update_positions(shift)
             self._find_path()
+
+    def _update_positions(self, shift):
+        self.current_position.row += shift
+        self.current_position.col += shift
 
     def _find_path(self):
         self.path = astar(self.grid.grid,
