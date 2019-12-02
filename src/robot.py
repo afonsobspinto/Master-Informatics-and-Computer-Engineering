@@ -17,7 +17,7 @@ class Robot:
         self._init_sensors()
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self), Ultrasound()]
+        self.sensors = [Infrared(self), Ultrasound(self)]
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:
@@ -39,10 +39,18 @@ class Robot:
         if self.path:
             for next_pos in self.path:
                 self.orientation = self.current_position.get_orientation(next_pos)
+                # todo: add way to show orientation in plot
                 print(self.orientation.value)
+                # todo: rotate bot + move
                 self.grid.set_pos(next_pos, GridType.ROBOT, self.current_position)
                 self.current_position = next_pos
 
     def set_cliff(self):
-        cliff_pos = self.current_position + self.orientation * self.grid.scaling
+        distance_tuple = (self.orientation[0] * self.grid.scaling, self.orientation[1] * self.grid.scaling)
+        cliff_pos = self.current_position + distance_tuple
         self.grid.set_pos(cliff_pos, GridType.OBSTACLE)
+
+    def set_obstacle(self, distance):
+        distance_tuple = (self.orientation[0] * distance * self.grid.scaling, self.orientation[1] * distance * self.grid.scaling)
+        obstacle_pos = self.current_position + distance_tuple
+        self.grid.set_pos(obstacle_pos, GridType.OBSTACLE)

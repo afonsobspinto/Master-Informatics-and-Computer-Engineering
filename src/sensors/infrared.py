@@ -33,7 +33,7 @@ class Infrared:
     def handle(self, sensor):
         if sensor.data > self.THRESHOLD:
             # todo: stop robot
-            self.robot.set_obstacle()
+            self.robot.set_cliff()
         # print("Value: ", sensor.data)
         # twist = Twist()
         # if sensor.data < 1000:

@@ -1,15 +1,20 @@
 class Ultrasound:
-	def __init__(self):
-		pass
-		# self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
-		# self.ultrasound_sub = rospy.Subscriber('ultrasound', SensorState, self.handleUltrasound, queue_size = 1)
-		# self.ultrasound()
+    THRESHOLD = 500
 
-	def ultrasound(self):
-		pass
-		# rate = rospy.Rate(10)
-		# while not rospy.is_shutdown():
-		# 	rate.sleep()
+    def __init__(self, robot):
+        self.robot = robot
+        pass
 
-	def handle(self, sensor):
-		pass
+    # self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
+    # self.ultrasound_sub = rospy.Subscriber('ultrasound', SensorState, self.handle, queue_size = 1)
+    # self.ultrasound()
+
+    def handle(self, sensor):
+        if sensor.data > self.THRESHOLD:
+            self.robot.set_obstacle(sensor.data)
+
+    def ultrasound(self):
+        pass
+        # rate = rospy.Rate(10)
+        # while not rospy.is_shutdown():
+        # 	rate.sleep()
