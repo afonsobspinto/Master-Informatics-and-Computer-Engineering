@@ -1,9 +1,7 @@
 import collections
-
-import matplotlib.pyplot as plt
 from enum import Enum
 
-import numpy
+import matplotlib.pyplot as plt
 from matplotlib import colors
 
 from settings import DEBUG
@@ -17,7 +15,6 @@ class GridType(Enum):
 
 
 class Grid:
-
     def __init__(self, robot_pos, rows, scaling=1):
         if DEBUG:
             self.cmap = colors.ListedColormap(['white', 'black', 'blue', 'red'])
