@@ -100,7 +100,7 @@ class Turtlebot3Sensor
 
 
   // TODO: Self-defined sensors
-  float getLeftIRDate(void);
+  float getLeftIRData(void);
   float getRightIRData(void);
   float getBottomDistanceData(void);
   float getTopDistanceData(void);

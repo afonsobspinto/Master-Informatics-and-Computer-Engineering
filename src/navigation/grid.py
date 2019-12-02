@@ -1,8 +1,9 @@
 import collections
 from enum import Enum
 
-import matplotlib.pyplot as plt
 from matplotlib import colors
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 from settings import DEBUG
 
@@ -16,16 +17,21 @@ class GridType(Enum):
 
 class Grid:
     def __init__(self, robot_pos, rows, scaling=1):
-        if DEBUG:
-            self.cmap = colors.ListedColormap(['white', 'black', 'blue', 'red'])
-            bounds = [0, 1.5, 2.5, 3.5, 4.5]
-            self.norm = colors.BoundaryNorm(bounds, self.cmap.N)
         self.rows = rows
         self.scaling = scaling
         self.grid = collections.deque(
             [collections.deque([GridType.SPACE.value for _ in range(self.rows + 1)]) for i in range(self.rows + 1)]
         )
+        if DEBUG:
+            fig, ax = plt.subplots()
+            self.matrix = ax.matshow(self.grid)
+            plt.colorbar(self.matrix)
+            self.ani = animation.FuncAnimation(fig, self.update_visual, interval=500)
         self.set_pos(robot_pos, GridType.ROBOT)
+
+    def update_visual(self, i):
+        print(i)
+        self.matrix.set_array(self.grid)
 
     def set_pos(self, position, grid_type, old_position=None, old_grid_type=GridType.SPACE):
         shift = self._check_boundaries(position)
@@ -33,8 +39,8 @@ class Grid:
         if old_position:
             self.grid[old_position.col][old_position.row] = old_grid_type.value
         if DEBUG:
-            plt.imshow(self.grid, cmap=self.cmap, norm=self.norm)
-            plt.pause(0.4)
+            plt.draw()
+
         return shift
 
     def _check_boundaries(self, position):

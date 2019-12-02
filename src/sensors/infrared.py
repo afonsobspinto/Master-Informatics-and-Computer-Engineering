@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #################################################################################
 # Copyright 2018 ROBOTIS CO., LTD.
 #
@@ -17,46 +17,33 @@
 
 # Authors: Gilbert #
 
-# import rospy
-# from geometry_msgs.msg import Twiste
-# from turtlebot3_msgs.msg import SensorState
+import rospy
+from geometry_msgs.msg import Twist
+from turtlebot3_msgs.msg import SensorState
 
 
 class Infrared:
-    THRESHOLD = 1000
+    THRESHOLD = 800
 
     def __init__(self, robot):
         self.robot = robot
-        # self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
-        # self.infrared_sub = rospy.Subscriber('infrared', SensorState, self.handle, queue_size=1)
+        self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
+        self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handle, queue_size=1)
+        self.cliff()
 
     def handle(self, sensor):
-        if sensor.data > self.THRESHOLD:
-            # todo: stop robot
+        if sensor.cliff > self.THRESHOLD:
+            # Todo: stop robot + ROTATION!
+            linear_vel = 0
             self.robot.set_cliff()
-        # print("Value: ", sensor.data)
-        # twist = Twist()
-        # if sensor.data < 1000:
-        #     linear_vel = 0
-        # else:
-        #     linear_vel = 0.05
-        #
-        # twist.linear.x = linear_vel        # print("Value: ", sensor.data)
-        # twist = Twist()
-        # if sensor.data < 1000:
-        #     linear_vel = 0
-        # else:
-        #     linear_vel = 0.05
-        #
-        # twist.linear.x = linear_vel
-        # self.cmd_pub.publish(twist)
-
-        # self.cmd_pub.publish(twist)
+            twist = Twist()
+            twist.linear.x = linear_vel
+            self.cmd_pub.publish(twist)
 
     def cliff(self):
         pass
-        # rate = rospy.Rate(10)
-        # while not rospy.is_shutdown():
-        #     rate.sleep()
+        rate = rospy.Rate(10)
+        while not rospy.is_shutdown():
+            rate.sleep()
 
 

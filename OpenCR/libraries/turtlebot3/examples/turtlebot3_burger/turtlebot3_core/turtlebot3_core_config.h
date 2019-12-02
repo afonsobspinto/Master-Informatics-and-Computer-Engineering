@@ -36,9 +36,9 @@
 #include <nav_msgs/Odometry.h>
 
 #include <turtlebot3_msgs/SensorState.h>
+//#include <turtlebot3_msgs/custom_msg.h>
 #include <turtlebot3_msgs/Sound.h>
 #include <turtlebot3_msgs/VersionInfo.h>
-
 #include <TurtleBot3.h>
 #include "turtlebot3_burger.h"
 
@@ -179,8 +179,8 @@ ros::Publisher mag_pub("magnetic_field", &mag_msg);
 
 
 // Self-defined message
-std_msgs::custom_msg custom_msg;
-ros::Publisher custom_msg_pub("custom_msg", &custom_msg);
+//turtlebot3_msgs::custom_msg custom_msg;
+//ros::Publisher custom_msg_pub("custom_msg", &custom_msg);
 
 
 /*******************************************************************************

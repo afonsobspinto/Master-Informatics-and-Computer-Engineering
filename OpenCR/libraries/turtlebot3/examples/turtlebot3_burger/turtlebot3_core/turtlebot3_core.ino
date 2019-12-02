@@ -43,12 +43,6 @@ void setup()
   nh.advertise(battery_state_pub);
   nh.advertise(mag_pub);
 
-  // Self-defined advertisements
-  nh.advertise(leftIR_pub);
-  nh.advertise(rightIR_pub);
-  nh.advertise(bottomDist_pub);
-  nh.advertise(topDist_pub);
-
   tf_broadcaster.init(nh);
 
   // Setting for Dynamixel motors
@@ -115,8 +109,8 @@ void loop()
 
   if ((t-tTime[2]) >= (1000 / DRIVE_INFORMATION_PUBLISH_FREQUENCY))
   {
-    // publishSensorStateMsg();
-    publishCustomMsg();
+    publishSensorStateMsg();
+    //publishCustomMsg();
     publishBatteryStateMsg();
     publishDriveInformation();
     tTime[2] = t;
@@ -289,7 +283,8 @@ void publishSensorStateMsg(void)
 
   sensor_state_msg.bumper = sensors.checkPushBumper();
 
-  sensor_state_msg.cliff = sensors.getIRsensorData();
+  //sensor_state_msg.cliff = sensors.getIRsensorData();
+  sensor_state_msg.cliff = sensors.getLeftIRData();
 
   // TODO
   // sensor_state_msg.sonar = sensors.getSonarData();
@@ -309,7 +304,7 @@ void publishSensorStateMsg(void)
 *   // Self-defined sensor functions:        libraries/turtlebot3/include/turtlebot3
 *   // Self-defined sensor implementations:  libraries/turtlebot3/src/turtlebot3
 *******************************************************************************/
-void publishCustomMsg(void)
+/*void publishCustomMsg(void)
 {
   custom_msg.header.stamp = rosNow();
   custom_msg.left_infrared = sensors.getLeftIRData();
@@ -328,7 +323,7 @@ void publishCustomMsg(void)
   //else
   //  return;
  
-}
+}*/
 
 /*******************************************************************************
 * Publish msgs (version info)
