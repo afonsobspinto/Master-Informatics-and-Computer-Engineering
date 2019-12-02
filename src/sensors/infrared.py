@@ -41,9 +41,8 @@ class Infrared:
             self.cmd_pub.publish(twist)
 
     def cliff(self):
-        pass
         rate = rospy.Rate(10)
-        while not rospy.is_shutdown():
-            rate.sleep()
+        #while not rospy.is_shutdown():
+            #rate.sleep()
 
 
