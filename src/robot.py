@@ -1,15 +1,15 @@
-
+from communication.communication import Communication
 from navigation.grid import Grid, GridType
 from navigation.utils.astar import astar
 from navigation.utils.orientation import ORIENTATION
 from navigation.utils.position import Position
 from sensors.infrared import Infrared
-from sensors.ultrasound import Ultrasound
 
 
 class Robot:
     def __init__(self, initial_position=Position(25, 25), rows=50):
         self.orientation = ORIENTATION.UP
+        self.communication = Communication()
         self.current_position = initial_position
         self.grid = Grid(self.current_position, rows)
         self.current_target = None
@@ -47,6 +47,7 @@ class Robot:
                 self.current_position = next_pos
 
     def set_cliff(self):
+        self.communication.stop_robot()
         distance_tuple = (self.orientation.value[0] * self.grid.scaling, self.orientation.value[1] * self.grid.scaling)
         cliff_pos = self.current_position + distance_tuple
         self.grid.set_pos(cliff_pos, GridType.OBSTACLE)

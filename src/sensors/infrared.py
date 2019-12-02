@@ -21,24 +21,21 @@ import rospy
 from geometry_msgs.msg import Twist
 from turtlebot3_msgs.msg import SensorState
 
+from communication.communication import Communication
+
 
 class Infrared:
     THRESHOLD = 800
 
     def __init__(self, robot):
         self.robot = robot
-        self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
         self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handle, queue_size=1)
         self.cliff()
 
     def handle(self, sensor):
         if sensor.cliff > self.THRESHOLD:
             # Todo: stop robot + ROTATION!
-            linear_vel = 0
             self.robot.set_cliff()
-            twist = Twist()
-            twist.linear.x = linear_vel
-            self.cmd_pub.publish(twist)
 
     def cliff(self):
         rate = rospy.Rate(10)
