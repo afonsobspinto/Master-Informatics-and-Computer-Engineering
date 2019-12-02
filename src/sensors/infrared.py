@@ -41,7 +41,16 @@ class Infrared:
         # else:
         #     linear_vel = 0.05
         #
+        # twist.linear.x = linear_vel        # print("Value: ", sensor.data)
+        # twist = Twist()
+        # if sensor.data < 1000:
+        #     linear_vel = 0
+        # else:
+        #     linear_vel = 0.05
+        #
         # twist.linear.x = linear_vel
+        # self.cmd_pub.publish(twist)
+
         # self.cmd_pub.publish(twist)
 
     def cliff(self):

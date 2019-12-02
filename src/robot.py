@@ -1,3 +1,4 @@
+from enum import Enum
 
 from navigation.grid import Grid, GridType
 from navigation.utils.astar import astar
@@ -49,8 +50,11 @@ class Robot:
         distance_tuple = (self.orientation[0] * self.grid.scaling, self.orientation[1] * self.grid.scaling)
         cliff_pos = self.current_position + distance_tuple
         self.grid.set_pos(cliff_pos, GridType.OBSTACLE)
+        self._find_path()
 
     def set_obstacle(self, distance):
-        distance_tuple = (self.orientation[0] * distance * self.grid.scaling, self.orientation[1] * distance * self.grid.scaling)
+        distance_tuple = (
+        self.orientation[0] * distance * self.grid.scaling, self.orientation[1] * distance * self.grid.scaling)
         obstacle_pos = self.current_position + distance_tuple
         self.grid.set_pos(obstacle_pos, GridType.OBSTACLE)
+        self._find_path()
