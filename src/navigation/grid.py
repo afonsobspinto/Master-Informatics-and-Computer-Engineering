@@ -39,7 +39,6 @@ class Grid:
             self.grid[old_position.col][old_position.row] = old_grid_type.value
         if DEBUG:
             plt.draw()
-            plt.pause(0.3)
 
         return shift
 
