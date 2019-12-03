@@ -17,6 +17,10 @@ class Position:
         if isinstance(other, tuple):
             return Position(self.row + other[0], self.col + other[1])
 
+    def __str__(self):
+        return "Row: " + str(self.row) + " | Col: " + str(self.col)
+
+
     def get_orientation(self, next_pos):
         max_axis = abs(max(next_pos.row-self.row, next_pos.col - self.col))
         if max_axis == 0: max_axis = 1

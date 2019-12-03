@@ -33,13 +33,14 @@ class Infrared:
         self.cliff()
 
     def handle(self, sensor):
-        if sensor.cliff > self.THRESHOLD and ((self.robot.orientation + self.robot.current_position) == self.robot.next_pos):
+        if sensor.cliff > self.THRESHOLD and (self.robot.current_position + self.robot.orientation.value == self.robot.next_pos):
             # TODO: only stop when next_pos is on path
             self.robot.communication.proceed = False
-            self.robot.set_cliff()
+
 
     def cliff(self):
-        rate = rospy.Rate(10)
+        #rate = rospy.Rate(1)
+        pass
         #while not rospy.is_shutdown():
             #rate.sleep()
 

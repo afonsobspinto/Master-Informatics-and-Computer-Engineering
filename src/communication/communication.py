@@ -11,7 +11,7 @@ class Communication:
         self.proceed = True
 
     def move_robot(self, linear, angular):
-        if(proceed):
+        if(self.proceed):
             twist = Twist()
             twist.linear.x = -linear[0]
             twist.linear.y = -linear[1]
@@ -24,9 +24,10 @@ class Communication:
             self.stop_robot()
 
     def stop_robot(self):
+        print "STOP ROBOT"
         twist = Twist()
         twist.linear.x = 0
-        wist.linear.y = 0
+        twist.linear.y = 0
         twist.linear.z = 0
         twist.angular.x = 0
         twist.angular.y = 0

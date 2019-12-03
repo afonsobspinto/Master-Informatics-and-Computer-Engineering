@@ -16,9 +16,8 @@ class GridType(Enum):
 
 
 class Grid:
-    def __init__(self, robot_pos, rows, scaling=1):
+    def __init__(self, robot_pos, rows):
         self.rows = rows
-        self.scaling = scaling
         self.grid = collections.deque(
             [collections.deque([GridType.SPACE.value for _ in range(self.rows + 1)]) for i in range(self.rows + 1)]
         )
@@ -39,6 +38,7 @@ class Grid:
             self.grid[old_position.col][old_position.row] = old_grid_type.value
         if DEBUG:
             plt.draw()
+            plt.pause(0.3)
 
         return shift
 
