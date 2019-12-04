@@ -11,11 +11,13 @@ from navigation.utils.position import Position
 from sensors.infrared import Infrared
 import math
 import rospy
+
+from sensors.ultrasound import *
 from settings import *
 
 
 class Robot:
-    def __init__(self, initial_position=Position(25, 25), rows=50,scaling=0.35):
+    def __init__(self, initial_position=Position(25, 25), rows=50,scaling=0.1):
         self.orientation = ORIENTATION.UP
         self.communication = Communication()
         self.current_position = initial_position
@@ -30,7 +32,7 @@ class Robot:
         self.odom_rot = 0
         (self.roll, self.pitch, self.theta) = (0,0,0)
         self.odom_sub = rospy.Subscriber("/odom", Odometry, self.new_odom)
-        self.rate = rospy.Rate(1)
+        self.rate = rospy.Rate(50)
 
 
 
@@ -41,7 +43,7 @@ class Robot:
 
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self)]
+        self.sensors = [Infrared(self), Ultrasound(self)]
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:
@@ -61,27 +63,38 @@ class Robot:
         for e in self.path:
             print str(e)
 
-        self.communication.proceed = True
+        self.communication.proceed = "PROCEED"
         self.move()
 
     def move(self):
         if self.path:
-            for next_pos in self.path:
+            for i, next_pos in enumerate(self.path):
                 self.next_pos = next_pos
                 self.orientation = self.current_position.get_orientation(next_pos)
                 # todo: add way to show orientation in plot
-                print "moving to next pos: " + str(next_pos.col) + "," + str(next_pos.row)
+                print "moving to next pos: " + str(next_pos.row) + "," + str(next_pos.col)
                 self._move(next_pos)
 
-                if(not self.communication.proceed):
+                if(not (self.communication.proceed=="PROCEED")):
                     break
                 # todo: rotate bot + move
 
                 self.grid.set_pos(next_pos, GridType.ROBOT, self.current_position)
                 self.current_position = next_pos
+                print "New pos:" + str(self.current_position)
+                print i
 
             # TODO: stop not from cliff
-            self.robot.set_cliff()
+            if(self.communication.proceed == "CLIFF"):
+                self.set_cliff()
+            elif (self.communication.proceed == "SONAR_BOTTOM"):
+                self.set_cliff()
+                # TODO: take bottom value and use set_distance
+            elif(self.communication.proceed == "SONAR_TOP"):
+                self.set_cliff()
+                # TODO: take top value and use set_distance
+            else:
+                self.communication.stop_robot()
 
     def _move(self, next_pos):
 
@@ -91,7 +104,9 @@ class Robot:
             angle_to_next_pos = math.atan2(inc_row, inc_col)
             diff = angle_to_next_pos-self.theta
 
-
+            #print "INCREMENT: " + str(inc_col) + " | " + str(inc_row)
+            #print "ANGLE: " + str(angle_to_next_pos)
+            #print "DIFF: " + str(diff)
             if abs(diff) > 0.2:
                 if((diff>0 and diff > math.pi) or (diff<0 and diff > -math.pi)):
                     self.communication.move_robot([0,0,0],[0,0,-0.8])
@@ -104,7 +119,7 @@ class Robot:
                 else:
                     self.communication.move_robot([0.05,0,0],[0,0,-0.1])
 
-            if((abs(inc_col) < 0.1 and abs(inc_row) < 0.1) or not self.communication.proceed):
+            if((abs(inc_col) < 0.1 and abs(inc_row) < 0.1) or not (self.communication.proceed=="PROCEED")):
                 break
 
             self.rate.sleep()

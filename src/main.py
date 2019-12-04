@@ -19,8 +19,6 @@ def setup():
     r.grid.set_pos(Position(2, 3), GridType.OBSTACLE)
     r.grid.set_pos(Position(1, 3), GridType.OBSTACLE)
     r.set_target(Position(0, 4))
-    r.move()
-
    
 
 

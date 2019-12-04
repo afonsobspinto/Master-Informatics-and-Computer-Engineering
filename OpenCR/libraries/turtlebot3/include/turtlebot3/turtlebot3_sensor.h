@@ -115,7 +115,8 @@ class Turtlebot3Sensor
   OLLO ollo_;
 
   LedPinArray led_pin_array_;
-  SonarPin sonar_pin_;
+  SonarPin sonar_pin_bottom_;
+  SonarPin sonar_pin_top_;
 
   float sonar_data_;
 };

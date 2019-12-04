@@ -8,23 +8,23 @@ from turtlebot3_msgs.msg import SensorState
 class Communication:
     def __init__(self):
         self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
-        self.proceed = True
+        self.proceed = "PROCEED"
 
     def move_robot(self, linear, angular):
-        if(self.proceed):
+        if(self.proceed == "PROCEED"):
             twist = Twist()
             twist.linear.x = -linear[0]
             twist.linear.y = -linear[1]
             twist.linear.z = -linear[2]
             twist.angular.x = angular[0]
-            twist.angular.y = angular[0]
-            twist.angular.z = angular[0]
+            twist.angular.y = angular[1]
+            twist.angular.z = angular[2]
             self.cmd_pub.publish(twist)
         else:
             self.stop_robot()
 
     def stop_robot(self):
-        print "STOP ROBOT"
+        print "STOP ROBOT DUE TO: " + self.proceed
         twist = Twist()
         twist.linear.x = 0
         twist.linear.y = 0

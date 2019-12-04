@@ -76,6 +76,8 @@ void setup()
   pinMode(LED_WORKING_CHECK, OUTPUT);
 
   setup_end = true;
+
+  sonar_counter = 0;
 }
 
 /*******************************************************************************
@@ -153,7 +155,11 @@ void loop()
 
   // TODO
   // Update sonar data
-  // sensors.updateSonar(t)
+  /*sensors.updateSonar(sonar_counter);
+  sonar_counter ++;
+  if(sonar_counter == 11){
+    sonar_counter == 0;
+  }*/
 
 
   // Start Gyro Calibration after ROS connection
@@ -272,7 +278,8 @@ void publishSensorStateMsg(void)
   bool dxl_comm_result = false;
 
   sensor_state_msg.header.stamp = rosNow();
-  sensor_state_msg.battery = sensors.checkVoltage();
+  //sensor_state_msg.battery = sensors.checkVoltage();
+  sensor_state_msg.battery = sensors.getTopDistanceData();
 
   dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
 
@@ -285,11 +292,13 @@ void publishSensorStateMsg(void)
 
   //sensor_state_msg.cliff = sensors.getIRsensorData();
   sensor_state_msg.cliff = sensors.getLeftIRData();
+  sensor_state_msg.illumination = sensors.getRightIRData();
 
   // TODO
-  // sensor_state_msg.sonar = sensors.getSonarData();
+  //sensor_state_msg.sonar = sensors.getSonarData();
+  sensor_state_msg.sonar = sensors.getBottomDistanceData();
 
-  sensor_state_msg.illumination = sensors.getIlluminationData();
+  //sensor_state_msg.illumination = sensors.getIlluminationData();
   
   sensor_state_msg.button = sensors.checkPushButton();
 

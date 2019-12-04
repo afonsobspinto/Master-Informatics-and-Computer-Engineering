@@ -51,7 +51,7 @@
 #define IMU_PUBLISH_FREQUENCY                  200  //hz
 #define CMD_VEL_PUBLISH_FREQUENCY              30   //hz
 #define DRIVE_INFORMATION_PUBLISH_FREQUENCY    30   //hz
-#define VERSION_INFORMATION_PUBLISH_FREQUENCY  1    //hz 
+#define VERSION_INFORMATION_PUBLISH_FREQUENCY  10    //hz 
 #define DEBUG_LOG_FREQUENCY                    10   //hz 
 
 #define WHEEL_NUM                        2
@@ -216,7 +216,7 @@ double  last_velocity[WHEEL_NUM]  = {0.0, 0.0};
 * Declaration for sensors
 *******************************************************************************/
 Turtlebot3Sensor sensors;
-
+uint32_t sonar_counter;
 /*******************************************************************************
 * Declaration for controllers
 *******************************************************************************/
