@@ -1,5 +1,10 @@
+import sys
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+
 from imutils import paths
+import imutils
 from os import walk
+from time import sleep
 import face_recognition
 import cv2
 
@@ -34,11 +39,13 @@ def get_label(enc):
         return pred_label
     return 'unknown'
 
-cap = cv2.VideoCapture(0)
+vs = cv2.VideoCapture(0)#VideoStream(usePiCamera=True).start()
+sleep(1.0)
 haar = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 while(True):
-    _, frame = cap.read()
+    _, frame = vs.read()
+    frame = imutils.resize(frame, width=640)
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     rects = haar.detectMultiScale(gray, scaleFactor=1.1,

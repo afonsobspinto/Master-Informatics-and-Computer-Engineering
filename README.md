@@ -3,7 +3,7 @@
 ## Collaborators ##
 * Afonso Pinto
 * Arthur Crapé
-* 
+* Kasper Zwijsen
 * 
 
 ## Project Description
