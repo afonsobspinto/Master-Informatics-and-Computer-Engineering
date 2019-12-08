@@ -1,0 +1,1 @@
+SENSORS_TOPIC = 'candybot_sensors'
