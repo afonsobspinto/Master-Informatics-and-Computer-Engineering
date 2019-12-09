@@ -21,5 +21,5 @@ class Camera:
 
     def callback(self, data):
         image = cv2.rotate(self.bridge.compressed_imgmsg_to_cv2(data, 'bgr8'), cv2.ROTATE_180)
-        data = self.turtlebot_face_recognition.process_image_show(image)
-        
+        data = self.turtlebot_face_recognition.process_image_data(image)
+

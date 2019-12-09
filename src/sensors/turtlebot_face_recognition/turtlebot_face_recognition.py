@@ -18,7 +18,7 @@ CAMERA_HEIGHT = 480
 
 class TurtlebotFaceRecognition:
     def __init__(self, train, active_learn):
-        #self.haar = cv2.CascadeClassifier('/home/kasper/Desktop/Robotics-5/src/sensors/turtlebot_face_recognition/haarcascade.xml')
+        self.haar = cv2.CascadeClassifier('/home/kasper/Desktop/Robotics-5/src/sensors/turtlebot_face_recognition/haarcascade.xml')
         self.data = {
             'encoding': [],
             'label': []
@@ -40,10 +40,10 @@ class TurtlebotFaceRecognition:
 
     def get_faces(self, image):
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        #rects = self.haar.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=10, minSize=(30,30))
-        #boxes = [(y, x + w, y + h, x) for (x, y, w, h) in rects]
-        boxes = face_recognition.face_locations(rgb, model='hog')
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        rects = self.haar.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=10, minSize=(30,30))
+        boxes = [(y, x + w, y + h, x) for (x, y, w, h) in rects]
+        #boxes = face_recognition.face_locations(rgb, model='hog')
         encodings = face_recognition.face_encodings(image, boxes)
         return list(zip(boxes, encodings))
 
@@ -65,7 +65,7 @@ class TurtlebotFaceRecognition:
         y = top + (bottom - top) / 2
         area = ((right - left) * (bottom - top))
         d = (AVERAGE_FACE_AREA * CAMERA_VOCAL_LENGTH) / area
-        dtc = (AVERAGE_FACE_AREA / area) * ((CAMERA_WIDTH / 2) - x)
+        dtc = (AVERAGE_FACE_AREA / area) * ((CAMERA_WIDTH / 2) - x) * 0.001
         return x, y, d, dtc
     
     # Processes the image and returns the calculated data:
