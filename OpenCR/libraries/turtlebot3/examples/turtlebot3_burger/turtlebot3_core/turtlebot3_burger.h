@@ -33,5 +33,6 @@
 
 #define MIN_LINEAR_VELOCITY              -MAX_LINEAR_VELOCITY  
 #define MIN_ANGULAR_VELOCITY             -MAX_ANGULAR_VELOCITY 
-
+#define SERVO_PIN  BDPIN_GPIO_5
+Servo Servo1;
 #endif  //TURTLEBOT3_BURGER_H_

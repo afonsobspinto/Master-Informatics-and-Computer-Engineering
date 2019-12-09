@@ -383,17 +383,48 @@ void Turtlebot3Sensor::initSonar(void)
   pinMode(sonar_pin_top_.echo, INPUT);
 }
 
+
+// TODO
+void Turtlebot3Sensor::updateSonar(uint32_t t){
+
+}
+/*
 void Turtlebot3Sensor::updateSonar(uint32_t t)
 {
-  /*digitalWrite(sonar_pin_.trig, HIGH);
+  static uint32_t t_time = 0;
+  static bool make_pulse = TRUE;
+  static bool get_duration = FALSE;
 
-  if (t >= 10)
+  float distance = 0.0, duration = 0.0;
+
+  if (make_pulse == TRUE)
   {
-    digitalWrite(sonar_pin_.trig, LOW);
-    float duration = pulseIn(sonar_pin_.echo, HIGH);
-    sonar_data_ = ((float)(340 * duration) / 10000) / 2; // distance
-  }*/
+    digitalWrite(sonar_pin_.trig, HIGH);
+
+    if (t - t_time >= 10)
+    {
+      digitalWrite(sonar_pin_.trig, LOW);
+
+      get_duration = TRUE;
+      make_pulse = FALSE;
+
+      t_time = t;
+    }
+  }
+
+  if (get_duration == TRUE)
+  {
+    duration = pulseIn(sonar_pin_.echo, HIGH);
+    distance = ((float)(340 * duration) / 10000) / 2;
+
+    make_pulse = TRUE;
+    get_duration = FALSE;
+  }
+
+  sonar_data_ = distance;
 }
+
+*/
 
 float Turtlebot3Sensor::getSonarData(void)
 {

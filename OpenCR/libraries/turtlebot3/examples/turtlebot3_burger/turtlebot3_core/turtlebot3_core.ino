@@ -18,6 +18,7 @@
 
 #include "turtlebot3_core_config.h"
 
+
 /*******************************************************************************
 * Setup function
 *******************************************************************************/
@@ -78,13 +79,19 @@ void setup()
   setup_end = true;
 
   sonar_counter = 0;
+  
+  Servo1.attach(SERVO_PIN);
 }
 
 /*******************************************************************************
 * Loop function
 *******************************************************************************/
 void loop()
-{
+{ 
+  Servo1.write(0);
+  delay(1000); 
+  Servo1.write(90);
+  delay(1000); 
   uint32_t t = millis();
   updateTime();
   updateVariable(nh.connected());
@@ -155,8 +162,8 @@ void loop()
 
   // TODO
   // Update sonar data
-  /*sensors.updateSonar(sonar_counter);
-  sonar_counter ++;
+  sensors.updateSonar(t);
+  /*sonar_counter ++;
   if(sonar_counter == 11){
     sonar_counter == 0;
   }*/
