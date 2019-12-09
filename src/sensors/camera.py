@@ -13,14 +13,13 @@ class Camera:
     def __init__(self, robot):
         self.robot = robot
         self.bridge = CvBridge()
-        self.turtlebot_face_recognition = TurtlebotFaceRecognition()
-        self.camera_sub = rospy.Subscriber("/raspicam_node/image/compressed", CompressedImage, self.callback, queue_size=1)
+        self.turtlebot_face_recognition = TurtlebotFaceRecognition(False, True)
+        self.camera_sub = rospy.Subscriber("/raspicam_node/image/compressed", CompressedImage, self.callback)
     
     def __del__(self):
         cv2.destroyAllWindows()
 
     def callback(self, data):
-        image = self.bridge.compressed_imgmsg_to_cv2(data, 'bgr8')
-        self.turtlebot_face_recognition.process_image(image)
-        cv2.imshow("PiCamera", image)
-        cv2.waitKey(1)
+        image = cv2.rotate(self.bridge.compressed_imgmsg_to_cv2(data, 'bgr8'), cv2.ROTATE_180)
+        data = self.turtlebot_face_recognition.process_image_show(image)
+        
