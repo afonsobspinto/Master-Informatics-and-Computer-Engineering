@@ -47,7 +47,6 @@ class TurtlebotFaceRecognition:
         return 'unknown'
     
     def process_image(self, image):
-        #cv2.putText(image, 'Turtlebot Face Recognition', (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         faces = self.get_faces(image)
         for (top, right, bottom, left), enc in faces:
             label = self.get_label(enc)

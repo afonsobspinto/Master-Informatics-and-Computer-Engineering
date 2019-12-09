@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import roslib
-roslib.load_manifest('beginner_tutorials')
 import sys
 import rospy
 import cv2
@@ -25,16 +24,3 @@ class Camera:
         self.turtlebot_face_recognition.process_image(image)
         cv2.imshow("PiCamera", image)
         cv2.waitKey(1)
-
-'''
-class Camera:
-    def __init__(self):
-        pass
-
-    def handle(self, sensor):
-        d = sensor.distance
-        id = sensor.person_id
-        ang = sensor.angle
-        if sensor.data > self.THRESHOLD:
-            self.robot.set_obstacle(sensor.data)
-'''
