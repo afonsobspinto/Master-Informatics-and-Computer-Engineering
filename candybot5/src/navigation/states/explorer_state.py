@@ -12,9 +12,9 @@ class ExplorerState(implements(StateInterface)):
 
     def __init__(self, robot):
         self.robot = robot
-        self.speed = 50
+        self.speed = 20
         self.angle = 360
-        self.clockwise = True
+        self.clockwise = False
 
     def move(self):
         log("ExplorerState move")
