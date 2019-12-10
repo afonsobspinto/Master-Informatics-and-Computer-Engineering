@@ -9,6 +9,7 @@ from navigation.utils.astar import astar
 from navigation.utils.orientation import ORIENTATION
 from navigation.utils.position import Position
 from sensors.infrared import Infrared
+from sensors.camera import Camera
 import math
 import rospy
 
@@ -43,7 +44,7 @@ class Robot:
 
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self)] #Ultrasound(self)
+        self.sensors = [Infrared(self), Camera(self)] #Ultrasound(self)
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:
