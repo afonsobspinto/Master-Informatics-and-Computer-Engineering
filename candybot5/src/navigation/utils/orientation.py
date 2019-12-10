@@ -6,8 +6,8 @@ import aenum
 class Orientation(aenum.AutoNumberEnum):
     _init_ = 'vector angle'
     FRONT = (0, 1), 0
-    BACK = (0, -1), 180
     RIGHT = (-1, 0), 90
+    BACK = (0, -1), 180
     LEFT = (1, 0), 270
 
     @staticmethod

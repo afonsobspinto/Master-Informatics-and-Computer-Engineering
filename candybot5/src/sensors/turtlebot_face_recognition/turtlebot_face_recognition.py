@@ -4,7 +4,9 @@ import imutils
 from os import walk
 from time import sleep
 import face_recognition
+import os
 import cv2
+import os
 
 # In millimeters
 AVERAGE_FACE_HEIGHT = 192.0
@@ -18,7 +20,10 @@ CAMERA_HEIGHT = 480
 
 class TurtlebotFaceRecognition:
     def __init__(self, train, active_learn):
-        self.haar = cv2.CascadeClassifier('/home/kasper/Desktop/Robotics-5/src/sensors/turtlebot_face_recognition/haarcascade.xml')
+        print "Face recognition activated"
+        print os.getcwd()
+        #self.haar = cv2.CascadeClassifier('src/candybot5/src/sensors/turtlebot_face_recognition/haarcascade.xml')
+        self.haar = cv2.CascadeClassifier('sensors/turtlebot_face_recognition/haarcascade.xml')
         self.data = {
             'encoding': [],
             'label': []
@@ -82,8 +87,15 @@ class TurtlebotFaceRecognition:
     # Processes the image and draws the data on the image.
     def process_image_show(self, image):
         faces = self.get_faces(image)
+        ret = []
         for (top, right, bottom, left), enc in faces:
+            label = self.get_label(enc)
             x, y, d, dtc = self.calculate_points(top, right, bottom, left)
-            text = self.get_label(enc) + ' ({}, {}) ({}m, {}m)'.format(x, y, round(d, 2), round(dtc, 2))
-            cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
-            cv2.putText(image, text, (left, top - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 0), 2)
+            ret.append([label, x, y, d, dtc])
+            text = label + ' ({}, {}) ({}m, {}m)'.format(x, y, round(d, 2), round(dtc, 2))
+            image=cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
+            image=cv2.putText(image, text, (left, top - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 0), 2)
+
+        cv2.imshow('', image)
+        cv2.waitKey(1)
+        return ret

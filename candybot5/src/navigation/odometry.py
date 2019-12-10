@@ -7,6 +7,7 @@ from tf.transformations import euler_from_quaternion
 
 from navigation.utils.orientation import Orientation
 from navigation.utils.position import Position
+from navigation.utils.switch_state import SwitchState
 
 
 def _converter(angle):
@@ -42,7 +43,7 @@ class RobotOdometry:
 
     def _euclidean_distance(self, next_pos):
         return round(math.sqrt(pow((next_pos.col - self.odom_pos.col), 2) +
-                         pow((next_pos.row - self.odom_pos.row), 2)), 2)
+                               pow((next_pos.row - self.odom_pos.row), 2)), 2)
 
     def move(self, next_pos, lin_speed=0.08):
         next_orientation = Orientation.get_orientation(self.robot.position, next_pos)
@@ -53,13 +54,13 @@ class RobotOdometry:
         distance = self._euclidean_distance(next_pos)
         previous_distance = 2
         failure_delta = 1
-        while distance >= self.PROXIMITY_THRESHOLD * failure_delta:
+        while distance >= self.PROXIMITY_THRESHOLD * failure_delta and self.robot.switch_state == SwitchState.REMAIN:
             # todo: apply corrections
             if self._detect_failure(previous_distance, distance):
                 self.robot.communication.stop()
                 lin_speed *= -0.9
                 failure_delta *= 1.1
-                print previous_distance-distance
+                print previous_distance - distance
             self.robot.communication.move([lin_speed, 0, 0], [0, 0, 0])
             self.robot.rate.sleep()
             previous_distance = distance
@@ -75,16 +76,16 @@ class RobotOdometry:
             return
         angle_rad = angle if rad else _converter(angle)
         angular_speed = speed * 2 * math.pi / 360
-        if angle < 0:
-            clockwise = not clockwise
         if clockwise:
             angular_speed *= -1.0
         previous_theta = self.theta
         relative_delta = 0
-        while relative_delta < abs(angle_rad) - self.PROXIMITY_THRESHOLD:
+        while relative_delta < abs(angle_rad) - self.PROXIMITY_THRESHOLD and self.robot.switch_state == SwitchState.REMAIN:
             relative_delta = self._rotate_logic(previous_theta, relative_delta)
             previous_theta = self.theta
             self.robot.communication.move([0, 0, 0], [0, 0, angular_speed])
+
+        print "STOP ROTATE"
         self.robot.communication.stop()
 
     def _rotate_logic(self, previous_theta, relative_delta):

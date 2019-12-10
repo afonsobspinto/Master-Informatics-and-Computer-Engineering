@@ -20,4 +20,5 @@ class Communication:
         self.cmd_pub.publish(twist)
 
     def stop(self):
-        self.move([0, 0, 0], [0, 0, 0])
+        for i in range(0,10):
+            self.move([0, 0, 0], [0, 0, 0])

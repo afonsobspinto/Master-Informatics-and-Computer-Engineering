@@ -7,10 +7,14 @@ from communication.communication import Communication
 from navigation.grid import Grid, GridType
 from navigation.odometry import RobotOdometry
 from navigation.states.explorer_state import ExplorerState
+from navigation.states.target_state import TargetState
+from navigation.states.Candy_state import CandyState
 from navigation.utils.astar import astar
 from navigation.utils.orientation import Orientation
 from navigation.utils.position import Position
+from navigation.utils.switch_state import SwitchState
 from sensors.infrared import Infrared
+from sensors.camera import Camera
 from sensors.sensor_state import SensorState
 
 
@@ -24,20 +28,31 @@ class Robot:
         self.communication = Communication(self)
         self.odometry = RobotOdometry(self, scaling)
         self.state = ExplorerState(self)
+        self.switch_state = SwitchState.REMAIN
         self.sensor_state = SensorState.NO_OBSTACLE
+        self.camera_data = []
         # self.path = []
         # self.next_pos = None
         # self.current_target = None
         self.rate = rospy.Rate(10)
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self)]
+        self.sensors = [Infrared(self), Camera(self)]
 
     def start(self):
         while True:
             self.state.move()
-            time.sleep(5)
-            break
+            if self.switch_state == SwitchState.TO_EXPLORER:
+                self.state = ExplorerState(self)
+                self.switch_state = SwitchState.REMAIN
+            elif self.switch_state == SwitchState.TO_TARGET:
+                self.state = TargetState(self, self.camera_data)
+                self.switch_state = SwitchState.REMAIN
+            elif self.switch_state == SwitchState.TO_CANDY:
+                self.state = CandyState(self)
+                self.switch_state = SwitchState.REMAIN
+            else:
+                pass
 
     def update_odometry(self):
         self._update_orientation()
@@ -55,7 +70,6 @@ class Robot:
             self.orientation = Orientation.BACK
         elif -math.pi * 3 / 4 <= self.odometry.theta < -math.pi / 4:
             self.orientation = Orientation.RIGHT
-
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:
@@ -116,7 +130,7 @@ class Robot:
 
     def set_obstacle(self, distance):
         distance_tuple = (
-            self.orientation.value[0] * distance / self.scaling, self.orientation.value[1] * distance / self.scaling)
+            self.orientation.value[0] * distance / self.odometry.scaling, self.orientation.value[1] * distance / self.odometry.scaling)
         obstacle_pos = self.position + distance_tuple
         self.grid.set_pos(obstacle_pos, GridType.OBSTACLE)
         self._find_path()
