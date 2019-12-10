@@ -1,4 +1,8 @@
-from navigation.utils.orientation import ORIENTATION
+from navigation.utils.orientation import Orientation
+
+
+def float_to_int(number):
+    return int(round(number))
 
 
 class Position:
@@ -20,10 +24,7 @@ class Position:
     def __str__(self):
         return "Row: " + str(self.row) + " | Col: " + str(self.col)
 
-    def get_orientation(self, next_pos):
-        max_axis = abs(max(next_pos.row - self.row, next_pos.col - self.col))
-        if max_axis == 0: max_axis = 1
-        ori = ((next_pos.row - self.row) / max_axis, (next_pos.col - self.col) / max_axis)
-        for o in ORIENTATION:
-            if ori == o.value:
-                return o
+    def to_int(self):
+        row = float_to_int(self.row)
+        col = float_to_int(self.col)
+        return Position(row, col)

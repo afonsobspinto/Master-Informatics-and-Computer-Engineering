@@ -3,12 +3,14 @@
 import rospy
 from candybot5.msg import CandybotSensors
 from sensors.sensor_state import SensorState
+from settings import log
 
 
 class Infrared:
     THRESHOLD = 800
 
     def __init__(self, robot):
+        log("Infrared activated")
         self.robot = robot
         self.infrared_sub = rospy.Subscriber('candybot_sensors', CandybotSensors, self.handler, queue_size=1)
 
