@@ -133,7 +133,7 @@
   
   <joint name="sonar_front_joint1" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 0 0" xyz="0.05 0.04 0.03" />
+    <origin rpy="0 0 0" xyz="-0.11 0.04 0.03" />
     <parent link="base_footprint"/>
     <child link="base_sonar_front1"/>
   </joint>
@@ -160,7 +160,7 @@
    
   <joint name="sonar_front_joint2" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 0 0" xyz="0.05 -0.04 0.03" />
+    <origin rpy="0 0 0" xyz="-0.11 -0.04 0.03" />
     <parent link="base_footprint"/>
     <child link="base_sonar_front2"/>
   </joint>
@@ -187,7 +187,7 @@
 
   <joint name="infrared_front_joint1" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 1.57 0" xyz="0.09 0.09 0.02" />
+    <origin rpy="0 1.57 0" xyz="-0.15 0.09 0.02" />
     <parent link="base_footprint"/>
     <child link="base_infrared_front1"/>
   </joint>
@@ -214,7 +214,7 @@
    
   <joint name="infrared_front_joint2" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 1.57 0" xyz="0.09 -0.09 0.02" />
+    <origin rpy="0 1.57 0" xyz="-0.15 -0.09 0.02" />
     <parent link="base_footprint"/>
     <child link="base_infrared_front2"/>
   </joint>

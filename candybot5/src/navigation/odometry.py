@@ -41,8 +41,8 @@ class RobotOdometry:
         self.robot.update_odometry()
 
     def _euclidean_distance(self, next_pos):
-        return math.sqrt(pow((next_pos.col - self.odom_pos.col), 2) +
-                         pow((next_pos.row - self.odom_pos.row), 2))
+        return round(math.sqrt(pow((next_pos.col - self.odom_pos.col), 2) +
+                         pow((next_pos.row - self.odom_pos.row), 2)), 2)
 
     def move(self, next_pos, lin_speed=0.08):
         next_orientation = Orientation.get_orientation(self.robot.position, next_pos)
@@ -51,14 +51,24 @@ class RobotOdometry:
         clockwise = steering_angle < 180
         self.rotate(angle, clockwise=clockwise)
         distance = self._euclidean_distance(next_pos)
-        while distance >= self.PROXIMITY_THRESHOLD:
+        previous_distance = 2
+        failure_delta = 1
+        while distance >= self.PROXIMITY_THRESHOLD * failure_delta:
             # todo: apply corrections
+            if self._detect_failure(previous_distance, distance):
+                self.robot.communication.stop()
+                lin_speed *= -0.9
+                failure_delta *= 1.1
+                print previous_distance-distance
             self.robot.communication.move([lin_speed, 0, 0], [0, 0, 0])
             self.robot.rate.sleep()
+            previous_distance = distance
             distance = self._euclidean_distance(next_pos)
-            print distance
 
         self.robot.communication.stop()
+
+    def _detect_failure(self, previous_distance, distance):
+        return previous_distance < distance
 
     def rotate(self, angle, speed=50, clockwise=True, rad=False):
         if angle == 0:

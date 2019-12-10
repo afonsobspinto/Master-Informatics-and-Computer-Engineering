@@ -1,4 +1,5 @@
 import random
+import time
 
 from interface import implements
 
@@ -17,7 +18,8 @@ class ExplorerState(implements(StateInterface)):
 
     def move(self):
         log("ExplorerState move")
-        #self._rotate()
+        self._rotate()
+        self._wait_for_odom()
         self._random_step()
         self._random_step()
         self._random_step()
@@ -29,6 +31,11 @@ class ExplorerState(implements(StateInterface)):
     def _random_step(self):
         log("ExplorerState _random_step")
         possible_steps = [e.vector for e in Orientation]
+        random.seed(time.clock())
         step = random.randint(0, len(possible_steps) - 1)
         next_pos = self.robot.position + possible_steps[step]
         self.robot.odometry.move(next_pos)
+
+    def _wait_for_odom(self):
+        while self.robot.odometry.odom_pos is None:
+            pass
