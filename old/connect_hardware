@@ -1,0 +1,19 @@
+Note:
+
+Ports listed below are the default ports implemented in ROS. Ideally, we should be able to choose the ports for ourself.
+
+******************** INFRARED ********************
+
+Sensor		-		Arduino
+VCC		->		5V  (POWER)
+GND		->		GND (POWER)
+D0		->		Robotis Pin 2 ADC (http://emanual.robotis.com/docs/en/parts/controller/opencr10/)
+A0		->		Still unknown
+
+******************** ULTRASOUND ********************
+
+Sensor		-		Arduino
+VCC		->		5V  (POWER)
+GND		->		GND (POWER)
+TRIGGER		-> 		BDPIN_GPIO_1 (http://emanual.robotis.com/docs/en/parts/controller/opencr10/)
+ECHO		->		BDPIN_GPIO_2 (http://emanual.robotis.com/docs/en/parts/controller/opencr10/)

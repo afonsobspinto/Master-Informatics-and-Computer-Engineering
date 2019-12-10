@@ -44,6 +44,8 @@ void setup()
   nh.advertise(battery_state_pub);
   nh.advertise(mag_pub);
 
+  nh.advertise(candybot_sensors_pub);
+
   tf_broadcaster.init(nh);
 
   // Setting for Dynamixel motors
@@ -61,26 +63,19 @@ void setup()
   // Setting for SLAM and navigation (odometry, joint states, TF)
   initOdom();
 
-
-
-
-  // Self-defined sensors
-
-
-
-  
-
   initJointStates();
 
   prev_update_time = millis();
 
   pinMode(LED_WORKING_CHECK, OUTPUT);
 
-  setup_end = true;
-
+  // Self-defined sensors
+  
   sonar_counter = 0;
   
   Servo1.attach(SERVO_PIN);
+
+  setup_end = true;
 }
 
 /*******************************************************************************
@@ -92,6 +87,7 @@ void loop()
   delay(1000); 
   Servo1.write(90);
   delay(1000); 
+  
   uint32_t t = millis();
   updateTime();
   updateVariable(nh.connected());
@@ -118,8 +114,9 @@ void loop()
 
   if ((t-tTime[2]) >= (1000 / DRIVE_INFORMATION_PUBLISH_FREQUENCY))
   {
+    publishCandybotMsg();
+    
     publishSensorStateMsg();
-    //publishCustomMsg();
     publishBatteryStateMsg();
     publishDriveInformation();
     tTime[2] = t;
@@ -162,12 +159,12 @@ void loop()
 
   // TODO
   // Update sonar data
-  sensors.updateSonar(t);
+  // sensors.updateSonar(t);
+  
   /*sonar_counter ++;
   if(sonar_counter == 11){
     sonar_counter == 0;
   }*/
-
 
   // Start Gyro Calibration after ROS connection
   updateGyroCali(nh.connected());
@@ -285,7 +282,6 @@ void publishSensorStateMsg(void)
   bool dxl_comm_result = false;
 
   sensor_state_msg.header.stamp = rosNow();
-  //sensor_state_msg.battery = sensors.checkVoltage();
   sensor_state_msg.battery = sensors.getTopDistanceData();
 
   dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
@@ -296,16 +292,12 @@ void publishSensorStateMsg(void)
     return;
 
   sensor_state_msg.bumper = sensors.checkPushBumper();
-
-  //sensor_state_msg.cliff = sensors.getIRsensorData();
+  
   sensor_state_msg.cliff = sensors.getLeftIRData();
+  
   sensor_state_msg.illumination = sensors.getRightIRData();
 
-  // TODO
-  //sensor_state_msg.sonar = sensors.getSonarData();
   sensor_state_msg.sonar = sensors.getBottomDistanceData();
-
-  //sensor_state_msg.illumination = sensors.getIlluminationData();
   
   sensor_state_msg.button = sensors.checkPushButton();
 
@@ -313,33 +305,26 @@ void publishSensorStateMsg(void)
 
   sensor_state_pub.publish(&sensor_state_msg);
 
+  //sensor_state_msg.battery = sensors.checkVoltage();
+  //sensor_state_msg.cliff = sensors.getIRsensorData();
+  //sensor_state_msg.sonar = sensors.getSonarData();
+  //sensor_state_msg.illumination = sensors.getIlluminationData();
+
 }
 
 /*******************************************************************************
-* Custom msgs (sensor_state: leftIR, rightIR, bottomDist, topDist)
-*   // Self-defined sensor functions:        libraries/turtlebot3/include/turtlebot3
-*   // Self-defined sensor implementations:  libraries/turtlebot3/src/turtlebot3
+* Publish custom msgs (candybot_sensors: infrared_left, infrared_right, ultrasound_left, ultrasound_right)
 *******************************************************************************/
-/*void publishCustomMsg(void)
+void publishCandybotMsg(void)
 {
-  custom_msg.header.stamp = rosNow();
-  custom_msg.left_infrared = sensors.getLeftIRData();
-  custom_msg.right_infrared = sensors.getRightIRData();
-  custom_msg.bottom_distance = sensors.getBottomDistanceData();
-  custom_msg.top_distance = sensors.getTopDistanceData();
+  candybot_sensors_msg.infrared_left = sensors.getLeftIRData();
+  candybot_sensors_msg.right_infrared = sensors.getRightIRData();
+  candybot_sensors_msg.infrared_right = sensors.getBottomDistanceData();
+  candybot_sensors_msg.ultrasound_right = sensors.getTopDistanceData();
   
-  custom_msg_pub.publish(&custom_msg);
-  
-  
-  //bool dxl_comm_result = false;
-  //dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
+  candybot_sensors_msg.publish(&custom_msg);
 
-  //if (dxl_comm_result == true)
-  //  updateMotorInfo(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
-  //else
-  //  return;
- 
-}*/
+}
 
 /*******************************************************************************
 * Publish msgs (version info)

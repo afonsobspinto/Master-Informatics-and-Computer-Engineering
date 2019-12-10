@@ -35,10 +35,10 @@
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
 
+#include <candybot/CandybotSensors.h>
 #include <Servo.h> 
 
 #include <turtlebot3_msgs/SensorState.h>
-//#include <turtlebot3_msgs/custom_msg.h>
 #include <turtlebot3_msgs/Sound.h>
 #include <turtlebot3_msgs/VersionInfo.h>
 #include <TurtleBot3.h>
@@ -146,6 +146,10 @@ ros::Subscriber<std_msgs::Empty> reset_sub("reset", resetCallback);
 /*******************************************************************************
 * Publisher
 *******************************************************************************/
+// Project sensors
+candybot5::CandybotSensors candybot_sensors_msg;
+ros::Publisher candybot_sensors_pub("candybot_sensors", &candybot_sensors_msg);
+
 // Bumpers, cliffs, buttons, encoders, battery of Turtlebot3
 turtlebot3_msgs::SensorState sensor_state_msg;
 ros::Publisher sensor_state_pub("sensor_state", &sensor_state_msg);
