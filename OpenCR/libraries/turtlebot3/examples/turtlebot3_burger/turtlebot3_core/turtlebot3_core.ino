@@ -65,7 +65,7 @@ void setup()
 
 
   // Initialize the candy servo and put it in low state
-  Candy_servo.attach(SERVO_PIN);
+  Candy_servo.attach(CANDY_SERVO_PIN);
   Candy_servo.write(candy_servo_low_state);
 
   
@@ -185,21 +185,16 @@ void loop()
 /*******************************************************************************
 * Callback function for candy_servo msg
 *******************************************************************************/
-void candyServoCallback(std_msgs::Bool& give_candy_msg){
+void candyServoCallback(const std_msgs::Bool& give_candy_msg){
   if(give_candy_msg.data){
-    if(candy_servo_low){
-        for(int i=candy_servo_low_state;i<candy_servo_high_state;i++){
-          Candy_servo.write(i);
-          delay(50);
-        }
-        candy_servo_low = false;
+    for(int i=candy_servo_low_state;i<candy_servo_high_state;i++){
+      Candy_servo.write(i);
+      delay(50);
     }
-    else{
-       for(int i=candy_servo_high_state-1;i>=candy_servo_low_state;i--){
-        Candy_servo.write(i);
-        delay(50);
-       }
-       candy_servo_low = true;
+    delay(1000);
+    for(int i=candy_servo_high_state-1;i>=candy_servo_low_state;i--){
+      Candy_servo.write(i);
+      delay(50);
     }
   }
 }

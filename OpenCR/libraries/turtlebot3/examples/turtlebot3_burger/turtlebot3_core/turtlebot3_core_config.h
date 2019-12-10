@@ -80,6 +80,7 @@ void commandVelocityCallback(const geometry_msgs::Twist& cmd_vel_msg);
 void soundCallback(const turtlebot3_msgs::Sound& sound_msg);
 void motorPowerCallback(const std_msgs::Bool& power_msg);
 void resetCallback(const std_msgs::Empty& reset_msg);
+void candyServoCallback(const std_msgs::Bool& give_candy_msg);
 
 // Function prototypes
 void publishCmdVelFromRC100Msg(void);
