@@ -15,9 +15,6 @@ def setup():
 
 
     r = Robot(Position(0, 0), rows=5)
-    r.grid.set_pos(Position(3, 0), GridType.OBSTACLE)
-    r.grid.set_pos(Position(2, 3), GridType.OBSTACLE)
-    r.grid.set_pos(Position(1, 3), GridType.OBSTACLE)
     r.set_target(Position(0, 4))
    
 

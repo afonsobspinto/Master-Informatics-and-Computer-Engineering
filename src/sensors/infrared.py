@@ -34,6 +34,7 @@ class Infrared:
 
     def handle(self, sensor):
         if (sensor.cliff > self.THRESHOLD or sensor.illumination > self.THRESHOLD ) and (self.robot.current_position + self.robot.orientation.value == self.robot.next_pos):
+            print("CLIFF DETECTED")
             # TODO: only stop when next_pos is on path
             self.robot.communication.proceed = "CLIFF"
 

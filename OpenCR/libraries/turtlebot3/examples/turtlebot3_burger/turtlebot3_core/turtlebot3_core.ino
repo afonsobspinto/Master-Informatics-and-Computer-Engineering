@@ -1,4 +1,4 @@
-/*******************************************************************************
+  /*******************************************************************************
 * Copyright 2016 ROBOTIS CO., LTD.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,9 +64,9 @@ void setup()
 
 
 
-  // Self-defined sensors
-
-
+  // Initialize the candy servo and put it in low state
+  Candy_servo.attach(SERVO_PIN);
+  Candy_servo.write(candy_servo_low_state);
 
   
 
@@ -80,18 +80,14 @@ void setup()
 
   sonar_counter = 0;
   
-  Servo1.attach(SERVO_PIN);
 }
 
 /*******************************************************************************
 * Loop function
 *******************************************************************************/
 void loop()
-{ 
-  Servo1.write(0);
-  delay(1000); 
-  Servo1.write(90);
-  delay(1000); 
+{
+
   uint32_t t = millis();
   updateTime();
   updateVariable(nh.connected());
@@ -112,6 +108,7 @@ void loop()
 
   if ((t-tTime[1]) >= (1000 / CMD_VEL_PUBLISH_FREQUENCY))
   {
+    
     publishCmdVelFromRC100Msg();
     tTime[1] = t;
   }
@@ -183,6 +180,28 @@ void loop()
 
   // Wait the serial link time to process
   waitForSerialLink(nh.connected());
+}
+
+/*******************************************************************************
+* Callback function for candy_servo msg
+*******************************************************************************/
+void candyServoCallback(std_msgs::Bool& give_candy_msg){
+  if(give_candy_msg.data){
+    if(candy_servo_low){
+        for(int i=candy_servo_low_state;i<candy_servo_high_state;i++){
+          Candy_servo.write(i);
+          delay(50);
+        }
+        candy_servo_low = false;
+    }
+    else{
+       for(int i=candy_servo_high_state-1;i>=candy_servo_low_state;i--){
+        Candy_servo.write(i);
+        delay(50);
+       }
+       candy_servo_low = true;
+    }
+  }
 }
 
 /*******************************************************************************

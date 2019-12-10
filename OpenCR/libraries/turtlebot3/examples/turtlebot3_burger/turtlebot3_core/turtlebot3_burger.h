@@ -32,7 +32,13 @@
 #define MAX_ANGULAR_VELOCITY             (MAX_LINEAR_VELOCITY / TURNING_RADIUS)       // rad/s
 
 #define MIN_LINEAR_VELOCITY              -MAX_LINEAR_VELOCITY  
-#define MIN_ANGULAR_VELOCITY             -MAX_ANGULAR_VELOCITY 
-#define SERVO_PIN  BDPIN_GPIO_5
-Servo Servo1;
+#define MIN_ANGULAR_VELOCITY             -MAX_ANGULAR_VELOCITY
+
+// Digital (PWM ~ ) Pin 9 is same as Arduino pins
+#define CANDY_SERVO_PIN  9
+Servo Candy_servo;
+bool candy_servo_low = true;
+int candy_servo_low_state = 30;
+int candy_servo_high_state = 90;
+
 #endif  //TURTLEBOT3_BURGER_H_

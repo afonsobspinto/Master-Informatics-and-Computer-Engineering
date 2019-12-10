@@ -143,6 +143,8 @@ ros::Subscriber<std_msgs::Bool> motor_power_sub("motor_power", motorPowerCallbac
 
 ros::Subscriber<std_msgs::Empty> reset_sub("reset", resetCallback);
 
+ros::Subscriber<std_msgs::Bool> candy_servo_sub("give_candy", candyServoCallback);
+
 /*******************************************************************************
 * Publisher
 *******************************************************************************/
@@ -180,9 +182,6 @@ ros::Publisher mag_pub("magnetic_field", &mag_msg);
 
 
 
-// Self-defined message
-//turtlebot3_msgs::custom_msg custom_msg;
-//ros::Publisher custom_msg_pub("custom_msg", &custom_msg);
 
 
 /*******************************************************************************
