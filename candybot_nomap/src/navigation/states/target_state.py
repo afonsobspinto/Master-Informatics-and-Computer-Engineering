@@ -24,4 +24,7 @@ class TargetState(implements(StateInterface)):
 
             self.robot.odometry.move()
 
+        print "STOP TARGET"
+        self.robot.communication.stop()
+
 

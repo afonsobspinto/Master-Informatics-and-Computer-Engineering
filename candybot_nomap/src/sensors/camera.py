@@ -21,6 +21,7 @@ class Camera:
         self.camera_sub = rospy.Subscriber("/raspicam_node/image/compressed", CompressedImage, self.callback)
         self.current_target = 0
         self.finished_targets = []
+        self.finished = False
 
     def __del__(self):
         cv2.destroyAllWindows()
@@ -30,22 +31,34 @@ class Camera:
         #data = self.turtlebot_face_recognition.process_image_data(image)
         data = self.turtlebot_face_recognition.process_image_show(image)
 
-        if data:
-            if self.robot.state.type == "ExplorerState":
-                print "set TO TARGET"
-                self.robot.switch_state = SwitchState.TO_TARGET
 
-            cur_tar = []
-            if self.current_target == 0:
-                self.current_target = data[0][0]
-            for cur in data:
-                if cur[0] == self.current_target:
-                    cur_tar = cur
-            if cur_tar:
-                goal_front = cur_tar[3]
-                goal_side = cur_tar[4]
-                self.robot.odometry.goal_front = goal_front
-                self.robot.odometry.goal_side = goal_side
+        if self.finished:
+            self.finished_targets.append(self.current_target)
+            self.current_target = 0
+            self.finished = False
+            print "FINISHED TARGETS: " + str(self.finished_targets)
+        if data:
+            for i, d in enumerate(data):
+                if(d[0] in self.finished_targets):
+                    del data[i]
+            if data:
+                cur_tar = []
+                if self.current_target == 0:
+                    self.current_target = data[0][0]
+                for cur in data:
+                    if cur[0] == self.current_target:
+                        cur_tar = cur
+                if cur_tar:
+                    if self.robot.state.type == "ExplorerState":
+                        print "set TO TARGET"
+                        self.robot.switch_state = SwitchState.TO_TARGET
+                    goal_front = cur_tar[3]
+                    goal_side = cur_tar[4]
+                    self.robot.odometry.goal_front = goal_front
+                    self.robot.odometry.goal_side = goal_side
+
+    def finished_target(self):
+        self.finished = True
 
 
 

@@ -16,6 +16,7 @@ from navigation.utils.switch_state import SwitchState
 from sensors.infrared import Infrared
 from sensors.camera import Camera
 from sensors.sensor_state import SensorState
+from navigation.states.sound_state import SoundState
 
 
 class Robot:
@@ -30,7 +31,7 @@ class Robot:
         self.rate = rospy.Rate(10)
 
     def _init_sensors(self):
-        self.sensors = [Infrared(self), Camera(self)]
+        self.sensors = [Camera(self), Infrared(self)]
 
     def start(self):
         while True:
@@ -43,6 +44,9 @@ class Robot:
                 self.switch_state = SwitchState.REMAIN
             elif self.switch_state == SwitchState.TO_CANDY:
                 self.state = CandyState(self)
+                self.switch_state = SwitchState.REMAIN
+            elif self.switch_state == SwitchState.TO_SOUND:
+                self.state = SoundState(self)
                 self.switch_state = SwitchState.REMAIN
             else:
                 pass

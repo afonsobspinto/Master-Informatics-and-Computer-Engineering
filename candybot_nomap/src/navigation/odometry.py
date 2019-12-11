@@ -46,7 +46,10 @@ class RobotOdometry:
         if self.cont:
             angle_to_goal = math.atan(self.goal_side/self.goal_front)
             mov = [0.05, 0, 0]
-            rot = [0, 0, angle_to_goal]
+            if angle_to_goal > 0:
+                rot = [0, 0, 0.05]
+            else:
+                rot = [0, 0, -0.05]
             self.robot.communication.move(mov, rot)
 
     def rotate(self, clockwise):
@@ -55,8 +58,5 @@ class RobotOdometry:
             rot = [0, 0, 0.3]
         else:
             rot = [0, 0, -0.3]
-        while self.robot.switch_state == SwitchState.REMAIN:
-            self.robot.communication.move(mov, rot)
+        self.robot.communication.move(mov, rot)
 
-        print "STOP ROTATE"
-        self.robot.communication.stop()

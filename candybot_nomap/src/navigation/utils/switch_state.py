@@ -6,4 +6,5 @@ class SwitchState(Enum):
     TO_EXPLORER = 1
     TO_TARGET = 2
     TO_CANDY = 3
+    TO_SOUND = 4
 

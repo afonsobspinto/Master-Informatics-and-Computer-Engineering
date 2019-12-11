@@ -19,7 +19,7 @@ from sensors.sensor_state import SensorState
 
 
 class Robot:
-    def __init__(self, initial_position=Position(25, 25), rows=50, scaling=0.40):
+    def __init__(self):
         self._init_sensors()
         self.position = initial_position
         self.initial_pos = initial_position

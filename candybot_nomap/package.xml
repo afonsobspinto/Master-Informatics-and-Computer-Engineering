@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>candybot5</name>
+  <name>candybot_nomap</name>
   <version>0.0.0</version>
-  <description>The candybot5 package</description>
+  <description>The candybot_nomap package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

@@ -22,8 +22,8 @@ class TurtlebotFaceRecognition:
     def __init__(self, train, active_learn):
         print "Face recognition activated"
         print os.getcwd()
-        #self.haar = cv2.CascadeClassifier('src/candybot5/src/sensors/turtlebot_face_recognition/haarcascade.xml')
-        self.haar = cv2.CascadeClassifier('sensors/turtlebot_face_recognition/haarcascade.xml')
+        self.haar = cv2.CascadeClassifier('src/candybot_nomap/src/sensors/turtlebot_face_recognition/haarcascade.xml')
+        #self.haar = cv2.CascadeClassifier('sensors/turtlebot_face_recognition/haarcascade.xml')
         self.data = {
             'encoding': [],
             'label': []
