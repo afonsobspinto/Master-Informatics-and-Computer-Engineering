@@ -3,9 +3,12 @@ from navigation.states.state_interface import StateInterface
 from std_msgs.msg import Bool
 import rospy
 from navigation.utils.switch_state import SwitchState
+import time
 
 class CandyState(implements(StateInterface)):
 
+    # 0 from Logic
+    # 1 from Infrared
     def __init__(self, robot):
     	print "Init CandyState"
         self.robot = robot
@@ -18,8 +21,10 @@ class CandyState(implements(StateInterface)):
 
     def move(self):
         if not self.gave:
-        	bl = Bool()
-        	bl.data = True
+            print "Giving Candy!"
+            time.sleep(2)
+            bl = Bool()
+            bl.data = True
             self.candy_pub.publish(bl)
             self.robot.rate.sleep()
             self.robot.sensors[0].finished_target()
@@ -28,4 +33,6 @@ class CandyState(implements(StateInterface)):
             #Actually listen to sound from pi: if thank you give another candy (send from here)
             #then go to explorer
             # if no thank you, immediately go to explorer
+            time.sleep(2)
+            self.robot.switch_state = SwitchState.TO_EXPLORER
             pass

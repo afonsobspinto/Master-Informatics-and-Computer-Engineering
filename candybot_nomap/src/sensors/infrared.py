@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import rospy
-from candybot5.msg import CandybotSensors
-from sensors.sensor_state import SensorState
 from settings import log
+from turtlebot3_msgs.msg import SensorState
+from navigation.utils.switch_state import SwitchState
 
 
 class Infrared:
@@ -12,14 +12,18 @@ class Infrared:
     def __init__(self, robot):
         log("Infrared activated")
         self.robot = robot
-        self.infrared_sub = rospy.Subscriber('candybot_sensors', CandybotSensors, self.handler, queue_size=1)
+        self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handler, queue_size=1)
 
-    def handler(self, candybot_sensor):
-        if self.is_cliff_detected(candybot_sensor) and self.is_forward_pos_in_path():
-            self.robot.sensor_state = SensorState.CLIFF
+    def handler(self, sensor_state):
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET:
+            left = self.is_cliff_detected(sensor_state.cliff)
+            right = self.is_cliff_detected(sensor_state.illumination)
+            if left and right:
+                self.robot.switch_state = SwitchState.TO_INFRARED_BOTH
+            elif left:
+                self.robot.switch_state = SwitchState.TO_INFRARED_LEFT
+            elif right:
+                self.robot.switch_state = SwitchState.TO_INFRARED_RIGHT
 
-    def is_cliff_detected(self, candybot_sensor):
-        return candybot_sensor.infrared_left > self.THRESHOLD or candybot_sensor.infrared_right > self.THRESHOLD
-
-    def is_forward_pos_in_path(self):
-        return self.robot.current_position + self.robot.orientation.value == self.robot.next_pos
+    def is_cliff_detected(self, value):
+        return value > self.THRESHOLD

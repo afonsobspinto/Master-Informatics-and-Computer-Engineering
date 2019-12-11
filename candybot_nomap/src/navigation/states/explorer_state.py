@@ -18,7 +18,7 @@ class ExplorerState(implements(StateInterface)):
 
     def move(self):
         log("ExplorerState move")
-        while self.robot.switch_state == SwitchState.REMAIN:
+        while self.robot.switch_state == SwitchState.REMAIN_EXPLORER or self.robot.switch_state == SwitchState.TO_EXPLORER:
         	self.robot.odometry.rotate(clockwise=True)
 
         print "STOP ROTATE"
