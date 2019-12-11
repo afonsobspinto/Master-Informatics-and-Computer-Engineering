@@ -45,7 +45,7 @@ class RobotOdometry:
         return round(math.sqrt(pow((next_pos.col - self.odom_pos.col), 2) +
                                pow((next_pos.row - self.odom_pos.row), 2)), 2)
 
-    def move(self, next_pos, lin_speed=0.08):
+    def move(self, next_pos, lin_speed=0.05):
         next_orientation = Orientation.get_orientation(self.robot.position, next_pos)
         steering_angle = next_orientation.angle - self.robot.orientation.angle
         angle = steering_angle % 180
@@ -56,11 +56,10 @@ class RobotOdometry:
         failure_delta = 1
         while distance >= self.PROXIMITY_THRESHOLD * failure_delta and self.robot.switch_state == SwitchState.REMAIN:
             # todo: apply corrections
-            if self._detect_failure(previous_distance, distance):
-                self.robot.communication.stop()
-                lin_speed *= -0.9
-                failure_delta *= 1.1
-                print previous_distance - distance
+            #if self._detect_failure(previous_distance, distance):
+            #    self.robot.communication.stop()
+            #    lin_speed *= -0.9
+            #    failure_delta *= 1.1
             self.robot.communication.move([lin_speed, 0, 0], [0, 0, 0])
             self.robot.rate.sleep()
             previous_distance = distance
@@ -84,6 +83,7 @@ class RobotOdometry:
             relative_delta = self._rotate_logic(previous_theta, relative_delta)
             previous_theta = self.theta
             self.robot.communication.move([0, 0, 0], [0, 0, angular_speed])
+            self.robot.rate.sleep()
 
         print "STOP ROTATE"
         self.robot.communication.stop()

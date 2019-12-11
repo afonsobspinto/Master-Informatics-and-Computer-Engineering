@@ -19,21 +19,21 @@ from sensors.sensor_state import SensorState
 
 
 class Robot:
-    def __init__(self, initial_position=Position(25, 25), rows=50, scaling=0.1):
+    def __init__(self, initial_position=Position(25, 25), rows=50, scaling=0.40):
         self._init_sensors()
         self.position = initial_position
         self.initial_pos = initial_position
         self.orientation = Orientation.FRONT
-        # self.grid = Grid(self.current_pos, rows)
+        self.grid = Grid(self.position, rows)
         self.communication = Communication(self)
         self.odometry = RobotOdometry(self, scaling)
         self.state = ExplorerState(self)
         self.switch_state = SwitchState.REMAIN
         self.sensor_state = SensorState.NO_OBSTACLE
         self.camera_data = []
-        # self.path = []
-        # self.next_pos = None
-        # self.current_target = None
+        self.path = []
+        self.next_pos = None
+        self.current_target = None
         self.rate = rospy.Rate(10)
 
     def _init_sensors(self):
@@ -46,7 +46,7 @@ class Robot:
                 self.state = ExplorerState(self)
                 self.switch_state = SwitchState.REMAIN
             elif self.switch_state == SwitchState.TO_TARGET:
-                self.state = TargetState(self, self.camera_data)
+                self.state = TargetState(self)
                 self.switch_state = SwitchState.REMAIN
             elif self.switch_state == SwitchState.TO_CANDY:
                 self.state = CandyState(self)
@@ -73,8 +73,8 @@ class Robot:
 
     def set_target(self, target_pos):
         if self.current_target != target_pos:
+            shift = self.grid.set_pos(target_pos, GridType.TARGET)
             self.current_target = target_pos
-            shift = self.grid.set_pos(self.current_target, GridType.TARGET)
             self._update_positions(shift)
             self._find_path()
 
@@ -86,41 +86,35 @@ class Robot:
         self.path = astar(self.grid.grid,
                           self.position,
                           self.current_target)
-        for e in self.path:
-            print str(e)
+        if self.path:
+            for e in self.path:
+                #print str(e)
+                pass
 
-        self.communication.proceed = "PROCEED"
+        #self.communication.proceed = "PROCEED"
         self.move()
 
     def move(self):
         if self.path:
-            for i, next_pos in enumerate(self.path):
-                self.next_pos = next_pos
-                self.orientation = self.current_pos.get_orientation(next_pos)
-                # todo: add way to show orientation in plot
-                print "moving to next pos: " + str(next_pos.row) + "," + str(next_pos.col)
-                self._move(next_pos)
-
-                if (not (self.communication.proceed == "PROCEED")):
-                    break
-                # todo: rotate bot + move
-
-                self.grid.set_pos(next_pos, GridType.ROBOT, self.current_pos)
-                self.current_pos = next_pos
-                print "New pos:" + str(self.current_pos)
-                print i
+            next_pos = self.path[0]
+            self.next_pos = next_pos
+            self.orientation = Orientation.get_orientation(self.position,   next_pos)
+            self.odometry.move(next_pos)
+            self.position = next_pos
+            self.grid.set_pos(next_pos, GridType.ROBOT)
+            self.state.update_data(self.camera_data)
 
             # TODO: stop not from cliff
-            if (self.communication.proceed == "CLIFF"):
-                self.set_cliff()
-            elif (self.communication.proceed == "SONAR_BOTTOM"):
-                self.set_cliff()
+            #if (self.communication.proceed == "CLIFF"):
+                #self.set_cliff()
+           # elif (self.communication.proceed == "SONAR_BOTTOM"):
+                #self.set_cliff()
                 # TODO: take bottom value and use set_distance
-            elif (self.communication.proceed == "SONAR_TOP"):
-                self.set_cliff()
+            #elif (self.communication.proceed == "SONAR_TOP"):
+                #self.set_cliff()
                 # TODO: take top value and use set_distance
-            else:
-                self.communication.stop_robot()
+            #else:
+                #self.communication.stop_robot()
 
     def set_cliff(self):
         distance_tuple = (self.orientation.value[0], self.orientation.value[1])

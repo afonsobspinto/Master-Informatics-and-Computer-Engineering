@@ -18,8 +18,7 @@ class Communication:
         twist.angular.y = angular[1]
         twist.angular.z = angular[2]
         self.cmd_pub.publish(twist)
+        self.robot.rate.sleep()
 
     def stop(self):
-        for i in range(0,2):
-            self.move([0, 0, 0], [0, 0, 0])
-            self.robot.rate.sleep()
+        self.move([0, 0, 0], [0, 0, 0])

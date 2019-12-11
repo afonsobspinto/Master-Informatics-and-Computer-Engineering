@@ -10,7 +10,7 @@ def main():
     log("Candybot5")
     rospy.init_node('main')
     try:
-        r = Robot(Position(2, 2), rows=5)
+        r = Robot()
         r.start()
     except rospy.ROSInterruptException:
         pass
