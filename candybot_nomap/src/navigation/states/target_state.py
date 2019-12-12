@@ -16,7 +16,7 @@ class TargetState(implements(StateInterface)):
 
     def move(self):
         while self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
-            if self.robot.odometry.goal_front < 0.3:
+            if self.robot.odometry.goal_front < 0.5:
                 self.robot.odometry.cont = False
                 self.robot.switch_state = SwitchState.TO_CANDY
             else:

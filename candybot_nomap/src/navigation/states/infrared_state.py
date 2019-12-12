@@ -21,11 +21,14 @@ class InfraredState(implements(StateInterface)):
             self.robot.communication.stop()
             self.stopped = True
 
-        if self.robot.odometry.goal_front < 1:
+        if self.robot.odometry.goal_front < 0.5:
                 self.robot.odometry.cont = False
                 self.robot.switch_state = SwitchState.TO_CANDY
         else:
             # Go to explorer state
+            if self.robot.odometry.goal_front >= 0.5:
+                print "Removed wrong target"
+                self.robot.sensors[0].finished_target()
             self.robot.switch_state = SwitchState.TO_EXPLORER
         # Check if label is close enough (1m)
         # if yes: go to candy_State
