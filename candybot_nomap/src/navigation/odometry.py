@@ -59,4 +59,8 @@ class RobotOdometry:
         else:
             rot = [0, 0, -0.3]
         self.robot.communication.move(mov, rot)
-
+    
+    def move_straight(self):
+        mov = [0.05, 0, 0]
+        rot = [0, 0, 0]
+        self.robot.communication.move(mov, rot)
