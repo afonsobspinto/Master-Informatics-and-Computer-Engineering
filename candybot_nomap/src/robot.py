@@ -18,7 +18,7 @@ from navigation.utils.switch_state import SwitchState
 from navigation.utils.sensor_side import SensorSide
 from sensors.infrared import Infrared
 from sensors.camera import Camera
-from sensor.Ultrasound import Ultrasound
+from sensors.ultrasound import Ultrasound
 from navigation.states.sound_state import SoundState
 
 

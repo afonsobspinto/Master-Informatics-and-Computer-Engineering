@@ -3,9 +3,10 @@
 import rospy
 from turtlebot3_msgs.msg import SensorState
 from navigation.utils.switch_state import SwitchState
+from settings import log
 
 class Ultrasound:
-    THRESHOLD = 20
+    THRESHOLD = 40
 
     def __init__(self, robot):
         log("Ultrasound activated")
@@ -19,11 +20,10 @@ class Ultrasound:
         # Sonar is right
         self.left = sensor.battery < self.THRESHOLD
         self.right = sensor.sonar < self.THRESHOLD
-        if self.robot.switch_state == SwitchState.REMAIN_TARGET or
-           self.robot.switch_state == SwitchState.TO_TARGET:
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
             if (self.left and self.right):
-                self.robot.switch_state == SwitchState.TO_ULTRASOUND_BOTH
+                self.robot.switch_state = SwitchState.TO_ULTRASOUND_BOTH
             elif (self.left):
-                self.robot.switch_state == SwitchState.TO_ULTRASOUND_LEFT
+                self.robot.switch_state = SwitchState.TO_ULTRASOUND_LEFT
             elif (self.right):
-                self.robot.switch_state == SwitchState.TO_ULTRASOUND_RIGHT
+                self.robot.switch_state = SwitchState.TO_ULTRASOUND_RIGHT

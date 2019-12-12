@@ -15,7 +15,7 @@ class Infrared:
         self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handler, queue_size=1)
 
     def handler(self, sensor_state):
-        if self.robot.switch_state == SwitchState.REMAIN_TARGET:
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET or self.robot.switch_state == SwitchState.REMAIN_ULTRASOUND:
             left = self.is_cliff_detected(sensor_state.cliff)
             right = self.is_cliff_detected(sensor_state.illumination)
             if left and right:

@@ -12,10 +12,10 @@ class TargetState(implements(StateInterface)):
         print "Init TargetState"
         self.robot = robot
         self.type = "TargetState"
-        self.data = self.robot.camera_data
+        #self.data = self.robot.camera_data
 
     def move(self):
-        while self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
             if self.robot.odometry.goal_front < 0.5:
                 self.robot.odometry.cont = False
                 self.robot.switch_state = SwitchState.TO_CANDY
@@ -23,8 +23,8 @@ class TargetState(implements(StateInterface)):
                 self.robot.odometry.cont = True
 
             self.robot.odometry.move()
-
-        print "STOP TARGET"
-        self.robot.communication.stop()
+        else:
+            print "STOP TARGET"
+            self.robot.communication.stop()
 
 

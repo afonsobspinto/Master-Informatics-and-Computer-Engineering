@@ -43,10 +43,10 @@ class Camera:
         # Print some debug info
         self.print_debug_info()
 
-        if current_target:
+        if self.current_target:
             if self.robot.state.type == "ExplorerState":
                 self.robot.switch_state = SwitchState.TO_TARGET
-            self.set_target_in_odometry(cur_tar)
+            self.set_target_in_odometry(self.current_target)
 
     def finished_target(self):
         self.finished = True
@@ -92,3 +92,11 @@ class Camera:
     def set_target_in_odometry(self, cur_tar):
         self.robot.odometry.goal_front = cur_tar[3] #goal front
         self.robot.odometry.goal_side = cur_tar[4]  #goal side
+
+    def clear_current_target(self):
+        # Clear current target
+        self.current_target = []
+
+        # Reset finished flag
+        self.finished = False
+        print "FINISHED TARGETS: " + str(self.finished_targets)

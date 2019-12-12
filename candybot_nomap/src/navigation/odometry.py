@@ -55,9 +55,9 @@ class RobotOdometry:
     def rotate(self, clockwise):
         mov = [0, 0, 0]
         if clockwise:
-            rot = [0, 0, 0.3]
-        else:
             rot = [0, 0, -0.3]
+        else:
+            rot = [0, 0, 0.3]
         self.robot.communication.move(mov, rot)
     
     def move_straight(self):
