@@ -186,8 +186,9 @@ void loop()
 /*******************************************************************************
 * Callback function for candy_servo msg
 *******************************************************************************/
-void candyServoCallback(const std_msgs::Bool& give_candy_msg){
-  if(give_candy_msg.data){
+void candyServoCallback(const std_msgs::String& give_candy_msg){
+  std::string str_data = std::string(give_candy_msg.data);
+  if(str_data == "give_first" || str_data == "give_second"){
     for(int i=candy_servo_low_state;i<candy_servo_high_state;i++){
       Candy_servo.write(i);
       delay(50);

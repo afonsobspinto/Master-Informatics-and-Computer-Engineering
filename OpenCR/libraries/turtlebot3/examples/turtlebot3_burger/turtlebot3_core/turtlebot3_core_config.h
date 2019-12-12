@@ -22,6 +22,7 @@
 #include <ros.h>
 #include <ros/time.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/String.h>
 #include <std_msgs/Empty.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/Float64.h>
@@ -80,7 +81,7 @@ void commandVelocityCallback(const geometry_msgs::Twist& cmd_vel_msg);
 void soundCallback(const turtlebot3_msgs::Sound& sound_msg);
 void motorPowerCallback(const std_msgs::Bool& power_msg);
 void resetCallback(const std_msgs::Empty& reset_msg);
-void candyServoCallback(const std_msgs::Bool& give_candy_msg);
+void candyServoCallback(const std_msgs::String& give_candy_msg);
 
 // Function prototypes
 void publishCmdVelFromRC100Msg(void);
@@ -144,7 +145,7 @@ ros::Subscriber<std_msgs::Bool> motor_power_sub("motor_power", motorPowerCallbac
 
 ros::Subscriber<std_msgs::Empty> reset_sub("reset", resetCallback);
 
-ros::Subscriber<std_msgs::Bool> candy_servo_sub("give_candy", candyServoCallback);
+ros::Subscriber<std_msgs::String> candy_servo_sub("give_candy", candyServoCallback);
 
 /*******************************************************************************
 * Publisher
