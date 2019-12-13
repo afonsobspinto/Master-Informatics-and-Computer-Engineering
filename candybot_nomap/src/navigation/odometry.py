@@ -8,6 +8,7 @@ from tf.transformations import euler_from_quaternion
 from navigation.utils.orientation import Orientation
 from navigation.utils.position import Position
 from navigation.utils.switch_state import SwitchState
+from navigation.utils.sensor_side import SensorSide
 
 
 def _converter(angle):
@@ -59,8 +60,23 @@ class RobotOdometry:
         else:
             rot = [0, 0, 0.3]
         self.robot.communication.move(mov, rot)
-    
+
     def move_straight(self):
         mov = [0.05, 0, 0]
+        rot = [0, 0, 0]
+        self.robot.communication.move(mov, rot)
+
+    def move_back(self, sensor_side):
+        mov = [-0.05, 0, 0]
+        if sensor_side == SensorSide.LEFT:
+            rot = [0, 0, 0.1]
+        elif sensor_side == SensorSide.RIGHT:
+            rot = [0, 0, -0.1]
+        else:
+            rot = [0, 0, 0]
+        self.robot.communication.move(mov, rot)
+
+    def stop(self):
+        mov = [0, 0, 0]
         rot = [0, 0, 0]
         self.robot.communication.move(mov, rot)

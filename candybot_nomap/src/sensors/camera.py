@@ -45,7 +45,11 @@ class Camera:
 
         if self.current_target:
             if self.robot.state.type == "ExplorerState":
-                self.robot.switch_state = SwitchState.TO_TARGET
+                if self.robot.state.target is None:
+                    self.robot.switch_state = SwitchState.TO_TARGET
+                else:
+                    if ((self.current_target[3] is not self.robot.state.target[3] or (self.current_target[4] is not self.robot.state.target[4]))):
+                        self.robot.switch_state = SwitchState.TO_TARGET
             self.set_target_in_odometry(self.current_target)
 
     def finished_target(self):

@@ -5,10 +5,11 @@ from navigation.states.state_interface import StateInterface
 from navigation.utils.orientation import Orientation
 from navigation.utils.switch_state import SwitchState
 from navigation.utils.sensor_side import SensorSide
+import time
 
 
 class UltrasoundState(implements(StateInterface)):
-    DRIVING_DISTANCE = 0.2
+    DRIVING_DISTANCE = 0.1
 
 
     def __init__(self, robot, direction):
@@ -23,20 +24,20 @@ class UltrasoundState(implements(StateInterface)):
         self.start_theta = self.robot.odometry.theta
         self.div_theta = 0
         self.start_x = self.robot.odometry.odom_pos.x
-        self.start_clockwise = self.robot.sensors[2].right
+        self.timer = time.time()
 
     def move(self):
         if not self.stopped:
             print "ULTRASOUND: ROBOT STOPPED"
-            self.robot.communication.stop()
+            self.robot.odometry.stop()
             self.stopped = True
             print "ULTRASOUND: START FIRST TURN"
         elif not self.first_turn:
-            if self.robot.sensors[2].left or self.robot.sensors[2].right:
-                if (self.start_clockwise):
-                    self.robot.odometry.rotate(clockwise=True)
-                else:
-                    self.robot.odometry.rotate(clockwise=False)
+            print "SONAR: " + str(self.robot.sensors[2].right) + " " + str(self.robot.sensors[2].left)
+            if self.robot.sensors[2].right:
+                self.robot.odometry.rotate(clockwise=True)
+            elif self.robot.sensors[2].left:
+                self.robot.odometry.rotate(clockwise=False)
             else:
                 print "ULTRASOUND: FIRST TURN DONE, START DRIVING"
                 self.div_theta = self.robot.odometry.theta - self.start_theta
@@ -47,7 +48,8 @@ class UltrasoundState(implements(StateInterface)):
                 self.first_turn = False
                 self.start_theta = self.robot.odometry.theta
                 self.start_x = self.robot.odometry.odom_pos.x
-            elif abs(self.robot.odometry.odom_pos.x - self.start_x) < self.DRIVING_DISTANCE:
+                self.timer = time.time()
+            elif time.time()-self.timer > 3:
                 self.robot.odometry.move_straight()
             else:
                 print "ULTRASOUND: DRIVING FINISHED, SECOND TURN"
@@ -61,5 +63,4 @@ class UltrasoundState(implements(StateInterface)):
                 print "ULTRASOUND: SECOND TURN FINISHED"
                 self.second_turn = True
         else:
-            self.robot.sensors[0].clear_current_target()
-            self.robot.switch_state = SwitchState.TO_EXPLORER
+            self.robot.switch_state = SwitchState.TO_FIRST_ROUND_EXPLORER

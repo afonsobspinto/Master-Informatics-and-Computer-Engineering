@@ -59,6 +59,9 @@ class Robot:
             elif self.switch_state == SwitchState.TO_EXPLORER:
                 self.state = ExplorerState(self)
                 self.switch_state = SwitchState.REMAIN_EXPLORER
+            elif self.switch_state == SwitchState.TO_FIRST_ROUND_EXPLORER:
+                self.state = ExplorerState(self, target=self.sensors[0].current_target)
+                self.switch_state = SwitchState.REMAIN_EXPLORER
             elif self.switch_state == SwitchState.TO_TARGET:
                 self.state = TargetState(self)
                 self.switch_state = SwitchState.REMAIN_TARGET

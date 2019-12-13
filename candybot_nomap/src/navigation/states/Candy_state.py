@@ -34,7 +34,6 @@ class CandyState(implements(StateInterface)):
         else:
             if self.move_on:
                 print "Waiting while giving Candy"
-                time.sleep(4)
                 self.robot.switch_state = SwitchState.TO_EXPLORER
 
     def give_candy(self, string_msg):

@@ -5,6 +5,7 @@ class SwitchState(Enum):
 	# Remain for logic
     TO_EXPLORER = 0
     REMAIN_EXPLORER = 1
+    TO_FIRST_ROUND_EXPLORER = 14
     TO_TARGET = 2
     REMAIN_TARGET = 3
     TO_CANDY = 4
