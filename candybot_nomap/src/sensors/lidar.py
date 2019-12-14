@@ -22,41 +22,44 @@ class Lidar:
         self.robot = robot
         self.lidar_sub = rospy.Subscriber('scan', LaserScan, self.handle, queue_size=1)
         self.obstacle_flag = False
+        # todo: add left and right
+        # todo: middle one left
 
     def handle(self, sensor):
         lidar_distances = self.get_scan(sensor)
-        for l in lidar_distances:
-            print l
         min_distance = min(lidar_distances)
 
-        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
-            if min_distance < self.SAFE_STOP_DISTANCE:
-                log("Lidar", "handle", "Detected Object")
-                self.robot.switch_state = SwitchState.TO_LIDAR
 
-    @staticmethod
-    def get_scan(scan):
+        #todo: update left and right
+
+        ## if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
+        # todo: send to the right state
+        if min_distance < self.SAFE_STOP_DISTANCE:
+            log("Lidar", "handle", "Detected Object")
+            self.robot.switch_state = SwitchState.TO_LIDAR
+
+    def get_scan(self, scan):
         scan_filter = []
         samples = len(scan.ranges)
-        samples_view = 1
-        if samples_view > samples:
-            samples_view = samples
-        if samples_view is 1:
-            scan_filter.append(scan.ranges[0])
-        else:
-            left_lidar_samples_ranges = -(samples_view // 2 + samples_view % 2)
-            right_lidar_samples_ranges = samples_view // 2
+        angle_view = 90
+        min, front, max = self.get_indexes(angle_view)
 
-            left_lidar_samples = scan.ranges[left_lidar_samples_ranges:]
-            right_lidar_samples = scan.ranges[:right_lidar_samples_ranges]
-            scan_filter.extend(left_lidar_samples + right_lidar_samples)
+        for i in range(min, max+1):
+            if scan_filter[i] != float('Inf') or not math.isnan(scan_filter[i]) or scan_filter!=0.0:
+                pass
 
-        for i in range(samples_view):
-            if scan_filter[i] == float('Inf'):
-                scan_filter[i] = 3.5
-            elif math.isnan(scan_filter[i]):
-                scan_filter[i] = 0
+
+        # Look at the middle only
+        # Remove zeros and infinites
+        # Look for min distance
 
         return scan_filter
+
+    def get_indexes(self, angle_view):
+        front_angle = 90
+        split_angle = angle_view / 2
+        min_angle = front_angle - split_angle
+        max_angle = front_angle + split_angle
+        return min_angle, front_angle, max_angle
 
 
