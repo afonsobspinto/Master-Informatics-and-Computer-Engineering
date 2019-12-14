@@ -9,7 +9,6 @@ class Ultrasound:
     THRESHOLD = 35
 
     def __init__(self, robot):
-        log("Ultrasound activated")
         self.robot = robot
         self.ultrasound_sub = rospy.Subscriber('sensor_state', SensorState, self.handle, queue_size=1)
         self.left = False

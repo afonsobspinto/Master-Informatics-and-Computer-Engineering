@@ -14,7 +14,7 @@ def main():
     try:
         run_rviz()
         r = Robot()
-        # r.start()
+        r.start()
         rospy.spin()
     except rospy.ROSInterruptException:
         pass

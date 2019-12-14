@@ -11,7 +11,6 @@ class Infrared:
     THRESHOLD = 800
 
     def __init__(self, robot):
-        log("Infrared activated")
         self.robot = robot
         self.infrared_sub = rospy.Subscriber('sensor_state', SensorState, self.handler, queue_size=1)
         self.left = False

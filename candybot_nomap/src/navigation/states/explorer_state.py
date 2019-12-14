@@ -23,7 +23,6 @@ class ExplorerState(implements(StateInterface)):
         self.timer = time.time()
 
     def move(self):
-        log("ExplorerState move")
         if self.target:
             # make check for 360 degrees
             if time.time()-self.timer > 2*math.pi/0.3:

@@ -26,27 +26,28 @@ class Lidar:
         # todo: middle one left
 
     def handle(self, sensor):
-        lidar_distances = self.get_scan(sensor)
-        min_distance = min(lidar_distances)
+        # lidar_distances = self.get_scan(sensor)
+        # min_distance = min(lidar_distances)
 
 
         #todo: update left and right
 
         ## if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
         # todo: send to the right state
-        if min_distance < self.SAFE_STOP_DISTANCE:
-            log("Lidar", "handle", "Detected Object")
-            self.robot.switch_state = SwitchState.TO_LIDAR
+        # if min_distance < self.SAFE_STOP_DISTANCE:
+        #     log("Lidar", "handle", "Detected Object")
+        #     self.robot.switch_state = SwitchState.TO_LIDAR
+        pass
 
     def get_scan(self, scan):
         scan_filter = []
         samples = len(scan.ranges)
         angle_view = 90
         min, front, max = self.get_indexes(angle_view)
-
-        for i in range(min, max+1):
-            if scan_filter[i] != float('Inf') or not math.isnan(scan_filter[i]) or scan_filter!=0.0:
-                pass
+        #
+        # for i in range(min, max+1):
+        #     if scan_filter[i] != float('Inf') or not math.isnan(scan_filter[i]) or scan_filter!=0.0:
+        #         pass
 
 
         # Look at the middle only
