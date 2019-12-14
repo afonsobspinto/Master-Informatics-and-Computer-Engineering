@@ -1,25 +1,21 @@
 #!/usr/bin/env python
-import math
-import time
+from enum import Enum
 
 import rospy
+
 from communication.communication import Communication
-from navigation.grid import Grid, GridType
 from navigation.odometry import RobotOdometry
-from navigation.states.explorer_state import ExplorerState
-from navigation.states.target_state import TargetState
 from navigation.states.Candy_state import CandyState
-from navigation.states.ultrasound_state import UltrasoundState
+from navigation.states.explorer_state import ExplorerState
 from navigation.states.infrared_state import InfraredState
-from navigation.utils.astar import astar
-from navigation.utils.orientation import Orientation
-from navigation.utils.position import Position
-from navigation.utils.switch_state import SwitchState
+from navigation.states.lidar_state import LidarState
+from navigation.states.target_state import TargetState
+from navigation.states.ultrasound_state import UltrasoundState
 from navigation.utils.sensor_side import SensorSide
-from sensors.infrared import Infrared
+from navigation.utils.switch_state import SwitchState
 from sensors.camera import Camera
-from sensors.ultrasound import Ultrasound
-from navigation.states.sound_state import SoundState
+from sensors.infrared import Infrared
+from sensors.lidar import Lidar
 
 
 class Robot:
@@ -33,11 +29,12 @@ class Robot:
         self.rate = rospy.Rate(10)
 
     def _init_sensors(self):
-        self.sensors = [Camera(self), Infrared(self), Ultrasound(self)]
+        # self.sensors = [Camera(self), Infrared(self), Ultrasound(self), Lidar(self)]
+        # todo: add Ultrasound
+        self.sensors = [Camera(self), Infrared(self), Lidar(self)]
 
     def start(self):
         while True:
-            self.state.move()
             if self.switch_state == SwitchState.TO_INFRARED_BOTH:
                 self.state = InfraredState(self, SensorSide.BOTH)
                 self.switch_state = SwitchState.REMAIN_INFRARED
@@ -56,6 +53,9 @@ class Robot:
             if self.switch_state == SwitchState.TO_ULTRASOUND_RIGHT:
                 self.state = UltrasoundState(self, SensorSide.RIGHT)
                 self.switch_state = SwitchState.REMAIN_ULTRASOUND
+            if self.switch_state == SwitchState.TO_LIDAR:
+                self.state = LidarState(self, SensorSide.BOTH)
+                self.switch_state = SwitchState.REMAIN_LIDAR
             elif self.switch_state == SwitchState.TO_EXPLORER:
                 self.state = ExplorerState(self)
                 self.switch_state = SwitchState.REMAIN_EXPLORER
@@ -70,3 +70,4 @@ class Robot:
                 self.switch_state = SwitchState.REMAIN_CANDY
             else:
                 pass
+            self.state.move()
