@@ -41,7 +41,7 @@ class Camera:
         self.set_current_target(removed_data)
 
         # Print some debug info
-        self.print_debug_info()
+        #self.print_debug_info()
 
         if self.current_target:
             if self.robot.state.type == "ExplorerState":

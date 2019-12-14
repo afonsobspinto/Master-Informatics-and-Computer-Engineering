@@ -2,6 +2,6 @@ SENSORS_TOPIC = 'candybot_sensors'
 DEBUG = True
 
 
-def log(s):
+def log(class_, method, s):
     if DEBUG:
-        print s
+        print class_ + "::" + method + ": " + s + '\n'

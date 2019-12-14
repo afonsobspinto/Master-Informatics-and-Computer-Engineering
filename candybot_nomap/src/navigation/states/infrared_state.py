@@ -5,11 +5,13 @@ from navigation.states.state_interface import StateInterface
 from navigation.utils.orientation import Orientation
 from navigation.utils.switch_state import SwitchState
 from navigation.utils.sensor_side import SensorSide
+from settings import log
+
 
 class InfraredState(implements(StateInterface)):
 
     def __init__(self, robot, direction):
-        print "Init InfraredState"
+        log("InfraredState", "__init__", "Activated")
         self.robot = robot
         self.type = "TargetState"
         self.direction = direction
@@ -17,7 +19,6 @@ class InfraredState(implements(StateInterface)):
 
     def move(self):
         if not self.stopped:
-            print "INFRARED_SENSOR"
             self.robot.communication.stop()
             self.stopped = True
 
@@ -27,7 +28,7 @@ class InfraredState(implements(StateInterface)):
         else:
             # Go to explorer state
             if self.robot.odometry.goal_front >= 3:
-                print "Removed wrong target"
+                log("InfraredState", "move", "Removed Wrong Target")
                 self.robot.sensors[0].clear_current_target()
             self.robot.switch_state = SwitchState.TO_EXPLORER
         # Check if label is close enough (1m)

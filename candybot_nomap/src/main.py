@@ -1,15 +1,19 @@
 #!/usr/bin/env python
+import subprocess
 
 from robot import *
-import rospy
 
-from settings import log
+
+def run_rviz():
+    # subprocess.Popen(["roslaunch", "turtlebot3_slam", "turtlebot3_slam.launch", "slam_methods:=gmapping"],
+    #                  stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    pass
 
 
 def main():
-    log("Candybot_nomap")
     rospy.init_node('main')
     try:
+        run_rviz()
         r = Robot()
         r.start()
     except rospy.ROSInterruptException:

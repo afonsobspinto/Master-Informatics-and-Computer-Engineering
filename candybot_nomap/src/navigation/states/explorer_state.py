@@ -12,16 +12,13 @@ from settings import log
 class ExplorerState(implements(StateInterface)):
 
     def __init__(self, robot):
-        print "Init ExplorerState"
+        log("ExplorerState", "__init__", "Explorer State Activated")
         self.robot = robot
         self.type = "ExplorerState"
 
     def move(self):
-        log("ExplorerState move")
         if self.robot.switch_state == SwitchState.REMAIN_EXPLORER or self.robot.switch_state == SwitchState.TO_EXPLORER:
-        	self.robot.odometry.rotate(clockwise=False)
+            self.robot.odometry.rotate(clockwise=False)
         else:
             print "STOP ROTATE"
             self.robot.communication.stop()
-
-

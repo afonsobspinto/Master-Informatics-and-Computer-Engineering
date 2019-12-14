@@ -3,18 +3,21 @@ import math
 from interface import implements
 from navigation.states.state_interface import StateInterface
 from navigation.utils.orientation import Orientation
+from navigation.utils.sensor_enum import SensorEnum
 from navigation.utils.switch_state import SwitchState
 from navigation.utils.sensor_side import SensorSide
 
+from settings import log
 
-class UltrasoundState(implements(StateInterface)):
+
+class LidarState(implements(StateInterface)):
     DRIVING_DISTANCE = 0.2
 
     def __init__(self, robot, direction):
-        print "Init UltrasoundState"
+        log("LidarState", "__init__",  "Activated")
         self.robot = robot
         self.direction = direction
-        self.type = "UltrasoundState"
+        self.type = "LidarState"
         self.stopped = False
         self.first_turn = False
         self.driven = False
@@ -22,25 +25,19 @@ class UltrasoundState(implements(StateInterface)):
         self.start_theta = self.robot.odometry.theta
         self.div_theta = 0
         self.start_x = self.robot.odometry.odom_pos.x
-        self.start_clockwise = self.robot.sensors[2].right
 
     def move(self):
         if not self.stopped:
             self.robot.communication.stop()
             self.stopped = True
-            print "ULTRASOUND: START FIRST TURN"
         elif not self.first_turn:
-            if self.robot.sensors[2].left or self.robot.sensors[2].right:
-                if (self.start_clockwise):
-                    self.robot.odometry.rotate(clockwise=True)
-                else:
-                    self.robot.odometry.rotate(clockwise=False)
+            if self.robot.sensors[SensorEnum.Lidar.value].obstacle_flag:
+                self.robot.odometry.rotate(clockwise=True)
             else:
-                print "ULTRASOUND: FIRST TURN DONE, START DRIVING"
                 self.div_theta = self.robot.odometry.theta - self.start_theta
                 self.first_turn = True
         elif not self.driven:
-            if self.robot.sensors[2].left or self.robot.sensors[2].right:
+            if self.robot.sensors[SensorEnum.Lidar.value].obstacle_flag:
                 self.stopped = False
                 self.first_turn = False
                 self.start_theta = self.robot.odometry.theta
@@ -48,7 +45,6 @@ class UltrasoundState(implements(StateInterface)):
             elif abs(self.robot.odometry.odom_pos.x - self.start_x) < self.DRIVING_DISTANCE:
                 self.robot.odometry.move_straight()
             else:
-                print "ULTRASOUND: DRIVING FINISHED, SECOND TURN"
                 self.driven = True
         elif not self.second_turn:
             if self.div_theta > 0 and self.robot.odometry.theta > self.start_theta:
@@ -56,7 +52,6 @@ class UltrasoundState(implements(StateInterface)):
             elif self.div_theta < 0 and self.robot.odometry.theta < self.start_theta:
                 self.robot.odometry.rotate(clockwise=False)
             else:
-                print "ULTRASOUND: SECOND TURN FINISHED"
                 self.second_turn = True
         else:
             self.robot.sensors[0].clear_current_target()
