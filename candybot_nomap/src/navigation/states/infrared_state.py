@@ -1,13 +1,11 @@
-import math
-
 from interface import implements
+
 from navigation.states.state_interface import StateInterface
-from navigation.utils.orientation import Orientation
-from navigation.utils.switch_state import SwitchState
 from navigation.utils.sensor_side import SensorSide
+from navigation.utils.switch_state import SwitchState
+
 
 class InfraredState(implements(StateInterface)):
-
     PROXIMITY = 0.3
 
     def __init__(self, robot, direction):
@@ -23,7 +21,7 @@ class InfraredState(implements(StateInterface)):
             print "INFRARED_SENSOR"
             self.robot.odometry.stop()
             self.stopped = True
-            #print "START MOVING BACK"
+            # print "START MOVING BACK"
             print "SWITCHING STATES"
         elif not self.moved_back:
             if self.robot.sensors[1].left and self.robot.sensors[1].right:
@@ -38,8 +36,8 @@ class InfraredState(implements(StateInterface)):
 
         else:
             if self.robot.odometry.goal_front < self.PROXIMITY:
-                    self.robot.odometry.cont = False
-                    self.robot.switch_state = SwitchState.TO_CANDY
+                self.robot.odometry.cont = False
+                self.robot.switch_state = SwitchState.TO_CANDY
             else:
                 # Go to explorer state
                 if self.robot.odometry.goal_front >= self.PROXIMITY:

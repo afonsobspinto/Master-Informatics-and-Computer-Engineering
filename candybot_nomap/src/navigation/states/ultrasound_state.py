@@ -8,12 +8,10 @@ from navigation.utils.sensor_side import SensorSide
 import time
 
 
-class UltrasoundState(implements(StateInterface)):
+class UltrasonicState(implements(StateInterface)):
     DRIVING_DISTANCE = 0.1
 
-
     def __init__(self, robot, direction):
-        print "Init UltrasoundState"
         self.robot = robot
         self.direction = direction
         self.type = "UltrasoundState"

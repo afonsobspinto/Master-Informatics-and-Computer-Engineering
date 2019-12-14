@@ -1,22 +1,17 @@
-import math
-
 from interface import implements
+
 from navigation.states.state_interface import StateInterface
-from navigation.utils.orientation import Orientation
 from navigation.utils.sensor_enum import SensorEnum
 from navigation.utils.switch_state import SwitchState
-from navigation.utils.sensor_side import SensorSide
-
 from settings import log
 
 
 class LidarState(implements(StateInterface)):
     DRIVING_DISTANCE = 0.2
 
-    def __init__(self, robot, direction):
+    def __init__(self, robot):
         log("LidarState", "__init__",  "Activated")
         self.robot = robot
-        self.direction = direction
         self.type = "LidarState"
         self.stopped = False
         self.first_turn = False

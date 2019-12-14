@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from enum import Enum
 
 import rospy
 
@@ -10,12 +9,13 @@ from navigation.states.explorer_state import ExplorerState
 from navigation.states.infrared_state import InfraredState
 from navigation.states.lidar_state import LidarState
 from navigation.states.target_state import TargetState
-from navigation.states.ultrasound_state import UltrasoundState
+from navigation.states.ultrasound_state import UltrasonicState
 from navigation.utils.sensor_side import SensorSide
 from navigation.utils.switch_state import SwitchState
 from sensors.camera import Camera
 from sensors.infrared import Infrared
 from sensors.lidar import Lidar
+from sensors.ultrasonic import Ultrasonic
 
 
 class Robot:
@@ -29,9 +29,7 @@ class Robot:
         self.rate = rospy.Rate(10)
 
     def _init_sensors(self):
-        # self.sensors = [Camera(self), Infrared(self), Ultrasound(self), Lidar(self)]
-        # todo: add Ultrasound
-        self.sensors = [Camera(self), Infrared(self), Lidar(self)]
+        self.sensors = [Camera(self), Infrared(self), Ultrasonic(self), Lidar(self)]
 
     def start(self):
         while True:
@@ -45,16 +43,16 @@ class Robot:
                 self.state = InfraredState(self, SensorSide.RIGHT)
                 self.switch_state = SwitchState.REMAIN_INFRARED
             if self.switch_state == SwitchState.TO_ULTRASOUND_BOTH:
-                self.state = UltrasoundState(self, SensorSide.BOTH)
+                self.state = UltrasonicState(self, SensorSide.BOTH)
                 self.switch_state = SwitchState.REMAIN_ULTRASOUND
             if self.switch_state == SwitchState.TO_ULTRASOUND_LEFT:
-                self.state = UltrasoundState(self, SensorSide.LEFT)
+                self.state = UltrasonicState(self, SensorSide.LEFT)
                 self.switch_state = SwitchState.REMAIN_ULTRASOUND
             if self.switch_state == SwitchState.TO_ULTRASOUND_RIGHT:
-                self.state = UltrasoundState(self, SensorSide.RIGHT)
+                self.state = UltrasonicState(self, SensorSide.RIGHT)
                 self.switch_state = SwitchState.REMAIN_ULTRASOUND
             if self.switch_state == SwitchState.TO_LIDAR:
-                self.state = LidarState(self, SensorSide.BOTH)
+                self.state = LidarState(self)
                 self.switch_state = SwitchState.REMAIN_LIDAR
             elif self.switch_state == SwitchState.TO_EXPLORER:
                 self.state = ExplorerState(self)
