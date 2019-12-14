@@ -20,6 +20,7 @@ class InfraredState(implements(StateInterface)):
         self.cleared = False
         self.timer = 0
 
+    # todo: add infrared sound
     def move(self):
         if not self.stopped:
             print "INFRARED_SENSOR"

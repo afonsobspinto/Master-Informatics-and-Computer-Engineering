@@ -2,12 +2,15 @@
 
 import rospy
 from geometry_msgs.msg import Twist
+from std_msgs.msg import String
 
 
 class Communication:
     def __init__(self, robot):
         self.robot = robot
         self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
+        self.sound_pub = rospy.Publisher('give_candy', String, queue_size=1)
+        self.play_sound("on_start")
 
     def move(self, linear, angular):
         twist = Twist()
@@ -22,3 +25,9 @@ class Communication:
 
     def stop(self):
         self.move([0, 0, 0], [0, 0, 0])
+
+    def play_sound(self, string_msg):
+        msg = String()
+        msg.data = string_msg
+        self.sound_pub.publish(msg)
+        self.robot.rate.sleep()

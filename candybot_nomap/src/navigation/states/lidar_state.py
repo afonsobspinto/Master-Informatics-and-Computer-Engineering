@@ -24,6 +24,7 @@ class LidarState(implements(StateInterface)):
         self.start_x = self.robot.odometry.odom_pos.x
         self.timer = 0
 
+    # todo: add sound obstacle avoidance sound
     def move(self):
         if not self.stopped:
             print ("lidar robot stopped ")
