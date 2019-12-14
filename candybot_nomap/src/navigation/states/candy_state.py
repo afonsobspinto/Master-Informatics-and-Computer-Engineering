@@ -29,6 +29,7 @@ class CandyState(implements(StateInterface)):
 
     def move(self):
         if not self.gave:
+            self.give_candy("give_first")
             self.robot.sensors[0].finished_target()
             self.gave = True
             print "Waiting while giving Candy"
