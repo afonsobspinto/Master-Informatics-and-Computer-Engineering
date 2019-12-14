@@ -8,15 +8,17 @@ from navigation.utils.switch_state import SwitchState
 
 class TargetState(implements(StateInterface)):
 
+    PROXIMITY = 0.2
+
     def __init__(self, robot):
         print "Init TargetState"
         self.robot = robot
         self.type = "TargetState"
-        #self.data = self.robot.camera_data
+        self.stopped = False
 
     def move(self):
         if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
-            if self.robot.odometry.goal_front < 0.5:
+            if self.robot.odometry.goal_front < self.PROXIMITY:
                 self.robot.odometry.cont = False
                 self.robot.switch_state = SwitchState.TO_CANDY
             else:

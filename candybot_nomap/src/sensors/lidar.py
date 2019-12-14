@@ -22,39 +22,45 @@ class Lidar:
         log("Lidar", "__init__", "Lidar Sensor Activated")
         self.robot = robot
         self.lidar_sub = rospy.Subscriber('scan', LaserScan, self.handle, queue_size=1)
-        self.obstacle_flag = False
-        self.angle_view = 90
+        self.angle_view = 60
         self.left = False
         self.right = False
 
     def handle(self, sensor):
-        lidar_distances = self.get_scan(sensor)
-        for i, d in enumerate(lidar_distances):
-            if d < self.SAFE_STOP_DISTANCE:
-                log("Lidar", "handle", "Detected Object")
-                if i <= len(lidar_distances)/2:
-                    self.left = True
-                else:
-                    self.right = True
+        left_distances, right_distances = self.get_scan(sensor)
+
+        self.left = self._detect(left_distances)
+        self.right = self._detect(right_distances)
+
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET \
+                or self.robot.switch_state == SwitchState.REMAIN_ULTRASOUND:
+            if self.left or self.right:
+                print self.left, self.right
                 self.robot.switch_state = SwitchState.TO_LIDAR
 
+    def _detect(self, lidar_distances):
+        for distance in lidar_distances:
+            if distance < self.SAFE_STOP_DISTANCE:
+                return True
+        return False
+
     def get_scan(self, scan):
-        scan_filter = []
-        samples = len(scan.ranges)
-        min, front, max = self.get_indexes(self.angle_view)
+        left_scan_filter = []
+        right_scan_filter = []
+        left_min = self.angle_view
+        left_max = 0
+        right_min = 359
+        right_max = 360 - self.angle_view
 
-        if max <= samples and min > 0:
-            for i in range(min, max + 1):
+        if scan.ranges:
+            for i in range(left_min, left_max, -1):
                 ray = scan.ranges[i]
-                if ray != float('Inf') or not math.isnan(ray) or ray != 0.0:
-                    scan_filter.append(ray)
+                if ray != float('Inf') and not math.isnan(ray) and ray != 0.0:
+                    left_scan_filter.append(ray)
 
-        return scan_filter
+            for i in range(right_min, right_max, -1):
+                ray = scan.ranges[i]
+                if ray != float('Inf') and not math.isnan(ray) and ray != 0.0:
+                    right_scan_filter.append(ray)
 
-    @staticmethod
-    def get_indexes(angle_view):
-        front_angle = 90
-        split_angle = angle_view / 2
-        min_angle = front_angle - split_angle
-        max_angle = front_angle + split_angle
-        return min_angle, front_angle, max_angle
+        return right_scan_filter, left_scan_filter

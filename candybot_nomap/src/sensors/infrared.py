@@ -19,13 +19,16 @@ class Infrared:
     def handler(self, sensor_state):
         self.left = self.is_cliff_detected(sensor_state.cliff)
         self.right = self.is_cliff_detected(sensor_state.illumination)
-        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET or self.robot.switch_state == SwitchState.REMAIN_ULTRASOUND:
-            if self.left and self.right:
-                self.robot.switch_state = SwitchState.TO_INFRARED_BOTH
+        if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET \
+                or self.robot.switch_state == SwitchState.REMAIN_ULTRASOUND \
+                or self.robot.switch_state == SwitchState.REMAIN_LIDAR:
+            if self.right:
+                self.robot.clockwise = True
+                self.robot.switch_state = SwitchState.TO_INFRARED
             elif self.left:
-                self.robot.switch_state = SwitchState.TO_INFRARED_LEFT
-            elif self.right:
-                self.robot.switch_state = SwitchState.TO_INFRARED_RIGHT
+                self.robot.clockwise = False
+                self.robot.switch_state = SwitchState.TO_INFRARED
 
     def is_cliff_detected(self, value):
+
         return value > self.THRESHOLD and value is not 0

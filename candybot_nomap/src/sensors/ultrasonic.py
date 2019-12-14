@@ -21,12 +21,8 @@ class Ultrasonic:
         self.left = self.is_object_detected(sensor.battery)
         self.right = self.is_object_detected(sensor.sonar)
         if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET:
-            if self.left and self.right:
-                self.robot.switch_state = SwitchState.TO_ULTRASOUND_BOTH
-            elif self.left:
-                self.robot.switch_state = SwitchState.TO_ULTRASOUND_LEFT
-            elif self.right:
-                self.robot.switch_state = SwitchState.TO_ULTRASOUND_RIGHT
+            if self.left or self.right:
+                self.robot.switch_state = SwitchState.TO_ULTRASOUND
 
     def is_object_detected(self, value):
         return value < self.THRESHOLD and value is not 0

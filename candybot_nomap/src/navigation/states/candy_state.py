@@ -5,12 +5,13 @@ import rospy
 from navigation.utils.switch_state import SwitchState
 import time
 
+
 class CandyState(implements(StateInterface)):
 
     # 0 from Logic
     # 1 from Infrared
     def __init__(self, robot):
-    	print "Init CandyState"
+        print "Init CandyState"
         self.robot = robot
         self.type = "CandyState"
         self.candy_pub = rospy.Publisher('give_candy', String, queue_size=1)
@@ -28,17 +29,15 @@ class CandyState(implements(StateInterface)):
 
     def move(self):
         if not self.gave:
-            self.give_candy("give_first")
             self.robot.sensors[0].finished_target()
             self.gave = True
+            print "Waiting while giving Candy"
         else:
             if self.move_on:
-                print "Waiting while giving Candy"
                 self.robot.switch_state = SwitchState.TO_EXPLORER
 
     def give_candy(self, string_msg):
         print "Giving Candy!"
-        time.sleep(2)
         msg = String()
         msg.data = string_msg
         self.candy_pub.publish(msg)
