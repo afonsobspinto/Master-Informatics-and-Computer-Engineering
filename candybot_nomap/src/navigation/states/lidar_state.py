@@ -28,6 +28,7 @@ class LidarState(implements(StateInterface)):
     def move(self):
         if not self.stopped:
             print ("lidar robot stopped ")
+            self.robot.communication.play_sound('avoid')
             self.robot.odometry.stop()
             self.stopped = True
             print("lidar: first turn")

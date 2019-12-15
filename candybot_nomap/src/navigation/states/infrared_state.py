@@ -25,6 +25,7 @@ class InfraredState(implements(StateInterface)):
         if not self.stopped:
             print "INFRARED_SENSOR"
             self.robot.odometry.stop()
+            self.robot.communication.play_sound('scream')
             self.stopped = True
             # print "START MOVING BACK"
             self.timer = time.time()

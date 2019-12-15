@@ -25,9 +25,11 @@ class Infrared:
             if self.right:
                 self.robot.clockwise = True
                 self.robot.switch_state = SwitchState.TO_INFRARED
+                self.robot.odometry.stop()
             elif self.left:
                 self.robot.clockwise = False
                 self.robot.switch_state = SwitchState.TO_INFRARED
+                self.robot.odometry.stop()
 
     def is_cliff_detected(self, value):
 
