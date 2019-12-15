@@ -9,7 +9,7 @@ import random
 
 
 class InfraredState(implements(StateInterface)):
-    PROXIMITY = 2
+    PROXIMITY = 1
 
     def __init__(self, robot):
         print "Init InfraredState"
