@@ -12,6 +12,17 @@ Attentive and agile, Candybot5 goes through the darkest places on your table to 
  
 We are not responsible for weight gain or broken mugs.
 
+
+## Built With
+
+* [Turtlebot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/) - TurtleBot is a ROS standard platform robot. 
+* [OpenCR](http://emanual.robotis.com/docs/en/parts/controller/opencr10/) - OpenCR1.0 is developed for ROS embedded systems to provide completely open-source hardware and software.
+
+
+## Documentation
+[Documentation](https://github.ugent.be/robotics-1920/Robotics-5/tree/master/docs/candybot_nomap/src)
+
+
 ## Getting Started
 
 ### Setup
@@ -44,10 +55,6 @@ We are not responsible for weight gain or broken mugs.
 #### Remote
 1. `rosrun candybot_nomap main.py`
 
-## Built With
-
-* [Turtlebot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/) - TurtleBot is a ROS standard platform robot. 
-* [OpenCR](http://emanual.robotis.com/docs/en/parts/controller/opencr10/) - OpenCR1.0 is developed for ROS embedded systems to provide completely open-source hardware and software.
 
 ## Authors
 * Afonso Pinto [@afpinto](https://github.ugent.be/afpinto)
