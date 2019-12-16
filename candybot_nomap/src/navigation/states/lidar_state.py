@@ -12,6 +12,10 @@ class LidarState(implements(StateInterface)):
     DRIVING_DISTANCE = 0.2
 
     def __init__(self, robot):
+        """
+        LidarState constructor
+        @param robot:
+        """
         log("LidarState", "__init__", "Activated")
         self.robot = robot
         self.type = "LidarState"
@@ -24,21 +28,20 @@ class LidarState(implements(StateInterface)):
         self.start_x = self.robot.odometry.odom_pos.x
         self.timer = 0
 
-    # todo: add sound obstacle avoidance sound
     def move(self):
+        """
+        move implementation
+        """
         if not self.stopped:
-            print ("lidar robot stopped ")
             self.robot.communication.play_sound('avoid')
             self.robot.odometry.stop()
             self.stopped = True
-            print("lidar: first turn")
         elif not self.first_turn:
             if self.robot.sensors[SensorEnum.Lidar.value].left:
                 self.robot.odometry.rotate(clockwise=True)
             elif self.robot.sensors[SensorEnum.Lidar.value].right:
                 self.robot.odometry.rotate(clockwise=False)
             else:
-                print "lidar: first turn done, start driving"
                 self.div_theta = self.robot.odometry.theta - self.start_theta
                 self.first_turn = True
         elif not self.driven:
@@ -52,7 +55,6 @@ class LidarState(implements(StateInterface)):
                 self.robot.odometry.move_straight()
 
             else:
-                print("lidar: driving finished, second turn")
                 self.driven = True
                 if not self.stopped:
                     print self.stopped

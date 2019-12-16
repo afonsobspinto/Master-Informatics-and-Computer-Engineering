@@ -1,5 +1,6 @@
-from navigation.utils.orientation import Orientation
-
+"""
+Abandoned due to practical difficulties
+"""
 
 def float_to_int(number):
     return int(round(number))

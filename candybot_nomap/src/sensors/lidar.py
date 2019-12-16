@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import math
-import sys
 
 import rospy
 from sensor_msgs.msg import LaserScan
@@ -9,15 +8,15 @@ from navigation.utils.switch_state import SwitchState
 from settings import log
 
 
-#
-# Code adapted from
-# https://github.com/ROBOTIS-GIT/turtlebot3/blob/master/turtlebot3_example/nodes/turtlebot3_obstacle#L43
-#
 class Lidar:
     SAFE_STOP_DISTANCE = 0.17
     ANGLE_VIEW = 60
 
     def __init__(self, robot):
+        """
+        Lidar sensor constructor
+        @param robot:
+        """
         log("Lidar", "__init__", "Lidar Sensor Activated")
         self.robot = robot
         self.lidar_sub = rospy.Subscriber('scan', LaserScan, self.handle, queue_size=1)
@@ -25,6 +24,10 @@ class Lidar:
         self.right = False
 
     def handle(self, sensor):
+        """
+        Handler function for scan messages
+        @param sensor:
+        """
         left_distances, right_distances = self.get_scan(sensor)
 
         self.left = self._detect(left_distances)
@@ -37,12 +40,22 @@ class Lidar:
                 self.robot.switch_state = SwitchState.TO_LIDAR
 
     def _detect(self, lidar_distances):
+        """
+        Detects near objects
+        @param lidar_distances:
+        @return:
+        """
         for distance in lidar_distances:
             if distance < self.SAFE_STOP_DISTANCE:
                 return True
         return False
 
     def get_scan(self, scan):
+        """
+        Reads scan vector for the desirable angles
+        @param scan:
+        @return:
+        """
         left_scan_filter = []
         right_scan_filter = []
         left_min = self.ANGLE_VIEW

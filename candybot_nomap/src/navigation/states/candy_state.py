@@ -7,13 +7,15 @@ import time
 
 
 class CandyState(implements(StateInterface)):
-
     TIMEOUT = 10
 
     # 0 from Logic
     # 1 from Infrared
     def __init__(self, robot):
-        print "Init CandyState"
+        """
+        CandyState constructor
+        @param robot:
+        """
         self.robot = robot
         self.type = "CandyState"
         self.candy_pub = rospy.Publisher('give_candy', String, queue_size=1)
@@ -21,27 +23,31 @@ class CandyState(implements(StateInterface)):
         self.gave = False
         self.move_on = False
         self.timer = 0
-        # Create subscriber to pi here
-        # pi is also subscriber to give_candy
-        # Todo: bool will have to be int because different from algorithm or from "thank you"
 
     def handler(self, string_msg):
-        print "Received candy msg: " + str(string_msg.data)
+        """
+        Handler function for messages in give_candy topic
+        @param string_msg:
+        """
         if string_msg.data == "candy_finished":
             self.move_on = True
 
     def move(self):
+        """
+        move implementation
+        """
         if not self.gave:
             self.give_candy()
             self.robot.sensors[0].finished_target()
             self.gave = True
-            print "Waiting while giving Candy"
             self.timer = time.time()
         else:
-            if self.move_on or time.time()-self.timer > self.TIMEOUT:
+            if self.move_on or time.time() - self.timer > self.TIMEOUT:
                 self.robot.switch_state = SwitchState.TO_EXPLORER
 
     def give_candy(self):
-        print "Giving Candy!"
+        """
+        Publishes message in give_candy
+        """
         time.sleep(2)
         self.robot.communication.play_sound('give_first')

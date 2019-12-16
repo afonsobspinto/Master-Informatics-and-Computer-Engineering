@@ -1,18 +1,20 @@
+import random
 import time
 
 from interface import implements
 
 from navigation.states.state_interface import StateInterface
-from navigation.utils.sensor_side import SensorSide
 from navigation.utils.switch_state import SwitchState
-import random
 
 
 class InfraredState(implements(StateInterface)):
     PROXIMITY = 1
 
     def __init__(self, robot):
-        print "Init InfraredState"
+        """
+        InfraredState constructor
+        @param robot:
+        """
         self.robot = robot
         self.type = "TargetState"
         self.stopped = False
@@ -20,16 +22,15 @@ class InfraredState(implements(StateInterface)):
         self.cleared = False
         self.timer = 0
 
-    # todo: add infrared sound
     def move(self):
+        """
+        move implementation
+        """
         if not self.stopped:
-            print "INFRARED_SENSOR"
             self.robot.odometry.stop()
             self.robot.communication.play_sound('scream')
             self.stopped = True
-            # print "START MOVING BACK"
             self.timer = time.time()
-            print "SWITCHING STATES"
         else:
             if self.robot.odometry.goal_front < self.PROXIMITY:
                 self.robot.odometry.cont = False
@@ -37,7 +38,6 @@ class InfraredState(implements(StateInterface)):
             else:
                 # Go to explorer state
                 if not self.cleared:
-                    print "Cleared wrong target"
                     self.robot.sensors[0].clear_current_target()
                     self.cleared = True
                 elif not self.rotated:

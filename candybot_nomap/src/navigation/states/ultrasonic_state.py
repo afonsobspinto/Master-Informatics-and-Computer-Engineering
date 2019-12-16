@@ -1,17 +1,19 @@
-import math
+import time
 
 from interface import implements
+
 from navigation.states.state_interface import StateInterface
-from navigation.utils.orientation import Orientation
 from navigation.utils.switch_state import SwitchState
-from navigation.utils.sensor_side import SensorSide
-import time
 
 
 class UltrasonicState(implements(StateInterface)):
     DRIVING_DISTANCE = 0.1
 
     def __init__(self, robot):
+        """
+        UltrasonicState constructor
+        @param robot:
+        """
         self.robot = robot
         self.type = "UltrasoundState"
         self.stopped = False
@@ -24,19 +26,18 @@ class UltrasonicState(implements(StateInterface)):
         self.timer = time.time()
 
     def move(self):
+        """
+        move function implementation
+        """
         if not self.stopped:
-            print "ULTRASOUND: ROBOT STOPPED"
             self.robot.odometry.stop()
             self.stopped = True
-            print "ULTRASOUND: START FIRST TURN"
         elif not self.first_turn:
-            print "SONAR: " + str(self.robot.sensors[2].right) + " " + str(self.robot.sensors[2].left)
             if self.robot.sensors[2].right:
                 self.robot.odometry.rotate(clockwise=True)
             elif self.robot.sensors[2].left:
                 self.robot.odometry.rotate(clockwise=False)
             else:
-                print "ULTRASOUND: FIRST TURN DONE, START DRIVING"
                 self.div_theta = self.robot.odometry.theta - self.start_theta
                 self.first_turn = True
         elif not self.driven:
@@ -49,7 +50,6 @@ class UltrasonicState(implements(StateInterface)):
             elif time.time()-self.timer > 3:
                 self.robot.odometry.move_straight()
             else:
-                print "ULTRASOUND: DRIVING FINISHED, SECOND TURN"
                 self.driven = True
         else:
             self.robot.clockwise = self.div_theta > 0

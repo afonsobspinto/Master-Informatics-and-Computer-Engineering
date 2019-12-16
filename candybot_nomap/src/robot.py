@@ -10,16 +10,17 @@ from navigation.states.infrared_state import InfraredState
 from navigation.states.lidar_state import LidarState
 from navigation.states.target_state import TargetState
 from navigation.states.ultrasonic_state import UltrasonicState
-from navigation.utils.sensor_side import SensorSide
 from navigation.utils.switch_state import SwitchState
 from sensors.camera import Camera
 from sensors.infrared import Infrared
 from sensors.lidar import Lidar
-from sensors.ultrasonic import Ultrasonic
 
 
 class Robot:
     def __init__(self):
+        """
+        Robot constructor
+        """
         self._init_sensors()
         self.rate = rospy.Rate(10)
         self.switch_state = SwitchState.REMAIN_EXPLORER
@@ -30,10 +31,15 @@ class Robot:
         self.clockwise = False
 
     def _init_sensors(self):
-        #self.sensors = [Camera(self), Infrared(self), Ultrasonic(self), Lidar(self)]
+        """
+        Initializes the sensors
+        """
         self.sensors = [Camera(self), Infrared(self), Lidar(self)]
 
     def start(self):
+        """
+        Robot movement entry point
+        """
         self._wait_for_odometry()
         while True:
             if self.switch_state == SwitchState.TO_INFRARED:
@@ -62,5 +68,8 @@ class Robot:
             self.state.move()
 
     def _wait_for_odometry(self):
+        """
+        Loops until odom topic is used
+        """
         while self.odometry.odom_pos is None:
             pass

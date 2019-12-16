@@ -10,12 +10,20 @@ class Ultrasonic:
     THRESHOLD = 35
 
     def __init__(self, robot):
+        """
+        Ultrasonic Sensor constructor
+        @param robot:
+        """
         self.robot = robot
         self.ultrasound_sub = rospy.Subscriber('sensor_state', SensorState, self.handle, queue_size=1)
         self.left = False
         self.right = False
 
     def handle(self, sensor):
+        """
+        Handler function for sensor_state messages
+        @param sensor:
+        """
         # Battery is left
         # Sonar is right
         self.left = self.is_object_detected(sensor.battery)
@@ -25,4 +33,9 @@ class Ultrasonic:
                 self.robot.switch_state = SwitchState.TO_ULTRASOUND
 
     def is_object_detected(self, value):
+        """
+        Detects near object
+        @param value:
+        @return:
+        """
         return value < self.THRESHOLD and value is not 0
