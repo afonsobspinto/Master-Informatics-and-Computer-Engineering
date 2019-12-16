@@ -4,9 +4,12 @@
 # Robotics-5
 
 How many times do you feel like having a candy but you are too lazy to pick it up? Fear no more, Candybot5 is here to help.
+
 Attentive and agile, Candybot5 goes through the darkest places on your table to give you a handful of help.
 
-[Video1 goes here] [Video2 goes here]
+[![Take 1](https://img.youtube.com/vi/EGyTptYlcaU/default.jpg)](https://youtu.be/EGyTptYlcaU)
+[![Take 2](https://img.youtube.com/vi/GPRidL9xaKI/default.jpg)](https://youtu.be/GPRidL9xaKI)
+ 
 We are not responsible for weight gain or broken mugs.
 
 ## Getting Started
