@@ -25,8 +25,7 @@ We are not responsible for weight gain or broken mugs.
 3. Create and activate a python2 virtual environment
 4. `pip install -r requirements.txt`
 
-
-### Raspberry Pi
+#### Raspberry Pi
 1. `nano ~/.bashrc`
 
 	a) ROS_MASTER_URI=http://REMOTE_IP:11311
@@ -42,6 +41,7 @@ We are not responsible for weight gain or broken mugs.
 1. `roslaunch turtlebot3_bringup turtlebot3_robot.launch`
 
 ### Run Code
+#### Remote
 1. `rosrun candybot_nomap main.py`
 
 ## Built With
