@@ -22,6 +22,8 @@ We are not responsible for weight gain or broken mugs.
 ## Documentation
 [Documentation](https://github.ugent.be/robotics-1920/Robotics-5/tree/master/docs/candybot_nomap/src)
 
+[Class Diagram](https://github.ugent.be/robotics-1920/Robotics-5/tree/master/docs/python_class_diagram.png)
+
 
 ## Getting Started
 
