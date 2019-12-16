@@ -1,5 +1,3 @@
-import math
-
 import aenum
 
 
@@ -12,6 +10,12 @@ class Orientation(aenum.AutoNumberEnum):
 
     @staticmethod
     def get_orientation(origin, destination):
+        """
+        Gets orientation to go from origin to destination
+        @param origin:
+        @param destination:
+        @return:
+        """
         max_axis = abs(max(destination.row - origin.row, destination.col - origin.col))
         if max_axis == 0: max_axis = 1
         ori = ((destination.row - origin.row) / max_axis, (destination.col - origin.col) / max_axis)

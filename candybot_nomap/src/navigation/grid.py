@@ -1,9 +1,11 @@
-import collections
-from enum import Enum
+"""
+Abandoned due to practical difficulties
+"""
 
-from matplotlib import colors
-import matplotlib.pyplot as plt
+import collections
 import matplotlib.animation as animation
+import matplotlib.pyplot as plt
+from enum import Enum
 
 from settings import DEBUG
 
