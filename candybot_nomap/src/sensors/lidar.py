@@ -9,9 +9,8 @@ from settings import log
 
 
 class Lidar:
-    STOP_DISTANCE = 0.2
-    LIDAR_ERROR = 0.05
-    SAFE_STOP_DISTANCE = STOP_DISTANCE + LIDAR_ERROR
+    SAFE_STOP_DISTANCE = 0.17
+    ANGLE_VIEW = 60
 
     def __init__(self, robot):
         """
@@ -21,7 +20,6 @@ class Lidar:
         log("Lidar", "__init__", "Lidar Sensor Activated")
         self.robot = robot
         self.lidar_sub = rospy.Subscriber('scan', LaserScan, self.handle, queue_size=1)
-        self.angle_view = 60
         self.left = False
         self.right = False
 
@@ -38,7 +36,7 @@ class Lidar:
         if self.robot.switch_state == SwitchState.REMAIN_TARGET or self.robot.switch_state == SwitchState.TO_TARGET \
                 or self.robot.switch_state == SwitchState.REMAIN_ULTRASOUND:
             if self.left or self.right:
-                print self.left, self.right
+                #print self.left, self.right
                 self.robot.switch_state = SwitchState.TO_LIDAR
 
     def _detect(self, lidar_distances):
@@ -60,10 +58,10 @@ class Lidar:
         """
         left_scan_filter = []
         right_scan_filter = []
-        left_min = self.angle_view
+        left_min = self.ANGLE_VIEW
         left_max = 0
         right_min = 359
-        right_max = 360 - self.angle_view
+        right_max = 360 - self.ANGLE_VIEW
 
         if scan.ranges:
             for i in range(left_min, left_max, -1):

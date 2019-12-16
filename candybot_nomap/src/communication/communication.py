@@ -14,7 +14,7 @@ class Communication:
         self.robot = robot
         self.cmd_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
         self.sound_pub = rospy.Publisher('give_candy', String, queue_size=1)
-        self.play_sound("on_start")
+        self.play_sound("onstart")
 
     def move(self, linear, angular):
         """

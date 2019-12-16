@@ -8,7 +8,7 @@ from navigation.utils.switch_state import SwitchState
 
 
 class InfraredState(implements(StateInterface)):
-    PROXIMITY = 2
+    PROXIMITY = 1
 
     def __init__(self, robot):
         """
@@ -28,6 +28,7 @@ class InfraredState(implements(StateInterface)):
         """
         if not self.stopped:
             self.robot.odometry.stop()
+            self.robot.communication.play_sound('scream')
             self.stopped = True
             self.timer = time.time()
         else:

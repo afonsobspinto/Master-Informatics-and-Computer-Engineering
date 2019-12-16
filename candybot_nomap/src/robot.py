@@ -22,12 +22,12 @@ class Robot:
         Robot constructor
         """
         self._init_sensors()
+        self.rate = rospy.Rate(10)
+        self.switch_state = SwitchState.REMAIN_EXPLORER
         self.communication = Communication(self)
         self.odometry = RobotOdometry(self)
         self.state = ExplorerState(self)
-        self.switch_state = SwitchState.REMAIN_EXPLORER
         self.camera_data = []
-        self.rate = rospy.Rate(10)
         self.clockwise = False
 
     def _init_sensors(self):

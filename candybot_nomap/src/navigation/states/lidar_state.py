@@ -33,6 +33,7 @@ class LidarState(implements(StateInterface)):
         move implementation
         """
         if not self.stopped:
+            self.robot.communication.play_sound('avoid')
             self.robot.odometry.stop()
             self.stopped = True
         elif not self.first_turn:

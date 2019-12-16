@@ -135,7 +135,7 @@ char joint_state_header_frame_id[30];
 /*******************************************************************************
 * Subscriber
 *******************************************************************************/
-ros::Subscriber<geometry_msgs::Twist> cmd_vel_sub("cmd_vel", commandVelocityCallback);
+ros::Subscriber<geometry_msgs::Twist> cmd_vel_sub("cmd_vel", commandVelocityCallback, 1);
 
 ros::Subscriber<turtlebot3_msgs::Sound> sound_sub("sound", soundCallback);
 

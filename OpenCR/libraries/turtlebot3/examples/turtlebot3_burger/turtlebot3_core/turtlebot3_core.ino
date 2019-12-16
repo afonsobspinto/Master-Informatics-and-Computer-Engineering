@@ -1,4 +1,4 @@
-/*******************************************************************************
+  /*******************************************************************************
 * Copyright 2016 ROBOTIS CO., LTD.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,8 @@ void setup()
   nh.subscribe(sound_sub);
   nh.subscribe(motor_power_sub);
   nh.subscribe(reset_sub);
-
+  nh.subscribe(candy_servo_sub);
+  
   nh.advertise(sensor_state_pub);  
   nh.advertise(version_info_pub);
   nh.advertise(imu_pub);
@@ -43,8 +44,6 @@ void setup()
   nh.advertise(joint_states_pub);
   nh.advertise(battery_state_pub);
   nh.advertise(mag_pub);
-
-  nh.advertise(candybot_sensors_pub);
 
   tf_broadcaster.init(nh);
 
@@ -63,31 +62,33 @@ void setup()
   // Setting for SLAM and navigation (odometry, joint states, TF)
   initOdom();
 
+
+
+
+  // Initialize the candy servo and put it in low state
+  Candy_servo.attach(CANDY_SERVO_PIN);
+  Candy_servo.write(candy_servo_low_state);
+
+  
+
   initJointStates();
 
   prev_update_time = millis();
 
   pinMode(LED_WORKING_CHECK, OUTPUT);
 
-  // Self-defined sensors
-  
+  setup_end = true;
+
   sonar_counter = 0;
   
-  Servo1.attach(SERVO_PIN);
-
-  setup_end = true;
 }
 
 /*******************************************************************************
 * Loop function
 *******************************************************************************/
 void loop()
-{ 
-  Servo1.write(0);
-  delay(1000); 
-  Servo1.write(90);
-  delay(1000); 
-  
+{
+
   uint32_t t = millis();
   updateTime();
   updateVariable(nh.connected());
@@ -108,15 +109,15 @@ void loop()
 
   if ((t-tTime[1]) >= (1000 / CMD_VEL_PUBLISH_FREQUENCY))
   {
+    
     publishCmdVelFromRC100Msg();
     tTime[1] = t;
   }
 
   if ((t-tTime[2]) >= (1000 / DRIVE_INFORMATION_PUBLISH_FREQUENCY))
   {
-    publishCandybotMsg();
-    
     publishSensorStateMsg();
+    //publishCustomMsg();
     publishBatteryStateMsg();
     publishDriveInformation();
     tTime[2] = t;
@@ -159,12 +160,12 @@ void loop()
 
   // TODO
   // Update sonar data
-  // sensors.updateSonar(t);
-  
+  //sensors.updateSonar(t);
   /*sonar_counter ++;
   if(sonar_counter == 11){
     sonar_counter == 0;
   }*/
+
 
   // Start Gyro Calibration after ROS connection
   updateGyroCali(nh.connected());
@@ -180,6 +181,24 @@ void loop()
 
   // Wait the serial link time to process
   waitForSerialLink(nh.connected());
+}
+
+/*******************************************************************************
+* Callback function for candy_servo msg
+*******************************************************************************/
+void candyServoCallback(const std_msgs::String& give_candy_msg){
+  std::string str_data = std::string(give_candy_msg.data);
+  if(str_data == "give_first" || str_data == "give_second"){
+    for(int i=candy_servo_low_state;i<candy_servo_high_state;i++){
+      Candy_servo.write(i);
+      delay(50);
+    }
+    delay(1000);
+    for(int i=candy_servo_high_state-1;i>=candy_servo_low_state;i--){
+      Candy_servo.write(i);
+      delay(50);
+    }
+  }
 }
 
 /*******************************************************************************
@@ -282,7 +301,8 @@ void publishSensorStateMsg(void)
   bool dxl_comm_result = false;
 
   sensor_state_msg.header.stamp = rosNow();
-  sensor_state_msg.battery = sensors.getTopDistanceData();
+  //sensor_state_msg.battery = sensors.checkVoltage();
+  //sensor_state_msg.battery = sensors.getTopDistanceData();
 
   dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
 
@@ -292,12 +312,16 @@ void publishSensorStateMsg(void)
     return;
 
   sensor_state_msg.bumper = sensors.checkPushBumper();
-  
+
+  //sensor_state_msg.cliff = sensors.getIRsensorData();
   sensor_state_msg.cliff = sensors.getLeftIRData();
-  
   sensor_state_msg.illumination = sensors.getRightIRData();
 
-  sensor_state_msg.sonar = sensors.getBottomDistanceData();
+  // TODO
+  //sensor_state_msg.sonar = sensors.getSonarData();
+  //sensor_state_msg.sonar = sensors.getBottomDistanceData();
+
+  //sensor_state_msg.illumination = sensors.getIlluminationData();
   
   sensor_state_msg.button = sensors.checkPushButton();
 
@@ -305,26 +329,33 @@ void publishSensorStateMsg(void)
 
   sensor_state_pub.publish(&sensor_state_msg);
 
-  //sensor_state_msg.battery = sensors.checkVoltage();
-  //sensor_state_msg.cliff = sensors.getIRsensorData();
-  //sensor_state_msg.sonar = sensors.getSonarData();
-  //sensor_state_msg.illumination = sensors.getIlluminationData();
-
 }
 
 /*******************************************************************************
-* Publish custom msgs (candybot_sensors: infrared_left, infrared_right, ultrasound_left, ultrasound_right)
+* Custom msgs (sensor_state: leftIR, rightIR, bottomDist, topDist)
+*   // Self-defined sensor functions:        libraries/turtlebot3/include/turtlebot3
+*   // Self-defined sensor implementations:  libraries/turtlebot3/src/turtlebot3
 *******************************************************************************/
-void publishCandybotMsg(void)
+/*void publishCustomMsg(void)
 {
-  candybot_sensors_msg.infrared_left = sensors.getLeftIRData();
-  candybot_sensors_msg.right_infrared = sensors.getRightIRData();
-  candybot_sensors_msg.infrared_right = sensors.getBottomDistanceData();
-  candybot_sensors_msg.ultrasound_right = sensors.getTopDistanceData();
+  custom_msg.header.stamp = rosNow();
+  custom_msg.left_infrared = sensors.getLeftIRData();
+  custom_msg.right_infrared = sensors.getRightIRData();
+  custom_msg.bottom_distance = sensors.getBottomDistanceData();
+  custom_msg.top_distance = sensors.getTopDistanceData();
   
-  candybot_sensors_msg.publish(&custom_msg);
+  custom_msg_pub.publish(&custom_msg);
+  
+  
+  //bool dxl_comm_result = false;
+  //dxl_comm_result = motor_driver.readEncoder(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
 
-}
+  //if (dxl_comm_result == true)
+  //  updateMotorInfo(sensor_state_msg.left_encoder, sensor_state_msg.right_encoder);
+  //else
+  //  return;
+ 
+}*/
 
 /*******************************************************************************
 * Publish msgs (version info)

@@ -6,7 +6,7 @@ from navigation.utils.switch_state import SwitchState
 
 class TargetState(implements(StateInterface)):
 
-    PROXIMITY = 0.2
+    PROXIMITY = 0.40
 
     def __init__(self, robot):
         """
