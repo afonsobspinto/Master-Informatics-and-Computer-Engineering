@@ -1,12 +1,12 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![made-with-ros](https://img.shields.io/badge/Made%20with-ROS-informational](https://www.ros.org/)
+[![made-with-ros](https://img.shields.io/badge/Made%20with-ROS-informational)](https://www.ros.org/)
 
 # Robotics-5
 
 How many times do you feel like having a candy but you are too lazy to pick it up? Fear no more, Candybot5 is here to help.
 Attentive and agile, Candybot5 goes through the darkest places on your table to give you a handful of help.
 
-
+[Video1 goes here] [Video2 goes here]
 We are not responsible for weight gain or broken mugs.
 
 ## Getting Started
