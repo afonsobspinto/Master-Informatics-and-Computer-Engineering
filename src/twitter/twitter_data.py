@@ -2,10 +2,10 @@ import csv
 import re
 import tweepy as tw
 from src.settings import *
+from src.utils import is_english
 
 
 def get_english_tweets(screen_name):
-
     auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
     api = tw.API(auth, wait_on_rate_limit=True)
@@ -31,7 +31,7 @@ def get_english_tweets(screen_name):
     eng_tweets = []
 
     for tweet in all_tweets:
-        if tweet.lang == "en":
+        if tweet.lang == "en" and is_english(tweet.text):
             tweet.text = re.sub(r'http\S+', '', tweet.text)
             eng_tweets.append(tweet)
 
@@ -49,4 +49,3 @@ def get_english_tweets(screen_name):
 if __name__ == '__main__':
     # Username account
     get_english_tweets("afonsobspinto")
-

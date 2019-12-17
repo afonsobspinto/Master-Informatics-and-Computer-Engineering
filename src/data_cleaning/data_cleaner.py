@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from nltk.tokenize import WordPunctTokenizer
 
 from src.settings import CLEAN_DATA
+from src.utils import is_english
 
 
 class DataCleaner:
@@ -17,24 +18,29 @@ class DataCleaner:
         self.clean_df = None
 
     def clean(self):
+        print("cleaning")
         for i in range(0, self.df.shape[0]):
-            self.clean_tweets.append(self._clean(self.df['tweet'][i]))
+            cleaned_text = self._clean(self.df['tweet'][i])
+            if cleaned_text is not None:
+                self.clean_tweets.append(cleaned_text)
+        print("finished")
 
     def _clean(self, text):
-        soup = BeautifulSoup(text, 'lxml')
-        souped = soup.get_text()
-        r1 = r'@[A-Za-z0-9]+'
-        r2 = r'https?://[A-Za-z0-9./]+'
-        r = r'|'.join((r1, r2))
-        stripped = re.sub(r, '', souped)
-        try:
-            clean = stripped.decode("utf-8-sig").replace(u"\ufffd", "?")
-        except:
-            clean = stripped
-        letters_only = re.sub("[^a-zA-Z]", " ", clean)
-        lower_case = letters_only.lower()
-        words = self.tok.tokenize(lower_case)
-        return (" ".join(words)).strip()
+        if is_english(text):
+            soup = BeautifulSoup(text, 'lxml')
+            souped = soup.get_text()
+            r1 = r'@[A-Za-z0-9]+'
+            r2 = r'https?://[A-Za-z0-9./]+'
+            r = r'|'.join((r1, r2))
+            stripped = re.sub(r, '', souped)
+            try:
+                clean = stripped.decode("utf-8-sig").replace(u"\ufffd", "?")
+            except:
+                clean = stripped
+            letters_only = re.sub("[^a-zA-Z]", " ", clean)
+            lower_case = letters_only.lower()
+            words = self.tok.tokenize(lower_case)
+            return (" ".join(words)).strip()
 
     def save(self):
         self.clean_df = pd.DataFrame(self.clean_tweets, columns=['tweet'])
