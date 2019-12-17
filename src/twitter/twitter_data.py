@@ -12,7 +12,7 @@ def get_english_tweets(screen_name):
     all_tweets = []
 
     # Only allows 200 tweets at a time
-    new_tweets = api.user_timeline(screen_name = screen_name, count=200)
+    new_tweets = api.user_timeline(screen_name=screen_name, count=200)
 
     all_tweets.extend(new_tweets)
 
@@ -46,4 +46,4 @@ def get_english_tweets(screen_name):
 
 if __name__ == '__main__':
     # Username account
-    get_english_tweets("nicktolhurst")
+    get_english_tweets("afonsobspinto")

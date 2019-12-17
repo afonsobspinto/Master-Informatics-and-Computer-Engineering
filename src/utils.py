@@ -1,6 +1,6 @@
 import enum
 
 
-class Polarity(Enum):
+class Polarity(enum.Enum):
     POSITIVE = 4
     NEGATIVE = 0
