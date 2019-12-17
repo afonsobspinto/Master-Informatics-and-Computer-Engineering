@@ -8,6 +8,7 @@ from src.utils import is_english
 
 
 class DataCleaner:
+    # todo: remove stopwords
     cols = ['polarity', 'id', 'date', 'query_string', 'user', 'tweet']
     encoding = "ISO-8859-1"
 
