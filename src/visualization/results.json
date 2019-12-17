@@ -1,0 +1,17 @@
+{
+  "name": "tomas",
+  "age": 22,
+  "gender": "m",
+  "location": "Belgium",
+  "number of tweets": 4,
+  "categories":
+  [
+    {
+      "left-sided-politics": 20,
+      "pop-music": 50,
+      "sports": 0,
+      "movies": 13
+    }
+  ]
+
+}
