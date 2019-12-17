@@ -6,10 +6,40 @@ from src.utils import is_english
 
 
 class DataExtractor:
-    def __init__(self):
+    KEYWORDS = ['music', 'politics'] # todo: fill with more general topics
+
+    def __init__(self, filepath):
+        self.filepath = filepath
         auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
         auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
         self.api = tw.API(auth, wait_on_rate_limit=True)
+        self.tweets = []
+        self.topics = []
+
+    def get_specific_topics(self):
+        """
+        for k in KEYWORDS:
+            syns = wordnet.synsets(k)
+            self.topics.append(syns)
+        """
+        pass
+
+    def extract(self):
+        """
+        get_specific_topics()
+        for t in self.topics:
+            get_tweets_by_category(t)
+        """
+        pass
+
+    def save(self):
+        """
+        self.clean_df = pd.DataFrame(self.tweet)
+        self.clean_df.to_csv(self.filepath, encoding='utf-8')
+        :return:
+        """
+
+
 
     def get_english_tweets(self, screen_name):
         all_tweets = []
@@ -36,7 +66,10 @@ class DataExtractor:
 
     def get_tweets_by_category(self, search_keyword):
         try:
+            # todo: add loop
+            # todo: add if different tweet id
             tweets_fetched = self.api.search(search_keyword, count=150)
+            # self.tweets.append(tweets_fetched)
             return [{"text": status.text, "label": None} for status in tweets_fetched]
         except:
             print("Unfortunately, something went wrong..")

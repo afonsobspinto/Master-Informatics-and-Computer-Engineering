@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 RAW_DATA = "../data/training.1600000.processed.noemoticon.csv"
+EXTRACTED_DATASET = "../data/dataset.csv"
 CLEAN_DATA = "../data/pre_processed/clean_data.csv"
 CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
