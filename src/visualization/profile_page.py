@@ -1,22 +1,26 @@
 import json
-from flask import Flask
+from flask import Flask, render_template, request
 app = Flask(__name__)
+
+with open('results.json') as f:
+    data = json.load(f)
 
 
 @app.route("/")
 def hello():
-    with open('results.json') as f:
-        data = json.load(f)
-    return '''
-            <html>
-                <head>
-                    <title>Profiling ''' + data["name"] + '''</title>
-                </head>
-                <body>
-                    <h1>Hello, ''' + data["name"] + '''!</h1>
-                    <h2>Age: ''' + str(data["age"]) + '''<h2>
-                </body>
-            </html>'''
+    return render_template('index.html')
+
+
+@app.route("/statistics")
+def statistics():
+    return render_template('statistics.html')
+
+
+@app.route('/profile', methods = ['POST'])
+def profile():
+    username = request.form['username']
+    print("The username is '" + username + "'")
+    return render_template('user.html', username=username)
 
 
 if __name__ == "__main__":
