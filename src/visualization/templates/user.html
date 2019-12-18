@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Profile Anyone</title>
+<title>Profiling {{ author }}</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -10,8 +10,18 @@
 <style>
     body,h1,h2,h3,h4,h5,h6,li {font-family: "Lato", sans-serif}
     .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-twitter {font-size:200px}
-    .fa-users {font-size: 150px}
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+        padding: 10px;
+    }
+
+    .col-sm-3 p {
+        text-align: justify;
+        text-align-last: left;
+    }
 </style>
 <body>
 
@@ -31,6 +41,35 @@
 
 <!-- Header -->
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
+    <div class="grid-container">
+        <div class="col-sm-3">
+            <p>
+            <h4> Profiling @{{ data['username'] }}</h4>
+                <i class="fa fa-user w3-margin-right"></i> Gender: {{ data['gender'] }}
+                <br />
+                <i class="fa fa-location-arrow w3-margin-right"></i> Location: {{ data['location'] }}
+                <br />
+                <i class="fa fa-twitter w3-margin-right"></i> Number of Tweets: {{ data['tweets'] }}
+                <br />
+                <br />
+                <br />
+                <br />
+                <i class="fa fa-list w3-margin-right"></i> Categories:
+                <br />
+                <br />
+            <label>
+                <select name="Topics">
+                    <option value="">Left sided politics</option>
+                    <option value="">Pop Music</option>
+                    <option value="">Sports</option>
+                    <option value="">Movies</option>
+                </select>
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+        </div>
+    </div>
 </header>
 
 <!-- Second Grid -->
