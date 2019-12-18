@@ -27,8 +27,11 @@ class DataExtractor:
 
     def extract(self):
         bag_of_words = self.get_specific_topics()
-        for word in bag_of_words:
-            self.get_tweets_by_category(word)
+        try:
+            for word in bag_of_words:
+                self.get_tweets_by_category(word)
+        except:
+            pass
 
     def save(self):
         self.df = pd.DataFrame(self.tweets)
@@ -59,7 +62,7 @@ class DataExtractor:
 
     def get_tweets_by_category(self, search_keyword):
         for tweet in tw.Cursor(self.api.search, q=search_keyword, rpp=100).items(self.MAX_ITEMS):
-            tweet_obj = [tweet.id_str, tweet.text, tweet.user.name, str(tweet.created_at)]
+            tweet_obj = [tweet.id_str, tweet.text.strip(), tweet.user.name, str(tweet.created_at)]
             self.tweets.append(tweet_obj)
 
 
