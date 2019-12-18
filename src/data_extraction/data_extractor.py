@@ -1,12 +1,14 @@
 import csv
 import re
+
+import pandas as pd
 import tweepy as tw
 from src.settings import *
 from src.utils import is_english
 
 
 class DataExtractor:
-    KEYWORDS = ['music', 'politics'] # todo: fill with more general topics
+    MAX_ITEMS = 10000
 
     def __init__(self, filepath):
         self.filepath = filepath
@@ -15,31 +17,22 @@ class DataExtractor:
         self.api = tw.API(auth, wait_on_rate_limit=True)
         self.tweets = []
         self.topics = []
+        self.df = None
 
-    def get_specific_topics(self):
-        """
-        for k in KEYWORDS:
-            syns = wordnet.synsets(k)
-            self.topics.append(syns)
-        """
-        pass
+    @staticmethod
+    def get_specific_topics():
+        with open(RELATED_WORDS, 'r') as f:
+            content = f.readlines()
+            return [x.strip() for x in content]
 
     def extract(self):
-        """
-        get_specific_topics()
-        for t in self.topics:
-            get_tweets_by_category(t)
-        """
-        pass
+        bag_of_words = self.get_specific_topics()
+        for word in bag_of_words:
+            self.get_tweets_by_category(word)
 
     def save(self):
-        """
-        self.clean_df = pd.DataFrame(self.tweet)
-        self.clean_df.to_csv(self.filepath, encoding='utf-8')
-        :return:
-        """
-
-
+        self.df = pd.DataFrame(self.tweets)
+        self.df.to_csv(self.filepath, encoding='utf-8', mode='a', header=False)
 
     def get_english_tweets(self, screen_name):
         all_tweets = []
@@ -65,22 +58,15 @@ class DataExtractor:
             writer.writerows(tweets_array)
 
     def get_tweets_by_category(self, search_keyword):
-        try:
-            # todo: add loop
-            # todo: add if different tweet id
-            tweets_fetched = self.api.search(search_keyword, count=150)
-            # self.tweets.append(tweets_fetched)
-            return [{"text": status.text, "label": None} for status in tweets_fetched]
-        except:
-            print("Unfortunately, something went wrong..")
-            return None
+        for tweet in tw.Cursor(self.api.search, q=search_keyword, rpp=100).items(self.MAX_ITEMS):
+            tweet_obj = [tweet.id_str, tweet.text, tweet.user.name, str(tweet.created_at)]
+            self.tweets.append(tweet_obj)
 
 
 if __name__ == '__main__':
     # Username account
-    de = DataExtractor()
-    #de.get_english_tweets("afonsobspinto")
-    search_term = "music"
-    testDataSet = de.get_tweets_by_category(search_term)
-
-
+    # de = DataExtractor()
+    # # de.get_english_tweets("afonsobspinto")
+    # search_term = "music"
+    # testDataSet = de.get_tweets_by_category(search_term)
+    pass

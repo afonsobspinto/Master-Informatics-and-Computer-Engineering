@@ -2,7 +2,7 @@ import enum
 import nltk
 
 # Download this on the first run only:
-nltk.download('stopwords')
+# nltk.download('stopwords')
 
 ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words('english'))
 NON_ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words()) - ENGLISH_STOPWORDS

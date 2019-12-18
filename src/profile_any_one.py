@@ -1,8 +1,6 @@
-import pandas as pd
-
 from src.data_cleaning.data_cleaner import DataCleaner
 from src.data_extraction.data_extractor import DataExtractor
-from src.settings import RAW_DATA, CLEAN_DATA, EXTRACTED_DATASET
+from src.settings import RAW_DATA, TOPICS
 
 if __name__ == "__main__":
     import argparse
@@ -12,10 +10,11 @@ if __name__ == "__main__":
                         help='the user to profile')
     args = parser.parse_args()
     user = args.user
-    de = DataExtractor(EXTRACTED_DATASET)
+    de = DataExtractor(RAW_DATA)
     de.extract()
-    dc = DataCleaner(RAW_DATA)
-    dc.clean()
+    de.save()
+    # dc = DataCleaner(RAW_DATA)
+    # dc.clean()
     # dc.save()
     # clean_df = dc.get_clean_df()
     # clean_df = pd.read_csv(CLEAN_DATA)
