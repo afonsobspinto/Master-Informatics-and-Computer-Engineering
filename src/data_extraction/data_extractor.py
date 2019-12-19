@@ -29,7 +29,11 @@ class DataExtractor:
         bag_of_words = self.get_specific_topics()
         try:
             for word in bag_of_words:
+                print("Collecting tweets about " + word)
+                old_tweets = len(self.tweets)
                 self.get_tweets_by_category(word)
+                new_tweets = len(self.tweets)
+                print(str(new_tweets-old_tweets) + " tweets added\n")
         except:
             pass
 
@@ -61,7 +65,7 @@ class DataExtractor:
             writer.writerows(tweets_array)
 
     def get_tweets_by_category(self, search_keyword):
-        for tweet in tw.Cursor(self.api.search, q=search_keyword, rpp=100).items(self.MAX_ITEMS):
+        for tweet in tw.Cursor(self.api.search, q=search_keyword + ' -filter:retweets', rpp=100).items(self.MAX_ITEMS):
             tweet_obj = [tweet.id_str, tweet.text.strip(), tweet.user.name, str(tweet.created_at)]
             self.tweets.append(tweet_obj)
 
