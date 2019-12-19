@@ -1,0 +1,580 @@
+Artificial Intelligence
+go
+robotics
+neuroscience
+natural language processing
+psychology
+computer science
+information theory
+mathematics
+john mccarthy
+chess
+cybernetic
+frankenstein
+machine learning
+artificial neural network
+alan turing
+logic
+expert system
+machine perception
+knowledge representation
+automated planning and scheduling
+data mining
+machine
+alphago
+machine translation
+game theory
+carnegie mellon university
+artificial general intelligence
+optical character recognition
+cybernetics
+cognitive science
+optimization
+computer vision
+speech recognition
+marvin minsky
+operations research
+moore's law
+herbert a. simon
+reinforcement learning
+linguistics
+philosophy
+algorithms
+heuristic
+ontology
+norbert wiener
+mind
+cognition
+watson
+ibm
+r.u.r.
+intelligent agent
+jeopardy!
+ai effect
+natural language understanding
+economics
+autonomous car
+ai winter
+information retrieval
+theory of computation
+dartmouth college
+technological singularity
+big data
+google
+mary shelley
+karel čapek
+garry kasparov
+warren mccullouch
+walter pitts
+brad rutter
+ken jennings
+allen newell
+probability
+andreas kaplan
+humanoid
+utility
+fifth generation computer
+deep learning
+cyborg
+computer
+sentience
+pathfinding
+bayesian inference
+support vector machine
+k-nearest neighbor algorithm
+mit
+description logic
+fuzzy logic
+evolutionary algorithms
+swarm intelligence
+unsupervised learning
+supervised learning
+sentiment analysis
+facial recognition system
+self-driving cars
+moravec's paradox
+hans moravec
+developmental robotics
+intelligence
+learning
+philosopher
+heuristics
+draughts
+theorem
+darpa
+perception
+statistics
+kinect
+smartphone
+neats vs. scruffies
+china
+turing-complete
+function
+denver
+influenza
+neurons
+family
+backpropagation
+uncertainty
+semantics
+learn
+cooperation
+rodney brooks
+lidar
+soft computing
+computer program
+tic-tac-toe
+human mind
+endoscopy
+evolutionary computation
+strategic game
+affect
+content delivery network
+military simulations
+hidden markov model
+overfitting
+automated reasoning
+decision theory
+anthropomorphism
+ai
+paradigm
+information engineering
+human intelligence
+neurobiology
+artificial intelligence in fiction
+philosophy of ai
+ancient history
+turtle
+computer performance
+technology industry
+software engineering
+stanford
+artificial being
+storytelling device
+ethics of artificial intelligence
+formal reasoning
+church–turing thesis
+computational
+robotic
+semantic
+mathematical
+fortran
+robots
+physics
+bots
+simulation
+teleportation
+visualization
+logarithms
+genomics
+technology
+androids
+bioinformatics
+telepathy
+computing
+telekinesis
+analytic
+supercomputer
+ninjutsu
+neural
+nanotechnology
+neurophysiology
+galois
+software
+robo
+meta
+invariants
+soar
+management
+problem solving
+dartmouth workshop
+prolog
+massachusetts institute of technology
+arthur samuel
+logic theorist
+sir james lighthill
+cyc
+deepmind
+academic research
+lisp machine
+medical diagnosis
+ai-complete
+situated
+mathematical optimization
+ibm deep blue
+quiz show
+question answering system
+xbox 360
+xbox one
+intelligent personal assistant
+gofai
+lee sedol
+computer go
+go handicaps
+future of go summit
+alphago versus ke jie
+ke jie
+bloomberg news
+symbolics
+transhuman
+wetware
+psychoacoustics
+psychohistory
+bionics
+cadie
+telerobotics
+brainwaves
+microworld
+precognitive
+nonvisual
+psychophysiology
+virtuality
+humanlike
+psycholinguistics
+neuroethics
+wordnet
+biogenetic
+gigo
+exoskeletons
+sonification
+electromagnetics
+biomathematics
+abiogenesis
+psychophysics
+biomimetics
+superstruct
+technologic
+stereoscopy
+talos
+premise
+utility function
+fitness function
+combinatorial explosion
+crete
+new york city
+san francisco
+pruning
+a* search algorithm
+black swan theory
+hephaestus
+commonsense reasoning
+naïve physics
+folk psychology
+perceptron
+flocking
+knowledge engineering
+web ontology language
+upper ontology
+domain ontology
+multi-agent planning
+quantifier
+emergent behavior
+predicate
+connectionism
+statistical classification
+regression analysis
+circumscription
+computational learning theory
+computational complexity
+sample complexity
+optimization theory
+natural-language user interface
+noise
+text mining
+question answering
+tactile sensor
+object recognition
+decision network
+robotic arm
+cycle
+industrial robot
+robotic mapping
+motion planning
+natural selection
+affective computing
+multimodal sentiment analysis
+human–computer interaction
+classifier
+virtual assistant
+atari 2600
+transfer learning
+world wide web
+artificial brain
+satplan
+human biology
+aeronautical engineering
+w. grey walter
+johns hopkins beast
+princeton university
+ratio club
+john haugeland
+neurology
+management science
+al-jazari
+computational linguistics
+cognitive psychology
+linear algebra
+boolean logic
+cognitive neuroscience
+quantum physics
+facial recognition
+boolean algebra
+quantum mechanics
+operant conditioning
+erwin schrodinger
+fractal geometry
+deductive reasoning
+quantum chromodynamics
+functional magnetic resonance imaging
+protein folding
+relativity theory
+simultaneous equations
+mathematical notation
+celestial mechanics
+generative grammar
+gottfried wilhelm leibniz
+uber
+stanford university
+stanford artificial intelligence laboratory
+university of edinburgh
+logic programming
+adsense
+seymour papert
+hebbian learning
+roger schank
+commonsense knowledge bases
+doug lenat
+edward feigenbaum
+pattern recognition
+embodied agent
+behavior-based ai
+alexey grigorevich ivakhnenko
+nouvelle ai
+emotional intelligence
+control theory
+embodied mind thesis
+starcraft
+kunihiko fukushima
+david rumelhart
+fuzzy system
+grey system theory
+siri
+decision making
+computational intelligence
+symbolic artificial intelligence
+cnn
+feedforward neural network
+symbolic computation
+gmdh
+recurrent neural network
+emotion
+scientific method
+banking
+explainable ai
+neocortex
+logical consequence
+neuroevolution
+inference rule
+ceo
+means-ends analysis
+spacex
+microsoft
+vicarious
+dune
+manga
+aliens
+psychotherapy
+trope
+productivity
+unemployment
+consciousness
+ethics
+local search
+configuration space
+search algorithm
+astronomically large
+computation time
+search tree
+hill climbing
+neocognitron
+simulated annealing
+beam search
+random optimization
+artificial selection
+genetic algorithms
+gene expression programming
+genetic programming
+gradient descent
+particle swarm optimization
+ant colony optimization
+ant trail
+alphazero
+inductive logic programming
+propositional logic
+e-sports
+truth function
+first-order logic
+fuzzy set theory
+captcha
+control system
+default logic
+non-monotonic logic
+hero of alexandria
+qualification problem
+situation calculus
+event calculus
+fluent calculus
+modal logic
+bayesian network
+expectation-maximization algorithm
+dynamic bayesian network
+kalman filter
+computationalism
+openai
+transhumanism
+conditionally independent
+markov chain monte carlo
+random walk
+xbox live
+decision analysis
+applied information economics
+markov decision process
+mechanism design
+pattern matching
+decision tree learning
+kernel methods
+gaussian mixture model
+naive bayes classifier
+mergers and acquisitions
+frank rosenblatt
+linear regression
+teuvo kohonen
+stephen grossberg
+shun-ichi amari
+bernard widrow
+john hopfield
+eduardo r. caianiello
+multi-layer perceptron
+radial basis network
+intelligent control
+competitive learning
+automatic differentiation
+seppo linnainmaa
+paul werbos
+hierarchical temporal memory
+rina dechter
+geoffrey hinton
+restricted boltzmann machine
+convolutional neural network
+yann lecun
+recurrent neural networks
+vanishing gradient problem
+long short-term memory
+google voice
+andrew ng
+perfect knowledge
+imagenet challenge
+turing test
+kolmogorov complexity
+unmanned aerial vehicle
+department of defense
+google search
+energy storage
+acute myeloid leukemia
+ibm watson
+driverless cars
+tesla motors
+apple inc.
+financial institution
+security pacific national bank
+stock trader
+statistical software
+behavioral pattern
+corporate finance
+robotic process automation
+supply and demand
+joseph weizenbaum
+customer service
+portfolio optimization
+counterfactual thinking
+the economist
+carl benedikt frey
+martin ford
+american institute of certified public accountants
+machine ethics
+artificial moral agents
+friendly ai
+human rights
+charles t. rubin
+ai mayor
+hard problem of consciousness
+david chalmers
+information processing
+subjective experience
+philosophy of mind
+mind-body problem
+jerry fodor
+hilary putnam
+john searle
+strong ai hypothesis
+chinese room
+robot rights
+institute for the future
+common sense
+animal rights
+plug & pray
+star trek
+commander data
+intelligence explosion
+vernor vinge
+ray kurzweil
+desktop computer
+kevin warwick
+aldous huxley
+robert ettinger
+edward fredkin
+samuel butler
+darwin among the machines
+george dyson
+left 4 dead
+supreme commander 2
+redistribution of income and wealth
+science fiction
+digital footprints
+2001: a space odyssey
+hal 9000
+discovery one
+the terminator
+the matrix
+the day the earth stood still
+personality computing
+isaac asimov
+three laws of robotics
+ars electronica
+ghost in the shell
+museum of applied arts, vienna
+hajime sorayama
+george lucas
+a.i. artificial intelligence
+ex machina
+do androids dream of electric sheep?
+philip k. dick
+unintended consequences
+future of life institute
+andrew yang
+stephen hawking
+information asymmetry
+bill gates
+rational choice
+elon musk
+global catastrophic risk
+superintelligence: paths, dangers, strategies
+nick bostrom
+instrumental convergence
+peter thiel
+rational expectations
+mark hurd
+mark zuckerberg
+google deepmind
+lewis turning point
+non-player character
