@@ -65,7 +65,7 @@ class DataExtractor:
             writer.writerows(tweets_array)
 
     def get_tweets_by_category(self, search_keyword):
-        for tweet in tw.Cursor(self.api.search, q=search_keyword + ' -filter:retweets', rpp=100).items(self.MAX_ITEMS):
+        for tweet in tw.Cursor(self.api.search, q=search_keyword + ' -filter:retweets', lang='en', rpp=100).items(self.MAX_ITEMS):
             tweet_obj = [tweet.id_str, tweet.text.strip(), tweet.user.name, str(tweet.created_at)]
             self.tweets.append(tweet_obj)
 
