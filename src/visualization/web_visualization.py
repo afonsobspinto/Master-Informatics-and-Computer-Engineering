@@ -20,8 +20,6 @@ def statistics():
 def profile():
     username = request.form['username']
     select = request.form.get('Topics')
-    print("AAA")
-    print(str(select))
     return render_template('user.html', username=username, data=data, cat_len=len(data['categories']))
 
 

@@ -17,10 +17,18 @@
 
 <!-- Navbar -->
 <div class="w3-top">
-    <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+    <div class="w3-bar w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
         <a href="/statistics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Statistics</a>
+        <a class="w3-bar-item w3-hide-small w3-padding-large" id="categories" >Categories: </a>
+        <label>
+            <select class="w3-bar-item w3-hide-small" id="topics" name="Topics" onchange="select()">
+                {%for i in range(0, cat_len)%}
+                <option value="{{ data['categories'][i]['percentage'] }}">{{ data['categories'][i]['name'] }}</option>
+                {%endfor%}
+            </select>
+        </label>
     </div>
 
     <!-- Navbar on small screens -->
@@ -30,9 +38,8 @@
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
-    <div class="grid-container">
-        <div class="col-sm-6" id="stats">
+<header class="w3-container w3-blue w3-center">
+        <div class="col-sm-3" id="stats">
             <p>
             <h4> Profiling @{{ data['username'] }}</h4>
                 <i class="fa fa-user w3-margin-right"></i> Gender: {{ data['gender'] }}
@@ -40,20 +47,6 @@
                 <i class="fa fa-location-arrow w3-margin-right"></i> Location: {{ data['location'] }}
                 <br />
                 <i class="fa fa-twitter w3-margin-right"></i> Number of Tweets: {{ data['tweets'] }}
-                <br />
-                <br />
-                <br />
-                <br />
-                <i class="fa fa-list w3-margin-right"></i> Categories:
-                <br />
-                <br />
-            <label>
-                <select id="topics" name="Topics" onchange="select()">
-                    {%for i in range(0, cat_len)%}
-                    <option value="{{ data['categories'][i]['percentage'] }}">{{ data['categories'][i]['name'] }}</option>
-                    {%endfor%}
-                </select>
-            </label>
         </div>
         <div class="col-sm-3 smaller-container">
             <div id="percentages">
@@ -64,7 +57,6 @@
                 <p id="percentage2"></p>
             </div>
         </div>
-    </div>
 </header>
 
 <script>
@@ -80,7 +72,16 @@
     percentage1.innerText = selected_percentage + "%";
     let percentage2 = document.getElementById('percentage2');
     percentage2.innerText = (100 - selected_percentage)  + "%";
-    changeRectangles()
+
+    let inverse = 100 - selected_percentage;
+
+    let rect1 = two.makeRectangle(-100, 0 - inverse*2, 150, selected_percentage*4);
+    let rect2 = two.makeRectangle(-300, 0 - selected_percentage*2, 150, inverse*4);
+
+    // Change the percentage text
+    percentage1.innerText = selected_percentage + "%";
+    percentage2.innerText = (100 - selected_percentage)  + "%";
+    createRectangles(rect1, rect2, true)
 </script>
 
 </body>
