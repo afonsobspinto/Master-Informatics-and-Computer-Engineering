@@ -19,7 +19,10 @@ def statistics():
 @app.route('/profile', methods = ['POST'])
 def profile():
     username = request.form['username']
-    return render_template('user.html', username=username, data=data, cat_len=len(data['categories'][0]))
+    select = request.form.get('Topics')
+    print("AAA")
+    print(str(select))
+    return render_template('user.html', username=username, data=data, cat_len=len(data['categories']))
 
 
 if __name__ == "__main__":
