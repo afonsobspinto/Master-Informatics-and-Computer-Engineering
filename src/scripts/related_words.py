@@ -15,7 +15,7 @@ def _get_words(topics):
                     gr = google.search(expression)
                     entries = gr[0].number_of_results if len(gr) > 0 else 0
                     words.append((word, entries))
-                words.sort(key=lambda tup: tup[1], reverse = True)
+                words.sort(key=lambda tup: tup[1], reverse=True)
                 for t in words[:10]:
                     bag_of_words.add(t[0])
     return bag_of_words

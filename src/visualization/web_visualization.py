@@ -16,7 +16,7 @@ def statistics():
     return render_template('statistics.html')
 
 
-@app.route('/profile', methods = ['POST'])
+@app.route('/profile', methods=['POST'])
 def profile():
     username = request.form['username']
     select = request.form.get('Topics')

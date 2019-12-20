@@ -1,6 +1,7 @@
-import nltk
+# Uncomment the following two lines only in the first run, then comment again
+# import nltk
 # nltk.download('wordnet')
-from nltk.corpus import wordnet
+
 from nltk.corpus import wordnet
 synonyms = []
 hypernyms = []

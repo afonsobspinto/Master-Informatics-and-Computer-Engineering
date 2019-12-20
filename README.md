@@ -26,4 +26,4 @@ python src/profile_any_one.py --user <@twitter_user>
 ### Authors
 - Afonso Pinto
 - Ehsan Fallah
-- TOmás Oliveira
+- Tomás Oliveira
