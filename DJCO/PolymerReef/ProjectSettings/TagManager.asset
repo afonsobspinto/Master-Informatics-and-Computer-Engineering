@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Waypoint
+  - Health
+  - Energy
+  - Food
+  - Speed
+  - Trash
+  - Camera
+  - Particle
+  - DirectionalLight
+  - concrete
+  - dirt
+  - Environment
+  - FishTrigger
+  - FishGroup
+  - Subtitles
+  - PredatorMusic
+  - Predator
+  - SubtitleTrigger
+  - LastCutscene
+  - Partner
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - Obstacle
+  - Suimono_Water
+  - Suimono_Depth
+  - Suimono_Screen
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
