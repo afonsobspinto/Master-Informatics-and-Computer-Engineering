@@ -20,7 +20,7 @@
     <div class="w3-bar w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="/statistics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Statistics</a>
+        <a href="/statistics" id="statistics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Statistics</a>
         <a class="w3-bar-item w3-hide-small w3-padding-large" id="categories" >Categories: </a>
         <label>
             <select class="w3-bar-item w3-hide-small" id="topics" name="Topics" onchange="select()">
@@ -39,14 +39,14 @@
 
 <!-- Header -->
 <header class="w3-container w3-blue w3-center">
+    <h2 class="w3-jumb"> Profiling @{{ data['username'] }}</h2>
         <div class="col-sm-3" id="stats">
-            <p>
-            <h4> Profiling @{{ data['username'] }}</h4>
-                <i class="fa fa-user w3-margin-right"></i> Gender: {{ data['gender'] }}
-                <br />
-                <i class="fa fa-location-arrow w3-margin-right"></i> Location: {{ data['location'] }}
-                <br />
-                <i class="fa fa-twitter w3-margin-right"></i> Number of Tweets: {{ data['tweets'] }}
+            <i class="fa fa-user w3-margin-right w3-xlarge"></i>
+            <p class="w3-xlarge">Gender: {{ data['gender'] }}</p>
+            <i class="fa fa-location-arrow w3-margin-right w3-xlarge"></i>
+            <p class="w3-xlarge">Location: {{ data['location'] }}</p>
+            <i class="fa fa-twitter w3-margin-right w3-xlarge"></i>
+            <p class="w3-xlarge">Number of Tweets: {{ data['tweets'] }}</p>
         </div>
         <div class="col-sm-3 smaller-container">
             <div id="percentages">

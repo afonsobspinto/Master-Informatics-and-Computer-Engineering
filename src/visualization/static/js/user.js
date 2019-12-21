@@ -19,10 +19,10 @@ function select(){
 function createRectangles(rect1, rect2, first) {
 
     // Color the rectangles
-    rect1.fill = 'rgba(126, 251, 9, 1)';
-    rect1.stroke = '#60c403';
-    rect2.fill = '#FF8000';
-    rect2.stroke = 'orangered';
+    rect1.fill = '#60c403';
+    rect1.stroke = '#067c50';
+    rect2.fill = '#ff0000';
+    rect2.stroke = '#a50000';
 
     // Groups can take an array of shapes and/or groups.
     let group = two.makeGroup(rect1, rect2);
