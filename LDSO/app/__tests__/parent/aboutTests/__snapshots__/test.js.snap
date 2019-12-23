@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutScreen snapshot renders AboutScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)>
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Sobre a equipa
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)
+    style={
+      Object {
+        "marginHorizontal": 8,
+        "marginVertical": 8,
+      }
+    }
+  >
+    <Styled(H1)>
+      Sobre a equipa
+    </Styled(H1)>
+    <Styled(Text)
+      style={
+        Object {
+          "fontSize": 14,
+          "paddingBottom": 10,
+        }
+      }
+    >
+      Esta aplicação foi feita possível pelo esforço conjunto da equipa de desenvolvimento e fantasticamente pacientes product owners.
+    </Styled(Text)>
+    <Styled(H2)>
+      Product Owners
+    </Styled(H2)>
+    <Styled(Text)
+      style={
+        Object {
+          "fontSize": 14,
+          "paddingBottom": 10,
+        }
+      }
+    >
+      • Carla Oliveira - Mestrado Integrado em Psicologia
+      
+
+      • Mariana Toste - Mestrado Integrado em Psicologia
+    </Styled(Text)>
+    <Styled(H2)>
+      Equipa de Desenvolvimento
+    </Styled(H2)>
+    <Styled(Text)
+      style={
+        Object {
+          "fontSize": 14,
+          "paddingBottom": 10,
+        }
+      }
+    >
+      • Afonso Pinto - @afonsobspinto
+      
+
+      • Francisco Maria - @francismaria
+      
+
+      • João Castro - @joaopscastro
+      
+
+      • Miguel Mano - @aquelemiguel
+      
+
+      • Paulo Correia - @pipas
+      
+
+      • Rui Oliveira - @ruimoliveira
+      
+
+      • Sérgio Salgado - @chaotixkilla
+    </Styled(Text)>
+  </Styled(Content)>
+</Styled(Container)>
+`;

@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterScreen snapshot renders RegisterScreen correctly 1`] = `
+<Styled(Container)
+  style={
+    Object {
+      "backgroundColor": "#3db3e2",
+    }
+  }
+>
+  <Styled(Content)
+    contentContainerStyle={
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+        "left": "10%",
+        "width": "80%",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#ffffff",
+          "fontFamily": "LinotteBold",
+          "fontSize": 30,
+          "marginBottom": "5%",
+        }
+      }
+    >
+      Registo de Conta
+    </Text>
+    <Styled(Form)>
+      <Styled(Item)
+        error={false}
+        floatingLabel={true}
+        style={
+          Object {
+            "marginLeft": 0,
+          }
+        }
+        success={false}
+      >
+        <Styled(Label)
+          style={
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            }
+          }
+        >
+          E-mail
+        </Styled(Label)>
+        <Styled(Input)
+          className="email"
+          onChangeText={[Function]}
+          style={
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            }
+          }
+        />
+      </Styled(Item)>
+      <Styled(Item)
+        error={false}
+        floatingLabel={true}
+        style={
+          Object {
+            "marginLeft": 0,
+          }
+        }
+        success={false}
+      >
+        <Styled(Label)
+          style={
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            }
+          }
+        >
+          Password
+        </Styled(Label)>
+        <Styled(Input)
+          className="password"
+          onChangeText={[Function]}
+          secureTextEntry={true}
+          style={
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            }
+          }
+        />
+      </Styled(Item)>
+      <Styled(Button)
+        block={true}
+        onPress={[Function]}
+        primary={true}
+        rounded={true}
+        style={
+          Object {
+            "marginTop": "10%",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "LinotteBold",
+              "fontSize": 20,
+            }
+          }
+        >
+          Concluir Registo
+        </Text>
+      </Styled(Button)>
+    </Styled(Form)>
+    <Component
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "marginTop": "15%",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 15,
+            "marginBottom": "2%",
+          }
+        }
+      >
+        Já possui uma conta?
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        className="login"
+        ellipsizeMode="tail"
+        onPress={[Function]}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 15,
+            "marginBottom": "2%",
+            "textDecorationLine": "underline",
+          }
+        }
+      >
+        Faça login aqui!
+      </Text>
+    </Component>
+  </Styled(Content)>
+</Styled(Container)>
+`;

@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "RoutineGo",
+    "description": "An application to help children diagnosed with spectrum of autism perform daily tasks.",
+    "slug": "routine-go",
+    "privacy": "public",
+    "sdkVersion": "30.0.0",
+    "platforms": ["android"],
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "androidStatusBarColor": "#000000",
+    "androidStatusBar": {
+    "barStyle": "light-content",
+    "backgroundColor": "#000000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "feup.ldso.routines",
+      "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "pt.up.fe.ldsog02"
+    }
+  }
+}

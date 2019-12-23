@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoutineFormScreen snapshot renders RoutineFormScreen correctly 1`] = `
+<Styled(Container)>
+  <Styled(Header)
+    androidStatusBarColor="#0074D9"
+    style={
+      Object {
+        "backgroundColor": "#0074D9",
+      }
+    }
+  >
+    <Styled(Left)>
+      <Styled(Button)
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)>
+      <Styled(Title)>
+        Nome da rotina
+      </Styled(Title)>
+    </Styled(Body)>
+    <Styled(Right) />
+  </Styled(Header)>
+  <Styled(Content)>
+    <Styled(Form)>
+      <Styled(Item)
+        stackedLabel={true}
+      >
+        <Styled(Label)>
+          Nome
+        </Styled(Label)>
+        <Styled(Input)
+          onChangeText={[Function]}
+          value="Nome da rotina"
+        />
+      </Styled(Item)>
+      <Styled(Item)
+        stackedLabel={true}
+      >
+        <Styled(Label)>
+          Cor
+        </Styled(Label)>
+        <ColorPicker
+          color="#0074D9"
+          colors={
+            Array [
+              Object {
+                "code": "#FFDC00",
+                "name": "Amarelo",
+              },
+              Object {
+                "code": "#001f3f",
+                "name": "Azul Escuro",
+              },
+              Object {
+                "code": "#0074D9",
+                "name": "Azul",
+              },
+              Object {
+                "code": "#7FDBFF",
+                "name": "Azul Claro",
+              },
+              Object {
+                "code": "#85144b",
+                "name": "Bordô",
+              },
+              Object {
+                "code": "#AAAAAA",
+                "name": "Cinzento",
+              },
+              Object {
+                "code": "#FF851B",
+                "name": "Cor de Laranja",
+              },
+              Object {
+                "code": "#F012BE",
+                "name": "Cor de Rosa",
+              },
+              Object {
+                "code": "#01FF70",
+                "name": "Lima",
+              },
+              Object {
+                "code": "#DDDDDD",
+                "name": "Prateado",
+              },
+              Object {
+                "code": "#111111",
+                "name": "Preto",
+              },
+              Object {
+                "code": "#B10DC9",
+                "name": "Roxo",
+              },
+              Object {
+                "code": "#2ECC40",
+                "name": "Verde",
+              },
+              Object {
+                "code": "#39CCCC",
+                "name": "Verde Água",
+              },
+              Object {
+                "code": "#3D9970",
+                "name": "Verde Escuro",
+              },
+              Object {
+                "code": "#FF4136",
+                "name": "Vermelho",
+              },
+            ]
+          }
+          onColorChange={[Function]}
+        />
+      </Styled(Item)>
+      <PeriodicityPicker
+        color="#0074D9"
+        isRepeat={false}
+        periodicity={
+          Array [
+            5,
+            6,
+          ]
+        }
+        toggleIsRepeat={[Function]}
+        togglePeriodicity={[Function]}
+      />
+      <ImagePickerButtons
+        color="#0074D9"
+        onImageChange={[Function]}
+        onPhotoChange={[Function]}
+      />
+      <BottomButton
+        color="#0074D9"
+        onPress={[Function]}
+        text="Criar Rotina"
+      />
+    </Styled(Form)>
+  </Styled(Content)>
+</Styled(Container)>
+`;

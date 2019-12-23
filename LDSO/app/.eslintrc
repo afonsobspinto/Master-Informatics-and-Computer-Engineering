@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "globals": {
+    "__DEV__": false,
+    "fetch": false,
+    "FormData": false
+  },
+  "env": {
+    "jest": true
+  }
+}

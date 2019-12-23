@@ -1,0 +1,180 @@
+{
+	"routines": [
+        {
+			"title": "Após acordar",
+			"image": "sun",
+			"photo": "null",
+            "color": "#37c1f0",
+            "weight": 1,
+            "periodicity": "1111111",
+			"activities": [
+                {
+					"title": "Fazer a cama",
+					"image": "bed",
+					"photo": "null",
+                    "color": "#7d84b2",
+                    "weight": 1,
+					"time": {
+						"min": 30,
+						"max": 300,
+						"goal": 120
+					}
+				},
+				{
+					"title": "Lavar os dentes",
+                    "image": "toothbrush",
+                    "photo": "null",
+                    "color": "#0e79b2",
+                    "weight": 2,
+					"time": {
+						"min": 60,
+						"max": 300,
+						"goal": 120
+					}
+				},
+				{
+					"title": "Vestir",
+					"image": "socks",
+                    "photo": "null",
+                    "color": "#7fb800",
+                    "weight": 3,
+					"time": {
+						"min": 30,
+						"max": 180,
+						"goal": 120
+					}
+				},
+				{
+					"title": "Tomar banho",
+					"image": "shower",
+                    "photo": "null",
+                    "color": "#37c1f0",
+                    "weight": 4,
+					"time": {
+						"min": 300,
+						"max": 1200,
+						"goal": 480
+					}
+				},
+				{
+					"title": "Preparar a mochila",
+					"image": "bag",
+                    "photo": "null",
+                    "color": "#e43f6f",
+                    "weight": 5,
+					"time": {
+						"min": 60,
+						"max": 300,
+						"goal": 120
+					}
+				},
+				{
+					"title": "Calçar os sapatos",
+					"image": "sneakers",
+                    "photo": "null",
+                    "color": "#4bb3fd",
+                    "weight": 6,
+					"time": {
+						"min": 10,
+						"max": 120,
+						"goal": 60
+					}
+				},
+				{
+					"title": "Tomar o pequeno almoço",
+					"image": "breakfast",
+                    "photo": "null",
+                    "color": "#ff7f11",
+                    "weight": 7,
+					"time": {
+						"min": 180,
+						"max": 600,
+						"goal": 300
+					}
+				},
+				{
+					"title": "Pentear cabelo",
+					"image": "comb",
+                    "photo": "null",
+                    "color": "#b0db43",
+                    "weight": 8,
+					"time": {
+						"min": 30,
+						"max": 180,
+						"goal": 90
+					}
+				}
+			]
+		},
+		{
+			"title": "Antes de dormir",
+            "image": "moon",
+            "photo": "null",
+            "color": "#011f39",
+            "weight": 2,
+            "periodicity": "1111111",
+			"activities": [
+                {
+					"title": "Ajudar na cozinha",
+					"image": "fork",
+                    "photo": "null",
+                    "color": "#1a5e63",
+                    "weight": 1,
+					"time": {
+						"min": 300,
+						"max": 1800,
+						"goal": 600
+					}
+				},
+				{
+					"title": "Fazer os trabalhos de casa",
+					"image": "paper",
+                    "photo": "null",
+                    "color": "#657153",
+                    "weight": 2,
+					"time": {
+						"min": 600,
+						"max": 1800,
+						"goal": 1200
+					}
+				},
+				{
+					"title": "Arrumar os brinquedos",
+					"image": "blocks",
+                    "photo": "null",
+                    "color": "#519e8a",
+                    "weight": 3,
+					"time": {
+						"min": 30,
+						"max": 300,
+						"goal": 90
+					}
+				},
+				{
+					"title": "Ler um livro",
+					"image": "book",
+                    "photo": "null",
+                    "color": "#ff9f1c",
+                    "weight": 4,
+					"time": {
+						"min": 900,
+						"max": 7200,
+						"goal": 3600
+					}
+				},
+				{
+					"title": "Preparar a roupa do dia seguinte",
+					"image": "shirt",
+                    "photo": "null",
+                    "color": "#ff9f1c",
+                    "weight": 5,
+					"time": {
+						"min": 60,
+						"max": 300,
+						"goal": 120
+					}
+				}
+			]
+		}
+	]
+}

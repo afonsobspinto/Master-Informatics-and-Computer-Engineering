@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenuScreen snapshot renders MainMenuScreen correctly 1`] = `
+<Component
+  style={
+    Object {
+      "alignContent": "center",
+      "backgroundColor": "#3db3e2",
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <ScrollViewMock
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Styled(Spinner)
+      color="#FFA23D"
+    />
+  </ScrollViewMock>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#046488",
+          "borderTopLeftRadius": 45,
+          "borderTopRightRadius": 45,
+          "elevation": 10,
+          "height": 150,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "width": 450,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontFamily": "LinotteBold",
+            "fontSize": 30,
+            "marginTop": 15,
+            "textShadowColor": "rgba(0, 0, 0, 0.2)",
+            "textShadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "textShadowRadius": 3,
+          }
+        }
+      >
+        Zona de pai
+      </Text>
+    </TouchableOpacity>
+  </Component>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 30,
+        "position": "absolute",
+        "right": 20,
+        "top": 20,
+        "width": 30,
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </TouchableOpacity>
+</Component>
+`;
