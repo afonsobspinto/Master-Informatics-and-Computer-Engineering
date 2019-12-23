@@ -1,6 +1,6 @@
-# FEUP
+# Master in Informatics and Computer Engineering
 
-Repository to host various projects for the FEUP course.
+A repository to host my student projects at @FEUP @FCUP @UGent
 
 ### [AEDA/APlaceInTheSun](https://github.com/afonsobspinto/FEUP/tree/master/AEDA/APlaceInTheSun)
 The company "A place in the Sun" is dedicated to making reservations for accommodation in hotels, apartments, bednbreakfast, flats, and rooms in sharedhouses.
@@ -51,6 +51,9 @@ A simple SuperSlimeSoccer copycat game made using libGDX for the LPOO classes.
 
 ### [LTW/ToDoFeup](https://github.com/afonsobspinto/FEUP/tree/master/LTW/ToDoFeup)
 A web application where users can store and manage to-do lists.
+
+### [NEURO/brainstorm](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/NEURO/brainstorm-2019)
+Prediction of seizure-like activity in in vitro cortical populations.
 
 ### [PLOG/Optimization](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/Optimization)
 Modeling a teaching service distribution as a optimization problem using constraint logic programming.
