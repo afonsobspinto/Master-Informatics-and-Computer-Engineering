@@ -82,6 +82,9 @@ The idea is to use the free disk space of the computers in a LAN for backing up 
 ### [SDIS/Raft](https://github.com/afonsobspinto/FEUP/tree/master/SDIS/raft) 
 Raft is a consensus algorithm that is designed to be easy to understand. It's equivalent to Paxos in fault-tolerance and performance. The difference is that it's decomposed into relatively independent subproblems, and it cleanly addresses all major pieces needed for practical systems. We hope Raft will make consensus available to a wider audience, and that this wider audience will be able to develop a variety of higher quality consensus-based systems than are available today.
 
+### [SINF/Netrow](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/SINF/Netrow)
+Responsive ecommerce Website built with Vue.js
+
 ### [SOPE/Sauna](https://github.com/afonsobspinto/FEUP/tree/master/SOPE/sauna) 
 Simulation of access to shared resources: Saunas Manager
 
