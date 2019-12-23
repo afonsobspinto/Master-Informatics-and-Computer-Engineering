@@ -1,0 +1,52 @@
+<template>
+  <div>
+    <hero></hero>
+    <products-list-container></products-list-container>
+  </div>
+</template>
+
+<script>
+import ProductsListContainer from '../products_list/ProductsListContainer';
+import HeroSection from '../hero/Hero';
+import { HttpClient } from '../../lib/httpClient';
+
+export default {
+  name: 'homepage-component',
+  components: {
+    'products-list-container': ProductsListContainer,
+    'hero': HeroSection
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      HttpClient.instance(console.error, instance => {
+        instance.getProducts()
+                .then(obj => {
+                  let products = obj.DataSet.Table;
+                  products.forEach(p => {
+                    let prod = {
+                      id: p.Artigo,
+                      title: p.Descricao,
+                      description: p.DescricaoComercial ? p.DescricaoComercial : "Sem descrição adicional",
+                      price: p.Price,
+                      stock: p.Stock ? p.Stock : 0,
+                      isAddedToCart: false,
+                      isAddedBtn: false,
+                      category: p.Familia ? p.Familia : "Sem Categoria",
+                      subCategory: p.SubFamilia ? p.SubFamilia : "Sem SubCategoria",
+                      quantity: 1,
+                      image: p.Image ? 'http://' + p.Image : "https://bulma.io/images/placeholders/1280x960.png",
+                      artSubst: p.ArtSubst
+                    };
+                    vm.$store.commit("addProduct", prod);
+                  });
+                })
+                .catch(e => {
+                  console.error(e);
+                  console.error("Failed to fetch products data");
+                  vm.$toaster.error("Failed to fetch products data");
+                })
+      });
+    })
+  }
+}
+</script>

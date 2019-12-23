@@ -1,0 +1,3041 @@
+{
+	"version": 1,
+	"collections": [
+		{
+			"id": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+			"name": "SINF Netrow",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"variables": [],
+			"order": [],
+			"folders_order": [
+				"f413e62e-8842-4e7d-bc36-d60c6ddb6535",
+				"b499268d-ce56-4876-8d85-d1f08b6624da"
+			],
+			"folders": [
+				{
+					"id": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"name": "Clientes",
+					"description": "",
+					"auth": null,
+					"events": null,
+					"collection": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"folder": null,
+					"order": [
+						"047a854c-7eb7-4ac0-8837-3ca35b7944f6",
+						"e9e0eeca-6e25-44e6-b01d-8bd23b26d497",
+						"6dd3caec-1f95-46ee-b518-df450608dd57",
+						"e8c943d2-1e62-4877-9878-420da5144fe8",
+						"4279024c-6231-4350-b4b9-3253a7951564"
+					],
+					"folders_order": [],
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"folderId": "b499268d-ce56-4876-8d85-d1f08b6624da"
+				},
+				{
+					"id": "f413e62e-8842-4e7d-bc36-d60c6ddb6535",
+					"name": "Token",
+					"description": null,
+					"auth": null,
+					"events": null,
+					"collection": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"folder": null,
+					"order": [
+						"9d67e587-fe46-4718-845e-ef1c5e2b960a"
+					],
+					"folders_order": [],
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"folderId": "f413e62e-8842-4e7d-bc36-d60c6ddb6535"
+				}
+			],
+			"requests": [
+				{
+					"id": "047a854c-7eb7-4ac0-8837-3ca35b7944f6",
+					"name": "GET_CUSTOMER",
+					"url": "{{apiUrl}}Base/Clientes/DaValorAtributos/C8",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"description": "",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"bearer": [
+							{
+								"key": "token",
+								"type": "string",
+								"value": "{{secondToken}}"
+							}
+						],
+						"type": "bearer"
+					},
+					"events": null,
+					"folder": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"rawModeData": "[\n\t\"Nome\",\n\t\"Descricao\",\n\t\"Telefone\",\n\t\"Morada\",\n\t\"Localidade\",\n\t\"CodigoPostal\",\n\t\"Pais\",\n\t\"NumContribuinte\",\n\t\"CDU_CampoVar1\",\n\t\"CDU_CampoVar2\"\n]",
+					"headers": "Content-Type: application/json\nAccept: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "4279024c-6231-4350-b4b9-3253a7951564",
+					"name": "UPDATE_CUSTOMER Minimal",
+					"url": "{{apiUrl}}Base/Clientes/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"bearer": [
+							{
+								"key": "token",
+								"type": "string",
+								"value": "{{secondToken}}"
+							}
+						],
+						"type": "bearer"
+					},
+					"events": null,
+					"folder": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"rawModeData": "{\n    \"EmModoEdicao\": true,\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "6dd3caec-1f95-46ee-b518-df450608dd57",
+					"name": "CREATE_CUSTOMER",
+					"url": "{{apiUrl}}Base/Clientes/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"rawModeData": "{\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_CampoVar1\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_CampoVar2\",\n\t    \"Valor\": \"bbb\"\n\t}\n\t]\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "9d67e587-fe46-4718-845e-ef1c5e2b960a",
+					"name": "GET_COMPANY_TOKEN",
+					"url": "{{apiUrl}}token",
+					"description": "In this token is necessary to pass the username, password and company, to have full access to Api capability",
+					"data": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "{{company}}",
+							"type": "text"
+						},
+						{
+							"key": "instance",
+							"value": "{{instance}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grandType}}",
+							"type": "text"
+						},
+						{
+							"key": "line",
+							"value": "Professional",
+							"description": "",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/x-www-form-urlencoded"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c91f8512-7f14-4f22-ac29-dd88013d7e3a",
+								"exec": [
+									"var data = JSON.parse(responseBody)",
+									"pm.environment.set(\"secondToken\", data.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"folder": "f413e62e-8842-4e7d-bc36-d60c6ddb6535",
+					"responses": [
+						{
+							"id": "23baadcf-8fca-4ed2-88ed-cce7faaafc1a",
+							"name": "Second Token",
+							"status": "OK",
+							"mime": "",
+							"language": "json",
+							"text": "{\"access_token\":\"UB2_ffiXrE22mWGEAM5azRs5ca0pKH0B8-veDaMzy4UA6CcsPTSqAvdKnS4DQQEKQZtQCijPhgiZqG2iz2bf2izjha7T1Zsn-rhyzXl4E_I-_S0A3BUn8K-yB-urgl1nDybTmt7SxF4hE0YoT-NtyTn5sozVaJjGSG0gHBgarDaycg2hkPrn6tpxZ1ODBlfpOG_K55YBuu04vlheEqarqX6vq2wibYN8nUpo4DiRlxkled86JNWK6fssCxPmD2MeY8XiCe2ARxbG6qyHdpTP4YDtvYbObN54KKGn-MCSU60gOGS86rNuJbc2AshO-E2k\",\"token_type\":\"bearer\",\"expires_in\":1199}",
+							"responseCode": {
+								"code": 200,
+								"name": "OK",
+								"detail": ""
+							},
+							"requestObject": {
+								"id": "4b651948-e9c3-4036-9e92-7f5a6d4fb844",
+								"method": "POST",
+								"headers": "Content-Type: application/x-www-form-urlencoded",
+								"dataMode": "urlencoded",
+								"data": [
+									{
+										"key": "username",
+										"value": "{{username}}",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "{{password}}",
+										"type": "text"
+									},
+									{
+										"key": "company",
+										"value": "{{company}}",
+										"type": "text"
+									},
+									{
+										"key": "instance",
+										"value": "{{instance}}",
+										"type": "text"
+									},
+									{
+										"key": "grant_type",
+										"value": "{{grandType}}",
+										"type": "text"
+									}
+								],
+								"rawModeData": "",
+								"url": "{{apiUrl}}token",
+								"pathVariableData": [],
+								"queryParams": [],
+								"headerData": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								]
+							},
+							"headers": [
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*",
+									"name": "Access-Control-Allow-Headers",
+									"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "*",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "379",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Sep 2018 11:21:09 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookies": [],
+							"request": "9d67e587-fe46-4718-845e-ef1c5e2b960a",
+							"collection": "94db3e10-950e-4bcd-be35-0e8c91f8d81b"
+						}
+					],
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody)\npm.environment.set(\"secondToken\", data.access_token);\n",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"headers": "Content-Type: application/x-www-form-urlencoded\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "e8c943d2-1e62-4877-9878-420da5144fe8",
+					"name": "UPDATE_CUSTOMER",
+					"url": "{{apiUrl}}Base/Clientes/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"rawModeData": "{\n    \"EmModoEdicao\": true,\n    \"Cliente\": \"C8\",\n    \"Nome\": \"John Johny\",\n\t\"Descricao\": \"A good customer\",\n\t\"Telefone\": \"910910910\",\n\t\"Morada\": \"New Street, nr. 41\",\n\t\"Localidade\": \"Porto\",\n\t\"CodigoPostal\": \"4000-000\",\n\t\"Pais\": \"PT\",\n\t\"NumContribuinte\": \"510343660\",\n\t\"Moeda\": \"EUR\",\n\t\"CamposUtil\": [\n\t{\n\t    \"Nome\": \"CDU_CampoVar1\",\n\t    \"Valor\": \"johny@gmail.com\"\n\t},\n\t{\n\t    \"Nome\": \"CDU_CampoVar2\",\n\t    \"Valor\": \"new\"\n\t}\n\t]\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "e9e0eeca-6e25-44e6-b01d-8bd23b26d497",
+					"name": "CHECK_CUSTOMER_EXISTS",
+					"url": "{{apiUrl}}Base/Clientes/Existe/C8",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"description": "",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "b499268d-ce56-4876-8d85-d1f08b6624da",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "94db3e10-950e-4bcd-be35-0e8c91f8d81b",
+					"headers": "Accept: application/json\n",
+					"pathVariables": {}
+				}
+			]
+		},
+		{
+			"id": "b32fa884-67ff-42b6-a296-557805a46bc7",
+			"name": "Moodle Examples",
+			"description": "Primavera.WebAPI collection is for testing all the power and capability of the API developed at Primavera BSS.",
+			"auth": null,
+			"events": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aee7b441-e075-42b7-bf74-2f7d1a849e86",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "520a9f68-7d34-4d4b-80aa-b64afffa642c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"variables": [],
+			"order": [],
+			"folders_order": [
+				"a441673d-58fc-4d42-bcb3-5a67aa82c2b6",
+				"3ff59d1e-a377-4624-8828-730208a9f1f4",
+				"f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+				"bb4d8225-2a15-4160-8d79-53741851b1e4",
+				"84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+				"373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+				"02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+				"05168ce6-3e6f-4517-8790-c18425e6d02b",
+				"2ddb26f2-2ee4-45e6-a569-4f576607f7a3"
+			],
+			"folders": [
+				{
+					"id": "3ff59d1e-a377-4624-8828-730208a9f1f4",
+					"name": "Company",
+					"description": null,
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "HUsYVyFf6hqmlhhoS7GbqzYpZBwEcvDpxJruOpTmxjll-sYrfXSihS_Sn8ie9VC_YrejXDKuTsFZs27Q9hh73AWFtB_enDn1m8yP6dFN09FoUGsVAFjqG0cgf0m9gYXKhUeT_V709YS8oF6ciPHUbal4i4UMsN5ZC8wKKP0EwerVfIFy8ySf5wTV2X0q8b9lQuY_ZpnOGFvHr9gkV7m43ZBdHZ7ELceX1dAzS-ZHiN9t6-Nmw5vSjLM6sp1c6PaXmFYnkZhXH86v1JQfhOgT9yTqm1WhjbB45aYBeFvcCDw9mA4qSIB-_3RYyPb8IYdw",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"ab338094-de9e-4ed0-b310-8f4187199f03"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "3ff59d1e-a377-4624-8828-730208a9f1f4"
+				},
+				{
+					"id": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"name": "Customers",
+					"description": null,
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"918cf7d6-2296-4f94-a484-a354465f66a8",
+						"b857b112-b2b5-42a1-812b-964a7907b34a",
+						"a3c791bf-e1e9-476f-8246-b32b14d63e02",
+						"f83a7d43-c635-4892-8ab1-6be933e35fc5",
+						"a6d874fe-fbc4-4e87-b7bf-073782e91d50",
+						"85785a58-bd11-40da-a5e9-61063020ea5e",
+						"51203f96-6aa4-472b-8772-e2adfb71d342",
+						"5cb418e7-aa8b-4a2a-b94d-823cb36741fc"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "bb4d8225-2a15-4160-8d79-53741851b1e4"
+				},
+				{
+					"id": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"name": "Internals",
+					"description": null,
+					"auth": null,
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"07e31b3d-8aa4-4d68-bae6-5774592bf8dd",
+						"40b6cb3f-74ac-41d3-8b32-3f99c10b495f",
+						"a74c98c0-27c8-4bc9-a09b-674b1200c6c4",
+						"a1b9bd1c-7fce-4603-8dde-2cf1a2c36d88",
+						"d50a30cd-5ad2-467b-af2a-56437c3fcdfc",
+						"2f249861-35c3-4362-a6a4-e94138ee2f32",
+						"06f30e80-c424-4766-be84-355392b8b86a"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "05168ce6-3e6f-4517-8790-c18425e6d02b"
+				},
+				{
+					"id": "2ddb26f2-2ee4-45e6-a569-4f576607f7a3",
+					"name": "Inventory",
+					"description": null,
+					"auth": null,
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"51f46eed-ed54-489a-8af3-b24f0f60cfb8"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "2ddb26f2-2ee4-45e6-a569-4f576607f7a3"
+				},
+				{
+					"id": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"name": "Items",
+					"description": null,
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"09c36d63-f494-403a-9e41-974d3f9a630a",
+						"b6018aae-e13e-4570-a04a-43e09b6da1bb",
+						"375dfe84-9d4e-4247-87c2-01f5de8ffff9",
+						"31379201-ccad-431c-91a7-a7899292eab2",
+						"cfdc984c-6836-4371-8945-d4ac58d8fafe",
+						"8f62b9bf-740e-4768-bca5-af7924b3053d",
+						"9605b997-72c9-4219-8d26-188848898ab9",
+						"531efdf8-bf81-49e4-9d66-35078ac307e0"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a"
+				},
+				{
+					"id": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"name": "Providers",
+					"description": null,
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"595a7b11-e9c0-4b7c-b120-e2df58d36d51",
+						"526ed192-cc27-4864-a42e-208dc69b13fe",
+						"eed456b3-9b0d-4266-880b-be25cf1dad80",
+						"32e23091-1e26-4488-a0fd-948f4bdba449",
+						"1ce1390c-3a46-44f7-977a-a15c55995979",
+						"d3e0799f-07b4-490e-b20b-820b366514ba",
+						"bf1401f8-c135-42cb-922a-696f2756fa7f"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "84131dc6-b1a6-4c68-a1d4-71b552f36be2"
+				},
+				{
+					"id": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"name": "Purchases",
+					"description": null,
+					"auth": null,
+					"events": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ddf456c-5aaa-49a0-ae77-0ad39679ef19",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "abd271ea-f3eb-4de3-95d1-f62e1a6f268e",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"921cc97c-f82e-4f2a-a490-76ecf248e3a1",
+						"5f3a49eb-2580-40af-8b33-ba72e94693ba",
+						"24955311-1f9c-4279-adcd-486e675c824b",
+						"f8093ad7-a4a7-4e02-aff0-c172cc91a553",
+						"d640f4e9-b3a2-46b5-8f34-454dbf013732",
+						"e52430e5-5668-49b4-804e-1a169384791f",
+						"14d484c7-8196-48e9-883c-d87fd0d06dae",
+						"00d10393-82bf-4a2f-87a6-1786b10ffefc",
+						"f5b84cbc-a5fd-4e2a-95c9-3ee8323e5fb3"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795"
+				},
+				{
+					"id": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"name": "Sales",
+					"description": null,
+					"auth": null,
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"128ea4f1-d93b-46a7-a179-c1a1b3ec0fc4",
+						"ed3b7d5b-9ac3-4dd0-88e8-abbacf748742",
+						"f06eb70b-9330-4d71-9a18-f4451aa53ab0",
+						"e19b6884-87a2-4a5e-b528-7573f545b2d1",
+						"b290d2e7-03bd-49c2-83d8-a65345064830",
+						"59a43321-0d9b-4b5a-8c94-60b0d2fe467f",
+						"6d42f677-3d5d-4359-ae03-ba674c6eed8d",
+						"5d7f3da5-233c-4f45-a259-7ac7d600b5ac",
+						"d4d5ded3-38c6-40de-8da3-a54c58ec7cac"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40"
+				},
+				{
+					"id": "a441673d-58fc-4d42-bcb3-5a67aa82c2b6",
+					"name": "Token",
+					"description": null,
+					"auth": null,
+					"events": null,
+					"collection": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folder": null,
+					"order": [
+						"a61e2eaa-52bb-42af-ae0d-8fe03d3355ea",
+						"a635440c-81a1-4990-a37f-e248014571f1"
+					],
+					"folders_order": [],
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"folderId": "a441673d-58fc-4d42-bcb3-5a67aa82c2b6"
+				}
+			],
+			"requests": [
+				{
+					"id": "00d10393-82bf-4a2f-87a6-1786b10ffefc",
+					"name": "Add line",
+					"url": "{{apiUrl}}Compras/Docs/AdicionaLinha/A0001/1/A1",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n\t\"TipoDoc\": \"ECF\",\n\t\"NumDoc\": \"8\",\n\t\"Entidade\": \"F0001\",\n\t\"TipoEntidade\": \"F\",\n\t\"Serie\": \"A\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "06f30e80-c424-4766-be84-355392b8b86a",
+					"name": "Get attributes value",
+					"url": "{{apiUrl}}Internos/Docs/DaValorAtributos/RI/1/A/000/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Nome\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "07e31b3d-8aa4-4d68-bae6-5774592bf8dd",
+					"name": "List series",
+					"url": "{{apiUrl}}Base/Series/ListaSeries/N/ES/false",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "09c36d63-f494-403a-9e41-974d3f9a630a",
+					"name": "Update",
+					"url": "{{apiUrl}}Base/Artigos/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"CodigoTabLog\": \"Artigo\",\n    \"ChaveLog\": \"Artigo\",\n    \"EstadoBE\": \"\",\n    \"Artigo\": \"A0001\",\n    \"Descricao\": \"Pentium D925 Dual Core\",\n    \"DescricaoAbrev\": \"qwerty\",\n    \"DescricaoComercial\": \"\",\n    \"Caracteristicas\": \"\",\n    \"CodBarras\": \"5601234901248\",\n    \"UnidadeBase\": \"UN\",\n    \"UnidadeVenda\": \"UN\",\n    \"UnidadeCompra\": \"UN\",\n    \"UnidadeEntrada\": \"UN\",\n    \"UnidadeSaida\": \"UN\",\n    \"IVA\": \"20\",\n    \"PercIncidenciaIVA\": 100,\n    \"Desconto\": 0,\n    \"FornecedorPrincipal\": \"\",\n    \"STKMinimo\": 10,\n    \"STKMaximo\": 25,\n    \"STKReposicao\": 14,\n    \"StkActual\": 0,\n    \"PCMedio\": 0,\n    \"PCUltimo\": 0,\n    \"MovStock\": \"S\",\n    \"DataUltimaEntrada\": \"2016-04-24T14:51:05\",\n    \"DataUltimaSaida\": \"2016-03-10T15:23:35\",\n    \"Familia\": \"H01\",\n    \"GrupoCenariosCompras\": \"\",\n    \"ArtigoSubstituto\": \"\",\n    \"ArtigoAssociado\": \"\",\n    \"LocalizacaoSugestao\": \"A1.A.1.001\",\n    \"ArmazemSugestao\": \"A1\",\n    \"TipoArtigo\": \"3\",\n    \"Classe\": 0,\n    \"NecessarioRecalcPCM\": false,\n    \"DeduzIVA\": true,\n    \"SujeitoDevolucao\": true,\n    \"PCPadrao\": 0,\n    \"SugestaoPrCustoComposto\": 0,\n    \"UltimoDescontoComercialCompra\": 22.75,\n    \"UltimaDespesaAdicionalCompra\": 0,\n    \"PrazoEntrega\": 15,\n    \"QuantEconomica\": 10,\n    \"FormulaSaidas\": \"\",\n    \"UltimoFornecedor\": \"F0001\",\n    \"SubFamilia\": \"H01.001\",\n    \"UltimoDocumentoCompra\": \"VNC\",\n    \"UltimaSerieDocumentoCompra\": \"A\",\n    \"UltimoNumDocCompra\": 2,\n    \"PesoLiquido\": 0,\n    \"Peso\": 0,\n    \"Volume\": 0,\n    \"Marca\": \"LB\",\n    \"Modelo\": \"\",\n    \"Garantia\": \"1\",\n    \"Anulado\": false,\n    \"TrataNumerosSerie\": false,\n    \"OperacaoTesouraria\": false,\n    \"EntidadeTesouraria\": \"\",\n    \"TipoEntidadeTesouraria\": \"\",\n    \"TrataLotes\": false,\n    \"UtilizaFormulaLotesEntrada\": false,\n    \"SugestaoLoteEntradas\": \"\",\n    \"UtilizaFormulaLotesSaida\": false,\n    \"SugestaoLoteSaidas\": \"\",\n    \"FormulaEntradas\": \"\",\n    \"FormulaGPR\": \"\",\n    \"UltimoNumeroSerie\": \"\",\n    \"UltimoLote\": \"\",\n    \"IntrastatCodigoPautal\": \"84716040\",\n    \"IntrastatPesoLiquido\": 6,\n    \"IntrastatPesoLiquidoEx\": 6,\n    \"Observacoes\": \"texto observações\",\n    \"DataUltimaActualizacao\": \"2018-07-26T16:36:00\",\n    \"SujeitoRetencao\": false,\n    \"RubDimensao1\": \"\",\n    \"RubDimensao2\": \"\",\n    \"RubDimensao3\": \"\",\n    \"Dimensao1\": \"\",\n    \"Dimensao2\": \"\",\n    \"Dimensao3\": \"\",\n    \"TipoDimensao1\": \"\",\n    \"TipoDimensao2\": \"\",\n    \"TipoDimensao3\": \"\",\n    \"DimensaoLote\": false,\n    \"TrataDimensao\": 0,\n    \"Etiqueta\": \"\",\n    \"ArtigoPai\": \"\",\n    \"OrdemDim\": 0,\n    \"UtilizadoCCOP\": false,\n    \"IdGDOC\": \"\",\n    \"Pesar\": false,\n    \"NaturezaAnalitica\": 0,\n    \"UtilizadoManutencao\": false,\n    \"Ecovalor\": 0,\n    \"SujeitoEcotaxa\": false,\n    \"EcovalorAfectaPCM\": false,\n    \"SujeitoIEC\": false,\n    \"CategoriaIEC\": \"\",\n    \"CodigoTaric\": \"\",\n    \"EmbalagemIEC\": \"\",\n    \"CapacidadeEmbIEC\": 0,\n    \"UnidadeTaric\": \"\",\n    \"FactConvIEC\": 0,\n    \"ValorIEC\": 0,\n    \"TaxaAlcool\": 0,\n    \"IdTipoOrigem\": 0,\n    \"FabCompAuto\": false,\n    \"CalcNecessidades\": true,\n    \"QtReservada\": 12,\n    \"QtReceber\": 20,\n    \"IdTipoProducao\": 0,\n    \"Desperdicio\": 0,\n    \"UtilizadoGPR\": false,\n    \"DesativadoGPR\": false,\n    \"DataDesactivacaoGPR\": \"1899-12-30T00:00:00\",\n    \"SujeitoProRata\": false,\n    \"PercIvaDedutivel\": 100,\n    \"IdClassificacao\": \"\",\n    \"GestaoSingular\": false,\n    \"Ano\": 0,\n    \"Selo\": \"\",\n    \"CodigoEstampilha\": \"\",\n    \"CodigoBebidaEspirituosa\": \"\",\n    \"FactorUnidadeSup\": 1,\n    \"IsentoPagDireitos\": false,\n    \"CodigoPautal\": \"\",\n    \"IsentoIEC\": false,\n    \"CodigoIsentoIEC\": \"\",\n    \"EmModoEdicao\": true,\n    \"CamposUtil\": [\n        {\n            \"Conteudo\": \"ValorMarca X\",\n            \"Nome\": \"CDU_CampoVar1\",\n            \"Valor\": \"Marca X\",\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"Valor1 Ano\",\n            \"Nome\": \"CDU_CampoVar2\",\n            \"Valor\": \"1 Ano\",\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"Valor\",\n            \"Nome\": \"CDU_CampoVar3\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        }\n    ],\n    \"Conteudo\": \"ArtigoA0001DescricaoPentium D925 Dual CoreCodBarras5601234901248UnidadeBaseUNUnidadeVendaUNUnidadeCompraUNUnidadeEntradaUNUnidadeSaidaUNIva20FornecedorPrincipalMovStockSFamiliaH01ArtigoSubstitutoArtigoAssociadoArmazemSugestaoA1LocalizacaoSugestaoA1.A.1.001TipoArtigo3DeduzIVATrueFormulaSaidasUltimoFornecedorF0001SubFamiliaH01.001UltimoDocumentoCompraVNCUltimaSerieDocumentoCompraAUltimoNumDocCompra2MarcaLBModeloGarantia1SugestaoLoteEntradasSugestaoLoteSaidasFormulaEntradasUltimoNumeroSerieUltimoLoteIntrastatCodigoPautal84716040FactorUnidadeSup1Observacoestexto observaçõesDataUltimaEntrada4/24/2016 2:51:05 PMDataUltimaSaida3/10/2016 3:23:35 PMDataUltimaActualizacao7/26/2018 4:36:00 PMDesconto0STKMinimo10STKMaximo25STKReposicao14Classe0NecessarioRecalcPCMFalseSugestaoPrCustoComposto0UltimoDescontoComercialCompra22.75UltimaDespesaAdicionalCompra0PrazoEntrega15QuantEconomica10Peso0PesoLiquido0Volume0AnuladoFalseTrataNumerosSerieFalseTrataLotesFalseUtilizaFormulaLotesEntradaFalseUtilizaFormulaLotesSaidaFalseIntrastatPesoLiquido6IntrastatPesoLiquidoEx6OperacaoTesourariaFalseEntidadeTesourariaTipoEntidadeTesourariaSujeitoRetencaoFalseSujeitoDevolucaoTruePercIncidenciaIVA100RubDimensao1RubDimensao2RubDimensao3Dimensao1Dimensao2Dimensao3TipoDimensao1TipoDimensao2TipoDimensao3EtiquetaTrataDimensao0ArtigoPaiOrdemDim0UtilizadoCCOPFalseNaturezaAnalitica0IdGDOCSujeitoEcotaxaFalseEcovalorAfectaPCMFalseEcovalor0IdTipoOrigem0FabCompAutoFalseCalcNecessidadesTrueQtReservada12QtReceber20IdTipoProducao0Desperdicio0UtilizadoGPRFalseDesativadoGPRFalseSujeitoIECFalseCategoriaIECCodigoTaricEmbalagemIECCapacidadeEmbIEC0UnidadeTaricFactConvIEC0ValorIEC0TaxaAlcool0UtilizadoManutencaoFalseCodigoBebidaEspirituosa CodigoEstampilha IsentoIECFalseCodigoIsentoIECCodigoAdicionalAltIECSujeitoProRataFalsePercIvaDedutivel100FormulaGPRGestaoSingularFalseControlaTransformacaoValorFalseSeloGrupoCenariosComprasCodigoPautalIsentoPagDireitosFalseSujeitoRetencaoArtigoFalseRetencaoArtigoValorFalseRetencaoArtigoValor0CodigoCPVTipoCusteio0PCPadrao0DataCustoPadrao12/30/1899 12:00:00 AMActualizaPCPadraoFalse\",\n    \"Locked\": false,\n    \"ControlaTransformacaoValor\": false,\n    \"CodigoCPV\": \"\",\n    \"TipoCusteio\": 0,\n    \"DataCustoPadrao\": \"1899-12-30T00:00:00\",\n    \"PCPadraoMAlt\": 0,\n    \"ActualizaPCPadrao\": false,\n    \"CodigoAdicionalAltIEC\": \"\",\n    \"SujeitoRetencaoArtigo\": false,\n    \"RetencaoArtigoValor\": 0,\n    \"RetencaoArtigoTipoValor\": false\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "128ea4f1-d93b-46a7-a179-c1a1b3ec0fc4",
+					"name": "List series",
+					"url": "{{apiUrl}}Base/Series/ListaSeries/V/FS/false",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "14d484c7-8196-48e9-883c-d87fd0d06dae",
+					"name": "Get attributes value",
+					"url": "{{apiUrl}}Compras/Docs/DaValorAtributos/ECF/8/A/000/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Nome\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "1ce1390c-3a46-44f7-977a-a15c55995979",
+					"name": "Rrmove provider",
+					"url": "{{apiUrl}}Base/Fornecedores/Remove/NUNOA",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "24955311-1f9c-4279-adcd-486e675c824b",
+					"name": "Create document",
+					"url": "{{apiUrl}}Compras/Docs/CreateDocument",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\r\n  \"Linhas\": [\r\n    {\r\n      \"Artigo\": \"A0001\",\r\n      \"Quantidade\": \"1\"\r\n    },\r\n    {\r\n      \"Artigo\": \"A0002\",\r\n      \"Quantidade\": \"1\"\r\n    }\r\n  ],\r\n  \"Tipodoc\": \"ECF\",\r\n  \"Serie\": \"A\",\r\n  \"Entidade\": \"FVD\",\r\n  \"TipoEntidade\": \"F\",\r\n  \"DataDoc\":\"12/11/2018\",\r\n  \"DataVenc\":\"12/12/2018\"\r\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "2f249861-35c3-4362-a6a4-e94138ee2f32",
+					"name": "List documents",
+					"url": "{{apiUrl}}Internos/TabInternos/LstDocInternos/",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "31379201-ccad-431c-91a7-a7899292eab2",
+					"name": "List items",
+					"url": "{{apiUrl}}Base/Artigos/LstArtigos",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "32e23091-1e26-4488-a0fd-948f4bdba449",
+					"name": "Edit providers",
+					"url": "{{apiUrl}}Base/Fornecedores/Edita/NUNOA",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "375dfe84-9d4e-4247-87c2-01f5de8ffff9",
+					"name": "Create item",
+					"url": "{{apiUrl}}Base/Artigos/Actualiza/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"Artigo\": \"A000123\",\n    \"Descricao\": \"Pentium C200\",\n    \"Caracteristicas\": \"\",\n    \"CodBarras\": \"\",\n    \"UnidadeBase\": \"UN\",\n    \"IVA\": \"20\",\n    \"Peso\": 0,\n    \"Volume\": 0,\n    \"Marca\": \"\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "40b6cb3f-74ac-41d3-8b32-3f99c10b495f",
+					"name": "Document exists?",
+					"url": "{{apiUrl}}Internos/TabInternos/Existe/ES",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "51203f96-6aa4-472b-8772-e2adfb71d342",
+					"name": "Get attribute value",
+					"url": "{{apiUrl}}Base/Clientes/DaValorAtributo/ALCAD/Nome",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "51f46eed-ed54-489a-8af3-b24f0f60cfb8",
+					"name": " Warehouse transfers",
+					"url": "{{apiUrl}}Inventario/Transferencias/CreateTransfer",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "2ddb26f2-2ee4-45e6-a569-4f576607f7a3",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n\t\"TipoDoc\": \"TRA\",\n\t\"Serie\": \"A\",\n\t\"Data\": \"12/11/2018\",\n\t\"Moeda\": \"EUR\",\n\t\"LinhasOrigem\":\n\t[\n\t\t{\n\t\t\t\"Artigo\":\"A0001\",\n            \"Armazem\":\"A1\",\n            \"Localizacao\":\"A1\",\n            \"Lote\":\"\",\n            \"Quantidade\":2,\n            \"PrecUnit\":10.5,\n            \"INV_EstadoOrigem\":\"DISP\",\n            \"LinhasDestino\":\n            [\n            \t{\n            \t\t\"Artigo\":\"A0001\",\n\t\t            \"Armazem\":\"A2\",\n\t\t            \"Localizacao\":\"A2\",\n\t\t            \"Lote\":\"\",\n\t\t            \"Quantidade\":2,\n\t\t            \"PrecUnit\":10.5,\n\t\t            \"INV_EstadoDestino\":\"DISP\"\n            \t}\n            ]\n\t\t}\n\t]\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "526ed192-cc27-4864-a42e-208dc69b13fe",
+					"name": "Create provider",
+					"url": "{{apiUrl}}Base/Fornecedores/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"Fornecedor\": \"NUNOA\",\n    \"Nome\": \"Soluciones Cad de qwerty\",\n    \"Descricao\": \"qwerty1234\",\n    \"Morada\": \"PASSEO DE PORTUGAL, 12345\",\n    \"Localidade\": \"VILANUEVA DE ARRIBA\",\n    \"CodigoPostal\": \"61001\",\n    \"LocalidadeCodigoPostal\": \"MADRID\",\n    \"Telefone\": \"00.034.1.474747447\",\n    \"Fax\": \"00.034.1.4374747474\",\n    \"EnderecoWeb\": \"http://alcad.es\",\n    \"Distrito\": \"\",\n    \"NumContribuinte\": \"989922456\",\n    \"Pais\": \"ES\",\n    \"Moeda\": \"EUR\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "531efdf8-bf81-49e4-9d66-35078ac307e0",
+					"name": "Get attributes value",
+					"url": "{{apiUrl}}Base/Artigos/DaValorAtributos/A0001",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Descricao\",\n\t\"ArmazemSugestao\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "595a7b11-e9c0-4b7c-b120-e2df58d36d51",
+					"name": "Provider exists?",
+					"url": "{{apiUrl}}Base/Fornecedores/Existe/F0001",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "59a43321-0d9b-4b5a-8c94-60b0d2fe467f",
+					"name": "Get attributes values",
+					"url": "{{apiUrl}}Vendas/Docs/DaValorAtributos/000/ECL/A/12/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"type": "text",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Nome\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "5cb418e7-aa8b-4a2a-b94d-823cb36741fc",
+					"name": "Get attributes value",
+					"url": "{{apiUrl}}Base/Clientes/DaValorAtributos/ALCAD",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Nome\",\n\t\"Descricao\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "5d7f3da5-233c-4f45-a259-7ac7d600b5ac",
+					"name": "Add line",
+					"url": "{{apiUrl}}Vendas/Docs/AdicionaLinha/A0001/1/A1",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n\t\"TipoDoc\": \"FA\",\n\t\"NumDoc\": \"5\",\n\t\"Entidade\": \"ALCAD\",\n\t\"TipoEntidade\": \"C\",\n\t\"Serie\": \"A\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "5f3a49eb-2580-40af-8b33-ba72e94693ba",
+					"name": "Document exists?",
+					"url": "{{apiUrl}}Compras/TabCompras/Existe/ECF/",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "6d42f677-3d5d-4359-ae03-ba674c6eed8d",
+					"name": "Fill related data",
+					"url": "{{apiUrl}}Vendas/Docs/PreencheDadosRelacionados/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"Tipodoc\": \"FA\",\n    \"Entidade\": \"Sofrio\",\n    \"TipoEntidade\": \"C\",\n    \"Serie\": \"C\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "85785a58-bd11-40da-a5e9-61063020ea5e",
+					"name": "Remove customer",
+					"url": "{{apiUrl}}Base/Clientes/Remove/qwerty",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "8f62b9bf-740e-4768-bca5-af7924b3053d",
+					"name": "Remove item",
+					"url": "{{apiUrl}}Base/Artigos/Remove/A0001",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "918cf7d6-2296-4f94-a484-a354465f66a8",
+					"name": "Customer exists?",
+					"url": "{{apiUrl}}Base/Clientes/Existe/ALCAD",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "921cc97c-f82e-4f2a-a490-76ecf248e3a1",
+					"name": "List series",
+					"url": "{{apiUrl}}Base/Series/ListaSeries/C/ECF/false",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "9605b997-72c9-4219-8d26-188848898ab9",
+					"name": "Get attribute value",
+					"url": "{{apiUrl}}Base/Artigos/DaValorAtributo/A0001/Descricao",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "a1b9bd1c-7fce-4603-8dde-2cf1a2c36d88",
+					"name": "Document moved?",
+					"url": "{{apiUrl}}Internos/TabInternos/DocMovimentado/ES/",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "a3c791bf-e1e9-476f-8246-b32b14d63e02",
+					"name": "Update",
+					"url": "{{apiUrl}}Base/Clientes/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"CodigoTabLog\": \"Cliente\",\n    \"ChaveLog\": \"Cliente\",\n    \"EstadoBE\": \"\",\n    \"Cliente\": \"ALCAD\",\n    \"Nome\": \"Soluciones Cad de qwerty\",\n    \"Descricao\": \"qwerty1234\",\n    \"Morada\": \"PASSEO DE PORTUGAL, 464646\",\n    \"Morada2\": \"\",\n    \"Localidade\": \"VILANUEVA DE ARRIBA\",\n    \"CodigoPostal\": \"61001\",\n    \"LocalidadeCodigoPostal\": \"MADRID\",\n    \"Telefone\": \"00.034.1.474747447\",\n    \"Telefone2\": \"\",\n    \"Fax\": \"00.034.1.4374747474\",\n    \"EnderecoWeb\": \"http://alcad.es\",\n    \"Distrito\": \"\",\n    \"GestaoDiasPag\": false,\n    \"DiaPagamento1\": 0,\n    \"DiaPagamento2\": 0,\n    \"DiaPagamento3\": 0,\n    \"NumDiasRetrocesso\": 0,\n    \"DiaInicialPerNaoPag1\": \"\",\n    \"DiaFinalPerNaoPag1\": \"\",\n    \"DiaInicialPerNaoPag2\": \"\",\n    \"DiaFinalPerNaoPag2\": \"\",\n    \"DebitoContaCorrente\": 20318.84,\n    \"DebitoVendasNaoConvertidas\": 0,\n    \"DebitoEncomendasPendentes\": 2019.46,\n    \"TipoCredito\": \"1\",\n    \"LimiteCredIdade\": false,\n    \"LimiteCredValor\": true,\n    \"LimiteIdadeSaldo\": 0,\n    \"LimiteValorSaldo\": 0,\n    \"Limitecredito\": 200000,\n    \"Desconto\": 0,\n    \"LinhaPrecos\": \"0\",\n    \"Observacoes\": \"\",\n    \"NumContribuinte\": \"989922456\",\n    \"Pais\": \"ES\",\n    \"TipoMercado\": \"1\",\n    \"ExcluirAvisosVencimento\": false,\n    \"ModoPag\": \"DEP\",\n    \"ModoRec\": \"\",\n    \"CondPag\": \"2\",\n    \"Moeda\": \"EUR\",\n    \"ModoExp\": \"05\",\n    \"Vendedor\": \"1\",\n    \"Zona\": \"20\",\n    \"NumViasDoc\": 1,\n    \"ExcluirRecapitulativos\": false,\n    \"DataCriacao\": \"2018-07-26T16:36:18\",\n    \"RubricaPagamentos\": \"PAG-OUTROS\",\n    \"RubricaRecebimentos\": \"REC-VENDAS\",\n    \"TipoTerceiro\": \"003\",\n    \"SegmentoTerceiro\": \"001\",\n    \"RegimeIvaReembolsos\": 1,\n    \"Factoring\": false,\n    \"Inactivo\": false,\n    \"ProcessaIntrastat\": true,\n    \"IntrastatPorto\": \"ACO\",\n    \"SuporteAvisosVencimento\": \"I\",\n    \"DataUltimaActualizacao\": \"2018-07-26T16:36:18\",\n    \"DescricaoComercial\": \"\",\n    \"Caracteristicas\": \"\",\n    \"Idioma\": \"ES\",\n    \"UtilizaIdioma\": true,\n    \"EfectuaRetencao\": false,\n    \"EfectuaOutrasRetencoes\": false,\n    \"SujeitoRecargo\": false,\n    \"ExcluirAlertasCob\": false,\n    \"AlertaValorSaldoCob\": false,\n    \"ValorSaldoCob\": 0,\n    \"AlertaIdadeSaldoCob\": false,\n    \"IdadeSaldoCob\": 0,\n    \"IdContactoCob\": \"\",\n    \"CalendarioCob\": \"\",\n    \"IdGDOC\": \"\",\n    \"LocalOperacao\": \"0\",\n    \"DebitoLetrasNovas\": false,\n    \"DebitoLetrasReformadas\": false,\n    \"CondDebitoLetrasParticular\": false,\n    \"JuroLetras\": 0,\n    \"JuroLetrasPostecipado\": false,\n    \"ComissaoLetras\": 0,\n    \"ComissaoLetrasPercent\": false,\n    \"PortesLetras\": 0,\n    \"CondDebitoLetrasReformadasParticular\": false,\n    \"JuroLetrasReformadas\": 0,\n    \"JuroLetrasReformadasPostecipado\": false,\n    \"ComissaoLetrasReformadas\": 0,\n    \"ComissaoLetrasReformadasPercent\": false,\n    \"PortesLetrasReformadas\": 0,\n    \"PessoaSingular\": false,\n    \"Toc\": 0.5,\n    \"FuncionarioResp\": \"\",\n    \"FuncionarioTOC\": \"\",\n    \"Delegacao\": \"\",\n    \"CentroOperacional\": \"\",\n    \"Situacao\": \"ACTIVO\",\n    \"Equipa\": \"\",\n    \"CodPriempre\": \"\",\n    \"NomeFiscal\": \"Soluciones Cad de Madrid, SA\",\n    \"B2BTrataTrans\": false,\n    \"B2BUtilArtigosParceiro\": false,\n    \"B2BEnvioNaGravacao\": false,\n    \"B2BEnderecoMail\": \"\",\n    \"B2BCertificado\": \"\",\n    \"IdB2BFormato\": \"\",\n    \"B2BEnderecoEnvio\": \"\",\n    \"B2BDocDownload\": false,\n    \"B2BArtigosParceiro\": \"\",\n    \"B2BUtilUnidadesParceiro\": false,\n    \"B2BUnidadesParceiro\": \"\",\n    \"B2BIgnoraEnvioParceiro\": false,\n    \"B2BEnvioParceiro\": \"\",\n    \"B2BIgnoraTransaccoes\": false,\n    \"B2BTransaccoes\": \"\",\n    \"CodigoGLN\": \"\",\n    \"EncargosBanco\": false,\n    \"EncargosBancos\": [],\n    \"CodigoIEC\": \"\",\n    \"CodigoIsencaoIEC\": \"\",\n    \"IsentoIEC\": false,\n    \"CambioADataDoc\": false,\n    \"EmModoEdicao\": true,\n    \"CamposUtil\": [\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar1\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar2\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar3\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        }\n    ],\n    \"Conteudo\": \"ClienteALCADNomeSoluciones Cad de Madrid, SANomeFiscalSoluciones Cad de Madrid, SADescricaoqwertyMoradaPASSEO DE PORTUGAL, 464646Morada2LocalidadeVILANUEVA DE ARRIBACodigoPostal61001LocalidadeCodigoPostalMADRIDTelefone00.034.1.474747447Telefone2Fax00.034.1.4374747474EnderecoWebhttp://alcad.esDistritoLinhaPrecos0UtilizaIdiomaTrueIdiomaESEfectuaRetencaoFalseEfectuaOutrasRetencoesFalseSujeitoRecargoFalseLimiteCredValorTrueLimiteCredIdadeFalseLimiteIdadeSaldo0LimiteValorSaldo0LimiteCredito200000ExcluirAlertasCobFalseAlertaValorSaldoCobFalseValorSaldoCob0AlertaIdadeSaldoCobFalseIdadeSaldoCob0CalendarioCobIdContactoCobTipoCredito1IdGDOCObservacoesNumContribuinte989922456ContribuinteNaoResidentePaisESTipoMercado1ModoPagDEPModoRecCondPag2MoedaEURModoExp05Vendedor1Zona20RubricaPagamentosPAG-OUTROSRubricaRecebimentosREC-VENDASTipoTerceiro003IntrastatPortoACOSuporteAvisosVencimentoISegmentoTerceiro001DataCriacao7/26/2018 4:36:18 PMDataUltimaActualizacao7/26/2018 4:36:18 PMDesconto0DebitoContaCorrente20318.84ExcluirAvisosVencimentoFalseNumViasDoc1ExcluirRecapitulativosFalseInactivoFalseVendasNaoConvertidas0DebitoEncomendasPendentes2019.46ProcessaIntrastatTrueLocalOperacao0Toc0.5FuncionarioRespFuncionarioTOCDelegacaoCentroOperacionalSituacaoACTIVOEquipaCodPRIEMPREIdB2BFormatoB2BEnderecoMailB2BEnderecoEnvioB2BEnvioNaGravacaoFalseB2BTrataTransFalseB2BCertificadoB2BDocDownloadFalseB2BUtilArtigosParceiroFalseB2BArtigosParceiroB2BUtilUnidadesParceiroFalseB2BUnidadesParceiroB2BIgnoraEnvioParceiroFalseB2BEnvioParceiroB2BIgnoraTransaccoesFalseB2BTransaccoesCodigoIECCodigoIsencaoIECIsentoIECFalseCodigoGLNGestaoDiasPagFalseDiaPagamento10DiaPagamento20DiaPagamento30NumDiasRetrocesso0DiaInicialPerNaoPag1DataFinalPerNaoPag1DiaInicialPerNaoPag2DiaFinalPerNaoPag2EncargosBancoFalseRegimeIvaReembolsos1FactoringFalseCambioADataDocFalseFacturacaoAgrupadaBillingFalseActividadeEmpresarialTrueAutoFacturacaoFalseTrataIvaCaixaFalseeGAR_CodigoAPAeGAR_IsentaFalseeGAR_NumPGLeGAR_TipoProdutorTipoRemetenteTipoRemetenteEntidadeParceira\",\n    \"ContribuinteNaoResidente\": \"\",\n    \"IntegraCessaoFactoring\": false,\n    \"ActividadeEmpresarial\": true,\n    \"eGAR_Isenta\": false,\n    \"eGAR_CodigoAPA\": \"\",\n    \"eGAR_NumPGL\": \"\",\n    \"eGAR_TipoProdutor\": \"\",\n    \"TipoRemetente\": \"\",\n    \"CodigoLocal\": \"\",\n    \"Locked\": false,\n    \"AutoFacturacao\": false,\n    \"TrataIvaCaixa\": false,\n    \"FacturacaoAgrupadaBilling\": false,\n    \"ShareBI\": {\n        \"Conteudo\": \"VersaoCloud0ActualizacaoCloudActualizacaoERP\",\n        \"EstadoBE\": \"\",\n        \"ChaveLog\": \"\",\n        \"CodigoTabLog\": \"\",\n        \"PropExcluirLog\": \"\",\n        \"VersaoCloud\": 0,\n        \"ActualizacaoCloud\": \"\",\n        \"ActualizacaoERP\": \"\"\n    },\n    \"EntidadeParceira\": \"\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "a61e2eaa-52bb-42af-ae0d-8fe03d3355ea",
+					"name": "Token without company",
+					"url": "{{apiUrl}}token",
+					"description": "This first token request, just insert your username and password.",
+					"data": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "instance",
+							"value": "{{instance}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grandType}}",
+							"type": "text"
+						}
+					],
+					"dataMode": "urlencoded",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/x-www-form-urlencoded"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6fb34cc6-1a0d-4ae7-b6a7-100571306053",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "aae9e47b-48f3-43aa-b2ec-293eadf7b506",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody)",
+									"pm.environment.set(\"firstToken\", data.access_token);",
+									""
+								]
+							}
+						}
+					],
+					"folder": "a441673d-58fc-4d42-bcb3-5a67aa82c2b6",
+					"responses": [
+						{
+							"id": "86018c6b-dd02-44c3-a69b-1f953217d40a",
+							"name": "First Token",
+							"status": "OK",
+							"mime": "",
+							"language": "Text",
+							"text": "",
+							"responseCode": {
+								"code": 200,
+								"name": "OK",
+								"detail": ""
+							},
+							"requestObject": {
+								"id": "e5e75aa4-68fc-4c24-8f94-369afa74b2d3",
+								"method": "POST",
+								"headers": "Content-Type: application/x-www-form-urlencoded",
+								"dataMode": "urlencoded",
+								"data": [
+									{
+										"key": "username",
+										"value": "{{username}}",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "{{password}}",
+										"type": "text"
+									},
+									{
+										"key": "company",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "instance",
+										"value": "{{instance}}",
+										"type": "text"
+									},
+									{
+										"key": "grant_type",
+										"value": "{{grandType}}",
+										"type": "text"
+									}
+								],
+								"rawModeData": "",
+								"url": "{{apiUrl}}token",
+								"pathVariableData": [],
+								"queryParams": [],
+								"headerData": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								]
+							},
+							"headers": [],
+							"cookies": [],
+							"request": "a61e2eaa-52bb-42af-ae0d-8fe03d3355ea",
+							"collection": "b32fa884-67ff-42b6-a296-557805a46bc7"
+						}
+					],
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody)\npm.environment.set(\"firstToken\", data.access_token);\n",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/x-www-form-urlencoded\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "a635440c-81a1-4990-a37f-e248014571f1",
+					"name": "Token Request",
+					"url": "{{apiUrl}}token",
+					"description": "In this token is necessary to pass the username, password and company, to have full access to Api capability",
+					"data": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "{{company}}",
+							"type": "text"
+						},
+						{
+							"key": "instance",
+							"value": "{{instance}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grandType}}",
+							"type": "text"
+						},
+						{
+							"key": "line",
+							"value": "Professional",
+							"description": "",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/x-www-form-urlencoded"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c91f8512-7f14-4f22-ac29-dd88013d7e3a",
+								"exec": [
+									"var data = JSON.parse(responseBody)",
+									"pm.environment.set(\"secondToken\", data.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"folder": "a441673d-58fc-4d42-bcb3-5a67aa82c2b6",
+					"responses": [
+						{
+							"id": "1ba79852-6f5a-487a-bde3-6e7a3cb9b1d4",
+							"name": "Second Token",
+							"status": "OK",
+							"mime": "",
+							"language": "json",
+							"text": "{\"access_token\":\"UB2_ffiXrE22mWGEAM5azRs5ca0pKH0B8-veDaMzy4UA6CcsPTSqAvdKnS4DQQEKQZtQCijPhgiZqG2iz2bf2izjha7T1Zsn-rhyzXl4E_I-_S0A3BUn8K-yB-urgl1nDybTmt7SxF4hE0YoT-NtyTn5sozVaJjGSG0gHBgarDaycg2hkPrn6tpxZ1ODBlfpOG_K55YBuu04vlheEqarqX6vq2wibYN8nUpo4DiRlxkled86JNWK6fssCxPmD2MeY8XiCe2ARxbG6qyHdpTP4YDtvYbObN54KKGn-MCSU60gOGS86rNuJbc2AshO-E2k\",\"token_type\":\"bearer\",\"expires_in\":1199}",
+							"responseCode": {
+								"code": 200,
+								"name": "OK",
+								"detail": ""
+							},
+							"requestObject": {
+								"id": "4b651948-e9c3-4036-9e92-7f5a6d4fb844",
+								"method": "POST",
+								"headers": "Content-Type: application/x-www-form-urlencoded",
+								"dataMode": "urlencoded",
+								"data": [
+									{
+										"key": "username",
+										"value": "{{username}}",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "{{password}}",
+										"type": "text"
+									},
+									{
+										"key": "company",
+										"value": "{{company}}",
+										"type": "text"
+									},
+									{
+										"key": "instance",
+										"value": "{{instance}}",
+										"type": "text"
+									},
+									{
+										"key": "grant_type",
+										"value": "{{grandType}}",
+										"type": "text"
+									}
+								],
+								"rawModeData": "",
+								"url": "{{apiUrl}}token",
+								"pathVariableData": [],
+								"queryParams": [],
+								"headerData": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								]
+							},
+							"headers": [
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*",
+									"name": "Access-Control-Allow-Headers",
+									"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "*",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "379",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Sep 2018 11:21:09 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookies": [],
+							"request": "a635440c-81a1-4990-a37f-e248014571f1",
+							"collection": "b32fa884-67ff-42b6-a296-557805a46bc7"
+						}
+					],
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody)\npm.environment.set(\"secondToken\", data.access_token);\n",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/x-www-form-urlencoded\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "a6d874fe-fbc4-4e87-b7bf-073782e91d50",
+					"name": "Edit customers",
+					"url": "{{apiUrl}}Base/Clientes/Edita/qwerty",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "a74c98c0-27c8-4bc9-a09b-674b1200c6c4",
+					"name": "Get attribute value",
+					"url": "{{apiUrl}}Internos/TabInternos/DaValorAtributo/ES/Descricao",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "ab338094-de9e-4ed0-b310-8f4187199f03",
+					"name": "List companies",
+					"url": "{{apiUrl}}Administrador/ListaEmpresas",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{firstToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "3ff59d1e-a377-4624-8828-730208a9f1f4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{firstToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "b290d2e7-03bd-49c2-83d8-a65345064830",
+					"name": "Get attribute value",
+					"url": "{{apiUrl}}Vendas/TabVendas/DaValorAtributo/FA/Descricao",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "b6018aae-e13e-4570-a04a-43e09b6da1bb",
+					"name": "Item exists?",
+					"url": "{{apiUrl}}Base/Artigos/Existe/A0001",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "b857b112-b2b5-42a1-812b-964a7907b34a",
+					"name": "Create customer",
+					"url": "{{apiUrl}}Base/Clientes/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"Cliente\": \"NUNO3A\",\n    \"Nome\": \"Soluciones Cad de qwerty\",\n    \"Descricao\": \"qwerty1234\",\n    \"Morada\": \"PASSEO DE PORTUGAL, 12345\",\n    \"Localidade\": \"VILANUEVA DE ARRIBA\",\n    \"CodigoPostal\": \"61001\",\n    \"LocalidadeCodigoPostal\": \"MADRID\",\n    \"Telefone\": \"00.034.1.474747447\",\n    \"Fax\": \"00.034.1.4374747474\",\n    \"EnderecoWeb\": \"http://alcad.es\",\n    \"Distrito\": \"\",\n    \"NumContribuinte\": \"989922456\",\n    \"Pais\": \"ES\",\n    \"Moeda\": \"EUR\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "bf1401f8-c135-42cb-922a-696f2756fa7f",
+					"name": "Get attributes values",
+					"url": "{{apiUrl}}Base/Fornecedores/DaValorAtributos/F0001",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "[\n\t\"Nome\",\n\t\"Descricao\"\n]",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "cfdc984c-6836-4371-8945-d4ac58d8fafe",
+					"name": "Edit items",
+					"url": "{{apiUrl}}Base/Artigos/Edita/A0001",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "f1e10806-b2a1-4b7f-8077-0fd96e0c912a",
+					"responses": [
+						{
+							"id": "d6c09127-c435-4e85-bc55-67d16f66bcfc",
+							"name": "Edita Artigos",
+							"status": "OK",
+							"mime": "",
+							"language": "json",
+							"text": "{\"CodigoTabLog\":\"Artigo\",\"ChaveLog\":\"Artigo\",\"EstadoBE\":\"\",\"Artigo\":\"001\",\"Descricao\":\"FRANGO PEITO\",\"DescricaoAbrev\":\"\",\"DescricaoComercial\":\"\",\"Caracteristicas\":\"\",\"CodBarras\":\"\",\"UnidadeBase\":\"UN\",\"UnidadeVenda\":\"UN\",\"UnidadeCompra\":\"UN\",\"UnidadeEntrada\":\"UN\",\"UnidadeSaida\":\"UN\",\"IVA\":\"23\",\"PercIncidenciaIVA\":100.0,\"Desconto\":0.0,\"FornecedorPrincipal\":\"\",\"STKMinimo\":0.0,\"STKMaximo\":0.0,\"STKReposicao\":0.0,\"StkActual\":0.0,\"PCMedio\":0.0,\"PCUltimo\":0.0,\"MovStock\":\"S\",\"DataUltimaEntrada\":\"1900-01-01T00:00:00\",\"DataUltimaSaida\":\"1900-01-01T00:00:00\",\"Familia\":\"1\",\"GrupoCenariosCompras\":\"\",\"ArtigoSubstituto\":\"\",\"ArtigoAssociado\":\"\",\"LocalizacaoSugestao\":\"A1\",\"ArmazemSugestao\":\"A1\",\"TipoArtigo\":\"3\",\"Classe\":0,\"NecessarioRecalcPCM\":false,\"DeduzIVA\":true,\"SujeitoDevolucao\":false,\"PCPadrao\":3.25,\"SugestaoPrCustoComposto\":0,\"UltimoDescontoComercialCompra\":0.0,\"UltimaDespesaAdicionalCompra\":0.0,\"PrazoEntrega\":0,\"QuantEconomica\":0.0,\"FormulaSaidas\":\"\",\"UltimoFornecedor\":\"\",\"SubFamilia\":\"1\",\"UltimoDocumentoCompra\":\"\",\"UltimaSerieDocumentoCompra\":\"\",\"UltimoNumDocCompra\":0,\"PesoLiquido\":0.0,\"Peso\":0.0,\"Volume\":0.0,\"Marca\":\"\",\"Modelo\":\"\",\"Garantia\":\"\",\"Anulado\":false,\"TrataNumerosSerie\":false,\"OperacaoTesouraria\":false,\"EntidadeTesouraria\":\"\",\"TipoEntidadeTesouraria\":\"\",\"TrataLotes\":false,\"UtilizaFormulaLotesEntrada\":false,\"SugestaoLoteEntradas\":\"\",\"UtilizaFormulaLotesSaida\":false,\"SugestaoLoteSaidas\":\"\",\"FormulaEntradas\":\"\",\"FormulaGPR\":\"\",\"UltimoNumeroSerie\":\"\",\"UltimoLote\":\"\",\"IntrastatCodigoPautal\":\"\",\"IntrastatPesoLiquido\":0,\"IntrastatPesoLiquidoEx\":0.0,\"Observacoes\":\"\",\"DataUltimaActualizacao\":\"2018-07-09T16:30:46\",\"SujeitoRetencao\":false,\"RubDimensao1\":\"\",\"RubDimensao2\":\"\",\"RubDimensao3\":\"\",\"Dimensao1\":\"\",\"Dimensao2\":\"\",\"Dimensao3\":\"\",\"TipoDimensao1\":\"\",\"TipoDimensao2\":\"\",\"TipoDimensao3\":\"\",\"DimensaoLote\":false,\"TrataDimensao\":0,\"Etiqueta\":\"\",\"ArtigoPai\":\"\",\"OrdemDim\":0,\"UtilizadoCCOP\":false,\"IdGDOC\":\"\",\"Pesar\":false,\"NaturezaAnalitica\":0,\"UtilizadoManutencao\":false,\"Ecovalor\":0.0,\"SujeitoEcotaxa\":false,\"EcovalorAfectaPCM\":false,\"SujeitoIEC\":false,\"CategoriaIEC\":\"\",\"CodigoTaric\":\"\",\"EmbalagemIEC\":\"\",\"CapacidadeEmbIEC\":0.0,\"UnidadeTaric\":\"\",\"FactConvIEC\":0.0,\"ValorIEC\":0.0,\"TaxaAlcool\":0.0,\"IdTipoOrigem\":0,\"FabCompAuto\":false,\"CalcNecessidades\":true,\"QtReservada\":0.0,\"QtReceber\":0.0,\"IdTipoProducao\":0,\"Desperdicio\":0.0,\"UtilizadoGPR\":false,\"DesativadoGPR\":false,\"DataDesactivacaoGPR\":\"1899-12-30T00:00:00\",\"SujeitoProRata\":false,\"PercIvaDedutivel\":100.0,\"IdClassificacao\":\"\",\"GestaoSingular\":false,\"Ano\":0,\"Selo\":\"\",\"CodigoEstampilha\":\"\",\"CodigoBebidaEspirituosa\":\"\",\"FactorUnidadeSup\":1.0,\"IsentoPagDireitos\":false,\"CodigoPautal\":\"\",\"IsentoIEC\":false,\"CodigoIsentoIEC\":\"\",\"EmModoEdicao\":true,\"CamposUtil\":[{\"Conteudo\":\"Valor\",\"Nome\":\"CDU_CampoVar1\",\"Valor\":\"\",\"Objecto\":null,\"Tipo\":1,\"ChaveLog\":\"Nome\",\"EstadoBE\":\"\",\"TipoSimplificado\":1},{\"Conteudo\":\"Valor\",\"Nome\":\"CDU_CampoVar2\",\"Valor\":\"\",\"Objecto\":null,\"Tipo\":1,\"ChaveLog\":\"Nome\",\"EstadoBE\":\"\",\"TipoSimplificado\":1},{\"Conteudo\":\"Valor\",\"Nome\":\"CDU_CampoVar3\",\"Valor\":\"\",\"Objecto\":null,\"Tipo\":1,\"ChaveLog\":\"Nome\",\"EstadoBE\":\"\",\"TipoSimplificado\":1}],\"Conteudo\":\"Artigo001DescricaoFRANGO PEITOCodBarrasUnidadeBaseUNUnidadeVendaUNUnidadeCompraUNUnidadeEntradaUNUnidadeSaidaUNIva23FornecedorPrincipalMovStockSFamilia1ArtigoSubstitutoArtigoAssociadoArmazemSugestaoA1LocalizacaoSugestaoA1TipoArtigo3DeduzIVATrueFormulaSaidasUltimoFornecedorSubFamilia1UltimoDocumentoCompraUltimaSerieDocumentoCompraUltimoNumDocCompra0MarcaModeloGarantiaSugestaoLoteEntradasSugestaoLoteSaidasFormulaEntradasUltimoNumeroSerieUltimoLoteIntrastatCodigoPautalFactorUnidadeSup1ObservacoesDataUltimaEntrada1/1/1900 12:00:00 AMDataUltimaSaida1/1/1900 12:00:00 AMDataUltimaActualizacao7/9/2018 4:30:46 PMDesconto0STKMinimo0STKMaximo0STKReposicao0Classe0NecessarioRecalcPCMFalseSugestaoPrCustoComposto0UltimoDescontoComercialCompra0UltimaDespesaAdicionalCompra0PrazoEntrega0QuantEconomica0Peso0PesoLiquido0Volume0AnuladoFalseTrataNumerosSerieFalseTrataLotesFalseUtilizaFormulaLotesEntradaFalseUtilizaFormulaLotesSaidaFalseIntrastatPesoLiquido0IntrastatPesoLiquidoEx0OperacaoTesourariaFalseEntidadeTesourariaTipoEntidadeTesourariaSujeitoRetencaoFalseSujeitoDevolucaoFalsePercIncidenciaIVA100RubDimensao1RubDimensao2RubDimensao3Dimensao1Dimensao2Dimensao3TipoDimensao1TipoDimensao2TipoDimensao3EtiquetaTrataDimensao0ArtigoPaiOrdemDim0UtilizadoCCOPFalseNaturezaAnalitica0IdGDOCSujeitoEcotaxaFalseEcovalorAfectaPCMFalseEcovalor0IdTipoOrigem0FabCompAutoFalseCalcNecessidadesTrueQtReservada0QtReceber0IdTipoProducao0Desperdicio0UtilizadoGPRFalseDesativadoGPRFalseSujeitoIECFalseCategoriaIECCodigoTaricEmbalagemIECCapacidadeEmbIEC0UnidadeTaricFactConvIEC0ValorIEC0TaxaAlcool0UtilizadoManutencaoFalseCodigoBebidaEspirituosa CodigoEstampilha IsentoIECFalseCodigoIsentoIECCodigoAdicionalAltIECSujeitoProRataFalsePercIvaDedutivel100FormulaGPRGestaoSingularFalseControlaTransformacaoValorFalseSeloGrupoCenariosComprasCodigoPautalIsentoPagDireitosFalseSujeitoRetencaoArtigoFalseRetencaoArtigoValorFalseRetencaoArtigoValor0CodigoCPVTipoCusteio0PCPadrao3.25DataCustoPadrao12/30/1899 12:00:00 AMActualizaPCPadraoFalse\",\"Locked\":false,\"ControlaTransformacaoValor\":false,\"CodigoCPV\":\"\",\"TipoCusteio\":0,\"DataCustoPadrao\":\"1899-12-30T00:00:00\",\"PCPadraoMAlt\":0.0,\"ActualizaPCPadrao\":false,\"CodigoAdicionalAltIEC\":\"\",\"SujeitoRetencaoArtigo\":false,\"RetencaoArtigoValor\":0.0,\"RetencaoArtigoTipoValor\":false}",
+							"responseCode": {
+								"code": 200,
+								"name": "OK",
+								"detail": ""
+							},
+							"requestObject": {
+								"id": "10edb2dd-a2e0-4058-80d0-93d764d696d2",
+								"method": "GET",
+								"headers": "",
+								"dataMode": null,
+								"data": null,
+								"url": "{{apiUrl}}{{artigos}}Edita/I0001.DDR2-1024.MT2800",
+								"pathVariableData": [],
+								"queryParams": [],
+								"headerData": []
+							},
+							"headers": [
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*",
+									"name": "Access-Control-Allow-Headers",
+									"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "*",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5439",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Aug 2018 16:34:08 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookies": [],
+							"request": "cfdc984c-6836-4371-8945-d4ac58d8fafe",
+							"collection": "b32fa884-67ff-42b6-a296-557805a46bc7"
+						}
+					],
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "d3e0799f-07b4-490e-b20b-820b366514ba",
+					"name": "Get Attribute value",
+					"url": "{{apiUrl}}Base/Fornecedores/DaValorAtributo/F0001/Nome",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "d4d5ded3-38c6-40de-8da3-a54c58ec7cac",
+					"name": "Transform Document",
+					"url": "{{apiUrl}}Vendas/Docs/TransformDocument/ECL/A/2/000/false",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\r\n  \"Tipodoc\": \"FA\",\r\n  \"Serie\": \"A\",\r\n  \"Entidade\": \"SOFRIO\",\r\n  \"TipoEntidade\": \"C\",\r\n  \"DataDoc\":\"12/11/2018\",\r\n  \"DataVenc\":\"12/12/2018\"\r\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "d50a30cd-5ad2-467b-af2a-56437c3fcdfc",
+					"name": "Edit document",
+					"url": "{{apiUrl}}Internos/TabInternos/Edita/RI/",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "05168ce6-3e6f-4517-8790-c18425e6d02b",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "d640f4e9-b3a2-46b5-8f34-454dbf013732",
+					"name": "Get attribute value",
+					"url": "{{apiUrl}}Compras/TabCompras/DaValorAtributo/ECF/Descricao",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "e19b6884-87a2-4a5e-b528-7573f545b2d1",
+					"name": "Edit document",
+					"url": "{{apiUrl}}Vendas/Docs/Edita/000/ECL/A/12",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "e52430e5-5668-49b4-804e-1a169384791f",
+					"name": "Fill related data",
+					"url": "{{apiUrl}}Compras/Docs/PreencheDadosRelacionados/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"Tipodoc\": \"ECF\",\n    \"Entidade\": \"F0001\",\n    \"TipoEntidade\": \"F\",\n    \"Serie\": \"A\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "ed3b7d5b-9ac3-4dd0-88e8-abbacf748742",
+					"name": "Document exists?",
+					"url": "{{apiUrl}}Vendas/TabVendas/Existe/FA",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "eed456b3-9b0d-4266-880b-be25cf1dad80",
+					"name": "Update",
+					"url": "{{apiUrl}}Base/Fornecedores/Actualiza",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "84131dc6-b1a6-4c68-a1d4-71b552f36be2",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n    \"CodigoTabLog\": \"Fornecedor\",\n    \"ChaveLog\": \"Fornecedor\",\n    \"EstadoBE\": \"\",\n    \"Fornecedor\": \"NUNOA\",\n    \"Nome\": \"Soluciones Cad de qwerty\",\n    \"Descricao\": \"qwerty1234\",\n    \"Morada\": \"PASSEO DE PORTUGAL, 12345\",\n    \"Morada2\": \"\",\n    \"Localidade\": \"VILANUEVA DE ARRIBA\",\n    \"CodigoPostal\": \"61001\",\n    \"LocalidadeCodigoPostal\": \"MADRID\",\n    \"Telefone\": \"00.034.1.474747447\",\n    \"Fax\": \"00.034.1.4374747474\",\n    \"EnderecoWeb\": \"http://alcad.es\",\n    \"Distrito\": \"\",\n    \"GestaoDiasPag\": false,\n    \"DiaPagamento1\": 0,\n    \"DiaPagamento2\": 0,\n    \"DiaPagamento3\": 0,\n    \"NumDiasRetrocesso\": 0,\n    \"DebitoContaCorrente\": 0,\n    \"DebitoComprasNaoConvertidas\": 0,\n    \"DebitoEncomendasPendentes\": 0,\n    \"Limitecredito\": 0,\n    \"LimiteValorSaldo\": 0,\n    \"LimiteCredValor\": false,\n    \"LimiteCredIdade\": false,\n    \"LimiteIdadeSaldo\": 0,\n    \"Desconto\": 0,\n    \"PrazoEntrega\": \"\",\n    \"Observacoes\": \"\",\n    \"NumContribuinte\": \"989922456\",\n    \"Pais\": \"ES\",\n    \"TipoMercado\": \"0\",\n    \"CondPag\": \"\",\n    \"ModoPag\": \"\",\n    \"ModoRec\": \"\",\n    \"Moeda\": \"EUR\",\n    \"ModoExp\": \"\",\n    \"NumVias\": 0,\n    \"ExcluirRecapitulativos\": false,\n    \"DataCriacao\": \"1899-12-30T00:00:00\",\n    \"RubricaPagamentos\": \"\",\n    \"RubricaRecebimentos\": \"\",\n    \"TipoTerceiro\": \"\",\n    \"SegmentoTerceiro\": \"\",\n    \"RegimeIvaReembolsos\": 0,\n    \"Inactivo\": false,\n    \"MoradaAlternativa\": \"\",\n    \"RegimeEspecial\": false,\n    \"ProcessaIntrastat\": false,\n    \"IntrastatPorto\": \"\",\n    \"DataUltimaActualizacao\": \"2018-11-12T15:24:05\",\n    \"TipoRendimento\": \"\",\n    \"EfectuaOutrasRetencoes\": false,\n    \"EfectuaRetencao\": false,\n    \"ValorRetencao\": 0,\n    \"TextoExcepcaoRetencao\": \"\",\n    \"Idioma\": \"\",\n    \"UtilizaIdioma\": false,\n    \"PosCustosBalSoc\": 0,\n    \"EmModoEdicao\": true,\n    \"CamposUtil\": [\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar1\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar2\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        },\n        {\n            \"Conteudo\": \"ValorValor\",\n            \"Nome\": \"CDU_CampoVar3\",\n            \"Valor\": null,\n            \"Objecto\": null,\n            \"Tipo\": 1,\n            \"ChaveLog\": \"Nome\",\n            \"EstadoBE\": \"\",\n            \"TipoSimplificado\": 1\n        }\n    ],\n    \"Conteudo\": \"FornecedorNUNOANomeSoluciones Cad de qwertyNomeFiscalSoluciones Cad de qwertyDescricaoqwerty1234MoradaPASSEO DE PORTUGAL, 12345Morada2LocalidadeVILANUEVA DE ARRIBACodigoPostal61001LocalidadeCodigoPostalMADRIDTelefone00.034.1.474747447Fax00.034.1.4374747474EnderecoWebhttp://alcad.esDistritoDesconto0PrazoEntregaDebitoContaCorrente0LimiteCredito0ObservacoesNumContribuinte989922456ContribuinteNaoResidentePaisESTipoMercado0CondPagModoPagModoRecMoedaEURModoExpNumVias0ExcluirRecapitulativosFalseDataCriacao30/12/1899 00:00:00RubricaPagamentosRubricaRecebimentosTipoTerceiroSegmentoTerceiroInactivoFalseRegimeEspecialFalseDebitoComprasNaoConvertidas0DebitoEncomendasPendentes0ProcessaIntrastatFalseIntrastatPortoDataUltimaActualizacao12/11/2018 15:24:05EfectuaRetencaoFalseValorRetencao0TextoExcepcaoRetencaoEfectuaOutrasRetencoesFalseTipoRendimentoLimiteCredValorFalseLimiteCredIdadeFalseLimiteIdadeSaldo0LimiteValorSaldo0IdiomaUtilizaIdiomaFalseIdGDOCPosCustosBalSoc0LocalOperacaoIdB2BFormatoB2BEnderecoMailB2BEnderecoEnvioB2BEnvioNaGravacaoFalseB2BTrataTransFalseB2BCertificadoB2BDocDownloadFalseB2BUtilArtigosParceiroFalseB2BArtigosParceiroB2BUtilUnidadesParceiroFalseB2BUnidadesParceiroB2BIgnoraEnvioParceiroFalseB2BEnvioParceiroB2BIgnoraTransaccoesFalseB2BTransaccoesCodigoIECCodigoIsencaoIECIsentoIECFalseCodigoGLNGestaoDiasPagFalseDiaPagamento10DiaPagamento20DiaPagamento30NumDiasRetrocesso0RegimeIvaReembolsos0CambioADataDocFalseAutoFacturacaoFalseSubUtilizadorATSenhaSubUtilizadorATMatriculaConservatoriaCapitalSocial0TrataIvaCaixaFalseeGAR_IsentaFalseeGAR_TipoProdutoreGAR_CodigoAPAeGAR_NumPGLTipoRemetenteTipoRemetenteEntidadeParceiraActividadeEmpresarialFalse\",\n    \"IdGDOC\": \"\",\n    \"LocalOperacao\": \"\",\n    \"PessoaSingular\": false,\n    \"NomeFiscal\": \"Soluciones Cad de qwerty\",\n    \"B2BTrataTrans\": false,\n    \"B2BUtilArtigosParceiro\": false,\n    \"B2BEnvioNaGravacao\": false,\n    \"B2BEnderecoMail\": \"\",\n    \"B2BCertificado\": \"\",\n    \"IdB2BFormato\": \"\",\n    \"B2BEnderecoEnvio\": \"\",\n    \"B2BDocDownload\": false,\n    \"B2BArtigosParceiro\": \"\",\n    \"B2BUtilUnidadesParceiro\": false,\n    \"B2BUnidadesParceiro\": \"\",\n    \"B2BIgnoraEnvioParceiro\": false,\n    \"B2BEnvioParceiro\": \"\",\n    \"B2BIgnoraTransaccoes\": false,\n    \"B2BTransaccoes\": \"\",\n    \"CodigoIEC\": \"\",\n    \"CodigoIsencaoIEC\": \"\",\n    \"IsentoIEC\": false,\n    \"CambioADataDoc\": false,\n    \"CodigoGLN\": \"\",\n    \"ContribuinteNaoResidente\": \"\",\n    \"Locked\": false,\n    \"AutoFacturacao\": false,\n    \"SubUtilizadorAT\": \"\",\n    \"SenhaSubUtilizadorAT\": \"\",\n    \"Matricula\": \"\",\n    \"Conservatoria\": \"\",\n    \"CapitalSocial\": 0,\n    \"SenhaATEncriptada\": true,\n    \"TrataIvaCaixa\": false,\n    \"ShareBI\": {\n        \"Conteudo\": \"VersaoCloud0ActualizacaoCloudActualizacaoERP\",\n        \"EstadoBE\": \"\",\n        \"ChaveLog\": \"\",\n        \"CodigoTabLog\": \"\",\n        \"PropExcluirLog\": \"\",\n        \"VersaoCloud\": 0,\n        \"ActualizacaoCloud\": \"\",\n        \"ActualizacaoERP\": \"\",\n        \"AbvtApl\": \"BAS\"\n    },\n    \"EntidadeParceira\": \"\",\n    \"ControlaPagDivida\": false,\n    \"DataValidadeSegSocial\": \"1899-12-30T00:00:00\",\n    \"DataValidadeFinancas\": \"1899-12-30T00:00:00\",\n    \"ActividadeEmpresarial\": false,\n    \"eGAR_Isenta\": false,\n    \"eGAR_CodigoAPA\": \"\",\n    \"eGAR_NumPGL\": \"\",\n    \"eGAR_TipoProdutor\": \"\",\n    \"TipoRemetente\": \"\",\n    \"CodigoLocal\": \"\",\n    \"AbvtApl\": \"BAS\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "f06eb70b-9330-4d71-9a18-f4451aa53ab0",
+					"name": "Create document",
+					"url": "{{apiUrl}}Vendas/Docs/CreateDocument/",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "373409e5-6ac2-4ea2-ac8f-6ba1232abb40",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\r\n  \"Linhas\": [\r\n    {\r\n      \"Artigo\": \"A0001\",\r\n      \"Quantidade\": \"1\"\r\n    },\r\n    {\r\n      \"Artigo\": \"A0002\",\r\n      \"Quantidade\": \"1\"\r\n    }\r\n  ],\r\n  \"Tipodoc\": \"FA\",\r\n  \"Serie\": \"C\",\r\n  \"Entidade\": \"Sofrio\",\r\n  \"TipoEntidade\": \"C\",\r\n  \"DataDoc\":\"12/11/2018\",\r\n  \"DataVenc\":\"12/12/2018\"\r\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "f5b84cbc-a5fd-4e2a-95c9-3ee8323e5fb3",
+					"name": "Transform Document",
+					"url": "{{apiUrl}}Compras/Docs/TransformDocument/ECF/A/1/000/true",
+					"description": null,
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"type": "text",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"rawModeData": "{\n\t\"Tipodoc\": \"VFA\",\n\t\"Serie\": \"A\",\n\t\"Entidade\": \"FVD\",\n\t\"TipoEntidade\": \"F\",\n\t\"DataDoc\":\"12/11/2018\",\n\t\"DataIntroducao\":\"12/12/2018\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "f8093ad7-a4a7-4e02-aff0-c172cc91a553",
+					"name": "Edit document",
+					"url": "{{apiUrl}}Compras/Docs/Edita/000/ECF/A/1",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "02aa2e24-dce5-46e9-9c2c-5a6bd3526795",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "f83a7d43-c635-4892-8ab1-6be933e35fc5",
+					"name": "List customers",
+					"url": "{{apiUrl}}Base/Clientes/LstClientes",
+					"description": null,
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{secondToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"events": null,
+					"folder": "bb4d8225-2a15-4160-8d79-53741851b1e4",
+					"currentHelper": "bearerAuth",
+					"helperAttributes": {
+						"id": "bearer",
+						"token": "{{secondToken}}"
+					},
+					"collectionId": "b32fa884-67ff-42b6-a296-557805a46bc7",
+					"headers": "",
+					"pathVariables": {}
+				}
+			]
+		}
+	],
+	"environments": [
+		{
+			"id": "bbaa6006-7a6e-4fc9-a98b-77a84b23f621",
+			"name": "Netrow Vars",
+			"values": [
+				{
+					"key": "username",
+					"value": "FEUP",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "qualquer1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "company",
+					"value": "NETROW",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "instance",
+					"value": "Default",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "grandType",
+					"value": "password",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "apiUrl",
+					"value": "http://localhost:2018/WebApi/",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "firstToken",
+					"value": "",
+					"enabled": true
+				},
+				{
+					"key": "secondToken",
+					"value": "",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "449e78bd-f1ff-4730-8ec9-35173ebb9d01",
+			"name": "My Workspace - globals",
+			"values": []
+		}
+	],
+	"headerPresets": [],
+	"globals": []
+}
