@@ -1,7 +1,7 @@
 # Polymer Reef 
 Polymer Reef aims to be more than an exploration game and more than entertained adventures, our goal is to transmit to the players a warning about a real world issue: The plastic pollution. 
 Plastic is a substance the earth cannot digest.
-A quick video trailer was made available on [**YouTube**](https://www.youtube.com/watch?v=LAFwzU1BsSo).
+[![Watch the video](https://img.youtube.com/vi/LAFwzU1BsSo/maxresdefault.jpg)](https://www.youtube.com/watch?v=LAFwzU1BsSo).
 
 ## Premise
 Embark on an adventure and help an axolotl find his path after his habitat has been destroyed by plastic pollution by exploring reefs and caves, and crossing the vast ocean in search of a new home. You will need to hunt and hide in order to survive, all the while maturing and gaining experience from an unfair environment and a journey triggered by circumstances beyond your control.
@@ -41,11 +41,17 @@ To carry out a competitive analysis we looked for, in the market, some products 
 Besides these titles we observe others that although they are games of subaquatic environment, they are also quite different in the artistic style and navigation mechanics, as well as in the part of the narrative that we intend as final result:
 
 ABZU -> https://www.youtube.com/watch?v=P2G54w8H4oM
+
 Song of the deep -> https://www.youtube.com/watch?v=8EYlsCUIrf8
+
 Journey https://www.youtube.com/watch?v=61DZC-60x20
+
 Subnautica -> https://www.youtube.com/watch?v=BtP8r8nRfko
+
 Depth -> https://www.youtube.com/watch?v=R-H-tcpo5pE
+
 Diluvion -> https://www.youtube.com/watch?v=j5ogkiqEEsk
+
 FarSky -> https://www.youtube.com/watch?v=YamUf5o-Mrc
 
 
@@ -63,8 +69,13 @@ Other than that, we aim for a pleasant experience during the adventurous, provid
 ## Authors
 
 Afonso Pinto up201503316@fe.up.pt
+
 Ana Santos up200700742@fe.up.pt
+
 Leonardo Capozzi up201503708@fe.up.pt
+
 Ricardo Carvalho up201503717@fe.up.pt 
+
 Ricardo Santos up201503716@fe.up.pt
+
 Tomás Oliveira up201504746@fe.up.pt
