@@ -1,0 +1,107 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a company, that owns products
+-- Contains various information including the set of brands
+class Company
+ types
+  public String = seq of char;
+ 
+ instance variables
+ 
+   -- the company name
+  private name: String;
+  
+  -- the company address
+  private address: String;
+  
+  -- the company email
+  private email: String;
+  
+  -- the company website
+  private website: String;
+  
+  -- the set of brands owned by the company
+  private brands: set of Brand;
+  
+ operations
+(*@
+\label{Company:25}
+@*)
+  public Company: String * String * String * String ==> Company 
+  Company(nam, addr, em, webs)==
+  (
+   name := nam;
+   address := addr;
+   email := em;
+   website := webs;
+   brands := {};
+  );
+  
+  -- Add a brand
+(*@
+\label{addBrand:36}
+@*)
+  public addBrand: Brand ==> ()
+  addBrand(bran)==(brands := brands union {bran});
+  
+  -- Get the set of brands owned by the company
+(*@
+\label{getBrands:40}
+@*)
+  pure public getBrands:() ==> set of Brand
+  getBrands()==(return brands);
+
+  -- Return the company name
+(*@
+\label{getName:44}
+@*)
+  pure public getName:() ==> String
+  getName()==(return name);
+  
+  -- Returns the company address
+(*@
+\label{getAddress:48}
+@*)
+  pure public getAddress:() ==> String
+  getAddress()==(return address);
+  
+  -- Returns the company email
+(*@
+\label{getEmail:52}
+@*)
+  pure public getEmail:() ==> String
+  getEmail()==(return email);
+  
+  -- Returns the company website
+(*@
+\label{getWebsite:56}
+@*)
+  pure public getWebsite:() ==> String
+  getWebsite()==(return website);
+  
+end Company
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Company:25]{Company} & 25&100.0\% & 19 \\
+\hline
+\hyperref[addBrand:36]{addBrand} & 36&100.0\% & 19 \\
+\hline
+\hyperref[getAddress:48]{getAddress} & 48&100.0\% & 1 \\
+\hline
+\hyperref[getBrands:40]{getBrands} & 40&100.0\% & 21 \\
+\hline
+\hyperref[getEmail:52]{getEmail} & 52&100.0\% & 1 \\
+\hline
+\hyperref[getName:44]{getName} & 44&100.0\% & 1 \\
+\hline
+\hyperref[getWebsite:56]{getWebsite} & 56&100.0\% & 1 \\
+\hline
+\hline
+Company.vdmpp & & 100.0\% & 63 \\
+\hline
+\end{longtable}
+

@@ -1,0 +1,32 @@
+class GiveawayEntryTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+		  -- Normal scenario for playing giveaways,
+	    -- as described in section 2.1 of the report, covering requirement R34.
+			dcl g: GiveawayEntry := new GiveawayEntry(30);
+			assertTrue(g.hasWon() = false);
+			assertTrue(g.getNumber() = -1);
+			assertTrue(g.getPercentage() = 30);
+		);
+
+		private testCalculateResult()==
+		(
+			dcl g: GiveawayEntry := new GiveawayEntry(30);
+			if g.calculateResult() = true
+		  then assertTrue(g.getNumber() <= 30)
+		  else assertTrue(g.getNumber() > 30);
+		);
+		
+		public static main()==
+    (
+			dcl get:GiveawayEntryTest := new GiveawayEntryTest();
+			get.testConstructor();
+			get.testCalculateResult();
+    );
+	    
+end GiveawayEntryTest

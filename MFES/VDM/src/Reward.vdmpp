@@ -1,0 +1,35 @@
+-- Represents a Reward
+-- Contains a name which identifies the reward
+-- 					the product that the winners receive a discount to
+
+class Reward
+	types
+		public String = seq of char;
+		
+	instance variables
+	
+	  -- a name which identifies the reward
+		protected name: String;
+		
+		-- the product that the winners receive a discount to
+	  protected product: Product;
+    
+  operations 
+	  public Reward: String * Product ==> Reward
+	  	 Reward(nam, prod)==
+	  	 (
+	  		name := nam;
+	  		product := prod;
+	  	 );
+	  
+		-- Returns the name which identifies the reward
+	  pure public getName:() ==> String
+	  getName()==(return name);
+	  
+	  -- Returns the product that the winners receive a discount to
+	  pure public getProduct:() ==> Product
+	  getProduct()==(return product);
+	 
+
+	  
+end Reward

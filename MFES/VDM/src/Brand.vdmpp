@@ -1,0 +1,34 @@
+-- Represents a company's brand
+-- Contains the name of the brand and the owning company
+class Brand is subclass of ContainingProducts
+	types
+		public String = seq of char;
+		
+	instance variables
+	
+	  -- the brand name
+		name: String;
+		
+		-- the owning company
+	  company: Company;
+  
+  operations 
+	  public Brand: String * Company ==> Brand
+	  Brand(nam, compan)==
+	  (
+	  	products := {};
+	  	name := nam;
+	  	company := compan;
+	  	company.addBrand(self);
+	  )
+	  post self in set company.getBrands();
+	  
+	  -- return the owning company
+	  pure public getCompany:() ==> Company
+	  getCompany()==(return company);
+	  
+	  -- return the name
+	  pure public getName:() ==> String
+	  getName()==(return name);
+	  
+end Brand

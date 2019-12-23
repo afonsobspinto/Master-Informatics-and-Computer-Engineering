@@ -1,0 +1,191 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a Product
+-- Contains the name, description, category, images, company brand and reviews 
+class Product
+ types 
+  public String = seq of char;
+  
+ instance variables
+ 
+   -- the product name
+  private name: String;
+  
+  -- the product description
+  private description: String;
+  
+  -- the product category
+  private category: Category;
+  
+  -- the product image urls
+  private imageUrls: seq of String;
+  
+  -- the product brand
+  private brand: Brand;
+  
+  -- the product reviews
+  private reviews: set of Review;
+ 
+ operations
+(*@
+\label{Product:28}
+@*)
+  public Product: String * String * Category * Brand ==> Product
+  Product(nam, desc, cat, bran)== 
+  (
+    name := nam;
+    description := desc;
+    category := cat;
+    cat.addProduct(self);
+    brand := bran;
+    brand.addProduct(self);
+    imageUrls := [];
+    reviews := {}; 
+  )
+  post self in set cat.getProducts() and 
+     self in set bran.getProducts();
+  
+  -- Return the product name
+(*@
+\label{getName:44}
+@*)
+  pure public getName: () ==> String 
+  getName()==(return self.name);
+  
+  -- Returns the product description
+(*@
+\label{getDescription:48}
+@*)
+  pure public getDescription: () ==> String
+  getDescription()==(return self.description);
+  
+  -- Returns the category
+(*@
+\label{getCategory:52}
+@*)
+  pure public getCategory:() ==> Category
+  getCategory()==(return category);
+  
+  -- Sets the product cateogry
+(*@
+\label{setCategory:56}
+@*)
+  public setCategory: Category ==> ()
+  setCategory(cat)==
+  (
+   category.removeProduct(self);
+   category := cat;
+   cat.addProduct(self);
+  )
+  post self in set cat.getProducts();
+  
+  -- Sets the product name
+(*@
+\label{setName:66}
+@*)
+  public setName: String ==> ()
+  setName(nam)==(name:=nam);
+  
+  -- Sets the product description
+(*@
+\label{setDescription:70}
+@*)
+  public setDescription: String ==> ()
+  setDescription(desc)==(description:=desc);
+  
+  -- Sets the image urls
+(*@
+\label{setImageUrls:74}
+@*)
+  public setImageUrls: seq of String ==> ()
+  setImageUrls(images)==(imageUrls:=images);
+  
+  -- Returns the image urls
+(*@
+\label{getImageUrls:78}
+@*)
+  public getImageUrls:() ==> seq of String
+  getImageUrls()==(return imageUrls);
+  
+  -- Returns the product brand
+(*@
+\label{getBrand:82}
+@*)
+  pure public getBrand:() ==> Brand
+  getBrand()==(return brand);
+  
+  -- Returns the reviews on the product
+(*@
+\label{getReviews:86}
+@*)
+  pure public getReviews:() ==> set of Review
+  getReviews()==(return reviews);
+  
+  -- Add a product review
+(*@
+\label{addReview:90}
+@*)
+  public addReview:(Review) ==> ()
+  addReview(review)==(reviews := reviews union {review});
+  
+  -- Returns wheter the product has any reviews
+(*@
+\label{hasReviews:94}
+@*)
+  pure public hasReviews:() ==> bool
+  hasReviews()==(return reviews <> {});
+  
+  -- Returns the product reviews average score (1 to 5)
+(*@
+\label{reviewAverage:98}
+@*)
+  pure public reviewAverage:() ==> real
+  reviewAverage()==
+  (
+   dcl sum: real := 0;
+   for all r in set reviews do
+    sum := sum + ( r.getRating() / card reviews );
+   return sum;
+  ) pre reviews <> {};
+--   post res >= 1.0 and res <= 5.0;
+  
+end Product
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Product:28]{Product} & 28&100.0\% & 17 \\
+\hline
+\hyperref[addReview:90]{addReview} & 90&100.0\% & 4 \\
+\hline
+\hyperref[getBrand:82]{getBrand} & 82&100.0\% & 1 \\
+\hline
+\hyperref[getCategory:52]{getCategory} & 52&100.0\% & 1 \\
+\hline
+\hyperref[getDescription:48]{getDescription} & 48&100.0\% & 2 \\
+\hline
+\hyperref[getImageUrls:78]{getImageUrls} & 78&100.0\% & 1 \\
+\hline
+\hyperref[getName:44]{getName} & 44&100.0\% & 4 \\
+\hline
+\hyperref[getReviews:86]{getReviews} & 86&100.0\% & 4 \\
+\hline
+\hyperref[hasReviews:94]{hasReviews} & 94&100.0\% & 2 \\
+\hline
+\hyperref[reviewAverage:98]{reviewAverage} & 98&100.0\% & 1 \\
+\hline
+\hyperref[setCategory:56]{setCategory} & 56&100.0\% & 1 \\
+\hline
+\hyperref[setDescription:70]{setDescription} & 70&100.0\% & 1 \\
+\hline
+\hyperref[setImageUrls:74]{setImageUrls} & 74&100.0\% & 1 \\
+\hline
+\hyperref[setName:66]{setName} & 66&100.0\% & 1 \\
+\hline
+\hline
+Product.vdmpp & & 100.0\% & 41 \\
+\hline
+\end{longtable}
+

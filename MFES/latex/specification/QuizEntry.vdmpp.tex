@@ -1,0 +1,96 @@
+\begin{vdmpp}[breaklines=true]
+-- Subclass of CompetitionEntry
+-- Represents a quiz entry
+-- Contains all the qas which define the Quiz
+--      all the answers to the set of qas which define the Quiz
+
+class QuizEntry is subclass of CompetitionEntry
+ types 
+  public String = seq of char;
+ instance variables
+ 
+  -- all the answers to the set of qas which define the Quiz
+  private answers: map QA to String;
+  
+  -- all the qas which define the Quiz
+  private quiz: set of QA;
+  
+  -- ensures the map is consistent with the questions of the quiz.
+  inv forall qa in set dom answers & qa in set quiz; 
+  
+ operations
+(*@
+\label{QuizEntry:21}
+@*)
+  public QuizEntry: set of QA ==> QuizEntry
+   QuizEntry(q)== 
+   (
+    quiz := q;
+    answers := { |-> };
+    won := false;
+   )
+   post quiz <> {};
+  
+  -- Adds an answer to QuizEntry's answers 
+(*@
+\label{addAnswer:31}
+@*)
+  public addAnswer:QA * String ==> ()
+   addAnswer(qa, ans)==(
+   if qa in set quiz 
+   then answers := answers ++ {qa |-> ans}
+   )
+  pre forall qa in set dom answers & qa in set quiz 
+  post qa in set dom answers and ans in set rng answers;
+   
+  -- Returns the QuizEntry's qas
+(*@
+\label{getQuiz:40}
+@*)
+  pure public getQuiz:() ==> set of QA
+   getQuiz()==(return quiz);
+   
+  -- Returns the answers to the set of qas which define the QuizEntry
+(*@
+\label{getAnswers:44}
+@*)
+  pure public getAnswers:() ==> map QA to String
+   getAnswers()==(return answers);    
+  
+  -- Calculates the correctness of all the answers  
+(*@
+\label{calculateResult:48}
+@*)
+  public calculateResult:() ==> bool
+    calculateResult()==(
+      for all qa in set quiz do
+       if not qa.evalAnswer(answers(qa ))
+       then (won := false; return false)
+       else won := true;
+       return won;
+   )
+  pre forall qa in set quiz & qa in set dom answers;
+
+end QuizEntry
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[QuizEntry:21]{QuizEntry} & 21&100.0\% & 5 \\
+\hline
+\hyperref[addAnswer:31]{addAnswer} & 31&100.0\% & 6 \\
+\hline
+\hyperref[calculateResult:48]{calculateResult} & 48&100.0\% & 2 \\
+\hline
+\hyperref[getAnswers:44]{getAnswers} & 44&100.0\% & 2 \\
+\hline
+\hyperref[getQuiz:40]{getQuiz} & 40&100.0\% & 1 \\
+\hline
+\hline
+QuizEntry.vdmpp & & 100.0\% & 16 \\
+\hline
+\end{longtable}
+

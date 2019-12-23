@@ -1,0 +1,27 @@
+class CompetitionEntryTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl competitionEntry: CompetitionEntry := new CompetitionEntry();
+			assertTrue(not competitionEntry.hasWon());
+		);
+		
+		private testSetter()==
+		(
+			dcl competitionEntry: CompetitionEntry := new CompetitionEntry();
+			competitionEntry.setWon(true);
+			assertTrue(competitionEntry.hasWon());
+		);
+		
+		public static main()==
+    (
+			dcl cet:CompetitionEntryTest := new CompetitionEntryTest();
+			cet.testConstructor();
+			cet.testSetter();
+    );
+	    
+end CompetitionEntryTest

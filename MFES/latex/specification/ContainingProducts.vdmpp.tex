@@ -1,0 +1,59 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a class that contains product
+class ContainingProducts
+ types 
+   protected String = seq of char;
+
+ instance variables
+  -- the set of products
+   protected products: set of Product;
+   
+ operations
+(*@
+\label{ContainingProducts:11}
+@*)
+  public ContainingProducts:() ==> ContainingProducts 
+  ContainingProducts()==(products:={});
+ 
+  -- Adds a product to the set
+(*@
+\label{addProduct:15}
+@*)
+  public addProduct: Product ==> ()
+  addProduct(prod)==(products := products union {prod});
+  
+  -- Removes a product
+(*@
+\label{removeProduct:19}
+@*)
+  public removeProduct:Product ==> () 
+  removeProduct(prod)==(products := products \ {prod});
+  
+  -- Returns the set of products
+(*@
+\label{getProducts:23}
+@*)
+  pure public getProducts:() ==> set of Product 
+  getProducts()==(return products);
+
+end ContainingProducts
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[ContainingProducts:11]{ContainingProducts} & 11&100.0\% & 40 \\
+\hline
+\hyperref[addProduct:15]{addProduct} & 15&100.0\% & 36 \\
+\hline
+\hyperref[getProducts:23]{getProducts} & 23&100.0\% & 44 \\
+\hline
+\hyperref[removeProduct:19]{removeProduct} & 19&100.0\% & 2 \\
+\hline
+\hline
+ContainingProducts.vdmpp & & 100.0\% & 122 \\
+\hline
+\end{longtable}
+

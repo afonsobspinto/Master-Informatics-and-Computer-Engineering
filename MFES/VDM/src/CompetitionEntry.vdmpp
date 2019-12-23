@@ -1,0 +1,26 @@
+-- Represents a Competition entry
+-- Contains the winning state of the entry (won/lost) 
+
+class CompetitionEntry
+instance variables
+
+		-- the winning state of the entry (won/lost) 
+		protected won: bool;
+		
+operations
+		public CompetitionEntry:()==> CompetitionEntry
+		CompetitionEntry()== 
+		(
+				won := false;
+		);
+		
+		-- Returns winning state of the entry (won/lost)
+		pure public hasWon:() ==> bool
+	   hasWon()==(return won);
+
+	  -- Sets winning state of the entry (won/lost)
+	  public setWon: bool ==> ()
+			setWon(w)==(won:=w);
+		
+			
+end CompetitionEntry

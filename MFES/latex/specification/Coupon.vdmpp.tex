@@ -1,0 +1,62 @@
+\begin{vdmpp}[breaklines=true]
+-- Subclass of Reward
+-- Represents a Coupon that is given to the winners of the promotion
+-- Contains a name which identifies the coupon
+--      the product that the winners receive a discount to
+--          the percentage of the discount
+
+class Coupon is subclass of Reward
+
+  types
+  public String = seq of char;
+  
+ instance variables
+ 
+   -- the percentage of the discount
+    protected discount: int;
+    
+  operations 
+(*@
+\label{Coupon:18}
+@*)
+   public Coupon: String * Product * int ==> Coupon
+     Coupon(nam, prod, dis)==
+     (
+     name := nam;
+     product := prod;
+     discount := dis;
+     );
+     
+   -- Returns the percentage of the discount        
+(*@
+\label{getDiscount:27}
+@*)
+   pure public getDiscount:() ==> int
+   getDiscount()==(return discount);
+   
+   -- Sets the percentage of the discount    
+(*@
+\label{setDiscount:31}
+@*)
+   public setDiscount: int ==> ()
+  setDiscount(dis)==(discount:=dis);
+     
+end Coupon
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Coupon:18]{Coupon} & 18&100.0\% & 1 \\
+\hline
+\hyperref[getDiscount:27]{getDiscount} & 27&100.0\% & 2 \\
+\hline
+\hyperref[setDiscount:31]{setDiscount} & 31&100.0\% & 1 \\
+\hline
+\hline
+Coupon.vdmpp & & 100.0\% & 4 \\
+\hline
+\end{longtable}
+

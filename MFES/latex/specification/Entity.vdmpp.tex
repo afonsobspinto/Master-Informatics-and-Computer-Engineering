@@ -1,0 +1,47 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents an Entity
+-- Contains the name of the Entity
+
+class Entity 
+ types 
+  public String = seq of char;
+  
+ instance variables
+ 
+   -- the name of the Entity
+  private name: String;
+   
+ operations
+(*@
+\label{Entity:14}
+@*)
+  public Entity: String ==> Entity
+  Entity(nam)==
+  (
+   name := nam;
+  );
+  
+  -- Returns the name of the Entity
+(*@
+\label{getName:21}
+@*)
+  pure public getName:() ==> String
+  getName()==(return name);
+  
+end Entity
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Entity:14]{Entity} & 14&100.0\% & 2 \\
+\hline
+\hyperref[getName:21]{getName} & 21&100.0\% & 1 \\
+\hline
+\hline
+Entity.vdmpp & & 100.0\% & 3 \\
+\hline
+\end{longtable}
+

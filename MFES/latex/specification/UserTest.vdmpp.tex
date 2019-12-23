@@ -1,0 +1,40 @@
+\begin{vdmpp}[breaklines=true]
+class UserTest
+ operations
+(*@
+\label{buildInstance:3}
+@*)
+  public static buildInstance() res: User==
+  (
+   return new User("", "");
+  );
+  
+(*@
+\label{assertTrue:8}
+@*)
+  private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+(*@
+\label{testConstructor:12}
+@*)
+  private testConstructor()==
+  (
+    -- Normal scenario for creating and listing users,
+     -- as described in section 2.1 of the report, covering requirement R10 and R12.
+   dcl usr: User := new User("1", "2");
+   assertTrue(usr.getName() = "1");
+   assertTrue(usr.getEmail() = "2");
+(*@
+\label{main:19}
+@*)
+  );
+  
+  public static main()==
+    (
+   dcl r:UserTest := new UserTest();
+   r.testConstructor();
+    );
+end UserTest
+\end{vdmpp}
