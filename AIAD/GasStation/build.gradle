@@ -1,0 +1,26 @@
+group 'feup'
+version '0.1-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile name: 'jade'
+    compile name: 'repast'
+    compile name: 'SAJaS'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task startRepast(type:Exec) {
+    workingDir 'libs'
+
+    commandLine 'java', '-jar', 'repast.jar'
+}
