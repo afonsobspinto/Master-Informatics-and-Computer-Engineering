@@ -11,6 +11,9 @@ Generate a model that can predict the number of gallons of gasoline that will be
 ### [BDAD/Online Shopping Center](https://github.com/afonsobspinto/FEUP/tree/master/BDAD/Online%20Shopping%20Center)
 The purpose of this project was to implement and interrogate a database. To do this, we created the conceptual model, configured this model for a relational system, deployed that schema to the SQLite database, entered data, and finally interrogated the database.
 
+### [BDCC/Projects](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/BDCC/Projects)
+Projects developed for 'Big Data & Cloud Computing', a first year subject of the Master's Degree in Network and Information Systems Engineering @FCUP.
+
 ### [CAL/Supermarket At Home](https://github.com/afonsobspinto/FEUP/tree/master/CAL/Supermarket%20At%20Home)
 A supermarket chain wants to innovate and let its customers purchase over the Internet. 
 To monetize the service, the supermarket tries to group the largest number of purchases in a single trip.
