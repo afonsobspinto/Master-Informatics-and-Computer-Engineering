@@ -22,6 +22,9 @@ A simple compiler for the Yal language.
 ### [DJCO/Engineers, Unite!](https://github.com/afonsobspinto/FEUP/tree/master/DJCO/EngineersUnite)
 Engineers, Unite! is a little puzzle platformer developed for the Computer Games Development course at FEUP.
 
+### [DJCO/Polymer Reef](https://github.com/afonsobspinto/FEUP/tree/master/DJCO/PolymerReef)
+Polymer Reef aims to be more than an exploration game and more than entertained adventures, our goal is to transmit to the players a warning about a real world issue: The plastic pollution. Plastic is a substance the earth cannot digest. 
+
 ### [FPRO/Poker](https://github.com/afonsobspinto/FEUP/tree/master/FPRO/Poker/src)
 Poker Game - Five-card draw 
 
