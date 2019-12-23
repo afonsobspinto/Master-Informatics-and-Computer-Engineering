@@ -49,6 +49,9 @@ It is intended to develop an information system with a web interface to support 
 ### [LCOM/ChessProject](https://github.com/afonsobspinto/FEUP/tree/master/LCOM)
  ChessProject is the final project that combines all the exercises performed during the semester. This is a two-user chess game developed for the Minix 3.1.8 operating system.
 
+### [LDSO/RoutineGo](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/LDSO)
+An Android application aiming to motivate and help children diagnosed with spectrum of autism perform daily tasks.
+
 ### [LPOO/Dungeon Keep](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/Dungeon%20Keep) 
 "Unfairly captured by the tyrant ruler of your Realm, you have been thrown into a dark, damp and ghastly dungeon, left there to rot into forgetfulness... You keep yelling for the Guard, but he seems oblivious to your calls...You need to escape...wait...but...in the midst of all the fuss that was your capture, they forgot to lock your cell door...there is hope...but the task is not simple...will you have it in you to elude your jailers and make your way back to freedom?"
 
