@@ -1,0 +1,28 @@
+class PromotionTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+		  -- Normal scenario for creating and listing promotions,
+	    -- as described in section 2.1 of the report, covering requirement R17 and R19.
+      dcl c: Company := new Company("Asus", "", "", "");
+      dcl b:Brand := new Brand("compaq", c);
+      dcl cat: Category := new Category("office");
+      dcl p: Product := new Product("Asus Compaq X", "Awesome Computer", cat, b);
+      dcl r: Reward := new Reward("rwrd", p);
+			dcl g: Promotion := new Promotion("prom", {r}, b);
+			assertTrue(g.getName() = "prom");
+			assertTrue(g.getRewards() = {r});
+			assertTrue(g.getBrand() = b);
+		);
+	
+		public static main()==
+    (
+			dcl p:PromotionTest := new PromotionTest();
+			p.testConstructor();
+    );
+
+end PromotionTest

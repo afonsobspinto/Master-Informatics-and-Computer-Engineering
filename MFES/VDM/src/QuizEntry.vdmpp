@@ -1,0 +1,58 @@
+-- Subclass of CompetitionEntry
+-- Represents a quiz entry
+-- Contains all the qas which define the Quiz
+-- 					all the answers to the set of qas which define the Quiz
+
+class QuizEntry is subclass of CompetitionEntry
+	types 
+		public String = seq of char;
+	instance variables
+	
+		-- all the answers to the set of qas which define the Quiz
+		private answers: map QA to String;
+		
+		-- all the qas which define the Quiz
+		private quiz: set of QA;
+		
+		-- ensures the map is consistent with the questions of the quiz.
+		inv forall qa in set dom answers & qa in set quiz; 
+		
+	operations
+		public QuizEntry: set of QA ==> QuizEntry
+			QuizEntry(q)== 
+			(
+				quiz := q;
+				answers := { |-> };
+				won := false;
+			)
+			post quiz <> {};
+		
+		-- Adds an answer to QuizEntry's answers	
+		public addAnswer:QA * String ==> ()
+			addAnswer(qa, ans)==(
+			if qa in set quiz 
+			then answers := answers ++ {qa |-> ans}
+			)
+		pre forall qa in set dom answers & qa in set quiz 
+		post qa in set dom answers and ans in set rng answers;
+			
+		-- Returns the QuizEntry's qas
+		pure public getQuiz:() ==> set of QA
+			getQuiz()==(return quiz);
+			
+		-- Returns the answers to the set of qas which define the QuizEntry
+		pure public getAnswers:() ==> map QA to String
+			getAnswers()==(return answers);				
+		
+		-- Calculates the correctness of all the answers 	
+		public calculateResult:() ==> bool
+		  calculateResult()==(
+		    for all qa in set quiz do
+		    	if not qa.evalAnswer(answers(qa	))
+		    	then	(won := false; return false)
+		    	else won := true;
+		    	return won;
+			)
+		pre forall qa in set quiz & qa in set dom answers;
+
+end QuizEntry

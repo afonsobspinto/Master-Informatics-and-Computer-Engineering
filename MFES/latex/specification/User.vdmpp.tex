@@ -1,0 +1,102 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a user
+-- Contains the name, email, reviews made by the user, and won promotions
+class User
+ types 
+  public String = seq of char;
+ instance variables
+ 
+  -- the reviews of the user
+   private reviews: set of (Review);
+   
+   -- the name
+   private name: String;
+   
+   -- the email
+   private email: String;
+   
+   -- the won promotions
+   private wonPromotions: set of Promotion;
+  
+ operations
+(*@
+\label{User:21}
+@*)
+  public User: String * String ==> User
+  User(nam, em)==
+  (
+   name := nam;
+   email := em;
+   reviews := {};
+   wonPromotions := {};
+  );
+ 
+  -- Adds a reviews to the user
+(*@
+\label{addReview:31}
+@*)
+  public addReview: Review ==> ()
+  addReview(review)==(reviews := reviews union {review});
+
+  -- Returns the user reviews
+(*@
+\label{getReviews:35}
+@*)
+  pure public getReviews:() ==> set of Review
+  getReviews()==(return reviews);
+  
+  -- Returns the user name
+(*@
+\label{getName:39}
+@*)
+  pure public getName:() ==> String
+  getName()==(return name);
+  
+  -- Returns the user email
+(*@
+\label{getEmail:43}
+@*)
+  pure public getEmail:() ==> String
+  getEmail()==(return email);
+  
+  -- Adds a won promotion to the user
+(*@
+\label{addPromotion:47}
+@*)
+  public addPromotion: Promotion ==> ()
+  addPromotion(wonPromotion)==(wonPromotions := wonPromotions union (*@\vdmnotcovered{\{}@*)(*@\vdmnotcovered{wonPromotion}@*)});
+  
+  -- Returns the user promotions
+(*@
+\label{getPromotions:51}
+@*)
+  pure public getPromotions:() ==> set of Promotion
+  getPromotions()==(*@\vdmnotcovered{(}@*)(*@\vdmnotcovered{return}@*) (*@\vdmnotcovered{wonPromotions}@*));
+
+end User
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[User:21]{User} & 21&100.0\% & 3 \\
+\hline
+\hyperref[addPromotion:47]{addPromotion} & 47&0.0\% & 0 \\
+\hline
+\hyperref[addReview:31]{addReview} & 31&100.0\% & 4 \\
+\hline
+\hyperref[getEmail:43]{getEmail} & 43&100.0\% & 1 \\
+\hline
+\hyperref[getName:39]{getName} & 39&100.0\% & 1 \\
+\hline
+\hyperref[getPromotions:51]{getPromotions} & 51&0.0\% & 0 \\
+\hline
+\hyperref[getReviews:35]{getReviews} & 35&100.0\% & 4 \\
+\hline
+\hline
+User.vdmpp & & 72.7\% & 13 \\
+\hline
+\end{longtable}
+

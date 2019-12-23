@@ -1,0 +1,79 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a pair question, correct answer
+-- Contains the question
+--      the correct answer
+
+class QA
+ types 
+   public String = seq of char;
+   
+  instance variables
+  
+   -- The question
+   private question: String;
+   
+   -- The correct answer
+   private answer: String;
+   
+   -- invariant wich forces a question of at least 5 chars
+   inv len question > 5;
+   
+   -- invariant wich forces the answer to not be empty
+   inv len answer > 0;
+  
+  operations
+(*@
+\label{QA:24}
+@*)
+   public QA: String * String ==> QA
+   QA(q, a)== 
+   (
+     question := q;
+     answer := a;
+   )
+   post len question > 5 and answer <> "";
+   
+   -- Returns the question
+(*@
+\label{getQuestion:33}
+@*)
+   pure public getQuestion:() ==> String
+    getQuestion()==(return question); 
+    
+    -- Returns the correct answer
+(*@
+\label{getAnswer:37}
+@*)
+    pure public getAnswer:() ==> String
+    getAnswer()==(return answer); 
+   
+   -- Evaluates if a given answer is correct
+(*@
+\label{evalAnswer:41}
+@*)
+   public evalAnswer:String ==> bool
+    evalAnswer(ans)==(
+     return ans = answer;
+    ); 
+
+end QA
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[QA:24]{QA} & 24&100.0\% & 12 \\
+\hline
+\hyperref[evalAnswer:41]{evalAnswer} & 41&100.0\% & 5 \\
+\hline
+\hyperref[getAnswer:37]{getAnswer} & 37&100.0\% & 1 \\
+\hline
+\hyperref[getQuestion:33]{getQuestion} & 33&100.0\% & 1 \\
+\hline
+\hline
+QA.vdmpp & & 100.0\% & 19 \\
+\hline
+\end{longtable}
+

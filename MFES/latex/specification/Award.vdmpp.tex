@@ -1,0 +1,76 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents an Award
+-- Contains the product that receives the award
+--      the entity that gives the award
+--          the category of the award
+
+class Award
+ types
+    public String = seq of char;
+
+ instance variables
+ 
+   -- the product that receives the award
+  private product: Product;
+  
+   -- the entity that gives the award
+  private entity: Entity;
+  
+   -- the category of the award
+  private category: Category;
+
+ operations
+(*@
+\label{Award:22}
+@*)
+  public Award: Product * Entity * Category ==> Award
+  Award(prod, ent, cat)== 
+  (
+    product := prod;
+    entity := ent;
+    category := cat;
+  );
+  
+  -- Returns the product that receives the award
+(*@
+\label{getProduct:31}
+@*)
+  pure public getProduct:() ==> Product
+     getProduct()==(return product);
+     
+  -- Returns the entity that gives the award
+(*@
+\label{getEntity:35}
+@*)
+   pure public getEntity:() ==> Entity
+    getEntity()==(return entity);
+   
+  -- Returns the category of the award
+(*@
+\label{getCategory:39}
+@*)
+   pure public getCategory:() ==> Category
+    getCategory()==(return category); 
+     
+
+end Award
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Award:22]{Award} & 22&100.0\% & 1 \\
+\hline
+\hyperref[getCategory:39]{getCategory} & 39&100.0\% & 1 \\
+\hline
+\hyperref[getEntity:35]{getEntity} & 35&100.0\% & 1 \\
+\hline
+\hyperref[getProduct:31]{getProduct} & 31&100.0\% & 1 \\
+\hline
+\hline
+Award.vdmpp & & 100.0\% & 4 \\
+\hline
+\end{longtable}
+

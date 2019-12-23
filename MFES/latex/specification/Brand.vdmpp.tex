@@ -1,0 +1,62 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a company's brand
+-- Contains the name of the brand and the owning company
+class Brand is subclass of ContainingProducts
+ types
+  public String = seq of char;
+  
+ instance variables
+ 
+   -- the brand name
+  name: String;
+  
+  -- the owning company
+   company: Company;
+  
+  operations 
+(*@
+\label{Brand:16}
+@*)
+   public Brand: String * Company ==> Brand
+   Brand(nam, compan)==
+   (
+    products := {};
+    name := nam;
+    company := compan;
+    company.addBrand(self);
+   )
+   post self in set company.getBrands();
+   
+   -- return the owning company
+(*@
+\label{getCompany:27}
+@*)
+   pure public getCompany:() ==> Company
+   getCompany()==(return company);
+   
+   -- return the name
+(*@
+\label{getName:31}
+@*)
+   pure public getName:() ==> String
+   getName()==(return name);
+   
+end Brand
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Brand:16]{Brand} & 16&100.0\% & 19 \\
+\hline
+\hyperref[getCompany:27]{getCompany} & 27&100.0\% & 1 \\
+\hline
+\hyperref[getName:31]{getName} & 31&100.0\% & 1 \\
+\hline
+\hline
+Brand.vdmpp & & 100.0\% & 21 \\
+\hline
+\end{longtable}
+

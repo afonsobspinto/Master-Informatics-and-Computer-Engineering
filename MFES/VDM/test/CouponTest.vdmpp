@@ -1,0 +1,29 @@
+class CouponTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+		  -- Normal scenario for creating coupons as rewards,
+	    -- as described in section 2.1 of the report, covering requirement R24.
+		  dcl cat: Category := new Category("office");
+			dcl c: Company := new Company("Asus", "", "", "");
+			dcl b: Brand := new Brand("compaq", c);
+		  dcl p: Product := new Product("pencil", "black pencil", cat, b);
+			dcl coup: Coupon := new Coupon("coup", p, 30);
+			assertTrue(coup.getName() = "coup");
+			assertTrue(coup.getProduct() = p);
+			assertTrue(coup.getDiscount() = 30);
+			coup.setDiscount(25);
+			assertTrue(coup.getDiscount() = 25);
+		);
+	
+		public static main()==
+    (
+			dcl c:CouponTest := new CouponTest();
+			c.testConstructor();
+    );
+
+end CouponTest

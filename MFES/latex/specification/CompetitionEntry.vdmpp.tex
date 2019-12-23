@@ -1,0 +1,54 @@
+\begin{vdmpp}[breaklines=true]
+-- Represents a Competition entry
+-- Contains the winning state of the entry (won/lost) 
+
+class CompetitionEntry
+instance variables
+
+  -- the winning state of the entry (won/lost) 
+  protected won: bool;
+  
+operations
+(*@
+\label{CompetitionEntry:11}
+@*)
+  public CompetitionEntry:()==> CompetitionEntry
+  CompetitionEntry()== 
+  (
+    won := false;
+  );
+  
+  -- Returns winning state of the entry (won/lost)
+(*@
+\label{hasWon:18}
+@*)
+  pure public hasWon:() ==> bool
+    hasWon()==(return won);
+
+   -- Sets winning state of the entry (won/lost)
+(*@
+\label{setWon:22}
+@*)
+   public setWon: bool ==> ()
+   setWon(w)==(won:=w);
+  
+   
+end CompetitionEntry
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[CompetitionEntry:11]{CompetitionEntry} & 11&100.0\% & 10 \\
+\hline
+\hyperref[hasWon:18]{hasWon} & 18&100.0\% & 4 \\
+\hline
+\hyperref[setWon:22]{setWon} & 22&100.0\% & 1 \\
+\hline
+\hline
+CompetitionEntry.vdmpp & & 100.0\% & 15 \\
+\hline
+\end{longtable}
+

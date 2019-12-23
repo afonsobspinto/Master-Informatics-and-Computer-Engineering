@@ -1,0 +1,33 @@
+class CategoryTest
+	operations
+		private assertTrue: bool ==> ()
+    assertTrue(cond) == return
+    pre cond;
+    
+		private testConstructor()==
+		(
+			dcl cat:Category := new Category("office");
+			assertTrue(cat.getName() = "office");
+			assertTrue(cat.getProducts() = {});
+		);
+		
+		private testAddRemoveProducts()==
+		(
+			dcl cat:Category := new Category("office");
+			dcl p1: Product := ProductTest`emptyProduct();
+			
+			assertTrue(p1 not in set cat.getProducts());
+			cat.addProduct(p1);
+			assertTrue(p1 in set cat.getProducts());
+			cat.removeProduct(p1);
+			assertTrue(p1 not in set cat.getProducts());
+		);
+		
+		public static main()==
+    (
+			dcl c:CategoryTest := new CategoryTest();
+			c.testConstructor();
+			c.testAddRemoveProducts();
+    );
+	    
+end CategoryTest
