@@ -55,6 +55,9 @@ A web application where users can store and manage to-do lists.
 ### [NEURO/brainstorm](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/NEURO/brainstorm-2019)
 Prediction of seizure-like activity in in vitro cortical populations.
 
+### [MFES/ShopAdvizor](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/MFES/ShopAdvizor)
+The first collaborative community that interconnects people, retailers, and brands. Ratings & Reviews, sales boost and key shopper data.
+
 ### [PLOG/Optimization](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/Optimization)
 Modeling a teaching service distribution as a optimization problem using constraint logic programming.
 
