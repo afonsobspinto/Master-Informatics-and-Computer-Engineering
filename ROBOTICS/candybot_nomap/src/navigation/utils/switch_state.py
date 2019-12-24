@@ -1,0 +1,18 @@
+from enum import Enum
+
+
+class SwitchState(Enum):
+    TO_EXPLORER = 0
+    TO_FIRST_ROUND_EXPLORER = 1
+    REMAIN_EXPLORER = 2
+    TO_TARGET = 3
+    REMAIN_TARGET = 4
+    TO_CANDY = 5
+    REMAIN_CANDY = 6
+    TO_INFRARED = 7
+    REMAIN_INFRARED = 8
+    TO_ULTRASOUND = 9
+    REMAIN_ULTRASOUND = 10
+    TO_LIDAR = 11
+    REMAIN_LIDAR = 12
+
