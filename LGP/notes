@@ -1,0 +1,61 @@
+./startFabric.sh         // Starts the docker instance of the hyperledger fabric network
+
+composer card delete -c admin@mogplay
+rm mogplay@0.0.8.bna
+rm mogplay.card
+
+composer archive create --sourceType dir --sourceName .
+
+composer network install --archiveFile mogplay@0.0.8.bna --card PeerAdmin@hlfv1
+
+composer network start --networkName mogplay --networkVersion 0.0.8 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file mogplay.card
+
+composer card import --file mogplay.card
+
+export COMPOSER_PROVIDERS='{
+ "jwt": {
+  "provider": "jwt",
+  "module": "/home/afonso/Projects/FEUP/LGP/lgp-1a/mogplay/custom-jwt.js",
+  "secretOrKey": "gSi4WmttWuvy2ewoTGooigPwSDoxwZOy",
+  "authScheme": "saml",
+  "successRedirect": "/",
+  "failureRedirect": "/"
+  }
+}'
+
+composer-rest-server -c admin@mogplay -m true -n never -p 3000
+
+composer card export -c admin@mogplay -f genesis.card
+
+rm ../server/server/src/routes/genesis.card
+
+mv genesis.card ../server/server/src/routes/.
+
+
+
+Important steps:
+
+substituir {$Host} em createPeerAdminCard.sh
+
+correr antes de dar build do dockerfile
+cp -rp ~/.composer .
+chmod -R a+rw .composer
+find .composer -type d -exec chmod a+x {} +
+
+
+Usefull Commands
+composer-rest-server -c admin@mogplay -n never -u true -w true -p 3001
+composer card export -c admin@mogplay -f admin-plus-cert.card
+composer card import --file admin-plus-cert.card --card admin@mogplay
+composer network ping --card admin@mogplay
+composer card delete -c admin@mogplay
+
+userID=MogGenesis
+name=MogGenesis
+
+PARTICIPANT_CLASS=com.mog.technologies.User
+participantData="{"$class": "${PARTICIPANT_CLASS}", "userID": "${userID}", "name": "${name}", "tokens": 0}"
+
+composer participant add -c admin@mogplay -d "$participantData"
+
+composer identity issue -c admin@mogplay -f genesis.card -u $userID -a "resource:${PARTICIPANT_CLASS}#${userID}" -x true

@@ -1,0 +1,24 @@
+FROM ubuntu:18.04
+
+RUN useradd -m -s $(which bash) composer
+
+RUN mkdir -p /usr/src/app
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install -y nodejs python make g++ curl nodejs npm
+
+RUN su composer && npm install -g node-gyp
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+RUN export USER=composer && npm install -g composer-cli
+
+COPY . .
+
+RUN rm -rf /root/.composer/
+RUN mv .composer /root

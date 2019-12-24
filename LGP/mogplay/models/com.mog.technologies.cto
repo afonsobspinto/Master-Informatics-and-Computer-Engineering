@@ -1,0 +1,24 @@
+namespace com.mog.technologies
+
+
+asset Video identified by videoID {
+  o String videoID
+  o Double price
+  o DateTime date
+  o String description
+  --> User uploader
+}
+
+participant User identified by userID {
+  o String userID
+  o String name
+  o Double tokens
+  o Video[] purchasedVideos
+}
+
+transaction Purchase {
+  --> Video[] videos
+  --> User newOwner
+  o Double totalPrice
+}
+

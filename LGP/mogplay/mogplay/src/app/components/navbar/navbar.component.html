@@ -1,0 +1,54 @@
+<div class="sticky-top navbar-container">
+  <nav class="navbar navbar-light navbar-expand-lg row justify-content-between">
+    <a class="col-auto px-1 d-flex" routerLink="/">
+		<!-- <img class="mr-2" src="assets/images/logo.svg" width="20%" alt="Logo"> -->
+		<span class="logo-icon mx-2" style="width: 50px !important;"></span>
+        <div class="navbar-brand gotham-bold"></div>
+    </a>
+    <button class="col-auto navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  
+    <div class="col collapse navbar-collapse" id="navbarSupportedContent">
+      <ul *ngIf="!loggedIn" class="navbar-nav ml-auto row d-flex justify-content-between">
+        <li class="nav-item col-auto">
+          <a class="nav-link" routerLink="/login">LOGIN</a>
+        </li>
+        <li class="nav-item col-auto">
+          <a class="nav-link" routerLink="/register">REGISTER</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="loggedIn" class="navbar-nav ml-auto row d-flex justify-content-between">
+        <li class="nav-item active col-auto">
+          <a class="nav-link d-inline-block" routerLink="/">
+            MARKET
+          </a>
+        </li>
+        <li class="nav-item col-auto">
+          <a class="nav-link icon py-1" routerLink="/">
+            <i class="material-icons-outlined">search</i>
+          </a>
+        </li>
+        <li class="nav-item col-auto">
+          <a class="nav-link icon py-1" routerLink="/cart">
+            <i class="material-icons-outlined">shopping_cart</i>
+          </a>
+        </li>
+        <li class="nav-item col-auto">
+          <a class="text-uppercase nav-link d-inline-block" [routerLink]="['/user', this.user.id]">
+            @{{this.user.username}}
+          </a>
+        </li>
+        <li class="nav-item col-auto">
+          <a class="nav-link icon py-1" (click)="logout()">
+            <i class="material-icons-outlined">exit_to_app</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="gradient"></div>
+</div>

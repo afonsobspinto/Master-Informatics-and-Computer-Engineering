@@ -1,0 +1,16 @@
+div.banners {
+    margin: 1em;
+    height: 252px;
+}
+
+@media only screen and (min-width: 992px) {
+    div.banners {
+        margin: 5vh 14vw 30px;
+    }
+}
+
+
+.main-banner {
+	background-image: linear-gradient(135deg, var(--main-banner-up-left), var(--main-banner-bottom-right));
+}
+

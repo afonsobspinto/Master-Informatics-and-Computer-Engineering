@@ -1,0 +1,13 @@
+#bannerDiv {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.banner-default {
+    height: 7vw;
+}
+
+.banner-home {
+    height: 28vw;
+}

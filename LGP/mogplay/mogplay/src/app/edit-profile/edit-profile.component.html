@@ -1,0 +1,60 @@
+<app-background></app-background>
+
+<app-profile-header *ngIf="user && userBlockchain" [isMe]="isMe" [user]="user" [tokens]="userBlockchain.tokens" [nUploaded]="uploadedVideos.length" [nPurchased]="userBlockchain.purchasedVideos.length"></app-profile-header>
+
+
+<div class="row justify-content-center">
+    <div class="col-8 p-0">
+        <app-list-title [title]="'CHANGE YOUR DETAILS'"></app-list-title>
+        <div class="row justify-content-center">
+            <div class="col-6 p-0">
+                <app-alert></app-alert>
+                <form [formGroup]="editEmailForm" (ngSubmit)="editEmailFormSubmit()">
+                    <div class="form-group">
+                        <label class="field" for="email"><span>EMAIL</span></label>
+                        <input type="text" formControlName="email" class="form-control" placeholder="{{user?.email}}"
+                            [ngClass]="{ 'is-invalid': emailSubmitted && fEmail.email.errors }" />
+                        <div *ngIf="emailSubmitted && fEmail.email.errors" class="invalid-feedback">
+                            <div *ngIf="fEmail.email.errors.required">E-mail is required</div>
+                            <div *ngIf="fEmail.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <div id="wrapper">
+                                    <app-button-gradient [title]="'CHANGE EMAIL'" [active]='true'></app-button-gradient>
+                                </div>
+                        </div>
+                    </form>
+
+                    <form [formGroup]="editPasswordForm" (ngSubmit)="editPasswordFormSubmit()">
+                    <div class="form-group">
+                        <label class="field" for="password"><span>PASSWORD</span></label>
+                        <input type="password" formControlName="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': passwordSubmitted && fPassword.password.errors }" />
+                        <div *ngIf="passwordSubmitted && fPassword.password.errors" class="invalid-feedback">
+                            <div *ngIf="fPassword.password.errors.required">Password is required</div>
+                            <div *ngIf="fPassword.password.errors.minlength">Password must be at least 6 characters</div>
+                            <div *ngIf="fPassword.password.errors.mustMatch">Passwords must be equal</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="field" for="passwordConfirmation"><span>CONFIRM PASSWORD</span></label>
+                        <input type="password" formControlName="passwordConfirmation" class="form-control"
+                            [ngClass]="{ 'is-invalid': passwordSubmitted && fPassword.passwordConfirmation.errors }" />
+                        <div *ngIf="passwordSubmitted && fPassword.passwordConfirmation.errors" class="invalid-feedback">
+                            <div *ngIf="fPassword.passwordConfirmation.errors.required">Password is required</div>
+                            <div *ngIf="fPassword.passwordConfirmation.errors.minlength">Password must be at least 6 characters
+                            </div>
+                            <div *ngIf="fPassword.passwordConfirmation.errors.mustMatch">Passwords must be equal</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="wrapper">
+                            <app-button-gradient [title]="'CHANGE PASSWORD'" [active]='true'></app-button-gradient>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

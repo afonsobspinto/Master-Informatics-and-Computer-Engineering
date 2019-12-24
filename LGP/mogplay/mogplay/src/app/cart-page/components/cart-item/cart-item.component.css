@@ -1,0 +1,15 @@
+
+.rating-badge {
+	font-size: 60%;
+	color: var(--cart-item-rating-badge);
+}
+
+.cart-item{
+    border-radius: 5px;
+    box-shadow: 0;
+    transition: box-shadow 0.15s;
+}
+
+.cart-item:hover {
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.3);
+}

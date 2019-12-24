@@ -1,0 +1,69 @@
+:root {
+	/* ======================= */
+	/* === MOGPLAY PALETTE === */
+	/* ======================= */
+
+	--dark-purple: #4B4E8F;
+	--light-blue: #009BDB;
+	--pink: #C13E8B;
+	--light-grey: #AEADB3;
+	--grey: #727176;
+	--dark-blue: #4A72B2;
+	--dark-grey: #19232C;
+	--turquoise: #549D9C;
+
+
+
+	/* ========================== */
+	/* == NEW INSTANCE PALETTE == */
+	/* ========================== */
+
+	/* GENERAL */ 
+	--navbar-background: #FAFAFA;
+	--navbar-gradient-color1: var(--dark-grey);
+	--navbar-gradient-color2: var(--dark-grey);
+	--navbar-gradient-color3: var(--light-blue);
+	--navbar-gradient-color4: var(--turquoise);
+	--navbar-gradient-color5: var(--pink);
+	--tag-badge-color: var(--dark-blue);
+	--app-loading-spinner-color: var(--light-grey);
+	
+	--star-unfilled: var(--light-grey);
+	--star-filled: var(--light-blue);
+
+	/* HOME */
+
+	--main-banner-up-left: var(--light-blue);
+	--main-banner-bottom-right: var(--dark-purple);
+	--tag1-banner-up-left: var(--dark-purple);
+	--tag1-banner-bottom-right: var(--turquoise);
+	--tag2-banner-up-left: var(--dark-purple);
+	--tag2-banner-bottom-right: var(--pink);
+	
+	/* REGISTER / LOGIN */
+	
+	--login-banner-up-left: var(--light-blue);
+	--login-banner-bottom-right: var(--dark-purple);
+	--register-banner-up-left: var(--light-blue);
+	--register-banner-bottom-right: var(--dark-purple);
+
+	/* CART */ 
+
+	--cart-number-badge-color: white;
+	--cart-number-badge-background: var(--dark-grey);
+	--cart-item-rating-badge: var(--dark-grey);
+
+	/* COMPONENTS */
+	--btn-up-left: var(--light-blue);
+	--btn-bottom-right: var(--dark-purple);
+	
+	--btn-thumbnail-border: var(--grey);
+
+
+	/* ========================== */
+	/* ========= ICONS ========== */
+	/* ========================== */
+
+	--app-name: 'Mogplay';
+	--logo-icon: url("assets/images/logo.svg");
+}

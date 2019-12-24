@@ -52,6 +52,9 @@ It is intended to develop an information system with a web interface to support 
 ### [LDSO/RoutineGo](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/LDSO)
 An Android application aiming to motivate and help children diagnosed with spectrum of autism perform daily tasks.
 
+### [LGP/Project](https://github.com/afonsobspinto/Master-Informatics-and-Computer-Engineering/tree/master/LGP)
+live event video production gratification system through blockchain/cryptocurrency mechanisms
+
 ### [LPOO/Dungeon Keep](https://github.com/afonsobspinto/FEUP/tree/master/LPOO/Dungeon%20Keep) 
 "Unfairly captured by the tyrant ruler of your Realm, you have been thrown into a dark, damp and ghastly dungeon, left there to rot into forgetfulness... You keep yelling for the Guard, but he seems oblivious to your calls...You need to escape...wait...but...in the midst of all the fuss that was your capture, they forgot to lock your cell door...there is hope...but the task is not simple...will you have it in you to elude your jailers and make your way back to freedom?"
 

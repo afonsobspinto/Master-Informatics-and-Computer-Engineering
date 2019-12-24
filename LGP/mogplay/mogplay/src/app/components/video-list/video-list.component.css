@@ -1,0 +1,21 @@
+.thumbnail{
+	width: 100% !important;
+}
+
+@media only screen and (min-width: 576px) {
+	.thumbnail{
+		width: 50% !important;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.thumbnail{
+		width: 33% !important;
+	}
+}
+
+@media only screen and (min-width: 1100px) {
+	.thumbnail{
+		width: 25% !important;
+	}
+}

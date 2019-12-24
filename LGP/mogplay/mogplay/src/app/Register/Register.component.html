@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+	<div class="w-55">
+		<div class="row justify-content-center" style="height: 80vh !important;">
+			<div class="col register-banner">
+				<img class="banner-img-bg" src="assets/images/icon-video.svg" height="50%" alt="Mogplay welcome">
+				<div class="h-100 text-white d-flex flex-column align-items-center justify-content-center">
+					<span>Welcome to MogPlay</span>
+					<span class="text-center w-70 mt-3">Marketplace for professional and amateur live videos</span>
+				</div>
+			</div>
+			<div class="col mx-4">
+				<h4 class="title" align="center">Create your account</h4>
+				<form [formGroup]="registerForm" (ngSubmit)="addParticipant()">
+					<div class="form-group">
+						<label class="field" for="username"><span>USERNAME</span></label>
+						<input type="text" formControlName="username" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+						<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+							<div *ngIf="f.username.errors.required">Username is required</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="field" for="email"><span>EMAIL</span></label>
+						<input type="email" formControlName="email" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+						<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+							<div *ngIf="f.email.errors.required">E-mail is required</div>
+							<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="field" for="password"><span>PASSWORD</span></label>
+						<input type="password" formControlName="password" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+						<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+							<div *ngIf="f.password.errors.required">Password is required</div>
+							<div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+							<div *ngIf="f.password.errors.mustMatch">Passwords must be equal</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="field" for="passwordConfirmation"><span>CONFIRM PASSWORD</span></label>
+						<input type="password" formControlName="passwordConfirmation" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.passwordConfirmation.errors }" />
+						<div *ngIf="submitted && f.passwordConfirmation.errors" class="invalid-feedback">
+							<div *ngIf="f.passwordConfirmation.errors.required">Password is required</div>
+							<div *ngIf="f.passwordConfirmation.errors.minlength">Password must be at least 6 characters
+							</div>
+							<div *ngIf="f.passwordConfirmation.errors.mustMatch">Passwords must be equal</div>
+						</div>
+					</div>
+
+					<div class="form-group d-flex flex-column m-0">
+						<div id="wrapper">
+							<app-button-gradient [title]="'REGISTER'" [active]="true" [padding]="'px-5'"></app-button-gradient>
+						</div>
+						<small class="my-3">Already have an account? <a routerLink="/login">Sign in</a></small>
+						<small>By clicking Register you agree to the <a routerLink="/terms">Terms & Privacy Policy</a>
+						</small>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

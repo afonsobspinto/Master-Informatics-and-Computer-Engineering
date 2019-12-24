@@ -1,0 +1,8 @@
+
+.tag1-banner {
+	background-image: linear-gradient(135deg, var(--tag1-banner-up-left), var(--tag1-banner-bottom-right));
+}
+
+.tag2-banner {
+	background-image: linear-gradient(135deg, var(--tag2-banner-up-left), var(--tag2-banner-bottom-right));
+}

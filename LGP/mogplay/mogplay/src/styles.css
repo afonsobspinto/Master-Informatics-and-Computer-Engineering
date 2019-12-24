@@ -1,0 +1,259 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "config.css";
+@font-face {
+	font-family: gotham-bold;
+	src: url("/assets/fonts/gotham/GothamBold.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: gotham-book;
+	src: url("/assets/fonts/gotham/GothamBook.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: gotham-medium;
+	src: url("/assets/fonts/gotham/GothamMedium.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: gotham-light;
+	src: url("/assets/fonts/gotham/GothamLight.ttf") format("opentype");
+}
+
+body {
+	overflow-x: hidden;
+}
+
+body, html {
+	height: 100%;
+}
+
+div, span {
+	font-family: gotham-medium;
+}
+
+p {
+	margin-bottom: .5em !important;
+}
+
+.gotham-bold {
+	font-family: gotham-bold;
+}
+
+.gotham-book {
+	font-family: gotham-book;
+}
+
+.gotham {
+	font-family: gotham-medium;
+}
+
+.gotham-medium {
+	font-family: gotham-medium;
+}
+
+.gotham-light {
+	font-family: gotham-light;
+}
+
+.text-grey {
+	color: var(--light-grey);
+}
+
+.text-lg {
+	font-size: 200%;
+}
+
+.icon-32 {
+	font-size: 32px;
+}
+
+
+.border-bottom-grad {
+	border-bottom: 1px solid;
+	border-image: linear-gradient(135deg, var(--btn-up-left), var(--btn-bottom-right)) 10% stretch;
+}
+
+.btn-active {
+	border: 2px solid;
+	border-image: linear-gradient(135deg, var(--btn-up-left), var(--btn-bottom-right)) 10% stretch;
+	background-image: linear-gradient(135deg, var(--btn-up-left), var(--btn-bottom-right));
+	color: white;
+}
+
+.btn-inactive {
+	border: 2px solid;
+	border-image: linear-gradient(135deg, var(--btn-up-left), var(--btn-bottom-right)) 10% stretch;
+	background-color: white;
+	color: var(--dark-grey);
+}
+
+.w-70 {
+	width: 100%;
+	margin: 1em;
+}
+
+@media only screen and (min-width: 992px) {
+	.w-70 {
+		width: 70%;
+	}
+}
+
+.w-55 {
+	width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+	.w-55 {
+		margin: 1em;
+		width: 55%;
+	}
+}
+
+.btn-material:focus {
+	outline: none;
+	border: 0;
+}
+
+.dark-grey {
+	color: var(--dark-grey);
+}
+
+.tag-badge {
+	text-transform: uppercase;
+	color: var(--tag-badge-color);
+	font-size: 60%;
+}
+
+.no-link-decoration:hover {
+	text-decoration: none;
+}
+
+.banner-img-bg {
+	position: absolute;
+	top: -20px;
+	left: -30px;
+	opacity: 0.15;
+}
+
+a:hover i {
+	cursor: pointer;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.pointer:active {
+	outline: none;
+}
+
+.field {
+	font-size: 13px;
+	font-weight: normal !important;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.field:before, .field:after {
+	content: '';
+	max-width: 250px;
+	padding: 0.05rem;
+	position: relative;
+	background: linear-gradient(to right, var(--btn-up-left), var(--btn-bottom-right));
+	margin: 0 20px 0 0;
+	flex: 1 0 20px;
+}
+
+.field:after {
+	margin: 0 0 0 20px;
+}
+
+.field:before {
+	margin: 0 20px 0 0;
+}
+
+.app-loading {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.app-loading .spinner {
+	height: 200px;
+	width: 200px;
+	animation: rotate 2s linear infinite;
+	transform-origin: center center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.app-loading .spinner .path {
+	stroke-dasharray: 1, 200;
+	stroke-dashoffset: 0;
+	animation: dash 1.5s ease-in-out infinite;
+	stroke-linecap: round;
+	stroke: var(--app-loading-spinner-color);
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes dash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -35px;
+	}
+	100% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -124px;
+	}
+}
+
+.app-loading .logo {
+	width: 100px;
+	height: 100px;
+	background: var(--logo-icon) center center no-repeat;
+}
+
+.logo-icon {
+	background: var(--logo-icon) center center no-repeat;
+}
+
+.navbar-brand::after {
+	content: var(--app-name);
+	text-transform: uppercase;
+}

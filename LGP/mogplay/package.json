@@ -1,0 +1,42 @@
+{
+  "engines": {
+    "composer": "^0.20.8"
+  },
+  "name": "mogplay",
+  "version": "0.0.8",
+  "description": "Search for your perfect video",
+  "scripts": {
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/mogplay.bna",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "MOG",
+  "email": "info@mog-technologies.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "^0.20.8",
+    "composer-cli": "^0.20.8",
+    "composer-common": "^0.20.8",
+    "composer-rest-server": "^0.20.8",
+    "composer-connector-embedded": "^0.20.8",
+    "composer-cucumber-steps": "^0.20.8",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  },
+  "dependencies": {
+    "composer": "^4.1.0",
+    "composer-client": "^0.20.8",
+    "composer-connector-hlfv1": "^0.20.8",
+    "passport-jwt": "^4.0.0"
+  }
+}

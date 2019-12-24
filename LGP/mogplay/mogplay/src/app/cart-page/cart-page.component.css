@@ -1,0 +1,8 @@
+.cart-number {
+    font-size: .9em;
+    height: 100%;
+    padding: 0px 6px; 
+    background-color: var(--cart-number-badge-background);
+    color: var(--cart-number-badge-color);
+    border-radius: 50%;
+}

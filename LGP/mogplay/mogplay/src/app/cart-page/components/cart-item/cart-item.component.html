@@ -1,0 +1,22 @@
+<div class="cart-item row d-flex flex-row align-items-center p-3 my-1 mx-1 dark-grey">
+  <button (click)="removeFromCart(video.id)" mat-icon-button class="btn-material col-auto">
+    <i class="material-icons-outlined">clear</i>
+  </button>
+  <div class="col-auto">
+    <img src="{{video.thumbnails[0].path}}" width=70vw alt="{{'Video by' + video.uploaderName}}">
+  </div>
+  <div class="col d-flex flex-column">
+    <div class="d-flex flex-wrap">
+      <div *ngFor="let tag of video.Tags; let i=index">
+        <small class="tag-badge gotham mr-3">
+          {{tag.name}}
+        </small>
+      </div>
+    </div>
+    <div class="d-flex flex-row align-items-center py-1 dark-grey">
+      <!-- <i class="material-icons-outlined mr-1" style="font-size: .8em">euro_symbol</i> -->
+      <img class="mr-1" src="assets/images/icons/icons/svg/icon-token-menu.svg" height="13px" alt="Logo">
+      <small>{{video.price}}</small>
+    </div>
+  </div>
+</div>

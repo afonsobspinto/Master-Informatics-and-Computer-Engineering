@@ -1,0 +1,35 @@
+<!-- <div> -->
+<div class="d-flex flex-column btn-inactive h-100">
+	<div class="position-relative pointer" [routerLink]="['/video', video.id]">
+		<img src="{{video.thumbnails[0].path}}" width=100% alt="{{'Video by' + video.uploaderName}}">
+		<div class="video-time">
+			<small>
+				{{this.timeDisplay}}
+			</small>
+		</div>
+	</div>
+	<div class="d-flex flex-wrap">
+		<div *ngFor="let tag of video.Tags; let i=index">
+			<small class="tag-badge gotham m-2">
+				{{tag.name}}
+			</small>
+		</div>
+	</div>
+	<div class="m-2 mb-3 mt-auto">
+		<a [routerLink]="['/user', video.uploaderId]">
+			<small class="text-uppercase video-author gotham-light">
+				@{{video.uploader.username}}
+			</small>
+		</a>
+	</div>
+	<div class="row justify-content-center mb-3">
+		<button (click)="toggleLeftButton()" mat-button class="btn-material btn-thumbnail text-dark col-4 px-2 mx-1">
+			<i class="material-icons-outlined" style="font-size: 1.5em">{{isMine ? 'cloud_download' : (isInCart ? 'remove_shopping_cart' : 'add_shopping_cart')}}</i>
+		</button>
+		<button [routerLink]="['/video', video.id]" mat-button
+			class="btn-material btn-thumbnail text-dark col-4 px-2 mx-1">
+			<small>MORE</small>
+		</button>
+	</div>
+</div>
+<!-- </div> -->

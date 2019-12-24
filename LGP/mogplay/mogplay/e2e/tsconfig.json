@@ -1,0 +1,33 @@
+/* {
+  "compileOnSave": false,
+  "chromedriver": "2.24",
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "outDir": "../dist/out-tsc-e2e",
+    "sourceMap": true,
+    "target": "es6"
+  },
+  "files": [
+    "src/main.ts",
+    "typings/browser.d.ts",
+    "node_modules/zone.js/dist/zone.js.d.ts"
+  ]
+}
+*/
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "inlineSourceMap": true,
+    "declaration": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules",
+    "plugins.ts"
+  ]
+}

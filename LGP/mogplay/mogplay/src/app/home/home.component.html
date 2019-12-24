@@ -1,0 +1,32 @@
+<app-background [type]="'home'"></app-background>
+<div *ngIf="videos" class="banners row">
+	<div class="col main-banner h-100 mx-3 p-0 d-flex justify-content-center pointer" routerLink="/videos">
+		<img class="banner-img-bg" src="assets/images/icon-video.svg" height="90%" alt="Logo">
+		<div class="d-flex flex-column align-items-center justify-content-center mt-2" style="margin-left: 8rem !important;">
+			<span class="text-white text-lg gotham-bold">{{videos.length}}</span>
+			<span class="text-grey">TOTAL VIDEOS ADDED</span>
+			<span class="text-grey gotham-light">Browse through different categories</span>
+			<span class="text-grey gotham-light">Including: sports, music, cars, arts, and more</span>
+			
+			<div class="d-flex align-items-center mt-2">
+				<span class="text-grey">VIEW ALL</span>
+				<i class="material-icons-outlined icon-32 text-grey mb-1 ml-2">arrow_right_alt</i>
+			</div>
+
+		</div>
+	</div>
+	<div class="d-flex flex-column justify-content-between" 
+		[ngClass]="{'col-4': banners.length == 2, 'd-none': banners.length != 2}"> 
+		<app-category-banner *ngIf="banners[0]" [banner]="banners[0]"></app-category-banner>
+		<app-category-banner *ngIf="banners[1]" [banner]="banners[1]"></app-category-banner>
+	</div>
+
+</div>
+
+<div class="d-flex justify-content-center">
+	<div class="w-70">
+
+		<app-list-title [title]="'POPULAR'"></app-list-title>
+		<app-video-list [videos]="videos"></app-video-list>
+	</div>
+</div>

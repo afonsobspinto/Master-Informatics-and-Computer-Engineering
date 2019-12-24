@@ -1,0 +1,11 @@
+<div class="row pointer" [ngClass]="banner.background" [routerLink]="['/videos']" [queryParams]="{tag: banner.id}">
+  <div class="col p-0 pl-4">
+    <div class="d-flex flex-column py-4">
+
+      <span class="text-white text-lg gotham-bold">{{banner.videoCount}}</span>
+      <span class="text-grey gotham-light text-uppercase">{{banner.name}}</span>
+
+    </div>
+  </div>
+    <i class="col-auto align-self-center p-0 pr-3 material-icons-outlined icon-32 text-grey">arrow_right_alt</i>
+</div>

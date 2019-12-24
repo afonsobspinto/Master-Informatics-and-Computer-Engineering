@@ -1,0 +1,16 @@
+.star {
+	font-size: 1.25rem;
+	color: var(--star-unfilled);
+}
+
+.filled {
+	color: var(--star-filled);
+}
+
+.video-player {
+	margin-top: 3vw;
+}
+
+.video-info {
+	font-size: .8em;
+}

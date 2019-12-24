@@ -1,0 +1,4 @@
+<div class="d-flex flex-wrap" *ngIf="!!cart && !!userBlockchain">
+	<app-video-thumbnail class="thumbnail px-2 py-4" *ngFor="let video of videos" [video]="video" [cart]="cart" [isMine]="isMine(video.id)">
+	</app-video-thumbnail>
+</div>

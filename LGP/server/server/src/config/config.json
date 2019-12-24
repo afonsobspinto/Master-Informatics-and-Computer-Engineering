@@ -1,0 +1,30 @@
+{
+  "development": {
+    "username": "user",
+    "password": "password",
+    "database": "template",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "development-localhost": {
+    "username": "user",
+    "password": "password",
+    "database": "template",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "user",
+    "password": "password",
+    "database": "template-test",
+    "host": "template-psqldb-test",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

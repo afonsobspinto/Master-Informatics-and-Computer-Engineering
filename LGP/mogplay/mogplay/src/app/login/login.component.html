@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+	<div class="w-55">
+		<div class="row justify-content-center" style="height: 80vh !important;">
+			<div class="col login-banner">
+				<img class="banner-img-bg" src="assets/images/icon-video.svg" height="50%" alt="Mogplay welcome">
+				<div class="h-100 text-white d-flex flex-column align-items-center justify-content-center">
+					<span>Welcome back to MogPlay</span>
+				</div>
+			</div>
+			<div class="col mx-4">
+				<h4 class="title" align="center">Log into your account</h4>
+				<app-alert></app-alert>
+				<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+					<div class="form-group">
+						<label class="field" for="email"><span>EMAIL</span></label>
+						<input type="email" formControlName="email" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+						<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+							<div *ngIf="f.email.errors.required">Username is required</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="field" for="password"><span>PASSWORD</span></label>
+						<input type="password" formControlName="password" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+						<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+							<div *ngIf="f.password.errors.required">Password is required</div>
+						</div>
+					</div>
+					<small>
+						Do not have an account?
+						<a routerLink="/register">Register now!</a>
+					</small>
+
+					<div class="d-flex justify-content-center pt-3">
+						<app-button-gradient [title]="'LOGIN'" [active]="true" [padding]="'px-5'"></app-button-gradient>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

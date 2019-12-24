@@ -1,0 +1,121 @@
+<app-background></app-background>
+
+
+<div class="d-flex justify-content-center mx-4">
+	<div class="w-70">
+		<div class="video-player" style="height: 400px;">
+
+			<vg-player *ngIf="video">
+				<vg-buffering></vg-buffering>
+
+
+				<vg-controls>
+					<vg-play-pause></vg-play-pause>
+					<vg-playback-button></vg-playback-button>
+
+					<vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+					<vg-scrub-bar>
+						<vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+						<vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+					</vg-scrub-bar>
+
+					<vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+					<vg-mute></vg-mute>
+					<vg-volume></vg-volume>
+
+					<vg-fullscreen></vg-fullscreen>
+				</vg-controls>
+
+				<video #media [vgMedia]="media" [src]="video?.watermarkPath" id="singleVideo" preload="auto"
+					crossorigin>
+
+				</video>
+			</vg-player>
+		</div>
+
+		<div class="d-flex flex-wrap mt-2">
+			<div *ngFor="let tag of video?.tags; let i=index">
+				<small class="tag-badge gotham m-2">
+					{{tag}}
+				</small>
+			</div>
+			<div class="d-flex ml-auto">
+				<small class="rating-badge gotham mx-2 mt-auto mb-1">
+					{{video.rating}}
+				</small>
+				<ngb-rating *ngIf="video" [rate]="video.rating" max=5 readonly=true>
+					<ng-template let-fill="fill" let-index="index">
+						<span class="star" [class.filled]="fill === 100">&#9733;</span>
+					</ng-template>
+				</ngb-rating>
+			</div>
+
+
+		</div>
+
+		<div class="d-flex mt-3">
+			<!-- <i class="material-icons-outlined mr-2" style="font-size: 1.5em">euro_symbol</i> -->
+			<img class="mr-2" src="assets/images/icons/icons/svg/icon-token-menu.svg" height="23px" alt="Logo">
+
+			<h4>{{video?.price}}</h4>
+		</div>
+
+		<div class="row mt-3" style="color: var(--grey);">
+
+			<div class="col-4">
+				<span>{{video?.uploader.username}}</span> <!-- video.ownerName -->
+				<p class="gotham-light">Published on {{video?.createdAt | date:"longDate" }}</p>
+			</div>
+
+			<div class="ml-auto col-3">
+				<span>Views</span>
+				<p class="gotham-light">{{video?.viewCount}}</p>
+			</div>
+
+			<!-- <div class="col-3">
+				<span>Purchases</span>
+				<p class="gotham-light">234</p> 
+			</div> -->
+
+		</div>
+
+		<app-line-separator></app-line-separator>
+
+		<div class="video-info">
+
+			<div class="mt-4 mb-2">
+				<span>Attributes</span>
+			</div>
+			<div class="row" style="color: var(--grey);">
+
+				<div class="col-auto">
+					<p class="gotham-light">Length</p>
+					<p class="gotham-light">Bitrate</p>
+					<p class="gotham-light">File Size</p>
+				</div>
+
+				<div class="col-auto">
+					<p class="gotham-light">{{minutes}}:{{seconds}}</p>
+					<p class="gotham-light">{{videoBitrate}}</p>
+					<p class="gotham-light">{{videoSize}}</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="d-flex justify-content-center my-5">
+			<app-button-gradient [title]="isInCart ? 'REMOVE FROM CART' : 'ADD TO CART'" [active]="true"
+				[func]="toggleCart.bind(this)" [padding]="'px-5'">
+			</app-button-gradient>
+		</div>
+
+		<app-list-title [title]="'RECOMMENDED'"></app-list-title>
+
+		<app-video-list [videos]="recommendedVideos"></app-video-list>
+
+	</div>
+
+</div>

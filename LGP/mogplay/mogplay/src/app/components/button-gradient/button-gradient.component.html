@@ -1,0 +1,5 @@
+<div [ngClass]="{'text-center': true, 'btn-inactive': !active, 'btn-active': active, paddingx: true}">
+	<button (click)="funcCall()" [routerLink]="link" mat-button [ngClass]="'btn-material ' + padding">
+		<span class="text-uppercase">{{title}}</span>
+	</button>
+</div>

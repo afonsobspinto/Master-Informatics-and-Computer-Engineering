@@ -1,0 +1,12 @@
+.profile-name{
+    margin-bottom: 2em;
+}
+
+.own-profile-name{
+    margin-bottom: .5em;
+}
+
+.profile-description {
+    margin-top: 9vw;
+    color: var(--grey);
+}

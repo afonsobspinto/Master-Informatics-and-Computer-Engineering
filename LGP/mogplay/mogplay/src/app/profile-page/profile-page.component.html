@@ -1,0 +1,12 @@
+<app-background></app-background>
+
+<app-profile-header *ngIf="user && userBlockchain" [isMe]="isMe" [user]="user" [tokens]="userBlockchain.tokens" [nUploaded]="uploadedVideos.length" [nPurchased]="userBlockchain.purchasedVideos.length"></app-profile-header>
+
+<div class="d-flex justify-content-center">
+	<div class="w-70">
+		<app-list-title [title]="'UPLOADS'"></app-list-title>
+		<app-video-list *ngIf="uploadedVideos" [videos]="uploadedVideos"></app-video-list>
+		<app-list-title [title]="'PURCHASED'"></app-list-title>
+		<app-video-list *ngIf="purchasedVideos" [videos]="purchasedVideos"></app-video-list>
+	</div>
+</div>

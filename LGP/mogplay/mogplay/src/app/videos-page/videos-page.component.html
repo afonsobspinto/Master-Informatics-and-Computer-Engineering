@@ -1,0 +1,30 @@
+<app-background></app-background>
+
+<div class="d-flex justify-content-center mt-5">
+	<div class="w-70">
+		<span class="mx-1 my-3 dark-grey gotham-light">Filter by TAG</span>
+		<div class="d-flex flex-wrap" *ngIf="!!selectedTag && !!tags">
+			<app-button-gradient 
+				class="mx-3"
+				[title]="'ALL'" 
+				[index]="-1" 
+				[active]="selectedTag.id == -1"
+				[func]="toggleTag.bind(this, allTag)"
+				[toggleEvent]="changeTagSub.asObservable()"
+			></app-button-gradient>
+			<app-button-gradient 
+				class="mx-1" 
+				*ngFor="let tag of tags" 
+				[title]="tag.name" 
+				[index]="tag.id" 
+				[active]="selectedTag.id == tag.id"
+				[func]="toggleTag.bind(this, tag)"
+				[toggleEvent]="changeTagSub.asObservable()"
+			></app-button-gradient>
+		</div>
+
+		<app-list-title *ngIf="selectedTag" [title]="selectedTag.name"></app-list-title>
+		<app-video-list [videos]="videos"></app-video-list>
+
+	</div>
+</div>
