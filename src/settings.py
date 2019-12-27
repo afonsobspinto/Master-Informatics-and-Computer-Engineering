@@ -11,6 +11,9 @@ CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET')
+WORDCOUNT_IMG = "../data/pre_processed/wordcount_img.png"
+TOP_WORDS_IMG = "../data/pre_processed/topwordst_img.png"
+PRE_PROCESSED = "../data/pre_processed/"
 
 
 # DEV

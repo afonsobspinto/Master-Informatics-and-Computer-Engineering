@@ -37,4 +37,5 @@ NON_NEGATIVE_STOPWORDS = list(ENGLISH_STOPWORDS - set(NEGATIVE_STOPWORDS))
 REPLACEMENTS = [
     ("I'm", 'I am'),
     ("=", 'equal'),
+    ("&amp;", ' '),
 ]

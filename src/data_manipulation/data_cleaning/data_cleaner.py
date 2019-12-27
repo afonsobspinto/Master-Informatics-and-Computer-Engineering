@@ -6,8 +6,8 @@ from src.settings import CLEAN_DATA
 from src.utils import is_english, log, NON_NEGATIVE_STOPWORDS, REPLACEMENTS
 
 
-def not_empty(tweet):
-    return tweet.strip() != ""
+def not_empty_or_rt(tweet):
+    return tweet.strip() != "" and "rt" not in tweet.lower()
 
 
 class DataCleaner:
@@ -16,7 +16,6 @@ class DataCleaner:
     def __init__(self, filepath):
         self.df = pd.read_csv(filepath, names=self.cols)
         self.tok = WordPunctTokenizer()
-        self.clean_df = None
 
     def clean(self):
         log(f"Cleaning raw data - {self.df.shape[0]} tweets")
@@ -26,7 +25,7 @@ class DataCleaner:
         mask = self.df['tweet'].apply(is_english)
         self.df = self.df[mask]
         self.df['tweet'] = self.df['tweet'].apply(obj.process)
-        mask = self.df['tweet'].apply(not_empty)
+        mask = self.df['tweet'].apply(not_empty_or_rt)
         self.df = self.df[mask]
 
     def save(self):

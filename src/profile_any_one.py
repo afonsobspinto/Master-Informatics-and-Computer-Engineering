@@ -1,8 +1,8 @@
 import pandas as pd
 
-from src.data_cleaning.data_cleaner import DataCleaner
-from src.data_extraction.data_extractor import DataExtractor
-from src.settings import RAW_DATA, TOPICS, CLEAN_DATA
+from src.data_manipulation.data_analyser import DataAnalyser
+from src.data_manipulation.data_cleaning.data_cleaner import DataCleaner
+from src.settings import CLEAN_DATA, RAW_DATA
 
 if __name__ == "__main__":
     import argparse
@@ -19,10 +19,14 @@ if __name__ == "__main__":
     # de.save()
 
     # Cleans dataset and saves them in a csv file
-    # dc = DataCleaner(RAW_DATA)
-    # dc.clean()
-    # dc.save()
-    # clean_df = dc.get_clean_df()
+    dc = DataCleaner(RAW_DATA)
+    dc.clean()
+    dc.save()
+    clean_df = dc.get_clean_df()
 
-    clean_df = pd.read_csv(CLEAN_DATA)
-    print(clean_df)
+    #clean_df = pd.read_csv(CLEAN_DATA)
+
+    # Analyses dataset
+    # todo: add statistics here
+    da = DataAnalyser(clean_df)
+    da.analyse()
