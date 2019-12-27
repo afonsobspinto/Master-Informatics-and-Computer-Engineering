@@ -10,12 +10,16 @@ if __name__ == "__main__":
                         help='the user to profile')
     args = parser.parse_args()
     user = args.user
-    de = DataExtractor(RAW_DATA)
-    de.extract()
-    de.save()
-    # dc = DataCleaner(RAW_DATA)
-    # dc.clean()
-    # dc.save()
+
+    # Extracts tweets and saves them in a csv file
+    # de = DataExtractor(RAW_DATA)
+    # de.extract()
+    # de.save()
+
+    # Cleans dataset and saves them in a csv file
+    dc = DataCleaner(RAW_DATA)
+    dc.clean()
+    dc.save()
     # clean_df = dc.get_clean_df()
     # clean_df = pd.read_csv(CLEAN_DATA)
     # stats = DatasetStatistics(RAW_DATA)

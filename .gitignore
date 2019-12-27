@@ -3,3 +3,4 @@ src/__pycache__/
 src/data_cleaning/__pycache__/
 src/data_extraction/__pycache__/
 *.env
+data/*

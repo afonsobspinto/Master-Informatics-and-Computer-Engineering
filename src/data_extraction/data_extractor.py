@@ -8,7 +8,7 @@ from src.utils import is_english
 
 
 class DataExtractor:
-    MAX_ITEMS = 10000
+    MAX_ITEMS = 3740
 
     def __init__(self, filepath):
         self.filepath = filepath
