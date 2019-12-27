@@ -1,8 +1,7 @@
-import re
 import pandas as pd
-from bs4 import BeautifulSoup
-from nltk.tokenize import WordPunctTokenizer
 from nlppreprocess import NLP
+from nltk.tokenize import WordPunctTokenizer
+
 from src.settings import CLEAN_DATA
 from src.utils import is_english, log, NON_NEGATIVE_STOPWORDS
 
