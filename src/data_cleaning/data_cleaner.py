@@ -34,4 +34,4 @@ class DataCleaner:
         log(f"Cleaned data saved - {self.df.shape[0]} tweets")
 
     def get_clean_df(self):
-        return self.clean_df
+        return self.df

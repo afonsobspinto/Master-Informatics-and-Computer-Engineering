@@ -1,6 +1,8 @@
+import pandas as pd
+
 from src.data_cleaning.data_cleaner import DataCleaner
 from src.data_extraction.data_extractor import DataExtractor
-from src.settings import RAW_DATA, TOPICS
+from src.settings import RAW_DATA, TOPICS, CLEAN_DATA
 
 if __name__ == "__main__":
     import argparse
@@ -17,11 +19,10 @@ if __name__ == "__main__":
     # de.save()
 
     # Cleans dataset and saves them in a csv file
-    dc = DataCleaner(RAW_DATA)
-    dc.clean()
-    dc.save()
-
+    # dc = DataCleaner(RAW_DATA)
+    # dc.clean()
+    # dc.save()
     # clean_df = dc.get_clean_df()
-    # clean_df = pd.read_csv(CLEAN_DATA)
-    # stats = DatasetStatistics(RAW_DATA)
-    # stats.visualise()
+
+    clean_df = pd.read_csv(CLEAN_DATA)
+    print(clean_df)
