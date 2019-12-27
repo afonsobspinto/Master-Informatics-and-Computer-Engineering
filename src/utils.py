@@ -33,3 +33,8 @@ NEGATIVE_STOPWORDS = ['not', 'don', "don't", 'ain', 'aren', "aren't", 'couldn', 
                       'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]
 
 NON_NEGATIVE_STOPWORDS = list(ENGLISH_STOPWORDS - set(NEGATIVE_STOPWORDS))
+
+REPLACEMENTS = [
+    ("I'm", 'I am'),
+    ("=", 'equal'),
+]

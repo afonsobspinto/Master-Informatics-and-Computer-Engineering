@@ -5,7 +5,7 @@ load_dotenv()
 DEBUG = True
 
 #RAW_DATA = "../data/dataset.csv"
-RAW_DATA = "../data/dataset_test.csv"
+RAW_DATA = "../data/dataset_small.csv"
 CLEAN_DATA = "../data/pre_processed/clean_data.csv"
 CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
