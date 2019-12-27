@@ -1,9 +1,11 @@
 import os
-
 from dotenv import load_dotenv
 load_dotenv()
 
-RAW_DATA = "../data/dataset.csv"
+DEBUG = True
+
+#RAW_DATA = "../data/dataset.csv"
+RAW_DATA = "../data/dataset_test.csv"
 CLEAN_DATA = "../data/pre_processed/clean_data.csv"
 CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
@@ -15,7 +17,6 @@ ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET')
 
 EXTRACTED_DATASETS = "../../data/extracted"
 COMBINED_DATASET = "../../data/dataset.csv"
-SMALL_COMBINED_DATASET = "../../data/dataset_small.csv"
 KEY_WORDS = "../../data/related_words/"
 RELATED_WORDS = "../data/related_words/related_words.txt"
 TOPICS = {

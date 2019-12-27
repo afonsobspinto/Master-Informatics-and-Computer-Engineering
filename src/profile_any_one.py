@@ -20,6 +20,7 @@ if __name__ == "__main__":
     dc = DataCleaner(RAW_DATA)
     dc.clean()
     dc.save()
+
     # clean_df = dc.get_clean_df()
     # clean_df = pd.read_csv(CLEAN_DATA)
     # stats = DatasetStatistics(RAW_DATA)
