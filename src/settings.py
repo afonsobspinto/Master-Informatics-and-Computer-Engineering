@@ -4,8 +4,8 @@ load_dotenv()
 
 DEBUG = True
 
-#RAW_DATA = "../data/dataset.csv"
-RAW_DATA = "../data/dataset_small.csv"
+RAW_DATA = "../data/dataset.csv"
+#RAW_DATA = "../data/dataset_small.csv"
 CLEAN_DATA = "../data/pre_processed/clean_data.csv"
 CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
@@ -18,15 +18,15 @@ MALLET_PATH = "../libraries/mallet-2.0.8/bin/mallet"
 PHASE = {
     "extractor": False,
     "cleaner": True,
-    "analyser": False,
+    "analyser": True,
     "modeller": True,
 }
 
 USE_LAST_PARAMS = False
 PARAMS_PATH = "params.json"
 MODELS_PATH = "../data/processed/models"
-# DEV
 
+# DEV
 EXTRACTED_DATASETS = "../../data/extracted"
 COMBINED_DATASET = "../../data/dataset.csv"
 KEY_WORDS = "../../data/related_words/"

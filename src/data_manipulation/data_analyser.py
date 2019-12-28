@@ -15,12 +15,14 @@ class DataAnalyser:
         self.count_data = self.count_vectorizer.fit_transform(self.df['tweet'])
 
     def wordcloud(self):
+        log("Creating wordcloud")
         long_string = ','.join(list(self.df['tweet'].values))
         wc = WordCloud(background_color="white", max_words=5000, contour_width=3, contour_color='steelblue')
         wc.generate(long_string)
         wc.to_file(WORDCOUNT_IMG)
 
     def most_common_words(self, max_words=10):
+        log("Collecting most common words")
         words = self.count_vectorizer.get_feature_names()
         if len(words) < max_words:
             max_words = len(words)
