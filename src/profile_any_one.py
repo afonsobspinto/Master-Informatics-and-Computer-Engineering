@@ -3,6 +3,7 @@ import pandas as pd
 from src.data_manipulation.data_analyser import DataAnalyser
 from src.data_manipulation.data_cleaning.data_cleaner import DataCleaner
 from src.settings import CLEAN_DATA, RAW_DATA
+from src.topic_modeling.topic_modeling import TopicModeling
 
 if __name__ == "__main__":
     import argparse
@@ -19,14 +20,19 @@ if __name__ == "__main__":
     # de.save()
 
     # Cleans dataset and saves them in a csv file
-    dc = DataCleaner(RAW_DATA)
-    dc.clean()
-    dc.save()
-    clean_df = dc.get_clean_df()
+    # dc = DataCleaner(RAW_DATA)
+    # dc.clean()
+    # dc.save()
+    # clean_df = dc.get_clean_df()
 
-    #clean_df = pd.read_csv(CLEAN_DATA)
+    clean_df = pd.read_csv(CLEAN_DATA)
 
     # Analyses dataset
     # todo: add statistics here
-    da = DataAnalyser(clean_df)
-    da.analyse()
+    # da = DataAnalyser(clean_df)
+    # da.analyse()
+
+    # topic modeling using LDA’s approach
+    tm = TopicModeling(clean_df)
+    tm.analyse()
+

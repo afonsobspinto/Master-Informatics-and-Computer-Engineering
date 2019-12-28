@@ -5,3 +5,4 @@ src/data_extraction/__pycache__/
 *.env
 data/*
 src/data_manipulation/__pycache__/
+src/topic_modeling/__pycache__/
