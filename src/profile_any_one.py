@@ -20,12 +20,12 @@ if __name__ == "__main__":
     # de.save()
 
     # Cleans dataset and saves them in a csv file
-    # dc = DataCleaner(RAW_DATA)
-    # dc.clean()
-    # dc.save()
-    # clean_df = dc.get_clean_df()
+    dc = DataCleaner(RAW_DATA)
+    dc.clean()
+    dc.save()
+    clean_df = dc.get_clean_df()
 
-    clean_df = pd.read_csv(CLEAN_DATA)
+    #clean_df = pd.read_csv(CLEAN_DATA)
 
     # Analyses dataset
     # todo: add statistics here
@@ -34,5 +34,6 @@ if __name__ == "__main__":
 
     # topic modeling using LDA’s approach
     tm = TopicModeling(clean_df)
-    tm.analyse()
-
+    tm.compute_best_model(start=2, stop=40, step=6)
+    tm.show_dominant_topics_per_sentence()
+    tm.show_representative_sentence_per_topic()
