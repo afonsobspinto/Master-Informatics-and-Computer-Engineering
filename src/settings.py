@@ -14,6 +14,7 @@ ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET')
 WORDCOUNT_IMG = "../data/pre_processed/wordcount_img.png"
 TOP_WORDS_IMG = "../data/pre_processed/topwordst_img.png"
 PRE_PROCESSED = "../data/pre_processed/"
+MALLET_PATH = "../libraries/mallet-2.0.8/bin/mallet"
 
 
 # DEV
