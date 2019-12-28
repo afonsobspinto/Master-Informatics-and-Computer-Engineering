@@ -34,6 +34,7 @@ class TopicModeling:
         self._save_path()
         self.lda = None
         self.mod = None
+        self.df_topic_keywords = None
 
     def _save_path(self):
         self.id = uuid.uuid4()
@@ -103,7 +104,9 @@ class TopicModeling:
                                                 + "_" + str(time.time()))
             ldavis_prepared = pyLDAvis.gensim.prepare(self.mod, self.corpus, self.id2word)
             with open(ldavis_data_filepath, 'wb') as f:
+                log("Dumping pyLDAvis")
                 pickle.dump(ldavis_prepared, f)
+            log("Saving pyLDAvis html")
             pyLDAvis.save_html(ldavis_prepared, ldavis_data_filepath + '.html')
 
     def compute_best_model(self, stop, start=2, step=3, show=True):
@@ -125,6 +128,7 @@ class TopicModeling:
         return num_topics
 
     def save_lda(self):
+        log("Saving lda")
         self.lda.save(f"{self.save_path}/lda.model")
 
     def save_plot_coherence_scores(self, stop, start, step, coherence_values):
@@ -163,14 +167,16 @@ class TopicModeling:
         return topics_df
 
     def save_dominant_topics_per_sentence(self):
-        df_topic_keywords = self.format_topics_sentences()
+        log("Dominant topics per sentence")
+        df_topic_keywords = self._get_topic_keywords_table()
         df_dominant_topic = df_topic_keywords.reset_index()
         df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
         df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence", index=False)
         log("Dominant topics per sentence saved")
 
     def save_representative_sentence_per_topic(self):
-        df_topic_keywords = self.format_topics_sentences()
+        log("Representative sentence per topic")
+        df_topic_keywords = self._get_topic_keywords_table()
         topics_sorteddf_mallet = pd.DataFrame()
         stopics_outdf_grpd = df_topic_keywords.groupby('Dominant_Topic')
         for i, grp in stopics_outdf_grpd:
@@ -181,3 +187,7 @@ class TopicModeling:
         topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic", index=False)
         log("Representative sentence per topic saved")
 
+    def _get_topic_keywords_table(self):
+        if not self.df_topic_keywords:
+            self.df_topic_keywords = self.format_topics_sentences()
+        return self.df_topic_keywords
