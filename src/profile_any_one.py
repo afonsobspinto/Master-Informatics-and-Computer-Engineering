@@ -60,5 +60,6 @@ if __name__ == "__main__":
             params['num_topics'] = num_topics
         tm.save_dominant_topics_per_sentence()
         tm.save_representative_sentence_per_topic()
+        tm.save_word_cloud()
 
     dump_json(PARAMS_PATH, params)
