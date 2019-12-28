@@ -1,11 +1,10 @@
 from wordcloud import WordCloud
-from src.settings import WORDCOUNT_IMG, TOP_WORDS_IMG
+from settings import WORDCOUNT_IMG, TOP_WORDS_IMG
+from utils import log
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-from utils import log
 
 
 class DataAnalyser:

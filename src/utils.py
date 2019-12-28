@@ -1,7 +1,7 @@
 import enum
 import json
 import nltk
-from src.settings import DEBUG
+from settings import DEBUG
 
 ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words('english'))
 NON_ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words()) - ENGLISH_STOPWORDS
