@@ -53,7 +53,7 @@ if __name__ == "__main__":
             last_params = read_json(PARAMS_PATH)
             tm.model(num_topics=last_params['num_topics'], save=True)
         else:
-            num_topics = tm.compute_best_model(start=2, stop=40, step=6)
+            num_topics = tm.compute_best_model(start=20, stop=40, step=2)
             params['num_topics'] = num_topics
         tm.save_dominant_topics_per_sentence()
         tm.save_representative_sentence_per_topic()
