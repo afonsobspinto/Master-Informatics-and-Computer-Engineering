@@ -1,7 +1,6 @@
 import os
 import pickle
 import time
-import uuid
 from pprint import pprint
 import gensim
 import gensim.corpora as corpora
@@ -39,7 +38,7 @@ class TopicModeling:
         self.df_topic_keywords = None
 
     def _save_path(self):
-        self.id = uuid.uuid4()
+        self.id = str(time.time())
         self.save_path = f"{MODELS_PATH}/{self.id}"
         os.makedirs(self.save_path)
 
