@@ -15,8 +15,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Profile Anyone')
     parser.add_argument('--user', '-u', dest='user', type=str, action="store", required=True,
                         help='the user to profile')
+    parser.add_argument('--dataset', '-d', dest='dataset', type=str, action="store", required=True,
+                        help='the path to the csv dataset to use')
     args = parser.parse_args()
     user = args.user
+    raw_data = args.dataset
 
     params = {}
 
@@ -30,7 +33,7 @@ if __name__ == "__main__":
     # Cleans dataset and saves them in a csv file
     if PHASE['cleaner']:
         log("Cleaning")
-        dc = DataCleaner(RAW_DATA)
+        dc = DataCleaner(raw_data)
         dc.clean()
         dc.save()
         clean_df = dc.get_clean_df()
