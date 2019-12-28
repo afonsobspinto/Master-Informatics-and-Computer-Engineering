@@ -1,15 +1,10 @@
 import enum
 import json
-
 import nltk
-
-# Download this on the first run only:
-# nltk.download('stopwords')
 from src.settings import DEBUG
 
 ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words('english'))
 NON_ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words()) - ENGLISH_STOPWORDS
-
 STOPWORDS_DICT = {lang: set(nltk.corpus.stopwords.words(lang)) for lang in nltk.corpus.stopwords.fileids()}
 
 

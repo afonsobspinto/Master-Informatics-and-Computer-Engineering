@@ -1,5 +1,5 @@
 import pandas as pd
-from src.settings import COMBINED_DATASET, SMALL_COMBINED_DATASET
+from settings import COMBINED_DATASET, SMALL_COMBINED_DATASET
 
 ROWS = 1000
 

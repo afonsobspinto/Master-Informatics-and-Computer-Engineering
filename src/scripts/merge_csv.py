@@ -1,6 +1,6 @@
 import os
 
-from src.settings import EXTRACTED_DATASETS, COMBINED_DATASET
+from settings import EXTRACTED_DATASETS, COMBINED_DATASET
 
 dir_tree = os.walk(EXTRACTED_DATASETS)
 for dirpath, dirnames, filenames in dir_tree:

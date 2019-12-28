@@ -29,6 +29,7 @@ MODELS_PATH = "../data/processed/models"
 # DEV
 EXTRACTED_DATASETS = "../../data/extracted"
 COMBINED_DATASET = "../../data/dataset.csv"
+SMALL_COMBINED_DATASET = "../../data/dataset_small.csv"
 KEY_WORDS = "../../data/related_words/"
 RELATED_WORDS = "../data/related_words/related_words.txt"
 TOPICS = {

@@ -2,8 +2,8 @@ import pandas as pd
 from nlppreprocess import NLP
 from nltk.tokenize import WordPunctTokenizer
 
-from src.settings import CLEAN_DATA
-from src.utils import is_english, log, NON_NEGATIVE_STOPWORDS, REPLACEMENTS
+from settings import CLEAN_DATA
+from utils import is_english, log, NON_NEGATIVE_STOPWORDS, REPLACEMENTS
 
 
 def not_empty_or_rt(tweet):

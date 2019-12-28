@@ -3,7 +3,6 @@ import pickle
 import time
 import uuid
 from pprint import pprint
-
 import gensim
 import gensim.corpora as corpora
 import pandas as pd
@@ -13,8 +12,8 @@ import spacy as spacy
 import pyLDAvis
 import pyLDAvis.gensim
 import matplotlib.pyplot as plt
-from src.settings import MALLET_PATH, MODELS_PATH
-from src.utils import ENGLISH_STOPWORDS, log
+from settings import MALLET_PATH, MODELS_PATH
+from utils import ENGLISH_STOPWORDS, log
 
 
 def sent_to_words(sentences):

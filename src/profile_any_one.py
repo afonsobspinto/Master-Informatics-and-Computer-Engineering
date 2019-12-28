@@ -2,12 +2,12 @@ import json
 
 import pandas as pd
 
-from src.data_extraction.data_extractor import DataExtractor
-from src.data_manipulation.data_analyser import DataAnalyser
-from src.data_manipulation.data_cleaning.data_cleaner import DataCleaner
-from src.settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
-from src.topic_modeling.topic_modeling import TopicModeling
-from src.utils import dump_json, read_json, log
+from data_extraction.data_extractor import DataExtractor
+from data_manipulation.data_analyser import DataAnalyser
+from data_manipulation.data_cleaning.data_cleaner import DataCleaner
+from settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
+from topic_modeling.topic_modeling import TopicModeling
+from utils import dump_json, read_json, log
 
 if __name__ == "__main__":
     import argparse
