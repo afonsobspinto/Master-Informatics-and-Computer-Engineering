@@ -18,7 +18,7 @@ class DataCleaner:
         self.tok = WordPunctTokenizer()
 
     def clean(self):
-        log(f"Cleaning raw data - {self.df.shape[0]} tweets")
+        log(f"Read {self.df.shape[0]} tweets")
         obj = NLP()
         obj.add_stopword(NON_NEGATIVE_STOPWORDS)
         obj.add_replacement(REPLACEMENTS)
@@ -30,7 +30,7 @@ class DataCleaner:
 
     def save(self):
         self.df.to_csv(CLEAN_DATA, encoding='utf-8', index=False)
-        log(f"Cleaned data saved - {self.df.shape[0]} tweets")
+        log(f"Saved {self.df.shape[0]} tweets")
 
     def get_clean_df(self):
         return self.df

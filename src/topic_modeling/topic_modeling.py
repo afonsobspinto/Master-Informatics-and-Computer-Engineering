@@ -1,7 +1,9 @@
 import os
 import pickle
 import time
+import uuid
 from pprint import pprint
+
 import gensim
 import gensim.corpora as corpora
 import pandas as pd
@@ -11,7 +13,7 @@ import spacy as spacy
 import pyLDAvis
 import pyLDAvis.gensim
 import matplotlib.pyplot as plt
-from src.settings import PRE_PROCESSED, MALLET_PATH, TOPICS_PER_SENTENCE, SENTENCE_PER_TOPIC
+from src.settings import MALLET_PATH, MODELS_PATH
 from src.utils import ENGLISH_STOPWORDS, log
 
 
@@ -30,7 +32,14 @@ class TopicModeling:
         self.data = df.tweet.values.tolist()
         self.data_words = list(sent_to_words(self.data))
         self._generate_models()
+        self._save_path()
         self.lda = None
+        self.mod = None
+
+    def _save_path(self):
+        self.id = uuid.uuid4()
+        self.save_path = f"{MODELS_PATH}/{self.id}"
+        os.makedirs(self.save_path)
 
     def _generate_models(self):
         data_words_nostops = remove_stopwords(self.data_words)
@@ -40,16 +49,14 @@ class TopicModeling:
         texts = self.data_lemmatized
         self.corpus = [self.id2word.doc2bow(text) for text in texts]
 
-    def model(self, method="mallet", num_topics=6, show=True):
+    def model(self, method="mallet", num_topics=6, save=False):
+        log(f"Modeling with {num_topics} num_topics")
         if method == "mallet":
-            model = self._lda_mallet(num_topics)
+            self.mod = self._lda_mallet(num_topics)
         else:
-            model = self._lda_model(num_topics)
-        if show:
-            pprint(self.lda.show_topics(formatted=False))
-            pprint(self.lda.print_topics())
-            self.get_coherence()
-            self.visualize(model, num_topics)
+            self.mod = self._lda_model(num_topics)
+        if save:
+            self.save_lda()
 
     def _lda_mallet(self, num_topics):
         # Download File: http://mallet.cs.umass.edu/dist/mallet-2.0.8.zip
@@ -90,34 +97,44 @@ class TopicModeling:
             texts_out.append([token.lemma_ for token in doc if token.pos_ in allowed_postags])
         return texts_out
 
-    def visualize(self, model, num_topics):
-        ldavis_data_filepath = os.path.join(PRE_PROCESSED + '/ldavis_prepared_' + str(num_topics)
-                                            + "_" + str(time.time()))
-        ldavis_prepared = pyLDAvis.gensim.prepare(model, self.corpus, self.id2word)
-        with open(ldavis_data_filepath, 'wb') as f:
-            pickle.dump(ldavis_prepared, f)
-        pyLDAvis.save_html(ldavis_prepared, ldavis_data_filepath + '.html')
+    def visualize(self, num_topics):
+        if self.mod and self.lda:
+            pprint(self.lda.print_topics())
+            ldavis_data_filepath = os.path.join(self.save_path + '/ldavis_prepared_' + str(num_topics)
+                                                + "_" + str(time.time()))
+            ldavis_prepared = pyLDAvis.gensim.prepare(self.mod, self.corpus, self.id2word)
+            with open(ldavis_data_filepath, 'wb') as f:
+                pickle.dump(ldavis_prepared, f)
+            pyLDAvis.save_html(ldavis_prepared, ldavis_data_filepath + '.html')
 
     def compute_best_model(self, stop, start=2, step=3, show=True):
+        log("Computing best model")
         coherence_values = []
         model_list = []
         for num_topics in range(start, stop, step):
-            self.model(num_topics=num_topics, show=False)
+            self.model(num_topics=num_topics)
             model_list.append(self.lda)
             coherence_values.append(self.get_coherence())
+        best_index = coherence_values.index(max(coherence_values))
+        num_topics = range(start, stop, step)[best_index]
+        self.lda = model_list[best_index]
         if show:
-            self.plot_coherence_scores(stop, start, step, coherence_values)
+            self.save_plot_coherence_scores(stop, start, step, coherence_values)
             self.print_coherence_values(stop, start, step, coherence_values)
-        self.lda = model_list[coherence_values.index(max(coherence_values))]
+            self.visualize(num_topics)
+        self.save_lda()
+        return num_topics
 
-    @staticmethod
-    def plot_coherence_scores(stop, start, step, coherence_values):
+    def save_lda(self):
+        self.lda.save(f"{self.save_path}/lda.model")
+
+    def save_plot_coherence_scores(self, stop, start, step, coherence_values):
         x = range(start, stop, step)
         plt.plot(x, coherence_values)
         plt.xlabel("Num Topics")
         plt.ylabel("Coherence score")
-        plt.legend(("coherence_values"), loc='best')
-        plt.show()
+        plt.legend("coherence_values", loc='best')
+        plt.savefig(f"{self.save_path}/{start}_{stop}_{step}.png")
 
     @staticmethod
     def print_coherence_values(stop, start, step, coherence_values):
@@ -146,13 +163,14 @@ class TopicModeling:
         topics_df = pd.concat([topics_df, contents], axis=1)
         return topics_df
 
-    def show_dominant_topics_per_sentence(self):
+    def save_dominant_topics_per_sentence(self):
         df_topic_keywords = self.format_topics_sentences()
         df_dominant_topic = df_topic_keywords.reset_index()
         df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
-        df_dominant_topic.to_csv(TOPICS_PER_SENTENCE, index=False)
+        df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence", index=False)
+        log("Dominant topics per sentence saved")
 
-    def show_representative_sentence_per_topic(self):
+    def save_representative_sentence_per_topic(self):
         df_topic_keywords = self.format_topics_sentences()
         topics_sorteddf_mallet = pd.DataFrame()
         stopics_outdf_grpd = df_topic_keywords.groupby('Dominant_Topic')
@@ -161,4 +179,6 @@ class TopicModeling:
                                                 grp.sort_values(['Perc_Contribution'], ascending=[0]).head(1)], axis=0)
         topics_sorteddf_mallet.reset_index(drop=True, inplace=True)
         topics_sorteddf_mallet.columns = ['Topic_Num', "Topic_Perc_Contrib", "Keywords", "Text"]
-        topics_sorteddf_mallet.to_csv(SENTENCE_PER_TOPIC, index=False)
+        topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic", index=False)
+        log("Representative sentence per topic saved")
+

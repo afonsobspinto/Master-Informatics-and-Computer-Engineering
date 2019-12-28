@@ -42,7 +42,6 @@ class DataAnalyser:
         plt.savefig(TOP_WORDS_IMG)
 
     def analyse(self):
-        log("Analysing dataset")
         self.wordcloud()
         self.most_common_words()
         log("Wordcloud and most common words graphics created")

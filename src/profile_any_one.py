@@ -1,9 +1,13 @@
+import json
+
 import pandas as pd
 
+from src.data_extraction.data_extractor import DataExtractor
 from src.data_manipulation.data_analyser import DataAnalyser
 from src.data_manipulation.data_cleaning.data_cleaner import DataCleaner
-from src.settings import CLEAN_DATA, RAW_DATA
+from src.settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
 from src.topic_modeling.topic_modeling import TopicModeling
+from src.utils import dump_json, read_json, log
 
 if __name__ == "__main__":
     import argparse
@@ -14,26 +18,44 @@ if __name__ == "__main__":
     args = parser.parse_args()
     user = args.user
 
+    params = {}
+
     # Extracts tweets and saves them in a csv file
-    # de = DataExtractor(RAW_DATA)
-    # de.extract()
-    # de.save()
+    if PHASE['extractor']:
+        log("Extracting")
+        de = DataExtractor(RAW_DATA)
+        de.extract()
+        de.save()
 
     # Cleans dataset and saves them in a csv file
-    dc = DataCleaner(RAW_DATA)
-    dc.clean()
-    dc.save()
-    clean_df = dc.get_clean_df()
+    if PHASE['cleaner']:
+        log("Cleaning")
+        dc = DataCleaner(RAW_DATA)
+        dc.clean()
+        dc.save()
+        clean_df = dc.get_clean_df()
 
-    #clean_df = pd.read_csv(CLEAN_DATA)
+    else:
+        clean_df = pd.read_csv(CLEAN_DATA)
 
     # Analyses dataset
-    # todo: add statistics here
-    # da = DataAnalyser(clean_df)
-    # da.analyse()
+    if PHASE['analyser']:
+        # todo: add statistics here
+        log("Analysing")
+        da = DataAnalyser(clean_df)
+        da.analyse()
 
     # topic modeling using LDA’s approach
-    tm = TopicModeling(clean_df)
-    tm.compute_best_model(start=2, stop=40, step=6)
-    tm.show_dominant_topics_per_sentence()
-    tm.show_representative_sentence_per_topic()
+    if PHASE['modeller']:
+        log("Modelling")
+        tm = TopicModeling(clean_df)
+        if USE_LAST_PARAMS:
+            last_params = read_json(PARAMS_PATH)
+            tm.model(num_topics=last_params['num_topics'], save=True)
+        else:
+            num_topics = tm.compute_best_model(start=2, stop=40, step=6)
+            params['num_topics'] = num_topics
+        tm.save_dominant_topics_per_sentence()
+        tm.save_representative_sentence_per_topic()
+
+    dump_json(PARAMS_PATH, params)

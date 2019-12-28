@@ -4,7 +4,7 @@ import re
 import pandas as pd
 import tweepy as tw
 from src.settings import *
-from src.utils import is_english
+from src.utils import is_english, log
 
 
 class DataExtractor:
@@ -29,11 +29,11 @@ class DataExtractor:
         bag_of_words = self.get_specific_topics()
         try:
             for word in bag_of_words:
-                print("Collecting tweets about " + word)
+                log("Collecting tweets about " + word)
                 old_tweets = len(self.tweets)
                 self.get_tweets_by_category(word)
                 new_tweets = len(self.tweets)
-                print(str(new_tweets-old_tweets) + " tweets added\n")
+                log(str(new_tweets-old_tweets) + " tweets added\n")
         except:
             pass
 
@@ -51,7 +51,7 @@ class DataExtractor:
             new_tweets = self.api.user_timeline(screen_name=screen_name, count=200, max_id=oldest)
             all_tweets.extend(new_tweets)
             oldest = all_tweets[-1].id - 1
-            print("...%s tweets checked..." % (len(all_tweets)))
+            log("...%s tweets checked..." % (len(all_tweets)))
         eng_tweets = []
         for tweet in all_tweets:
             if tweet.lang == "en" and is_english(tweet.text):
