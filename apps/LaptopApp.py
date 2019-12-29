@@ -46,7 +46,7 @@ class LaptopApp:
 
     @LaptopDevice.command.shutdown
     def on_shutdown(self, value, at):
-        print(f'Shutting down {value} {at}')
+        print('Shutting down' + value + " " + at)
         self.shutdown = True
         LaptopApp.suspend()
 
