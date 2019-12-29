@@ -13,7 +13,7 @@ class LaptopApp:
         client = talk.Client(DEVICE_TOKEN)
         self.laptop = LaptopDevice(client=client, id=DEVICE_ID, connect=False)
         self.shutdown = False
-        self.sleep_time = 60
+        self.sleep_time = 6
 
     def start(self):
         self.laptop.connect()
@@ -45,10 +45,10 @@ class LaptopApp:
               % (to, at))
 
     @LaptopDevice.command.shutdown
-    def on_shutdown(self):
-        print('Shutting down')
+    def on_shutdown(self, value, at):
+        print(f'Shutting down {value} {at}')
         self.shutdown = True
-        self.suspend()
+        LaptopApp.suspend()
 
     @staticmethod
     def suspend():
