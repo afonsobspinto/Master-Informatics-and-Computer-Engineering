@@ -11,10 +11,12 @@ Some real data (laptopt temperature and battery) is being used to test the platf
 2. `pip install -r requirements.txt`
 (We recommend that you perform this step inside a [Python Virtual Enviroment](https://realpython.com/blog/python/python-virtual-environments-a-primer/))
 3. Create a new device  https://maker.allthingstalk.com
+
     4. Register / Sign in
     5. Select Devices, New Device, Your Own Device
     6. Choose a catchy name
 7. Create an `.env` file with your Device Token and Device ID
+
     8. Select your device at https://maker.allthingstalk.com
     9. Choose Settings, Authentication 
     10. Your `.env` file should look like [this](.env)
