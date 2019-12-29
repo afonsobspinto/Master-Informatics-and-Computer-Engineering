@@ -3,7 +3,10 @@ from apps.LaptopApp import LaptopApp
 
 def main():
     app = LaptopApp()
-    app.start()
+    try:
+        app.start()
+    except:
+        exit(0)
 
 
 if __name__ == "__main__":
