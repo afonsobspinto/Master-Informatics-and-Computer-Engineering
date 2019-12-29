@@ -1,4 +1,5 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+![for linux](https://img.shields.io/badge/platform-linux-lightgrey.svg)
 
 # AllThingsTalk Prototype
 Prototype of AllThingsTalkMaker that enables interactions to/from the Cloud and between the client and the Cloud platform

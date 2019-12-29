@@ -17,7 +17,11 @@ class LaptopApp:
     def start(self):
         self.laptop.connect()
         while not self.shutdown:
-            self.laptop.temperature = self.get_laptop_temparture()
+            try:
+                # Only works in linux
+                self.laptop.temperature = self.get_laptop_temparture()
+            except:
+                pass
             self.laptop.battery = self.get_laptot_battery()
             time.sleep(self.sleep_time)
 
