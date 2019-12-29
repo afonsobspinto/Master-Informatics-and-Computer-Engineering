@@ -1,3 +1,4 @@
+import subprocess
 import time
 
 import allthingstalk as talk
@@ -27,7 +28,7 @@ class LaptopApp:
 
     @staticmethod
     def get_laptop_temparture():
-        return psutil.sensors_temperatures()['coretemp'][0].current
+            return psutil.sensors_temperatures()['coretemp'][0].current
 
     @staticmethod
     def get_laptot_battery():
@@ -47,3 +48,8 @@ class LaptopApp:
     def on_shutdown(self):
         print('Shutting down')
         self.shutdown = True
+        self.suspend()
+
+    @staticmethod
+    def suspend():
+        subprocess.call(["systemctl", "suspend"])

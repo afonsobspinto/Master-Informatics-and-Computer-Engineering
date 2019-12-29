@@ -1,4 +1,4 @@
-from apps.Laptop import LaptopApp
+from apps.LaptopApp import LaptopApp
 
 
 def main():
