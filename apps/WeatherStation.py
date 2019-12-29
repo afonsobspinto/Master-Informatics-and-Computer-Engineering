@@ -31,4 +31,3 @@ class WeatherStation:
     def on_shutdown(self, device, value, at):
         print('Shutting down')
         self.shutdown = True
-
