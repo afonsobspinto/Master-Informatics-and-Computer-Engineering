@@ -1,4 +1,4 @@
-from allthingstalk import Device, NumberAsset, BooleanAsset, Asset
+from allthingstalk import Device, NumberAsset, Asset
 
 
 class LaptopDevice(Device):
