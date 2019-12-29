@@ -21,7 +21,7 @@ Some real data (laptopt temperature and battery) is being used to test the platf
     10. Select your device at https://maker.allthingstalk.com
     11. Choose Settings, Authentication 
     12. Your `.env` file should look like [this](.env)
-12. `python3 main`
+12. `python3 main.py`
 
 ## Built With
 * [Allthingstalk Maker](https://maker.allthingstalk.com) - Where and how to get your first IoT project started? You can easily connect, collect, visualise and use data from your IoT devices with AllThingsTalk Maker.
