@@ -6,6 +6,7 @@ from data_extraction.data_extractor import DataExtractor
 from data_manipulation.data_analyser import DataAnalyser
 from data_manipulation.data_cleaning.data_cleaner import DataCleaner
 from settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
+from topic_modeling.labelling import Labelling
 from topic_modeling.topic_modeling import TopicModeling
 from utils import dump_json, read_json, log
 
@@ -22,6 +23,9 @@ if __name__ == "__main__":
     raw_data = args.dataset
 
     params = {}
+
+    if USE_LAST_PARAMS:
+        last_params = read_json(PARAMS_PATH)
 
     # Extracts tweets and saves them in a csv file
     if PHASE['extractor']:
@@ -53,15 +57,27 @@ if __name__ == "__main__":
         log("Modelling")
         tm = TopicModeling(clean_df)
         if USE_LAST_PARAMS:
-            last_params = read_json(PARAMS_PATH)
-            tm.model(num_topics=last_params['num_topics'], save=True)
-            tm.visualize(num_topics=last_params['num_topics'])
+            num_topics = last_params['num_topics']
+            params['num_topics'] = num_topics
+            tm.model(num_topics=num_topics, save=True)
+            tm.visualize(num_topics=num_topics)
         else:
             num_topics = tm.compute_best_model(start=20, stop=40, step=2)
             params['num_topics'] = num_topics
-            dump_json(PARAMS_PATH, params)
         tm.save_dominant_topics_per_sentence()
+        params['last_path'] = tm.save_path
         tm.save_representative_sentence_per_topic()
         tm.save_word_cloud()
+        dump_json(PARAMS_PATH, params)
 
+    if PHASE['labelling']:
+        log("Labelling")
+        if PHASE['modeller']:
+            labelling = Labelling(df_topic_keywords=tm.get_topic_keywords_table(), filepath=tm.save_path)
+        elif USE_LAST_PARAMS:
+            labelling = Labelling(filepath=last_params['last_path'])
+        else:
+            raise Exception("Invalid Settings")
+        labelling.automatic_label()
+        labelling.save()
 

@@ -18,9 +18,10 @@ MALLET_PATH = "../libraries/mallet-2.0.8/bin/mallet"
 
 PHASE = {
     "extractor": False,
-    "cleaner": True,
-    "analyser": True,
-    "modeller": True,
+    "cleaner": False,
+    "analyser": False,
+    "modeller": False,
+    "labelling": True,
 }
 
 USE_LAST_PARAMS = True

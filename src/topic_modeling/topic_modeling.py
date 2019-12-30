@@ -170,15 +170,15 @@ class TopicModeling:
 
     def save_dominant_topics_per_sentence(self):
         log("Dominant topics per sentence")
-        df_topic_keywords = self._get_topic_keywords_table()
+        df_topic_keywords = self.get_topic_keywords_table()
         df_dominant_topic = df_topic_keywords.reset_index()
         df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
-        df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence", index=False)
+        df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence.csv", index=False)
         log("Dominant topics per sentence saved")
 
     def save_representative_sentence_per_topic(self):
         log("Representative sentence per topic")
-        df_topic_keywords = self._get_topic_keywords_table()
+        df_topic_keywords = self.get_topic_keywords_table()
         topics_sorteddf_mallet = pd.DataFrame()
         stopics_outdf_grpd = df_topic_keywords.groupby('Dominant_Topic')
         for i, grp in stopics_outdf_grpd:
@@ -186,10 +186,10 @@ class TopicModeling:
                                                 grp.sort_values(['Perc_Contribution'], ascending=[0]).head(1)], axis=0)
         topics_sorteddf_mallet.reset_index(drop=True, inplace=True)
         topics_sorteddf_mallet.columns = ['Topic_Num', "Topic_Perc_Contrib", "Keywords", "Text"]
-        topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic", index=False)
+        topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic.csv", index=False)
         log("Representative sentence per topic saved")
 
-    def _get_topic_keywords_table(self):
+    def get_topic_keywords_table(self):
         if self.df_topic_keywords is None:
             self.df_topic_keywords = self.format_topics_sentences()
         return self.df_topic_keywords
