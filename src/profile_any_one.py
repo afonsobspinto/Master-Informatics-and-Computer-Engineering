@@ -55,11 +55,13 @@ if __name__ == "__main__":
         if USE_LAST_PARAMS:
             last_params = read_json(PARAMS_PATH)
             tm.model(num_topics=last_params['num_topics'], save=True)
+            tm.visualize(num_topics=last_params['num_topics'])
         else:
             num_topics = tm.compute_best_model(start=20, stop=40, step=2)
             params['num_topics'] = num_topics
+            dump_json(PARAMS_PATH, params)
         tm.save_dominant_topics_per_sentence()
         tm.save_representative_sentence_per_topic()
         tm.save_word_cloud()
 
-    dump_json(PARAMS_PATH, params)
+

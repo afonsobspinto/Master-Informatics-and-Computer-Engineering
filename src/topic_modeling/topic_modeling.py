@@ -1,6 +1,7 @@
 import os
 import pickle
-import time
+import re
+from datetime import datetime
 from pprint import pprint
 import gensim
 import gensim.corpora as corpora
@@ -38,7 +39,7 @@ class TopicModeling:
         self.df_topic_keywords = None
 
     def _save_path(self):
-        self.id = str(time.time())
+        self.id = re.sub(r'-| |:|\.', '_', str(datetime.now()))
         self.save_path = f"{MODELS_PATH}/{self.id}"
         os.makedirs(self.save_path)
 
@@ -102,7 +103,7 @@ class TopicModeling:
         if self.mod and self.lda:
             pprint(self.lda.print_topics())
             ldavis_data_filepath = os.path.join(self.save_path + '/ldavis_prepared_' + str(num_topics)
-                                                + "_" + str(time.time()))
+                                                + "_" + self.id)
             ldavis_prepared = pyLDAvis.gensim.prepare(self.mod, self.corpus, self.id2word)
             with open(ldavis_data_filepath, 'wb') as f:
                 log("Dumping pyLDAvis")
@@ -189,7 +190,7 @@ class TopicModeling:
         log("Representative sentence per topic saved")
 
     def _get_topic_keywords_table(self):
-        if not self.df_topic_keywords:
+        if self.df_topic_keywords is None:
             self.df_topic_keywords = self.format_topics_sentences()
         return self.df_topic_keywords
 
