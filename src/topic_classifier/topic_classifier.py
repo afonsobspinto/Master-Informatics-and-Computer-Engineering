@@ -10,15 +10,13 @@ from sklearn.model_selection import train_test_split, RandomizedSearchCV
 import matplotlib.pyplot as plt
 import seaborn as sns
 from settings import CLASSIFIER_PATH
+from topic_classifier.feature_engineering import FeatureEngineering
 
 
 class TopicClassifier:
     def __init__(self, df_data=None, df_path=None):
         self.df_data = df_data if df_data is not None else pd.read_csv(df_path + "/topics.csv")
-        # with open("/home/afonso/Projects/UGent/ICT/ICT/src/topic_classifier/df.pickle", 'rb') as data:
-        #     self.df_data = pickle.load(data)
-        # self.df_data = self.df_data.drop(["File_Name", "Complete_Filename", "Content_Parsed", "Category_Code"], axis=1)
-        # self.df_data.to_csv("t.csv", index=False)
+        self.fe = FeatureEngineering(self.df_data)
         self._get_topic_mapping()
         self.id = re.sub(r'-| |:|\.', '_', str(datetime.now()))
         self.save_path = f"{CLASSIFIER_PATH}/{self.id}"

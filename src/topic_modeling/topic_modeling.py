@@ -28,9 +28,10 @@ def remove_stopwords(texts):
 
 
 class TopicModeling:
-    def __init__(self, df):
+    def __init__(self, df, original_path):
         self.df = df
-        self.data = df.tweet.values.tolist()
+        self.original_path = original_path
+        self.data = df.drop_duplicates().tweet.values.tolist()
         self.data_words = list(sent_to_words(self.data))
         self._generate_models()
         self._save_path()
@@ -163,10 +164,16 @@ class TopicModeling:
                     break
 
         # Add original text to the end of the output
-        contents = pd.Series(self.data)
+        contents = self._get_original_content()
         topics_df = pd.concat([topics_df, contents], axis=1)
         topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
         return topics_df
+
+    def _get_original_content(self):
+        cols = ['index', 'id', 'tweet', 'user', 'date']
+        original_data = pd.read_csv(self.original_path, names=cols)
+        data = pd.merge(original_data, self.df, on="id").drop_duplicates().tweet_x.values.tolist()
+        return pd.Series(data)
 
     def save_dominant_topics_per_sentence(self):
         log("Dominant topics per sentence")

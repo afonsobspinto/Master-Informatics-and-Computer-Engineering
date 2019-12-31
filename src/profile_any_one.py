@@ -55,7 +55,7 @@ if __name__ == "__main__":
     # topic modeling using LDA’s approach
     if PHASE['modeller']:
         log("Modelling")
-        tm = TopicModeling(clean_df)
+        tm = TopicModeling(clean_df, raw_data)
         if USE_LAST_PARAMS:
             num_topics = last_params['num_topics']
             tm.model(num_topics=num_topics, save=True)
