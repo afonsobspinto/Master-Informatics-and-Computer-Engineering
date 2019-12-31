@@ -161,18 +161,18 @@ class TopicModeling:
                                                  ignore_index=True)
                 else:
                     break
-        topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic_Keywords']
 
         # Add original text to the end of the output
         contents = pd.Series(self.data)
         topics_df = pd.concat([topics_df, contents], axis=1)
+        topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
         return topics_df
 
     def save_dominant_topics_per_sentence(self):
         log("Dominant topics per sentence")
         df_topic_keywords = self.get_topic_keywords_table()
         df_dominant_topic = df_topic_keywords.reset_index()
-        df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
+        df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
         df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence.csv", index=False)
         log("Dominant topics per sentence saved")
 
@@ -185,7 +185,7 @@ class TopicModeling:
             topics_sorteddf_mallet = pd.concat([topics_sorteddf_mallet,
                                                 grp.sort_values(['Perc_Contribution'], ascending=[0]).head(1)], axis=0)
         topics_sorteddf_mallet.reset_index(drop=True, inplace=True)
-        topics_sorteddf_mallet.columns = ['Topic_Num', "Topic_Perc_Contrib", "Keywords", "Text"]
+        topics_sorteddf_mallet.columns = ['Topic_Num', "Perc_Contribution", "Topic", "Text"]
         topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic.csv", index=False)
         log("Representative sentence per topic saved")
 
@@ -194,18 +194,19 @@ class TopicModeling:
             self.df_topic_keywords = self.format_topics_sentences()
         return self.df_topic_keywords
 
-    def save_word_cloud(self):
-        cols = [color for name, color in mcolors.TABLEAU_COLORS.items()]
+    def save_word_cloud(self, num_topics):
+        cols = [color for name, color in mcolors.XKCD_COLORS.items()]
         cloud = WordCloud(stopwords=ENGLISH_STOPWORDS,
                           background_color='white',
                           width=2500,
                           height=1800,
+                          min_font_size=10,
                           max_words=10,
                           colormap='tab10',
                           color_func=lambda *args, **kwargs: cols[i],
                           prefer_horizontal=1.0)
-        topics = self.mod.show_topics(formatted=False)
-        fig, axes = plt.subplots(2, 2, figsize=(10,10), sharex=True, sharey=True)
+        topics = self.mod.show_topics(formatted=False, num_topics=num_topics)
+        fig, axes = plt.subplots(int(num_topics/4),4, figsize=(10,10), sharex=True, sharey=True)
         for i, ax in enumerate(axes.flatten()):
             fig.add_subplot(ax)
             topic_words = dict(topics[i][1])

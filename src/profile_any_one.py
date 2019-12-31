@@ -66,7 +66,7 @@ if __name__ == "__main__":
         tm.save_dominant_topics_per_sentence()
         params['last_path'] = tm.save_path
         tm.save_representative_sentence_per_topic()
-        tm.save_word_cloud()
+        tm.save_word_cloud(num_topics)
 
     if PHASE['labelling']:
         log("Labelling")

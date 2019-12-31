@@ -8,7 +8,7 @@ from utils import log
 
 
 class Labelling:
-    cols = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
+    cols = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Topic', 'Text']
 
     def __init__(self, df_topic_keywords=None, filepath=None):
         try:
@@ -24,18 +24,18 @@ class Labelling:
             raise Exception("Invalid Parameters")
 
     def manual_label(self):
-        for topic in self.df_topic_keywords['Keywords'].unique():
+        for topic in self.df_topic_keywords['Topic'].unique():
             print(topic)
             replace = input()
             self.df_topic_keywords = self.df_topic_keywords.replace(topic, replace)
 
     def automatic_label(self):
-        for topic in self.df_topic_keywords['Keywords'].unique():
+        for topic in self.df_topic_keywords['Topic'].unique():
             replace = topic.split(',')[0]
             self.df_topic_keywords = self.df_topic_keywords.replace(topic, replace)
 
     def save(self):
-        self.df_topic_keywords = self.df_topic_keywords.drop(['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib'],
+        self.df_topic_keywords = self.df_topic_keywords.drop(['Dominant_Topic', 'Perc_Contribution'],
                                                              axis=1)
         self.df_topic_keywords.to_csv(f"{self.save_path}/topics.csv", index=False)
         log("Labels saved")

@@ -26,10 +26,10 @@ class TopicClassifier:
 
     def _get_topic_mapping(self):
         self.topic_mapping = {}
-        for i, topic in enumerate(self.df_data['Keywords'].unique()):
+        for i, topic in enumerate(self.df_data['Topic'].unique()):
             self.topic_mapping[i] = topic
         for key in self.topic_mapping.keys():
-            self.df_data['Keywords'] = self.df_data['Keywords'].replace(self.topic_mapping[key], key)
+            self.df_data['Topic'] = self.df_data['Topic'].replace(self.topic_mapping[key], key)
 
     def compute_best_hyperparameters(self, features_train, labels_train):
         c = [.0001, .001, .01]
@@ -59,7 +59,7 @@ class TopicClassifier:
 
     def classify(self, save=True, best=True, path=None):
         x_train, x_test, y_train, y_test = train_test_split(self.df_data['Text'],
-                                                            self.df_data['Keywords'],
+                                                            self.df_data['Topic'],
                                                             test_size=0.15,
                                                             random_state=8)
         max_features = 5
@@ -88,7 +88,7 @@ class TopicClassifier:
         print(accuracy_score(labels_test, svc_pred))
         print("Classification report")
         print(classification_report(labels_test, svc_pred))
-        aux_df = self.df_data[['Keywords']].drop_duplicates().sort_values('Keywords')
+        aux_df = self.df_data[['Topic']].drop_duplicates().sort_values('Topic')
         conf_matrix = confusion_matrix(labels_test, svc_pred)
         plt.figure(figsize=(12.8, 6))
         topics_arr = self._get_topics_arr(aux_df)
@@ -104,7 +104,7 @@ class TopicClassifier:
 
     def _get_topics_arr(self, df):
         arr = []
-        for val in df['Keywords'].values:
+        for val in df['Topic'].values:
             arr.append(self.topic_mapping[val])
         return arr
 
