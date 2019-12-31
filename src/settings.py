@@ -20,12 +20,12 @@ PHASE = {
     "extractor": False,
     "cleaner": False,
     "analyser": False,
-    "modeller": True,
-    "labelling": True,
+    "modeller": False,
+    "labelling": False,
     "classifier": True,
 }
 
-USE_LAST_PARAMS = False
+USE_LAST_PARAMS = True
 PARAMS_PATH = "params.json"
 MODELS_PATH = "../data/processed/models"
 CLASSIFIER_PATH = "../data/processed/classifier/"
@@ -34,6 +34,7 @@ CLASSIFIER_PATH = "../data/processed/classifier/"
 EXTRACTED_DATASETS = "../../data/extracted"
 COMBINED_DATASET = "../../data/dataset.csv"
 SMALL_COMBINED_DATASET = "../../data/dataset_small.csv"
+SMALL_COMBINED_DATASET2 = "../../data/dataset_small2.csv"
 KEY_WORDS = "../../data/related_words/"
 RELATED_WORDS = "../data/related_words/related_words.txt"
 TOPICS = {

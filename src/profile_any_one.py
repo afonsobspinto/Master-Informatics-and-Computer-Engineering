@@ -87,7 +87,7 @@ if __name__ == "__main__":
             tc = TopicClassifier(df_path=last_params['last_path'])
         else:
             raise Exception("Invalid Settings")
-        tc.classify()
+        tc.classify(algorithm="gbc")
         params['estimator'] = f'{tc.save_path}/best_estimator.pickle'
 
     params = {**last_params, **params}

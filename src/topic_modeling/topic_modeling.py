@@ -164,7 +164,8 @@ class TopicModeling:
                     break
 
         # Add original text to the end of the output
-        contents = self._get_original_content()
+        #contents = self._get_original_content()
+        contents = pd.Series(self.data)
         topics_df = pd.concat([topics_df, contents], axis=1)
         topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
         return topics_df
