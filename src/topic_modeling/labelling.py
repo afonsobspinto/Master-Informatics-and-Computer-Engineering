@@ -13,7 +13,7 @@ class Labelling:
     def __init__(self, df_topic_keywords=None, filepath=None):
         try:
             self.df_topic_keywords = df_topic_keywords if df_topic_keywords is not None \
-                else pd.read_csv(filepath + "/dominant_topics_per_sentence", names=self.cols, skiprows=1)
+                else pd.read_csv(filepath + "/dominant_topics_per_sentence.csv", names=self.cols, skiprows=1)
             if df_topic_keywords is None:
                 self.id = re.sub(r'-| |:|\.', '_', str(datetime.now()))
                 self.save_path = f"{MODELS_PATH}/{self.id}"

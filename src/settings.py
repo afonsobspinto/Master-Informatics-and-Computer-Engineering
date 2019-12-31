@@ -21,12 +21,14 @@ PHASE = {
     "cleaner": False,
     "analyser": False,
     "modeller": False,
-    "labelling": True,
+    "labelling": False,
+    "classifier": True,
 }
 
 USE_LAST_PARAMS = True
 PARAMS_PATH = "params.json"
 MODELS_PATH = "../data/processed/models"
+CLASSIFIER_PATH = "../data/processed/classifier/"
 
 # DEV
 EXTRACTED_DATASETS = "../../data/extracted"

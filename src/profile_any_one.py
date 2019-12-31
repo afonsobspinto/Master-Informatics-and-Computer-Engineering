@@ -6,6 +6,7 @@ from data_extraction.data_extractor import DataExtractor
 from data_manipulation.data_analyser import DataAnalyser
 from data_manipulation.data_cleaning.data_cleaner import DataCleaner
 from settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
+from topic_classifier.topic_classifier import TopicClassifier
 from topic_modeling.labelling import Labelling
 from topic_modeling.topic_modeling import TopicModeling
 from utils import dump_json, read_json, log
@@ -24,8 +25,7 @@ if __name__ == "__main__":
 
     params = {}
 
-    if USE_LAST_PARAMS:
-        last_params = read_json(PARAMS_PATH)
+    last_params = read_json(PARAMS_PATH)
 
     # Extracts tweets and saves them in a csv file
     if PHASE['extractor']:
@@ -58,7 +58,6 @@ if __name__ == "__main__":
         tm = TopicModeling(clean_df)
         if USE_LAST_PARAMS:
             num_topics = last_params['num_topics']
-            params['num_topics'] = num_topics
             tm.model(num_topics=num_topics, save=True)
             tm.visualize(num_topics=num_topics)
         else:
@@ -68,7 +67,6 @@ if __name__ == "__main__":
         params['last_path'] = tm.save_path
         tm.save_representative_sentence_per_topic()
         tm.save_word_cloud()
-        dump_json(PARAMS_PATH, params)
 
     if PHASE['labelling']:
         log("Labelling")
@@ -81,3 +79,16 @@ if __name__ == "__main__":
         labelling.automatic_label()
         labelling.save()
 
+    if PHASE['classifier']:
+        log("Classifying")
+        if PHASE['labelling']:
+            tc = TopicClassifier(df_data=labelling.df_topic_keywords)
+        elif USE_LAST_PARAMS:
+            tc = TopicClassifier(df_path=last_params['last_path'])
+        else:
+            raise Exception("Invalid Settings")
+        tc.classify()
+        params['estimator'] = f'{tc.save_path}/best_estimator.pickle'
+
+    params = {**last_params, **params}
+    dump_json(PARAMS_PATH, params)
