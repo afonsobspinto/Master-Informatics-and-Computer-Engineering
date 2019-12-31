@@ -5,7 +5,7 @@ import pandas as pd
 from data_extraction.data_extractor import DataExtractor
 from data_manipulation.data_analyser import DataAnalyser
 from data_manipulation.data_cleaning.data_cleaner import DataCleaner
-from settings import CLEAN_DATA, RAW_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
+from settings import CLEAN_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
 from topic_classifier.topic_classifier import TopicClassifier
 from topic_modeling.labelling import Labelling
 from topic_modeling.topic_modeling import TopicModeling
@@ -30,9 +30,16 @@ if __name__ == "__main__":
     # Extracts tweets and saves them in a csv file
     if PHASE['extractor']:
         log("Extracting")
-        de = DataExtractor(RAW_DATA)
+        de = DataExtractor(raw_data)
         de.extract()
         de.save()
+
+    # Extracts user tweets
+    if PHASE["user"]:
+        log("Extracting User Tweets")
+        if not PHASE['extractor']:
+            de = DataExtractor(raw_data)
+        de.get_user_en_tweets(user)
 
     # Cleans dataset and saves them in a csv file
     if PHASE['cleaner']:
@@ -41,7 +48,6 @@ if __name__ == "__main__":
         dc.clean()
         dc.save()
         clean_df = dc.get_clean_df()
-
     else:
         clean_df = pd.read_csv(CLEAN_DATA)
 

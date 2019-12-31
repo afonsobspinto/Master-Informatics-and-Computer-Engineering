@@ -14,7 +14,7 @@ class DataCleaner:
     cols = ['index', 'id', 'tweet', 'user', 'date']
 
     def __init__(self, filepath):
-        self.df = pd.read_csv(filepath, names=self.cols)
+        self.df = pd.read_csv(filepath, names=self.cols).drop_duplicates()
         self.tok = WordPunctTokenizer()
 
     def clean(self):
