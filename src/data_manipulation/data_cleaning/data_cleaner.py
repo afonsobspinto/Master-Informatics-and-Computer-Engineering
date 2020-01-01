@@ -11,10 +11,10 @@ def not_empty_or_rt(tweet):
 
 
 class DataCleaner:
-    cols = ['index', 'id', 'tweet', 'user', 'date']
+    cols = ['id', 'tweet', 'user', 'date']
 
     def __init__(self, filepath):
-        self.df = pd.read_csv(filepath, names=self.cols).drop_duplicates()
+        self.df = pd.read_csv(filepath, names=self.cols, header=None).drop_duplicates()
         self.tok = WordPunctTokenizer()
 
     def clean(self):

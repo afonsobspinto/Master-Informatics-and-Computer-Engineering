@@ -5,6 +5,8 @@ import pandas as pd
 from data_extraction.data_extractor import DataExtractor
 from data_manipulation.data_analyser import DataAnalyser
 from data_manipulation.data_cleaning.data_cleaner import DataCleaner
+from scripts.generate_small_dataset import generate_dataset
+from sentiment_analysis.SentimentAnalysis import SentimentAnalysis
 from settings import CLEAN_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
 from topic_classifier.topic_classifier import TopicClassifier
 from topic_modeling.labelling import Labelling
@@ -33,6 +35,9 @@ if __name__ == "__main__":
         de = DataExtractor(raw_data)
         de.extract()
         de.save()
+
+    # Generate minimun dataset
+    # generate_dataset(10000)
 
     # Extracts user tweets
     if PHASE["user"]:
@@ -95,6 +100,18 @@ if __name__ == "__main__":
             raise Exception("Invalid Settings")
         tc.classify(algorithm="gbc")
         params['estimator'] = f'{tc.save_path}/best_estimator.pickle'
+
+    if PHASE['sentiment']:
+        log("Sentiment Analysis")
+        if PHASE["user"]:
+            if PHASE['labelling']:
+                sa = SentimentAnalysis(de.user_tweet_ids, df_data=labelling.df_topic_keywords)
+            elif USE_LAST_PARAMS:
+                sa = SentimentAnalysis(de.user_tweet_ids, df_path=last_params['last_path'])
+            else:
+                raise Exception("Invalid Settings")
+        sa.analyse()
+        sa.save(user)
 
     params = {**last_params, **params}
     dump_json(PARAMS_PATH, params)

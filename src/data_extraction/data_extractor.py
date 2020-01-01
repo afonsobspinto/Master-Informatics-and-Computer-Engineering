@@ -68,8 +68,8 @@ class DataExtractor:
         log("Append to dataset")
         raw_data = pd.read_csv(self.filepath, header=None, names=['index', 'id', 'tweet', 'user', 'date'])\
             .drop("index", axis=1)
-        self.df = raw_data.append(user_df)
-        self.df.to_csv(self.filepath, encoding='utf-8', mode='a', header=False)
+        self.df = raw_data.append(user_df, ignore_index=True).drop_duplicates()
+        self.df.to_csv(self.filepath, header=None, index=None)
         self.user_tweet_ids = user_df.id.values.tolist()
 
     def save_user_tweets(self, user, tweets):

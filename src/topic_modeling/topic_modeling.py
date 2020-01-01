@@ -164,23 +164,23 @@ class TopicModeling:
                     break
 
         # Add original text to the end of the output
-        #contents = self._get_original_content()
+        contents_ids = self._get_ids()
         contents = pd.Series(self.data)
         topics_df = pd.concat([topics_df, contents], axis=1)
-        topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
+        topics_df = pd.concat([topics_df, contents_ids], axis=1)
+        topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text', 'id']
         return topics_df
 
-    def _get_original_content(self):
-        cols = ['index', 'id', 'tweet', 'user', 'date']
+    def _get_ids(self):
+        cols = ['id', 'tweet', 'user', 'date']
         original_data = pd.read_csv(self.original_path, names=cols)
-        data = pd.merge(original_data, self.df, on="id").drop_duplicates().tweet_x.values.tolist()
+        data = pd.merge(original_data, self.df, on="id").drop_duplicates().id.values.tolist()
         return pd.Series(data)
 
     def save_dominant_topics_per_sentence(self):
         log("Dominant topics per sentence")
         df_topic_keywords = self.get_topic_keywords_table()
         df_dominant_topic = df_topic_keywords.reset_index()
-        df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Perc_Contribution', 'Topic', 'Text']
         df_dominant_topic.to_csv(f"{self.save_path}/dominant_topics_per_sentence.csv", index=False)
         log("Dominant topics per sentence saved")
 
@@ -193,7 +193,6 @@ class TopicModeling:
             topics_sorteddf_mallet = pd.concat([topics_sorteddf_mallet,
                                                 grp.sort_values(['Perc_Contribution'], ascending=[0]).head(1)], axis=0)
         topics_sorteddf_mallet.reset_index(drop=True, inplace=True)
-        topics_sorteddf_mallet.columns = ['Topic_Num', "Perc_Contribution", "Topic", "Text"]
         topics_sorteddf_mallet.to_csv(f"{self.save_path}/representative_sentence_per_topic.csv", index=False)
         log("Representative sentence per topic saved")
 
@@ -213,7 +212,6 @@ class TopicModeling:
                               background_color='white',
                               width=2500,
                               height=1800,
-                              min_font_size=10,
                               max_words=10,
                               colormap='tab10',
                               color_func=lambda *args, **kwargs: cols[i],
@@ -222,6 +220,12 @@ class TopicModeling:
             for j, ax in enumerate(axes.flatten()):
                 fig.add_subplot(ax)
                 topic_words = dict(topics[index][1])
+                to_del = []
+                for key, value in topic_words.items():
+                    if value == 0.0:
+                        to_del.append(key)
+                for k in to_del:
+                    del topic_words[k]
                 cloud.generate_from_frequencies(topic_words, max_font_size=300)
                 plt.gca().imshow(cloud)
                 plt.gca().set_title('Topic ' + str(index), fontdict=dict(size=16))
