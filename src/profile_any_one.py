@@ -1,11 +1,8 @@
-import json
-
 import pandas as pd
 
 from data_extraction.data_extractor import DataExtractor
 from data_manipulation.data_analyser import DataAnalyser
 from data_manipulation.data_cleaning.data_cleaner import DataCleaner
-from scripts.generate_small_dataset import generate_dataset
 from sentiment_analysis.SentimentAnalysis import SentimentAnalysis
 from settings import CLEAN_DATA, PHASE, USE_LAST_PARAMS, PARAMS_PATH
 from topic_classifier.topic_classifier import TopicClassifier
