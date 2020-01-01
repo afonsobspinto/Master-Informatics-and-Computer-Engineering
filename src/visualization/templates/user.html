@@ -25,7 +25,7 @@
         <label>
             <select class="w3-bar-item w3-hide-small" id="topics" name="Topics" onchange="select()">
                 {%for i in data%}
-                <option value="{{ i }}">{{ i }}</option>
+                <option id="topic_option" value="{{ i }}">{{ i }}</option>
                 {%endfor%}
             </select>
         </label>
@@ -47,14 +47,16 @@
             <p class="w3-xlarge">Location: </p>
             <i class="fa fa-twitter w3-margin-right w3-xlarge"></i>
             <p class="w3-xlarge">Number of Tweets: </p>
+            <p style="display: none" id="dataset">{{ data }}</p>
         </div>
         <div class="col-sm-3 smaller-container">
             <div id="percentages">
 
             </div>
             <div id="percentages-display">
-                <p id="percentage1"></p>
-                <p id="percentage2"></p>
+                <p id="positive"></p>
+                <p id="neutral"></p>
+                <p id="negative"></p>
             </div>
         </div>
 </header>
@@ -64,24 +66,37 @@
     let elem = document.getElementById('percentages');
     let two = new Two({ width: 585, height: 400 }).appendTo(elem);
 
-    // Get the option selected in the dropdown
+    // Get the topic selected in the dropdown
     let selected = document.getElementById("topics");
-    let selected_percentage = selected.options[selected.selectedIndex].value;
+    let dataset_str = (document.getElementById("dataset").textContent).replace(/'/g,'"');
+    let dataset = JSON.parse(dataset_str);
+    let selected_topic = selected.options[selected.selectedIndex].value;
 
-    let percentage1 = document.getElementById('percentage1');
-    percentage1.innerText = selected_percentage + "%";
-    let percentage2 = document.getElementById('percentage2');
-    percentage2.innerText = (100 - selected_percentage)  + "%";
+    // Get the percentages of the topic
+    let pos_value = dataset[selected_topic].positive;
+    let neu_value = dataset[selected_topic].neutral;
+    let neg_value = dataset[selected_topic].negative;
 
-    let inverse = 100 - selected_percentage;
+    // Change the percentages text
+    let positive = document.getElementById('positive');
+    positive.innerText = pos_value + "%";
+    let neutral = document.getElementById('neutral');
+    neutral.innerText = neu_value  + "%";
+    let negative = document.getElementById('negative');
+    negative.innerText = neg_value  + "%";
 
-    let rect1 = two.makeRectangle(-100, 0 - inverse*2, 150, selected_percentage*4);
-    let rect2 = two.makeRectangle(-300, 0 - selected_percentage*2, 150, inverse*4);
+    // Draw the rectangles
+    let rect1 = two.makeRectangle(0, 0 - (neu_value+neg_value)*2, 150, pos_value*4);
+    let rect2 = two.makeRectangle(-200, 0 - (pos_value+neg_value)*2, 150, neu_value*4);
+    let rect3 = two.makeRectangle(-400, 0 - (pos_value+neu_value)*2, 150, neg_value*4);
 
     // Change the percentage text
-    percentage1.innerText = selected_percentage + "%";
-    percentage2.innerText = (100 - selected_percentage)  + "%";
-    createRectangles(rect1, rect2, true)
+    positive.innerText = pos_value + "%";
+    neutral.innerText = neu_value  + "%";
+    negative.innerText = neg_value  + "%";
+
+    // Create the rectangles
+    createRectangles(rect1, rect2, rect3, true)
 </script>
 
 </body>
