@@ -20,7 +20,7 @@ def statistics():
 def profile():
     username = request.form['username']
     select = request.form.get('Topics')
-    return render_template('user.html', username=username, data=data, cat_len=len(data['categories']))
+    return render_template('user.html', username=username, data=data, cat_len=len(data))
 
 
 if __name__ == "__main__":

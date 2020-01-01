@@ -1,0 +1,27 @@
+{
+  "username": "tomas",
+  "age": 22,
+  "gender": "m",
+  "location": "Belgium",
+  "tweets": 4,
+  "categories":
+  [
+    {
+      "name": "Left Sided Politics",
+      "percentage": 20
+    },
+    {
+      "name": "Pop Music",
+      "percentage": 50
+    },
+    {
+      "name": "Sports",
+      "percentage": 0
+    },
+    {
+      "name": "Movies",
+      "percentage": 33
+    }
+  ]
+
+}

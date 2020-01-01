@@ -24,8 +24,8 @@
         <a class="w3-bar-item w3-hide-small w3-padding-large" id="categories" >Categories: </a>
         <label>
             <select class="w3-bar-item w3-hide-small" id="topics" name="Topics" onchange="select()">
-                {%for i in range(0, cat_len)%}
-                <option value="{{ data['categories'][i]['percentage'] }}">{{ data['categories'][i]['name'] }}</option>
+                {%for i in data%}
+                <option value="{{ i }}">{{ i }}</option>
                 {%endfor%}
             </select>
         </label>
@@ -39,14 +39,14 @@
 
 <!-- Header -->
 <header class="w3-container w3-blue w3-center">
-    <h2 class="w3-jumb"> Profiling @{{ data['username'] }}</h2>
+    <h2 class="w3-jumb"> Profiling @{{ username }}</h2>
         <div class="col-sm-3" id="stats">
             <i class="fa fa-user w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Gender: {{ data['gender'] }}</p>
+            <p class="w3-xlarge">Gender: </p>
             <i class="fa fa-location-arrow w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Location: {{ data['location'] }}</p>
+            <p class="w3-xlarge">Location: </p>
             <i class="fa fa-twitter w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Number of Tweets: {{ data['tweets'] }}</p>
+            <p class="w3-xlarge">Number of Tweets: </p>
         </div>
         <div class="col-sm-3 smaller-container">
             <div id="percentages">

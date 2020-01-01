@@ -1,27 +1,152 @@
 {
-  "username": "tomas",
-  "age": 22,
-  "gender": "m",
-  "location": "Belgium",
-  "tweets": 4,
-  "categories":
-  [
-    {
-      "name": "Left Sided Politics",
-      "percentage": 20
-    },
-    {
-      "name": "Pop Music",
-      "percentage": 50
-    },
-    {
-      "name": "Sports",
-      "percentage": 0
-    },
-    {
-      "name": "Movies",
-      "percentage": 33
-    }
-  ]
-
+  "religion":{
+    "positive":0.0,
+    "neutral":100.0,
+    "negative":0.0
+  },
+  "happiness":{
+    "positive":88.88888888888889,
+    "neutral":11.11111111111111,
+    "negative":0.0
+  },
+  "create":{
+    "positive":33.33333333333333,
+    "neutral":50.0,
+    "negative":16.666666666666664
+  },
+  "life":{
+    "positive":40.0,
+    "neutral":40.0,
+    "negative":20.0
+  },
+  "close":{
+    "positive":19.047619047619047,
+    "neutral":66.66666666666666,
+    "negative":14.285714285714285
+  },
+  "world":{
+    "positive":28.57142857142857,
+    "neutral":71.42857142857143,
+    "negative":0.0
+  },
+  "good":{
+    "positive":16.666666666666664,
+    "neutral":83.33333333333334,
+    "negative":0.0
+  },
+  "truth":{
+    "positive":25.0,
+    "neutral":25.0,
+    "negative":50.0
+  },
+  "eye":{
+    "positive":25.0,
+    "neutral":25.0,
+    "negative":50.0
+  },
+  "make":{
+    "positive":60.0,
+    "neutral":20.0,
+    "negative":20.0
+  },
+  "issue":{
+    "positive":50.0,
+    "neutral":33.33333333333333,
+    "negative":16.666666666666664
+  },
+  "die":{
+    "positive":75.0,
+    "neutral":25.0,
+    "negative":0.0
+  },
+  "laugh":{
+    "positive":66.66666666666666,
+    "neutral":0.0,
+    "negative":33.33333333333333
+  },
+  "care":{
+    "positive":50.0,
+    "neutral":50.0,
+    "negative":0.0
+  },
+  "feel":{
+    "positive":40.0,
+    "neutral":60.0,
+    "negative":0.0
+  },
+  "footballmanager":{
+    "positive":12.5,
+    "neutral":50.0,
+    "negative":37.5
+  },
+  "effect":{
+    "positive":33.33333333333333,
+    "neutral":33.33333333333333,
+    "negative":33.33333333333333
+  },
+  "true":{
+    "positive":16.666666666666664,
+    "neutral":66.66666666666666,
+    "negative":16.666666666666664
+  },
+  "poetry":{
+    "positive":33.33333333333333,
+    "neutral":33.33333333333333,
+    "negative":33.33333333333333
+  },
+  "end":{
+    "positive":50.0,
+    "neutral":50.0,
+    "negative":0.0
+  },
+  "time":{
+    "positive":33.33333333333333,
+    "neutral":66.66666666666666,
+    "negative":0.0
+  },
+  "positive":{
+    "positive":80.0,
+    "neutral":20.0,
+    "negative":0.0
+  },
+  "simple":{
+    "positive":100.0,
+    "neutral":0.0,
+    "negative":0.0
+  },
+  "atom":{
+    "positive":0.0,
+    "neutral":0.0,
+    "negative":100.0
+  },
+  "distinct":{
+    "positive":50.0,
+    "neutral":50.0,
+    "negative":0.0
+  },
+  "thing":{
+    "positive":83.33333333333334,
+    "neutral":16.666666666666664,
+    "negative":0.0
+  },
+  "free":{
+    "positive":33.33333333333333,
+    "neutral":66.66666666666666,
+    "negative":0.0
+  },
+  "edition":{
+    "positive":0.0,
+    "neutral":100.0,
+    "negative":0.0
+  },
+  "fear":{
+    "positive":0.0,
+    "neutral":66.66666666666666,
+    "negative":33.33333333333333
+  },
+  "mix":{
+    "positive":0.0,
+    "neutral":66.66666666666666,
+    "negative":33.33333333333333
+  }
 }
