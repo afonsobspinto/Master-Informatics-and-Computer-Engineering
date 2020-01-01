@@ -1,4 +1,4 @@
-from src.settings import KEY_WORDS, TOPICS, RELATED_WORDS
+from settings import KEY_WORDS, TOPICS, RELATED_WORDS
 import json
 from google import google
 

@@ -1,7 +1,7 @@
 import re
 import pandas as pd
 import tweepy as tw
-from src.settings import *
+from settings import *
 import csv
 fi = open("C:\\Users\\EHSAN.FALLAH\\PycharmProject\\ICT\\data\\training.1600000.processed.noemoticon.csv" , "r")
 reader = pd.read_csv(fi)
