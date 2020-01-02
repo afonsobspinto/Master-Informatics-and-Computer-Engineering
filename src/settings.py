@@ -17,15 +17,15 @@ MALLET_PATH = "../libraries/mallet-2.0.8/bin/mallet"
 PHASE = {
     "extractor": False,
     "user": True,
-    "cleaner": False,
-    "analyser": False,
+    "cleaner": True,
+    "analyser": True,
     "modeller": True,
     "labelling": True,
     "classifier": False,
     "sentiment": True,
 }
 
-USE_LAST_PARAMS = True
+USE_LAST_PARAMS = False
 PARAMS_PATH = "params.json"
 MODELS_PATH = "../data/processed/models"
 CLASSIFIER_PATH = "../data/processed/classifier/"

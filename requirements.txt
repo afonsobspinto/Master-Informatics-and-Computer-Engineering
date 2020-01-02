@@ -12,6 +12,7 @@ chardet==3.0.4
 cycler==0.10.0
 cymem==2.0.3
 docutils==0.15.2
+flask==1.1.1
 fake-useragent==0.1.11
 funcy==1.13
 future==0.18.2
