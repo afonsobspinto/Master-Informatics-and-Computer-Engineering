@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pandas as pd
 import tweepy as tw
-from settings import *
-from utils import is_english, log
+from src.settings import *
+from src.utils import is_english, log
 
 
 class DataExtractor:
@@ -45,27 +45,37 @@ class DataExtractor:
         self.df.to_csv(self.filepath, encoding='utf-8', mode='a', header=False)
 
     def get_user_en_tweets(self, screen_name):
+        """
+            Retrieves user tweets.
+            :param screen_name: username
+        """
         all_tweets = []
         # Only allows 200 tweets at a time
         new_tweets = self.api.user_timeline(screen_name=screen_name, count=200)
         all_tweets.extend(new_tweets)
         oldest = all_tweets[-1].id - 1
+        # Loops until all the tweets are retrieved
         while len(new_tweets) > 0:
             new_tweets = self.api.user_timeline(screen_name=screen_name, count=200, max_id=oldest)
             all_tweets.extend(new_tweets)
             oldest = all_tweets[-1].id - 1
             log("...%s tweets checked..." % (len(all_tweets)))
         eng_tweets = []
+        # Makes sure all the tweets are in english
         for tweet in all_tweets:
             if tweet.lang == "en" and is_english(tweet.text):
                 eng_tweets.append(tweet)
         tweets_array = [[tweet.id_str, tweet.text.strip(), tweet.user.name, str(tweet.created_at)]
                         for tweet in eng_tweets]
 
+        # Saves the tweets in an array
         self.save_user_tweets(screen_name, tweets_array)
 
     def append_to_raw_data(self, user_df):
-        log("Append to dataset")
+        """
+            Saves the tweets id, content, author and date.
+            :param user_df: username
+        """
         raw_data = pd.read_csv(self.filepath, header=None, names=['index', 'id', 'tweet', 'user', 'date'])\
             .drop("index", axis=1)
         self.df = raw_data.append(user_df, ignore_index=True).drop_duplicates()
@@ -73,6 +83,11 @@ class DataExtractor:
         self.user_tweet_ids = user_df.id.values.tolist()
 
     def save_user_tweets(self, user, tweets):
+        """
+            Creates a csv file to save the tweets.
+            :param user: username
+            :param tweets: tweets of the user
+        """
         save_path = f"{USER_EXTRACTED}/{user}"
         if not os.path.exists(save_path):
             os.makedirs(save_path)
@@ -82,6 +97,10 @@ class DataExtractor:
         self.append_to_raw_data(user_df)
 
     def get_tweets_by_category(self, search_keyword):
+        """
+            Returns the tweets that contain the search keyword.
+            :param search_keyword: the word to search in the tweets
+        """
         for tweet in tw.Cursor(self.api.search, q=search_keyword + ' -filter:retweets', lang='en', rpp=100).items(
                 self.MAX_ITEMS):
             tweet_obj = [tweet.id_str, tweet.text.strip(), tweet.user.name, str(tweet.created_at)]
