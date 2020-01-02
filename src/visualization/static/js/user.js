@@ -22,7 +22,7 @@ function createRectangles(rect1, rect2, rect3, first) {
     rect1.fill = '#60c403';
     rect1.stroke = '#067c50';
     rect2.fill = '#FFFF33';
-    rect2.stroke = '#FFFF00';
+    rect2.stroke = '#9B870C';
     rect3.fill = '#ff0000';
     rect3.stroke = '#a50000';
 
