@@ -164,7 +164,7 @@ physics
 bots
 simulation
 teleportation
-visualization
+web_app
 logarithms
 genomics
 technology

@@ -8,20 +8,28 @@ Have you ever wonder what your twitter feed tells about you? We will let you kno
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-1. Setup and activate a virtual environment  
+1. Setup and activate a virtual environment (Python 3.6 or higher)
 2. Follow the instructions to get a development environment running:
 ```$bash
 git clone https://github.ugent.be/efallahm/ICT.git
 cd ICT
-pipenv install 
+./install_dependencies.sh
+pip3 install -r requirements.txt
 ```
 3. Run the tool
 `
-python src/profile_any_one.py --user <@twitter_user>
+cd src
+python web_app.py
 `
 
 ### Shout-out to
+- [Flask](https://www.palletsprojects.com/p/flask/)
 - [Gensim](https://github.com/RaRe-Technologies/gensim)
+- [Matplotlib](https://matplotlib.org/)
+- [NLTK](https://www.nltk.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [Skikit-Learn](https://scikit-learn.org/stable/)
+- [TextBlob](https://textblob.readthedocs.io/en/dev/)
 
 ### Authors
 - Afonso Pinto
