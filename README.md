@@ -21,6 +21,17 @@ pip3 install -r requirements.txt
 cd src
 python web_app.py
 `
+## Use the application
+To use the website application you need to do the following:
+- Type the username of the person you want to profile, specify the number of rows that you want to use, check the steps that you want the algorithm to take and press the Submit button
+![Main Page](https://github.ugent.be/efallahm/ICT/blob/master/docs/.Report_images/main_page.png?raw=true)
+- A number of subjects in the dropdown will appear and after you select one, you'll get the user's respective interest on the topic, in the form of percentages.
+![Profiled User page](https://github.ugent.be/efallahm/ICT/blob/master/docs/.Report_images/profiled3.png?raw=true)
+- There's a tab for the topic modeling as well, where you can see an interactive topic visualization
+![Topic Modeling Page](https://github.ugent.be/efallahm/ICT/blob/master/docs/.Report_images/modeling.png?raw=true)
+- You can also view the statistics about the profiled tweets and their authors by clicking on the Statistics button in the navigation bar.
+![Statistics Page](https://github.ugent.be/efallahm/ICT/blob/master/docs/.Report_images/statistics.png?raw=true)
+
 
 ### Shout-out to
 - [Flask](https://www.palletsprojects.com/p/flask/)
