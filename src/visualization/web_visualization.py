@@ -15,6 +15,11 @@ def hello():
 def statistics():
     return render_template('statistics.html')
 
+@app.route("/modeling")
+def modeling():
+    app.send_static_file('html/ldavis_prepared_28_1577566746.2178874.html')
+    return render_template('modeling.html')
+
 
 @app.route('/profile', methods=['POST'])
 def profile():
