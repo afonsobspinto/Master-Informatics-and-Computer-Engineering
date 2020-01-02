@@ -1,0 +1,12 @@
+#iframe-div {
+    height: 900px;
+    width: 100%;
+    padding-top: 50px;
+    margin: auto;
+    position: center;
+}
+
+#iframe {
+    height: 100%;
+    width: 100%;
+}
