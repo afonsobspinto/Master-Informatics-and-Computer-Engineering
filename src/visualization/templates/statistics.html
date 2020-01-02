@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/css/statistics.css">
 <script src="../static/js/nav.js" type='text/javascript'></script>
 <style>
     body,h1,h2,h3,h4,h5,h6,li {font-family: "Lato", sans-serif}
@@ -30,20 +31,26 @@
 
 <!-- Header -->
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
-    </form>
+    <h2 class="w3-jumb"> Statistics of the dataset analysed </h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="../static/images/locationgraph.png" alt="Location Graph">
+            <figcaption>Location of the Users</figcaption>
+        </div>
+        <div class="grid-item">
+            <img src="../static/images/numberoffollowers.png" alt="Number of followers">
+            <figcaption>Number of followers per user</figcaption>
+        </div>
+        <div class="grid-item">
+            <img src="../static/images/numberoffriends.png" alt="Number of following">
+            <figcaption>Number of people following the user</figcaption>
+        </div>
+        <div class="grid-item">
+            <img src="../static/images/tweetsyear.png" alt="Tweets per year">
+            <figcaption>Tweets per year</figcaption>
+        </div>
+    </div>
 </header>
-
-<script>
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function myFunction() {
-        let x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") === -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
 
 </body>
 </html>
