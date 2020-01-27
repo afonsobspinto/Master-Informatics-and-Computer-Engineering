@@ -24,6 +24,12 @@ def modeling():
 @app.route('/profile', methods=['POST'])
 def profile():
     username = request.form['username']
+    rows = request.form['rows']
+    checked = request.form.getlist('state')
+    print("Username: " + username)
+    print("Rows: " + rows)
+    print(checked)
+
     return render_template('user.html', username=username, data=data, cat_len=len(data))
 
 
