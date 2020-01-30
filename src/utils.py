@@ -2,6 +2,8 @@ import enum
 import json
 import nltk
 from settings import DEBUG
+import glob
+import os
 
 ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words('english'))
 NON_ENGLISH_STOPWORDS = set(nltk.corpus.stopwords.words()) - ENGLISH_STOPWORDS
@@ -50,3 +52,10 @@ def read_json(filepath):
     with open(filepath) as f:
         data = json.load(f)
     return data
+
+
+def latest_file(path, extension):
+    latest_folder = max([os.path.join(path, d) for d in os.listdir(path)], key=os.path.getmtime)
+    list_of_files = glob.glob(latest_folder + '/*.' + extension)  # * means all if need specific format then *.csv
+    file = max(list_of_files, key=os.path.getctime)
+    return file

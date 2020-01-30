@@ -40,25 +40,25 @@
 <!-- Header -->
 <header class="w3-container w3-blue w3-center">
     <h2 class="w3-jumb"> Profiling @{{ username }}</h2>
-        <div class="col-sm-3" id="stats">
-             <!--<i class="fa fa-user w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Gender: </p>
-            <i class="fa fa-location-arrow w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Location: </p>
-            <i class="fa fa-twitter w3-margin-right w3-xlarge"></i>
-            <p class="w3-xlarge">Number of Tweets: </p>-->
-            <p style="display: none" id="dataset">{{ data }}</p>
-        </div>
-        <div class="col-sm-3 smaller-container">
-            <div id="percentages">
+    <div class="col-sm-3" id="stats">
+        <!--<i class="fa fa-user w3-margin-right w3-xlarge"></i>
+       <p class="w3-xlarge">Gender: </p>
+       <i class="fa fa-location-arrow w3-margin-right w3-xlarge"></i>
+       <p class="w3-xlarge">Location: </p>
+       <i class="fa fa-twitter w3-margin-right w3-xlarge"></i>
+       <p class="w3-xlarge">Number of Tweets: </p>-->
+        <p style="display: none" id="dataset">{{ data }}</p>
+    </div>
+    <div class="col-sm-3 smaller-container">
+        <div id="percentages">
 
-            </div>
-            <div id="percentages-display">
-                <p id="positive"></p>
-                <p id="neutral"></p>
-                <p id="negative"></p>
-            </div>
         </div>
+        <div id="percentages-display">
+            <p id="positive"></p>
+            <p id="neutral"></p>
+            <p id="negative"></p>
+        </div>
+    </div>
 </header>
 
 <script>
@@ -73,9 +73,9 @@
     let selected_topic = selected.options[selected.selectedIndex].value;
 
     // Get the percentages of the topic
-    let pos_value = dataset[selected_topic].positive;
-    let neu_value = dataset[selected_topic].neutral;
-    let neg_value = dataset[selected_topic].negative;
+    let pos_value = Math.round(dataset[selected_topic].positive);
+    let neu_value = Math.round(dataset[selected_topic].neutral);
+    let neg_value = Math.round(dataset[selected_topic].negative);
 
     // Change the percentages text
     let positive = document.getElementById('positive');
