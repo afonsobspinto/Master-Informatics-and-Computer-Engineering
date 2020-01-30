@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pandas as pd
 import tweepy as tw
-from src.settings import *
-from src.utils import is_english, log
+from settings import *
+from utils import is_english, log
 
 
 class DataExtractor:

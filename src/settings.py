@@ -25,7 +25,7 @@ PHASE = {
     "sentiment": True,
 }
 
-USE_LAST_PARAMS = False
+USE_LAST_PARAMS = True
 PARAMS_PATH = "params.json"
 MODELS_PATH = "../data/processed/models"
 CLASSIFIER_PATH = "../data/processed/classifier/"
@@ -33,11 +33,10 @@ RESULTS_PATH = "../data/processed/results/"
 USER_EXTRACTED = "../data/extracted/users"
 
 # DEV
-EXTRACTED_DATASETS = "../../data/extracted/original"
-COMBINED_DATASET = "../../data/dataset.csv"
-SMALL_COMBINED_DATASET = "../../data/dataset_small.csv"
-SMALL_COMBINED_DATASET2 = "../../data/dataset_small2.csv"
-KEY_WORDS = "../../data/related_words/"
+EXTRACTED_DATASETS = "../data/extracted/original"
+COMBINED_DATASET = "../data/dataset.csv"
+SMALL_COMBINED_DATASET = "../data/dataset_small.csv"
+KEY_WORDS = "../data/related_words/"
 RELATED_WORDS = "../data/related_words/related_words.txt"
 TOPICS = {
     "abortion.txt": True,
@@ -55,3 +54,5 @@ TOPICS = {
     "refugee.txt": True,
     "ufc.txt": False,
 }
+
+MAX_LENGTH = 15980

@@ -32,55 +32,55 @@
     <p class="w3-xlarge">Just type a twitter username and the number of rows in the following form!</p>
     <form action="/profile" method="post">
         <input style="border-top: 2px!important; padding: 13px 24px!important;" type="text" name="username" placeholder="Username"/>
-        <input id="rows" style="border-top: 2px!important; padding: 13px 24px!important;" type="text" name="rows" placeholder="Rows"/>
+        <input id="rows" style="border-top: 2px!important; padding: 13px 24px!important;" type="number" name="rows" placeholder="Rows"/>
         <input class="w3-button w3-black w3-padding-large w3-large" style="margin-bottom: 2px!important;" type="submit" value="Profile">
-    </form>
-    <div id="checkboxes">
-        <div class="container">
-            <div class="checkbox">
-                <label class="switch" for="checkbox1">
-                    <input type="checkbox" id="checkbox1"  />
-                    <div class="slider round"></div>
-                </label>
-                <p>Extractor</p>
-            </div>
-            <div>
-                <label class="switch" for="checkbox3">
-                    <input type="checkbox" id="checkbox3" />
-                    <div class="slider round"></div>
-                </label>
-                <p>Cleaner</p>
-            </div>
-            <div>
-                <label class="switch" for="checkbox4">
-                    <input type="checkbox" id="checkbox4" />
-                    <div class="slider round"></div>
-                </label>
-                <p>Analyser</p>
-            </div>
-            <div>
-                <label class="switch" for="checkbox5">
-                    <input type="checkbox" id="checkbox5" />
-                    <div class="slider round"></div>
-                </label>
-                <p>Modeller</p>
-            </div>
-            <div>
-                <label class="switch" for="checkbox6">
-                    <input type="checkbox" id="checkbox6" />
-                    <div class="slider round"></div>
-                </label>
-                <p>Labelling</p>
-            </div>
-            <div>
-                <label class="switch" for="checkbox7">
-                    <input type="checkbox" id="checkbox7" />
-                    <div class="slider round"></div>
-                </label>
-                <p>Classifier</p>
+        <div id="checkboxes">
+            <div class="container">
+                <div class="checkbox">
+                    <label class="switch" for="checkbox1">
+                        <input type="checkbox" id="checkbox1" name="extractor" value="True"/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Extractor</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox2">
+                        <input type="checkbox" id="checkbox2" name="cleaner" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Cleaner</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox3">
+                        <input type="checkbox" id="checkbox3" name="analyser" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Analyser</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox4">
+                        <input type="checkbox" id="checkbox4" name="modeller" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Modeller</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox5">
+                        <input type="checkbox" id="checkbox5" name="labelling" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Labelling</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox6">
+                        <input type="checkbox" id="checkbox6" name="classifier" value="False" disabled/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Classifier</p>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </header>
 
 <!-- First Grid -->
