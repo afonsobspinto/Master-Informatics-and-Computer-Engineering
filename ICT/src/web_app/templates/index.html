@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Profile Anyone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/css/index.css">
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+        <a href="/statistics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Statistics</a>
+        <a href="/modeling" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Topic Modeling</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Statistics</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">Profile Anyone</h1>
+    <p class="w3-xlarge">Just type a twitter username and the number of rows in the following form!</p>
+    <form action="/profile" method="post">
+        <input style="border-top: 2px!important; padding: 13px 24px!important;" type="text" name="username" placeholder="Username"/>
+        <input id="rows" style="border-top: 2px!important; padding: 13px 24px!important;" type="number" name="rows" placeholder="Rows"/>
+        <input class="w3-button w3-black w3-padding-large w3-large" style="margin-bottom: 2px!important;" type="submit" value="Profile">
+        <div id="checkboxes">
+            <div class="container">
+                <div class="checkbox">
+                    <label class="switch" for="checkbox1">
+                        <input type="checkbox" id="checkbox1" name="extractor" value="True"/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Extractor</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox2">
+                        <input type="checkbox" id="checkbox2" name="cleaner" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Cleaner</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox3">
+                        <input type="checkbox" id="checkbox3" name="analyser" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Analyser</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox4">
+                        <input type="checkbox" id="checkbox4" name="modeller" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Modeller</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox5">
+                        <input type="checkbox" id="checkbox5" name="labelling" value="True" checked/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Labelling</p>
+                </div>
+                <div>
+                    <label class="switch" for="checkbox6">
+                        <input type="checkbox" id="checkbox6" name="classifier" value="False" disabled/>
+                        <div class="slider round"></div>
+                    </label>
+                    <p>Classifier</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>About this project</h1>
+            <h5 class="w3-padding-32">In our modern era, social media plays a prominent role in society. A large part of individuals share their opinions, comments and feelings with others about a controversial topic, e.g via Twitter.
+                Twitter is one of the most popular social networking services, therefore, extracting people's opinions via analyzing their tweets, can represent a rough estimation about a general opinion on a specific topic.</h5>
+
+            <p class="w3-text-grey">The purpose of the project is to be able to automatically determine the topic (politics, music, name of a company...) of certain tweets posted by a given user through topic classification and evaluate its polarity (positive or negative) via sentiment analysis. The end-result will give us a roughly overview of the person interests. This information has great value for many real world scenarios, for example:</p>
+            <h5 class="w3-text-grey" style="font-size: 15px;"><ul>
+                <li>Brand Monitoring - Keep track of your brand image, monitor your competitors or detect the latest trends in your industry</li>
+                <li>Sales and Marketing - Match your product or service with your ideal buyer persona</li>
+                <li>Product Analytics - Find ways to improve your product</li>
+                <li>Politic Analytics - Follow the popularity of any politician/party</li>
+            </ul></h5>
+            <p class="w3-text-grey">To bring the idea to the market, we would target specific companies focused on predicting certain answers for a peculiar topic. Groups and organizations that require the judgement of a large group of people would also take advantage of this application.</p>
+        </div>
+
+        <div class="w3-third w3-center">
+            <i class="fa fa-twitter w3-padding-64 w3-text-blue"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-third w3-center">
+            <i class="fa fa-users w3-padding-32 w3-text-blue w3-margin-right"></i>
+        </div>
+
+        <div class="w3-twothird">
+            <h1>Team</h1>
+            <h5 class="w3-padding-32y"><ul>
+                <li>Afonso Pinto</li>
+                <li>Ehsan Fallah</li>
+                <li>Tomás Oliveira</li>
+            </ul></h5>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

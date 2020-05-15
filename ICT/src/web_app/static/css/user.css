@@ -1,0 +1,73 @@
+body,h1,h2,h3,h4,h5,h6,li {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+
+.w3-bar {
+    background-color: dodgerblue;
+}
+
+#statistics, #categories {
+    color: #fff!important;
+}
+
+.w3-container {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    width: 100%;
+}
+
+#categories {
+    position: absolute;
+    right: 231px;
+}
+
+#topics {
+    position: absolute;
+    right: 0;
+    margin: 2px 4px 0;
+    padding: 11px 24px!important;
+}
+
+.w3-jumb {
+    margin-top: 100px;
+}
+
+#stats {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 50px 50px 50px;
+    grid-auto-flow: row;
+}
+
+#stats i {
+    text-align: right;
+}
+
+#stats p {
+    text-align: left;
+    margin: 0!important;
+}
+
+.smaller-container {
+    height: 350px;
+    margin: auto;
+    grid-template-columns: 300px;
+    grid-template-rows: 350px 100px;
+    grid-auto-flow: row;
+}
+
+#percentages {
+    height: 350px;
+}
+
+#percentages-display {
+    margin-top: 10px;
+}
+
+#percentages-display p {
+    display: inline;
+    width: 50px;
+    margin: 55px;
+    font-size: 25px;
+}

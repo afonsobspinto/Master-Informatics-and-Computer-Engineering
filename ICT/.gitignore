@@ -1,0 +1,5 @@
+.idea
+*.env
+data/**/*.csv
+data/**
+src/**/__pycache__/
