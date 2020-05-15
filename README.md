@@ -52,6 +52,11 @@ The goal of this project is to determine the decision tree that translates these
 
 Have you ever wonder what your twitter feed tells about you? We will let you know.
 
+### [IOT/AllThingsTalk Prototype](https://github.com/afonsobspinto/FEUP/tree/master/IOT)
+
+Prototype of AllThingsTalkMaker that enables interactions to/from the Cloud and between the client and the Cloud platform
+Some real data (laptopt temperature and battery) is being used to test the platform functionalities such as automation (automatic shutdown)
+
 ### [LAIG/RacingKings](https://github.com/afonsobspinto/FEUP/tree/master/LAIG/RacingKings)
 
 The graphical interface for the game developed in [Plog - Racing Kings](https://github.com/afonsobspinto/FEUP/tree/master/PLOG/RacingKings) , using JavaScript and WebGL technology.
