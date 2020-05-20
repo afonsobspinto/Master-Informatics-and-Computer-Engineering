@@ -45,7 +45,7 @@ genlisp==0.4.16
 genmsg==0.5.11
 gennodejs==2.0.1
 genpy==0.6.7
-httplib2==0.9.1
+httplib2==0.18.0
 idna==2.0
 image-geometry==1.12.8
 imutils==0.5.3
