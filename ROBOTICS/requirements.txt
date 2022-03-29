@@ -68,7 +68,7 @@ numpy==1.11.0
 oauth==1.0.1
 openni2-launch==0.4.2
 PAM==0.4.2
-paramiko==2.0.9
+paramiko==2.10.1
 Pillow==6.2.1
 pluginlib==1.11.3
 pr2-power-board==1.1.7
