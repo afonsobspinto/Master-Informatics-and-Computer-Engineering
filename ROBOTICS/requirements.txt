@@ -209,7 +209,7 @@ tf2-py==0.5.20
 tf2-ros==0.5.20
 topic-tools==1.12.14
 trollius==2.0.1
-Twisted==19.7.0
+Twisted==22.4.0
 txaio==1.0.0
 typing==3.7.4.1
 unique-id==1.0.5
