@@ -64,7 +64,7 @@ mpi4py==1.3.1
 msgpack-python==0.4.6
 netifaces==0.10.4
 nose==1.3.7
-numpy==1.11.0
+numpy==1.21.0
 oauth==1.0.1
 openni2-launch==0.4.2
 PAM==0.4.2
