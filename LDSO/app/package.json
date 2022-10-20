@@ -21,7 +21,7 @@
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^8.0.0",
     "babel": "^6.23.0",
-    "expo": "^30.0.1",
+    "expo": "^46.0.16",
     "jest-junit": "^5.2.0",
     "native-base": "^2.8.1",
     "prop-types": "^15.6.2",
